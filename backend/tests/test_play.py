@@ -82,7 +82,7 @@ def test_a_game_against_the_bot_is_played_commented_and_saved(settings, stockfis
             f"/api/play/{started['id']}/move", json={"ply": 0, "uci": "e2e4"}
         ).json()
         assert after["reply"]["ply"] == 2 and after["reply"]["source"] == "human"
-        assert 250 <= after["reply"]["think_ms"] <= 2800
+        assert after["reply"]["think_ms"] == 320
         assert len(after["frames"]) == 3 and after["frames"][1]["uci"] == "e2e4"
         assert provider.calls and provider.calls[-1].conditioning.self_rating == 1000
         assert client.get("/api/play/active").json()["game"]["id"] == started["id"]

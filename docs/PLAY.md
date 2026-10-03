@@ -64,12 +64,12 @@ dropping a piece: the shape users complain about on every weakened-engine bot.
 A weighted average of a Maia policy and engine scores reproduces that shape, so
 the design uses the engine as a veto, never as a blend.
 
-### Thinking time
+### No thinking pause
 
-The reply is known as soon as the learner's move is saved. The page shows it after
-a pause the server suggests (`think_ms`): longer when the policy is spread over
-many moves, short for an obvious recapture, with seeded jitter. This is
-presentation, not a clock.
+The bot is a bot and answers at once. The reply is known as soon as the learner's
+move is saved; the page shows it one board-animation beat later (`think_ms`, a
+fixed 320 ms) only so the two moves read as two moves. There is no clock in a
+game against the coach, so the review's clock-aware lines never play there.
 
 ### Resignation and draw offers
 

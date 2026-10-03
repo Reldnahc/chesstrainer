@@ -6,7 +6,6 @@ never make, so the bot keeps a human error profile instead of an engine's
 "perfect, then a random blunder" one. Engine levels use Stockfish's own limiter.
 """
 
-import math
 import random
 from dataclasses import dataclass
 
@@ -22,6 +21,8 @@ GUARDS = ((1200, "mate"), (1400, 900), (1800, 500), (2200, 300))
 SAMPLES = 5
 GUARD_MULTIPV = 4
 ENGINE_MOVE_SECONDS = 0.4
+# Just over the board's piece animation, so the reply reads as a second move.
+REPLY_BEAT_MS = 320
 
 
 @dataclass
@@ -92,15 +93,8 @@ def sample_order(probabilities: dict[str, float], rng: random.Random, count: int
 
 
 def think_time(board: chess.Board, move: chess.Move, probabilities: dict[str, float], rng):
-    """A short, varied pause: obvious recaptures are quick, open choices take longer."""
-    values = [p for p in probabilities.values() if p > 0]
-    entropy = (
-        -sum(p * math.log(p) for p in values) / math.log(len(values)) if len(values) > 1 else 0.0
-    )
-    pause = 350 + 1400 * entropy + rng.uniform(0, 500)
-    if board.move_stack and board.is_capture(move) and board.peek().to_square == move.to_square:
-        pause = min(pause, 450 + rng.uniform(0, 150))
-    return int(max(250, min(2800, pause)))
+    """The bot is a bot and plays at once. One beat separates the two moves on the board."""
+    return REPLY_BEAT_MS
 
 
 def human_move(engine, board: chess.Board, policy, rating: int, rng) -> BotChoice:
@@ -145,7 +139,7 @@ def engine_move(engine, board: chess.Board, rating: int, rng) -> BotChoice:
     return BotChoice(
         uci=uci,
         san=board.san(move),
-        think_ms=int(500 + rng.uniform(0, 700)),
+        think_ms=REPLY_BEAT_MS,
         source="engine",
         best_score=None,
     )
