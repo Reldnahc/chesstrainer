@@ -109,7 +109,8 @@ jobs:
           alembic check
       - name: Verify the complete recorded voice bank offline
         run: python -B -S scripts/prepare_coach_voice_bank.py --check
-      - run: python -m pytest -q --durations=20
+      - name: Run backend tests in parallel groups
+        run: python scripts/pytest_parallel.py -n 4 -q --durations=10
         env:
           STOCKFISH_PATH: /usr/games/stockfish
 

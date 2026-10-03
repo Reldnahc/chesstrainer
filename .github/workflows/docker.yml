@@ -29,6 +29,7 @@ jobs:
     outputs:
       base: ${{ steps.baseline.outputs.base }}
       full: ${{ steps.baseline.outputs.full }}
+      docker: ${{ steps.plan.outputs.docker }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -42,6 +43,19 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CI_FULL: ${{ github.event_name == 'workflow_dispatch' && inputs.full }}
         run: python scripts/ci_release_base.py
+      - name: Decide whether the shipped image changed
+        id: plan
+        env:
+          CI_BASE: ${{ steps.baseline.outputs.base }}
+          CI_FULL: ${{ steps.baseline.outputs.full }}
+        # Mirrors the correctness selection below, so the image is rebuilt whenever
+        # anything it ships changed since the last successful release.
+        run: |
+          if [ "$CI_FULL" != "false" ] || [ -z "$CI_BASE" ]; then
+            python scripts/ci_plan.py --full
+          else
+            python scripts/ci_plan.py --base "$CI_BASE" --head HEAD
+          fi
 
   correctness:
     needs: release-base
@@ -52,10 +66,38 @@ jobs:
       full: ${{ needs.release-base.outputs.full != 'false' || needs.release-base.outputs.base == '' }}
       skip_docker_install: true
 
+  image:
+    name: Build and smoke-test the image
+    needs: release-base
+    # Runs alongside correctness so the gated publish below reuses a warm cache.
+    # Missing plan output fails safe toward building.
+    if: github.ref == 'refs/heads/main' && needs.release-base.outputs.docker != 'false'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install httpx==0.28.1
+      - uses: docker/setup-buildx-action@v3
+      - name: Build the release image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          load: true
+          tags: fieldwork:release-candidate
+          cache-from: type=gha,scope=fieldwork
+          cache-to: type=gha,scope=fieldwork,mode=max
+      - run: python scripts/smoke_install.py --image fieldwork:release-candidate
+
   docker:
-    needs: correctness
+    needs: [release-base, correctness, image]
     # Manual runs from another branch are tested but must never replace the latest image.
-    if: github.ref == 'refs/heads/main'
+    # Changes that ship nothing new (tests, studios, docs) keep the current image.
+    if: github.ref == 'refs/heads/main' && needs.release-base.outputs.docker != 'false'
     runs-on: ubuntu-latest
     timeout-minutes: 30
     permissions:
@@ -76,7 +118,7 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Build the release image once
+      - name: Build the release image from the image job's cache
         uses: docker/build-push-action@v6
         with:
           context: .
