@@ -374,10 +374,11 @@ Choosing a coach in **Settings → Your coach** plays that coach's
 `coach-introduction` clip once the choice is saved, through the same scoped
 speech control (any voice mode except Off, honouring mute and volume), with the
 selected portrait's mouth following it. Loading or reloading Settings never plays
-it, and a newer choice cancels the previous one. No coach has this clip yet: the
-meaning is not in `meanings.json` or any bank, so the picker stays silent until a
-coach's introduction is written, approved and recorded (adding the meaning to the
-catalogue and every authored `scripts.json` at the same time).
+it, and a newer choice cancels the previous one. All 30 introductions are written
+and reviewed: `coach-introduction` is an operational meaning in `meanings.json`,
+with each authored voice's text in its `scripts.json` and Walter's and Rivet's in
+`banks/pilot-additions.json`. No coach has recorded it yet, so the bank tests allow
+it unrecorded and the picker stays silent until each clip is added.
 Opening the Maia insight popover neither plays nor consumes the main coach's
 pending automatic opportunity. Late Maia
 evidence can update visible text (and so the bubble's objective recording) without
