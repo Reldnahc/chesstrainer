@@ -1,0 +1,21 @@
+name: Python environment
+description: Create .venv from requirements.lock, restored from cache while the lock and interpreter are unchanged, and put it first on PATH
+runs:
+  using: composite
+  steps:
+    - name: Restore the environment from cache
+      id: venv
+      uses: actions/cache@v4
+      with:
+        path: .venv
+        # pythonLocation names the exact interpreter the venv links to.
+        key: venv-${{ runner.os }}-${{ env.pythonLocation }}-${{ hashFiles('requirements.lock') }}
+    - name: Install the locked dependencies
+      if: steps.venv.outputs.cache-hit != 'true'
+      shell: bash
+      run: python -m venv .venv && .venv/bin/pip install -r requirements.lock
+    - name: Link this checkout and expose the environment
+      shell: bash
+      run: |
+        .venv/bin/pip install --no-deps -e .
+        echo "$PWD/.venv/bin" >> "$GITHUB_PATH"
