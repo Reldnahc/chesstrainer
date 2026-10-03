@@ -58,8 +58,7 @@ class BrowserGamePuzzleProvider:
             themes=("fork", "crushing", "short", "endgame"),
             provenance={
                 "attribution": (
-                    "Your game as White vs fixture-opponent · 2026.10.01 · move 14. "
-                    "You played Ne4."
+                    "Your game as White vs fixture-opponent · 2026.10.01 · move 14. You played Ne4."
                 ),
                 "url": None,
                 "game_id": "fixture-game",

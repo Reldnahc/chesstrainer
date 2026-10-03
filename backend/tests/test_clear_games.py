@@ -27,8 +27,9 @@ def _engine(db, key):
         engine_version="test",
         config={},
         candidates=[
-            Candidate(uci="e2e4", san="e4", score=Score(kind="cp", value=0), pv=["e2e4"])
-            .model_dump()
+            Candidate(
+                uci="e2e4", san="e4", score=Score(kind="cp", value=0), pv=["e2e4"]
+            ).model_dump()
         ],
     )
     db.add(analysis)
@@ -38,8 +39,16 @@ def _engine(db, key):
 
 def _counts(path):
     with sqlite3.connect(path) as db:
-        tables = ("games", "game_imports", "decisions", "exercises", "srs_states",
-                  "exercise_answers", "engine_analyses", "user_preferences")
+        tables = (
+            "games",
+            "game_imports",
+            "decisions",
+            "exercises",
+            "srs_states",
+            "exercise_answers",
+            "engine_analyses",
+            "user_preferences",
+        )
         return {t: db.execute(f"SELECT COUNT(*) FROM {t}").fetchone()[0] for t in tables}
 
 
@@ -49,10 +58,18 @@ def test_clear_games_removes_game_data_and_keeps_everything_else(settings, sessi
         import_games(db, "fixture.pgn", PGN, ["Learner"], None)
         game_analysis = _engine(db, "game")
         decision = Decision(
-            game_id=db.scalar(select(Game.id)), ply=1, fen=chess.STARTING_FEN,
-            position_key="fixture", learner_color=True, move_uci="f2f3", move_san="f3",
-            before_analysis_id=game_analysis.id, played_analysis_id=game_analysis.id,
-            loss_cp=200, meaningful=True, facts={"verified_line": []},
+            game_id=db.scalar(select(Game.id)),
+            ply=1,
+            fen=chess.STARTING_FEN,
+            position_key="fixture",
+            learner_color=True,
+            move_uci="f2f3",
+            move_san="f3",
+            before_analysis_id=game_analysis.id,
+            played_analysis_id=game_analysis.id,
+            loss_cp=200,
+            meaningful=True,
+            facts={"verified_line": []},
         )
         db.add(decision)
         db.commit()
@@ -60,8 +77,9 @@ def test_clear_games_removes_game_data_and_keeps_everything_else(settings, sessi
         manual = manual_exercise(db, scheduler, chess.STARTING_FEN, ["e2e4"], "white")
         # A cached position the kept exercise still uses must survive the cleanup.
         shared = _engine(db, "shared")
-        db.scalar(select(ExerciseAnswer).where(ExerciseAnswer.exercise_id == manual.id)) \
-            .analysis_id = shared.id
+        db.scalar(
+            select(ExerciseAnswer).where(ExerciseAnswer.exercise_id == manual.id)
+        ).analysis_id = shared.id
         db.add(UserPreferences(coach_id="frog"))
         db.commit()
     before = _counts(settings.database_path)
@@ -75,9 +93,16 @@ def test_clear_games_removes_game_data_and_keeps_everything_else(settings, sessi
     removed = clear(settings.database_path, apply=True)
     assert removed == preview
     after = _counts(settings.database_path)
-    assert after == {"games": 0, "game_imports": 0, "decisions": 0, "exercises": 1,
-                     "srs_states": 1, "exercise_answers": 1, "engine_analyses": 1,
-                     "user_preferences": 1}
+    assert after == {
+        "games": 0,
+        "game_imports": 0,
+        "decisions": 0,
+        "exercises": 1,
+        "srs_states": 1,
+        "exercise_answers": 1,
+        "engine_analyses": 1,
+        "user_preferences": 1,
+    }
     with sqlite3.connect(settings.database_path) as db:
         assert db.execute("PRAGMA foreign_key_check").fetchone() is None
         assert db.execute("SELECT source FROM exercises").fetchone() == ("manual",)

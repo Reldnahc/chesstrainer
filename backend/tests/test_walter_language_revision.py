@@ -30,7 +30,13 @@ def test_walter_revision_preserves_meanings_and_the_locked_voice():
     # content. These two always sit beside a stronger alternative, so they are
     # retired, as are the clock observations; every other original recording
     # must survive.
-    retired = {"human-natural-error", "human-hard-defense-missed", "clock-low", "clock-fast", "clock-long"}
+    retired = {
+        "human-natural-error",
+        "human-hard-defense-missed",
+        "clock-low",
+        "clock-fast",
+        "clock-long",
+    }
     assert retired <= before.keys() and not retired & after.keys()
     before = {key: item for key, item in before.items() if key not in retired}
     assert before.keys() <= after.keys()

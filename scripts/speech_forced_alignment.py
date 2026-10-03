@@ -95,9 +95,11 @@ def normalize_text(text: str) -> str:
     # An accented name folds to plain letters only when the reviewed lexicon has it.
     text = re.sub(
         r"[a-zé]+",
-        lambda m: m.group(0).replace("é", "e")
-        if m.group(0).replace("é", "e") in speech_pronunciation.LEXICON
-        else m.group(0),
+        lambda m: (
+            m.group(0).replace("é", "e")
+            if m.group(0).replace("é", "e") in speech_pronunciation.LEXICON
+            else m.group(0)
+        ),
         text,
     )
     token = r"[a-z]+(?:'[a-z]+)?"
