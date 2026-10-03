@@ -126,23 +126,3 @@ test("the moves line names the engine's strongest reply, never the move actually
   await expect(region(page).locator(".coach-message [aria-live=polite] .sr-only"))
     .toHaveText(" Black’s strongest reply: Qh4#, forced mate.");
 });
-
-test("the bubble grows to show a joined spoken line and its footer without inner scrolling, up to its cap", async ({page}) => {
-  // Arjun's joined pair plus the moves line and Maia chip: the shared minimum height scrolls it.
-  await mount(page, "man-partner", games["cause-abandoned_defender-white"]);
-  await expect(bubble(page)).toHaveAttribute("data-spoken", /\+/);
-  const layout = await region(page).evaluate(element => {
-    const speech = element.querySelector<HTMLElement>(".coach-speech")!, message = element.querySelector<HTMLElement>(".coach-message")!;
-    const style = getComputedStyle(speech);
-    return {height: speech.offsetHeight, min: parseFloat(style.minHeight), max: parseFloat(style.maxHeight),
-      overflow: message.scrollHeight - message.clientHeight};
-  });
-  const desktop = test.info().project.name === "desktop";
-  expect(layout.min).toBe(desktop ? 136 : 156);
-  expect(layout.max).toBe(desktop ? 240 : 256);
-  // The wide desktop harness fits it at the minimum; a phone needs the extra height.
-  if (desktop) expect(layout.height).toBeGreaterThanOrEqual(layout.min);
-  else expect(layout.height).toBeGreaterThan(layout.min);
-  expect(layout.height).toBeLessThanOrEqual(layout.max);
-  expect(layout.overflow).toBeLessThanOrEqual(1);
-});

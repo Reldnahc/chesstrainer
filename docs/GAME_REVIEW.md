@@ -131,20 +131,11 @@ Arrow keys navigate reviewed dots when a dot is focused; Home/End
 select the first/last reviewed move. The graph has no separate move/navigation
 footer; use scrubbing or the main game controls to reach any ply, including positions
 still being reviewed. The coach keeps its label, message area, and action
-row in stable slots. The desktop illustrated coach is 136px tall and the bubble
-starts at that height; narrow layouts use a 156px minimum with a smaller portrait.
-Because the bubble shows the coach's spoken line, which can join two recorded
-sentences, the game review bubble grows with the line and its footer up to 240px
-on desktop and 256px on phones, then scrolls inside. Measured against every
-recorded and scripted game-review line and every pair of them for nine coaches
-(with a moves line and Maia chip), every single line and pair now fits without inner
-scrolling at 1366x768 and 1366x900, as do all pairs on an iPhone 13 except some
-of Alfie's longest (61% of his pairs fit; 95.7% across the measured cast). On desktop the
-bubble grows within the sidebar, so the board never moves; on phones the coach
-sits above the board, which can shift down by up to about 100px between moves.
-Practice modes keep the fixed height. Actions stay outside the bubble in both review modes.
+row in stable slots; longer explanations scroll inside the bubble. The desktop
+bubble and illustrated coach share a 136px height; narrow layouts use a 156px
+bubble with a smaller portrait. Actions stay outside the bubble in both review modes.
 On learner moves, a compact **Maia** insight sits at the bottom-right inside the
-coach bubble when saved human evidence supports one. Best
+existing fixed-height coach bubble when saved human evidence supports one. Best
 remains beneath the portrait; neither insight adds a row below the action buttons.
 The link sits in a short row tucked into the bubble's bottom padding. Every review
 bubble keeps the same compact 28px title row, so that space is reserved whether or

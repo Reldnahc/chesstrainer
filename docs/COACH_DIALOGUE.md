@@ -300,8 +300,8 @@ text shows instead.
   only: the opening name (`report.opening`), `<Side>’s strongest reply: <SAN>` (the engine's reply, never a claim about the move actually played) for a
   non-terminal position with an `immediate_reply`, and ", forced mate" only when an
   `allowed_mate` claim proves it. It wraps beside the Maia chip, outside the
-  scrolling message, and the bubble grows to fit a joined line (see
-  [Game review](GAME_REVIEW.md) for the caps and measurements).
+  scrolling message; like any long line, a joined spoken line scrolls inside the
+  fixed-height bubble (owner decision, 2026-10-03).
 - **Practice:** puzzles, opening recall, the opening line preview and Due's
   generic states (cold, retry prompt, fallback completion) show the spoken line
   for their selected recording. Lessons replace only the coach's own sentences

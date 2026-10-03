@@ -3,15 +3,13 @@ import walterBank from '../src/audio/speech/bank/manifest.json' with {type: 'jso
 
 const walter = (id: string) => id.split('+').map(part => walterBank.recordings.find(row => row.id === part)!.text).join(' ');
 
-/** The moves line sits outside the scrolling message, inside the bubble, fully
- * visible, and the bubble has grown enough that the spoken line needs no scrolling. */
+/** The moves line sits outside the scrolling message, inside the bubble, fully visible. */
 async function movesLineLayout(page: Page) {
   return page.locator('.review-coach').evaluate(element => {
     const box = (selector: string) => element.querySelector(selector)!.getBoundingClientRect();
     const speech = box('.coach-speech'), message = box('.coach-message'), moves = box('.coach-moves-line');
     return {below: moves.top >= message.bottom - 0.5, inside: moves.left >= speech.left && moves.right <= speech.right + 0.5
-      && moves.bottom <= speech.bottom + 0.5, visible: moves.height > 0,
-      scrolls: element.querySelector('.coach-message')!.scrollHeight > element.querySelector('.coach-message')!.clientHeight + 1};
+      && moves.bottom <= speech.bottom + 0.5, visible: moves.height > 0};
   });
 }
 
@@ -44,7 +42,7 @@ test('completed reviews stay move-by-move without a game story or critical-momen
   await expect(moves).toHaveText('Black’s strongest reply: Qh4#, forced mate');
   await expect(moves.locator('strong')).toHaveText('Qh4#');
   await page.evaluate(() => document.fonts.ready);
-  await expect.poll(() => movesLineLayout(page)).toEqual({below: true, inside: true, visible: true, scrolls: false});
+  await expect.poll(() => movesLineLayout(page)).toEqual({below: true, inside: true, visible: true});
   if (info.project.name === 'desktop') {
     for (const size of [{width: 1366, height: 768}, {width: 1366, height: 900}]) {
       await page.setViewportSize(size);
@@ -58,8 +56,8 @@ test('completed reviews stay move-by-move without a game story or critical-momen
         board = await page.locator('.board-shell').boundingBox();
         return JSON.stringify(board) === JSON.stringify(previous);
       }).toBe(true);
-      await expect.poll(() => movesLineLayout(page)).toEqual({below: true, inside: true, visible: true, scrolls: false});
-      // The bubble grows in the sidebar; the board beside it never moves.
+      await expect.poll(() => movesLineLayout(page)).toEqual({below: true, inside: true, visible: true});
+      // The fixed bubble scrolls long lines; the board beside it never moves.
       await page.getByRole('button', {name: 'Previous move', exact: true}).click();
       expect(await page.locator('.board-shell').boundingBox()).toEqual(board);
       await page.getByRole('button', {name: 'Next move', exact: true}).click();

@@ -51,17 +51,6 @@
   padding: 10px 14px;
   background: #242d28;
 }
-.review-coach--grow {
-  /* Game review's spoken line can join two recorded sentences. Its bubble keeps
-     the shared height as a minimum and grows with the line and its footer up to
-     this cap, measured against every recorded and scripted pair, then scrolls. */
-  --coach-max-height: 240px;
-}
-.review-coach--grow .coach-speech {
-  height: auto;
-  min-height: var(--coach-height);
-  max-height: var(--coach-max-height);
-}
 .review-coach--compact-label .coach-speech {
   /* Lessons have no evaluation or voice control, so the title row fits the
      title and leaves the rest of the fixed bubble to the explanation. */
@@ -388,9 +377,6 @@
     --coach-avatar-width: 52.5px;
     gap: 8px;
   }
-  .review-coach--grow {
-    --coach-max-height: 256px;
-  }
   .coach-avatar {
     height: auto;
     margin-top: 6px;
@@ -422,9 +408,6 @@
     --coach-height: 156px;
     --coach-avatar-width: 52.5px;
     gap: 8px;
-  }
-  .review-coach--grow {
-    --coach-max-height: 256px;
   }
   .coach-avatar {
     height: auto;
