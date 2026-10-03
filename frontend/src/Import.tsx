@@ -15,7 +15,7 @@ import GameSync from "./GameSync";
 import SettingsSection from "./SettingsSection";
 import EmptyState from "./EmptyState";
 import ChoiceGroup from "./ChoiceGroup";
-import { ImportAnalysisOption, ImportSubmitButton } from "./ImportControls";
+import { ImportSubmitButton } from "./ImportControls";
 import Notice from "./Notice";
 import { useInterfaceMotion } from "./MotionProvider";
 
@@ -144,7 +144,6 @@ export default function ImportSettings({
   const [jobs, setJobs] = useState<Job[]>([]);
   const [result, setResult] = useState<PgnImportResult | null>(null);
   const [busy, setBusy] = useState(false);
-  const [analyze, setAnalyze] = useState(false);
   const [showHistory, setShowHistory] = useState(false);
   const mounted = useRef(false);
   const generation = useRef(0);
@@ -193,7 +192,7 @@ export default function ImportSettings({
     setResult(null);
     try {
       const value = await read(api.POST("/api/imports", {
-        body: { file: input, usernames: names, side, analyze },
+        body: { file: input, usernames: names, side },
         bodySerializer: multipart,
       }));
       if (!mounted.current || generation.current !== token) return;
@@ -259,8 +258,7 @@ export default function ImportSettings({
                 </label>
               </div>
               <div className="import-form-actions">
-                <ImportAnalysisOption analyze={analyze} onChange={setAnalyze} />
-                <ImportSubmitButton analyze={analyze} busy={busy} busyLabel="Importing…"
+                <ImportSubmitButton busy={busy} busyLabel="Importing…"
                   disabled={pgnMode === "file" ? !file : !text.trim()} />
               </div>
               {result && <Notice announcement="status">

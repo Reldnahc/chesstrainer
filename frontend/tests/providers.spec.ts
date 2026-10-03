@@ -126,16 +126,17 @@ test('saved-name hydration cannot merge with an in-progress manual username', as
   }
 });
 
-test('Lichess opt-in analysis runs the existing native training pipeline', async ({page}, info) => {
+test('Lichess imports queue native analysis for each fetched game', async ({page}, info) => {
   const username = `lichess-training-${info.project.name}`;
   await page.goto('/settings');
   await page.getByRole('region', {name: 'Recent Lichess games', exact: true}).getByRole('button', {name: 'Import older games', exact: true}).click();
   await page.getByLabel('Lichess username', {exact: true}).fill(username);
   await page.getByLabel('Time control', {exact: true}).selectOption('blitz');
-  await page.getByRole('checkbox', {name: 'Also analyze these games for training'}).check();
-  await page.getByRole('button', {name: 'Import & analyze games', exact: true}).click();
+  await page.getByRole('button', {name: 'Import games', exact: true}).click();
   const job = page.locator('.job').filter({hasText: `Lichess · ${username}`}).first();
   await expect(job.locator('.badge')).toHaveText('completed', {timeout: 30000});
   await expect(job).toContainText('1 imported');
-  await expect(job).toContainText('2 decisions');
+  // The fetched game's own review + training job finishes in the background.
+  await expect.poll(async () => (await (await page.request.get('/api/analysis/queue')).json()).completed,
+    {timeout: 30000}).toBeGreaterThanOrEqual(1);
 });

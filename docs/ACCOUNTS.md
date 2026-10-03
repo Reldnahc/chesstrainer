@@ -105,21 +105,22 @@ Once accounts exist, schema downgrade is refused; restore a pre-upgrade snapshot
 
 ## Recent games
 
-Save a Chess.com username in Settings. Games exposes a compact **Update games** control using that saved connection. It is stored on the account, not
-in that browser. While either page is visible it checks sync progress every 15
-seconds and requests a provider refresh at most once per minute. Multiple devices
-share the same checkpoint/cooldown. Hidden pages do not poll. A failed provider
-request leaves saved games available and displays an error.
+Save a Chess.com or Lichess username in Settings. The connection is stored on the
+account, not in that browser. The server polls every saved connection on its own
+(see [Automatic game analysis](GAME_ANALYSIS.md)); open pages only read sync and
+queue status every 15 seconds. Games' compact **Update games** control requests an
+immediate check, at most once per minute per connection. Multiple devices share
+the same checkpoint/cooldown. A failed provider request leaves saved games
+available and displays an error.
 
-Automatic sync fetches at most the latest 50 completed standard-chess games in
-the current/previous month, across all time controls. It does not backfill all
-history, analyze games, create training cards, or change review schedules. The
-Games library sorts by play time, with unknown dates last. Chess.com's published
-API is cached; refresh does not guarantee immediate availability after a game.
+Each sync scans the newest 100 completed standard-chess games across all time
+controls, whatever month they were played in. Every new game queues its own
+analysis job. The Games library sorts by play time, with unknown dates last.
+Chess.com's published API is cached; a check does not guarantee immediate
+availability after a game.
 
-Manual imports default to fetching only in the UI. Select **Also analyze these
-games for training** to run the existing pipeline. Within any saved game, **Start
-game review** runs the coach/report and **Find training mistakes** queues that
-game for training, even if it was fetched earlier. Interactive exploration still
-analyzes the position you visit. The HTTP import API retains its previous
-`analyze=true` default for existing clients; the UI explicitly sends its selection.
+Manual imports fetch older games; there is no analysis choice. Their games join
+the same queue behind the newest 100. Opening a game and choosing **Start game
+review** moves its job to the front. **Find training mistakes** still queues
+training alone for one game. Interactive exploration still analyzes the position
+you visit. The HTTP import APIs ignore the former `analyze` field.

@@ -37,8 +37,6 @@ def create_router(*, settings) -> APIRouter:
         file: UploadFile = File(...),
         usernames: str = Form(""),
         side: Literal["auto", "white", "black"] = Form("auto"),
-        # Accepted for older clients; every imported game is analyzed now.
-        analyze: bool = Form(True),
     ):
         pgn = await read_pgn(file)
         filename = Path(file.filename or "games.pgn").name
@@ -110,7 +108,7 @@ def create_router(*, settings) -> APIRouter:
             db.flush()
             db.add(
                 ProviderImport(
-                    job_id=job.id, provider=provider, **data.model_dump(exclude={"analyze"})
+                    job_id=job.id, provider=provider, **data.model_dump()
                 )
             )
             db.commit()

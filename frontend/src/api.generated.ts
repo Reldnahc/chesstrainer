@@ -1271,11 +1271,6 @@ export interface components {
         };
         /** Body_upload_pgn_api_imports_post */
         Body_upload_pgn_api_imports_post: {
-            /**
-             * Analyze
-             * @default true
-             */
-            analyze: boolean;
             /** File */
             file: Blob;
             /**
@@ -1370,11 +1365,6 @@ export interface components {
         };
         /** ChessComRequest */
         ChessComRequest: {
-            /**
-             * Analyze
-             * @default true
-             */
-            analyze: boolean;
             /** End Date */
             end_date?: string | null;
             /**
@@ -3171,11 +3161,6 @@ export interface components {
         };
         /** ProviderImportRequest */
         ProviderImportRequest: {
-            /**
-             * Analyze
-             * @default true
-             */
-            analyze: boolean;
             /** End Date */
             end_date?: string | null;
             /**

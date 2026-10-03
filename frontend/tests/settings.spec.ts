@@ -103,7 +103,6 @@ test('import actions and deep links select their form without reloading settings
   page.on('request', request => { if (request.isNavigationRequest()) documents.push(request.url()); });
   await page.goto('/settings?import=chesscom');
   await expect(page.getByRole('heading', {name: 'Import from Chess.com', exact: true})).toBeVisible();
-  await expect(page.getByRole('checkbox', {name: 'Also analyze these games for training'})).not.toBeChecked();
   await expect(page.getByRole('button', {name: 'Import games', exact: true})).toBeVisible();
   await connection(page, 'Lichess').getByRole('button', {name: 'Import older games', exact: true}).click();
   await expect(page).toHaveURL('/settings?import=lichess');
@@ -167,7 +166,7 @@ test('pointer interaction stops following an activity anchor as connection detai
   await expect(card.getByLabel('Remembered Chess.com username')).toBeInViewport();
 });
 
-test('PGN source choices are exclusive and analysis is an explicit opt-in', async ({page}) => {
+test('PGN source choices are exclusive and imports offer no analysis choice', async ({page}) => {
   const uploads: string[] = [];
   await page.route('**/api/imports', route => {
     uploads.push(route.request().postDataBuffer()!.toString());
@@ -176,10 +175,9 @@ test('PGN source choices are exclusive and analysis is an explicit opt-in', asyn
   await page.goto('/settings?import=pgn');
   const file = page.getByLabel('PGN file', {exact: true});
   const text = page.getByLabel('PGN', {exact: true});
-  const analyze = page.getByRole('checkbox', {name: 'Also analyze these games for training'});
   await expect(file).toHaveCount(1);
   await expect(text).toHaveCount(0);
-  await expect(analyze).not.toBeChecked();
+  await expect(page.locator('.import-form').getByRole('checkbox')).toHaveCount(0);
   await file.setInputFiles({name: 'file-games.pgn', mimeType: 'text/plain', buffer: Buffer.from('[Event "File source"]\n\n1. d4 d5 *')});
   await page.getByRole('button', {name: 'Paste PGN text', exact: true}).click();
   await expect(file).toHaveCount(0);
@@ -191,17 +189,15 @@ test('PGN source choices are exclusive and analysis is an explicit opt-in', asyn
   expect(uploads).toHaveLength(1);
   expect(uploads[0]).toContain('Pasted source');
   expect(uploads[0]).not.toContain('File source');
-  expect(uploads[0]).toMatch(/name="analyze"\r?\n\r?\nfalse/);
-  await analyze.check();
-  await expect(page.getByRole('button', {name: 'Import & analyze games', exact: true})).toBeVisible();
+  expect(uploads[0]).not.toContain('name="analyze"');
   await page.getByRole('button', {name: 'Choose a file', exact: true}).click();
   await expect(text).toHaveCount(0);
   await file.setInputFiles({name: 'chosen-games.pgn', mimeType: 'text/plain', buffer: Buffer.from('[Event "Chosen file source"]\n\n1. d4 d5 *')});
-  await page.getByRole('button', {name: 'Import & analyze games', exact: true}).click();
+  await page.getByRole('button', {name: 'Import games', exact: true}).click();
   await expect.poll(() => uploads.length).toBe(2);
   expect(uploads[1]).toContain('Chosen file source');
   expect(uploads[1]).not.toContain('Pasted source');
-  expect(uploads[1]).toMatch(/name="analyze"\r?\n\r?\ntrue/);
+  expect(uploads[1]).not.toContain('name="analyze"');
 });
 
 test('saved usernames reach older imports without overwriting a manual or blank draft', async ({page}) => {

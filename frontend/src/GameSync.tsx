@@ -8,6 +8,7 @@ import Notice from "./Notice";
 
 type Sync = Schema["SyncStatus"];
 type Provider = Schema["GameProvider"];
+type Queue = Schema["AnalysisQueue"];
 const running = (value?: Sync) => !!value && ["queued", "running"].includes(value.status);
 const path = (provider: string) => ({ path: { provider } });
 
@@ -45,6 +46,32 @@ function Connection({ provider, status, save, busy, onImportOlderGames }: {
     {status?.error && <Notice announcement="alert" tone="error">{status.error}</Notice>}
     {onImportOlderGames && <div className="connection-actions"><Button variant="secondary" onClick={() => onImportOlderGames(provider.id)}>Import older games</Button></div>}
   </section>;
+}
+
+function queueSummary(queue: Queue) {
+  const waiting = queue.requested + queue.fresh + queue.backfill;
+  const parts = [queue.running ? `Analyzing ${queue.running.white} vs ${queue.running.black}.` : ""];
+  if (waiting) parts.push(`${waiting} ${waiting === 1 ? "game" : "games"} waiting (${queue.requested + queue.fresh} recent, ${queue.backfill} older).`);
+  if (!queue.running && !waiting) parts.push(queue.completed ? `All ${queue.completed} ${queue.completed === 1 ? "game" : "games"} analyzed.` : "No games to analyze yet.");
+  if (queue.failed) parts.push(`${queue.failed} could not be analyzed; open the game to retry.`);
+  return parts.filter(Boolean).join(" ");
+}
+
+// Every saved game is analyzed in the background; this reports the shared queue.
+function AnalysisQueueStatus() {
+  const [queue, setQueue] = useState<Queue | null>(null);
+  useEffect(() => {
+    let active = true;
+    const load = () => {
+      if (document.visibilityState === "hidden") return;
+      read(api.GET("/api/analysis/queue")).then(value => { if (active) setQueue(value); }).catch(() => undefined);
+    };
+    load();
+    const timer = window.setInterval(load, 15000);
+    document.addEventListener("visibilitychange", load);
+    return () => { active = false; window.clearInterval(timer); document.removeEventListener("visibilitychange", load); };
+  }, []);
+  return queue ? <Notice announcement="status" appearance="inline" className="small analysis-queue-status">{queueSummary(queue)}</Notice> : null;
 }
 
 export default function GameSync({ onChanged, compact = false, onStatusChange, onImportOlderGames }: {
@@ -115,13 +142,13 @@ export default function GameSync({ onChanged, compact = false, onStatusChange, o
     let items: Provider[] = [];
     const tick = () => {
       if (document.visibilityState === "hidden" || generation.current !== token) return;
-      void check(items, token, true).catch(e => { if (generation.current === token) setError(e.message); });
+      void check(items, token, false).catch(e => { if (generation.current === token) setError(e.message); });
     };
     read(api.GET("/api/game-providers")).then(async value => {
       if (generation.current !== token) return;
       items = value;
       setProviders(value);
-      await check(value, token, document.visibilityState !== "hidden");
+      await check(value, token, false);
     }).catch(e => { if (generation.current === token) setError(e.message); })
       .finally(() => { if (generation.current === token) setLoading(false); });
     const timer = window.setInterval(tick, 15000);
@@ -163,7 +190,8 @@ export default function GameSync({ onChanged, compact = false, onStatusChange, o
     {(error || Object.values(statuses).find(value => value.error)?.error) && <Notice announcement="alert" tone="error" appearance="inline" className="small">{error || Object.values(statuses).find(value => value.error)?.error}</Notice>}
   </div>;
   return <section aria-label="Connected game accounts">
-    <div className="row-between connection-heading"><p className="small connection-description">New games appear in Games automatically. Review a game when you’re ready to analyze it.</p>{connected && button}</div>
+    <div className="row-between connection-heading"><p className="small connection-description">Fieldwork checks your 100 most recent games every few minutes and analyzes new ones automatically, newest first. Older imported games are analyzed after them.</p>{connected && button}</div>
+    {connected && <AnalysisQueueStatus />}
     {loading && providers.length === 0 && <p role="status" className="small">Loading game connections…</p>}
     <div className="provider-connections">{providers.map(provider => <Connection key={provider.id} provider={provider} status={statuses[provider.id]} save={save} busy={busy} onImportOlderGames={onImportOlderGames} />)}</div>
     {error && <Notice announcement="alert" tone="error">{error}</Notice>}
