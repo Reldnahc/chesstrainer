@@ -1,4 +1,17 @@
-import {test, expect} from '@playwright/test';
+import {test, expect, type Page} from '@playwright/test';
+import walterBank from '../src/audio/speech/bank/manifest.json' with {type: 'json'};
+
+const walter = (id: string) => id.split('+').map(part => walterBank.recordings.find(row => row.id === part)!.text).join(' ');
+
+/** The moves line sits outside the scrolling message, inside the bubble, fully visible. */
+async function movesLineLayout(page: Page) {
+  return page.locator('.review-coach').evaluate(element => {
+    const box = (selector: string) => element.querySelector(selector)!.getBoundingClientRect();
+    const speech = box('.coach-speech'), message = box('.coach-message'), moves = box('.coach-moves-line');
+    return {below: moves.top >= message.bottom - 0.5, inside: moves.left >= speech.left && moves.right <= speech.right + 0.5
+      && moves.bottom <= speech.bottom + 0.5, visible: moves.height > 0};
+  });
+}
 
 test('completed reviews stay move-by-move without a game story or critical-moment surface', async ({page}, info) => {
   test.setTimeout(90_000);
@@ -18,6 +31,24 @@ test('completed reviews stay move-by-move without a game story or critical-momen
   await expect(page.locator('.coach-speech')).toContainText(/\bforce(?:d)? (?:check)?mate\b/i);
   await expect(page.locator('.coach-speech')).toContainText('Black');
   await expect(page.locator('.coach-speech')).toContainText('Qh4#');
+  // The bubble shows Walter's spoken line; the moves line keeps the real reply visible.
+  const spoken = page.locator('.coach-message [data-utterance]');
+  await expect(spoken).toHaveAttribute('data-spoken', /^allowed-mate(?:\+[a-z0-9-]+)?$/);
+  await expect(spoken).toHaveText(walter((await spoken.getAttribute('data-spoken'))!));
+  const moves = page.locator('.coach-moves-line');
+  await expect(moves).toHaveText('Black replies Qh4#, forced mate');
+  await expect(moves.locator('strong')).toHaveText('Qh4#');
+  expect(await movesLineLayout(page)).toEqual({below: true, inside: true, visible: true});
+  if (info.project.name === 'desktop') {
+    await page.setViewportSize({width: 1366, height: 768});
+    expect(await movesLineLayout(page)).toEqual({below: true, inside: true, visible: true});
+  }
+  await page.locator('.review-coach').screenshot({path: `test-results/coach-moves-line-${info.project.name}.png`});
+  // "Show why" keeps the written explanation, so the moves line steps aside.
+  await page.getByRole('button', {name: 'Show why', exact: true}).click();
+  await expect(spoken).not.toHaveAttribute('data-spoken', /./);
+  await expect(moves).toHaveCount(0);
+  await page.getByRole('button', {name: 'Hide why', exact: true}).click();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.reload();
   await expect(move).toHaveAttribute('aria-current', 'step');

@@ -159,17 +159,47 @@
   display: flex;
   flex-direction: column;
 }
-.coach-insight {
+.coach-footer {
   /* Tucked into the bubble's bottom padding so it costs the explanation as
-     little height as possible; the compact title row reserves the rest. */
+     little height as possible; the compact title row reserves the rest. The
+     moves line and the Maia chip share one row when they fit and wrap to two
+     when they do not, outside the scrolling message so both stay visible. */
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 2px 12px;
+  padding-top: 2px;
+  flex-shrink: 0;
+  min-height: 16px;
+  margin-bottom: -8px;
+}
+.coach-footer:has(> .coach-insight:empty:only-child) {
+  display: none;
+}
+.coach-insight {
   display: flex;
   justify-content: flex-end;
-  flex-shrink: 0;
+  flex: none;
+  max-width: 100%;
   height: 16px;
-  margin-bottom: -8px;
+  margin-left: auto;
 }
 .coach-insight:empty {
   display: none;
+}
+.coach-moves-line {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+  color: #c1cfc5;
+  font-size: 12px;
+  line-height: 16px;
+  overflow-wrap: anywhere;
+}
+.coach-moves-line strong {
+  color: #f1f5f2;
+  font-weight: 700;
 }
 .coach-message {
   flex: 1;
