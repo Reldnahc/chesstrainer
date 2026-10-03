@@ -130,7 +130,7 @@ test("Home presents bounded, actionable summaries without opening positions or s
   await expect(region(page, "Due now").getByRole("term")).toHaveText(["Scheduled recalls"]);
   await expect(region(page, "Due now").getByRole("definition")).toHaveText(["7"]);
   const navigation = page.getByRole("navigation", { name: "Main navigation" });
-  await expect(navigation.getByRole("link")).toHaveText(["Home", "Study", "Games", "Insights", "Settings"]);
+  await expect(navigation.getByRole("link")).toHaveText(["Home", "Study", "Play", "Games", "Insights", "Settings"]);
   await expect(navigation.getByRole("link", { name: "Home", exact: true })).toHaveAttribute("aria-current", "page");
   const recent = region(page, "Recent games");
   const history = recent.getByRole("region", { name: "Game history", exact: true });

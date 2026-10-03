@@ -14,7 +14,8 @@ test("preference status shares loading and saving presentation without mixing ea
     if (route.request().method() === "GET") await load.waiting;
     else {
       await coachSave.waiting;
-      coach = route.request().postDataJSON();
+      // Each coach control saves only its own field.
+      coach = { ...coach, ...route.request().postDataJSON() };
     }
     await route.fulfill({ json: coach });
   });
@@ -58,8 +59,9 @@ test("preference status shares loading and saving presentation without mixing ea
     const idleHeight = (await motionStatus.boundingBox())!.height;
 
     await coachField.selectOption("natural");
-    await expect(heading).toHaveText("Saving…");
+    // Coach motion saves on its own field; the coach choice heading stays idle.
     await expect(coachStatus).toHaveText("Saving…");
+    await expect(heading).toBeEmpty();
     await expect(coachField).toBeDisabled();
     await expect(motionStatus).toBeEmpty();
     await expect(motionField).toBeEnabled();

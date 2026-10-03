@@ -52,7 +52,8 @@ test('Lichess import uses shared filters, fetch-only jobs and deduplication', as
   await page.getByRole('button', {name: 'Import games', exact: true}).click();
   const response = await queued;
   expect(response.status()).toBe(202);
-  expect(response.request().postDataJSON()).toMatchObject({username, analyze: false, time_class: 'blitz'});
+  expect(response.request().postDataJSON()).toMatchObject({username, time_class: 'blitz'});
+  expect(response.request().postDataJSON()).not.toHaveProperty('analyze');
   const job = page.locator('.job').filter({hasText: `Lichess · ${username}`}).first();
   await expect(job.locator('.badge')).toHaveText('completed');
   await job.locator('summary').first().click();
