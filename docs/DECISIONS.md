@@ -7,7 +7,8 @@ Read older entries as historical decisions. Current product scope is in PRODUCT.
 The owner asked for library-wide insights to live with weaknesses rather than
 Games, and for the Weaknesses screen to be renamed Insights. The fifth screen is
 now Insights, opening on an Overview; tactical patterns and material/mate
-outcomes are its other sections, unchanged in behavior. Old `/weaknesses` URLs
+outcomes sit one level down under Weaknesses (the owner chose two levels so
+statistics and practice targets stay separate), unchanged in behavior. Old `/weaknesses` URLs
 redirect. The overview describes saved evidence and shows no mastery score.
 
 ## 2026-09-12: Adaptive evidence and offline assistant assessment

@@ -1,8 +1,10 @@
 # Game insights
 
-The Insights screen replaced Weaknesses on 2026-10-03 at the owner's request. Its
-sections are Overview (`/insights`), Tactical patterns (`/insights?section=patterns`)
-and Material & mate (`/insights?section=outcomes`). Old `/weaknesses` links,
+The Insights screen replaced Weaknesses on 2026-10-03 at the owner's request. It has
+two levels: Overview (`/insights`) and Weaknesses, whose compact category switch
+holds Tactical patterns (`/insights?section=patterns`, where the Weaknesses link
+lands) and Material & mate (`/insights?section=outcomes`). Library statistics
+and practice targets stay visibly separate. Old `/weaknesses` links,
 including `?category=outcomes`, and `/games/insights` redirect without an extra
 history entry.
 

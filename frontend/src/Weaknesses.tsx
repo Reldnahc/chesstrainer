@@ -73,12 +73,15 @@ export default function InsightsScreen({ onEvidence, category }: {
 
   return <>
     <PageTitle eyebrow="WHAT YOUR GAMES SAY" title="Insights" />
-    <SectionNavigation label="Insight sections" current={category} items={[
+    <SectionNavigation label="Insight sections" current={overview ? "overview" : "weaknesses"} items={[
       { id: "overview", label: "Overview", href: insightsPaths.overview },
-      { id: "patterns", label: "Tactical patterns", href: insightsPaths.patterns },
-      { id: "outcomes", label: "Material & mate", href: insightsPaths.outcomes },
+      { id: "weaknesses", label: "Weaknesses", href: insightsPaths.patterns },
     ]} />
     <div className="weakness-content">
+      {!overview && <SectionNavigation label="Weakness categories" density="compact" current={category} items={[
+        { id: "patterns", label: "Tactical patterns", href: insightsPaths.patterns },
+        { id: "outcomes", label: "Material & mate", href: insightsPaths.outcomes },
+      ]} />}
       {overview ? <GameInsights /> : error ? <UnavailableState presentation="panel" actions={<Button variant="secondary" onClick={() => setAttempt(value => value + 1)}>Try again</Button>}>
         Couldn’t load your weaknesses. Please try again.
       </UnavailableState> : !data ? <LoadingState presentation="panel">Loading your evidence…</LoadingState>

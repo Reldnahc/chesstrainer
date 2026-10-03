@@ -500,7 +500,8 @@ test('local classification settings and evidence work without model connectivity
   expect(config.classification_provider).toBe('local_rules');
   expect(config.openai_model).toBeUndefined();
   await page.getByRole('link', {name:'Insights', exact:true}).click();
-  await page.getByRole('navigation', {name: 'Insight sections'}).getByRole('link', {name: 'Material & mate', exact: true}).click();
+  await page.getByRole('navigation', {name: 'Insight sections'}).getByRole('link', {name: 'Weaknesses', exact: true}).click();
+  await page.getByRole('navigation', {name: 'Weakness categories'}).getByRole('link', {name: 'Material & mate', exact: true}).click();
   const weakness = page.locator('.weakness').filter({has: page.getByRole('heading', {name:'Allowed mate', exact:true})});
   await weakness.getByText(/Browse supporting positions/).click();
   await weakness.getByRole('button', {name:'Example 1', exact:true}).click();
@@ -656,7 +657,7 @@ test('focused practice highlights a verified pattern without scheduling a recall
   const fixture = await (await page.request.post(`/__test/classified-fixture/focus-${testInfo.project.name}`)).json();
   await page.goto('/');
   await page.getByRole('navigation').getByRole('link', {name: 'Insights', exact: true}).click();
-  await page.getByRole('navigation', {name: 'Insight sections'}).getByRole('link', {name: 'Tactical patterns', exact: true}).click();
+  await page.getByRole('navigation', {name: 'Insight sections'}).getByRole('link', {name: 'Weaknesses', exact: true}).click();
   await expect(page.getByRole('region', {name: 'Tactical patterns', exact: true})).toBeVisible();
   const weakness = page.locator('.weakness').filter({has: page.getByRole('heading', {name: 'Missed tactical capture', exact: true})});
   const before = (await (await page.request.get('/api/stats')).json()).reviews;
