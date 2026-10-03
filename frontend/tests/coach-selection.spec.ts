@@ -54,7 +54,8 @@ test("every registered coach can be chosen and restored in a real game", async (
       await radio.click();
       await expect(radio).toBeChecked();
       await expect(page.getByLabel("Coach motion", { exact: true })).toBeEnabled();
-      expect(await (await page.request.get(preferences)).json()).toEqual({
+      // The picker shows a new choice at once and saves it in the background.
+      await expect.poll(async () => (await page.request.get(preferences)).json()).toEqual({
         coach_id: coachId,
         motion: "still",
       });

@@ -158,7 +158,8 @@ test("lesson game navigation preserves rich commentary while a command is pendin
   await expect(status).toHaveText("The c3-pawn supports d4.");
   const original = await status.elementHandle();
   await page.clock.install();
-  await page.clock.pauseAt(new Date());
+  // Pause just ahead of the browser clock, which can already be past the runner's now.
+  await page.clock.pauseAt(new Date(Date.now() + 1000));
   const pending = await holdResponse(page, `**/api/study/lesson-sessions/${session.id}/command`);
   try {
     await page.getByRole("button", { name: "Previous game move", exact: true }).click();
