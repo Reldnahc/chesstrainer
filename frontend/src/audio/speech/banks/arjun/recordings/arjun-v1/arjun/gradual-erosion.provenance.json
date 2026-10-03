@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "gradual-erosion",
+      "label": "Gradual erosion",
+      "text": "Several small concessions have added up, and this move is yet another. None of them is big alone; together they make a real difference."
+    },
+    "takeId": null
+  },
+  "requestHash": "94acf2e70099b4113a0bfded958c34bacaa1e3b5345b4f73f3554a844e385c83",
+  "recordedAt": "2026-10-02T23:39:25.352Z",
+  "sha256": "5101c582f6193f095c62cede61bf2ed381130620706240e40ee28a6f5cfd6c70",
+  "bytes": 29615,
+  "requestId": "4BmwPktSUY0iR2hQaBTS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0bfa377f7f481e93435c9546642e58f0ff010b243f969a343b96d1135a4551f1",
+    "bytes": 153435
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

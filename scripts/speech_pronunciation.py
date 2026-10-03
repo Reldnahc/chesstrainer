@@ -7,17 +7,19 @@ derived word records the dictionary base and rule; unsupported words still fail.
 import re
 from collections.abc import Callable
 
-REVISION = "regular-english-morphology-v3"
+REVISION = "regular-english-morphology-v4"
 V1_RULES = frozenset(
     ("possessive", "plural-or-third-person", "negative-un", "able", "adjectival-al")
 )
 V2_RULES = V1_RULES | {"past-ed", "progressive-ing"}
+V3_RULES = V2_RULES | {"ability", "less", "agent-ier"}
 # Archives keep the revision they were generated with. Each revision only appends
 # rules (v3 also tries a silent-e base for -able first), so a word an older
 # revision derived still derives identically; older evidence may use only its rules.
 REVISIONS = {
     "regular-english-morphology-v1": V1_RULES,
     "regular-english-morphology-v2": V2_RULES,
+    "regular-english-morphology-v3": V3_RULES,
     REVISION: None,
 }
 SIBILANTS = frozenset(("S", "Z", "SH", "ZH", "CH", "JH"))
@@ -30,6 +32,8 @@ def candidates(word: str) -> list[tuple[str, str]]:
         values.append(("possessive", word[:-2]))
     if word.endswith("s") and not word.endswith("ss"):
         values.append(("plural-or-third-person", word[:-1]))
+    if word.endswith("ies") and len(word) > 4:
+        values.append(("plural-ies", word[:-3] + "y"))
     if word.startswith("un") and len(word) > 4:
         values.append(("negative-un", word[2:]))
     # Silent-e restoration is tried first: "capturable" is "capture" + able.
@@ -76,6 +80,8 @@ def pronunciation(word: str, lookup: Callable[[str], str | None]) -> dict | None
             result = [*phones, "AH", "B", "IH", "L", "AH", "T", "IY"]
         elif rule == "less":
             result = [*phones, "L", "AH", "S"]
+        elif rule == "plural-ies":
+            result = [*phones, "Z"]
         elif rule == "agent-ier":
             result = [*phones, "ER"]
         elif rule == "past-ed":

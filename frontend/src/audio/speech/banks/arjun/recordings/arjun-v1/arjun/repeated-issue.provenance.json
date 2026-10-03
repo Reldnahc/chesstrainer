@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "repeated-issue",
+      "label": "Repeated issue",
+      "text": "This same issue already showed up once in this game. Put the two moments side by side, and the pattern gets easier to recognize."
+    },
+    "takeId": null
+  },
+  "requestHash": "8202dceeb42d585035b768b035c0ec40261e43c9bf51a7f7fca5a845d1f048c2",
+  "recordedAt": "2026-10-02T23:39:21.725Z",
+  "sha256": "1674c986246afa7a681f50f01ac6862a33022e1fb5c3965d75d7fbf81dee15c2",
+  "bytes": 25865,
+  "requestId": "9FKZOj23QKyzIPmnC94o",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7d8f00d1bdb14fd7d0a6fb84ea51650e53137edb03c843156bd9c5966a0b7930",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

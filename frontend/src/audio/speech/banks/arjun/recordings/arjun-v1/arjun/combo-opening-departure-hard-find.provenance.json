@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-opening-departure-hard-find",
+      "label": "Combo opening departure hard find",
+      "text": "Here the known theory stops, and the exploring begins. Not an obvious idea for the human-move model, and the engine's favorite. Well found."
+    },
+    "takeId": null
+  },
+  "requestHash": "495629b0fd7d03a5c6344e5c975ad88e2423b8269498f4711f58c8751cb1bb84",
+  "recordedAt": "2026-10-02T23:48:22.988Z",
+  "sha256": "c59ba430513d6b0d23c9903a4dd06bdc000c9e9acb1b62189652c4b5e466b0c1",
+  "bytes": 31101,
+  "requestId": "fc3BGBUk5GZotxAxF6wr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1e5dc9966ab559087fffcb2e2bff4d6c06d6db23e085effb811baaf6be9d80fd",
+    "bytes": 159704
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

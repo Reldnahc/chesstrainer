@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "recovery",
+      "label": "Recovery",
+      "text": "After the earlier error, this brings the position back to playable. A useful turnaround to compare with what came before."
+    },
+    "takeId": null
+  },
+  "requestHash": "c8c110acf00d022b71e2c681ddb3c0da39d47390efa0317217ceea3212201650",
+  "recordedAt": "2026-10-02T23:39:14.106Z",
+  "sha256": "eed2295c49e73c6fa6a77208e9294fac8cf4d470b4a64586d78833986c74ef72",
+  "bytes": 23640,
+  "requestId": "eeTQGvsgMpuLybLxGmj9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0c58222cec8d7c376d4010080e061b90ff8c15804ec411ac82bb0ccc10a692c1",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

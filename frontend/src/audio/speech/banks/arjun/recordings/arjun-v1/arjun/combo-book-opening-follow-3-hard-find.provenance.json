@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-book-opening-follow-3-hard-find",
+      "label": "Combo book opening follow 3 hard find",
+      "text": "Even the reply is a book idea. The engine's top option, and one the human-move model and the searched alternatives say is hard to find. Nicely spotted."
+    },
+    "takeId": null
+  },
+  "requestHash": "00073dc5e33d5673364bdc9fb97f77a3bee397e832dedd4c854970317f458abb",
+  "recordedAt": "2026-10-02T23:51:24.225Z",
+  "sha256": "94cd6bd9d203ccc9415266c3fa2a673fee59bb013b2012d60db371d481b4afc4",
+  "bytes": 31392,
+  "requestId": "oiZnC0vQ5PHFSxNME78m",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "89ef03e800acf7236ad9f30553fc1752b21b93cb11020f6ecba6d5f1c83d8704",
+    "bytes": 162212
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

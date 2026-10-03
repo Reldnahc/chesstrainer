@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-tactic-discovered-attack-missed-natural-error",
+      "label": "Combo tactic discovered attack missed natural error",
+      "text": "The other candidate releases a discovered attack along the line. This one, a natural move in the human-move model's eyes, keeps that line shut."
+    },
+    "takeId": null
+  },
+  "requestHash": "8e901bc4bd4866aaad357fa3bd59e120cff64c451c550622d48f4e5c23c1c1f6",
+  "recordedAt": "2026-10-02T23:44:25.059Z",
+  "sha256": "92a70789fc29043caa1c93af8651754de21d48a0fa61e6e1878cd33d8502cd86",
+  "bytes": 27869,
+  "requestId": "pd2LTSnRJLocum29cmos",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5e2909549885613d0687beab3dcdf4ebb8f2bf14ee1f839129f2ff78b3a7bab6",
+    "bytes": 141732
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

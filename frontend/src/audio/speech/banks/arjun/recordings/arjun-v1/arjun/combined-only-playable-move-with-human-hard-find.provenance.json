@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combined-only-playable-move-with-human-hard-find",
+      "label": "Combined only playable move with human hard find",
+      "text": "Of all the candidates examined, only this keeps the game playable. The engine's top option, and one the human-move model and the searched alternatives say is hard to find. Nicely spotted."
+    },
+    "takeId": null
+  },
+  "requestHash": "bce8ec52a190589031274f478bcc211bad75cfd03f7f6b2488996a656584e3cb",
+  "recordedAt": "2026-10-02T23:42:12.795Z",
+  "sha256": "bbb4f544001503843c8c3cdca7b8ff5d56656318119f15c9852a0100255f0ae2",
+  "bytes": 38490,
+  "requestId": "m4eWobGqSSumm12GsYdk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6c0170aa19f99e8fc3cdfda4cb2ccf55debbc08a25700fc1f144b4f5d5d8f826",
+    "bytes": 198156
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

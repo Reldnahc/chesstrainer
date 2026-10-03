@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "srs-summary-material-loss",
+      "label": "Srs summary material loss",
+      "text": "Tally it up after the saved line, and the side that played this move has less material."
+    },
+    "takeId": null
+  },
+  "requestHash": "f3a7fbe8486d1253d6dfcf10b3cc4e2baa2b4c8a7e52d0b1101956194c2a08c5",
+  "recordedAt": "2026-10-02T23:39:43.499Z",
+  "sha256": "138d23626523975df4c5bfc9c7091d43e7ca4bd8c0e0ab37898202aed3cd3c14",
+  "bytes": 17419,
+  "requestId": "WCr8QKdv0o9oUAWX8nuM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d28595252493bd2cfc4ef027d352b678dc734ffe456d84044135426534b4c44b",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

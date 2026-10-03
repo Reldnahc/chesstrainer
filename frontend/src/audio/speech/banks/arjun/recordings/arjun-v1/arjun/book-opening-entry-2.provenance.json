@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "book-opening-entry-2",
+      "label": "Book opening entry 2",
+      "text": "This move is borrowed from a known opening."
+    },
+    "takeId": null
+  },
+  "requestHash": "e3c5cd64751c02f24acde657075620a8eb43ed811926b486bea31f79e72f6ffd",
+  "recordedAt": "2026-10-02T23:41:45.381Z",
+  "sha256": "df964409805c12a98cf39ce60336ed223447bfa5fbf3fa5dd66fa4924616263b",
+  "bytes": 9557,
+  "requestId": "et1qElyJRLItdgL0iLgM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e1de7dd95239ebbf2860860b87ddfb99164805ee60045740acade6abd9315973",
+    "bytes": 46019
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

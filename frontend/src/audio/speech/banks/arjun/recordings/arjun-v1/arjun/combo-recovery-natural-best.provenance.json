@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-recovery-natural-best",
+      "label": "Combo recovery natural best",
+      "text": "The position is back on its feet after the earlier error. Here instinct and search agree, since the human-move model's favorite pick is also the move at the top of the engine's list. A good turnaround."
+    },
+    "takeId": null
+  },
+  "requestHash": "d503551ea4815935b60cbc5d698e83199d91789277864c26d7eb2ced43f6b172",
+  "recordedAt": "2026-10-02T23:48:38.559Z",
+  "sha256": "7a3251a7b3ab9ef424f788294c8434d54d0c469389b579f215e938095594fee3",
+  "bytes": 39806,
+  "requestId": "F1wdCX9mGlsZvJZNbA0u",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b6917b508241d0459b914bb36acb9d3e2b0cfecc9a0e788f5df586e3c35a2488",
+    "bytes": 204426
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

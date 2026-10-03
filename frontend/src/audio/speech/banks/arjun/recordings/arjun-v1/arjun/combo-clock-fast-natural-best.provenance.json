@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-clock-fast-natural-best",
+      "label": "Combo clock fast natural best",
+      "text": "Quick and right, with clock to spare. Here's a case where the human-move model's expectation and the engine's preference point at one idea."
+    },
+    "takeId": null
+  },
+  "requestHash": "3e78bdf08c18d1cd79b1da6185260957788880be2765b13df4a20425ba20bf86",
+  "recordedAt": "2026-10-02T23:47:56.710Z",
+  "sha256": "7a245b53f5c1272e46aa795bd740bb7fc5843764b60ad83c63722ab032d5f50a",
+  "bytes": 28594,
+  "requestId": "Rgdbw07UXg45iIYo8yeR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5f46600e4fe687229b3eefa92a64ae33cb5246f4d41751558372f7c2f15a0469",
+    "bytes": 148419
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

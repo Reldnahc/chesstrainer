@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-note-no-simple-reason",
+      "label": "Explanation note no simple reason",
+      "text": "A simple tactical reason doesn't show up in the saved line, and there's no need to guess a positional one. Walk through it and test each reply as a candidate."
+    },
+    "takeId": null
+  },
+  "requestHash": "b88708a4efc48e9047ae5ee1398911be39038c919e2316a968d855ace00f738b",
+  "recordedAt": "2026-10-02T23:41:12.855Z",
+  "sha256": "b547a21cacf340261a7fbeafe21c015a3a99b54fb8819c56dee62d1ced18ce35",
+  "bytes": 29111,
+  "requestId": "bBG6aqO51BUoYxHGB7Cc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cc1e42b692a4b5668cd4518160e3b5a5fc4ad8153bf55692a429efc2ce2f154b",
+    "bytes": 148419
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

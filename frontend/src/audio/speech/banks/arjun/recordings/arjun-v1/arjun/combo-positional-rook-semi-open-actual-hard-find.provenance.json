@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-positional-rook-semi-open-actual-hard-find",
+      "label": "Combo positional rook semi open actual hard find",
+      "text": "The rook takes up a semi-open file to work along. Top of the engine's option list, and the human-move model says few would find it. Worth remembering."
+    },
+    "takeId": null
+  },
+  "requestHash": "8543e69f857b35be7ea045aa0b7cc87722ab766e38958f3989fab8e3dc894824",
+  "recordedAt": "2026-10-02T23:45:41.462Z",
+  "sha256": "75978340b19dfecb01cb9c0135624622a1421d4393d8f8890c8d17964787a351",
+  "bytes": 30202,
+  "requestId": "4l82xZxDsSn5oY9ea15D",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e09f86fae0ca1ada4319e3792c81326beaa1c0038fea6f5c8eb6d20364ff7f15",
+    "bytes": 157196
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

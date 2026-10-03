@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "positional-support-alternative",
+      "label": "Positional support alternative",
+      "text": "One alternative gives a defender to a piece that's currently unprotected."
+    },
+    "takeId": null
+  },
+  "requestHash": "acaca388cf17935ca51d25b09c1ab066e4722561ceca4bbfc8f04c6daaeea78a",
+  "recordedAt": "2026-10-02T23:38:15.428Z",
+  "sha256": "e77dc61ced33c750b505a7212b27d8645a123c95f99d221963131489b63dac42",
+  "bytes": 15373,
+  "requestId": "KeNze9mfp0NlrkBbgF3u",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d2732d7a75e09dd81eaa7688abc637a3e80c2865b279dbeae4cddef1882bf8a1",
+    "bytes": 75276
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-clock-long-natural-strong",
+      "label": "Combo clock long natural strong",
+      "text": "Plenty of time spent comparing ideas here. The human-move model sees an everyday, natural idea; the engine sees a strong one, though its own choice differs."
+    },
+    "takeId": null
+  },
+  "requestHash": "2f0cdd2ef95b6235bf6940e9833456fb2a9bc485a58212fb028f2c356f6f37ca",
+  "recordedAt": "2026-10-02T23:48:07.927Z",
+  "sha256": "d70d430c0561f463762eab8d03e9576478768bd81d271bb3efb274921957c075",
+  "bytes": 32655,
+  "requestId": "qDmpWk2F9rAlxhe2tBd6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "22c0cf430b9a05be32a5afabb0d74dcebe2d1979f39c57002ed1131dee0f5572",
+    "bytes": 168899
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

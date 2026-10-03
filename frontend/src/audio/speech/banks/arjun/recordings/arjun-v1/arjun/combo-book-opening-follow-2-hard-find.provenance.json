@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-book-opening-follow-2-hard-find",
+      "label": "Combo book opening follow 2 hard find",
+      "text": "The book offers this move too. Not an obvious idea for the human-move model, and the engine's favorite. Well found."
+    },
+    "takeId": null
+  },
+  "requestHash": "928de5c7bf228be6a1153752ec4f66c97e7dc9662151dc949f4c4f7a4a76709e",
+  "recordedAt": "2026-10-02T23:51:13.703Z",
+  "sha256": "7d792bdd312420d17e496562726626a6fba7609a498cc8e3d59bba59dafa7674",
+  "bytes": 24743,
+  "requestId": "bUc49pFbO9aLKs6DP8nF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3fd4941267fc663a10c97b6f54c86e45d3b50f997ea668e24c23e7ab1dc5f9bf",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

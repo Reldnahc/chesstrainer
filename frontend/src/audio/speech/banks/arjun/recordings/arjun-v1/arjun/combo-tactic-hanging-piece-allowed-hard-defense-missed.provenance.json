@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-tactic-hanging-piece-allowed-hard-defense-missed",
+      "label": "Combo tactic hanging piece allowed hard defense missed",
+      "text": "A piece is left with no protection at all. A single searched defense survived, one the human-move model rates as difficult."
+    },
+    "takeId": null
+  },
+  "requestHash": "b9f90369571736d8350b357d04e0e5000ab4d4ad3bd99545e90d33c87809cdaa",
+  "recordedAt": "2026-10-02T23:45:19.922Z",
+  "sha256": "053d06df6147ee8cd8d8d1c48b5b5565f68b0493c88a1327f3a39999b8325e33",
+  "bytes": 26470,
+  "requestId": "cO3jIlfB0lhjnAInoDNI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "345bd6509af92916602bca960acc08e5fb5f3ba04fc8a7125a59ff53c5510730",
+    "bytes": 136716
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

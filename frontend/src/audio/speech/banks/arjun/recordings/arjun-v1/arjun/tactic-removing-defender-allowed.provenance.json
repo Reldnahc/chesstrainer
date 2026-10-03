@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed",
+      "label": "Tactic removing defender allowed",
+      "text": "One question to keep asking: which pieces are defenders, and what happens if they're captured? After this move, one of them can be taken."
+    },
+    "takeId": null
+  },
+  "requestHash": "4efea5e2eb4c8a38a001cbb23777c67ec01de7462761ba9cdadb7ccdb011522d",
+  "recordedAt": "2026-10-02T23:37:10.034Z",
+  "sha256": "2c99213326997645ea2de8f67362e61563ab7fe1d0d0ab93a8f3e11aeadd4906",
+  "bytes": 28324,
+  "requestId": "PKR6j6NKA2i4pahLErbN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "61ee790e9b8290d488e89821087f9dd5169e2478b417d33312a9578e4a184b86",
+    "bytes": 148419
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

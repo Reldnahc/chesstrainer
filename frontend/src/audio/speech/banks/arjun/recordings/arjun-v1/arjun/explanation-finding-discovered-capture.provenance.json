@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-capture",
+      "label": "Explanation finding discovered capture",
+      "text": "Move the blocker, and the piece behind it captures along the line that just opened."
+    },
+    "takeId": null
+  },
+  "requestHash": "46980d2f38e462b4ea194a5ad10e4a0082c2f6302707409015d15b8e7e062d17",
+  "recordedAt": "2026-10-02T23:40:34.415Z",
+  "sha256": "0189c731dfc7d9ab9e4b146e73096836a7b174866411cf9a12e97d00870b9693",
+  "bytes": 16642,
+  "requestId": "43UZE0NUl3xEaestONlC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8800ccda79fff19e8f066a7ed405f538cffad541cb7421433ad3270aa473cf4f",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

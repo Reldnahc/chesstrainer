@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "human-hard-defense-found",
+      "label": "Human hard defense found",
+      "text": "This kept the position together, and judging by the human-move model and the searched alternatives, few players would have come up with it. Good exploring."
+    },
+    "takeId": null
+  },
+  "requestHash": "a24809949bf5df89a210e47f785d935c514af13c0adfeb63d63013355136267e",
+  "recordedAt": "2026-10-02T23:39:02.120Z",
+  "sha256": "1a0903b7bf0b07ad8c6e4ed4679496c7225d2178eeb64e2919b354d8994b2e3b",
+  "bytes": 29201,
+  "requestId": "zt65rsrOyQeT2p2IJkQN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "004e2a8085941e538cb1514a4dd0cf30f1c24dea1425e68739095fc1b7fbe0d6",
+    "bytes": 149673
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

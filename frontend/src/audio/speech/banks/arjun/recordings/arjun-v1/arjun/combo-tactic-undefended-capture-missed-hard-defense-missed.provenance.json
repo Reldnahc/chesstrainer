@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-tactic-undefended-capture-missed-hard-defense-missed",
+      "label": "Combo tactic undefended capture missed hard defense missed",
+      "text": "The defense that held captured an unprotected piece, and it went untried. By the human-move model, it's a defense that rarely gets found."
+    },
+    "takeId": null
+  },
+  "requestHash": "4a033ea47296b492b8c756d986e2732bb633c8b10cd67db80b16e20bb47dd95b",
+  "recordedAt": "2026-10-02T23:45:15.944Z",
+  "sha256": "1589307d738556c5875cff5f3fe07b0a07ee95428c8026f6129dddd38894f47d",
+  "bytes": 27798,
+  "requestId": "JGPhVvtKox57QAiHeH1F",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2b3a20ca64b85fe97293b3af6a8c9bb9607cb6898f4d70d3716a2682fa388b30",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

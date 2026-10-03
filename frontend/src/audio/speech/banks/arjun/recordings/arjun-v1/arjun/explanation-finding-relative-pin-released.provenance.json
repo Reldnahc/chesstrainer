@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released",
+      "label": "Explanation finding relative pin released",
+      "text": "The attacking piece had been held by a relative pin, until the opponent's previous move let it go. Freed, it captures a target that stayed put, in the line shown."
+    },
+    "takeId": null
+  },
+  "requestHash": "3fbdc6aa28b0e470751ffa4501db6907447222ed9ede1c7f994de3234543d221",
+  "recordedAt": "2026-10-02T23:40:45.363Z",
+  "sha256": "0cbe0c3f8f4d58b1be700634b0b3afa8d0f2ba9c3e844d2199eebe62676c006d",
+  "bytes": 32669,
+  "requestId": "eAeHN5cBSTg60XMsSuMe",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3749beca84788c4144d0570d281034b2d1377aff015dcfeec7fd8a0f50f48559",
+    "bytes": 168899
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

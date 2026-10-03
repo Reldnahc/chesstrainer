@@ -30,7 +30,7 @@ export const humanSignatures = {
     ]),
   ],
   "man-host": [
-    signature("signature-a", "Room at the table", "Both palms open in sequence, followed by a welcoming lean toward the board.", freeHands, [
+    signature("signature-a", "Room at the table", "His hands lift in turn, followed by a welcoming lean toward the board.", freeHands, [
       track("leftArm", "human-host-left", 1380), track("rightArm", "human-host-right", 1240, 140),
       track("body", "human-host-lean", 1380),
     ]),
@@ -102,7 +102,7 @@ export const humanSignatures = {
       track("body", "human-milo-rock", 1360), track("head", "human-milo-check", 1120, 160),
       track("hair", "human-milo-hair", 1160, 220),
     ]),
-    signature("signature-b", "Hang on, over there", "His eyes dart to a detail, his head follows late, and one open hand gives a small answering lift.", freeHands, [
+    signature("signature-b", "Hang on, over there", "His eyes dart to a detail, his head follows late, and one hand gives a small answering lift.", freeHands, [
       track("gaze", "human-milo-spot", 1240), track("head", "human-milo-follow", 1280, 160),
       track("leftArm", "human-milo-hand", 1040, 260),
     ]),

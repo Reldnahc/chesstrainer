@@ -2,10 +2,10 @@ import type { CSSProperties } from "react";
 import { ArtworkSvg, BodyRig, HeadRig } from "../ArtworkRig";
 import type { CoachArtworkProps } from "../model";
 import ClassicCoach from "../classic/ClassicCoach";
-import HumanFeatures from "../human/HumanFeatures";
+import HumanFeatures, { type HumanFaceStyle } from "../human/HumanFeatures";
 import HumanSpeechMouth from "../human/HumanSpeechMouth";
 import Arm from "../human/Arm";
-import { poses, handPoses } from "../human/poses";
+import { poses, handPoses, withRestingGesture, type Gesture } from "../human/poses";
 import ManHair, { type ManLook } from "./ManHair";
 import Accents from "./Accents";
 import Book from "./Book";
@@ -23,6 +23,13 @@ const palettes = {
     nose: "#754732",
     mouth: "#512f29",
     speech: { cavity: "#3b211d", lip: "#a86f58", tongue: "#b86f68" },
+    resting: "wave",
+    // Warm almond eyes whose lower lids lift when he smiles.
+    face: {
+      shape: "almond", width: 4.4, iris: "#4a2a1c", irisRadius: 2.4,
+      smileLids: true, skin: "#98654b", sparkle: true,
+      brows: { weight: 2.9, arch: 0.8 }, nose: "broad",
+    },
   },
   expert: {
     skin: "#d9ae89",
@@ -35,6 +42,13 @@ const palettes = {
     nose: "#b28263",
     mouth: "#75473e",
     speech: { cavity: "#653c36", lip: "#c08a76", tongue: "#ce9182" },
+    resting: "clasp",
+    // Narrow, lightly hooded eyes under level brows: attentive, never startled.
+    face: {
+      shape: "almond", width: 4.6, height: 0.86, iris: "#3b2a22", irisRadius: 2.2,
+      lid: 0.08, skin: "#d9ae89", creases: "#a87d5f",
+      brows: { weight: 2, arch: 0.3, width: 1.05 },
+    },
   },
   partner: {
     skin: "#bf895e",
@@ -47,8 +61,15 @@ const palettes = {
     nose: "#96603f",
     mouth: "#694039",
     speech: { cavity: "#55322d", lip: "#b57c63", tongue: "#c4847b" },
+    resting: "present",
+    // Big, bright, curious eyes with one brow habitually raised.
+    face: {
+      shape: "round", width: 4.5, height: 1.12, iris: "#5a3420", irisRadius: 2.6,
+      sparkle: true, crease: "#996644",
+      brows: { weight: 2.8, arch: 1.15, raise: 1.6 }, nose: "long",
+    },
   },
-};
+} satisfies Record<ManLook, Record<string, unknown> & { resting: Gesture; face: HumanFaceStyle }>;
 
 export default function ManCoach(props: CoachArtworkProps) {
   if (props.family === "storyteller") return <ClassicCoach {...props} />;
@@ -59,7 +80,7 @@ function NewManCoach({ expression, family }: CoachArtworkProps) {
   const look: ManLook =
     family === "expert" || family === "partner" ? family : "host";
   const color = palettes[look];
-  const source = poses[expression];
+  const source = withRestingGesture(poses[expression], expression, color.resting);
   const pose = {
     ...source,
     tilt: source.tilt * (look === "expert" ? 0.7 : 1),
@@ -178,6 +199,7 @@ function NewManCoach({ expression, family }: CoachArtworkProps) {
             noseColor={color.nose}
             mouthColor={color.mouth}
             glasses={false}
+            face={color.face}
             mouth={<HumanSpeechMouth pose={pose} expression={expression}
               mouthColor={color.mouth} palette={color.speech} />}
           />

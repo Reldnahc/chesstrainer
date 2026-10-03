@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-book-opening-follow-3-natural-best",
+      "label": "Combo book opening follow 3 natural best",
+      "text": "A reply straight from the book's map. Here instinct and search agree, since the human-move model's favorite pick is also the move at the top of the engine's list."
+    },
+    "takeId": null
+  },
+  "requestHash": "0a8dfb5b08cea2d56810f7ede9df1d62649f698ea66a6a722f00e96f4111e73d",
+  "recordedAt": "2026-10-02T23:51:29.111Z",
+  "sha256": "b5e93bc6c975cd6e89ea8faa589f3f6d02ddc3fbce9adf7ffa4b7b5f55d7fb2f",
+  "bytes": 32499,
+  "requestId": "eD8l53m9dl5xqLE53Zve",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "aadd8187d7363fe2b18072a4d13ee0b83349884ef4909c00ac918553750d5a3c",
+    "bytes": 166391
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

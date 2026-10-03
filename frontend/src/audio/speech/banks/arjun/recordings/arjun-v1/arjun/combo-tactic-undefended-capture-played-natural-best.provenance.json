@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-tactic-undefended-capture-played-natural-best",
+      "label": "Combo tactic undefended capture played natural best",
+      "text": "Nobody was guarding that piece, so this move simply collects it. The intuitive option wins the comparison outright, natural to the human-move model and best in the engine's search."
+    },
+    "takeId": null
+  },
+  "requestHash": "590a02c8c757b9bf21a9749ccdf76584da8893e1903357a7ec4ec5c9873ab2ab",
+  "recordedAt": "2026-10-02T23:45:09.707Z",
+  "sha256": "4c60e90a1ffdbb7465a0562d8680cd3779fa772f8f634c95646d9554fcf9c593",
+  "bytes": 36388,
+  "requestId": "pU4UnhW864xzG7Eznt8E",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4d00e69cd941291559d25a02fb6614396945c6bc299b599e36080df7c5a09667",
+    "bytes": 188125
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

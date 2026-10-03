@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-book-opening-follow-7-hard-defense-found",
+      "label": "Combo book opening follow 7 hard defense found",
+      "text": "From the book, and a sturdy defensive idea. Compare it with the searched alternatives: they fall short, this one holds, and in the human-move model's estimate it's a difficult one."
+    },
+    "takeId": null
+  },
+  "requestHash": "915c16c3eda6e1a07fad2d063cd20d870635cfbb2f2a459b4aa7cbb944df5698",
+  "recordedAt": "2026-10-02T23:52:19.403Z",
+  "sha256": "aabadcbeaa89ddef25a63173710e5eb4c0005db02d0258a776633ced1389998c",
+  "bytes": 38992,
+  "requestId": "vM33Db1KDIXwEyRWoyrB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6dc46dd49f292a9e11290d682e8fcbe9de5e0b871b3646043874e693421d9b58",
+    "bytes": 209859
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

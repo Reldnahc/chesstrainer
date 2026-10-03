@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-tactic-deflection-played-natural-best",
+      "label": "Combo tactic deflection played natural best",
+      "text": "Lure the defender somewhere else, and its old post is left uncovered. Two different tests, one winner: natural in the human-move model, first among the engine's choices."
+    },
+    "takeId": null
+  },
+  "requestHash": "d811bdbcfafeebe334d1e6b7f3cb1a6df599684fa21a6a2e7c37c1a326caec05",
+  "recordedAt": "2026-10-02T23:44:52.035Z",
+  "sha256": "cb812ecf35deaa7be2ad95fbfc040e9b45adf40d27ca756ffbf6e27a139742b1",
+  "bytes": 35378,
+  "requestId": "hrZYfsOwYbsfwyQsAGBg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f8e7ef0c80043d0c430878e74de0bb50438b563df0a9bfffcfe2c9475c31541e",
+    "bytes": 186871
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-positional-isolated-actual-unusual-strong",
+      "label": "Combo positional isolated actual unusual strong",
+      "text": "This move isolates a pawn. The human-move model wouldn't predict this move, while the engine's comparison comes back strong."
+    },
+    "takeId": null
+  },
+  "requestHash": "17556e76fab3d2da09e6916ff9215df6dacaba1fcfec965bacbcae6905a2f2b6",
+  "recordedAt": "2026-10-02T23:46:12.485Z",
+  "sha256": "643b8fa6e9b63fe56d8328f046c31f2f49c8a4de30c234a61bc4d184e6edc421",
+  "bytes": 25168,
+  "requestId": "flBsW8Nq6jBFDd5W8qaE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1584e7d94a3ba94a49f86f98e1380e14a2b38a9f0c69f5d3d03290f8f8fbf936",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-cue-double-attack",
+      "label": "Explanation cue double attack",
+      "text": "Search for one move that makes two threats, counting checks and lines that open up."
+    },
+    "takeId": null
+  },
+  "requestHash": "dab54995c37abe2069ee74c23d55d558ab46b20108085ad644f8241b872e981b",
+  "recordedAt": "2026-10-02T23:40:58.511Z",
+  "sha256": "d3035440b944508ca4546d63aac5957990698ec4dd2a073a2520d346e333496d",
+  "bytes": 17781,
+  "requestId": "SJHv0HmVtUTdkjmZeWmC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2296b6bd197d004ef37ae50863a0643c805da0bb2e909ef466834d7cd4ec027b",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-promotion-ordinary",
+      "label": "Explanation frame quiet promotion ordinary",
+      "text": "Promotion: having crossed the board, the pawn trades itself in for a new piece."
+    },
+    "takeId": null
+  },
+  "requestHash": "d4bac495e553d0c8130989c6a9292fd187398ad13295a92402ff0f3ad26adf2f",
+  "recordedAt": "2026-10-02T23:40:02.369Z",
+  "sha256": "f030af595005f7cb9dae6aaf75e22c702b49239041a0bfc9a931b66c82716565",
+  "bytes": 17379,
+  "requestId": "2yn2qUqRbthZYLQtlOgp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1815c68ecd8c3d8bf1cf4838a4f63acab8278b4a5c7139c8e8529d03ae741ffc",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

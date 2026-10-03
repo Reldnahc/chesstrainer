@@ -24,6 +24,7 @@ from scripts import speech_pronunciation as pronunciation
         ("playability", "play", "P L EY", "ability", "AH B IH L AH T IY"),
         ("pawnless", "pawn", "P AO N", "less", "L AH S"),
         ("classifier", "classify", "K L AE S AH F AY", "agent-ier", "ER"),
+        ("steadies", "steady", "S T EH D IY", "plural-ies", "Z"),
         ("fictional", "fiction", "F IH K SH AH N", "adjectival-al", "AH L"),
     ],
 )

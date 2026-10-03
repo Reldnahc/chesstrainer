@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-tactic-fork-played-natural-strong",
+      "label": "Combo tactic fork played natural strong",
+      "text": "One piece now threatens several targets together. Natural in the human-move model's eyes and strong in the engine's test, though the engine's own choice is a different one."
+    },
+    "takeId": null
+  },
+  "requestHash": "64ab652151b4a15ce74759b263f473d3b8f652c67fe34388c2c30cd4ec7b6f28",
+  "recordedAt": "2026-10-02T23:42:46.917Z",
+  "sha256": "1af8348f12e2ab75130f279f32ef2cf0848b1f31461072f658c95343401a356e",
+  "bytes": 34562,
+  "requestId": "IbRdPJELG2uXjt4C1BGB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "37a38251458361a60cac6827f1e9f91d6bc719e9d33255da4519fd4c8894bd39",
+    "bytes": 177676
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

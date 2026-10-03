@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "saved-history-recurrence",
+      "label": "Saved history recurrence",
+      "text": "Several other saved games share this exact issue. Comparing them side by side could reveal a pattern worth working on."
+    },
+    "takeId": null
+  },
+  "requestHash": "35db6187f3529b02203144169bda87f6842488c13ccb70c6cbcb26039b9dc9d3",
+  "recordedAt": "2026-10-02T23:39:28.704Z",
+  "sha256": "3c9fb75ba02eaca4d8be1dc938b67c12314f6a5f6c87818a74b59d0d733f0234",
+  "bytes": 23679,
+  "requestId": "NwVzOh3ikuzUY93lRexo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5fcccf4b651e2a431d1bbb99ba5ae311b8d0646a2f60d6adef5e54a8068942f1",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

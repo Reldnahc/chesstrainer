@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "srs-summary-engine-accepted",
+      "label": "Srs summary engine accepted",
+      "text": "This move is accepted by the exercise, though the moves shown don't reveal a clear tactical reason, and it's better not to make one up."
+    },
+    "takeId": null
+  },
+  "requestHash": "1905fa7094965112a96c755a1e72d3e35c6a8c1d598a3421ccc18755127b68eb",
+  "recordedAt": "2026-10-02T23:39:45.495Z",
+  "sha256": "90a625f9780ca2fa541d5f90e016bed5092a18bb8b2a7a66556159e439ac636b",
+  "bytes": 26537,
+  "requestId": "HGRn8d5aBZeqlsGNVcV5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c2274d3e868c6a2fd557ee5b27f07acd3b5530a56f19bb1a49158de0b8ebcded",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

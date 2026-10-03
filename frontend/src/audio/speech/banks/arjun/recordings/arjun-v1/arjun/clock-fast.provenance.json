@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "clock-fast",
+      "label": "Clock fast",
+      "text": "This came quickly, with a comfortable amount of time still on the clock."
+    },
+    "takeId": null
+  },
+  "requestHash": "bd20c2b3da6670101b95b0ab68be72bed07ce3eec62366872b5a315dea70e350",
+  "recordedAt": "2026-10-02T23:39:08.500Z",
+  "sha256": "c9bb34c9acca994c3107a343023941d100947540e265472855779d7f5c5db5e8",
+  "bytes": 13945,
+  "requestId": "8AG14Qun2UrXwaCRH7TP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2e0973eeb0b796220d5d514c5f2aa2a4ccfd4bd639553f9bba7e914bf36e7f70",
+    "bytes": 70261
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

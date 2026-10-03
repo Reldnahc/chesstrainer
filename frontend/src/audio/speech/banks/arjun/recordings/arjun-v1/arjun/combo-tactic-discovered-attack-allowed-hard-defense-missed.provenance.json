@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-tactic-discovered-attack-allowed-hard-defense-missed",
+      "label": "Combo tactic discovered attack allowed hard defense missed",
+      "text": "The other side can now unmask a discovered attack. Of the searched moves, only one kept things together, and the human-move model rates it as easy to overlook."
+    },
+    "takeId": null
+  },
+  "requestHash": "547167a29662d406be386ff9c594f053117d18c33ff47aafd7c6ed56d6c42889",
+  "recordedAt": "2026-10-02T23:44:23.103Z",
+  "sha256": "4d5c9a6beae4db4f78c7c37e8321c73694915e75589d7cb74b09b6f40d9ba19d",
+  "bytes": 33207,
+  "requestId": "Z1nSOPDcz8rhdCO7AfHn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ed044ac4caf09f8c3a148b35ae74b0415392154228c348f9464122d8e981d9d1",
+    "bytes": 170153
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

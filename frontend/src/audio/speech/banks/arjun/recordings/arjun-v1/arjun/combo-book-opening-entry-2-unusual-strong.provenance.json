@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-book-opening-entry-2-unusual-strong",
+      "label": "Combo book opening entry 2 unusual strong",
+      "text": "A known opening supplies this move. Surprising to the human-move model yet sturdy under the engine's test, a reminder to keep unusual candidates on the list."
+    },
+    "takeId": null
+  },
+  "requestHash": "7ec5a372cdd3f1343ae6ac068922432b8bf5b8d714dc42482aaba97bf0e10889",
+  "recordedAt": "2026-10-02T23:50:42.512Z",
+  "sha256": "ae620c70c576cb49223246ed8598c45469170183f06114d571cd2b97e12f9040",
+  "bytes": 32669,
+  "requestId": "1qMIB6ktTHXsaG6jfAQW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ebdc568f54dc965df935d0b2c5027175aaa1768a55aebceb0a660e1197b15d45",
+    "bytes": 166391
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

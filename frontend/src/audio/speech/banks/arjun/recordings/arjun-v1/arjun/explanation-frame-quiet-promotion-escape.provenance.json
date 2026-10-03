@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-promotion-escape",
+      "label": "Explanation frame quiet promotion escape",
+      "text": "Promoting the pawn is also how its own king escapes check."
+    },
+    "takeId": null
+  },
+  "requestHash": "2d5d4592288405c04c5aa6d0513d69ee2f51cdf95e0d77d8e18de2560e5f5056",
+  "recordedAt": "2026-10-02T23:40:05.605Z",
+  "sha256": "52d94978520b25df7b574232f4afde6475634568dcca6fb6fca6bb6b12b12799",
+  "bytes": 13640,
+  "requestId": "iG0sQcUvxD83B1fNry6v",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "efd96616d23d7c353aea44e11cdcf56c4a7e09532ed77283cf39766801df4e8a",
+    "bytes": 66499
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-opening-departure-unusual-strong",
+      "label": "Combo opening departure unusual strong",
+      "text": "Out of the book, on a surprising move. This isn't where the human-move model looks first, and still the engine's test comes back strong."
+    },
+    "takeId": null
+  },
+  "requestHash": "72a87aae06a6c5c59e69d34561793f04ad5ba84b58c268cdb83992e35d073ae7",
+  "recordedAt": "2026-10-02T23:48:24.997Z",
+  "sha256": "fdfc0345b7bf73a2f38ac6b083f677dc56daca4f8caca0b6e7b4a85b29638723",
+  "bytes": 28429,
+  "requestId": "l3L9tjiUZmXynV5nQyFa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cf80576e0f563823f4e018e61140d684a0e21f093a79b2224894a18a49e492ef",
+    "bytes": 148419
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

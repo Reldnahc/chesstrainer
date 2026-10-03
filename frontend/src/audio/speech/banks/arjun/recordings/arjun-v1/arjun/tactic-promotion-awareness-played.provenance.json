@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-promotion-awareness-played",
+      "label": "Tactic promotion awareness played",
+      "text": "One step nearer promotion for the pawn. Count the steps left and the pieces that can still stop it; that comparison tells the story."
+    },
+    "takeId": null
+  },
+  "requestHash": "69545ec44f7813fd834224df4d9e83ecb1d13db3667ceccdb01491193f4c60b3",
+  "recordedAt": "2026-10-02T23:37:20.413Z",
+  "sha256": "3dd6d1cd0e9ce729fbfa1e65c5349c14d2aa82e3366b360e07fcfb796b445c99",
+  "bytes": 27792,
+  "requestId": "mOIkvsDciBQHdoFX1ssV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d5dad7041eb892f842affe70f57700b5969ea2855a1bb0db1abf21b6b433720c",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

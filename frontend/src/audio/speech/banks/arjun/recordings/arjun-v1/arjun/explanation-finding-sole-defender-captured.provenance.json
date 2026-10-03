@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured",
+      "label": "Explanation finding sole defender captured",
+      "text": "Capture the only defender first, and the piece it was protecting is next. One capture opens the way for the other."
+    },
+    "takeId": null
+  },
+  "requestHash": "fae72b8a149c24e9522ba01b19454764653e6be53656ab4c0021c5436c1ea347",
+  "recordedAt": "2026-10-02T23:40:31.573Z",
+  "sha256": "16c0f849de1c5d4383af1377132bf1fc04ce6b8916732b343057b1017270d602",
+  "bytes": 23701,
+  "requestId": "xmCbXQeAuwX4llaCysfN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f5d7b1639f3d9aa1c9b4619ffdaaea55f95c7ed0b93e970946806577bcf78260",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

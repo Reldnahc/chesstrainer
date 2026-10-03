@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "positional-bishop-pair-alternative",
+      "label": "Positional bishop pair alternative",
+      "text": "Another candidate captures a bishop and breaks up the opposing pair."
+    },
+    "takeId": null
+  },
+  "requestHash": "dee27dc1be2c3288ee81942e55e7daa760dceee48ffeb88086a667c35a7a3e88",
+  "recordedAt": "2026-10-02T23:38:28.489Z",
+  "sha256": "324d3fc95cf36f871be921054493e7ae6fd9214501729fd0388389d5c75dc1a9",
+  "bytes": 14181,
+  "requestId": "AYjwz95OOoCn16b1zaN7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2c622eb5e48a913019daaf4624fc53db7548d58b26955777147a373fb12e15f3",
+    "bytes": 69007
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

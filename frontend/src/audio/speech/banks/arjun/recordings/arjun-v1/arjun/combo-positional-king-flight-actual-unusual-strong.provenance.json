@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-positional-king-flight-actual-unusual-strong",
+      "label": "Combo positional king flight actual unusual strong",
+      "text": "The king picks up an extra legal square. An unlikely pick in the human-move model's eyes, and in the engine's comparison a strong one, so the imagination paid off. Can you see which piece made that room?"
+    },
+    "takeId": null
+  },
+  "requestHash": "cb89c39ac518d54b9e95d824bd2993c78de9c1eb45c2e9f08500b9013fa827da",
+  "recordedAt": "2026-10-02T23:46:41.286Z",
+  "sha256": "2a4d0d79052af0c61e6800b67496b7d3e4507de8cb7b26d5f375edd6e3d6b7ae",
+  "bytes": 41282,
+  "requestId": "4qlfmozDT6FMj4BJoMb5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0f83c0661f7ab57fb0fb08a91654aeb7c9d82c4839d20ece1fc05f52622ac077",
+    "bytes": 214875
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

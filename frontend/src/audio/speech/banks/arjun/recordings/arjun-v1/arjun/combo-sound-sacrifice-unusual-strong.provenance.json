@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-sound-sacrifice-unusual-strong",
+      "label": "Combo sound sacrifice unusual strong",
+      "text": "An offer of material that the searched line says can be accepted without breaking the idea. Seldom a human-move model candidate, and the engine's test passes it as strong."
+    },
+    "takeId": null
+  },
+  "requestHash": "25c1b09a46156bcdd9037604aaf2a17f9cad095a888c778c5d1fb5490c6006a5",
+  "recordedAt": "2026-10-02T23:47:25.179Z",
+  "sha256": "1a716f1c3dc26607d25f9c8695f17df217a2fac57808a63fa251a6364a64df37",
+  "bytes": 35218,
+  "requestId": "DNJmeQPvTJsH8rbvXBUQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "25d0d17eb7fdb7a7cca9cd180149d70f15610c1a08adc7fa893f4b5c43adc5df",
+    "bytes": 178930
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

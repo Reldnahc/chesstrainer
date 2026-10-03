@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-clock-low-unusual-strong",
+      "label": "Combo clock low unusual strong",
+      "text": "This move was played with almost no time on the clock. Few players would try it, by the human-move model's estimate, yet it passes the engine's test as strong."
+    },
+    "takeId": null
+  },
+  "requestHash": "4b5714d3898f2d211d06e38cd62b4b2df7c17811ff0d0d6e0e346ee36b0ac6d4",
+  "recordedAt": "2026-10-02T23:47:45.413Z",
+  "sha256": "7fe3eb1a7ca4814299462e080aac6dd29170520ea105d8c8913880c0be6901d5",
+  "bytes": 32377,
+  "requestId": "OOiui2dAQQYq6TSKu48e",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0769fa59f980a29b72c65b3451830a6c92efd0596a96444eeee68460449fa101",
+    "bytes": 166391
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

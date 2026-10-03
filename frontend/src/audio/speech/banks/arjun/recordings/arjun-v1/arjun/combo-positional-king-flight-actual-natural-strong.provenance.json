@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-positional-king-flight-actual-natural-strong",
+      "label": "Combo positional king flight actual natural strong",
+      "text": "One more square for the king to use. This is a move the human-move model would anticipate, and the engine rates it strong while keeping a different one as its pick."
+    },
+    "takeId": null
+  },
+  "requestHash": "8e8ce8d61f34b4a3c06070cffab2cf587c425ec883d46d12f98a2595943538a3",
+  "recordedAt": "2026-10-02T23:46:45.581Z",
+  "sha256": "3ea993d746f520450d150d120c4b601c01211c66e32f07b2034257ea6615a657",
+  "bytes": 30618,
+  "requestId": "MQNOTM3zjvgkkhnUMEE1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e54653c94301ac2605d981dfc469778b7357c05cbd42a5687d74b23a9d9e7e62",
+    "bytes": 157196
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

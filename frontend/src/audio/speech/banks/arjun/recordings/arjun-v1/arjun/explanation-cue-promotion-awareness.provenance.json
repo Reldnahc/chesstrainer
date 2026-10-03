@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-cue-promotion-awareness",
+      "label": "Explanation cue promotion awareness",
+      "text": "How many squares does that pawn need to promote, and which of its moves would need an answer?"
+    },
+    "takeId": null
+  },
+  "requestHash": "88eff4fae743eb081d759b363d34c85408902d391beb75fe571e102ef6aa834c",
+  "recordedAt": "2026-10-02T23:41:01.447Z",
+  "sha256": "e359944ac40354ca695da35a5ec6c9cff83b5f347a620048b6fc97ad51715a5f",
+  "bytes": 17912,
+  "requestId": "stTAY2oknnw9D9akPmKI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5a9c2dfc750e7a82a28b810e7c8bceb6ca2ed23b7b98d3003fdbf554467f8eb5",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

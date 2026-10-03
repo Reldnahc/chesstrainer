@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-book-opening-entry-3-natural-best",
+      "label": "Combo book opening entry 3 natural best",
+      "text": "A move lifted straight from the book. As moves go, this is both the expected one, by the human-move model, and the top one, by the engine."
+    },
+    "takeId": null
+  },
+  "requestHash": "cf8baa069767eeaa730d5d69b27a003ff81e02bbe69c596dfc1fe82ffd4a6e4f",
+  "recordedAt": "2026-10-02T23:50:55.672Z",
+  "sha256": "ae1d9d288fc0d3db5448ada060aa01541cdd235726dd8ef8bfe3437d2f9b6606",
+  "bytes": 29609,
+  "requestId": "GKyNPBS9LSTeN9OPC7ah",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9d86d745783bd296d1a533ff67ffdd3e71f531847bffba3e23fe49c4e9133aed",
+    "bytes": 152181
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

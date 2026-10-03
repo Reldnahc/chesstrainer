@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-skewer-played",
+      "label": "Tactic skewer played",
+      "text": "Here's the skewer idea in action. The front piece is forced aside, and that exposes whatever stood behind it on the line."
+    },
+    "takeId": null
+  },
+  "requestHash": "361d98f9ced1d56a717b9ed4f1b76fa0ee9fbae49475da8afd0e18e5f8ebb420",
+  "recordedAt": "2026-10-02T23:37:02.199Z",
+  "sha256": "2694c12de92b61078c711b53c428fb84db2ba2a502565a22909ca7a0fdffe0d4",
+  "bytes": 25445,
+  "requestId": "3PIzUKlHuIPONVCI3HOg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6b8c53acf35d838635a12e35a3599d1c685bb27471e8f4e896e7030077ef5841",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

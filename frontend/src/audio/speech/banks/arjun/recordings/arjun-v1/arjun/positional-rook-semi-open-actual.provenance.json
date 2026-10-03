@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "positional-rook-semi-open-actual",
+      "label": "Positional rook semi open actual",
+      "text": "This move parks the rook on a semi-open file, clear of its own pawns, with at least one enemy pawn further along."
+    },
+    "takeId": null
+  },
+  "requestHash": "cde39e98e5930402aa854802b0e2b5ba8092484b3b2880830c80ec35271fa26d",
+  "recordedAt": "2026-10-02T23:38:00.778Z",
+  "sha256": "ade4c3c73bbf6d9f7caf2aac0ba69befc586ff7fe2b46a0fe091a3892c1194a3",
+  "bytes": 23795,
+  "requestId": "J8eCWcPB5nGs1ogTosOF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d8d7905cb0bb2dfc0dd2e5ee1c0813eaba682879c23d76566f109f800bad73d8",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

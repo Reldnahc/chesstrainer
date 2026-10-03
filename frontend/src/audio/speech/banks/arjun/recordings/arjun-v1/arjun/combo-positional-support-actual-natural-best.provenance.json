@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-positional-support-actual-natural-best",
+      "label": "Combo positional support actual natural best",
+      "text": "That piece is protected now. Here's a case where the human-move model's expectation and the engine's preference point at one idea."
+    },
+    "takeId": null
+  },
+  "requestHash": "a6a5c3e324eb28c65d713de533c550a4b70622d533333116f9b3c1a04bb47f59",
+  "recordedAt": "2026-10-02T23:46:23.238Z",
+  "sha256": "591e4ef0f2987c7789f139df15229a5c6f7209deb3006fc8a7d93c1d1b677191",
+  "bytes": 26681,
+  "requestId": "IWcaIqJ7jajm5acHj3XZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "faac3bcdf95a2ead82b9cccf23bff8958946851a436a0e0c4d2b98c685d518ee",
+    "bytes": 136716
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

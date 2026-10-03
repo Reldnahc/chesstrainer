@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "positional-doubled-actual",
+      "label": "Positional doubled actual",
+      "text": "Doubled pawns: after this move, two pawns of one color stack up on a single file."
+    },
+    "takeId": null
+  },
+  "requestHash": "f4a6d252b3cfbacaed5b674d02e9743014b08a74656fbb57bf525a2fcb926f9b",
+  "recordedAt": "2026-10-02T23:38:29.913Z",
+  "sha256": "425d54d32d6422f3ea6d2d53d5f9fe08b1144dc702b3b4011f5640f555b8dff9",
+  "bytes": 19389,
+  "requestId": "7Wfg3nee95TljMrHjds7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "53ac639aadb4c72e274fefe6d947abe3f4464dfe671971f3dae37a10390ca4ea",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

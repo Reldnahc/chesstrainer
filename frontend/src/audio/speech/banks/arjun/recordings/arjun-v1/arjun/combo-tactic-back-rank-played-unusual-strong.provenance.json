@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-tactic-back-rank-played-unusual-strong",
+      "label": "Combo tactic back rank played unusual strong",
+      "text": "A back-rank theme, with the king stuck on its last rank. Surprising to the human-move model yet sturdy under the engine's test, a reminder to keep unusual candidates on the list."
+    },
+    "takeId": null
+  },
+  "requestHash": "0f5cce1057d74d4db413f2a61947c94625f74b19b993396a3094e521bdbc5aa6",
+  "recordedAt": "2026-10-02T23:43:45.978Z",
+  "sha256": "371e3d4b95fb239ae38468df5636a9760b067719bc54335b18ed1388ebbd733d",
+  "bytes": 36958,
+  "requestId": "aBZleIiwaAH4XI2TBVBr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2c55ba59cfa0c0f17f5dbd409e5a7c6b2c17750eead0ef1f7c78eaaaa13138e7",
+    "bytes": 190633
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-deflection-missed",
+      "label": "Tactic deflection missed",
+      "text": "The other candidate would have drawn a defender away from its duty. Try it on the board and see what falls apart behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "45d0ea463b0acdf9805c0eb793387601022929773e37d40e59a896b8fb764d38",
+  "recordedAt": "2026-10-02T23:37:41.267Z",
+  "sha256": "ab71eeee48df40feb9789f4a21508a00ba71055602d458f8797c6c1ff14361d4",
+  "bytes": 23645,
+  "requestId": "wbtSr79YVB7wHvHfg8o4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a97f6bc1344908cf69a609bf9f027cc231ae6de6fd3fba04db53ee00fa72fdb3",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

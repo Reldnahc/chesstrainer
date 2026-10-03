@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-positional-castling-actual-natural-strong",
+      "label": "Combo positional castling actual natural strong",
+      "text": "Castling puts the king on a new square, with the rook settling next to it. Easy to reach for, says the human-move model, and strong, says the engine, which picks a different option itself."
+    },
+    "takeId": null
+  },
+  "requestHash": "be9f0a03191366ea4623a498aa625bb46a6fbcb17f4a0867128879758f9edb74",
+  "recordedAt": "2026-10-02T23:46:55.888Z",
+  "sha256": "4bb282c8bae6598d4359eff31109f36343157dbf62dc08611d25e6648f0646db",
+  "bytes": 35957,
+  "requestId": "wpHeEMbt2mcIAEl83SBe",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2d651115a23317204a51230a587dddba494c56f638c7b2285b31c6c348f3c193",
+    "bytes": 189379
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

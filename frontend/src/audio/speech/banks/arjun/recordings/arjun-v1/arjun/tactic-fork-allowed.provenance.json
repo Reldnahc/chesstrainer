@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-fork-allowed",
+      "label": "Tactic fork allowed",
+      "text": "Here's an experiment worth running: which enemy piece could now jump to a square that hits several targets? After this move, a fork like that is on the table."
+    },
+    "takeId": null
+  },
+  "requestHash": "a38f00118bccac9d29463fab412067f1cbab8eeb43f4baeafbde8470e9830c7c",
+  "recordedAt": "2026-10-02T23:36:52.211Z",
+  "sha256": "2571c966f584fbf7e781ed747bfb8ae77aff4d1f9c79e0e1c1c0e9850178e051",
+  "bytes": 31806,
+  "requestId": "fbVZ0l6paU2iKJ0b9GgE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bb5d2180505894172648fcbab75f8bc4782273d83920c7a2aa8282fff4ae706e",
+    "bytes": 166391
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-frame-castle-check",
+      "label": "Explanation frame castle check",
+      "text": "Castling, with check as a bonus."
+    },
+    "takeId": null
+  },
+  "requestHash": "d61af540f29d90e561ef82ee1b281074b17d0d8010c2a50bfde86fb7581b95d0",
+  "recordedAt": "2026-10-02T23:40:16.252Z",
+  "sha256": "b95a3685bc853cbff56b5fd93b3425f741f98397e96a57151198e19c6bc33af7",
+  "bytes": 9094,
+  "requestId": "WX6HkRBl6AZE2TmKQ77N",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "512966f9869622206b60f152e967888a95d6a88f6a296d18aa335c7f60cc147a",
+    "bytes": 46019
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-double-attack-missed",
+      "label": "Tactic double attack missed",
+      "text": "Set the stronger candidate beside this move: it creates two threats at once, while this move creates no such pair."
+    },
+    "takeId": null
+  },
+  "requestHash": "be0a28b531955af57b422008fbab304d09d9d0f3d1b0a2733579d6440e24f244",
+  "recordedAt": "2026-10-02T23:37:36.536Z",
+  "sha256": "00c4dad720102cb39574380eebd58842800f902a3f67d2d30628e476fd58d90a",
+  "bytes": 23778,
+  "requestId": "vchPBxA95zBtlV5t1OsQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bd2f458b35273e3e041623c52111dfc968e6bc9b3d438e481b83f1f9a7502ec1",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

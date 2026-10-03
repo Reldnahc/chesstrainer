@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "positional-rook-open-actual",
+      "label": "Positional rook open actual",
+      "text": "The rook steps onto a file where neither side has a pawn. Where could it go from here?"
+    },
+    "takeId": null
+  },
+  "requestHash": "0aef7b3124a16f35d117b230fd6441f12b944f390b95f25eea5192b2ccbe236b",
+  "recordedAt": "2026-10-02T23:37:57.275Z",
+  "sha256": "a42e52fe4ecb8d05d41cbec198eeb661f3d47d65c7031eaec208ccbbaaf8c53f",
+  "bytes": 17860,
+  "requestId": "0rzyULDo8jvXtX3COTJa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8e0a93380eac73e8010661f3d8662c6f32da312d70bd8bf63d1d25d8b1fd20d5",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

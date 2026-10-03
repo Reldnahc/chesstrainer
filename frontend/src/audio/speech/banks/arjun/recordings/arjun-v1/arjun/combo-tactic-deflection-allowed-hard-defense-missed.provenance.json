@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-tactic-deflection-allowed-hard-defense-missed",
+      "label": "Combo tactic deflection allowed hard defense missed",
+      "text": "A defender can now be lured off its task. The move that held was elsewhere, and in the human-move model's view few would find it, so it's worth setting up and exploring."
+    },
+    "takeId": null
+  },
+  "requestHash": "96a46a20b7f5e192406e5176537216f9324a3a0fb46c0a1fda4b514fefffa1e2",
+  "recordedAt": "2026-10-02T23:44:58.380Z",
+  "sha256": "17c2d3a43fdded4bfaa6f0a0feffb065dfc2217b363bcee8919a603c6f4d3602",
+  "bytes": 33627,
+  "requestId": "UWHh6E41xtNbvIATCv9w",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8c0ae7e205ca468232b20bb6b0cdb2c9e5a58b21fc3e41add366882e0e28e1cc",
+    "bytes": 173915
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

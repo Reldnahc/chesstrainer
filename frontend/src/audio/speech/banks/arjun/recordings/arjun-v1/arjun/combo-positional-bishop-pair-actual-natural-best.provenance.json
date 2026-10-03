@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-positional-bishop-pair-actual-natural-best",
+      "label": "Combo positional bishop pair actual natural best",
+      "text": "This capture ends the bishop pair's partnership. Here instinct and search agree, since the human-move model's favorite pick is also the move at the top of the engine's list."
+    },
+    "takeId": null
+  },
+  "requestHash": "c86a70308ce94a90e0eecc8c61f1e1a52ca1481c6d61712639b0cb474b68091f",
+  "recordedAt": "2026-10-02T23:47:03.370Z",
+  "sha256": "e748cb323a5d223f99df5a84bd32e97ec5bc51eb07844102f59dfa19a05f661a",
+  "bytes": 34202,
+  "requestId": "npYP1joygPNlaQHtVVGS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4ea546c459557aeadfa5fee6983fa52e7bcb882c8e8e3d763c9938c116404778",
+    "bytes": 173915
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -10,7 +10,13 @@ export type Gesture =
   | "fist"
   | "book"
   | "shrug"
-  | "win";
+  | "win"
+  | "fold"
+  | "clasp"
+  | "steeple"
+  | "wave"
+  | "ready"
+  | "hips";
 export type Pose = {
   tilt: number;
   lift: number;
@@ -228,4 +234,16 @@ export const handPoses: Record<
   book: { left: [25, 88, -20], right: [55, 88, 20] },
   shrug: { left: [12, 77, -65], right: [68, 77, 65] },
   win: { left: [12, 63, -23], right: [68, 63, 23] },
+  // Resting stances that give individual humans their own neutral and idle body.
+  fold: { left: [50, 84, 100], right: [30, 86, -100] },
+  clasp: { left: [37, 93, 40], right: [43, 93, -40] },
+  steeple: { left: [37, 76, 18], right: [43, 76, -18] },
+  wave: { left: [17, 94, -8], right: [69, 60, 18] },
+  ready: { left: [27, 82, -10], right: [53, 82, 10] },
+  hips: { left: [13, 91, -70], right: [67, 91, 70] },
 };
+
+/** A coach's own resting body for the calm states; every other expression keeps its shared gesture. */
+export function withRestingGesture(pose: Pose, expression: CoachExpression, resting: Gesture | undefined): Pose {
+  return resting && (expression === "neutral" || expression === "idle") ? { ...pose, gesture: resting } : pose;
+}

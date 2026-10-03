@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "positional-unsupported-actual",
+      "label": "Positional unsupported actual",
+      "text": "After this move, a certain piece has nobody defending it. Keep watching that weakness; on its own, it doesn't mean the piece can be won."
+    },
+    "takeId": null
+  },
+  "requestHash": "27d70fb5d29e8ce864df17de225f22b84b116a79f215ea058c093ad25cf5b1ec",
+  "recordedAt": "2026-10-02T23:38:17.462Z",
+  "sha256": "e484230d45804f7f2ca5ddb64690b79342acba6b1406fe2f444c24bb0ebff38a",
+  "bytes": 27723,
+  "requestId": "fO5n15gyeDKiDaqkZMCU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2ce28020d3579bce1809c09f54968fc15700a642ddfc5fff30602f9b19548090",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

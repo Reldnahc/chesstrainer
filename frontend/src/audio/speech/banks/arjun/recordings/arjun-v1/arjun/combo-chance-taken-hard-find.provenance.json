@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-chance-taken-hard-find",
+      "label": "Combo chance taken hard find",
+      "text": "The opponent's last move cracked something open, and this move finds the way through. The human-move model and the searched alternatives call this move difficult, and the engine puts it first."
+    },
+    "takeId": null
+  },
+  "requestHash": "cd5fe5e9e92b95b39678e730585069dd9abf43d64f8b11e7d6d41acc95ee45a8",
+  "recordedAt": "2026-10-02T23:48:54.592Z",
+  "sha256": "90579eee5e605b1c71528655e9af91ab6022a9e1e1c668bee3d212845948dbbe",
+  "bytes": 37463,
+  "requestId": "sseZvmEsWCck6drQzCaX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1e8967abd1441e40852a3c130415ff1a77be9fca75cf105a55a47ff1f017efe9",
+    "bytes": 193141
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

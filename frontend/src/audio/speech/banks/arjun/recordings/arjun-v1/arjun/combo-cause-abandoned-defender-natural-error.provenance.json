@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-cause-abandoned-defender-natural-error",
+      "label": "Combo cause abandoned defender natural error",
+      "text": "The human-move model rates it natural, but this piece was the only real defender of another one, which is now open to capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "65805c9fab809ed5d28338ea57fb4156504a038f93979f2cc322e7336d97065f",
+  "recordedAt": "2026-10-02T23:42:30.121Z",
+  "sha256": "a35191b0d328921d02ef313a50b96cafc7746eaf44db4336703111c34f2210e5",
+  "bytes": 26365,
+  "requestId": "fVG3CBrehHx1h7LFihY8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "371cc99b2feaae85485221dd14de75d119bc5b3f462a05fcde8728c53c272e32",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

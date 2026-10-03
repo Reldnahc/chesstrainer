@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combined-tactic-skewer-allowed-with-human-natural-error",
+      "label": "Combined tactic skewer allowed with human natural error",
+      "text": "The human-move model rates this natural, but now a skewer is open to the other side, which can drive off the front piece and expose what's behind."
+    },
+    "takeId": null
+  },
+  "requestHash": "bb404f67eb89cfab630ac9ea611e4612fac70965517fde9eabb6399f1c589ea0",
+  "recordedAt": "2026-10-02T23:42:07.462Z",
+  "sha256": "2ec73d75ebb5c5c6a2d0a2ed88572538ee76d8be1ece62ed3c174ba98ae47b79",
+  "bytes": 30249,
+  "requestId": "yDfEDh6WntkWSZCC2Ecf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f592e3ed76dddca3ed9615b21e345c516ac07c4be80170fa8c28c72474143f55",
+    "bytes": 153435
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

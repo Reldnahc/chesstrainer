@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-frame-castle-mate",
+      "label": "Explanation frame castle mate",
+      "text": "Castling delivers checkmate here."
+    },
+    "takeId": null
+  },
+  "requestHash": "845019245960955ab35052e4e1c4308984422a2c9a31bdc79f84d738d021e8c4",
+  "recordedAt": "2026-10-02T23:40:17.094Z",
+  "sha256": "8df97b68fb9dd8507561cc76c3fe22702879a180dc082ba91877588b253ee048",
+  "bytes": 7788,
+  "requestId": "PqKM5L9bbWT4sglOT2zh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "04ee78dccd05103ed8e65bc866c662cbe12e4f768b199493919557aa8b40f9c1",
+    "bytes": 36824
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

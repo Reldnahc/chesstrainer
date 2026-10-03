@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "chance-taken",
+      "label": "Chance taken",
+      "text": "The opponent's last move gave something away, and this candidate uses it. Compare it with the quieter options to see what it gains."
+    },
+    "takeId": null
+  },
+  "requestHash": "295ba114874bc533a1f80de9f1e06f38bea20fe82d2d7961bba36a09e7addb85",
+  "recordedAt": "2026-10-02T23:39:17.864Z",
+  "sha256": "95ed8ece902b78e190c38c64b109d59d840644322ac56a49da5ef807f8100cd1",
+  "bytes": 26539,
+  "requestId": "giq4K6R0twN1GdOl3P2m",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "56bf39b1dbd92b07aeec3593edd17edeb88858176108563a622fbeb56eca2305",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

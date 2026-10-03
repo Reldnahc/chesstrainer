@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-tactic-back-rank-played-natural-strong",
+      "label": "Combo tactic back rank played natural strong",
+      "text": "On the back rank, a mating idea is taking shape. A sturdy option. Natural by the human-move model, strong by the engine, whose preference lies with another idea."
+    },
+    "takeId": null
+  },
+  "requestHash": "02a67403ae26237222b872b078c6538e87d8b55ebcec6e1b49961246cfdc60ab",
+  "recordedAt": "2026-10-02T23:43:51.523Z",
+  "sha256": "83dc01b425d160b49ec62a56a34a86bd4223e9a11eb98210b62812bacc5be538",
+  "bytes": 36076,
+  "requestId": "jV30qjXaHZRlEhFAzuzg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f19aa921e9facb25ee9948db1cfe18075cc27ddae75d1647fbd60d313dd68e6b",
+    "bytes": 188125
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

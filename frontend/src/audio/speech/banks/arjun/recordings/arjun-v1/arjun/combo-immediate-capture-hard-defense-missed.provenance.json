@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-immediate-capture-hard-defense-missed",
+      "label": "Combo immediate capture hard defense missed",
+      "text": "Something can be captured by the other side immediately. The holding option was a different move, and the human-move model counts that defense difficult to spot."
+    },
+    "takeId": null
+  },
+  "requestHash": "6991f3e1b89d04c974ffc7d13e264387ef2391a777dc1c9e327aa2520fe5600d",
+  "recordedAt": "2026-10-02T23:47:37.772Z",
+  "sha256": "1b1554d9f5af43f20630f9f799dacdfc44b613987d68038c7a05b750401a2351",
+  "bytes": 29988,
+  "requestId": "xHvIgafZTwKAy2nCSFe7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "447cd7692a76456af90080dbfc7c1b79fedbb1509ff92a477d107519622a827a",
+    "bytes": 152181
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

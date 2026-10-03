@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "combo-tactic-removing-defender-played-natural-strong",
+      "label": "Combo tactic removing defender played natural strong",
+      "text": "This captures a defender. Put the two views together: the human-move model expects it, and the engine likes it while choosing a different move."
+    },
+    "takeId": null
+  },
+  "requestHash": "77fa6d2498b8c7a31bc8758385e95bc9cbdaaf8573c45cd38912be6d64ee74e7",
+  "recordedAt": "2026-10-02T23:43:32.614Z",
+  "sha256": "f8a0be4454a45ac099ad2218dcf412423745e9ae837770a54845c7dd848ca22d",
+  "bytes": 29469,
+  "requestId": "UALR9NHCu4hGAYlNvo1g",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "236cdc29d27b2f6c6c622eb09e8785ae61b72081252d678a2568caaf427e14d9",
+    "bytes": 154688
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}
