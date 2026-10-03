@@ -531,18 +531,27 @@ test("natural completion removes speech ducking and a throwing observer cannot b
   f.engine.dispose();
 });
 
-test("speech fades out over its last 30 ms so a provider end spike cannot thump", async () => {
+test("speech eases its final sound out on the source clock instead of stopping abruptly", async () => {
   const f = fixture();
   await f.engine.unlock();
-  f.engine.playPreparedSpeech({...speech("faded"), buffer: pcm(48000, new Array(48000).fill(0))});
-  const voice = f.context.gains[3].gain;
-  expect(voice.schedule).toEqual([["set", 1, 3.97], ["ramp", 0, 4]]);
+  // Speaking level until 0.7 s, then a final sound 25 dB down that stops at 0.8 s.
+  const line = Array.from({length: 48000}, (_, index) => Math.sin(index * Math.PI * 2 * 220 / 48000)
+    * (index >= 4800 && index < 33600 ? .3 : index >= 33600 && index < 38400 ? .3 * 10 ** (-25 / 20) : 0));
+  const buffer = pcm(48000, line);
+  f.engine.playPreparedSpeech({...speech("released"), buffer});
+  const schedule = f.context.gains[3].gain.schedule;
+  expect(schedule).toHaveLength(17);
+  expect(schedule[0]).toEqual(["set", 1, 3.7]);
+  expect(schedule.slice(1).map(([kind]) => kind)).toEqual(new Array(16).fill("ramp"));
+  expect(schedule.map(([, value]) => value)).toEqual([...schedule.map(([, value]) => value)].sort((a, b) => b - a));
+  expect(schedule.at(-1)![1]).toBeCloseTo(0, 12);
+  expect(schedule.at(-1)![2]).toBeCloseTo(3.8, 12);
   f.context.sources[0].finish();
-  // Effects keep their full level, and a clip shorter than the fade is left alone.
+  // Effects keep their full level, and silent speech has nothing to release.
   f.engine.play(move("board"));
   await flush();
   expect(f.context.gains[4].gain.schedule).toEqual([]);
-  f.engine.playPreparedSpeech({...speech("blip"), buffer: pcm(48000, new Array(480).fill(0))});
+  f.engine.playPreparedSpeech({...speech("silent"), buffer: pcm(48000, new Array(4800).fill(0))});
   expect(f.context.gains[5].gain.schedule).toEqual([]);
   f.engine.dispose();
 });
@@ -863,22 +872,22 @@ test("speech activity starts on the source clock, follows real time and stays se
   f.engine.dispose();
 });
 
-test("speech envelopes are cached per buffer and skipped entirely without a presentation observer", async () => {
+test("speech envelopes and releases are cached per buffer, and envelopes are skipped without a presentation observer", async () => {
   const pcm = voicedBuffer();
   const plain = fixture();
   await plain.engine.unlock();
   plain.engine.playPreparedSpeech(voicedSpeech("without-observer", pcm.buffer));
-  expect(pcm.reads()).toBe(0);
+  expect(pcm.reads()).toBe(1); // The release only.
   plain.engine.dispose();
   const f = fixture({onSpeechPlayback: () => {}});
   await f.engine.unlock();
   f.context.decode = async () => pcm.buffer;
   f.engine.play(move("effect"));
   await flush();
-  expect(pcm.reads()).toBe(0);
+  expect(pcm.reads()).toBe(1);
   f.engine.playPreparedSpeech(voicedSpeech("first", pcm.buffer));
   f.engine.playPreparedSpeech(voicedSpeech("replay", pcm.buffer));
-  expect(pcm.reads()).toBe(1);
+  expect(pcm.reads()).toBe(3); // One release and one envelope, both reused by the replay.
   f.engine.dispose();
 });
 

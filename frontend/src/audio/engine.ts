@@ -6,6 +6,7 @@ import {
   type SpeechPlayback,
 } from "./model";
 import { createSpeechEnvelope, readSpeechEnvelope, type SpeechEnvelope } from "./speech/activity";
+import { findSpeechRelease, type SpeechRelease } from "./speech/release";
 
 export type AudioEvent = {
   type: "requested" | "started" | "suppressed" | "ended" | "cancelled" | "error";
@@ -70,10 +71,8 @@ type Ticket = {
 };
 const definitions = new Map(cueCatalog.map(cue => [cue.id, cue]));
 const FADE_SECONDS = .012;
-// Some provider recordings end on a sample spike after their trailing silence
-// (it is in the provider's MP3, not the encode). Speech fades out over its last
-// 30 ms, which is silence in nearly every clip, so the spike cannot thump.
-const SPEECH_END_FADE_SECONDS = .03;
+// Linear segments approximating the raised-cosine speech release.
+const RELEASE_STEPS = 16;
 const SEEN_LIMIT = 512;
 
 /** One context, bounded voices, and no playback backlog after suppression or cancellation. */
@@ -84,6 +83,7 @@ export class AudioEngine {
   private readonly unsubscribeVisibility: () => void;
   private readonly assets = new Map<string, Promise<AudioBuffer>>();
   private readonly speechEnvelopes = new WeakMap<AudioBuffer, SpeechEnvelope>();
+  private readonly speechReleases = new WeakMap<AudioBuffer, SpeechRelease | null>();
   private readonly assetAbort = new AbortController();
   private readonly seen = new Set<string>();
   private readonly tickets = new Map<number, Ticket>();
@@ -396,10 +396,15 @@ export class AudioEngine {
         this.emit({...ticket.event, type: "ended"});
       };
       source.start(startedAt);
-      if (ticket.event.bus === "speech" && buffer.duration > SPEECH_END_FADE_SECONDS) {
-        const end = startedAt + buffer.duration;
-        gain.gain.setValueAtTime(gain.gain.value, end - SPEECH_END_FADE_SECONDS);
-        gain.gain.linearRampToValueAtTime(0, end);
+      const release = ticket.event.bus === "speech" ? this.speechRelease(buffer) : null;
+      if (release) {
+        // Ease the line's final sound out instead of letting it stop abruptly.
+        const level = gain.gain.value, span = release.end - release.start;
+        gain.gain.setValueAtTime(level, startedAt + release.start);
+        for (let step = 1; step <= RELEASE_STEPS; step++) {
+          gain.gain.linearRampToValueAtTime(level * (1 + Math.cos(Math.PI * step / RELEASE_STEPS)) / 2,
+            startedAt + release.start + span * step / RELEASE_STEPS);
+        }
       }
       if (!this.tickets.has(ticket.id)) return;
       this.updateDucking();
@@ -489,6 +494,14 @@ export class AudioEngine {
       }
       return envelope;
     } catch { return undefined; } // Optional presentation cannot prevent audio.
+  }
+
+  private speechRelease(buffer: AudioBuffer): SpeechRelease | null {
+    if (this.speechReleases.has(buffer)) return this.speechReleases.get(buffer)!;
+    let release: SpeechRelease | null = null;
+    try { release = findSpeechRelease(buffer); } catch { /* Optional polish cannot prevent audio. */ }
+    this.speechReleases.set(buffer, release);
+    return release;
   }
 
   private endSpeech(voice: Voice): void {
