@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "explanation-cue-deflection",
+      "label": "Explanation cue deflection",
+      "text": "Check whether a forcing exchange could pull a defender away from another target."
+    },
+    "takeId": null
+  },
+  "requestHash": "424b1dee52f28ea97797399fafcf1a33dcf0ba8fb1c76d8e909e5fe4552efe4e",
+  "recordedAt": "2026-10-03T06:22:15.096Z",
+  "sha256": "ce4e65fd61c6b0006069ce357a10bc7b31b437e3e7a652e1e520f0b6d50063b5",
+  "bytes": 15234,
+  "requestId": "ch0qMJSP1wQc3ZcU97h1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "55f9691887630160fe0d85500eb00030a66bd081060b7156fd43f9592778569e",
+    "bytes": 74022
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

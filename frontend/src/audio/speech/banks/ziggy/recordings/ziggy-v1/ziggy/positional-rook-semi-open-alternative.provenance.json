@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "positional-rook-semi-open-alternative",
+      "label": "Positional rook semi open alternative",
+      "text": "A different move would have placed a rook on a semi-open file: no friendly pawn on it, but at least one enemy pawn."
+    },
+    "takeId": null
+  },
+  "requestHash": "a0e495314a7f57c9baac083c6ceb2a53ed77e423079ce4f6b7ecb175f028911d",
+  "recordedAt": "2026-10-03T06:22:04.425Z",
+  "sha256": "371a8fd7ebc88d7dc08b3a5b6f38510023678be8aa123a2793d6758ab2ebf8d6",
+  "bytes": 22974,
+  "requestId": "1pG2zGcsY6T8HrP5fpeW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d624d1902864b5ae3cc32cf2ef78b41853830c605e33118b400af4bbedb27e4e",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

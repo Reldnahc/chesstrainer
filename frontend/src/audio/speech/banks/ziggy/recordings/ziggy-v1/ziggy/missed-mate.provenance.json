@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "missed-mate",
+      "label": "Missed mate",
+      "text": "The finish was there: a forced checkmate with another move. This one goes past it. That mate is worth finding now."
+    },
+    "takeId": null
+  },
+  "requestHash": "956361f53818dbfa042fe1b00d20091493918f5c36b13f49c5574b6ccd818b15",
+  "recordedAt": "2026-10-03T06:22:00.973Z",
+  "sha256": "e4065f4512ecbf257f46a615c22cc62f70c349adf70431f668ce33f28ea7eb60",
+  "bytes": 25162,
+  "requestId": "53RRgDRj7pLORnqMDfGE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a62dada3e9f6145cefbd4593fb1ed2ddbdc45080c51fd654b5a96604b4e86963",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

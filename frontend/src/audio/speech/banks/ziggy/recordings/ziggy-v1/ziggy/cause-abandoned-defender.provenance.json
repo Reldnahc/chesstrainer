@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "cause-abandoned-defender",
+      "label": "Cause abandoned defender",
+      "text": "A convincing move on its own, but it removes a piece's only real defender. Now the other side can capture the piece that was left behind."
+    },
+    "takeId": null
+  },
+  "requestHash": "31d1b954399e79a984abae3737fe3e042d7c2912c3f3fcaa367c031fca5226da",
+  "recordedAt": "2026-10-03T06:21:50.743Z",
+  "sha256": "af96c570277dbe1216c89ce1582042dd7a543955a3c8f46f154656e5cb79ff51",
+  "bytes": 27244,
+  "requestId": "W0RifkdKt8OiBuvaRSeU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "95abaa3b4299994cf0db659310d8bbf8d6c91d1dd458b887d0bbb0481ace5782",
+    "bytes": 139224
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

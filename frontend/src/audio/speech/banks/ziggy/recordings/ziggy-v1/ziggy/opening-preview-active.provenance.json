@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "opening-preview-active",
+      "label": "Opening preview active",
+      "text": "Mixed Due accepts any move from this line. Dedicated practice wants this line and nothing else."
+    },
+    "takeId": null
+  },
+  "requestHash": "31b500a222a6c5593bfd2f9132c2e40fd4ec0e739d61f251e0748f7ea5039f4d",
+  "recordedAt": "2026-10-03T06:22:09.233Z",
+  "sha256": "51ed8c952227736300f9827776bcd272b1d0abe320008ef0423e03419cb2a456",
+  "bytes": 21807,
+  "requestId": "rIci1wbHfcVbB3YAdkzw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7d3170d590a131fd6576ae3aa52822eb38b4c752a07767697e48c1974839dac9",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "positional-bishop-pair-actual",
+      "label": "Positional bishop pair actual",
+      "text": "With this capture, a bishop pair is broken. The side that lost the bishop now covers only one square color with bishops."
+    },
+    "takeId": null
+  },
+  "requestHash": "4df2d6ed6646ab1471817f7fa447f606e72287f25a8125e7b7132bf5234e5d44",
+  "recordedAt": "2026-10-03T06:21:52.935Z",
+  "sha256": "e8716783c45d8deb28853956c44afea7ad0eed5d3795ee8166890285eaeef70e",
+  "bytes": 24632,
+  "requestId": "QaA2b9U2h3SoR1JSuYQy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4c549a23687d82b86b3c9e108ff715e14ed96edddbed2c0297b7793a5746a5fe",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

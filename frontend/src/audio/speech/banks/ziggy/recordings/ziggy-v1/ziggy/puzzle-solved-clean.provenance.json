@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "puzzle-solved-clean",
+      "label": "Puzzle solved clean",
+      "text": "The full solution, with no wrong moves. Fascinating to watch it found so cleanly."
+    },
+    "takeId": null
+  },
+  "requestHash": "772660c2e790c21d3d0dd156755720084021f471ab40d7f8e2737754298eb78c",
+  "recordedAt": "2026-10-03T06:22:17.675Z",
+  "sha256": "af0a908aece3033ce836bf4bfbc33e60a649882002b39905c61da1ca63046f45",
+  "bytes": 18558,
+  "requestId": "uiNZstBisIzpdXo9x0zc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fcab89c4f7889a4f618b88e69e0d67faaf5625ad3a31335d6e3f295d48ece08e",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "positional-support-actual",
+      "label": "Positional support actual",
+      "text": "Before this move, a piece stood undefended. Now a defender covers it. A new connection on the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "8e8773674f5eb5457c4aa557c944636a9f6a174f7ce43bdf173a5426c7866696",
+  "recordedAt": "2026-10-03T06:21:40.590Z",
+  "sha256": "3353fbb47c9fc6127bd53207e5fabd614be3bde4f447efee96134eb6f333afbf",
+  "bytes": 22819,
+  "requestId": "GpfMoH1HR2p1781wvnkq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8d6ff269931a2a4c28c04c21e98cdc2ff8fc59d9f4338b9e9e2750faa85d69d7",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

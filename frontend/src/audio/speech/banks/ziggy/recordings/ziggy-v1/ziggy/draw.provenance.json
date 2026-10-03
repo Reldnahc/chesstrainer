@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "draw",
+      "label": "Draw",
+      "text": "A draw ends the game. A settled result, though the decisions along the way are still worth examining."
+    },
+    "takeId": null
+  },
+  "requestHash": "2ce2878b0ea2f6926976d603ef97737571fe2876f2191ce3d1164130def83d76",
+  "recordedAt": "2026-10-03T06:21:43.818Z",
+  "sha256": "781267e3dd82e5f450ce594246b5ff852d3c74219adb0e8adb1a4d9425127214",
+  "bytes": 21111,
+  "requestId": "WBgILlARBJQja2r1U5pH",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cee51735b46e413097220397b30c9f40ce527cf6ba7183c40e92f99cef5bfb07",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

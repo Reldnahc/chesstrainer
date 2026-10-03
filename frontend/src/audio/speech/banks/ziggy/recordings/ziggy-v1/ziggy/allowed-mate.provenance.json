@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "allowed-mate",
+      "label": "Allowed mate",
+      "text": "With this move, a forced checkmate opens up for the other side. The path of that attack is worth tracing, move by move."
+    },
+    "takeId": null
+  },
+  "requestHash": "47ac5138b7565ef36c6db71f6fed144ad71f137aa0abc6071ab08795e9c7acba",
+  "recordedAt": "2026-10-03T06:21:59.150Z",
+  "sha256": "3a48025cce6735f8f6d1d8ec7ce9bbb4d93d1f638e71106a58e28f6a585cebb0",
+  "bytes": 25416,
+  "requestId": "1VAqTbmo8X16APtXqsOD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c3720801349d5dc521eceebcd06a340f33e479b15a8127abe8eb687d05ea5b16",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

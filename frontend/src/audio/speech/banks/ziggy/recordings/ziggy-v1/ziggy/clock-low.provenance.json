@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "clock-low",
+      "label": "Clock low",
+      "text": "By the clock, very little time was left before this move. That belongs beside everything else on the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "10a0ae9b637e4191f36dd0c8a83eb482efa419675d5acc14f82ef3ddd3d84f64",
+  "recordedAt": "2026-10-03T06:21:46.192Z",
+  "sha256": "f24d8c853f815fb99153e4a3368095222992f38717d9b005b86112e2f2d00a86",
+  "bytes": 21254,
+  "requestId": "B2cSmePDF6Flpcq5o5Dq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "07bfce2a272cadacded9d6b902a42ee7b936f335ece26def183e2709e8a88c22",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

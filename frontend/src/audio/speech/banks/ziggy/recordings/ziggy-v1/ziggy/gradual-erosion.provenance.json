@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "gradual-erosion",
+      "label": "Gradual erosion",
+      "text": "No single move did the damage here. This is one of several small concessions that, together, have worsened the position."
+    },
+    "takeId": null
+  },
+  "requestHash": "9b719402ec51dbf2a952bf6f906d3f6ac20c65a2b7323bea27a5a12fd5a27979",
+  "recordedAt": "2026-10-03T06:22:03.927Z",
+  "sha256": "af12e838764f1c0c3060439c7cc2fae8e73f3572c37802d66f40d94cfc97f0b7",
+  "bytes": 23821,
+  "requestId": "OF5gBCn77aOv251ePSjd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3a2446a213fe9dfb92e652dd321a05084f2c55d72f73b0abece2c6a366a51e65",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

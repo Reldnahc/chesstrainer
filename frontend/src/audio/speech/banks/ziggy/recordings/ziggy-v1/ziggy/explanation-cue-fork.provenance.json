@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "explanation-cue-fork",
+      "label": "Explanation cue fork",
+      "text": "Examine forcing moves in which one piece attacks two valuable targets together."
+    },
+    "takeId": null
+  },
+  "requestHash": "8480ffac05f2a6a9eb238352988830995e7ad601381c27c9d3ba1ee33b189bf3",
+  "recordedAt": "2026-10-03T06:22:33.450Z",
+  "sha256": "be3d7719305e1148eec37010dbe99fda1bc801e57858f056199f270ce82e59c6",
+  "bytes": 17507,
+  "requestId": "TVq887JFlYApzYzfRsM4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4dc16f9b98f83950a0d0ad16e663877632dc82ef8e75353a0b01e67b33083dc9",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

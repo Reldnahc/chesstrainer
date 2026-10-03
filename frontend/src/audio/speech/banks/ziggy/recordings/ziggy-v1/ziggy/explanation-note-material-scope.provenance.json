@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "explanation-note-material-scope",
+      "label": "Explanation note material scope",
+      "text": "These material changes belong to the shown line only, counted from where it began. For the piece values used, see the written explanation."
+    },
+    "takeId": null
+  },
+  "requestHash": "2c515e51dbaa008d2cb24ed34636a6b6f6c06793caaca89e4f96b9b768bf850b",
+  "recordedAt": "2026-10-03T06:22:20.327Z",
+  "sha256": "5e7c7ac1ec4d32b74abbcf0474e4ad7a180acb1ea50528234631e00948ff6067",
+  "bytes": 28481,
+  "requestId": "jFcuMmqQwQJOMHMOsZOy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e632c64a7a921d7df29ccb3731269c49f1292365b930a5078a65abe83ba94c2e",
+    "bytes": 147165
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

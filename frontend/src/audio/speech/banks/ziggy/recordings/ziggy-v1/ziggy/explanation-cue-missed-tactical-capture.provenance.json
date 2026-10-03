@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "explanation-cue-missed-tactical-capture",
+      "label": "Explanation cue missed tactical capture",
+      "text": "Before a quiet move, look for enemy pieces that are not defended."
+    },
+    "takeId": null
+  },
+  "requestHash": "25661eca6dfde212cbe2fffd89a077c023e35a493ca3496cd5b1d41af6015687",
+  "recordedAt": "2026-10-03T06:22:32.060Z",
+  "sha256": "88e28fe0b1c24ede66d119b32c735da6688ae999c036d81c7796d7114f196d1a",
+  "bytes": 14801,
+  "requestId": "XCFa0I8Mw9VkOVpF3Fnj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3434449603ea3ec7c9e3300f2471bfe8dcb0cab21bad101614d14f5883f63ea8",
+    "bytes": 74022
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

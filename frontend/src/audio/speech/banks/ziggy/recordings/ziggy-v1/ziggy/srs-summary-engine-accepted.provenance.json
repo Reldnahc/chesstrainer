@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "srs-summary-engine-accepted",
+      "label": "Srs summary engine accepted",
+      "text": "This move is accepted for the exercise, though the moves shown give no clear tactical explanation. Accepted, and still a small mystery."
+    },
+    "takeId": null
+  },
+  "requestHash": "ad57473a7eb0e71c02db4e110a2ee34e6d78793d2dff47dd72190e6ef811ad84",
+  "recordedAt": "2026-10-03T06:21:55.772Z",
+  "sha256": "fc4e936c8d728e9d31f4ca4b0ace771456c944308faf22fff444c0e1b062b819",
+  "bytes": 28276,
+  "requestId": "xO5qVLG8ydHcQKHdtqpP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9618b2b28bd3b5871c3d2f9fda32dbd57dff77cf1cd34c1e6bd47eccc6c6db3d",
+    "bytes": 145911
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

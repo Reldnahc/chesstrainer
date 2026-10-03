@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "explanation-finding-pin-defenders-no-recapture",
+      "label": "Explanation finding pin defenders no recapture",
+      "text": "The defenders are pinned to their king, so they cannot recapture there; that is why the capture works. The line shown includes a material gain."
+    },
+    "takeId": null
+  },
+  "requestHash": "3689678d451fb08dbc4d1cf8bd1cf726e8d3189429c303e2604e81c030daa3c1",
+  "recordedAt": "2026-10-03T06:22:07.405Z",
+  "sha256": "a732ac640f0f3d3f6a3c3ac36e01d9b48c41228aa6c3a2648a0f77ed0d7de518",
+  "bytes": 28039,
+  "requestId": "bbpM0QiiSjMsJVZJPqtg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "260b37853d69f3959b50672b7d2c54d4af52c389fafcec2e24487852d8b3fbc5",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

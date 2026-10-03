@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "tactic-back-rank-played",
+      "label": "Tactic back rank played",
+      "text": "Fascinating, really: the king is shut in by its own pieces. That is the back-rank mate idea."
+    },
+    "takeId": null
+  },
+  "requestHash": "cfb8655813ba58f65eee662d68c55eafd54bd97392060bbc48c4aefee69ca562",
+  "recordedAt": "2026-10-03T06:21:45.141Z",
+  "sha256": "1fa1c41a9c4dcf7a21d8cc7d6e18d97909b91671e576f2722e3b3e2e7a450baa",
+  "bytes": 21734,
+  "requestId": "iTd7R4Yo4FcSqqDQdJQe",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "202d8b24927f51121ac199de1ac719fedcb59897880e45643cca759db7730df2",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

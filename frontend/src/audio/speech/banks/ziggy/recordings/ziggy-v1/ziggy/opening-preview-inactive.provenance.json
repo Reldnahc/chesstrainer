@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "opening-preview-inactive",
+      "label": "Opening preview inactive",
+      "text": "Scheduled recalls will ask for the moves of the side you chose. When active studies reach the same position, a single card covers it."
+    },
+    "takeId": null
+  },
+  "requestHash": "03fa31555b00d90421f57c4a6a91971c5fbca8f2b07e471e10f61b57466ae62b",
+  "recordedAt": "2026-10-03T06:22:11.122Z",
+  "sha256": "18d8d7c4ea3e2783923b8d66d8c562edf86e0e59ee88f4fc9f9da48a1a4beae8",
+  "bytes": 25967,
+  "requestId": "ZVmTcPaM7NnNhFgfQz2B",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1a94ec0675fe32ecbd573a897f90e2866e3d6e43f503f39643bfe916103b0152",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

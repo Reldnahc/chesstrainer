@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "positional-development-alternative",
+      "label": "Positional development alternative",
+      "text": "With a different move, a minor piece would have come off its starting square into play."
+    },
+    "takeId": null
+  },
+  "requestHash": "0e7b5f52b60dcbb2738e3cc11d8c96a96a0ef25d7df605ebccf8b144e9dc4573",
+  "recordedAt": "2026-10-03T06:21:57.609Z",
+  "sha256": "e2b15aa82ed90d76cdc51665e4f45750cd4af2affcaac448f2bf791a04059ce4",
+  "bytes": 15668,
+  "requestId": "pWp6Tt0zEpttCMWEXOcq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d78a92bc38f9eeedab0d8b1ed3a039d24d39711beef0640df940beb0581a131a",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

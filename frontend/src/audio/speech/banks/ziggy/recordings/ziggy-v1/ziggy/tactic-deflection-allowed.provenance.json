@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed",
+      "label": "Tactic deflection allowed",
+      "text": "This gives the other side a chance at a deflection, pulling a defender away from its task, so whatever it guarded is left open."
+    },
+    "takeId": null
+  },
+  "requestHash": "cc0a6984b290acbf6410c296d84fec3fc7ba40637c0c28832e4ff02d37b14504",
+  "recordedAt": "2026-10-03T06:21:41.659Z",
+  "sha256": "63fdb3f6baa49632117b1157ad2288e7b8a3ec13fd19be815ee378b23e5b509d",
+  "bytes": 24380,
+  "requestId": "ZvFywwj58EyBKR2gKIj5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fe13ed125bce104e15b217cc145fa1baa608061731741df5b5352a0651c438e5",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

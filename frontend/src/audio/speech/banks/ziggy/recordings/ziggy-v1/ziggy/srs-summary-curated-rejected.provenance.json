@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "srs-summary-curated-rejected",
+      "label": "Srs summary curated rejected",
+      "text": "This move falls outside the saved answers for the exercise. Outside the answers is not the same as bad chess."
+    },
+    "takeId": null
+  },
+  "requestHash": "5e3762c4de7f14038304ae16520c692f6096bc4e0131328ec29b7a5c057d094a",
+  "recordedAt": "2026-10-03T06:22:00.859Z",
+  "sha256": "b675e83fef272683eab2a9b3e730776faf271009043c463f616293c6f60e1969",
+  "bytes": 23792,
+  "requestId": "HO8fO9Nz5nSIrPTFz0rW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "695c7ce82b3dd1d8680d2484cfbdac4d5f7ce4431ae7fa0cd78cbf0c601d155a",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

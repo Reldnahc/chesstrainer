@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "mate-finished",
+      "label": "Mate finished",
+      "text": "Checkmate. Not one legal escape remains for the king. Every exit closed, and the attack complete."
+    },
+    "takeId": null
+  },
+  "requestHash": "ec30f49a854550ec21688620299a03a409c255d916adf2a71ce5ab7f4759392d",
+  "recordedAt": "2026-10-03T06:21:40.420Z",
+  "sha256": "4b99663e8cd81bb9a0c19b65de2c3ae5159e3b419517d333098b221e85a70023",
+  "bytes": 21995,
+  "requestId": "rVCAjc3EL4k6du58F6Aa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6b6f0a956e645c7531de2bfbc3243428b1dd7a97312c024bce5578c118d9a0b2",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

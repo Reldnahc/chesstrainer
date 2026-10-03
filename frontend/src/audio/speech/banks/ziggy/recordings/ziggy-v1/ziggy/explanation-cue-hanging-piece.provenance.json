@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "explanation-cue-hanging-piece",
+      "label": "Explanation cue hanging piece",
+      "text": "Before moving, check which of your pieces could be captured with no useful recapture."
+    },
+    "takeId": null
+  },
+  "requestHash": "341f0e8976512bd6cebade3db22de5b395ddffcd0b32bf3da75285ad718de85a",
+  "recordedAt": "2026-10-03T06:22:30.909Z",
+  "sha256": "3f8458f8ab31267c46e14318dc566ffbc395729559ae51cfb4958d9d204fda23",
+  "bytes": 17347,
+  "requestId": "7aXBaTD9wgGb2nEW7mtu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "33142dfabbbec1d42ac0bc152b59554ab11f3e906ba08d2b2d4f08f32cc42eb9",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

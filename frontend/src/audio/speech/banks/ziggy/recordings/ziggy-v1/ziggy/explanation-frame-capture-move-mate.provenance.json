@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate",
+      "label": "Explanation frame capture move mate",
+      "text": "Capture and checkmate in one move. The king has no legal answer."
+    },
+    "takeId": null
+  },
+  "requestHash": "3c02c07badc3e99d7feb6328962044a62e0dba0a945eff9adb2db3e2efbf04ca",
+  "recordedAt": "2026-10-03T06:22:11.852Z",
+  "sha256": "eb7afccf3815a8cf1f0839dd55e79a1cfc9a4e022ab15175df33c8af4eb74d73",
+  "bytes": 15554,
+  "requestId": "ourFzgVaKt3ymP1ccDQR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "80ac416cc26cd7ad6d399b0227d49e6db6ad766fda08a964ad57431f20ea9a37",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

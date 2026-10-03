@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "tactic-double-attack-missed",
+      "label": "Tactic double attack missed",
+      "text": "A stronger move contained a double attack, two threats in one move. This move does not find it."
+    },
+    "takeId": null
+  },
+  "requestHash": "af2347f031efc2cf6722c88f3ae6180c31a2b5fec5c565854253df216e4551fd",
+  "recordedAt": "2026-10-03T06:21:38.064Z",
+  "sha256": "e7e75ed4a514b3be0d6007d210b7f58a89dff8cabecbc6e1197110ef387d6f14",
+  "bytes": 21206,
+  "requestId": "W2YssA6ikvvrNGJbKiwB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ba08fb8ed5e656139cfb3adb9ef99dc4bc8d2e391755ca6fd272b6538bd34970",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

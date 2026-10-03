@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative",
+      "label": "Positional unsupported alternative",
+      "text": "A different move would have left a piece undefended; that alone would not have made it winnable."
+    },
+    "takeId": null
+  },
+  "requestHash": "9b772075c581db0b965bca2451b021ec0286fb5a6e7d27cb97847dcc15aa98da",
+  "recordedAt": "2026-10-03T06:21:45.641Z",
+  "sha256": "49a4c52cd64f60a2a56e0797877ccd39718648e70eda7e938a9c52264f581884",
+  "bytes": 17974,
+  "requestId": "iiFpO8P3EHa2JbasUYRY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e6043c9df59741a8cecee3511334fa29063b663c698c962cf093fd452347de2f",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

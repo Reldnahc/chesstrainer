@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "explanation-finding-promotion-material-retained",
+      "label": "Explanation finding promotion material retained",
+      "text": "Follow the pawn until it promotes. In this example, that side also finishes with a net material gain."
+    },
+    "takeId": null
+  },
+  "requestHash": "6999c3b379ec4190b890181fecfefed25318355a1c5d9d9d4a2e3f37bfa4d018",
+  "recordedAt": "2026-10-03T06:22:24.329Z",
+  "sha256": "bdbc200b38c3338e3eab2e37c200d7447412c344ac833ab4f3ce56f521f942a8",
+  "bytes": 22053,
+  "requestId": "KYwnn64oT7HXwoGF7vwD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d0d4ef29d25f09eab0ac09e100bd8981d23e7757a8c894d039fa8ada225ac89c",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

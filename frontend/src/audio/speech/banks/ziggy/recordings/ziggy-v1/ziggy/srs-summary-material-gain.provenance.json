@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "srs-summary-material-gain",
+      "label": "Srs summary material gain",
+      "text": "Tally the material across the saved line: the side that played this move finishes above where it began."
+    },
+    "takeId": null
+  },
+  "requestHash": "746d566f2d71a232e3df87a3622a77033d958b7b304193bc8fcbbe7985460681",
+  "recordedAt": "2026-10-03T06:21:52.122Z",
+  "sha256": "2359958e5eeb20750a860410df2b49ef00cf5a589d1ac6ab50ff114fb6bb8187",
+  "bytes": 21151,
+  "requestId": "pP0UzrNbgCVmmPyhd3pc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e21a3efc081ea1ebcd5f285360a22cefbfa69336935d1dc6ef425495170c93e7",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

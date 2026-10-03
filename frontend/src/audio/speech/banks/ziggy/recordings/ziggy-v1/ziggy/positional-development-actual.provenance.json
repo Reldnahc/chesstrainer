@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "positional-development-actual",
+      "label": "Positional development actual",
+      "text": "A minor piece leaves its starting square and enters the game. Development, plainly visible."
+    },
+    "takeId": null
+  },
+  "requestHash": "eca9b42778b3ec92d66d64bc8f3e7f03c207fec0252fbb0d5073738c17259a3e",
+  "recordedAt": "2026-10-03T06:21:56.393Z",
+  "sha256": "bb53abc1c6d4ccc9f3495e9432d60724ff9e656dd7771027918dcf64798bec65",
+  "bytes": 19096,
+  "requestId": "wttiMIjctb0zdiT7xzYB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d3dd50d48f630720e26e4e2d1d3f7fa6751da003cad7f7b0852edf3c37105216",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

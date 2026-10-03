@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "book-opening-entry-1",
+      "label": "Book opening entry 1",
+      "text": "This move has an entry in the opening catalogue. A book move, documented long before this game."
+    },
+    "takeId": null
+  },
+  "requestHash": "5dee32803f9a4ee35777a3a9838c771bb413397056102a97280991d7e29bcf04",
+  "recordedAt": "2026-10-03T06:22:26.169Z",
+  "sha256": "caa09365942e6303219368aea39076e38c31476befa459ebad43f56423dc8c2a",
+  "bytes": 20164,
+  "requestId": "INnCQTNuY5g3GUjtCARj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "01ce846d8468d4370e5dfa14517363872cb152f86c907e164ae78f3fc3a834de",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

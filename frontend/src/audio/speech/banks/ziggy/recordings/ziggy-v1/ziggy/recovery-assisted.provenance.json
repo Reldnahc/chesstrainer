@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "recovery-assisted",
+      "label": "Recovery assisted",
+      "text": "This brings back a playable position after the earlier setback, and errors from the other side helped make it possible."
+    },
+    "takeId": null
+  },
+  "requestHash": "e69532ff49eff352e2bd611bca433cb0d25c82a2691cccb7f9fdcb3cfe35eb95",
+  "recordedAt": "2026-10-03T06:21:55.104Z",
+  "sha256": "82729757f00f01af3703da06a0d749e12b10024f566f0a5bcb87f24cf3d1da90",
+  "bytes": 22188,
+  "requestId": "rGUnaZQeZ0rrU7pcyXxN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "175c789167911f0274cee0413db85e06c23b832e29cb4f77cc92113d6f5a9c52",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

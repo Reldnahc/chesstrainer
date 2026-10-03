@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "positional-bishop-pair-alternative",
+      "label": "Positional bishop pair alternative",
+      "text": "With a different move, a bishop would have been captured and the other side's bishop pair broken."
+    },
+    "takeId": null
+  },
+  "requestHash": "17806fa742cbff3de6ca60c2be74ee385c88cdad069c7644b27dae776610e208",
+  "recordedAt": "2026-10-03T06:21:54.368Z",
+  "sha256": "99a03425d90f7e6d59e09dd3b96f94d85856c8108c411626beb698c0dd74fc5b",
+  "bytes": 17594,
+  "requestId": "UwoMZ2Y3VEKGrG1vu0ai",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5c8dd7133f66e507b4d5abb6c2813b1ac14e3e102acc601d87c8c65c09c9a0e7",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

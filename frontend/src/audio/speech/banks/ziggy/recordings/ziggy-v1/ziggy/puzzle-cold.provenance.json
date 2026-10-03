@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "puzzle-cold",
+      "label": "Puzzle cold",
+      "text": "Take your time. Calculate first, then move."
+    },
+    "takeId": null
+  },
+  "requestHash": "6045eed0877b2e11248f092370f022bfabdc0a2ffb59b6848bf4b71950bca69a",
+  "recordedAt": "2026-10-03T06:22:20.893Z",
+  "sha256": "61953b4d215673a028ed2c26d72dfe8f62718a5f5b63a0b30c0655a292c89984",
+  "bytes": 11280,
+  "requestId": "WqITjkUOjm5ykChcy1kz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7299af0dc4b504edfc03313ae7c34fff60110a62cb390211c1e7c5a82d12ba84",
+    "bytes": 58558
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

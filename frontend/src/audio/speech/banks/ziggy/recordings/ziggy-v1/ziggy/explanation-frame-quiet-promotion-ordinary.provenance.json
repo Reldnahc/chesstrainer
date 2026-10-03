@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-promotion-ordinary",
+      "label": "Explanation frame quiet promotion ordinary",
+      "text": "Last rank reached; the pawn promotes. A pawn no longer."
+    },
+    "takeId": null
+  },
+  "requestHash": "b2c56329882d981379fe92c1476fa64c1595f0dccba3fcce7d3db184a929720a",
+  "recordedAt": "2026-10-03T06:22:03.894Z",
+  "sha256": "64a0d9094d8b551912a41f504de87ebf159e19fa390dcadb12d02cbb84cb30ea",
+  "bytes": 15349,
+  "requestId": "RnqhgEzzG6pH5WL27nK9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0492b80ea618053c2996a7e2d54a80857877eb3e8cb5cd4adc35709055c4a635",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

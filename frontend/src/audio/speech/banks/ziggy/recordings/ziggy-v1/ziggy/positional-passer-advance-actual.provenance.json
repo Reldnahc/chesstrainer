@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "positional-passer-advance-actual",
+      "label": "Positional passer advance actual",
+      "text": "The pawn was already passed, and this move pushes it further forward. Each step brings it nearer the last rank."
+    },
+    "takeId": null
+  },
+  "requestHash": "75435ed603e223bec66f1ee030f1e384cadb195c790b42690d9215ad5c742fae",
+  "recordedAt": "2026-10-03T06:21:34.683Z",
+  "sha256": "96e5986418927078bf7be1ea0a327efa60c0d8ed5ec34b71c32244170358625f",
+  "bytes": 22808,
+  "requestId": "Pv2xGhHl9TA54P1MbUzA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "aa48f66052b9d4a43d5b3f6272a138d2bea951e7664bea8c3563ff2a5628bfa2",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

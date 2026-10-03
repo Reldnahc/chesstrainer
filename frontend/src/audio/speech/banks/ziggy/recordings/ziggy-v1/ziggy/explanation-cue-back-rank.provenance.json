@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "explanation-cue-back-rank",
+      "label": "Explanation cue back rank",
+      "text": "Before moving a back-rank defender, look at the king's escape squares."
+    },
+    "takeId": null
+  },
+  "requestHash": "6bbf625ab615cee6d7af35928c46cbdeb5ec35123f738f1d7d0d7bb7c5b65f2d",
+  "recordedAt": "2026-10-03T06:22:09.639Z",
+  "sha256": "3ef707968a7ddcce3817cb1aa90a4455ea36109ea6d9197bcbe0f18c7ab160d0",
+  "bytes": 14822,
+  "requestId": "Tzrl8ZVp8hig57WyJo47",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7a551f1d2e0769316d1b92e1edbbb5e917f2821e9e2db16328ece9ae7df6cba1",
+    "bytes": 74022
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

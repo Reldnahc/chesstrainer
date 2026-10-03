@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "positional-king-flight-alternative",
+      "label": "Positional king flight alternative",
+      "text": "With a different move, the king would have gained a new flight square."
+    },
+    "takeId": null
+  },
+  "requestHash": "81d604cd8928827eb033a81b376e846efdd32f7e89bd0071547a378270070693",
+  "recordedAt": "2026-10-03T06:21:48.057Z",
+  "sha256": "14fd81ae372e7127de221e81488c2eb2e5a277b8f049c7fa80cfc4b62abddd0e",
+  "bytes": 12393,
+  "requestId": "yTD7pi6xM9o28Q2tJeYh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ca1669d68375ba49041383e1e79dba73a90bad482bbcba89e35db64dae42cd17",
+    "bytes": 59812
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "stronger-alternative",
+      "label": "Stronger alternative",
+      "text": "The engine prefers another move here. Play it on the board and compare what the replies do."
+    },
+    "takeId": null
+  },
+  "requestHash": "0cbdc105d6847aba21092f9db83bb2ad89fef6c55c059fb2e9f47f52f8cc196c",
+  "recordedAt": "2026-10-03T06:21:39.834Z",
+  "sha256": "bb33acdc742baf72a6b14cab6e4863dfb2816443defbb04f29ef21e3f3f4ab30",
+  "bytes": 17704,
+  "requestId": "0J3a6RqI6RRGbBq7jRE1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "eb27e16a9abd0a07162d2e5d329ed25c29f8a6b02c34c9315fafeb51879295bc",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

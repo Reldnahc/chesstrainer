@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "srs-summary-mate-against-mover",
+      "label": "Srs summary mate against mover",
+      "text": "The saved engine analysis shows the other side with a forced checkmate after this move."
+    },
+    "takeId": null
+  },
+  "requestHash": "68a24c0c20cf30840ed43766672536c51ab74d447215e66a5cb1ce7f0e68e2e2",
+  "recordedAt": "2026-10-03T06:21:50.547Z",
+  "sha256": "d087491895dd514adaad8700ff24ff394691d159931995cf6d03625f193c6cab",
+  "bytes": 17744,
+  "requestId": "Y2jcweaSpw3EhGlwYc2J",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "371bba2a2a906d79b7b82b8235c6595752e514ba5b9c40678af2f4c131de2f60",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

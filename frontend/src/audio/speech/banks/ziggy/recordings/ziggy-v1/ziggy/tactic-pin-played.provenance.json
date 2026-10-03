@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "tactic-pin-played",
+      "label": "Tactic pin played",
+      "text": "Interesting. This piece looks free, yet it is pinned to its king. It may slide along the line, but stepping off it would expose the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "2534b2ab183f5287a765222c6364a92daf39c149230f2a487ee0b17dd5dc2bf2",
+  "recordedAt": "2026-10-03T06:21:28.684Z",
+  "sha256": "4d8ddef876952cf9a64a6d90231d6a14a57c969dcc5d38de3bcca9b76fb6673b",
+  "bytes": 28614,
+  "requestId": "w1znyET6zcVyUvGP79GS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fbf9c329536ede795f6fef852bc238d2d88d601a8b0a679e25e70ed1bb906f02",
+    "bytes": 150927
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

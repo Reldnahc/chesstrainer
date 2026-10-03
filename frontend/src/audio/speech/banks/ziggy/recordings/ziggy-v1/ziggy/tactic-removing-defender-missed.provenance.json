@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed",
+      "label": "Tactic removing defender missed",
+      "text": "Another move could have captured a defender, stripping the protection from whatever it guarded."
+    },
+    "takeId": null
+  },
+  "requestHash": "837aea55154e9fad486490341ccf1dfb4b49b45b585c98ed3ef2c52f89c38303",
+  "recordedAt": "2026-10-03T06:21:43.456Z",
+  "sha256": "7ae577fb34f8e2293468a1be0a6605aedac2ac55551dda22172d7ff64b23652a",
+  "bytes": 17143,
+  "requestId": "WLX2x0Ru9CQypwuVesIm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "afc0984edd464e707e4f220b61e1ca38b5cfe202a41882cf9283e4c2c3d5a886",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

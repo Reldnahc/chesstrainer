@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check",
+      "label": "Explanation finding discovered check",
+      "text": "The moving piece clears the way, and check comes from a different piece behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "338d82b2476a0147b4bbf765b2f18e3d5a4f788cf5f7cd0334e27625d6b1da0c",
+  "recordedAt": "2026-10-03T06:22:19.289Z",
+  "sha256": "2b21a31d7199bfc1927a16760d0504d32b1e13e7aa76e4f083ef1293090b4197",
+  "bytes": 15603,
+  "requestId": "N1XHOIejyNf0hbngJULi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1e2b2f1843cf5836a8e9bfc26e178403db42cffafc423018a8711498fc6efa7c",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "explanation-cue-skewer",
+      "label": "Explanation cue skewer",
+      "text": "Look beyond the first target. An attack along the line can expose a more valuable piece behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "341d79c57505368341fc63617413d1ba92cc84afa69b986caba928ccd9be2aab",
+  "recordedAt": "2026-10-03T06:22:37.056Z",
+  "sha256": "53ca49c057571b7295c98d8e3ddfb830446363827de5325202b5773cbcf70bbf",
+  "bytes": 20148,
+  "requestId": "NibVQnndEwe3nJSAHDcu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f445511880c4c41e0211c5e2285d094ff595eef20830ea7bcf47910674e5387d",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "only-advantage-resource",
+      "label": "Only advantage resource",
+      "text": "The advantage survived through this move alone. Among the searched moves, every other choice was losing."
+    },
+    "takeId": null
+  },
+  "requestHash": "9ec76dd226708375407c923dff2e5beed52975bdf09bd34593525056c399f22f",
+  "recordedAt": "2026-10-03T06:21:35.787Z",
+  "sha256": "ccc64ce5f73baec069dbf373f3c15a4f73fed6a64598f4d99c01131764465419",
+  "bytes": 21738,
+  "requestId": "4Q5R9iZprw2qh9b0Udpy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6aec001883e6b8dba569b1af036a1a18bd136d738cea8d6743176777d5290c62",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "tactic-hanging-piece-allowed",
+      "label": "Tactic hanging piece allowed",
+      "text": "After this move, one piece has no defender, and the other side can take it."
+    },
+    "takeId": null
+  },
+  "requestHash": "dce899cc71b97c33e3c1b9af3b39709cfde75c1327e9c53828bc65ef735b5578",
+  "recordedAt": "2026-10-03T06:21:48.765Z",
+  "sha256": "3af0fe6616485e59bb4f5042fdfb16b43915d6193d7ba7174fb1a2a8fde8619d",
+  "bytes": 15832,
+  "requestId": "ISGKlcXHro1rcvsoIjeT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "95dd177840d5218e71224f56abe9792350c213f8dd8c7ca21f1845f5d256adaf",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "repeated-issue",
+      "label": "Repeated issue",
+      "text": "This same issue appeared earlier in the game too. When something repeats, I start paying closer attention. Compare the moments where it appeared."
+    },
+    "takeId": null
+  },
+  "requestHash": "72938ac13596900b6845b6b164818fca68ec25ed87f17b5dc235650234b9582d",
+  "recordedAt": "2026-10-03T06:22:00.751Z",
+  "sha256": "ddb6e91c309db6aa33d0932adfa3139f5910230e68cc6ca59b56591fcbc87906",
+  "bytes": 27340,
+  "requestId": "VdtksSSgliKYuy2Dok1X",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "271b6ef443c2a9bf86b806a2b6b8c3e0c6994b093868ff6999993d86bedc392d",
+    "bytes": 142986
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

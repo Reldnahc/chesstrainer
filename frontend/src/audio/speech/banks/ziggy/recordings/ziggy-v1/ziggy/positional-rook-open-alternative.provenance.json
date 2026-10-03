@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "positional-rook-open-alternative",
+      "label": "Positional rook open alternative",
+      "text": "With a different move, a rook could have occupied an open file, one without a single pawn on it."
+    },
+    "takeId": null
+  },
+  "requestHash": "337d8e5d1160ffbe9e38e70784f1daf7de9bb16c7549c0e3189f1605111f3285",
+  "recordedAt": "2026-10-03T06:22:00.624Z",
+  "sha256": "b300c09a814c6aaa39eb95ddfdb52854b84d66ecde260ad95b76b9b571901a9e",
+  "bytes": 19323,
+  "requestId": "q0aHKGiBFFZIZmvgITE3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dc0bfede76b2dfedaa0b18a36a71da4a08f540473c3f7b109a1fc4e49604cef9",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

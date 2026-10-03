@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-mate",
+      "label": "Explanation frame capture promotion mate",
+      "text": "The pawn captures on the last rank, promotes, and with that, checkmate: every legal escape for the king is gone."
+    },
+    "takeId": null
+  },
+  "requestHash": "9dffd6f485496ff86355b8274fe09f0a59711978221f195bca34a0cc1361b08d",
+  "recordedAt": "2026-10-03T06:22:17.275Z",
+  "sha256": "1f3f6c22410e35f7e86bf59be1e484c68084a736df63602f7ff3a54d93f84178",
+  "bytes": 24329,
+  "requestId": "f0HyA5B2O8pEAW7PLIYK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dd760945a49a7994347a8c90795b31f03128e9d9aef1a1a2567b7026cb1dd850",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

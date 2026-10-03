@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "explanation-cue-removing-defender",
+      "label": "Explanation cue removing defender",
+      "text": "Before exchanging a defender, find out what it is protecting at the moment."
+    },
+    "takeId": null
+  },
+  "requestHash": "618d81be915d681ac84180e83d50d8a045fbc15fcb524f4cd55ae9c1d99aa1ae",
+  "recordedAt": "2026-10-03T06:22:05.835Z",
+  "sha256": "5297dec3009721ceb61cf69f31149fe94d174d9930edf5093c1701b42579e673",
+  "bytes": 14891,
+  "requestId": "4MOAWCemqGLNwmDOtvWa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "01a2f510ec18c2ba30b2d19753111262cdfc9340e0ab3003f2ff9ddf8c112e42",
+    "bytes": 74022
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

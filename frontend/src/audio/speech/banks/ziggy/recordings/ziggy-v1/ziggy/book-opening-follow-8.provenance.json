@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "book-opening-follow-8",
+      "label": "Book opening follow 8",
+      "text": "A theory move again. Theory lists what has been played, not whether it was right."
+    },
+    "takeId": null
+  },
+  "requestHash": "0aae6665023f2f1403c1ac87d22eeb46347ef81eed32ded87be87a76a40292a7",
+  "recordedAt": "2026-10-03T06:22:11.292Z",
+  "sha256": "9091313e605fe1b33faaf1975545ad208390f7803549e7f28a4c5e569a6644d0",
+  "bytes": 17295,
+  "requestId": "QPYJ8zpKX1zI7hVT5w3p",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "652c83a52737867613163e407882888b4615637f4d7ed11f6ab2721db66917c4",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

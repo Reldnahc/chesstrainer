@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed",
+      "label": "Tactic discovered attack allowed",
+      "text": "A discovered attack is now possible: one piece moves aside, and a threat appears from the piece behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "13ccfbc7852cee6f9ed3e8e1847df66930a27fe2febf7f88b65efdda6079c7cd",
+  "recordedAt": "2026-10-03T06:21:57.817Z",
+  "sha256": "7d0ae23c9453e4cd7372d04bc146a902a72a08659e0c2be18f23ee442276f898",
+  "bytes": 21594,
+  "requestId": "fYOKhD8GPRsvCJGLPH6F",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cd40b0034c852237ad8f6791ad32ad5f9d19852ab1bc66b8cba5c35d92e2c1a1",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

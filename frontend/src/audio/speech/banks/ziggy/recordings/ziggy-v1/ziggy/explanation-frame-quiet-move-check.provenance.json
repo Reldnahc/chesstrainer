@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-move-check",
+      "label": "Explanation frame quiet move check",
+      "text": "This move gives check, so the king's safety must be answered first."
+    },
+    "takeId": null
+  },
+  "requestHash": "506075e51aa1c77e2674744786f087d22bc8606885d24078d6ec19a4cc2162a6",
+  "recordedAt": "2026-10-03T06:22:01.712Z",
+  "sha256": "639bae3b56dbd8f0636c1be3cfd79f16ce72a2472b6fa6601461f8be0831f2a8",
+  "bytes": 14830,
+  "requestId": "q1awKmIso0yWLCgobKvV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a1ca6a7e2a361f092d2a591ac7a7e0519946ec74dea1bc710ba77d127460dd48",
+    "bytes": 74022
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

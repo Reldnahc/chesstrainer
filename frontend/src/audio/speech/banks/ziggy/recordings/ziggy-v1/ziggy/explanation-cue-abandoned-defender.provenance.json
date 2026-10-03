@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "explanation-cue-abandoned-defender",
+      "label": "Explanation cue abandoned defender",
+      "text": "Before moving a defender, see which pieces would lose its protection."
+    },
+    "takeId": null
+  },
+  "requestHash": "0e59d47fffd1ceba66fd48546ca52ef69d1181bda556ff3b7d911b3b8d3f3ab6",
+  "recordedAt": "2026-10-03T06:22:12.003Z",
+  "sha256": "26d8848e7234bd1bf56c2c4de10fb264502380d02365dc41c4abf0b0853427db",
+  "bytes": 14346,
+  "requestId": "TsORaOMFU3A9Y8WPm1L7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3d325481a4df5e20894831f4f8c3d39953c02081bfee938d8d3b0fbe48657fe5",
+    "bytes": 71515
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

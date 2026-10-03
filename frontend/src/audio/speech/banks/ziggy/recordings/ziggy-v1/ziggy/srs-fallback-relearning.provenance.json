@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "srs-fallback-relearning",
+      "label": "Srs fallback relearning",
+      "text": "Solved. This recall remains marked for relearning."
+    },
+    "takeId": null
+  },
+  "requestHash": "168e7910b1fa479fe2cca99f4739b41297a98d6c775e0b0d534c9c02b9e60f6c",
+  "recordedAt": "2026-10-03T06:22:05.403Z",
+  "sha256": "bd88367242d6163ac3c82884f68786a9b64291fbc3049298ed31b443c4cd7a91",
+  "bytes": 12121,
+  "requestId": "0HRGhXWPEMrT98FXDbDn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7e909977c516d90fe29722d6b259ed52576aa6cc5e7316781f62d4646abcc9a2",
+    "bytes": 61066
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

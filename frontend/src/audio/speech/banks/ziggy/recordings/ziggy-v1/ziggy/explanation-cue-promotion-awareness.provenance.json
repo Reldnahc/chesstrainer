@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "explanation-cue-promotion-awareness",
+      "label": "Explanation cue promotion awareness",
+      "text": "Count how far the pawn is from promotion, and examine the forcing pawn advances."
+    },
+    "takeId": null
+  },
+  "requestHash": "95f50f97a48acfe000d2b020d8cebe7174d2e78f5cfd2d7cdf8f03e4b8366a47",
+  "recordedAt": "2026-10-03T06:22:10.865Z",
+  "sha256": "a2466b19775299d733659799da835007b59ed60dca93de5fb7e6eb7b1578bf0d",
+  "bytes": 16518,
+  "requestId": "jHt63z2iyP4DzkDkAOgi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c2e0618e7a8893de807ba8397ce2f22293c5085fc3524b24a8224f50806adf79",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

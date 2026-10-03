@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "game-browse-instructions",
+      "label": "Game browse instructions",
+      "text": "Choose a move to review, or move a piece to explore an alternative."
+    },
+    "takeId": null
+  },
+  "requestHash": "3ba4fa577355dc6a49422307dcbea13c6340e90c6a892eab019aedac05306aa0",
+  "recordedAt": "2026-10-03T06:22:24.607Z",
+  "sha256": "e600f231091583bd43f7bca8fbb6f947fa02565f6d5b70e53e2d843effc2dd88",
+  "bytes": 14781,
+  "requestId": "UDxLFSkYXIVdv0F6WyzP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0a936fb30c51fde64fc8989ac603fc351f73a3a5e396bb02e805ceed6c8200c2",
+    "bytes": 74022
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

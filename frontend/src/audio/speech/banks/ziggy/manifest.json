@@ -1,0 +1,1583 @@
+{
+  "schemaVersion": 1,
+  "provider": "elevenlabs",
+  "coachId": "alien",
+  "voiceId": "ziggy",
+  "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+  "modelId": "eleven_v4",
+  "outputFormat": "mp3_44100_128",
+  "settings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75,
+    "speed": 0.95
+  },
+  "scope": "non-lesson",
+  "silentIds": [
+    "game-thinking",
+    "explanation-loading-saved",
+    "dialogue-no-renderable-claim",
+    "practice-checking"
+  ],
+  "recordings": [
+    {
+      "id": "tactic-fork-played",
+      "group": "game_review",
+      "text": "Look at that: one piece attacking several targets at the same moment. A fork, and a very busy piece.",
+      "audioPath": "recordings/ziggy-v1/ziggy/tactic-fork-played.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/tactic-fork-played.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-played.json"
+    },
+    {
+      "id": "tactic-fork-allowed",
+      "group": "game_review",
+      "text": "Curious how much one enemy piece could do from here. A fork is now possible for the other side, with several targets under attack at once.",
+      "audioPath": "recordings/ziggy-v1/ziggy/tactic-fork-allowed.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/tactic-fork-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-allowed.json"
+    },
+    {
+      "id": "tactic-fork-missed",
+      "group": "game_review",
+      "text": "Another move contained a fork, one piece hitting several targets together. This move goes a different way and leaves it unused.",
+      "audioPath": "recordings/ziggy-v1/ziggy/tactic-fork-missed.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/tactic-fork-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-missed.json"
+    },
+    {
+      "id": "tactic-pin-played",
+      "group": "game_review",
+      "text": "Interesting. This piece looks free, yet it is pinned to its king. It may slide along the line, but stepping off it would expose the king.",
+      "audioPath": "recordings/ziggy-v1/ziggy/tactic-pin-played.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/tactic-pin-played.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-played.json"
+    },
+    {
+      "id": "tactic-pin-allowed",
+      "group": "game_review",
+      "text": "Now a pin to the king becomes possible for the other side. A piece caught that way can only move along the line; stepping off it would expose its own king.",
+      "audioPath": "recordings/ziggy-v1/ziggy/tactic-pin-allowed.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/tactic-pin-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-allowed.json"
+    },
+    {
+      "id": "tactic-pin-missed",
+      "group": "game_review",
+      "text": "A different move would have fixed an enemy piece to its king, since leaving the line would have exposed the king. A pin, unplayed.",
+      "audioPath": "recordings/ziggy-v1/ziggy/tactic-pin-missed.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/tactic-pin-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-missed.json"
+    },
+    {
+      "id": "tactic-skewer-played",
+      "group": "game_review",
+      "text": "A skewer. The attack lands on the front piece, and when it steps away, the piece behind it on the same line is exposed. Two targets, arranged in a queue.",
+      "audioPath": "recordings/ziggy-v1/ziggy/tactic-skewer-played.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/tactic-skewer-played.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-played.json"
+    },
+    {
+      "id": "tactic-skewer-allowed",
+      "group": "game_review",
+      "text": "This permits a skewer: an attack on a front piece that, once it moves, exposes whatever stands behind it.",
+      "audioPath": "recordings/ziggy-v1/ziggy/tactic-skewer-allowed.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/tactic-skewer-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-allowed.json"
+    },
+    {
+      "id": "tactic-skewer-missed",
+      "group": "game_review",
+      "text": "A skewer was available in a stronger move: attack the front piece, and once it moves aside, the one behind it is exposed.",
+      "audioPath": "recordings/ziggy-v1/ziggy/tactic-skewer-missed.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/tactic-skewer-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-missed.json"
+    },
+    {
+      "id": "tactic-removing-defender-played",
+      "group": "game_review",
+      "text": "The point is to capture a defender. Watch what that defender was protecting; that is what loses its cover.",
+      "audioPath": "recordings/ziggy-v1/ziggy/tactic-removing-defender-played.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/tactic-removing-defender-played.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-played.json"
+    },
+    {
+      "id": "tactic-removing-defender-allowed",
+      "group": "game_review",
+      "text": "Now the other side can capture a defender, and whatever it protected may be left without cover.",
+      "audioPath": "recordings/ziggy-v1/ziggy/tactic-removing-defender-allowed.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/tactic-removing-defender-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-allowed.json"
+    },
+    {
+      "id": "tactic-removing-defender-missed",
+      "group": "game_review",
+      "text": "Another move could have captured a defender, stripping the protection from whatever it guarded.",
+      "audioPath": "recordings/ziggy-v1/ziggy/tactic-removing-defender-missed.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/tactic-removing-defender-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-missed.json"
+    },
+    {
+      "id": "tactic-back-rank-played",
+      "group": "game_review",
+      "text": "Fascinating, really: the king is shut in by its own pieces. That is the back-rank mate idea.",
+      "audioPath": "recordings/ziggy-v1/ziggy/tactic-back-rank-played.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/tactic-back-rank-played.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-played.json"
+    },
+    {
+      "id": "tactic-back-rank-allowed",
+      "group": "game_review",
+      "text": "This opens a route to a back-rank mate for the other side. The king's own pieces are the ones blocking its escape.",
+      "audioPath": "recordings/ziggy-v1/ziggy/tactic-back-rank-allowed.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/tactic-back-rank-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-allowed.json"
+    },
+    {
+      "id": "tactic-back-rank-missed",
+      "group": "game_review",
+      "text": "There was a back-rank mate available, the enemy king trapped behind its own pieces. This move does not take it.",
+      "audioPath": "recordings/ziggy-v1/ziggy/tactic-back-rank-missed.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/tactic-back-rank-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-missed.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-played",
+      "group": "game_review",
+      "text": "This is about promotion. Should the pawn reach the last rank, it changes into a new piece. Such a small piece, with such a large future.",
+      "audioPath": "recordings/ziggy-v1/ziggy/tactic-promotion-awareness-played.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/tactic-promotion-awareness-played.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-played.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-allowed",
+      "group": "game_review",
+      "text": "This gives the other side a chance to promote. One of their pawns could reach the last rank and turn into a new piece.",
+      "audioPath": "recordings/ziggy-v1/ziggy/tactic-promotion-awareness-allowed.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/tactic-promotion-awareness-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-allowed.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-missed",
+      "group": "game_review",
+      "text": "A stronger move offered a route to promotion. This move leaves that pawn short of the last rank.",
+      "audioPath": "recordings/ziggy-v1/ziggy/tactic-promotion-awareness-missed.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/tactic-promotion-awareness-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-missed.json"
+    },
+    {
+      "id": "tactic-discovered-attack-played",
+      "group": "game_review",
+      "text": "A discovered attack. The moving piece clears the way; the real attack comes from the piece that was hidden behind it, along the newly opened line.",
+      "audioPath": "recordings/ziggy-v1/ziggy/tactic-discovered-attack-played.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/tactic-discovered-attack-played.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-played.json"
+    },
+    {
+      "id": "tactic-discovered-attack-allowed",
+      "group": "game_review",
+      "text": "A discovered attack is now possible: one piece moves aside, and a threat appears from the piece behind it.",
+      "audioPath": "recordings/ziggy-v1/ziggy/tactic-discovered-attack-allowed.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/tactic-discovered-attack-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-allowed.json"
+    },
+    {
+      "id": "tactic-discovered-attack-missed",
+      "group": "game_review",
+      "text": "A discovered attack was sitting in another move: one piece steps aside, and a threat appears from the piece behind.",
+      "audioPath": "recordings/ziggy-v1/ziggy/tactic-discovered-attack-missed.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/tactic-discovered-attack-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-missed.json"
+    },
+    {
+      "id": "tactic-double-attack-played",
+      "group": "game_review",
+      "text": "Two threats launched by one move: a double attack. The defense now has two problems to solve at once.",
+      "audioPath": "recordings/ziggy-v1/ziggy/tactic-double-attack-played.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/tactic-double-attack-played.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-played.json"
+    },
+    {
+      "id": "tactic-double-attack-allowed",
+      "group": "game_review",
+      "text": "A double attack becomes available to the other side: one move, two threats.",
+      "audioPath": "recordings/ziggy-v1/ziggy/tactic-double-attack-allowed.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/tactic-double-attack-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-allowed.json"
+    },
+    {
+      "id": "tactic-double-attack-missed",
+      "group": "game_review",
+      "text": "A stronger move contained a double attack, two threats in one move. This move does not find it.",
+      "audioPath": "recordings/ziggy-v1/ziggy/tactic-double-attack-missed.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/tactic-double-attack-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-missed.json"
+    },
+    {
+      "id": "tactic-deflection-played",
+      "group": "game_review",
+      "text": "A deflection. The defender is drawn away from its duty, and what it was guarding is left exposed.",
+      "audioPath": "recordings/ziggy-v1/ziggy/tactic-deflection-played.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/tactic-deflection-played.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-played.json"
+    },
+    {
+      "id": "tactic-deflection-allowed",
+      "group": "game_review",
+      "text": "This gives the other side a chance at a deflection, pulling a defender away from its task, so whatever it guarded is left open.",
+      "audioPath": "recordings/ziggy-v1/ziggy/tactic-deflection-allowed.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/tactic-deflection-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-allowed.json"
+    },
+    {
+      "id": "tactic-deflection-missed",
+      "group": "game_review",
+      "text": "Another move could have pulled a defender away from its duty. That deflection would have left what it guarded uncovered.",
+      "audioPath": "recordings/ziggy-v1/ziggy/tactic-deflection-missed.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/tactic-deflection-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-missed.json"
+    },
+    {
+      "id": "tactic-undefended-capture-played",
+      "group": "game_review",
+      "text": "Before anything clever, check for pieces with no defender. Here there is one, and the idea is simply to take it.",
+      "audioPath": "recordings/ziggy-v1/ziggy/tactic-undefended-capture-played.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/tactic-undefended-capture-played.provenance.json",
+      "alignmentPath": "alignment/tactic-undefended-capture-played.json"
+    },
+    {
+      "id": "tactic-undefended-capture-missed",
+      "group": "game_review",
+      "text": "With a different move, an undefended piece was there for the taking. This one passes over it, and nothing was guarding it at all.",
+      "audioPath": "recordings/ziggy-v1/ziggy/tactic-undefended-capture-missed.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/tactic-undefended-capture-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-undefended-capture-missed.json"
+    },
+    {
+      "id": "tactic-hanging-piece-allowed",
+      "group": "game_review",
+      "text": "After this move, one piece has no defender, and the other side can take it.",
+      "audioPath": "recordings/ziggy-v1/ziggy/tactic-hanging-piece-allowed.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/tactic-hanging-piece-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-hanging-piece-allowed.json"
+    },
+    {
+      "id": "cause-abandoned-defender",
+      "group": "game_review",
+      "text": "A convincing move on its own, but it removes a piece's only real defender. Now the other side can capture the piece that was left behind.",
+      "audioPath": "recordings/ziggy-v1/ziggy/cause-abandoned-defender.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/cause-abandoned-defender.provenance.json",
+      "alignmentPath": "alignment/cause-abandoned-defender.json"
+    },
+    {
+      "id": "cause-opponent-threat-recognition",
+      "group": "game_review",
+      "text": "The opponent's previous move carried a threat, and this one does not respond to it. One of the pieces is now open to capture.",
+      "audioPath": "recordings/ziggy-v1/ziggy/cause-opponent-threat-recognition.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/cause-opponent-threat-recognition.provenance.json",
+      "alignmentPath": "alignment/cause-opponent-threat-recognition.json"
+    },
+    {
+      "id": "cause-avoiding-bad-trades",
+      "group": "game_review",
+      "text": "This capture is answered by a recapture of something more valuable. An exchange is only finished when both captures are counted.",
+      "audioPath": "recordings/ziggy-v1/ziggy/cause-avoiding-bad-trades.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/cause-avoiding-bad-trades.provenance.json",
+      "alignmentPath": "alignment/cause-avoiding-bad-trades.json"
+    },
+    {
+      "id": "positional-development-actual",
+      "group": "game_review",
+      "text": "A minor piece leaves its starting square and enters the game. Development, plainly visible.",
+      "audioPath": "recordings/ziggy-v1/ziggy/positional-development-actual.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/positional-development-actual.provenance.json",
+      "alignmentPath": "alignment/positional-development-actual.json"
+    },
+    {
+      "id": "positional-development-alternative",
+      "group": "game_review",
+      "text": "With a different move, a minor piece would have come off its starting square into play.",
+      "audioPath": "recordings/ziggy-v1/ziggy/positional-development-alternative.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/positional-development-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-development-alternative.json"
+    },
+    {
+      "id": "positional-rook-open-actual",
+      "group": "game_review",
+      "text": "An open file, and the rook is on it. From one end to the other, no pawn of either color.",
+      "audioPath": "recordings/ziggy-v1/ziggy/positional-rook-open-actual.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/positional-rook-open-actual.provenance.json",
+      "alignmentPath": "alignment/positional-rook-open-actual.json"
+    },
+    {
+      "id": "positional-rook-open-alternative",
+      "group": "game_review",
+      "text": "With a different move, a rook could have occupied an open file, one without a single pawn on it.",
+      "audioPath": "recordings/ziggy-v1/ziggy/positional-rook-open-alternative.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/positional-rook-open-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-rook-open-alternative.json"
+    },
+    {
+      "id": "positional-rook-semi-open-actual",
+      "group": "game_review",
+      "text": "A semi-open file, and the rook is on it: no friendly pawn there, though an enemy pawn is still somewhere along it.",
+      "audioPath": "recordings/ziggy-v1/ziggy/positional-rook-semi-open-actual.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/positional-rook-semi-open-actual.provenance.json",
+      "alignmentPath": "alignment/positional-rook-semi-open-actual.json"
+    },
+    {
+      "id": "positional-rook-semi-open-alternative",
+      "group": "game_review",
+      "text": "A different move would have placed a rook on a semi-open file: no friendly pawn on it, but at least one enemy pawn.",
+      "audioPath": "recordings/ziggy-v1/ziggy/positional-rook-semi-open-alternative.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/positional-rook-semi-open-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-rook-semi-open-alternative.json"
+    },
+    {
+      "id": "positional-passed-actual",
+      "group": "game_review",
+      "text": "A passed pawn. Look along its file and both neighboring files: no enemy pawn stands ahead.",
+      "audioPath": "recordings/ziggy-v1/ziggy/positional-passed-actual.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/positional-passed-actual.provenance.json",
+      "alignmentPath": "alignment/positional-passed-actual.json"
+    },
+    {
+      "id": "positional-passed-alternative",
+      "group": "game_review",
+      "text": "Another move would have created a passed pawn, with no enemy pawn ahead on its file or the neighboring files.",
+      "audioPath": "recordings/ziggy-v1/ziggy/positional-passed-alternative.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/positional-passed-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-passed-alternative.json"
+    },
+    {
+      "id": "positional-passer-advance-actual",
+      "group": "game_review",
+      "text": "The pawn was already passed, and this move pushes it further forward. Each step brings it nearer the last rank.",
+      "audioPath": "recordings/ziggy-v1/ziggy/positional-passer-advance-actual.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/positional-passer-advance-actual.provenance.json",
+      "alignmentPath": "alignment/positional-passer-advance-actual.json"
+    },
+    {
+      "id": "positional-passer-advance-alternative",
+      "group": "game_review",
+      "text": "With a different move, the passed pawn could have advanced another step.",
+      "audioPath": "recordings/ziggy-v1/ziggy/positional-passer-advance-alternative.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/positional-passer-advance-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-passer-advance-alternative.json"
+    },
+    {
+      "id": "positional-isolated-actual",
+      "group": "game_review",
+      "text": "An isolated pawn is the result. No friendly pawn stands on either neighboring file.",
+      "audioPath": "recordings/ziggy-v1/ziggy/positional-isolated-actual.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/positional-isolated-actual.provenance.json",
+      "alignmentPath": "alignment/positional-isolated-actual.json"
+    },
+    {
+      "id": "positional-isolated-alternative",
+      "group": "game_review",
+      "text": "A different move would have left an isolated pawn, lacking any friendly pawn on the neighboring files.",
+      "audioPath": "recordings/ziggy-v1/ziggy/positional-isolated-alternative.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/positional-isolated-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-isolated-alternative.json"
+    },
+    {
+      "id": "positional-support-actual",
+      "group": "game_review",
+      "text": "Before this move, a piece stood undefended. Now a defender covers it. A new connection on the board.",
+      "audioPath": "recordings/ziggy-v1/ziggy/positional-support-actual.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/positional-support-actual.provenance.json",
+      "alignmentPath": "alignment/positional-support-actual.json"
+    },
+    {
+      "id": "positional-support-alternative",
+      "group": "game_review",
+      "text": "A different move would have found a defender for a piece that had none.",
+      "audioPath": "recordings/ziggy-v1/ziggy/positional-support-alternative.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/positional-support-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-support-alternative.json"
+    },
+    {
+      "id": "positional-unsupported-actual",
+      "group": "game_review",
+      "text": "After this move, a piece has no defender. Undefended describes the piece; it does not prove the piece can be won.",
+      "audioPath": "recordings/ziggy-v1/ziggy/positional-unsupported-actual.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/positional-unsupported-actual.provenance.json",
+      "alignmentPath": "alignment/positional-unsupported-actual.json"
+    },
+    {
+      "id": "positional-unsupported-alternative",
+      "group": "game_review",
+      "text": "A different move would have left a piece undefended; that alone would not have made it winnable.",
+      "audioPath": "recordings/ziggy-v1/ziggy/positional-unsupported-alternative.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/positional-unsupported-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-unsupported-alternative.json"
+    },
+    {
+      "id": "positional-king-flight-actual",
+      "group": "game_review",
+      "text": "This move opens a fresh legal square for the king. A small exit, newly made.",
+      "audioPath": "recordings/ziggy-v1/ziggy/positional-king-flight-actual.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/positional-king-flight-actual.provenance.json",
+      "alignmentPath": "alignment/positional-king-flight-actual.json"
+    },
+    {
+      "id": "positional-king-flight-alternative",
+      "group": "game_review",
+      "text": "With a different move, the king would have gained a new flight square.",
+      "audioPath": "recordings/ziggy-v1/ziggy/positional-king-flight-alternative.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/positional-king-flight-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-king-flight-alternative.json"
+    },
+    {
+      "id": "positional-castling-actual",
+      "group": "game_review",
+      "text": "The king castles, and the rook settles on the king's other side. Two pieces relocated in one move.",
+      "audioPath": "recordings/ziggy-v1/ziggy/positional-castling-actual.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/positional-castling-actual.provenance.json",
+      "alignmentPath": "alignment/positional-castling-actual.json"
+    },
+    {
+      "id": "positional-castling-alternative",
+      "group": "game_review",
+      "text": "Castling was the alternative: king and rook relocated in one move.",
+      "audioPath": "recordings/ziggy-v1/ziggy/positional-castling-alternative.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/positional-castling-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-castling-alternative.json"
+    },
+    {
+      "id": "positional-bishop-pair-actual",
+      "group": "game_review",
+      "text": "With this capture, a bishop pair is broken. The side that lost the bishop now covers only one square color with bishops.",
+      "audioPath": "recordings/ziggy-v1/ziggy/positional-bishop-pair-actual.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/positional-bishop-pair-actual.provenance.json",
+      "alignmentPath": "alignment/positional-bishop-pair-actual.json"
+    },
+    {
+      "id": "positional-bishop-pair-alternative",
+      "group": "game_review",
+      "text": "With a different move, a bishop would have been captured and the other side's bishop pair broken.",
+      "audioPath": "recordings/ziggy-v1/ziggy/positional-bishop-pair-alternative.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/positional-bishop-pair-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-bishop-pair-alternative.json"
+    },
+    {
+      "id": "positional-doubled-actual",
+      "group": "game_review",
+      "text": "Doubled pawns: one file now holds two pawns of the same color.",
+      "audioPath": "recordings/ziggy-v1/ziggy/positional-doubled-actual.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/positional-doubled-actual.provenance.json",
+      "alignmentPath": "alignment/positional-doubled-actual.json"
+    },
+    {
+      "id": "positional-doubled-alternative",
+      "group": "game_review",
+      "text": "With a different move, two pawns of one color would have ended up on a single file: doubled pawns.",
+      "audioPath": "recordings/ziggy-v1/ziggy/positional-doubled-alternative.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/positional-doubled-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-doubled-alternative.json"
+    },
+    {
+      "id": "allowed-mate",
+      "group": "game_review",
+      "text": "With this move, a forced checkmate opens up for the other side. The path of that attack is worth tracing, move by move.",
+      "audioPath": "recordings/ziggy-v1/ziggy/allowed-mate.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/allowed-mate.provenance.json",
+      "alignmentPath": "alignment/allowed-mate.json"
+    },
+    {
+      "id": "missed-mate",
+      "group": "game_review",
+      "text": "The finish was there: a forced checkmate with another move. This one goes past it. That mate is worth finding now.",
+      "audioPath": "recordings/ziggy-v1/ziggy/missed-mate.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/missed-mate.provenance.json",
+      "alignmentPath": "alignment/missed-mate.json"
+    },
+    {
+      "id": "sound-sacrifice",
+      "group": "game_review",
+      "text": "The material looks lost, and yet the sacrifice holds. In the searched line, accepting it does not refute the idea.",
+      "audioPath": "recordings/ziggy-v1/ziggy/sound-sacrifice.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/sound-sacrifice.provenance.json",
+      "alignmentPath": "alignment/sound-sacrifice.json"
+    },
+    {
+      "id": "only-playable-move",
+      "group": "game_review",
+      "text": "A very narrow margin. Among all the searched moves, this was the single one that kept the position playable; every alternative was losing.",
+      "audioPath": "recordings/ziggy-v1/ziggy/only-playable-move.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/only-playable-move.provenance.json",
+      "alignmentPath": "alignment/only-playable-move.json"
+    },
+    {
+      "id": "only-advantage-resource",
+      "group": "game_review",
+      "text": "The advantage survived through this move alone. Among the searched moves, every other choice was losing.",
+      "audioPath": "recordings/ziggy-v1/ziggy/only-advantage-resource.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/only-advantage-resource.provenance.json",
+      "alignmentPath": "alignment/only-advantage-resource.json"
+    },
+    {
+      "id": "immediate-capture",
+      "group": "game_review",
+      "text": "The reply comes at once: the other side can capture something immediately.",
+      "audioPath": "recordings/ziggy-v1/ziggy/immediate-capture.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/immediate-capture.provenance.json",
+      "alignmentPath": "alignment/immediate-capture.json"
+    },
+    {
+      "id": "reply-check",
+      "group": "game_review",
+      "text": "The strongest reply is a check, so the king comes first; everything else waits.",
+      "audioPath": "recordings/ziggy-v1/ziggy/reply-check.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/reply-check.provenance.json",
+      "alignmentPath": "alignment/reply-check.json"
+    },
+    {
+      "id": "stronger-alternative",
+      "group": "game_review",
+      "text": "The engine prefers another move here. Play it on the board and compare what the replies do.",
+      "audioPath": "recordings/ziggy-v1/ziggy/stronger-alternative.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/stronger-alternative.provenance.json",
+      "alignmentPath": "alignment/stronger-alternative.json"
+    },
+    {
+      "id": "evaluation-loss",
+      "group": "game_review",
+      "text": "By the engine's measure, this move is weaker than the best option. The reply shows where the difference appears.",
+      "audioPath": "recordings/ziggy-v1/ziggy/evaluation-loss.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/evaluation-loss.provenance.json",
+      "alignmentPath": "alignment/evaluation-loss.json"
+    },
+    {
+      "id": "best-supported-choice",
+      "group": "game_review",
+      "text": "Strong. Among the moves the engine examined, this one stands up well.",
+      "audioPath": "recordings/ziggy-v1/ziggy/best-supported-choice.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/best-supported-choice.provenance.json",
+      "alignmentPath": "alignment/best-supported-choice.json"
+    },
+    {
+      "id": "good-choice",
+      "group": "game_review",
+      "text": "A solid decision. It keeps much of what the position offered, even if the engine has another first choice.",
+      "audioPath": "recordings/ziggy-v1/ziggy/good-choice.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/good-choice.provenance.json",
+      "alignmentPath": "alignment/good-choice.json"
+    },
+    {
+      "id": "clock-low",
+      "group": "game_review",
+      "text": "By the clock, very little time was left before this move. That belongs beside everything else on the board.",
+      "audioPath": "recordings/ziggy-v1/ziggy/clock-low.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/clock-low.provenance.json",
+      "alignmentPath": "alignment/clock-low.json"
+    },
+    {
+      "id": "clock-fast",
+      "group": "game_review",
+      "text": "The clock says this move came quickly, with time still in hand.",
+      "audioPath": "recordings/ziggy-v1/ziggy/clock-fast.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/clock-fast.provenance.json",
+      "alignmentPath": "alignment/clock-fast.json"
+    },
+    {
+      "id": "clock-long",
+      "group": "game_review",
+      "text": "A long deliberation, by the clock, went into this move.",
+      "audioPath": "recordings/ziggy-v1/ziggy/clock-long.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/clock-long.provenance.json",
+      "alignmentPath": "alignment/clock-long.json"
+    },
+    {
+      "id": "recognized-opening",
+      "group": "game_review",
+      "text": "This move appears in the opening catalogue, part of a documented line.",
+      "audioPath": "recordings/ziggy-v1/ziggy/recognized-opening.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/recognized-opening.provenance.json",
+      "alignmentPath": "alignment/recognized-opening.json"
+    },
+    {
+      "id": "opening-departure",
+      "group": "game_review",
+      "text": "Here the game steps off the documented opening line for the first time. From this move on, it is its own.",
+      "audioPath": "recordings/ziggy-v1/ziggy/opening-departure.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/opening-departure.provenance.json",
+      "alignmentPath": "alignment/opening-departure.json"
+    },
+    {
+      "id": "recovery",
+      "group": "game_review",
+      "text": "After the earlier setback, the position is playable again with this move. An earlier error, not a final one.",
+      "audioPath": "recordings/ziggy-v1/ziggy/recovery.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/recovery.provenance.json",
+      "alignmentPath": "alignment/recovery.json"
+    },
+    {
+      "id": "recovery-assisted",
+      "group": "game_review",
+      "text": "This brings back a playable position after the earlier setback, and errors from the other side helped make it possible.",
+      "audioPath": "recordings/ziggy-v1/ziggy/recovery-assisted.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/recovery-assisted.provenance.json",
+      "alignmentPath": "alignment/recovery-assisted.json"
+    },
+    {
+      "id": "chance-taken",
+      "group": "game_review",
+      "text": "The opponent's previous move offered a chance, and this move uses it. One side's lapse, the other side's opportunity.",
+      "audioPath": "recordings/ziggy-v1/ziggy/chance-taken.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/chance-taken.provenance.json",
+      "alignmentPath": "alignment/chance-taken.json"
+    },
+    {
+      "id": "chance-missed",
+      "group": "game_review",
+      "text": "The opponent's last move offered an opportunity, and this move passes over it. A stronger answer was available.",
+      "audioPath": "recordings/ziggy-v1/ziggy/chance-missed.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/chance-missed.provenance.json",
+      "alignmentPath": "alignment/chance-missed.json"
+    },
+    {
+      "id": "repeated-issue",
+      "group": "game_review",
+      "text": "This same issue appeared earlier in the game too. When something repeats, I start paying closer attention. Compare the moments where it appeared.",
+      "audioPath": "recordings/ziggy-v1/ziggy/repeated-issue.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/repeated-issue.provenance.json",
+      "alignmentPath": "alignment/repeated-issue.json"
+    },
+    {
+      "id": "support-restored",
+      "group": "game_review",
+      "text": "Earlier, this piece was left unguarded. Now it has a defender again.",
+      "audioPath": "recordings/ziggy-v1/ziggy/support-restored.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/support-restored.provenance.json",
+      "alignmentPath": "alignment/support-restored.json"
+    },
+    {
+      "id": "gradual-erosion",
+      "group": "game_review",
+      "text": "No single move did the damage here. This is one of several small concessions that, together, have worsened the position.",
+      "audioPath": "recordings/ziggy-v1/ziggy/gradual-erosion.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/gradual-erosion.provenance.json",
+      "alignmentPath": "alignment/gradual-erosion.json"
+    },
+    {
+      "id": "advantage-converted",
+      "group": "game_review",
+      "text": "The advantage was kept through the reviewed moves, right through to the recorded win. That stretch shows how an edge is held.",
+      "audioPath": "recordings/ziggy-v1/ziggy/advantage-converted.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/advantage-converted.provenance.json",
+      "alignmentPath": "alignment/advantage-converted.json"
+    },
+    {
+      "id": "saved-history-recurrence",
+      "group": "game_review",
+      "text": "This issue also shows up in other saved games. Collected together, those examples say more than any one of them alone.",
+      "audioPath": "recordings/ziggy-v1/ziggy/saved-history-recurrence.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/saved-history-recurrence.provenance.json",
+      "alignmentPath": "alignment/saved-history-recurrence.json"
+    },
+    {
+      "id": "mate-finished",
+      "group": "game_review",
+      "text": "Checkmate. Not one legal escape remains for the king. Every exit closed, and the attack complete.",
+      "audioPath": "recordings/ziggy-v1/ziggy/mate-finished.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/mate-finished.provenance.json",
+      "alignmentPath": "alignment/mate-finished.json"
+    },
+    {
+      "id": "mate-defense-ended",
+      "group": "game_review",
+      "text": "Checkmate. Your king has no legal move out of check. The decisions worth examining come earlier, before the attack arrived.",
+      "audioPath": "recordings/ziggy-v1/ziggy/mate-defense-ended.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/mate-defense-ended.provenance.json",
+      "alignmentPath": "alignment/mate-defense-ended.json"
+    },
+    {
+      "id": "draw",
+      "group": "game_review",
+      "text": "A draw ends the game. A settled result, though the decisions along the way are still worth examining.",
+      "audioPath": "recordings/ziggy-v1/ziggy/draw.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/draw.provenance.json",
+      "alignmentPath": "alignment/draw.json"
+    },
+    {
+      "id": "srs-cold",
+      "group": "srs_explanations",
+      "text": "I'll watch with interest. Study the position, then choose your move.",
+      "audioPath": "recordings/ziggy-v1/ziggy/srs-cold.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/srs-cold.provenance.json",
+      "alignmentPath": "alignment/srs-cold.json"
+    },
+    {
+      "id": "srs-retry",
+      "group": "srs_explanations",
+      "text": "That attempt does not stand up. Re-examine the board and attempt a different move.",
+      "audioPath": "recordings/ziggy-v1/ziggy/srs-retry.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/srs-retry.provenance.json",
+      "alignmentPath": "alignment/srs-retry.json"
+    },
+    {
+      "id": "srs-practice-error",
+      "group": "srs_explanations",
+      "text": "That attempt produced no result. Return to the move and try once more.",
+      "audioPath": "recordings/ziggy-v1/ziggy/srs-practice-error.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/srs-practice-error.provenance.json",
+      "alignmentPath": "alignment/srs-practice-error.json"
+    },
+    {
+      "id": "srs-summary-mate-for-mover",
+      "group": "srs_explanations",
+      "text": "The saved engine analysis shows a forced checkmate for the side that played this move.",
+      "audioPath": "recordings/ziggy-v1/ziggy/srs-summary-mate-for-mover.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/srs-summary-mate-for-mover.provenance.json",
+      "alignmentPath": "alignment/srs-summary-mate-for-mover.json"
+    },
+    {
+      "id": "srs-summary-mate-against-mover",
+      "group": "srs_explanations",
+      "text": "The saved engine analysis shows the other side with a forced checkmate after this move.",
+      "audioPath": "recordings/ziggy-v1/ziggy/srs-summary-mate-against-mover.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/srs-summary-mate-against-mover.provenance.json",
+      "alignmentPath": "alignment/srs-summary-mate-against-mover.json"
+    },
+    {
+      "id": "srs-summary-material-gain",
+      "group": "srs_explanations",
+      "text": "Tally the material across the saved line: the side that played this move finishes above where it began.",
+      "audioPath": "recordings/ziggy-v1/ziggy/srs-summary-material-gain.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/srs-summary-material-gain.provenance.json",
+      "alignmentPath": "alignment/srs-summary-material-gain.json"
+    },
+    {
+      "id": "srs-summary-material-loss",
+      "group": "srs_explanations",
+      "text": "Tally the material across the saved line: the side that played this move finishes below where it began.",
+      "audioPath": "recordings/ziggy-v1/ziggy/srs-summary-material-loss.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/srs-summary-material-loss.provenance.json",
+      "alignmentPath": "alignment/srs-summary-material-loss.json"
+    },
+    {
+      "id": "srs-summary-engine-accepted",
+      "group": "srs_explanations",
+      "text": "This move is accepted for the exercise, though the moves shown give no clear tactical explanation. Accepted, and still a small mystery.",
+      "audioPath": "recordings/ziggy-v1/ziggy/srs-summary-engine-accepted.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/srs-summary-engine-accepted.provenance.json",
+      "alignmentPath": "alignment/srs-summary-engine-accepted.json"
+    },
+    {
+      "id": "srs-summary-engine-rejected",
+      "group": "srs_explanations",
+      "text": "This move is not accepted for the exercise, and the moves shown do not reveal a clear tactical reason why.",
+      "audioPath": "recordings/ziggy-v1/ziggy/srs-summary-engine-rejected.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/srs-summary-engine-rejected.provenance.json",
+      "alignmentPath": "alignment/srs-summary-engine-rejected.json"
+    },
+    {
+      "id": "srs-summary-curated-accepted",
+      "group": "srs_explanations",
+      "text": "This move matches one of the saved answers, and for this exercise the saved answers are what decide acceptance.",
+      "audioPath": "recordings/ziggy-v1/ziggy/srs-summary-curated-accepted.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/srs-summary-curated-accepted.provenance.json",
+      "alignmentPath": "alignment/srs-summary-curated-accepted.json"
+    },
+    {
+      "id": "srs-summary-curated-rejected",
+      "group": "srs_explanations",
+      "text": "This move falls outside the saved answers for the exercise. Outside the answers is not the same as bad chess.",
+      "audioPath": "recordings/ziggy-v1/ziggy/srs-summary-curated-rejected.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/srs-summary-curated-rejected.provenance.json",
+      "alignmentPath": "alignment/srs-summary-curated-rejected.json"
+    },
+    {
+      "id": "srs-fallback-study",
+      "group": "srs_explanations",
+      "text": "Examine the move closely, then go on to the next position.",
+      "audioPath": "recordings/ziggy-v1/ziggy/srs-fallback-study.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/srs-fallback-study.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-study.json"
+    },
+    {
+      "id": "srs-fallback-good",
+      "group": "srs_explanations",
+      "text": "Good move. Remember why it works, not only what it was.",
+      "audioPath": "recordings/ziggy-v1/ziggy/srs-fallback-good.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/srs-fallback-good.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-good.json"
+    },
+    {
+      "id": "srs-fallback-focus-saved",
+      "group": "srs_explanations",
+      "text": "Practice saved. Nothing about your review schedule has changed.",
+      "audioPath": "recordings/ziggy-v1/ziggy/srs-fallback-focus-saved.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/srs-fallback-focus-saved.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-focus-saved.json"
+    },
+    {
+      "id": "srs-fallback-relearning",
+      "group": "srs_explanations",
+      "text": "Solved. This recall remains marked for relearning.",
+      "audioPath": "recordings/ziggy-v1/ziggy/srs-fallback-relearning.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/srs-fallback-relearning.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-relearning.json"
+    },
+    {
+      "id": "explanation-frame-original",
+      "group": "srs_explanations",
+      "text": "This is the starting position, before any of the moves under examination.",
+      "audioPath": "recordings/ziggy-v1/ziggy/explanation-frame-original.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/explanation-frame-original.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-original.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-ordinary",
+      "group": "srs_explanations",
+      "text": "Movement detected. Observe what has changed.",
+      "audioPath": "recordings/ziggy-v1/ziggy/explanation-frame-quiet-move-ordinary.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/explanation-frame-quiet-move-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-check",
+      "group": "srs_explanations",
+      "text": "This move gives check, so the king's safety must be answered first.",
+      "audioPath": "recordings/ziggy-v1/ziggy/explanation-frame-quiet-move-check.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/explanation-frame-quiet-move-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-check.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-escape",
+      "group": "srs_explanations",
+      "text": "With this move, the king escapes the check.",
+      "audioPath": "recordings/ziggy-v1/ziggy/explanation-frame-quiet-move-escape.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/explanation-frame-quiet-move-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-escape.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-ordinary",
+      "group": "srs_explanations",
+      "text": "Last rank reached; the pawn promotes. A pawn no longer.",
+      "audioPath": "recordings/ziggy-v1/ziggy/explanation-frame-quiet-promotion-ordinary.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/explanation-frame-quiet-promotion-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-check",
+      "group": "srs_explanations",
+      "text": "The pawn reaches the last rank and promotes, giving check at the same time.",
+      "audioPath": "recordings/ziggy-v1/ziggy/explanation-frame-quiet-promotion-check.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/explanation-frame-quiet-promotion-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-check.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-mate",
+      "group": "srs_explanations",
+      "text": "The pawn reaches the last rank and promotes, and it is checkmate. No legal square is left for the king.",
+      "audioPath": "recordings/ziggy-v1/ziggy/explanation-frame-quiet-promotion-mate.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/explanation-frame-quiet-promotion-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-mate.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-escape",
+      "group": "srs_explanations",
+      "text": "Promotion on the last rank, and with the same move, its king is no longer in check.",
+      "audioPath": "recordings/ziggy-v1/ziggy/explanation-frame-quiet-promotion-escape.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/explanation-frame-quiet-promotion-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-escape.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-ordinary",
+      "group": "srs_explanations",
+      "text": "A capture: one piece is removed from the board.",
+      "audioPath": "recordings/ziggy-v1/ziggy/explanation-frame-capture-move-ordinary.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/explanation-frame-capture-move-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-check",
+      "group": "srs_explanations",
+      "text": "A capture that also gives check. Two things accomplished by one move.",
+      "audioPath": "recordings/ziggy-v1/ziggy/explanation-frame-capture-move-check.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/explanation-frame-capture-move-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-check.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-mate",
+      "group": "srs_explanations",
+      "text": "Capture and checkmate in one move. The king has no legal answer.",
+      "audioPath": "recordings/ziggy-v1/ziggy/explanation-frame-capture-move-mate.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/explanation-frame-capture-move-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-mate.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-escape",
+      "group": "srs_explanations",
+      "text": "This capture removes the check on its own king as well.",
+      "audioPath": "recordings/ziggy-v1/ziggy/explanation-frame-capture-move-escape.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/explanation-frame-capture-move-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-escape.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-ordinary",
+      "group": "srs_explanations",
+      "text": "A pawn capture on the last rank, and promotion on the same square.",
+      "audioPath": "recordings/ziggy-v1/ziggy/explanation-frame-capture-promotion-ordinary.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/explanation-frame-capture-promotion-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-check",
+      "group": "srs_explanations",
+      "text": "One pawn move does three things: it captures on the last rank, promotes, and gives check.",
+      "audioPath": "recordings/ziggy-v1/ziggy/explanation-frame-capture-promotion-check.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/explanation-frame-capture-promotion-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-check.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-mate",
+      "group": "srs_explanations",
+      "text": "The pawn captures on the last rank, promotes, and with that, checkmate: every legal escape for the king is gone.",
+      "audioPath": "recordings/ziggy-v1/ziggy/explanation-frame-capture-promotion-mate.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/explanation-frame-capture-promotion-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-mate.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-escape",
+      "group": "srs_explanations",
+      "text": "A capture on the last rank, a promotion, and the end of the check against its own king, all from one pawn move.",
+      "audioPath": "recordings/ziggy-v1/ziggy/explanation-frame-capture-promotion-escape.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/explanation-frame-capture-promotion-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-escape.json"
+    },
+    {
+      "id": "explanation-frame-castle-check",
+      "group": "srs_explanations",
+      "text": "The king castles, the rook jumps to its new square, and the move gives check as well.",
+      "audioPath": "recordings/ziggy-v1/ziggy/explanation-frame-castle-check.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/explanation-frame-castle-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-castle-check.json"
+    },
+    {
+      "id": "explanation-frame-castle-mate",
+      "group": "srs_explanations",
+      "text": "The king castles, the rook takes its new square, and it is checkmate, with no legal escape for the opposing king. A rare way to finish, and a memorable one.",
+      "audioPath": "recordings/ziggy-v1/ziggy/explanation-frame-castle-mate.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/explanation-frame-castle-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-castle-mate.json"
+    },
+    {
+      "id": "explanation-finding-fork-collected",
+      "group": "srs_explanations",
+      "text": "Follow the forking piece: it attacks several targets at once, then collects one. In this example the material count also ends in that side's favor, by a net gain.",
+      "audioPath": "recordings/ziggy-v1/ziggy/explanation-finding-fork-collected.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/explanation-finding-fork-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-fork-collected.json"
+    },
+    {
+      "id": "explanation-finding-pin-prevents-capture",
+      "group": "srs_explanations",
+      "text": "The piece cannot make the indicated capture, because it is pinned to its king. Stepping off the pin line would expose the king.",
+      "audioPath": "recordings/ziggy-v1/ziggy/explanation-finding-pin-prevents-capture.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/explanation-finding-pin-prevents-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-prevents-capture.json"
+    },
+    {
+      "id": "explanation-finding-pin-restricts-escape",
+      "group": "srs_explanations",
+      "text": "The attacked piece is pinned to its king, so it cannot simply run. Only moves that keep the king shielded are allowed.",
+      "audioPath": "recordings/ziggy-v1/ziggy/explanation-finding-pin-restricts-escape.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/explanation-finding-pin-restricts-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-restricts-escape.json"
+    },
+    {
+      "id": "explanation-finding-pin-defenders-no-recapture",
+      "group": "srs_explanations",
+      "text": "The defenders are pinned to their king, so they cannot recapture there; that is why the capture works. The line shown includes a material gain.",
+      "audioPath": "recordings/ziggy-v1/ziggy/explanation-finding-pin-defenders-no-recapture.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/explanation-finding-pin-defenders-no-recapture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-defenders-no-recapture.json"
+    },
+    {
+      "id": "explanation-finding-pin-collected",
+      "group": "srs_explanations",
+      "text": "Observe the pinned piece. It cannot leave its line without exposing its king, and as these moves unfold, it is captured.",
+      "audioPath": "recordings/ziggy-v1/ziggy/explanation-finding-pin-collected.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/explanation-finding-pin-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-collected.json"
+    },
+    {
+      "id": "explanation-finding-skewer-collected",
+      "group": "srs_explanations",
+      "text": "Once the front piece steps aside, the attacker reaches through and captures the piece that was behind it.",
+      "audioPath": "recordings/ziggy-v1/ziggy/explanation-finding-skewer-collected.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/explanation-finding-skewer-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-skewer-collected.json"
+    },
+    {
+      "id": "explanation-finding-king-skewer-collected",
+      "group": "srs_explanations",
+      "text": "Here the king is in check along the line and has to step away. Once it does, the same attacker collects the piece that stood behind it.",
+      "audioPath": "recordings/ziggy-v1/ziggy/explanation-finding-king-skewer-collected.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/explanation-finding-king-skewer-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-king-skewer-collected.json"
+    },
+    {
+      "id": "explanation-finding-sole-defender-captured",
+      "group": "srs_explanations",
+      "text": "Two captures in sequence: the only defender first, then the piece it guarded. Without the first, the second would not be possible.",
+      "audioPath": "recordings/ziggy-v1/ziggy/explanation-finding-sole-defender-captured.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/explanation-finding-sole-defender-captured.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-sole-defender-captured.json"
+    },
+    {
+      "id": "explanation-finding-deflection-collected",
+      "group": "srs_explanations",
+      "text": "The defender is drawn away from its duty, and the piece it was guarding is then captured.",
+      "audioPath": "recordings/ziggy-v1/ziggy/explanation-finding-deflection-collected.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/explanation-finding-deflection-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-deflection-collected.json"
+    },
+    {
+      "id": "explanation-finding-discovered-capture",
+      "group": "srs_explanations",
+      "text": "The blocker steps aside, the piece behind it gains a line, and it makes the capture along that line.",
+      "audioPath": "recordings/ziggy-v1/ziggy/explanation-finding-discovered-capture.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/explanation-finding-discovered-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-discovered-capture.json"
+    },
+    {
+      "id": "explanation-finding-discovered-check",
+      "group": "srs_explanations",
+      "text": "The moving piece clears the way, and check comes from a different piece behind it.",
+      "audioPath": "recordings/ziggy-v1/ziggy/explanation-finding-discovered-check.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/explanation-finding-discovered-check.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-discovered-check.json"
+    },
+    {
+      "id": "explanation-finding-double-check",
+      "group": "srs_explanations",
+      "text": "Double check: two pieces attack the king at the same instant. Remarkable, the efficiency of it.",
+      "audioPath": "recordings/ziggy-v1/ziggy/explanation-finding-double-check.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/explanation-finding-double-check.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-double-check.json"
+    },
+    {
+      "id": "explanation-finding-double-attack-collected",
+      "group": "srs_explanations",
+      "text": "The first piece makes its own attack and opens a line for another. In this example, that second piece captures its target.",
+      "audioPath": "recordings/ziggy-v1/ziggy/explanation-finding-double-attack-collected.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/explanation-finding-double-attack-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-double-attack-collected.json"
+    },
+    {
+      "id": "explanation-finding-promotion-material-retained",
+      "group": "srs_explanations",
+      "text": "Follow the pawn until it promotes. In this example, that side also finishes with a net material gain.",
+      "audioPath": "recordings/ziggy-v1/ziggy/explanation-finding-promotion-material-retained.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/explanation-finding-promotion-material-retained.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-promotion-material-retained.json"
+    },
+    {
+      "id": "explanation-finding-undefended-capture-gain",
+      "group": "srs_explanations",
+      "text": "The undefended piece is captured, and in this example the capturing side comes away with a net material gain.",
+      "audioPath": "recordings/ziggy-v1/ziggy/explanation-finding-undefended-capture-gain.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/explanation-finding-undefended-capture-gain.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-undefended-capture-gain.json"
+    },
+    {
+      "id": "explanation-finding-relative-pin-released",
+      "group": "srs_explanations",
+      "text": "A relative pin on the attacking piece was lifted by the opponent's previous move. The next move left the target standing where it was, and the shown line captures it.",
+      "audioPath": "recordings/ziggy-v1/ziggy/explanation-finding-relative-pin-released.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/explanation-finding-relative-pin-released.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-relative-pin-released.json"
+    },
+    {
+      "id": "game-explanation-legal-reply",
+      "group": "srs_explanations",
+      "text": "The other side has a legal reply, marked on the board. Make it there and observe what follows.",
+      "audioPath": "recordings/ziggy-v1/ziggy/game-explanation-legal-reply.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/game-explanation-legal-reply.provenance.json",
+      "alignmentPath": "alignment/game-explanation-legal-reply.json"
+    },
+    {
+      "id": "explanation-cue-hanging-piece",
+      "group": "srs_explanations",
+      "text": "Before moving, check which of your pieces could be captured with no useful recapture.",
+      "audioPath": "recordings/ziggy-v1/ziggy/explanation-cue-hanging-piece.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/explanation-cue-hanging-piece.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-hanging-piece.json"
+    },
+    {
+      "id": "explanation-cue-missed-tactical-capture",
+      "group": "srs_explanations",
+      "text": "Before a quiet move, look for enemy pieces that are not defended.",
+      "audioPath": "recordings/ziggy-v1/ziggy/explanation-cue-missed-tactical-capture.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/explanation-cue-missed-tactical-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-missed-tactical-capture.json"
+    },
+    {
+      "id": "explanation-cue-fork",
+      "group": "srs_explanations",
+      "text": "Examine forcing moves in which one piece attacks two valuable targets together.",
+      "audioPath": "recordings/ziggy-v1/ziggy/explanation-cue-fork.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/explanation-cue-fork.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-fork.json"
+    },
+    {
+      "id": "explanation-cue-pin",
+      "group": "srs_explanations",
+      "text": "Behind every pinned piece is something it protects: perhaps the king, perhaps a piece worth more. Inspect that before moving it.",
+      "audioPath": "recordings/ziggy-v1/ziggy/explanation-cue-pin.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/explanation-cue-pin.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-pin.json"
+    },
+    {
+      "id": "explanation-cue-skewer",
+      "group": "srs_explanations",
+      "text": "Look beyond the first target. An attack along the line can expose a more valuable piece behind it.",
+      "audioPath": "recordings/ziggy-v1/ziggy/explanation-cue-skewer.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/explanation-cue-skewer.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-skewer.json"
+    },
+    {
+      "id": "explanation-cue-removing-defender",
+      "group": "srs_explanations",
+      "text": "Before exchanging a defender, find out what it is protecting at the moment.",
+      "audioPath": "recordings/ziggy-v1/ziggy/explanation-cue-removing-defender.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/explanation-cue-removing-defender.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-removing-defender.json"
+    },
+    {
+      "id": "explanation-cue-discovered-attack",
+      "group": "srs_explanations",
+      "text": "Notice which lines open when a blocking piece moves away.",
+      "audioPath": "recordings/ziggy-v1/ziggy/explanation-cue-discovered-attack.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/explanation-cue-discovered-attack.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-discovered-attack.json"
+    },
+    {
+      "id": "explanation-cue-double-attack",
+      "group": "srs_explanations",
+      "text": "Search for a single move that makes two threats, counting checks and newly opened lines.",
+      "audioPath": "recordings/ziggy-v1/ziggy/explanation-cue-double-attack.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/explanation-cue-double-attack.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-double-attack.json"
+    },
+    {
+      "id": "explanation-cue-back-rank",
+      "group": "srs_explanations",
+      "text": "Before moving a back-rank defender, look at the king's escape squares.",
+      "audioPath": "recordings/ziggy-v1/ziggy/explanation-cue-back-rank.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/explanation-cue-back-rank.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-back-rank.json"
+    },
+    {
+      "id": "explanation-cue-promotion-awareness",
+      "group": "srs_explanations",
+      "text": "Count how far the pawn is from promotion, and examine the forcing pawn advances.",
+      "audioPath": "recordings/ziggy-v1/ziggy/explanation-cue-promotion-awareness.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/explanation-cue-promotion-awareness.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-promotion-awareness.json"
+    },
+    {
+      "id": "explanation-cue-abandoned-defender",
+      "group": "srs_explanations",
+      "text": "Before moving a defender, see which pieces would lose its protection.",
+      "audioPath": "recordings/ziggy-v1/ziggy/explanation-cue-abandoned-defender.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/explanation-cue-abandoned-defender.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-abandoned-defender.json"
+    },
+    {
+      "id": "explanation-cue-avoiding-bad-trades",
+      "group": "srs_explanations",
+      "text": "An exchange has two parts: what you capture, and what their recapture takes back. Count both before judging.",
+      "audioPath": "recordings/ziggy-v1/ziggy/explanation-cue-avoiding-bad-trades.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/explanation-cue-avoiding-bad-trades.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-avoiding-bad-trades.json"
+    },
+    {
+      "id": "explanation-cue-deflection",
+      "group": "srs_explanations",
+      "text": "Check whether a forcing exchange could pull a defender away from another target.",
+      "audioPath": "recordings/ziggy-v1/ziggy/explanation-cue-deflection.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/explanation-cue-deflection.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-deflection.json"
+    },
+    {
+      "id": "explanation-note-curated-authority",
+      "group": "srs_explanations",
+      "text": "For this exercise, the saved answers set the rule. Another legal move is not necessarily bad chess.",
+      "audioPath": "recordings/ziggy-v1/ziggy/explanation-note-curated-authority.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/explanation-note-curated-authority.provenance.json",
+      "alignmentPath": "alignment/explanation-note-curated-authority.json"
+    },
+    {
+      "id": "explanation-note-strong-replies",
+      "group": "srs_explanations",
+      "text": "The moves shown answer each turn with a strong reply; none of those replies is necessarily forced.",
+      "audioPath": "recordings/ziggy-v1/ziggy/explanation-note-strong-replies.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/explanation-note-strong-replies.provenance.json",
+      "alignmentPath": "alignment/explanation-note-strong-replies.json"
+    },
+    {
+      "id": "explanation-note-material-scope",
+      "group": "srs_explanations",
+      "text": "These material changes belong to the shown line only, counted from where it began. For the piece values used, see the written explanation.",
+      "audioPath": "recordings/ziggy-v1/ziggy/explanation-note-material-scope.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/explanation-note-material-scope.provenance.json",
+      "alignmentPath": "alignment/explanation-note-material-scope.json"
+    },
+    {
+      "id": "explanation-note-no-simple-reason",
+      "group": "srs_explanations",
+      "text": "The saved line holds no simple tactical reason. Play through it and set the replies against each other; nothing positional has been inferred.",
+      "audioPath": "recordings/ziggy-v1/ziggy/explanation-note-no-simple-reason.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/explanation-note-no-simple-reason.provenance.json",
+      "alignmentPath": "alignment/explanation-note-no-simple-reason.json"
+    },
+    {
+      "id": "explanation-note-saved-policy",
+      "group": "srs_explanations",
+      "text": "The exercise has a saved answer policy, and this explanation follows it. You can see the setting in the written notes.",
+      "audioPath": "recordings/ziggy-v1/ziggy/explanation-note-saved-policy.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/explanation-note-saved-policy.provenance.json",
+      "alignmentPath": "alignment/explanation-note-saved-policy.json"
+    },
+    {
+      "id": "opening-recall-revealed",
+      "group": "openings",
+      "text": "These are the moves from the opening line you are studying.",
+      "audioPath": "recordings/ziggy-v1/ziggy/opening-recall-revealed.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/opening-recall-revealed.provenance.json",
+      "alignmentPath": "alignment/opening-recall-revealed.json"
+    },
+    {
+      "id": "opening-recall-accepted",
+      "group": "openings",
+      "text": "That matches your selected study material.",
+      "audioPath": "recordings/ziggy-v1/ziggy/opening-recall-accepted.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/opening-recall-accepted.provenance.json",
+      "alignmentPath": "alignment/opening-recall-accepted.json"
+    },
+    {
+      "id": "opening-recall-retry-fallback",
+      "group": "openings",
+      "text": "Choose a move from the study lines you selected.",
+      "audioPath": "recordings/ziggy-v1/ziggy/opening-recall-retry-fallback.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/opening-recall-retry-fallback.provenance.json",
+      "alignmentPath": "alignment/opening-recall-retry-fallback.json"
+    },
+    {
+      "id": "opening-recall-cold-multiple",
+      "group": "openings",
+      "text": "Here, any move from your selected opening lines is accepted.",
+      "audioPath": "recordings/ziggy-v1/ziggy/opening-recall-cold-multiple.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/opening-recall-cold-multiple.provenance.json",
+      "alignmentPath": "alignment/opening-recall-cold-multiple.json"
+    },
+    {
+      "id": "opening-recall-cold-single",
+      "group": "openings",
+      "text": "Recall a move from the study material you selected.",
+      "audioPath": "recordings/ziggy-v1/ziggy/opening-recall-cold-single.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/opening-recall-cold-single.provenance.json",
+      "alignmentPath": "alignment/opening-recall-cold-single.json"
+    },
+    {
+      "id": "opening-recall-rejected",
+      "group": "openings",
+      "text": "That move falls outside the opening lines you chose to study. Try another.",
+      "audioPath": "recordings/ziggy-v1/ziggy/opening-recall-rejected.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/opening-recall-rejected.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected.json"
+    },
+    {
+      "id": "opening-recall-rejected-changed",
+      "group": "openings",
+      "text": "That move falls outside your selected opening lines. Try another; because the study has changed, this saved attempt does not touch its review schedule.",
+      "audioPath": "recordings/ziggy-v1/ziggy/opening-recall-rejected-changed.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/opening-recall-rejected-changed.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected-changed.json"
+    },
+    {
+      "id": "opening-recall-rejected-retired",
+      "group": "openings",
+      "text": "That move falls outside your selected opening lines. Try another; because this position is retired, its review schedule does not change.",
+      "audioPath": "recordings/ziggy-v1/ziggy/opening-recall-rejected-retired.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/opening-recall-rejected-retired.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected-retired.json"
+    },
+    {
+      "id": "opening-preview-active",
+      "group": "openings",
+      "text": "Mixed Due accepts any move from this line. Dedicated practice wants this line and nothing else.",
+      "audioPath": "recordings/ziggy-v1/ziggy/opening-preview-active.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/opening-preview-active.provenance.json",
+      "alignmentPath": "alignment/opening-preview-active.json"
+    },
+    {
+      "id": "opening-preview-inactive",
+      "group": "openings",
+      "text": "Scheduled recalls will ask for the moves of the side you chose. When active studies reach the same position, a single card covers it.",
+      "audioPath": "recordings/ziggy-v1/ziggy/opening-preview-inactive.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/opening-preview-inactive.provenance.json",
+      "alignmentPath": "alignment/opening-preview-inactive.json"
+    },
+    {
+      "id": "puzzle-error",
+      "group": "puzzles",
+      "text": "Something interrupted the session. Reload the saved session before your next move.",
+      "audioPath": "recordings/ziggy-v1/ziggy/puzzle-error.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/puzzle-error.provenance.json",
+      "alignmentPath": "alignment/puzzle-error.json"
+    },
+    {
+      "id": "puzzle-playback",
+      "group": "puzzles",
+      "text": "Now the board plays through the verified line.",
+      "audioPath": "recordings/ziggy-v1/ziggy/puzzle-playback.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/puzzle-playback.provenance.json",
+      "alignmentPath": "alignment/puzzle-playback.json"
+    },
+    {
+      "id": "puzzle-revealed",
+      "group": "puzzles",
+      "text": "This attempt is recorded as revealed. Replay the solution below whenever you like.",
+      "audioPath": "recordings/ziggy-v1/ziggy/puzzle-revealed.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/puzzle-revealed.provenance.json",
+      "alignmentPath": "alignment/puzzle-revealed.json"
+    },
+    {
+      "id": "puzzle-solved-after-retry",
+      "group": "puzzles",
+      "text": "The full solution, reached on a second attempt. Both the miss and the success stay in your record.",
+      "audioPath": "recordings/ziggy-v1/ziggy/puzzle-solved-after-retry.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/puzzle-solved-after-retry.provenance.json",
+      "alignmentPath": "alignment/puzzle-solved-after-retry.json"
+    },
+    {
+      "id": "puzzle-solved-clean",
+      "group": "puzzles",
+      "text": "The full solution, with no wrong moves. Fascinating to watch it found so cleanly.",
+      "audioPath": "recordings/ziggy-v1/ziggy/puzzle-solved-clean.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/puzzle-solved-clean.provenance.json",
+      "alignmentPath": "alignment/puzzle-solved-clean.json"
+    },
+    {
+      "id": "puzzle-rejected",
+      "group": "puzzles",
+      "text": "Not the move this puzzle needs. The correct moves you made before it are still saved.",
+      "audioPath": "recordings/ziggy-v1/ziggy/puzzle-rejected.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/puzzle-rejected.provenance.json",
+      "alignmentPath": "alignment/puzzle-rejected.json"
+    },
+    {
+      "id": "puzzle-next-move",
+      "group": "puzzles",
+      "text": "Correct for the puzzle. Now find the next one.",
+      "audioPath": "recordings/ziggy-v1/ziggy/puzzle-next-move.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/puzzle-next-move.provenance.json",
+      "alignmentPath": "alignment/puzzle-next-move.json"
+    },
+    {
+      "id": "puzzle-cold",
+      "group": "puzzles",
+      "text": "Take your time. Calculate first, then move.",
+      "audioPath": "recordings/ziggy-v1/ziggy/puzzle-cold.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/puzzle-cold.provenance.json",
+      "alignmentPath": "alignment/puzzle-cold.json"
+    },
+    {
+      "id": "game-unavailable",
+      "group": "operational",
+      "text": "I don't have enough from the engine to explain this position.",
+      "audioPath": "recordings/ziggy-v1/ziggy/game-unavailable.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/game-unavailable.provenance.json",
+      "alignmentPath": "alignment/game-unavailable.json"
+    },
+    {
+      "id": "game-review-paused",
+      "group": "operational",
+      "text": "Paused for now. You can resume the review below, or move any piece to explore by yourself.",
+      "audioPath": "recordings/ziggy-v1/ziggy/game-review-paused.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/game-review-paused.provenance.json",
+      "alignmentPath": "alignment/game-review-paused.json"
+    },
+    {
+      "id": "game-browse-instructions",
+      "group": "operational",
+      "text": "Choose a move to review, or move a piece to explore an alternative.",
+      "audioPath": "recordings/ziggy-v1/ziggy/game-browse-instructions.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/game-browse-instructions.provenance.json",
+      "alignmentPath": "alignment/game-browse-instructions.json"
+    },
+    {
+      "id": "book-opening-entry-1",
+      "group": "game_review",
+      "text": "This move has an entry in the opening catalogue. A book move, documented long before this game.",
+      "audioPath": "recordings/ziggy-v1/ziggy/book-opening-entry-1.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/book-opening-entry-1.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-1.json"
+    },
+    {
+      "id": "book-opening-entry-2",
+      "group": "game_review",
+      "text": "A known opening move, with its own place in the catalogue.",
+      "audioPath": "recordings/ziggy-v1/ziggy/book-opening-entry-2.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/book-opening-entry-2.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-2.json"
+    },
+    {
+      "id": "book-opening-entry-3",
+      "group": "game_review",
+      "text": "Book. This move is part of a catalogued opening line.",
+      "audioPath": "recordings/ziggy-v1/ziggy/book-opening-entry-3.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/book-opening-entry-3.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-3.json"
+    },
+    {
+      "id": "book-opening-follow-1",
+      "group": "game_review",
+      "text": "Still within opening theory.",
+      "audioPath": "recordings/ziggy-v1/ziggy/book-opening-follow-1.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/book-opening-follow-1.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-1.json"
+    },
+    {
+      "id": "book-opening-follow-2",
+      "group": "game_review",
+      "text": "Another move the catalogue lists.",
+      "audioPath": "recordings/ziggy-v1/ziggy/book-opening-follow-2.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/book-opening-follow-2.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-2.json"
+    },
+    {
+      "id": "book-opening-follow-3",
+      "group": "game_review",
+      "text": "The reply is in the book too.",
+      "audioPath": "recordings/ziggy-v1/ziggy/book-opening-follow-3.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/book-opening-follow-3.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-3.json"
+    },
+    {
+      "id": "book-opening-follow-4",
+      "group": "game_review",
+      "text": "Theory continues with this move.",
+      "audioPath": "recordings/ziggy-v1/ziggy/book-opening-follow-4.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/book-opening-follow-4.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-4.json"
+    },
+    {
+      "id": "book-opening-follow-5",
+      "group": "game_review",
+      "text": "Still matching. Nothing new to the catalogue yet.",
+      "audioPath": "recordings/ziggy-v1/ziggy/book-opening-follow-5.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/book-opening-follow-5.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-5.json"
+    },
+    {
+      "id": "book-opening-follow-6",
+      "group": "game_review",
+      "text": "Another step along the documented line.",
+      "audioPath": "recordings/ziggy-v1/ziggy/book-opening-follow-6.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/book-opening-follow-6.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-6.json"
+    },
+    {
+      "id": "book-opening-follow-7",
+      "group": "game_review",
+      "text": "This one has a book entry as well.",
+      "audioPath": "recordings/ziggy-v1/ziggy/book-opening-follow-7.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/book-opening-follow-7.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-7.json"
+    },
+    {
+      "id": "book-opening-follow-8",
+      "group": "game_review",
+      "text": "A theory move again. Theory lists what has been played, not whether it was right.",
+      "audioPath": "recordings/ziggy-v1/ziggy/book-opening-follow-8.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/book-opening-follow-8.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-8.json"
+    },
+    {
+      "id": "game-review-opened",
+      "group": "operational",
+      "text": "A full record of a human game. I'll study it alongside you, move by move.",
+      "audioPath": "recordings/ziggy-v1/ziggy/game-review-opened.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/game-review-opened.provenance.json",
+      "alignmentPath": "alignment/game-review-opened.json"
+    },
+    {
+      "id": "lesson-wrong-move",
+      "group": "lessons",
+      "text": "A legal move, but not what this lesson records. Try again.",
+      "audioPath": "recordings/ziggy-v1/ziggy/lesson-wrong-move.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/lesson-wrong-move.provenance.json",
+      "alignmentPath": "alignment/lesson-wrong-move.json"
+    },
+    {
+      "id": "lesson-correct-move",
+      "group": "lessons",
+      "text": "Correct for this lesson. The line continues as studied.",
+      "audioPath": "recordings/ziggy-v1/ziggy/lesson-correct-move.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/lesson-correct-move.provenance.json",
+      "alignmentPath": "alignment/lesson-correct-move.json"
+    },
+    {
+      "id": "lesson-move-revealed",
+      "group": "lessons",
+      "text": "The lesson now displays its move. Observe it.",
+      "audioPath": "recordings/ziggy-v1/ziggy/lesson-move-revealed.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/lesson-move-revealed.provenance.json",
+      "alignmentPath": "alignment/lesson-move-revealed.json"
+    },
+    {
+      "id": "lesson-guided-playback",
+      "group": "lessons",
+      "text": "Moves are proceeding automatically. Observe how the position transforms.",
+      "audioPath": "recordings/ziggy-v1/ziggy/lesson-guided-playback.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/lesson-guided-playback.provenance.json",
+      "alignmentPath": "alignment/lesson-guided-playback.json"
+    },
+    {
+      "id": "lesson-rehearsal-prompt",
+      "group": "lessons",
+      "text": "Rehearsal: reproduce your studied move.",
+      "audioPath": "recordings/ziggy-v1/ziggy/lesson-rehearsal-prompt.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/lesson-rehearsal-prompt.provenance.json",
+      "alignmentPath": "alignment/lesson-rehearsal-prompt.json"
+    },
+    {
+      "id": "lesson-branch-entered",
+      "group": "lessons",
+      "text": "A side line is now under examination. Survey its contents, then resume the main line.",
+      "audioPath": "recordings/ziggy-v1/ziggy/lesson-branch-entered.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/lesson-branch-entered.provenance.json",
+      "alignmentPath": "alignment/lesson-branch-entered.json"
+    },
+    {
+      "id": "lesson-chapter-complete",
+      "group": "lessons",
+      "text": "Chapter complete. Your progress has been stored.",
+      "audioPath": "recordings/ziggy-v1/ziggy/lesson-chapter-complete.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/lesson-chapter-complete.provenance.json",
+      "alignmentPath": "alignment/lesson-chapter-complete.json"
+    },
+    {
+      "id": "lesson-game-opened",
+      "group": "lessons",
+      "text": "The complete game is open for study. Examine it freely.",
+      "audioPath": "recordings/ziggy-v1/ziggy/lesson-game-opened.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/lesson-game-opened.provenance.json",
+      "alignmentPath": "alignment/lesson-game-opened.json"
+    },
+    {
+      "id": "lesson-error",
+      "group": "lessons",
+      "text": "The lesson was interrupted. Reload it to reassemble the session.",
+      "audioPath": "recordings/ziggy-v1/ziggy/lesson-error.opus",
+      "sidecarPath": "recordings/ziggy-v1/ziggy/lesson-error.provenance.json",
+      "alignmentPath": "alignment/lesson-error.json"
+    }
+  ]
+}

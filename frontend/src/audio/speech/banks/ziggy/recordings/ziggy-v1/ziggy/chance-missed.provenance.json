@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "chance-missed",
+      "label": "Chance missed",
+      "text": "The opponent's last move offered an opportunity, and this move passes over it. A stronger answer was available."
+    },
+    "takeId": null
+  },
+  "requestHash": "4391fcccc313c7e3a6476f04f424b74df9cb454bf66cf69a3113d6fa9cf03af1",
+  "recordedAt": "2026-10-03T06:21:58.910Z",
+  "sha256": "56b3177f9e92ab4ec5cd3c0ed1d2299c6f7b0165b6f3815443b8082eacb7e2c0",
+  "bytes": 23207,
+  "requestId": "vYLlthkTWJOCoR22DiyM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "48ac41e451c041e416e00d8e4eeb8692fceb9502fa5a1bce486bdbd889b694db",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

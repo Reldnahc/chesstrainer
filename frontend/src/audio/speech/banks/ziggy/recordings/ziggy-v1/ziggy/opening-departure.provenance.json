@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "opening-departure",
+      "label": "Opening departure",
+      "text": "Here the game steps off the documented opening line for the first time. From this move on, it is its own."
+    },
+    "takeId": null
+  },
+  "requestHash": "0ab2cea7e7c57c46c5cde68683c726b26739f675d0bedc363fc7cbf7d8c07d5e",
+  "recordedAt": "2026-10-03T06:21:51.583Z",
+  "sha256": "c59015063c6c955dbc724038a59ce17a9b9ce7145d46b4a838863df5fa6c4534",
+  "bytes": 21639,
+  "requestId": "uqSlZ1TJ6JxVie7twgca",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dbb6bad12c302191b72b78d8a960354e3bfc09da2d7191d39b405e28c6cfad19",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

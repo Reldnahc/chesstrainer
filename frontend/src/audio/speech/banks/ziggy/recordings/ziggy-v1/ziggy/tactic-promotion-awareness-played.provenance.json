@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "tactic-promotion-awareness-played",
+      "label": "Tactic promotion awareness played",
+      "text": "This is about promotion. Should the pawn reach the last rank, it changes into a new piece. Such a small piece, with such a large future."
+    },
+    "takeId": null
+  },
+  "requestHash": "23193bd31d1517ca4d00f2d68814aa15c5a7d02737d054f453072dde3243832b",
+  "recordedAt": "2026-10-03T06:21:50.934Z",
+  "sha256": "8c0a267520ce1eb9c04b9261b5c95e695d712e27f68fda6381eff4b34ecf4235",
+  "bytes": 30384,
+  "requestId": "BTBiqb863unt1juiJevM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2b77daa2b921a1f440c0cce2d08ae1059a89539ce73c34f39c51eb2609c10a63",
+    "bytes": 158450
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

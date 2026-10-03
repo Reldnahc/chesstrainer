@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "positional-passed-actual",
+      "label": "Positional passed actual",
+      "text": "A passed pawn. Look along its file and both neighboring files: no enemy pawn stands ahead."
+    },
+    "takeId": null
+  },
+  "requestHash": "7e1b9af5567ae9e2b437644475d497827cb34bb24a7b024f8cc3f447b0815ece",
+  "recordedAt": "2026-10-03T06:22:05.880Z",
+  "sha256": "9a1a92ed68a67ca023473cec18392cf9e2e76f243585547a613a748d80fc7e7b",
+  "bytes": 21615,
+  "requestId": "Jl5GcOWYNX5HXCYuxbfN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "af25e68fc424208f0e29a950075be73ac394be4dd78451e5dc378313bfc2eb24",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

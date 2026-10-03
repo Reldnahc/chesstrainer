@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "opening-recall-rejected",
+      "label": "Opening recall rejected",
+      "text": "That move falls outside the opening lines you chose to study. Try another."
+    },
+    "takeId": null
+  },
+  "requestHash": "d0817c3a75ca46d526eb8940b2ed446245b65cd0ba7752c36640a42794a9e150",
+  "recordedAt": "2026-10-03T06:22:30.392Z",
+  "sha256": "d881c62dd69f79f6d6fb9446603d38362f76f83d530a30d306a80cce77ecd0cf",
+  "bytes": 15307,
+  "requestId": "cBdhmpKDWslq4lo5sN6y",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "81b3ce5812813a8cba83898eb09a119e79a45753e3b27ae915b43e08313e868a",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

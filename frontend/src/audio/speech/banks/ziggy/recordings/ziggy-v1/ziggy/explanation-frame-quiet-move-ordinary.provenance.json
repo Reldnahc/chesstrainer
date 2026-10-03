@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-move-ordinary",
+      "label": "Explanation frame quiet move ordinary",
+      "text": "Movement detected. Observe what has changed."
+    },
+    "takeId": null
+  },
+  "requestHash": "f7ad03e0b48324af8f0088e6d1b92a67bbc2ed429403a687aae3355d6a3db698",
+  "recordedAt": "2026-10-03T06:22:00.556Z",
+  "sha256": "1328ac5e6d5594bc92eccb4dce6f5dd812d58193349d10c0a22f60568fb2f817",
+  "bytes": 10406,
+  "requestId": "RcH5XiWx6eC7bIGMR2HJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ad67e3373f1d514f8d0246cc1e186cbc2df3d50604507c07f5dcd9f233c8a547",
+    "bytes": 52288
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

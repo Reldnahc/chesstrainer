@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "srs-cold",
+      "label": "Srs cold",
+      "text": "I'll watch with interest. Study the position, then choose your move."
+    },
+    "takeId": null
+  },
+  "requestHash": "3499a44cc5f73feeb322ec7be2d06c3520f8a87a297d88f75012393600c54d83",
+  "recordedAt": "2026-10-03T06:21:45.010Z",
+  "sha256": "9c0f85deb4f2595c78341823f50ff592870f972181a2ab96d3d57386b79ad403",
+  "bytes": 14519,
+  "requestId": "20JKvzeviZAj0zPG4sU7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8d801b0e4eb1dca1a6b1731b10c94ad94db7d04c3b5ba3c21fc602cd573211af",
+    "bytes": 74022
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

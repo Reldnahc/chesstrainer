@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "positional-castling-alternative",
+      "label": "Positional castling alternative",
+      "text": "Castling was the alternative: king and rook relocated in one move."
+    },
+    "takeId": null
+  },
+  "requestHash": "3cd0d04ff51e9f2233e684f70e55126aa913b1daf9d76ee7327f03bcb96172ea",
+  "recordedAt": "2026-10-03T06:21:51.149Z",
+  "sha256": "dfa8e5b29bb73c6cf49625e09a436d28e70049e46d75297d04ee362f7a110b9c",
+  "bytes": 16187,
+  "requestId": "5Wr2NJezy4RQO9VV27BN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b16192e73d38609ec3bcea72f9ad702de0ab2b3c5d5129877fc3233ec5551c56",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

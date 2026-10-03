@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "tactic-pin-allowed",
+      "label": "Tactic pin allowed",
+      "text": "Now a pin to the king becomes possible for the other side. A piece caught that way can only move along the line; stepping off it would expose its own king."
+    },
+    "takeId": null
+  },
+  "requestHash": "976ba9ce91785ac982666281c36bf274635b69cbf420dab51047b8e0336d0ea1",
+  "recordedAt": "2026-10-03T06:21:30.793Z",
+  "sha256": "785f682e410b5d39f239772c26c5cffe01298c5740f372b63bf3efc882105ddd",
+  "bytes": 31014,
+  "requestId": "M2gtTRQ0CGxfvJ6o204m",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a6de1c618f36169a83860896c1f9a7fbeb4d64a7ac77298d73a7dae86221ef1c",
+    "bytes": 155942
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

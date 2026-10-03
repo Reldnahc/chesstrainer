@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "explanation-frame-original",
+      "label": "Explanation frame original",
+      "text": "This is the starting position, before any of the moves under examination."
+    },
+    "takeId": null
+  },
+  "requestHash": "29290e3985781b4780e9e3ed2eb228b8ad8be0ca1f737c324236d9cfa648843e",
+  "recordedAt": "2026-10-03T06:21:59.576Z",
+  "sha256": "e4ca400b1d0320726e311144523e61928be0eee208ef9c4df303ff47e5802486",
+  "bytes": 14594,
+  "requestId": "BA0erSmczvmg3eMFKBrM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "159edda38d30a2a18db9a80714c6de7204fdee38407c0d836c360139425ea858",
+    "bytes": 72768
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

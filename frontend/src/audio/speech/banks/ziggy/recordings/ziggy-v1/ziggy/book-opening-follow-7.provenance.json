@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "book-opening-follow-7",
+      "label": "Book opening follow 7",
+      "text": "This one has a book entry as well."
+    },
+    "takeId": null
+  },
+  "requestHash": "7cf83a86d9c1aa740c62858602c4da4efd71e71952c189e4b9264c7b6239f56c",
+  "recordedAt": "2026-10-03T06:22:09.929Z",
+  "sha256": "eb93e28624b5d1036ddff0987642cf23d929b9a9b450b459a52d70164398ee54",
+  "bytes": 7824,
+  "requestId": "bAbCVe5NL4Y5psWV6IwG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e6f0d04572f9b859be84fe8c172d78952925f39f45c4a36268fc664e59d45ea3",
+    "bytes": 36824
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "sound-sacrifice",
+      "label": "Sound sacrifice",
+      "text": "The material looks lost, and yet the sacrifice holds. In the searched line, accepting it does not refute the idea."
+    },
+    "takeId": null
+  },
+  "requestHash": "0d8c78314247feaf7979c429a573b7831c2a94184a5839f0ffac656ecfa5d340",
+  "recordedAt": "2026-10-03T06:22:02.948Z",
+  "sha256": "d2e29375e0e99a9923e9b472a24d019fe299e7cc02b32ba92f36713698933b71",
+  "bytes": 26704,
+  "requestId": "MkUuMWZ4p8FgQFh7CsZR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "026a1cf4b8d215449e262bc09ff7f4c46eabd269e94f918f36242875e566a5c3",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

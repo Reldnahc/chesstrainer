@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "tactic-skewer-played",
+      "label": "Tactic skewer played",
+      "text": "A skewer. The attack lands on the front piece, and when it steps away, the piece behind it on the same line is exposed. Two targets, arranged in a queue."
+    },
+    "takeId": null
+  },
+  "requestHash": "17a2a5a2039f2f7a95e7a734217cf6489102c20893593d5583f29f91cbfc97a0",
+  "recordedAt": "2026-10-03T06:21:35.329Z",
+  "sha256": "63577d20ac47c58fef5a7c2a4e6c3f8e4ecb1c17ba36c774e4f3f94869ce1926",
+  "bytes": 33280,
+  "requestId": "5ZVAk7K9krLggp96bTR1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8375bd157d5c279ab8ad234b753d21fc84857edeaac0fd16c7f7ef486bcd7a2c",
+    "bytes": 176422
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

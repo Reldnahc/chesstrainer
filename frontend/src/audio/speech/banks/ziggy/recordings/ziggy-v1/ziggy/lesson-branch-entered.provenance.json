@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "lesson-branch-entered",
+      "label": "Lesson branch entered",
+      "text": "A side line is now under examination. Survey its contents, then resume the main line."
+    },
+    "takeId": null
+  },
+  "requestHash": "ae86fcf3f4a185dadf9fbc9827d3704af407eb739d612bd9976ee0f0db023752",
+  "recordedAt": "2026-10-03T06:22:19.414Z",
+  "sha256": "4571b39235082531765bc1a126b96e5092a9f2851a5cc5aab63ac7ced370d780",
+  "bytes": 18662,
+  "requestId": "URNvZILVzZXwcsEKTKLC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9a3834a5093c3bbba399063f47be4116ce2861c4a2241d2ffd8f8c16ff04a0e5",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

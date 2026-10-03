@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "explanation-note-strong-replies",
+      "label": "Explanation note strong replies",
+      "text": "The moves shown answer each turn with a strong reply; none of those replies is necessarily forced."
+    },
+    "takeId": null
+  },
+  "requestHash": "23b872c55da2212840f25440a637115576683a202c75c8826a44697caa41b20a",
+  "recordedAt": "2026-10-03T06:22:18.184Z",
+  "sha256": "234c6c3ff8927201798da152627488ad35bcbeeaccb6c301bbd8faa7cc1132d8",
+  "bytes": 21359,
+  "requestId": "5qEPTu1g1VmaEzSjcr9A",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9f948be640108893f2bd89dc9919f053b4d04d58660a166bf7717a8af1d01f27",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

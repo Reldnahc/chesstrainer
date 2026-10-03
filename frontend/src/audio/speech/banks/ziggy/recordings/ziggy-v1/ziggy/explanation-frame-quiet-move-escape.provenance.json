@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-move-escape",
+      "label": "Explanation frame quiet move escape",
+      "text": "With this move, the king escapes the check."
+    },
+    "takeId": null
+  },
+  "requestHash": "9735a7c87daad8971ad069e97357bb2aa00d15f99a4902f169ac2234ed0ed205",
+  "recordedAt": "2026-10-03T06:22:02.630Z",
+  "sha256": "b805438e9fce1243fd7f2f8b7d84a9e945d98d243f95e21f0fa920b02ed42110",
+  "bytes": 9837,
+  "requestId": "PtKzoXNKLoxRJXOfJBZQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8f1cb0721115584c55b74e7260a1c54b972f58a262f374a088027886ebe6eaa9",
+    "bytes": 48527
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}
