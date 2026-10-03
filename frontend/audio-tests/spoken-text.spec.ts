@@ -13,10 +13,9 @@ const scripted = (id: string) => alfie.records.find(row => row.id === id)!.text;
 test("the bubble's spoken line is the recorded text, else the coach's own script, loaded only for that coach", async ({page}) => {
   await openAudioFixturePage(page);
   const scripts: string[] = [];
-  // The eager "?coach" imports carry only coach IDs once built (see docs/AUDIO.md);
-  // the records themselves load per coach.
+  // Only coach IDs and file URLs are imported up front; the records are fetched per coach.
   page.on("request", request => {
-    if (/scripts\.json/.test(request.url()) && !/[?&]coach(?:&|$)/.test(request.url())) scripts.push(request.url());
+    if (/scripts\.json/.test(request.url()) && request.resourceType() === "fetch") scripts.push(request.url());
   });
   // Rivet records a meaning his script file does not list; the recording still speaks.
   const rivetOnly = rivet.recordings.find(row => !rivetScripts.records.some(record => record.id === row.id))!;
@@ -55,4 +54,23 @@ test("the bubble's spoken line is the recorded text, else the coach's own script
   });
   expect(scripts).toHaveLength(1);
   expect(scripts[0]).toMatch(/banks\/alfie\/scripts\.json/);
+});
+
+test("a failed script load is retried rather than leaving the coach written for good", async ({page}) => {
+  await openAudioFixturePage(page);
+  let failures = 0;
+  await page.route(/banks\/ziggy\/scripts\.json/, route => {
+    if (route.request().resourceType() !== "fetch" || failures++) return route.fallback();
+    return route.fulfill({status: 503, body: "unavailable"});
+  });
+  const result = await page.evaluate(async root => {
+    const spoken = await import(`${root}/src/audio/speech/spokenText.ts`);
+    const first = await spoken.loadCoachScript("alien").then(() => "loaded", () => "failed");
+    const before = spoken.spokenText("alien", "allowed-mate");
+    await spoken.loadCoachScript("alien");
+    return {first, before, after: spoken.spokenText("alien", "allowed-mate")};
+  }, viteFsPath(path.resolve(".")));
+  expect(result.first).toBe("failed");
+  expect(result.before).toBeNull();
+  expect(result.after).toBeTruthy();
 });

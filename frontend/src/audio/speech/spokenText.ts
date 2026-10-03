@@ -9,11 +9,18 @@ import { SEQUENCE_SEPARATOR } from './sequence';
 
 type ScriptRecord = { id: string; text: string };
 
-// Only each script's coach ID is bundled up front; the records load per coach
-// on first use, so the 29 scripts never enter the initial application download.
+// Only each script's coach ID and file URL are bundled up front; the records are
+// fetched per coach on first use, so the 29 scripts never enter the initial
+// application download. A plain fetch (rather than a module import, whose
+// failure the browser caches) lets a failed load be retried.
 const scriptCoaches = import.meta.glob<string>('./banks/*/scripts.json', { import: 'coachId', eager: true, query: '?coach' });
-const scriptLoaders = import.meta.glob<readonly ScriptRecord[]>('./banks/*/scripts.json', { import: 'records' });
+const scriptUrls = import.meta.glob<string>('./banks/*/scripts.json', { import: 'default', eager: true, query: '?url' });
 const scriptPaths = new Map(Object.entries(scriptCoaches).map(([path, coachId]) => [coachId, path.replace(/\?.*$/, '')]));
+async function fetchRecords(url: string): Promise<readonly ScriptRecord[]> {
+  const response = await fetch(url);
+  if (!response.ok) throw new Error(`Coach script unavailable (${response.status})`);
+  return (await response.json() as { records: readonly ScriptRecord[] }).records;
+}
 const loadedScripts = new Map<string, ReadonlyMap<string, string>>();
 const loadingScripts = new Map<string, Promise<void>>();
 
@@ -21,11 +28,11 @@ export function hasCoachScript(coachId: string): boolean { return scriptPaths.ha
 
 /** Resolves once this coach's script is cached; a failed load can be retried later. */
 export function loadCoachScript(coachId: string): Promise<void> {
-  const path = scriptPaths.get(coachId), load = path ? scriptLoaders[path] : undefined;
-  if (!load || loadedScripts.has(coachId)) return Promise.resolve();
+  const path = scriptPaths.get(coachId), url = path ? scriptUrls[path] : undefined;
+  if (!url || loadedScripts.has(coachId)) return Promise.resolve();
   let pending = loadingScripts.get(coachId);
   if (!pending) {
-    pending = load().then(records => {
+    pending = fetchRecords(url).then(records => {
       loadedScripts.set(coachId, new Map(records.map(record => [record.id, record.text])));
     }).finally(() => loadingScripts.delete(coachId));
     loadingScripts.set(coachId, pending);
@@ -48,7 +55,8 @@ export function spokenText(coachId: string | null | undefined, id: string | null
 }
 
 /** Null while the coach's script loads or when it has no line for this meaning;
- * callers then show their written text. */
+ * callers then show their written text. A failed load is retried when the
+ * meaning or coach changes, so one network failure does not last until remount. */
 export function useSpokenText(coachId: string | null | undefined, id: string | null | undefined): string | null {
   const [, setLoaded] = useState(0);
   const text = spokenText(coachId, id);
@@ -58,7 +66,7 @@ export function useSpokenText(coachId: string | null | undefined, id: string | n
     let live = true;
     loadCoachScript(coachId).then(() => { if (live) setLoaded(count => count + 1); }, () => {});
     return () => { live = false; };
-  }, [waiting, coachId]);
+  }, [waiting, coachId, id]);
   return text;
 }
 
