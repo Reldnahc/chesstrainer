@@ -40,7 +40,7 @@ function FrogMouth({ pose }: { pose: AnimalPose }) {
       {pose.mouth === "grin" && <path d="M29 58q21 7 42 0-7 14-21 14T29 58Z" fill="#526345" />}
       {pose.mouth === "oh" && <ellipse cx="50" cy="64" rx="5.5" ry="7" fill="#526345" />}
       </>}>
-        <OrganicSpeechMouth x={50} y={59} width={38} height={8} teeth={false} tongue={false}
+        <OrganicSpeechMouth x={50} y={61} width={38} height={12} teeth={false} tongue={false}
           mood={pose.mouth === "concern" ? "concern" : "neutral"}
           palette={{cavity: "#526345", outline: "#425d3b"}} />
       </SpeechMouthLayer>

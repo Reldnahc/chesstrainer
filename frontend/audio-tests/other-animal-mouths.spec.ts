@@ -71,6 +71,11 @@ test("other animals articulate every shape at ordinary and small portrait sizes"
     await expect(portraits.locator(`figure[data-coach="${coach}"] .organic-speech-teeth`)).toHaveCount(0);
   }
   await expect(portraits.locator('figure[data-coach="frog"] .organic-speech-tongue-tip')).toHaveCount(0);
+  // Fergus speaks from his resting lip line, with enough height that rounded sounds read as a mouth.
+  await expect(portraits.locator('figure[data-coach="frog"] .organic-speech-mouth').first())
+    .toHaveAttribute("transform", "translate(50 61) scale(1.9 1.2)");
+  const frogRound = geometry.find(row => row.coach === "frog" && row.size === "92.8" && row.shape === "round")!;
+  expect(frogRound.height).toBeGreaterThan(6);
   const capybara = portraits.locator('figure[data-coach="capybara"]').first();
   await expect(capybara.locator(".organic-speech-mouth")).toHaveAttribute("transform", "translate(56 64) scale(1.25 0.8)");
   expect(await capybara.locator(".organic-speech-mouth").evaluate(node => node.closest('.study-muzzle')!.parentElement!.getAttribute("transform")))
