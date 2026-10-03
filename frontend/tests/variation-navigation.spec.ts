@@ -41,11 +41,11 @@ test("variation return is a prominent coach action and restores the original pos
       const row = controls.getBoundingClientRect();
       const first = controls.querySelector('[aria-label="Start of game"]')!.getBoundingClientRect();
       const last = controls.querySelector('[aria-label="Last move"]')!.getBoundingClientRect();
-      const flip = controls.querySelector('[aria-label="Flip board"]')!.getBoundingClientRect();
-      return {row: (row.left + row.right) / 2, moves: (first.left + last.right) / 2, right: row.right, flipRight: flip.right};
+      const mute = controls.querySelector('[aria-label="Mute sound on this device"]')!.getBoundingClientRect();
+      return {row: (row.left + row.right) / 2, moves: (first.left + last.right) / 2, right: row.right, muteRight: mute.right};
     });
     expect(Math.abs(centers.row - centers.moves)).toBeLessThan(1);
-    expect(Math.abs(centers.right - centers.flipRight)).toBeLessThan(1);
+    expect(Math.abs(centers.right - centers.muteRight)).toBeLessThan(1);
   }
   await play("e2e4");
   const back = page.getByRole("button", {name: "Return to game", exact: true});

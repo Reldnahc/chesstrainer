@@ -6,6 +6,7 @@ import ActionLink from "../ActionLink";
 import Button from "../Button";
 import { LoadingState, UnavailableState } from "../LoadState";
 import MovePlaybackControls from "../MovePlaybackControls";
+import AudioMuteButton from "../audio/AudioMuteButton";
 import ReturnButton from "../ReturnButton";
 import ReviewCoach from "../ReviewCoach";
 import MoveStatus from "../MoveStatus";
@@ -65,7 +66,7 @@ export default function LessonPlayer({ sessionId }: { sessionId: string }) {
     belowBoard={<div className="review-board-hint">{has("move") ? step.kind === "rehearsal" ? "Play your studied continuation." : "Play this lesson’s move." : session.branch ? "Explore the alternative, then return to the main line." : "Use the lesson controls to continue."}</div>}
     boardControls={<div className="lesson-board-controls"><ActionLink variant="secondary" href={lessonCoursePath(session.course_id, session.course_revision)}><ArrowLeft size={16} />Chapters</ActionLink>{session.game && <MovePlaybackControls label="Lesson game playback" current={session.game.ply} maximum={session.game.total_plies}
       previous={{ "aria-label": "Previous game move", ...gameButtonState(session.game.ply === 0), onClick: () => state.command("game_seek", { ply: session.game!.ply - 1 }) }}
-      next={{ "aria-label": "Next game move", ...gameButtonState(session.game.ply === session.game.total_plies), onClick: () => state.command("game_seek", { ply: session.game!.ply + 1 }) }} />}</div>}
+      next={{ "aria-label": "Next game move", ...gameButtonState(session.game.ply === session.game.total_plies), onClick: () => state.command("game_seek", { ply: session.game!.ply + 1 }) }} />}<AudioMuteButton /></div>}
     board={<Board fen={fen} orientation={session.orientation} legalMoves={session.legal_moves} disabled={disabled || !has("move")} onMove={state.answer} feedback={feedback?.kind === "incorrect" ? "retry" : undefined} highlights={frame ? [frame.uci.slice(0, 2), frame.uci.slice(2, 4)] : annotations?.squares || []} arrows={annotations?.arrows?.map(arrow => ({ startSquare: arrow.from_square, endSquare: arrow.to_square, color: "#f5b56abb" })) || []} />}
   >
     <ReviewCoach compactLabel={!voice.available} voice={voice} title={<h2>{error ? "Let’s restore your lesson." : guidedPlayback ? "Follow the continuation." : session.game ? session.game.title : finished ? "Chapter completed." : step.title}</h2>}

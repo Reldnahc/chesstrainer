@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowRight, Play } from "lucide-react";
 import Board from "../Board";
 import TurnIndicator from "../TurnIndicator";
 import ActionLink from "../ActionLink";
+import AudioMuteButton from "../audio/AudioMuteButton";
 import Button from "../Button";
 import ContinuationMoves from "../ContinuationMoves";
 import { LoadingState, UnavailableState } from "../LoadState";
@@ -84,7 +85,7 @@ export default function PuzzlePlayer({ sessionId }: { sessionId: string }) {
     boardLabel="Puzzle position"
     aboveBoard={<div className="review-position-status"><TurnIndicator color={session.orientation}>{playing ? playbackTurn : complete ? "Solution review" : `${session.orientation === "white" ? "White" : "Black"} to move`}</TurnIndicator><span>{session.history.length} MOVES PLAYED</span></div>}
     belowBoard={<div className="review-board-hint">{playing ? "The saved position will be ready after playback." : complete ? "Select a solution move to inspect it." : "Select a piece to see legal moves. Tap a destination or drag."}</div>}
-    boardControls={<div><ActionLink variant="secondary" href={studyPaths.puzzles}><ArrowLeft size={16} />All puzzles</ActionLink></div>}
+    boardControls={<div className="lesson-board-controls"><ActionLink variant="secondary" href={studyPaths.puzzles}><ArrowLeft size={16} />All puzzles</ActionLink><AudioMuteButton /></div>}
     board={<Board fen={displayedFen} orientation={session.orientation} legalMoves={session.legal_moves} disabled={state.disabled} onMove={state.answer} feedback={incorrect ? "retry" : undefined} highlights={frame ? [frame.uci.slice(0, 2), frame.uci.slice(2, 4)] : []} />}
   >
     <ReviewCoach title={<h2>{title}</h2>} voice={voice}

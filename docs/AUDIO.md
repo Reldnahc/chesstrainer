@@ -16,7 +16,7 @@ Account preferences use the existing owned `user_preferences` row, including the
 reserved local user. A failed initial preference load keeps audio silent until
 retried. Audio changes do not overwrite coach or motion choices.
 
-The shared board workspace has a quick mute control. It applies to the current
+The shared board workspace has a quick mute control, the last button in the board controls. It applies to the current
 account on this browser/device, persists locally, and synchronizes across tabs
 through the storage event. It does not change the account's sound settings on
 other devices. Stored mute is an enhancement; if browser storage is unavailable,
