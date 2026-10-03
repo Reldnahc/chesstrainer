@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "opening-recall-cold-multiple",
+      "label": "Opening recall cold multiple",
+      "text": "Whichever of your opening lines you draw on, a move from it will count."
+    },
+    "takeId": null
+  },
+  "requestHash": "e5d8675bafc8b972d5d7de127f64750a85640c4b7a390674525f582a747041cf",
+  "recordedAt": "2026-10-03T05:59:14.353Z",
+  "sha256": "a9dfb65d40d6f13839605cd68565ea63f68b671cce7f6be1772866e1a0321d88",
+  "bytes": 15372,
+  "requestId": "2Vs2GZZ6vcnZ08bKv0Fo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e5ef9df378224a74a692131c65002c2c6b437ff1398155328036e46249bfbeac",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "game-review-opened",
+      "label": "Game review opened",
+      "text": "Here is where the game began. Go on when you like; we'll look at each move as it comes."
+    },
+    "takeId": null
+  },
+  "requestHash": "d57fef0dd0b45798289e9e481dac580dce119033932e8d1d6c991c762f83ceb4",
+  "recordedAt": "2026-10-03T05:59:51.893Z",
+  "sha256": "ac28ab2e941d815fa1fb50522e8ac45b0617136e5734bfa82529e8c3181dc0a0",
+  "bytes": 18549,
+  "requestId": "jmaJqfuGv40h1SKSwXLo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "367e7e53c04ba158f9990ef4e46d42619100838f5a811129e3b10eda79c9f04b",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

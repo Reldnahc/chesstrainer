@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-note-strong-replies",
+      "label": "Explanation note strong replies",
+      "text": "What you see here is play against strong replies. Strong isn't the same as forced."
+    },
+    "takeId": null
+  },
+  "requestHash": "b3fe0dfd38efe66f8e6defb5e02e15cff02670ddf41299256c2038e8c480ad31",
+  "recordedAt": "2026-10-03T05:59:04.545Z",
+  "sha256": "bdc8438ca3962c142ad04c62b5e66223c7a785831a474a6929af875ed820634d",
+  "bytes": 21518,
+  "requestId": "NGQ7D0aa9mhfsOJNJK4s",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6e350f040daaeec54ad451fa46249b2f272ab0c74c26bcd364df0057b430ddc7",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

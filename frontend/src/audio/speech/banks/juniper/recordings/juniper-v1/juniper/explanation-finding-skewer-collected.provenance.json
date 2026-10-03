@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected",
+      "label": "Explanation finding skewer collected",
+      "text": "The front piece slides away. Behind it, along that same line, the next piece is captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "cd04b5a1b33dab6d6bf2c6157f6c41297143d0244b8725272306a6480f201936",
+  "recordedAt": "2026-10-03T05:58:21.671Z",
+  "sha256": "a4ce87fcc97773bf3ccc209d4d95d9b566980e80b5e2a6714c08b6457d256448",
+  "bytes": 20153,
+  "requestId": "jKXxKTh8okom337KPXDO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e58439673a3d4779947098bea2812cddaf4ad24d79792d5c232a9b3e0ea9345d",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

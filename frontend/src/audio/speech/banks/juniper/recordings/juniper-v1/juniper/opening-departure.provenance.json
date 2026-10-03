@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "opening-departure",
+      "label": "Opening departure",
+      "text": "Here the game steps out of the opening book. From this move on, the position belongs to itself."
+    },
+    "takeId": null
+  },
+  "requestHash": "c6e06dee0d94d09067700842999198176a1b7615c704c735aef886f672780d72",
+  "recordedAt": "2026-10-03T05:57:02.185Z",
+  "sha256": "6b39746290061d9643afcc9ccc0c0214332bdadef032a306530a25d08d63d140",
+  "bytes": 20896,
+  "requestId": "E6wXuouBm9SW55KWxu7E",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6b3b6ac780b7d2b1c0d72c37ce0dfc1914f78be720ac39a3ced505fa0207cfd7",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

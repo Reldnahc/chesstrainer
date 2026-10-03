@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-finding-pin-defenders-no-recapture",
+      "label": "Explanation finding pin defenders no recapture",
+      "text": "With their own king behind them on the line, the defenders have to leave the capture alone. That's what makes it work, and the line shown wins material."
+    },
+    "takeId": null
+  },
+  "requestHash": "cf8f336059a5ebcd817608840eba80ffeeed0e90eb18b21d716515498a1a2dd1",
+  "recordedAt": "2026-10-03T05:58:18.023Z",
+  "sha256": "4738f32bba3e2decb71f0473c88139b0680aefdc66f338b8d19cf12e3277fc47",
+  "bytes": 30578,
+  "requestId": "3FLE5dU2Fj1AysXCYkEL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "89fd212440ff68426c2b17e475b8e26f877a977e6a2781bbf9a24e989d61cc4b",
+    "bytes": 158450
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,915 @@
+{
+  "schemaVersion": 1,
+  "scriptId": "advantage-converted",
+  "voiceId": "juniper",
+  "metadata": {
+    "duration": 9.04
+  },
+  "mouthCues": [
+    {"start":0.0,"end":0.2,"value":"B"},
+    {"start":0.2,"end":0.23,"value":"C"},
+    {"start":0.23,"end":0.28,"value":"B"},
+    {"start":0.28,"end":0.33,"value":"G"},
+    {"start":0.33,"end":0.39,"value":"C"},
+    {"start":0.39,"end":1.01,"value":"B"},
+    {"start":1.01,"end":1.12,"value":"C"},
+    {"start":1.12,"end":1.3,"value":"B"},
+    {"start":1.3,"end":1.35,"value":"F"},
+    {"start":1.35,"end":1.5,"value":"B"},
+    {"start":1.5,"end":1.63,"value":"C"},
+    {"start":1.63,"end":1.83,"value":"B"},
+    {"start":1.83,"end":1.97,"value":"D"},
+    {"start":1.97,"end":2.24,"value":"B"},
+    {"start":2.24,"end":2.43,"value":"X"},
+    {"start":2.43,"end":2.52,"value":"C"},
+    {"start":2.52,"end":2.65,"value":"B"},
+    {"start":2.65,"end":2.69,"value":"A"},
+    {"start":2.69,"end":2.82,"value":"E"},
+    {"start":2.82,"end":2.87,"value":"F"},
+    {"start":2.87,"end":2.98,"value":"B"},
+    {"start":2.98,"end":3.04,"value":"C"},
+    {"start":3.04,"end":3.2,"value":"B"},
+    {"start":3.2,"end":3.4,"value":"X"},
+    {"start":3.4,"end":3.45,"value":"C"},
+    {"start":3.45,"end":3.65,"value":"B"},
+    {"start":3.65,"end":3.75,"value":"H"},
+    {"start":3.75,"end":3.79,"value":"B"},
+    {"start":3.79,"end":3.84,"value":"C"},
+    {"start":3.84,"end":3.91,"value":"E"},
+    {"start":3.91,"end":4.07,"value":"B"},
+    {"start":4.07,"end":4.21,"value":"E"},
+    {"start":4.21,"end":4.38,"value":"B"},
+    {"start":4.38,"end":4.5,"value":"F"},
+    {"start":4.5,"end":4.79,"value":"B"},
+    {"start":4.79,"end":5.59,"value":"X"},
+    {"start":5.59,"end":5.68,"value":"F"},
+    {"start":5.68,"end":5.75,"value":"E"},
+    {"start":5.75,"end":5.87,"value":"B"},
+    {"start":5.87,"end":5.92,"value":"A"},
+    {"start":5.92,"end":6.08,"value":"C"},
+    {"start":6.08,"end":6.29,"value":"B"},
+    {"start":6.29,"end":6.33,"value":"E"},
+    {"start":6.33,"end":6.41,"value":"F"},
+    {"start":6.41,"end":6.45,"value":"B"},
+    {"start":6.45,"end":6.56,"value":"C"},
+    {"start":6.56,"end":6.79,"value":"B"},
+    {"start":6.79,"end":6.83,"value":"E"},
+    {"start":6.83,"end":6.94,"value":"C"},
+    {"start":6.94,"end":7.18,"value":"B"},
+    {"start":7.18,"end":7.64,"value":"X"},
+    {"start":7.64,"end":7.71,"value":"B"},
+    {"start":7.71,"end":7.74,"value":"F"},
+    {"start":7.74,"end":7.78,"value":"C"},
+    {"start":7.78,"end":8.0,"value":"B"},
+    {"start":8.0,"end":8.08,"value":"C"},
+    {"start":8.08,"end":8.15,"value":"A"},
+    {"start":8.15,"end":8.35,"value":"B"},
+    {"start":8.35,"end":8.42,"value":"C"},
+    {"start":8.42,"end":8.48,"value":"E"},
+    {"start":8.48,"end":8.6,"value":"G"},
+    {"start":8.6,"end":8.63,"value":"C"},
+    {"start":8.63,"end":8.68,"value":"H"},
+    {"start":8.68,"end":8.89,"value":"B"},
+    {"start":8.89,"end":9.04,"value":"X"}
+  ],
+  "provenance": {
+    "sourceScriptId": "advantage-converted",
+    "manualTimingEdits": false,
+    "recording": {
+      "path": "frontend/src/audio/speech/banks/juniper/recordings/juniper-v1/juniper/advantage-converted.opus",
+      "sha256": "c5fa4cf4489f21ff8d867526f0e6c7f8cb051d121984a68c1c3379ecc42c8229",
+      "bytes": 27257
+    },
+    "script": {
+      "planPath": "frontend/src/audio/speech/banks/juniper/manifest.json",
+      "text": "The advantage stayed with that side, unbroken, until the recorded win. Walk back through that stretch; it was kept carefully.",
+      "sha256": "41ffbe37759be3094ae8e2a6b860b9f463ba9865ad0b0325addce37ebfad3eb3"
+    },
+    "tool": {
+      "name": "PocketSphinx",
+      "version": "5.1.1",
+      "api": [
+        "Decoder.set_align_text",
+        "Decoder.set_alignment",
+        "Decoder.get_alignment"
+      ],
+      "documentation": "https://pocketsphinx.readthedocs.io/en/latest/pocketsphinx.html#pocketsphinx.Decoder.set_alignment",
+      "modelFilesSha256": {
+        "en-us/cmudict-en-us.dict": "20b5c293e1f311fb375fe067e500ec5636f4fc7af5594967263696def9b23bfe",
+        "en-us/en-us/feat.params": "c982c5f75e2a30c34d2c9ef1f6b129a5a00e67e3e927565076b58664cc2404c9",
+        "en-us/en-us/mdef": "2360f9a86889c1cfee8bd618a0269387911e5fb2920a594f506b18b8c79683b0",
+        "en-us/en-us/means": "832019e32cac12eb318964f96f469034acb12d0348eeddc3831831a100cb4dd4",
+        "en-us/en-us/noisedict": "7295b07df2c204c4f87c6782b6be1a3859d7006d4e3864181c955d6dab105a33",
+        "en-us/en-us/sendump": "8c9564c0d5bef69ca9d9bf1014abe162f071644cf02cf1fa8a483c3dc165a7a8",
+        "en-us/en-us/transition_matrices": "c1f7f28ea43177be734be1f88bd7f1b9a853d0e660f8599c67c6eaeca8bb539a",
+        "en-us/en-us/variances": "b00d696f85e96834fc10f8e5f06428d8c4db6bffdbe5845b6f69bf6efbc48fa5"
+      },
+      "configuration": {
+        "pip": 1,
+        "hmm": "$MODEL/en-us/en-us",
+        "wip": 0.65,
+        "silprob": 0.005,
+        "remove_noise": true,
+        "mixwfloor": 1e-07,
+        "varnorm": false,
+        "beam": 1e-48,
+        "lpbeam": 1e-40,
+        "varfloor": 0.0001,
+        "pl_pbeam": 1e-10,
+        "round_filters": true,
+        "fwdflatsfwin": 25,
+        "kws_threshold": 1e-30,
+        "fdict": "$MODEL/en-us/en-us/noisedict",
+        "maxhmmpf": 30000,
+        "kws_plp": 0.1,
+        "min_endfr": 0,
+        "nfilt": 25,
+        "ncep": 13,
+        "fwdflatefwid": 4,
+        "frate": 100,
+        "ascale": 20,
+        "lifter": 22,
+        "bestpath": false,
+        "tmatfloor": 0.0001,
+        "feat": "1s_c_d_dd",
+        "lowerf": 130,
+        "maxwpf": -1,
+        "pl_beam": 1e-10,
+        "alpha": 0.97,
+        "mmap": true,
+        "nwpen": 1,
+        "fwdtree": true,
+        "fwdflat": true,
+        "smoothspec": false,
+        "mdef": "$MODEL/en-us/en-us/mdef",
+        "samprate": 16000,
+        "allphone_ci": true,
+        "cmninit": "40,3,-1",
+        "upperf": 6800,
+        "transform": "dct",
+        "mean": "$MODEL/en-us/en-us/means",
+        "pl_weight": 3,
+        "sendump": "$MODEL/en-us/en-us/sendump",
+        "fwdflatbeam": 1e-64,
+        "tmat": "$MODEL/en-us/en-us/transition_matrices",
+        "fsgusealtpron": true,
+        "loglevel": "ERROR",
+        "dict": "$MODEL/en-us/cmudict-en-us.dict",
+        "dither": false,
+        "aw": 1,
+        "dictcase": false,
+        "var": "$MODEL/en-us/en-us/variances",
+        "pl_window": 5,
+        "latsize": 5000,
+        "agc": "none",
+        "ldadim": 0,
+        "lw": 6.5,
+        "topn_beam": "0",
+        "uw": 1,
+        "fwdflatlw": 8.5,
+        "ceplen": 13,
+        "backtrace": false,
+        "bestpathlw": 9.5,
+        "logspec": false,
+        "nfft": 0,
+        "verbose": false,
+        "pl_pip": 1,
+        "topn": 4,
+        "fwdflatwbeam": 7e-29,
+        "compallsen": false,
+        "cmn": "batch",
+        "fillprob": 1e-08,
+        "warp_type": "inverse_linear",
+        "unit_area": true,
+        "agcthresh": 2,
+        "fsgusefiller": true,
+        "seed": 0,
+        "featparams": "$MODEL/en-us/en-us/feat.params",
+        "ds": 1,
+        "lponlybeam": 7e-29,
+        "input_endian": "little",
+        "remove_dc": false,
+        "svspec": "0-12/13-25/26-38",
+        "kws_delay": 10,
+        "wlen": 0.025625,
+        "pbeam": 1e-48,
+        "doublebw": false,
+        "logbase": 1.0001,
+        "wbeam": 7e-29
+      },
+      "configurationSha256": "4cc690802d0d8774029df0c0d0e0a370dab93bb8a4bbe9f7a711e8a9c2d027c5"
+    },
+    "conversion": {
+      "decoder": "SoundFile",
+      "decoderVersion": "0.13.1",
+      "libsndfileVersion": "1.2.2",
+      "numpyVersion": "2.2.6",
+      "inputChannels": 1,
+      "channels": 1,
+      "sampleRate": 48000,
+      "sampleWidthBytes": 2,
+      "frames": 433920,
+      "durationSeconds": 9.04,
+      "method": "float64 SoundFile decode; arithmetic channel mean; round(clip(sample,-1,1)*32767) to little-endian PCM16 WAV",
+      "trimmed": false,
+      "resampled": false,
+      "wavSha256": "2b8cfc13780c87a3d35a003e9441af8b0fa62000ff41470dac8d8f89a7b5f0ce"
+    },
+    "resampling": {
+      "method": "Python 3.12 audioop.ratecv PCM16 mono, weightA=1, weightB=0",
+      "sourceSampleRate": 48000,
+      "sampleRate": 16000,
+      "sampleWidthBytes": 2,
+      "channels": 1,
+      "frames": 144640,
+      "durationSeconds": 9.04,
+      "trimmed": false,
+      "pcmSha256": "829804912e713f2db951be1205e0726d1cf5ba4d41a5f4d7bc04b1b5294cad44"
+    },
+    "alignment": {
+      "frameRate": 100,
+      "normalizedTranscript": "the advantage stayed with that side unbroken until the recorded win walk back through that stretch it was kept carefully",
+      "words": [
+        {
+          "word": "the(2)",
+          "startFrame": 0,
+          "durationFrames": 20,
+          "phones": [
+            {
+              "phone": "DH",
+              "startFrame": 0,
+              "durationFrames": 11
+            },
+            {
+              "phone": "IY",
+              "startFrame": 11,
+              "durationFrames": 9
+            }
+          ]
+        },
+        {
+          "word": "advantage",
+          "startFrame": 20,
+          "durationFrames": 58,
+          "phones": [
+            {
+              "phone": "AE",
+              "startFrame": 20,
+              "durationFrames": 3
+            },
+            {
+              "phone": "D",
+              "startFrame": 23,
+              "durationFrames": 5
+            },
+            {
+              "phone": "V",
+              "startFrame": 28,
+              "durationFrames": 5
+            },
+            {
+              "phone": "AE",
+              "startFrame": 33,
+              "durationFrames": 6
+            },
+            {
+              "phone": "N",
+              "startFrame": 39,
+              "durationFrames": 16
+            },
+            {
+              "phone": "T",
+              "startFrame": 55,
+              "durationFrames": 6
+            },
+            {
+              "phone": "IH",
+              "startFrame": 61,
+              "durationFrames": 9
+            },
+            {
+              "phone": "JH",
+              "startFrame": 70,
+              "durationFrames": 8
+            }
+          ]
+        },
+        {
+          "word": "stayed",
+          "startFrame": 78,
+          "durationFrames": 52,
+          "phones": [
+            {
+              "phone": "S",
+              "startFrame": 78,
+              "durationFrames": 17
+            },
+            {
+              "phone": "T",
+              "startFrame": 95,
+              "durationFrames": 6
+            },
+            {
+              "phone": "EY",
+              "startFrame": 101,
+              "durationFrames": 23
+            },
+            {
+              "phone": "D",
+              "startFrame": 124,
+              "durationFrames": 6
+            }
+          ]
+        },
+        {
+          "word": "with",
+          "startFrame": 130,
+          "durationFrames": 17,
+          "phones": [
+            {
+              "phone": "W",
+              "startFrame": 130,
+              "durationFrames": 5
+            },
+            {
+              "phone": "IH",
+              "startFrame": 135,
+              "durationFrames": 7
+            },
+            {
+              "phone": "DH",
+              "startFrame": 142,
+              "durationFrames": 5
+            }
+          ]
+        },
+        {
+          "word": "that",
+          "startFrame": 147,
+          "durationFrames": 21,
+          "phones": [
+            {
+              "phone": "DH",
+              "startFrame": 147,
+              "durationFrames": 3
+            },
+            {
+              "phone": "AE",
+              "startFrame": 150,
+              "durationFrames": 13
+            },
+            {
+              "phone": "T",
+              "startFrame": 163,
+              "durationFrames": 5
+            }
+          ]
+        },
+        {
+          "word": "side",
+          "startFrame": 168,
+          "durationFrames": 56,
+          "phones": [
+            {
+              "phone": "S",
+              "startFrame": 168,
+              "durationFrames": 15
+            },
+            {
+              "phone": "AY",
+              "startFrame": 183,
+              "durationFrames": 28
+            },
+            {
+              "phone": "D",
+              "startFrame": 211,
+              "durationFrames": 13
+            }
+          ]
+        },
+        {
+          "word": "<sil>",
+          "startFrame": 224,
+          "durationFrames": 19,
+          "phones": [
+            {
+              "phone": "SIL",
+              "startFrame": 224,
+              "durationFrames": 19
+            }
+          ]
+        },
+        {
+          "word": "unbroken",
+          "startFrame": 243,
+          "durationFrames": 77,
+          "phones": [
+            {
+              "phone": "AH",
+              "startFrame": 243,
+              "durationFrames": 9
+            },
+            {
+              "phone": "N",
+              "startFrame": 252,
+              "durationFrames": 13
+            },
+            {
+              "phone": "B",
+              "startFrame": 265,
+              "durationFrames": 4
+            },
+            {
+              "phone": "R",
+              "startFrame": 269,
+              "durationFrames": 8
+            },
+            {
+              "phone": "OW",
+              "startFrame": 277,
+              "durationFrames": 10
+            },
+            {
+              "phone": "K",
+              "startFrame": 287,
+              "durationFrames": 11
+            },
+            {
+              "phone": "AH",
+              "startFrame": 298,
+              "durationFrames": 6
+            },
+            {
+              "phone": "N",
+              "startFrame": 304,
+              "durationFrames": 16
+            }
+          ]
+        },
+        {
+          "word": "<sil>",
+          "startFrame": 320,
+          "durationFrames": 20,
+          "phones": [
+            {
+              "phone": "SIL",
+              "startFrame": 320,
+              "durationFrames": 20
+            }
+          ]
+        },
+        {
+          "word": "until",
+          "startFrame": 340,
+          "durationFrames": 35,
+          "phones": [
+            {
+              "phone": "AH",
+              "startFrame": 340,
+              "durationFrames": 5
+            },
+            {
+              "phone": "N",
+              "startFrame": 345,
+              "durationFrames": 7
+            },
+            {
+              "phone": "T",
+              "startFrame": 352,
+              "durationFrames": 8
+            },
+            {
+              "phone": "IH",
+              "startFrame": 360,
+              "durationFrames": 5
+            },
+            {
+              "phone": "L",
+              "startFrame": 365,
+              "durationFrames": 10
+            }
+          ]
+        },
+        {
+          "word": "the",
+          "startFrame": 375,
+          "durationFrames": 9,
+          "phones": [
+            {
+              "phone": "DH",
+              "startFrame": 375,
+              "durationFrames": 4
+            },
+            {
+              "phone": "AH",
+              "startFrame": 379,
+              "durationFrames": 5
+            }
+          ]
+        },
+        {
+          "word": "recorded(2)",
+          "startFrame": 384,
+          "durationFrames": 54,
+          "phones": [
+            {
+              "phone": "R",
+              "startFrame": 384,
+              "durationFrames": 7
+            },
+            {
+              "phone": "IH",
+              "startFrame": 391,
+              "durationFrames": 4
+            },
+            {
+              "phone": "K",
+              "startFrame": 395,
+              "durationFrames": 12
+            },
+            {
+              "phone": "AO",
+              "startFrame": 407,
+              "durationFrames": 11
+            },
+            {
+              "phone": "R",
+              "startFrame": 418,
+              "durationFrames": 3
+            },
+            {
+              "phone": "D",
+              "startFrame": 421,
+              "durationFrames": 5
+            },
+            {
+              "phone": "IH",
+              "startFrame": 426,
+              "durationFrames": 7
+            },
+            {
+              "phone": "D",
+              "startFrame": 433,
+              "durationFrames": 5
+            }
+          ]
+        },
+        {
+          "word": "win",
+          "startFrame": 438,
+          "durationFrames": 41,
+          "phones": [
+            {
+              "phone": "W",
+              "startFrame": 438,
+              "durationFrames": 12
+            },
+            {
+              "phone": "IH",
+              "startFrame": 450,
+              "durationFrames": 10
+            },
+            {
+              "phone": "N",
+              "startFrame": 460,
+              "durationFrames": 19
+            }
+          ]
+        },
+        {
+          "word": "<sil>",
+          "startFrame": 479,
+          "durationFrames": 80,
+          "phones": [
+            {
+              "phone": "SIL",
+              "startFrame": 479,
+              "durationFrames": 80
+            }
+          ]
+        },
+        {
+          "word": "walk",
+          "startFrame": 559,
+          "durationFrames": 28,
+          "phones": [
+            {
+              "phone": "W",
+              "startFrame": 559,
+              "durationFrames": 9
+            },
+            {
+              "phone": "AO",
+              "startFrame": 568,
+              "durationFrames": 7
+            },
+            {
+              "phone": "K",
+              "startFrame": 575,
+              "durationFrames": 12
+            }
+          ]
+        },
+        {
+          "word": "back",
+          "startFrame": 587,
+          "durationFrames": 32,
+          "phones": [
+            {
+              "phone": "B",
+              "startFrame": 587,
+              "durationFrames": 5
+            },
+            {
+              "phone": "AE",
+              "startFrame": 592,
+              "durationFrames": 16
+            },
+            {
+              "phone": "K",
+              "startFrame": 608,
+              "durationFrames": 11
+            }
+          ]
+        },
+        {
+          "word": "through",
+          "startFrame": 619,
+          "durationFrames": 22,
+          "phones": [
+            {
+              "phone": "TH",
+              "startFrame": 619,
+              "durationFrames": 10
+            },
+            {
+              "phone": "R",
+              "startFrame": 629,
+              "durationFrames": 4
+            },
+            {
+              "phone": "UW",
+              "startFrame": 633,
+              "durationFrames": 8
+            }
+          ]
+        },
+        {
+          "word": "that",
+          "startFrame": 641,
+          "durationFrames": 20,
+          "phones": [
+            {
+              "phone": "DH",
+              "startFrame": 641,
+              "durationFrames": 4
+            },
+            {
+              "phone": "AE",
+              "startFrame": 645,
+              "durationFrames": 11
+            },
+            {
+              "phone": "T",
+              "startFrame": 656,
+              "durationFrames": 5
+            }
+          ]
+        },
+        {
+          "word": "stretch",
+          "startFrame": 661,
+          "durationFrames": 57,
+          "phones": [
+            {
+              "phone": "S",
+              "startFrame": 661,
+              "durationFrames": 11
+            },
+            {
+              "phone": "T",
+              "startFrame": 672,
+              "durationFrames": 7
+            },
+            {
+              "phone": "R",
+              "startFrame": 679,
+              "durationFrames": 4
+            },
+            {
+              "phone": "EH",
+              "startFrame": 683,
+              "durationFrames": 11
+            },
+            {
+              "phone": "CH",
+              "startFrame": 694,
+              "durationFrames": 24
+            }
+          ]
+        },
+        {
+          "word": "<sil>",
+          "startFrame": 718,
+          "durationFrames": 46,
+          "phones": [
+            {
+              "phone": "SIL",
+              "startFrame": 718,
+              "durationFrames": 46
+            }
+          ]
+        },
+        {
+          "word": "it",
+          "startFrame": 764,
+          "durationFrames": 7,
+          "phones": [
+            {
+              "phone": "IH",
+              "startFrame": 764,
+              "durationFrames": 4
+            },
+            {
+              "phone": "T",
+              "startFrame": 768,
+              "durationFrames": 3
+            }
+          ]
+        },
+        {
+          "word": "was(2)",
+          "startFrame": 771,
+          "durationFrames": 16,
+          "phones": [
+            {
+              "phone": "W",
+              "startFrame": 771,
+              "durationFrames": 3
+            },
+            {
+              "phone": "AH",
+              "startFrame": 774,
+              "durationFrames": 4
+            },
+            {
+              "phone": "Z",
+              "startFrame": 778,
+              "durationFrames": 9
+            }
+          ]
+        },
+        {
+          "word": "kept(2)",
+          "startFrame": 787,
+          "durationFrames": 38,
+          "phones": [
+            {
+              "phone": "K",
+              "startFrame": 787,
+              "durationFrames": 13
+            },
+            {
+              "phone": "AE",
+              "startFrame": 800,
+              "durationFrames": 8
+            },
+            {
+              "phone": "P",
+              "startFrame": 808,
+              "durationFrames": 7
+            },
+            {
+              "phone": "T",
+              "startFrame": 815,
+              "durationFrames": 10
+            }
+          ]
+        },
+        {
+          "word": "carefully",
+          "startFrame": 825,
+          "durationFrames": 64,
+          "phones": [
+            {
+              "phone": "K",
+              "startFrame": 825,
+              "durationFrames": 10
+            },
+            {
+              "phone": "EH",
+              "startFrame": 835,
+              "durationFrames": 7
+            },
+            {
+              "phone": "R",
+              "startFrame": 842,
+              "durationFrames": 6
+            },
+            {
+              "phone": "F",
+              "startFrame": 848,
+              "durationFrames": 12
+            },
+            {
+              "phone": "AH",
+              "startFrame": 860,
+              "durationFrames": 3
+            },
+            {
+              "phone": "L",
+              "startFrame": 863,
+              "durationFrames": 5
+            },
+            {
+              "phone": "IY",
+              "startFrame": 868,
+              "durationFrames": 21
+            }
+          ]
+        },
+        {
+          "word": "<sil>",
+          "startFrame": 889,
+          "durationFrames": 14,
+          "phones": [
+            {
+              "phone": "SIL",
+              "startFrame": 889,
+              "durationFrames": 14
+            }
+          ]
+        }
+      ]
+    },
+    "alignmentSha256": "8ee467ded5be96b596ccf4e814e227463c4294ef42418463e9d228e5c39746d5",
+    "mapping": {
+      "revision": "arpabet-mouth-v1",
+      "phoneShapes": {
+        "B": "A",
+        "P": "A",
+        "M": "A",
+        "CH": "B",
+        "D": "B",
+        "DH": "B",
+        "G": "B",
+        "HH": "B",
+        "IH": "B",
+        "IY": "B",
+        "JH": "B",
+        "K": "B",
+        "N": "B",
+        "NG": "B",
+        "S": "B",
+        "SH": "B",
+        "T": "B",
+        "TH": "B",
+        "Y": "B",
+        "Z": "B",
+        "ZH": "B",
+        "AE": "C",
+        "AH": "C",
+        "EH": "C",
+        "AA": "D",
+        "AO": "E",
+        "ER": "E",
+        "R": "E",
+        "UH": "E",
+        "W": "F",
+        "UW": "F",
+        "F": "G",
+        "V": "G",
+        "L": "H",
+        "SIL": "X"
+      },
+      "diphthongs": {
+        "AY": [
+          "D",
+          "B"
+        ],
+        "AW": [
+          "D",
+          "F"
+        ],
+        "EY": [
+          "C",
+          "B"
+        ],
+        "OW": [
+          "E",
+          "F"
+        ],
+        "OY": [
+          "E",
+          "B"
+        ]
+      },
+      "minimumDiphthongPartFrames": 4,
+      "diphthongSplit": "midpoint in integer frames; short phones keep the first shape",
+      "adjacentEqualShapes": "coalesce",
+      "uncoveredFinalFrames": "rest; at most two analysis frames",
+      "perClipOverrides": false
+    },
+    "cueSha256": "0378c2a175a933134e4c3f1f51a2e334a9849d16b136ea4e5189aa12540a61da"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-finding-promotion-material-retained",
+      "label": "Explanation finding promotion material retained",
+      "text": "Watch the pawn reach promotion. In this example that side ends with more material, too."
+    },
+    "takeId": null
+  },
+  "requestHash": "243b158c5e2dce6397e3cc6ae3d0df972da3b567203557ea99dcaf4e85344988",
+  "recordedAt": "2026-10-03T05:58:35.016Z",
+  "sha256": "3dc1b0ba52d2d988ac55304a3948fc43285473716b8ed2b2654c82f359ef120f",
+  "bytes": 20237,
+  "requestId": "ZV5KUqs3qJIwVePuAxO4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e0daae81d9bc3b54360883588a0f41f0f520e24d1a48e9b29e48b11189d1fe4d",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

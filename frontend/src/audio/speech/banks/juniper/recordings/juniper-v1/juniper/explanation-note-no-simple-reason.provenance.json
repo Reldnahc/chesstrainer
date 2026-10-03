@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-note-no-simple-reason",
+      "label": "Explanation note no simple reason",
+      "text": "I find no simple tactical reason in the saved line, and I haven't guessed at a positional one. Walk through it yourself and set the replies side by side."
+    },
+    "takeId": null
+  },
+  "requestHash": "4f88bfe759f8627207114988911958448a7abd40117e49657b60005dcdb5f865",
+  "recordedAt": "2026-10-03T05:59:08.587Z",
+  "sha256": "972a5e19adf98bf75a7da1fd5701f6101cce78738b80cd04f03ec198431573e0",
+  "bytes": 31140,
+  "requestId": "RD1uEdABRAClQ1fUCExw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ec1076ab583e2d26ec34021064fbd2c244529b8b82c06bdea341de779fefc2dc",
+    "bytes": 159704
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

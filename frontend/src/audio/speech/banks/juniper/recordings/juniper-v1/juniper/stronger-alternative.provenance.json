@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "stronger-alternative",
+      "label": "Stronger alternative",
+      "text": "The engine has its eye on a different move. Set it beside this one on the board and watch how the replies change."
+    },
+    "takeId": null
+  },
+  "requestHash": "0e5fb3dd50241762c07ff6da188f64ffa68b061fb35ba4d3fc9a8cb95b95db73",
+  "recordedAt": "2026-10-03T05:56:51.609Z",
+  "sha256": "f9415452a2ebae7a6e31b093dd3be81aa949b83247cfb268f46d850a1f06ead8",
+  "bytes": 23152,
+  "requestId": "OgB9qabYKZQJA7QpF02v",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "886463d4f062dcac5ad835124a6583e7a600cc19028ff76f171ddd9d0eabc30c",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

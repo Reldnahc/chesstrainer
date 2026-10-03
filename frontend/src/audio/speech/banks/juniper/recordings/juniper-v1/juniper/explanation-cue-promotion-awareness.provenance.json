@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-cue-promotion-awareness",
+      "label": "Explanation cue promotion awareness",
+      "text": "Measure how far a pawn has left to promotion, and notice which pawn moves force an answer."
+    },
+    "takeId": null
+  },
+  "requestHash": "6901762b7d18273ce8c7d9cc399501c6bfaa8d402e5397567c82dce8367302df",
+  "recordedAt": "2026-10-03T05:58:56.857Z",
+  "sha256": "42137483a1aa4ddaf3bf697f8bd838eb08a167aa1be504d064b2258dc97382cd",
+  "bytes": 20173,
+  "requestId": "E58GdsQcQAeciWpIbC95",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cf1634c892d7c4a509aeefdc492312db9daeef20b9dbc06ca99028f549934143",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "book-opening-follow-2",
+      "label": "Book opening follow 2",
+      "text": "And this one is known, too."
+    },
+    "takeId": null
+  },
+  "requestHash": "956b615a6710ede43038f03ded01f5e1be9c9d544b48b8787d53c8fed7768184",
+  "recordedAt": "2026-10-03T05:59:43.930Z",
+  "sha256": "429e203d46b0c3660228cc7a6c13d67dfda556c78855436b0cd16fd48e149f33",
+  "bytes": 6624,
+  "requestId": "0vCAnT9Ztc4ovgDm9QJE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bbea182edd7a695b30b2adb6e73616ee5dfa8e003b5c2b510d0342c20bd1a910",
+    "bytes": 31808
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

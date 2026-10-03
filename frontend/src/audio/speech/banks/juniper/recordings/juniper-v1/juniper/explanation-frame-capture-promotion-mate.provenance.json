@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-mate",
+      "label": "Explanation frame capture promotion mate",
+      "text": "Capturing as it goes, the pawn reaches the far edge, promotes, and gives checkmate. Nowhere remains for that king."
+    },
+    "takeId": null
+  },
+  "requestHash": "f7eac53a4e6a0a8f295aad020125d22f4a756d572dd87073aa904e5550533fcb",
+  "recordedAt": "2026-10-03T05:58:04.204Z",
+  "sha256": "11dc092390088c103853aea96027347e29a8734a282bb5243f3e53f3e15416a4",
+  "bytes": 25534,
+  "requestId": "CY2D1YWopGbkwPPlxxOp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a3df9f60659ba6bdabdf28cd7e362ab3ba063663c16de8782e59814e486357f5",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

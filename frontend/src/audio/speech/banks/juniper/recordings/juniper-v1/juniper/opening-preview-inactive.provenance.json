@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "opening-preview-inactive",
+      "label": "Opening preview inactive",
+      "text": "When recalls come due, they'll ask you for your chosen side's moves. A position shared by active studies gets just one card."
+    },
+    "takeId": null
+  },
+  "requestHash": "ef22cd8665331574cf9fa8df95ca046cc3a1dd9a19f59d6e7d0856058ccec56e",
+  "recordedAt": "2026-10-03T05:59:24.108Z",
+  "sha256": "2467b7b3f5add437b4f65f3dfb4fc9a8d5b14c9766f029709bfa083ad2a32485",
+  "bytes": 28072,
+  "requestId": "dR3WnwNfMljfbuO28P4X",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "60c5bb78010c9f91df143a496a3ab2d98c0ab78448045ccd47f464e810a00f5c",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

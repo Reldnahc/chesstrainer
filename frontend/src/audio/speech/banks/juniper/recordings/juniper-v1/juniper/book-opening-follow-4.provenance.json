@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "book-opening-follow-4",
+      "label": "Book opening follow 4",
+      "text": "The book's path carries on under us."
+    },
+    "takeId": null
+  },
+  "requestHash": "021628eceec13810ed86ad0221142fc35cea8ac8cbff474722fa3ef099d1a649",
+  "recordedAt": "2026-10-03T05:59:46.162Z",
+  "sha256": "cc6b209c0d60ea22d2913c3d1e9e19dcc2ecd72f52f065b987f24f6c1179222d",
+  "bytes": 9544,
+  "requestId": "w2xoxF0BpKKPEMEZVHtY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8eaae8e7edc29150b229f67f6c2567ef63f16309ae569d9f9ec445b0a8471e80",
+    "bytes": 46019
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

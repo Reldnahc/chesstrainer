@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-note-curated-authority",
+      "label": "Explanation note curated authority",
+      "text": "What this exercise accepts is set by its saved answers. Other legal moves aren't wrong chess just for being left out."
+    },
+    "takeId": null
+  },
+  "requestHash": "359297b647fc7f77d8fd6ce5789f92f4f3894644ec69ed9b75a5177212dbca5c",
+  "recordedAt": "2026-10-03T05:59:02.974Z",
+  "sha256": "bd119f9283f3fc167f6f7e532fa5da595fe3a93f29f8f3ece33be9205b5042f6",
+  "bytes": 25643,
+  "requestId": "DcMpRVVyyZbN8bY4MfLz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "058ca9351f3f3965d5f71965f7b51682c13b1d055fc8578ff06979502f91160d",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

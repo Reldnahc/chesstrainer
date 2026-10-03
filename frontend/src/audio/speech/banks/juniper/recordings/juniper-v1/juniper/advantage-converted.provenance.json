@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "advantage-converted",
+      "label": "Advantage converted",
+      "text": "The advantage stayed with that side, unbroken, until the recorded win. Walk back through that stretch; it was kept carefully."
+    },
+    "takeId": null
+  },
+  "requestHash": "12d24c1b567c7dea178c012f585a73aa62c92f750eb6431d8827a5e49162358e",
+  "recordedAt": "2026-10-03T05:57:17.198Z",
+  "sha256": "c5fa4cf4489f21ff8d867526f0e6c7f8cb051d121984a68c1c3379ecc42c8229",
+  "bytes": 27257,
+  "requestId": "7H07InAswzQIIjqpRUx6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8594e62116dd4522e063ae1e3d895324194c3520f1d398f8d263d284f49ab609",
+    "bytes": 145911
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

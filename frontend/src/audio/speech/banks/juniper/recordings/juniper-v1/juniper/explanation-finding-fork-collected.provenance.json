@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-finding-fork-collected",
+      "label": "Explanation finding fork collected",
+      "text": "Watch one piece threaten several, then take one. In this example, the side with the fork ends ahead on material."
+    },
+    "takeId": null
+  },
+  "requestHash": "6dd3208f52bc8ced9fce764b2218f2b393a39103a7c46a6fe14a6be1ed0ec4cc",
+  "recordedAt": "2026-10-03T05:58:10.817Z",
+  "sha256": "a5db81a77422b9e44cdf7a271418ff079c9463eb59d36c93b0aaddf84bc49a27",
+  "bytes": 25119,
+  "requestId": "Ya1ZGA27CzZJz2Ermk7g",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6a3b0d33583cfcaa2e3e38c1644875a599722d3ef7335558127f232d197b360b",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

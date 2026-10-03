@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "draw",
+      "label": "Draw",
+      "text": "A draw. Nothing more to win or lose, though the moves along the way still have things to show."
+    },
+    "takeId": null
+  },
+  "requestHash": "aec5457b9fd6510d048595edb2cb3889d6dcbe43599c2da445335c18293f54ca",
+  "recordedAt": "2026-10-03T05:57:23.534Z",
+  "sha256": "b61b97736d407c7a56bd75355d2e599e034c4d0cff84175f393898e4f56d70cb",
+  "bytes": 21032,
+  "requestId": "Aw2by3juhkXnofTWP5cH",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "04c2befc4a83a8ca0967e7b645157977fdd18e19960a65bf378172d5c45478d7",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

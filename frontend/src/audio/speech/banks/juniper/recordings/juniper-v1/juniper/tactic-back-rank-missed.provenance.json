@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "tactic-back-rank-missed",
+      "label": "Tactic back rank missed",
+      "text": "I saw mate on the back rank, with the enemy king fenced in by its own pieces. It went by, unplayed."
+    },
+    "takeId": null
+  },
+  "requestHash": "1760a9aa8a5cba24201ffcc90dda9eb1aa1d0d84895c2cb0a8e03f285a9fe9e6",
+  "recordedAt": "2026-10-03T05:55:22.369Z",
+  "sha256": "4942706dbb901a67ebf0f31e9d97a2c8ad1a83c72c1ad3feada50ced74e322d1",
+  "bytes": 23806,
+  "requestId": "K3tV8IK3bHWDvrgc2ywA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "db23aa907a05fd7979f64f121030d7b6c387a915a56ae85e4ad941ad4b647cf8",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

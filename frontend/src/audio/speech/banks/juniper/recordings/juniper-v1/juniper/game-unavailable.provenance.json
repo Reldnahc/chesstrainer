@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "game-unavailable",
+      "label": "Game unavailable",
+      "text": "The engine hasn't given me enough to explain this position, so I'll stay quiet rather than guess."
+    },
+    "takeId": null
+  },
+  "requestHash": "850f370e5bea95e97d3b3fbe60b51f147204e01c95fac41cd4b25cb25f7ac788",
+  "recordedAt": "2026-10-03T05:59:36.089Z",
+  "sha256": "f4225256d4c32e0d78cddbb27d7fad7c3a25d9214cfc0ddd5e4cdbc897aea1f9",
+  "bytes": 20640,
+  "requestId": "8naAICuDR7T1VE2Xrx1D",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "594ed54339701d8e5bee569ec8ab5556d1ea3c2924d217c34e1c0d95e4b011a4",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

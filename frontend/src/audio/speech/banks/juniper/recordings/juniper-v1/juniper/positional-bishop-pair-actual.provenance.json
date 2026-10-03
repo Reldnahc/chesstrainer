@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "positional-bishop-pair-actual",
+      "label": "Positional bishop pair actual",
+      "text": "One bishop goes, and the pair goes with it. That side can no longer watch both square colors with bishops."
+    },
+    "takeId": null
+  },
+  "requestHash": "0148e1cc945bd9db85e76e102e28ee8d4eb1715ec794786ed03fb3d784a4cc15",
+  "recordedAt": "2026-10-03T05:56:31.628Z",
+  "sha256": "2e9b89d86e87976fc5e0528aef33295afe39b51732907d73192cb78ccec9ed5a",
+  "bytes": 23114,
+  "requestId": "FXDIglHiPaV73MWuYjE1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "723f6177d4ead8e9c6cb8eece78e8a04cdf708876690dcca7caf5f9e1e929a61",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

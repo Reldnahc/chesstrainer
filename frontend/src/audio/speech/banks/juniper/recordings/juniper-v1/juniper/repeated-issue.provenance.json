@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "repeated-issue",
+      "label": "Repeated issue",
+      "text": "I've noticed this issue earlier in this game too. One warning sign, showing twice. Lay the moments next to each other."
+    },
+    "takeId": null
+  },
+  "requestHash": "6d67f10426ec6795e250587641acf8031fd4ce83dc2ffe3f53db3af21af8d5b4",
+  "recordedAt": "2026-10-03T05:57:11.268Z",
+  "sha256": "5b77d0bd18256114a46b8a68aa4b287f2463d884daf0103bbcc90ad3d2d3c827",
+  "bytes": 25212,
+  "requestId": "Z3usmgXAx2AkGmLKS9DT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0cd0184877cc365de240727b56c6c90335e5d645cb2144519be1d9443734ea52",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

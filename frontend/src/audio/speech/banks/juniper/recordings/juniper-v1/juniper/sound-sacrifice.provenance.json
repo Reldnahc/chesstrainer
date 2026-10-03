@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "sound-sacrifice",
+      "label": "Sound sacrifice",
+      "text": "Something is given away on purpose. Take it, and the idea still holds, in the line the engine checked. The offer stands."
+    },
+    "takeId": null
+  },
+  "requestHash": "e04dc9160bb3de84d19bd1723caecaacfb932008ecb6a2f625b773c0c1862e30",
+  "recordedAt": "2026-10-03T05:56:42.495Z",
+  "sha256": "1d8453da73c495a12bfb4dfda14acbf00c5465d7a9dcea952afdb15e00d6c636",
+  "bytes": 27790,
+  "requestId": "ff3ZjmoCUgCbvI87SJMX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c24ed550188cd6b173dc13e0417577f1f1cd42ff8b6d3f5c9b9b8459f0a0bd59",
+    "bytes": 147165
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

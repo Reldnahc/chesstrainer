@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "recovery",
+      "label": "Recovery",
+      "text": "After the earlier setback, there's footing again: a playable position. Breathe; there's a way on."
+    },
+    "takeId": null
+  },
+  "requestHash": "03f25c47fc287fe408e0687689d26c4c1c2a184546579586d9a288ee0513a98e",
+  "recordedAt": "2026-10-03T05:57:04.107Z",
+  "sha256": "417b419604953489a7781ea3a253296807947d7412a59a01ece4602d6f8e4180",
+  "bytes": 22190,
+  "requestId": "d67QMA3bkk7eXCt5fcKz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6f317224c1cab4afc2fadeb24d1c4581517fd97cc145f90f922759fa0f301c8e",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

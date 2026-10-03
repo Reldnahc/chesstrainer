@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "tactic-skewer-missed",
+      "label": "Tactic skewer missed",
+      "text": "A skewer was sitting in a stronger move. Strike the front piece, and what hides behind it is uncovered. That chance drifted past."
+    },
+    "takeId": null
+  },
+  "requestHash": "634c3eb867fbd01158aa70975a9702f671fd204f01a75a4a248741607ac868a2",
+  "recordedAt": "2026-10-03T05:55:12.577Z",
+  "sha256": "cd1e428b6fde73709b9a016a779ec70aa69f91c6081c36ab4d940e6318d9e5a3",
+  "bytes": 28048,
+  "requestId": "9cCgR5BWGdfKLksGmwBN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1d0f48c25f619c19214d22a59dee1faf0a6c71ba3eb926423b69ae63bc01eeef",
+    "bytes": 147165
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

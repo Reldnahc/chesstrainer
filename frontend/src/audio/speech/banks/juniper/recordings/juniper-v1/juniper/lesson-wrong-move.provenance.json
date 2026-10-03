@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "lesson-wrong-move",
+      "label": "Lesson wrong move",
+      "text": "Not quite what this chapter is asking for, I'm afraid. Look again, softly; it's still waiting for you."
+    },
+    "takeId": null
+  },
+  "requestHash": "42db64f22fbd2c9c3cfc71188c1261bab4d18ea6c300fdb0e8e55a73a48b82b9",
+  "recordedAt": "2026-10-03T05:59:53.880Z",
+  "sha256": "4b3b30f318481e5d76ca3ad52881a7387c72a490f281d76c77592b61c5930957",
+  "bytes": 23249,
+  "requestId": "6WkXy2HX9jJS3T4b9Z9r",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "037af4b460eb0144307f881d707e76994537e80e5a707a1edeb24fa0dc7115bf",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

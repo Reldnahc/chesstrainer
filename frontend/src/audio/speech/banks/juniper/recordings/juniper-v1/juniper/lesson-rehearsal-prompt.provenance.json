@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "lesson-rehearsal-prompt",
+      "label": "Lesson rehearsal prompt",
+      "text": "Now it's yours to remember. Show me what you learned for this position."
+    },
+    "takeId": null
+  },
+  "requestHash": "2c5139cd98563e46252df7708d7045f18f931142b74e7a6b14e0b27c8c446b1a",
+  "recordedAt": "2026-10-03T05:59:59.390Z",
+  "sha256": "b35c938a8014a1f85e13c13aee354e5ae633fa86d78fdebfba1c8c2989ea3d65",
+  "bytes": 14648,
+  "requestId": "9wrLd7w5D6NHlSwg7Gcu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "de68d85bec9f7f47b2031ebac94d058c3a06f33a34ba7bd56f0f5716f97f97ae",
+    "bytes": 75276
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

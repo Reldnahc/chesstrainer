@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-move-check",
+      "label": "Explanation frame quiet move check",
+      "text": "Check. The king's trouble comes before every other thought."
+    },
+    "takeId": null
+  },
+  "requestHash": "b41dd5e6c965cd2b7b63b0a77466e2a6a5c806d8d7546e7f7bc336d4b8282737",
+  "recordedAt": "2026-10-03T05:57:48.275Z",
+  "sha256": "c6cc36fba53ae16f8835dc91095bce5f795ba05aa4f3dad7015b07549a2d498a",
+  "bytes": 13472,
+  "requestId": "LQgdfQhD08HboGa5mvFq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "22a601f736f63711d3b0573df095a30c370c6369860e833ab12bf114f23eea35",
+    "bytes": 69007
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

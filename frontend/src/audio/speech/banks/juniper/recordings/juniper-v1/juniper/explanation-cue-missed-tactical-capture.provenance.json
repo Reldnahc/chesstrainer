@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-cue-missed-tactical-capture",
+      "label": "Explanation cue missed tactical capture",
+      "text": "Before a quiet move, let your eyes sweep the board for loose enemy pieces."
+    },
+    "takeId": null
+  },
+  "requestHash": "f877c73087f5b6930f0e906b2687a78827be820ab50ca33cdfdeab1155962af3",
+  "recordedAt": "2026-10-03T05:58:43.721Z",
+  "sha256": "35dd236aba362cb1adeb0555218eab23954e6be5f68bc681b0b552c4cb3c3e48",
+  "bytes": 17386,
+  "requestId": "ugVNpJIuJ8fnCPfKBtXY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "aff8d8580d227f4de479853871a60ce0d1e5e638e839e0735ab4c2eed476ff65",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

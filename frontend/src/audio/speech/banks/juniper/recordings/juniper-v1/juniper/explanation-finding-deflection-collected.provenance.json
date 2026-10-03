@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected",
+      "label": "Explanation finding deflection collected",
+      "text": "The defender is coaxed off its post, and the piece it protected is captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "3c8976d0db64b031fe6b627cc65efd65b827138c3790545b59c66f21a2b77d0b",
+  "recordedAt": "2026-10-03T05:58:27.064Z",
+  "sha256": "07c689a94ca864c2f7eb8100fc3e90c93550e1fddf98a2619f30e4d6d87c6444",
+  "bytes": 15815,
+  "requestId": "zXlUfKJZwRfQgtidBL1V",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "265bd7a571a3dcaf28a4625baee34b653af53f1ce64e6c767247dc6cfde4b482",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

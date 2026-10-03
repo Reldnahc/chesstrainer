@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "srs-summary-material-loss",
+      "label": "Srs summary material loss",
+      "text": "Follow the saved line to its end, and the side that made this move finishes poorer in material than it began."
+    },
+    "takeId": null
+  },
+  "requestHash": "204e31d93257902f91a596f5390647fe647a0b27fd75e322ecb9bf1cd697c38d",
+  "recordedAt": "2026-10-03T05:57:33.621Z",
+  "sha256": "64203fc2bff4b8156e417b079250f7af590868716c86fc917e114abaa1ba621d",
+  "bytes": 22668,
+  "requestId": "6IxyPWGnHdOgVL2zke2Z",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e28f095df268c592a85bbf19a4960913bdfd73eabd9fafa96e6fbd2474f95ba4",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

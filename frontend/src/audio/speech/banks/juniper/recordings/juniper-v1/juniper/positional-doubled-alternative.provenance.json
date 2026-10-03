@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "positional-doubled-alternative",
+      "label": "Positional doubled alternative",
+      "text": "Another move would have doubled a pair of pawns, one behind the other on one file."
+    },
+    "takeId": null
+  },
+  "requestHash": "31899e1cc611cde887c8306d7412b56c6d1cdb176a1a9067544442bff4be396d",
+  "recordedAt": "2026-10-03T05:56:36.501Z",
+  "sha256": "32391cc6c667b5403dfc30a2fdf71fd24951842c45049814de0ac6d099f5cf54",
+  "bytes": 17431,
+  "requestId": "XDiqY3JscFzHAw1OQDr4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fc03f1ebfe8ed67d2ef83267e551011da28c5b38ba764a213581743805a04f40",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

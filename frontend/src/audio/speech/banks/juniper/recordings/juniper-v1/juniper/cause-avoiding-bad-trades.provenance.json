@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "cause-avoiding-bad-trades",
+      "label": "Cause avoiding bad trades",
+      "text": "On its own, the capture looks fine. Then comes the recapture, and it takes something of greater value. Count what comes back, not only what goes."
+    },
+    "takeId": null
+  },
+  "requestHash": "9e41a1c134d07e376771c467884018c6d0b806865953f62303e8fe3336a14a7b",
+  "recordedAt": "2026-10-03T05:55:57.045Z",
+  "sha256": "b16773f23ecf192c14c54e6f42e364acf9ab37fc76c134cb5665740e325ca33e",
+  "bytes": 32053,
+  "requestId": "SqOEnfWG3BZY50oXcS9n",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1785f36ac81147283869ebb25e7444a6a97b29e50a45f6c542c37d9be143a7bc",
+    "bytes": 172661
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

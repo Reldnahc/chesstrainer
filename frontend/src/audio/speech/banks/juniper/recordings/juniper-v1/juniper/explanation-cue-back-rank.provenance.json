@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-cue-back-rank",
+      "label": "Explanation cue back rank",
+      "text": "Before a back-rank defender moves, make sure your king can still breathe."
+    },
+    "takeId": null
+  },
+  "requestHash": "a5f6297efc43d87a8f3ecd792c8eabb0442de45268c169a29a2c79f9fc5c5c43",
+  "recordedAt": "2026-10-03T05:58:55.456Z",
+  "sha256": "4f35e3afe8eb99684fa7040c55a0bee318020c70445d16880199bc4bc917f30d",
+  "bytes": 16690,
+  "requestId": "EG0F7yP19Zin1wGa297N",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cbf6c29f1951f76aa71c28ec1b178e3a8fddd64dee829c896b5948355a2c1038",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

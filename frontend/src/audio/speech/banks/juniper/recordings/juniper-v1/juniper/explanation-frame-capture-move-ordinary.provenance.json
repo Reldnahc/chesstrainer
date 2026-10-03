@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary",
+      "label": "Explanation frame capture move ordinary",
+      "text": "A capture, and the board grows a little emptier."
+    },
+    "takeId": null
+  },
+  "requestHash": "1ec7bf4f1de33910b1c153aa751a143b92ef6c14de3d3fcd3dbe8373b636745d",
+  "recordedAt": "2026-10-03T05:57:56.131Z",
+  "sha256": "d34f584e11dc0f8575477fa52e82ebca0be98efd9a2f14b64d0ea5b77052c404",
+  "bytes": 11204,
+  "requestId": "JSnWU4rCu8jTRmg4HKlt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "af2063cb94bc21a8876a3588e31e8a0342438dfc817f3e4917f5944cda185ae2",
+    "bytes": 56050
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

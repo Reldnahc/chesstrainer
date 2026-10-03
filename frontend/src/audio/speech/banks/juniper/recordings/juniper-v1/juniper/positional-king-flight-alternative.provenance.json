@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "positional-king-flight-alternative",
+      "label": "Positional king flight alternative",
+      "text": "With another move, the king would have found a new legal square to step to. Look at what would have made space."
+    },
+    "takeId": null
+  },
+  "requestHash": "1ddcf804515276eff09d9f20f81f606e19380c2bbc80de4a272b2a11d0ed6107",
+  "recordedAt": "2026-10-03T05:56:25.956Z",
+  "sha256": "37191715c8b37451dd4ce58ed7a1bb6f479c20a44f57e5eccabb81682906e917",
+  "bytes": 21826,
+  "requestId": "9kR2FZOJWnZUTs6TyUDa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d088a349af48cf7f688539f9c7c61dd20c875fd47d6db8b8130a9b5ae9f6bb01",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

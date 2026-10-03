@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "lesson-guided-playback",
+      "label": "Lesson guided playback",
+      "text": "Watch quietly now, while the moves slip across the board by themselves."
+    },
+    "takeId": null
+  },
+  "requestHash": "0232ea561db93360945d55053eb465cbb382291630b7671aa63b3d00ec5df22e",
+  "recordedAt": "2026-10-03T05:59:58.063Z",
+  "sha256": "c7dfd5a9032c232c3d72a1eb9fe50d35b7592955d3828277556ca10692b27f54",
+  "bytes": 15580,
+  "requestId": "hB2Klznq80zc5YUvklNw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9469e654b5be7b7045c2db3a069e7ccb2e9119e580b9603d429fea22c4598a54",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

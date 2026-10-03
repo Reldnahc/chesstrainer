@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "positional-castling-actual",
+      "label": "Positional castling actual",
+      "text": "Castled: the king steps across, and the rook passes over to stand on the king's other side. A quiet pair of steps in a single move."
+    },
+    "takeId": null
+  },
+  "requestHash": "b1f8609a623fbf0ffb62a04eeb9567f73bd6d22c72d7998a2743a857b1a43638",
+  "recordedAt": "2026-10-03T05:56:28.518Z",
+  "sha256": "4b747d40726f976a58e6456e6fca18b7fcb28b9f4a14fbdcef595e382eb01158",
+  "bytes": 29720,
+  "requestId": "8K5rpDhiSnRuqR6rNpIO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f51fc15c90e67796f5ccef9aefa224eb14a369010041b0333697f38a54d183aa",
+    "bytes": 158450
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

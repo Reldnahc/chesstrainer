@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "allowed-mate",
+      "label": "Allowed mate",
+      "text": "Here is the turning point. From here, mate can be forced by the other side. Let's trace the attack back, slowly, to where the defense opened."
+    },
+    "takeId": null
+  },
+  "requestHash": "5722e756abd45559a863acbc6467d5fd198199a1da88f375b0fbf810d692f776",
+  "recordedAt": "2026-10-03T05:56:38.684Z",
+  "sha256": "9b1777eaea56c9d25c315a4b4d8eef8981651e52e9f968ae2cd62377a6ac9ce6",
+  "bytes": 30988,
+  "requestId": "KD6YWQrxSP3mBwC1u5bo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f5ff677d74fa91094da39ac46f3e84fd0d6c704d0440b92d89e0ef28f493ae91",
+    "bytes": 163466
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

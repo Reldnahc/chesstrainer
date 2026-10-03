@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "srs-fallback-relearning",
+      "label": "Srs fallback relearning",
+      "text": "Solved. The relearning mark stays on it for now, and that's all right."
+    },
+    "takeId": null
+  },
+  "requestHash": "7759716a78b98be091faff7c5190ddce0cf1b6fb4c8adafbd5788c9a027dcae6",
+  "recordedAt": "2026-10-03T05:57:44.820Z",
+  "sha256": "96e730e54969c568a6022474d910f92248dc9660ae12159968acb86544fe41cb",
+  "bytes": 14690,
+  "requestId": "dkIQzz0ccfSQTorxh0sl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "71f0f1853006e1191e91ae653730782a0eddb585f7e153f32b1c11e04952fb9f",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

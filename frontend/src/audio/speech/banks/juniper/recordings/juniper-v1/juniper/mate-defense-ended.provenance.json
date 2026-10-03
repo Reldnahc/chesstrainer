@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "mate-defense-ended",
+      "label": "Mate defense ended",
+      "text": "Checkmate, and no legal move is left to the king. It's all right. Let's look back for the moment the defense could have held."
+    },
+    "takeId": null
+  },
+  "requestHash": "3cc57af680572fff86e1711b1e35f5a05cfcdf215f4b473948a10e406d892eb5",
+  "recordedAt": "2026-10-03T05:57:21.939Z",
+  "sha256": "8b9207cf0b650f1e05bbfba68b597a7fc0511f27c1139655be940020fbc1c04f",
+  "bytes": 24493,
+  "requestId": "U3iG6T7WmzpYgx7IlZ7q",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "17581064594b2fc52dba0543d67dbbffc55ca4eee8d168ba52b7f0161a430b9c",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

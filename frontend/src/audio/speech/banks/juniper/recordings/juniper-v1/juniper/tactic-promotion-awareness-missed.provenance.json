@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "tactic-promotion-awareness-missed",
+      "label": "Tactic promotion awareness missed",
+      "text": "A stronger move would have started a pawn toward promotion. Here it stays at home, waiting."
+    },
+    "takeId": null
+  },
+  "requestHash": "924a674c77084f372f9a183ef74d6ec954e4cf5620bbac6ab5900c4d4a5b909a",
+  "recordedAt": "2026-10-03T05:55:27.124Z",
+  "sha256": "a535ea598cf393cc172659b8399bd4d6bb543d5e1cef68a56239a900d78e3843",
+  "bytes": 20624,
+  "requestId": "0BseuGqEQwO4ftnq4n8Y",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "568a02dea45691bd5158051777d047b753b8fbab1150ce8fbec56b1f14aabf0f",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-cue-deflection",
+      "label": "Explanation cue deflection",
+      "text": "Notice when a forcing exchange might coax a defender off a second job."
+    },
+    "takeId": null
+  },
+  "requestHash": "084cb238067852f092de8b9c8f8928d86e80b64f6f5bb8f4d49eb160e5f94f0e",
+  "recordedAt": "2026-10-03T05:59:00.858Z",
+  "sha256": "284ea86468dc4c60c47ac1f9f8db6b23da856b81a48c9d9d8429cf14dacd3a57",
+  "bytes": 15531,
+  "requestId": "sejpZsdnqpXJD4sy6Ada",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2da0e9b1d5277edbe5c9d5877da98ba1f4f57d5915e64d18d280c1c44001982c",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

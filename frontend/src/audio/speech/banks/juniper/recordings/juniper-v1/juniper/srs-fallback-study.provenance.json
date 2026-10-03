@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "srs-fallback-study",
+      "label": "Srs fallback study",
+      "text": "Let the move sit with you a moment before the next position."
+    },
+    "takeId": null
+  },
+  "requestHash": "e3b10ef32dea69b70c91bdf2ac856818b909b403e599a08e212a75300dccb77c",
+  "recordedAt": "2026-10-03T05:57:41.298Z",
+  "sha256": "386b8468ff32e2a15f1568d5d3e6068d4d51a0d2766402516756b87f17e1346f",
+  "bytes": 12084,
+  "requestId": "OwHpZidLAYoHryfweUON",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5fae1c1703064391e31d79e3a9026fdd5b7cdd853c6b4b3228287aa7428deefd",
+    "bytes": 58558
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

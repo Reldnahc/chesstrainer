@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-finding-double-attack-collected",
+      "label": "Explanation finding double attack collected",
+      "text": "One attack from the piece that moves, and a second from the line it opens. Here, it's that second attack that wins its target."
+    },
+    "takeId": null
+  },
+  "requestHash": "bbee0c13911143471b5bd1f9fdbf953d62c520b2e85e1310b6550d51cd7469ce",
+  "recordedAt": "2026-10-03T05:58:33.456Z",
+  "sha256": "3d9f8ce26415291bdebfa30cb3aa51bec660deea0c43e028e107308d372a4aa3",
+  "bytes": 25948,
+  "requestId": "rDAidT6xrKZiijkBWd7T",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "109e04568950d9207044c2f72a22eb97fb08f7658d38bdb3c7c22c1d8fce9210",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

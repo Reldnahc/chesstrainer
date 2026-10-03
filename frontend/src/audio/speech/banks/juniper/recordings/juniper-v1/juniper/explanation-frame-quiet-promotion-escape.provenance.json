@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-promotion-escape",
+      "label": "Explanation frame quiet promotion escape",
+      "text": "The pawn reaches the far edge and promotes, and its own king is out of check because of it."
+    },
+    "takeId": null
+  },
+  "requestHash": "218cee041ca8d1cc49437131613be89f431f5ef6a9637f4d2796e5a999b58a8f",
+  "recordedAt": "2026-10-03T05:57:55.123Z",
+  "sha256": "7479cd8073aa5b8f6a1b4808892888d301bcba840aff4c05f75a5b2e2aa6b106",
+  "bytes": 19002,
+  "requestId": "YuTel6TjrZzvS7FIRFKK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dbaebdb46d112a09355b28ab98505612d01fb5dbcdb55d6b35328a75e761d67a",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

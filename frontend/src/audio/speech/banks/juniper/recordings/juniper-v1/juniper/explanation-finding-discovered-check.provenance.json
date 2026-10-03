@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check",
+      "label": "Explanation finding discovered check",
+      "text": "A piece slips out of the way, and from behind it comes check."
+    },
+    "takeId": null
+  },
+  "requestHash": "74994e7b0b4c71f5efac4087ca120c5a9ae99db99a480c354ce39b3818e56477",
+  "recordedAt": "2026-10-03T05:58:29.812Z",
+  "sha256": "86ef525fa37902bc07cf758811de434f514ca87158e1cff2d4cf5827760d168f",
+  "bytes": 14709,
+  "requestId": "rntT5sZE6f5EaoNwb1pN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b94e2a6441b68d9fe335ac94fa5c80079a80a4c28e9f322d0de8fc97028abf9d",
+    "bytes": 75276
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

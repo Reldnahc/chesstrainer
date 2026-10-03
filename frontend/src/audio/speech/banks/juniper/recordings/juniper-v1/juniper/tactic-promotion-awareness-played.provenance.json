@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "tactic-promotion-awareness-played",
+      "label": "Tactic promotion awareness played",
+      "text": "A pawn is on its way toward the last rank. Promotion is what it's walking toward."
+    },
+    "takeId": null
+  },
+  "requestHash": "aa01b80f922c5d1cbd7df0fbb26f6c4aa5170b2c2bb2c83be7a97f213c574ff8",
+  "recordedAt": "2026-10-03T05:55:23.983Z",
+  "sha256": "650af3d064733cbbadb87bc5cc22dd05b28b7c6b12e0cbe5e5bfbe160464983a",
+  "bytes": 18675,
+  "requestId": "fnVpmRf9zpVKFoTS3dBn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bec3d3a706630d72b05dacf15560caffb39fdff2ec404a157dc38207cc9447d4",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

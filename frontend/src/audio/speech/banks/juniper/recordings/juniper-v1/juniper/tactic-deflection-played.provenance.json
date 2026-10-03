@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "tactic-deflection-played",
+      "label": "Tactic deflection played",
+      "text": "The defender is coaxed off its post, and the thing it was guarding sits alone. A deflection, quietly done."
+    },
+    "takeId": null
+  },
+  "requestHash": "ab4d7ade33b32f5ff88a13518122f183597448b0434f69a2d921d0116f1288c3",
+  "recordedAt": "2026-10-03T05:55:41.188Z",
+  "sha256": "e3887626aefc35d880e2e9fd1b52c33494c9b85845178a552558f232d892b5fa",
+  "bytes": 23743,
+  "requestId": "OR2B5buF2GvJxcPoOoK8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "300ad2eb1e631d60968d3cc08e8ea1c5a106d09d2fa67f0720d13e92f96ecb0a",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

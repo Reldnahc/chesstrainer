@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-cue-pin",
+      "label": "Explanation cue pin",
+      "text": "Every pin hides something behind the pinned piece. Before it moves, find out whether that's your king or a piece worth more."
+    },
+    "takeId": null
+  },
+  "requestHash": "2bd2f4bf38ceff2caa7721e7f04e6b04d5aeeb425c74e3291314d6bdaa70412e",
+  "recordedAt": "2026-10-03T05:58:47.627Z",
+  "sha256": "3867ff4dd6277c4d1e65890ccc4590ebd0646fa51a63656872289925bdf6d8d2",
+  "bytes": 26136,
+  "requestId": "r5LgeTeHWRswgSNZiA2A",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d9ca98b068f3a59772d427948b1ccfdf08a9bcb4e65a4bc1609e8c591e48b792",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

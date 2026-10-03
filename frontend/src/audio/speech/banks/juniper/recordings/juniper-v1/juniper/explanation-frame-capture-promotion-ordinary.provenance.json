@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-ordinary",
+      "label": "Explanation frame capture promotion ordinary",
+      "text": "The pawn takes a piece on its final step and promotes at the far edge."
+    },
+    "takeId": null
+  },
+  "requestHash": "f081f6920545597020aef7313a810979f3ece0b09e97ec7fd8e16ae01eed860f",
+  "recordedAt": "2026-10-03T05:58:00.750Z",
+  "sha256": "dab1fa0afafa3ef55a41fe78107fd7573b2134b45971b474f32bb7d4a311c03d",
+  "bytes": 15346,
+  "requestId": "GHcuP7lzcrJi3FJTHHMj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dc8a4e722b8df26c5be491df3a30dc5a3b8eee4bb483f81a5e5095c2474e4eff",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

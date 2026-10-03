@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "tactic-fork-played",
+      "label": "Tactic fork played",
+      "text": "I watched one piece settle where it touches several targets at once. A fork. Usually only one of them gets away."
+    },
+    "takeId": null
+  },
+  "requestHash": "3fa56ac91bb4a7e74134e81377daa214734dbf081a19573978f3a540d87ae5e6",
+  "recordedAt": "2026-10-03T05:54:56.816Z",
+  "sha256": "7948055799e03383d4bd9a9376ebc8929a98c63089d60ae4838a17fb166a08b5",
+  "bytes": 24720,
+  "requestId": "2U9jUqLhQLyxUztDcHQF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "21c36ab11937a17f4315f6fa90797a9cd5211afc313a2c53ffa6491e4c884ad1",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

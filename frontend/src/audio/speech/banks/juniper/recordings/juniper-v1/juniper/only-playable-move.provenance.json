@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "only-playable-move",
+      "label": "Only playable move",
+      "text": "Of all the moves examined, this was the only one that kept things playable; everything else went down. That was the narrow way, and this move took it."
+    },
+    "takeId": null
+  },
+  "requestHash": "a1f32470b134ea83596cef08c9c6a0a696808c990b3f63056d480b8502759a91",
+  "recordedAt": "2026-10-03T05:56:45.146Z",
+  "sha256": "07fbac5907e8cf0a11de6fcec0604e0a8c4410ca3a90a916aa2ef22b41f14e97",
+  "bytes": 31508,
+  "requestId": "fuP8BX0bfMpmIOps0qxm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bdd5e568dfcd3bdc8f9c70159ed2ffc3c2f960aca6e51fb833216fad730750ab",
+    "bytes": 166391
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

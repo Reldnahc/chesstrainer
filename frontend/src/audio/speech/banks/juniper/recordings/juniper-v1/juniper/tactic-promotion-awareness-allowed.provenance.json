@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "tactic-promotion-awareness-allowed",
+      "label": "Tactic promotion awareness allowed",
+      "text": "One of their pawns has a road to the last rank now. I would keep my eyes on that one."
+    },
+    "takeId": null
+  },
+  "requestHash": "41cee12a9f34fe75f45830d460e1a0a79cade93de520f31ad0af06a794b6507b",
+  "recordedAt": "2026-10-03T05:55:25.532Z",
+  "sha256": "06ddcaef50302564e16c2cdce4c8e74d0f91330d8994c6ce459eb25d3cc4309d",
+  "bytes": 18159,
+  "requestId": "QFlt2xQXnsK2SiPaydDP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "11b4187d393ea132f296b834abb8bb0674f9f0246c82bc4a0add3407eda7838a",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

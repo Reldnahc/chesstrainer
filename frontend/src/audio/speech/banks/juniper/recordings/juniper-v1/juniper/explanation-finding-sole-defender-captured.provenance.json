@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured",
+      "label": "Explanation finding sole defender captured",
+      "text": "First the one defender is captured, and then its piece. Notice how the first capture opens the way for the second."
+    },
+    "takeId": null
+  },
+  "requestHash": "c9a67a974f5b38b5a8cba0a4f4b48195f3cc0f5b712157bb991257a43ed4b1e8",
+  "recordedAt": "2026-10-03T05:58:25.665Z",
+  "sha256": "ec8b7d8ad50784ce9aa5f37c968f21c47fb10064593b4ea5878aea69a9d89933",
+  "bytes": 23964,
+  "requestId": "dGu9tfn0KKwjAhGOXLE8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d5e56a5686adc7107aa524ee07610f089a3c805722f0cd28610e844691cb2e9a",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

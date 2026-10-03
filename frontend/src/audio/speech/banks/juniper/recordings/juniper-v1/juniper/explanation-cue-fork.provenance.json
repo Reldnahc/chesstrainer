@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-cue-fork",
+      "label": "Explanation cue fork",
+      "text": "Among the forcing moves, notice any single piece that could reach two valuable targets."
+    },
+    "takeId": null
+  },
+  "requestHash": "4012fd52f23e9a321a5676457838f0a1884e305a8b9b96fca260ba1a2cd07d82",
+  "recordedAt": "2026-10-03T05:58:45.375Z",
+  "sha256": "a9ac51f70c0d81daee876e25e0503256359789c6beb748bacd44b9c4b93b5872",
+  "bytes": 19643,
+  "requestId": "mk5YNoEtIIUrUNN5qTTL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "32d44825d05990f6ba106b4ca9ddcd937b7c3b007cfe621dfcc887f1c91c2fd7",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

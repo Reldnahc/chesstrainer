@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "tactic-double-attack-missed",
+      "label": "Tactic double attack missed",
+      "text": "Two threats together were possible with a stronger move. Here the double attack waits unplayed."
+    },
+    "takeId": null
+  },
+  "requestHash": "f51bdb76dbfa6292682605fd4bf379c4bba8092225dd95526c314c755ac2617f",
+  "recordedAt": "2026-10-03T05:55:39.261Z",
+  "sha256": "bb17c1e542cdfcd81565f9c7daae1baba9e34d827253d5e09fc1fe67d6aa22b3",
+  "bytes": 21313,
+  "requestId": "4AssGfOj04rOjJiF5TJO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4de81e6d4f1e2fda5d845222884f9b58895a915dcc8d97de614743cdc0294f5c",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

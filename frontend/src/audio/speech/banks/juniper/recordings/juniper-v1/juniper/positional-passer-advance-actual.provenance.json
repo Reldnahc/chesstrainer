@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "positional-passer-advance-actual",
+      "label": "Positional passer advance actual",
+      "text": "On walks the passed pawn, a square nearer. I'd keep watching it."
+    },
+    "takeId": null
+  },
+  "requestHash": "d3de1f4ad6f459d8b27997382a3d27ff6ba67e42fba56b09d3b3de6ea8d1a093",
+  "recordedAt": "2026-10-03T05:56:12.273Z",
+  "sha256": "cc855ec9756bc77fd4e0404345f29d8ce7ac96c9758b16d682dbb7a001a0a0e4",
+  "bytes": 15453,
+  "requestId": "mfn90pRPSXzBR19RtC2k",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dde12b76833999ae8c0ae9b10f15b70ecd6a82f828f13afcfea16110541f9caa",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

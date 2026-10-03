@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-move-ordinary",
+      "label": "Explanation frame quiet move ordinary",
+      "text": "One more move. Notice what shifts."
+    },
+    "takeId": null
+  },
+  "requestHash": "e27404791c693a006d81157f8be3f06304bf7fc8af492f96d85d4d184a75de06",
+  "recordedAt": "2026-10-03T05:57:47.123Z",
+  "sha256": "2ada8d121998d6ad9643269dc14d5b73103bdb26868b16a7d48c65715563f88f",
+  "bytes": 10321,
+  "requestId": "7d70wLnM0g8PtJd7cach",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1095bc503a2083c8b46e30ae35253c439bc85dfdb0c71e9f247e270087201fb3",
+    "bytes": 53542
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

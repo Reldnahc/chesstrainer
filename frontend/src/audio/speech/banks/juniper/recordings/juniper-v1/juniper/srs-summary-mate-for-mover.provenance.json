@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "srs-summary-mate-for-mover",
+      "label": "Srs summary mate for mover",
+      "text": "There's a forced checkmate in the saved engine analysis, belonging to the side that made this move."
+    },
+    "takeId": null
+  },
+  "requestHash": "cd7e511a76d23de443e56d1aa09e411824f1cb7362dab62781df0a40e4b1342a",
+  "recordedAt": "2026-10-03T05:57:28.719Z",
+  "sha256": "04951b857ff019752cd19f8f6c2a7380e7e8618a9a85c195f572b9e52e8e7ee6",
+  "bytes": 19343,
+  "requestId": "Am8XgFMeOfR8SnRwHJAV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5de80c4f0603b227ed1c189e14fe03ef53422bd43116185fad9d77c15ca8d76d",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}
