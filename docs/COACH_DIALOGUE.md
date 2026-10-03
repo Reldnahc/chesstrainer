@@ -86,8 +86,12 @@ domain shift, missing ratings/history and incomplete policy retain uncertainty;
 estimates are never presented as measured player success rates. Provider naming
 falls back generically rather than calling a future provider Maia.
 
-The badge, popup and any Maia sentence in the bubble are written only: coaches
-never speak a Maia reading (owner decision, 2026-10-02).
+The badge, popup and any Maia sentence in the written utterance are written only:
+coaches never speak a Maia reading (owner decision, 2026-10-02). Because the
+bubble now shows the coach's spoken line whenever one exists (see
+[Bubble text is the spoken line](#bubble-text-is-the-spoken-line)), the written
+Maia sentence usually leaves the bubble; the popup always renders it through
+`DialogueText` with its explanation, so it stays one tap away.
 
 The popup is only a rendering of the existing intent and stored report. Changing
 coaches keeps its intent/evidence identity and performs no extra engine/model
@@ -258,8 +262,9 @@ installed. Use the live coach and voice registries rather than assuming the two
 pilot coaches are the entire cast or hard-coding their current recording count.
 
 A recorded passage teaches the supported idea without reciting arbitrary SAN,
-square names, player names, opening names or evaluation numbers. The bubble and
-board keep those precise details. This is intentional editorial compression, not
+square names, player names, opening names or evaluation numbers. The game review
+moves line, the board, Show why and written course content keep those precise
+details. This is intentional editorial compression, not
 permission to lose the responsible side, make an unplayed alternative factual,
 upgrade a possible resource to a forced result, or turn a human-model estimate
 into chess truth. Lesson teaching text stays written; only the nine generic
@@ -273,6 +278,37 @@ is Maia stays silent. The Maia badge supplies nothing to speech, and
 evidence can update text, and so the bubble's objective recording for the next
 explicit playback, but does not authorize a second automatic spoken response for
 the same move.
+
+### Bubble text is the spoken line
+
+Owner decision (2026-10-03, "option 1"): the speech bubble shows what the coach
+**says**, not the separately written template. The written utterance is still
+rendered from claims and still drives selection and validation; only the
+displayed text changes. `useSpokenText(coachId, recordingId)`
+(`audio/speech/spokenText.ts`) returns the coach's recorded manifest line for the
+selected meaning, otherwise that coach's own `scripts.json` line (a sequence
+needs every part). It works with voice on or off and loads each coach's script
+lazily, returning null while loading or when there is no line, so the written
+text shows instead.
+
+- **Game review:** the move bubble shows the spoken line for the same recording
+  ID used for playback (a recorded coach's exact clip, including the greeting) or,
+  for a text-only coach, its script line for the selected meaning. No meaning
+  (pending, no report, legacy prose, a Maia-only bubble) keeps the written text.
+  Show why keeps the written detailed explanation. While the spoken line shows,
+  a moves line beneath it carries the concrete facts from report/position data
+  only: the opening name (`report.opening`), `<Side> replies <SAN>` for a
+  non-terminal position with an `immediate_reply`, and ", forced mate" only when an
+  `allowed_mate` claim proves it. It wraps beside the Maia chip, outside the
+  scrolling message.
+- **Practice:** puzzles, opening recall, the opening line preview and Due's
+  generic states (cold, retry prompt, grading error, fallback completion) show
+  the spoken line for their selected recording. Lessons replace only the coach's
+  own sentences (wrong move, correct move outside a decision, guided playback,
+  chapter complete, error). Step text, hints, authored decision feedback, game
+  notes and a revealed move's SAN are course content and stay written, as do
+  Due frame annotations, explanation summaries and every Show why passage, which
+  name concrete moves the spoken lines leave out.
 
 `useCoachSpeech` consumes navigation/attempt event identity separately from
 utterance identity. Hydration, refinement, coach selection and completion of an

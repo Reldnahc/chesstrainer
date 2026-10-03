@@ -162,7 +162,11 @@ Still keeps the portrait still without muting audio.
 
 Audio summarizes the supported idea while exact moves, squares, scores, names and
 historical counts stay written. It is not a verbatim reading of every paragraph.
-Unsupported or freeform text remains written. Coaches never speak a Maia
+Unsupported or freeform text remains written. The bubble shows what the coach
+says: the selected coach's spoken line (its recording, or its script for a
+text-only coach) replaces the written sentence whenever one exists, with voice on
+or off, and game review adds a moves line for the concrete reply and opening; see
+[Bubble text is the spoken line](COACH_DIALOGUE.md#bubble-text-is-the-spoken-line). Coaches never speak a Maia
 (human-move model) reading: the Maia badge, its popup and the written Maia sentence
 stay, but no Maia recording exists or is selected (owner decision, 2026-10-02).
 Lessons voice only nine generic
@@ -275,8 +279,11 @@ artwork, animation and dialogue workflow.
   the opponent; an unplayed alternative is hypothetical; a searched mating route
   is not an already completed checkmate. Human-model estimates must never become
   engine evaluation, population percentages or promises of survival.
-- Do not write Maia lines. Human-move model readings stay written in the bubble
-  and the Maia popup; no bank records them alone or combined with another meaning.
+- Do not write Maia lines. Human-move model readings stay written in the Maia
+  popup; no bank records them alone or combined with another meaning.
+- Scripts are on-screen text as well as speech: the bubble shows a coach's
+  recorded line, or its `scripts.json` line when it has no recording, so a script
+  must read well in the bubble at phone width.
 - Inspect an opening sequence, not just an isolated Book clip. Recognition and
   follow-on variants should feel varied without claiming a Book move is best or
   safe. Sequence wording requires the existing verified prefix; invented history
@@ -357,7 +364,7 @@ the greeting with that move's own line. The greeting is the mainline start's own
 line, so returning there shows and speaks it again like any other position. While
 the greeting is the active line, the bubble shows its text. It is written for all 30 coaches and recorded for
 Walter, Rivet, Winston, Button and Arjun; until a bank has its take, that coach stays
-silent there and keeps its own text.
+silent there and the bubble shows its script's greeting.
 Opening the Maia insight popover neither plays nor consumes the main coach's
 pending automatic opportunity. Late Maia
 evidence can update visible text (and so the bubble's objective recording) without
