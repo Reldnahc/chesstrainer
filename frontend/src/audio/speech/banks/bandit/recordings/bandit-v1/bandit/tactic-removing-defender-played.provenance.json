@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played",
+      "label": "Tactic removing defender played",
+      "text": "Go after the defender first. Once it's gone, whatever it was guarding has lost that guard. Not elegant, just effective."
+    },
+    "takeId": null
+  },
+  "requestHash": "aea81aeed0bf8c6b815be5bc08dee8ca361a45918e656e4cef4ba4f3f12f394d",
+  "recordedAt": "2026-10-03T05:09:51.542Z",
+  "sha256": "90b7fb2f0ed7b475cdfe6ecb24e51b51a90268a61601963cf77d4989cb3b5556",
+  "bytes": 26700,
+  "requestId": "PuGbblJAIqAiSKmx3CCK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "69ada60198a71922652d0308e12803f896304d746e4e3de8cec3c8a0bd6f3e2a",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

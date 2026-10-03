@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "cause-abandoned-defender",
+      "label": "Cause abandoned defender",
+      "text": "This move walks off with the only defender that was doing any work. Now the other side doesn't need a clever idea; they can just take what got left behind."
+    },
+    "takeId": null
+  },
+  "requestHash": "147c4d9ee6cd5728f6f9ff21fe0f0eb48cecfec4e9de68ad41955151f99d94fb",
+  "recordedAt": "2026-10-03T05:10:33.706Z",
+  "sha256": "e7695b0e81b6be01a567030286befa103ad5bfb4740cda0ae59c53754d5e7b81",
+  "bytes": 29686,
+  "requestId": "j6JbayoridXBgTPPDLvr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2211fc68d5400def4f913d4ed1134032f1bfee1ea26e61d6040ee085a7bb5c16",
+    "bytes": 149673
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

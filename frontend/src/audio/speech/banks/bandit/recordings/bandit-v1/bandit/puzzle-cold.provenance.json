@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "puzzle-cold",
+      "label": "Puzzle cold",
+      "text": "Take your time and work out the line before you move."
+    },
+    "takeId": null
+  },
+  "requestHash": "98712043e3f2c0fa40bb52547b88b02092e062ea47b20ca75e417411008f4f01",
+  "recordedAt": "2026-10-03T05:14:13.910Z",
+  "sha256": "56b8cd8e515dafcd61f0e07f4212a76464b72d31462e24ee2abc6f34d94d83b5",
+  "bytes": 11512,
+  "requestId": "q0Wu5HJ8A5K2LPSHoNAi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "480af096675036320fa0506df297a01286e3857d885a6d5ed32914fe5f250e1b",
+    "bytes": 54796
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

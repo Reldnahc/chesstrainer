@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "explanation-cue-hanging-piece",
+      "label": "Explanation cue hanging piece",
+      "text": "Before moving, look for anything of yours that could be grabbed without a useful recapture."
+    },
+    "takeId": null
+  },
+  "requestHash": "0e91138e5bb645724d58c92886137b83b68cbd28d6004ab0c17cfd9d89844d8b",
+  "recordedAt": "2026-10-03T05:13:22.839Z",
+  "sha256": "b3838b9ea2f2b63640d0755014991130b043783b1e60c76835ee3e0ddd7345fc",
+  "bytes": 18593,
+  "requestId": "2cED414564G3ScjncHq7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b92a1ac2ba6d0c2aad92b2aff221bcb51c81c296dece2d0ab1c76654b282645a",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

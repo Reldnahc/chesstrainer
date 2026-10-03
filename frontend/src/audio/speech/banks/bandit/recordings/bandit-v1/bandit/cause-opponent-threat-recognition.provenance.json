@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "cause-opponent-threat-recognition",
+      "label": "Cause opponent threat recognition",
+      "text": "There was a threat in the opponent's last move, and this move ignores it. Now a piece is just sitting there for them to take."
+    },
+    "takeId": null
+  },
+  "requestHash": "5b8da3ff64658bbd875d33108ef991c9ad6d024fffe634d76281144548e8404d",
+  "recordedAt": "2026-10-03T05:10:35.520Z",
+  "sha256": "52e3c0539af9be92dd345cdaf12c4a4878b0ee6d71eee02d6e4ea57f723ad586",
+  "bytes": 24054,
+  "requestId": "D2F24cBO5PsbkOkrUEwa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a468295cca9917dc4b1a0bf5c8f7a718ad50ffd6e49ea0e03e424e0f6f99883a",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

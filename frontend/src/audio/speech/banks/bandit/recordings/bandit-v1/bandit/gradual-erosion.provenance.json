@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "gradual-erosion",
+      "label": "Gradual erosion",
+      "text": "One more small giveaway. None of them was huge alone, but they've added up to a worse position, so look at the whole run."
+    },
+    "takeId": null
+  },
+  "requestHash": "6b263c9edfb2211f34901796ce2e86802a1a88afcab8a22251ae3fe151a9e328",
+  "recordedAt": "2026-10-03T05:11:56.437Z",
+  "sha256": "ad63d6a168978aa863e3869c4a4b445503ed152b7bab2fa3d6c17546e51da3c7",
+  "bytes": 25664,
+  "requestId": "mbIKH37U5Ngh7rdjXi5q",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3499c373c903e697727318c606121255d77ddebfac5b2875ca9f232eef763f77",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

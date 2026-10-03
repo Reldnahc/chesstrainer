@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-capture",
+      "label": "Explanation finding discovered capture",
+      "text": "The blocker moves, a line opens, and the piece behind it makes the capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "fa49ccdb32711d02deb261195b0c83f666770bcc2b8bb7fb4eb6bc3b282da922",
+  "recordedAt": "2026-10-03T05:13:09.710Z",
+  "sha256": "2a1f108051753279676c6e15b566fee2006cad88b7439e31e86d5bb974edf7f6",
+  "bytes": 16336,
+  "requestId": "ICecuHVxCEj3YhXsaqiO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "acc16189f552a8bad5a6d58d32c7dd92c664a3dd8c9158252def3f648527018e",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

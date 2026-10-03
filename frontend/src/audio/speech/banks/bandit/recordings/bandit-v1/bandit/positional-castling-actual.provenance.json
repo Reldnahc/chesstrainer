@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "positional-castling-actual",
+      "label": "Positional castling actual",
+      "text": "King over, rook along, all in one move. Castling is about as efficient as chess gets."
+    },
+    "takeId": null
+  },
+  "requestHash": "081d80a31365b8698e8f9332cf08a7255c85d91a48f2c9d4c4bc7f74eb928f46",
+  "recordedAt": "2026-10-03T05:11:10.716Z",
+  "sha256": "cf0d5373bd28f92483cc96be75ae3a319b76490b475f98bba699f568cb51ec51",
+  "bytes": 22172,
+  "requestId": "RYBKb7SbCDbOo6nqysqu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7ba3cde394ad393a202d5927dd4a89eefaeffee03243107db7ceb00d10188c68",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

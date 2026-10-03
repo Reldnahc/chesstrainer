@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "advantage-converted",
+      "label": "Advantage converted",
+      "text": "Nobody gave the advantage back on the way to the win. That stretch is worth a look, to see how it was kept."
+    },
+    "takeId": null
+  },
+  "requestHash": "c36eef1ead82a9e7ada7c832ace57159aa8fcbded3b9850e4e3499ef9be812f6",
+  "recordedAt": "2026-10-03T05:11:58.521Z",
+  "sha256": "cbf2506e0e9385c1477b74349743b2596431ebf75ca204ac4d75b017512356a2",
+  "bytes": 20918,
+  "requestId": "ynvikLYgmhfrobUXVGYM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d2d5bca36cea5d249ac28774bf87eb3fa97172582ba11b1ac218802f18055fff",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

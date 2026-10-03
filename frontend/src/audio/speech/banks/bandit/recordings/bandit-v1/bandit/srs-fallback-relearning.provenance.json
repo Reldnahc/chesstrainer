@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "srs-fallback-relearning",
+      "label": "Srs fallback relearning",
+      "text": "That's solved, and the recall stays on the relearning list."
+    },
+    "takeId": null
+  },
+  "requestHash": "ddd3f9ee8dc1d23185059cff61e4a82803ffad88bd93e261c727c3eb21812680",
+  "recordedAt": "2026-10-03T05:12:27.294Z",
+  "sha256": "39ee5e482f028d615dd9a3e7fd72803da30de5f96a66345cd18c83cf741bd9b1",
+  "bytes": 12375,
+  "requestId": "J1TwI8aR3vEqhcqbkZpA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "493e66995546b2b584b03611a0e94b6382ddd75d0ca936d49abb0bb57332ec70",
+    "bytes": 59812
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

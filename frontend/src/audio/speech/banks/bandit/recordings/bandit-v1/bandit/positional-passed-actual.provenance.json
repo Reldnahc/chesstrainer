@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "positional-passed-actual",
+      "label": "Positional passed actual",
+      "text": "Well, would you look at that: a passed pawn. Nothing of the enemy's stands in its way, on its own file or the two beside it. Whoever owns that is holding something worth watching."
+    },
+    "takeId": null
+  },
+  "requestHash": "34632b6be30260776baf2837ac0b705959b20e74a8d99c8051c7b8edc05e12c2",
+  "recordedAt": "2026-10-03T05:10:50.240Z",
+  "sha256": "079f797f9fa21fc258204b8690c972cbf69b515b94b81314eb8c109598177ec8",
+  "bytes": 36265,
+  "requestId": "qvIULihEYJaWWlXn0wz5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "69f57df3c4b4c54fca40377c10e19e640293c82fea4881cf4ffa3745e6067906",
+    "bytes": 188125
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

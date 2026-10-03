@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected",
+      "label": "Explanation finding skewer collected",
+      "text": "The front piece moves out of the way, and that leaves the one behind it to be captured on the same line."
+    },
+    "takeId": null
+  },
+  "requestHash": "487838262f218e35106157a4039fe90ba69b92cec450cdaa41303deed94a48bf",
+  "recordedAt": "2026-10-03T05:13:03.227Z",
+  "sha256": "b1559b86abea64293202b1846f3ddab813ac086b588298a5af5a9f00f98b43ff",
+  "bytes": 19217,
+  "requestId": "inyweFOfLdqhkh3KSTuC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "30c391d8d8909bafd1846321ee8b924af711585c0e5f3205294db60a41d3ee76",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

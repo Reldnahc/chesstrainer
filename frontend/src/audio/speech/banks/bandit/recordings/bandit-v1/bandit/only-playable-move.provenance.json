@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "only-playable-move",
+      "label": "Only playable move",
+      "text": "One way out, and this move found it. It's the only move we checked that kept the position playable; the rest were losing."
+    },
+    "takeId": null
+  },
+  "requestHash": "090862e18f2d6de60e5e5838cbd20211ee2748ce22d379b82776036a0f855c20",
+  "recordedAt": "2026-10-03T05:11:25.806Z",
+  "sha256": "d1ca42f41773c4f3d738773fff9f0ff3dacf481fb8ab48f31b601e1d1a7fffdc",
+  "bytes": 25450,
+  "requestId": "ssHUmxVqvUpN0BMekcoa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "de91fd7d30de2a9253cfb380eb6de554f6a9775ac6b35b7ef0dac899dee08663",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

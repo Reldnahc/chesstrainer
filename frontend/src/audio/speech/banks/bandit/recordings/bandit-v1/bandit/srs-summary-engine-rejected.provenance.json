@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "srs-summary-engine-rejected",
+      "label": "Srs summary engine rejected",
+      "text": "The exercise doesn't accept this move, and nothing in the moves shown gives a clear tactical reason. Have another look."
+    },
+    "takeId": null
+  },
+  "requestHash": "538948b2457df9ffb184e9c7ff8e1010bf99fe79bb0b513f66c88b9bd87821fa",
+  "recordedAt": "2026-10-03T05:12:19.172Z",
+  "sha256": "87c5bbdad30e5c458cab95b5a5fdd6e2ed74600fc5e83b2c9de25e9acfac1d05",
+  "bytes": 23300,
+  "requestId": "npSuwrFvF8ZnZfxsyy2A",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b12ef428039ac3029bca35d7ade2f1c4bc16df17e0a827e7d7af4d71370b1011",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

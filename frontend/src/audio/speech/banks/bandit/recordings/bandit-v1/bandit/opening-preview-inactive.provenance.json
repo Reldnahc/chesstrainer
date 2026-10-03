@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "opening-preview-inactive",
+      "label": "Opening preview inactive",
+      "text": "When a recall's scheduled, it wants the moves of the side you chose. And a position that turns up in several active studies gets just one card."
+    },
+    "takeId": null
+  },
+  "requestHash": "ef5d886a86fe1d45e2d0ddaea75ca91e722dcd2698392736f0d8e07064c2fdbd",
+  "recordedAt": "2026-10-03T05:14:04.607Z",
+  "sha256": "999d24eedf85dfe6c7c953f6c47674c4f8f1f870c8147338474128f25344d5cb",
+  "bytes": 28661,
+  "requestId": "ryOZN9dyStDksHLzUhtg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "21d87f13a2dab3a2bc6119126501748e3423a43242bac5ed2a63a4acb7a705ad",
+    "bytes": 142986
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed",
+      "label": "Tactic removing defender missed",
+      "text": "There was a defender to capture with another move, and what it guarded would've lost that protection. The guard keeps its post after this move."
+    },
+    "takeId": null
+  },
+  "requestHash": "4099b810fac4a93e247fc4e35ed910ae8512717b305282936e2d9ce54d0fe82a",
+  "recordedAt": "2026-10-03T05:09:55.684Z",
+  "sha256": "efece997a5afe990a7c69523c70fcd20e3024c19e460340fdedeb5b1f774dfcd",
+  "bytes": 26926,
+  "requestId": "dnC1xTbwWFrcQhW7XOAZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5d2e56ea04540cf184a8f207acbb18fdedfd05b105e2809a6adeecc5e107bde8",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

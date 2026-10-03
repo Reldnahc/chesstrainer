@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "positional-king-flight-alternative",
+      "label": "Positional king flight alternative",
+      "text": "Another move would've opened a new square for the king. Spot what would've had to move to make that room."
+    },
+    "takeId": null
+  },
+  "requestHash": "fa9e83e455b9ccc825c34c01dbd9beef9a69cfd5c7052b1151d361d56e51e4c0",
+  "recordedAt": "2026-10-03T05:11:09.071Z",
+  "sha256": "3abcd2d080ad47ad811014bb26c19f2ef90954f381dad82a0a1ec0e1e3e03f25",
+  "bytes": 21042,
+  "requestId": "vQTTAS4XDFXFjvcBXK8G",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2df69ed3f84fbb0cc92b6383f1b78d7e76edd2ca85c8d8eb1f5aaf84519108c9",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "positional-rook-semi-open-alternative",
+      "label": "Positional rook semi open alternative",
+      "text": "A different move would've found the rook a semi-open file, clear of its own pawns, with an enemy one to aim at."
+    },
+    "takeId": null
+  },
+  "requestHash": "f6661dae8aae6fb7bfca33d5ac5868c4c20f186e7728d70ef3144580ad881072",
+  "recordedAt": "2026-10-03T05:10:47.808Z",
+  "sha256": "9b431d969c4f2abe1e7dd9b5eab8c1b014343bcf5d5c47ea2dc48df52fd44404",
+  "bytes": 22380,
+  "requestId": "s33jqK40bBYI9oCsCB7k",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f2ea760c83f74de1a6c67e0f526ff3f79ce1471d25faf3035ee46d84dfe44096",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

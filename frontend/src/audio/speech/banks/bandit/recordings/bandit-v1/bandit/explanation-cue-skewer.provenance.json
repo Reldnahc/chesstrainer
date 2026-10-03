@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "explanation-cue-skewer",
+      "label": "Explanation cue skewer",
+      "text": "When you attack something on a line, check what valuable piece might be standing behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "4838abcb5883d71475fde8bb7f7fd42cb82fa70a690b831d9ad17d87854a45e6",
+  "recordedAt": "2026-10-03T05:13:28.491Z",
+  "sha256": "4490b0ededd34c3a26833a140beff49e4ab513baa53cbf92a53750c5f7629bac",
+  "bytes": 17938,
+  "requestId": "5hZmM1ATxv484VS0dX0d",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a0b2dc5019df77e8aab5ce35d9ae47318e98270f797796431d73aff8b477d6d7",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

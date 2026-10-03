@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "explanation-cue-back-rank",
+      "label": "Explanation cue back rank",
+      "text": "Before you move a back-rank defender, make sure your king still has a way out."
+    },
+    "takeId": null
+  },
+  "requestHash": "066063eb48f6f72fd595d5fba98ce7105521ef1aa555a9a5ab26233a97bb77eb",
+  "recordedAt": "2026-10-03T05:13:34.510Z",
+  "sha256": "cf5695dff9f1b67a90e45af5567fc661bcf753ddd66531b74663374a4288ee0a",
+  "bytes": 16536,
+  "requestId": "BzIT6bNz9dGMVWfOIevl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c7b48cbe56494530255cb447ac24ef12be0df0199a2c9fa0710509842c1bf5e9",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

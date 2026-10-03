@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "explanation-finding-double-attack-collected",
+      "label": "Explanation finding double attack collected",
+      "text": "The first piece attacks and clears the way for another. It's the other piece that collects in this example."
+    },
+    "takeId": null
+  },
+  "requestHash": "208d26fe5ce2d0f2845194dfb2518f14a5b77bd3bf75bee1947d21702818fb97",
+  "recordedAt": "2026-10-03T05:13:14.045Z",
+  "sha256": "419ecd964e3d9c153d3e12197bb80c6d22cd6ae60ff92d690004dda3db57dd82",
+  "bytes": 20852,
+  "requestId": "fElmyV3bzlX2hUcyjHST",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4768d14adcaa2d4a69fb2e5ecd50cc19a5929e5562cf4e54962a196df78baa8c",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "book-opening-follow-2",
+      "label": "Book opening follow 2",
+      "text": "Another one the book had ready."
+    },
+    "takeId": null
+  },
+  "requestHash": "6a6b15ccd6e30b4484e464e5aab60c29b8fb4d4ef964d56806a0823abf73789c",
+  "recordedAt": "2026-10-03T05:14:22.971Z",
+  "sha256": "9221ddce6ddcc727264b56f99f878df4c54656c19498ae80891a06fcdafb7ede",
+  "bytes": 6949,
+  "requestId": "k9IQtd8fq6uCrbDmvFRv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ec2f2959b81dfbe198db0806a0231bda6b025c16106196ff55793f730345e978",
+    "bytes": 31808
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

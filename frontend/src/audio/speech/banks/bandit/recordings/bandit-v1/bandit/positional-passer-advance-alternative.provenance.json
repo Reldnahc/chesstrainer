@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "positional-passer-advance-alternative",
+      "label": "Positional passer advance alternative",
+      "text": "Another move would've pushed the passed pawn further up the board. Picture where it could've ended up."
+    },
+    "takeId": null
+  },
+  "requestHash": "32adc8d4413d87408b917bcbd40f89774ea50ef5e107172f2b99b52c1b71bc91",
+  "recordedAt": "2026-10-03T05:10:56.130Z",
+  "sha256": "76392429d2d1526cc623a74019f6ed4e7117f30c0992f4b28f1e12f7e49e729b",
+  "bytes": 18406,
+  "requestId": "M184AUvMayfW7GYsJ9mv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c99a9e7b43aa9ceae6e871d8aa50736bae5110f43855f710bcf7031c154da230",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-escape",
+      "label": "Explanation frame capture move escape",
+      "text": "The king escapes check, and a piece gets taken in the process."
+    },
+    "takeId": null
+  },
+  "requestHash": "0358e9936817207e49085911fe327dd118310cdfd810d162b83a7f4ca448e217",
+  "recordedAt": "2026-10-03T05:12:41.903Z",
+  "sha256": "d5508ca4071ec44eafbd28978d5a396c007411a7b095dbbde984e5ab44dba4bd",
+  "bytes": 13473,
+  "requestId": "TKsozcJfkBNoAS51Jz4N",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5db8913b3b36a8b43d64c59878fde3481c74f5f850a4eb5382f0dd4dff1ef136",
+    "bytes": 66499
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

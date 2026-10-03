@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "srs-fallback-study",
+      "label": "Srs fallback study",
+      "text": "Give the move a once-over, then head to the next position."
+    },
+    "takeId": null
+  },
+  "requestHash": "65804766ac8838b5ae1d149b4ee31d1f11c68b090b30385e65aac46eb22917a5",
+  "recordedAt": "2026-10-03T05:12:23.627Z",
+  "sha256": "6a0befdb1acb9c8a9d34876b0362c6297bf6d6133ad9a53ccd1cba9c304d3f7a",
+  "bytes": 12466,
+  "requestId": "gxpFBhwhKpmIg3AjA0TX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b9b46164107ebc71f933cabefcb0d1573ee585bc0c0c08d3966580dcdce1cd1a",
+    "bytes": 61066
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "explanation-finding-pin-defenders-no-recapture",
+      "label": "Explanation finding pin defenders no recapture",
+      "text": "Nobody can recapture, because the defenders are pinned to their king. So the capture stands, and the line shown comes out ahead on material."
+    },
+    "takeId": null
+  },
+  "requestHash": "c7b4d82fed62df73da6be801c82ed34059d4bf62a5f38d466a74dd2386ee91e0",
+  "recordedAt": "2026-10-03T05:12:59.971Z",
+  "sha256": "9f4ab63cd98d8de7c7e351f55faccf79c06f82188172aa6e78974b65c9e19c71",
+  "bytes": 27521,
+  "requestId": "WKsaNywbgjvc6J5g6Tsg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "39605a7f0040a7647a86742667a8f53c87041438c76163c0da41d8110d09da45",
+    "bytes": 137970
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "sound-sacrifice",
+      "label": "Sound sacrifice",
+      "text": "Material handed over on purpose, and in the line we checked, taking it doesn't break the idea. Sometimes a good deal starts with a giveaway."
+    },
+    "takeId": null
+  },
+  "requestHash": "0e07fe92c468aa075c23775d222b543b5d8a3118cd95942c4b6440a67556a538",
+  "recordedAt": "2026-10-03T05:11:23.573Z",
+  "sha256": "59457eee23ee9904391c6b5d0568b2411651a1249a4cd78d9881d5fb441f3cf7",
+  "bytes": 28920,
+  "requestId": "XbdgQX7Rh5HZwLBrQXa2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2b06ec6fea479a507a591ceff7f7ab268abf2b208f7cf0b83bf339f2fa0adf51",
+    "bytes": 145911
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

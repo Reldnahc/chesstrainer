@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-move-ordinary",
+      "label": "Explanation frame quiet move ordinary",
+      "text": "Next one up. Spot the difference it makes."
+    },
+    "takeId": null
+  },
+  "requestHash": "1714927286d9be0932b03b331364359ac35f0675f183d5a6fafa8d9d27dd3564",
+  "recordedAt": "2026-10-03T05:12:29.756Z",
+  "sha256": "1f4b238e413f7cf7188687873056b46e36b3d903aefd5d203ebb2543357bd8f6",
+  "bytes": 10348,
+  "requestId": "mHstJ316xYVMccLX259u",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "776df4c9c85c70acf2672a08cfc02eb03ab45d2b6a0aede2791309c06c6457c6",
+    "bytes": 51035
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

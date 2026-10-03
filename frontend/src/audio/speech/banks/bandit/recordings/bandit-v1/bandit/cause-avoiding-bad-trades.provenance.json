@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "cause-avoiding-bad-trades",
+      "label": "Cause avoiding bad trades",
+      "text": "This capture looks like a deal until the recapture takes something worth more. Count the whole trade before you call it a bargain."
+    },
+    "takeId": null
+  },
+  "requestHash": "163cef6a95d802184edadb1f7942d0053cfaa38c4f60b0a4332f074814fe297f",
+  "recordedAt": "2026-10-03T05:10:37.293Z",
+  "sha256": "3ea34e533ddfe027acd53a9e249764543799432d5005c3caf74f3b1aa340a007",
+  "bytes": 25769,
+  "requestId": "WIiIdyGDmM1IUfZpLxaf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "92b06d30fea9bae9d689b3291c8e0eda953770e5f0b2f8f2636171dcecc94bf6",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

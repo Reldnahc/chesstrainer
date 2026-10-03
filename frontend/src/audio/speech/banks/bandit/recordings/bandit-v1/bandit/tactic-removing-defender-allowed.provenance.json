@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed",
+      "label": "Tactic removing defender allowed",
+      "text": "This leaves a defender where it can be captured. If the other side takes it, whatever it guards could lose its protection, so see what that defender is holding up."
+    },
+    "takeId": null
+  },
+  "requestHash": "c50b4645dcbb9390e888b82fb88d2d36c0bca5f521ddc35b14cff0615348ccaa",
+  "recordedAt": "2026-10-03T05:09:53.546Z",
+  "sha256": "d4b715b05b4e06ab30699c58544d04392a856ad1b3f1891419fcf29fc03d22e4",
+  "bytes": 30070,
+  "requestId": "blhwnTpjSe8bRv2jGb1Z",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "958e4c5e0da6d5b0459227526a59df5f96c5119a1fb84028ba1fefb6cea4dcad",
+    "bytes": 153435
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "tactic-double-attack-played",
+      "label": "Tactic double attack played",
+      "text": "Two threats, delivered by one move. That's a double attack, and one reply can't always cover both."
+    },
+    "takeId": null
+  },
+  "requestHash": "42c9ac934a3ad07020611f0f8517bee2cd4923648de71be99b47281f131dcdef",
+  "recordedAt": "2026-10-03T05:10:15.885Z",
+  "sha256": "7fb147e9fdf3ba3b3a18cf96bcc411ea96fbb15659f278cc0ae4899ab05fd9ed",
+  "bytes": 23305,
+  "requestId": "SHtn534XTwwHQQ0cXR3g",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d6337c5892a3c460ee94e9d94542f909fe7f60bd834b9138c4dd7357b8c997ac",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

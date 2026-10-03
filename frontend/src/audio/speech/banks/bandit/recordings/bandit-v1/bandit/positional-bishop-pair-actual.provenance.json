@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "positional-bishop-pair-actual",
+      "label": "Positional bishop pair actual",
+      "text": "One capture, and a bishop pair is history. Whoever's missing that bishop now has only one square color covered by bishops."
+    },
+    "takeId": null
+  },
+  "requestHash": "bb174f8974813671339b6086073bdb866a82f29e1b0087fa47e8517a248737fd",
+  "recordedAt": "2026-10-03T05:11:14.061Z",
+  "sha256": "62c54049f29faeee9e8080ad805d75cb20f49835f4bf5502cd35f10b466fdd6a",
+  "bytes": 25990,
+  "requestId": "zM0xHJinZUXC6qUHHshI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6f566cce79b235d367b0622cf823b842d8e3231d8301293eb8e1d7fdd5d4e911",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

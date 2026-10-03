@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-promotion-check",
+      "label": "Explanation frame quiet promotion check",
+      "text": "The pawn reaches the last rank, promotes, and gives check on the way in."
+    },
+    "takeId": null
+  },
+  "requestHash": "89e579aa517d61ee60c2aef7f0e69346cbf72a0dab1506ac172c9bf762693bbd",
+  "recordedAt": "2026-10-03T05:12:34.632Z",
+  "sha256": "473750a6ce4ed24d9539e3a17bf423a9b7f619da661a138793c695f8bc3c636e",
+  "bytes": 15825,
+  "requestId": "6QqJjc5pTOUa5J2Soeop",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "31873e3a4d232b948fa9b05ef322d16ba7faad35d4a0e56ccdce06a676d1b64f",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

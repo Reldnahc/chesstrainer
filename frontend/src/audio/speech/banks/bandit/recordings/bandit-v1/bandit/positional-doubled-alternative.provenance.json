@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "positional-doubled-alternative",
+      "label": "Positional doubled alternative",
+      "text": "A different move would've doubled up two pawns of one color on a file."
+    },
+    "takeId": null
+  },
+  "requestHash": "edbfe3a3b9164f6ab38894f3bbad822e58947183533e23f8668f8df21c0bccac",
+  "recordedAt": "2026-10-03T05:11:18.101Z",
+  "sha256": "2485c9448304aeed16ebe7294a7867ebf8f776b2923a40c968d9a14a72c52932",
+  "bytes": 14632,
+  "requestId": "ZFQOtZxmfcDLYa5dkTFs",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cfb9a6d81b42f777d0510b1a4e2770b254de70cbe90bc516f85875609faef1c0",
+    "bytes": 71515
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "tactic-promotion-awareness-missed",
+      "label": "Tactic promotion awareness missed",
+      "text": "A stronger move would've had a pawn marching up to promote. That upgrade stays uncollected after this move."
+    },
+    "takeId": null
+  },
+  "requestHash": "b8c97d6769e11fd1cdd1794f6b5b5728b38211a295624942d4969bdf742c9751",
+  "recordedAt": "2026-10-03T05:10:07.838Z",
+  "sha256": "f2970275bc6fdc12ae70bad72743ff5540bc7be0ba3606329109eb730759898f",
+  "bytes": 21673,
+  "requestId": "moD7LScRZsMPlolSPz0S",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "49c6162eeebc7d4adbfc9aadb303eb345e929763db3521700e59526eb34e2849",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

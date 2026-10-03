@@ -43,6 +43,7 @@ REGISTERED = [
     ("mushroom", "button"),
     ("man-partner", "arjun"),
     ("dog-gentle", "alfie"),
+    ("raccoon", "bandit"),
 ]
 # Voices whose written personality sets questionFrequency to "none".
 QUESTIONLESS = [

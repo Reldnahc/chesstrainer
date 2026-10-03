@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "game-explanation-legal-reply",
+      "label": "Game explanation legal reply",
+      "text": "That marked reply is one the other side can play. Try it and see where it goes."
+    },
+    "takeId": null
+  },
+  "requestHash": "8d260df245a9e59ff6076ed4d28f740d75bee6e35e06da1983aa7cba39fc4273",
+  "recordedAt": "2026-10-03T05:13:21.404Z",
+  "sha256": "6f69ddc3980239ce02b32f4a04986ff48b620de90d19c9000646ca078fdb8e62",
+  "bytes": 16912,
+  "requestId": "UcR5Xcrdr0mp0DsAFjV5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "83745719906b11d2bc13436b158b7fe3b8be48bf622b84523c54deaf2cb99b21",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

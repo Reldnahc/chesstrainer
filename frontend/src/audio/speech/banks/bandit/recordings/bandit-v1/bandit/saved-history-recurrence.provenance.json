@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "saved-history-recurrence",
+      "label": "Saved history recurrence",
+      "text": "Your other saved games have this issue too. Line them up with this one, and the pattern gets easier to catch."
+    },
+    "takeId": null
+  },
+  "requestHash": "9d55fcf29f8d5f40eb3965894857e8377281b66fca46784206c6906bff13ee4b",
+  "recordedAt": "2026-10-03T05:12:00.358Z",
+  "sha256": "34af331abc1b5b6162af3c29385d361a6183ee10473fd4a0a0567834c963d8e0",
+  "bytes": 20390,
+  "requestId": "5I3sNcfTosYui6fGEZAD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "308a48a389377865c0306b8a88065d337594dd07186ca7305802a2fe73c70595",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

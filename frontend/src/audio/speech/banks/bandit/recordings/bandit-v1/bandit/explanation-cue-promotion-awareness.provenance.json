@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "explanation-cue-promotion-awareness",
+      "label": "Explanation cue promotion awareness",
+      "text": "How many moves until that pawn promotes? Count them, and look at the pushes that force a reply."
+    },
+    "takeId": null
+  },
+  "requestHash": "1a1f17cdb4d7aeac534cd8dab4d1e86a47d5ecde68625b103c29fcfe09e5d989",
+  "recordedAt": "2026-10-03T05:13:36.195Z",
+  "sha256": "7470909240de3625bf5fc8580a0d2e9510a04498f51c1cc341f24d47126d86bd",
+  "bytes": 19130,
+  "requestId": "cnwLyS5JMVtmI3W2sk9y",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "79b85064d5a04d6e278935864043c51bba98954f652486d0046df6cca838df20",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

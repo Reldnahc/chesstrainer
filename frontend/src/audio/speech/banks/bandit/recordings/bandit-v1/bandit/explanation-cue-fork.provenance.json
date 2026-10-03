@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "explanation-cue-fork",
+      "label": "Explanation cue fork",
+      "text": "Run through the forcing moves. Is there one piece that can hit two valuable things together?"
+    },
+    "takeId": null
+  },
+  "requestHash": "a50b6ac7b7c9be25a1e94f8fbc2f01df27651781740928d4fb8812cb18d2da90",
+  "recordedAt": "2026-10-03T05:13:25.480Z",
+  "sha256": "ebd4cea45c32cef8f1063bee4ebdfddb180bdb7db58b40fa55eb579e3000bc4c",
+  "bytes": 18612,
+  "requestId": "yMSKjF8YA21iZxtuNo4q",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a80a4327af194f27798cd0135afa192a8b9c18eb83bb7ab1e19927008e5b61a4",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

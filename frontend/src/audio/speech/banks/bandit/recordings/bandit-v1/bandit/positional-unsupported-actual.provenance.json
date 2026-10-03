@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "positional-unsupported-actual",
+      "label": "Positional unsupported actual",
+      "text": "Now a piece has no defender. That doesn't mean it can be won, but loose pieces are exactly where I'd look first."
+    },
+    "takeId": null
+  },
+  "requestHash": "486ff1539eeb0b7345df9d9cd8e1e003b18eb22722fd16a3b0625986bedcc59b",
+  "recordedAt": "2026-10-03T05:11:03.947Z",
+  "sha256": "97d9a3c552e5136d2bdd0a609268ee8bda450e13fa931224d05285e5958c1016",
+  "bytes": 23316,
+  "requestId": "yIIv1Q2vQUr9P3QqO6JH",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "18206a7a056e9ee79554aee93b963fe8fcb41d6b8c66885abdb48dcea42e4b99",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

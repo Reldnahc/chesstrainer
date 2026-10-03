@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "positional-rook-open-actual",
+      "label": "Positional rook open actual",
+      "text": "The rook ends up on an open file, no pawns of either color in the way. That's a whole file it can use."
+    },
+    "takeId": null
+  },
+  "requestHash": "32c612d61499f50f55975b8e54d75af1d805f378ea62fe30982fcf5aa1d3362b",
+  "recordedAt": "2026-10-03T05:10:42.259Z",
+  "sha256": "23f0d62e5e58ec9f72ee5410fe2fc067aa2afdaa784e08ccfb07122db9bc93a9",
+  "bytes": 23196,
+  "requestId": "dEyPEXX45kbeLmRUdLeU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "51107a231ff21dffe41019c1020063218aa6570ad7973d16f8bb12d6945b64ef",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

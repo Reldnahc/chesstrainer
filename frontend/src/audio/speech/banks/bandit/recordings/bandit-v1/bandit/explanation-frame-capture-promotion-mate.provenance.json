@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-mate",
+      "label": "Explanation frame capture promotion mate",
+      "text": "The pawn captures, promotes on the last rank, and that's checkmate. That king's got no legal squares left at all."
+    },
+    "takeId": null
+  },
+  "requestHash": "03658f9107ca888fd61579a11ef8dda773d12b4bf88908fd83532549ae7adfd3",
+  "recordedAt": "2026-10-03T05:12:46.815Z",
+  "sha256": "98c3201bc51dc51a30d7feccb13ee817f56710f1c8615758d99db64e782b78a8",
+  "bytes": 24170,
+  "requestId": "2ciXyiYQSqtJt6wmxvvl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "57ff62d9e4c805a134a5047ea643d730dc6c9b93150b186bdb7533e310884264",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "srs-summary-mate-against-mover",
+      "label": "Srs summary mate against mover",
+      "text": "Bad news from the saved engine analysis: this move gives the other side a forced checkmate."
+    },
+    "takeId": null
+  },
+  "requestHash": "150b4f0b859613e2feffdc14bb322516f1f5a6fd44d62ce02a755d990a5ce75b",
+  "recordedAt": "2026-10-03T05:12:12.409Z",
+  "sha256": "c35e74377e23929c3b9d4ab56eda68ed7f2e960bf4f911b3bba530dfef6566d7",
+  "bytes": 20252,
+  "requestId": "mL1cL7W1XwOzwcs6lQoU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "190da3929c6be1667501ab8f5739381756e21636abd051f7561090c25c716f34",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

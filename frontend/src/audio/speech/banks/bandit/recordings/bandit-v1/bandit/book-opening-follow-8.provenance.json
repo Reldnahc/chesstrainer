@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "book-opening-follow-8",
+      "label": "Book opening follow 8",
+      "text": "The book's still going. Knowing where the game is isn't the same as knowing what a move's worth."
+    },
+    "takeId": null
+  },
+  "requestHash": "be02539f1fddae3020276b1c7b8c0bcc103f5c4f162a626304d24332951c736d",
+  "recordedAt": "2026-10-03T05:14:28.966Z",
+  "sha256": "f38f766ebd81e8b803f03a9b8335ba33469558076c9a2accb80210a3737958cc",
+  "bytes": 19111,
+  "requestId": "nSz8AUUVxtsHINwXeP46",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4339a07f02941638f387c61b4e11c5c893d1c9664a0dd88349b2141d166a495d",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

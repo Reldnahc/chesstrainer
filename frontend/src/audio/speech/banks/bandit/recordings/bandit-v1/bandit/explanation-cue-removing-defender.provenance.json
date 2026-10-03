@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "explanation-cue-removing-defender",
+      "label": "Explanation cue removing defender",
+      "text": "A defender up for trade? First see what it's currently guarding."
+    },
+    "takeId": null
+  },
+  "requestHash": "c49e17501050be7a2496b19c89bf8b66475d9379ba7973caee6b4e885489f498",
+  "recordedAt": "2026-10-03T05:13:30.007Z",
+  "sha256": "24f0520b3a0234257ab4a6006c7109936c0c03149151e2490885472e7e616291",
+  "bytes": 14149,
+  "requestId": "naxE3BDElPS7gohm0hBn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8624c360cc6e805d194128d6f21f2d4bee4bdc8c300d4096499472e11279971f",
+    "bytes": 70261
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

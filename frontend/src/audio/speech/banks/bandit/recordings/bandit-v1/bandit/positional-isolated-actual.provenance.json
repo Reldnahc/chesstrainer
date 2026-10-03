@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "positional-isolated-actual",
+      "label": "Positional isolated actual",
+      "text": "That pawn's isolated now, with no friendly pawn on either neighboring file. Nobody next door to protect it."
+    },
+    "takeId": null
+  },
+  "requestHash": "7f02c8511f2f45cca0919b4dd1e20b604d410b7abdb09adc050c2f66138de7a0",
+  "recordedAt": "2026-10-03T05:10:57.807Z",
+  "sha256": "163d395d7caa34ac3b176e83d93073385b3926b57ccfef4cf0a4c868dcb26a03",
+  "bytes": 23013,
+  "requestId": "U9CCNKN8My4lPZScFD2K",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5721eb96b90f2899343a43135ea8aded75315a94d48dcb51ffabc7fbf903adbc",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}
