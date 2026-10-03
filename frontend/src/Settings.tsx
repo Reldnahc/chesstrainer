@@ -11,6 +11,7 @@ import AudioSettings from "./audio/AudioSettings";
 import SettingsSection from "./SettingsSection";
 import SectionNavigation from "./SectionNavigation";
 import Link from "./Link";
+import { ExternalLink } from "lucide-react";
 import { navigate, type SettingsTab } from "./navigation";
 
 const sections: { id: SettingsTab; label: string }[] = [
@@ -77,7 +78,7 @@ export default function SettingsScreen({ health, fail, section, importSource, re
             </div>
           </SettingsSection>
           <SettingsSection id="settings-source" title="Source code">
-            <p className="settings-source">Fieldwork is open source (GPL/AGPL). <a href="/assets/fieldwork-source.zip" download>Download source code</a></p>
+            <p className="settings-source">Fieldwork is open source (GPL/AGPL). <a href="https://github.com/Reldnahc/chesstrainer" target="_blank" rel="noopener noreferrer">Source code on GitHub<ExternalLink size={12} aria-hidden="true" /></a></p>
           </SettingsSection>
         </>}
       </div>

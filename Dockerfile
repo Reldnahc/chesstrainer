@@ -1,15 +1,10 @@
 # syntax=docker/dockerfile:1
 FROM node:22-bookworm-slim AS frontend
-RUN apt-get update && apt-get install -y --no-install-recommends python3 git \
-    && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 COPY frontend/package.json frontend/package-lock.json ./frontend/
 RUN npm --prefix frontend ci
 COPY . .
-# Build the downloadable corresponding source from the public-only build context.
-# This temporary repository never enters the runtime image.
-RUN git init --quiet && git add . \
-    && SOURCE_PYTHON=python3 npm --prefix frontend run build
+RUN npm --prefix frontend run build
 
 FROM python:3.12-slim-trixie AS runtime
 ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 \

@@ -24,13 +24,9 @@ test('redesigned screens fit the viewport and load local fonts and favicon', asy
       await expect(page.getByRole('region', {name: 'Recent Chess.com games', exact: true})).toBeVisible();
       await page.getByRole('navigation', {name: 'Settings sections'}).getByRole('link', {name: 'Advanced', exact: true}).click();
       await expect(page.getByRole('heading', {name: 'Training tools', exact: true})).toBeVisible();
-      const source = page.getByRole('link', {name: 'Download source code'});
-      await expect(source).toHaveAttribute('href', '/assets/fieldwork-source.zip');
-      const download = await page.request.get((await source.getAttribute('href'))!);
-      expect(download.ok()).toBe(true);
-      // Windows' MIME registry also uses application/x-zip-compressed.
-      expect(download.headers()['content-type']).toMatch(/^application\/(?:zip|x-zip-compressed)(?:;|$)/);
-      expect((await download.body()).subarray(0, 2).toString()).toBe('PK');
+      const source = page.getByRole('link', {name: 'Source code on GitHub'});
+      await expect(source).toHaveAttribute('href', 'https://github.com/Reldnahc/chesstrainer');
+      await expect(source).toHaveAttribute('target', '_blank');
     }
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
     await page.screenshot({path: `test-results/redesign-${testInfo.project.name}-${tab.toLowerCase()}.png`, fullPage: true});
@@ -542,7 +538,7 @@ test('compact workspace keeps navigation reachable and settings focused on user 
   await page.getByRole('navigation', {name: 'Settings sections'}).getByRole('link', {name: 'Advanced', exact: true}).click();
   await expect(page.getByRole('button', {name: 'Classify saved games', exact: true})).toBeVisible();
   await expect(page.getByRole('button', {name: 'Deepen unclear positions', exact: true})).toBeEnabled();
-  await expect(page.getByRole('link', {name: 'Download source code'})).toHaveAttribute('href', '/assets/fieldwork-source.zip');
+  await expect(page.getByRole('link', {name: 'Source code on GitHub'})).toHaveAttribute('href', 'https://github.com/Reldnahc/chesstrainer');
   for (const label of ['Engine path', 'Engine configuration', 'Storage & connection', 'Database', 'Training policy']) {
     await expect(page.getByText(label, {exact: true})).toHaveCount(0);
   }

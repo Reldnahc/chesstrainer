@@ -119,7 +119,7 @@ cd ..
 python -m trainer
 ```
 
-The build also prepares **Settings > Download source code**, including the pinned tagger and licenses. Build from a Git checkout (stage newly added public source files first) or an exported source snapshot. The helper uses the checkout's .venv Python; set SOURCE_PYTHON to use another executable. Games, databases, secrets and untracked files are excluded.
+**Settings > Source code on GitHub** links to the public repository, which is the source offer for the vendored AGPL code. Push deployed changes there before serving them to other people.
 
 Open **http://127.0.0.1:8000**. Startup applies Alembic migrations, seeds skills and checks Stockfish. Missing Stockfish produces an actionable status. Saved answers and saved-evidence classification remain usable; new analysis and unlisted engine answers require the executable. Data defaults to `data/trainer.sqlite3`.
 

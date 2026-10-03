@@ -388,8 +388,8 @@ The **Recorded coach comparison** panel compares Walter and Rivet for the same
 meaning, with Opening run and All lines collections. It uses the same
 local recordings, portrait and mouth-track loader as production. Casting choices
 and account preferences are unaffected. The other 28 coaches retain their wording.
-Original recordings and timing archives remain authoring history; the separate
-downloadable source snapshot includes repository archives as well as active media.
+Original recordings and timing archives remain authoring history; the
+public GitHub repository includes those archives as well as active media.
 
 The voice recordings are separate media assets, not CC0 effects or automatically
 licensed under the repository's source-code license. Their

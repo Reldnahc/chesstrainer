@@ -84,7 +84,7 @@ Reports live in ignored data/lichess-upstream/comparison-v4-final-seed0-1000: re
 
 ## Source availability
 
-Original Fieldwork licensing is unchanged. NOTICE.md explains the combined GPL/AGPL source offer. npm run build and npm run dev prepare a Git-listed public-source snapshot; Settings links the ZIP served locally through the existing assets mount. Private data, environment secrets, dependencies and untracked files are excluded. Stage new public files and regenerate after source changes; exported snapshots also rebuild from their file manifest.
+Original Fieldwork licensing is unchanged. NOTICE.md explains the combined GPL/AGPL source offer. Settings links to the public GitHub repository; push deployed changes there before serving them to other people.
 
 Final application verification: 280 backend/native/API tests passed; 39 Playwright tests passed with one intentional phone-only desktop skip; migration preservation, repository Ruff and production build passed. See VERIFICATION.md for deployment status and the mobile control regression caught and fixed during testing.
 

@@ -586,7 +586,7 @@ Record host/tool versions, skipped tests and warnings with results. Current Test
 
 test_lichess_reuse.py checks predicate AST parity against original upstream fingerprints, unchanged supporting files, legal replay, both colors, missing setup context, witness coordinates and concurrent observer isolation. test_lichess_integration.py checks newly recognized pin exploitation and separates a visible motif from an unsupported mistake diagnosis. Existing wrong-label regressions remain unchanged.
 
-test_lichess_comparison.py verifies frozen sample/provenance preservation, metrics, failure context, malformed rows and unexpected-error handling. test_source_archive.py checks private-file exclusion (including checkpoints, database sidecars, native binaries, caches and generated browser reports), reproducible source archives, path validation and rebuilding an exported snapshot without Git. Browser tests verify the Settings source link returns a ZIP through the production static mount.
+test_lichess_comparison.py verifies frozen sample/provenance preservation, metrics, failure context, malformed rows and unexpected-error handling. Browser tests verify the Settings source link points at the public GitHub repository.
 
 Raw upstream parity across the frozen sample is a compatibility test, not an accuracy estimate. Source packaging does not add a runtime network dependency.
 ## Shared-hosting checks

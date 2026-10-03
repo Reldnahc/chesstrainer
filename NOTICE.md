@@ -56,18 +56,12 @@ The bundled puzzle selection in backend/trainer/puzzles/starter_pack holds
 released under CC0-1.0. That directory includes the complete dedication, the
 pinned file hash and the exact sampling record.
 
-Settings provides a Download source code link to a snapshot served from the same
-host at /assets/fieldwork-source.zip. The frontend build prepares that snapshot
-from Git-listed public source files, including licenses and build instructions.
-It excludes environment secrets, databases, games in data, dependencies and
-untracked files. Recorded audio under frontend/src/audio is listed by hash in
-the snapshot rather than stored again, because the application serves those
-exact files. Regenerate the frontend/source archive after source changes;
-stage new public source files before building. Never track private information.
-
-Exported snapshots include SOURCE_SNAPSHOT.json with file hashes and can rebuild
-the source download without Git. Forks and redistributed combined versions must
-preserve notices and provide their corresponding source, including modifications.
+Settings links to the public repository at https://github.com/Reldnahc/chesstrainer,
+which is the source offer for network users. Push deployed changes to that
+repository before serving them to other people, so the linked source matches
+the running version. Never track private information. Forks and redistributed
+combined versions must preserve notices and provide their corresponding source,
+including modifications.
 
 The Walter and Rivet banks and development voice auditions in frontend/src/audio/speech use prerecorded
 ElevenLabs paid-plan output, distinct from the CC0 game sound effects and the code

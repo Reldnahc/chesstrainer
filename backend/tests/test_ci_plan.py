@@ -42,7 +42,6 @@ def test_documentation_skips_heavy_checks(path):
     [
         ".github/workflows/test.yml",
         "scripts/ci_plan.py",
-        "scripts/source_archive.mjs",
         "pyproject.toml",
         "requirements.lock",
         "requirements-human-cpu.lock",

@@ -14,7 +14,6 @@
     "build:audio-studio": "vite build --config vite.audio.config.ts",
     "build": "node scripts/build.mjs",
     "preview": "vite preview",
-    "predev": "node ../scripts/source_archive.mjs",
     "api:generate": "node scripts/api-types.mjs",
     "api:check": "node scripts/api-types.mjs --check",
     "test:types": "tsc --project tsconfig.contracts.json && tsc --project tsconfig.browser-tests.json",

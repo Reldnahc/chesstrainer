@@ -383,7 +383,7 @@ Review-intelligence authority boundaries and measurement rules are recorded in
 [REVIEW_INTELLIGENCE.md](REVIEW_INTELLIGENCE.md). Human move behavior must never
 replace objective Stockfish evaluation or directly assign move-quality labels.
 
-The frontend build generates a public-source snapshot with scripts/source_archive.py, served by the existing /assets mount and linked in Settings. Git-listed public source and licenses are included; private data, secrets and untracked files are excluded. Model checkpoints, SQLite sidecars, native binaries, caches and generated browser reports also stay outside Git and the public source export. Docker build-context exclusions also keep local model checkpoints out of the image. See NOTICE.md and LICHESS_REUSE.md for the GPL/AGPL combination and source-offer workflow.
+Settings links to the public GitHub repository as the source offer. Model checkpoints, SQLite sidecars, native binaries, caches and generated browser reports stay outside Git. Docker build-context exclusions also keep local model checkpoints out of the image. See NOTICE.md and LICHESS_REUSE.md for the GPL/AGPL combination and source-offer workflow.
 
 Full-game scheduling lives in `review_jobs`; `review_refinement` runs a finite
 optional pass after the unchanged deep baseline. `review_intelligence/refinement_*`
