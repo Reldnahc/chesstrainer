@@ -1,6 +1,4 @@
 import {expect, test} from "@playwright/test";
-import {execFileSync} from "node:child_process";
-import path from "node:path";
 import type {Game} from "../src/gameReview/types";
 import {gameReaction} from "../src/coach/reactions";
 import {gameIntent} from "../src/dialogue/gameIntent";
@@ -11,12 +9,9 @@ import {robot} from "../src/dialogue/characters/robot";
 import {selectGameRecording, selectGameSpeech} from "../src/audio/speech/gameSelection";
 import {sequenceRecordingId} from "../src/audio/speech/sequence";
 import catalogue from "../src/audio/speech/meanings.json" with {type: "json"};
+import {semanticFixtures} from "../tests/semantic-fixtures";
 
-const root = path.resolve("..");
-const python = process.env.TEST_PYTHON || path.join(root, process.platform === "win32" ? ".venv/Scripts/python.exe" : ".venv/bin/python");
-const games: Record<string, Game> = JSON.parse(execFileSync(python,
-  [path.join(root, "backend/tests/review_speech_tactical_fixtures.py")],
-  {encoding: "utf8", cwd: root, maxBuffer: 8 * 1024 * 1024}));
+const games = semanticFixtures<Record<string, Game>>("review_speech_tactical_fixtures.py");
 // The Maia reading each fixture shows in its badge; none is ever voiced.
 const shownCodes: Record<string, string> = {"human-natural-error": "human_natural_error", "human-unusual-strong": "human_rare",
   "human-hard-defense-missed": "difficult_defense", "human-hard-find": "human_challenging",

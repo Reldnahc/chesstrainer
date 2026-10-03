@@ -1,6 +1,4 @@
 import {expect, test} from "@playwright/test";
-import {execFileSync} from "node:child_process";
-import path from "node:path";
 import type {Game} from "../src/gameReview/types";
 import {gameIntent} from "../src/dialogue/gameIntent";
 import {humanInsightIntent, humanInsightLabels} from "../src/dialogue/humanClaims";
@@ -9,14 +7,12 @@ import {storyteller} from "../src/dialogue/characters/storyteller";
 import {robot} from "../src/dialogue/characters/robot";
 import {gameReaction} from "../src/coach/reactions";
 import {selectGameRecording, selectGameSpeech, type GameSpeechContext} from "../src/audio/speech/gameSelection";
+import {semanticFixtures} from "../tests/semantic-fixtures";
 
-const root = path.resolve("..");
-const python = process.env.TEST_PYTHON || path.join(root, process.platform === "win32" ? ".venv/Scripts/python.exe" : ".venv/bin/python");
-function loadGames(filename: string): Record<string, Game> {
-  return JSON.parse(execFileSync(python, [path.join(root, "backend/tests", filename)],
-    {encoding: "utf8", cwd: root, maxBuffer: 8 * 1024 * 1024}));
-}
-const games = {...loadGames("review_speech_policy_fixtures.py"), ...loadGames("review_speech_relationship_fixtures.py")};
+const games = {
+  ...semanticFixtures<Record<string, Game>>("review_speech_policy_fixtures.py"),
+  ...semanticFixtures<Record<string, Game>>("review_speech_relationship_fixtures.py"),
+};
 const coaches = [{id: "classic", personality: storyteller}, {id: "robot", personality: robot}];
 // Objective explanations that the policy profiles reach while a Maia reading
 // is also available. Each speaks its own objective line; Maia is never voiced.
