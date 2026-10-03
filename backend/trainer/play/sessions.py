@@ -14,13 +14,6 @@ from trainer.imports import import_games
 from trainer.models import ImportGame, PlayGame
 from trainer.play.bot import bot_request, engine_move, human_move, seeded
 
-RESIGN_SCORE_CP = -900
-RESIGN_STREAK = 2
-RESIGN_FROM_PLY = 20
-DRAW_ACCEPT_CP = 60
-DRAW_FROM_PLY = 40
-LOSING_DRAW_CP = -300
-
 
 def board_for(play: PlayGame, upto: int | None = None) -> chess.Board:
     board = chess.Board()
@@ -116,13 +109,11 @@ def state(play: PlayGame, learner_name: str, reply=None) -> dict:
         "learner_rating": play.learner_rating,
         "white_rating": white_rating,
         "black_rating": black_rating,
-        "commentary": play.commentary,
         "status": play.status,
         "result": play.result,
         "termination": play.termination,
         "saved_game_id": play.saved_game_id,
         "reply": reply,
-        "draw_declined": bool(play.draw_declined),
         "frames": frames_for(play),
     }
 
@@ -174,33 +165,6 @@ def choose_reply(engine, human_models, sessions, play: PlayGame, board: chess.Bo
         choice.source = "fallback"
         return choice
     return human_move(engine, board, policy, play.opponent_rating, rng)
-
-
-def bot_resigns(play: PlayGame, choice) -> bool:
-    """A clearly lost bot resigns after a couple of hopeless moves, like a person would."""
-    if play.opponent_kind != "human" or play.opponent_rating < 1000:
-        return False
-    score = choice.best_score
-    hopeless = score is not None and (
-        (score.kind == "cp" and score.value <= RESIGN_SCORE_CP) or score.outcome() == -1
-    )
-    play.losing_streak = play.losing_streak + 1 if hopeless else 0
-    return hopeless and play.losing_streak >= RESIGN_STREAK and len(play.moves) >= RESIGN_FROM_PLY
-
-
-def bot_accepts_draw(engine, play: PlayGame, board: chess.Board) -> bool:
-    """Accept when the bot stands no better than level late on, or is clearly worse."""
-    if board.is_game_over(claim_draw=True):
-        return True
-    result = engine.analyze(board, multipv=1)
-    score = Score.model_validate(result.candidates[0]["score"])
-    if board.turn == learner_is_white(play):
-        score = score.negate()
-    if score.kind == "mate":
-        return score.outcome() == -1
-    if len(play.moves) >= DRAW_FROM_PLY:
-        return score.value <= DRAW_ACCEPT_CP
-    return score.value <= LOSING_DRAW_CP
 
 
 def analyze_ply(engine, human_models, sessions, play: PlayGame, ply: int, learner_name: str):

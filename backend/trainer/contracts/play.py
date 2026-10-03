@@ -9,7 +9,6 @@ from trainer.contracts.games import GameFrame
 from trainer.contracts.preferences import CoachId
 
 OpponentKind = Literal["human", "engine"]
-Commentary = Literal["live", "request", "after"]
 PlayStatus = Literal["active", "finished"]
 
 # Human-like play comes from the Maia policy, whose rating dial was measured to
@@ -26,7 +25,6 @@ class PlayRequest(Contract):
     color: Literal["white", "black", "random"] = "random"
     opponent: OpponentKind = "human"
     rating: int = Field(ge=600, le=2600)
-    commentary: Commentary = "live"
 
     @model_validator(mode="after")
     def rating_within_the_opponent_range(self):
@@ -49,7 +47,6 @@ class PlayReply(Contract):
     ply: int
     san: str
     uci: str
-    think_ms: int = Field(ge=0, le=10000)
     source: Literal["human", "engine", "fallback"]
 
 
@@ -65,13 +62,11 @@ class PlayState(Contract):
     learner_rating: int
     white_rating: int
     black_rating: int
-    commentary: Commentary
     status: PlayStatus
     result: str | None
     termination: str | None
     saved_game_id: str | None
     reply: PlayReply | None
-    draw_declined: bool
     frames: list[GameFrame]
 
 

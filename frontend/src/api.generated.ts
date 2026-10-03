@@ -734,23 +734,6 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/api/play/{play_id}/draw": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        /** Offer Draw */
-        post: operations["offer_draw_api_play__play_id__draw_post"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
     "/api/play/{play_id}/move": {
         parameters: {
             query?: never;
@@ -762,6 +745,23 @@ export interface paths {
         put?: never;
         /** Play Move */
         post: operations["play_move_api_play__play_id__move_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/play/{play_id}/reply": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Bot Reply */
+        post: operations["bot_reply_api_play__play_id__reply_post"];
         delete?: never;
         options?: never;
         head?: never;
@@ -3353,8 +3353,6 @@ export interface components {
              * @enum {string}
              */
             source: "human" | "engine" | "fallback";
-            /** Think Ms */
-            think_ms: number;
             /** Uci */
             uci: string;
         };
@@ -3374,12 +3372,6 @@ export interface components {
              */
             color: "white" | "black" | "random";
             /**
-             * Commentary
-             * @default live
-             * @enum {string}
-             */
-            commentary: "live" | "request" | "after";
-            /**
              * Opponent
              * @default human
              * @enum {string}
@@ -3398,13 +3390,6 @@ export interface components {
             coach_id: string;
             /** Coach Name */
             coach_name: string;
-            /**
-             * Commentary
-             * @enum {string}
-             */
-            commentary: "live" | "request" | "after";
-            /** Draw Declined */
-            draw_declined: boolean;
             /** Frames */
             frames: components["schemas"]["GameFrame"][];
             /** Id */
@@ -5749,7 +5734,7 @@ export interface operations {
             };
         };
     };
-    offer_draw_api_play__play_id__draw_post: {
+    play_move_api_play__play_id__move_post: {
         parameters: {
             query?: never;
             header?: never;
@@ -5758,7 +5743,11 @@ export interface operations {
             };
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PlayMoveRequest"];
+            };
+        };
         responses: {
             /** @description Successful Response */
             200: {
@@ -5780,7 +5769,7 @@ export interface operations {
             };
         };
     };
-    play_move_api_play__play_id__move_post: {
+    bot_reply_api_play__play_id__reply_post: {
         parameters: {
             query?: never;
             header?: never;
@@ -5789,11 +5778,7 @@ export interface operations {
             };
             cookie?: never;
         };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["PlayMoveRequest"];
-            };
-        };
+        requestBody?: never;
         responses: {
             /** @description Successful Response */
             200: {

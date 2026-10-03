@@ -17,8 +17,8 @@ const frame2 = {...position(AFTER_E5, "white", [{from_square: "d2", to_square: "
 const base = {
   id: "play1", coach_id: "classic", coach_name: "Walter", white: "You", black: "Walter (bot)",
   learner_color: "white", opponent: "human", rating: 1000, learner_rating: 1000,
-  white_rating: 1000, black_rating: 1000, commentary: "live", status: "active",
-  result: null, termination: null, saved_game_id: null, reply: null, draw_declined: false,
+  white_rating: 1000, black_rating: 1000, status: "active",
+  result: null, termination: null, saved_game_id: null, reply: null,
 };
 
 const report = (san: string, uci: string, label: string, value: number) => ({
@@ -46,8 +46,13 @@ async function mockPlay(page: Page) {
   await page.route("**/api/play/play1/move", async route => {
     const body = route.request().postDataJSON() as {ply: number; uci: string};
     expect(body).toEqual({ply: 0, uci: "e2e4"});
+    moves = ["e2e4"];
+    await route.fulfill({json: state()});
+  });
+  await page.route("**/api/play/play1/reply", async route => {
+    expect(moves).toEqual(["e2e4"]);
     moves = ["e2e4", "e7e5"];
-    await route.fulfill({json: {...state(), reply: {ply: 2, san: "e5", uci: "e7e5", think_ms: 300, source: "human"}}});
+    await route.fulfill({json: {...state(), reply: {ply: 2, san: "e5", uci: "e7e5", source: "human"}}});
   });
   await page.route("**/api/play/play1/analyze", async route => {
     const {ply} = route.request().postDataJSON() as {ply: number};
@@ -61,7 +66,6 @@ test("the setup page explains the measured level and starts a live game", async 
   await page.goto("/play");
   await expect(page.getByRole("heading", {name: "Play Walter"})).toBeVisible();
   await expect(page.getByText("Measured from 60 of your own decisions across 100 imported games, where you were rated 723.")).toBeVisible();
-  await expect(page.getByRole("button", {name: "Live"})).toHaveAttribute("aria-pressed", "true");
   await page.getByRole("button", {name: "Engine"}).click();
   await expect(page.getByRole("slider", {name: "Opponent rating"})).toHaveAttribute("min", "1800");
   await page.getByRole("button", {name: "Human-like"}).click();
@@ -70,23 +74,26 @@ test("the setup page explains the measured level and starts a live game", async 
   const started = page.waitForRequest(request => request.url().endsWith("/api/play") && request.method() === "POST");
   await page.getByRole("button", {name: "Play Walter"}).click();
   const body = (await started).postDataJSON();
-  expect(body).toEqual({coach_id: "classic", coach_name: "Walter", color: "white", opponent: "human", rating: 1000, commentary: "live"});
+  expect(body).toEqual({coach_id: "classic", coach_name: "Walter", color: "white", opponent: "human", rating: 1000});
   await expect(page).toHaveURL(/\/play\/play1$/);
   await expect(page.getByText("Your move")).toBeVisible();
   await expect(page.getByRole("button", {name: "Resign"})).toBeVisible();
+  await expect(page.getByRole("button", {name: "Offer draw"})).toHaveCount(0);
   // No accuracy readout is reserved for a game in progress.
   await expect(page.locator(".review-board-meta .game-accuracy")).toHaveCount(0);
 });
 
-test("a move gets the bot's reply after its pause and both moves are graded live", async ({page}) => {
+test("the coach comments on the move before the bot answers it", async ({page}) => {
   await mockPlay(page);
   await page.goto("/play/play1");
   await page.locator('[data-square="e2"]').first().click();
   await page.locator('[data-square="e4"]').first().click();
-  // The learner's move shows at once with its grade; the reply follows the think pause.
+  // The learner's move shows at once with its grade; the answer waits for the coach.
   await expect(page.locator(".game-move-list")).toContainText("e4");
   await expect(page.locator(".coach-quality-name")).toHaveText("Best");
-  await expect(page.locator(".game-move-list")).toContainText("e5");
+  await expect(page.getByText("Walter is thinking…")).toBeVisible();
+  await expect(page.locator(".game-move-list")).not.toContainText("e5");
+  await expect(page.locator(".game-move-list")).toContainText("e5", {timeout: 10000});
   await expect(page.locator(".coach-quality-name")).toHaveText("Good");
   await expect(page.getByText("Your move")).toBeVisible();
   await expect(page.getByRole("group", {name: "Game move playback"})).toContainText("2 / 2");

@@ -24,8 +24,6 @@ function resultLine(state: NonNullable<ReturnType<typeof usePlaySession>["state"
       return learnerWon ? `Checkmate. You beat ${bot}.` : `Checkmate. ${bot} won this one.`;
     case "resignation":
       return learnerWon ? `${bot} resigned. You won.` : `You resigned. ${bot} takes the game.`;
-    case "agreement":
-      return `${bot} accepted the draw.`;
     case "abandoned":
       return "This game was left unfinished.";
     default:
@@ -52,7 +50,6 @@ export default function PlayGame({ id }: { id: string }) {
       </>
     );
   const shownOrientation = orientation ?? state.learner_color;
-  const commentary = state.commentary;
   const finished = state.status === "finished";
   const score = report?.white_score ?? null;
   const cues = report?.board_cues?.fen === frame?.fen ? (report?.board_cues ?? null) : null;
@@ -70,7 +67,6 @@ export default function PlayGame({ id }: { id: string }) {
       return session.learnerToMove ? (session.browsing ? "Your move · browsing" : "Your move") : "";
     return session.waitingForBot ? `${bot} is thinking…` : "";
   };
-  const askable = commentary === "request" && ply > 0 && !report && !session.browsing;
   return (
     <div className="game-workspace">
       {session.error && (
@@ -86,9 +82,6 @@ export default function PlayGame({ id }: { id: string }) {
         ) : <ActionLink variant="secondary" size="compact" href={pagePaths.Play}>New game</ActionLink>}>
           {resultLine(state)}
         </Notice>
-      )}
-      {state.draw_declined && !finished && (
-        <Notice announcement="status" tone="info">{bot} declined the draw.</Notice>
       )}
       <ReviewWorkspace
         boardLabel="Game board and controls"
@@ -109,18 +102,16 @@ export default function PlayGame({ id }: { id: string }) {
           />
         }
         evaluation={
-          commentary === "live" ? (
-            <div className="game-eval-bar" aria-label={`Evaluation for White: ${scoreText(score, 1)}`}>
-              <div
-                style={{
-                  height: `${score ? 50 + 48 * strength(score) : 50}%`,
-                  top: shownOrientation === "black" ? 0 : "auto",
-                  bottom: shownOrientation === "white" ? 0 : "auto",
-                }}
-              />
-              <span>{scoreText(score, 1)}</span>
-            </div>
-          ) : undefined
+          <div className="game-eval-bar" aria-label={`Evaluation for White: ${scoreText(score, 1)}`}>
+            <div
+              style={{
+                height: `${score ? 50 + 48 * strength(score) : 50}%`,
+                top: shownOrientation === "black" ? 0 : "auto",
+                bottom: shownOrientation === "white" ? 0 : "auto",
+              }}
+            />
+            <span>{scoreText(score, 1)}</span>
+          </div>
         }
         board={
           <Board
@@ -149,7 +140,6 @@ export default function PlayGame({ id }: { id: string }) {
             ) : (
               <div className="game-board-actions">
                 <Button size="compact" onClick={session.resign}>Resign</Button>
-                <Button size="compact" onClick={session.offerDraw} disabled={state.draw_declined}>Offer draw</Button>
               </div>
             )}
             <MovePlaybackControls label="Game move playback" current={ply} maximum={latest}
@@ -176,23 +166,17 @@ export default function PlayGame({ id }: { id: string }) {
           frame={frame}
           actor={actor}
           score={score}
-          bestMove={commentary === "live" || report ? report?.best.san : null}
+          bestMove={report?.best.san}
           explaining={explaining}
           cues={cues}
-          errorAtPosition={commentary === "after" ? null : session.analysisError}
+          errorAtPosition={session.analysisError}
           reviewStarting={false}
-          speechPending={session.moving || session.waitingForBot || (!!session.speechNavigation?.awaitAnalysis && !report && !session.analysisError && commentary === "live")}
+          speechPending={session.moving || (!!session.speechNavigation?.awaitAnalysis && !report && !session.analysisError)}
           speechEventId={session.speechNavigation?.eventId}
           onExplain={() => (session.analysisError ? session.retryAnalysis() : session.toggleExplanation())}
           onReturnToGame={() => session.navigate(latest)}
+          onVoicePlaying={session.onVoicePlaying}
         />
-        {askable && (
-          <div className="button-row">
-            <Button size="compact" variant="secondary" onClick={session.ask} disabled={session.analysisPending}>
-              {session.analysisPending ? `${bot} is looking…` : `Ask ${bot} about this move`}
-            </Button>
-          </div>
-        )}
         <ReviewMoves
           game={game}
           exploration={{
@@ -205,14 +189,12 @@ export default function PlayGame({ id }: { id: string }) {
           getAnalysis={() => undefined}
           progress={null}
         />
-        {commentary === "live" && (
-          <EvaluationGraph
-            frames={game.frames}
-            selected={ply}
-            onSelect={session.navigate}
-            onScrubSelect={(target) => session.navigate(target, { silent: true })}
-          />
-        )}
+        <EvaluationGraph
+          frames={game.frames}
+          selected={ply}
+          onSelect={session.navigate}
+          onScrubSelect={(target) => session.navigate(target, { silent: true })}
+        />
       </ReviewWorkspace>
     </div>
   );

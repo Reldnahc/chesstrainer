@@ -64,22 +64,21 @@ dropping a piece: the shape users complain about on every weakened-engine bot.
 A weighted average of a Maia policy and engine scores reproduces that shape, so
 the design uses the engine as a veto, never as a blend.
 
-### No thinking pause
+### Reply timing
 
-The bot is a bot and answers at once. The reply is known as soon as the learner's
-move is saved; the page shows it one board-animation beat later (`think_ms`, a
-fixed 320 ms) only so the two moves read as two moves. There is no clock in a
-game against the coach, so the review's clock-aware lines never play there.
+The learner's move is saved and shown at once; the move request does no engine
+or model work. The page then asks for the bot's reply (`/reply`) and for the
+review's report on the learner's move in parallel. The reply is revealed only
+after the coach has had its say: once that report has arrived and the coach's
+voice line, if one plays, has finished, plus a pause of 2.5 seconds. If no report
+arrives within 20 seconds the reply shows anyway. A repeated reply request after
+the bot has moved returns the same move.
 
-### Resignation and draw offers
+### No resignation, no draw offers
 
-A human-like bot rated 1000 or more resigns after two consecutive moves in a
-position the guard search scores as hopeless (at least 900 cp down or mate
-against), from move 10 on. A draw offer is accepted late in the game when the bot
-stands no better than level, earlier only when it is clearly worse, and whenever
-the position is already drawn by rule. Threefold repetition and the fifty-move
-rule end the game automatically. A declined offer disables the button until the
-learner's next move.
+The coach never resigns; it plays on until the board decides. There is no draw
+offer. Threefold repetition and the fifty-move rule end the game automatically,
+and the learner can resign.
 
 ## Match my level
 
@@ -95,25 +94,22 @@ played. The result, its sample size and the median platform rating are stored in
 changes. Without the model, or before the fit finishes, games use 1200. The fit is
 a conditioning value with its evidence shown beside it, not a rating claim.
 
-## Commentary modes
+## Commentary
 
-The learner chooses when the coach talks. **Live** is the default: each ply is
-sent to the same per-move pipeline as a review variation (deep Stockfish search,
-human evidence, public report), in order, and the coach panel, badge, evaluation
-bar, Maia popover and graph update as results arrive. In live mode the coach's
-verdict on the learner's move arrives before the bot replies, which is the point
-of the mode and is stated on the setup page. **On request** stays quiet until the
-learner asks about the current move. **After the game** shows nothing during
-play; the full review opens at the end. Reports produced during play are saved on
-the play game so a reload shows them again; the saved library game is reviewed
-afresh by the ordinary review job.
+Commentary is always on. Each ply is sent to the same per-move pipeline as a
+review variation (deep Stockfish search, human evidence, public report), in
+order, and the coach panel, badge, evaluation bar, Maia popover and graph update
+as results arrive. The coach's verdict on the learner's move arrives, and is
+spoken, before the bot replies; that is the point. Reports produced during play
+are saved on the play game so a reload shows them again; the saved library game
+is reviewed afresh by the ordinary review job.
 
 The coach speaks only recorded meanings, exactly as in the review. Nothing is
 spoken for moments the catalogue does not cover.
 
 ## Hand-off into Games
 
-When a game ends (checkmate, draw by rule, resignation, agreed draw) the moves
+When a game ends (checkmate, draw by rule, or the learner resigning) the moves
 are written as a PGN with the coach as the opponent and both conditioning ratings
 as the Elo headers, imported through the ordinary import path with the learner's
 side explicit, and queued for analysis like any imported game. The finished
@@ -127,11 +123,12 @@ one abandoned without saving it.
 | `GET /api/play/profile` | The level fit, starting or refreshing it in the background when stale |
 | `POST /api/play/profile/refresh` | Recompute the fit |
 | `GET /api/play/active` | The account's game in progress, if any |
-| `POST /api/play` | Start a game: coach, color, opponent kind and rating, commentary mode |
+| `POST /api/play` | Start a game: coach, color, opponent kind and rating |
 | `GET /api/play/{id}` | Game state with review-shaped frames |
-| `POST /api/play/{id}/move` | Play the learner's move at an expected ply; the reply arrives in the same response |
+| `POST /api/play/{id}/move` | Save the learner's move at an expected ply; no engine work |
+| `POST /api/play/{id}/reply` | The bot's answer, computed now, or repeated if it has already moved |
 | `POST /api/play/{id}/analyze` | The review's report for one played ply, saved on the game |
-| `POST /api/play/{id}/resign`, `/draw` | Resign, or offer a draw the bot accepts or declines |
+| `POST /api/play/{id}/resign` | The learner resigns |
 
 Engine and model work runs between database transactions, serialized per
 account by the existing variation lock, on the account's warm engine (the shared
@@ -147,15 +144,11 @@ entry yet, so they currently show plain page text or stay silent:
 | Proposed meaning | When it would play | Notes |
 |---|---|---|
 | `game-start` | Once, when a game against the coach begins | The existing opener is review wording ("let's walk through this game") |
-| `game-thinking` (two or three variants) | Sparingly, on a long bot think, in On request and After the game modes | Says nothing about the position |
 | `game-resigned-learner` | The learner resigns | Learner-perspective result line |
-| `game-resigned-bot` | The bot resigns | The coach concedes in character |
-| `game-draw-agreed` | The bot accepts a draw offer | |
-| `game-draw-declined` | The bot declines a draw offer | Short |
 | `game-review-ready` | The finished game's review opens | Bridges playing and looking back |
 | `game-start-black` (optional) | The bot moves first because the learner has Black | Could share `game-start` |
 
-That is seven or eight recordings per coach. Plain-clip rules apply (no squares,
+That is three or four recordings per coach. Plain-clip rules apply (no squares,
 digits or owner words on clips that can play on either side). Until they are
 recorded, the page shows the result in a notice and the coach keeps the last
 graded move's line.

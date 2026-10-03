@@ -21,15 +21,12 @@ GUARDS = ((1200, "mate"), (1400, 900), (1800, 500), (2200, 300))
 SAMPLES = 5
 GUARD_MULTIPV = 4
 ENGINE_MOVE_SECONDS = 0.4
-# Just over the board's piece animation, so the reply reads as a second move.
-REPLY_BEAT_MS = 320
 
 
 @dataclass
 class BotChoice:
     uci: str
     san: str
-    think_ms: int
     source: str
     # The engine's view of the position before the move, from the bot's side.
     best_score: Score | None
@@ -92,11 +89,6 @@ def sample_order(probabilities: dict[str, float], rng: random.Random, count: int
     return order
 
 
-def think_time(board: chess.Board, move: chess.Move, probabilities: dict[str, float], rng):
-    """The bot is a bot and plays at once. One beat separates the two moves on the board."""
-    return REPLY_BEAT_MS
-
-
 def human_move(engine, board: chess.Board, policy, rating: int, rng) -> BotChoice:
     probabilities = {row.uci: row.probability or 0.0 for row in policy.moves}
     legal = {move.uci() for move in board.legal_moves}
@@ -114,19 +106,18 @@ def human_move(engine, board: chess.Board, policy, rating: int, rng) -> BotChoic
         loss = evaluation_loss(best, scores[uci])
         checked.append((uci, loss))
         if not guard_violated(rating, loss):
-            return _choice(board, uci, probabilities, rng, "human", best, len(checked))
+            return _choice(board, uci, "human", best, len(checked))
     # Every draw failed the guard: keep the least damaging human candidate rather
     # than switching to the engine's move, which would change the bot's character.
     uci = min(checked, key=lambda row: (row[1].allows_mate, row[1].cp or 0))[0]
-    return _choice(board, uci, probabilities, rng, "fallback", best, len(checked))
+    return _choice(board, uci, "fallback", best, len(checked))
 
 
-def _choice(board, uci, probabilities, rng, source, best, samples):
+def _choice(board, uci, source, best, samples):
     move = chess.Move.from_uci(uci)
     return BotChoice(
         uci=uci,
         san=board.san(move),
-        think_ms=think_time(board, move, probabilities, rng),
         source=source,
         best_score=best,
         samples=samples,
@@ -139,7 +130,6 @@ def engine_move(engine, board: chess.Board, rating: int, rng) -> BotChoice:
     return BotChoice(
         uci=uci,
         san=board.san(move),
-        think_ms=REPLY_BEAT_MS,
         source="engine",
         best_score=None,
     )

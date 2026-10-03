@@ -5,36 +5,47 @@ import type { Analysis, Game, Report } from "../gameReview/types";
 import type { SpeechNavigation } from "../gameReview/useGameExploration";
 
 export type PlayState = Schema["PlayState"];
+type Reply = NonNullable<PlayState["reply"]>;
+
+// The coach comments on the learner's move before answering it: the reply waits
+// for that move's report, for the coach's voice line to finish, then a short pause.
+const REPLY_PAUSE_MS = 2500;
+const VOICE_START_GRACE_MS = 1500;
+const REPORT_TIMEOUT_MS = 20000;
 
 /**
  * A live game against the coach's bot. The server owns the moves; this hook owns
- * which position is shown, the bot's visible thinking pause, and, in live or
- * on-request commentary, the review reports fetched for each played move.
+ * which position is shown, when the bot's reply is revealed, and the review
+ * reports fetched for each played move so the coach can comment live.
  */
 export function usePlaySession(id: string) {
   const audio = useAudioScope(`play:${id}`);
   const [state, setState] = useState<PlayState | null>(null);
   const [error, setError] = useState("");
   const [moving, setMoving] = useState(false);
-  // The bot's reply is known as soon as the learner's move is saved, but it is
-  // shown after a short pause so the game reads as a game rather than a lookup.
   const [shown, setShown] = useState(0);
   const [cursor, setCursor] = useState<number | null>(null);
   const [reports, setReports] = useState<Record<number, Report>>({});
   const [analysisError, setAnalysisError] = useState<string | null>(null);
   const [explanationKey, setExplanationKey] = useState<string | null>(null);
   const [speechNavigation, setSpeechNavigation] = useState<SpeechNavigation | null>(null);
+  // The bot's answer, fetched as soon as the learner's move is saved but shown later.
+  const [pending, setPending] = useState<{ reply: Reply; at: number; learnerPly: number } | null>(null);
+  const [replyError, setReplyError] = useState<string | null>(null);
+  const [voicePlaying, setVoicePlaying] = useState(false);
+  const voiceSeen = useRef(false);
+  const reportAt = useRef<number | null>(null);
+  const [tick, setTick] = useState(0);
   const mounted = useRef(false);
   const events = useRef(0);
-  const pendingReply = useRef<number | undefined>(undefined);
   const analysisQueue = useRef<Promise<unknown>>(Promise.resolve());
   const requested = useRef(new Set<number>());
+  const replyRequested = useRef<number | null>(null);
 
   useEffect(() => {
     mounted.current = true;
     return () => {
       mounted.current = false;
-      window.clearTimeout(pendingReply.current);
     };
   }, []);
 
@@ -67,16 +78,15 @@ export function usePlaySession(id: string) {
   }, [id, accept]);
 
   const announce = useCallback(
-    (ply: number, san: string | null | undefined, awaitAnalysis: boolean) => {
+    (ply: number, san: string | null | undefined) => {
       const eventId = ++events.current;
       audio.cancel();
       audio.move(san, `${eventId}:board`);
-      setSpeechNavigation({ key: `${ply}:`, eventId: `${id}:${eventId}`, awaitAnalysis });
+      setSpeechNavigation({ key: `${ply}:`, eventId: `${id}:${eventId}`, awaitAnalysis: true });
     },
     [audio, id],
   );
 
-  const commentary = state?.commentary ?? "live";
   const requestAnalysis = useCallback(
     (ply: number) => {
       if (ply < 1 || requested.current.has(ply)) return analysisQueue.current;
@@ -103,32 +113,77 @@ export function usePlaySession(id: string) {
     [id],
   );
 
-  // Live commentary grades every move as it lands, in order, like the review's queue.
+  // Commentary is always live: every move is graded as it lands, in order.
   useEffect(() => {
-    if (!state || commentary !== "live") return;
+    if (!state) return;
     for (let ply = 1; ply <= shown; ply++) requestAnalysis(ply);
-  }, [state, shown, commentary, requestAnalysis]);
+  }, [state, shown, requestAnalysis]);
 
-  const revealReply = useCallback(
-    (next: PlayState) => {
-      const reply = next.reply;
-      const learnerPly = next.frames.length - 1 - (reply ? 1 : 0);
-      setShown(learnerPly);
-      setCursor(null);
-      if (!reply) return;
-      window.clearTimeout(pendingReply.current);
-      pendingReply.current = window.setTimeout(() => {
+  // Ask for the bot's answer whenever the shown position leaves it to move.
+  const learnerColor = state?.learner_color;
+  const botToMove =
+    !!state && state.status === "active" && shown === state.frames.length - 1 && state.frames[shown]?.turn !== learnerColor;
+  useEffect(() => {
+    if (!state || !botToMove || replyRequested.current === shown) return;
+    replyRequested.current = shown;
+    const learnerPly = shown;
+    read(api.POST("/api/play/{play_id}/reply", { params: { path: { play_id: id } } }))
+      .then((next) => {
         if (!mounted.current) return;
-        setShown(reply.ply);
-        setCursor(null);
-        announce(reply.ply, reply.san, commentary === "live");
-      }, reply.think_ms);
-    },
-    [announce, commentary],
-  );
+        setState((current) => (current ? { ...next, frames: next.frames } : next));
+        setReports((saved) => {
+          const merged = { ...saved };
+          next.frames.forEach((frame, ply) => {
+            if (frame.report) merged[ply] = frame.report as Report;
+          });
+          return merged;
+        });
+        if (next.reply && next.reply.ply > learnerPly) setPending({ reply: next.reply, at: Date.now(), learnerPly });
+        else setShown(next.frames.length - 1);
+        setReplyError(null);
+      })
+      .catch((e) => {
+        replyRequested.current = null;
+        if (mounted.current) setReplyError((e as Error).message);
+      });
+  }, [state, botToMove, shown, id]);
+
+  // Reveal the reply once the coach has had its say about the learner's move.
+  useEffect(() => {
+    if (!pending) return;
+    const report = reports[pending.learnerPly];
+    const now = Date.now();
+    const ready = pending.learnerPly === 0 || !!report || !!analysisError || now - pending.at > REPORT_TIMEOUT_MS;
+    if (ready && reportAt.current === null) reportAt.current = now;
+    if (!ready) {
+      const timer = window.setTimeout(() => setTick((value) => value + 1), 500);
+      return () => window.clearTimeout(timer);
+    }
+    if (voicePlaying) return;
+    const sinceReport = now - (reportAt.current ?? now);
+    const wait = voiceSeen.current || sinceReport >= VOICE_START_GRACE_MS
+      ? REPLY_PAUSE_MS
+      : VOICE_START_GRACE_MS - sinceReport + REPLY_PAUSE_MS;
+    const timer = window.setTimeout(() => {
+      if (!mounted.current) return;
+      const { reply } = pending;
+      setPending(null);
+      reportAt.current = null;
+      voiceSeen.current = false;
+      setShown(reply.ply);
+      setCursor(null);
+      announce(reply.ply, reply.san);
+    }, wait);
+    return () => window.clearTimeout(timer);
+  }, [pending, reports, analysisError, voicePlaying, tick, announce]);
+
+  const onVoicePlaying = useCallback((playing: boolean) => {
+    if (playing) voiceSeen.current = true;
+    setVoicePlaying(playing);
+  }, []);
 
   async function play(from: string, to: string, promotion?: string) {
-    if (!state || moving || state.status !== "active") return;
+    if (!state || moving || pending || state.status !== "active") return;
     const ply = state.frames.length - 1;
     const uci = from + to + (promotion || "");
     setMoving(true);
@@ -141,11 +196,13 @@ export function usePlaySession(id: string) {
         }),
       );
       if (!mounted.current) return;
+      voiceSeen.current = false;
+      reportAt.current = null;
       accept(next);
       setExplanationKey(null);
-      const played = next.frames[ply + 1];
-      announce(ply + 1, played?.san, commentary === "live");
-      revealReply(next);
+      setShown(ply + 1);
+      setCursor(null);
+      announce(ply + 1, next.frames[ply + 1]?.san);
     } catch (e) {
       if (mounted.current) setError((e as Error).message);
     } finally {
@@ -153,22 +210,23 @@ export function usePlaySession(id: string) {
     }
   }
 
-  async function act(action: "resign" | "draw") {
+  async function resign() {
     if (!state || state.status !== "active") return;
     setError("");
     try {
       const next = await read(
-        api.POST(action === "resign" ? "/api/play/{play_id}/resign" : "/api/play/{play_id}/draw", {
-          params: { path: { play_id: id } },
-        }),
+        api.POST("/api/play/{play_id}/resign", { params: { path: { play_id: id } } }),
       );
-      if (mounted.current) accept(next);
+      if (!mounted.current) return;
+      setPending(null);
+      accept(next);
+      setShown(next.frames.length - 1);
     } catch (e) {
       if (mounted.current) setError((e as Error).message);
     }
   }
 
-  // The latest position the learner may see: the bot's reply stays hidden while it "thinks".
+  // The latest position the learner may see: a fetched reply stays hidden until revealed.
   const latest = state ? Math.min(shown, state.frames.length - 1) : 0;
   const ply = cursor === null ? latest : Math.max(0, Math.min(cursor, latest));
   const navigate = useCallback(
@@ -219,26 +277,25 @@ export function usePlaySession(id: string) {
       rating: state.learner_rating,
       white_rating: state.white_rating,
       black_rating: state.black_rating,
-      frames: state.frames.slice(0, latest + 1).map((frame, index) => ({
-        ...frame,
-        report: commentary === "after" ? null : (reports[index] ?? null),
-      })),
+      frames: state.frames.slice(0, latest + 1).map((frame, index) => ({ ...frame, report: reports[index] ?? null })),
       job: null,
       accuracy: null,
       context: null,
       history: null,
       review_revision: 0,
     };
-  }, [state, latest, reports, commentary]);
+  }, [state, latest, reports]);
 
-  const waitingForBot = !!state && state.status === "active" && latest < state.frames.length - 1;
-  const learnerToMove =
-    !!state && state.status === "active" && !waitingForBot && state.frames[latest]?.turn === state.learner_color;
+  const waitingForBot = !!state && state.status === "active" && state.frames[latest]?.turn !== state.learner_color;
+  const learnerToMove = !!state && state.status === "active" && !waitingForBot && !pending;
   return {
     state,
     game,
-    error,
-    dismissError: () => setError(""),
+    error: error || replyError || "",
+    dismissError: () => {
+      setError("");
+      setReplyError(null);
+    },
     moving,
     ply,
     latest,
@@ -246,19 +303,21 @@ export function usePlaySession(id: string) {
     waitingForBot,
     learnerToMove,
     frame: game?.frames[ply] ?? null,
-    report: commentary === "after" ? null : (reports[ply] ?? null),
+    report: reports[ply] ?? null,
     analysisError,
-    analysisPending: commentary !== "after" && ply > 0 && !reports[ply] && requested.current.has(ply),
-    asked: requested.current.has(ply),
     explaining: explanationKey === `${ply}:`,
     toggleExplanation: () => setExplanationKey((value) => (value === `${ply}:` ? null : `${ply}:`)),
     speechNavigation: speechNavigation?.key === `${ply}:` ? speechNavigation : null,
     navigate,
     play,
-    resign: () => act("resign"),
-    offerDraw: () => act("draw"),
-    ask: () => requestAnalysis(ply),
+    resign,
     retryAnalysis: () => requestAnalysis(ply),
+    retryReply: () => {
+      replyRequested.current = null;
+      setReplyError(null);
+      setTick((value) => value + 1);
+    },
+    onVoicePlaying,
   };
 }
 
