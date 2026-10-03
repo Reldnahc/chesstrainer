@@ -4,6 +4,20 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Remaining 25 cast voice banks — October 3, 2026
+
+Recorded and registered banks for the 25 coaches without one, so all 30 coaches
+now speak all **195** meanings. 4,875 clips / 443,642 input characters with each
+coach's locked voice, `eleven_v4` and the shared settings; the account's usage rose
+by **53,712 credits**, including a few retakes and two rate-limited batches that
+were redone. Every manifest request ID matched the provider history. The dry run
+of all 250 plans passed the recorder's Maia refusal, so no Maia lines were bought.
+
+Checks: `prepare_coach_voice_bank.py --check` (30 banks, 5,850 ready, none
+missing); `test_coach_pilot_scripts.py`, `test_coach_bank_scripts.py` and
+`test_coach_voice_bank.py` (195 passed); the pronunciation and forced-alignment
+tests. Not checked: listening to the new takes, or browser playback for each coach.
+
 ## Maia no longer spoken — October 2, 2026
 
 Owner decision: coaches never voice a Maia (human-move model) reading. The Maia

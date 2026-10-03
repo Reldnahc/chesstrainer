@@ -1,6 +1,6 @@
 # Recorded coach bank authoring
 
-Walter's bank lives in this directory. Rivet's, Winston's, Button's and Arjun's banks live
+Walter's bank lives in this directory. The other 29 coaches' banks live
 under `../banks/<voice>`; all use the same production registry, meaning catalogue, validator and runtime.
 For the full character workflow, start with the
 [coach creation guide](../../../../../docs/COACH_CREATION_GUIDE.md). This page
@@ -113,42 +113,26 @@ shared settings, under `recordings/arjun-v1/`. ElevenLabs history billed
 was made again. His script needed one new inflection ("steadies"), covered by
 morphology revision v4's `-ies` plural rule.
 
-## Authored banks awaiting recording
+## Cast banks recorded October 3
 
-Pip (`banks/pip/scripts.json`, coach `slime`), Ziggy
-(`banks/ziggy/scripts.json`, coach `alien`), Percy
-(`banks/percy/scripts.json`, coach `living-pawn`), Wisp
-(`banks/wisp/scripts.json`, coach `ghost`), Orin
-(`banks/orin/scripts.json`, coach `wizard`), Felix
-(`banks/felix/scripts.json`, coach `cat-tuxedo`), Bandit
-(`banks/bandit/scripts.json`, coach `raccoon`), Alfie
-(`banks/alfie/scripts.json`, coach `dog-gentle`), Pickle
-(`banks/pickle/scripts.json`, coach `cat-kitten`), Ember
-(`banks/ember/scripts.json`, coach `dragon`), Scout
-(`banks/scout/scripts.json`, coach `dog-collie`), Juniper
-(`banks/juniper/scripts.json`, coach `cat-black`), Waffles
-(`banks/waffles/scripts.json`, coach `dog-corgi`), Celeste
-(`banks/celeste/scripts.json`, coach `unicorn`), Jun
-(`banks/jun/scripts.json`, coach `man-expert`), Fergus
-(`banks/fergus/scripts.json`, coach `frog`), Femi
-(`banks/femi/scripts.json`, coach `man-host`), Marisol
-(`banks/marisol/scripts.json`, coach `woman-analyst`), Monty
-(`banks/monty/scripts.json`, coach `gorilla`), Ingrid
-(`banks/ingrid/scripts.json`, coach `woman-blonde`), Biscuit
-(`banks/biscuit/scripts.json`, coach `dog-puppy`), Réka
-(`banks/reka/scripts.json`, coach `woman-spark`), Mateo
-(`banks/mateo/scripts.json`, coach `human-boy`), Tamar
-(`banks/tamar/scripts.json`, coach `woman-captain`) and Tala
-(`banks/tala/scripts.json`, coach `human-girl`) each have complete authored
-scripts for all 195 current catalogue meanings, marked `authored-unrecorded`. They
-own their full text instead of adding columns to the
-Walter/Rivet files. `backend/tests/test_coach_bank_scripts.py` checks catalogue
-coverage and the spoken-text rules, including that Ziggy, Orin, Felix, Ember, Scout, Juniper, Waffles, Celeste, Jun, Fergus, Marisol, Monty, Ingrid and Tamar,
-whose personalities ask no questions, ask none aloud. None is registered: no recordings, alignment or
-tracks exist yet, so these coaches stay silent until the owner approves the
-scripts and a bank is recorded and registered. Recording all 25 means
-25 × 195 = **4,875 clips** and **443,642 input characters** of script text
-(measured from their `scripts.json` after the Maia removal).
+The remaining 25 coaches (Alfie, Bandit, Biscuit, Celeste, Ember, Felix, Femi,
+Fergus, Ingrid, Jun, Juniper, Marisol, Mateo, Monty, Orin, Percy, Pickle, Pip,
+Réka, Scout, Tala, Tamar, Waffles, Wisp and Ziggy) are registered production banks
+built from their own `scripts.json`, covering all 195 catalogue meanings, under
+`recordings/<voice>-v1/`. They were recorded on October 3 with each coach's locked
+voice from `cast-auditions/locked-voices.json`, `eleven_v4` and the shared
+settings: 250 bounded plans, 4,875 clips and 443,642 input characters. The
+recorder refused retired Maia meanings, so none were bought. The account's usage
+rose by **53,712 credits** for the run, which includes a few retakes and two
+rate-limited batches that were redone. Every manifest request ID matched the
+provider history. Alfie and Percy each have one line under `retake-2/` where the
+first take ran "would have" together; forced alignment now also accepts that weak
+form of "have" as recorded `reducedForms` evidence. The scripts needed morphology
+revision v5 for a few compounds and inflections, plus a short reviewed lexicon of
+interjections (`speech_pronunciation.LEXICON`). `backend/tests/test_coach_bank_scripts.py`
+checks catalogue coverage, the spoken-text rules (including that the
+question-free personalities ask none aloud) and that each registered manifest
+matches its scripts.
 
 ### Bank status
 
@@ -162,36 +146,36 @@ registered.
 |---|---|---|---|---|
 | Winston (`capybara`) | Written, 195 | Yes, 2026-10-02, at commits `ad56063`/`4cddfc5` | Yes, `32abf9c` | Yes, `12a01f7` |
 | Button (`mushroom`) | Written, 195 | Yes, 2026-10-02, at commits `ad56063`/`4cddfc5` | Yes, `83dd5df` | Yes, `12a01f7` |
-| Wisp (`ghost`) | Written, 195 | Yes, 2026-10-02, at commit `6b2f07b` | No | No |
-| Pip (`slime`) | Written, 195 | Yes, 2026-10-02, at commit `7e07eff` | No | No |
-| Ziggy (`alien`) | Written, 195 | Yes, 2026-10-02, at commit `a0a9881` | No | No |
-| Percy (`living-pawn`) | Written, 195 | Yes, 2026-10-02, at commit `7e07eff` | No | No |
-| Orin (`wizard`) | Written, 195 | Yes, 2026-10-02, at commit `f9e8a4f` | No | No |
-| Felix (`cat-tuxedo`) | Written, 195 | Yes, 2026-10-02, at commit `5669e4e` | No | No |
-| Bandit (`raccoon`) | Written, 195 | Yes, 2026-10-02, at commit `7e07eff` | No | No |
-| Alfie (`dog-gentle`) | Written, 195 | Yes, 2026-10-02, at commit `5b3a4af` | No | No |
-| Pickle (`cat-kitten`) | Written, 195 | Yes, 2026-10-02, at commit `7e07eff` | No | No |
-| Ember (`dragon`) | Written, 195 | Yes, 2026-10-02, at commit `ee90487` | No | No |
-| Scout (`dog-collie`) | Written, 195 | Yes, 2026-10-02, at commit `3354f70` | No | No |
-| Juniper (`cat-black`) | Written, 195 | Yes, 2026-10-02, at commit `38d3920` | No | No |
-| Waffles (`dog-corgi`) | Written, 195 | Yes, 2026-10-02, at commit `49dd577` | No | No |
-| Celeste (`unicorn`) | Written, 195 | Yes, 2026-10-02, at commit `eddc967` | No | No |
-| Jun (`man-expert`) | Written, 195 | Yes, 2026-10-02, at commit `e32c28f` | No | No |
-| Fergus (`frog`) | Written, 195 | Yes, 2026-10-02, at commit `b2e5e45` | No | No |
+| Wisp (`ghost`) | Written, 195 | Yes, 2026-10-02, at commit `6b2f07b` | Yes, 2026-10-03, `9fe6d54` | Yes, `9fe6d54` |
+| Pip (`slime`) | Written, 195 | Yes, 2026-10-02, at commit `7e07eff` | Yes, 2026-10-03, `5f18e4a` | Yes, `5f18e4a` |
+| Ziggy (`alien`) | Written, 195 | Yes, 2026-10-02, at commit `a0a9881` | Yes, 2026-10-03, `f16a0e8` | Yes, `f16a0e8` |
+| Percy (`living-pawn`) | Written, 195 | Yes, 2026-10-02, at commit `7e07eff` | Yes, 2026-10-03, `752fc87` | Yes, `752fc87` |
+| Orin (`wizard`) | Written, 195 | Yes, 2026-10-02, at commit `f9e8a4f` | Yes, 2026-10-03, `08cc04c` | Yes, `08cc04c` |
+| Felix (`cat-tuxedo`) | Written, 195 | Yes, 2026-10-02, at commit `5669e4e` | Yes, 2026-10-03, `48c9717` | Yes, `48c9717` |
+| Bandit (`raccoon`) | Written, 195 | Yes, 2026-10-02, at commit `7e07eff` | Yes, 2026-10-03, `a18cc62` | Yes, `a18cc62` |
+| Alfie (`dog-gentle`) | Written, 195 | Yes, 2026-10-02, at commit `5b3a4af` | Yes, 2026-10-03, `642e7c4` | Yes, `642e7c4` |
+| Pickle (`cat-kitten`) | Written, 195 | Yes, 2026-10-02, at commit `7e07eff` | Yes, 2026-10-03, `8e0c112` | Yes, `8e0c112` |
+| Ember (`dragon`) | Written, 195 | Yes, 2026-10-02, at commit `ee90487` | Yes, 2026-10-03, `1cb4ae7` | Yes, `1cb4ae7` |
+| Scout (`dog-collie`) | Written, 195 | Yes, 2026-10-02, at commit `3354f70` | Yes, 2026-10-03, `8d554a0` | Yes, `8d554a0` |
+| Juniper (`cat-black`) | Written, 195 | Yes, 2026-10-02, at commit `38d3920` | Yes, 2026-10-03, `5417767` | Yes, `5417767` |
+| Waffles (`dog-corgi`) | Written, 195 | Yes, 2026-10-02, at commit `49dd577` | Yes, 2026-10-03, `87512d8` | Yes, `87512d8` |
+| Celeste (`unicorn`) | Written, 195 | Yes, 2026-10-02, at commit `eddc967` | Yes, 2026-10-03, `38e86a8` | Yes, `38e86a8` |
+| Jun (`man-expert`) | Written, 195 | Yes, 2026-10-02, at commit `e32c28f` | Yes, 2026-10-03, `1344220` | Yes, `1344220` |
+| Fergus (`frog`) | Written, 195 | Yes, 2026-10-02, at commit `b2e5e45` | Yes, 2026-10-03, `f973435` | Yes, `f973435` |
 | Arjun (`man-partner`) | Written, 195 | Yes, 2026-10-02, at commit `91cda3c` | Yes, 2026-10-02 | Yes, 2026-10-02 |
-| Femi (`man-host`) | Written, 195 | Yes, 2026-10-02, at commit `8ef13cd` | No | No |
-| Marisol (`woman-analyst`) | Written, 195 | Yes, 2026-10-02, at commit `0ca83fa` | No | No |
-| Monty (`gorilla`) | Written, 195 | Yes, 2026-10-02, at commit `6de6a66` | No | No |
-| Ingrid (`woman-blonde`) | Written, 195 | Yes, 2026-10-02, at commit `5268032` | No | No |
-| Biscuit (`dog-puppy`) | Written, 195 | Yes, 2026-10-02, at commit `abd5405` | No | No |
-| Réka (`woman-spark`) | Written, 195 | Yes, 2026-10-02, at commit `bbef4b3` | No | No |
-| Mateo (`human-boy`) | Written, 195 | Yes, 2026-10-02, at commit `8907d2e` | No | No |
-| Tamar (`woman-captain`) | Written, 195 | Yes, 2026-10-02, at commit `129a272` | No | No |
-| Tala (`human-girl`) | Written, 195 | Yes, 2026-10-02, at commit `ed96ae2` | No | No |
-| Game review opener (`game-review-opened`), all 30 coaches | Written, 1 each | Yes, 2026-10-02, at commit `d8bbadb` | No | No |
-| Lesson prompts (`lessons` group), coaches 1–10 (Alfie to Fergus) | Written, 9 each | Yes, 2026-10-02, at commit `88b9b84` | No | No |
-| Lesson prompts (`lessons` group), coaches 11–20 (Ingrid to Pip) | Written, 9 each | Yes, 2026-10-02, at commit `899fc94` | No | No |
-| Lesson prompts (`lessons` group), coaches 21–30 (Réka to Ziggy) | Written, 9 each | Yes, 2026-10-02, at commit `b19c358` | No | No |
+| Femi (`man-host`) | Written, 195 | Yes, 2026-10-02, at commit `8ef13cd` | Yes, 2026-10-03, `22ae506` | Yes, `22ae506` |
+| Marisol (`woman-analyst`) | Written, 195 | Yes, 2026-10-02, at commit `0ca83fa` | Yes, 2026-10-03, `cae6ea2` | Yes, `cae6ea2` |
+| Monty (`gorilla`) | Written, 195 | Yes, 2026-10-02, at commit `6de6a66` | Yes, 2026-10-03, `bde6d38` | Yes, `bde6d38` |
+| Ingrid (`woman-blonde`) | Written, 195 | Yes, 2026-10-02, at commit `5268032` | Yes, 2026-10-03, `3254fd1` | Yes, `3254fd1` |
+| Biscuit (`dog-puppy`) | Written, 195 | Yes, 2026-10-02, at commit `abd5405` | Yes, 2026-10-03, `ec18ba8` | Yes, `ec18ba8` |
+| Réka (`woman-spark`) | Written, 195 | Yes, 2026-10-02, at commit `bbef4b3` | Yes, 2026-10-03, `fc041fe` | Yes, `fc041fe` |
+| Mateo (`human-boy`) | Written, 195 | Yes, 2026-10-02, at commit `8907d2e` | Yes, 2026-10-03, `bf75fab` | Yes, `bf75fab` |
+| Tamar (`woman-captain`) | Written, 195 | Yes, 2026-10-02, at commit `129a272` | Yes, 2026-10-03, `8e72ed6` | Yes, `8e72ed6` |
+| Tala (`human-girl`) | Written, 195 | Yes, 2026-10-02, at commit `ed96ae2` | Yes, 2026-10-03, `c900a47` | Yes, `c900a47` |
+| Game review opener (`game-review-opened`), all 30 coaches | Written, 1 each | Yes, 2026-10-02, at commit `d8bbadb` | Yes, all 30 | Yes, all 30 |
+| Lesson prompts (`lessons` group), coaches 1–10 (Alfie to Fergus) | Written, 9 each | Yes, 2026-10-02, at commit `88b9b84` | Yes | Yes |
+| Lesson prompts (`lessons` group), coaches 11–20 (Ingrid to Pip) | Written, 9 each | Yes, 2026-10-02, at commit `899fc94` | Yes | Yes |
+| Lesson prompts (`lessons` group), coaches 21–30 (Réka to Ziggy) | Written, 9 each | Yes, 2026-10-02, at commit `b19c358` | Yes | Yes |
 
 The opener row is a cast-wide meaning added after the banks above. Walter's and
 Rivet's lines sit in `banks/pilot-additions.json`.
@@ -199,12 +183,12 @@ Rivet's lines sit in `banks/pilot-additions.json`.
 The script counts were 438 when those reviews passed. On 2026-10-02 the 253 Maia
 rows were removed (see above), leaving 195 rows per coach (185 non-lesson
 meanings, the opener and nine lesson prompts); the remaining rows' review status is
-unchanged. Walter, Rivet, Winston, Button and Arjun each have 195 recordings.
+unchanged. All 30 coaches now have 195 recordings each.
 
 The lesson-prompt rows cover the nine generic `lessons` meanings. Each batch of
 coaches adds its own row as it lands; a coach's lesson lines stay silent until
 they are recorded. With coaches 21–30 in, all 30 coaches have their lesson lines
-written, and none are recorded yet.
+written, and all of them are recorded.
 
 ## Adding or revising a production bank
 
@@ -273,7 +257,7 @@ automatically writes a finished personality or turns all coach prose into speech
    below validates every *registered recording*, but deliberately allows a
    partial bank. Compare the bank's IDs against the reachable shared catalogue
    and add/update script-consistency and selection tests before calling it
-   complete. Walter, Rivet, Winston, Button and Arjun currently cover all 195 meanings; that number is
+   complete. All 30 registered banks currently cover all 195 meanings; that number is
    not a substitute for checking the catalogue. Exercise actual game/practice
    playback, late Maia results (shown, never spoken), manual replay, cancellation and cold positions.
    Use Recorded coach comparison in the Audio Studio for editorial/listening

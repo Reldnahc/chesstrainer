@@ -416,8 +416,8 @@ The client builds a `DialogueIntent` before selecting a personality. `CoachUtter
 retains exact rendered claims, claim/template provenance and delivery metadata.
 The shared local voice selector consumes those facts and, for combined narration,
 the same prepared human insight displayed by the current review. Semantic meaning
-IDs resolve through registered character banks; Walter, Rivet, Winston, Button
-and Arjun currently provide complete recordings. Neither selection nor playback contacts a speech provider.
+IDs resolve through registered character banks; all 30 coaches currently
+provide complete recordings. Neither selection nor playback contacts a speech provider.
 The existing coach catalogue owns both artwork and
 writing definitions. Character changes
 perform no native work. Cold practice gates precede all dialogue selection.

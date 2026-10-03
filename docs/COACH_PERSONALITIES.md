@@ -83,117 +83,103 @@ an available reply and a possible result in compact, orderly language. Their 29
 scoped forms retain the same evidence without forcing identical factual prose.
 Winston and Button have since authored all 29 forms and the opening phrases in
 their own voices: Winston calmly states the fact and a manageable next look;
-Button approaches the same fact from a slightly odd, gentle angle. Their written
-opt-in precedes recorded banks, so they remain silent until a bank is registered.
+Button approaches the same fact from a slightly odd, gentle angle. All 30 coaches now
+speak these lines from registered recorded banks.
 Wisp (ghost) has also opted in, with its forms kept in `characters/ghost.ts`: it
 names what is already on the board or waiting for a reply, in short sentences
 with no questions. Pip (slime) has done the same: a small happy or gentle
 reaction, then one plain fact in short everyday words, with an occasional Dublin
 turn of phrase and no questions. As a one-claim voice, Pip drops a lower-priority
 Book recognition rather than adding it after a correction. Percy (living pawn)
-has opted in too: an earnest reaction, then the job a piece did or dropped. Like
-Winston and Button, Wisp, Pip and Percy stay silent until a bank is registered.
+has opted in too: an earnest reaction, then the job a piece did or dropped.
 Ziggy (alien) has followed with all 29 forms, the opening phrases and the full
 claim set: a curious outsider's observation first, then the plain fact, with no
-questions and difficulty always attributed to the human-move model. Ziggy also
-stays silent until a bank is registered. Orin (wizard) has done the same, with
+questions and difficulty always attributed to the human-move model. Orin (wizard) has done the same, with
 his forms in `characters/wizard.ts` and the shared tactic and opening blocks: a
 short principle or named pattern, its application to the move, then the
-consequence, with restrained approval and no questions. Orin also stays silent
-until a bank is registered.
+consequence, with restrained approval and no questions.
 Felix (tuxedo cat) has opted in with all 29 forms, the opening phrases and the
 full claim set: the concrete consequence first, then a terse explanation, with
 rare, understated approval, dry humor kept to practical costs, no questions and
-difficulty always attributed to the human-move model. Felix also stays silent
-until a bank is registered.
+difficulty always attributed to the human-move model.
 Bandit (raccoon) has opted in as well, with its forms in `characters/scopedTactics.ts`
 and `characters/openingSequence.ts`: it spots what is on offer first, says plainly
 why it is there to take, and treats loose pieces and scrappy, effective chess as
-the good stuff, without pretending material is all that matters. Bandit stays
-silent until a bank is registered.
+the good stuff, without pretending material is all that matters.
 Alfie (golden retriever) has opted in as well, with his forms in
 `characters/professor.ts`: a short principle, this position's fact, then one
-connection to keep, explaining the mechanism patiently when correcting. Alfie
-also stays silent until a bank is registered.
+connection to keep, explaining the mechanism patiently when correcting.
 Pickle (kitten) has opted in the same way: a nosy little detective who pokes at
 one suspicious detail, asks a quick question, then answers it with the supported
 fact, with delight saved for sneaky tricks and difficulty always attributed to
-the human-move model. Pickle also stays silent until a bank is registered.
+the human-move model.
 Ember (dragon) has opted in as well, with its scoped and opening forms in the
 shared `scopedTactics.ts` and `openingSequence.ts` blocks: a firm verdict first,
 then the concrete reason and its consequence, with sparing, earned approval for
-forcing play and exact defense and no questions. Ember also stays silent until a
-bank is registered.
+forcing play and exact defense and no questions.
 Scout (border collie) has opted in too, with his forms in `characters/collie.ts`:
 a quick pattern call, the concrete fact, then one short task to train it, with
-no questions. Scout also stays silent until a bank is registered.
+no questions.
 Juniper (black cat) has followed in `characters/velvet.ts`:
 a small exposed detail first, a beat, then a gentle conclusion, with the
 occasional first-person "I noticed", soft encouragement and no questions. As a
-one-claim voice, she drops a lower-priority Book recognition like Pip. Juniper
-also stays silent until a bank is registered.
+one-claim voice, she drops a lower-priority Book recognition like Pip.
 Waffles (corgi) has opted in too, with his forms in the shared tactic and opening
 blocks: a short command or reaction, the consequence, then the next order, in light
 field-manual language with no questions and difficulty always credited to the
-human-move model. Waffles stays silent until a bank is registered.
+human-move model.
 Celeste (unicorn) has followed in `characters/unicorn.ts`: a brief genuine
 reaction, a flowing description of what the move joins, frees or breaks, then
 one gentle lesson, with delight kept for sound sacrifices, hidden tactics and
-narrow defenses, kind but clear correction and no questions. Celeste also stays
-silent until a bank is registered.
+narrow defenses, kind but clear correction and no questions.
 Jun (`man-expert`) has opted in as well, in `characters/expert.ts`: the fact,
 its exact consequence and the supported resource, in clipped technical labels
 (absolute pin, theory, net material, flight square), with sparse approval for
-precision, no emotion that depends on which side moved, and no questions. Jun
-also stays silent until a bank is registered.
+precision, no emotion that depends on which side moved, and no questions.
 Fergus (frog) has opted in too, with his forms in `characters/groundedQuiet.ts`:
 one flat report of the fact with a dry, side-neutral tail at most, no questions
-and no exclamation marks. Fergus also stays silent until a bank is registered.
+and no exclamation marks.
 Arjun (`man-partner`) has opted in too, in `characters/partner.ts`: an occasional
 genuine question that reveals the mechanism, then the idea, then a comparison of
 candidates side by side, with delight kept for unusual resources and no claim
-beyond the supported line. Arjun also stays silent until a bank is registered.
+beyond the supported line.
 Femi (human host) has opted in too, with his forms in the shared tactic and opening
 blocks: a club analyst's reaction across the table, a "hold that thought" at the problem, then
 the concrete reply put on the board, with occasional questions, book moves called
 "prep" or "main line", and difficulty always credited to the human-move model.
-Femi stays silent until a bank is registered.
 Marisol (`woman-analyst`) has opted in as well, in `characters/analyst.ts`: a
 compact before-and-after observation of exactly what the move changed, then its
 consequence, with the human-move model's and the engine's readings kept apart,
-rare factual approval and no questions. Marisol also stays silent until a bank is
-registered.
+rare factual approval and no questions.
 Monty (gorilla) has opted in as well, with his forms in `characters/groundedQuiet.ts`
 and the shared tactic and opening blocks: one big concrete problem in plain
 words, the simple reason, then the result, with earnest, sparse approval and no
-questions. Monty also stays silent until a bank is registered.
+questions.
 Ingrid (`woman-blonde`) has opted in too, in `characters/blonde.ts`: a relaxed,
 unhurried opener, the concrete fact said plainly, then one manageable next idea,
 with reassurance kept to the player's own moments and always beside a chess point,
-and no questions. Ingrid also stays silent until a bank is registered.
+and no questions.
 Biscuit (puppy) has opted in as an eager teammate: an honest emotional beat,
 the concrete reply in plain words, then one small habit to carry forward, with
-ownership words kept to the learner's own moments. Biscuit also stays silent
-until a bank is registered.
+ownership words kept to the learner's own moments.
 Réka (`woman-spark`) has opted in too, in `characters/spark.ts`: a quick reaction to
 the pattern, the tactical punchline, then its supported consequence, with her own
 "eyes up" warning, "repertoire" for book moves, delight such as "Zing!" kept for
-the learner's own clips, and difficulty credited to the human-move model. Réka
-stays silent until a bank is registered.
+the learner's own clips, and difficulty credited to the human-move model.
 Mateo (`human-boy`) has opted in as well, in `characters/youngBoy.ts`: a short
 burst of excitement aimed at the tactic itself, sometimes a "wait" or "look at
 this", then one plain, complete chess fact, with an occasional question whose
 answer is on the board. His cheering and sympathy stay on the player's own
-moments. Mateo also stays silent until a bank is registered.
+moments.
 Tamar (`woman-captain`) has opted in as well, in `characters/captain.ts`: a
 firm verdict, the concrete reason, then one habit to build, with open mentor
 pride kept to the learner's own moves, plain-clip lines that name no owner,
-and no questions. Tamar also stays silent until a bank is registered.
+and no questions.
 Tala (young girl) has opted in as well, with her forms in `characters/groundedHumans.ts`
 and the shared tactic and opening blocks: a genuine question or one circled detail,
 the discovery, then its consequence, with competitive curiosity instead of scolding,
 no emotion that depends on which side moved, and ownership words kept to the
-learner's own moments. Tala also stays silent until a bank is registered.
+learner's own moments.
 Every voice in the cast now has its own scoped wording.
 
 The same pilot uses three generic opening-recognition phrases and eight phrases
