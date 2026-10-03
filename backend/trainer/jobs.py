@@ -2,6 +2,7 @@
 
 import logging
 import threading
+import time
 
 from trainer.chesscom import ChessComClient
 from trainer.engine import Stockfish
@@ -96,13 +97,15 @@ class JobRunner:
     def poll(self):
         interval = self.settings.sync_interval_seconds
         while not self.stop_event.is_set():
+            started = time.monotonic()
             with self.queue.sessions() as db:
                 # A week without requests pauses polling until the learner returns.
                 owners = db.scalars(
                     self.queue.owners().where(User.last_seen_at >= active_cutoff())
                 ).all()
             poll_connections(self, owners)
-            self.stop_event.wait(interval)
+            # Rounds never overlap: a slow round is followed by the next at once.
+            self.stop_event.wait(max(0, interval - (time.monotonic() - started)))
 
     def run_job(self, job_id, engine=None):
         # Explicit synchronous entry point used by offline tools and tests.

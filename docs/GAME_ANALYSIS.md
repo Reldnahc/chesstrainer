@@ -34,13 +34,14 @@ running.
 ## Polling
 
 The job runner's `sync-poller` thread runs a round every `SYNC_INTERVAL_SECONDS`
-(default 20; 0 disables). A round first asks each provider which saved
+(default 60, measured from round start; 0 disables). A round longer than the
+interval is followed by the next immediately, so rounds never overlap. A round first asks each provider which saved
 connections changed, then queues a sync only for those. A sync reads the 10
 newest completed games of all time controls, regardless of month, and imports the
 ones not yet saved. Every connection also gets a full sync at least every 10
 minutes, in case a change marker misses something.
 
-| Provider | Change check | Why it is safe every 20 s |
+| Provider | Change check | Why it is safe every minute |
 | --- | --- | --- |
 | Chess.com | `GET` of each player's current-month archive with the saved `ETag` (`If-None-Match`); unchanged answers 304. 404 means no games this month. | Chess.com has no multi-player endpoint, but [serial access is unlimited](https://www.chess.com/news/view/published-data-api); only parallel requests can see 429. Archives carry `max-age=5`. |
 | Lichess | One `POST /api/users` per 300 players; per-speed game counts plus total play time form the signature. | Lichess asks for [one request at a time](https://lichess.org/page/api-tips) and a minute's pause after 429; a round is a single request for most hosts. |

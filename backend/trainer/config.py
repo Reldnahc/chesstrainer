@@ -34,8 +34,9 @@ class Settings(BaseSettings):
     stockfish_threads: int = Field(default=1, ge=1, le=32)
     stockfish_hash_mb: int = Field(default=64, ge=16, le=4096)
     stockfish_workers: int = Field(default=1, ge=1, le=4)
-    # Seconds between server polling rounds over all saved connections; 0 disables.
-    sync_interval_seconds: int = Field(default=20, ge=0, le=86400)
+    # Seconds from one polling round's start to the next; 0 disables. A round longer
+    # than this (many Chess.com players) starts the next one right away.
+    sync_interval_seconds: int = Field(default=60, ge=0, le=86400)
     human_model_enabled: bool = True
     human_model_path: Path = Path("data/models/maia3-79m.pt")
     human_model_device: Literal["cpu", "cuda"] = "cpu"

@@ -15,6 +15,8 @@ from trainer.game_providers.base import (
 )
 
 GROUP_SIZE = 50
+# Lichess's users endpoint accepts up to 300 ids per request.
+LICHESS_BATCH = 300
 
 
 class LichessClient:
@@ -41,8 +43,8 @@ class LichessClient:
         """
         results = {}
         names = list(usernames)
-        for start in range(0, len(names), 300):
-            chunk = names[start : start + 300]
+        for start in range(0, len(names), LICHESS_BATCH):
+            chunk = names[start : start + LICHESS_BATCH]
             response = self.client.post(
                 "https://lichess.org/api/users",
                 content=",".join(chunk),
