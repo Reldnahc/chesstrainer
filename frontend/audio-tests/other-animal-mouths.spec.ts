@@ -89,7 +89,10 @@ test("speech preserves animal expressions, nose stems, throat and existing rig l
   const portraits = await sheet(page, ["neutral", "brilliant", "mistake", "blunder"], [92.8], ["authored"]);
   const original = await portraits.locator(".speech-mouth-authored").evaluateAll(nodes => nodes.map(node => node.innerHTML));
   const throat = portraits.locator('.cast-frog-throat').first();
-  const originalThroat = await throat.evaluate(node => ({path: node.getAttribute("d"), transform: getComputedStyle(node).transform}));
+  // Chromium resolves an untransformed SVG path to "" or "none" depending on layout
+  // timing; both mean no transform.
+  const throatState = () => throat.evaluate(node => ({path: node.getAttribute("d"), transform: getComputedStyle(node).transform || "none"}));
+  const originalThroat = await throatState();
   await portraits.locator(".coach-avatar").evaluateAll(nodes => {
     for (const node of nodes) {
       const avatar = node as HTMLElement;
@@ -108,7 +111,7 @@ test("speech preserves animal expressions, nose stems, throat and existing rig l
   ].map(node => ({inSpeechLayer: !!node.closest(".speech-mouth-layer"), hidden: getComputedStyle(node).display === "none"})));
   expect(connections).toHaveLength(12);
   expect(connections.every(node => !node.inSpeechLayer && !node.hidden)).toBe(true);
-  expect(await throat.evaluate(node => ({path: node.getAttribute("d"), transform: getComputedStyle(node).transform}))).toEqual(originalThroat);
+  expect(await throatState()).toEqual(originalThroat);
   expect(await portraits.locator(".speech-mouth-layer").evaluateAll(nodes => nodes.every(node =>
     !!node.closest(".study-muzzle") && !!node.closest(".study-head-pose") && !!node.closest(".study-head-idle") && !!node.closest(".study-head"))))
     .toBe(true);

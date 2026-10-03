@@ -147,12 +147,12 @@ for (const coach of coaches) {
 
   test(`${coach.id}: a Maia-only snapshot whose refreshed ply gained a fact stays silent`, () => {
     const current = context("human-without-objective", coach);
-    // The visible utterance predates a report that now also carries a clock note.
+    // The visible utterance predates a report that now also carries a sacrifice.
+    // (Clock notes no longer make claims, so they cannot stand in for a new fact.)
     const report = current.report!, game = current.game;
-    const clock: NonNullable<typeof report.intelligence>["events"][number] = {...report.intelligence!.events[0], id: "late-clock",
-      kind: "clock_observation", actor: game.orientation, confidence: "board_fact",
-      facts: {before_band: "low", before_seconds: 9, elapsed_seconds: 2, tempo: "normal"}};
-    report.intelligence!.events = [...report.intelligence!.events, clock];
+    const sacrifice: NonNullable<typeof report.intelligence>["events"][number] = {...report.intelligence!.events[0],
+      id: "late-sacrifice", kind: "sacrifice", actor: game.orientation, confidence: "board_fact", facts: {}};
+    report.intelligence!.events = [...report.intelligence!.events, sacrifice];
     expect(selectGameSpeech(current)).toEqual({primaryId: null, recordingId: null});
   });
 

@@ -30,7 +30,8 @@ async function mount(page: Page, options: {selection?: Partial<Selection>; voice
     await route.fulfill({json: preferences});
   });
   await page.route("**/api/preferences/coach", async route => {
-    if (route.request().method() === "PUT") coach = route.request().postDataJSON();
+    // The coach controls save only their changed field.
+    if (route.request().method() === "PATCH") coach = {...coach, ...route.request().postDataJSON()};
     else if (options.deferPreferences) await gate;
     await route.fulfill({json: coach});
   });
