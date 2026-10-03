@@ -8601,6 +8601,29 @@
         "title": "Weaknesses",
         "type": "object"
       },
+      "WelcomeBack": {
+        "additionalProperties": false,
+        "description": "Set when the learner returns after a week away; polling paused meanwhile.",
+        "properties": {
+          "away_since": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Away Since"
+          }
+        },
+        "required": [
+          "away_since"
+        ],
+        "title": "WelcomeBack",
+        "type": "object"
+      },
       "WorkerActivity": {
         "additionalProperties": false,
         "properties": {
@@ -11848,6 +11871,42 @@
           }
         },
         "summary": "Weaknesses"
+      }
+    },
+    "/api/welcome-back": {
+      "get": {
+        "operationId": "get_welcome_back_api_welcome_back_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WelcomeBack"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Get Welcome Back"
+      }
+    },
+    "/api/welcome-back/dismiss": {
+      "post": {
+        "operationId": "post_welcome_back_api_welcome_back_dismiss_post",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WelcomeBack"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Post Welcome Back"
       }
     }
   }

@@ -8,7 +8,8 @@ from trainer.engine import Stockfish
 from trainer.game_sync import poll as poll_connections
 from trainer.job_execution import JobExecution
 from trainer.job_queue import JobQueue
-from trainer.models import AnalysisJob
+from trainer.models import AnalysisJob, User
+from trainer.presence import active_cutoff
 from trainer.workspaces import Workspaces
 
 log = logging.getLogger(__name__)
@@ -96,11 +97,12 @@ class JobRunner:
         interval = self.settings.sync_interval_seconds
         while not self.stop_event.is_set():
             with self.queue.sessions() as db:
-                owners = db.scalars(self.queue.owners()).all()
-            poll_connections(self.workspaces, owners, interval)
-            # Each connection is due once per interval; checking more often keeps
-            # the actual gap close to it without double-queuing.
-            self.stop_event.wait(min(interval, 30))
+                # A week without requests pauses polling until the learner returns.
+                owners = db.scalars(
+                    self.queue.owners().where(User.last_seen_at >= active_cutoff())
+                ).all()
+            poll_connections(self, owners)
+            self.stop_event.wait(interval)
 
     def run_job(self, job_id, engine=None):
         # Explicit synchronous entry point used by offline tools and tests.

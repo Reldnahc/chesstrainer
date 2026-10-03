@@ -1148,6 +1148,40 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/welcome-back": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Welcome Back */
+        get: operations["get_welcome_back_api_welcome_back_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/welcome-back/dismiss": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Post Welcome Back */
+        post: operations["post_welcome_back_api_welcome_back_dismiss_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -3895,6 +3929,14 @@ export interface components {
             /** Unclassified */
             unclassified: number;
         };
+        /**
+         * WelcomeBack
+         * @description Set when the learner returns after a week away; polling paused meanwhile.
+         */
+        WelcomeBack: {
+            /** Away Since */
+            away_since: string | null;
+        };
         /** WorkerActivity */
         WorkerActivity: {
             /** Active */
@@ -6227,6 +6269,46 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Weaknesses"];
+                };
+            };
+        };
+    };
+    get_welcome_back_api_welcome_back_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["WelcomeBack"];
+                };
+            };
+        };
+    };
+    post_welcome_back_api_welcome_back_dismiss_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["WelcomeBack"];
                 };
             };
         };

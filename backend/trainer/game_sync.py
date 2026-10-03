@@ -1,17 +1,20 @@
 """Connected accounts are polled by the server; new games queue their own analysis."""
 
 import logging
+import time
 from datetime import datetime, timezone
 
 from sqlalchemy import delete, select
 
-from trainer.game_analysis import RECENT_GAMES
+from trainer.game_providers.base import ProviderRateLimited
 from trainer.models import AnalysisJob, ProviderCheckpoint, ProviderConnection, ProviderImport, now
 
 log = logging.getLogger(__name__)
 
-# A sync scans the newest games, whatever month they were played in.
-SYNC_SCOPE = {"time_class": "all", "months": 0, "max_games": RECENT_GAMES}
+# A sync reads the newest games, whatever month they were played in.
+SYNC_GAMES = 10
+SYNC_SCOPE = {"time_class": "all", "months": 0, "max_games": SYNC_GAMES}
+FULL_SYNC_SECONDS = 600
 SYNC_COUNTERS = (
     "archives_total",
     "archives_processed",
@@ -76,17 +79,67 @@ def queue_sync(db, provider, *, min_age=60):
     return job
 
 
-def poll(workspaces, owners, interval):
-    """One polling round: queue a sync for every saved connection that is due."""
+def poll(runner, owners):
+    """One polling round: ask each provider what changed, then sync only those.
+
+    Provider traffic stays serial under the runner's host-wide provider lock,
+    and a provider that rate limited us is skipped until its cooldown ends.
+    """
+    connections = {}  # provider -> {username: [(owner, poll_state), ...]}
     for owner in owners:
         try:
-            with workspaces.open(owner) as workspace:
-                with workspace.mutation_lock, workspace.sessions() as db:
-                    providers = db.scalars(
-                        select(ProviderConnection.provider).where(ProviderConnection.username != "")
-                    ).all()
-                    for provider in providers:
-                        queue_sync(db, provider, min_age=interval)
+            with runner.workspaces.open(owner) as workspace, workspace.sessions() as db:
+                for row in db.scalars(
+                    select(ProviderConnection).where(ProviderConnection.username != "")
+                ):
+                    users = connections.setdefault(row.provider, {})
+                    users.setdefault(row.username, []).append((owner, dict(row.poll_state or {})))
         except Exception:
-            # One account's failure must not stop polling for the others.
             log.exception("sync_poll_failed", extra={"user_id": owner})
+    for provider, users in connections.items():
+        try:
+            changes = detect(runner, provider, users)
+        except Exception:
+            log.exception("sync_change_check_failed", extra={"provider": provider})
+            continue
+        for name, (changed, state) in changes.items():
+            for owner, _previous in users[name]:
+                try:
+                    record(runner, owner, provider, state, changed)
+                except Exception:
+                    log.exception("sync_poll_failed", extra={"user_id": owner})
+
+
+def detect(runner, provider, users):
+    if time.monotonic() < runner.provider_retry_at.get(provider, 0):
+        return {}
+    now = time.time()
+    states = {name: owned[0][1] for name, owned in users.items()}
+    with runner.provider_lock:
+        client = runner.provider_factories[provider](runner.settings)
+        try:
+            results = client.changed(list(users), states)
+        except ProviderRateLimited as exc:
+            runner.provider_retry_at[provider] = time.monotonic() + exc.retry_after
+            raise
+        finally:
+            client.close()
+    changes = {}
+    for name, (changed, state) in results.items():
+        # A periodic full sync catches anything a change marker can miss.
+        due = now - states[name].get("synced_at", 0) >= FULL_SYNC_SECONDS
+        state = dict(state, synced_at=now if changed or due else states[name].get("synced_at", 0))
+        changes[name] = (changed or due, state)
+    return changes
+
+
+def record(runner, owner, provider, state, changed):
+    with runner.workspaces.open(owner) as workspace:
+        with workspace.mutation_lock, workspace.sessions() as db:
+            row = db.get(ProviderConnection, (owner, provider))
+            if row is None:
+                return
+            row.poll_state = state
+            db.commit()
+            if changed:
+                queue_sync(db, provider, min_age=0)

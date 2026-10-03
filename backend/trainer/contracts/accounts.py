@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from trainer.contracts.common import Contract
 
 
@@ -37,3 +39,9 @@ class GameProvider(Contract):
 
 class ProviderConnectionRequest(Contract):
     username: str
+
+
+class WelcomeBack(Contract):
+    """Set when the learner returns after a week away; polling paused meanwhile."""
+
+    away_since: datetime | None

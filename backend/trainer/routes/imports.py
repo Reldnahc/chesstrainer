@@ -106,11 +106,7 @@ def create_router(*, settings) -> APIRouter:
             job = AnalysisJob(kind=kind)
             db.add(job)
             db.flush()
-            db.add(
-                ProviderImport(
-                    job_id=job.id, provider=provider, **data.model_dump()
-                )
-            )
+            db.add(ProviderImport(job_id=job.id, provider=provider, **data.model_dump()))
             db.commit()
             return {"job_id": job.id, "status": job.status}
 

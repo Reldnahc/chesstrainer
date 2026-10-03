@@ -72,7 +72,8 @@ def test_sessions_isolation_csrf_and_restart(settings):
             == 200
         )
         game = client.get("/api/games").json()["items"][0]["id"]
-        job = client.get("/api/jobs").json()[0]["id"]
+        # The upload queued this game's own analysis job; reviewing reuses it.
+        job = client.post(f"/api/games/{game}/review", json={}, headers=headers).json()["job_id"]
         bob, bob_token = signup(client, "bobby")
         assert client.get("/api/games").json()["total"] == 0
         assert client.get("/api/jobs").json() == []

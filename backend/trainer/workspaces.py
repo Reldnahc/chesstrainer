@@ -9,6 +9,7 @@ from typing import Annotated
 from fastapi import Depends, HTTPException, Request
 
 from trainer.ownership import account_sessions
+from trainer.presence import touch
 
 
 @dataclass
@@ -103,7 +104,9 @@ def request_workspace(request: Request):
         user_id = user["id"]
     else:
         user_id = "local"
-    with request.app.state.workspaces.open(user_id) as workspace:
+    workspaces = request.app.state.workspaces
+    touch(workspaces.sql_engine, user_id)
+    with workspaces.open(user_id) as workspace:
         yield workspace
 
 

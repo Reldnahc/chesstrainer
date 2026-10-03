@@ -2,14 +2,20 @@
 
 from datetime import timezone
 
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Request
 
-from trainer.contracts.accounts import GameProvider, ProviderConnectionRequest, SyncStatus
+from trainer.contracts.accounts import (
+    GameProvider,
+    ProviderConnectionRequest,
+    SyncStatus,
+    WelcomeBack,
+)
 from trainer.game_providers import PROVIDERS, get_provider
 from trainer.game_providers.base import ProviderImportRequest
 from trainer.game_sync import connected_username, latest_sync
 from trainer.game_sync import queue_sync as queue
 from trainer.models import ProviderConnection, ProviderImport
+from trainer.presence import dismiss_welcome_back, welcome_back
 from trainer.workspaces import CurrentWorkspace
 
 
@@ -54,6 +60,16 @@ def create_router():
             return get_provider(provider)
         except ValueError as exc:
             raise HTTPException(404, str(exc)) from exc
+
+    @router.get("/api/welcome-back", response_model=WelcomeBack)
+    def get_welcome_back(workspace: CurrentWorkspace, request: Request):
+        return welcome_back(request.app.state.workspaces.sql_engine, workspace.user_id)
+
+    @router.post("/api/welcome-back/dismiss", response_model=WelcomeBack)
+    def post_welcome_back(workspace: CurrentWorkspace, request: Request):
+        engine = request.app.state.workspaces.sql_engine
+        dismiss_welcome_back(engine, workspace.user_id)
+        return welcome_back(engine, workspace.user_id)
 
     @router.get("/api/game-providers", response_model=list[GameProvider])
     def providers(workspace: CurrentWorkspace):

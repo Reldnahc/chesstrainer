@@ -3,8 +3,15 @@ import shutil
 from pathlib import Path
 
 import pytest
+from trainer import presence
 from trainer.config import Settings
 from trainer.db import database, migrate
+
+
+@pytest.fixture(autouse=True)
+def fresh_presence():
+    # Each test database must record its own first request.
+    presence.forget()
 
 
 @pytest.fixture
