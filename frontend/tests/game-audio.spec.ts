@@ -162,14 +162,17 @@ async function twoMoveVariation(page: Page) {
 
 test("hydration, flipping, report refresh and no-op navigation remain silent", async ({page}) => {
   expect(await sounds(page)).toEqual([]);
-  await expect(page.getByTestId("speech-navigation")).toHaveText("null");
+  // Opening an untouched game at its start is one fresh greeting event; no-op
+  // navigation must neither replace it nor add another.
+  const opening = JSON.stringify({key: "0:", eventId: "audio-fixture:open", awaitAnalysis: false, opening: true});
+  await expect(page.getByTestId("speech-navigation")).toHaveText(opening);
   await page.getByRole("button", {name: "Flip board", exact: true}).click();
   await expect(page.getByTestId("orientation")).toHaveText("black");
   await page.getByRole("button", {name: "Start", exact: true}).click();
   await page.getByRole("button", {name: "Previous", exact: true}).click();
   await page.getByRole("combobox", {name: "Learner quality"}).selectOption("Blunder");
   expect(await sounds(page)).toEqual([]);
-  await expect(page.getByTestId("speech-navigation")).toHaveText("null");
+  await expect(page.getByTestId("speech-navigation")).toHaveText(opening);
   await page.getByRole("button", {name: "Next", exact: true}).click();
   await expect(page.getByTestId("current")).toHaveText("1:");
   const narration = JSON.parse((await page.getByTestId("speech-navigation").textContent())!);

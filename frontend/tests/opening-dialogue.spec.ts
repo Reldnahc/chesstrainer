@@ -202,7 +202,7 @@ const openingCoaches = [
   {id: "man-expert", personality: expert, authored: expertOpeningTemplates, voiced: false},
   {id: "frog", personality: newCastPersonalities.frog, authored: frogOpeningTemplates, voiced: false},
   {id: "gorilla", personality: newCastPersonalities.gorilla, authored: gorillaOpeningTemplates, voiced: false},
-  {id: "man-partner", personality: partner, authored: partnerOpeningTemplates, voiced: false},
+  {id: "man-partner", personality: partner, authored: partnerOpeningTemplates, voiced: true},
   {id: "man-host", personality: host, authored: hostOpeningTemplates, voiced: false},
   {id: "woman-analyst", personality: analyst, authored: analystOpeningTemplates, voiced: false},
   {id: "woman-blonde", personality: blonde, authored: blondeOpeningTemplates, voiced: false},
