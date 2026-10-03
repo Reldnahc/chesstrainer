@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "opening-recall-rejected-changed",
+      "label": "Opening recall rejected changed",
+      "text": "That move lies outside your selected opening lines, so try once more. The study has been changed, and this saved attempt leaves its review schedule as it was."
+    },
+    "takeId": null
+  },
+  "requestHash": "4a176ae813533d96a8a5656747a4b8f9775555496e2f436157121359d6357207",
+  "recordedAt": "2026-10-03T06:12:24.565Z",
+  "sha256": "4d849b1a0ddf12fb46169b9064c31ad56d4d74d492d5f464273e2b537ce5e651",
+  "bytes": 36305,
+  "requestId": "Bh9NllUwcpxWM6C1N2FV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f3761e51832cf1e6fc556ae97ba6ca98f6c51bbc46a403843937a731f4e517d1",
+    "bytes": 185199
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

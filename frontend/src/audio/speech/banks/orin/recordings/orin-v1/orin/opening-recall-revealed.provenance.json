@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "opening-recall-revealed",
+      "label": "Opening recall revealed",
+      "text": "The moves of the line you are studying, set out in order."
+    },
+    "takeId": null
+  },
+  "requestHash": "b9d613676092f2e142cf86c1ab273f657c92e37d9d08dbe4bbfc24fff028d328",
+  "recordedAt": "2026-10-03T06:12:16.331Z",
+  "sha256": "d6190fe4b57c72f37e5b41e1d8e1ae1a888dbc854e85f863823fce4b0a352e58",
+  "bytes": 12085,
+  "requestId": "LA3JLeucDeeC44BMmUFp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "602254cd2e3e553bf46cf3b4f3e12a3e2298363182bc7593fd0ff06afbcf13b7",
+    "bytes": 59812
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

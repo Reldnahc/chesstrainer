@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "srs-summary-curated-accepted",
+      "label": "Srs summary curated accepted",
+      "text": "One of the saved answers, matched exactly. In this exercise, the saved answers are the measure."
+    },
+    "takeId": null
+  },
+  "requestHash": "a4758c33d044922d61fd62af739f7c3211fc3e4933a4edb6c828496822c3ec24",
+  "recordedAt": "2026-10-03T06:11:48.600Z",
+  "sha256": "9d06b7f974741697a419353ace8c695d77c332e19c8ef68170c9b4cf936cd463",
+  "bytes": 23121,
+  "requestId": "ct5PcIjYstQTVIoOxysP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f2d8afb4abbc42dcf02cea6c0003dcf15d98a4b51cd1a2a6b038ee0f97a7d129",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

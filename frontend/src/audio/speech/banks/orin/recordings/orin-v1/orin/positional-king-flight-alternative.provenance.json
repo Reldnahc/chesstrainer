@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "positional-king-flight-alternative",
+      "label": "Positional king flight alternative",
+      "text": "With another move, the king would have gained a legal square of retreat. Compare the two positions to find what would have cleared the way."
+    },
+    "takeId": null
+  },
+  "requestHash": "0a791e17ad9edc4df745fae5f5176de2fb3727009271becdd2399db0b922529d",
+  "recordedAt": "2026-10-03T06:11:30.687Z",
+  "sha256": "241ca9ede6602c839a5e1b0a345c6f27459b906def86bb1e84a217e74bcc2376",
+  "bytes": 26214,
+  "requestId": "G4bizKEefBfhk0v1t7S1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "efc43489129dba4bc20ece5baae17211439a833d78226e3090a438d5da113092",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

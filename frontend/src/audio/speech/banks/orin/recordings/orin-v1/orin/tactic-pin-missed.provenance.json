@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "tactic-pin-missed",
+      "label": "Tactic pin missed",
+      "text": "A pin to the king was available in another move. A piece held that way must stay on its line or expose its own king, and the played move forgoes it."
+    },
+    "takeId": null
+  },
+  "requestHash": "8c6da9e998fe31578ef50c7c5647e6f72b356bd71d5d532e38816071b7cb076c",
+  "recordedAt": "2026-10-03T06:11:20.015Z",
+  "sha256": "7f3b032c677fdeaf591b2f44c2228b843bc050656976c1c1b7d6115e630c8b4b",
+  "bytes": 32683,
+  "requestId": "NHiw1CqCg30j35FFjepV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7438f283f7c822c2c626732dbdfcedc73e94cfb39a6eba8f1928436e8e102e05",
+    "bytes": 168899
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "chance-taken",
+      "label": "Chance taken",
+      "text": "A gift must be seen before it can be taken. The opponent's last move offered one, and this move accepts it."
+    },
+    "takeId": null
+  },
+  "requestHash": "8a3bca82f6529ec2e70e3a0c1e8e8f1ab753fcc8e020d92859ff65495905681e",
+  "recordedAt": "2026-10-03T06:11:41.632Z",
+  "sha256": "c9efb59f2175726043ce1c04cfa18dad8692f72de671cda3aec9ddf7f0bab58c",
+  "bytes": 24718,
+  "requestId": "QDCopvtOrnIJjIYLHcIw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "560fd8ff179249f851deee1e7a4b7b9d980622095e11c955e7abacdbdeb1e4f1",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

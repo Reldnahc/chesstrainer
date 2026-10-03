@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-promotion-check",
+      "label": "Explanation frame quiet promotion check",
+      "text": "The pawn promotes on the last rank, and the new piece gives check."
+    },
+    "takeId": null
+  },
+  "requestHash": "98015f91d2c37674498209297c2a107e5c0fd3461d2c063bf56f8b812051e370",
+  "recordedAt": "2026-10-03T06:11:57.037Z",
+  "sha256": "0a3125165f4251777f9515d4a5a6dcfcb4c79b58b7bd885e6ed69773eb4de89d",
+  "bytes": 14320,
+  "requestId": "OGAzbcrxvOScZlfLRMWA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4f0d3501ec127b3e077cdb543ff49a07adde1abfae68097d081511071f067a3b",
+    "bytes": 71515
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

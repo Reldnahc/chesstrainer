@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-cue-pin",
+      "label": "Explanation cue pin",
+      "text": "A pinned piece shields something behind it. Before moving one, see whether that is your king or a piece of greater value."
+    },
+    "takeId": null
+  },
+  "requestHash": "19f637d286e757f17c55bb9d8b71615d578b98592cb99853b9750b69eef7b1b4",
+  "recordedAt": "2026-10-03T06:12:25.038Z",
+  "sha256": "bc82fb2538c896e0c59c2d27ad3727bc29e6599b335a8af24c8da29ddd31c850",
+  "bytes": 26619,
+  "requestId": "23Wup6FARP98qV8jrQto",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "16006a3f3fe2e28da518768d418b5616b047709fab6bc551693620cd268b826c",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

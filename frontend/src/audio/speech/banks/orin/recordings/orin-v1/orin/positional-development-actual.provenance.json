@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "positional-development-actual",
+      "label": "Positional development actual",
+      "text": "Development is the first principle of the opening. This brings a minor piece off its home square; note where it now stands."
+    },
+    "takeId": null
+  },
+  "requestHash": "62890015212f8e7255697b2c8403b985aeeeb77a1989b84bc4c9e288583fba27",
+  "recordedAt": "2026-10-03T06:11:37.820Z",
+  "sha256": "536a5b5127280032b2ed7b0643c213bf01c6d0604f39d6481f49a7528b4b1271",
+  "bytes": 27245,
+  "requestId": "hnSiJsG4xobTtlQaptNJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "501b3a26e8d6caac95f84c64f034fac028c3bd997abc1386b053f6fcb4b29ddb",
+    "bytes": 141732
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

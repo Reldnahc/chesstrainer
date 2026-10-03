@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "best-supported-choice",
+      "label": "Best supported choice",
+      "text": "Among the moves the engine examined, this is a strong choice. A choice the position bears out."
+    },
+    "takeId": null
+  },
+  "requestHash": "ad8862e71e376ec65ae4574b50e12cff8c0869f38b8df8850cb5c2d2291ef8f5",
+  "recordedAt": "2026-10-03T06:11:25.279Z",
+  "sha256": "334210fb3091b174eb04232bfa538c54de1f2a7c462a2df5cdfb14a367a2802d",
+  "bytes": 21637,
+  "requestId": "W0RQqAIE9vokJrWlDBpc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8568fbbf9b4534567287cec9d53a9dbec923fc75c0a44d8d367e737ca33ffab3",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

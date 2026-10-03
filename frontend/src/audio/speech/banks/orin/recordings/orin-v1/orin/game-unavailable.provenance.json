@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "game-unavailable",
+      "label": "Game unavailable",
+      "text": "I have too little from the engine to explain this position, and I will not guess at it."
+    },
+    "takeId": null
+  },
+  "requestHash": "b50ddc8f12871b1063695d6b5411fc182c3c9aa624f331d530ea9f4a18c883ba",
+  "recordedAt": "2026-10-03T06:12:12.454Z",
+  "sha256": "431608171ca3b8d458c41b1957c8c06c3bb23d4cabbc491a11361a1b78b0391c",
+  "bytes": 17297,
+  "requestId": "U4tb5JKwQ6uN2MbzWpDs",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3717e41f81652876867999183a4216469e2d8d0deb9fc252df920f3cc6e5f9b7",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

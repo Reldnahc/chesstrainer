@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "puzzle-solved-after-retry",
+      "label": "Puzzle solved after retry",
+      "text": "After a retry, you found the full solution. Your record holds the earlier miss and the finish alike."
+    },
+    "takeId": null
+  },
+  "requestHash": "d747253e0043c5b70d8fa2acb0f4632181cd88d9b96cf81874a95888f39b722d",
+  "recordedAt": "2026-10-03T06:12:04.932Z",
+  "sha256": "45b13dc8cde4d3d185c70497e7d1a8935a6ac5cc099f701fb605cfc12a7c1376",
+  "bytes": 23360,
+  "requestId": "dHgOYDaMbIGQOzPR1UEu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "94fb806d359f24b7c5c2c4d9ceeb5017dbd00dda3425d7a3a6b14d5f7dba506e",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

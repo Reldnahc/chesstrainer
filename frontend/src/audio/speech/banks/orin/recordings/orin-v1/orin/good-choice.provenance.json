@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "good-choice",
+      "label": "Good choice",
+      "text": "Sound, by any fair measure. The engine has another preference, yet this keeps most of what the position offered."
+    },
+    "takeId": null
+  },
+  "requestHash": "453faba8ab6bd67c0857846583b196ff23782845f5d951e2a8ca1b1ac2d4c6ae",
+  "recordedAt": "2026-10-03T06:11:27.346Z",
+  "sha256": "ffa08742700030f352301b1bf6db750776c59aae37ce9303dfabea6b13622d39",
+  "bytes": 24127,
+  "requestId": "fMh5Yg6bKyZXjuapAx0x",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5dd05fc236af663f56bd8b7d6d31f91bb456d27cefa71d4dd7e54150fb88e52e",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

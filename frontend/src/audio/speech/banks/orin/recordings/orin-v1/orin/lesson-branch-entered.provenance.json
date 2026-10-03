@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "lesson-branch-entered",
+      "label": "Lesson branch entered",
+      "text": "We have turned aside onto a different road for a time. The main road awaits our return."
+    },
+    "takeId": null
+  },
+  "requestHash": "7e3a34f229e6716004fca33e8337c886344655e108f6485a5d17d95a77f2620f",
+  "recordedAt": "2026-10-03T06:12:13.110Z",
+  "sha256": "c757ca5409decf1d3c8c0cbfbf6fa34c0f0030ffcd8eb8461a70904c9697414b",
+  "bytes": 18939,
+  "requestId": "TZ8JvaxZvZwtLtjw5AW7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "02bff58d145d276270385b5ee95a675fe3c99d5dfb1ee5a7d7590c7f6bd83a71",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

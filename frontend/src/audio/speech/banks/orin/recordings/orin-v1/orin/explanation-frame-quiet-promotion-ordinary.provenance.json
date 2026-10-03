@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-promotion-ordinary",
+      "label": "Explanation frame quiet promotion ordinary",
+      "text": "Its journey complete, the pawn arrives on the last rank and is promoted."
+    },
+    "takeId": null
+  },
+  "requestHash": "e988601f12d8461a89a89c33a6f7382abaddb37a1fe89d51e0e58592ac10cff7",
+  "recordedAt": "2026-10-03T06:11:55.728Z",
+  "sha256": "2ba06ad6c57752d7c606b6203b1440fdcaa8f68709cabae2f0e659063e081dee",
+  "bytes": 15947,
+  "requestId": "2kfI9lLHLZSErfegMtyo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "be59f8198e6243c6cac0935e3efe11c97caf67c82abbc3b53f97ff274883e536",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

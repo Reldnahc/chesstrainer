@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-frame-castle-check",
+      "label": "Explanation frame castle check",
+      "text": "Castling here does double work: king and rook take their new squares, and the move gives check."
+    },
+    "takeId": null
+  },
+  "requestHash": "61c0431fa06ed5596e5999ed82c7ff8a4cd8390cf3d9179eabac4e5cd351bfe9",
+  "recordedAt": "2026-10-03T06:12:13.539Z",
+  "sha256": "98c613ca8d689f3b998cca169a3534675b3ce243047f5c3a7d5fac400013ec7d",
+  "bytes": 21939,
+  "requestId": "7FQhqAKVAI5UbilX7mEP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "400f1fb089a90e93c968800015f404c3f3e7869475405716b4a50d2d0a718e84",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

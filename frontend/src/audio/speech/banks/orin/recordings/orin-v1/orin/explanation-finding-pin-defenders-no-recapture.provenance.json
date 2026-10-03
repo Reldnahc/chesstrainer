@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-finding-pin-defenders-no-recapture",
+      "label": "Explanation finding pin defenders no recapture",
+      "text": "Pinned to their own king, the defenders are unable to recapture there. That is the reason the capture works, and the line shown ends with a gain in material."
+    },
+    "takeId": null
+  },
+  "requestHash": "d16657d8f3c4370a38f37d06a681973d53322fbd360f9d57cbf6d9b447c37573",
+  "recordedAt": "2026-10-03T06:11:54.968Z",
+  "sha256": "9a053020eb1de41d8515fb15a7c795ea2be107a071010105422b18d96225591d",
+  "bytes": 32591,
+  "requestId": "TwYu6WKWCelGKwskYNYL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e5732b51774b5fffd5ebb24aa01a04729e86ea193e0d1b447c07ab4d567b151a",
+    "bytes": 168899
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

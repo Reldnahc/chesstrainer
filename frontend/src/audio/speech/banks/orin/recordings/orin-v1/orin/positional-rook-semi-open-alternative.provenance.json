@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "positional-rook-semi-open-alternative",
+      "label": "Positional rook semi open alternative",
+      "text": "Another move would have given a rook a semi-open file, free of its own pawns, with an enemy pawn still standing there."
+    },
+    "takeId": null
+  },
+  "requestHash": "d5670014207e86e006f31056de08f052deaa5b9e81c83c3843980399ddfe1534",
+  "recordedAt": "2026-10-03T06:11:48.058Z",
+  "sha256": "9d8248a3f1f90443adb8ef265788b8a07d01ff2b58c176b1a13517664fbd536f",
+  "bytes": 25536,
+  "requestId": "9119ygGBBpS3uAUIUs8m",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a4f806d8883e5d600f0f3e6f43102f140d148d5bf016a9f9d9098bcad9c573d3",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

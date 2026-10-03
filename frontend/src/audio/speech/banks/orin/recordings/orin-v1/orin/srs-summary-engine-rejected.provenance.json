@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "srs-summary-engine-rejected",
+      "label": "Srs summary engine rejected",
+      "text": "The exercise does not accept this move, and the moves shown give no clear tactical reason. Study the position again with fresh eyes."
+    },
+    "takeId": null
+  },
+  "requestHash": "9d287adf5d8f63c438cf1dfc0fbe4599630d68a657039d5c65d2864f54b10b0b",
+  "recordedAt": "2026-10-03T06:11:46.825Z",
+  "sha256": "44f1f49fd0ce531cba360ca996ab7726001a8e9a3703ace8480fda8d7556cd2d",
+  "bytes": 29636,
+  "requestId": "DLqA206WnxL0lhhoi1c6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "91dcb28c5ac0b589781a7d8ad3587aedce3f1d755a75cbbcf8dfe683ce7e3a13",
+    "bytes": 153435
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

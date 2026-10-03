@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "clock-low",
+      "label": "Clock low",
+      "text": "Time is part of the position too, and the recorded clock shows very little of it remained before this move."
+    },
+    "takeId": null
+  },
+  "requestHash": "3470d73cebfb063f7930d3a3e9d451c8a1c7d548a3a836248ad14af98b02f8ee",
+  "recordedAt": "2026-10-03T06:11:29.081Z",
+  "sha256": "00b73c5b656e2d611d212798f5125a2616b21bc7fc785a0d69ec91376ccbdbfd",
+  "bytes": 22794,
+  "requestId": "hKT7offBJrdBo12gZbS9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d94c477cd43d256fdacf1b0d729584a5bc5788e558019f8e0a9e965768b9c43d",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-note-material-scope",
+      "label": "Explanation note material scope",
+      "text": "Any material change belongs only to the line shown, measured from where that line begins. The piece values behind the count are listed in the written explanation."
+    },
+    "takeId": null
+  },
+  "requestHash": "9f5300acf1c4b2f44d004d7361707dccf2070b48a1bdad3b9174f3bf43721b73",
+  "recordedAt": "2026-10-03T06:12:10.873Z",
+  "sha256": "658441be16fb2c0ec4ab8acc8ffbd689373adc9e630807ba1cafc1f4151caef8",
+  "bytes": 36042,
+  "requestId": "Uq56Rkx9hp7ZRHynUXGL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2bab3bd7abda51bb20f30d15c1611321f43711cbeede353a8c2b298a9010d08c",
+    "bytes": 185199
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

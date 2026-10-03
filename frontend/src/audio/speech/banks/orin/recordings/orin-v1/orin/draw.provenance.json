@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "draw",
+      "label": "Draw",
+      "text": "A drawn game. Neither side could force more, and the turning points are still worth study."
+    },
+    "takeId": null
+  },
+  "requestHash": "d2c2e343847ddb0d2857cb21ec9b4b8212943cbfbb54e7eea38de569dae68208",
+  "recordedAt": "2026-10-03T06:11:30.809Z",
+  "sha256": "f71400976188031f77afc7feed314bb09d0eae218a2657668fde9e5822128c4a",
+  "bytes": 21441,
+  "requestId": "BSIe87fbEfOng89R0a9t",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c30469ea0d6dd05ad1223270540404f5e79ca733c2316c6517bd19431092830a",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

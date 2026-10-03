@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "srs-summary-mate-for-mover",
+      "label": "Srs summary mate for mover",
+      "text": "For the side that made this move, the saved engine analysis holds a forced checkmate."
+    },
+    "takeId": null
+  },
+  "requestHash": "6b8fe52cee400b2bea63d6b686487a220ce02957bbe184b7c26565dd1330691e",
+  "recordedAt": "2026-10-03T06:11:36.637Z",
+  "sha256": "d803f137542249e8b29799f113dde5e69164fe36ea10d9c0df32e2de6e0300a4",
+  "bytes": 18431,
+  "requestId": "37HqQuhv0g0chDCfr0zS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ed9f6f5d2e587dc58668f1d1f0e04f918feb65210be3b77ed5b1482c625b5043",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

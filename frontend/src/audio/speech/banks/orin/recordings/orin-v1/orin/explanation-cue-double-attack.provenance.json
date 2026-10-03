@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-cue-double-attack",
+      "label": "Explanation cue double attack",
+      "text": "Search for one move that creates two threats, and remember that checks and opened lines count among them."
+    },
+    "takeId": null
+  },
+  "requestHash": "0cbea5ae08602b8656b1ba992e093d8b8892ccebb131e80e2a0f84b18c6d9d97",
+  "recordedAt": "2026-10-03T06:11:56.708Z",
+  "sha256": "c25e9c2c6cf3b4bbc1e6e43fb8a9b7d6c2d5a5ba9c07923ae506f551dc71471a",
+  "bytes": 22914,
+  "requestId": "Vz1FhOhIH6pVtuQ0FmIc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bdab70aa54cce5b385959541621d718ae7aeca8ae1c21b31ae56a4dde4bd3903",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

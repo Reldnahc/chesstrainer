@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "book-opening-entry-1",
+      "label": "Book opening entry 1",
+      "text": "A move recorded in the opening books. The position has its place in the literature."
+    },
+    "takeId": null
+  },
+  "requestHash": "c22143db8e3a685c5e05ea47f93ee8e76aaacd3d3c08a52aa04922294362b1d6",
+  "recordedAt": "2026-10-03T06:12:17.517Z",
+  "sha256": "6586d315d4172676538988d18365fd497cb9de9066a361f43165dcd54f6cc6d8",
+  "bytes": 17406,
+  "requestId": "AQiLVvGI850GGiOI2G94",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "35962c86676f9d059fad574d54e0099589ddb0c1b6ee20910f1cd55dd1cdc369",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

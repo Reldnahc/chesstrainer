@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-note-strong-replies",
+      "label": "Explanation note strong replies",
+      "text": "Here play unfolds against strong replies. Strong replies are not always forced ones."
+    },
+    "takeId": null
+  },
+  "requestHash": "679295a67407c074b0c3cba51c1887c6abceaf04236fd423f4e9f89699042ff8",
+  "recordedAt": "2026-10-03T06:12:08.456Z",
+  "sha256": "2620f655d81aa7670b082fdf578a41c66d165e4e54ec9f012c0a35c6afe0de45",
+  "bytes": 21902,
+  "requestId": "ZuWQpfqVvzQgeu1HESnC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c41a631ad23118eb0547d69351cfb403ec2a744616dd1f53273042b49cd30f20",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

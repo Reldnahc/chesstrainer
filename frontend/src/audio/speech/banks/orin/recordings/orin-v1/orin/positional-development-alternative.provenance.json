@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "positional-development-alternative",
+      "label": "Positional development alternative",
+      "text": "Another move would have developed a minor piece from its home square. The opening rewards each piece that joins the game."
+    },
+    "takeId": null
+  },
+  "requestHash": "2c815f8aa08c68c93d7366f6b59333275ce26f84486ca3f931d1a66ee4e8f6b7",
+  "recordedAt": "2026-10-03T06:11:39.795Z",
+  "sha256": "58e3b3a07610dc1cde21e86ec3dbe15d433207096ffacb8ad048b165d9047890",
+  "bytes": 24683,
+  "requestId": "gEILfNZFjZVTIJ4MEe2n",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9afaacb97360f49d8b6948647c2f736339216569ca8cfdffa4294ad31b362e04",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

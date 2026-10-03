@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-cue-fork",
+      "label": "Explanation cue fork",
+      "text": "Examine the forcing moves for a single piece that can strike two valuable targets at once."
+    },
+    "takeId": null
+  },
+  "requestHash": "58ea2d76a3d65b5bee2e5004c2df47e63132ae2b5b439ea0b26ad23127480518",
+  "recordedAt": "2026-10-03T06:12:23.159Z",
+  "sha256": "a7495e5437c1e4f364b4c5ceb750213959f49e1e15dffaab6065957309564c0e",
+  "bytes": 19774,
+  "requestId": "uSXS1UgWMbtCIyJ22SkY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "581a41eae07cc6193e6a8ed3d09464e8c8f7f5572c5280e2f75877e2aa56da01",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

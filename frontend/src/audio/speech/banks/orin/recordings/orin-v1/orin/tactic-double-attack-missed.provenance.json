@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "tactic-double-attack-missed",
+      "label": "Tactic double attack missed",
+      "text": "Two threats at once were available through a stronger move. This one passes over that double attack, and with it the hardest kind of problem for a defender."
+    },
+    "takeId": null
+  },
+  "requestHash": "d8f1b03560d4cb838cea2d6f6f91713bfca5f875495421de2deb16886b625706",
+  "recordedAt": "2026-10-03T06:11:15.320Z",
+  "sha256": "2da7cb7a2bc2cf42832c9f9dae9e50437d537937d09035be42bb3a1fb3434c1e",
+  "bytes": 31984,
+  "requestId": "5xCK3I12sYTSirTUtlE3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "452c855d3a13970a6582e91b85b062088605610f3fe5d6d5fe420dea5c834a40",
+    "bytes": 164719
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "positional-passer-advance-alternative",
+      "label": "Positional passer advance alternative",
+      "text": "Another move would have carried the passed pawn further along its road. Compare where it could have stood with where it stays."
+    },
+    "takeId": null
+  },
+  "requestHash": "703d066849aa967948ef215e98e72a6c3ec5dad97cbf3668595f9ddb61930c57",
+  "recordedAt": "2026-10-03T06:11:14.995Z",
+  "sha256": "2c36e6f949f7f68ec5f9d52f23ffafcf06923455a91abc9e983fa217cf468b15",
+  "bytes": 24953,
+  "requestId": "KL0vqBxeKpVnDNjyqed4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "915fe8527f97cbbba023fac63c6aba34b74322fff986da3042b4e404ff15b2f2",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

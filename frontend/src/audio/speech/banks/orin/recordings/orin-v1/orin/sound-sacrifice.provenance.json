@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "sound-sacrifice",
+      "label": "Sound sacrifice",
+      "text": "A sacrifice is tested by its acceptance. Here the offered material can be taken, and the idea still holds in the line that was checked."
+    },
+    "takeId": null
+  },
+  "requestHash": "dc976da863f0905baa76ab62a080e2a453a1b61ab4695a31d655498099846423",
+  "recordedAt": "2026-10-03T06:11:48.970Z",
+  "sha256": "c97619e00787ec64e5421dcde81abae02e11e5b428bbdc9820977c85de1d4fcc",
+  "bytes": 30217,
+  "requestId": "ZvghgNTNwNDJzNMkrinE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d4a96c9f9c622c45592f46b4a9161ee8b8c3fc34dfe0faafcd9b7da4525ad413",
+    "bytes": 155942
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

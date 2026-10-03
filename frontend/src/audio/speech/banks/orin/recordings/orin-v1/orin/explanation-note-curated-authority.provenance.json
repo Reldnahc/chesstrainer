@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-note-curated-authority",
+      "label": "Explanation note curated authority",
+      "text": "In this exercise, the saved answers are the authority. Another legal move is not made poor chess merely by their silence."
+    },
+    "takeId": null
+  },
+  "requestHash": "58d2dfa263641796442f91c381d0744f21b572a7dc81d852dcd77aa17a024187",
+  "recordedAt": "2026-10-03T06:12:06.972Z",
+  "sha256": "255ef4b6838200a32abb369f27a52fa4bd8eeb28b77c49eda1529d8bb00ac15a",
+  "bytes": 28618,
+  "requestId": "44ifVzSvl9Bv8qtBPwLQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d6994ab5c8257d8a72fc86211a242f47a4ee0056b0ed27ca7a8eb4f8359c33dd",
+    "bytes": 148419
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

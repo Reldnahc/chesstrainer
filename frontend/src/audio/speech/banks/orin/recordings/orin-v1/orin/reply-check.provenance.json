@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "reply-check",
+      "label": "Reply check",
+      "text": "A check must be answered before all else. The strongest reply gives check, so the king's safety comes first."
+    },
+    "takeId": null
+  },
+  "requestHash": "a2796413c3d97c491fb62c1b3db2583f0aa2b21e60370a0816e8bdb6d76ef5d4",
+  "recordedAt": "2026-10-03T06:11:19.254Z",
+  "sha256": "34293737b8443aefe789abe3d84eb96baa3990fd73a2b8f409240df45aaf1526",
+  "bytes": 24727,
+  "requestId": "rxrk6RysuF148P7n54Li",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2f15224e3336ae4e0d74739e7c5b174cfc855eb3805aef9ea05cc202462b0816",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

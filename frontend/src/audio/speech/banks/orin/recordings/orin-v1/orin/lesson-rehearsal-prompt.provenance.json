@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "lesson-rehearsal-prompt",
+      "label": "Lesson rehearsal prompt",
+      "text": "The moment is yours. Call forth what your study taught for this position."
+    },
+    "takeId": null
+  },
+  "requestHash": "4d147a5b6c64b6b98dc9ea658468465d91711476415d1bd61795cda3087e640c",
+  "recordedAt": "2026-10-03T06:12:11.668Z",
+  "sha256": "2889d47f7ded9fe733f6a20e89709654e3f47dfac2a4e025d47261dade758382",
+  "bytes": 15930,
+  "requestId": "QDiOXGOoCta7D2MRMoMr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "038337956e2c127e51a9afb4ae34d6018338fe791d880a014730d6ad088300f7",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

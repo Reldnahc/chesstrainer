@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "srs-summary-curated-rejected",
+      "label": "Srs summary curated rejected",
+      "text": "This move is not among the exercise's saved answers. That alone does not make another legal move poor chess."
+    },
+    "takeId": null
+  },
+  "requestHash": "a69c738a36ed1c74d79e3a762eaed00ed798717b64b63368286ce7832d4406b2",
+  "recordedAt": "2026-10-03T06:11:50.721Z",
+  "sha256": "8822d3ec50f8861576476392a961a1d9b8242f98480e33df752458842aec3020",
+  "bytes": 25775,
+  "requestId": "nYJ1ZmpLO72XFY4XiSkF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "de28382f33061da7804c9fdf773c394a43576f897fb91ab023e2dad1296f08b5",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

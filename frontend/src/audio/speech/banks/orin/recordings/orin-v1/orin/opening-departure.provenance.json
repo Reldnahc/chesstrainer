@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "opening-departure",
+      "label": "Opening departure",
+      "text": "Here the game steps past the last move our opening book recognizes. From this point, the position must be read on its own terms."
+    },
+    "takeId": null
+  },
+  "requestHash": "63a456c06b14be401eac288d53c1e18dec3a7379cd2a9b90706ea964b7f0b947",
+  "recordedAt": "2026-10-03T06:11:35.430Z",
+  "sha256": "4f6b597bb2eafa8cda1990b0d988eaca45e6441c6de73f42f84a2444b63a01fe",
+  "bytes": 27866,
+  "requestId": "Meky9mj8jTincn6jZnf7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "89e137b32f34c43020cdedb9a391772bad204144eda70339d182c7a319d2b151",
+    "bytes": 141732
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-cue-skewer",
+      "label": "Explanation cue skewer",
+      "text": "The first target is not always the whole story. Follow the line past it, to any valuable piece standing further back."
+    },
+    "takeId": null
+  },
+  "requestHash": "88c622cfa111414ae2a673d3fa75f957c70c7193272053a7033e01b6730864cd",
+  "recordedAt": "2026-10-03T06:12:26.859Z",
+  "sha256": "6b3510795637b3ea75f4385f1fda8765b609e0b5101bf121e01ae06c6d0dc866",
+  "bytes": 26827,
+  "requestId": "zigJXO74KWACclneJpXj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "93f8a781ecee1e4ae1e2317c71fddd4d7cd53bf8b1ae984615b2d166a1eb8223",
+    "bytes": 137970
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -56,6 +56,7 @@ REGISTERED = [
     ("woman-analyst", "marisol"),
     ("human-boy", "mateo"),
     ("gorilla", "monty"),
+    ("wizard", "orin"),
 ]
 # Voices whose written personality sets questionFrequency to "none".
 QUESTIONLESS = [

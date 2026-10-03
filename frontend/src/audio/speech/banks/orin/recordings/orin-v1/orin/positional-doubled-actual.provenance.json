@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "positional-doubled-actual",
+      "label": "Positional doubled actual",
+      "text": "Doubled pawns are a familiar structural weakness. Here one pawn now stands directly in front of another of its own color."
+    },
+    "takeId": null
+  },
+  "requestHash": "baa1e039ded0256b6c87bf72e6e7f31be909307cf00978128d36f4aa171ecbe2",
+  "recordedAt": "2026-10-03T06:11:40.427Z",
+  "sha256": "7c80cfa877ea9edd2ddd231c1e096befa42b28e27e8046d0abbafb110c1ee636",
+  "bytes": 26871,
+  "requestId": "bu2hPjSqQgMkQHDc2Abc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "921e3a3f386e13ffdd07adeab49070bc9a165e015af1414dff49c762d7cfeafa",
+    "bytes": 136716
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

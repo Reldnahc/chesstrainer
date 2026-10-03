@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "mate-defense-ended",
+      "label": "Mate defense ended",
+      "text": "Checkmate. Every legal square is closed to the king, and the lesson lies earlier, in the moment the defense could still have held."
+    },
+    "takeId": null
+  },
+  "requestHash": "0f9119f797354b0e8cc026906bfff099506057a878bdd0db1fbecb4b11f1bc0b",
+  "recordedAt": "2026-10-03T06:11:29.234Z",
+  "sha256": "8ca447e74bfb62f96042df45f1e561bde428f7162ef37f4ff74368f57cb3e917",
+  "bytes": 27893,
+  "requestId": "YMi75dSJwLtVHyCOYfb0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "76bf18c3411b7a63d59190dcb06ae34bdda4165dfa58a3ea61dac4b60e3b44c1",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

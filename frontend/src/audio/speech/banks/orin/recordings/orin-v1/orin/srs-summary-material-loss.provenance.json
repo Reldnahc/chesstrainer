@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "srs-summary-material-loss",
+      "label": "Srs summary material loss",
+      "text": "Weigh the material once the saved line is over. Against the starting position, the side that made this move has come out with less."
+    },
+    "takeId": null
+  },
+  "requestHash": "7a14d84eff08ca80a385d7062ef66dec204e688ae4e72c68bd6c835073070bb3",
+  "recordedAt": "2026-10-03T06:11:42.330Z",
+  "sha256": "10e6a9647885ece6851d212dabde08c0ad568e10d80993ef01c1666ea3c9b70c",
+  "bytes": 26433,
+  "requestId": "3OraMFEdjFB7fN6tN47Q",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3669ca82e7d651d5172d002effda82207209da78bcab17739fc8c05adbe9a52b",
+    "bytes": 136716
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

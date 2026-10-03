@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed",
+      "label": "Tactic discovered attack missed",
+      "text": "A discovered attack lay in another move. The front piece would have stepped aside, opening the line behind it to a threat. The device stayed unused."
+    },
+    "takeId": null
+  },
+  "requestHash": "dbf793dd7e9cb3e1fbcae9b2f755fcc010e3f61d369e1abec16e126d62f4f934",
+  "recordedAt": "2026-10-03T06:11:08.634Z",
+  "sha256": "1dfa4d795650280c5ff75cc81409708f719f6087a4684a3605e7c383973183e6",
+  "bytes": 33256,
+  "requestId": "d0zBfIV5t4PZnuOCVggZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "32aff4e865d88b22499dccf86840ed9d02c704ca4a81b46e38b4c198a2ab353d",
+    "bytes": 173915
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

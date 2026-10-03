@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape",
+      "label": "Explanation finding pin restricts escape",
+      "text": "Pinned to its king, the attacked piece has little freedom to escape. It may move only where the king stays shielded."
+    },
+    "takeId": null
+  },
+  "requestHash": "ca1784d52701b1f02a10ab9d0f839aaf47d1ad225e35e60f57d218df177b5bc2",
+  "recordedAt": "2026-10-03T06:11:52.720Z",
+  "sha256": "e41335c9f1af5c6a5877c042c54f66f2f0b214b8d30a9b77a3d1a1413f9f2509",
+  "bytes": 25420,
+  "requestId": "kcCJJQauzsIGzkEC65fY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "529e3af3beb4c8c7d7eeeb18caaab86cc6e2eebda5424ce6e11e8d1e4b9b9ced",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

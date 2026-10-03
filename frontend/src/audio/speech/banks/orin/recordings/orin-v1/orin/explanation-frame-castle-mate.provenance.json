@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-frame-castle-mate",
+      "label": "Explanation frame castle mate",
+      "text": "Castling here ends the game: king and rook take their new squares, and the opposing king is checkmated, without a legal way out."
+    },
+    "takeId": null
+  },
+  "requestHash": "3c23dbe01e597f237a3e9ca61f72798942a8da571165d3f1c1684b4b0973ac17",
+  "recordedAt": "2026-10-03T06:12:15.563Z",
+  "sha256": "2107e59ea5f6d675b2f7f92c9ac6156ac5a58d38847e5f2abd1b6929d9007684",
+  "bytes": 29349,
+  "requestId": "q9CetcQMCPHLQO8LIXkr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0f1bed74344ea716e94cd0ee61e9b23babb36fb88f1aa765e4d6f1f4accc35ae",
+    "bytes": 150927
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

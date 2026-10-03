@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "repeated-issue",
+      "label": "Repeated issue",
+      "text": "When a pattern repeats, the repetition is itself the lesson. This issue showed up earlier in the reviewed game as well; set the examples side by side and find the warning sign they share."
+    },
+    "takeId": null
+  },
+  "requestHash": "60515e7b0b9758656cdc2b80fadbbe8a4d73fa73949f066d4912e9ed397d69d4",
+  "recordedAt": "2026-10-03T06:11:46.936Z",
+  "sha256": "e19597a9da35c65b85612caa1daa80332ef5bc5b47788df78c79f0f7b4e13455",
+  "bytes": 40483,
+  "requestId": "j1vAnsL8Y4fUxDcAtoxG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "52a5243b1852df30afb2dac1d4c0b8f433170a1b93e02f0bf48baf5d12fab419",
+    "bytes": 211113
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

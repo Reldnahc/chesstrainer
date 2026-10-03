@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-cue-back-rank",
+      "label": "Explanation cue back rank",
+      "text": "Before a back-rank defender moves, make certain your king still has an escape square."
+    },
+    "takeId": null
+  },
+  "requestHash": "67cc04fd04668dac89013c37ccb3a0dcbd4220a1fa6b8d2477e39e998a29f8b6",
+  "recordedAt": "2026-10-03T06:11:58.329Z",
+  "sha256": "6db660fce76391508be19d651dfa28f63f323735a80d3d9aac611285aba1c9e5",
+  "bytes": 19638,
+  "requestId": "2WgZJZkWEAycMbqFEiCv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "52eba2f91cbdfa12f76495783aa87b0359f6babdc509a8446ba9fd8f1605c192",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

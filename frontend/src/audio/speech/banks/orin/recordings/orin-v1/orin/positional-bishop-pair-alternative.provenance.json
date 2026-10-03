@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "positional-bishop-pair-alternative",
+      "label": "Positional bishop pair alternative",
+      "text": "Another move would have taken a bishop and ended the opposing side's partnership of two bishops."
+    },
+    "takeId": null
+  },
+  "requestHash": "ab237529645be23f8dca363f9567b3c8a6a83ba946343ab27e1148501cfb1a5a",
+  "recordedAt": "2026-10-03T06:11:38.325Z",
+  "sha256": "5455b643f276b75ef58b54ffbd2032235819b007d7f06e6c779e8030759c573a",
+  "bytes": 20208,
+  "requestId": "E6nQkFSw6Hy5nMdOwUXH",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c3b8eeeae1105d9366a6689dece61df506ddc0037cd479c75f477d5f8cda51b7",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

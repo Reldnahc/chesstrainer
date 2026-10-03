@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected",
+      "label": "Explanation finding pin collected",
+      "text": "Watch what becomes of the pinned piece. Bound to its line by the king behind it, it is captured before these moves are done."
+    },
+    "takeId": null
+  },
+  "requestHash": "0adfd909537475a6f159e58e3a63039d1e80f5061b044f6b606dc11162ea99e8",
+  "recordedAt": "2026-10-03T06:11:56.862Z",
+  "sha256": "f86c452e0a32ab83d4ff20890ed21bbb7231b90c895f653c4df89e462307a03e",
+  "bytes": 25686,
+  "requestId": "1NcYkhiT3jpbebVYuTH1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b0adee76f54d1c563033a34b5a08b791353d50c8d628936b254c290569ed7583",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

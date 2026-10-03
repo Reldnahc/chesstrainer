@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative",
+      "label": "Positional unsupported alternative",
+      "text": "Had another move been played, a piece would have stood unguarded. By itself, that would not prove the piece could be won."
+    },
+    "takeId": null
+  },
+  "requestHash": "f2b63a57fed9bc21e7a6e2f631993bfefc8b74c894f115adcffce8fc718c6a0c",
+  "recordedAt": "2026-10-03T06:11:26.461Z",
+  "sha256": "a9532b9237818aee1e29f08846c69033c53e5ed0b5e4b5a9613daa628ce62c9e",
+  "bytes": 25893,
+  "requestId": "qMcU7Wi5UvMY2ygFmNsV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d883a5ca52c8e1ed5cc0c511d0af2b4553b58fb95e5e9c2c2c0d538141307e20",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

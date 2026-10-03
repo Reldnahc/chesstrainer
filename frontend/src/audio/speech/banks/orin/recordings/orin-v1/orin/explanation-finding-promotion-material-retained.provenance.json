@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-finding-promotion-material-retained",
+      "label": "Explanation finding promotion material retained",
+      "text": "The pawn reaches promotion, and in this example that side finishes with a net material gain as well."
+    },
+    "takeId": null
+  },
+  "requestHash": "854fcf582620ee5219f066982d18e7772ab214d5ee383214a27b4afa5a08a950",
+  "recordedAt": "2026-10-03T06:12:12.543Z",
+  "sha256": "8eeae422a33c22696897729eb9523218b97114d790c77395f4b7e51e089eeded",
+  "bytes": 22967,
+  "requestId": "bQ1XtaPlXzgpQvAhxzY2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8f84dcbd64f5cefd325d160f5810b2eb7675da788fcab0e653bbcb6f48566ff3",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

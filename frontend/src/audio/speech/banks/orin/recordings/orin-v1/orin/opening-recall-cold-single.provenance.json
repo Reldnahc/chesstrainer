@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "opening-recall-cold-single",
+      "label": "Opening recall cold single",
+      "text": "Draw on your chosen study material and play one of its moves."
+    },
+    "takeId": null
+  },
+  "requestHash": "a87b4c53a6b1c83ec9c05f1ef912198ab14e8bda54a29bfef5e2cb7da1f30c83",
+  "recordedAt": "2026-10-03T06:12:21.048Z",
+  "sha256": "1f37fb66efaf776c2407183d66f3fd473ac79ab2994ea84ef9fb008b6e4db726",
+  "bytes": 15091,
+  "requestId": "SmUI9B5gGRx8y6x1C4uI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "94942e37ab6d5da7d24dc6cc4db9afc99b57c19da1c7dbe23c2c44910a8e5108",
+    "bytes": 74022
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

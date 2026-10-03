@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "recognized-opening",
+      "label": "Recognized opening",
+      "text": "This move stands in a recognized opening line, a road many games have traveled before."
+    },
+    "takeId": null
+  },
+  "requestHash": "1f873bc4063611f7913d57fa4af5287746c81202d130d880d232223af9992e6b",
+  "recordedAt": "2026-10-03T06:11:33.502Z",
+  "sha256": "7cf367dd771e5c97ba48ea08fd1e900fe34cf78925a0bb092e0f0863ede337ba",
+  "bytes": 19902,
+  "requestId": "Zdl7gZB1ajD3NFHyRVT2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d106e714ecf18fc6e625da798465f7d4a8786083e7352c8bb5894867253238fe",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

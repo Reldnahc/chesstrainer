@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "game-review-opened",
+      "label": "Game review opened",
+      "text": "Every game holds patterns worth learning. Let us read this one from its opening move."
+    },
+    "takeId": null
+  },
+  "requestHash": "6bd6e02ec46e00e439c3d8721cb1d42565b740beaf7662d0a64045142d0511ce",
+  "recordedAt": "2026-10-03T06:12:04.664Z",
+  "sha256": "1ff8a8a46d2e7de3c4112b210082635e2eb2364ebed51468237d29d7e0ac1230",
+  "bytes": 19234,
+  "requestId": "fGQcaeWaA2P6prvuo2C5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "aacdc61ac47c17ecfe7d28b9e8afd0ae77d55209f3e198ff0b0199fec4b9749c",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

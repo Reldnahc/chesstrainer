@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "only-advantage-resource",
+      "label": "Only advantage resource",
+      "text": "This move is the one thread that kept the advantage; every alternative examined would have lost. The whole position rested on it."
+    },
+    "takeId": null
+  },
+  "requestHash": "56c6b197e66d304c291c724ebaea7ba147ca17ba36f35b4c59209fb0b45c3d40",
+  "recordedAt": "2026-10-03T06:11:15.775Z",
+  "sha256": "33b21a255bc3357b5611712cca1fc02197af88c1e1945c7f8ce310b669d1fa1d",
+  "bytes": 28660,
+  "requestId": "amycTlliqlPaCmWpvwpX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "af578c52a5d29b53b080af492b9f6fafe1d2a37392426a12f31c203a430de389",
+    "bytes": 148419
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

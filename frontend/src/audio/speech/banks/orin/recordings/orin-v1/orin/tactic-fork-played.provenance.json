@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "tactic-fork-played",
+      "label": "Tactic fork played",
+      "text": "The fork, a pattern every player must learn: a single piece attacks several targets, and the defender can rescue only one of them."
+    },
+    "takeId": null
+  },
+  "requestHash": "9a952701422e2a70b31bf080c245a8e80e9663cf1ae451e1a4cab9c2bdcea40d",
+  "recordedAt": "2026-10-03T06:11:08.418Z",
+  "sha256": "e20af479499cbadf0115cc26789b579c9801b7e3fb989188109932328a930226",
+  "bytes": 29529,
+  "requestId": "Ut9bems873GREulBaRPz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "aae9262782a4175442f429e719f0a19edcabc3cbdb6e57c8a890e6ebd0671e2a",
+    "bytes": 153435
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

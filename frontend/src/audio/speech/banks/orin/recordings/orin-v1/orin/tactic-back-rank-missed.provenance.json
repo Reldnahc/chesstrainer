@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "tactic-back-rank-missed",
+      "label": "Tactic back rank missed",
+      "text": "A back-rank mate was within reach, the king boxed in by its own guards. This move lets that well-known finish slip away."
+    },
+    "takeId": null
+  },
+  "requestHash": "2a5278338d2ffd642f30b65ec15bd93ed2bc66d4e85c0c7e2c1f33a284eec7e3",
+  "recordedAt": "2026-10-03T06:11:39.861Z",
+  "sha256": "77b8b480d1b4dc0954c316c9b4f7287c1bb0c2167fca94c3148a7df26e9605d6",
+  "bytes": 27648,
+  "requestId": "FLUqU68WIUVOndPA5G8R",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1326116582044d2f3f8b0b1501f22ab9551cc8089b2418f4f40ff7bab6253a2a",
+    "bytes": 142986
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

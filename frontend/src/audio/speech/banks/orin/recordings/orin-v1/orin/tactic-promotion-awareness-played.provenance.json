@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "tactic-promotion-awareness-played",
+      "label": "Tactic promotion awareness played",
+      "text": "Every pawn carries the possibility of a queen. The idea here is promotion, so follow the pawn's road to the last rank."
+    },
+    "takeId": null
+  },
+  "requestHash": "0aeb7fa5f10b975921f3511cf4aac0d7d10e070fa1d84ac9a42d52f932f92441",
+  "recordedAt": "2026-10-03T06:11:41.830Z",
+  "sha256": "95413fd5863e49555e785a6d42301938d7ce10d06df401786c62205827cadbba",
+  "bytes": 26740,
+  "requestId": "gGZZMLMyWvK6Gstjk4se",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2e2179c0593cfd8f04f8abcd23e056b677ce2fdb4b7d9501e8fbb9fcadab8308",
+    "bytes": 137970
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

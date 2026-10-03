@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "positional-king-flight-actual",
+      "label": "Positional king flight actual",
+      "text": "A king with an escape square is harder to trap. This move opens a legal flight square that was not there before; compare the positions to see what cleared it."
+    },
+    "takeId": null
+  },
+  "requestHash": "63afaa5b77a051fb8abcc326add02e61b1a094b5cc4e6a27a1ec4f5dec191c18",
+  "recordedAt": "2026-10-03T06:11:28.726Z",
+  "sha256": "8cad62e920a0a144caf3c0f6635db6dd6e8b356fbd0c1b09f5e0d70479d80c40",
+  "bytes": 33577,
+  "requestId": "oOY7To1N4rM2mPrnIJXG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "81de6081dff593640e68bea3ee04bc1c293c4812def35c6794137cd52b977a07",
+    "bytes": 173915
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

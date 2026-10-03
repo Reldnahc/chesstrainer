@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "allowed-mate",
+      "label": "Allowed mate",
+      "text": "The king's safety outranks every other lesson. Here the move permits a forced checkmate; trace the attack to the point where the defense gives way."
+    },
+    "takeId": null
+  },
+  "requestHash": "68a21ecb01995965f10cf1c13202489ca35995e045d16b56b43b110ba69245fd",
+  "recordedAt": "2026-10-03T06:11:44.573Z",
+  "sha256": "63c1ab53f7be6280fb30378bc475258bd51dc77629ff14c6cffb3c0587f0d053",
+  "bytes": 31033,
+  "requestId": "7S3PCgE4my7vIz4p7MVw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e3bfa0168dfbc2fd1c6d64726c48b866b9858aa22f2e0c97260795608cfbde25",
+    "bytes": 160958
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

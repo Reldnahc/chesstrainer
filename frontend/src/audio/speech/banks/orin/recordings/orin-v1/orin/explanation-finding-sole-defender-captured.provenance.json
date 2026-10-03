@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured",
+      "label": "Explanation finding sole defender captured",
+      "text": "The lone defender falls first, and then the piece it guarded. Mark how the first capture makes the second possible."
+    },
+    "takeId": null
+  },
+  "requestHash": "6901bdc37ee9079dec51ee23b6bb9e0b38a517cf5b3c701e6dedd746d5337c03",
+  "recordedAt": "2026-10-03T06:12:02.400Z",
+  "sha256": "289c58166b3fddde4c93ae4aa6d156b42f444df2cdb2b646d9bcf5ae6b93305a",
+  "bytes": 26098,
+  "requestId": "8yROSpgmlHRW7EoUudtp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3ce6ddc8008996ad34d25e95ba3067cde04b594eb66ea60d54b0d4d82e70ae8a",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

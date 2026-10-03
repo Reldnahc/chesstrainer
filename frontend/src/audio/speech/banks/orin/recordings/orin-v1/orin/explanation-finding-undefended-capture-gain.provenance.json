@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain",
+      "label": "Explanation finding undefended capture gain",
+      "text": "An unguarded piece is captured here, and the side that takes it finishes the example with a net gain in material."
+    },
+    "takeId": null
+  },
+  "requestHash": "ccda0f51c98143d4b28c166b1d8a3ce3f86ce2063e0684e9273828ef55156360",
+  "recordedAt": "2026-10-03T06:12:14.482Z",
+  "sha256": "bbd8133ffa108a38d22ce284836c571a10fc6b090435b59e97b46b7517f3e9bc",
+  "bytes": 24631,
+  "requestId": "MQApJOn7SQNGR4tBrEyB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "891c984250872ecc9b23204f26e0b1f300c33ce0e2d4641da6fb92f4383d78a5",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

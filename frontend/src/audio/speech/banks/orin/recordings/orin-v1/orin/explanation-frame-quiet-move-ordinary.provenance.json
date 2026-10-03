@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-move-ordinary",
+      "label": "Explanation frame quiet move ordinary",
+      "text": "The next move in the line. Mark the change it makes."
+    },
+    "takeId": null
+  },
+  "requestHash": "39c04410b69b00b4b120d61dc7aece27876b9d225dcbd7953bf3da201f98e6ce",
+  "recordedAt": "2026-10-03T06:11:52.067Z",
+  "sha256": "6896dc7ffdea511d0c960a8e4e0d8a77d065ed5cbfffef617071a61b5faa9bf6",
+  "bytes": 13055,
+  "requestId": "ob5Lf4SST4bxwXuSeYVt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4d207857f5a275e3d4a133e9f2375b968081315b7c6381b50e412c407e6c0f19",
+    "bytes": 63991
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

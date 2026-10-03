@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "gradual-erosion",
+      "label": "Gradual erosion",
+      "text": "Small concessions accumulate quietly. This move is one of several that have worn the position down together, so study the sequence rather than this move alone."
+    },
+    "takeId": null
+  },
+  "requestHash": "015aaa2f84e3e4d6cc4f719fad30b997da8ec68adb922b1ab02e803eacdbbf57",
+  "recordedAt": "2026-10-03T06:11:51.754Z",
+  "sha256": "a21a766f898f1a50abf56f3ac5a47555be0c76050ea8f24d291380981df96776",
+  "bytes": 34099,
+  "requestId": "vFMJV8QeTt5tC4pV8VBI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8194b9a8572c2baf751a482b2fc13f0c1e127e4bc7094544ebca86661dc97100",
+    "bytes": 175168
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

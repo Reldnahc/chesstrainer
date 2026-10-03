@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "support-restored",
+      "label": "Support restored",
+      "text": "Protection has returned to a piece that was left unguarded earlier. Set the two positions side by side and see what restored it."
+    },
+    "takeId": null
+  },
+  "requestHash": "7616cfea54d6d6a1ad39d14f55f269fbe503cc0df84ee97830976b4d7a4ff0c0",
+  "recordedAt": "2026-10-03T06:11:49.095Z",
+  "sha256": "2b0ca308af0b13b6877eb8a64d470fbf015769d1fb87d76da4184e23b88e40f0",
+  "bytes": 27245,
+  "requestId": "XPDxsVJ4w78PiMExwZA8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d91c4e1dd7b0876f4e236812fc8de7fc3107163e2fab6e5f9ee537694b66394b",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

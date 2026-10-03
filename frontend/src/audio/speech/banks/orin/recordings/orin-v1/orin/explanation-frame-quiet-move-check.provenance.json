@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-move-check",
+      "label": "Explanation frame quiet move check",
+      "text": "Check. The king is attacked, and every other concern must wait."
+    },
+    "takeId": null
+  },
+  "requestHash": "e91612a315146e80f2bc91f5a2a03bb59458fa79e0d4fa6620a691b12b4fad05",
+  "recordedAt": "2026-10-03T06:11:53.482Z",
+  "sha256": "8d5573849786adbf6bb076be542bcf17ace86ae13986800aaf5a11cb228c2071",
+  "bytes": 14953,
+  "requestId": "lHlEwjXSfbtQoX4R1R1r",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "192bea6d09f9e339c7ff8794b0bdc53b08085cdcf7565f807e5e9680c590bb46",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

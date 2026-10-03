@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "positional-doubled-alternative",
+      "label": "Positional doubled alternative",
+      "text": "Another move would have left doubled pawns, one pawn standing in front of a second of the same color."
+    },
+    "takeId": null
+  },
+  "requestHash": "2d639589aaa98da43bdcd0c6cd5cce1c5aa8cc07d6604ce2b545966edd1766e2",
+  "recordedAt": "2026-10-03T06:11:42.367Z",
+  "sha256": "22268e9cf0e260e8fc7acd0828a07e76e5952b281cae451bf0fba9a3bf11f91b",
+  "bytes": 21555,
+  "requestId": "k2piBE7BmvXe6pNN0fan",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "55f4ead270dfd11465994d5625921ddec6b41e1914892a4bf9e46c43a19bc6d9",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

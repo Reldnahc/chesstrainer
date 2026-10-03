@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate",
+      "label": "Explanation frame capture move mate",
+      "text": "This capture is also checkmate, leaving the king no legal square."
+    },
+    "takeId": null
+  },
+  "requestHash": "2b89cd79bd3dd65a4f340c2d2ecdbf68acc9b6bdc7938aae32bae864c54d1ba7",
+  "recordedAt": "2026-10-03T06:12:04.033Z",
+  "sha256": "d87fbc14002e0bf6ab6ff610f503911cd98d4ba90ff20e857e33365cc293f292",
+  "bytes": 16663,
+  "requestId": "IePjJoWlxGkPF5gm9yMH",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "33db393fa11056966f0bb041001c9a6933ed53d233ccd2cb38fb797472b35568",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "srs-cold",
+      "label": "Srs cold",
+      "text": "Study the position before you act, and only then decide on a move."
+    },
+    "takeId": null
+  },
+  "requestHash": "114a721fbca8d4f768699e21c6549701f166369cfca7664423c7ead0cd96b62f",
+  "recordedAt": "2026-10-03T06:11:32.175Z",
+  "sha256": "85b2c3013b16d00b95504114c09bd0d2a96cc82e743dcbe4c073c8a9ad054fa6",
+  "bytes": 16877,
+  "requestId": "Sn2ZKqaZCs6tWAtvIO6E",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "788e729ecd74d13c315564aebf7524286d7d2c57cddff3187b6e9ef0fd594e06",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

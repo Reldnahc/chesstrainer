@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed",
+      "label": "Tactic removing defender missed",
+      "text": "Another move could have removed a defender by capture, leaving whatever it guarded without protection. A reliable method, and it was available."
+    },
+    "takeId": null
+  },
+  "requestHash": "e75311298b5c62428b3985ccf466695873ca6adb99cc34c14ac4030cd62e87b1",
+  "recordedAt": "2026-10-03T06:11:33.659Z",
+  "sha256": "4c91e85464c53c0c96d3ba51f99548158c379c21d387ee97eb4bd2ce6714d17f",
+  "bytes": 30197,
+  "requestId": "KwuipTxPki2ocgNMQrEX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a4770acb8aa7308aaac59680100e8569e659c01160de1c0c952ce67cff332d29",
+    "bytes": 155942
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

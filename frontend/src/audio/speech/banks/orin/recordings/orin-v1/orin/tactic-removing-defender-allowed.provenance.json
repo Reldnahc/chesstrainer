@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed",
+      "label": "Tactic removing defender allowed",
+      "text": "What is guarded is only as safe as its guard. This lets the other side capture a defender, and whatever it protected could then stand without cover."
+    },
+    "takeId": null
+  },
+  "requestHash": "2e9b2716a978225de761b77dfa81043da0a532dda85efcaa124502bee90294eb",
+  "recordedAt": "2026-10-03T06:11:31.651Z",
+  "sha256": "9036717eea33a3520853eda31f735496c78d888d781c0e478f5f89125ae9878a",
+  "bytes": 32304,
+  "requestId": "EhP7JCEOzVJIkYtqXFQe",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9aab6cf1b64afe07bc7578f1f8d7d19e87dfa9e7862ad2966d7febe435f95720",
+    "bytes": 166391
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "opening-preview-inactive",
+      "label": "Opening preview inactive",
+      "text": "Your scheduled recalls will ask you to play your selected side's moves. A position held in common by several active studies uses a single card."
+    },
+    "takeId": null
+  },
+  "requestHash": "927f8e18308a336b5da933f71e0b639b94ca5f1d4b237e05420130082c16f18d",
+  "recordedAt": "2026-10-03T06:11:58.899Z",
+  "sha256": "c376f55dec750951e294fad02a7c672dae35164244ef4ca6163111b8b42e96ef",
+  "bytes": 31567,
+  "requestId": "Xb0AFlOBf2WTaOxeQGKV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "67c547b667abc9e79168f044d30970144b9b9496768202605e68b4c696ce74be",
+    "bytes": 160958
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

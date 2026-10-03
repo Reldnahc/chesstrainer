@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "positional-passed-actual",
+      "label": "Positional passed actual",
+      "text": "A passed pawn is a lasting asset. This leaves one, with its own file and both neighboring files free of enemy pawns ahead of it."
+    },
+    "takeId": null
+  },
+  "requestHash": "ea761c67c6fd6738c6078a31447dd5f2b74a4db796f5e0387f8e2eb0f1a4a37e",
+  "recordedAt": "2026-10-03T06:11:50.104Z",
+  "sha256": "0693a201bbb4c9d9b8c6aa08dcf5d61452fdb19eaadbe40cfdfa8cacdfbbc55c",
+  "bytes": 30205,
+  "requestId": "4lRumQu66EdhzUoOBZHY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f8ce7b33bdb06a5e80d3387a45c011c4f66e42d08e0bba7db936a8b3c7167913",
+    "bytes": 154688
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

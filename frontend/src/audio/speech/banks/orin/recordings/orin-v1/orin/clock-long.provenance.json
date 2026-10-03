@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "clock-long",
+      "label": "Clock long",
+      "text": "The recorded clock shows a long deliberation over this move."
+    },
+    "takeId": null
+  },
+  "requestHash": "6f7d39f81ca7a1c82ca235954d7c95324747487adf03818798272729feeb2aa0",
+  "recordedAt": "2026-10-03T06:11:31.842Z",
+  "sha256": "d2510577fc0cad79a2b69d86ba5b9c1a81073619c50955b47bb78778af4a6a07",
+  "bytes": 14630,
+  "requestId": "2JBxzXiqxR4M1m5QMaXL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a2e93b76ebdf4e4063e8e844a451db06182d45edcabdf07ca1d99fbef4240842",
+    "bytes": 71515
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

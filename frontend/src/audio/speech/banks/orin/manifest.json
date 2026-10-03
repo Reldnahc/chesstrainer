@@ -1,0 +1,1583 @@
+{
+  "schemaVersion": 1,
+  "provider": "elevenlabs",
+  "coachId": "wizard",
+  "voiceId": "orin",
+  "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+  "modelId": "eleven_v4",
+  "outputFormat": "mp3_44100_128",
+  "settings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75,
+    "speed": 0.95
+  },
+  "scope": "non-lesson",
+  "silentIds": [
+    "game-thinking",
+    "explanation-loading-saved",
+    "dialogue-no-renderable-claim",
+    "practice-checking"
+  ],
+  "recordings": [
+    {
+      "id": "tactic-fork-played",
+      "group": "game_review",
+      "text": "The fork, a pattern every player must learn: a single piece attacks several targets, and the defender can rescue only one of them.",
+      "audioPath": "recordings/orin-v1/orin/tactic-fork-played.opus",
+      "sidecarPath": "recordings/orin-v1/orin/tactic-fork-played.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-played.json"
+    },
+    {
+      "id": "tactic-fork-allowed",
+      "group": "game_review",
+      "text": "The fork serves either side of the board. This move lets the other side set one up, with a single piece reaching for several targets at once.",
+      "audioPath": "recordings/orin-v1/orin/tactic-fork-allowed.opus",
+      "sidecarPath": "recordings/orin-v1/orin/tactic-fork-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-allowed.json"
+    },
+    {
+      "id": "tactic-fork-missed",
+      "group": "game_review",
+      "text": "A fork was on offer in another move: one piece, several targets, and only one of them able to escape. The played move lets that pattern pass.",
+      "audioPath": "recordings/orin-v1/orin/tactic-fork-missed.opus",
+      "sidecarPath": "recordings/orin-v1/orin/tactic-fork-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-missed.json"
+    },
+    {
+      "id": "tactic-pin-played",
+      "group": "game_review",
+      "text": "Here is the pin to the king, a pattern worth knowing by heart. The pinned piece must stay on its line, because stepping aside would expose its own king.",
+      "audioPath": "recordings/orin-v1/orin/tactic-pin-played.opus",
+      "sidecarPath": "recordings/orin-v1/orin/tactic-pin-played.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-played.json"
+    },
+    {
+      "id": "tactic-pin-allowed",
+      "group": "game_review",
+      "text": "A pin binds a piece to the king behind it. This move lets the other side apply one, and the pinned piece would then be held on its line.",
+      "audioPath": "recordings/orin-v1/orin/tactic-pin-allowed.opus",
+      "sidecarPath": "recordings/orin-v1/orin/tactic-pin-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-allowed.json"
+    },
+    {
+      "id": "tactic-pin-missed",
+      "group": "game_review",
+      "text": "A pin to the king was available in another move. A piece held that way must stay on its line or expose its own king, and the played move forgoes it.",
+      "audioPath": "recordings/orin-v1/orin/tactic-pin-missed.opus",
+      "sidecarPath": "recordings/orin-v1/orin/tactic-pin-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-missed.json"
+    },
+    {
+      "id": "tactic-skewer-played",
+      "group": "game_review",
+      "text": "The skewer is the pin turned around. The valuable piece stands in front; when it steps aside, the piece behind it is laid open.",
+      "audioPath": "recordings/orin-v1/orin/tactic-skewer-played.opus",
+      "sidecarPath": "recordings/orin-v1/orin/tactic-skewer-played.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-played.json"
+    },
+    {
+      "id": "tactic-skewer-allowed",
+      "group": "game_review",
+      "text": "Beware the skewer, the pin's reversed cousin. This gives the other side one: the front piece may have to move and leave the piece behind it exposed.",
+      "audioPath": "recordings/orin-v1/orin/tactic-skewer-allowed.opus",
+      "sidecarPath": "recordings/orin-v1/orin/tactic-skewer-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-allowed.json"
+    },
+    {
+      "id": "tactic-skewer-missed",
+      "group": "game_review",
+      "text": "The skewer belonged to a stronger move. Strike the front piece, and once it steps away, the piece standing behind it is exposed. The pattern was there to use.",
+      "audioPath": "recordings/orin-v1/orin/tactic-skewer-missed.opus",
+      "sidecarPath": "recordings/orin-v1/orin/tactic-skewer-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-missed.json"
+    },
+    {
+      "id": "tactic-removing-defender-played",
+      "group": "game_review",
+      "text": "An old principle: to win what is guarded, remove the guard. This move captures a defender, so study what that defender was protecting.",
+      "audioPath": "recordings/orin-v1/orin/tactic-removing-defender-played.opus",
+      "sidecarPath": "recordings/orin-v1/orin/tactic-removing-defender-played.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-played.json"
+    },
+    {
+      "id": "tactic-removing-defender-allowed",
+      "group": "game_review",
+      "text": "What is guarded is only as safe as its guard. This lets the other side capture a defender, and whatever it protected could then stand without cover.",
+      "audioPath": "recordings/orin-v1/orin/tactic-removing-defender-allowed.opus",
+      "sidecarPath": "recordings/orin-v1/orin/tactic-removing-defender-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-allowed.json"
+    },
+    {
+      "id": "tactic-removing-defender-missed",
+      "group": "game_review",
+      "text": "Another move could have removed a defender by capture, leaving whatever it guarded without protection. A reliable method, and it was available.",
+      "audioPath": "recordings/orin-v1/orin/tactic-removing-defender-missed.opus",
+      "sidecarPath": "recordings/orin-v1/orin/tactic-removing-defender-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-missed.json"
+    },
+    {
+      "id": "tactic-back-rank-played",
+      "group": "game_review",
+      "text": "The back-rank mate is among the most reliable patterns there is. The king's own pieces wall it in, and an attacker on the last rank finishes the work.",
+      "audioPath": "recordings/orin-v1/orin/tactic-back-rank-played.opus",
+      "sidecarPath": "recordings/orin-v1/orin/tactic-back-rank-played.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-played.json"
+    },
+    {
+      "id": "tactic-back-rank-allowed",
+      "group": "game_review",
+      "text": "Mark this pattern well: the back-rank mate. After this move the other side has a route to it, because the king's own pieces hem it in.",
+      "audioPath": "recordings/orin-v1/orin/tactic-back-rank-allowed.opus",
+      "sidecarPath": "recordings/orin-v1/orin/tactic-back-rank-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-allowed.json"
+    },
+    {
+      "id": "tactic-back-rank-missed",
+      "group": "game_review",
+      "text": "A back-rank mate was within reach, the king boxed in by its own guards. This move lets that well-known finish slip away.",
+      "audioPath": "recordings/orin-v1/orin/tactic-back-rank-missed.opus",
+      "sidecarPath": "recordings/orin-v1/orin/tactic-back-rank-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-missed.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-played",
+      "group": "game_review",
+      "text": "Every pawn carries the possibility of a queen. The idea here is promotion, so follow the pawn's road to the last rank.",
+      "audioPath": "recordings/orin-v1/orin/tactic-promotion-awareness-played.opus",
+      "sidecarPath": "recordings/orin-v1/orin/tactic-promotion-awareness-played.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-played.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-allowed",
+      "group": "game_review",
+      "text": "A pawn near the last rank deserves constant attention. After this move, one of the other side's pawns has a path to promotion; trace the pawn that could make the journey.",
+      "audioPath": "recordings/orin-v1/orin/tactic-promotion-awareness-allowed.opus",
+      "sidecarPath": "recordings/orin-v1/orin/tactic-promotion-awareness-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-allowed.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-missed",
+      "group": "game_review",
+      "text": "A stronger move opened the road to promotion for a pawn. This move leaves that pawn short of the last rank, and the chance passes.",
+      "audioPath": "recordings/orin-v1/orin/tactic-promotion-awareness-missed.opus",
+      "sidecarPath": "recordings/orin-v1/orin/tactic-promotion-awareness-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-missed.json"
+    },
+    {
+      "id": "tactic-discovered-attack-played",
+      "group": "game_review",
+      "text": "The discovered attack is a fine device. One piece steps out of the way, and the piece behind it strikes along the line it uncovers.",
+      "audioPath": "recordings/orin-v1/orin/tactic-discovered-attack-played.opus",
+      "sidecarPath": "recordings/orin-v1/orin/tactic-discovered-attack-played.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-played.json"
+    },
+    {
+      "id": "tactic-discovered-attack-allowed",
+      "group": "game_review",
+      "text": "A piece standing in front of another can hide a threat. This hands the other side a discovered attack, where the front piece steps away and the piece behind it strikes.",
+      "audioPath": "recordings/orin-v1/orin/tactic-discovered-attack-allowed.opus",
+      "sidecarPath": "recordings/orin-v1/orin/tactic-discovered-attack-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-allowed.json"
+    },
+    {
+      "id": "tactic-discovered-attack-missed",
+      "group": "game_review",
+      "text": "A discovered attack lay in another move. The front piece would have stepped aside, opening the line behind it to a threat. The device stayed unused.",
+      "audioPath": "recordings/orin-v1/orin/tactic-discovered-attack-missed.opus",
+      "sidecarPath": "recordings/orin-v1/orin/tactic-discovered-attack-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-missed.json"
+    },
+    {
+      "id": "tactic-double-attack-played",
+      "group": "game_review",
+      "text": "Two threats at once is a sound principle, and a single reply rarely answers both. This move makes the double attack.",
+      "audioPath": "recordings/orin-v1/orin/tactic-double-attack-played.opus",
+      "sidecarPath": "recordings/orin-v1/orin/tactic-double-attack-played.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-played.json"
+    },
+    {
+      "id": "tactic-double-attack-allowed",
+      "group": "game_review",
+      "text": "A position that allows two threats at once is hard to defend. This move gives the other side a double attack; find both threats before choosing an answer.",
+      "audioPath": "recordings/orin-v1/orin/tactic-double-attack-allowed.opus",
+      "sidecarPath": "recordings/orin-v1/orin/tactic-double-attack-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-allowed.json"
+    },
+    {
+      "id": "tactic-double-attack-missed",
+      "group": "game_review",
+      "text": "Two threats at once were available through a stronger move. This one passes over that double attack, and with it the hardest kind of problem for a defender.",
+      "audioPath": "recordings/orin-v1/orin/tactic-double-attack-missed.opus",
+      "sidecarPath": "recordings/orin-v1/orin/tactic-double-attack-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-missed.json"
+    },
+    {
+      "id": "tactic-deflection-played",
+      "group": "game_review",
+      "text": "Deflection rests on a simple truth: a defender cannot guard a post it has been lured away from. This move draws one off, and its duty is left unattended.",
+      "audioPath": "recordings/orin-v1/orin/tactic-deflection-played.opus",
+      "sidecarPath": "recordings/orin-v1/orin/tactic-deflection-played.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-played.json"
+    },
+    {
+      "id": "tactic-deflection-allowed",
+      "group": "game_review",
+      "text": "A defender with an important duty can be lured away. This move gives the other side that deflection, so mark what the defender is holding now.",
+      "audioPath": "recordings/orin-v1/orin/tactic-deflection-allowed.opus",
+      "sidecarPath": "recordings/orin-v1/orin/tactic-deflection-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-allowed.json"
+    },
+    {
+      "id": "tactic-deflection-missed",
+      "group": "game_review",
+      "text": "A defender could have been lured from its post by another move. No one reached for that deflection; study what the defender had to hold.",
+      "audioPath": "recordings/orin-v1/orin/tactic-deflection-missed.opus",
+      "sidecarPath": "recordings/orin-v1/orin/tactic-deflection-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-missed.json"
+    },
+    {
+      "id": "tactic-undefended-capture-played",
+      "group": "game_review",
+      "text": "The simplest principle of all still applies, and an unguarded piece falls to the first attacker. Here this move takes one. Before any combination, count the loose pieces.",
+      "audioPath": "recordings/orin-v1/orin/tactic-undefended-capture-played.opus",
+      "sidecarPath": "recordings/orin-v1/orin/tactic-undefended-capture-played.provenance.json",
+      "alignmentPath": "alignment/tactic-undefended-capture-played.json"
+    },
+    {
+      "id": "tactic-undefended-capture-missed",
+      "group": "game_review",
+      "text": "An unguarded piece was there to collect with another move, and the played move passes it by. Loose pieces should be counted before anything more elaborate.",
+      "audioPath": "recordings/orin-v1/orin/tactic-undefended-capture-missed.opus",
+      "sidecarPath": "recordings/orin-v1/orin/tactic-undefended-capture-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-undefended-capture-missed.json"
+    },
+    {
+      "id": "tactic-hanging-piece-allowed",
+      "group": "game_review",
+      "text": "Pieces without a guard invite capture. This move leaves one for the other side to take; look for the piece that has lost its protection.",
+      "audioPath": "recordings/orin-v1/orin/tactic-hanging-piece-allowed.opus",
+      "sidecarPath": "recordings/orin-v1/orin/tactic-hanging-piece-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-hanging-piece-allowed.json"
+    },
+    {
+      "id": "cause-abandoned-defender",
+      "group": "game_review",
+      "text": "A defender has a duty before it has a destination. Here the only real defender of a piece walks away, and the other side can now capture what was left unguarded.",
+      "audioPath": "recordings/orin-v1/orin/cause-abandoned-defender.opus",
+      "sidecarPath": "recordings/orin-v1/orin/cause-abandoned-defender.provenance.json",
+      "alignmentPath": "alignment/cause-abandoned-defender.json"
+    },
+    {
+      "id": "cause-opponent-threat-recognition",
+      "group": "game_review",
+      "text": "Every move asks a question, and the opponent's last one created a threat. This move leaves it unanswered, so a piece can now be captured.",
+      "audioPath": "recordings/orin-v1/orin/cause-opponent-threat-recognition.opus",
+      "sidecarPath": "recordings/orin-v1/orin/cause-opponent-threat-recognition.provenance.json",
+      "alignmentPath": "alignment/cause-opponent-threat-recognition.json"
+    },
+    {
+      "id": "cause-avoiding-bad-trades",
+      "group": "game_review",
+      "text": "An exchange is judged after the recapture, not before. Here the first capture is answered by the loss of a more valuable piece.",
+      "audioPath": "recordings/orin-v1/orin/cause-avoiding-bad-trades.opus",
+      "sidecarPath": "recordings/orin-v1/orin/cause-avoiding-bad-trades.provenance.json",
+      "alignmentPath": "alignment/cause-avoiding-bad-trades.json"
+    },
+    {
+      "id": "positional-development-actual",
+      "group": "game_review",
+      "text": "Development is the first principle of the opening. This brings a minor piece off its home square; note where it now stands.",
+      "audioPath": "recordings/orin-v1/orin/positional-development-actual.opus",
+      "sidecarPath": "recordings/orin-v1/orin/positional-development-actual.provenance.json",
+      "alignmentPath": "alignment/positional-development-actual.json"
+    },
+    {
+      "id": "positional-development-alternative",
+      "group": "game_review",
+      "text": "Another move would have developed a minor piece from its home square. The opening rewards each piece that joins the game.",
+      "audioPath": "recordings/orin-v1/orin/positional-development-alternative.opus",
+      "sidecarPath": "recordings/orin-v1/orin/positional-development-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-development-alternative.json"
+    },
+    {
+      "id": "positional-rook-open-actual",
+      "group": "game_review",
+      "text": "Rooks belong on open files; that is one of the steadiest rules we have. This rook now has such a file, free of pawns of both colors.",
+      "audioPath": "recordings/orin-v1/orin/positional-rook-open-actual.opus",
+      "sidecarPath": "recordings/orin-v1/orin/positional-rook-open-actual.provenance.json",
+      "alignmentPath": "alignment/positional-rook-open-actual.json"
+    },
+    {
+      "id": "positional-rook-open-alternative",
+      "group": "game_review",
+      "text": "Another move would have given a rook an open file, with not a pawn of either color upon it. Rooks are at their best on such roads.",
+      "audioPath": "recordings/orin-v1/orin/positional-rook-open-alternative.opus",
+      "sidecarPath": "recordings/orin-v1/orin/positional-rook-open-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-rook-open-alternative.json"
+    },
+    {
+      "id": "positional-rook-semi-open-actual",
+      "group": "game_review",
+      "text": "A semi-open file is the next best thing for a rook. This rook has no friendly pawns on its file, though at least one enemy pawn remains.",
+      "audioPath": "recordings/orin-v1/orin/positional-rook-semi-open-actual.opus",
+      "sidecarPath": "recordings/orin-v1/orin/positional-rook-semi-open-actual.provenance.json",
+      "alignmentPath": "alignment/positional-rook-semi-open-actual.json"
+    },
+    {
+      "id": "positional-rook-semi-open-alternative",
+      "group": "game_review",
+      "text": "Another move would have given a rook a semi-open file, free of its own pawns, with an enemy pawn still standing there.",
+      "audioPath": "recordings/orin-v1/orin/positional-rook-semi-open-alternative.opus",
+      "sidecarPath": "recordings/orin-v1/orin/positional-rook-semi-open-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-rook-semi-open-alternative.json"
+    },
+    {
+      "id": "positional-passed-actual",
+      "group": "game_review",
+      "text": "A passed pawn is a lasting asset. This leaves one, with its own file and both neighboring files free of enemy pawns ahead of it.",
+      "audioPath": "recordings/orin-v1/orin/positional-passed-actual.opus",
+      "sidecarPath": "recordings/orin-v1/orin/positional-passed-actual.provenance.json",
+      "alignmentPath": "alignment/positional-passed-actual.json"
+    },
+    {
+      "id": "positional-passed-alternative",
+      "group": "game_review",
+      "text": "Another move would have produced a passed pawn, one with no enemy pawn ahead of it on its own file or on either side.",
+      "audioPath": "recordings/orin-v1/orin/positional-passed-alternative.opus",
+      "sidecarPath": "recordings/orin-v1/orin/positional-passed-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-passed-alternative.json"
+    },
+    {
+      "id": "positional-passer-advance-actual",
+      "group": "game_review",
+      "text": "Passed pawns must be pushed, as the old saying has it. This one was already passed, and the move carries it further forward.",
+      "audioPath": "recordings/orin-v1/orin/positional-passer-advance-actual.opus",
+      "sidecarPath": "recordings/orin-v1/orin/positional-passer-advance-actual.provenance.json",
+      "alignmentPath": "alignment/positional-passer-advance-actual.json"
+    },
+    {
+      "id": "positional-passer-advance-alternative",
+      "group": "game_review",
+      "text": "Another move would have carried the passed pawn further along its road. Compare where it could have stood with where it stays.",
+      "audioPath": "recordings/orin-v1/orin/positional-passer-advance-alternative.opus",
+      "sidecarPath": "recordings/orin-v1/orin/positional-passer-advance-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-passer-advance-alternative.json"
+    },
+    {
+      "id": "positional-isolated-actual",
+      "group": "game_review",
+      "text": "An isolated pawn has no neighbor to lean on. This move leaves one, with no friendly pawn on either adjacent file.",
+      "audioPath": "recordings/orin-v1/orin/positional-isolated-actual.opus",
+      "sidecarPath": "recordings/orin-v1/orin/positional-isolated-actual.provenance.json",
+      "alignmentPath": "alignment/positional-isolated-actual.json"
+    },
+    {
+      "id": "positional-isolated-alternative",
+      "group": "game_review",
+      "text": "Another move would have left an isolated pawn, without a friendly pawn on either neighboring file.",
+      "audioPath": "recordings/orin-v1/orin/positional-isolated-alternative.opus",
+      "sidecarPath": "recordings/orin-v1/orin/positional-isolated-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-isolated-alternative.json"
+    },
+    {
+      "id": "positional-support-actual",
+      "group": "game_review",
+      "text": "A guarded piece is a calm piece. This move gives a piece the defender it lacked.",
+      "audioPath": "recordings/orin-v1/orin/positional-support-actual.opus",
+      "sidecarPath": "recordings/orin-v1/orin/positional-support-actual.provenance.json",
+      "alignmentPath": "alignment/positional-support-actual.json"
+    },
+    {
+      "id": "positional-support-alternative",
+      "group": "game_review",
+      "text": "Another move would have given an unguarded piece a defender, so it would no longer stand alone.",
+      "audioPath": "recordings/orin-v1/orin/positional-support-alternative.opus",
+      "sidecarPath": "recordings/orin-v1/orin/positional-support-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-support-alternative.json"
+    },
+    {
+      "id": "positional-unsupported-actual",
+      "group": "game_review",
+      "text": "One piece is left to stand alone after this move, with no defender at all. An undefended piece is a weakness, but not yet proof that it can be won.",
+      "audioPath": "recordings/orin-v1/orin/positional-unsupported-actual.opus",
+      "sidecarPath": "recordings/orin-v1/orin/positional-unsupported-actual.provenance.json",
+      "alignmentPath": "alignment/positional-unsupported-actual.json"
+    },
+    {
+      "id": "positional-unsupported-alternative",
+      "group": "game_review",
+      "text": "Had another move been played, a piece would have stood unguarded. By itself, that would not prove the piece could be won.",
+      "audioPath": "recordings/orin-v1/orin/positional-unsupported-alternative.opus",
+      "sidecarPath": "recordings/orin-v1/orin/positional-unsupported-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-unsupported-alternative.json"
+    },
+    {
+      "id": "positional-king-flight-actual",
+      "group": "game_review",
+      "text": "A king with an escape square is harder to trap. This move opens a legal flight square that was not there before; compare the positions to see what cleared it.",
+      "audioPath": "recordings/orin-v1/orin/positional-king-flight-actual.opus",
+      "sidecarPath": "recordings/orin-v1/orin/positional-king-flight-actual.provenance.json",
+      "alignmentPath": "alignment/positional-king-flight-actual.json"
+    },
+    {
+      "id": "positional-king-flight-alternative",
+      "group": "game_review",
+      "text": "With another move, the king would have gained a legal square of retreat. Compare the two positions to find what would have cleared the way.",
+      "audioPath": "recordings/orin-v1/orin/positional-king-flight-alternative.opus",
+      "sidecarPath": "recordings/orin-v1/orin/positional-king-flight-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-king-flight-alternative.json"
+    },
+    {
+      "id": "positional-castling-actual",
+      "group": "game_review",
+      "text": "Castling serves two purposes at once. The king steps toward shelter, and the rook comes toward the center.",
+      "audioPath": "recordings/orin-v1/orin/positional-castling-actual.opus",
+      "sidecarPath": "recordings/orin-v1/orin/positional-castling-actual.provenance.json",
+      "alignmentPath": "alignment/positional-castling-actual.json"
+    },
+    {
+      "id": "positional-castling-alternative",
+      "group": "game_review",
+      "text": "The other path was castling, with the king toward shelter, the rook toward the center, both in a single turn.",
+      "audioPath": "recordings/orin-v1/orin/positional-castling-alternative.opus",
+      "sidecarPath": "recordings/orin-v1/orin/positional-castling-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-castling-alternative.json"
+    },
+    {
+      "id": "positional-bishop-pair-actual",
+      "group": "game_review",
+      "text": "The two bishops together cover every square color, and that partnership is often valued. This capture ends the bishop pair for the side that loses the bishop.",
+      "audioPath": "recordings/orin-v1/orin/positional-bishop-pair-actual.opus",
+      "sidecarPath": "recordings/orin-v1/orin/positional-bishop-pair-actual.provenance.json",
+      "alignmentPath": "alignment/positional-bishop-pair-actual.json"
+    },
+    {
+      "id": "positional-bishop-pair-alternative",
+      "group": "game_review",
+      "text": "Another move would have taken a bishop and ended the opposing side's partnership of two bishops.",
+      "audioPath": "recordings/orin-v1/orin/positional-bishop-pair-alternative.opus",
+      "sidecarPath": "recordings/orin-v1/orin/positional-bishop-pair-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-bishop-pair-alternative.json"
+    },
+    {
+      "id": "positional-doubled-actual",
+      "group": "game_review",
+      "text": "Doubled pawns are a familiar structural weakness. Here one pawn now stands directly in front of another of its own color.",
+      "audioPath": "recordings/orin-v1/orin/positional-doubled-actual.opus",
+      "sidecarPath": "recordings/orin-v1/orin/positional-doubled-actual.provenance.json",
+      "alignmentPath": "alignment/positional-doubled-actual.json"
+    },
+    {
+      "id": "positional-doubled-alternative",
+      "group": "game_review",
+      "text": "Another move would have left doubled pawns, one pawn standing in front of a second of the same color.",
+      "audioPath": "recordings/orin-v1/orin/positional-doubled-alternative.opus",
+      "sidecarPath": "recordings/orin-v1/orin/positional-doubled-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-doubled-alternative.json"
+    },
+    {
+      "id": "allowed-mate",
+      "group": "game_review",
+      "text": "The king's safety outranks every other lesson. Here the move permits a forced checkmate; trace the attack to the point where the defense gives way.",
+      "audioPath": "recordings/orin-v1/orin/allowed-mate.opus",
+      "sidecarPath": "recordings/orin-v1/orin/allowed-mate.provenance.json",
+      "alignmentPath": "alignment/allowed-mate.json"
+    },
+    {
+      "id": "missed-mate",
+      "group": "game_review",
+      "text": "Checkmate could have been forced with another move, and the played move lets that mate escape. Return to the position; it is worth finding and remembering.",
+      "audioPath": "recordings/orin-v1/orin/missed-mate.opus",
+      "sidecarPath": "recordings/orin-v1/orin/missed-mate.provenance.json",
+      "alignmentPath": "alignment/missed-mate.json"
+    },
+    {
+      "id": "sound-sacrifice",
+      "group": "game_review",
+      "text": "A sacrifice is tested by its acceptance. Here the offered material can be taken, and the idea still holds in the line that was checked.",
+      "audioPath": "recordings/orin-v1/orin/sound-sacrifice.opus",
+      "sidecarPath": "recordings/orin-v1/orin/sound-sacrifice.provenance.json",
+      "alignmentPath": "alignment/sound-sacrifice.json"
+    },
+    {
+      "id": "only-playable-move",
+      "group": "game_review",
+      "text": "Some positions offer a single narrow path. Of the moves examined, this alone kept the position playable, while every alternative lost.",
+      "audioPath": "recordings/orin-v1/orin/only-playable-move.opus",
+      "sidecarPath": "recordings/orin-v1/orin/only-playable-move.provenance.json",
+      "alignmentPath": "alignment/only-playable-move.json"
+    },
+    {
+      "id": "only-advantage-resource",
+      "group": "game_review",
+      "text": "This move is the one thread that kept the advantage; every alternative examined would have lost. The whole position rested on it.",
+      "audioPath": "recordings/orin-v1/orin/only-advantage-resource.opus",
+      "sidecarPath": "recordings/orin-v1/orin/only-advantage-resource.provenance.json",
+      "alignmentPath": "alignment/only-advantage-resource.json"
+    },
+    {
+      "id": "immediate-capture",
+      "group": "game_review",
+      "text": "Look first at what the reply can take. The other side has a capture available at once.",
+      "audioPath": "recordings/orin-v1/orin/immediate-capture.opus",
+      "sidecarPath": "recordings/orin-v1/orin/immediate-capture.provenance.json",
+      "alignmentPath": "alignment/immediate-capture.json"
+    },
+    {
+      "id": "reply-check",
+      "group": "game_review",
+      "text": "A check must be answered before all else. The strongest reply gives check, so the king's safety comes first.",
+      "audioPath": "recordings/orin-v1/orin/reply-check.opus",
+      "sidecarPath": "recordings/orin-v1/orin/reply-check.provenance.json",
+      "alignmentPath": "alignment/reply-check.json"
+    },
+    {
+      "id": "stronger-alternative",
+      "group": "game_review",
+      "text": "The engine has a different move in mind here. Set the two side by side on the board and compare what the replies allow.",
+      "audioPath": "recordings/orin-v1/orin/stronger-alternative.opus",
+      "sidecarPath": "recordings/orin-v1/orin/stronger-alternative.provenance.json",
+      "alignmentPath": "alignment/stronger-alternative.json"
+    },
+    {
+      "id": "evaluation-loss",
+      "group": "game_review",
+      "text": "By the engine's measure, this falls short of the best option. Study the reply, for that is where the cost first appears.",
+      "audioPath": "recordings/orin-v1/orin/evaluation-loss.opus",
+      "sidecarPath": "recordings/orin-v1/orin/evaluation-loss.provenance.json",
+      "alignmentPath": "alignment/evaluation-loss.json"
+    },
+    {
+      "id": "best-supported-choice",
+      "group": "game_review",
+      "text": "Among the moves the engine examined, this is a strong choice. A choice the position bears out.",
+      "audioPath": "recordings/orin-v1/orin/best-supported-choice.opus",
+      "sidecarPath": "recordings/orin-v1/orin/best-supported-choice.provenance.json",
+      "alignmentPath": "alignment/best-supported-choice.json"
+    },
+    {
+      "id": "good-choice",
+      "group": "game_review",
+      "text": "Sound, by any fair measure. The engine has another preference, yet this keeps most of what the position offered.",
+      "audioPath": "recordings/orin-v1/orin/good-choice.opus",
+      "sidecarPath": "recordings/orin-v1/orin/good-choice.provenance.json",
+      "alignmentPath": "alignment/good-choice.json"
+    },
+    {
+      "id": "clock-low",
+      "group": "game_review",
+      "text": "Time is part of the position too, and the recorded clock shows very little of it remained before this move.",
+      "audioPath": "recordings/orin-v1/orin/clock-low.opus",
+      "sidecarPath": "recordings/orin-v1/orin/clock-low.provenance.json",
+      "alignmentPath": "alignment/clock-low.json"
+    },
+    {
+      "id": "clock-fast",
+      "group": "game_review",
+      "text": "The recorded clock shows a swift decision, made with time still to spare.",
+      "audioPath": "recordings/orin-v1/orin/clock-fast.opus",
+      "sidecarPath": "recordings/orin-v1/orin/clock-fast.provenance.json",
+      "alignmentPath": "alignment/clock-fast.json"
+    },
+    {
+      "id": "clock-long",
+      "group": "game_review",
+      "text": "The recorded clock shows a long deliberation over this move.",
+      "audioPath": "recordings/orin-v1/orin/clock-long.opus",
+      "sidecarPath": "recordings/orin-v1/orin/clock-long.provenance.json",
+      "alignmentPath": "alignment/clock-long.json"
+    },
+    {
+      "id": "recognized-opening",
+      "group": "game_review",
+      "text": "This move stands in a recognized opening line, a road many games have traveled before.",
+      "audioPath": "recordings/orin-v1/orin/recognized-opening.opus",
+      "sidecarPath": "recordings/orin-v1/orin/recognized-opening.provenance.json",
+      "alignmentPath": "alignment/recognized-opening.json"
+    },
+    {
+      "id": "opening-departure",
+      "group": "game_review",
+      "text": "Here the game steps past the last move our opening book recognizes. From this point, the position must be read on its own terms.",
+      "audioPath": "recordings/orin-v1/orin/opening-departure.opus",
+      "sidecarPath": "recordings/orin-v1/orin/opening-departure.provenance.json",
+      "alignmentPath": "alignment/opening-departure.json"
+    },
+    {
+      "id": "recovery",
+      "group": "game_review",
+      "text": "The earlier setback is answered here, and the position is playable once more. A setback need not be the end of the lesson.",
+      "audioPath": "recordings/orin-v1/orin/recovery.opus",
+      "sidecarPath": "recordings/orin-v1/orin/recovery.provenance.json",
+      "alignmentPath": "alignment/recovery.json"
+    },
+    {
+      "id": "recovery-assisted",
+      "group": "game_review",
+      "text": "The earlier setback is repaired, and play is possible again. The other side's errors had a hand in that recovery.",
+      "audioPath": "recordings/orin-v1/orin/recovery-assisted.opus",
+      "sidecarPath": "recordings/orin-v1/orin/recovery-assisted.provenance.json",
+      "alignmentPath": "alignment/recovery-assisted.json"
+    },
+    {
+      "id": "chance-taken",
+      "group": "game_review",
+      "text": "A gift must be seen before it can be taken. The opponent's last move offered one, and this move accepts it.",
+      "audioPath": "recordings/orin-v1/orin/chance-taken.opus",
+      "sidecarPath": "recordings/orin-v1/orin/chance-taken.provenance.json",
+      "alignmentPath": "alignment/chance-taken.json"
+    },
+    {
+      "id": "chance-missed",
+      "group": "game_review",
+      "text": "An opportunity arrived with the opponent's last move, and the reply here leaves it untaken. The stronger answer is one move back, waiting to be found.",
+      "audioPath": "recordings/orin-v1/orin/chance-missed.opus",
+      "sidecarPath": "recordings/orin-v1/orin/chance-missed.provenance.json",
+      "alignmentPath": "alignment/chance-missed.json"
+    },
+    {
+      "id": "repeated-issue",
+      "group": "game_review",
+      "text": "When a pattern repeats, the repetition is itself the lesson. This issue showed up earlier in the reviewed game as well; set the examples side by side and find the warning sign they share.",
+      "audioPath": "recordings/orin-v1/orin/repeated-issue.opus",
+      "sidecarPath": "recordings/orin-v1/orin/repeated-issue.provenance.json",
+      "alignmentPath": "alignment/repeated-issue.json"
+    },
+    {
+      "id": "support-restored",
+      "group": "game_review",
+      "text": "Protection has returned to a piece that was left unguarded earlier. Set the two positions side by side and see what restored it.",
+      "audioPath": "recordings/orin-v1/orin/support-restored.opus",
+      "sidecarPath": "recordings/orin-v1/orin/support-restored.provenance.json",
+      "alignmentPath": "alignment/support-restored.json"
+    },
+    {
+      "id": "gradual-erosion",
+      "group": "game_review",
+      "text": "Small concessions accumulate quietly. This move is one of several that have worn the position down together, so study the sequence rather than this move alone.",
+      "audioPath": "recordings/orin-v1/orin/gradual-erosion.opus",
+      "sidecarPath": "recordings/orin-v1/orin/gradual-erosion.provenance.json",
+      "alignmentPath": "alignment/gradual-erosion.json"
+    },
+    {
+      "id": "advantage-converted",
+      "group": "game_review",
+      "text": "Converting an advantage asks for its own discipline. From here to the recorded win the advantage never slipped; trace that stretch move by move.",
+      "audioPath": "recordings/orin-v1/orin/advantage-converted.opus",
+      "sidecarPath": "recordings/orin-v1/orin/advantage-converted.provenance.json",
+      "alignmentPath": "alignment/advantage-converted.json"
+    },
+    {
+      "id": "saved-history-recurrence",
+      "group": "game_review",
+      "text": "Your other saved games show this same issue. A pattern seen in several games is a pattern worth studying across all of them.",
+      "audioPath": "recordings/orin-v1/orin/saved-history-recurrence.opus",
+      "sidecarPath": "recordings/orin-v1/orin/saved-history-recurrence.provenance.json",
+      "alignmentPath": "alignment/saved-history-recurrence.json"
+    },
+    {
+      "id": "mate-finished",
+      "group": "game_review",
+      "text": "Checkmate. The king has no legal escape, and the attack is complete. Keep this finish in memory.",
+      "audioPath": "recordings/orin-v1/orin/mate-finished.opus",
+      "sidecarPath": "recordings/orin-v1/orin/mate-finished.provenance.json",
+      "alignmentPath": "alignment/mate-finished.json"
+    },
+    {
+      "id": "mate-defense-ended",
+      "group": "game_review",
+      "text": "Checkmate. Every legal square is closed to the king, and the lesson lies earlier, in the moment the defense could still have held.",
+      "audioPath": "recordings/orin-v1/orin/mate-defense-ended.opus",
+      "sidecarPath": "recordings/orin-v1/orin/mate-defense-ended.provenance.json",
+      "alignmentPath": "alignment/mate-defense-ended.json"
+    },
+    {
+      "id": "draw",
+      "group": "game_review",
+      "text": "A drawn game. Neither side could force more, and the turning points are still worth study.",
+      "audioPath": "recordings/orin-v1/orin/draw.opus",
+      "sidecarPath": "recordings/orin-v1/orin/draw.provenance.json",
+      "alignmentPath": "alignment/draw.json"
+    },
+    {
+      "id": "srs-cold",
+      "group": "srs_explanations",
+      "text": "Study the position before you act, and only then decide on a move.",
+      "audioPath": "recordings/orin-v1/orin/srs-cold.opus",
+      "sidecarPath": "recordings/orin-v1/orin/srs-cold.provenance.json",
+      "alignmentPath": "alignment/srs-cold.json"
+    },
+    {
+      "id": "srs-retry",
+      "group": "srs_explanations",
+      "text": "That attempt does not survive the reply. Return to the position and look for the pattern it contains.",
+      "audioPath": "recordings/orin-v1/orin/srs-retry.opus",
+      "sidecarPath": "recordings/orin-v1/orin/srs-retry.provenance.json",
+      "alignmentPath": "alignment/srs-retry.json"
+    },
+    {
+      "id": "srs-practice-error",
+      "group": "srs_explanations",
+      "text": "That attempt went unanswered. Play the move again, and we shall see.",
+      "audioPath": "recordings/orin-v1/orin/srs-practice-error.opus",
+      "sidecarPath": "recordings/orin-v1/orin/srs-practice-error.provenance.json",
+      "alignmentPath": "alignment/srs-practice-error.json"
+    },
+    {
+      "id": "srs-summary-mate-for-mover",
+      "group": "srs_explanations",
+      "text": "For the side that made this move, the saved engine analysis holds a forced checkmate.",
+      "audioPath": "recordings/orin-v1/orin/srs-summary-mate-for-mover.opus",
+      "sidecarPath": "recordings/orin-v1/orin/srs-summary-mate-for-mover.provenance.json",
+      "alignmentPath": "alignment/srs-summary-mate-for-mover.json"
+    },
+    {
+      "id": "srs-summary-mate-against-mover",
+      "group": "srs_explanations",
+      "text": "By the saved engine analysis, this move opens the way to a forced checkmate for the other side.",
+      "audioPath": "recordings/orin-v1/orin/srs-summary-mate-against-mover.opus",
+      "sidecarPath": "recordings/orin-v1/orin/srs-summary-mate-against-mover.provenance.json",
+      "alignmentPath": "alignment/srs-summary-mate-against-mover.json"
+    },
+    {
+      "id": "srs-summary-material-gain",
+      "group": "srs_explanations",
+      "text": "Weigh the material once the saved line is over. Against the starting position, the side that made this move has come out with more.",
+      "audioPath": "recordings/orin-v1/orin/srs-summary-material-gain.opus",
+      "sidecarPath": "recordings/orin-v1/orin/srs-summary-material-gain.provenance.json",
+      "alignmentPath": "alignment/srs-summary-material-gain.json"
+    },
+    {
+      "id": "srs-summary-material-loss",
+      "group": "srs_explanations",
+      "text": "Weigh the material once the saved line is over. Against the starting position, the side that made this move has come out with less.",
+      "audioPath": "recordings/orin-v1/orin/srs-summary-material-loss.opus",
+      "sidecarPath": "recordings/orin-v1/orin/srs-summary-material-loss.provenance.json",
+      "alignmentPath": "alignment/srs-summary-material-loss.json"
+    },
+    {
+      "id": "srs-summary-engine-accepted",
+      "group": "srs_explanations",
+      "text": "The exercise takes this move as an answer, yet the moves shown hold no clear tactical explanation. I will not invent one.",
+      "audioPath": "recordings/orin-v1/orin/srs-summary-engine-accepted.opus",
+      "sidecarPath": "recordings/orin-v1/orin/srs-summary-engine-accepted.provenance.json",
+      "alignmentPath": "alignment/srs-summary-engine-accepted.json"
+    },
+    {
+      "id": "srs-summary-engine-rejected",
+      "group": "srs_explanations",
+      "text": "The exercise does not accept this move, and the moves shown give no clear tactical reason. Study the position again with fresh eyes.",
+      "audioPath": "recordings/orin-v1/orin/srs-summary-engine-rejected.opus",
+      "sidecarPath": "recordings/orin-v1/orin/srs-summary-engine-rejected.provenance.json",
+      "alignmentPath": "alignment/srs-summary-engine-rejected.json"
+    },
+    {
+      "id": "srs-summary-curated-accepted",
+      "group": "srs_explanations",
+      "text": "One of the saved answers, matched exactly. In this exercise, the saved answers are the measure.",
+      "audioPath": "recordings/orin-v1/orin/srs-summary-curated-accepted.opus",
+      "sidecarPath": "recordings/orin-v1/orin/srs-summary-curated-accepted.provenance.json",
+      "alignmentPath": "alignment/srs-summary-curated-accepted.json"
+    },
+    {
+      "id": "srs-summary-curated-rejected",
+      "group": "srs_explanations",
+      "text": "This move is not among the exercise's saved answers. That alone does not make another legal move poor chess.",
+      "audioPath": "recordings/orin-v1/orin/srs-summary-curated-rejected.opus",
+      "sidecarPath": "recordings/orin-v1/orin/srs-summary-curated-rejected.provenance.json",
+      "alignmentPath": "alignment/srs-summary-curated-rejected.json"
+    },
+    {
+      "id": "srs-fallback-study",
+      "group": "srs_explanations",
+      "text": "Give the move careful study before the next position.",
+      "audioPath": "recordings/orin-v1/orin/srs-fallback-study.opus",
+      "sidecarPath": "recordings/orin-v1/orin/srs-fallback-study.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-study.json"
+    },
+    {
+      "id": "srs-fallback-good",
+      "group": "srs_explanations",
+      "text": "Good. Keep its reason alongside it; the reason is what returns when the pattern does.",
+      "audioPath": "recordings/orin-v1/orin/srs-fallback-good.opus",
+      "sidecarPath": "recordings/orin-v1/orin/srs-fallback-good.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-good.json"
+    },
+    {
+      "id": "srs-fallback-focus-saved",
+      "group": "srs_explanations",
+      "text": "Your practice has been saved, and your review dates have not moved.",
+      "audioPath": "recordings/orin-v1/orin/srs-fallback-focus-saved.opus",
+      "sidecarPath": "recordings/orin-v1/orin/srs-fallback-focus-saved.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-focus-saved.json"
+    },
+    {
+      "id": "srs-fallback-relearning",
+      "group": "srs_explanations",
+      "text": "Solved. Even so, this recall keeps its relearning mark.",
+      "audioPath": "recordings/orin-v1/orin/srs-fallback-relearning.opus",
+      "sidecarPath": "recordings/orin-v1/orin/srs-fallback-relearning.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-relearning.json"
+    },
+    {
+      "id": "explanation-frame-original",
+      "group": "srs_explanations",
+      "text": "Our study begins from this position, before any of the moves are played.",
+      "audioPath": "recordings/orin-v1/orin/explanation-frame-original.opus",
+      "sidecarPath": "recordings/orin-v1/orin/explanation-frame-original.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-original.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-ordinary",
+      "group": "srs_explanations",
+      "text": "The next move in the line. Mark the change it makes.",
+      "audioPath": "recordings/orin-v1/orin/explanation-frame-quiet-move-ordinary.opus",
+      "sidecarPath": "recordings/orin-v1/orin/explanation-frame-quiet-move-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-check",
+      "group": "srs_explanations",
+      "text": "Check. The king is attacked, and every other concern must wait.",
+      "audioPath": "recordings/orin-v1/orin/explanation-frame-quiet-move-check.opus",
+      "sidecarPath": "recordings/orin-v1/orin/explanation-frame-quiet-move-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-check.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-escape",
+      "group": "srs_explanations",
+      "text": "Here the king escapes the check.",
+      "audioPath": "recordings/orin-v1/orin/explanation-frame-quiet-move-escape.opus",
+      "sidecarPath": "recordings/orin-v1/orin/explanation-frame-quiet-move-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-escape.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-ordinary",
+      "group": "srs_explanations",
+      "text": "Its journey complete, the pawn arrives on the last rank and is promoted.",
+      "audioPath": "recordings/orin-v1/orin/explanation-frame-quiet-promotion-ordinary.opus",
+      "sidecarPath": "recordings/orin-v1/orin/explanation-frame-quiet-promotion-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-check",
+      "group": "srs_explanations",
+      "text": "The pawn promotes on the last rank, and the new piece gives check.",
+      "audioPath": "recordings/orin-v1/orin/explanation-frame-quiet-promotion-check.opus",
+      "sidecarPath": "recordings/orin-v1/orin/explanation-frame-quiet-promotion-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-check.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-mate",
+      "group": "srs_explanations",
+      "text": "The pawn promotes on the last rank, and the result is checkmate, with the king left no legal way out.",
+      "audioPath": "recordings/orin-v1/orin/explanation-frame-quiet-promotion-mate.opus",
+      "sidecarPath": "recordings/orin-v1/orin/explanation-frame-quiet-promotion-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-mate.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-escape",
+      "group": "srs_explanations",
+      "text": "The pawn promotes on the last rank, and the move also lifts the check on its own king.",
+      "audioPath": "recordings/orin-v1/orin/explanation-frame-quiet-promotion-escape.opus",
+      "sidecarPath": "recordings/orin-v1/orin/explanation-frame-quiet-promotion-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-escape.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-ordinary",
+      "group": "srs_explanations",
+      "text": "With this move, a piece leaves the board by capture.",
+      "audioPath": "recordings/orin-v1/orin/explanation-frame-capture-move-ordinary.opus",
+      "sidecarPath": "recordings/orin-v1/orin/explanation-frame-capture-move-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-check",
+      "group": "srs_explanations",
+      "text": "This captures a piece, and the same move gives check.",
+      "audioPath": "recordings/orin-v1/orin/explanation-frame-capture-move-check.opus",
+      "sidecarPath": "recordings/orin-v1/orin/explanation-frame-capture-move-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-check.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-mate",
+      "group": "srs_explanations",
+      "text": "This capture is also checkmate, leaving the king no legal square.",
+      "audioPath": "recordings/orin-v1/orin/explanation-frame-capture-move-mate.opus",
+      "sidecarPath": "recordings/orin-v1/orin/explanation-frame-capture-move-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-mate.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-escape",
+      "group": "srs_explanations",
+      "text": "The capture also lifts the check from the king.",
+      "audioPath": "recordings/orin-v1/orin/explanation-frame-capture-move-escape.opus",
+      "sidecarPath": "recordings/orin-v1/orin/explanation-frame-capture-move-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-escape.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-ordinary",
+      "group": "srs_explanations",
+      "text": "The pawn captures onto the last rank and promotes in a single stroke.",
+      "audioPath": "recordings/orin-v1/orin/explanation-frame-capture-promotion-ordinary.opus",
+      "sidecarPath": "recordings/orin-v1/orin/explanation-frame-capture-promotion-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-check",
+      "group": "srs_explanations",
+      "text": "The pawn captures its way onto the last rank and promotes, giving check with the new piece.",
+      "audioPath": "recordings/orin-v1/orin/explanation-frame-capture-promotion-check.opus",
+      "sidecarPath": "recordings/orin-v1/orin/explanation-frame-capture-promotion-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-check.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-mate",
+      "group": "srs_explanations",
+      "text": "The pawn captures onto the last rank and promotes, and that is checkmate, with every legal square closed to the king.",
+      "audioPath": "recordings/orin-v1/orin/explanation-frame-capture-promotion-mate.opus",
+      "sidecarPath": "recordings/orin-v1/orin/explanation-frame-capture-promotion-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-mate.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-escape",
+      "group": "srs_explanations",
+      "text": "The pawn captures onto the last rank and promotes, and in doing so it frees its own king from check.",
+      "audioPath": "recordings/orin-v1/orin/explanation-frame-capture-promotion-escape.opus",
+      "sidecarPath": "recordings/orin-v1/orin/explanation-frame-capture-promotion-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-escape.json"
+    },
+    {
+      "id": "explanation-frame-castle-check",
+      "group": "srs_explanations",
+      "text": "Castling here does double work: king and rook take their new squares, and the move gives check.",
+      "audioPath": "recordings/orin-v1/orin/explanation-frame-castle-check.opus",
+      "sidecarPath": "recordings/orin-v1/orin/explanation-frame-castle-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-castle-check.json"
+    },
+    {
+      "id": "explanation-frame-castle-mate",
+      "group": "srs_explanations",
+      "text": "Castling here ends the game: king and rook take their new squares, and the opposing king is checkmated, without a legal way out.",
+      "audioPath": "recordings/orin-v1/orin/explanation-frame-castle-mate.opus",
+      "sidecarPath": "recordings/orin-v1/orin/explanation-frame-castle-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-castle-mate.json"
+    },
+    {
+      "id": "explanation-finding-fork-collected",
+      "group": "srs_explanations",
+      "text": "The fork, demonstrated: one piece attacks several targets and then takes one of them. By the example's end, the side that forked stands ahead by a net gain in material.",
+      "audioPath": "recordings/orin-v1/orin/explanation-finding-fork-collected.opus",
+      "sidecarPath": "recordings/orin-v1/orin/explanation-finding-fork-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-fork-collected.json"
+    },
+    {
+      "id": "explanation-finding-pin-prevents-capture",
+      "group": "srs_explanations",
+      "text": "The pin to the king forbids this capture: the piece may not leave its line, because that would expose its own king.",
+      "audioPath": "recordings/orin-v1/orin/explanation-finding-pin-prevents-capture.opus",
+      "sidecarPath": "recordings/orin-v1/orin/explanation-finding-pin-prevents-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-prevents-capture.json"
+    },
+    {
+      "id": "explanation-finding-pin-restricts-escape",
+      "group": "srs_explanations",
+      "text": "Pinned to its king, the attacked piece has little freedom to escape. It may move only where the king stays shielded.",
+      "audioPath": "recordings/orin-v1/orin/explanation-finding-pin-restricts-escape.opus",
+      "sidecarPath": "recordings/orin-v1/orin/explanation-finding-pin-restricts-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-restricts-escape.json"
+    },
+    {
+      "id": "explanation-finding-pin-defenders-no-recapture",
+      "group": "srs_explanations",
+      "text": "Pinned to their own king, the defenders are unable to recapture there. That is the reason the capture works, and the line shown ends with a gain in material.",
+      "audioPath": "recordings/orin-v1/orin/explanation-finding-pin-defenders-no-recapture.opus",
+      "sidecarPath": "recordings/orin-v1/orin/explanation-finding-pin-defenders-no-recapture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-defenders-no-recapture.json"
+    },
+    {
+      "id": "explanation-finding-pin-collected",
+      "group": "srs_explanations",
+      "text": "Watch what becomes of the pinned piece. Bound to its line by the king behind it, it is captured before these moves are done.",
+      "audioPath": "recordings/orin-v1/orin/explanation-finding-pin-collected.opus",
+      "sidecarPath": "recordings/orin-v1/orin/explanation-finding-pin-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-collected.json"
+    },
+    {
+      "id": "explanation-finding-skewer-collected",
+      "group": "srs_explanations",
+      "text": "The skewer, completed: the front piece leaves the line, and the piece it was shielding is taken along that same line.",
+      "audioPath": "recordings/orin-v1/orin/explanation-finding-skewer-collected.opus",
+      "sidecarPath": "recordings/orin-v1/orin/explanation-finding-skewer-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-skewer-collected.json"
+    },
+    {
+      "id": "explanation-finding-king-skewer-collected",
+      "group": "srs_explanations",
+      "text": "The check compels the king to leave the line. The same attacker then collects whatever stood behind the king.",
+      "audioPath": "recordings/orin-v1/orin/explanation-finding-king-skewer-collected.opus",
+      "sidecarPath": "recordings/orin-v1/orin/explanation-finding-king-skewer-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-king-skewer-collected.json"
+    },
+    {
+      "id": "explanation-finding-sole-defender-captured",
+      "group": "srs_explanations",
+      "text": "The lone defender falls first, and then the piece it guarded. Mark how the first capture makes the second possible.",
+      "audioPath": "recordings/orin-v1/orin/explanation-finding-sole-defender-captured.opus",
+      "sidecarPath": "recordings/orin-v1/orin/explanation-finding-sole-defender-captured.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-sole-defender-captured.json"
+    },
+    {
+      "id": "explanation-finding-deflection-collected",
+      "group": "srs_explanations",
+      "text": "The defender is lured from its post, and what it was guarding falls in its absence.",
+      "audioPath": "recordings/orin-v1/orin/explanation-finding-deflection-collected.opus",
+      "sidecarPath": "recordings/orin-v1/orin/explanation-finding-deflection-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-deflection-collected.json"
+    },
+    {
+      "id": "explanation-finding-discovered-capture",
+      "group": "srs_explanations",
+      "text": "The blocker moves aside, and a line opens behind it. The piece on that line makes the capture.",
+      "audioPath": "recordings/orin-v1/orin/explanation-finding-discovered-capture.opus",
+      "sidecarPath": "recordings/orin-v1/orin/explanation-finding-discovered-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-discovered-capture.json"
+    },
+    {
+      "id": "explanation-finding-discovered-check",
+      "group": "srs_explanations",
+      "text": "A piece steps off the line, and the one behind it delivers check: the discovered check.",
+      "audioPath": "recordings/orin-v1/orin/explanation-finding-discovered-check.opus",
+      "sidecarPath": "recordings/orin-v1/orin/explanation-finding-discovered-check.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-discovered-check.json"
+    },
+    {
+      "id": "explanation-finding-double-check",
+      "group": "srs_explanations",
+      "text": "Double check: two pieces attack the king together, and only a king move can answer both.",
+      "audioPath": "recordings/orin-v1/orin/explanation-finding-double-check.opus",
+      "sidecarPath": "recordings/orin-v1/orin/explanation-finding-double-check.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-double-check.json"
+    },
+    {
+      "id": "explanation-finding-double-attack-collected",
+      "group": "srs_explanations",
+      "text": "The moving piece makes one attack and uncovers a second along the line it leaves. In the example, that second piece completes the capture.",
+      "audioPath": "recordings/orin-v1/orin/explanation-finding-double-attack-collected.opus",
+      "sidecarPath": "recordings/orin-v1/orin/explanation-finding-double-attack-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-double-attack-collected.json"
+    },
+    {
+      "id": "explanation-finding-promotion-material-retained",
+      "group": "srs_explanations",
+      "text": "The pawn reaches promotion, and in this example that side finishes with a net material gain as well.",
+      "audioPath": "recordings/orin-v1/orin/explanation-finding-promotion-material-retained.opus",
+      "sidecarPath": "recordings/orin-v1/orin/explanation-finding-promotion-material-retained.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-promotion-material-retained.json"
+    },
+    {
+      "id": "explanation-finding-undefended-capture-gain",
+      "group": "srs_explanations",
+      "text": "An unguarded piece is captured here, and the side that takes it finishes the example with a net gain in material.",
+      "audioPath": "recordings/orin-v1/orin/explanation-finding-undefended-capture-gain.opus",
+      "sidecarPath": "recordings/orin-v1/orin/explanation-finding-undefended-capture-gain.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-undefended-capture-gain.json"
+    },
+    {
+      "id": "explanation-finding-relative-pin-released",
+      "group": "srs_explanations",
+      "text": "A relative pin held the attacking piece until the opponent's previous move released it. Left where it stood, the target falls in the line shown.",
+      "audioPath": "recordings/orin-v1/orin/explanation-finding-relative-pin-released.opus",
+      "sidecarPath": "recordings/orin-v1/orin/explanation-finding-relative-pin-released.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-relative-pin-released.json"
+    },
+    {
+      "id": "game-explanation-legal-reply",
+      "group": "srs_explanations",
+      "text": "By the rules, the other side may answer with the marked reply. Set it on the board and study the position that results.",
+      "audioPath": "recordings/orin-v1/orin/game-explanation-legal-reply.opus",
+      "sidecarPath": "recordings/orin-v1/orin/game-explanation-legal-reply.provenance.json",
+      "alignmentPath": "alignment/game-explanation-legal-reply.json"
+    },
+    {
+      "id": "explanation-cue-hanging-piece",
+      "group": "srs_explanations",
+      "text": "Before you move, survey your own pieces for any that could be taken without a useful recapture.",
+      "audioPath": "recordings/orin-v1/orin/explanation-cue-hanging-piece.opus",
+      "sidecarPath": "recordings/orin-v1/orin/explanation-cue-hanging-piece.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-hanging-piece.json"
+    },
+    {
+      "id": "explanation-cue-missed-tactical-capture",
+      "group": "srs_explanations",
+      "text": "Before settling on a quiet move, survey the board for loose enemy pieces.",
+      "audioPath": "recordings/orin-v1/orin/explanation-cue-missed-tactical-capture.opus",
+      "sidecarPath": "recordings/orin-v1/orin/explanation-cue-missed-tactical-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-missed-tactical-capture.json"
+    },
+    {
+      "id": "explanation-cue-fork",
+      "group": "srs_explanations",
+      "text": "Examine the forcing moves for a single piece that can strike two valuable targets at once.",
+      "audioPath": "recordings/orin-v1/orin/explanation-cue-fork.opus",
+      "sidecarPath": "recordings/orin-v1/orin/explanation-cue-fork.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-fork.json"
+    },
+    {
+      "id": "explanation-cue-pin",
+      "group": "srs_explanations",
+      "text": "A pinned piece shields something behind it. Before moving one, see whether that is your king or a piece of greater value.",
+      "audioPath": "recordings/orin-v1/orin/explanation-cue-pin.opus",
+      "sidecarPath": "recordings/orin-v1/orin/explanation-cue-pin.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-pin.json"
+    },
+    {
+      "id": "explanation-cue-skewer",
+      "group": "srs_explanations",
+      "text": "The first target is not always the whole story. Follow the line past it, to any valuable piece standing further back.",
+      "audioPath": "recordings/orin-v1/orin/explanation-cue-skewer.opus",
+      "sidecarPath": "recordings/orin-v1/orin/explanation-cue-skewer.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-skewer.json"
+    },
+    {
+      "id": "explanation-cue-removing-defender",
+      "group": "srs_explanations",
+      "text": "A defender's value includes everything it protects. Before exchanging one, see what depends on it.",
+      "audioPath": "recordings/orin-v1/orin/explanation-cue-removing-defender.opus",
+      "sidecarPath": "recordings/orin-v1/orin/explanation-cue-removing-defender.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-removing-defender.json"
+    },
+    {
+      "id": "explanation-cue-discovered-attack",
+      "group": "srs_explanations",
+      "text": "A blocking piece hides a line; when it moves, study what that line opens.",
+      "audioPath": "recordings/orin-v1/orin/explanation-cue-discovered-attack.opus",
+      "sidecarPath": "recordings/orin-v1/orin/explanation-cue-discovered-attack.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-discovered-attack.json"
+    },
+    {
+      "id": "explanation-cue-double-attack",
+      "group": "srs_explanations",
+      "text": "Search for one move that creates two threats, and remember that checks and opened lines count among them.",
+      "audioPath": "recordings/orin-v1/orin/explanation-cue-double-attack.opus",
+      "sidecarPath": "recordings/orin-v1/orin/explanation-cue-double-attack.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-double-attack.json"
+    },
+    {
+      "id": "explanation-cue-back-rank",
+      "group": "srs_explanations",
+      "text": "Before a back-rank defender moves, make certain your king still has an escape square.",
+      "audioPath": "recordings/orin-v1/orin/explanation-cue-back-rank.opus",
+      "sidecarPath": "recordings/orin-v1/orin/explanation-cue-back-rank.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-back-rank.json"
+    },
+    {
+      "id": "explanation-cue-promotion-awareness",
+      "group": "srs_explanations",
+      "text": "Count the steps a pawn needs to promote, and study the pawn advances that force a reply.",
+      "audioPath": "recordings/orin-v1/orin/explanation-cue-promotion-awareness.opus",
+      "sidecarPath": "recordings/orin-v1/orin/explanation-cue-promotion-awareness.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-promotion-awareness.json"
+    },
+    {
+      "id": "explanation-cue-abandoned-defender",
+      "group": "srs_explanations",
+      "text": "Before a defender moves, list every piece that relies on its protection.",
+      "audioPath": "recordings/orin-v1/orin/explanation-cue-abandoned-defender.opus",
+      "sidecarPath": "recordings/orin-v1/orin/explanation-cue-abandoned-defender.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-abandoned-defender.json"
+    },
+    {
+      "id": "explanation-cue-avoiding-bad-trades",
+      "group": "srs_explanations",
+      "text": "Weigh what you capture against what the recapture takes back. The exchange is judged as a whole.",
+      "audioPath": "recordings/orin-v1/orin/explanation-cue-avoiding-bad-trades.opus",
+      "sidecarPath": "recordings/orin-v1/orin/explanation-cue-avoiding-bad-trades.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-avoiding-bad-trades.json"
+    },
+    {
+      "id": "explanation-cue-deflection",
+      "group": "srs_explanations",
+      "text": "See whether a forcing exchange can lure a defender away from a second duty.",
+      "audioPath": "recordings/orin-v1/orin/explanation-cue-deflection.opus",
+      "sidecarPath": "recordings/orin-v1/orin/explanation-cue-deflection.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-deflection.json"
+    },
+    {
+      "id": "explanation-note-curated-authority",
+      "group": "srs_explanations",
+      "text": "In this exercise, the saved answers are the authority. Another legal move is not made poor chess merely by their silence.",
+      "audioPath": "recordings/orin-v1/orin/explanation-note-curated-authority.opus",
+      "sidecarPath": "recordings/orin-v1/orin/explanation-note-curated-authority.provenance.json",
+      "alignmentPath": "alignment/explanation-note-curated-authority.json"
+    },
+    {
+      "id": "explanation-note-strong-replies",
+      "group": "srs_explanations",
+      "text": "Here play unfolds against strong replies. Strong replies are not always forced ones.",
+      "audioPath": "recordings/orin-v1/orin/explanation-note-strong-replies.opus",
+      "sidecarPath": "recordings/orin-v1/orin/explanation-note-strong-replies.provenance.json",
+      "alignmentPath": "alignment/explanation-note-strong-replies.json"
+    },
+    {
+      "id": "explanation-note-material-scope",
+      "group": "srs_explanations",
+      "text": "Any material change belongs only to the line shown, measured from where that line begins. The piece values behind the count are listed in the written explanation.",
+      "audioPath": "recordings/orin-v1/orin/explanation-note-material-scope.opus",
+      "sidecarPath": "recordings/orin-v1/orin/explanation-note-material-scope.provenance.json",
+      "alignmentPath": "alignment/explanation-note-material-scope.json"
+    },
+    {
+      "id": "explanation-note-no-simple-reason",
+      "group": "srs_explanations",
+      "text": "No simple tactical reason emerges from the saved line, and I have inferred no positional one. Walk through it move by move and weigh the replies on your own.",
+      "audioPath": "recordings/orin-v1/orin/explanation-note-no-simple-reason.opus",
+      "sidecarPath": "recordings/orin-v1/orin/explanation-note-no-simple-reason.provenance.json",
+      "alignmentPath": "alignment/explanation-note-no-simple-reason.json"
+    },
+    {
+      "id": "explanation-note-saved-policy",
+      "group": "srs_explanations",
+      "text": "The answer policy saved for this exercise governs the explanation, and its setting appears in the written notes.",
+      "audioPath": "recordings/orin-v1/orin/explanation-note-saved-policy.opus",
+      "sidecarPath": "recordings/orin-v1/orin/explanation-note-saved-policy.provenance.json",
+      "alignmentPath": "alignment/explanation-note-saved-policy.json"
+    },
+    {
+      "id": "opening-recall-revealed",
+      "group": "openings",
+      "text": "The moves of the line you are studying, set out in order.",
+      "audioPath": "recordings/orin-v1/orin/opening-recall-revealed.opus",
+      "sidecarPath": "recordings/orin-v1/orin/opening-recall-revealed.provenance.json",
+      "alignmentPath": "alignment/opening-recall-revealed.json"
+    },
+    {
+      "id": "opening-recall-accepted",
+      "group": "openings",
+      "text": "Correct; your chosen study material contains that move.",
+      "audioPath": "recordings/orin-v1/orin/opening-recall-accepted.opus",
+      "sidecarPath": "recordings/orin-v1/orin/opening-recall-accepted.provenance.json",
+      "alignmentPath": "alignment/opening-recall-accepted.json"
+    },
+    {
+      "id": "opening-recall-retry-fallback",
+      "group": "openings",
+      "text": "Play a move drawn from your selected study lines.",
+      "audioPath": "recordings/orin-v1/orin/opening-recall-retry-fallback.opus",
+      "sidecarPath": "recordings/orin-v1/orin/opening-recall-retry-fallback.provenance.json",
+      "alignmentPath": "alignment/opening-recall-retry-fallback.json"
+    },
+    {
+      "id": "opening-recall-cold-multiple",
+      "group": "openings",
+      "text": "Play any move belonging to your selected opening lines; each is accepted.",
+      "audioPath": "recordings/orin-v1/orin/opening-recall-cold-multiple.opus",
+      "sidecarPath": "recordings/orin-v1/orin/opening-recall-cold-multiple.provenance.json",
+      "alignmentPath": "alignment/opening-recall-cold-multiple.json"
+    },
+    {
+      "id": "opening-recall-cold-single",
+      "group": "openings",
+      "text": "Draw on your chosen study material and play one of its moves.",
+      "audioPath": "recordings/orin-v1/orin/opening-recall-cold-single.opus",
+      "sidecarPath": "recordings/orin-v1/orin/opening-recall-cold-single.provenance.json",
+      "alignmentPath": "alignment/opening-recall-cold-single.json"
+    },
+    {
+      "id": "opening-recall-rejected",
+      "group": "openings",
+      "text": "Your chosen opening lines hold no such move. Choose again.",
+      "audioPath": "recordings/orin-v1/orin/opening-recall-rejected.opus",
+      "sidecarPath": "recordings/orin-v1/orin/opening-recall-rejected.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected.json"
+    },
+    {
+      "id": "opening-recall-rejected-changed",
+      "group": "openings",
+      "text": "That move lies outside your selected opening lines, so try once more. The study has been changed, and this saved attempt leaves its review schedule as it was.",
+      "audioPath": "recordings/orin-v1/orin/opening-recall-rejected-changed.opus",
+      "sidecarPath": "recordings/orin-v1/orin/opening-recall-rejected-changed.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected-changed.json"
+    },
+    {
+      "id": "opening-recall-rejected-retired",
+      "group": "openings",
+      "text": "That move lies outside your selected opening lines, so try once more. Retired positions keep their review schedules fixed, and this is one.",
+      "audioPath": "recordings/orin-v1/orin/opening-recall-rejected-retired.opus",
+      "sidecarPath": "recordings/orin-v1/orin/opening-recall-rejected-retired.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected-retired.json"
+    },
+    {
+      "id": "opening-preview-active",
+      "group": "openings",
+      "text": "When you practice in mixed Due, this line supplies acceptable moves. Dedicated practice asks for this line and no other.",
+      "audioPath": "recordings/orin-v1/orin/opening-preview-active.opus",
+      "sidecarPath": "recordings/orin-v1/orin/opening-preview-active.provenance.json",
+      "alignmentPath": "alignment/opening-preview-active.json"
+    },
+    {
+      "id": "opening-preview-inactive",
+      "group": "openings",
+      "text": "Your scheduled recalls will ask you to play your selected side's moves. A position held in common by several active studies uses a single card.",
+      "audioPath": "recordings/orin-v1/orin/opening-preview-inactive.opus",
+      "sidecarPath": "recordings/orin-v1/orin/opening-preview-inactive.provenance.json",
+      "alignmentPath": "alignment/opening-preview-inactive.json"
+    },
+    {
+      "id": "puzzle-error",
+      "group": "puzzles",
+      "text": "Please reload the saved session before you play another move.",
+      "audioPath": "recordings/orin-v1/orin/puzzle-error.opus",
+      "sidecarPath": "recordings/orin-v1/orin/puzzle-error.provenance.json",
+      "alignmentPath": "alignment/puzzle-error.json"
+    },
+    {
+      "id": "puzzle-playback",
+      "group": "puzzles",
+      "text": "The board now replays the verified line, move by move.",
+      "audioPath": "recordings/orin-v1/orin/puzzle-playback.opus",
+      "sidecarPath": "recordings/orin-v1/orin/puzzle-playback.provenance.json",
+      "alignmentPath": "alignment/puzzle-playback.json"
+    },
+    {
+      "id": "puzzle-revealed",
+      "group": "puzzles",
+      "text": "Revealed: that is how this attempt is recorded. Below, the solution may be replayed as often as you like.",
+      "audioPath": "recordings/orin-v1/orin/puzzle-revealed.opus",
+      "sidecarPath": "recordings/orin-v1/orin/puzzle-revealed.provenance.json",
+      "alignmentPath": "alignment/puzzle-revealed.json"
+    },
+    {
+      "id": "puzzle-solved-after-retry",
+      "group": "puzzles",
+      "text": "After a retry, you found the full solution. Your record holds the earlier miss and the finish alike.",
+      "audioPath": "recordings/orin-v1/orin/puzzle-solved-after-retry.opus",
+      "sidecarPath": "recordings/orin-v1/orin/puzzle-solved-after-retry.provenance.json",
+      "alignmentPath": "alignment/puzzle-solved-after-retry.json"
+    },
+    {
+      "id": "puzzle-solved-clean",
+      "group": "puzzles",
+      "text": "Every move of the solution found, with no misstep. Excellent work.",
+      "audioPath": "recordings/orin-v1/orin/puzzle-solved-clean.opus",
+      "sidecarPath": "recordings/orin-v1/orin/puzzle-solved-clean.provenance.json",
+      "alignmentPath": "alignment/puzzle-solved-clean.json"
+    },
+    {
+      "id": "puzzle-rejected",
+      "group": "puzzles",
+      "text": "The puzzle is not solved by that move. Every correct move you made before it is still saved.",
+      "audioPath": "recordings/orin-v1/orin/puzzle-rejected.opus",
+      "sidecarPath": "recordings/orin-v1/orin/puzzle-rejected.provenance.json",
+      "alignmentPath": "alignment/puzzle-rejected.json"
+    },
+    {
+      "id": "puzzle-next-move",
+      "group": "puzzles",
+      "text": "Correct; the puzzle continues. Now look for the move that follows.",
+      "audioPath": "recordings/orin-v1/orin/puzzle-next-move.opus",
+      "sidecarPath": "recordings/orin-v1/orin/puzzle-next-move.provenance.json",
+      "alignmentPath": "alignment/puzzle-next-move.json"
+    },
+    {
+      "id": "puzzle-cold",
+      "group": "puzzles",
+      "text": "Let calculation come before the hand moves. The pattern is there to be read.",
+      "audioPath": "recordings/orin-v1/orin/puzzle-cold.opus",
+      "sidecarPath": "recordings/orin-v1/orin/puzzle-cold.provenance.json",
+      "alignmentPath": "alignment/puzzle-cold.json"
+    },
+    {
+      "id": "game-unavailable",
+      "group": "operational",
+      "text": "I have too little from the engine to explain this position, and I will not guess at it.",
+      "audioPath": "recordings/orin-v1/orin/game-unavailable.opus",
+      "sidecarPath": "recordings/orin-v1/orin/game-unavailable.provenance.json",
+      "alignmentPath": "alignment/game-unavailable.json"
+    },
+    {
+      "id": "game-review-paused",
+      "group": "operational",
+      "text": "Your review rests here for now. When you are ready, resume it below; until then, the pieces may be moved freely.",
+      "audioPath": "recordings/orin-v1/orin/game-review-paused.opus",
+      "sidecarPath": "recordings/orin-v1/orin/game-review-paused.provenance.json",
+      "alignmentPath": "alignment/game-review-paused.json"
+    },
+    {
+      "id": "game-browse-instructions",
+      "group": "operational",
+      "text": "Select any move to study, or make a move on the board to test an idea.",
+      "audioPath": "recordings/orin-v1/orin/game-browse-instructions.opus",
+      "sidecarPath": "recordings/orin-v1/orin/game-browse-instructions.provenance.json",
+      "alignmentPath": "alignment/game-browse-instructions.json"
+    },
+    {
+      "id": "book-opening-entry-1",
+      "group": "game_review",
+      "text": "A move recorded in the opening books. The position has its place in the literature.",
+      "audioPath": "recordings/orin-v1/orin/book-opening-entry-1.opus",
+      "sidecarPath": "recordings/orin-v1/orin/book-opening-entry-1.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-1.json"
+    },
+    {
+      "id": "book-opening-entry-2",
+      "group": "game_review",
+      "text": "The opening books record this move. We travel a well-trodden road.",
+      "audioPath": "recordings/orin-v1/orin/book-opening-entry-2.opus",
+      "sidecarPath": "recordings/orin-v1/orin/book-opening-entry-2.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-2.json"
+    },
+    {
+      "id": "book-opening-entry-3",
+      "group": "game_review",
+      "text": "A recognized opening move, already set down in the opening literature.",
+      "audioPath": "recordings/orin-v1/orin/book-opening-entry-3.opus",
+      "sidecarPath": "recordings/orin-v1/orin/book-opening-entry-3.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-3.json"
+    },
+    {
+      "id": "book-opening-follow-1",
+      "group": "game_review",
+      "text": "The opening literature still records this move.",
+      "audioPath": "recordings/orin-v1/orin/book-opening-follow-1.opus",
+      "sidecarPath": "recordings/orin-v1/orin/book-opening-follow-1.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-1.json"
+    },
+    {
+      "id": "book-opening-follow-2",
+      "group": "game_review",
+      "text": "The book continues; its pages have not run out yet.",
+      "audioPath": "recordings/orin-v1/orin/book-opening-follow-2.opus",
+      "sidecarPath": "recordings/orin-v1/orin/book-opening-follow-2.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-2.json"
+    },
+    {
+      "id": "book-opening-follow-3",
+      "group": "game_review",
+      "text": "The reply has its own place in the book.",
+      "audioPath": "recordings/orin-v1/orin/book-opening-follow-3.opus",
+      "sidecarPath": "recordings/orin-v1/orin/book-opening-follow-3.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-3.json"
+    },
+    {
+      "id": "book-opening-follow-4",
+      "group": "game_review",
+      "text": "A well-trodden road still; the opening record goes on.",
+      "audioPath": "recordings/orin-v1/orin/book-opening-follow-4.opus",
+      "sidecarPath": "recordings/orin-v1/orin/book-opening-follow-4.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-4.json"
+    },
+    {
+      "id": "book-opening-follow-5",
+      "group": "game_review",
+      "text": "Another move with an entry in the opening literature.",
+      "audioPath": "recordings/orin-v1/orin/book-opening-follow-5.opus",
+      "sidecarPath": "recordings/orin-v1/orin/book-opening-follow-5.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-5.json"
+    },
+    {
+      "id": "book-opening-follow-6",
+      "group": "game_review",
+      "text": "The book still keeps an entry for this one.",
+      "audioPath": "recordings/orin-v1/orin/book-opening-follow-6.opus",
+      "sidecarPath": "recordings/orin-v1/orin/book-opening-follow-6.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-6.json"
+    },
+    {
+      "id": "book-opening-follow-7",
+      "group": "game_review",
+      "text": "The recorded theory runs on through this move.",
+      "audioPath": "recordings/orin-v1/orin/book-opening-follow-7.opus",
+      "sidecarPath": "recordings/orin-v1/orin/book-opening-follow-7.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-7.json"
+    },
+    {
+      "id": "book-opening-follow-8",
+      "group": "game_review",
+      "text": "This move, too, appears in the book. Its place there is a matter of record, not a verdict on its quality.",
+      "audioPath": "recordings/orin-v1/orin/book-opening-follow-8.opus",
+      "sidecarPath": "recordings/orin-v1/orin/book-opening-follow-8.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-8.json"
+    },
+    {
+      "id": "game-review-opened",
+      "group": "operational",
+      "text": "Every game holds patterns worth learning. Let us read this one from its opening move.",
+      "audioPath": "recordings/orin-v1/orin/game-review-opened.opus",
+      "sidecarPath": "recordings/orin-v1/orin/game-review-opened.provenance.json",
+      "alignmentPath": "alignment/game-review-opened.json"
+    },
+    {
+      "id": "lesson-wrong-move",
+      "group": "lessons",
+      "text": "That is not the move this chapter seeks. Consider the position afresh and choose again.",
+      "audioPath": "recordings/orin-v1/orin/lesson-wrong-move.opus",
+      "sidecarPath": "recordings/orin-v1/orin/lesson-wrong-move.provenance.json",
+      "alignmentPath": "alignment/lesson-wrong-move.json"
+    },
+    {
+      "id": "lesson-correct-move",
+      "group": "lessons",
+      "text": "Just so; the chapter called for precisely that move. Let us continue.",
+      "audioPath": "recordings/orin-v1/orin/lesson-correct-move.opus",
+      "sidecarPath": "recordings/orin-v1/orin/lesson-correct-move.provenance.json",
+      "alignmentPath": "alignment/lesson-correct-move.json"
+    },
+    {
+      "id": "lesson-move-revealed",
+      "group": "lessons",
+      "text": "Behold the move the chapter intended. Mark it well before proceeding.",
+      "audioPath": "recordings/orin-v1/orin/lesson-move-revealed.opus",
+      "sidecarPath": "recordings/orin-v1/orin/lesson-move-revealed.provenance.json",
+      "alignmentPath": "alignment/lesson-move-revealed.json"
+    },
+    {
+      "id": "lesson-guided-playback",
+      "group": "lessons",
+      "text": "Now the moves unfold of their own accord. Attend to each as it comes.",
+      "audioPath": "recordings/orin-v1/orin/lesson-guided-playback.opus",
+      "sidecarPath": "recordings/orin-v1/orin/lesson-guided-playback.provenance.json",
+      "alignmentPath": "alignment/lesson-guided-playback.json"
+    },
+    {
+      "id": "lesson-rehearsal-prompt",
+      "group": "lessons",
+      "text": "The moment is yours. Call forth what your study taught for this position.",
+      "audioPath": "recordings/orin-v1/orin/lesson-rehearsal-prompt.opus",
+      "sidecarPath": "recordings/orin-v1/orin/lesson-rehearsal-prompt.provenance.json",
+      "alignmentPath": "alignment/lesson-rehearsal-prompt.json"
+    },
+    {
+      "id": "lesson-branch-entered",
+      "group": "lessons",
+      "text": "We have turned aside onto a different road for a time. The main road awaits our return.",
+      "audioPath": "recordings/orin-v1/orin/lesson-branch-entered.opus",
+      "sidecarPath": "recordings/orin-v1/orin/lesson-branch-entered.provenance.json",
+      "alignmentPath": "alignment/lesson-branch-entered.json"
+    },
+    {
+      "id": "lesson-chapter-complete",
+      "group": "lessons",
+      "text": "The chapter is complete, and your progress has been set down with care.",
+      "audioPath": "recordings/orin-v1/orin/lesson-chapter-complete.opus",
+      "sidecarPath": "recordings/orin-v1/orin/lesson-chapter-complete.provenance.json",
+      "alignmentPath": "alignment/lesson-chapter-complete.json"
+    },
+    {
+      "id": "lesson-game-opened",
+      "group": "lessons",
+      "text": "The entire game now lies open before you. Wander it freely, and come back to the chapter at your leisure.",
+      "audioPath": "recordings/orin-v1/orin/lesson-game-opened.opus",
+      "sidecarPath": "recordings/orin-v1/orin/lesson-game-opened.provenance.json",
+      "alignmentPath": "alignment/lesson-game-opened.json"
+    },
+    {
+      "id": "lesson-error",
+      "group": "lessons",
+      "text": "Some enchantment has faltered; the lesson must be reloaded before we may proceed.",
+      "audioPath": "recordings/orin-v1/orin/lesson-error.opus",
+      "sidecarPath": "recordings/orin-v1/orin/lesson-error.provenance.json",
+      "alignmentPath": "alignment/lesson-error.json"
+    }
+  ]
+}

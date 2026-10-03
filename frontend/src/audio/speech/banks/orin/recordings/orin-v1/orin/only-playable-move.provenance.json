@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "only-playable-move",
+      "label": "Only playable move",
+      "text": "Some positions offer a single narrow path. Of the moves examined, this alone kept the position playable, while every alternative lost."
+    },
+    "takeId": null
+  },
+  "requestHash": "46139871c152c815e78fe93c4ae55c2f371bfc97d5dea2629b468e5b3dfe2221",
+  "recordedAt": "2026-10-03T06:11:13.739Z",
+  "sha256": "b4ac26c5ca900074f660d2bd23fbc10c9d39b10f69d8fdcb5608c66dd3f8e734",
+  "bytes": 30792,
+  "requestId": "4WPjhG2qbUNMfnrjKMtr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e5b39f0cdcde1affffe853325e92c5cfc1c80f57e2f5b5f6a3ce9d0e14b3bc4d",
+    "bytes": 159704
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}
