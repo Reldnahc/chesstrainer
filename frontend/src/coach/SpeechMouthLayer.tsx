@@ -30,6 +30,8 @@ export type OrganicSpeechMouthProps = {
   height: number;
   palette: SpeechMouthPalette;
   mood?: 'smile' | 'neutral' | 'concern';
+  /** Upper-lip bow in place of the mood's, for a mouth that follows a drawn seam. */
+  curve?: number;
   teeth?: boolean;
   tongue?: boolean;
   fangs?: boolean;
@@ -39,11 +41,11 @@ export type OrganicSpeechMouthProps = {
 
 /** A character owns placement/palette; the playback clock owns the eight speech controls. */
 export function OrganicSpeechMouth({
-  x, y, width, height, palette, mood = 'neutral', teeth = true, tongue = true,
+  x, y, width, height, palette, mood = 'neutral', curve: bow, teeth = true, tongue = true,
   fangs = false, interior,
 }: OrganicSpeechMouthProps) {
   const mask = useId();
-  const curve = mood === 'concern' ? -1 : mood === 'smile' ? 1 : 0;
+  const curve = bow ?? (mood === 'concern' ? -1 : mood === 'smile' ? 1 : 0);
   const aperture = `M-10 0 C-3.3333 ${curve} 3.3333 ${curve} 10 0 C10.4 6 5.5 10 0 10 C-5.5 10 -10.4 6 -10 0Z`;
   const lip = palette.lip ?? palette.outline;
   const tooth = palette.teeth ?? '#fff3dc';

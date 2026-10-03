@@ -30,21 +30,23 @@ const emphasis: Record<CoachExpression, Partial<AnimalPose>> = {
   draw: { tilt: -1, eye: 5.8, mouth: "smile" },
 };
 
+// Fergus's mouth is the seam where his green head meets his cream throat
+// (the throat's top edge, y = 54 + 34t(1 - t)), so every mouth starts on it.
 function FrogMouth({ pose }: { pose: AnimalPose }) {
   return (
     <g className="study-muzzle" stroke="#425d3b" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
       <SpeechMouthLayer authored={<>
-      {pose.mouth === "ponder" && <path d="M31 61q19 2 38 0" fill="none" />}
-      {pose.mouth === "smile" && <path d="M29 59q21 10 42 0" fill="none" />}
-      {pose.mouth === "concern" && <path d="M33 64q17-5 34 0" fill="none" />}
-      {pose.mouth === "grin" && <path d="M29 58q21 7 42 0-7 14-21 14T29 58Z" fill="#526345" />}
+      {pose.mouth === "ponder" && <path d="M29 59.1Q50 65.9 71 59.1" fill="none" />}
+      {pose.mouth === "smile" && <path d="M26.5 57Q27.5 59 29 59.1Q50 65.9 71 59.1Q72.5 59 73.5 57" fill="none" />}
+      {pose.mouth === "concern" && <path d="M27 61.5Q27.8 59.4 29 59.1Q50 65.9 71 59.1Q72.2 59.4 73 61.5" fill="none" />}
+      {pose.mouth === "grin" && <path d="M29 59.1Q50 65.9 71 59.1Q64 74 50 74T29 59.1Z" fill="#526345" />}
       {pose.mouth === "oh" && <ellipse cx="50" cy="64" rx="5.5" ry="7" fill="#526345" />}
       </>}>
-        <OrganicSpeechMouth x={50} y={61} width={38} height={12} teeth={false} tongue={false}
-          mood={pose.mouth === "concern" ? "concern" : "neutral"}
+        <OrganicSpeechMouth x={50} y={59.1} width={42} height={12} teeth={false} tongue={false}
+          curve={2.3}
           palette={{cavity: "#526345", outline: "#425d3b"}} />
       </SpeechMouthLayer>
-      <path d="m27 59 2-1m42 0 2 1" fill="none" opacity=".6" />
+      <path d="m27 58.6 2-1m42 0 2 1" fill="none" opacity=".6" />
     </g>
   );
 }
