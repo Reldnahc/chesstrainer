@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative",
+      "label": "Positional unsupported alternative",
+      "text": "With a different move, one piece would have ended up undefended. Note the weakness, but do not call it a loss."
+    },
+    "takeId": null
+  },
+  "requestHash": "f1a977c7ff606f41aca4100024ab7ebe781cd28314d3ae4d31114cb684e18d46",
+  "recordedAt": "2026-10-03T05:26:55.384Z",
+  "sha256": "d0d343b91ed4cd7759c48f6e315c88c746c93b35b981a033d40d4543a122002d",
+  "bytes": 23184,
+  "requestId": "s3rNYWrusTuzS4RpTByL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "50881707d84c0ee55e51693630cf874b4bc06083e118c0116166ae91b8c64ac7",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

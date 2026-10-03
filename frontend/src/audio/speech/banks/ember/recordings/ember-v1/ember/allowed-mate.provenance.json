@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "allowed-mate",
+      "label": "Allowed mate",
+      "text": "This move is fatal. The other side can now drive the king into a forced mate. Trace the attack back to the moment the defense gave way."
+    },
+    "takeId": null
+  },
+  "requestHash": "9b9c0f2865e9680c9b16603b0aa5a1fcb2516ad41a0819dbe8dc76afd98d5464",
+  "recordedAt": "2026-10-03T05:27:08.666Z",
+  "sha256": "ab351ba7241a257eaa9a138001e914fa54a63f86bf00968c321dff3f7c5e8383",
+  "bytes": 27914,
+  "requestId": "SLQicnZdsZf1UPxAPBrl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3325a60f632fe8dd990626caa3d735eb889f8b1486ca23a0824a158964fefe6b",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

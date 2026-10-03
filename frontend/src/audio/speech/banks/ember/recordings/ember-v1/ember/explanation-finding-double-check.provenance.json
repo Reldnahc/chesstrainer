@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "explanation-finding-double-check",
+      "label": "Explanation finding double check",
+      "text": "A double check. The king is attacked by two pieces at once, and nothing but a king move can meet it."
+    },
+    "takeId": null
+  },
+  "requestHash": "85dfb0268ed7bb988c699797d39cd2c6a9578208218e6b6f6e01a8873332979e",
+  "recordedAt": "2026-10-03T05:29:05.300Z",
+  "sha256": "3df3671738aa13258adefad3b9b40e0c4bf1836471b3aee89d3d77f26f234fed",
+  "bytes": 21012,
+  "requestId": "m1gEWumYwenDHfm45OCz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bfd1c2c543a96f2187c8edfba61018beafa6f37d1994b97f5fe4d96e645b6819",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

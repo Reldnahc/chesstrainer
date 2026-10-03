@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "advantage-converted",
+      "label": "Advantage converted",
+      "text": "Through every reviewed move, the advantage stayed in hand until the win. Converting cleanly is a skill, and this was done well."
+    },
+    "takeId": null
+  },
+  "requestHash": "d7add14bb3f239fb95356ae1bcafc6de3e48d46440564864b2258572d17701b5",
+  "recordedAt": "2026-10-03T05:27:49.567Z",
+  "sha256": "81983a0a674519afa6ac07c0d42496f3f5a0df66662777acdd746a83b27a2ad3",
+  "bytes": 27857,
+  "requestId": "Bfo2Ym8z6dOdhZEhmTOc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9537e3f92f4ab62464ae4e8ab54c678a2ee5b9cdc5e30aa1a1a79ba81c46c521",
+    "bytes": 139224
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed",
+      "label": "Tactic skewer allowed",
+      "text": "This leaves two pieces on one line for the other side to skewer. Shift the front piece, and whatever stands behind it may be laid open."
+    },
+    "takeId": null
+  },
+  "requestHash": "b513c2f80d8c8a51f0279ef85a604d2d433120f3b755a43610e606e53d02c701",
+  "recordedAt": "2026-10-03T05:25:39.089Z",
+  "sha256": "dd278c8043219fe522198d16e2602509e6e0c42bcc78afbae9838afa14c8d047",
+  "bytes": 26298,
+  "requestId": "0MsaiFEJu1DeA9FYEgPC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3fe940e0baa7d1b173452f619dad68648961433233e8440039a5bc727cca1f79",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

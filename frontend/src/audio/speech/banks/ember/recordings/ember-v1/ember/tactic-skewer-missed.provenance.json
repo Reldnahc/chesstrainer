@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "tactic-skewer-missed",
+      "label": "Tactic skewer missed",
+      "text": "The stronger move was a skewer. The attack would have gone through the front piece to the one behind it. That chance is wasted here."
+    },
+    "takeId": null
+  },
+  "requestHash": "7fa19107881905264d9e04623fb86c678fb6b342d12915476d9294f88871a98f",
+  "recordedAt": "2026-10-03T05:25:40.939Z",
+  "sha256": "56a1e5ee44198dd02e9249717c5be5ded775c016161351b101794f91a1442f4e",
+  "bytes": 24868,
+  "requestId": "uLROi8CPf6x5kPcrznfx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0f182a2f504220b91df0c94fdde8a2a97c686a25ed4c7e18c600d47fc8f4d32a",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

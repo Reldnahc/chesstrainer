@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "explanation-note-curated-authority",
+      "label": "Explanation note curated authority",
+      "text": "The saved answers are the standard here. Other legal moves may be perfectly good chess; they simply are not what this exercise asks for."
+    },
+    "takeId": null
+  },
+  "requestHash": "dcf2571c7be881dcbb07fdd71ba3c500c8643bb262fbeb896f9e3a70ff1baaac",
+  "recordedAt": "2026-10-03T05:29:37.176Z",
+  "sha256": "7875b842c1e466ad82af434ec757b457ba00fd7cb8ea8e17fa96bc249835fb21",
+  "bytes": 27886,
+  "requestId": "mHV2J7B6WUgIqUZyZvPX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "45bd97fd704b86867c3df82952ca9ca77b0f5ce254ff6bf19791e817d4333df2",
+    "bytes": 141732
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

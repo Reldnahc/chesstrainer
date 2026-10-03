@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "explanation-cue-abandoned-defender",
+      "label": "Explanation cue abandoned defender",
+      "text": "A defender has duties. Name them all before it moves. Each of those pieces loses that protection when it goes."
+    },
+    "takeId": null
+  },
+  "requestHash": "b15b3e1cad7ad53b56335f4c732e9f93c60c1dafbbcc9aa15b0858b8b96402a9",
+  "recordedAt": "2026-10-03T05:29:32.228Z",
+  "sha256": "23c101597bbc1f4844f9a8212cbf5f36d90682a18b36627f7d4321c1630349da",
+  "bytes": 23840,
+  "requestId": "3UJcAh7Yo4JxRmXGsgy2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "27a9ac3c8ffed6e83def4154912829583f0d45d77538a395f7bfec40c4b3be1a",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

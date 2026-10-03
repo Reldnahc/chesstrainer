@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed",
+      "label": "Tactic removing defender missed",
+      "text": "The defender was the target, and another move could have captured it. Whatever it guarded would have lost its protection. Here the defender survives untouched, and that is a lost opportunity."
+    },
+    "takeId": null
+  },
+  "requestHash": "3913519326fa843a2d3d83fd39f0ae0685424c90efe50a7bc5372004af86fe9b",
+  "recordedAt": "2026-10-03T05:25:47.663Z",
+  "sha256": "f21b5b52a2cc2da79bd7b2dae77eb868996976d0aa5cfde22631c8f0b76f6c8f",
+  "bytes": 37616,
+  "requestId": "I8pKmzMVXJ0o3UdyXeIX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1f23c2238acae540e697ee10ca5c2cfc0aa4f22283ef6b12a534e29a24ff2975",
+    "bytes": 195648
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

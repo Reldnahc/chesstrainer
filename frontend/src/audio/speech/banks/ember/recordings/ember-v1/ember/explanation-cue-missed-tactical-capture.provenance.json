@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "explanation-cue-missed-tactical-capture",
+      "label": "Explanation cue missed tactical capture",
+      "text": "No quiet move until every unguarded enemy piece has been counted."
+    },
+    "takeId": null
+  },
+  "requestHash": "4a5b0c43b5b53a6ae3c004b2f24a278f78c2fb19c1c7c0664c4e181e364e9f6c",
+  "recordedAt": "2026-10-03T05:29:17.187Z",
+  "sha256": "154afd6541cda873b17ff8bb40c121eea413a139874d362ee268e1ef34d28393",
+  "bytes": 14360,
+  "requestId": "ABIdpXxMTdn087MiqssW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8c52d613315b8238e4c57420b71cae09795e06e961c84c6602e85719ceeb98ee",
+    "bytes": 69007
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

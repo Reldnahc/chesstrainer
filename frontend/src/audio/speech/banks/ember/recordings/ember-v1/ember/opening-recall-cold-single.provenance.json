@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "opening-recall-cold-single",
+      "label": "Opening recall cold single",
+      "text": "Your selected study material holds the move for this position. Bring it back from memory."
+    },
+    "takeId": null
+  },
+  "requestHash": "39035da8ceb74767ba88f32cd731997de80381172e5628fbac59c70290768c18",
+  "recordedAt": "2026-10-03T05:29:52.413Z",
+  "sha256": "650461059e43fce57e301b87012b019d9506c7de52bb5a1d5a6bf93f0b6b0cf5",
+  "bytes": 17203,
+  "requestId": "eAflYb0O4sqMgfsMF2BK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "81a0810d36ec8753a2c74067a3c2679c9cd9849b9d0339ee3e34c453a1031b19",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

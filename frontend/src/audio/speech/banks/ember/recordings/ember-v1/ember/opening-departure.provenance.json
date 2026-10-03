@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "opening-departure",
+      "label": "Opening departure",
+      "text": "Theory runs out at this move. From here, judgment has to replace memory."
+    },
+    "takeId": null
+  },
+  "requestHash": "366d2f5b850af2f952b2f8b099122b7b2a8a0162b02f7375507dc4d56cc5a55a",
+  "recordedAt": "2026-10-03T05:27:34.794Z",
+  "sha256": "220aaa9b54f49fdb421c543c80d97da7e7386d023f5c848c9cebe0e53e28546b",
+  "bytes": 16757,
+  "requestId": "EUBKnQQvUGPsBXr2fPri",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "916ace224f4a581045517f0462551b353fa0a94ad263ef349141571792ca6611",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

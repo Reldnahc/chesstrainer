@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "opening-recall-cold-multiple",
+      "label": "Opening recall cold multiple",
+      "text": "Your selected opening lines allow several moves here. Play any one of them."
+    },
+    "takeId": null
+  },
+  "requestHash": "7a28e7b4980152d0bc6e1b148f20287c4f5a72ba657ccd391bf12cc2eb80e193",
+  "recordedAt": "2026-10-03T05:29:50.957Z",
+  "sha256": "fc6ccc4ade7547a96290c4614920e643452ab08694e96e41ebd4674326fad12d",
+  "bytes": 15693,
+  "requestId": "tq4ocbWrWtufQGbqicVm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4320cb02cfa3fb437dc21633c1bb246c37c4b425a061433ddcf047af077ae0cb",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

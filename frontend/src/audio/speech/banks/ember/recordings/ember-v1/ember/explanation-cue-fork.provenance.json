@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "explanation-cue-fork",
+      "label": "Explanation cue fork",
+      "text": "Search the forcing moves for one piece that attacks two valuable targets at once."
+    },
+    "takeId": null
+  },
+  "requestHash": "1ee85b183136a0c930ed04c63f4b619d4714de7d471589b390b8bd1b57a37357",
+  "recordedAt": "2026-10-03T05:29:18.585Z",
+  "sha256": "e7f1f50995b6a066b30ce723b0f5edd5741ed52b336b80fbbd6130964f46bc1b",
+  "bytes": 17129,
+  "requestId": "2HV9gsabeGXVphcQbQ1N",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ffa445d24b1f1f20bc93c25b73fb607ea7be416f7eb68c9db1f11f00359e611d",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

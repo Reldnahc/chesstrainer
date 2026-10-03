@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "explanation-frame-castle-mate",
+      "label": "Explanation frame castle mate",
+      "text": "The king castles, the rook comes across, and it is checkmate. Nothing can save the opposing king."
+    },
+    "takeId": null
+  },
+  "requestHash": "328b3a8683e25c98731752c125d64cf1ab8d131a4390d7184dd03b9dbeecd696",
+  "recordedAt": "2026-10-03T05:28:43.574Z",
+  "sha256": "9d0c4242e9cdb7101202b3f19ac530e46acb50ce29172651fff4f4bed2f07acb",
+  "bytes": 21916,
+  "requestId": "PKTmbxUjdIr1sTQJEHaL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "949335fd268b246f5d877960da60399d897fa8c3c9db43edfa979ef416d9714c",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

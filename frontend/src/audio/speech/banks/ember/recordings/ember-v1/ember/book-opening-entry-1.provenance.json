@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "book-opening-entry-1",
+      "label": "Book opening entry 1",
+      "text": "This move stands in established opening theory."
+    },
+    "takeId": null
+  },
+  "requestHash": "9afd10f9632ededab9114afa4eff69b4a15770cca59c5a2d1d4cb492fe298f05",
+  "recordedAt": "2026-10-03T05:30:17.005Z",
+  "sha256": "b80aea6b53a0f126d49be63dbecad1caf25b4ffc2edeb54bb357fa54db72c16d",
+  "bytes": 10981,
+  "requestId": "ZYIQUqIkgxwscA4kGiHp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cfa3a0cb95e7b6d61d89a9fda54d645e34e2eb7182400a97805c687011abbac4",
+    "bytes": 52288
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

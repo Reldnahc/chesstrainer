@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "gradual-erosion",
+      "label": "Gradual erosion",
+      "text": "There was no one blunder here. Concession after small concession has drained the position, and this move adds another. Little leaks sink positions."
+    },
+    "takeId": null
+  },
+  "requestHash": "c5b3a698679232b8e54cf07e496d3f1168ab8dc320b9354ae938ff0e02359056",
+  "recordedAt": "2026-10-03T05:27:47.224Z",
+  "sha256": "f828f1f9d065fd99ea74374c38d4b6f16db2ea99fd5300daba855dfe7887abdd",
+  "bytes": 31388,
+  "requestId": "hOI0meLVw95nPGHR6dns",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "81e0033ee0b79ceecbfe9e6737c0090ee5a5ccc20a859be5f1e847eca7f3cff9",
+    "bytes": 160958
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

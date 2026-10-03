@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "explanation-cue-promotion-awareness",
+      "label": "Explanation cue promotion awareness",
+      "text": "Count a pawn's distance to promotion in moves, then calculate every forcing pawn advance."
+    },
+    "takeId": null
+  },
+  "requestHash": "1f68c9660360c54f18711a29a8c0df3e65e134b7e7451a30434f2e77812ae7c7",
+  "recordedAt": "2026-10-03T05:29:30.062Z",
+  "sha256": "9ac7dc095fdb8336407623e67c954e901a73ee08c1eb91cde3f1ccaaeabb6c42",
+  "bytes": 19338,
+  "requestId": "tOR15Pm25OZd8Hb98yhX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "635090e976a34e36e04f922d82ec9ffa7203b92d3a03d10ea701d8a1a4f7d365",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

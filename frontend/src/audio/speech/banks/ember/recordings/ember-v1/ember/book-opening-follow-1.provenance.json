@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "book-opening-follow-1",
+      "label": "Book opening follow 1",
+      "text": "Theory still holds here."
+    },
+    "takeId": null
+  },
+  "requestHash": "a1b960c0cf8f1dcb6bba502c0779a3bb98e0d2c228141876fbe49ccb682ea630",
+  "recordedAt": "2026-10-03T05:30:20.404Z",
+  "sha256": "d1e8bb0adbbfbb71d11b5afb3b8e897eb9f2c012ad5c470e4ed9ee1bdc0ffb75",
+  "bytes": 6347,
+  "requestId": "m3nOw1xAbcniZKKTUAfL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "57c8a134ed30a5b498ae8d801780a1eadb62d31d30070d4acca4a812194aefa1",
+    "bytes": 29301
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

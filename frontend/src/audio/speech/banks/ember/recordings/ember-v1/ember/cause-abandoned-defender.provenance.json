@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "cause-abandoned-defender",
+      "label": "Cause abandoned defender",
+      "text": "Careless with protection: the move strips a piece of its only real defender. What it was guarding can now be captured. A defender's duty must be known before it moves."
+    },
+    "takeId": null
+  },
+  "requestHash": "e7aa265bfddf41fa22b6b3a16f95b5397d1e6481b8e69df8c24e66fe8c615c6b",
+  "recordedAt": "2026-10-03T05:26:24.628Z",
+  "sha256": "321975ee7762f982c205e6392254e21717f1d9fd2dca32dabbba9aa75929dc61",
+  "bytes": 34441,
+  "requestId": "DSNCSO4zHWyQBxvkIKQt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e22f4c20b48fe86016b3242214987d3ef086e4388384ea624e10962085464a1a",
+    "bytes": 178930
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

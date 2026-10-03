@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-escape",
+      "label": "Explanation frame capture promotion escape",
+      "text": "The pawn captures its way to promotion, and that move also frees its king from check."
+    },
+    "takeId": null
+  },
+  "requestHash": "2b737100651a6a015d522fa8676634e2d566035172017b26d2018cc2af626ebf",
+  "recordedAt": "2026-10-03T05:28:40.663Z",
+  "sha256": "9af2f818ab92d865bf54b2ab1f3d9d0787c6a9634f20d74e097ce8fefba39778",
+  "bytes": 18120,
+  "requestId": "t6tGmS43irnfx9SJYLF4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "321d4faa716cf3b38e925099714bcbdb83cf1f3823c91b0a4c2440d7df246f00",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

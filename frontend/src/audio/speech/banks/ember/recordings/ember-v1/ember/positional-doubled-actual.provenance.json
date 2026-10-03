@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "positional-doubled-actual",
+      "label": "Positional doubled actual",
+      "text": "Doubled pawns now, one stacked in front of the other on a single file. They cannot protect each other."
+    },
+    "takeId": null
+  },
+  "requestHash": "3963b4a15d550a81b33f422480013d99d05e80c2a9c8626b2bcc6ef16ad3e3e5",
+  "recordedAt": "2026-10-03T05:27:05.197Z",
+  "sha256": "ff265f8e952961e772048d6ce1fc45aa27c47118513ead04cd5d8da33c0070de",
+  "bytes": 20841,
+  "requestId": "ZUCOM5Xwaq81wnqRb8Ls",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4afd94cb7bb8a07310664c5538aee4943cceb8be2126cc0837cd5b0d15883f4a",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

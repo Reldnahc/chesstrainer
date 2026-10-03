@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-promotion-ordinary",
+      "label": "Explanation frame quiet promotion ordinary",
+      "text": "Promotion. The pawn has crossed the whole board and is a pawn no longer."
+    },
+    "takeId": null
+  },
+  "requestHash": "f7975bd53cd289771580b8e474a5f8f0680f7adf37a4e24e876bab76b14d3e5f",
+  "recordedAt": "2026-10-03T05:28:26.023Z",
+  "sha256": "61e747525f6d4f89df67ec833b61cb2877bfb34a0e2eed9753fafb42aad2260a",
+  "bytes": 16489,
+  "requestId": "BGEXmK4sfSaG1p0kCLdb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5817ad413265b8f5420d970b6b6489865d86a877bce4ba375724258d8b9f63f9",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "lesson-guided-playback",
+      "label": "Lesson guided playback",
+      "text": "Observe the line closely. Every move in it matters."
+    },
+    "takeId": null
+  },
+  "requestHash": "6caabc967e217a5d1e8363428b123333af2585de3f7e6eb2872aa16fa73b5951",
+  "recordedAt": "2026-10-03T05:30:33.237Z",
+  "sha256": "36dad72e539454ef8e15e663b5e523b19637d0c6a2531c23a7e0226a0d95b8e2",
+  "bytes": 12995,
+  "requestId": "z13pM6kRM9vbWLGtx9hB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bc994ad83a6f699aadfe3000293bde0c331b4a700c5821dc61694b2de964be45",
+    "bytes": 65245
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

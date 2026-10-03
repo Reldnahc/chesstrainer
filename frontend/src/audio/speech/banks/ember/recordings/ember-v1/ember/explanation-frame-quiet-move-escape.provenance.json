@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-move-escape",
+      "label": "Explanation frame quiet move escape",
+      "text": "With this move, the king steps out of check."
+    },
+    "takeId": null
+  },
+  "requestHash": "fb23c87bf8c71b999ded64d302a0f3a638c1c17ae67e5cdc1573673530ad7eab",
+  "recordedAt": "2026-10-03T05:28:24.542Z",
+  "sha256": "1ce2b12c227f21d77ca71af0730e230095f0630017d3b131c46f950e279f1a6a",
+  "bytes": 10229,
+  "requestId": "qwhiUxMpBfpGvsaRMnzG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "27f0da9c67560ead72f2cd2de62ab528aee6b392e20cc4e39f35df59ecc28a2d",
+    "bytes": 49781
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

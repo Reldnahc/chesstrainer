@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "positional-passer-advance-actual",
+      "label": "Positional passer advance actual",
+      "text": "The passed pawn gains another rank. It was already free; now it is closer to the last rank and harder to ignore."
+    },
+    "takeId": null
+  },
+  "requestHash": "3f1e2b19c854b4f15c5921c19480ee698bfa48b0f5957bc9675b5700f3122fd1",
+  "recordedAt": "2026-10-03T05:26:44.795Z",
+  "sha256": "e95b6da0908d38e7613db037bf74d5250c9fcd6ded33719549a16131738580d6",
+  "bytes": 24136,
+  "requestId": "UFogsIY3WY0AgKoplDLi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fe62f7c177ab91b949a53a1d2295c0e95076d686df7005ad85557a87151a5405",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

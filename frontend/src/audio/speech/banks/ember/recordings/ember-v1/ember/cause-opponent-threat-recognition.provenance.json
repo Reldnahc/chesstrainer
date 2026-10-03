@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "cause-opponent-threat-recognition",
+      "label": "Cause opponent threat recognition",
+      "text": "The opponent's last move threatened something, and this move ignores it. Now a piece can be taken for free. Every move must answer the one before it."
+    },
+    "takeId": null
+  },
+  "requestHash": "df9ec8c5dd405b956f119cb8d1763c64dc4a5b496af0213b21e1c20a7c4a4de3",
+  "recordedAt": "2026-10-03T05:26:26.874Z",
+  "sha256": "f023e6f3e9247cdd7e415d14e96a6e8e82585e0be6507abd369a2b5df2181aa8",
+  "bytes": 30795,
+  "requestId": "gAa53eAxPkxmfSlnZbgs",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "901d2e6a9f7d88844df3d047a7f97b3ce8a53789102c9be0892420b893efcaf7",
+    "bytes": 158450
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

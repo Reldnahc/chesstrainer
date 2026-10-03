@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "explanation-finding-pin-defenders-no-recapture",
+      "label": "Explanation finding pin defenders no recapture",
+      "text": "The capture stands: each defender is pinned to its king, so none of them can take back. Material is gained in the line shown."
+    },
+    "takeId": null
+  },
+  "requestHash": "f43ef53de02b48b481bbdc4a1bcd432918d0fcf7820f574750060386b015f9c5",
+  "recordedAt": "2026-10-03T05:28:51.788Z",
+  "sha256": "ff52ccb908889f1e2191c7eabc74f3e0dea3a011baf831c6984ac8cc164f2c49",
+  "bytes": 26780,
+  "requestId": "hESQiUBOaa3rBSvyQlD8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c37b9beb83cd864af24bd01af8cc5cc8c4c7afef3bce7ebe7f80c60f120fe7fc",
+    "bytes": 137970
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

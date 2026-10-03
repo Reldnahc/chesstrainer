@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "sound-sacrifice",
+      "label": "Sound sacrifice",
+      "text": "A sacrifice with real substance. Take the material, and in the checked line the sacrifice still stands. That takes nerve and calculation."
+    },
+    "takeId": null
+  },
+  "requestHash": "08ec0f92899090d36286c7d75105d8a4df1b7b5b823835f5a3e985561b9e2ca0",
+  "recordedAt": "2026-10-03T05:27:12.792Z",
+  "sha256": "1476b2db0a95c9a247569d206f4e9ea18552e03cb54ed7117378962aaeaca839",
+  "bytes": 31438,
+  "requestId": "dmQFrST7T9bhOo3j8A6k",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5bed34dae4127ef6801e2f837d99949605b61c4e3674a2bd7dc2df99f24d6829",
+    "bytes": 158450
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

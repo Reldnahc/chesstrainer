@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "only-advantage-resource",
+      "label": "Only advantage resource",
+      "text": "Only this move kept hold of the advantage. Every alternative that was checked lost. Everything rested on that one move."
+    },
+    "takeId": null
+  },
+  "requestHash": "711938ff0eae774dbc9f02bb85fb85aa60b4a04604b3f5ff600451dd5b8df976",
+  "recordedAt": "2026-10-03T05:27:16.956Z",
+  "sha256": "1312b546c834d30d205b0523c03bbe6e639ef5ae075f2c76c07e435dfb2edc58",
+  "bytes": 27036,
+  "requestId": "xiMIJl3cQEMyybWbBoMq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4a18dc12ecaaf4e4d88d08524e540c3ab0f19941376ac62c0c5232c489687bf8",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

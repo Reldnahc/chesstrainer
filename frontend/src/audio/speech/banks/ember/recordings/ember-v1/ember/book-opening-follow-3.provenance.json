@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "book-opening-follow-3",
+      "label": "Book opening follow 3",
+      "text": "The answer is theory too."
+    },
+    "takeId": null
+  },
+  "requestHash": "ae8f7757501ff5785fa82e3faab6b011c27ec66b462d8326b2f592a8027f9d88",
+  "recordedAt": "2026-10-03T05:30:21.915Z",
+  "sha256": "78deb682394c6032da6929d3bbcdd1c7e3983211acbcbe145e9553c6abbea0ac",
+  "bytes": 7323,
+  "requestId": "SQbyGh1DvO8uwnF34y4Y",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b8bd2ae8d1603c1d7ee2d7a54ebe025423defb3c2feb352cabeaaaa8de3b634d",
+    "bytes": 34316
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

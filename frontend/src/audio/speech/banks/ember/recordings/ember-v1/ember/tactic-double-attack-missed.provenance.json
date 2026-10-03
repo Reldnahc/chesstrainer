@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "tactic-double-attack-missed",
+      "label": "Tactic double attack missed",
+      "text": "The stronger move was a double attack. This move lets that double attack go to waste."
+    },
+    "takeId": null
+  },
+  "requestHash": "70bb4b59782e726101bb07e6b34080359842d900c90fc64108f9c93f85010c92",
+  "recordedAt": "2026-10-03T05:26:10.657Z",
+  "sha256": "005dfaf141d26f6d7ec43b65fae155c29efbfc4fa0033df64a7ba64e5d2c063c",
+  "bytes": 17784,
+  "requestId": "BRq2pz6xPF5Ft7JWf7Ka",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9a66d7f8dd9f5f7ebd459e9c0bc74d7b29304ef4bdb214fbae06dc5b7fae48bf",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

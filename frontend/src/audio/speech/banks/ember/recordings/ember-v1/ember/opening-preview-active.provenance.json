@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "opening-preview-active",
+      "label": "Opening preview active",
+      "text": "Any move from this line counts in mixed Due. Dedicated practice demands this line alone."
+    },
+    "takeId": null
+  },
+  "requestHash": "caa7178e432761f815186ba10323bcf21c25a485f38b1065a93dc1a1fb822c07",
+  "recordedAt": "2026-10-03T05:29:59.548Z",
+  "sha256": "b8f4c480a36ca5f9d18bd0f7008fd00ffd1489d170e2fc4c425df5a1f1d74c9c",
+  "bytes": 21127,
+  "requestId": "bAhBGIMHPJ7eTWaykzI4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "135cb483cf22b2ad4eb4daaf7a598328906b3536ede07582645460fe33ebf66d",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

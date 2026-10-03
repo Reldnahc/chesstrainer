@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "tactic-promotion-awareness-played",
+      "label": "Tactic promotion awareness played",
+      "text": "The pawn is on course for the last rank, and the aim is to promote it. Follow that road square by square."
+    },
+    "takeId": null
+  },
+  "requestHash": "43d34aa4b38b3e0cb1222f269c6b2ee6ac4e3d4a27d12edf7b478bfad30d2708",
+  "recordedAt": "2026-10-03T05:25:55.055Z",
+  "sha256": "401f088717324d35c4c2cd16f7b629aa979a4c32f1bbf2732be36d8f44f93a4b",
+  "bytes": 22699,
+  "requestId": "jnR6RHMMyKZqdPxh2LEa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f3147d2b4f1776a1369f7c0b2af384adbc1295c623f3b72d52b63e982169be84",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

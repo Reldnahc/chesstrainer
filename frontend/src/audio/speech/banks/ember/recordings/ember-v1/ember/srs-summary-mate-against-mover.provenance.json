@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "srs-summary-mate-against-mover",
+      "label": "Srs summary mate against mover",
+      "text": "The saved engine analysis gives the other side a forced checkmate once this move is made."
+    },
+    "takeId": null
+  },
+  "requestHash": "6d496ca0aca3470aa125a8a0d4e1e417a9c1f68bbaa0733dda162d0ad8e811a9",
+  "recordedAt": "2026-10-03T05:28:03.161Z",
+  "sha256": "353d957a7ce68c33763e3c289da1405c2bb888714f25ec756a4346d640274c49",
+  "bytes": 18233,
+  "requestId": "mh5QNfEzSF641umsZcGR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4993344140bf04581f697481e99c24362b49138faa1b9166f549f381f264fb5a",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

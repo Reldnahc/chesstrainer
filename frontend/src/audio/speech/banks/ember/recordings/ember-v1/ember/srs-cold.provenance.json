@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "srs-cold",
+      "label": "Srs cold",
+      "text": "Study the position. When you are sure, commit to your move."
+    },
+    "takeId": null
+  },
+  "requestHash": "781a396f64df2d780d6dc62e37c03d15488849fcdb3abe98bceadd469b34220d",
+  "recordedAt": "2026-10-03T05:27:57.557Z",
+  "sha256": "68adbf83ba5f399c57c6940b4674f0a7b1635a92ee345197ffd0ee0f46b48aa7",
+  "bytes": 13768,
+  "requestId": "SNpPIq6OviD16sJQef3r",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1050e68092f7065c1f4643b98af06790472eedcb3934e70d0cd37078d531cd64",
+    "bytes": 69007
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

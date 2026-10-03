@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "opening-recall-rejected-changed",
+      "label": "Opening recall rejected changed",
+      "text": "Wrong for the opening lines you selected. Make another attempt. Because the study changed, its review schedule ignores this saved attempt."
+    },
+    "takeId": null
+  },
+  "requestHash": "7675dabc96bc435d5b0a68e92dd1846945ad6f878b1c5baa249763bed9c9265e",
+  "recordedAt": "2026-10-03T05:29:55.508Z",
+  "sha256": "70052068d8995d04bcba6e9f7e6ad63cb02f7c93d9f0b30f4b069be962d8c6b3",
+  "bytes": 27415,
+  "requestId": "QT1J1jxqnKMylMMwQRmy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bdb5584f8b1a71329b4f2eb39d9022dfca3f3d1bb5d0d195d396fd20570a4cd5",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

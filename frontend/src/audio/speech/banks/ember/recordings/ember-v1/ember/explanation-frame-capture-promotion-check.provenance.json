@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-check",
+      "label": "Explanation frame capture promotion check",
+      "text": "The pawn captures, promotes on the last rank, and gives check, all in one move."
+    },
+    "takeId": null
+  },
+  "requestHash": "07346821830e6012e0cc2e12dec99e6fccb1b74d3dd82f027172eb6f676690f7",
+  "recordedAt": "2026-10-03T05:28:37.749Z",
+  "sha256": "b92e60f418cb9cedae91d78f42aebfdf610a8e79a0617772304635767cd17aec",
+  "bytes": 18172,
+  "requestId": "49wgmyq3gHfq4Ib2Ou2Z",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fc7edfc2d53ebd6759a9a30f3c090e0457f0beec39af48bd6be0f07bfc6e0b8b",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

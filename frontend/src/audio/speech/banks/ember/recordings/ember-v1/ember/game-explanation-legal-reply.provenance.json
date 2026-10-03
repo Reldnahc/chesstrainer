@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "game-explanation-legal-reply",
+      "label": "Game explanation legal reply",
+      "text": "The other side has the marked reply available, and it is legal. Play it, and see what it does to the position."
+    },
+    "takeId": null
+  },
+  "requestHash": "1cf325c066a96f71319d660993943580190a48185f18f65d38cec6e6e97af36f",
+  "recordedAt": "2026-10-03T05:29:14.479Z",
+  "sha256": "1f355332f55f21f37155635ed1f8ddd96b44f6a989062447cbf7158d1d913067",
+  "bytes": 22146,
+  "requestId": "TVEtjc9mBglkyM4VXzXQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1048dd1b002bddce087534ec05ae797b73de93a90c9a59feb65e8fef81dde1d1",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

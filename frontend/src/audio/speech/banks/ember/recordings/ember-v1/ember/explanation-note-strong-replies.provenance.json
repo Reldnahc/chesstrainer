@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "explanation-note-strong-replies",
+      "label": "Explanation note strong replies",
+      "text": "The moves shown are played against strong replies. Strong is not the same as forced, so do not treat every reply here as the only one."
+    },
+    "takeId": null
+  },
+  "requestHash": "0b10a8ddc73d842dc8117776fffd9238f36cc3ba7c83a7d33ac1a4e7149a77a0",
+  "recordedAt": "2026-10-03T05:29:39.277Z",
+  "sha256": "c1a1f05fc532fe0e64969e437e52808353c0d9703fb9873de814d97815328b2e",
+  "bytes": 29332,
+  "requestId": "qjmB0vKvfy933dGwkQ9e",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b4a6d7db98d630d9a436799ddbd0388d5f30fdaf046a86da0380d3e64b4c323e",
+    "bytes": 148419
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "explanation-cue-deflection",
+      "label": "Explanation cue deflection",
+      "text": "Check whether a forcing exchange can drag a defender away from another target it guards."
+    },
+    "takeId": null
+  },
+  "requestHash": "3a32399d68d64509f5d9020a03ae8fd72b26d6a5ccfe3703af3fdbf01632e89a",
+  "recordedAt": "2026-10-03T05:29:35.232Z",
+  "sha256": "6269b99fb7f5720c8a78cc33917eeea21a91f5937a08d96fd37e0294970a617f",
+  "bytes": 17437,
+  "requestId": "v60cqB0JGfmmSH7FteVo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6893d0161c580a8aba8db28227b3bacdf8134bd133d960e49f8082b5ba098d5a",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

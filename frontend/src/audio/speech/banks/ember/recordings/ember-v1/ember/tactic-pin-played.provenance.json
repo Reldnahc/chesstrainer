@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "tactic-pin-played",
+      "label": "Tactic pin played",
+      "text": "That is a proper pin. The piece in front of its king cannot step off the line, because doing so would expose the king behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "3b133a2443993ebb56e9a6aea075b65ecf913fabe5eb974705f4d9d1adc27dbd",
+  "recordedAt": "2026-10-03T05:25:31.400Z",
+  "sha256": "e00c48c94a3adea2a5351f67f3c4161892828aa8dcd96e9ad0752e1eb5152f57",
+  "bytes": 26752,
+  "requestId": "22Lus9hhhNnof2mK467J",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3ebdd09db6d6c55b7d38f0539d2401958843ca9e3169e4e8e446c7a36c8dd5f3",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

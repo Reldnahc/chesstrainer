@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "positional-king-flight-actual",
+      "label": "Positional king flight actual",
+      "text": "The king now has a legal square to run to. An escape square is worth having."
+    },
+    "takeId": null
+  },
+  "requestHash": "27133c027ed51876fdc1c8623cb6f5b651a6234322ae5835ed4faa19d314a205",
+  "recordedAt": "2026-10-03T05:26:56.773Z",
+  "sha256": "6dda5d8558d25b1670a03749e4594cc6730b342cb8e6842be2297ecafe1da203",
+  "bytes": 17324,
+  "requestId": "yQ6IuD6sAEfQ6PELISlJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cc9b4aafc6bcfdc5a3dc6559879a62137e4c64a1035e3de40b17c5d7895e1216",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "explanation-frame-original",
+      "label": "Explanation frame original",
+      "text": "This is where it begins, before a single move of the line. Take the position in fully."
+    },
+    "takeId": null
+  },
+  "requestHash": "0f977f9650daf00820d8213796b0ac6ff725bf6bf3fe816664bde579269f2842",
+  "recordedAt": "2026-10-03T05:28:21.125Z",
+  "sha256": "e486f4d2008c7caee58568b7b6f9ce798c4608bf15c69cedc1205ed216c8da2d",
+  "bytes": 19195,
+  "requestId": "H65rEHluChoso8S09xjk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7fe638f8e5860f41d8c2ccd87e96a810689568a23ded24db5247f24ad78fbc40",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

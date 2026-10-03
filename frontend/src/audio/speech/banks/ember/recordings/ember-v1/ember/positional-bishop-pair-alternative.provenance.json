@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "positional-bishop-pair-alternative",
+      "label": "Positional bishop pair alternative",
+      "text": "A different move would have captured a bishop and stripped the other side of the bishop pair."
+    },
+    "takeId": null
+  },
+  "requestHash": "a997bc58b2f317d9c643eb7916b93a75cc5b8a4f322db304693e19669f6de4fa",
+  "recordedAt": "2026-10-03T05:27:03.750Z",
+  "sha256": "a41134161338d7b2dd9fb44101ddbe323a8ea3fad6e617466fd469ba0293f3b7",
+  "bytes": 15793,
+  "requestId": "DOgDoXRArPuLNIc1nfe1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "815018eeb838c1f17319e340f4308b2e2b0eb63c83cb7c0005975771b0a00806",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

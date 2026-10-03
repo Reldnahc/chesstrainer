@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-move-check",
+      "label": "Explanation frame quiet move check",
+      "text": "A check. The king is attacked, and everything else waits until that is answered."
+    },
+    "takeId": null
+  },
+  "requestHash": "cb101b3dfca16b1495910efac9d57987484fa6520b65e3e0139161d89b6856c0",
+  "recordedAt": "2026-10-03T05:28:23.589Z",
+  "sha256": "02149d039608b7f51d626f0b4cc7e796399350345d483f7f3c568b4adf64cf5c",
+  "bytes": 16835,
+  "requestId": "j63OSdSc65ZHx2KZja97",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "380eeee63036eba386cfa418fbfc3f32b6b4b0a474739efd3b7e4b0c76b7d232",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

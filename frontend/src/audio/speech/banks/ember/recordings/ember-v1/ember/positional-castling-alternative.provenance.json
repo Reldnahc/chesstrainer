@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "positional-castling-alternative",
+      "label": "Positional castling alternative",
+      "text": "Castling was the alternative, moving king and rook in a single move."
+    },
+    "takeId": null
+  },
+  "requestHash": "3c5ee79045d1d79cf6e43353ca9cfda9dd802cd8763ea24f177d70246de57939",
+  "recordedAt": "2026-10-03T05:27:00.881Z",
+  "sha256": "8001b8c68e38593872a68e005b0107bbe82bb245b9846ee6531cae300d756f4b",
+  "bytes": 15582,
+  "requestId": "0ESiNaXU6PsN9PRKHjFe",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "461e83dff2c322fee5d5142de5a5f32612c5ff90147c04d88f527eb75c59e78b",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

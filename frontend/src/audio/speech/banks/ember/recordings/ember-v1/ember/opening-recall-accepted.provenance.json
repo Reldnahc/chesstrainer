@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "opening-recall-accepted",
+      "label": "Opening recall accepted",
+      "text": "Right. That move is part of the material you chose to study."
+    },
+    "takeId": null
+  },
+  "requestHash": "b7d4fde323f23fd684f3e1a7f1a7f71794c8a6f9621c2bec904e7e0f01e1fc15",
+  "recordedAt": "2026-10-03T05:29:48.494Z",
+  "sha256": "944c610fb3a5fc0909e5baf028b44795f231e5643ba0c12fed0ed994d629a6e5",
+  "bytes": 12942,
+  "requestId": "bcEBhPW5Pcg0TOoyafbO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9b87d10216667f52d0c8685e68a9706ff3b1a02c2d9d398b2b09f708adacd5b4",
+    "bytes": 63991
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -46,6 +46,7 @@ REGISTERED = [
     ("raccoon", "bandit"),
     ("dog-puppy", "biscuit"),
     ("unicorn", "celeste"),
+    ("dragon", "ember"),
 ]
 # Voices whose written personality sets questionFrequency to "none".
 QUESTIONLESS = [

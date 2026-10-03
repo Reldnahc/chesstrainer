@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "explanation-cue-pin",
+      "label": "Explanation cue pin",
+      "text": "A pinned piece shields what stands behind it, the king or something more valuable. Know which before you move it."
+    },
+    "takeId": null
+  },
+  "requestHash": "d469adc2e70c9c9d2c01bf4fa7aba53eb2d42ee5f1c34d0b27afce3a98b8b898",
+  "recordedAt": "2026-10-03T05:29:20.520Z",
+  "sha256": "1a4c777706fe1e1c1f88a80fdebd69e1e1b6af5f5af750adbd47c1e45ab2c7b2",
+  "bytes": 24662,
+  "requestId": "g30tVctAXLTlgSoW4iVT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7ebdef485718f69179aeeee74f4dfb1fec1efcbf842b4583aa455b236250c11e",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

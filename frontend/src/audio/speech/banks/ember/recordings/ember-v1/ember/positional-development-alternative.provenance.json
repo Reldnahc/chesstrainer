@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "positional-development-alternative",
+      "label": "Positional development alternative",
+      "text": "A different move would have developed a minor piece off its home square."
+    },
+    "takeId": null
+  },
+  "requestHash": "3b5c99da3f6667bd33ce2838513cd3ad4c8d0255404740e4826194a830c8a14a",
+  "recordedAt": "2026-10-03T05:26:31.682Z",
+  "sha256": "b490157831b01293dff0edb4b7243ea871a397693fab12ca782a2f40fbf46431",
+  "bytes": 13340,
+  "requestId": "pL0LOJZrqZeKxaUo9hUG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cbe4ab6436a7ff0146cdf8a1e5fb2c0bcbe53ddc4d62358144edd69ecc613b37",
+    "bytes": 65245
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

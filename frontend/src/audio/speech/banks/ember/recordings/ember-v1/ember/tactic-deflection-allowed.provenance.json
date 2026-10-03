@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed",
+      "label": "Tactic deflection allowed",
+      "text": "A defender carries a vital task, and the other side can now drag it away. That is a deflection, and the task would go uncovered."
+    },
+    "takeId": null
+  },
+  "requestHash": "44209592b96e6f8b5a688bc2758fc475154aeeed660b66f1375a4c7d2dce8839",
+  "recordedAt": "2026-10-03T05:26:14.691Z",
+  "sha256": "169a60aca48357201e9fdd02dd050021318871c2f3cafc84a3d4638a4dcddbda",
+  "bytes": 28330,
+  "requestId": "2Dx98TuCilcuxayZsLdN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c89be77c7783e62114c542bd3179ef728de33a2bb0c953ad4142dd91221a6edf",
+    "bytes": 142986
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

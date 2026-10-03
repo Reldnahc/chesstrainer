@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "book-opening-follow-8",
+      "label": "Book opening follow 8",
+      "text": "One more move theory already knows. Knowing a line and understanding it are not the same."
+    },
+    "takeId": null
+  },
+  "requestHash": "12122c358061bbbfaa7c04b1dda4837c89394bcd11dc13c498740db61225772b",
+  "recordedAt": "2026-10-03T05:30:27.008Z",
+  "sha256": "e549c26b7782132a6ba3cfcb5628efa8dc8da83a5d01f5a25e4690c68ad3c985",
+  "bytes": 20083,
+  "requestId": "gN7NdIHJorYGyIL1O92W",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7631d1f2408443428efaa6cb0af425be30718e706ed6dd4b6f7598dc3b7ca09d",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

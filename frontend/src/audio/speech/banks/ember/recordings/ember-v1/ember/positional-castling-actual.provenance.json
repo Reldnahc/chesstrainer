@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "positional-castling-actual",
+      "label": "Positional castling actual",
+      "text": "Castling: the king tucks in and the rook crosses over. Both pieces move in a single turn."
+    },
+    "takeId": null
+  },
+  "requestHash": "34fc5c13f69fd06044ee39c3fc832027b22dbb99345f31a0081debccc891b94a",
+  "recordedAt": "2026-10-03T05:26:59.601Z",
+  "sha256": "290442a5728528d6d6c494c3b6cbfd8f4601d0d2f692ecf674681f3aad5d7f98",
+  "bytes": 21227,
+  "requestId": "IdZ8uLtbqUZQehZMyO3A",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2d388e62bf680de7cf097bce740e45c7e8746fb7d1dbda94a2d3d450a0b7c9d2",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

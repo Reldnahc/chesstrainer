@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "positional-bishop-pair-actual",
+      "label": "Positional bishop pair actual",
+      "text": "This capture costs a side its bishop pair. It no longer has a bishop for each color of square."
+    },
+    "takeId": null
+  },
+  "requestHash": "62c786823d1417f8d9c9e2a09e92879a280c4255f7df4e03b5e5c7d55900381f",
+  "recordedAt": "2026-10-03T05:27:02.480Z",
+  "sha256": "714b7f899682f321f83c7ed48ef3abe7d0bf6ad19a14439dddcf882eff73ee52",
+  "bytes": 20324,
+  "requestId": "eNkzryXDnUiY0xwudi3J",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "06993d09c2bd87382348e5b0ea1e17c8434153816d7a67532e8b9b9209de763d",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

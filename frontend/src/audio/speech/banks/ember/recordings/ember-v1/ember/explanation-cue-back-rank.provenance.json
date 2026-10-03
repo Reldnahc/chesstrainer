@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "explanation-cue-back-rank",
+      "label": "Explanation cue back rank",
+      "text": "Before a back-rank defender moves, check that the king still has an escape square."
+    },
+    "takeId": null
+  },
+  "requestHash": "03fb727960b1b5d6324f06b4cae410758148c52cab115fd4df3f7d2f69ee63db",
+  "recordedAt": "2026-10-03T05:29:28.611Z",
+  "sha256": "e7840640c0662f9265d8f11aa091836a3d7186fc4a14927f6fa8b5e027d18052",
+  "bytes": 17197,
+  "requestId": "pL32U2S2NidNKQXxqxrp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "656a94563239f0e14b5d5a1986ceab46edb04f9fc76014f71c65cb721c9d25dd",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

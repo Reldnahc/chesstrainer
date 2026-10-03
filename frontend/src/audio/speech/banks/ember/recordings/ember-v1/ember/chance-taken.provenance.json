@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "chance-taken",
+      "label": "Chance taken",
+      "text": "An error by the opponent on the last move, and this one makes them pay. Errors are there to be punished."
+    },
+    "takeId": null
+  },
+  "requestHash": "d843ed7e710b68b8ef8e6197e906c02a1e8d72d2974c9454a71e9d2a96cecd83",
+  "recordedAt": "2026-10-03T05:27:40.126Z",
+  "sha256": "26c68a0ef7832bafc5b0bbb9137f32f36916cb1edc307fe3a17fa383fb4685f3",
+  "bytes": 22716,
+  "requestId": "LuDMJHfYxbWsXJ4uRSgW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "45e9dd61a9b2f5d48f5c23e277d90ccfed7f386e142fe2d20c0ea146ce04a59b",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}
