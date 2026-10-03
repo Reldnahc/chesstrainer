@@ -111,6 +111,36 @@ def test_native_refinement_preserves_baseline_polls_earlier_moves_and_reuses_com
 
 
 @pytest.mark.stockfish
+def test_refinement_questions_share_the_review_engine_workers(
+    settings, stockfish_path, monkeypatch
+):
+    settings.stockfish_path = stockfish_path
+    settings.stockfish_workers = 2
+    settings.review_refinement_depth, settings.review_refinement_time = 12, 0.2
+    app = create_app(settings, workers=False)
+    with TestClient(app) as client:
+        game, job, original = baseline(client, app)
+        app.state.settings.review_refinement_positions = 4
+        client.post(f"/api/games/{game}/review", json={"refine": True})
+        engines = set()
+        real = RefinementEngine.analyze
+
+        def record(self, *args, **kwargs):
+            engines.add(id(self.native))
+            return real(self, *args, **kwargs)
+
+        monkeypatch.setattr(RefinementEngine, "analyze", record)
+        app.state.runner.run_job(job)
+        assert client.get(f"/api/games/{game}").json()["job"]["status"] == "completed"
+        with app.state.sessions() as db:
+            tasks = db.scalars(select(ReviewRefinement)).all()
+            assert len(tasks) > 1 and len(engines) == 2
+            assert all(task.status in {"completed", "budget_limited"} for task in tasks)
+            assert db.get(GameReview, game).refinement_plan["completed"] == len(tasks)
+            assert {r.ply: r.report for r in db.scalars(select(GameReviewMove))} == original
+
+
+@pytest.mark.stockfish
 def test_cancelled_refinement_reuses_finished_question_and_never_loses_baseline(
     settings, stockfish_path, monkeypatch
 ):

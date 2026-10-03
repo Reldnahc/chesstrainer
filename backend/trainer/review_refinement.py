@@ -1,5 +1,9 @@
 """Finite, resumable optional investigation after every baseline move is saved."""
 
+from concurrent.futures import ThreadPoolExecutor
+from queue import Queue
+from threading import Event
+
 from sqlalchemy import select
 
 from trainer.chess_core import digest, legal_move
@@ -78,71 +82,110 @@ def run_refinement(runner, job_id, parsed, game_id):
     if not runner.settings.review_refinement_positions or runner.cancelled(job_id):
         return
     plan = prepare(runner, game_id)
-    engine = None
-    try:
-        for task_id in plan["tasks"]:
-            if runner.cancelled(job_id):
-                break
-            with runner.sessions() as db:
-                task = db.get(ReviewRefinement, task_id)
-                baseline = db.get(GameReviewMove, (game_id, task.ply)).report
-            if task.status not in TERMINAL:
-                board = parsed.board()
-                for move in list(parsed.mainline_moves())[: task.ply - 1]:
-                    board.push(move)
-                move = legal_move(board, baseline["actual"]["uci"])
-                status, reason, report = "completed", None, None
-                adopted = False
-                try:
-                    from trainer.game_review import analyze_move
+    with runner.sessions() as db:
+        pending = [
+            task_id
+            for task_id in plan["tasks"]
+            if db.get(ReviewRefinement, task_id).status not in TERMINAL
+        ]
+    # Tasks are independent questions with fixed per-query limits, so they share
+    # the baseline's engine count; only wall-clock time changes.
+    workers = min(runner.settings.stockfish_workers, runner.settings.engine_slots, len(pending))
+    engines = Queue()
+    for _ in range(workers):
+        engines.put(None)
+    started = []
+    stop = Event()
 
-                    if engine is None:
-                        engine = runner.engine_factory(runner.settings, runner.sessions)
-                    bounded = RefinementEngine(
-                        engine, task, runner.sessions, lambda: runner.cancelled(job_id)
-                    )
-                    report = analyze_move(bounded, board, move)
-                    reason = adoption_reason(baseline, report)
-                    adopted = reason is None
-                    # Compare a plausible human alternative only if the finite
-                    # budget has room; it cannot interrupt an otherwise complete root comparison.
-                    natural = (baseline.get("human") or {}).get("top_moves", [])
-                    if natural and len(bounded.queries) < task.config["max_queries"]:
-                        uci = natural[0]["uci"]
-                        known = {candidate["uci"] for candidate in report["root_candidates"]} | {
-                            move.uci()
-                        }
-                        if uci not in known:
-                            try:
-                                bounded.analyze(board, root_moves=[uci], multipv=1)
-                            except EngineUnavailable:
-                                reason = reason or "optional_alternative_unavailable"
-                except EngineCancelled:
-                    break
-                except QueryBudgetReached:
-                    status, reason = "budget_limited", "query_budget"
-                except EngineReferenceMismatch:
-                    status, reason = "unavailable", "incompatible_engine"
-                except EngineUnavailable:
-                    status, reason = "unavailable", "engine_unavailable"
-                with runner.import_lock, runner.sessions() as db:
-                    current = db.get(ReviewRefinement, task_id)
-                    current.status, current.reason, current.report = status, reason, report
-                    current.adopted = adopted and status == "completed"
-                    row = db.get(GameReviewMove, (game_id, task.ply))
-                    if current.adopted or row.refinement_id is None:
-                        row.refinement_id = current.id
-                    touch_report(db, row)
-                    following = db.get(GameReviewMove, (game_id, task.ply + 1))
-                    if current.adopted and following is not None:
-                        touch_report(db, following)
-                    db.commit()
-            with runner.import_lock, runner.sessions() as db:
-                review = db.get(GameReview, game_id)
-                review.refinement_plan = dict(
-                    review.refinement_plan, completed=plan["tasks"].index(task_id) + 1
-                )
-                db.commit()
+    def investigate(task_id):
+        if stop.is_set() or runner.cancelled(job_id):
+            return
+        engine = engines.get()
+        try:
+            if engine is None:
+                engine = runner.engine_factory(runner.settings, runner.sessions)
+                started.append(engine)
+            if refine(runner, job_id, parsed, game_id, task_id, engine):
+                record_progress(runner, game_id, plan)
+            else:
+                stop.set()
+        except BaseException:
+            stop.set()
+            raise
+        finally:
+            engines.put(engine)
+
+    try:
+        if pending:
+            with ThreadPoolExecutor(workers, thread_name_prefix="review-refinement") as executor:
+                for future in [executor.submit(investigate, task_id) for task_id in pending]:
+                    future.result()
+        else:
+            record_progress(runner, game_id, plan)
     finally:
-        if engine is not None:
+        for engine in started:
             engine.close()
+
+
+def record_progress(runner, game_id, plan):
+    with runner.import_lock, runner.sessions() as db:
+        statuses = db.scalars(
+            select(ReviewRefinement.status).where(ReviewRefinement.id.in_(plan["tasks"]))
+        )
+        review = db.get(GameReview, game_id)
+        review.refinement_plan = dict(
+            review.refinement_plan, completed=sum(status in TERMINAL for status in statuses)
+        )
+        db.commit()
+
+
+def refine(runner, job_id, parsed, game_id, task_id, engine):
+    """Answer one question; False means the job was cancelled mid-search."""
+    with runner.sessions() as db:
+        task = db.get(ReviewRefinement, task_id)
+        baseline = db.get(GameReviewMove, (game_id, task.ply)).report
+    board = parsed.board()
+    for move in list(parsed.mainline_moves())[: task.ply - 1]:
+        board.push(move)
+    move = legal_move(board, baseline["actual"]["uci"])
+    status, reason, report = "completed", None, None
+    adopted = False
+    try:
+        from trainer.game_review import analyze_move
+
+        bounded = RefinementEngine(engine, task, runner.sessions, lambda: runner.cancelled(job_id))
+        report = analyze_move(bounded, board, move)
+        reason = adoption_reason(baseline, report)
+        adopted = reason is None
+        # Compare a plausible human alternative only if the finite
+        # budget has room; it cannot interrupt an otherwise complete root comparison.
+        natural = (baseline.get("human") or {}).get("top_moves", [])
+        if natural and len(bounded.queries) < task.config["max_queries"]:
+            uci = natural[0]["uci"]
+            known = {candidate["uci"] for candidate in report["root_candidates"]} | {move.uci()}
+            if uci not in known:
+                try:
+                    bounded.analyze(board, root_moves=[uci], multipv=1)
+                except EngineUnavailable:
+                    reason = reason or "optional_alternative_unavailable"
+    except EngineCancelled:
+        return False
+    except QueryBudgetReached:
+        status, reason = "budget_limited", "query_budget"
+    except EngineReferenceMismatch:
+        status, reason = "unavailable", "incompatible_engine"
+    except EngineUnavailable:
+        status, reason = "unavailable", "engine_unavailable"
+    with runner.import_lock, runner.sessions() as db:
+        current = db.get(ReviewRefinement, task_id)
+        current.status, current.reason, current.report = status, reason, report
+        current.adopted = adopted and status == "completed"
+        row = db.get(GameReviewMove, (game_id, task.ply))
+        if current.adopted or row.refinement_id is None:
+            row.refinement_id = current.id
+        touch_report(db, row)
+        following = db.get(GameReviewMove, (game_id, task.ply + 1))
+        if current.adopted and following is not None:
+            touch_report(db, following)
+        db.commit()
+    return True

@@ -31,8 +31,11 @@ extra searches have no node cap. At defaults the ceiling is 8 × 4 × 2 = **64
 seconds of native search per game**, plus process/SQLite/evidence overhead and
 shared-slot wait. A host with a baseline time over two seconds raises that ceiling
 accordingly. Depth can finish a search early. This is a budget, not a latency
-promise. Searches share the existing engine slots and threads/hash limits. No new
-unbounded executor or account-specific native pool is introduced.
+promise. Questions are independent, so they run in parallel on
+min(STOCKFISH_WORKERS, ENGINE_SLOTS) engines, the same count the baseline pass
+uses; per-query limits, threads and hash do not change, only wall-clock time
+(about 26 s → 8 s per game on a 4-worker desktop). No new unbounded executor or
+account-specific native pool is introduced.
 
 Pause interrupts an active extra search or a wait for a slot/cache lock. Startup
 and engine teardown retain the native transport's bounded timeouts. Partial
