@@ -157,7 +157,9 @@ jobs:
           TEST_PROJECT: ${{ matrix.project }}
           TEST_SHARD: ${{ matrix.shard }}
           STOCKFISH_PATH: /usr/games/stockfish
-        run: npx playwright test --config "$TEST_CONFIG" --project "$TEST_PROJECT" --shard "$TEST_SHARD" --reporter=line
+        # Each config reads TEST_SHARD itself: the application suite balances whole
+        # files by recorded duration, the fully parallel suites split tests evenly.
+        run: npx playwright test --config "$TEST_CONFIG" --project "$TEST_PROJECT" --reporter=line
         working-directory: frontend
       - name: Preserve failure diagnostics
         if: failure()

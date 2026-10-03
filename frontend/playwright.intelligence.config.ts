@@ -1,8 +1,8 @@
 import {defineConfig, devices} from "@playwright/test";
-import {studioTimeout, studioWorkers} from "./playwright.shared";
+import {parseShard, studioTimeout, studioWorkers} from "./playwright.shared";
 
 export default defineConfig({
-  testDir: "./intelligence-tests", outputDir: "./intelligence-test-results", workers: studioWorkers, fullyParallel: true, timeout: studioTimeout,
+  testDir: "./intelligence-tests", outputDir: "./intelligence-test-results", workers: studioWorkers, fullyParallel: true, timeout: studioTimeout, shard: parseShard(),
   use: {baseURL: "http://127.0.0.1:5175", trace: "retain-on-failure"},
   projects: [
     {name: "desktop", use: {...devices["Desktop Chrome"], viewport: {width: 1440, height: 1000}}},
