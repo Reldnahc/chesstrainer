@@ -243,7 +243,7 @@ test('editing, polling and switching an open source preserve the shell without r
   const job = (games: number): Job => ({
     id: 'import-presentation-history', status: 'completed', kind: 'training', user_id: 'presentation-fixture',
     created_at: '2026-09-29T10:00:00Z', activity: null, cancel_requested: false,
-    chesscom: null, classifications_completed: games, deep_completed: games, error: null,
+    chesscom: null, classifications_completed: games, priority: 0, deep_completed: games, error: null,
     games_processed: games, games_total: games, import_id: null, mistakes_identified: games,
     positions_triaged: games * 2, probe_total: null, provider_import: null,
   });

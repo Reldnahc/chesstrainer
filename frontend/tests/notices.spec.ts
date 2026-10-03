@@ -112,7 +112,7 @@ test("opening failed import history never re-announces saved errors as current a
   const job: Job = {
     id: "notice-history", kind: "provider_fetch", status: "failed", user_id: "notice-fixture",
     created_at: "2026-09-29T10:00:00Z", activity: null, cancel_requested: false, chesscom: null,
-    classifications_completed: 0, deep_completed: 0, games_processed: 0, games_total: 0,
+    classifications_completed: 0, priority: 0, deep_completed: 0, games_processed: 0, games_total: 0,
     import_id: null, mistakes_identified: 0, positions_triaged: 0, probe_total: null,
     error: "A previously saved download was interrupted.",
     provider_import: {
