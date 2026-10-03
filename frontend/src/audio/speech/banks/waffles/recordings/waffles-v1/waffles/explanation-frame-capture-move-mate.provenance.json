@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate",
+      "label": "Explanation frame capture move mate",
+      "text": "A capture that's also checkmate. Every escape route is closed."
+    },
+    "takeId": null
+  },
+  "requestHash": "20ea4fa7bda1df7d2df756b756bfa4c67c854a141803a06a05749c2cf68423dc",
+  "recordedAt": "2026-10-03T06:20:17.377Z",
+  "sha256": "804bfa3a2443874b17ac091c3eedd199ad958f7a2e928af04897c5be64fb16bb",
+  "bytes": 16958,
+  "requestId": "h5dXSICS0Pk4SRK6NIHs",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a5b35c9adb9bf66f6cbb5e2b4782ac82a29b3c06dbcb75c3e60198b44718d227",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

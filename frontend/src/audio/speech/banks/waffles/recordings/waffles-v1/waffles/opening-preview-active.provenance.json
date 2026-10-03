@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "opening-preview-active",
+      "label": "Opening preview active",
+      "text": "Under mixed Due, moves from this line all count. Dedicated practice drills this line exclusively."
+    },
+    "takeId": null
+  },
+  "requestHash": "39a168c95828428ee4145968f94f91b3d3bd359554358dcf359d2c78237f7a64",
+  "recordedAt": "2026-10-03T06:20:12.901Z",
+  "sha256": "adedb7b7a944f28e426bf0fbdcbd08646a01d50b618178b817a164d12071d6f3",
+  "bytes": 23346,
+  "requestId": "4NepZHgWsWA353A6bAeS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c2927bf3d4f8f52944ee14bfc540b46dd965bb195cf6b7b217bd58028bea6d2e",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

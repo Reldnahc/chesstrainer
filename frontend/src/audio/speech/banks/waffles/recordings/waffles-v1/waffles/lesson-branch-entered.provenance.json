@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "lesson-branch-entered",
+      "label": "Lesson branch entered",
+      "text": "Side mission open. Scout it out, then report back to the main line."
+    },
+    "takeId": null
+  },
+  "requestHash": "0ca0c3b4c032230925c7f383e565d093636ee19a4bfe5d02d961f797898b863c",
+  "recordedAt": "2026-10-03T06:20:23.459Z",
+  "sha256": "103761f40252b8c240460e093b9beea0f108e0430086ec9effedaee357158f99",
+  "bytes": 15729,
+  "requestId": "bsONaySrKKdt5RHI9QQr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dc1db48422e484608895a45034a43ead18e5e40fe2a4acc7104075796b4bcc39",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

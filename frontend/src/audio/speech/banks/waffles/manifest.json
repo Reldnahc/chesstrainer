@@ -1,0 +1,1583 @@
+{
+  "schemaVersion": 1,
+  "provider": "elevenlabs",
+  "coachId": "dog-corgi",
+  "voiceId": "waffles",
+  "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+  "modelId": "eleven_v4",
+  "outputFormat": "mp3_44100_128",
+  "settings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75,
+    "speed": 0.95
+  },
+  "scope": "non-lesson",
+  "silentIds": [
+    "game-thinking",
+    "explanation-loading-saved",
+    "dialogue-no-renderable-claim",
+    "practice-checking"
+  ],
+  "recordings": [
+    {
+      "id": "tactic-fork-played",
+      "group": "game_review",
+      "text": "Fork deployed! One attacker hits several targets at the same time.",
+      "audioPath": "recordings/waffles-v1/waffles/tactic-fork-played.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/tactic-fork-played.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-played.json"
+    },
+    {
+      "id": "tactic-fork-allowed",
+      "group": "game_review",
+      "text": "Alert! A fork is now available to the other side: one of their pieces can strike several targets at a stroke. Locate that piece, first priority.",
+      "audioPath": "recordings/waffles-v1/waffles/tactic-fork-allowed.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/tactic-fork-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-allowed.json"
+    },
+    {
+      "id": "tactic-fork-missed",
+      "group": "game_review",
+      "text": "Another move had a fork primed, one attacker on several targets together. This move never gives the order.",
+      "audioPath": "recordings/waffles-v1/waffles/tactic-fork-missed.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/tactic-fork-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-missed.json"
+    },
+    {
+      "id": "tactic-pin-played",
+      "group": "game_review",
+      "text": "Pinned to the king and held at its post. That piece can't leave the line without exposing its own king.",
+      "audioPath": "recordings/waffles-v1/waffles/tactic-pin-played.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/tactic-pin-played.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-played.json"
+    },
+    {
+      "id": "tactic-pin-allowed",
+      "group": "game_review",
+      "text": "Status report: the other side has a pin to the king in reach. Once pinned, it can't leave that line without exposing the king.",
+      "audioPath": "recordings/waffles-v1/waffles/tactic-pin-allowed.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/tactic-pin-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-allowed.json"
+    },
+    {
+      "id": "tactic-pin-missed",
+      "group": "game_review",
+      "text": "Another move could have pinned a piece to its king and held it there. That piece would have been frozen at its post, unable to leave the line without exposing the king. Opportunity declined.",
+      "audioPath": "recordings/waffles-v1/waffles/tactic-pin-missed.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/tactic-pin-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-missed.json"
+    },
+    {
+      "id": "tactic-skewer-played",
+      "group": "game_review",
+      "text": "Skewer on target! Attack the front piece, and once it clears the line, the rear piece is exposed. Textbook.",
+      "audioPath": "recordings/waffles-v1/waffles/tactic-skewer-played.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/tactic-skewer-played.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-played.json"
+    },
+    {
+      "id": "tactic-skewer-allowed",
+      "group": "game_review",
+      "text": "Watch the line! A skewer opens for the other side: when the front piece moves, the piece behind it could be exposed.",
+      "audioPath": "recordings/waffles-v1/waffles/tactic-skewer-allowed.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/tactic-skewer-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-allowed.json"
+    },
+    {
+      "id": "tactic-skewer-missed",
+      "group": "game_review",
+      "text": "Loaded skewer, sitting in a stronger move. Drive off the front piece, and the rear one is exposed. This move passes on that order.",
+      "audioPath": "recordings/waffles-v1/waffles/tactic-skewer-missed.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/tactic-skewer-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-missed.json"
+    },
+    {
+      "id": "tactic-removing-defender-played",
+      "group": "game_review",
+      "text": "Target the defender. Capture it, and its ward stands unprotected. Standard procedure.",
+      "audioPath": "recordings/waffles-v1/waffles/tactic-removing-defender-played.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/tactic-removing-defender-played.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-played.json"
+    },
+    {
+      "id": "tactic-removing-defender-allowed",
+      "group": "game_review",
+      "text": "Defender in the open! The other side can capture it, and whatever it guards could end up unprotected. Check its duties now.",
+      "audioPath": "recordings/waffles-v1/waffles/tactic-removing-defender-allowed.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/tactic-removing-defender-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-allowed.json"
+    },
+    {
+      "id": "tactic-removing-defender-missed",
+      "group": "game_review",
+      "text": "Another move could have captured a defender and stripped the protection from what it guarded. Not this time.",
+      "audioPath": "recordings/waffles-v1/waffles/tactic-removing-defender-missed.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/tactic-removing-defender-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-missed.json"
+    },
+    {
+      "id": "tactic-back-rank-played",
+      "group": "game_review",
+      "text": "Back rank, and the king's own troops are the walls. That's the mating pattern, and it works!",
+      "audioPath": "recordings/waffles-v1/waffles/tactic-back-rank-played.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/tactic-back-rank-played.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-played.json"
+    },
+    {
+      "id": "tactic-back-rank-allowed",
+      "group": "game_review",
+      "text": "Back rank under threat! The other side gets a route to mate there, with the king trapped behind its own pieces.",
+      "audioPath": "recordings/waffles-v1/waffles/tactic-back-rank-allowed.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/tactic-back-rank-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-allowed.json"
+    },
+    {
+      "id": "tactic-back-rank-missed",
+      "group": "game_review",
+      "text": "A back-rank mate was ready, with the king hemmed in by its own troops. This move stands down instead.",
+      "audioPath": "recordings/waffles-v1/waffles/tactic-back-rank-missed.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/tactic-back-rank-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-missed.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-played",
+      "group": "game_review",
+      "text": "The mission is promotion: a pawn reaches the last rank and earns a new rank as a piece. Track its route up the board.",
+      "audioPath": "recordings/waffles-v1/waffles/tactic-promotion-awareness-played.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/tactic-promotion-awareness-played.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-played.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-allowed",
+      "group": "game_review",
+      "text": "Eyes on that pawn! The other side gets a shot at promotion. Track its route to the last rank.",
+      "audioPath": "recordings/waffles-v1/waffles/tactic-promotion-awareness-allowed.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/tactic-promotion-awareness-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-allowed.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-missed",
+      "group": "game_review",
+      "text": "A stronger move sent a pawn toward the last rank to promote. This move leaves it waiting in the ranks.",
+      "audioPath": "recordings/waffles-v1/waffles/tactic-promotion-awareness-missed.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/tactic-promotion-awareness-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-missed.json"
+    },
+    {
+      "id": "tactic-discovered-attack-played",
+      "group": "game_review",
+      "text": "Discovered attack, launched! The blocker moves off, and the piece behind it goes on the attack. Two units in action off a single order.",
+      "audioPath": "recordings/waffles-v1/waffles/tactic-discovered-attack-played.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/tactic-discovered-attack-played.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-played.json"
+    },
+    {
+      "id": "tactic-discovered-attack-allowed",
+      "group": "game_review",
+      "text": "Heads up! A discovered attack is now available to the other side. Watch for a piece of theirs stepping aside to unleash the one behind it.",
+      "audioPath": "recordings/waffles-v1/waffles/tactic-discovered-attack-allowed.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/tactic-discovered-attack-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-allowed.json"
+    },
+    {
+      "id": "tactic-discovered-attack-missed",
+      "group": "game_review",
+      "text": "Another move carried a discovered attack: step one piece aside, and the one behind it goes to work. This move doesn't give that order.",
+      "audioPath": "recordings/waffles-v1/waffles/tactic-discovered-attack-missed.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/tactic-discovered-attack-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-missed.json"
+    },
+    {
+      "id": "tactic-double-attack-played",
+      "group": "game_review",
+      "text": "Double attack deployed! Two fronts, one order, and both demand an answer.",
+      "audioPath": "recordings/waffles-v1/waffles/tactic-double-attack-played.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/tactic-double-attack-played.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-played.json"
+    },
+    {
+      "id": "tactic-double-attack-allowed",
+      "group": "game_review",
+      "text": "Two-front warning! A double attack opens for the other side, two threats at once. Find both before any reply.",
+      "audioPath": "recordings/waffles-v1/waffles/tactic-double-attack-allowed.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/tactic-double-attack-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-allowed.json"
+    },
+    {
+      "id": "tactic-double-attack-missed",
+      "group": "game_review",
+      "text": "Two fronts at once: that's what a stronger move had. This one stays on a single front.",
+      "audioPath": "recordings/waffles-v1/waffles/tactic-double-attack-missed.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/tactic-double-attack-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-missed.json"
+    },
+    {
+      "id": "tactic-deflection-played",
+      "group": "game_review",
+      "text": "Deflection executed! Draw the defender off its post, and whatever it was covering is left open.",
+      "audioPath": "recordings/waffles-v1/waffles/tactic-deflection-played.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/tactic-deflection-played.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-played.json"
+    },
+    {
+      "id": "tactic-deflection-allowed",
+      "group": "game_review",
+      "text": "Posts under pressure! The other side can pull a defender away with a deflection, and what it guards could be left open.",
+      "audioPath": "recordings/waffles-v1/waffles/tactic-deflection-allowed.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/tactic-deflection-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-allowed.json"
+    },
+    {
+      "id": "tactic-deflection-missed",
+      "group": "game_review",
+      "text": "There was a defender to draw off its post in another move. That deflection never gets ordered.",
+      "audioPath": "recordings/waffles-v1/waffles/tactic-deflection-missed.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/tactic-deflection-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-missed.json"
+    },
+    {
+      "id": "tactic-undefended-capture-played",
+      "group": "game_review",
+      "text": "Unguarded piece, captured. No defender, no problem. Target collected.",
+      "audioPath": "recordings/waffles-v1/waffles/tactic-undefended-capture-played.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/tactic-undefended-capture-played.provenance.json",
+      "alignmentPath": "alignment/tactic-undefended-capture-played.json"
+    },
+    {
+      "id": "tactic-undefended-capture-missed",
+      "group": "game_review",
+      "text": "Another move could have captured an undefended piece, and this one goes right past it. Sweep for unguarded pieces first.",
+      "audioPath": "recordings/waffles-v1/waffles/tactic-undefended-capture-missed.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/tactic-undefended-capture-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-undefended-capture-missed.json"
+    },
+    {
+      "id": "tactic-hanging-piece-allowed",
+      "group": "game_review",
+      "text": "Sentry missing! A piece stands with no defender, and the other side can take it.",
+      "audioPath": "recordings/waffles-v1/waffles/tactic-hanging-piece-allowed.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/tactic-hanging-piece-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-hanging-piece-allowed.json"
+    },
+    {
+      "id": "cause-abandoned-defender",
+      "group": "game_review",
+      "text": "Hold the post! This move pulls a piece's only effective defender off duty, and the other side can take what it was guarding.",
+      "audioPath": "recordings/waffles-v1/waffles/cause-abandoned-defender.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/cause-abandoned-defender.provenance.json",
+      "alignmentPath": "alignment/cause-abandoned-defender.json"
+    },
+    {
+      "id": "cause-opponent-threat-recognition",
+      "group": "game_review",
+      "text": "Unanswered threat! The opponent's last move set it up, and now a piece can be captured. Every threat gets an answer.",
+      "audioPath": "recordings/waffles-v1/waffles/cause-opponent-threat-recognition.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/cause-opponent-threat-recognition.provenance.json",
+      "alignmentPath": "alignment/cause-opponent-threat-recognition.json"
+    },
+    {
+      "id": "cause-avoiding-bad-trades",
+      "group": "game_review",
+      "text": "Full count on that exchange! This capture lets the other side recapture something worth more. That trade costs the mover.",
+      "audioPath": "recordings/waffles-v1/waffles/cause-avoiding-bad-trades.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/cause-avoiding-bad-trades.provenance.json",
+      "alignmentPath": "alignment/cause-avoiding-bad-trades.json"
+    },
+    {
+      "id": "positional-development-actual",
+      "group": "game_review",
+      "text": "Minor piece deployed off the back rank. Another unit on duty!",
+      "audioPath": "recordings/waffles-v1/waffles/positional-development-actual.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/positional-development-actual.provenance.json",
+      "alignmentPath": "alignment/positional-development-actual.json"
+    },
+    {
+      "id": "positional-development-alternative",
+      "group": "game_review",
+      "text": "Another move would have called a minor piece up from its starting square.",
+      "audioPath": "recordings/waffles-v1/waffles/positional-development-alternative.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/positional-development-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-development-alternative.json"
+    },
+    {
+      "id": "positional-rook-open-actual",
+      "group": "game_review",
+      "text": "The rook holds an open file, cleared of every pawn. Clear road ahead.",
+      "audioPath": "recordings/waffles-v1/waffles/positional-rook-open-actual.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/positional-rook-open-actual.provenance.json",
+      "alignmentPath": "alignment/positional-rook-open-actual.json"
+    },
+    {
+      "id": "positional-rook-open-alternative",
+      "group": "game_review",
+      "text": "Another move would have handed a rook an open file, empty of pawns.",
+      "audioPath": "recordings/waffles-v1/waffles/positional-rook-open-alternative.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/positional-rook-open-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-rook-open-alternative.json"
+    },
+    {
+      "id": "positional-rook-semi-open-actual",
+      "group": "game_review",
+      "text": "The rook is posted on a semi-open file. None of its own pawns stand on it, but at least one enemy pawn does.",
+      "audioPath": "recordings/waffles-v1/waffles/positional-rook-semi-open-actual.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/positional-rook-semi-open-actual.provenance.json",
+      "alignmentPath": "alignment/positional-rook-semi-open-actual.json"
+    },
+    {
+      "id": "positional-rook-semi-open-alternative",
+      "group": "game_review",
+      "text": "With another move, a rook would have had a semi-open file: no pawns of its own color on it, at least one enemy pawn ahead.",
+      "audioPath": "recordings/waffles-v1/waffles/positional-rook-semi-open-alternative.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/positional-rook-semi-open-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-rook-semi-open-alternative.json"
+    },
+    {
+      "id": "positional-passed-actual",
+      "group": "game_review",
+      "text": "A passed pawn on the field! The road ahead is free of enemy pawns, on its own file and either neighbor. Note it on the map.",
+      "audioPath": "recordings/waffles-v1/waffles/positional-passed-actual.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/positional-passed-actual.provenance.json",
+      "alignmentPath": "alignment/positional-passed-actual.json"
+    },
+    {
+      "id": "positional-passed-alternative",
+      "group": "game_review",
+      "text": "Another move had a passed pawn on offer, with no enemy pawns ahead on its file or either flank.",
+      "audioPath": "recordings/waffles-v1/waffles/positional-passed-alternative.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/positional-passed-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-passed-alternative.json"
+    },
+    {
+      "id": "positional-passer-advance-actual",
+      "group": "game_review",
+      "text": "Forward march! The passed pawn was already free, and now it's one square closer.",
+      "audioPath": "recordings/waffles-v1/waffles/positional-passer-advance-actual.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/positional-passer-advance-actual.provenance.json",
+      "alignmentPath": "alignment/positional-passer-advance-actual.json"
+    },
+    {
+      "id": "positional-passer-advance-alternative",
+      "group": "game_review",
+      "text": "Another move would have sent the passed pawn on another advance.",
+      "audioPath": "recordings/waffles-v1/waffles/positional-passer-advance-alternative.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/positional-passer-advance-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-passer-advance-alternative.json"
+    },
+    {
+      "id": "positional-isolated-actual",
+      "group": "game_review",
+      "text": "Isolation: a pawn with no friendly pawn on either neighboring file. No backup on its flanks.",
+      "audioPath": "recordings/waffles-v1/waffles/positional-isolated-actual.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/positional-isolated-actual.provenance.json",
+      "alignmentPath": "alignment/positional-isolated-actual.json"
+    },
+    {
+      "id": "positional-isolated-alternative",
+      "group": "game_review",
+      "text": "Another move would have cut a pawn off from support on both flanks: isolated.",
+      "audioPath": "recordings/waffles-v1/waffles/positional-isolated-alternative.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/positional-isolated-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-isolated-alternative.json"
+    },
+    {
+      "id": "positional-support-actual",
+      "group": "game_review",
+      "text": "Reinforcements! A piece with no guard just got one.",
+      "audioPath": "recordings/waffles-v1/waffles/positional-support-actual.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/positional-support-actual.provenance.json",
+      "alignmentPath": "alignment/positional-support-actual.json"
+    },
+    {
+      "id": "positional-support-alternative",
+      "group": "game_review",
+      "text": "Another move would have sent a defender to a piece that had none.",
+      "audioPath": "recordings/waffles-v1/waffles/positional-support-alternative.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/positional-support-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-support-alternative.json"
+    },
+    {
+      "id": "positional-unsupported-actual",
+      "group": "game_review",
+      "text": "No guard on this piece now. That alone doesn't mean it can be won, but keep watch.",
+      "audioPath": "recordings/waffles-v1/waffles/positional-unsupported-actual.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/positional-unsupported-actual.provenance.json",
+      "alignmentPath": "alignment/positional-unsupported-actual.json"
+    },
+    {
+      "id": "positional-unsupported-alternative",
+      "group": "game_review",
+      "text": "Another move would have stripped a piece of its defender, which alone wouldn't mean it could be won.",
+      "audioPath": "recordings/waffles-v1/waffles/positional-unsupported-alternative.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/positional-unsupported-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-unsupported-alternative.json"
+    },
+    {
+      "id": "positional-king-flight-actual",
+      "group": "game_review",
+      "text": "New exit for the king, a legal square it lacked a move ago. Always worth having.",
+      "audioPath": "recordings/waffles-v1/waffles/positional-king-flight-actual.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/positional-king-flight-actual.provenance.json",
+      "alignmentPath": "alignment/positional-king-flight-actual.json"
+    },
+    {
+      "id": "positional-king-flight-alternative",
+      "group": "game_review",
+      "text": "Another move would have given the king a fresh exit.",
+      "audioPath": "recordings/waffles-v1/waffles/positional-king-flight-alternative.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/positional-king-flight-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-king-flight-alternative.json"
+    },
+    {
+      "id": "positional-castling-actual",
+      "group": "game_review",
+      "text": "Castling complete! The king and rook both move in a single turn. Formation set.",
+      "audioPath": "recordings/waffles-v1/waffles/positional-castling-actual.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/positional-castling-actual.provenance.json",
+      "alignmentPath": "alignment/positional-castling-actual.json"
+    },
+    {
+      "id": "positional-castling-alternative",
+      "group": "game_review",
+      "text": "The alternative was castling, which moves king and rook together in one turn.",
+      "audioPath": "recordings/waffles-v1/waffles/positional-castling-alternative.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/positional-castling-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-castling-alternative.json"
+    },
+    {
+      "id": "positional-bishop-pair-actual",
+      "group": "game_review",
+      "text": "One capture, and that bishop pair is finished. The side that lost the bishop no longer has one on each square color.",
+      "audioPath": "recordings/waffles-v1/waffles/positional-bishop-pair-actual.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/positional-bishop-pair-actual.provenance.json",
+      "alignmentPath": "alignment/positional-bishop-pair-actual.json"
+    },
+    {
+      "id": "positional-bishop-pair-alternative",
+      "group": "game_review",
+      "text": "Another move would have taken a bishop and split the opposing bishop pair.",
+      "audioPath": "recordings/waffles-v1/waffles/positional-bishop-pair-alternative.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/positional-bishop-pair-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-bishop-pair-alternative.json"
+    },
+    {
+      "id": "positional-doubled-actual",
+      "group": "game_review",
+      "text": "Doubled pawns on the field: same color, same file, one in front of the other.",
+      "audioPath": "recordings/waffles-v1/waffles/positional-doubled-actual.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/positional-doubled-actual.provenance.json",
+      "alignmentPath": "alignment/positional-doubled-actual.json"
+    },
+    {
+      "id": "positional-doubled-alternative",
+      "group": "game_review",
+      "text": "Another move would have left doubled pawns, one stacked ahead of the other on a single file.",
+      "audioPath": "recordings/waffles-v1/waffles/positional-doubled-alternative.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/positional-doubled-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-doubled-alternative.json"
+    },
+    {
+      "id": "allowed-mate",
+      "group": "game_review",
+      "text": "Priority alert. This move leaves the king open to a forced checkmate. Retrace the attack and find where the defense broke.",
+      "audioPath": "recordings/waffles-v1/waffles/allowed-mate.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/allowed-mate.provenance.json",
+      "alignmentPath": "alignment/allowed-mate.json"
+    },
+    {
+      "id": "missed-mate",
+      "group": "game_review",
+      "text": "Forced checkmate was available, and this move stands down. Back to that position. Find the finish.",
+      "audioPath": "recordings/waffles-v1/waffles/missed-mate.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/missed-mate.provenance.json",
+      "alignmentPath": "alignment/missed-mate.json"
+    },
+    {
+      "id": "sound-sacrifice",
+      "group": "game_review",
+      "text": "Sacrifice on the board, and it holds. Even accepted, the sacrifice survives the line we checked.",
+      "audioPath": "recordings/waffles-v1/waffles/sound-sacrifice.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/sound-sacrifice.provenance.json",
+      "alignmentPath": "alignment/sound-sacrifice.json"
+    },
+    {
+      "id": "only-playable-move",
+      "group": "game_review",
+      "text": "Last line of defense. This was the lone move we checked that stayed playable; every other choice lost.",
+      "audioPath": "recordings/waffles-v1/waffles/only-playable-move.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/only-playable-move.provenance.json",
+      "alignmentPath": "alignment/only-playable-move.json"
+    },
+    {
+      "id": "only-advantage-resource",
+      "group": "game_review",
+      "text": "Only this move kept the advantage among the ones we checked; all the others lost. Mission-critical.",
+      "audioPath": "recordings/waffles-v1/waffles/only-advantage-resource.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/only-advantage-resource.provenance.json",
+      "alignmentPath": "alignment/only-advantage-resource.json"
+    },
+    {
+      "id": "immediate-capture",
+      "group": "game_review",
+      "text": "Incoming! An immediate capture is waiting for the other side. Inspect that reply first.",
+      "audioPath": "recordings/waffles-v1/waffles/immediate-capture.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/immediate-capture.provenance.json",
+      "alignmentPath": "alignment/immediate-capture.json"
+    },
+    {
+      "id": "reply-check",
+      "group": "game_review",
+      "text": "Incoming check: that's the strongest reply. The king gets defended before anything else.",
+      "audioPath": "recordings/waffles-v1/waffles/reply-check.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/reply-check.provenance.json",
+      "alignmentPath": "alignment/reply-check.json"
+    },
+    {
+      "id": "stronger-alternative",
+      "group": "game_review",
+      "text": "The engine has a different move at the top of its orders. Set it up and compare the replies.",
+      "audioPath": "recordings/waffles-v1/waffles/stronger-alternative.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/stronger-alternative.provenance.json",
+      "alignmentPath": "alignment/stronger-alternative.json"
+    },
+    {
+      "id": "evaluation-loss",
+      "group": "game_review",
+      "text": "This costs value next to the engine's best. Check the reply and see what gave way.",
+      "audioPath": "recordings/waffles-v1/waffles/evaluation-loss.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/evaluation-loss.provenance.json",
+      "alignmentPath": "alignment/evaluation-loss.json"
+    },
+    {
+      "id": "best-supported-choice",
+      "group": "game_review",
+      "text": "Engine report: strong, very little value left behind.",
+      "audioPath": "recordings/waffles-v1/waffles/best-supported-choice.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/best-supported-choice.provenance.json",
+      "alignmentPath": "alignment/best-supported-choice.json"
+    },
+    {
+      "id": "good-choice",
+      "group": "game_review",
+      "text": "Sound move, solid footing. The engine's first choice is elsewhere, but this keeps most of the position's value.",
+      "audioPath": "recordings/waffles-v1/waffles/good-choice.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/good-choice.provenance.json",
+      "alignmentPath": "alignment/good-choice.json"
+    },
+    {
+      "id": "clock-low",
+      "group": "game_review",
+      "text": "Low on time before this move. Decisions on a short clock still count.",
+      "audioPath": "recordings/waffles-v1/waffles/clock-low.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/clock-low.provenance.json",
+      "alignmentPath": "alignment/clock-low.json"
+    },
+    {
+      "id": "clock-fast",
+      "group": "game_review",
+      "text": "Fast decision, with time still on the clock.",
+      "audioPath": "recordings/waffles-v1/waffles/clock-fast.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/clock-fast.provenance.json",
+      "alignmentPath": "alignment/clock-fast.json"
+    },
+    {
+      "id": "clock-long",
+      "group": "game_review",
+      "text": "This move got a long briefing on the clock.",
+      "audioPath": "recordings/waffles-v1/waffles/clock-long.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/clock-long.provenance.json",
+      "alignmentPath": "alignment/clock-long.json"
+    },
+    {
+      "id": "recognized-opening",
+      "group": "game_review",
+      "text": "Opening move on record. Standard drill.",
+      "audioPath": "recordings/waffles-v1/waffles/recognized-opening.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/recognized-opening.provenance.json",
+      "alignmentPath": "alignment/recognized-opening.json"
+    },
+    {
+      "id": "opening-departure",
+      "group": "game_review",
+      "text": "End of the manual: the game leaves our opening book here. From now on, it's open country.",
+      "audioPath": "recordings/waffles-v1/waffles/opening-departure.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/opening-departure.provenance.json",
+      "alignmentPath": "alignment/opening-departure.json"
+    },
+    {
+      "id": "recovery",
+      "group": "game_review",
+      "text": "Back in the fight! Playable again, and this move did it after the earlier setback.",
+      "audioPath": "recordings/waffles-v1/waffles/recovery.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/recovery.provenance.json",
+      "alignmentPath": "alignment/recovery.json"
+    },
+    {
+      "id": "recovery-assisted",
+      "group": "game_review",
+      "text": "The setback is repaired, with help from the other side's errors. Take the reinforcements.",
+      "audioPath": "recordings/waffles-v1/waffles/recovery-assisted.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/recovery-assisted.provenance.json",
+      "alignmentPath": "alignment/recovery-assisted.json"
+    },
+    {
+      "id": "chance-taken",
+      "group": "game_review",
+      "text": "Chance seized! The opponent's last move offered an opening, and this move went straight for it.",
+      "audioPath": "recordings/waffles-v1/waffles/chance-taken.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/chance-taken.provenance.json",
+      "alignmentPath": "alignment/chance-taken.json"
+    },
+    {
+      "id": "chance-missed",
+      "group": "game_review",
+      "text": "The opponent's last move offered a chance, and this move overlooks it. Back to that moment for the right response.",
+      "audioPath": "recordings/waffles-v1/waffles/chance-missed.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/chance-missed.provenance.json",
+      "alignmentPath": "alignment/chance-missed.json"
+    },
+    {
+      "id": "repeated-issue",
+      "group": "game_review",
+      "text": "Same issue, earlier in this game. Line those moments up and find the common weak spot.",
+      "audioPath": "recordings/waffles-v1/waffles/repeated-issue.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/repeated-issue.provenance.json",
+      "alignmentPath": "alignment/repeated-issue.json"
+    },
+    {
+      "id": "support-restored",
+      "group": "game_review",
+      "text": "Support restored! That piece left unguarded earlier is back under guard.",
+      "audioPath": "recordings/waffles-v1/waffles/support-restored.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/support-restored.provenance.json",
+      "alignmentPath": "alignment/support-restored.json"
+    },
+    {
+      "id": "gradual-erosion",
+      "group": "game_review",
+      "text": "Another small concession logged. Together with the earlier ones, they've worn the position down. Review the whole sequence.",
+      "audioPath": "recordings/waffles-v1/waffles/gradual-erosion.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/gradual-erosion.provenance.json",
+      "alignmentPath": "alignment/gradual-erosion.json"
+    },
+    {
+      "id": "advantage-converted",
+      "group": "game_review",
+      "text": "The edge was held through to the win! Review that stretch and see how it was done.",
+      "audioPath": "recordings/waffles-v1/waffles/advantage-converted.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/advantage-converted.provenance.json",
+      "alignmentPath": "alignment/advantage-converted.json"
+    },
+    {
+      "id": "saved-history-recurrence",
+      "group": "game_review",
+      "text": "The same issue shows up in other saved games. Put them on the study list together.",
+      "audioPath": "recordings/waffles-v1/waffles/saved-history-recurrence.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/saved-history-recurrence.provenance.json",
+      "alignmentPath": "alignment/saved-history-recurrence.json"
+    },
+    {
+      "id": "mate-finished",
+      "group": "game_review",
+      "text": "Checkmate, mission complete! The king is surrounded, with no legal way out.",
+      "audioPath": "recordings/waffles-v1/waffles/mate-finished.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/mate-finished.provenance.json",
+      "alignmentPath": "alignment/mate-finished.json"
+    },
+    {
+      "id": "mate-defense-ended",
+      "group": "game_review",
+      "text": "Checkmate, and the king is boxed in. Regroup and find where the defense could have held.",
+      "audioPath": "recordings/waffles-v1/waffles/mate-defense-ended.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/mate-defense-ended.provenance.json",
+      "alignmentPath": "alignment/mate-defense-ended.json"
+    },
+    {
+      "id": "draw",
+      "group": "game_review",
+      "text": "Draw declared. The result stands, but the earlier decisions still deserve an inspection.",
+      "audioPath": "recordings/waffles-v1/waffles/draw.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/draw.provenance.json",
+      "alignmentPath": "alignment/draw.json"
+    },
+    {
+      "id": "srs-cold",
+      "group": "srs_explanations",
+      "text": "Survey the board, then make your move when ready.",
+      "audioPath": "recordings/waffles-v1/waffles/srs-cold.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/srs-cold.provenance.json",
+      "alignmentPath": "alignment/srs-cold.json"
+    },
+    {
+      "id": "srs-retry",
+      "group": "srs_explanations",
+      "text": "Negative. Reset and try another move.",
+      "audioPath": "recordings/waffles-v1/waffles/srs-retry.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/srs-retry.provenance.json",
+      "alignmentPath": "alignment/srs-retry.json"
+    },
+    {
+      "id": "srs-practice-error",
+      "group": "srs_explanations",
+      "text": "That attempt didn't report back. Run it again.",
+      "audioPath": "recordings/waffles-v1/waffles/srs-practice-error.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/srs-practice-error.provenance.json",
+      "alignmentPath": "alignment/srs-practice-error.json"
+    },
+    {
+      "id": "srs-summary-mate-for-mover",
+      "group": "srs_explanations",
+      "text": "Saved engine analysis reports a forced checkmate for the side that played this move.",
+      "audioPath": "recordings/waffles-v1/waffles/srs-summary-mate-for-mover.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/srs-summary-mate-for-mover.provenance.json",
+      "alignmentPath": "alignment/srs-summary-mate-for-mover.json"
+    },
+    {
+      "id": "srs-summary-mate-against-mover",
+      "group": "srs_explanations",
+      "text": "Saved engine analysis flags a forced checkmate for the other side once this move is played.",
+      "audioPath": "recordings/waffles-v1/waffles/srs-summary-mate-against-mover.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/srs-summary-mate-against-mover.provenance.json",
+      "alignmentPath": "alignment/srs-summary-mate-against-mover.json"
+    },
+    {
+      "id": "srs-summary-material-gain",
+      "group": "srs_explanations",
+      "text": "At the end of the saved line, the side that played this move is ahead on material compared with the start.",
+      "audioPath": "recordings/waffles-v1/waffles/srs-summary-material-gain.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/srs-summary-material-gain.provenance.json",
+      "alignmentPath": "alignment/srs-summary-material-gain.json"
+    },
+    {
+      "id": "srs-summary-material-loss",
+      "group": "srs_explanations",
+      "text": "At the end of the saved line, the side that played this move is behind on material compared with the start.",
+      "audioPath": "recordings/waffles-v1/waffles/srs-summary-material-loss.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/srs-summary-material-loss.provenance.json",
+      "alignmentPath": "alignment/srs-summary-material-loss.json"
+    },
+    {
+      "id": "srs-summary-engine-accepted",
+      "group": "srs_explanations",
+      "text": "Clearance granted for this exercise. The moves shown don't reveal a clear tactical reason, and none is invented here.",
+      "audioPath": "recordings/waffles-v1/waffles/srs-summary-engine-accepted.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/srs-summary-engine-accepted.provenance.json",
+      "alignmentPath": "alignment/srs-summary-engine-accepted.json"
+    },
+    {
+      "id": "srs-summary-engine-rejected",
+      "group": "srs_explanations",
+      "text": "Not cleared for this exercise. No clear tactical reason shows in the moves, so try another.",
+      "audioPath": "recordings/waffles-v1/waffles/srs-summary-engine-rejected.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/srs-summary-engine-rejected.provenance.json",
+      "alignmentPath": "alignment/srs-summary-engine-rejected.json"
+    },
+    {
+      "id": "srs-summary-curated-accepted",
+      "group": "srs_explanations",
+      "text": "Match confirmed: the move is on this exercise's saved list. Those saved answers set what passes.",
+      "audioPath": "recordings/waffles-v1/waffles/srs-summary-curated-accepted.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/srs-summary-curated-accepted.provenance.json",
+      "alignmentPath": "alignment/srs-summary-curated-accepted.json"
+    },
+    {
+      "id": "srs-summary-curated-rejected",
+      "group": "srs_explanations",
+      "text": "Not on this exercise's saved-answer list. Off the list doesn't mean off the mark: another legal move can still be reasonable.",
+      "audioPath": "recordings/waffles-v1/waffles/srs-summary-curated-rejected.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/srs-summary-curated-rejected.provenance.json",
+      "alignmentPath": "alignment/srs-summary-curated-rejected.json"
+    },
+    {
+      "id": "srs-fallback-study",
+      "group": "srs_explanations",
+      "text": "Inspect the move. Next position after that.",
+      "audioPath": "recordings/waffles-v1/waffles/srs-fallback-study.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/srs-fallback-study.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-study.json"
+    },
+    {
+      "id": "srs-fallback-good",
+      "group": "srs_explanations",
+      "text": "Top work! The reason behind it goes in the kit too.",
+      "audioPath": "recordings/waffles-v1/waffles/srs-fallback-good.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/srs-fallback-good.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-good.json"
+    },
+    {
+      "id": "srs-fallback-focus-saved",
+      "group": "srs_explanations",
+      "text": "Practice logged, schedule untouched.",
+      "audioPath": "recordings/waffles-v1/waffles/srs-fallback-focus-saved.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/srs-fallback-focus-saved.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-focus-saved.json"
+    },
+    {
+      "id": "srs-fallback-relearning",
+      "group": "srs_explanations",
+      "text": "Solved, and logged. This one stays on the relearning list.",
+      "audioPath": "recordings/waffles-v1/waffles/srs-fallback-relearning.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/srs-fallback-relearning.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-relearning.json"
+    },
+    {
+      "id": "explanation-frame-original",
+      "group": "srs_explanations",
+      "text": "Starting position, before any moves.",
+      "audioPath": "recordings/waffles-v1/waffles/explanation-frame-original.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/explanation-frame-original.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-original.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-ordinary",
+      "group": "srs_explanations",
+      "text": "Next move up. Note what changes.",
+      "audioPath": "recordings/waffles-v1/waffles/explanation-frame-quiet-move-ordinary.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/explanation-frame-quiet-move-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-check",
+      "group": "srs_explanations",
+      "text": "Check on the king! That gets dealt with first.",
+      "audioPath": "recordings/waffles-v1/waffles/explanation-frame-quiet-move-check.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/explanation-frame-quiet-move-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-check.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-escape",
+      "group": "srs_explanations",
+      "text": "The king gets clear of check.",
+      "audioPath": "recordings/waffles-v1/waffles/explanation-frame-quiet-move-escape.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/explanation-frame-quiet-move-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-escape.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-ordinary",
+      "group": "srs_explanations",
+      "text": "Promoted! The pawn earns its new rank on the last row.",
+      "audioPath": "recordings/waffles-v1/waffles/explanation-frame-quiet-promotion-ordinary.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/explanation-frame-quiet-promotion-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-check",
+      "group": "srs_explanations",
+      "text": "Promotion on the last rank, with check.",
+      "audioPath": "recordings/waffles-v1/waffles/explanation-frame-quiet-promotion-check.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/explanation-frame-quiet-promotion-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-check.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-mate",
+      "group": "srs_explanations",
+      "text": "The pawn promotes on the last rank with checkmate. The king is boxed in for good.",
+      "audioPath": "recordings/waffles-v1/waffles/explanation-frame-quiet-promotion-mate.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/explanation-frame-quiet-promotion-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-mate.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-escape",
+      "group": "srs_explanations",
+      "text": "Promotion on the last rank, and the promoting side's king is out of check.",
+      "audioPath": "recordings/waffles-v1/waffles/explanation-frame-quiet-promotion-escape.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/explanation-frame-quiet-promotion-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-escape.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-ordinary",
+      "group": "srs_explanations",
+      "text": "Capture made. One piece leaves the board.",
+      "audioPath": "recordings/waffles-v1/waffles/explanation-frame-capture-move-ordinary.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/explanation-frame-capture-move-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-check",
+      "group": "srs_explanations",
+      "text": "Capture, plus check.",
+      "audioPath": "recordings/waffles-v1/waffles/explanation-frame-capture-move-check.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/explanation-frame-capture-move-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-check.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-mate",
+      "group": "srs_explanations",
+      "text": "A capture that's also checkmate. Every escape route is closed.",
+      "audioPath": "recordings/waffles-v1/waffles/explanation-frame-capture-move-mate.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/explanation-frame-capture-move-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-mate.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-escape",
+      "group": "srs_explanations",
+      "text": "A capture, and check is lifted from the king.",
+      "audioPath": "recordings/waffles-v1/waffles/explanation-frame-capture-move-escape.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/explanation-frame-capture-move-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-escape.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-ordinary",
+      "group": "srs_explanations",
+      "text": "Capture and promotion on the last rank, all in one move.",
+      "audioPath": "recordings/waffles-v1/waffles/explanation-frame-capture-promotion-ordinary.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/explanation-frame-capture-promotion-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-check",
+      "group": "srs_explanations",
+      "text": "One pawn captures, promotes on the last rank and gives check. Busy soldier!",
+      "audioPath": "recordings/waffles-v1/waffles/explanation-frame-capture-promotion-check.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/explanation-frame-capture-promotion-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-check.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-mate",
+      "group": "srs_explanations",
+      "text": "One pawn captures, promotes and mates. Every square around that king is denied.",
+      "audioPath": "recordings/waffles-v1/waffles/explanation-frame-capture-promotion-mate.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/explanation-frame-capture-promotion-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-mate.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-escape",
+      "group": "srs_explanations",
+      "text": "A pawn capture on the last rank brings promotion, and its king is out of check too.",
+      "audioPath": "recordings/waffles-v1/waffles/explanation-frame-capture-promotion-escape.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/explanation-frame-capture-promotion-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-escape.json"
+    },
+    {
+      "id": "explanation-frame-castle-check",
+      "group": "srs_explanations",
+      "text": "Castling, and the rook gives check on arrival.",
+      "audioPath": "recordings/waffles-v1/waffles/explanation-frame-castle-check.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/explanation-frame-castle-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-castle-check.json"
+    },
+    {
+      "id": "explanation-frame-castle-mate",
+      "group": "srs_explanations",
+      "text": "Castling delivers checkmate, and the king is cut off from every legal square.",
+      "audioPath": "recordings/waffles-v1/waffles/explanation-frame-castle-mate.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/explanation-frame-castle-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-castle-mate.json"
+    },
+    {
+      "id": "explanation-finding-fork-collected",
+      "group": "srs_explanations",
+      "text": "One attacker hits several targets, then takes one. This example also ends with a material gain for that side.",
+      "audioPath": "recordings/waffles-v1/waffles/explanation-finding-fork-collected.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/explanation-finding-fork-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-fork-collected.json"
+    },
+    {
+      "id": "explanation-finding-pin-prevents-capture",
+      "group": "srs_explanations",
+      "text": "That piece can't capture. The pin to its king holds it: leave the line, and the king is exposed.",
+      "audioPath": "recordings/waffles-v1/waffles/explanation-finding-pin-prevents-capture.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/explanation-finding-pin-prevents-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-prevents-capture.json"
+    },
+    {
+      "id": "explanation-finding-pin-restricts-escape",
+      "group": "srs_explanations",
+      "text": "Pinned to its king, the attacked piece has no free retreat, so any escape has to keep the king shielded.",
+      "audioPath": "recordings/waffles-v1/waffles/explanation-finding-pin-restricts-escape.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/explanation-finding-pin-restricts-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-restricts-escape.json"
+    },
+    {
+      "id": "explanation-finding-pin-defenders-no-recapture",
+      "group": "srs_explanations",
+      "text": "The defenders are pinned to their king and can't recapture. Capture confirmed, and the line shown gains material.",
+      "audioPath": "recordings/waffles-v1/waffles/explanation-finding-pin-defenders-no-recapture.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/explanation-finding-pin-defenders-no-recapture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-defenders-no-recapture.json"
+    },
+    {
+      "id": "explanation-finding-pin-collected",
+      "group": "srs_explanations",
+      "text": "Eyes on the pinned piece. Its king would be exposed if it left the line, and these moves capture it.",
+      "audioPath": "recordings/waffles-v1/waffles/explanation-finding-pin-collected.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/explanation-finding-pin-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-collected.json"
+    },
+    {
+      "id": "explanation-finding-skewer-collected",
+      "group": "srs_explanations",
+      "text": "Once the front piece gets out of the way, the piece behind it is captured on the same line.",
+      "audioPath": "recordings/waffles-v1/waffles/explanation-finding-skewer-collected.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/explanation-finding-skewer-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-skewer-collected.json"
+    },
+    {
+      "id": "explanation-finding-king-skewer-collected",
+      "group": "srs_explanations",
+      "text": "Check pushes the king aside, and then the attacker claims what stood behind.",
+      "audioPath": "recordings/waffles-v1/waffles/explanation-finding-king-skewer-collected.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/explanation-finding-king-skewer-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-king-skewer-collected.json"
+    },
+    {
+      "id": "explanation-finding-sole-defender-captured",
+      "group": "srs_explanations",
+      "text": "The lone defender is taken out first, and its charge follows.",
+      "audioPath": "recordings/waffles-v1/waffles/explanation-finding-sole-defender-captured.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/explanation-finding-sole-defender-captured.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-sole-defender-captured.json"
+    },
+    {
+      "id": "explanation-finding-deflection-collected",
+      "group": "srs_explanations",
+      "text": "The defender is lured off its post, and its abandoned piece is captured.",
+      "audioPath": "recordings/waffles-v1/waffles/explanation-finding-deflection-collected.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/explanation-finding-deflection-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-deflection-collected.json"
+    },
+    {
+      "id": "explanation-finding-discovered-capture",
+      "group": "srs_explanations",
+      "text": "The blocker moves, the line opens, and the capture comes from the piece behind it.",
+      "audioPath": "recordings/waffles-v1/waffles/explanation-finding-discovered-capture.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/explanation-finding-discovered-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-discovered-capture.json"
+    },
+    {
+      "id": "explanation-finding-discovered-check",
+      "group": "srs_explanations",
+      "text": "A piece clears the way, and the one behind it gives check.",
+      "audioPath": "recordings/waffles-v1/waffles/explanation-finding-discovered-check.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/explanation-finding-discovered-check.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-discovered-check.json"
+    },
+    {
+      "id": "explanation-finding-double-check",
+      "group": "srs_explanations",
+      "text": "Double check, two checking pieces at once!",
+      "audioPath": "recordings/waffles-v1/waffles/explanation-finding-double-check.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/explanation-finding-double-check.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-double-check.json"
+    },
+    {
+      "id": "explanation-finding-double-attack-collected",
+      "group": "srs_explanations",
+      "text": "The first piece attacks and uncovers a second attacker. The capture comes from that second piece.",
+      "audioPath": "recordings/waffles-v1/waffles/explanation-finding-double-attack-collected.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/explanation-finding-double-attack-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-double-attack-collected.json"
+    },
+    {
+      "id": "explanation-finding-promotion-material-retained",
+      "group": "srs_explanations",
+      "text": "Promotion, and the example finishes with that side up material.",
+      "audioPath": "recordings/waffles-v1/waffles/explanation-finding-promotion-material-retained.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/explanation-finding-promotion-material-retained.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-promotion-material-retained.json"
+    },
+    {
+      "id": "explanation-finding-undefended-capture-gain",
+      "group": "srs_explanations",
+      "text": "Captured: one undefended piece, and by the end of the example the capturing side is up material.",
+      "audioPath": "recordings/waffles-v1/waffles/explanation-finding-undefended-capture-gain.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/explanation-finding-undefended-capture-gain.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-undefended-capture-gain.json"
+    },
+    {
+      "id": "explanation-finding-relative-pin-released",
+      "group": "srs_explanations",
+      "text": "A relative pin used to hold the attacking piece. The opponent's last move ended it, the target sat still, and the line shown takes it.",
+      "audioPath": "recordings/waffles-v1/waffles/explanation-finding-relative-pin-released.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/explanation-finding-relative-pin-released.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-relative-pin-released.json"
+    },
+    {
+      "id": "game-explanation-legal-reply",
+      "group": "srs_explanations",
+      "text": "The other side has the reply marked on the board. Play it and see what follows.",
+      "audioPath": "recordings/waffles-v1/waffles/game-explanation-legal-reply.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/game-explanation-legal-reply.provenance.json",
+      "alignmentPath": "alignment/game-explanation-legal-reply.json"
+    },
+    {
+      "id": "explanation-cue-hanging-piece",
+      "group": "srs_explanations",
+      "text": "Before moving, inspect your pieces for any that can be captured with no useful recapture.",
+      "audioPath": "recordings/waffles-v1/waffles/explanation-cue-hanging-piece.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/explanation-cue-hanging-piece.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-hanging-piece.json"
+    },
+    {
+      "id": "explanation-cue-missed-tactical-capture",
+      "group": "srs_explanations",
+      "text": "Before a quiet move, scan for undefended enemy pieces.",
+      "audioPath": "recordings/waffles-v1/waffles/explanation-cue-missed-tactical-capture.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/explanation-cue-missed-tactical-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-missed-tactical-capture.json"
+    },
+    {
+      "id": "explanation-cue-fork",
+      "group": "srs_explanations",
+      "text": "Check forcing moves for a single attacker that hits two valuable targets.",
+      "audioPath": "recordings/waffles-v1/waffles/explanation-cue-fork.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/explanation-cue-fork.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-fork.json"
+    },
+    {
+      "id": "explanation-cue-pin",
+      "group": "srs_explanations",
+      "text": "Before moving a pinned piece, check what it's guarding behind it: the king, or a bigger asset.",
+      "audioPath": "recordings/waffles-v1/waffles/explanation-cue-pin.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/explanation-cue-pin.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-pin.json"
+    },
+    {
+      "id": "explanation-cue-skewer",
+      "group": "srs_explanations",
+      "text": "Past the first target, keep scanning. A line attack can hit what's standing behind.",
+      "audioPath": "recordings/waffles-v1/waffles/explanation-cue-skewer.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/explanation-cue-skewer.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-skewer.json"
+    },
+    {
+      "id": "explanation-cue-removing-defender",
+      "group": "srs_explanations",
+      "text": "Before trading off a defender, confirm what it's protecting.",
+      "audioPath": "recordings/waffles-v1/waffles/explanation-cue-removing-defender.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/explanation-cue-removing-defender.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-removing-defender.json"
+    },
+    {
+      "id": "explanation-cue-discovered-attack",
+      "group": "srs_explanations",
+      "text": "When a blocking piece moves, see what line it opens.",
+      "audioPath": "recordings/waffles-v1/waffles/explanation-cue-discovered-attack.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/explanation-cue-discovered-attack.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-discovered-attack.json"
+    },
+    {
+      "id": "explanation-cue-double-attack",
+      "group": "srs_explanations",
+      "text": "Hunt for one order that opens two fronts. A check or a freshly opened line counts as a front.",
+      "audioPath": "recordings/waffles-v1/waffles/explanation-cue-double-attack.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/explanation-cue-double-attack.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-double-attack.json"
+    },
+    {
+      "id": "explanation-cue-back-rank",
+      "group": "srs_explanations",
+      "text": "Before moving a back-rank defender, secure an escape square for your king.",
+      "audioPath": "recordings/waffles-v1/waffles/explanation-cue-back-rank.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/explanation-cue-back-rank.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-back-rank.json"
+    },
+    {
+      "id": "explanation-cue-promotion-awareness",
+      "group": "srs_explanations",
+      "text": "Count the moves to promotion, and look at which pawn pushes force a response.",
+      "audioPath": "recordings/waffles-v1/waffles/explanation-cue-promotion-awareness.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/explanation-cue-promotion-awareness.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-promotion-awareness.json"
+    },
+    {
+      "id": "explanation-cue-abandoned-defender",
+      "group": "srs_explanations",
+      "text": "A defender on the move leaves something uncovered. Check what, before it goes.",
+      "audioPath": "recordings/waffles-v1/waffles/explanation-cue-abandoned-defender.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/explanation-cue-abandoned-defender.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-abandoned-defender.json"
+    },
+    {
+      "id": "explanation-cue-avoiding-bad-trades",
+      "group": "srs_explanations",
+      "text": "Tally both halves of the exchange: what you take, and what comes back.",
+      "audioPath": "recordings/waffles-v1/waffles/explanation-cue-avoiding-bad-trades.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/explanation-cue-avoiding-bad-trades.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-avoiding-bad-trades.json"
+    },
+    {
+      "id": "explanation-cue-deflection",
+      "group": "srs_explanations",
+      "text": "Check whether a forcing exchange can pull a defender off another duty.",
+      "audioPath": "recordings/waffles-v1/waffles/explanation-cue-deflection.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/explanation-cue-deflection.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-deflection.json"
+    },
+    {
+      "id": "explanation-note-curated-authority",
+      "group": "srs_explanations",
+      "text": "In this exercise, the saved answers give the orders. Moves outside them aren't automatically mistakes.",
+      "audioPath": "recordings/waffles-v1/waffles/explanation-note-curated-authority.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/explanation-note-curated-authority.provenance.json",
+      "alignmentPath": "alignment/explanation-note-curated-authority.json"
+    },
+    {
+      "id": "explanation-note-strong-replies",
+      "group": "srs_explanations",
+      "text": "Here is one way play could go if the replies are strong. Not all of those replies are forced.",
+      "audioPath": "recordings/waffles-v1/waffles/explanation-note-strong-replies.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/explanation-note-strong-replies.provenance.json",
+      "alignmentPath": "alignment/explanation-note-strong-replies.json"
+    },
+    {
+      "id": "explanation-note-material-scope",
+      "group": "srs_explanations",
+      "text": "Material changes cover only the line shown, counted from its start. The written explanation names the piece values used in that count.",
+      "audioPath": "recordings/waffles-v1/waffles/explanation-note-material-scope.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/explanation-note-material-scope.provenance.json",
+      "alignmentPath": "alignment/explanation-note-material-scope.json"
+    },
+    {
+      "id": "explanation-note-no-simple-reason",
+      "group": "srs_explanations",
+      "text": "The saved line doesn't establish a simple tactical reason, and no positional reason is claimed. March through it and weigh every reply.",
+      "audioPath": "recordings/waffles-v1/waffles/explanation-note-no-simple-reason.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/explanation-note-no-simple-reason.provenance.json",
+      "alignmentPath": "alignment/explanation-note-no-simple-reason.json"
+    },
+    {
+      "id": "explanation-note-saved-policy",
+      "group": "srs_explanations",
+      "text": "The answer policy saved for this exercise governs this explanation. Check the written notes for the setting in use.",
+      "audioPath": "recordings/waffles-v1/waffles/explanation-note-saved-policy.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/explanation-note-saved-policy.provenance.json",
+      "alignmentPath": "alignment/explanation-note-saved-policy.json"
+    },
+    {
+      "id": "opening-recall-revealed",
+      "group": "openings",
+      "text": "Here are the moves of your study line, in order.",
+      "audioPath": "recordings/waffles-v1/waffles/opening-recall-revealed.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/opening-recall-revealed.provenance.json",
+      "alignmentPath": "alignment/opening-recall-revealed.json"
+    },
+    {
+      "id": "opening-recall-accepted",
+      "group": "openings",
+      "text": "Confirmed: part of your study material.",
+      "audioPath": "recordings/waffles-v1/waffles/opening-recall-accepted.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/opening-recall-accepted.provenance.json",
+      "alignmentPath": "alignment/opening-recall-accepted.json"
+    },
+    {
+      "id": "opening-recall-retry-fallback",
+      "group": "openings",
+      "text": "Your move should come from the study lines you selected.",
+      "audioPath": "recordings/waffles-v1/waffles/opening-recall-retry-fallback.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/opening-recall-retry-fallback.provenance.json",
+      "alignmentPath": "alignment/opening-recall-retry-fallback.json"
+    },
+    {
+      "id": "opening-recall-cold-multiple",
+      "group": "openings",
+      "text": "A move from any of your selected opening lines counts.",
+      "audioPath": "recordings/waffles-v1/waffles/opening-recall-cold-multiple.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/opening-recall-cold-multiple.provenance.json",
+      "alignmentPath": "alignment/opening-recall-cold-multiple.json"
+    },
+    {
+      "id": "opening-recall-cold-single",
+      "group": "openings",
+      "text": "Name a move from your study material.",
+      "audioPath": "recordings/waffles-v1/waffles/opening-recall-cold-single.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/opening-recall-cold-single.provenance.json",
+      "alignmentPath": "alignment/opening-recall-cold-single.json"
+    },
+    {
+      "id": "opening-recall-rejected",
+      "group": "openings",
+      "text": "Wrong line: that move isn't in your selected openings. Reset and go again.",
+      "audioPath": "recordings/waffles-v1/waffles/opening-recall-rejected.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/opening-recall-rejected.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected.json"
+    },
+    {
+      "id": "opening-recall-rejected-changed",
+      "group": "openings",
+      "text": "Not from your selected opening lines, so go again. The study changed, so this saved attempt doesn't affect its review schedule.",
+      "audioPath": "recordings/waffles-v1/waffles/opening-recall-rejected-changed.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/opening-recall-rejected-changed.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected-changed.json"
+    },
+    {
+      "id": "opening-recall-rejected-retired",
+      "group": "openings",
+      "text": "Outside your selected opening lines, so go again. This position is retired, and its review schedule stays as is.",
+      "audioPath": "recordings/waffles-v1/waffles/opening-recall-rejected-retired.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/opening-recall-rejected-retired.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected-retired.json"
+    },
+    {
+      "id": "opening-preview-active",
+      "group": "openings",
+      "text": "Under mixed Due, moves from this line all count. Dedicated practice drills this line exclusively.",
+      "audioPath": "recordings/waffles-v1/waffles/opening-preview-active.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/opening-preview-active.provenance.json",
+      "alignmentPath": "alignment/opening-preview-active.json"
+    },
+    {
+      "id": "opening-preview-inactive",
+      "group": "openings",
+      "text": "Scheduled recalls drill the moves of your chosen side. A position shared by your active studies uses one card.",
+      "audioPath": "recordings/waffles-v1/waffles/opening-preview-inactive.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/opening-preview-inactive.provenance.json",
+      "alignmentPath": "alignment/opening-preview-inactive.json"
+    },
+    {
+      "id": "puzzle-error",
+      "group": "puzzles",
+      "text": "Reload the saved session, then carry on.",
+      "audioPath": "recordings/waffles-v1/waffles/puzzle-error.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/puzzle-error.provenance.json",
+      "alignmentPath": "alignment/puzzle-error.json"
+    },
+    {
+      "id": "puzzle-playback",
+      "group": "puzzles",
+      "text": "Verified line, running on the board now.",
+      "audioPath": "recordings/waffles-v1/waffles/puzzle-playback.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/puzzle-playback.provenance.json",
+      "alignmentPath": "alignment/puzzle-playback.json"
+    },
+    {
+      "id": "puzzle-revealed",
+      "group": "puzzles",
+      "text": "Revealed, and logged that way. Solution available for replay below.",
+      "audioPath": "recordings/waffles-v1/waffles/puzzle-revealed.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/puzzle-revealed.provenance.json",
+      "alignmentPath": "alignment/puzzle-revealed.json"
+    },
+    {
+      "id": "puzzle-solved-after-retry",
+      "group": "puzzles",
+      "text": "Second attempt, full solution! Miss and finish: both go in the log.",
+      "audioPath": "recordings/waffles-v1/waffles/puzzle-solved-after-retry.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/puzzle-solved-after-retry.provenance.json",
+      "alignmentPath": "alignment/puzzle-solved-after-retry.json"
+    },
+    {
+      "id": "puzzle-solved-clean",
+      "group": "puzzles",
+      "text": "Full solution, zero wrong moves. Flawless execution!",
+      "audioPath": "recordings/waffles-v1/waffles/puzzle-solved-clean.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/puzzle-solved-clean.provenance.json",
+      "alignmentPath": "alignment/puzzle-solved-clean.json"
+    },
+    {
+      "id": "puzzle-rejected",
+      "group": "puzzles",
+      "text": "Negative on that move for this puzzle. Everything correct so far is logged.",
+      "audioPath": "recordings/waffles-v1/waffles/puzzle-rejected.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/puzzle-rejected.provenance.json",
+      "alignmentPath": "alignment/puzzle-rejected.json"
+    },
+    {
+      "id": "puzzle-next-move",
+      "group": "puzzles",
+      "text": "Affirmative! Next objective: the following move.",
+      "audioPath": "recordings/waffles-v1/waffles/puzzle-next-move.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/puzzle-next-move.provenance.json",
+      "alignmentPath": "alignment/puzzle-next-move.json"
+    },
+    {
+      "id": "puzzle-cold",
+      "group": "puzzles",
+      "text": "Work out the line first. Commit after that.",
+      "audioPath": "recordings/waffles-v1/waffles/puzzle-cold.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/puzzle-cold.provenance.json",
+      "alignmentPath": "alignment/puzzle-cold.json"
+    },
+    {
+      "id": "game-unavailable",
+      "group": "operational",
+      "text": "Not enough from the engine to explain this position. No guessing.",
+      "audioPath": "recordings/waffles-v1/waffles/game-unavailable.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/game-unavailable.provenance.json",
+      "alignmentPath": "alignment/game-unavailable.json"
+    },
+    {
+      "id": "game-review-paused",
+      "group": "operational",
+      "text": "Review standing by. Hit resume below, or take a piece out on patrol.",
+      "audioPath": "recordings/waffles-v1/waffles/game-review-paused.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/game-review-paused.provenance.json",
+      "alignmentPath": "alignment/game-review-paused.json"
+    },
+    {
+      "id": "game-browse-instructions",
+      "group": "operational",
+      "text": "Choose any move to inspect, or move a piece and run your own test.",
+      "audioPath": "recordings/waffles-v1/waffles/game-browse-instructions.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/game-browse-instructions.provenance.json",
+      "alignmentPath": "alignment/game-browse-instructions.json"
+    },
+    {
+      "id": "book-opening-entry-1",
+      "group": "game_review",
+      "text": "Straight from the manual: a book move.",
+      "audioPath": "recordings/waffles-v1/waffles/book-opening-entry-1.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/book-opening-entry-1.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-1.json"
+    },
+    {
+      "id": "book-opening-entry-2",
+      "group": "game_review",
+      "text": "This move is in the field manual: standard opening drill. Proceed.",
+      "audioPath": "recordings/waffles-v1/waffles/book-opening-entry-2.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/book-opening-entry-2.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-2.json"
+    },
+    {
+      "id": "book-opening-entry-3",
+      "group": "game_review",
+      "text": "It's in the manual, under a recognized opening line.",
+      "audioPath": "recordings/waffles-v1/waffles/book-opening-entry-3.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/book-opening-entry-3.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-3.json"
+    },
+    {
+      "id": "book-opening-follow-1",
+      "group": "game_review",
+      "text": "Still following the manual.",
+      "audioPath": "recordings/waffles-v1/waffles/book-opening-follow-1.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/book-opening-follow-1.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-1.json"
+    },
+    {
+      "id": "book-opening-follow-2",
+      "group": "game_review",
+      "text": "The manual supplies another move. Carry on.",
+      "audioPath": "recordings/waffles-v1/waffles/book-opening-follow-2.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/book-opening-follow-2.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-2.json"
+    },
+    {
+      "id": "book-opening-follow-3",
+      "group": "game_review",
+      "text": "Even the reply is straight from the manual.",
+      "audioPath": "recordings/waffles-v1/waffles/book-opening-follow-3.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/book-opening-follow-3.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-3.json"
+    },
+    {
+      "id": "book-opening-follow-4",
+      "group": "game_review",
+      "text": "The manual is still in charge. Steady.",
+      "audioPath": "recordings/waffles-v1/waffles/book-opening-follow-4.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/book-opening-follow-4.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-4.json"
+    },
+    {
+      "id": "book-opening-follow-5",
+      "group": "game_review",
+      "text": "Manual still open. Formation holds.",
+      "audioPath": "recordings/waffles-v1/waffles/book-opening-follow-5.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/book-opening-follow-5.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-5.json"
+    },
+    {
+      "id": "book-opening-follow-6",
+      "group": "game_review",
+      "text": "Still marching to the book's beat.",
+      "audioPath": "recordings/waffles-v1/waffles/book-opening-follow-6.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/book-opening-follow-6.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-6.json"
+    },
+    {
+      "id": "book-opening-follow-7",
+      "group": "game_review",
+      "text": "The drill continues: another book move.",
+      "audioPath": "recordings/waffles-v1/waffles/book-opening-follow-7.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/book-opening-follow-7.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-7.json"
+    },
+    {
+      "id": "book-opening-follow-8",
+      "group": "game_review",
+      "text": "The manual still covers it. Book status tells you where we stand, not what the move is worth.",
+      "audioPath": "recordings/waffles-v1/waffles/book-opening-follow-8.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/book-opening-follow-8.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-8.json"
+    },
+    {
+      "id": "game-review-opened",
+      "group": "operational",
+      "text": "Briefing begins now! Advance move by move, and flag anything that looks out of line.",
+      "audioPath": "recordings/waffles-v1/waffles/game-review-opened.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/game-review-opened.provenance.json",
+      "alignmentPath": "alignment/game-review-opened.json"
+    },
+    {
+      "id": "lesson-wrong-move",
+      "group": "lessons",
+      "text": "Legal move, wrong route for this lesson. Regroup and redeploy.",
+      "audioPath": "recordings/waffles-v1/waffles/lesson-wrong-move.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/lesson-wrong-move.provenance.json",
+      "alignmentPath": "alignment/lesson-wrong-move.json"
+    },
+    {
+      "id": "lesson-correct-move",
+      "group": "lessons",
+      "text": "Affirmative! That's the lesson's move.",
+      "audioPath": "recordings/waffles-v1/waffles/lesson-correct-move.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/lesson-correct-move.provenance.json",
+      "alignmentPath": "alignment/lesson-correct-move.json"
+    },
+    {
+      "id": "lesson-move-revealed",
+      "group": "lessons",
+      "text": "Lesson move on the board. Take note, recruit!",
+      "audioPath": "recordings/waffles-v1/waffles/lesson-move-revealed.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/lesson-move-revealed.provenance.json",
+      "alignmentPath": "alignment/lesson-move-revealed.json"
+    },
+    {
+      "id": "lesson-guided-playback",
+      "group": "lessons",
+      "text": "Stand by and watch the line advance.",
+      "audioPath": "recordings/waffles-v1/waffles/lesson-guided-playback.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/lesson-guided-playback.provenance.json",
+      "alignmentPath": "alignment/lesson-guided-playback.json"
+    },
+    {
+      "id": "lesson-rehearsal-prompt",
+      "group": "lessons",
+      "text": "Drill call: execute the studied move.",
+      "audioPath": "recordings/waffles-v1/waffles/lesson-rehearsal-prompt.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/lesson-rehearsal-prompt.provenance.json",
+      "alignmentPath": "alignment/lesson-rehearsal-prompt.json"
+    },
+    {
+      "id": "lesson-branch-entered",
+      "group": "lessons",
+      "text": "Side mission open. Scout it out, then report back to the main line.",
+      "audioPath": "recordings/waffles-v1/waffles/lesson-branch-entered.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/lesson-branch-entered.provenance.json",
+      "alignmentPath": "alignment/lesson-branch-entered.json"
+    },
+    {
+      "id": "lesson-chapter-complete",
+      "group": "lessons",
+      "text": "Chapter complete, progress logged. Mission accomplished!",
+      "audioPath": "recordings/waffles-v1/waffles/lesson-chapter-complete.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/lesson-chapter-complete.provenance.json",
+      "alignmentPath": "alignment/lesson-chapter-complete.json"
+    },
+    {
+      "id": "lesson-game-opened",
+      "group": "lessons",
+      "text": "Full game on the table. Inspect it at your own pace.",
+      "audioPath": "recordings/waffles-v1/waffles/lesson-game-opened.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/lesson-game-opened.provenance.json",
+      "alignmentPath": "alignment/lesson-game-opened.json"
+    },
+    {
+      "id": "lesson-error",
+      "group": "lessons",
+      "text": "Lesson down! Reload to get back in formation.",
+      "audioPath": "recordings/waffles-v1/waffles/lesson-error.opus",
+      "sidecarPath": "recordings/waffles-v1/waffles/lesson-error.provenance.json",
+      "alignmentPath": "alignment/lesson-error.json"
+    }
+  ]
+}

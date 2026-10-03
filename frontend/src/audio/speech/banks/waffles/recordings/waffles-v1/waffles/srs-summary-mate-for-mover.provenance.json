@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "srs-summary-mate-for-mover",
+      "label": "Srs summary mate for mover",
+      "text": "Saved engine analysis reports a forced checkmate for the side that played this move."
+    },
+    "takeId": null
+  },
+  "requestHash": "f9dec0afe458d2cb59f05e8d4b5d92b9c3654a331cfeababccfe29c130a2b2e6",
+  "recordedAt": "2026-10-03T06:19:52.004Z",
+  "sha256": "dccc25ab05c3ad08a4814778dd656e8e4bc4dd51eb7652787789ef953112b575",
+  "bytes": 17460,
+  "requestId": "2wZMUE3COe58TLRX7VLK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "38a22f24ca3a390682eced24c093e4cd10b52a2c8c460fc0158ccadf7b26ca6f",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

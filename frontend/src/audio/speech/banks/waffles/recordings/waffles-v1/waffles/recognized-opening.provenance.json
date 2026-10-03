@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "recognized-opening",
+      "label": "Recognized opening",
+      "text": "Opening move on record. Standard drill."
+    },
+    "takeId": null
+  },
+  "requestHash": "c6fc7077f18dfd61e005131f4f2292d3d967149a4388327cc8019afd5c2b3c31",
+  "recordedAt": "2026-10-03T06:19:56.898Z",
+  "sha256": "8da82c52708c64855be3501abd875a521a0c2215e48cd2ca9232abe127d6d4ca",
+  "bytes": 10970,
+  "requestId": "901pss6NY7Qy5ei8hbKP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e72211897b3a74b3bbf04c5f307a80d5199713e78770bc4747bc4470a771422b",
+    "bytes": 52288
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

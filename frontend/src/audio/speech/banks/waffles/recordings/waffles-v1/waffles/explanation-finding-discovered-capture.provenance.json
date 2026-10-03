@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-capture",
+      "label": "Explanation finding discovered capture",
+      "text": "The blocker moves, the line opens, and the capture comes from the piece behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "19965ace07d59b1f20db76a36a81ed3ebaad78598aeff48581956352a4b5682f",
+  "recordedAt": "2026-10-03T06:20:19.974Z",
+  "sha256": "106cc9e199ee09a19034411c5561230473774b1c692c8956c37fc4c3a3859b11",
+  "bytes": 17415,
+  "requestId": "PGTzQXB014zDaAb1sFql",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "709af24efd21ed81b3abaa54ab419644449dc452a9c02e7cfcc0fd5cd52dfa50",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

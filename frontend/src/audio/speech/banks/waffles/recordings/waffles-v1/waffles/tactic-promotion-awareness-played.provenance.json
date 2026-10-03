@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "tactic-promotion-awareness-played",
+      "label": "Tactic promotion awareness played",
+      "text": "The mission is promotion: a pawn reaches the last rank and earns a new rank as a piece. Track its route up the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "4f2fc963a70febb6ddca247f63bdba739fa04ff98887ab5a3a10a08badaef56a",
+  "recordedAt": "2026-10-03T06:20:01.218Z",
+  "sha256": "3247f0f871797e2caa1f74ef9c16e150e659e0664cdea29827a9c382cd79d1c5",
+  "bytes": 27208,
+  "requestId": "rKPc2HtzlXUmHL78O7gx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f7e80791c40c5e79f3e22c4b14afcd557565f46019597685adc82365029c60c5",
+    "bytes": 136716
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

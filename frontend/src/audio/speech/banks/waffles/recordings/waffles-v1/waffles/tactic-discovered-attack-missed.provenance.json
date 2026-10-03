@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed",
+      "label": "Tactic discovered attack missed",
+      "text": "Another move carried a discovered attack: step one piece aside, and the one behind it goes to work. This move doesn't give that order."
+    },
+    "takeId": null
+  },
+  "requestHash": "2ec0b1895dd5937cb51494121b7e1e504b3651dcab3f24f1f5d43172807af1b1",
+  "recordedAt": "2026-10-03T06:19:34.089Z",
+  "sha256": "7dac20a5bb1f281bbcb0d1ee4ed1e88f756b36cd319b3e71a50f0643e9149331",
+  "bytes": 29212,
+  "requestId": "5GEJ12PjSaGFnXHBxb89",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1cc9828f5ce4f6c59afc5d98861d1d60d39911dce79a07922d397a08eb98114e",
+    "bytes": 147165
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

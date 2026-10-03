@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "positional-passed-actual",
+      "label": "Positional passed actual",
+      "text": "A passed pawn on the field! The road ahead is free of enemy pawns, on its own file and either neighbor. Note it on the map."
+    },
+    "takeId": null
+  },
+  "requestHash": "87f2a843d8e75814cbd7523692f8cf0a38a52d7fc33185bb2ba901015896273e",
+  "recordedAt": "2026-10-03T06:20:05.454Z",
+  "sha256": "fcdf23150885fad634c337e612bb16b92e03e1cf4beb80e0ccc8034720dea5d2",
+  "bytes": 28043,
+  "requestId": "hhypUQZbrH8814Bnzq2N",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d7cd178d48e9999487bdf9fdbb7d420428f29f0b2b90e8256f40d488b86abdf5",
+    "bytes": 141732
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-escape",
+      "label": "Explanation frame capture promotion escape",
+      "text": "A pawn capture on the last rank brings promotion, and its king is out of check too."
+    },
+    "takeId": null
+  },
+  "requestHash": "cfa110a72cd770162e02084a1c7814705425d28bb2cfe86c270daea8f7f87282",
+  "recordedAt": "2026-10-03T06:20:24.028Z",
+  "sha256": "6031ba79b2816714698f4399bcd9d9434d5d511c5d8d0240b7c5f7b8e40d2ac1",
+  "bytes": 17962,
+  "requestId": "DzuaBwHHxZYI9qM27P2H",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1791d1c3ed9d7a7692fb98f17a18dbee871b3f6b1b44b26541af4490df4dcb15",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "gradual-erosion",
+      "label": "Gradual erosion",
+      "text": "Another small concession logged. Together with the earlier ones, they've worn the position down. Review the whole sequence."
+    },
+    "takeId": null
+  },
+  "requestHash": "1ae2f576b827ff0ce16cc5fe62ebb4ce326e4fbe10fffb595d0a3e35226094f1",
+  "recordedAt": "2026-10-03T06:20:09.742Z",
+  "sha256": "c09b4af78c6da2133390611485bf25c75a271b7015d229df40690ce4177c50e9",
+  "bytes": 25653,
+  "requestId": "2P7z5C460JjcvCPtbkhZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "17400751b76b5896dcc0e82bd69f63023b8444618eb9b5e6172cbf7c92579e60",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

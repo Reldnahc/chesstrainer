@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "cause-avoiding-bad-trades",
+      "label": "Cause avoiding bad trades",
+      "text": "Full count on that exchange! This capture lets the other side recapture something worth more. That trade costs the mover."
+    },
+    "takeId": null
+  },
+  "requestHash": "17da9fdb102f0304fe8834252c9be1182bccb6dfbcbda28a40824d539374aa0e",
+  "recordedAt": "2026-10-03T06:19:54.380Z",
+  "sha256": "bae85b200c1293a96fe8d05db1d36030d8adb4dc1f2710c2e5912b66d79069e7",
+  "bytes": 27375,
+  "requestId": "6yacqbfWThx96ekOwl1l",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9383fdb109d2b21ae5f55feb59f261a90a557ff35d7b5c95a1b928fd1f81ab6d",
+    "bytes": 137970
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

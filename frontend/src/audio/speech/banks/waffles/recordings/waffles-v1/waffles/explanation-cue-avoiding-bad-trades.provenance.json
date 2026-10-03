@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "explanation-cue-avoiding-bad-trades",
+      "label": "Explanation cue avoiding bad trades",
+      "text": "Tally both halves of the exchange: what you take, and what comes back."
+    },
+    "takeId": null
+  },
+  "requestHash": "c6d1f993c58afa60592762b98b799add560d5c09afe7249a58db7526ef6ca172",
+  "recordedAt": "2026-10-03T06:20:17.492Z",
+  "sha256": "ca06f3a89189c4f9f103252a5d27b22bd6e3bd0fc84b663b2a0ea4945b8876e0",
+  "bytes": 16303,
+  "requestId": "of8vsNrpnDPebokB09N4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "661e758799176a0789854f5f6f694b136d027145c42ba8b505f9b4a8c50f61c5",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

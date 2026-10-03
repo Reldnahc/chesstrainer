@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "explanation-frame-castle-mate",
+      "label": "Explanation frame castle mate",
+      "text": "Castling delivers checkmate, and the king is cut off from every legal square."
+    },
+    "takeId": null
+  },
+  "requestHash": "98a98aba142868709030367d6616736a7fd39be11cad8939fb0862d375a8122d",
+  "recordedAt": "2026-10-03T06:20:26.565Z",
+  "sha256": "8e66445f9b9d7f1ee4119044d0f6568829697d1549ac03db17df690006116e01",
+  "bytes": 17729,
+  "requestId": "DsoCZDQqbBiXPSTqC938",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "95f7b09ca1a90fa6202479262d4948ef03704374ad498eb427d5021948aab7c2",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

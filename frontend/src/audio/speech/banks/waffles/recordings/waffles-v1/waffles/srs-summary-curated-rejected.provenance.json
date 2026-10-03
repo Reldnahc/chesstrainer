@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "srs-summary-curated-rejected",
+      "label": "Srs summary curated rejected",
+      "text": "Not on this exercise's saved-answer list. Off the list doesn't mean off the mark: another legal move can still be reasonable."
+    },
+    "takeId": null
+  },
+  "requestHash": "481fd77b6d27a150e75d4445c3d17d140e579b9c7df530b161f82ddbc8c838bf",
+  "recordedAt": "2026-10-03T06:20:03.869Z",
+  "sha256": "737afca4b8e26b0218b2cb0759b89cfdc5b303aafb25d4d3493cbad12ac38f85",
+  "bytes": 27701,
+  "requestId": "URSsbssl9urZ5OJo8Qxm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b25f33cf5cfcde0df16aa517cb143a5e7d72c7919f4eb5328e695448eb770271",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

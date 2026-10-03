@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "game-review-paused",
+      "label": "Game review paused",
+      "text": "Review standing by. Hit resume below, or take a piece out on patrol."
+    },
+    "takeId": null
+  },
+  "requestHash": "4e648f3e9da352e30b562efddfc0ad4064ad41f54195aab65a0eb713c3675d39",
+  "recordedAt": "2026-10-03T06:20:26.637Z",
+  "sha256": "b2afb614c2f75074d340ce8abf3fe4c8ce2e535269cb43865ff6f8767a5a36f8",
+  "bytes": 16864,
+  "requestId": "mdk6aPupRFZCD95a5Kbm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1bede06c70958829a34b4b4c8f92c5038b4a2c6591044b3bf0d2833f875ae8c2",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

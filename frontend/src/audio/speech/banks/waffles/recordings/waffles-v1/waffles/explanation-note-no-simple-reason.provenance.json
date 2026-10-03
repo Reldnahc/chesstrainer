@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "explanation-note-no-simple-reason",
+      "label": "Explanation note no simple reason",
+      "text": "The saved line doesn't establish a simple tactical reason, and no positional reason is claimed. March through it and weigh every reply."
+    },
+    "takeId": null
+  },
+  "requestHash": "3c28a8fb06f5527a47d66f9d00bfa81d0289cfde22ecfd7a5aebca338e084034",
+  "recordedAt": "2026-10-03T06:20:26.376Z",
+  "sha256": "6c2513f7669f941abcce01bc3f243506f15c800f6dca68b28cd1ba5b16cf9684",
+  "bytes": 29580,
+  "requestId": "yPhmquRpUWrLwDeOauTK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f10cfab053cb05e7841a4bd8458f7c3f6a566f2c335cd4ac0cdf25f70d4f5210",
+    "bytes": 149673
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

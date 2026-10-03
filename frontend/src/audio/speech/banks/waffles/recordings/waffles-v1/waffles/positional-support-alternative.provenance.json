@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "positional-support-alternative",
+      "label": "Positional support alternative",
+      "text": "Another move would have sent a defender to a piece that had none."
+    },
+    "takeId": null
+  },
+  "requestHash": "f68ada00ad50cad8eea340d3a7ce94531bd80063b62fc13a10a6aec042660e96",
+  "recordedAt": "2026-10-03T06:19:47.236Z",
+  "sha256": "8538c27d4a5df53f42d95c71c3c9454beafa1a1e1be10d670e1c7adfb17eb6f5",
+  "bytes": 12747,
+  "requestId": "fIKEQjxtJeoXooKyj6mO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5c69261bfa4b2f5b36d3e183b37faeea36ed65b65dec20e70207dee513f0a910",
+    "bytes": 62319
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

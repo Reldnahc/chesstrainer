@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "reply-check",
+      "label": "Reply check",
+      "text": "Incoming check: that's the strongest reply. The king gets defended before anything else."
+    },
+    "takeId": null
+  },
+  "requestHash": "92eaf0b9e1f5a9c3959b3b22895d8bab5b400c7c404379373bfd37085c34ea4d",
+  "recordedAt": "2026-10-03T06:19:46.274Z",
+  "sha256": "a0ecc348bfc6e01e01d6dfea29aa9a2e22db12438febe09a4ff7a038cf2f1cc0",
+  "bytes": 20310,
+  "requestId": "t2B48DHUAPR7ddLLu3o3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4049e81ea49f2a5f92d348e4d8bef944630115de3afc5e6e5d10fc22555a7744",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

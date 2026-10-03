@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "explanation-frame-castle-check",
+      "label": "Explanation frame castle check",
+      "text": "Castling, and the rook gives check on arrival."
+    },
+    "takeId": null
+  },
+  "requestHash": "636a9ead6789c6040bafbb2d335c848cdd911be6a089434a2b78f1df1a0f2c36",
+  "recordedAt": "2026-10-03T06:20:25.153Z",
+  "sha256": "87cc9e258af4f0b9103a5a5da2ceb47db616611395325ed54f673afd6a033877",
+  "bytes": 11430,
+  "requestId": "hfTN1gmfRf7Z7qMoxluC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1890b836ce8375d66655710ef5f96180b7a9eea2ed22bb207f6f1f51f76cf86d",
+    "bytes": 56050
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

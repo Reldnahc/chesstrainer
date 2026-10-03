@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "explanation-cue-fork",
+      "label": "Explanation cue fork",
+      "text": "Check forcing moves for a single attacker that hits two valuable targets."
+    },
+    "takeId": null
+  },
+  "requestHash": "ac8143301f07bc74b30d9d1a69c23745d20eb2d40f3e25d8332d2390b0436d01",
+  "recordedAt": "2026-10-03T06:20:33.957Z",
+  "sha256": "bd94a4cfdf1990b150c2e67c57cd8bdc876ea5800706a59538fcefdd167faa45",
+  "bytes": 15879,
+  "requestId": "XHdXSQ91M96XxrkZ5MjP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "366f27b4fdd64fcb0f658820065691e7a744f6107e5c6e4a2164a5367e7c374b",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "tactic-back-rank-allowed",
+      "label": "Tactic back rank allowed",
+      "text": "Back rank under threat! The other side gets a route to mate there, with the king trapped behind its own pieces."
+    },
+    "takeId": null
+  },
+  "requestHash": "1c905cf260953931d9e7a05bffd91ecdd07bd70810e34824e249d8b91ed941a6",
+  "recordedAt": "2026-10-03T06:19:57.658Z",
+  "sha256": "27a0743d69d96c02cb1b247068f418043373d7514eb8cb56b9aeb7aa7e0eb465",
+  "bytes": 24803,
+  "requestId": "JQ2xUq5bMUJoDc5bQ7X0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9a6d3a5f48ccd0bdab965e5d9a1bf8a8a050751f215f8b7bb3f35f1101860b21",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

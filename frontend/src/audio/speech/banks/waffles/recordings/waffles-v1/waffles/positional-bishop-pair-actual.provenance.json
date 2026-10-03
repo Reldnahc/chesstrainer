@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "positional-bishop-pair-actual",
+      "label": "Positional bishop pair actual",
+      "text": "One capture, and that bishop pair is finished. The side that lost the bishop no longer has one on each square color."
+    },
+    "takeId": null
+  },
+  "requestHash": "33d7ab71e4120c453bd313ddec3c207afc1128b2da8d365bab0b7af1b79321db",
+  "recordedAt": "2026-10-03T06:19:57.799Z",
+  "sha256": "8a6656bb09b02988b11e916e89692398267f6980e4c1cdc3043ad7799025135c",
+  "bytes": 25490,
+  "requestId": "cDL2ESFuNq6UuHtgxiXJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4b3c5ee733c7585153947e7a2738d57f0b4390359b7bf3f07ead19d789dc527c",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "tactic-hanging-piece-allowed",
+      "label": "Tactic hanging piece allowed",
+      "text": "Sentry missing! A piece stands with no defender, and the other side can take it."
+    },
+    "takeId": null
+  },
+  "requestHash": "cb32246506698271fd2450cab5402649a426d0515a6a3be6a61999783c0ef703",
+  "recordedAt": "2026-10-03T06:19:48.701Z",
+  "sha256": "eb9695e985d3e414b26637f7c9380905fb64d9602c6ff11197d6d4276715ea11",
+  "bytes": 18456,
+  "requestId": "JqMWHATN7Xlz6hsK0b7j",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c9119855af7ce91a0fd316517c1129b6a35cd7ae7224f49e5af13c311bb5918d",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

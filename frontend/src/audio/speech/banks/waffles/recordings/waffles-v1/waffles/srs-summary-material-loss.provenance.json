@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "srs-summary-material-loss",
+      "label": "Srs summary material loss",
+      "text": "At the end of the saved line, the side that played this move is behind on material compared with the start."
+    },
+    "takeId": null
+  },
+  "requestHash": "912ddbc1bf0f4751831f1f38d9c595f1881c06f34fa2f4dae94c175a4929c873",
+  "recordedAt": "2026-10-03T06:19:56.644Z",
+  "sha256": "ed2af3ac73b947868dbd3fafa8706d42e085447a420e3babbbf509513e9ffaea",
+  "bytes": 21611,
+  "requestId": "WvY9LuneviN3S4y2dxuW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "71987094637e8ebfec7e7f66dd2195f146c10608233ecbbf5c14c262de2fbc0c",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

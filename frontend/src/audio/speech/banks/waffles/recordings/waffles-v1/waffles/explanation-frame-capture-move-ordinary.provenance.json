@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary",
+      "label": "Explanation frame capture move ordinary",
+      "text": "Capture made. One piece leaves the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "2d9f70aa27d1af7a74eb3e85133bdb426f193a0d8fe990ea5dea588b4acc31f0",
+  "recordedAt": "2026-10-03T06:20:15.360Z",
+  "sha256": "7b1651d544ce9b617fd74c9fba8ccce3b2292f3dc73fc2a57988ebd18a06745f",
+  "bytes": 10873,
+  "requestId": "BVX2uYjXV9B3pxAGxIol",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ece72a3dcdeddc4d0693d6bb773eb1ea44658f6729c97351e91156bca6f029b6",
+    "bytes": 53542
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

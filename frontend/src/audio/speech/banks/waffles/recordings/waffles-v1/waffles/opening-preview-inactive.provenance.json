@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "opening-preview-inactive",
+      "label": "Opening preview inactive",
+      "text": "Scheduled recalls drill the moves of your chosen side. A position shared by your active studies uses one card."
+    },
+    "takeId": null
+  },
+  "requestHash": "9abc7f84b700f253d30bcbc832c3523fcc6fca07c3bfa932895cc4cf440385f2",
+  "recordedAt": "2026-10-03T06:20:14.762Z",
+  "sha256": "fda543642215d186cca3c7cc1590671ba8128a36c46c5e7e0a28ef92160ede7d",
+  "bytes": 24200,
+  "requestId": "SRe5R80lar9QRTmeoAm4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4eb9c52cb2b86633d1faacd48f89340b63701d0cb3f28ffce6fd68f10cfc9ea0",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

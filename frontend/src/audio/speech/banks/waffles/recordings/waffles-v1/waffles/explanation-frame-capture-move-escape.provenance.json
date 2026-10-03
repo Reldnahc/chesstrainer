@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-escape",
+      "label": "Explanation frame capture move escape",
+      "text": "A capture, and check is lifted from the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "3ecdc370ff1212bdd6de22e7aeb20b48c6fca139a3b4c890805714fdb693384f",
+  "recordedAt": "2026-10-03T06:20:18.478Z",
+  "sha256": "5f6304279ba8acc74d7ecae8ca67624aa9a8b2508bbe12fa90d7bd89778cc637",
+  "bytes": 11201,
+  "requestId": "mtEmNxRUoEsXazhSa4eI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9a07c46a813dc66313a265c70bc8f249039ab6a1d8c4d4bda112353be1b05a7d",
+    "bytes": 54796
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

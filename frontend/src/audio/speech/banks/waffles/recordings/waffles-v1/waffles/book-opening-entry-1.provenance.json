@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "book-opening-entry-1",
+      "label": "Book opening entry 1",
+      "text": "Straight from the manual: a book move."
+    },
+    "takeId": null
+  },
+  "requestHash": "aca780bf48333022b4740eaeac9aa40dc178a72ee85cb24d891502992d97acae",
+  "recordedAt": "2026-10-03T06:20:28.808Z",
+  "sha256": "2d57aafd1f9de59852c3b20f0d4343a4ee1beae5d7f3ddcbd0cce711c2d27619",
+  "bytes": 9646,
+  "requestId": "RmB81ahxlwBvkOKpRIKs",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1b86f5de5ee55e051303051775800d4d00e547c46570b125cdba6cc7ba6ffb61",
+    "bytes": 47273
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

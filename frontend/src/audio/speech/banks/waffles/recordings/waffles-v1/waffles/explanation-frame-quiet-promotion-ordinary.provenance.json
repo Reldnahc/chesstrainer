@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-promotion-ordinary",
+      "label": "Explanation frame quiet promotion ordinary",
+      "text": "Promoted! The pawn earns its new rank on the last row."
+    },
+    "takeId": null
+  },
+  "requestHash": "60a49c72ff6e15d2ca512fd0b4cd61ee179ed4e211717b51928e88bd0c0be865",
+  "recordedAt": "2026-10-03T06:20:10.848Z",
+  "sha256": "eb4387916c45fa47a7defcff6544bb91d4b8408c5f43d5ed93c3218f75d9b901",
+  "bytes": 14669,
+  "requestId": "S77IPmD7GBp0v1xjC3B7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d5482aee0a0e440f384e0e70de342a2e54f17f3f711c3d4495419ea06c868a79",
+    "bytes": 72768
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

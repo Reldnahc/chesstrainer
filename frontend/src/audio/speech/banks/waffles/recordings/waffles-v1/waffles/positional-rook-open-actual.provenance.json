@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "positional-rook-open-actual",
+      "label": "Positional rook open actual",
+      "text": "The rook holds an open file, cleared of every pawn. Clear road ahead."
+    },
+    "takeId": null
+  },
+  "requestHash": "0b4a08a66ca575b84a4a5fb861b268842817ca6a7a00bde126257e03d6d04a16",
+  "recordedAt": "2026-10-03T06:19:57.910Z",
+  "sha256": "62ca22639f9f61880adfedefa19c729a36a6e798c9dc74bdb4b02c26d0fab119",
+  "bytes": 17207,
+  "requestId": "OqugoeJjMSO3BRNLuURQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3282f91f70d50e0c6d8231163f5fe891fad855caf0ed51d9c27d106aec937a98",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

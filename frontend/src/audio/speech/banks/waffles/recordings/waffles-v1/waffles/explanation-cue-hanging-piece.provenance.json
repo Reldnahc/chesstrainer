@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "explanation-cue-hanging-piece",
+      "label": "Explanation cue hanging piece",
+      "text": "Before moving, inspect your pieces for any that can be captured with no useful recapture."
+    },
+    "takeId": null
+  },
+  "requestHash": "8cc725191f09a527b8f8a37c3972af289b55492f2d39b9c7b85bda24d20e3782",
+  "recordedAt": "2026-10-03T06:20:31.612Z",
+  "sha256": "86efa2b0e37393b508d69552c3695981d4da6f7469e6cba9ce8a97282bf98d29",
+  "bytes": 19720,
+  "requestId": "paQI6tSJgRThViVqWHd2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0be5d386d5f97cf0588eaf57b08ce519c2ce2a6b5ad2f2ff518b4e5adfbf716f",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

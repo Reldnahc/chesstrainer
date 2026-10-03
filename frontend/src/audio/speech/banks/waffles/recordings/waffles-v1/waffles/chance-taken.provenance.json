@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "chance-taken",
+      "label": "Chance taken",
+      "text": "Chance seized! The opponent's last move offered an opening, and this move went straight for it."
+    },
+    "takeId": null
+  },
+  "requestHash": "1bb5ff89e903078cdc834bdbac0b1a4a5eb6906e35e0ed4d5f0ccfa8cb0b8cb9",
+  "recordedAt": "2026-10-03T06:20:03.155Z",
+  "sha256": "3a394a433481909ad5b5ce4b1aa946a728672c3da901ef772969dbbcdaa1b459",
+  "bytes": 22002,
+  "requestId": "39fGvf19w9SuGJxVonad",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "827ecb1048d7c62068ba951cc7b79139a8653fa9b4c51cfbbc3877169edb7eba",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

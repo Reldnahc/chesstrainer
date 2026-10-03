@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "srs-summary-engine-rejected",
+      "label": "Srs summary engine rejected",
+      "text": "Not cleared for this exercise. No clear tactical reason shows in the moves, so try another."
+    },
+    "takeId": null
+  },
+  "requestHash": "e0b7f6d0609c75c3b56a9c87dd2b5ed09f8f450625546ba1173e9a5f286f36a9",
+  "recordedAt": "2026-10-03T06:20:00.188Z",
+  "sha256": "1d39b8c50394f0aebbb2349fe6cab189e01f2c4aeb2674628f306af206bb3844",
+  "bytes": 20403,
+  "requestId": "rtJ68W8skFQQASV9dJTd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "af9c7a74a06a516507036e667e5fac59727fe61705fb35614cbf675b348c2a5f",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

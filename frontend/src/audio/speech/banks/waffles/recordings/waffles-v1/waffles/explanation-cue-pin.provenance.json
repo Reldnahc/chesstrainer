@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "explanation-cue-pin",
+      "label": "Explanation cue pin",
+      "text": "Before moving a pinned piece, check what it's guarding behind it: the king, or a bigger asset."
+    },
+    "takeId": null
+  },
+  "requestHash": "997eede7d7a50bfd80b6735c360565ba17b820f3720159f01be73d0d181f542d",
+  "recordedAt": "2026-10-03T06:20:35.479Z",
+  "sha256": "eb6904207f5568c63883b96562fbf271834441365c8ad6b9381a4567387afa9a",
+  "bytes": 21423,
+  "requestId": "WgL5POL2VPzK9XfTF4xj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1f88ce62533b2d80a2475e2adea36172e587b0822c983359081ea1003718d0e4",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

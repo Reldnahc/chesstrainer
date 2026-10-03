@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "book-opening-follow-7",
+      "label": "Book opening follow 7",
+      "text": "The drill continues: another book move."
+    },
+    "takeId": null
+  },
+  "requestHash": "50db02ef2168b729a1f62e8870a14faff89a4bafb096a91dfd841c050d0dcbcf",
+  "recordedAt": "2026-10-03T06:20:14.066Z",
+  "sha256": "ed8a1420edbf73cb7d7e652e03836440cb685a1bd3aa033f4c16f31b7a4d71a5",
+  "bytes": 10782,
+  "requestId": "XOM7FtQg55jrj2KVcx0g",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cec60580b468d2cbe7e4e9146ffb0b9cb71a7e0accd5578527ffd66637d559f0",
+    "bytes": 52288
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

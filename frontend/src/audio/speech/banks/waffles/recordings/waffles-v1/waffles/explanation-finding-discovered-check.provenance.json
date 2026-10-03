@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check",
+      "label": "Explanation finding discovered check",
+      "text": "A piece clears the way, and the one behind it gives check."
+    },
+    "takeId": null
+  },
+  "requestHash": "0c087e431d51149ae2e8b13e14723ddb4a37407c9d3bf4840fe631d5d1d88b88",
+  "recordedAt": "2026-10-03T06:20:21.129Z",
+  "sha256": "f4adcd73f9bfd73698a524c79a0c199f84ae9ebb24cb834d73b3d81562c8eeeb",
+  "bytes": 12738,
+  "requestId": "CeVX4jiJAac7ABMcZLbo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fa58d8b47561337bbabbd4610a534cbbe2ad926834b2fcc8f4d9beed2cf6027a",
+    "bytes": 62319
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

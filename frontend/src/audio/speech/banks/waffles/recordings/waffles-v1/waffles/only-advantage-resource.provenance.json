@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "only-advantage-resource",
+      "label": "Only advantage resource",
+      "text": "Only this move kept the advantage among the ones we checked; all the others lost. Mission-critical."
+    },
+    "takeId": null
+  },
+  "requestHash": "23450f2e0826c91a94c5554345dbda3f85be5444f2fbf168998c72fa09bf3b87",
+  "recordedAt": "2026-10-03T06:19:43.203Z",
+  "sha256": "50544bb643f656e66d045192d5ae26d9c74f802f472a20f756ccbcd8e570a67c",
+  "bytes": 21523,
+  "requestId": "cMpZfk39GPcXurLjKrzw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "eb87292f460c749ada38e492e71b7634be85ace6a67cb0147529933223f5830e",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

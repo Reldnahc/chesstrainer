@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "positional-castling-alternative",
+      "label": "Positional castling alternative",
+      "text": "The alternative was castling, which moves king and rook together in one turn."
+    },
+    "takeId": null
+  },
+  "requestHash": "c053bd6bd4d6b031ce61f966ca1b412dd827522779381ad0c52ae471c4841905",
+  "recordedAt": "2026-10-03T06:19:55.840Z",
+  "sha256": "cbbd1ec59add2ed49d0ff20eb14c22f04d0f5e186985922834123631560a5faf",
+  "bytes": 18342,
+  "requestId": "quHR5ZrGH8lN1uXvEBrT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1ddf8c67c4d4a3d202ba0262fb7425fec5345f7e2021853fc1069b5a9d2a91ec",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "explanation-finding-pin-defenders-no-recapture",
+      "label": "Explanation finding pin defenders no recapture",
+      "text": "The defenders are pinned to their king and can't recapture. Capture confirmed, and the line shown gains material."
+    },
+    "takeId": null
+  },
+  "requestHash": "5bf4c96f80c30d8b60355cc700c3756af6cff570ad789f8a8a1211a385c8ebec",
+  "recordedAt": "2026-10-03T06:20:11.380Z",
+  "sha256": "bb1b00307804d6676fa8b1e624aeff33aa3967c04679eb03e1b6bd8b30d76000",
+  "bytes": 23618,
+  "requestId": "9Qg64tVeOXeOVOnkVhjV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "77bb09f0f1008f66dff8ade88394d7070a85f59e67f40eb85b9c49d90bb3d4f6",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

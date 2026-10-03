@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "explanation-cue-missed-tactical-capture",
+      "label": "Explanation cue missed tactical capture",
+      "text": "Before a quiet move, scan for undefended enemy pieces."
+    },
+    "takeId": null
+  },
+  "requestHash": "3c9ff7ff930fcc852993dcb3d3d14ffc51b9518ba2f8e491b1d1f610e684fa71",
+  "recordedAt": "2026-10-03T06:20:32.662Z",
+  "sha256": "259708695d0b3856b3ff32cf9a41551ac85ed9153d00b48112a309706889f051",
+  "bytes": 14273,
+  "requestId": "lX8KJkjekD54OKm5uj5B",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ae6d809b5a10b9b9cfefc5b2b850bc72325bc79d0539ba1a48e5e5a70b545bea",
+    "bytes": 70261
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

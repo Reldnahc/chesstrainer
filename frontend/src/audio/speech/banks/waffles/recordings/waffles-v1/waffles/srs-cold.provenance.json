@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "srs-cold",
+      "label": "Srs cold",
+      "text": "Survey the board, then make your move when ready."
+    },
+    "takeId": null
+  },
+  "requestHash": "c601c7ea6cd64bdfe38717616b87eaa90bc4ba41f5f38f3746aa61a44c51c06d",
+  "recordedAt": "2026-10-03T06:19:48.373Z",
+  "sha256": "c0c91df9e588c1bf89fe673a74a75daf406d45428e4aec05142addea3339f942",
+  "bytes": 11302,
+  "requestId": "MuZYRQfvnkMH85skem5S",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4451f9d497a9699dcfc775f9044a6c5ac74f9f5435d8358aa5648abc8f889751",
+    "bytes": 54796
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

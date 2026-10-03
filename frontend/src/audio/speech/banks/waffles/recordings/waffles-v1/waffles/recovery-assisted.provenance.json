@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "recovery-assisted",
+      "label": "Recovery assisted",
+      "text": "The setback is repaired, with help from the other side's errors. Take the reinforcements."
+    },
+    "takeId": null
+  },
+  "requestHash": "b75e291e32863f3c770aefea48e6b9b5e39cf02bf86aae650a3dbfa27052f1c9",
+  "recordedAt": "2026-10-03T06:20:01.441Z",
+  "sha256": "bec8f05c8183d8830c0e2b649ae4a3c6ea9aee20d5f6a024837297564cbc6fc0",
+  "bytes": 17916,
+  "requestId": "c4z8mmGNkOlWJ8FOca9J",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5322438b6f70094ba9add8dd69afabda0289f88563711544f6e77b379a2f58e5",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

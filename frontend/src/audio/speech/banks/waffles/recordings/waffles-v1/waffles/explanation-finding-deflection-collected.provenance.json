@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected",
+      "label": "Explanation finding deflection collected",
+      "text": "The defender is lured off its post, and its abandoned piece is captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "7527f214b5cdc4c52d30182193556a437c504c43f528d009d82a60c43fb5d3fc",
+  "recordedAt": "2026-10-03T06:20:18.404Z",
+  "sha256": "c3fde4d72eb2a4958d0ed471ceb88a4118e525b1c0f1294464ba59b68963f30c",
+  "bytes": 15792,
+  "requestId": "NaBxKLolEvlpq0MNaih4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f8c2bdf125ba34412202403b118bf4e914e890270e6bf0cfef80697b3831eda2",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

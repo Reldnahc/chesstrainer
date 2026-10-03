@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "positional-development-alternative",
+      "label": "Positional development alternative",
+      "text": "Another move would have called a minor piece up from its starting square."
+    },
+    "takeId": null
+  },
+  "requestHash": "349f1e05a65a5daf7fe47424239e8c84b195b5a9d2804e8b986c74ad603b6450",
+  "recordedAt": "2026-10-03T06:19:56.549Z",
+  "sha256": "a0060a1cdbe62056eb68df8f1f076c6746372b758e65cf3539052b14a4e5fc2d",
+  "bytes": 13616,
+  "requestId": "ycl0IMm6DVG9ouPnRkXz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ea00548121d6873305e87eb98a31bb1db583d51a4734cd9611e86f3fb151c3e2",
+    "bytes": 66499
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

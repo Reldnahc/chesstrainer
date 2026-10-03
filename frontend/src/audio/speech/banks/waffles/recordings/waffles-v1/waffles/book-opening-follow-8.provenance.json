@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "book-opening-follow-8",
+      "label": "Book opening follow 8",
+      "text": "The manual still covers it. Book status tells you where we stand, not what the move is worth."
+    },
+    "takeId": null
+  },
+  "requestHash": "2e8bcc77701fa42c756b1824a55407349b5fb4d13fbb34d4ec87a123568ee818",
+  "recordedAt": "2026-10-03T06:20:15.467Z",
+  "sha256": "3b89ad04d8c1e3a9a40ca5794a7d0a62e838c7019f4f1c3f6ec3ed1d0925108b",
+  "bytes": 19716,
+  "requestId": "LSvkXgk2Zcz6kN8iEzlx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a0708b0aca7ed998367fe520ea60f5d7eba4f8f95c087b464ff4f168ddeae2dc",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

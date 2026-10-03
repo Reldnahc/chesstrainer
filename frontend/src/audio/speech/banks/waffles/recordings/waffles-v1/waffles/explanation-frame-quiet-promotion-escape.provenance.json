@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-promotion-escape",
+      "label": "Explanation frame quiet promotion escape",
+      "text": "Promotion on the last rank, and the promoting side's king is out of check."
+    },
+    "takeId": null
+  },
+  "requestHash": "a08326391da506a1e012dd57f83890b40ab8fecbd6af221f4e7072a21ea7e1fb",
+  "recordedAt": "2026-10-03T06:20:14.390Z",
+  "sha256": "7e217e51ad1fe254132031c64e06a1302b949da68fb90d6291b9ca1fe7392304",
+  "bytes": 16834,
+  "requestId": "h0TnucfjftGO4JmuEKvi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5e8eb60f525cac41fe73daec32ceccdd139b6311d6a6612c0a0f7b6ef381f7d2",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

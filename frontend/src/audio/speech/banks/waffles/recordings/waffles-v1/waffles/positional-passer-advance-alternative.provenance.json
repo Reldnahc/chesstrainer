@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "positional-passer-advance-alternative",
+      "label": "Positional passer advance alternative",
+      "text": "Another move would have sent the passed pawn on another advance."
+    },
+    "takeId": null
+  },
+  "requestHash": "2989f682c5a91100b590e8849f96b9e3edebf7028fcce67f0a1e38b51b1886a9",
+  "recordedAt": "2026-10-03T06:19:42.243Z",
+  "sha256": "e47296bba25a4d7d3483aed854d3d4cdede7877bd2cdbfe94140e2d05e7e23d6",
+  "bytes": 12926,
+  "requestId": "usQ0DfcSZSF0h0zCccBq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "eccd9205e6e5f6acafc800303d2666f141ed34867474b53fdee33e0f0accd439",
+    "bytes": 62319
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

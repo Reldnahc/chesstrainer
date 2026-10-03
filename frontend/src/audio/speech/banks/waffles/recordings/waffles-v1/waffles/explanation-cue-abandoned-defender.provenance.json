@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "explanation-cue-abandoned-defender",
+      "label": "Explanation cue abandoned defender",
+      "text": "A defender on the move leaves something uncovered. Check what, before it goes."
+    },
+    "takeId": null
+  },
+  "requestHash": "9755b4b5e10632eaf9eeeeeb5b6a9676a2783c777fbd33f10a801477268c5a83",
+  "recordedAt": "2026-10-03T06:20:16.225Z",
+  "sha256": "30dd027cbc9c2fe46ca2d5eca6ea2ea72dd3c90db8592158b513724362268c08",
+  "bytes": 17466,
+  "requestId": "xbHCmbtYLtYNsyLrJLXJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "47df0f9cee25938eceecd25ad9d172532971fabec14e814d8b9f34ee7f4beccc",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

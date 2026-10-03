@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "srs-fallback-good",
+      "label": "Srs fallback good",
+      "text": "Top work! The reason behind it goes in the kit too."
+    },
+    "takeId": null
+  },
+  "requestHash": "9d310ff9c1f3feb46f7f9e743f2ad8f59d84e82e33a6ae55ce580aab74e9395f",
+  "recordedAt": "2026-10-03T06:20:05.917Z",
+  "sha256": "7681bd59f6190f49349f494408f70992cfe3365f996d208f0134a6efb2ccaef7",
+  "bytes": 13000,
+  "requestId": "JCc8VZxdSW0l9Cn1kxR6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "11968a5ebed6b9d3a2c22d1f8217e9f507504c51530a8e763dec4b65a116716f",
+    "bytes": 63991
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

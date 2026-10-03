@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "mate-finished",
+      "label": "Mate finished",
+      "text": "Checkmate, mission complete! The king is surrounded, with no legal way out."
+    },
+    "takeId": null
+  },
+  "requestHash": "25310fd059e44d8a09baac21c70d9b79d186dd4eab956e19808568d27a8a795e",
+  "recordedAt": "2026-10-03T06:19:44.385Z",
+  "sha256": "0c14ea193322faf869f647f5dd55b8f3cbecffaa3e0066c25f68819e03beaa0c",
+  "bytes": 18779,
+  "requestId": "JgUEnAkaYdQl2sPMwmwI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e8e9e4354a932189412453dbabd986fab484f7807633d882c85264d9b2e6a8ea",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

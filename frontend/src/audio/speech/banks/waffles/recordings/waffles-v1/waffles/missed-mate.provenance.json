@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "missed-mate",
+      "label": "Missed mate",
+      "text": "Forced checkmate was available, and this move stands down. Back to that position. Find the finish."
+    },
+    "takeId": null
+  },
+  "requestHash": "722af71d305e1059c3e42d7ca623bdccbfaeb0ce9151bf69c8db4bcdb06c204f",
+  "recordedAt": "2026-10-03T06:20:05.690Z",
+  "sha256": "a44a237da12db1e72dd0b6c7041c2917d3f86399e20aefcf19dbff74d23f0c41",
+  "bytes": 22002,
+  "requestId": "7bFlKUitw0YIbSu0df7h",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7a0b621131ca59911dd0bc18078be51cda122be6115482db98a0b3ca07135cc8",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

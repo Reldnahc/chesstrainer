@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "tactic-promotion-awareness-allowed",
+      "label": "Tactic promotion awareness allowed",
+      "text": "Eyes on that pawn! The other side gets a shot at promotion. Track its route to the last rank."
+    },
+    "takeId": null
+  },
+  "requestHash": "45bf99193bc8d91715a3623dcdf7cbfe444b761abbd7f34abaa8a972f829351f",
+  "recordedAt": "2026-10-03T06:20:02.909Z",
+  "sha256": "46925b3f20b4c3fb3f4a1f7507fce53a57cbc59d067f4aafbcfa9ba411ead688",
+  "bytes": 20421,
+  "requestId": "5cO8TfmjHHYbwjuUyD9B",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c71149a17f79d04d8a4fbb1013f2c35dc435b0ee20429593935fd61b80957e9a",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

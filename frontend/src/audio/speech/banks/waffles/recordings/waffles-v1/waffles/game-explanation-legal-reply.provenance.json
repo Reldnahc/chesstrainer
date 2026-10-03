@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "game-explanation-legal-reply",
+      "label": "Game explanation legal reply",
+      "text": "The other side has the reply marked on the board. Play it and see what follows."
+    },
+    "takeId": null
+  },
+  "requestHash": "518d18839f427924a7496302384360f7eb2e781ad17587b3c993d509c5b1352a",
+  "recordedAt": "2026-10-03T06:20:30.090Z",
+  "sha256": "b9e4fc705d6dce2f05edc634b5e599ddf788177af28eed89cb6fba3692b23feb",
+  "bytes": 17737,
+  "requestId": "ajTmcOUGByu2mG5oymdW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "10c31b50a2c3501bb877fdff540982dd6d3117c0b864a47700f0d5bfc03686e2",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

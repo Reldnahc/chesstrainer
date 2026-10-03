@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "positional-king-flight-actual",
+      "label": "Positional king flight actual",
+      "text": "New exit for the king, a legal square it lacked a move ago. Always worth having."
+    },
+    "takeId": null
+  },
+  "requestHash": "a08aaf195f8a2431c3aae8d3ef2658afb4c06cafe57d848e534f5cbe6e61cb75",
+  "recordedAt": "2026-10-03T06:19:52.052Z",
+  "sha256": "4bf2ff734d62ebe2885c87d4b560f441a380cc6177a28ede49ea942886f55e0d",
+  "bytes": 18392,
+  "requestId": "WJov0Pi5eZloR5FL3ppp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c9dbb9d55e59b458e71f2602cd96b4a91e4cd647898f4a746fac9aaf7229ae5c",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

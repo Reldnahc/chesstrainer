@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "explanation-cue-double-attack",
+      "label": "Explanation cue double attack",
+      "text": "Hunt for one order that opens two fronts. A check or a freshly opened line counts as a front."
+    },
+    "takeId": null
+  },
+  "requestHash": "3e57303fe1c6001209c36972edb8d8897a4275ee51f0fcf78d64eacc866b5455",
+  "recordedAt": "2026-10-03T06:20:12.281Z",
+  "sha256": "99c7971bca2ce41ed2fd245c0215a6889fc5c6e8c6b2e186892b32f384882f97",
+  "bytes": 21928,
+  "requestId": "N47EGucrUb27Wnau7k0z",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "db0c18779a8ee6e6d9d241ed2a57646631a1f3f9fd60e08881e9ec4fe1ad63ee",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}
