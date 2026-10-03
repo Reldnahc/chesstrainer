@@ -26,6 +26,11 @@ def test_walter_revision_preserves_meanings_and_the_locked_voice():
         item["id"]: item for item in read(BANK / "revisions/walter-pilot-v1.json")["recordings"]
     }
     assert len(changes) == len(revision["recordings"])
+    # Coaches no longer voice Maia (human-move) readings, so those recordings
+    # are retired; every other original recording must survive.
+    retired = {key for key in before if key.startswith("human-")}
+    assert retired and not retired & after.keys()
+    before = {key: item for key, item in before.items() if key not in retired}
     assert before.keys() <= after.keys()
     for field in ("coachId", "voiceId", "providerVoiceId", "modelId", "settings", "silentIds"):
         assert original[field] == current[field]
