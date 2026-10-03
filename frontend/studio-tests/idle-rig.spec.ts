@@ -1,7 +1,14 @@
 import { expect, test } from "@playwright/test";
+import { readFileSync } from "node:fs";
+import path from "node:path";
 import { rigChannels } from "../src/coach/idleRig";
 import { expressions } from "../src/coach/model";
 import type { IdleChannel } from "../src/coach/idleModel";
+
+// The canonical selectable IDs, read without importing artwork into Node. The roster
+// test below requires them to match the studio cast, so each coach can be its own case.
+const contract = JSON.parse(readFileSync(path.resolve("../backend/tests/fixtures/api_contract.json"), "utf8"));
+const coachIds: string[] = contract.components.schemas.CoachPreferences.properties.coach_id.enum;
 
 const selectors: Record<IdleChannel, string> = {
   eyes: ".coach-eyes, .animal-eyes",
@@ -30,15 +37,20 @@ const selectors: Record<IdleChannel, string> = {
   hem: ".coach-idle-hem",
 };
 
-test("rig capabilities match mounted production artwork, including conditional accents", async ({ page }) => {
-  test.setTimeout(90_000);
+test("the rig check covers every coach in the studio cast", async ({ page }) => {
   await page.goto("/");
-  await page.getByRole("combobox", { name: "Motion intensity" }).selectOption("still");
   const ids = await page.locator(".studio-cast .coach-avatar").evaluateAll(
     avatars => avatars.map(avatar => avatar.getAttribute("data-coach")!),
   );
   expect(ids.length).toBeGreaterThan(0);
-  for (const id of ids) {
+  expect([...ids].sort()).toEqual([...coachIds].sort());
+});
+
+test.describe("rig capabilities match mounted production artwork, including conditional accents", () => {
+  test.describe.configure({ mode: "parallel" });
+  for (const id of coachIds) test(id, async ({ page }) => {
+    await page.goto("/");
+    await page.getByRole("combobox", { name: "Motion intensity" }).selectOption("still");
     await page.locator(`.studio-cast button:has([data-coach="${id}"])`).click();
     await expect(page.locator(".studio-expression .coach-avatar").first())
       .toHaveAttribute("data-motion-profile", id);
@@ -93,7 +105,7 @@ test("rig capabilities match mounted production artwork, including conditional a
         });
       }
     }
-  }
+  });
 });
 
 test("optional resources are anatomical and expression-aware with a conservative unknown-rig fallback", () => {

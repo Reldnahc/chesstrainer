@@ -1,9 +1,10 @@
 import { defineConfig, devices } from "@playwright/test";
+import { studioWorkers } from "./playwright.shared";
 
 export default defineConfig({
   testDir: "./audio-tests",
   outputDir: "./audio-test-results",
-  workers: 1,
+  workers: studioWorkers, fullyParallel: true,
   use: { baseURL: "http://127.0.0.1:5176", trace: "retain-on-failure" },
   projects: [
     { name: "desktop", use: { ...devices["Desktop Chrome"], viewport: { width: 1440, height: 1050 } } },

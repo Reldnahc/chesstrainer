@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { readFileSync } from "node:fs";
 import path from "node:path";
 import { viteFsPath } from "./helpers/viteFsPath";
 import { configuredGestures, idleTrackStyle } from "../src/coach/idleGestures";
@@ -6,10 +7,22 @@ import { expressions } from "../src/coach/model";
 import { classicPerformance } from "../src/coach/classic/performance";
 import { coachPerformance } from "../src/coach/motionVocabulary";
 
-test("every configured idle has distinct canonical tracks on its actual expression artwork", async ({ page }) => {
-  test.setTimeout(120_000);
+// The canonical selectable IDs, read without importing artwork into Node. The roster
+// test below requires them to match the registry and studio cast, so each coach can be its own case.
+const contract = JSON.parse(readFileSync(path.resolve("../backend/tests/fixtures/api_contract.json"), "utf8"));
+const coachIds: string[] = contract.components.schemas.CoachPreferences.properties.coach_id.enum;
+const pools = (id: string) => Object.fromEntries(expressions.map((expression) => [
+  expression,
+  configuredGestures(coachPerformance(id, classicPerformance), expression).map((gesture) => ({
+    id: gesture.id,
+    style: idleTrackStyle([{ gesture }]),
+    authoredTracks: gesture.tracks,
+  })),
+]));
+const slots = (id: string) => Object.values(pools(id)).reduce((sum, pool) => sum + pool.length, 0);
+
+test("the idle articulation check covers the whole registered cast", async ({ page }) => {
   await page.goto("/");
-  await page.getByRole("combobox", { name: "Motion intensity" }).selectOption("still");
   const ids = await page.locator(".studio-cast .coach-avatar").evaluateAll(
     (avatars) => avatars.map((avatar) => avatar.getAttribute("data-coach")!),
   );
@@ -19,9 +32,15 @@ test("every configured idle has distinct canonical tracks on its actual expressi
     return selectableCoaches.map((coach: { id: string }) => coach.id) as string[];
   }, root);
   expect(ids).toEqual(registered);
-  let checkedSlots = 0;
-  let expectedSlots = 0;
-  for (const id of registered) {
+  expect([...registered].sort()).toEqual([...coachIds].sort());
+  expect(coachIds.reduce((sum, id) => sum + slots(id), 0)).toBeGreaterThan(0);
+});
+
+test.describe("every configured idle has distinct canonical tracks on its actual expression artwork", () => {
+  test.describe.configure({ mode: "parallel" });
+  for (const id of coachIds) test(id, async ({ page }) => {
+    await page.goto("/");
+    await page.getByRole("combobox", { name: "Motion intensity" }).selectOption("still");
     await page.locator(`.studio-cast button:has([data-coach="${id}"])`).click();
     await expect(page.locator(".studio-expression .coach-avatar").first())
       .toHaveAttribute("data-motion-profile", id);
@@ -30,16 +49,7 @@ test("every configured idle has distinct canonical tracks on its actual expressi
     await expect.poll(() => page.locator(".studio-expression .coach-avatar").evaluateAll(
       (avatars) => avatars.map((avatar) => avatar.getAttribute("data-expression")).sort(),
     )).toEqual([...expressions].sort());
-    const pools = Object.fromEntries(expressions.map((expression) => [
-      expression,
-      configuredGestures(coachPerformance(id, classicPerformance), expression).map((gesture) => ({
-        id: gesture.id,
-        style: idleTrackStyle([{ gesture }]),
-        authoredTracks: gesture.tracks,
-      })),
-    ]));
-    const expected = Object.values(pools).reduce((sum, pool) => sum + pool.length, 0);
-    expectedSlots += expected;
+    const expected = slots(id);
     const result = await page.locator(".studio-expression .coach-avatar").evaluateAll((avatars, { coachId, pools }) => {
       // Apply the same canonical channel styles as the production coordinator.
       // This proves actual SVG targets exist; clock tests own their scheduling.
@@ -110,11 +120,8 @@ test("every configured idle has distinct canonical tracks on its actual expressi
         else portrait.setAttribute("style", originalStyle);
       }
       return { failures, checked };
-    }, { coachId: id, pools });
+    }, { coachId: id, pools: pools(id) });
     expect(result.failures).toEqual([]);
     expect(result.checked).toBe(expected);
-    checkedSlots += result.checked;
-  }
-  expect(checkedSlots).toBe(expectedSlots);
-  expect(checkedSlots).toBeGreaterThan(0);
+  });
 });

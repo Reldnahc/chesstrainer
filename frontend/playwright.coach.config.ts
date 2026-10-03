@@ -1,9 +1,10 @@
 import { defineConfig, devices } from "@playwright/test";
+import { studioWorkers } from "./playwright.shared";
 
 export default defineConfig({
   testDir: "./studio-tests",
   outputDir: "./studio-test-results",
-  workers: 1,
+  workers: studioWorkers, fullyParallel: true,
   use: { baseURL: "http://127.0.0.1:5174", trace: "retain-on-failure" },
   projects: [
     {
