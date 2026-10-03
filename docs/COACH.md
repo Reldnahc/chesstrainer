@@ -208,10 +208,16 @@ replacement, unmount or changed identity. Still and device-default reduced motio
 keep static expressions while audio plays. Explicit Animated overrides the device
 preference, as elsewhere. Offscreen portraits stop sampling and resume at the
 current recording time; hidden tabs cancel audio under the existing sound policy.
+When a line ends or its handle is cleared, the mouth eases closed over a few
+frames before the portrait stops speaking, and a replacement handle continues
+from the current mouth. The authored and speaking mouth layers then cross-fade
+over 140 ms at the start and end of each line. Still, a changed coach and
+unmounting still restore the authored face at once.
 
 Walter's `WalterSpeechMouth` uses closed lips, rounded/wider openings, clipped
 teeth/tongue and a small beard/jaw movement. Quiet audio closes the lips; ending
-or cancelling playback restores the exact authored expression. The mouth is
+or cancelling playback closes them and cross-fades back to the exact authored
+expression. The mouth is
 separate from Brilliant's entrance mouth scale so the two cannot compound.
 `HumanFeatures` offers a mouth slot. The other nine humans fill it with the
 shared `human/HumanSpeechMouth`, which places `OrganicSpeechMouth` on Walter's

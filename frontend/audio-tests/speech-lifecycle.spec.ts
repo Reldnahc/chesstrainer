@@ -115,15 +115,18 @@ test("a replacement handle owns subsequent frames and unmount cancels its animat
   await page.clock.runFor(160);
   await expect(portrait).toHaveAttribute("data-speaking", "true");
   await page.evaluate(() => (window as unknown as HarnessWindow).speechHarness.addFeed({id: "replacement", coachId: "classic", energy: .2}));
+  const replaced = await reads(page);
   await update(page, {feedId: "replacement"});
-  // Flush the React update before advancing animation frames.
-  await expect(portrait).toHaveAttribute("data-speaking", "false");
+  // The replacement continues from the current mouth instead of snapping it shut.
+  await expect(portrait).toHaveAttribute("data-speaking", "true");
+  await page.clock.runFor(16);
   const before = await reads(page);
+  expect(before.first).toBe(replaced.first);
   await page.clock.runFor(160);
   const after = await reads(page);
   expect(after.first).toBe(before.first);
   expect(after.replacement).toBeGreaterThan(0);
-  expect(await portrait.evaluate(node => Number((node as HTMLElement).style.getPropertyValue("--speech-open")))).toBeLessThan(.21);
+  expect(await portrait.evaluate(node => Number((node as HTMLElement).style.getPropertyValue("--speech-open")))).toBeCloseTo(.2, 1);
   await page.evaluate(() => (window as unknown as HarnessWindow).speechHarness.unmount());
   await expect(portrait).toHaveCount(0);
   const unmounted = await reads(page);
@@ -138,7 +141,10 @@ test("a temporarily unavailable sample rests then resumes, while Still reads no 
   await page.clock.runFor(160);
   await expect(portrait).toHaveAttribute("data-speaking", "true");
   await page.evaluate(() => (window as unknown as HarnessWindow).speechHarness.pause("first", true));
+  // The mouth eases closed over a few frames before the authored mouth returns.
   await page.clock.runFor(32);
+  await expect(portrait).toHaveAttribute("data-speaking", "true");
+  await page.clock.runFor(250);
   await expect(portrait).toHaveAttribute("data-speaking", "false");
   expect(await portrait.evaluate(node => (node as HTMLElement).style.getPropertyValue("--speech-open"))).toBe("");
   await page.evaluate(() => (window as unknown as HarnessWindow).speechHarness.pause("first", false));

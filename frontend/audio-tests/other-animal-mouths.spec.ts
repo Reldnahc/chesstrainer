@@ -158,7 +158,10 @@ test("all four animal mouths follow the shared playback clock without replacing 
   expect(puckered.every((width, index) => width < wide[index] * .7)).toBe(true);
   expect(await Promise.all(artwork.map(node => node.evaluate(element => element.isConnected)))).toEqual([true, true, true, true]);
   await page.evaluate(() => (window as unknown as {animalSpeechFixture: {stop: () => void}}).animalSpeechFixture.stop());
+  // A finished line eases closed before the authored mouth returns.
   await page.clock.runFor(80);
+  for (const portrait of await portraits.all()) await expect(portrait).toHaveAttribute("data-speaking", "true");
+  await page.clock.runFor(200);
   for (const portrait of await portraits.all()) {
     await expect(portrait).toHaveAttribute("data-speaking", "false");
     await expect(portrait.locator(".speech-mouth-authored")).toBeVisible();

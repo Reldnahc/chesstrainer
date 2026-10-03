@@ -1,14 +1,20 @@
 /* Speech uses the playback owner's smoothed values. No autonomous lip loop: the
    quiet frame is closed, and the authored expression returns when playback ends. */
+/* Walter's authored and speaking mouths cross-fade like the shared speech layer. */
+.walter-authored-mouth, .walter-speech-mouth {
+  transition: opacity 140ms ease-out, visibility 0s;
+}
 .walter-speech-mouth {
-  display: none;
+  opacity: 0;
+  visibility: hidden;
+  transition-delay: 0s, 140ms;
   --walter-open: clamp(0, var(--speech-open, 0), 1);
   --walter-round: clamp(0, var(--speech-round, 0), 1);
 }
 
 .coach-avatar[data-coach="classic"][data-family="storyteller"][data-speaking="true"] {
-  .walter-authored-mouth { display: none; }
-  .walter-speech-mouth { display: inline; }
+  .walter-authored-mouth { opacity: 0; visibility: hidden; transition-delay: 0s, 140ms; }
+  .walter-speech-mouth { opacity: 1; visibility: visible; transition-delay: 0s; }
   .walter-speech-jaw {
     transform: translateY(calc(clamp(0, var(--speech-open, 0), 1) * 1.1px));
   }

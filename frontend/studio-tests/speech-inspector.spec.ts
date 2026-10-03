@@ -78,14 +78,14 @@ test("the other human coaches hold every shape through the shared human mouth", 
         const authored = element.querySelector<SVGGElement>(".human-speech-mouth > .speech-mouth-authored")!;
         const opening = live.querySelector<SVGGElement>(".organic-speech-opening")!;
         return {
-          liveDisplay: getComputedStyle(live).display,
-          authoredDisplay: getComputedStyle(authored).display,
+          liveVisibility: (live.getAnimations().forEach(fade => fade.finish()), getComputedStyle(live).visibility),
+          authoredVisibility: (authored.getAnimations().forEach(fade => fade.finish()), getComputedStyle(authored).visibility),
           opening: Number(getComputedStyle(opening).opacity),
           open: Number((element as HTMLElement).style.getPropertyValue("--speech-open")),
         };
       });
-      expect(mouth.liveDisplay, `${coachId} ${shape}`).not.toBe("none");
-      expect(mouth.authoredDisplay).toBe("none");
+      expect(mouth.liveVisibility, `${coachId} ${shape}`).toBe("visible");
+      expect(mouth.authoredVisibility).toBe("hidden");
       expect(mouth.opening).toBe(pose.open > 0 ? 1 : 0);
       expect(mouth.open).toBe(pose.open);
     }

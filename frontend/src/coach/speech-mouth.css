@@ -1,8 +1,28 @@
-.speech-mouth-live { display: none; }
+/* The authored and speaking mouths cross-fade when a line starts and ends. Visibility
+   flips at the far end of each fade so a hidden layer is never painted or hit. */
+.speech-mouth-layer {
+  --speech-mouth-swap: 140ms;
+  > .speech-mouth-authored, > .speech-mouth-live {
+    transition: opacity var(--speech-mouth-swap) ease-out, visibility 0s;
+  }
+  > .speech-mouth-live {
+    opacity: 0;
+    visibility: hidden;
+    transition-delay: 0s, var(--speech-mouth-swap);
+  }
+}
 
 .coach-avatar[data-speaking="true"]:is(:not([data-motion="still"]), [data-speech-preview="true"]) .speech-mouth-layer {
-  > .speech-mouth-authored { display: none; }
-  > .speech-mouth-live { display: inline; }
+  > .speech-mouth-authored {
+    opacity: 0;
+    visibility: hidden;
+    transition-delay: 0s, var(--speech-mouth-swap);
+  }
+  > .speech-mouth-live {
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0s;
+  }
   .organic-speech-aperture {
     /* The shared audio clock samples this interpolation; it never runs by itself. */
     animation: organic-speech-round-contour 1s linear both paused;

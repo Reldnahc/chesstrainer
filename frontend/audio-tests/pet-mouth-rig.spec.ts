@@ -73,7 +73,8 @@ for (const size of [92.8, 52.5]) {
         return {
           pet: figure.dataset.pet!, expression: figure.dataset.expression!, shape,
           width: bounds.width, height: bounds.height, path: getComputedStyle(aperture).d,
-          authoredDisplay: getComputedStyle(authored).display, liveDisplay: getComputedStyle(live).display,
+          authoredVisibility: (authored.getAnimations().forEach(fade => fade.finish()), getComputedStyle(authored).visibility),
+          liveVisibility: (live.getAnimations().forEach(fade => fade.finish()), getComputedStyle(live).visibility),
           authoredMarkup: authored.innerHTML,
           noseMarkup: [...avatar.querySelectorAll('.study-muzzle > path')].map(node => node.outerHTML),
           whiskerMarkup: avatar.querySelector('.study-whiskers')?.innerHTML ?? '',
@@ -91,15 +92,15 @@ for (const size of [92.8, 52.5]) {
       const targets = Object.fromEntries(geometry.filter(target => target.pet === pet && target.expression === expression)
         .map(target => [target.shape, target]));
       const description = `${pet}, ${expression}, ${size}px`;
-      expect(targets.authored.authoredDisplay, description).not.toBe('none');
-      expect(targets.authored.liveDisplay, description).toBe('none');
+      expect(targets.authored.authoredVisibility, description).toBe('visible');
+      expect(targets.authored.liveVisibility, description).toBe('hidden');
       expect(targets.authored.noseMarkup.length, description).toBeGreaterThanOrEqual(2);
       if (pet.startsWith('cat-')) expect(targets.authored.whiskerMarkup, description).not.toBe('');
       expect(targets.authored.teethSubpaths, description).toEqual(pet.startsWith('dog-') ? [2] : []);
       expect(targets.rest.openingOpacity, description).toBe('0');
       for (const shape of ['rest', 'open', 'round', 'pucker']) {
-        expect(targets[shape].authoredDisplay, description).toBe('none');
-        expect(targets[shape].liveDisplay, description).not.toBe('none');
+        expect(targets[shape].authoredVisibility, description).toBe('hidden');
+        expect(targets[shape].liveVisibility, description).toBe('visible');
         expect(targets[shape].authoredMarkup, description).toBe(targets.authored.authoredMarkup);
         expect(targets[shape].noseMarkup, description).toEqual(targets.authored.noseMarkup);
         expect(targets[shape].whiskerMarkup, description).toBe(targets.authored.whiskerMarkup);

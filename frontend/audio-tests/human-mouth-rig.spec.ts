@@ -68,8 +68,8 @@ async function layerStates(page: Page) {
       key: `${node.getAttribute('data-coach')}-${node.getAttribute('data-size')}-${node.getAttribute('data-expression')}`,
       markup: authored.innerHTML,
       bounds: [bounds.x, bounds.y, bounds.width, bounds.height],
-      authoredDisplay: getComputedStyle(authored).display,
-      liveDisplay: getComputedStyle(live).display,
+      authoredVisibility: (authored.getAnimations().forEach(fade => fade.finish()), getComputedStyle(authored).visibility),
+      liveVisibility: (live.getAnimations().forEach(fade => fade.finish()), getComputedStyle(live).visibility),
       jaw: [...node.querySelectorAll('.human-speech-jaw')].map(group => getComputedStyle(group).transform),
     };
   }));
@@ -80,8 +80,8 @@ test('human speech restores every authored mouth expression exactly when silent 
   await mountCast(page, ['neutral', 'brilliant', 'thinking', 'mistake', 'blunder']);
   const before = await layerStates(page);
   for (const state of before) {
-    expect(state.authoredDisplay, state.key).not.toBe('none');
-    expect(state.liveDisplay, state.key).toBe('none');
+    expect(state.authoredVisibility, state.key).toBe('visible');
+    expect(state.liveVisibility, state.key).toBe('hidden');
     expect(state.markup, state.key).not.toBe('');
     expect(state.markup, state.key).toContain('class="coach-mouth"');
     for (const jaw of state.jaw) expect(jaw, state.key).toBe('none');
@@ -90,8 +90,8 @@ test('human speech restores every authored mouth expression exactly when silent 
     await pose(page, shape);
     const speaking = await layerStates(page);
     for (const [index, state] of speaking.entries()) {
-      expect(state.authoredDisplay, state.key).toBe('none');
-      expect(state.liveDisplay, state.key).not.toBe('none');
+      expect(state.authoredVisibility, state.key).toBe('hidden');
+      expect(state.liveVisibility, state.key).toBe('visible');
       expect(state.markup, state.key).toBe(before[index].markup);
     }
     await pose(page, shape, false);
