@@ -180,37 +180,36 @@ test("a variation never inherits the mainline's opening run", () => {
 });
 
 const openingCoaches = [
-  {id: "classic", personality: storyteller, authored: storytellerOpeningTemplates, voiced: true},
-  {id: "robot", personality: newCastPersonalities.robot, authored: robotOpeningTemplates, voiced: true},
-  {id: "capybara", personality: newCastPersonalities.capybara, authored: capybaraOpeningTemplates, voiced: true},
-  {id: "mushroom", personality: newCastPersonalities.mushroom, authored: mushroomOpeningTemplates, voiced: true},
-  // Written forms precede a registered bank; an unvoiced coach selects no recording.
-  {id: "ghost", personality: newCastPersonalities.ghost, authored: ghostOpeningTemplates, voiced: false},
-  {id: "slime", personality: newCastPersonalities.slime, authored: slimeOpeningTemplates, voiced: false},
-  {id: "alien", personality: newCastPersonalities.alien, authored: alienOpeningTemplates, voiced: false},
-  {id: "living-pawn", personality: newCastPersonalities["living-pawn"], authored: livingPawnOpeningTemplates, voiced: false},
-  {id: "wizard", personality: newCastPersonalities.wizard, authored: wizardOpeningTemplates, voiced: false},
-  {id: "cat-tuxedo", personality: tuxedo, authored: tuxedoOpeningTemplates, voiced: false},
-  {id: "raccoon", personality: newCastPersonalities.raccoon, authored: raccoonOpeningTemplates, voiced: false},
-  {id: "dog-gentle", personality: professor, authored: professorOpeningTemplates, voiced: false},
-  {id: "cat-kitten", personality: newCastPersonalities["cat-kitten"], authored: kittenOpeningTemplates, voiced: false},
-  {id: "dragon", personality: newCastPersonalities.dragon, authored: dragonOpeningTemplates, voiced: false},
-  {id: "dog-collie", personality: collie, authored: collieOpeningTemplates, voiced: false},
-  {id: "cat-black", personality: velvet, authored: velvetOpeningTemplates, voiced: false},
-  {id: "dog-corgi", personality: corgi, authored: corgiOpeningTemplates, voiced: false},
-  {id: "unicorn", personality: newCastPersonalities.unicorn, authored: unicornOpeningTemplates, voiced: false},
-  {id: "man-expert", personality: expert, authored: expertOpeningTemplates, voiced: false},
-  {id: "frog", personality: newCastPersonalities.frog, authored: frogOpeningTemplates, voiced: false},
-  {id: "gorilla", personality: newCastPersonalities.gorilla, authored: gorillaOpeningTemplates, voiced: false},
-  {id: "man-partner", personality: partner, authored: partnerOpeningTemplates, voiced: true},
-  {id: "man-host", personality: host, authored: hostOpeningTemplates, voiced: false},
-  {id: "woman-analyst", personality: analyst, authored: analystOpeningTemplates, voiced: false},
-  {id: "woman-blonde", personality: blonde, authored: blondeOpeningTemplates, voiced: false},
-  {id: "dog-puppy", personality: newCastPersonalities["dog-puppy"], authored: puppyOpeningTemplates, voiced: false},
-  {id: "woman-spark", personality: spark, authored: sparkOpeningTemplates, voiced: false},
-  {id: "human-boy", personality: youngBoy, authored: youngBoyOpeningTemplates, voiced: false},
-  {id: "woman-captain", personality: captain, authored: captainOpeningTemplates, voiced: false},
-  {id: "human-girl", personality: newCastPersonalities["human-girl"], authored: girlOpeningTemplates, voiced: false},
+  {id: "classic", personality: storyteller, authored: storytellerOpeningTemplates},
+  {id: "robot", personality: newCastPersonalities.robot, authored: robotOpeningTemplates},
+  {id: "capybara", personality: newCastPersonalities.capybara, authored: capybaraOpeningTemplates},
+  {id: "mushroom", personality: newCastPersonalities.mushroom, authored: mushroomOpeningTemplates},
+  {id: "ghost", personality: newCastPersonalities.ghost, authored: ghostOpeningTemplates},
+  {id: "slime", personality: newCastPersonalities.slime, authored: slimeOpeningTemplates},
+  {id: "alien", personality: newCastPersonalities.alien, authored: alienOpeningTemplates},
+  {id: "living-pawn", personality: newCastPersonalities["living-pawn"], authored: livingPawnOpeningTemplates},
+  {id: "wizard", personality: newCastPersonalities.wizard, authored: wizardOpeningTemplates},
+  {id: "cat-tuxedo", personality: tuxedo, authored: tuxedoOpeningTemplates},
+  {id: "raccoon", personality: newCastPersonalities.raccoon, authored: raccoonOpeningTemplates},
+  {id: "dog-gentle", personality: professor, authored: professorOpeningTemplates},
+  {id: "cat-kitten", personality: newCastPersonalities["cat-kitten"], authored: kittenOpeningTemplates},
+  {id: "dragon", personality: newCastPersonalities.dragon, authored: dragonOpeningTemplates},
+  {id: "dog-collie", personality: collie, authored: collieOpeningTemplates},
+  {id: "cat-black", personality: velvet, authored: velvetOpeningTemplates},
+  {id: "dog-corgi", personality: corgi, authored: corgiOpeningTemplates},
+  {id: "unicorn", personality: newCastPersonalities.unicorn, authored: unicornOpeningTemplates},
+  {id: "man-expert", personality: expert, authored: expertOpeningTemplates},
+  {id: "frog", personality: newCastPersonalities.frog, authored: frogOpeningTemplates},
+  {id: "gorilla", personality: newCastPersonalities.gorilla, authored: gorillaOpeningTemplates},
+  {id: "man-partner", personality: partner, authored: partnerOpeningTemplates},
+  {id: "man-host", personality: host, authored: hostOpeningTemplates},
+  {id: "woman-analyst", personality: analyst, authored: analystOpeningTemplates},
+  {id: "woman-blonde", personality: blonde, authored: blondeOpeningTemplates},
+  {id: "dog-puppy", personality: newCastPersonalities["dog-puppy"], authored: puppyOpeningTemplates},
+  {id: "woman-spark", personality: spark, authored: sparkOpeningTemplates},
+  {id: "human-boy", personality: youngBoy, authored: youngBoyOpeningTemplates},
+  {id: "woman-captain", personality: captain, authored: captainOpeningTemplates},
+  {id: "human-girl", personality: newCastPersonalities["human-girl"], authored: girlOpeningTemplates},
 ] as const;
 
 function reviewedIntent(game: Game, ply: number) {
@@ -232,7 +231,7 @@ for (const coach of openingCoaches) {
         const authored = coach.authored[recording as keyof typeof coach.authored][0];
         const output = renderDialogue(intent, coach);
         expect(selectGameRecording({game, ply, frame: game.frames[ply], report: game.frames[ply].report,
-          intent, utterance: output})).toBe(coach.voiced ? recording : null);
+          intent, utterance: output})).toBe(recording);
         expect(output.text).toBe(authored.replace("{opening}", "Named line"));
         expect(output.trace.variants).toEqual([{code: "book_sound", index: 0, sourceIds: [],
           source: coach.personality.version, form: "sentence", cues: [], order: undefined}]);

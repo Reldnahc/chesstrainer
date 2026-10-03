@@ -36,7 +36,7 @@ test('sound choices save independently, survive reload and keep a usable narrow 
   await expect(sound.getByRole('checkbox', {name: /^Review accents/})).toHaveCount(0);
   await expect(sound.getByRole('checkbox')).toHaveCount(3);
   await expect(sound.getByRole('combobox', {name: 'Coach voice', exact: true})).toHaveValue('automatic');
-  await expect(sound.locator('#coach-voice-help')).toContainText('Recorded voices: Walter, Arjun, Winston, Rivet, and Button.');
+  await expect(sound.locator('#coach-voice-help')).toContainText('Recorded voices: Walter, Femi, Jun, Arjun, Tamar, Marisol, Réka, Ingrid, Mateo, Tala, Alfie, Waffles, Scout, Biscuit, Felix, Juniper, Pickle, Monty, Bandit, Fergus, Winston, Celeste, Orin, Ember, Wisp, Ziggy, Rivet, Pip, Button, and Percy.');
   await savedChange(page, () => sound.getByRole('combobox', {name: 'Coach voice', exact: true}).selectOption('manual'));
   await savedChange(page, () => sound.getByRole('checkbox', {name: /^Board moves/}).uncheck());
   await savedChange(page, () => volume.press('End'));
