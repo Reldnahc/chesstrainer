@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played",
+      "label": "Tactic removing defender played",
+      "text": "Defender eliminated. Whatever depended on that piece for protection is now exposed."
+    },
+    "takeId": null
+  },
+  "requestHash": "9814b5195a86d3168ecaa315e1a50cec8708c31dc801f7a2c5b8f9315ccd81ab",
+  "recordedAt": "2026-10-03T05:50:28.820Z",
+  "sha256": "bf2f0e545ece2ca6b87e4fd5e984f06fd2a1b93c7e9d4afa791f9d8e3ac4572e",
+  "bytes": 19348,
+  "requestId": "XmBhiwkhnfGiK6Ahpr1V",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d8325f2e94777b1e6eb2e5df3f9cd2451658cdfe0d5efd8cdc2a57ef7085be81",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "sound-sacrifice",
+      "label": "Sound sacrifice",
+      "text": "Sound sacrifice. Taking the material is allowed, and the checked line still justifies the offer."
+    },
+    "takeId": null
+  },
+  "requestHash": "f31fa6876ed5b335fad27476514c8fd76d3e9813b2e5474dde2149b78fa4ccbc",
+  "recordedAt": "2026-10-03T05:51:49.524Z",
+  "sha256": "4a3cf79605fea354d43b4559be2c7853b1e14f2bd920cd6f12ab897acb9458a6",
+  "bytes": 21401,
+  "requestId": "o6icbhLgZhLUGK9L4ELw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6a75210394bf152d6d65a0418d7c356fd70d74cbba9f1a5fd34b24e3e5a8ec01",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

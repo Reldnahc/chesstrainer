@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured",
+      "label": "Explanation finding sole defender captured",
+      "text": "Sequence: capture the only defender, then take what it was protecting."
+    },
+    "takeId": null
+  },
+  "requestHash": "f0e737f3b4600ea2980c321136b3042f763ad63cf6811dbe069fa023e30c1707",
+  "recordedAt": "2026-10-03T05:53:22.237Z",
+  "sha256": "f7f4877d4918a3655ec36862d88793e06a8a11d82e8eb56800ab0e462c31e56f",
+  "bytes": 15315,
+  "requestId": "AdhKW4YSxCmhyvOw5U51",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "de516442172c181c534ddc170a2ad4a3cc59c217af196ff4240afdeeb018108b",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

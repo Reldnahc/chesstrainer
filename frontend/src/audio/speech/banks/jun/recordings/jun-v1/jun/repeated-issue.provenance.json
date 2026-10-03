@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "repeated-issue",
+      "label": "Repeated issue",
+      "text": "Recurrence: this issue already appeared earlier in the game. Compare the instances; the shared pattern is the lesson."
+    },
+    "takeId": null
+  },
+  "requestHash": "2dee4e5ee8d9fea9dff112172d808502b7da683a35c245465446ec8a914a6ed3",
+  "recordedAt": "2026-10-03T05:52:15.544Z",
+  "sha256": "53c52582cc5578b190966c286bf407a28180dcbc27eb6e05df02d929eed750bd",
+  "bytes": 25004,
+  "requestId": "cH8sUdRpiFOkTOeTFdnv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "157ce39eaa14580d02a42303ff08bd51ac9ed6f0fcd7ebe258587c38ed83d8ce",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

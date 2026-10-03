@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "positional-bishop-pair-alternative",
+      "label": "Positional bishop pair alternative",
+      "text": "The alternative captured a bishop and broke the opposing bishop pair."
+    },
+    "takeId": null
+  },
+  "requestHash": "99b7e9136f18edebaf6562f9198b6ee03723bcbbdcef627c9681fc34b70f45ab",
+  "recordedAt": "2026-10-03T05:51:42.234Z",
+  "sha256": "424d8ca7414e59151edc44d1ad73e8a4ef5e39ee4c5ec21eb54817c8b5da1238",
+  "bytes": 14580,
+  "requestId": "UXzvbNXOvaUUL2aTu1xb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "aabb0f680349467a8dbde0b2232134992470f46f133abdc15772a939be57ceb9",
+    "bytes": 71515
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

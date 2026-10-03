@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "explanation-cue-deflection",
+      "label": "Explanation cue deflection",
+      "text": "Test whether a forcing exchange overloads a defender with a second duty."
+    },
+    "takeId": null
+  },
+  "requestHash": "dd41010004b0599563db92bc8fe5e0ab844a775fe2ea36b55efce8187f0733e0",
+  "recordedAt": "2026-10-03T05:53:54.733Z",
+  "sha256": "699d9e06f45ece2a105e570e4d7e5cdfb13b3694d5c46fd844d34bb737870673",
+  "bytes": 15782,
+  "requestId": "kmhJmbbKxd1mOElEAMun",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "88a007b12cc69fe8c6e5646e50a64d8b947300573a1b462d173129b94558de4e",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

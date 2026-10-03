@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "srs-summary-mate-for-mover",
+      "label": "Srs summary mate for mover",
+      "text": "The saved engine analysis records a forced mate in favor of the side that played this move."
+    },
+    "takeId": null
+  },
+  "requestHash": "538eeec6a2b79afc16a65b38df0d3bb2b4c25958d763a85dc036bae59e01410b",
+  "recordedAt": "2026-10-03T05:52:31.429Z",
+  "sha256": "0217bf9eae743a6d1e73892a80e273294b4c00dd85095e77117d50eb92734648",
+  "bytes": 18898,
+  "requestId": "6yoZkHZM3z7PP1rSuNI8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3651b9509d9c0670290b3b56489094ac87e6f483d640edce57462184c3491893",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

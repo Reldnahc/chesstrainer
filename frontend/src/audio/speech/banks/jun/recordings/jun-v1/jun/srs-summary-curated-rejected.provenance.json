@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "srs-summary-curated-rejected",
+      "label": "Srs summary curated rejected",
+      "text": "Outside the exercise's saved answers. A legal move outside them may still be objectively sound."
+    },
+    "takeId": null
+  },
+  "requestHash": "5ad63cff3a60f8058513de9ca70095a1f5a563eab2693b99a34122275b0c3dd2",
+  "recordedAt": "2026-10-03T05:52:42.424Z",
+  "sha256": "75d892edcd2f5ff67bd94e6e51d69e7905d4915976bac4352de61f0c69fcfafe",
+  "bytes": 21820,
+  "requestId": "IyIpEC1bz1X3HL0Le9PA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "86497dc2fed9a598edb1c4a2359c7c22c75513ec2e1f0f25c237d088da92cd09",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

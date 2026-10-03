@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "explanation-frame-castle-check",
+      "label": "Explanation frame castle check",
+      "text": "Castling, and check from the same move."
+    },
+    "takeId": null
+  },
+  "requestHash": "fc79b518c0f68e371659e5900ef7a51b84ccb082e1f3addc00dd095389fb3890",
+  "recordedAt": "2026-10-03T05:53:06.647Z",
+  "sha256": "135434ab3747d2a36124edc5f6d17ee8479ca92912dc05df94c7e4c465484461",
+  "bytes": 10134,
+  "requestId": "YuQtMSqPol0LV0r1dE6S",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "debc5bdf7875f66eb5cf97b2de247ff63a9feafa54f8dbd7ec6fb23bc85f35b4",
+    "bytes": 49781
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,1583 @@
+{
+  "schemaVersion": 1,
+  "provider": "elevenlabs",
+  "coachId": "man-expert",
+  "voiceId": "jun",
+  "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+  "modelId": "eleven_v4",
+  "outputFormat": "mp3_44100_128",
+  "settings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75,
+    "speed": 0.95
+  },
+  "scope": "non-lesson",
+  "silentIds": [
+    "game-thinking",
+    "explanation-loading-saved",
+    "dialogue-no-renderable-claim",
+    "practice-checking"
+  ],
+  "recordings": [
+    {
+      "id": "tactic-fork-played",
+      "group": "game_review",
+      "text": "Fork. A single piece now hits several targets, and one reply rarely rescues all of them.",
+      "audioPath": "recordings/jun-v1/jun/tactic-fork-played.opus",
+      "sidecarPath": "recordings/jun-v1/jun/tactic-fork-played.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-played.json"
+    },
+    {
+      "id": "tactic-fork-allowed",
+      "group": "game_review",
+      "text": "This permits a fork. One enemy piece can now attack several targets with a single move; pinpoint it first.",
+      "audioPath": "recordings/jun-v1/jun/tactic-fork-allowed.opus",
+      "sidecarPath": "recordings/jun-v1/jun/tactic-fork-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-allowed.json"
+    },
+    {
+      "id": "tactic-fork-missed",
+      "group": "game_review",
+      "text": "A fork was available in the stronger move, one piece striking several targets in a single move. Unused here.",
+      "audioPath": "recordings/jun-v1/jun/tactic-fork-missed.opus",
+      "sidecarPath": "recordings/jun-v1/jun/tactic-fork-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-missed.json"
+    },
+    {
+      "id": "tactic-pin-played",
+      "group": "game_review",
+      "text": "Absolute pin. The pinned piece has no legal exit from the line while its king stands behind it.",
+      "audioPath": "recordings/jun-v1/jun/tactic-pin-played.opus",
+      "sidecarPath": "recordings/jun-v1/jun/tactic-pin-played.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-played.json"
+    },
+    {
+      "id": "tactic-pin-allowed",
+      "group": "game_review",
+      "text": "This concedes an absolute pin. The pinned piece is fixed on its line; moving it off would be illegal.",
+      "audioPath": "recordings/jun-v1/jun/tactic-pin-allowed.opus",
+      "sidecarPath": "recordings/jun-v1/jun/tactic-pin-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-allowed.json"
+    },
+    {
+      "id": "tactic-pin-missed",
+      "group": "game_review",
+      "text": "The stronger move pinned an enemy piece to its king. This move leaves that piece free to move.",
+      "audioPath": "recordings/jun-v1/jun/tactic-pin-missed.opus",
+      "sidecarPath": "recordings/jun-v1/jun/tactic-pin-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-missed.json"
+    },
+    {
+      "id": "tactic-skewer-played",
+      "group": "game_review",
+      "text": "Skewer. The front piece must move off the line, and the piece behind it becomes a target.",
+      "audioPath": "recordings/jun-v1/jun/tactic-skewer-played.opus",
+      "sidecarPath": "recordings/jun-v1/jun/tactic-skewer-played.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-played.json"
+    },
+    {
+      "id": "tactic-skewer-allowed",
+      "group": "game_review",
+      "text": "This concedes a skewer. Once the front piece is driven off the line, the piece behind it can be taken.",
+      "audioPath": "recordings/jun-v1/jun/tactic-skewer-allowed.opus",
+      "sidecarPath": "recordings/jun-v1/jun/tactic-skewer-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-allowed.json"
+    },
+    {
+      "id": "tactic-skewer-missed",
+      "group": "game_review",
+      "text": "The stronger move set up a skewer: attack the front piece, collect the one behind it. Unused here.",
+      "audioPath": "recordings/jun-v1/jun/tactic-skewer-missed.opus",
+      "sidecarPath": "recordings/jun-v1/jun/tactic-skewer-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-missed.json"
+    },
+    {
+      "id": "tactic-removing-defender-played",
+      "group": "game_review",
+      "text": "Defender eliminated. Whatever depended on that piece for protection is now exposed.",
+      "audioPath": "recordings/jun-v1/jun/tactic-removing-defender-played.opus",
+      "sidecarPath": "recordings/jun-v1/jun/tactic-removing-defender-played.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-played.json"
+    },
+    {
+      "id": "tactic-removing-defender-allowed",
+      "group": "game_review",
+      "text": "One defender can now be captured. If it goes, the piece it guards loses that protection.",
+      "audioPath": "recordings/jun-v1/jun/tactic-removing-defender-allowed.opus",
+      "sidecarPath": "recordings/jun-v1/jun/tactic-removing-defender-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-allowed.json"
+    },
+    {
+      "id": "tactic-removing-defender-missed",
+      "group": "game_review",
+      "text": "The stronger move captured a defender and stripped the protection from the piece behind it. This move leaves the defender in place.",
+      "audioPath": "recordings/jun-v1/jun/tactic-removing-defender-missed.opus",
+      "sidecarPath": "recordings/jun-v1/jun/tactic-removing-defender-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-missed.json"
+    },
+    {
+      "id": "tactic-back-rank-played",
+      "group": "game_review",
+      "text": "Back-rank mating motif. The king's own pieces block its escape squares, and the rank behind it is the weakness.",
+      "audioPath": "recordings/jun-v1/jun/tactic-back-rank-played.opus",
+      "sidecarPath": "recordings/jun-v1/jun/tactic-back-rank-played.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-played.json"
+    },
+    {
+      "id": "tactic-back-rank-allowed",
+      "group": "game_review",
+      "text": "This permits a back-rank mate. The king has no escape square in front of it, and the last rank is the weakness.",
+      "audioPath": "recordings/jun-v1/jun/tactic-back-rank-allowed.opus",
+      "sidecarPath": "recordings/jun-v1/jun/tactic-back-rank-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-allowed.json"
+    },
+    {
+      "id": "tactic-back-rank-missed",
+      "group": "game_review",
+      "text": "Back-rank mate was on offer: the enemy king's own pieces blocked its exits. Not exploited.",
+      "audioPath": "recordings/jun-v1/jun/tactic-back-rank-missed.opus",
+      "sidecarPath": "recordings/jun-v1/jun/tactic-back-rank-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-missed.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-played",
+      "group": "game_review",
+      "text": "The pawn advances toward promotion. Each step narrows the defense.",
+      "audioPath": "recordings/jun-v1/jun/tactic-promotion-awareness-played.opus",
+      "sidecarPath": "recordings/jun-v1/jun/tactic-promotion-awareness-played.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-played.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-allowed",
+      "group": "game_review",
+      "text": "This gives an enemy pawn a path toward promotion. Track it square by square; each advance changes the requirements of the defense.",
+      "audioPath": "recordings/jun-v1/jun/tactic-promotion-awareness-allowed.opus",
+      "sidecarPath": "recordings/jun-v1/jun/tactic-promotion-awareness-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-allowed.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-missed",
+      "group": "game_review",
+      "text": "The stronger move pushed a pawn closer to promotion. Here, that pawn stays put.",
+      "audioPath": "recordings/jun-v1/jun/tactic-promotion-awareness-missed.opus",
+      "sidecarPath": "recordings/jun-v1/jun/tactic-promotion-awareness-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-missed.json"
+    },
+    {
+      "id": "tactic-discovered-attack-played",
+      "group": "game_review",
+      "text": "Discovered attack. The front piece moves, and the piece behind it attacks down the line that just opened.",
+      "audioPath": "recordings/jun-v1/jun/tactic-discovered-attack-played.opus",
+      "sidecarPath": "recordings/jun-v1/jun/tactic-discovered-attack-played.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-played.json"
+    },
+    {
+      "id": "tactic-discovered-attack-allowed",
+      "group": "game_review",
+      "text": "This concedes a discovered attack. One enemy piece masks another; when the front piece moves, the rear piece attacks along the cleared line.",
+      "audioPath": "recordings/jun-v1/jun/tactic-discovered-attack-allowed.opus",
+      "sidecarPath": "recordings/jun-v1/jun/tactic-discovered-attack-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-allowed.json"
+    },
+    {
+      "id": "tactic-discovered-attack-missed",
+      "group": "game_review",
+      "text": "The stronger move contained a discovered attack: move the front piece, open the line for the one behind. Not used here.",
+      "audioPath": "recordings/jun-v1/jun/tactic-discovered-attack-missed.opus",
+      "sidecarPath": "recordings/jun-v1/jun/tactic-discovered-attack-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-missed.json"
+    },
+    {
+      "id": "tactic-double-attack-played",
+      "group": "game_review",
+      "text": "Double attack. Two targets are threatened by one move, and a single reply rarely meets both.",
+      "audioPath": "recordings/jun-v1/jun/tactic-double-attack-played.opus",
+      "sidecarPath": "recordings/jun-v1/jun/tactic-double-attack-played.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-played.json"
+    },
+    {
+      "id": "tactic-double-attack-allowed",
+      "group": "game_review",
+      "text": "This permits a double attack. A single enemy move can now create two threats, each requiring its own response.",
+      "audioPath": "recordings/jun-v1/jun/tactic-double-attack-allowed.opus",
+      "sidecarPath": "recordings/jun-v1/jun/tactic-double-attack-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-allowed.json"
+    },
+    {
+      "id": "tactic-double-attack-missed",
+      "group": "game_review",
+      "text": "The stronger move generated two simultaneous threats. The played move lacks that double threat.",
+      "audioPath": "recordings/jun-v1/jun/tactic-double-attack-missed.opus",
+      "sidecarPath": "recordings/jun-v1/jun/tactic-double-attack-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-missed.json"
+    },
+    {
+      "id": "tactic-deflection-played",
+      "group": "game_review",
+      "text": "Deflection. The defender is pulled away from its task, and the piece or square it covered is left unguarded.",
+      "audioPath": "recordings/jun-v1/jun/tactic-deflection-played.opus",
+      "sidecarPath": "recordings/jun-v1/jun/tactic-deflection-played.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-played.json"
+    },
+    {
+      "id": "tactic-deflection-allowed",
+      "group": "game_review",
+      "text": "Deflection risk created. One defender can now be drawn off its duty; identify what it currently covers.",
+      "audioPath": "recordings/jun-v1/jun/tactic-deflection-allowed.opus",
+      "sidecarPath": "recordings/jun-v1/jun/tactic-deflection-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-allowed.json"
+    },
+    {
+      "id": "tactic-deflection-missed",
+      "group": "game_review",
+      "text": "The stronger move deflected a defender from its duty. This move leaves the defense intact.",
+      "audioPath": "recordings/jun-v1/jun/tactic-deflection-missed.opus",
+      "sidecarPath": "recordings/jun-v1/jun/tactic-deflection-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-missed.json"
+    },
+    {
+      "id": "tactic-undefended-capture-played",
+      "group": "game_review",
+      "text": "Unprotected piece captured; there is no recapture.",
+      "audioPath": "recordings/jun-v1/jun/tactic-undefended-capture-played.opus",
+      "sidecarPath": "recordings/jun-v1/jun/tactic-undefended-capture-played.provenance.json",
+      "alignmentPath": "alignment/tactic-undefended-capture-played.json"
+    },
+    {
+      "id": "tactic-undefended-capture-missed",
+      "group": "game_review",
+      "text": "An unprotected piece was available for capture with the stronger move. Check for undefended targets before quiet moves.",
+      "audioPath": "recordings/jun-v1/jun/tactic-undefended-capture-missed.opus",
+      "sidecarPath": "recordings/jun-v1/jun/tactic-undefended-capture-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-undefended-capture-missed.json"
+    },
+    {
+      "id": "tactic-hanging-piece-allowed",
+      "group": "game_review",
+      "text": "A piece is now unprotected, and the other side can capture it without a recapture.",
+      "audioPath": "recordings/jun-v1/jun/tactic-hanging-piece-allowed.opus",
+      "sidecarPath": "recordings/jun-v1/jun/tactic-hanging-piece-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-hanging-piece-allowed.json"
+    },
+    {
+      "id": "cause-abandoned-defender",
+      "group": "game_review",
+      "text": "This move abandons a defense. The piece's only defender relocates, and the piece can now be captured.",
+      "audioPath": "recordings/jun-v1/jun/cause-abandoned-defender.opus",
+      "sidecarPath": "recordings/jun-v1/jun/cause-abandoned-defender.provenance.json",
+      "alignmentPath": "alignment/cause-abandoned-defender.json"
+    },
+    {
+      "id": "cause-opponent-threat-recognition",
+      "group": "game_review",
+      "text": "The opponent's last move posed a direct threat. This reply leaves it unmet, and a piece remains capturable.",
+      "audioPath": "recordings/jun-v1/jun/cause-opponent-threat-recognition.opus",
+      "sidecarPath": "recordings/jun-v1/jun/cause-opponent-threat-recognition.provenance.json",
+      "alignmentPath": "alignment/cause-opponent-threat-recognition.json"
+    },
+    {
+      "id": "cause-avoiding-bad-trades",
+      "group": "game_review",
+      "text": "The capture is incomplete as a calculation. The recapture removes a higher-value piece, so the exchange loses material.",
+      "audioPath": "recordings/jun-v1/jun/cause-avoiding-bad-trades.opus",
+      "sidecarPath": "recordings/jun-v1/jun/cause-avoiding-bad-trades.provenance.json",
+      "alignmentPath": "alignment/cause-avoiding-bad-trades.json"
+    },
+    {
+      "id": "positional-development-actual",
+      "group": "game_review",
+      "text": "Development counted: a minor piece is now active, off its original square.",
+      "audioPath": "recordings/jun-v1/jun/positional-development-actual.opus",
+      "sidecarPath": "recordings/jun-v1/jun/positional-development-actual.provenance.json",
+      "alignmentPath": "alignment/positional-development-actual.json"
+    },
+    {
+      "id": "positional-development-alternative",
+      "group": "game_review",
+      "text": "The alternative brought a minor piece off its starting square. Here, development waits.",
+      "audioPath": "recordings/jun-v1/jun/positional-development-alternative.opus",
+      "sidecarPath": "recordings/jun-v1/jun/positional-development-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-development-alternative.json"
+    },
+    {
+      "id": "positional-rook-open-actual",
+      "group": "game_review",
+      "text": "The rook's file is fully open now, with no pawn of either color on it.",
+      "audioPath": "recordings/jun-v1/jun/positional-rook-open-actual.opus",
+      "sidecarPath": "recordings/jun-v1/jun/positional-rook-open-actual.provenance.json",
+      "alignmentPath": "alignment/positional-rook-open-actual.json"
+    },
+    {
+      "id": "positional-rook-open-alternative",
+      "group": "game_review",
+      "text": "The alternative put a rook on a fully open file.",
+      "audioPath": "recordings/jun-v1/jun/positional-rook-open-alternative.opus",
+      "sidecarPath": "recordings/jun-v1/jun/positional-rook-open-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-rook-open-alternative.json"
+    },
+    {
+      "id": "positional-rook-semi-open-actual",
+      "group": "game_review",
+      "text": "Rook file status: semi-open. No friendly pawns, one or more enemy pawns.",
+      "audioPath": "recordings/jun-v1/jun/positional-rook-semi-open-actual.opus",
+      "sidecarPath": "recordings/jun-v1/jun/positional-rook-semi-open-actual.provenance.json",
+      "alignmentPath": "alignment/positional-rook-semi-open-actual.json"
+    },
+    {
+      "id": "positional-rook-semi-open-alternative",
+      "group": "game_review",
+      "text": "The alternative put a rook on a semi-open file, without friendly pawns but with enemy pawns present.",
+      "audioPath": "recordings/jun-v1/jun/positional-rook-semi-open-alternative.opus",
+      "sidecarPath": "recordings/jun-v1/jun/positional-rook-semi-open-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-rook-semi-open-alternative.json"
+    },
+    {
+      "id": "positional-passed-actual",
+      "group": "game_review",
+      "text": "Passed pawn established. Ahead of it, on its own file and both adjacent files, there is no enemy pawn.",
+      "audioPath": "recordings/jun-v1/jun/positional-passed-actual.opus",
+      "sidecarPath": "recordings/jun-v1/jun/positional-passed-actual.provenance.json",
+      "alignmentPath": "alignment/positional-passed-actual.json"
+    },
+    {
+      "id": "positional-passed-alternative",
+      "group": "game_review",
+      "text": "The alternative produced a passed pawn, unopposed by enemy pawns on its file and both flanking files.",
+      "audioPath": "recordings/jun-v1/jun/positional-passed-alternative.opus",
+      "sidecarPath": "recordings/jun-v1/jun/positional-passed-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-passed-alternative.json"
+    },
+    {
+      "id": "positional-passer-advance-actual",
+      "group": "game_review",
+      "text": "The passed pawn advances one step closer to promotion.",
+      "audioPath": "recordings/jun-v1/jun/positional-passer-advance-actual.opus",
+      "sidecarPath": "recordings/jun-v1/jun/positional-passer-advance-actual.provenance.json",
+      "alignmentPath": "alignment/positional-passer-advance-actual.json"
+    },
+    {
+      "id": "positional-passer-advance-alternative",
+      "group": "game_review",
+      "text": "The alternative advanced the passed pawn. Here it stays on its square.",
+      "audioPath": "recordings/jun-v1/jun/positional-passer-advance-alternative.opus",
+      "sidecarPath": "recordings/jun-v1/jun/positional-passer-advance-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-passer-advance-alternative.json"
+    },
+    {
+      "id": "positional-isolated-actual",
+      "group": "game_review",
+      "text": "Isolated pawn created. Both adjacent files are empty of friendly pawns.",
+      "audioPath": "recordings/jun-v1/jun/positional-isolated-actual.opus",
+      "sidecarPath": "recordings/jun-v1/jun/positional-isolated-actual.provenance.json",
+      "alignmentPath": "alignment/positional-isolated-actual.json"
+    },
+    {
+      "id": "positional-isolated-alternative",
+      "group": "game_review",
+      "text": "The alternative left a pawn isolated, its adjacent files empty of friendly pawns.",
+      "audioPath": "recordings/jun-v1/jun/positional-isolated-alternative.opus",
+      "sidecarPath": "recordings/jun-v1/jun/positional-isolated-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-isolated-alternative.json"
+    },
+    {
+      "id": "positional-support-actual",
+      "group": "game_review",
+      "text": "A previously unprotected piece now has a defender.",
+      "audioPath": "recordings/jun-v1/jun/positional-support-actual.opus",
+      "sidecarPath": "recordings/jun-v1/jun/positional-support-actual.provenance.json",
+      "alignmentPath": "alignment/positional-support-actual.json"
+    },
+    {
+      "id": "positional-support-alternative",
+      "group": "game_review",
+      "text": "The alternative added a defender to a piece that currently has none.",
+      "audioPath": "recordings/jun-v1/jun/positional-support-alternative.opus",
+      "sidecarPath": "recordings/jun-v1/jun/positional-support-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-support-alternative.json"
+    },
+    {
+      "id": "positional-unsupported-actual",
+      "group": "game_review",
+      "text": "Defender count for one piece is now zero. Zero defenders is a weakness, not by itself a loss.",
+      "audioPath": "recordings/jun-v1/jun/positional-unsupported-actual.opus",
+      "sidecarPath": "recordings/jun-v1/jun/positional-unsupported-actual.provenance.json",
+      "alignmentPath": "alignment/positional-unsupported-actual.json"
+    },
+    {
+      "id": "positional-unsupported-alternative",
+      "group": "game_review",
+      "text": "The alternative left a piece without its last defender. That alone would not have established a loss.",
+      "audioPath": "recordings/jun-v1/jun/positional-unsupported-alternative.opus",
+      "sidecarPath": "recordings/jun-v1/jun/positional-unsupported-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-unsupported-alternative.json"
+    },
+    {
+      "id": "positional-king-flight-actual",
+      "group": "game_review",
+      "text": "The king now has one more legal flight square. Identify which piece movement cleared it.",
+      "audioPath": "recordings/jun-v1/jun/positional-king-flight-actual.opus",
+      "sidecarPath": "recordings/jun-v1/jun/positional-king-flight-actual.provenance.json",
+      "alignmentPath": "alignment/positional-king-flight-actual.json"
+    },
+    {
+      "id": "positional-king-flight-alternative",
+      "group": "game_review",
+      "text": "The alternative opened one more legal flight square for the king. Identify which move would have cleared it.",
+      "audioPath": "recordings/jun-v1/jun/positional-king-flight-alternative.opus",
+      "sidecarPath": "recordings/jun-v1/jun/positional-king-flight-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-king-flight-alternative.json"
+    },
+    {
+      "id": "positional-castling-actual",
+      "group": "game_review",
+      "text": "Castled. The king moves two squares, and the rook relocates beside it in the same move.",
+      "audioPath": "recordings/jun-v1/jun/positional-castling-actual.opus",
+      "sidecarPath": "recordings/jun-v1/jun/positional-castling-actual.provenance.json",
+      "alignmentPath": "alignment/positional-castling-actual.json"
+    },
+    {
+      "id": "positional-castling-alternative",
+      "group": "game_review",
+      "text": "Castling was available. King and rook would have relocated in one move.",
+      "audioPath": "recordings/jun-v1/jun/positional-castling-alternative.opus",
+      "sidecarPath": "recordings/jun-v1/jun/positional-castling-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-castling-alternative.json"
+    },
+    {
+      "id": "positional-bishop-pair-actual",
+      "group": "game_review",
+      "text": "The bishop pair no longer exists after this capture. Only one square color remains covered by that side's bishops.",
+      "audioPath": "recordings/jun-v1/jun/positional-bishop-pair-actual.opus",
+      "sidecarPath": "recordings/jun-v1/jun/positional-bishop-pair-actual.provenance.json",
+      "alignmentPath": "alignment/positional-bishop-pair-actual.json"
+    },
+    {
+      "id": "positional-bishop-pair-alternative",
+      "group": "game_review",
+      "text": "The alternative captured a bishop and broke the opposing bishop pair.",
+      "audioPath": "recordings/jun-v1/jun/positional-bishop-pair-alternative.opus",
+      "sidecarPath": "recordings/jun-v1/jun/positional-bishop-pair-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-bishop-pair-alternative.json"
+    },
+    {
+      "id": "positional-doubled-actual",
+      "group": "game_review",
+      "text": "Doubled pawns. A single file carries two same-colored pawns.",
+      "audioPath": "recordings/jun-v1/jun/positional-doubled-actual.opus",
+      "sidecarPath": "recordings/jun-v1/jun/positional-doubled-actual.provenance.json",
+      "alignmentPath": "alignment/positional-doubled-actual.json"
+    },
+    {
+      "id": "positional-doubled-alternative",
+      "group": "game_review",
+      "text": "The alternative produced doubled pawns, with two of one color sharing a file.",
+      "audioPath": "recordings/jun-v1/jun/positional-doubled-alternative.opus",
+      "sidecarPath": "recordings/jun-v1/jun/positional-doubled-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-doubled-alternative.json"
+    },
+    {
+      "id": "allowed-mate",
+      "group": "game_review",
+      "text": "Forced mate for the other side, starting now. Trace the attack back to the first defensive concession.",
+      "audioPath": "recordings/jun-v1/jun/allowed-mate.opus",
+      "sidecarPath": "recordings/jun-v1/jun/allowed-mate.provenance.json",
+      "alignmentPath": "alignment/allowed-mate.json"
+    },
+    {
+      "id": "missed-mate",
+      "group": "game_review",
+      "text": "A mating line was available and went unplayed. Locate it afterward.",
+      "audioPath": "recordings/jun-v1/jun/missed-mate.opus",
+      "sidecarPath": "recordings/jun-v1/jun/missed-mate.provenance.json",
+      "alignmentPath": "alignment/missed-mate.json"
+    },
+    {
+      "id": "sound-sacrifice",
+      "group": "game_review",
+      "text": "Sound sacrifice. Taking the material is allowed, and the checked line still justifies the offer.",
+      "audioPath": "recordings/jun-v1/jun/sound-sacrifice.opus",
+      "sidecarPath": "recordings/jun-v1/jun/sound-sacrifice.provenance.json",
+      "alignmentPath": "alignment/sound-sacrifice.json"
+    },
+    {
+      "id": "only-playable-move",
+      "group": "game_review",
+      "text": "Only move. The rest of the examined candidates lose, and the position stays playable through this one.",
+      "audioPath": "recordings/jun-v1/jun/only-playable-move.opus",
+      "sidecarPath": "recordings/jun-v1/jun/only-playable-move.provenance.json",
+      "alignmentPath": "alignment/only-playable-move.json"
+    },
+    {
+      "id": "only-advantage-resource",
+      "group": "game_review",
+      "text": "Of all the examined candidates, only this move keeps the advantage. Exact.",
+      "audioPath": "recordings/jun-v1/jun/only-advantage-resource.opus",
+      "sidecarPath": "recordings/jun-v1/jun/only-advantage-resource.provenance.json",
+      "alignmentPath": "alignment/only-advantage-resource.json"
+    },
+    {
+      "id": "immediate-capture",
+      "group": "game_review",
+      "text": "Material can be taken by the other side on the very next move. Address it first.",
+      "audioPath": "recordings/jun-v1/jun/immediate-capture.opus",
+      "sidecarPath": "recordings/jun-v1/jun/immediate-capture.provenance.json",
+      "alignmentPath": "alignment/immediate-capture.json"
+    },
+    {
+      "id": "reply-check",
+      "group": "game_review",
+      "text": "For the other side, the strongest reply gives check. King safety takes priority over every other consideration.",
+      "audioPath": "recordings/jun-v1/jun/reply-check.opus",
+      "sidecarPath": "recordings/jun-v1/jun/reply-check.provenance.json",
+      "alignmentPath": "alignment/reply-check.json"
+    },
+    {
+      "id": "stronger-alternative",
+      "group": "game_review",
+      "text": "Another move is preferred by the engine. Compare both against the strongest reply.",
+      "audioPath": "recordings/jun-v1/jun/stronger-alternative.opus",
+      "sidecarPath": "recordings/jun-v1/jun/stronger-alternative.provenance.json",
+      "alignmentPath": "alignment/stronger-alternative.json"
+    },
+    {
+      "id": "evaluation-loss",
+      "group": "game_review",
+      "text": "This concedes value against the engine's best option. The reply shows where the loss occurs.",
+      "audioPath": "recordings/jun-v1/jun/evaluation-loss.opus",
+      "sidecarPath": "recordings/jun-v1/jun/evaluation-loss.provenance.json",
+      "alignmentPath": "alignment/evaluation-loss.json"
+    },
+    {
+      "id": "best-supported-choice",
+      "group": "game_review",
+      "text": "Strong. Among the moves examined, very little value is conceded.",
+      "audioPath": "recordings/jun-v1/jun/best-supported-choice.opus",
+      "sidecarPath": "recordings/jun-v1/jun/best-supported-choice.provenance.json",
+      "alignmentPath": "alignment/best-supported-choice.json"
+    },
+    {
+      "id": "good-choice",
+      "group": "game_review",
+      "text": "Sound. The bulk of the position's value is retained, though the engine ranks another move first.",
+      "audioPath": "recordings/jun-v1/jun/good-choice.opus",
+      "sidecarPath": "recordings/jun-v1/jun/good-choice.provenance.json",
+      "alignmentPath": "alignment/good-choice.json"
+    },
+    {
+      "id": "clock-low",
+      "group": "game_review",
+      "text": "Played with very little time on the clock.",
+      "audioPath": "recordings/jun-v1/jun/clock-low.opus",
+      "sidecarPath": "recordings/jun-v1/jun/clock-low.provenance.json",
+      "alignmentPath": "alignment/clock-low.json"
+    },
+    {
+      "id": "clock-fast",
+      "group": "game_review",
+      "text": "Played quickly, with a substantial time reserve remaining.",
+      "audioPath": "recordings/jun-v1/jun/clock-fast.opus",
+      "sidecarPath": "recordings/jun-v1/jun/clock-fast.provenance.json",
+      "alignmentPath": "alignment/clock-fast.json"
+    },
+    {
+      "id": "clock-long",
+      "group": "game_review",
+      "text": "A long think on the clock before this move.",
+      "audioPath": "recordings/jun-v1/jun/clock-long.opus",
+      "sidecarPath": "recordings/jun-v1/jun/clock-long.provenance.json",
+      "alignmentPath": "alignment/clock-long.json"
+    },
+    {
+      "id": "recognized-opening",
+      "group": "game_review",
+      "text": "The theory catalogue includes this move.",
+      "audioPath": "recordings/jun-v1/jun/recognized-opening.opus",
+      "sidecarPath": "recordings/jun-v1/jun/recognized-opening.provenance.json",
+      "alignmentPath": "alignment/recognized-opening.json"
+    },
+    {
+      "id": "opening-departure",
+      "group": "game_review",
+      "text": "Opening theory stops at this point. From here on, no prepared line applies.",
+      "audioPath": "recordings/jun-v1/jun/opening-departure.opus",
+      "sidecarPath": "recordings/jun-v1/jun/opening-departure.provenance.json",
+      "alignmentPath": "alignment/opening-departure.json"
+    },
+    {
+      "id": "recovery",
+      "group": "game_review",
+      "text": "Playable again despite the earlier error. That is the correct repair.",
+      "audioPath": "recordings/jun-v1/jun/recovery.opus",
+      "sidecarPath": "recordings/jun-v1/jun/recovery.provenance.json",
+      "alignmentPath": "alignment/recovery.json"
+    },
+    {
+      "id": "recovery-assisted",
+      "group": "game_review",
+      "text": "The position is playable again after the earlier error, with assistance from the other side's mistakes.",
+      "audioPath": "recordings/jun-v1/jun/recovery-assisted.opus",
+      "sidecarPath": "recordings/jun-v1/jun/recovery-assisted.provenance.json",
+      "alignmentPath": "alignment/recovery-assisted.json"
+    },
+    {
+      "id": "chance-taken",
+      "group": "game_review",
+      "text": "The opponent's last move conceded a concrete opportunity, and this move takes full advantage.",
+      "audioPath": "recordings/jun-v1/jun/chance-taken.opus",
+      "sidecarPath": "recordings/jun-v1/jun/chance-taken.provenance.json",
+      "alignmentPath": "alignment/chance-taken.json"
+    },
+    {
+      "id": "chance-missed",
+      "group": "game_review",
+      "text": "The opponent's last move conceded a concrete opportunity. This reply lets it pass; a stronger answer existed.",
+      "audioPath": "recordings/jun-v1/jun/chance-missed.opus",
+      "sidecarPath": "recordings/jun-v1/jun/chance-missed.provenance.json",
+      "alignmentPath": "alignment/chance-missed.json"
+    },
+    {
+      "id": "repeated-issue",
+      "group": "game_review",
+      "text": "Recurrence: this issue already appeared earlier in the game. Compare the instances; the shared pattern is the lesson.",
+      "audioPath": "recordings/jun-v1/jun/repeated-issue.opus",
+      "sidecarPath": "recordings/jun-v1/jun/repeated-issue.provenance.json",
+      "alignmentPath": "alignment/repeated-issue.json"
+    },
+    {
+      "id": "support-restored",
+      "group": "game_review",
+      "text": "A piece that lost its protection earlier is defended again. Compare the position before and after.",
+      "audioPath": "recordings/jun-v1/jun/support-restored.opus",
+      "sidecarPath": "recordings/jun-v1/jun/support-restored.provenance.json",
+      "alignmentPath": "alignment/support-restored.json"
+    },
+    {
+      "id": "gradual-erosion",
+      "group": "game_review",
+      "text": "Several small concessions have accumulated, and this move is one more. Individually minor; together significant.",
+      "audioPath": "recordings/jun-v1/jun/gradual-erosion.opus",
+      "sidecarPath": "recordings/jun-v1/jun/gradual-erosion.provenance.json",
+      "alignmentPath": "alignment/gradual-erosion.json"
+    },
+    {
+      "id": "advantage-converted",
+      "group": "game_review",
+      "text": "The advantage was converted through to the recorded win without being returned. Technically clean.",
+      "audioPath": "recordings/jun-v1/jun/advantage-converted.opus",
+      "sidecarPath": "recordings/jun-v1/jun/advantage-converted.provenance.json",
+      "alignmentPath": "alignment/advantage-converted.json"
+    },
+    {
+      "id": "saved-history-recurrence",
+      "group": "game_review",
+      "text": "Other saved games contain the same issue. Review them together to isolate the pattern.",
+      "audioPath": "recordings/jun-v1/jun/saved-history-recurrence.opus",
+      "sidecarPath": "recordings/jun-v1/jun/saved-history-recurrence.provenance.json",
+      "alignmentPath": "alignment/saved-history-recurrence.json"
+    },
+    {
+      "id": "mate-finished",
+      "group": "game_review",
+      "text": "Checkmate. The king has no legal move; game over.",
+      "audioPath": "recordings/jun-v1/jun/mate-finished.opus",
+      "sidecarPath": "recordings/jun-v1/jun/mate-finished.provenance.json",
+      "alignmentPath": "alignment/mate-finished.json"
+    },
+    {
+      "id": "mate-defense-ended",
+      "group": "game_review",
+      "text": "Checkmate. Every square for the defending king is covered or occupied. Review the decisions that preceded it.",
+      "audioPath": "recordings/jun-v1/jun/mate-defense-ended.opus",
+      "sidecarPath": "recordings/jun-v1/jun/mate-defense-ended.provenance.json",
+      "alignmentPath": "alignment/mate-defense-ended.json"
+    },
+    {
+      "id": "draw",
+      "group": "game_review",
+      "text": "Draw. The result cannot change; the decisions that produced it remain worth reviewing.",
+      "audioPath": "recordings/jun-v1/jun/draw.opus",
+      "sidecarPath": "recordings/jun-v1/jun/draw.provenance.json",
+      "alignmentPath": "alignment/draw.json"
+    },
+    {
+      "id": "srs-cold",
+      "group": "srs_explanations",
+      "text": "Assess the position. Select a move when the calculation is complete.",
+      "audioPath": "recordings/jun-v1/jun/srs-cold.opus",
+      "sidecarPath": "recordings/jun-v1/jun/srs-cold.provenance.json",
+      "alignmentPath": "alignment/srs-cold.json"
+    },
+    {
+      "id": "srs-retry",
+      "group": "srs_explanations",
+      "text": "Incorrect. Recalculate and select again.",
+      "audioPath": "recordings/jun-v1/jun/srs-retry.opus",
+      "sidecarPath": "recordings/jun-v1/jun/srs-retry.provenance.json",
+      "alignmentPath": "alignment/srs-retry.json"
+    },
+    {
+      "id": "srs-practice-error",
+      "group": "srs_explanations",
+      "text": "The attempt returned no result. Submit the move again.",
+      "audioPath": "recordings/jun-v1/jun/srs-practice-error.opus",
+      "sidecarPath": "recordings/jun-v1/jun/srs-practice-error.provenance.json",
+      "alignmentPath": "alignment/srs-practice-error.json"
+    },
+    {
+      "id": "srs-summary-mate-for-mover",
+      "group": "srs_explanations",
+      "text": "The saved engine analysis records a forced mate in favor of the side that played this move.",
+      "audioPath": "recordings/jun-v1/jun/srs-summary-mate-for-mover.opus",
+      "sidecarPath": "recordings/jun-v1/jun/srs-summary-mate-for-mover.provenance.json",
+      "alignmentPath": "alignment/srs-summary-mate-for-mover.json"
+    },
+    {
+      "id": "srs-summary-mate-against-mover",
+      "group": "srs_explanations",
+      "text": "The saved engine analysis finds that this move concedes a forced checkmate against its own side.",
+      "audioPath": "recordings/jun-v1/jun/srs-summary-mate-against-mover.opus",
+      "sidecarPath": "recordings/jun-v1/jun/srs-summary-mate-against-mover.provenance.json",
+      "alignmentPath": "alignment/srs-summary-mate-against-mover.json"
+    },
+    {
+      "id": "srs-summary-material-gain",
+      "group": "srs_explanations",
+      "text": "Net result of the saved line: the side that played this move finishes ahead in material.",
+      "audioPath": "recordings/jun-v1/jun/srs-summary-material-gain.opus",
+      "sidecarPath": "recordings/jun-v1/jun/srs-summary-material-gain.provenance.json",
+      "alignmentPath": "alignment/srs-summary-material-gain.json"
+    },
+    {
+      "id": "srs-summary-material-loss",
+      "group": "srs_explanations",
+      "text": "Net result of the saved line: the side that played this move finishes behind in material.",
+      "audioPath": "recordings/jun-v1/jun/srs-summary-material-loss.opus",
+      "sidecarPath": "recordings/jun-v1/jun/srs-summary-material-loss.provenance.json",
+      "alignmentPath": "alignment/srs-summary-material-loss.json"
+    },
+    {
+      "id": "srs-summary-engine-accepted",
+      "group": "srs_explanations",
+      "text": "Accepted by the exercise. No clear tactical reason appears in the moves shown, and none will be invented.",
+      "audioPath": "recordings/jun-v1/jun/srs-summary-engine-accepted.opus",
+      "sidecarPath": "recordings/jun-v1/jun/srs-summary-engine-accepted.provenance.json",
+      "alignmentPath": "alignment/srs-summary-engine-accepted.json"
+    },
+    {
+      "id": "srs-summary-engine-rejected",
+      "group": "srs_explanations",
+      "text": "Not accepted by the exercise. No clear tactical reason is visible in the moves shown. Reassess the position from the start.",
+      "audioPath": "recordings/jun-v1/jun/srs-summary-engine-rejected.opus",
+      "sidecarPath": "recordings/jun-v1/jun/srs-summary-engine-rejected.provenance.json",
+      "alignmentPath": "alignment/srs-summary-engine-rejected.json"
+    },
+    {
+      "id": "srs-summary-curated-accepted",
+      "group": "srs_explanations",
+      "text": "Exact match with a saved answer. In this exercise, the saved answers define correctness.",
+      "audioPath": "recordings/jun-v1/jun/srs-summary-curated-accepted.opus",
+      "sidecarPath": "recordings/jun-v1/jun/srs-summary-curated-accepted.provenance.json",
+      "alignmentPath": "alignment/srs-summary-curated-accepted.json"
+    },
+    {
+      "id": "srs-summary-curated-rejected",
+      "group": "srs_explanations",
+      "text": "Outside the exercise's saved answers. A legal move outside them may still be objectively sound.",
+      "audioPath": "recordings/jun-v1/jun/srs-summary-curated-rejected.opus",
+      "sidecarPath": "recordings/jun-v1/jun/srs-summary-curated-rejected.provenance.json",
+      "alignmentPath": "alignment/srs-summary-curated-rejected.json"
+    },
+    {
+      "id": "srs-fallback-study",
+      "group": "srs_explanations",
+      "text": "Review the move and the reason for it, then continue to the next position.",
+      "audioPath": "recordings/jun-v1/jun/srs-fallback-study.opus",
+      "sidecarPath": "recordings/jun-v1/jun/srs-fallback-study.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-study.json"
+    },
+    {
+      "id": "srs-fallback-good",
+      "group": "srs_explanations",
+      "text": "Correct. Retain the reason; the reason transfers to other positions, the move does not.",
+      "audioPath": "recordings/jun-v1/jun/srs-fallback-good.opus",
+      "sidecarPath": "recordings/jun-v1/jun/srs-fallback-good.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-good.json"
+    },
+    {
+      "id": "srs-fallback-focus-saved",
+      "group": "srs_explanations",
+      "text": "Attempt logged. No change to the review dates.",
+      "audioPath": "recordings/jun-v1/jun/srs-fallback-focus-saved.opus",
+      "sidecarPath": "recordings/jun-v1/jun/srs-fallback-focus-saved.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-focus-saved.json"
+    },
+    {
+      "id": "srs-fallback-relearning",
+      "group": "srs_explanations",
+      "text": "Solved. The relearning status on this recall remains in effect for now.",
+      "audioPath": "recordings/jun-v1/jun/srs-fallback-relearning.opus",
+      "sidecarPath": "recordings/jun-v1/jun/srs-fallback-relearning.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-relearning.json"
+    },
+    {
+      "id": "explanation-frame-original",
+      "group": "srs_explanations",
+      "text": "Starting position, before any move in this line.",
+      "audioPath": "recordings/jun-v1/jun/explanation-frame-original.opus",
+      "sidecarPath": "recordings/jun-v1/jun/explanation-frame-original.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-original.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-ordinary",
+      "group": "srs_explanations",
+      "text": "Next move. Register what it changes.",
+      "audioPath": "recordings/jun-v1/jun/explanation-frame-quiet-move-ordinary.opus",
+      "sidecarPath": "recordings/jun-v1/jun/explanation-frame-quiet-move-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-check",
+      "group": "srs_explanations",
+      "text": "Check. The king must be addressed before anything else.",
+      "audioPath": "recordings/jun-v1/jun/explanation-frame-quiet-move-check.opus",
+      "sidecarPath": "recordings/jun-v1/jun/explanation-frame-quiet-move-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-check.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-escape",
+      "group": "srs_explanations",
+      "text": "The check is resolved.",
+      "audioPath": "recordings/jun-v1/jun/explanation-frame-quiet-move-escape.opus",
+      "sidecarPath": "recordings/jun-v1/jun/explanation-frame-quiet-move-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-escape.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-ordinary",
+      "group": "srs_explanations",
+      "text": "Promotion: the pawn is exchanged for a new piece on the last rank.",
+      "audioPath": "recordings/jun-v1/jun/explanation-frame-quiet-promotion-ordinary.opus",
+      "sidecarPath": "recordings/jun-v1/jun/explanation-frame-quiet-promotion-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-check",
+      "group": "srs_explanations",
+      "text": "The pawn promotes, and check comes from the new piece.",
+      "audioPath": "recordings/jun-v1/jun/explanation-frame-quiet-promotion-check.opus",
+      "sidecarPath": "recordings/jun-v1/jun/explanation-frame-quiet-promotion-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-check.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-mate",
+      "group": "srs_explanations",
+      "text": "The pawn promotes with checkmate. No legal king move remains.",
+      "audioPath": "recordings/jun-v1/jun/explanation-frame-quiet-promotion-mate.opus",
+      "sidecarPath": "recordings/jun-v1/jun/explanation-frame-quiet-promotion-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-mate.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-escape",
+      "group": "srs_explanations",
+      "text": "The pawn promotes, and the promotion also resolves the check on its own king.",
+      "audioPath": "recordings/jun-v1/jun/explanation-frame-quiet-promotion-escape.opus",
+      "sidecarPath": "recordings/jun-v1/jun/explanation-frame-quiet-promotion-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-escape.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-ordinary",
+      "group": "srs_explanations",
+      "text": "Capture. Material leaves the board.",
+      "audioPath": "recordings/jun-v1/jun/explanation-frame-capture-move-ordinary.opus",
+      "sidecarPath": "recordings/jun-v1/jun/explanation-frame-capture-move-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-check",
+      "group": "srs_explanations",
+      "text": "Check, delivered by a capture. Material and tempo in one move.",
+      "audioPath": "recordings/jun-v1/jun/explanation-frame-capture-move-check.opus",
+      "sidecarPath": "recordings/jun-v1/jun/explanation-frame-capture-move-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-check.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-mate",
+      "group": "srs_explanations",
+      "text": "Capture with checkmate. Game over.",
+      "audioPath": "recordings/jun-v1/jun/explanation-frame-capture-move-mate.opus",
+      "sidecarPath": "recordings/jun-v1/jun/explanation-frame-capture-move-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-mate.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-escape",
+      "group": "srs_explanations",
+      "text": "Capture, and the king is out of check in the same move.",
+      "audioPath": "recordings/jun-v1/jun/explanation-frame-capture-move-escape.opus",
+      "sidecarPath": "recordings/jun-v1/jun/explanation-frame-capture-move-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-escape.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-ordinary",
+      "group": "srs_explanations",
+      "text": "A pawn capture lands on the last rank, and the pawn promotes.",
+      "audioPath": "recordings/jun-v1/jun/explanation-frame-capture-promotion-ordinary.opus",
+      "sidecarPath": "recordings/jun-v1/jun/explanation-frame-capture-promotion-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-check",
+      "group": "srs_explanations",
+      "text": "The pawn captures, promotes, and checks with the new piece.",
+      "audioPath": "recordings/jun-v1/jun/explanation-frame-capture-promotion-check.opus",
+      "sidecarPath": "recordings/jun-v1/jun/explanation-frame-capture-promotion-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-check.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-mate",
+      "group": "srs_explanations",
+      "text": "The pawn captures, promotes, and delivers checkmate.",
+      "audioPath": "recordings/jun-v1/jun/explanation-frame-capture-promotion-mate.opus",
+      "sidecarPath": "recordings/jun-v1/jun/explanation-frame-capture-promotion-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-mate.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-escape",
+      "group": "srs_explanations",
+      "text": "Capture plus promotion, and its own king is out of check in the same move.",
+      "audioPath": "recordings/jun-v1/jun/explanation-frame-capture-promotion-escape.opus",
+      "sidecarPath": "recordings/jun-v1/jun/explanation-frame-capture-promotion-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-escape.json"
+    },
+    {
+      "id": "explanation-frame-castle-check",
+      "group": "srs_explanations",
+      "text": "Castling, and check from the same move.",
+      "audioPath": "recordings/jun-v1/jun/explanation-frame-castle-check.opus",
+      "sidecarPath": "recordings/jun-v1/jun/explanation-frame-castle-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-castle-check.json"
+    },
+    {
+      "id": "explanation-frame-castle-mate",
+      "group": "srs_explanations",
+      "text": "Castling delivers checkmate. Zero legal replies.",
+      "audioPath": "recordings/jun-v1/jun/explanation-frame-castle-mate.opus",
+      "sidecarPath": "recordings/jun-v1/jun/explanation-frame-castle-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-castle-mate.json"
+    },
+    {
+      "id": "explanation-finding-fork-collected",
+      "group": "srs_explanations",
+      "text": "Mechanism of the fork: a single attacker hits several targets and collects one. In this example, the net material balance also improves.",
+      "audioPath": "recordings/jun-v1/jun/explanation-finding-fork-collected.opus",
+      "sidecarPath": "recordings/jun-v1/jun/explanation-finding-fork-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-fork-collected.json"
+    },
+    {
+      "id": "explanation-finding-pin-prevents-capture",
+      "group": "srs_explanations",
+      "text": "Absolute pin on this piece. The marked capture is illegal, because leaving the line would expose the king.",
+      "audioPath": "recordings/jun-v1/jun/explanation-finding-pin-prevents-capture.opus",
+      "sidecarPath": "recordings/jun-v1/jun/explanation-finding-pin-prevents-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-prevents-capture.json"
+    },
+    {
+      "id": "explanation-finding-pin-restricts-escape",
+      "group": "srs_explanations",
+      "text": "Pinned to its king, the attacked piece may only move along the line that keeps the king covered.",
+      "audioPath": "recordings/jun-v1/jun/explanation-finding-pin-restricts-escape.opus",
+      "sidecarPath": "recordings/jun-v1/jun/explanation-finding-pin-restricts-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-restricts-escape.json"
+    },
+    {
+      "id": "explanation-finding-pin-defenders-no-recapture",
+      "group": "srs_explanations",
+      "text": "No defender can recapture, because every one of them is pinned to its king. That is the mechanism behind the capture, and the line shown finishes with a material gain.",
+      "audioPath": "recordings/jun-v1/jun/explanation-finding-pin-defenders-no-recapture.opus",
+      "sidecarPath": "recordings/jun-v1/jun/explanation-finding-pin-defenders-no-recapture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-defenders-no-recapture.json"
+    },
+    {
+      "id": "explanation-finding-pin-collected",
+      "group": "srs_explanations",
+      "text": "The pinned piece cannot leave the line its king stands behind, and it is captured before the sequence ends.",
+      "audioPath": "recordings/jun-v1/jun/explanation-finding-pin-collected.opus",
+      "sidecarPath": "recordings/jun-v1/jun/explanation-finding-pin-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-collected.json"
+    },
+    {
+      "id": "explanation-finding-skewer-collected",
+      "group": "srs_explanations",
+      "text": "Forced off the line, the front piece abandons the one behind, which is captured.",
+      "audioPath": "recordings/jun-v1/jun/explanation-finding-skewer-collected.opus",
+      "sidecarPath": "recordings/jun-v1/jun/explanation-finding-skewer-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-skewer-collected.json"
+    },
+    {
+      "id": "explanation-finding-king-skewer-collected",
+      "group": "srs_explanations",
+      "text": "Check compels the king to leave the line, and the same attacker collects what stood behind it.",
+      "audioPath": "recordings/jun-v1/jun/explanation-finding-king-skewer-collected.opus",
+      "sidecarPath": "recordings/jun-v1/jun/explanation-finding-king-skewer-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-king-skewer-collected.json"
+    },
+    {
+      "id": "explanation-finding-sole-defender-captured",
+      "group": "srs_explanations",
+      "text": "Sequence: capture the only defender, then take what it was protecting.",
+      "audioPath": "recordings/jun-v1/jun/explanation-finding-sole-defender-captured.opus",
+      "sidecarPath": "recordings/jun-v1/jun/explanation-finding-sole-defender-captured.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-sole-defender-captured.json"
+    },
+    {
+      "id": "explanation-finding-deflection-collected",
+      "group": "srs_explanations",
+      "text": "Pulled off its post, the defender abandons the piece it covered, and that piece falls.",
+      "audioPath": "recordings/jun-v1/jun/explanation-finding-deflection-collected.opus",
+      "sidecarPath": "recordings/jun-v1/jun/explanation-finding-deflection-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-deflection-collected.json"
+    },
+    {
+      "id": "explanation-finding-discovered-capture",
+      "group": "srs_explanations",
+      "text": "The blocking piece moves, the line opens, and the rear piece captures along it.",
+      "audioPath": "recordings/jun-v1/jun/explanation-finding-discovered-capture.opus",
+      "sidecarPath": "recordings/jun-v1/jun/explanation-finding-discovered-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-discovered-capture.json"
+    },
+    {
+      "id": "explanation-finding-discovered-check",
+      "group": "srs_explanations",
+      "text": "A piece moves off the line, and the opened line gives check.",
+      "audioPath": "recordings/jun-v1/jun/explanation-finding-discovered-check.opus",
+      "sidecarPath": "recordings/jun-v1/jun/explanation-finding-discovered-check.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-discovered-check.json"
+    },
+    {
+      "id": "explanation-finding-double-check",
+      "group": "srs_explanations",
+      "text": "Double check. Two pieces give check at once, so only a king move is legal.",
+      "audioPath": "recordings/jun-v1/jun/explanation-finding-double-check.opus",
+      "sidecarPath": "recordings/jun-v1/jun/explanation-finding-double-check.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-double-check.json"
+    },
+    {
+      "id": "explanation-finding-double-attack-collected",
+      "group": "srs_explanations",
+      "text": "The moving piece attacks one target; the line it opens attacks a second. The rear attacker collects its target.",
+      "audioPath": "recordings/jun-v1/jun/explanation-finding-double-attack-collected.opus",
+      "sidecarPath": "recordings/jun-v1/jun/explanation-finding-double-attack-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-double-attack-collected.json"
+    },
+    {
+      "id": "explanation-finding-promotion-material-retained",
+      "group": "srs_explanations",
+      "text": "Promotion achieved. At the end of this example, that side is also ahead in material overall.",
+      "audioPath": "recordings/jun-v1/jun/explanation-finding-promotion-material-retained.opus",
+      "sidecarPath": "recordings/jun-v1/jun/explanation-finding-promotion-material-retained.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-promotion-material-retained.json"
+    },
+    {
+      "id": "explanation-finding-undefended-capture-gain",
+      "group": "srs_explanations",
+      "text": "An unprotected piece is captured. The capturing side finishes this example ahead in material.",
+      "audioPath": "recordings/jun-v1/jun/explanation-finding-undefended-capture-gain.opus",
+      "sidecarPath": "recordings/jun-v1/jun/explanation-finding-undefended-capture-gain.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-undefended-capture-gain.json"
+    },
+    {
+      "id": "explanation-finding-relative-pin-released",
+      "group": "srs_explanations",
+      "text": "The attacking piece was held by a relative pin. The opponent's previous move released it, and it now captures a target that did not move, in the line shown.",
+      "audioPath": "recordings/jun-v1/jun/explanation-finding-relative-pin-released.opus",
+      "sidecarPath": "recordings/jun-v1/jun/explanation-finding-relative-pin-released.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-relative-pin-released.json"
+    },
+    {
+      "id": "game-explanation-legal-reply",
+      "group": "srs_explanations",
+      "text": "The marked reply is a legal option. Play it on the board and examine the result.",
+      "audioPath": "recordings/jun-v1/jun/game-explanation-legal-reply.opus",
+      "sidecarPath": "recordings/jun-v1/jun/game-explanation-legal-reply.provenance.json",
+      "alignmentPath": "alignment/game-explanation-legal-reply.json"
+    },
+    {
+      "id": "explanation-cue-hanging-piece",
+      "group": "srs_explanations",
+      "text": "Before moving, verify that no piece can be captured without an adequate recapture.",
+      "audioPath": "recordings/jun-v1/jun/explanation-cue-hanging-piece.opus",
+      "sidecarPath": "recordings/jun-v1/jun/explanation-cue-hanging-piece.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-hanging-piece.json"
+    },
+    {
+      "id": "explanation-cue-missed-tactical-capture",
+      "group": "srs_explanations",
+      "text": "Before any quiet move, check every enemy piece for missing protection.",
+      "audioPath": "recordings/jun-v1/jun/explanation-cue-missed-tactical-capture.opus",
+      "sidecarPath": "recordings/jun-v1/jun/explanation-cue-missed-tactical-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-missed-tactical-capture.json"
+    },
+    {
+      "id": "explanation-cue-fork",
+      "group": "srs_explanations",
+      "text": "Among the forcing moves, test for a single piece hitting two valuable targets.",
+      "audioPath": "recordings/jun-v1/jun/explanation-cue-fork.opus",
+      "sidecarPath": "recordings/jun-v1/jun/explanation-cue-fork.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-fork.json"
+    },
+    {
+      "id": "explanation-cue-pin",
+      "group": "srs_explanations",
+      "text": "Before moving a pinned piece, establish what stands behind it, whether king or higher-value piece.",
+      "audioPath": "recordings/jun-v1/jun/explanation-cue-pin.opus",
+      "sidecarPath": "recordings/jun-v1/jun/explanation-cue-pin.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-pin.json"
+    },
+    {
+      "id": "explanation-cue-skewer",
+      "group": "srs_explanations",
+      "text": "Check the line behind the first target. A more valuable piece may be standing there.",
+      "audioPath": "recordings/jun-v1/jun/explanation-cue-skewer.opus",
+      "sidecarPath": "recordings/jun-v1/jun/explanation-cue-skewer.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-skewer.json"
+    },
+    {
+      "id": "explanation-cue-removing-defender",
+      "group": "srs_explanations",
+      "text": "Before exchanging a defender, list what it defends.",
+      "audioPath": "recordings/jun-v1/jun/explanation-cue-removing-defender.opus",
+      "sidecarPath": "recordings/jun-v1/jun/explanation-cue-removing-defender.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-removing-defender.json"
+    },
+    {
+      "id": "explanation-cue-discovered-attack",
+      "group": "srs_explanations",
+      "text": "When a piece leaves a line, check what that line now attacks.",
+      "audioPath": "recordings/jun-v1/jun/explanation-cue-discovered-attack.opus",
+      "sidecarPath": "recordings/jun-v1/jun/explanation-cue-discovered-attack.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-discovered-attack.json"
+    },
+    {
+      "id": "explanation-cue-double-attack",
+      "group": "srs_explanations",
+      "text": "Look for single moves that create two threats, including checks and newly opened lines.",
+      "audioPath": "recordings/jun-v1/jun/explanation-cue-double-attack.opus",
+      "sidecarPath": "recordings/jun-v1/jun/explanation-cue-double-attack.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-double-attack.json"
+    },
+    {
+      "id": "explanation-cue-back-rank",
+      "group": "srs_explanations",
+      "text": "Before moving a back-rank defender, confirm the king retains an escape square.",
+      "audioPath": "recordings/jun-v1/jun/explanation-cue-back-rank.opus",
+      "sidecarPath": "recordings/jun-v1/jun/explanation-cue-back-rank.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-back-rank.json"
+    },
+    {
+      "id": "explanation-cue-promotion-awareness",
+      "group": "srs_explanations",
+      "text": "Count the squares a pawn needs to promote. Identify which pawn advances require an answer.",
+      "audioPath": "recordings/jun-v1/jun/explanation-cue-promotion-awareness.opus",
+      "sidecarPath": "recordings/jun-v1/jun/explanation-cue-promotion-awareness.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-promotion-awareness.json"
+    },
+    {
+      "id": "explanation-cue-abandoned-defender",
+      "group": "srs_explanations",
+      "text": "Before moving a defender, list the pieces that rely on it.",
+      "audioPath": "recordings/jun-v1/jun/explanation-cue-abandoned-defender.opus",
+      "sidecarPath": "recordings/jun-v1/jun/explanation-cue-abandoned-defender.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-abandoned-defender.json"
+    },
+    {
+      "id": "explanation-cue-avoiding-bad-trades",
+      "group": "srs_explanations",
+      "text": "Before capturing, compare the value gained with what the recapture takes back.",
+      "audioPath": "recordings/jun-v1/jun/explanation-cue-avoiding-bad-trades.opus",
+      "sidecarPath": "recordings/jun-v1/jun/explanation-cue-avoiding-bad-trades.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-avoiding-bad-trades.json"
+    },
+    {
+      "id": "explanation-cue-deflection",
+      "group": "srs_explanations",
+      "text": "Test whether a forcing exchange overloads a defender with a second duty.",
+      "audioPath": "recordings/jun-v1/jun/explanation-cue-deflection.opus",
+      "sidecarPath": "recordings/jun-v1/jun/explanation-cue-deflection.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-deflection.json"
+    },
+    {
+      "id": "explanation-note-curated-authority",
+      "group": "srs_explanations",
+      "text": "This exercise grades only against its saved answers. A legal move outside them can still be sound.",
+      "audioPath": "recordings/jun-v1/jun/explanation-note-curated-authority.opus",
+      "sidecarPath": "recordings/jun-v1/jun/explanation-note-curated-authority.provenance.json",
+      "alignmentPath": "alignment/explanation-note-curated-authority.json"
+    },
+    {
+      "id": "explanation-note-strong-replies",
+      "group": "srs_explanations",
+      "text": "The line is shown against strong replies. They are not necessarily the only replies.",
+      "audioPath": "recordings/jun-v1/jun/explanation-note-strong-replies.opus",
+      "sidecarPath": "recordings/jun-v1/jun/explanation-note-strong-replies.provenance.json",
+      "alignmentPath": "alignment/explanation-note-strong-replies.json"
+    },
+    {
+      "id": "explanation-note-material-scope",
+      "group": "srs_explanations",
+      "text": "Material changes are counted within the line shown, measured from where that line starts. The written explanation states which piece values apply.",
+      "audioPath": "recordings/jun-v1/jun/explanation-note-material-scope.opus",
+      "sidecarPath": "recordings/jun-v1/jun/explanation-note-material-scope.provenance.json",
+      "alignmentPath": "alignment/explanation-note-material-scope.json"
+    },
+    {
+      "id": "explanation-note-no-simple-reason",
+      "group": "srs_explanations",
+      "text": "No simple tactical reason appears in the saved line, and no positional reason will be guessed. Work through it and test each reply yourself.",
+      "audioPath": "recordings/jun-v1/jun/explanation-note-no-simple-reason.opus",
+      "sidecarPath": "recordings/jun-v1/jun/explanation-note-no-simple-reason.provenance.json",
+      "alignmentPath": "alignment/explanation-note-no-simple-reason.json"
+    },
+    {
+      "id": "explanation-note-saved-policy",
+      "group": "srs_explanations",
+      "text": "This explanation is governed by the answer policy saved with the exercise. For that setting, consult the written notes.",
+      "audioPath": "recordings/jun-v1/jun/explanation-note-saved-policy.opus",
+      "sidecarPath": "recordings/jun-v1/jun/explanation-note-saved-policy.provenance.json",
+      "alignmentPath": "alignment/explanation-note-saved-policy.json"
+    },
+    {
+      "id": "opening-recall-revealed",
+      "group": "openings",
+      "text": "The opening line, move by move, in order.",
+      "audioPath": "recordings/jun-v1/jun/opening-recall-revealed.opus",
+      "sidecarPath": "recordings/jun-v1/jun/opening-recall-revealed.provenance.json",
+      "alignmentPath": "alignment/opening-recall-revealed.json"
+    },
+    {
+      "id": "opening-recall-accepted",
+      "group": "openings",
+      "text": "Correct. That move is part of the study material.",
+      "audioPath": "recordings/jun-v1/jun/opening-recall-accepted.opus",
+      "sidecarPath": "recordings/jun-v1/jun/opening-recall-accepted.provenance.json",
+      "alignmentPath": "alignment/opening-recall-accepted.json"
+    },
+    {
+      "id": "opening-recall-retry-fallback",
+      "group": "openings",
+      "text": "Select the next move from the opening lines under study.",
+      "audioPath": "recordings/jun-v1/jun/opening-recall-retry-fallback.opus",
+      "sidecarPath": "recordings/jun-v1/jun/opening-recall-retry-fallback.provenance.json",
+      "alignmentPath": "alignment/opening-recall-retry-fallback.json"
+    },
+    {
+      "id": "opening-recall-cold-multiple",
+      "group": "openings",
+      "text": "More than one chosen opening line applies here. Any of them supplies a valid move.",
+      "audioPath": "recordings/jun-v1/jun/opening-recall-cold-multiple.opus",
+      "sidecarPath": "recordings/jun-v1/jun/opening-recall-cold-multiple.provenance.json",
+      "alignmentPath": "alignment/opening-recall-cold-multiple.json"
+    },
+    {
+      "id": "opening-recall-cold-single",
+      "group": "openings",
+      "text": "Recall the next move from the study material.",
+      "audioPath": "recordings/jun-v1/jun/opening-recall-cold-single.opus",
+      "sidecarPath": "recordings/jun-v1/jun/opening-recall-cold-single.provenance.json",
+      "alignmentPath": "alignment/opening-recall-cold-single.json"
+    },
+    {
+      "id": "opening-recall-rejected",
+      "group": "openings",
+      "text": "The chosen opening lines do not contain that move. Try again.",
+      "audioPath": "recordings/jun-v1/jun/opening-recall-rejected.opus",
+      "sidecarPath": "recordings/jun-v1/jun/opening-recall-rejected.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected.json"
+    },
+    {
+      "id": "opening-recall-rejected-changed",
+      "group": "openings",
+      "text": "Outside the chosen lines; try again. The study has changed, so this saved attempt does not alter review dates.",
+      "audioPath": "recordings/jun-v1/jun/opening-recall-rejected-changed.opus",
+      "sidecarPath": "recordings/jun-v1/jun/opening-recall-rejected-changed.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected-changed.json"
+    },
+    {
+      "id": "opening-recall-rejected-retired",
+      "group": "openings",
+      "text": "Outside the chosen lines; try again. The position is retired, and its review dates are fixed.",
+      "audioPath": "recordings/jun-v1/jun/opening-recall-rejected-retired.opus",
+      "sidecarPath": "recordings/jun-v1/jun/opening-recall-rejected-retired.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected-retired.json"
+    },
+    {
+      "id": "opening-preview-active",
+      "group": "openings",
+      "text": "Under Mixed Due, any move from this line is accepted. Dedicated practice requires this line specifically.",
+      "audioPath": "recordings/jun-v1/jun/opening-preview-active.opus",
+      "sidecarPath": "recordings/jun-v1/jun/opening-preview-active.provenance.json",
+      "alignmentPath": "alignment/opening-preview-active.json"
+    },
+    {
+      "id": "opening-preview-inactive",
+      "group": "openings",
+      "text": "Due recalls will request the moves for the chosen side. Several active studies sharing one position produce a single card for it.",
+      "audioPath": "recordings/jun-v1/jun/opening-preview-inactive.opus",
+      "sidecarPath": "recordings/jun-v1/jun/opening-preview-inactive.provenance.json",
+      "alignmentPath": "alignment/opening-preview-inactive.json"
+    },
+    {
+      "id": "puzzle-error",
+      "group": "puzzles",
+      "text": "Before the next move, reload the saved session.",
+      "audioPath": "recordings/jun-v1/jun/puzzle-error.opus",
+      "sidecarPath": "recordings/jun-v1/jun/puzzle-error.provenance.json",
+      "alignmentPath": "alignment/puzzle-error.json"
+    },
+    {
+      "id": "puzzle-playback",
+      "group": "puzzles",
+      "text": "Verified line, now playing on the board.",
+      "audioPath": "recordings/jun-v1/jun/puzzle-playback.opus",
+      "sidecarPath": "recordings/jun-v1/jun/puzzle-playback.provenance.json",
+      "alignmentPath": "alignment/puzzle-playback.json"
+    },
+    {
+      "id": "puzzle-revealed",
+      "group": "puzzles",
+      "text": "Recorded as revealed. The solution remains available below.",
+      "audioPath": "recordings/jun-v1/jun/puzzle-revealed.opus",
+      "sidecarPath": "recordings/jun-v1/jun/puzzle-revealed.provenance.json",
+      "alignmentPath": "alignment/puzzle-revealed.json"
+    },
+    {
+      "id": "puzzle-solved-after-retry",
+      "group": "puzzles",
+      "text": "Solved on a later attempt. The record keeps the earlier miss alongside the solution.",
+      "audioPath": "recordings/jun-v1/jun/puzzle-solved-after-retry.opus",
+      "sidecarPath": "recordings/jun-v1/jun/puzzle-solved-after-retry.provenance.json",
+      "alignmentPath": "alignment/puzzle-solved-after-retry.json"
+    },
+    {
+      "id": "puzzle-solved-clean",
+      "group": "puzzles",
+      "text": "Solved without an error. Every move correct.",
+      "audioPath": "recordings/jun-v1/jun/puzzle-solved-clean.opus",
+      "sidecarPath": "recordings/jun-v1/jun/puzzle-solved-clean.provenance.json",
+      "alignmentPath": "alignment/puzzle-solved-clean.json"
+    },
+    {
+      "id": "puzzle-rejected",
+      "group": "puzzles",
+      "text": "Incorrect for this puzzle. Previous correct moves stay saved.",
+      "audioPath": "recordings/jun-v1/jun/puzzle-rejected.opus",
+      "sidecarPath": "recordings/jun-v1/jun/puzzle-rejected.provenance.json",
+      "alignmentPath": "alignment/puzzle-rejected.json"
+    },
+    {
+      "id": "puzzle-next-move",
+      "group": "puzzles",
+      "text": "Correct. Next move.",
+      "audioPath": "recordings/jun-v1/jun/puzzle-next-move.opus",
+      "sidecarPath": "recordings/jun-v1/jun/puzzle-next-move.provenance.json",
+      "alignmentPath": "alignment/puzzle-next-move.json"
+    },
+    {
+      "id": "puzzle-cold",
+      "group": "puzzles",
+      "text": "Calculate fully. Move when the line is clear.",
+      "audioPath": "recordings/jun-v1/jun/puzzle-cold.opus",
+      "sidecarPath": "recordings/jun-v1/jun/puzzle-cold.provenance.json",
+      "alignmentPath": "alignment/puzzle-cold.json"
+    },
+    {
+      "id": "game-unavailable",
+      "group": "operational",
+      "text": "The engine analysis is insufficient to explain this position. No guess will be offered.",
+      "audioPath": "recordings/jun-v1/jun/game-unavailable.opus",
+      "sidecarPath": "recordings/jun-v1/jun/game-unavailable.provenance.json",
+      "alignmentPath": "alignment/game-unavailable.json"
+    },
+    {
+      "id": "game-review-paused",
+      "group": "operational",
+      "text": "Review paused. Resume below, or test a move on the board.",
+      "audioPath": "recordings/jun-v1/jun/game-review-paused.opus",
+      "sidecarPath": "recordings/jun-v1/jun/game-review-paused.provenance.json",
+      "alignmentPath": "alignment/game-review-paused.json"
+    },
+    {
+      "id": "game-browse-instructions",
+      "group": "operational",
+      "text": "Select a move to review, or test a move on the board.",
+      "audioPath": "recordings/jun-v1/jun/game-browse-instructions.opus",
+      "sidecarPath": "recordings/jun-v1/jun/game-browse-instructions.provenance.json",
+      "alignmentPath": "alignment/game-browse-instructions.json"
+    },
+    {
+      "id": "book-opening-entry-1",
+      "group": "game_review",
+      "text": "Opening theory begins here. This move has a catalogue entry.",
+      "audioPath": "recordings/jun-v1/jun/book-opening-entry-1.opus",
+      "sidecarPath": "recordings/jun-v1/jun/book-opening-entry-1.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-1.json"
+    },
+    {
+      "id": "book-opening-entry-2",
+      "group": "game_review",
+      "text": "Theory move; a known opening lists it.",
+      "audioPath": "recordings/jun-v1/jun/book-opening-entry-2.opus",
+      "sidecarPath": "recordings/jun-v1/jun/book-opening-entry-2.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-2.json"
+    },
+    {
+      "id": "book-opening-entry-3",
+      "group": "game_review",
+      "text": "This move has its own recorded entry in opening theory.",
+      "audioPath": "recordings/jun-v1/jun/book-opening-entry-3.opus",
+      "sidecarPath": "recordings/jun-v1/jun/book-opening-entry-3.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-3.json"
+    },
+    {
+      "id": "book-opening-follow-1",
+      "group": "game_review",
+      "text": "Theory continues.",
+      "audioPath": "recordings/jun-v1/jun/book-opening-follow-1.opus",
+      "sidecarPath": "recordings/jun-v1/jun/book-opening-follow-1.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-1.json"
+    },
+    {
+      "id": "book-opening-follow-2",
+      "group": "game_review",
+      "text": "This move is covered by theory as well.",
+      "audioPath": "recordings/jun-v1/jun/book-opening-follow-2.opus",
+      "sidecarPath": "recordings/jun-v1/jun/book-opening-follow-2.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-2.json"
+    },
+    {
+      "id": "book-opening-follow-3",
+      "group": "game_review",
+      "text": "The reply has a catalogue entry too.",
+      "audioPath": "recordings/jun-v1/jun/book-opening-follow-3.opus",
+      "sidecarPath": "recordings/jun-v1/jun/book-opening-follow-3.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-3.json"
+    },
+    {
+      "id": "book-opening-follow-4",
+      "group": "game_review",
+      "text": "Still within the book line.",
+      "audioPath": "recordings/jun-v1/jun/book-opening-follow-4.opus",
+      "sidecarPath": "recordings/jun-v1/jun/book-opening-follow-4.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-4.json"
+    },
+    {
+      "id": "book-opening-follow-5",
+      "group": "game_review",
+      "text": "Listed in theory.",
+      "audioPath": "recordings/jun-v1/jun/book-opening-follow-5.opus",
+      "sidecarPath": "recordings/jun-v1/jun/book-opening-follow-5.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-5.json"
+    },
+    {
+      "id": "book-opening-follow-6",
+      "group": "game_review",
+      "text": "No deviation from theory.",
+      "audioPath": "recordings/jun-v1/jun/book-opening-follow-6.opus",
+      "sidecarPath": "recordings/jun-v1/jun/book-opening-follow-6.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-6.json"
+    },
+    {
+      "id": "book-opening-follow-7",
+      "group": "game_review",
+      "text": "Theory again.",
+      "audioPath": "recordings/jun-v1/jun/book-opening-follow-7.opus",
+      "sidecarPath": "recordings/jun-v1/jun/book-opening-follow-7.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-7.json"
+    },
+    {
+      "id": "book-opening-follow-8",
+      "group": "game_review",
+      "text": "Book move. Being in theory locates the game; it does not evaluate the move.",
+      "audioPath": "recordings/jun-v1/jun/book-opening-follow-8.opus",
+      "sidecarPath": "recordings/jun-v1/jun/book-opening-follow-8.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-8.json"
+    },
+    {
+      "id": "game-review-opened",
+      "group": "operational",
+      "text": "Starting position. Advance through the game and examine each decision in order.",
+      "audioPath": "recordings/jun-v1/jun/game-review-opened.opus",
+      "sidecarPath": "recordings/jun-v1/jun/game-review-opened.provenance.json",
+      "alignmentPath": "alignment/game-review-opened.json"
+    },
+    {
+      "id": "lesson-wrong-move",
+      "group": "lessons",
+      "text": "Mismatch with the lesson. Recalculate, then submit again.",
+      "audioPath": "recordings/jun-v1/jun/lesson-wrong-move.opus",
+      "sidecarPath": "recordings/jun-v1/jun/lesson-wrong-move.provenance.json",
+      "alignmentPath": "alignment/lesson-wrong-move.json"
+    },
+    {
+      "id": "lesson-correct-move",
+      "group": "lessons",
+      "text": "Match. Lesson move accepted; advancing.",
+      "audioPath": "recordings/jun-v1/jun/lesson-correct-move.opus",
+      "sidecarPath": "recordings/jun-v1/jun/lesson-correct-move.provenance.json",
+      "alignmentPath": "alignment/lesson-correct-move.json"
+    },
+    {
+      "id": "lesson-move-revealed",
+      "group": "lessons",
+      "text": "Required move now displayed. Record it, then advance.",
+      "audioPath": "recordings/jun-v1/jun/lesson-move-revealed.opus",
+      "sidecarPath": "recordings/jun-v1/jun/lesson-move-revealed.provenance.json",
+      "alignmentPath": "alignment/lesson-move-revealed.json"
+    },
+    {
+      "id": "lesson-guided-playback",
+      "group": "lessons",
+      "text": "Sequence running automatically. Observe each move.",
+      "audioPath": "recordings/jun-v1/jun/lesson-guided-playback.opus",
+      "sidecarPath": "recordings/jun-v1/jun/lesson-guided-playback.provenance.json",
+      "alignmentPath": "alignment/lesson-guided-playback.json"
+    },
+    {
+      "id": "lesson-rehearsal-prompt",
+      "group": "lessons",
+      "text": "Recall test: reproduce your prepared move in this position.",
+      "audioPath": "recordings/jun-v1/jun/lesson-rehearsal-prompt.opus",
+      "sidecarPath": "recordings/jun-v1/jun/lesson-rehearsal-prompt.provenance.json",
+      "alignmentPath": "alignment/lesson-rehearsal-prompt.json"
+    },
+    {
+      "id": "lesson-branch-entered",
+      "group": "lessons",
+      "text": "Branch opened: an alternative to the main sequence. Study it, then rejoin.",
+      "audioPath": "recordings/jun-v1/jun/lesson-branch-entered.opus",
+      "sidecarPath": "recordings/jun-v1/jun/lesson-branch-entered.provenance.json",
+      "alignmentPath": "alignment/lesson-branch-entered.json"
+    },
+    {
+      "id": "lesson-chapter-complete",
+      "group": "lessons",
+      "text": "Chapter concluded. Every result is on file.",
+      "audioPath": "recordings/jun-v1/jun/lesson-chapter-complete.opus",
+      "sidecarPath": "recordings/jun-v1/jun/lesson-chapter-complete.provenance.json",
+      "alignmentPath": "alignment/lesson-chapter-complete.json"
+    },
+    {
+      "id": "lesson-game-opened",
+      "group": "lessons",
+      "text": "Entire game available for free navigation. Resume the lesson when finished.",
+      "audioPath": "recordings/jun-v1/jun/lesson-game-opened.opus",
+      "sidecarPath": "recordings/jun-v1/jun/lesson-game-opened.provenance.json",
+      "alignmentPath": "alignment/lesson-game-opened.json"
+    },
+    {
+      "id": "lesson-error",
+      "group": "lessons",
+      "text": "Lesson session fault. Reload before continuing.",
+      "audioPath": "recordings/jun-v1/jun/lesson-error.opus",
+      "sidecarPath": "recordings/jun-v1/jun/lesson-error.provenance.json",
+      "alignmentPath": "alignment/lesson-error.json"
+    }
+  ]
+}

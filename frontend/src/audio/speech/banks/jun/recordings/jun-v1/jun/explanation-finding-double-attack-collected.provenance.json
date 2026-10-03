@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "explanation-finding-double-attack-collected",
+      "label": "Explanation finding double attack collected",
+      "text": "The moving piece attacks one target; the line it opens attacks a second. The rear attacker collects its target."
+    },
+    "takeId": null
+  },
+  "requestHash": "4e7128c64c89b2796e01b8c236cd6bb9fcb7cb365d7973ee938c585b228403a5",
+  "recordedAt": "2026-10-03T05:53:29.892Z",
+  "sha256": "3633936d818ce191fb50aefdc28a922b502bc69b7ab62e0b21efebb109837d67",
+  "bytes": 23717,
+  "requestId": "EaO6McYfJe2R46WVas6G",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0fc31c700d94b465cbe7a235192e2c7b65dac4f24daa9c254ebed14148dc5d57",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

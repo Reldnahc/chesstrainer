@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed",
+      "label": "Tactic removing defender missed",
+      "text": "The stronger move captured a defender and stripped the protection from the piece behind it. This move leaves the defender in place."
+    },
+    "takeId": null
+  },
+  "requestHash": "1c045e44c5866d6813bf8de460b07f43908ec20b89f4a07f36631400521c941a",
+  "recordedAt": "2026-10-03T05:50:32.528Z",
+  "sha256": "97a822ed4bfcc119fe924b2a2427efb7f942dea1916be754138674a6daa0141d",
+  "bytes": 25431,
+  "requestId": "5Jt1rXmoF1XdKuxW4YWv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cf97fe904ec2f7c83337f8c8bf5964f4016673990c87566712bd2c7e65fa2aca",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

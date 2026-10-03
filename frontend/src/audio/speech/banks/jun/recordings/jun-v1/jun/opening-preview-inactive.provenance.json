@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "opening-preview-inactive",
+      "label": "Opening preview inactive",
+      "text": "Due recalls will request the moves for the chosen side. Several active studies sharing one position produce a single card for it."
+    },
+    "takeId": null
+  },
+  "requestHash": "a680de5fe08c9695d8356be32967bb9d26d2c2ff3fd565c2c6386b1b65859f3b",
+  "recordedAt": "2026-10-03T05:54:19.220Z",
+  "sha256": "465c906e6dc9fb3a5a1647d99479f59f8c61ceba4376d497975df845f1012fe8",
+  "bytes": 27176,
+  "requestId": "FTYpd4NGgxXu5E7AbKji",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b9ac2d27e32720a78849b3eceb4b8c66d80667878267ddfcd1a73753acfbccb9",
+    "bytes": 137970
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

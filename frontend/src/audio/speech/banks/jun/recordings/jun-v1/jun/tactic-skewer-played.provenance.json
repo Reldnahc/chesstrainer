@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-skewer-played",
+      "label": "Tactic skewer played",
+      "text": "Skewer. The front piece must move off the line, and the piece behind it becomes a target."
+    },
+    "takeId": null
+  },
+  "requestHash": "ffdce0aa9404ca373a2a381e65da23e75a6e72d4e059c972eb171afd7b9b86b1",
+  "recordedAt": "2026-10-03T05:50:23.389Z",
+  "sha256": "7ba388b283a2d60fe73e9348c2292d9ab3282cdc8e6bdd9bbfe204843f6763b2",
+  "bytes": 18554,
+  "requestId": "2SPOcAU2iDDwpcBzkoQR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7d5bfffa757bd790843d37818ade6db5982e817dfec4dd332744dc6cd754156d",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

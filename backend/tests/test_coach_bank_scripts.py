@@ -51,6 +51,7 @@ REGISTERED = [
     ("man-host", "femi"),
     ("frog", "fergus"),
     ("woman-blonde", "ingrid"),
+    ("man-expert", "jun"),
 ]
 # Voices whose written personality sets questionFrequency to "none".
 QUESTIONLESS = [

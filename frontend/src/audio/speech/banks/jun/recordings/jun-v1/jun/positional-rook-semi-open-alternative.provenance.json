@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "positional-rook-semi-open-alternative",
+      "label": "Positional rook semi open alternative",
+      "text": "The alternative put a rook on a semi-open file, without friendly pawns but with enemy pawns present."
+    },
+    "takeId": null
+  },
+  "requestHash": "d609629957adcd4f8bb066602ca18ceb7835554a2e070280b8c98d031fc18be5",
+  "recordedAt": "2026-10-03T05:51:17.774Z",
+  "sha256": "4d0dc37fb45659f552503252717ed278ca8df6821113132d44b170926b82925f",
+  "bytes": 21906,
+  "requestId": "AhTBxshcrhFSxwE7ByWs",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2aba5ce2b7d7a303a4906b8f3783126dde03c88b2cf66c76bf2e55dfd9ebc907",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "explanation-cue-promotion-awareness",
+      "label": "Explanation cue promotion awareness",
+      "text": "Count the squares a pawn needs to promote. Identify which pawn advances require an answer."
+    },
+    "takeId": null
+  },
+  "requestHash": "e05d527a98933aeb512a39a2d235e8b0001eb125c1bf5ffc33ac07862f56590e",
+  "recordedAt": "2026-10-03T05:53:51.088Z",
+  "sha256": "c5293f6359064c16440344eba24dcd6be5460d861ff372ba49196b69aff8dc21",
+  "bytes": 20896,
+  "requestId": "ndv4IAqF7GOODUJmMKCA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b4ab4edd32308f918475db4f354be67d0e658b1501452f85769ef54ed5e91518",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-promotion-ordinary",
+      "label": "Explanation frame quiet promotion ordinary",
+      "text": "Promotion: the pawn is exchanged for a new piece on the last rank."
+    },
+    "takeId": null
+  },
+  "requestHash": "af1676093fa56170566bc692b3ab8446472af690b246074a2a36fe9c268e8bf2",
+  "recordedAt": "2026-10-03T05:52:52.788Z",
+  "sha256": "248ac08908dc77a50707cfeec15dd4a9bedc491e1eb42b86dc06029a8dd4ec2d",
+  "bytes": 15623,
+  "requestId": "7zQJAZjgONA0JqFN2gSx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3f1fed6a449e761135ebeeff86ad0520af81d89b15583740edf4eba7aa389102",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

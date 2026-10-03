@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "explanation-cue-double-attack",
+      "label": "Explanation cue double attack",
+      "text": "Look for single moves that create two threats, including checks and newly opened lines."
+    },
+    "takeId": null
+  },
+  "requestHash": "0fcdb926b4aafea9d078a90ff0bd83266e62868716d77cde727e21bd99125621",
+  "recordedAt": "2026-10-03T05:53:48.181Z",
+  "sha256": "9f18bf464cd73cce903976492dc87fb323ce4caa5bf7b8998b9cdacdc57b9209",
+  "bytes": 19234,
+  "requestId": "xP5weoYNPt3wupCUXpNc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c4fe0ce1f7f4dd14f73d897d2292807749536e42dde1bbb014fc9f277d04113f",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

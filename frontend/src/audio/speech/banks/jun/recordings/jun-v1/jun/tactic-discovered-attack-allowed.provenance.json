@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed",
+      "label": "Tactic discovered attack allowed",
+      "text": "This concedes a discovered attack. One enemy piece masks another; when the front piece moves, the rear piece attacks along the cleared line."
+    },
+    "takeId": null
+  },
+  "requestHash": "eb379808cbd765970f15db92058da3bb8930f40cb080069b4bd6d7fa7f6af4c0",
+  "recordedAt": "2026-10-03T05:50:46.827Z",
+  "sha256": "c7a25089d6a03c1527e3dc2964ad6be2d126171fceba4de444a5aa61f80f0f01",
+  "bytes": 28919,
+  "requestId": "FNtugxR9kcVENd4r3KLC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "795b588371f0e380c3582f23035e0c391a96e031db078f2c53133ab7f05ab040",
+    "bytes": 149673
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

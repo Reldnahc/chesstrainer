@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-capture",
+      "label": "Explanation finding discovered capture",
+      "text": "The blocking piece moves, the line opens, and the rear piece captures along it."
+    },
+    "takeId": null
+  },
+  "requestHash": "aaa030730e5d9341fd2f8c676c364b50dad83b7df3659abfa86b33c83d586deb",
+  "recordedAt": "2026-10-03T05:53:25.421Z",
+  "sha256": "4e9ac1a2bf878a92b1fadef6c406c7a7f83f0bb716b5fb0c34aae75a42739b2b",
+  "bytes": 16965,
+  "requestId": "eE03GljbJyDZB75ngNby",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "08f20828e8aaece9c738183313d112a9007a3a5a388f53d5c47da1d0c2fa2d57",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

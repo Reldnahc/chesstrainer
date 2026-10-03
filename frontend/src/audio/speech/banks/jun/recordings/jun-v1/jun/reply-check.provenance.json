@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "reply-check",
+      "label": "Reply check",
+      "text": "For the other side, the strongest reply gives check. King safety takes priority over every other consideration."
+    },
+    "takeId": null
+  },
+  "requestHash": "ceb69854a600bc86bc761fa9f9a45a8467be146f8efc6246554afa61f05b6cf1",
+  "recordedAt": "2026-10-03T05:51:56.108Z",
+  "sha256": "b01034a8d20359e708b4cc96b5643d5ad40b93d2b1f973485826371a765ad9de",
+  "bytes": 24326,
+  "requestId": "cVOdBauRrMloxg5rIux7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e88ea33fcaa7f7510bad26c43c02f8d15aaf6e4303fa1f456c0793ec700d2786",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

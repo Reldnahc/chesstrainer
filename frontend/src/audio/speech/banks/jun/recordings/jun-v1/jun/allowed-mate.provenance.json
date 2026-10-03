@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "allowed-mate",
+      "label": "Allowed mate",
+      "text": "Forced mate for the other side, starting now. Trace the attack back to the first defensive concession."
+    },
+    "takeId": null
+  },
+  "requestHash": "250518a575e7a64572f93eb93b2ebcefff1859e70a1b5ad3515a0d1d9f3804c6",
+  "recordedAt": "2026-10-03T05:51:46.659Z",
+  "sha256": "b121b0da0871a63844e8a1f7727610338987461204c1ea12193bdff3498d5796",
+  "bytes": 20050,
+  "requestId": "3t8JLMjMiEhPXc5HtdAq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "71439b2aef631d178cdb3d51c7d377877b9bd402b104fe7ee52fa787f918da48",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

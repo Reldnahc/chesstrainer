@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed",
+      "label": "Tactic removing defender allowed",
+      "text": "One defender can now be captured. If it goes, the piece it guards loses that protection."
+    },
+    "takeId": null
+  },
+  "requestHash": "d898bbae9e419622673f4202a7a1ac3993750a770900815d35dbad9fcafde902",
+  "recordedAt": "2026-10-03T05:50:30.432Z",
+  "sha256": "6e94d87831c73f8756ae8cfc6eadcc7b2c35697ace04b0d884d1dc00cda4f79f",
+  "bytes": 19663,
+  "requestId": "rtV5F1dvIikpBUJ0mvGF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0c63359af190367a947c841dc6109b820c8d6fa0759a6e449b55110a30e16a81",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

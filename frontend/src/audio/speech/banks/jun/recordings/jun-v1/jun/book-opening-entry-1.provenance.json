@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "book-opening-entry-1",
+      "label": "Book opening entry 1",
+      "text": "Opening theory begins here. This move has a catalogue entry."
+    },
+    "takeId": null
+  },
+  "requestHash": "754e9a4b7318d8752f4741aaea4a6934ed90896b3094b0b5ff17132e0b70c7b6",
+  "recordedAt": "2026-10-03T05:54:33.271Z",
+  "sha256": "7b4683184e023ad43e8b8c1f634b8c897dd4b6f8fcfcdd8dffbc5896231e6c17",
+  "bytes": 14122,
+  "requestId": "ZkpeoRwxMlEhhR7vzqs3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b918fd5238ecf44eae64badba49de9974e4943074416297483a187f722fcb418",
+    "bytes": 71515
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

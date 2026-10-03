@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "book-opening-follow-1",
+      "label": "Book opening follow 1",
+      "text": "Theory continues."
+    },
+    "takeId": null
+  },
+  "requestHash": "831cdf3a35930c247ee4255723dba8fcb29d5a235693552cbcf325160a9b6f53",
+  "recordedAt": "2026-10-03T05:54:35.999Z",
+  "sha256": "43e39563c64599f89d4a8ba35263ef8a54c015757829bdc2f78f4cc90ffe54dd",
+  "bytes": 5618,
+  "requestId": "kLExO5w7YqqzlWjkRwqF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6c06d33e3e250950c81b80800c4accb7719393b93b64687ff94b1c48cc9f0b24",
+    "bytes": 25539
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

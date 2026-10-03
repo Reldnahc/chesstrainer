@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "opening-recall-accepted",
+      "label": "Opening recall accepted",
+      "text": "Correct. That move is part of the study material."
+    },
+    "takeId": null
+  },
+  "requestHash": "aaad0045e44297ca6acbd22d9ad39bca21b3abff187f55a17273814ecbecb1d1",
+  "recordedAt": "2026-10-03T05:54:06.034Z",
+  "sha256": "3a8ad683566c56b9b86311862518cf4230edb6eddababe22a40b0b5fd14f5fbf",
+  "bytes": 11471,
+  "requestId": "FQ5tv4NcM5aLfaIeImem",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e7ee3216cac806947e4f707193931365e7aeaa76a0fc29612c53b3696ec56bb5",
+    "bytes": 57304
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

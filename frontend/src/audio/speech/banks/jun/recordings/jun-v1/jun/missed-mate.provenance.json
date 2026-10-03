@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "missed-mate",
+      "label": "Missed mate",
+      "text": "A mating line was available and went unplayed. Locate it afterward."
+    },
+    "takeId": null
+  },
+  "requestHash": "e4a13e9bbc2df92c8f1ac4cee65e8fbde89875e6edec3913ba31027b7e659120",
+  "recordedAt": "2026-10-03T05:51:47.877Z",
+  "sha256": "9bb4bde2820d4759e595242c2133dc510ca13058950ef52fa4933ac4d8225469",
+  "bytes": 15001,
+  "requestId": "hTxrGtLVrbF7r622lCot",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3c6a19bc6c7dea0afb822e6ae7abae650457e85a2054ce8c43d7816a5f6fd6d4",
+    "bytes": 74022
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

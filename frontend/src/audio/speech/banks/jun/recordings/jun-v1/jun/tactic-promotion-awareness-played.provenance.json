@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-promotion-awareness-played",
+      "label": "Tactic promotion awareness played",
+      "text": "The pawn advances toward promotion. Each step narrows the defense."
+    },
+    "takeId": null
+  },
+  "requestHash": "25c6ce1add5a363fe573bf626052cb34f27a07217318f9918a827c6e76a28542",
+  "recordedAt": "2026-10-03T05:50:39.570Z",
+  "sha256": "695e6c94fa3ebb03bf9561a7f0200b0e091a758f8beb4381bf56be4fa328d301",
+  "bytes": 16014,
+  "requestId": "20yMjYunDDExgPzJ2V9K",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f746d5ca64ca8a05071ae15bf35ceaf93bc57bca18b03fb983a992099532ac8b",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

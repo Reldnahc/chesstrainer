@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "explanation-cue-skewer",
+      "label": "Explanation cue skewer",
+      "text": "Check the line behind the first target. A more valuable piece may be standing there."
+    },
+    "takeId": null
+  },
+  "requestHash": "6e3ab5288bdd3c72df6202e26a426348765e8f93df7deb609ac6260529648f19",
+  "recordedAt": "2026-10-03T05:53:43.771Z",
+  "sha256": "e4d110ff797e2cd6c6c7daea23310be7bd8ca38e37048deb18778404c74f7768",
+  "bytes": 16345,
+  "requestId": "aDJPKjm8eUwUsjtEQCsG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "64573330aa26f33c522854b08f3c6b46fb9168901474a050cc0c32a2be072b50",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "game-browse-instructions",
+      "label": "Game browse instructions",
+      "text": "Select a move to review, or test a move on the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "92ffc7080a8dd452d6d467fd3c91158ac019a64af84dc809a890435a68f0f5b0",
+  "recordedAt": "2026-10-03T05:54:31.904Z",
+  "sha256": "716c89c0b5720e87397d41667818711d6576082ce0619855eedf356c6dae69bd",
+  "bytes": 12985,
+  "requestId": "6SF8wyD5JrDeTIDA5rA3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ac921b596b5f4411782da8738a9a2393ced06d304270acaf9000232acc95f17f",
+    "bytes": 65245
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

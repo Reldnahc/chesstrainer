@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-escape",
+      "label": "Explanation frame capture promotion escape",
+      "text": "Capture plus promotion, and its own king is out of check in the same move."
+    },
+    "takeId": null
+  },
+  "requestHash": "82a9f1249f6419c1b48107d671bf735a2398df48ad6e419f0089b58b14cf3913",
+  "recordedAt": "2026-10-03T05:53:05.713Z",
+  "sha256": "b146730ff5d98bd3bc0a4a3137ebb88e835b78b0eec21b0dd3f6e1eeead5a73b",
+  "bytes": 16127,
+  "requestId": "A2L1WAnegDb0odRk7TcQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "324720ac7cd9e2e91378198a46cc51814869ad9268cca362a80aa8901ea71eb7",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

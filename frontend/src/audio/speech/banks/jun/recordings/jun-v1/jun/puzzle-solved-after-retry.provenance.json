@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "puzzle-solved-after-retry",
+      "label": "Puzzle solved after retry",
+      "text": "Solved on a later attempt. The record keeps the earlier miss alongside the solution."
+    },
+    "takeId": null
+  },
+  "requestHash": "236b58c71dd19ae7c3997c76eb35528440dba785813b55dcc7a24bc37e07ae45",
+  "recordedAt": "2026-10-03T05:54:23.877Z",
+  "sha256": "f8abde669115ce5e330fbfc2214bbce91cbcfb8b9e88fed5adc187747c262f9b",
+  "bytes": 17670,
+  "requestId": "UfV4quRxIxTYH3c6HmGz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "aed052dd42d759d8f622c234a12f4a13009a9b026aad483162269b8ec61a04e9",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

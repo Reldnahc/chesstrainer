@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "lesson-move-revealed",
+      "label": "Lesson move revealed",
+      "text": "Required move now displayed. Record it, then advance."
+    },
+    "takeId": null
+  },
+  "requestHash": "893410f10d324038c44ade24cfbf41edbfdff03f1ac66bd0f50e24878a5eb730",
+  "recordedAt": "2026-10-03T05:54:46.876Z",
+  "sha256": "e61806b0493b5c3fa215209b5c319c9ec08eb17173fd0193b27a43e0328009cc",
+  "bytes": 13857,
+  "requestId": "uv1kXTVtIbdeHgNCun5p",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1035a08da6ff05b5d59d80d8c0f9e16f18763d0cafadfc71d2433a93af65a7b8",
+    "bytes": 70261
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

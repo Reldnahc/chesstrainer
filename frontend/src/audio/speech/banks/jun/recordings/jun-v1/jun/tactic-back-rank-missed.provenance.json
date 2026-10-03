@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-back-rank-missed",
+      "label": "Tactic back rank missed",
+      "text": "Back-rank mate was on offer: the enemy king's own pieces blocked its exits. Not exploited."
+    },
+    "takeId": null
+  },
+  "requestHash": "95ea71ecb2fc8e7b4ee3828587f75eeda4e39645485d26c155936f08b4854557",
+  "recordedAt": "2026-10-03T05:50:38.189Z",
+  "sha256": "184a67ba6dc89946f69dbf9160d127f86a12da80e36c6e33833bc0bc2e479ff0",
+  "bytes": 21378,
+  "requestId": "GBTBOU93CDAseiQd2RKU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8bc05cd35b357445489f3db24816110174584a56aeb35ddf3120a818cdb3ee8e",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

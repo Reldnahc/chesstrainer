@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "opening-recall-cold-multiple",
+      "label": "Opening recall cold multiple",
+      "text": "More than one chosen opening line applies here. Any of them supplies a valid move."
+    },
+    "takeId": null
+  },
+  "requestHash": "dec15625c7ff8b2e9a57ee4a667ca6493f21f88020a9cccbf06f68b020811248",
+  "recordedAt": "2026-10-03T05:54:08.785Z",
+  "sha256": "b32219fc5407350da43a7a7ac1a5e55c2c2db102dc8cbe222fac1177725f4923",
+  "bytes": 18036,
+  "requestId": "yVkU7vEweUy2lUVVaIx0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5d67fec09590a372d32e6d1a82ba7cc698d0ebacd773a56b18e9a3970eaed719",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "explanation-cue-discovered-attack",
+      "label": "Explanation cue discovered attack",
+      "text": "When a piece leaves a line, check what that line now attacks."
+    },
+    "takeId": null
+  },
+  "requestHash": "d0634d417ec1ed7b46b6f16ac85b119d3111281472e04bfa3ed9132467d1dbf3",
+  "recordedAt": "2026-10-03T05:53:46.555Z",
+  "sha256": "31c460a6f91edbf4f4acb30d2888bda50026b58a41ca23e7ade24e5ee40c5a69",
+  "bytes": 13253,
+  "requestId": "h1qAKtVKgo3duyDkhEbC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "78753f803e63a0fd1e9c57a635b1d8f083efd55fe00d176d851802a8f5f6fd73",
+    "bytes": 66499
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

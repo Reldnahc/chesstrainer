@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "mate-defense-ended",
+      "label": "Mate defense ended",
+      "text": "Checkmate. Every square for the defending king is covered or occupied. Review the decisions that preceded it."
+    },
+    "takeId": null
+  },
+  "requestHash": "f293e1adb3fd0d416319ef6c5f1f0080dc1067b264380318e0fc1f581bc8207b",
+  "recordedAt": "2026-10-03T05:52:25.390Z",
+  "sha256": "0bd7506447adda7472131329b4484e83ec60861a0cb900858b1c4ea9cad581fa",
+  "bytes": 23499,
+  "requestId": "hzqwunQlKJUo1XpZTItk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "09492a4e60419a8bb73d56548a9061eb1312a561d36b12e4fcbffd708e5a6f28",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

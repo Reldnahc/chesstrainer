@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "lesson-branch-entered",
+      "label": "Lesson branch entered",
+      "text": "Branch opened: an alternative to the main sequence. Study it, then rejoin."
+    },
+    "takeId": null
+  },
+  "requestHash": "60190400d1978a5552836845d9fa119c05d7e79be389c0370cb06a08e5ab65db",
+  "recordedAt": "2026-10-03T05:54:50.599Z",
+  "sha256": "664580d8e809bed883732f8cd5d89d7eb91e85419c6c98f9b201a987e1cc0a3a",
+  "bytes": 19051,
+  "requestId": "fgrwweMfZ15gO6oj3jFT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8d2b869713fec009d9cf5a60ea93b4870bf1f3deb689907310b922f4969e130a",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

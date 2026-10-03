@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "explanation-note-saved-policy",
+      "label": "Explanation note saved policy",
+      "text": "This explanation is governed by the answer policy saved with the exercise. For that setting, consult the written notes."
+    },
+    "takeId": null
+  },
+  "requestHash": "181e0cd76ccfc582af91c17b40b91c2e4edb8003bd3726a701bcc204f6785295",
+  "recordedAt": "2026-10-03T05:54:03.782Z",
+  "sha256": "f9c0a3f96b73f0cfdbbcb25e68353d1c98d71e2107331fd1c9c635d54b065cb7",
+  "bytes": 23931,
+  "requestId": "QPLfASlQfKn2rnYQ7Eci",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d517a68ac4012b4d3916e23fa3ea8ffa01d94a912097d59de04a55cca7b2cb60",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

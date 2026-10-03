@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "cause-avoiding-bad-trades",
+      "label": "Cause avoiding bad trades",
+      "text": "The capture is incomplete as a calculation. The recapture removes a higher-value piece, so the exchange loses material."
+    },
+    "takeId": null
+  },
+  "requestHash": "10194fc09a0c584488d182654e36cb15c7cdac60e5449297573b3cd1256aae10",
+  "recordedAt": "2026-10-03T05:51:09.124Z",
+  "sha256": "73b7e668d43532b4a8fac6b0b3604b94faaccf95b35468f83d5cdcff7a50da7e",
+  "bytes": 26093,
+  "requestId": "6g9swqYzHk2Yje1gF2NG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b5aea046eda4508f3e5f562158dc6313e09c4ff0852e4d49376e6e6a5ec4f1bc",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

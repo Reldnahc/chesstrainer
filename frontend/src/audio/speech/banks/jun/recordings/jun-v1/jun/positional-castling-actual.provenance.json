@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "positional-castling-actual",
+      "label": "Positional castling actual",
+      "text": "Castled. The king moves two squares, and the rook relocates beside it in the same move."
+    },
+    "takeId": null
+  },
+  "requestHash": "83efbc81de4f0ad27b568896b6b9cbdee7713a88e319a7d288ae38329a2b3e7f",
+  "recordedAt": "2026-10-03T05:51:37.730Z",
+  "sha256": "bb1d7fc1fff81cc3ce0364f4faa377110770910329fa41dbffb8e1eaeb769dd8",
+  "bytes": 20101,
+  "requestId": "IpQ3mzGKHq39IGlbRZYG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ed316919efc08fb6e3a7f29d6b44485306448415c5ca0c6c87366c04402fd4c7",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

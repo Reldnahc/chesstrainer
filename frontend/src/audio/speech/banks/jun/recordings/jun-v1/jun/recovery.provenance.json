@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "recovery",
+      "label": "Recovery",
+      "text": "Playable again despite the earlier error. That is the correct repair."
+    },
+    "takeId": null
+  },
+  "requestHash": "a278427d5d1840a58048f2910a205e2655d95396ade77c9f3218bf4f6b7335c1",
+  "recordedAt": "2026-10-03T05:52:08.155Z",
+  "sha256": "72670a4e07de00fdd32ec008f6d1d6384d86e2c8d99e7623f63c2ea86960dfee",
+  "bytes": 16321,
+  "requestId": "XSDyetb44vewUc1cKG4A",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "819f3c26dd859a292f53090af728230ed35525163eb872b4c8b4f8a6e2bf253e",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

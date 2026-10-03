@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "positional-king-flight-actual",
+      "label": "Positional king flight actual",
+      "text": "The king now has one more legal flight square. Identify which piece movement cleared it."
+    },
+    "takeId": null
+  },
+  "requestHash": "a8806e682aae45ce91ac9eb95b5319eadaf278b0b4a40e3257eb5d0b9cdd38a4",
+  "recordedAt": "2026-10-03T05:51:34.491Z",
+  "sha256": "57153d0286552abb9b10934db4340d472744a6a10c1b1aad3ea53ba45e569167",
+  "bytes": 19363,
+  "requestId": "cLRGxwhPH9zgzHyzmTk4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ea73fbc8f90ded08f6056052af14c03fc295fde92c2322b1cea9bc28cc52b26c",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

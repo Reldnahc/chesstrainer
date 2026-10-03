@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "cause-abandoned-defender",
+      "label": "Cause abandoned defender",
+      "text": "This move abandons a defense. The piece's only defender relocates, and the piece can now be captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "96d5ef4c7f8b5b4e358621d882e3445b50c5b1b7c9388c7c8b1c74557559e4d8",
+  "recordedAt": "2026-10-03T05:51:05.608Z",
+  "sha256": "b6b1d02305e39b98d70332003fb1a5df8bf6663b0b8dc19a7320d0bcce142fe9",
+  "bytes": 22939,
+  "requestId": "Mvc43VPWciUpnN9L9W88",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "accd4dad420238083e9ea27371d3b684f9980083cb45ab37bb1ca2590f6698e0",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "best-supported-choice",
+      "label": "Best supported choice",
+      "text": "Strong. Among the moves examined, very little value is conceded."
+    },
+    "takeId": null
+  },
+  "requestHash": "364bcc556aa3ec7a23b1aa56534650760c774291c83b6b87b9debf0031348250",
+  "recordedAt": "2026-10-03T05:52:00.315Z",
+  "sha256": "5a6d14a0085d26a3cba22ba82ca0834ce73eaffb44c86fd7f4edd98bed9bda2a",
+  "bytes": 16074,
+  "requestId": "4Xr5xKJc05hF19SWtYZH",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ec5175bd76558ead07f275c0b1c5e95a3b6a5a3c0bc67b90fd288f38d6d0e984",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

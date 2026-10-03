@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "explanation-cue-pin",
+      "label": "Explanation cue pin",
+      "text": "Before moving a pinned piece, establish what stands behind it, whether king or higher-value piece."
+    },
+    "takeId": null
+  },
+  "requestHash": "7c3538b46530b520457f03a95c0bcf09aaf7d6c274e54bdfe72506a86cf18c68",
+  "recordedAt": "2026-10-03T05:53:42.434Z",
+  "sha256": "7bffe69386192eb2541a2a2ac49d8ffe4044e4714d10b1f717e6211bed4d084e",
+  "bytes": 21487,
+  "requestId": "rAZpx4lU1EMhxxTob9ik",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7c6ce9dd5548e4738e9da13cd161d3e1ebf46161e5edc22ad6d03174080e8e7c",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

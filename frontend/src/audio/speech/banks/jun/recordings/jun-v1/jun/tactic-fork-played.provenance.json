@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-fork-played",
+      "label": "Tactic fork played",
+      "text": "Fork. A single piece now hits several targets, and one reply rarely rescues all of them."
+    },
+    "takeId": null
+  },
+  "requestHash": "6266a199323962d0093fc146d368f1097ec6f3a29ebad2658e16784ad9e359d7",
+  "recordedAt": "2026-10-03T05:50:12.437Z",
+  "sha256": "1b191978f6659fd686d84c2796c2377bbe193ba96281a877cd678ae391826d64",
+  "bytes": 20781,
+  "requestId": "FcUzO4uBYykXlMB9ZUfU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d53dfdc3f9bc19012cc51db1f4e4b34dc81312ac1f2e2a7abf075e325dbac9eb",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

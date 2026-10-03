@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "only-playable-move",
+      "label": "Only playable move",
+      "text": "Only move. The rest of the examined candidates lose, and the position stays playable through this one."
+    },
+    "takeId": null
+  },
+  "requestHash": "953da08ffe20362ba07798171959c865f06aec4855f97f4cdc667a809d1dd159",
+  "recordedAt": "2026-10-03T05:51:51.468Z",
+  "sha256": "9b3f584bc4a989c7b8efcf742fc400acf21b3df911f695186c92d3c8f0bcffe0",
+  "bytes": 20922,
+  "requestId": "lZGpPw2tQxVgJF3Yhd2L",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4209feab1860a8831474c1369a29ad049afd290c5721bb6cad4ddb5b4bbff676",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

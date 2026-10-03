@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative",
+      "label": "Positional unsupported alternative",
+      "text": "The alternative left a piece without its last defender. That alone would not have established a loss."
+    },
+    "takeId": null
+  },
+  "requestHash": "b423a0089f8e2fb9a79de93910b61fe340daee0291f06e4b7b6b7188fefa4020",
+  "recordedAt": "2026-10-03T05:51:32.944Z",
+  "sha256": "40c79fac5299a20e835044dd60f39a3eff7930365125f557d86cc006d454be50",
+  "bytes": 20799,
+  "requestId": "SBdQs3GE2nnngJFBxSNe",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1e8d7721980aaa758e05cb98fbf102897915ed778e04eae5b84d6d094ee067a1",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

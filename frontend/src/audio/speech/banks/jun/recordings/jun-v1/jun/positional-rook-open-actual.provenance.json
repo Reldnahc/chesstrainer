@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "positional-rook-open-actual",
+      "label": "Positional rook open actual",
+      "text": "The rook's file is fully open now, with no pawn of either color on it."
+    },
+    "takeId": null
+  },
+  "requestHash": "144251505c6e8bbd4b4d71ca940f59488979b03713a7803e6cb69a2db29ffd2a",
+  "recordedAt": "2026-10-03T05:51:13.413Z",
+  "sha256": "0e2d058b5ed1c4aa0c96a4e3f272cf1cd208011131fd572aa86278b615d56ba5",
+  "bytes": 15704,
+  "requestId": "CUJvq1LEXggJQ3R6epCM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2250cc91db40304f835f65dfeaf82720cf6b056c5b4cc76a4ea11c4a5e1467ba",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

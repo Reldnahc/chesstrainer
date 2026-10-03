@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "srs-fallback-study",
+      "label": "Srs fallback study",
+      "text": "Review the move and the reason for it, then continue to the next position."
+    },
+    "takeId": null
+  },
+  "requestHash": "467c02e242a5f2c9a0441adf658ee12cdb8af69cdfdae35d50621cba88d61b7c",
+  "recordedAt": "2026-10-03T05:52:43.695Z",
+  "sha256": "9549d965abf8916aaacfb976477fb9567a5e80cb647fb8ae50fa4736d91319cc",
+  "bytes": 15137,
+  "requestId": "orXyOkx7uzzuCddaryEn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e68b6655185d3cd857e9cf801c36e0d4ce7d27754f939ba865a13ac1c73bcf89",
+    "bytes": 75276
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

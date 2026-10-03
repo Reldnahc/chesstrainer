@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "opening-recall-rejected-changed",
+      "label": "Opening recall rejected changed",
+      "text": "Outside the chosen lines; try again. The study has changed, so this saved attempt does not alter review dates."
+    },
+    "takeId": null
+  },
+  "requestHash": "c2a1e3737f75bd4b1a2e3021cccfec981951409668b5e29a3140488293f146fc",
+  "recordedAt": "2026-10-03T05:54:13.103Z",
+  "sha256": "604094282ff670f5e0612671ba0315b0f4c614ad3043a87d46792b0cd8422881",
+  "bytes": 24691,
+  "requestId": "HQouwuW6kOy2S7QAqs5f",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "be3a92cbec1a657c4c46104fcc159f9e257e9d6e35571e67deb0f01f8b0fcdd2",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

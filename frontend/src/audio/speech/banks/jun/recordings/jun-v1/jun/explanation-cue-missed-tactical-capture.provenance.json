@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "explanation-cue-missed-tactical-capture",
+      "label": "Explanation cue missed tactical capture",
+      "text": "Before any quiet move, check every enemy piece for missing protection."
+    },
+    "takeId": null
+  },
+  "requestHash": "0f555c4f3bd2333ecf1cdb39072074dbcf06775ce92be14623dc59a1257ac431",
+  "recordedAt": "2026-10-03T05:53:39.471Z",
+  "sha256": "f97931d00aa1b22db3b22d70222ace6f479622be8480d0eff55f579b15bf60ba",
+  "bytes": 15788,
+  "requestId": "2X3zoJPBkywA4KbTpSw1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "524d1c64952363cb1386899fb179c55f92023507a1834f019332e1b6a0f3dd5f",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

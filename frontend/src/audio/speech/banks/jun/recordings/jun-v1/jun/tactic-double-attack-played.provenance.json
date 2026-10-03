@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-double-attack-played",
+      "label": "Tactic double attack played",
+      "text": "Double attack. Two targets are threatened by one move, and a single reply rarely meets both."
+    },
+    "takeId": null
+  },
+  "requestHash": "578511bb860ba41331b295f30bffe9746b64742698afd1d05455ec4b19c91366",
+  "recordedAt": "2026-10-03T05:50:50.903Z",
+  "sha256": "797b4eb62f00a4d9b6be149ecf41a233a47f05d2230c8243f035e843b036078a",
+  "bytes": 21403,
+  "requestId": "xfLy8UaiPgOz6j8DMbaY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "98fd71b53ff34e0c6666ead67cd48199af4a1a5511a469a1635be337607b6d81",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

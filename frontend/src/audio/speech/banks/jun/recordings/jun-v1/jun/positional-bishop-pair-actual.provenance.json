@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "positional-bishop-pair-actual",
+      "label": "Positional bishop pair actual",
+      "text": "The bishop pair no longer exists after this capture. Only one square color remains covered by that side's bishops."
+    },
+    "takeId": null
+  },
+  "requestHash": "67fb1561d8e5ea0355f18d7bd49bff5b4e3b03d3aba9b378fc543dadbdc16e0a",
+  "recordedAt": "2026-10-03T05:51:40.982Z",
+  "sha256": "d9a2d3ecd1569de36b62dd3b23361f46aaa79030eeb1f43121cd8c7920ca6694",
+  "bytes": 23829,
+  "requestId": "eeZhoyxnp6kfgWqn5iyL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5b3e915543b42edc8492e2ce7856495dbf4ba8f9f7d493a5247d7b5b2c687d95",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "explanation-cue-back-rank",
+      "label": "Explanation cue back rank",
+      "text": "Before moving a back-rank defender, confirm the king retains an escape square."
+    },
+    "takeId": null
+  },
+  "requestHash": "86cd56d24f3af775c302b665a26c1c52a31af7d7212119d1cf8c82823f3b3d7e",
+  "recordedAt": "2026-10-03T05:53:49.587Z",
+  "sha256": "eacde92dd2e9bc3114a17af1af090e4feaeb66fd40ccb0d5052beba0eef188a5",
+  "bytes": 16730,
+  "requestId": "kEA403miBrxWFoJTv1lx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "42838ea86fddf525a5d56efa7c0646b6df2f55e2d51496276397b9d391f3d541",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}
