@@ -426,6 +426,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/insights": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Insights */
+        get: operations["insights_api_insights_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/jobs": {
         parameters: {
             query?: never;
@@ -1237,6 +1254,13 @@ export interface components {
             /** Version */
             version: string;
         };
+        /** Bucket */
+        Bucket: {
+            /** Games */
+            games: number;
+            /** Label */
+            label: string;
+        };
         /** Candidate */
         Candidate: {
             /**
@@ -1371,6 +1395,18 @@ export interface components {
             /** Version */
             version: string;
         };
+        /** ClockBand */
+        ClockBand: {
+            /**
+             * Band
+             * @enum {string}
+             */
+            band: "over_half" | "quarter" | "tenth" | "under_tenth";
+            /** Blunder Rate */
+            blunder_rate: number | null;
+            /** Moves */
+            moves: number;
+        };
         /** ClockFacts */
         ClockFacts: {
             /**
@@ -1433,6 +1469,17 @@ export interface components {
              * @constant
              */
             version: "clock-1";
+        };
+        /** ClockStory */
+        ClockStory: {
+            /** Blunders By Clock */
+            blunders_by_clock: components["schemas"]["ClockBand"][];
+            /** Clocked Games */
+            clocked_games: number;
+            /** Think Seconds */
+            think_seconds: components["schemas"]["ThinkTime"][];
+            /** Time Trouble Games */
+            time_trouble_games: number;
         };
         /** CoachPreferences */
         CoachPreferences: {
@@ -1528,6 +1575,19 @@ export interface components {
             input_digest: string;
             /** Ply */
             ply: number;
+        };
+        /** Conversion */
+        Conversion: {
+            /** Converted */
+            converted: number;
+            /** Drawn */
+            drawn: number;
+            /** Lost */
+            lost: number;
+            /** Slips */
+            slips: components["schemas"]["InsightGame"][];
+            /** Winning Games */
+            winning_games: number;
         };
         /** Coverage */
         Coverage: {
@@ -1645,6 +1705,47 @@ export interface components {
             time_class: string | null;
             /** Time Control */
             time_control: string | null;
+        };
+        /** EndgameRecord */
+        EndgameRecord: {
+            /** Games */
+            games: number;
+            /** Held */
+            held: number;
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "rook" | "queen" | "minor" | "pawn";
+        };
+        /** Ending */
+        Ending: {
+            /** Games */
+            games: number;
+            /** Termination */
+            termination: string;
+        };
+        /** Endings */
+        Endings: {
+            /** Draw */
+            draw: components["schemas"]["Ending"][];
+            /** Loss */
+            loss: components["schemas"]["Ending"][];
+            /** Win */
+            win: components["schemas"]["Ending"][];
+        };
+        /** Escapes */
+        Escapes: {
+            /** Drawn */
+            drawn: number;
+            /** Lost Games */
+            lost_games: number;
+            /** Saves */
+            saves: components["schemas"]["InsightGame"][];
+            /** Still Lost */
+            still_lost: number;
+            /** Won */
+            won: number;
         };
         /** Evidence */
         Evidence: {
@@ -2206,6 +2307,65 @@ export interface components {
             /** Game */
             game?: number | null;
         };
+        /** InsightGame */
+        InsightGame: {
+            /** Id */
+            id: string;
+            /** Opponent */
+            opponent: string;
+            /** Opponent Rating */
+            opponent_rating: number | null;
+            /** Played On */
+            played_on: string | null;
+            /** Ply */
+            ply: number | null;
+            /**
+             * Result
+             * @enum {string}
+             */
+            result: "win" | "draw" | "loss" | "unfinished";
+        };
+        /** Insights */
+        Insights: {
+            clock: components["schemas"]["ClockStory"];
+            /** Days */
+            days: number | null;
+            /** Draws */
+            draws: number;
+            /** Endgames */
+            endgames: components["schemas"]["EndgameRecord"][];
+            endings: components["schemas"]["Endings"];
+            /** Games */
+            games: number;
+            /** Losses */
+            losses: number;
+            momentum: components["schemas"]["Momentum"];
+            moves: components["schemas"]["MoveRates"];
+            /** Openings */
+            openings: components["schemas"]["OpeningRecord"][];
+            punishment: components["schemas"]["Punishment"];
+            /** Ratings */
+            ratings: components["schemas"]["RatingSeries"][];
+            records: components["schemas"]["Records"];
+            /** Reviewed Games */
+            reviewed_games: number;
+            rhythm: components["schemas"]["Rhythm"];
+            /** Shapes */
+            shapes: components["schemas"]["Shape"][];
+            /**
+             * Speed
+             * @enum {string}
+             */
+            speed: "all" | "bullet" | "blitz" | "rapid" | "classical" | "daily";
+            /** Speeds */
+            speeds: ("bullet" | "blitz" | "rapid" | "classical" | "daily")[];
+            theory: components["schemas"]["Theory"];
+            tilt: components["schemas"]["Tilt"];
+            /** Version */
+            version: string;
+            /** Wins */
+            wins: number;
+        };
         /** Job */
         Job: {
             activity: components["schemas"]["JobActivity"] | null;
@@ -2550,6 +2710,15 @@ export interface components {
             /** Provider */
             provider: string;
         };
+        /** Momentum */
+        Momentum: {
+            conversion: components["schemas"]["Conversion"];
+            escapes: components["schemas"]["Escapes"];
+            /** Reviewed Games */
+            reviewed_games: number;
+            /** Slip Moves */
+            slip_moves: components["schemas"]["Bucket"][];
+        };
         /** MotionPreferences */
         MotionPreferences: {
             /**
@@ -2558,6 +2727,15 @@ export interface components {
              * @enum {string}
              */
             motion: "system" | "natural" | "still";
+        };
+        /** MoveBucket */
+        MoveBucket: {
+            /** Accuracy */
+            accuracy: number | null;
+            /** Label */
+            label: string;
+            /** Moves */
+            moves: number;
         };
         /** MoveExplanation */
         MoveExplanation: {
@@ -2621,6 +2799,15 @@ export interface components {
              * @constant
              */
             version: "move-events-4";
+        };
+        /** MoveRates */
+        MoveRates: {
+            /** By Move */
+            by_move: components["schemas"]["MoveBucket"][];
+            /** By Phase */
+            by_phase: components["schemas"]["PhaseRate"][];
+            /** Reviewed Games */
+            reviewed_games: number;
         };
         /** MoveRequest */
         MoveRequest: {
@@ -2745,6 +2932,30 @@ export interface components {
             /** Revision */
             revision: number;
         };
+        /** OpeningRecord */
+        OpeningRecord: {
+            /** Accuracy */
+            accuracy: number | null;
+            /**
+             * Color
+             * @enum {string}
+             */
+            color: "white" | "black";
+            /** Draws */
+            draws: number;
+            /** Games */
+            games: number;
+            /** Losses */
+            losses: number;
+            /** Name */
+            name: string;
+            /** Reviewed Games */
+            reviewed_games: number;
+            /** Score */
+            score: number | null;
+            /** Wins */
+            wins: number;
+        };
         /** OpeningStudyLibrary */
         OpeningStudyLibrary: {
             /** Active Studies */
@@ -2831,6 +3042,20 @@ export interface components {
             job_id: string | null;
             /** Processed */
             processed: number;
+        };
+        /** PhaseRate */
+        PhaseRate: {
+            /** Accuracy */
+            accuracy: number | null;
+            /** Blunders Per 100 */
+            blunders_per_100: number | null;
+            /** Moves */
+            moves: number;
+            /**
+             * Phase
+             * @enum {string}
+             */
+            phase: "opening" | "middlegame" | "endgame";
         };
         /** PracticalAssessment */
         PracticalAssessment: {
@@ -2922,6 +3147,17 @@ export interface components {
             time_class: string;
             /** Username */
             username: string;
+        };
+        /** Punishment */
+        Punishment: {
+            /** Opponent Errors */
+            opponent_errors: number;
+            /** Own Errors */
+            own_errors: number;
+            /** Punished */
+            punished: number;
+            /** Unpunished */
+            unpunished: number;
         };
         /** PuzzleCommand */
         PuzzleCommand: {
@@ -3114,6 +3350,38 @@ export interface components {
             /** Id */
             id: string;
         };
+        /** RatingPoint */
+        RatingPoint: {
+            /** Date */
+            date: string;
+            /** Rating */
+            rating: number;
+        };
+        /** RatingSeries */
+        RatingSeries: {
+            /** First */
+            first: number;
+            /** Games */
+            games: number;
+            /** Last */
+            last: number;
+            /** Points */
+            points: components["schemas"]["RatingPoint"][];
+            /** Site */
+            site: string;
+            /** Speed */
+            speed: string;
+        };
+        /** Records */
+        Records: {
+            best_win: components["schemas"]["InsightGame"] | null;
+            /** Current Win Streak */
+            current_win_streak: number;
+            /** Longest Loss Streak */
+            longest_loss_streak: number;
+            /** Longest Win Streak */
+            longest_win_streak: number;
+        };
         /** RefinementInfo */
         RefinementInfo: {
             /** Adopted */
@@ -3139,6 +3407,17 @@ export interface components {
         Rejected: {
             /** Rejected */
             rejected: boolean;
+        };
+        /** Rematches */
+        Rematches: {
+            /** Draws */
+            draws: number;
+            /** Games */
+            games: number;
+            /** Losses */
+            losses: number;
+            /** Wins */
+            wins: number;
         };
         /** ReviewCount */
         ReviewCount: {
@@ -3310,6 +3589,29 @@ export interface components {
             ply: number;
             report: components["schemas"]["GameMoveReport"];
         };
+        /** Rhythm */
+        Rhythm: {
+            /** Cells */
+            cells: components["schemas"]["RhythmCell"][];
+            /** Dated Games */
+            dated_games: number;
+        };
+        /** RhythmCell */
+        RhythmCell: {
+            /** Draws */
+            draws: number;
+            /** Losses */
+            losses: number;
+            /**
+             * Part
+             * @enum {string}
+             */
+            part: "night" | "morning" | "afternoon" | "evening";
+            /** Weekday */
+            weekday: number;
+            /** Wins */
+            wins: number;
+        };
         /** SacrificeEvidence */
         SacrificeEvidence: {
             /** Analysis Id */
@@ -3332,6 +3634,24 @@ export interface components {
             mate_given: boolean;
             /** Value */
             value: number;
+        };
+        /** Shape */
+        Shape: {
+            /** Draws */
+            draws: number;
+            /** Examples */
+            examples: components["schemas"]["InsightGame"][];
+            /** Games */
+            games: number;
+            /** Losses */
+            losses: number;
+            /**
+             * Shape
+             * @enum {string}
+             */
+            shape: "wire_to_wire" | "back_and_forth" | "unsettled" | "slipped" | "comeback";
+            /** Wins */
+            wins: number;
         };
         /** SkillPriority */
         SkillPriority: {
@@ -3446,6 +3766,50 @@ export interface components {
             unit_id: string;
             /** User Id */
             user_id: string;
+        };
+        /** Theory */
+        Theory: {
+            /** Average Cost Cp */
+            average_cost_cp: number | null;
+            /** Average Exit Move */
+            average_exit_move: number | null;
+            /** Costly Exits */
+            costly_exits: number;
+            /** Exits */
+            exits: number;
+            /** Openings */
+            openings: components["schemas"]["TheoryOpening"][];
+            /** Reviewed Games */
+            reviewed_games: number;
+        };
+        /** TheoryOpening */
+        TheoryOpening: {
+            /** Cost Cp */
+            cost_cp: number;
+            /** Games */
+            games: number;
+            /** Name */
+            name: string;
+        };
+        /** ThinkTime */
+        ThinkTime: {
+            /** Label */
+            label: string;
+            /** Seconds */
+            seconds: number | null;
+        };
+        /** Tilt */
+        Tilt: {
+            after_loss: components["schemas"]["TiltRate"];
+            after_other: components["schemas"]["TiltRate"];
+            rematches_after_loss: components["schemas"]["Rematches"];
+        };
+        /** TiltRate */
+        TiltRate: {
+            /** Blunders Per 100 */
+            blunders_per_100: number | null;
+            /** Games */
+            games: number;
         };
         /** TurningPoint */
         TurningPoint: {
@@ -4364,6 +4728,39 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["JobStarted"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    insights_api_insights_get: {
+        parameters: {
+            query?: {
+                speed?: "all" | "bullet" | "blitz" | "rapid" | "classical" | "daily";
+                days?: number | null;
+                offset?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Insights"];
                 };
             };
             /** @description Validation Error */

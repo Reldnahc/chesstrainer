@@ -51,17 +51,26 @@ def numeric(score):
     return score.value if score.kind == "cp" else score.outcome() * 10000
 
 
+def blunder_kind(best, actual, rating):
+    """The Blunder rule alone, shared with library-wide insights; mover-relative scores."""
+    loss = evaluation_loss(best, actual)
+    if loss.allows_mate:
+        return "mate"
+    # An ordinary pawn loss gets gentler wording at low Elo; decisive losses do not.
+    decisive = numeric(best) >= -50 and numeric(actual) <= -200
+    blunder_cp = 300 if rating < 1200 else 200
+    return "severe" if decisive or (loss.cp or 0) >= blunder_cp else None
+
+
 def classify(report, rating):
     best = Score.model_validate(report["best"]["score"])
     actual = Score.model_validate(report["actual"]["score"])
     loss = evaluation_loss(best, actual)
     cp = loss.cp or 0
-    if loss.allows_mate:
+    blunder = blunder_kind(best, actual, rating)
+    if blunder == "mate":
         return "Blunder", "This move allows a forced checkmate."
-    # An ordinary pawn loss gets gentler wording at low Elo; decisive losses do not.
-    decisive = numeric(best) >= -50 and numeric(actual) <= -200
-    blunder_cp = 300 if rating < 1200 else 200
-    if decisive or cp >= blunder_cp:
+    if blunder:
         return "Blunder", "This move gives away a decisive advantage or allows a severe loss."
     # Mate distance is not a centipawn loss. Keeping a slower forced win is
     # still good, but cannot qualify for an exceptional or Best label.
