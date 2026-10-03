@@ -209,8 +209,9 @@ the production audio engine also retains application and intelligence consumers.
 The application and coach studio suites each run in four isolated jobs
 (desktop/mobile, two file shards each). Accounts, intelligence and audio each have
 separate desktop and mobile jobs. The studio suites (coach, intelligence, audio)
-test independent pages on stateless dev servers and run fully parallel: 3 workers
-on CI, 6 locally. The application suite starts one test server and database per
+test independent pages on stateless dev servers and run fully parallel: 2 workers
+on CI, 6 locally. On CI their per-test timeout is 60 s, because whole-family
+checks that take 10 to 20 s alone share the runner's 4 cores. The application suite starts one test server and database per
 worker (2 on CI, 4 locally; ports 8765 and 8771 upward) and keeps each file's
 tests in order within its worker. `PLAYWRIGHT_WORKERS` overrides either default;
 use it rather than `--workers`, because the application config starts one server
