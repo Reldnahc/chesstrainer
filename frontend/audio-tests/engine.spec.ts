@@ -6,9 +6,10 @@ class Gain {
   value = 1;
   targets: number[] = [];
   ramps: number[] = [];
+  schedule: [string, number, number][] = [];
   setTargetAtTime(value: number) { this.value = value; this.targets.push(value); }
-  setValueAtTime(value: number) { this.value = value; }
-  linearRampToValueAtTime(value: number) { this.value = value; this.ramps.push(value); }
+  setValueAtTime(value: number, time = 0) { this.value = value; this.schedule.push(["set", value, time]); }
+  linearRampToValueAtTime(value: number, time = 0) { this.value = value; this.ramps.push(value); this.schedule.push(["ramp", value, time]); }
   cancelScheduledValues() {}
 }
 class FakeGain {
@@ -527,6 +528,22 @@ test("natural completion removes speech ducking and a throwing observer cannot b
   const engine = new AudioEngine({onEvent: () => { throw new Error("Diagnostic failure"); }});
   expect(() => engine.play(move("safe"))).not.toThrow();
   engine.dispose();
+  f.engine.dispose();
+});
+
+test("speech fades out over its last 20 ms so a provider end spike cannot thump", async () => {
+  const f = fixture();
+  await f.engine.unlock();
+  f.engine.playPreparedSpeech({...speech("faded"), buffer: pcm(48000, new Array(48000).fill(0))});
+  const voice = f.context.gains[3].gain;
+  expect(voice.schedule).toEqual([["set", 1, 3.98], ["ramp", 0, 4]]);
+  f.context.sources[0].finish();
+  // Effects keep their full level, and a clip shorter than the fade is left alone.
+  f.engine.play(move("board"));
+  await flush();
+  expect(f.context.gains[4].gain.schedule).toEqual([]);
+  f.engine.playPreparedSpeech({...speech("blip"), buffer: pcm(48000, new Array(480).fill(0))});
+  expect(f.context.gains[5].gain.schedule).toEqual([]);
   f.engine.dispose();
 });
 
