@@ -49,6 +49,7 @@ class WorkspaceSettings(EngineHealth):
     stockfish_threads: int
     stockfish_hash_mb: int
     stockfish_workers: int
+    sync_interval_seconds: int
     triage_depth: int
     triage_time: float
     triage_nodes: int | None

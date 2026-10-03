@@ -107,6 +107,8 @@ class AnalysisJob(Owned, Base):
     cancel_requested: Mapped[bool] = mapped_column(default=False)
     error: Mapped[str | None] = mapped_column(Text)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    # Lower runs sooner; see trainer.game_analysis for the per-game levels.
+    priority: Mapped[int] = mapped_column(default=0, server_default="0")
 
 
 class ProviderImport(Owned, Base):

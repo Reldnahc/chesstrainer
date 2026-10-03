@@ -5,9 +5,10 @@ import time
 
 from sqlalchemy import select
 
+from trainer.game_analysis import queue_library
 from trainer.game_providers.base import ImportCancelled, ProviderError, ProviderRateLimited
 from trainer.game_providers.ingest import fetch_import
-from trainer.models import AnalysisJob, Game, ImportGame, ProviderImport
+from trainer.models import AnalysisJob, Game, GameReview, ImportGame, ProviderImport
 from trainer.pipeline import JobPipeline
 
 log = logging.getLogger(__name__)
@@ -36,6 +37,8 @@ class JobExecution:
                 from trainer.game_review import run_review
 
                 run_review(self, job_id, engine)
+                if not self.cancelled(job_id):
+                    self.train(job_id, engine)
                 if self.cancelled(job_id):
                     self.finish_cancel(job_id)
                 else:
@@ -73,8 +76,9 @@ class JobExecution:
                     if self.cancelled(job_id):
                         self.finish_cancel(job_id)
                     else:
-                        with self.sessions() as db:
+                        with self.import_lock, self.sessions() as db:
                             db.get(AnalysisJob, job_id).status = "completed"
+                            queue_library(db)
                             db.commit()
                     return
             with self.sessions() as db:
@@ -122,6 +126,13 @@ class JobExecution:
                 engine.close()
         finally:
             self.pipeline = None
+
+    def train(self, job_id, engine):
+        """Training decisions (Weaknesses, practice) for the reviewed game."""
+        with self.sessions() as db:
+            game_id = db.scalar(select(GameReview.game_id).where(GameReview.job_id == job_id))
+        self.pipeline = JobPipeline(self, job_id, engine, counters=False)
+        self.pipeline.run([game_id])
 
     def finish_cancel(self, job_id):
         with self.sessions() as db:

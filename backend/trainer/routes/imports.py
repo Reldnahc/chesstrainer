@@ -10,6 +10,7 @@ from starlette.concurrency import run_in_threadpool
 from trainer.chesscom import ChessComRequest
 from trainer.contracts.common import JobStarted
 from trainer.contracts.jobs import PgnImportResult
+from trainer.game_analysis import queue_library
 from trainer.game_providers import get_provider
 from trainer.game_providers.base import ProviderImportRequest
 from trainer.imports import import_games
@@ -36,6 +37,7 @@ def create_router(*, settings) -> APIRouter:
         file: UploadFile = File(...),
         usernames: str = Form(""),
         side: Literal["auto", "white", "black"] = Form("auto"),
+        # Accepted for older clients; every imported game is analyzed now.
         analyze: bool = Form(True),
     ):
         pgn = await read_pgn(file)
@@ -45,14 +47,18 @@ def create_router(*, settings) -> APIRouter:
             # Parsing is CPU-bound and the account lock may be held by a running job.
             # Neither may block the event loop, which would stall every account.
             with workspace.mutation_lock, workspace.sessions() as db:
-                return import_games(
+                result = import_games(
                     db,
                     filename,
                     pgn,
                     usernames.split(","),
                     None if side == "auto" else side,
-                    queue_analysis=analyze,
+                    queue_analysis=False,
                 )
+                if result["imported"]:
+                    queue_library(db)
+                    db.commit()
+                return result
 
         return await run_in_threadpool(run_import)
 
@@ -79,18 +85,15 @@ def create_router(*, settings) -> APIRouter:
         return queue_provider(workspace, data, provider)
 
     def queue_provider(workspace, data, provider):
+        # Fetch only; each new game then queues its own backfill analysis.
+        kind = "chesscom_fetch" if provider == "chesscom" else "provider_fetch"
         with workspace.mutation_lock, workspace.sessions() as db:
             existing = db.scalar(
                 select(AnalysisJob)
                 .join(ProviderImport)
                 .where(
                     AnalysisJob.status.in_(["queued", "running"]),
-                    AnalysisJob.kind
-                    == (
-                        ("chesscom" if provider == "chesscom" else "provider_import")
-                        if data.analyze
-                        else ("chesscom_fetch" if provider == "chesscom" else "provider_fetch")
-                    ),
+                    AnalysisJob.kind == kind,
                     ProviderImport.provider == provider,
                     ProviderImport.username == data.username,
                     ProviderImport.time_class == data.time_class,
@@ -102,11 +105,7 @@ def create_router(*, settings) -> APIRouter:
             )
             if existing:
                 return {"job_id": existing.id, "status": existing.status}
-            job = AnalysisJob(
-                kind=("chesscom" if provider == "chesscom" else "provider_import")
-                if data.analyze
-                else ("chesscom_fetch" if provider == "chesscom" else "provider_fetch")
-            )
+            job = AnalysisJob(kind=kind)
             db.add(job)
             db.flush()
             db.add(

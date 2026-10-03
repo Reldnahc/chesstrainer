@@ -20,6 +20,7 @@ def settings(tmp_path):
         deep_time=0.2,
         classification_workers=1,
         review_refinement_positions=0,  # Baseline fixtures opt in only when testing refinement.
+        sync_interval_seconds=0,  # Polling tests call trainer.game_sync.poll directly.
     )
 
 

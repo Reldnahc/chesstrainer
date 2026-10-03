@@ -19,6 +19,7 @@ from trainer.contracts.games import (
     ReviewProgress,
 )
 from trainer.game_accuracy import review_accuracy
+from trainer.game_analysis import REQUESTED
 from trainer.game_library import pgn_rating, time_control_label
 from trainer.game_review import analyze_move, branch_board, parsed_game, position, public_report
 from trainer.models import (
@@ -318,8 +319,10 @@ def create_router(*, settings, engine_factory):
                 if job.status in {"failed", "cancelled"} or refresh:
                     job.status, job.cancel_requested, job.error = "queued", False, None
                     job.positions_triaged = 0
+                # Opening a game moves its background analysis to the front.
+                job.priority = REQUESTED
             else:
-                job = AnalysisJob(kind="game_review", games_total=1)
+                job = AnalysisJob(kind="game_review", games_total=1, priority=REQUESTED)
                 db.add(job)
                 db.flush()
                 db.add(GameReview(game_id=game_id, job_id=job.id, rating=data.rating or 1000))

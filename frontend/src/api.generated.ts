@@ -1,5 +1,22 @@
 // Generated from the backend OpenAPI contract. Run npm run api:generate.
 export interface paths {
+    "/api/analysis/queue": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Analysis Queue */
+        get: operations["analysis_queue_api_analysis_queue_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/auth/login": {
         parameters: {
             query?: never;
@@ -1160,6 +1177,34 @@ export interface components {
         /** AccountProfile */
         AccountProfile: {
             user: components["schemas"]["Account"];
+        };
+        /**
+         * AnalysisQueue
+         * @description Per-game analysis: one job per saved game, run one at a time per account.
+         */
+        AnalysisQueue: {
+            /** Backfill */
+            backfill: number;
+            /** Completed */
+            completed: number;
+            /** Failed */
+            failed: number;
+            /** Fresh */
+            fresh: number;
+            /** Requested */
+            requested: number;
+            running: components["schemas"]["AnalysisQueueGame"] | null;
+        };
+        /** AnalysisQueueGame */
+        AnalysisQueueGame: {
+            /** Black */
+            black: string;
+            /** Id */
+            id: string;
+            /** Played At */
+            played_at: string | null;
+            /** White */
+            white: string;
         };
         /** ApiError */
         ApiError: {
@@ -2397,6 +2442,11 @@ export interface components {
             mistakes_identified: number;
             /** Positions Triaged */
             positions_triaged: number;
+            /**
+             * Priority
+             * @default 0
+             */
+            priority: number;
             /** Probe Total */
             probe_total: number | null;
             provider_import?: components["schemas"]["ChessComImportProgress"] | null;
@@ -3995,6 +4045,8 @@ export interface components {
             stockfish_threads: number;
             /** Stockfish Workers */
             stockfish_workers: number;
+            /** Sync Interval Seconds */
+            sync_interval_seconds: number;
             /** Target Rating */
             target_rating: number;
             /** Tolerance Cp */
@@ -4015,6 +4067,26 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
+    analysis_queue_api_analysis_queue_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AnalysisQueue"];
+                };
+            };
+        };
+    };
     login_api_auth_login_post: {
         parameters: {
             query?: never;

@@ -5,6 +5,7 @@ import threading
 
 from trainer.chesscom import ChessComClient
 from trainer.engine import Stockfish
+from trainer.game_sync import poll as poll_connections
 from trainer.job_execution import JobExecution
 from trainer.job_queue import JobQueue
 from trainer.models import AnalysisJob
@@ -69,6 +70,10 @@ class JobRunner:
             )
             thread.start()
             self.threads.append(thread)
+        if self.settings.sync_interval_seconds:
+            thread = threading.Thread(target=self.poll, name="sync-poller", daemon=True)
+            thread.start()
+            self.threads.append(thread)
 
     def stop(self):
         self.stop_event.set()
@@ -86,6 +91,16 @@ class JobRunner:
                     log.exception("job_coordinator_error", extra={"job_id": claimed[0]})
             else:
                 self.stop_event.wait(0.5)
+
+    def poll(self):
+        interval = self.settings.sync_interval_seconds
+        while not self.stop_event.is_set():
+            with self.queue.sessions() as db:
+                owners = db.scalars(self.queue.owners()).all()
+            poll_connections(self.workspaces, owners, interval)
+            # Each connection is due once per interval; checking more often keeps
+            # the actual gap close to it without double-queuing.
+            self.stop_event.wait(min(interval, 30))
 
     def run_job(self, job_id, engine=None):
         # Explicit synchronous entry point used by offline tools and tests.

@@ -435,8 +435,14 @@ def test_chesscom_through_native_worker_to_review_without_openai(settings, stock
                 break
             time.sleep(0.1)
         assert job["status"] == "completed", job
-        assert job["positions_triaged"] == 2 and job["mistakes_identified"] >= 1
         assert job["chesscom"]["games_imported"] == 1
+        # The fetched game then runs its own review + training analysis job.
+        while time.monotonic() < deadline:
+            queue = client.get("/api/analysis/queue").json()
+            if queue["completed"] or queue["failed"]:
+                break
+            time.sleep(0.1)
+        assert queue["completed"] == 1, queue
         exercise = client.get("/api/review/queue").json()[0]["exercise_id"]
         assert client.post(f"/api/review/{exercise}/start").json()["fen"]
         assert len(seen) == 2

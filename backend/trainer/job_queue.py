@@ -5,7 +5,7 @@ import threading
 from sqlalchemy import select, update
 from sqlalchemy.orm import aliased, sessionmaker
 
-from trainer.models import AnalysisJob, User
+from trainer.models import AnalysisJob, Game, GameReview, User
 
 FETCH_KINDS = ("sync", "chesscom_fetch", "provider_fetch")
 
@@ -49,6 +49,8 @@ class JobQueue:
         with self.lock, self.sessions() as db:
             job = db.execute(
                 select(AnalysisJob.id, AnalysisJob.user_id, AnalysisJob.cancel_requested)
+                .outerjoin(GameReview, GameReview.job_id == AnalysisJob.id)
+                .outerjoin(Game, Game.id == GameReview.game_id)
                 .where(
                     AnalysisJob.user_id.in_(self.owners()),
                     AnalysisJob.user_id.not_in(busy_owners),
@@ -57,7 +59,13 @@ class JobQueue:
                     if sync_only
                     else AnalysisJob.kind.not_in(FETCH_KINDS),
                 )
-                .order_by(AnalysisJob.created_at, AnalysisJob.id)
+                # Within a priority level, the most recently played game goes first.
+                .order_by(
+                    AnalysisJob.priority,
+                    Game.played_at.desc().nulls_last(),
+                    AnalysisJob.created_at,
+                    AnalysisJob.id,
+                )
                 .limit(1)
             ).first()
             if job is None:
