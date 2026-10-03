@@ -40,7 +40,8 @@ The Audio Studio's **Walter wording** panel compares original/revised text,
 audio and mouth timing. Its archived v1 manifest and compact tracks live in
 `revisions/`; full original alignments are under `revisions/walter-language-v1-alignment`.
 Superseded bank MP3s and provenance moved to `../recordings/walter-language-v1`;
-the three superseded original contrasts retain their historical locations.
+the three superseded original contrasts retain their historical locations, as does the
+retired Maia contrast `human-unusual-strong`, which no longer ships.
 These archives preserve source hashes and exact generation history. They are
 excluded from the production media imports. Earlier recording plans and script
 inventories describe the original audit, not the active revision; do not overwrite

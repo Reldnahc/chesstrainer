@@ -9,6 +9,8 @@ import {renderDialogue} from "../src/dialogue/neutral";
 import {storyteller} from "../src/dialogue/characters/storyteller";
 import {robot} from "../src/dialogue/characters/robot";
 import {selectGameRecording, selectGameSpeech} from "../src/audio/speech/gameSelection";
+import {sequenceRecordingId} from "../src/audio/speech/sequence";
+import catalogue from "../src/audio/speech/meanings.json" with {type: "json"};
 
 const root = path.resolve("..");
 const python = process.env.TEST_PYTHON || path.join(root, process.platform === "win32" ? ".venv/Scripts/python.exe" : ".venv/bin/python");
@@ -38,13 +40,24 @@ for (const coach of [{id: "classic", personality: storyteller}, {id: "robot", pe
       expect(insight.utterance.renderedClaims!.map(item => item.code)).toEqual([shownCodes[shown]]);
       const speech = selectGameSpeech(context);
       expect(speech.primaryId).toBe(objectiveId);
-      expect(speech.recordingId!.split("+")[0]).toBe(objectiveId);
+      // A following objective sentence joins back to back; a Maia sentence adds nothing.
+      const rendered = context.utterance.renderedClaims!;
+      const second = claimIndex === 0 && rendered[1] && !humanInsightLabels[rendered[1].code]
+        ? selectGameRecording({...context, claimIndex: 1}) : null;
+      expect(speech.recordingId).toBe(second && second !== objectiveId ? sequenceRecordingId([objectiveId, second]) : objectiveId);
       expect(speech.recordingId).not.toMatch(/(?:^|\+)(?:human-|combo-|combined-)/);
     });
   }
 }
 
 test("tactical producer proof keeps its role and shown Maia-state fixtures", () => {
-  expect(Object.keys(games)).toHaveLength(62);
-  for (const key of Object.keys(games)) expect(key).toMatch(/^tactic-[a-z-]+:human-[a-z-]+$/);
+  const keys = Object.keys(games), meanings = new Set(catalogue.meanings.map(item => item.id));
+  expect(keys).toHaveLength(62);
+  expect(new Set(keys).size).toBe(62);
+  for (const key of keys) {
+    const [objectiveId, shown] = key.split(":");
+    expect(objectiveId).toMatch(/^tactic-[a-z-]+-(?:played|allowed|missed)$/);
+    expect(meanings.has(objectiveId)).toBe(true);
+    expect(shownCodes[shown]).toBeDefined();
+  }
 });

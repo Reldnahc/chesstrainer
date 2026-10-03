@@ -8,6 +8,7 @@ import {storyteller} from "../src/dialogue/characters/storyteller";
 import {robot} from "../src/dialogue/characters/robot";
 import {gameReaction} from "../src/coach/reactions";
 import {selectGameRecording, selectGameSpeech, type GameSpeechContext} from "../src/audio/speech/gameSelection";
+import {sequenceRecordingId} from "../src/audio/speech/sequence";
 
 type Fixture = {feature: string; primary: string; secondary: string; mover: "white" | "black";
   game: Game; without_history: Report | null};
@@ -64,7 +65,9 @@ for (const coach of coaches) for (const fixture of fixtures)
     expect(insight.utterance.renderedClaims!.map(item => item.code)).toEqual([shownCodes[fixture.secondary]]);
     const speech = selectGameSpeech(context);
     expect(speech.primaryId).toBe(fixture.primary);
-    expect(speech.recordingId!.split("+")[0]).toBe(fixture.primary);
+    // A following objective sentence joins back to back; a Maia sentence adds nothing.
+    const second = rendered[1] && !humanInsightLabels[rendered[1].code] ? selectGameRecording({...context, claimIndex: 1}) : null;
+    expect(speech.recordingId).toBe(second && second !== fixture.primary ? sequenceRecordingId([fixture.primary, second]) : fixture.primary);
     expect(speech.recordingId).not.toMatch(/(?:^|\+)(?:human-|combo-|combined-)/);
     rendered.forEach((item, claimIndex) => {
       if (humanInsightLabels[item.code]) expect(selectGameRecording({...context, claimIndex})).toBeNull();
