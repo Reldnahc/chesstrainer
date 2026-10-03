@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "puzzle-rejected",
+      "label": "Puzzle rejected",
+      "text": "Not the move this puzzle is looking for, but your earlier correct moves are still saved."
+    },
+    "takeId": null
+  },
+  "requestHash": "0185be46b0b31041759978a286dd759d6af10dbd535fb2c506e431b466376fa9",
+  "recordedAt": "2026-10-03T05:24:52.036Z",
+  "sha256": "84f5caf4709d5ab14d6dd2a1f7801c3d5a05533788b31f329290ec8768c48a8d",
+  "bytes": 17882,
+  "requestId": "t4shwqkPDTynyIzJA1OX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f53df73e13c417179a2150861afd84ed43a90863c4c683eb2d27e8586dcaed30",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

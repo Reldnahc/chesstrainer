@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "explanation-finding-double-check",
+      "label": "Explanation finding double check",
+      "text": "Double check, a rare and striking thing: two pieces check the king together, and only the king itself can answer them."
+    },
+    "takeId": null
+  },
+  "requestHash": "19eaa28d30a435b76df1d296f45bb080f2576172a7ecc4676cbdb929c541ac9e",
+  "recordedAt": "2026-10-03T05:23:50.096Z",
+  "sha256": "b7d0a43e11b74f4834ea4598d4bb268d08b05e67d3bc0f178a26720309dc5f24",
+  "bytes": 26758,
+  "requestId": "5to1tSARkfssvYeOg5DA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c0131c25653b024f7e6363030c9d3cb19e189cb4fda0065a5bee16c0f66b6dee",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "explanation-cue-missed-tactical-capture",
+      "label": "Explanation cue missed tactical capture",
+      "text": "Before choosing something quiet, glance around for enemy pieces left without protection."
+    },
+    "takeId": null
+  },
+  "requestHash": "a79d9e7d15e9fb4040f97656bb718ec1b65992ed2390cf1e2917c6cd45690503",
+  "recordedAt": "2026-10-03T05:24:02.533Z",
+  "sha256": "0efefa50e83f96d227ddb09430d8a534d2b3edbb81d9b953408cc421abee9207",
+  "bytes": 17966,
+  "requestId": "XqsXGepPwMKlBozZ7niI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bc1d36140cb98083cec792bf63f1f8fdc8f4020ed2a56c627252e98b2ed57bf2",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

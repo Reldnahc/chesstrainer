@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "positional-support-alternative",
+      "label": "Positional support alternative",
+      "text": "With another move, a lonely piece would have found a defender and been connected to the rest."
+    },
+    "takeId": null
+  },
+  "requestHash": "c8397e2f6bd6e4e05a4987b54ee978458a86457696d76f6341cdc4fd15c30d6e",
+  "recordedAt": "2026-10-03T05:21:31.510Z",
+  "sha256": "a76d0ea0eb759c72776f7eaf08b9acc7d98fb1088896e3cc109ce191a4df524c",
+  "bytes": 17690,
+  "requestId": "4okJKUdeJ6yzEvnLWf1H",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "73bb54f10725422fc405c96c7f5c37c648d122df97722defc64f3ff4c3b83a81",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "chance-taken",
+      "label": "Chance taken",
+      "text": "The opponent's last move held a small gift, and this move accepts it with grace."
+    },
+    "takeId": null
+  },
+  "requestHash": "bf9e533a54ac115a92ed7059474bde8f2db980a97c6fd6d038e60f4ee8ef1239",
+  "recordedAt": "2026-10-03T05:22:19.495Z",
+  "sha256": "811c9c59d72c74d2919817f40c99c9ef124e86db5694a9fd8c4382d23586e24a",
+  "bytes": 18557,
+  "requestId": "R65WdC8FqwoGMHu2zbMX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a9f7dd5823551575693153b0af87d1ad00f9e139f08a5df6fd64f17fab0cf3cd",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

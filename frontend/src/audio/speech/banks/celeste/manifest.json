@@ -1,0 +1,1583 @@
+{
+  "schemaVersion": 1,
+  "provider": "elevenlabs",
+  "coachId": "unicorn",
+  "voiceId": "celeste",
+  "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+  "modelId": "eleven_v4",
+  "outputFormat": "mp3_44100_128",
+  "settings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75,
+    "speed": 0.95
+  },
+  "scope": "non-lesson",
+  "silentIds": [
+    "game-thinking",
+    "explanation-loading-saved",
+    "dialogue-no-renderable-claim",
+    "practice-checking"
+  ],
+  "recordings": [
+    {
+      "id": "tactic-fork-played",
+      "group": "game_review",
+      "text": "What a graceful idea. A single piece reaches out to several targets in one motion, and one reply rarely saves them all.",
+      "audioPath": "recordings/celeste-v1/celeste/tactic-fork-played.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/tactic-fork-played.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-played.json"
+    },
+    {
+      "id": "tactic-fork-allowed",
+      "group": "game_review",
+      "text": "Here a connection comes undone. One of the other side's pieces can now fork several targets at once, so it's worth finding that piece first.",
+      "audioPath": "recordings/celeste-v1/celeste/tactic-fork-allowed.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/tactic-fork-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-allowed.json"
+    },
+    {
+      "id": "tactic-fork-missed",
+      "group": "game_review",
+      "text": "A fork waited inside another move, a single piece stretching toward several targets together. It's a pattern worth keeping in mind, though it went unplayed.",
+      "audioPath": "recordings/celeste-v1/celeste/tactic-fork-missed.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/tactic-fork-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-missed.json"
+    },
+    {
+      "id": "tactic-pin-played",
+      "group": "game_review",
+      "text": "How elegantly placed. The pinned piece is bound to its king's line, and stepping off would leave that king open to attack.",
+      "audioPath": "recordings/celeste-v1/celeste/tactic-pin-played.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/tactic-pin-played.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-played.json"
+    },
+    {
+      "id": "tactic-pin-allowed",
+      "group": "game_review",
+      "text": "This hands the other side a pin against a king. Once a piece is held in line like that, it can't step away without exposing the king behind it.",
+      "audioPath": "recordings/celeste-v1/celeste/tactic-pin-allowed.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/tactic-pin-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-allowed.json"
+    },
+    {
+      "id": "tactic-pin-missed",
+      "group": "game_review",
+      "text": "A stronger move would have pinned an enemy piece against its king, holding it in line. That elegant restraint went unused.",
+      "audioPath": "recordings/celeste-v1/celeste/tactic-pin-missed.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/tactic-pin-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-missed.json"
+    },
+    {
+      "id": "tactic-skewer-played",
+      "group": "game_review",
+      "text": "A skewer, clean and straight along the line. The front piece must yield, and what it was sheltering is left in the open.",
+      "audioPath": "recordings/celeste-v1/celeste/tactic-skewer-played.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/tactic-skewer-played.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-played.json"
+    },
+    {
+      "id": "tactic-skewer-allowed",
+      "group": "game_review",
+      "text": "The other side gains a skewer here. When the front piece is chased off its line, whatever it sheltered can be taken.",
+      "audioPath": "recordings/celeste-v1/celeste/tactic-skewer-allowed.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/tactic-skewer-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-allowed.json"
+    },
+    {
+      "id": "tactic-skewer-missed",
+      "group": "game_review",
+      "text": "A skewer lay hidden in a stronger move: press the front piece, and the one sheltered behind it is uncovered. That line went unplayed.",
+      "audioPath": "recordings/celeste-v1/celeste/tactic-skewer-missed.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/tactic-skewer-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-missed.json"
+    },
+    {
+      "id": "tactic-removing-defender-played",
+      "group": "game_review",
+      "text": "How neatly it unravels. The defender is captured, and the connection it held is broken; whatever it protected now stands without cover.",
+      "audioPath": "recordings/celeste-v1/celeste/tactic-removing-defender-played.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/tactic-removing-defender-played.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-played.json"
+    },
+    {
+      "id": "tactic-removing-defender-allowed",
+      "group": "game_review",
+      "text": "One of the defenders is exposed to capture now. If it falls, the piece it protects loses that connection to safety.",
+      "audioPath": "recordings/celeste-v1/celeste/tactic-removing-defender-allowed.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/tactic-removing-defender-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-allowed.json"
+    },
+    {
+      "id": "tactic-removing-defender-missed",
+      "group": "game_review",
+      "text": "Another move could have captured a defender and broken its connection to the piece it guarded. That chance slipped quietly by.",
+      "audioPath": "recordings/celeste-v1/celeste/tactic-removing-defender-missed.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/tactic-removing-defender-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-missed.json"
+    },
+    {
+      "id": "tactic-back-rank-played",
+      "group": "game_review",
+      "text": "The back-rank idea, in clear outline. The king's own pieces form the wall that keeps it from escaping.",
+      "audioPath": "recordings/celeste-v1/celeste/tactic-back-rank-played.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/tactic-back-rank-played.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-played.json"
+    },
+    {
+      "id": "tactic-back-rank-allowed",
+      "group": "game_review",
+      "text": "With this move, a back-rank mate becomes possible for the other side, the king walled in by the very pieces meant to shelter it.",
+      "audioPath": "recordings/celeste-v1/celeste/tactic-back-rank-allowed.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/tactic-back-rank-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-allowed.json"
+    },
+    {
+      "id": "tactic-back-rank-missed",
+      "group": "game_review",
+      "text": "The enemy king sat walled in by its own pieces, and a back-rank mate was within reach. That finish slipped away unplayed.",
+      "audioPath": "recordings/celeste-v1/celeste/tactic-back-rank-missed.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/tactic-back-rank-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-missed.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-played",
+      "group": "game_review",
+      "text": "A pawn sets out for the far rank, and promotion is the hope it carries. Follow that journey; it's a lovely one.",
+      "audioPath": "recordings/celeste-v1/celeste/tactic-promotion-awareness-played.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/tactic-promotion-awareness-played.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-played.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-allowed",
+      "group": "game_review",
+      "text": "A pawn on the other side has found an open road toward promotion. It deserves careful attention all the way to the last rank.",
+      "audioPath": "recordings/celeste-v1/celeste/tactic-promotion-awareness-allowed.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/tactic-promotion-awareness-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-allowed.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-missed",
+      "group": "game_review",
+      "text": "A stronger move would have let a promising pawn begin its walk to promotion. Instead, its journey waits.",
+      "audioPath": "recordings/celeste-v1/celeste/tactic-promotion-awareness-missed.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/tactic-promotion-awareness-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-missed.json"
+    },
+    {
+      "id": "tactic-discovered-attack-played",
+      "group": "game_review",
+      "text": "What an elegant release. One piece steps aside, and the piece behind it is free to attack along the opened line.",
+      "audioPath": "recordings/celeste-v1/celeste/tactic-discovered-attack-played.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/tactic-discovered-attack-played.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-played.json"
+    },
+    {
+      "id": "tactic-discovered-attack-allowed",
+      "group": "game_review",
+      "text": "Behind one of the other side's pieces, an attack is waiting to be released. Once that piece steps aside, the one behind it is free to strike.",
+      "audioPath": "recordings/celeste-v1/celeste/tactic-discovered-attack-allowed.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/tactic-discovered-attack-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-allowed.json"
+    },
+    {
+      "id": "tactic-discovered-attack-missed",
+      "group": "game_review",
+      "text": "A discovered attack lay inside another move, a front piece stepping aside to free the one behind. That moment never came.",
+      "audioPath": "recordings/celeste-v1/celeste/tactic-discovered-attack-missed.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/tactic-discovered-attack-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-missed.json"
+    },
+    {
+      "id": "tactic-double-attack-played",
+      "group": "game_review",
+      "text": "Threats bloom in two places at once, beautifully balanced. Meeting them both with one reply is rarely possible.",
+      "audioPath": "recordings/celeste-v1/celeste/tactic-double-attack-played.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/tactic-double-attack-played.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-played.json"
+    },
+    {
+      "id": "tactic-double-attack-allowed",
+      "group": "game_review",
+      "text": "With one move, the other side could now pose two threats. Each would need its own answer, so it's worth seeing both before replying.",
+      "audioPath": "recordings/celeste-v1/celeste/tactic-double-attack-allowed.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/tactic-double-attack-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-allowed.json"
+    },
+    {
+      "id": "tactic-double-attack-missed",
+      "group": "game_review",
+      "text": "A stronger move carried two threats in a single gesture. That double attack was left unplayed.",
+      "audioPath": "recordings/celeste-v1/celeste/tactic-double-attack-missed.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/tactic-double-attack-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-missed.json"
+    },
+    {
+      "id": "tactic-deflection-played",
+      "group": "game_review",
+      "text": "Such a lovely deflection, luring the defender from its duty so the connection it held falls apart.",
+      "audioPath": "recordings/celeste-v1/celeste/tactic-deflection-played.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/tactic-deflection-played.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-played.json"
+    },
+    {
+      "id": "tactic-deflection-allowed",
+      "group": "game_review",
+      "text": "One of the defenders can be drawn away now. Look at what it holds together, because that is what would come apart.",
+      "audioPath": "recordings/celeste-v1/celeste/tactic-deflection-allowed.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/tactic-deflection-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-allowed.json"
+    },
+    {
+      "id": "tactic-deflection-missed",
+      "group": "game_review",
+      "text": "Another move could have drawn a defender away from its duty and let its connection fall apart. That lovely deflection was never played.",
+      "audioPath": "recordings/celeste-v1/celeste/tactic-deflection-missed.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/tactic-deflection-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-missed.json"
+    },
+    {
+      "id": "tactic-undefended-capture-played",
+      "group": "game_review",
+      "text": "Nothing protected that piece, and it's collected with ease. It's always worth looking for the pieces left on their own.",
+      "audioPath": "recordings/celeste-v1/celeste/tactic-undefended-capture-played.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/tactic-undefended-capture-played.provenance.json",
+      "alignmentPath": "alignment/tactic-undefended-capture-played.json"
+    },
+    {
+      "id": "tactic-undefended-capture-missed",
+      "group": "game_review",
+      "text": "A piece without protection was there to take with another move, and the chance was passed over. It pays to look for unprotected pieces first.",
+      "audioPath": "recordings/celeste-v1/celeste/tactic-undefended-capture-missed.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/tactic-undefended-capture-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-undefended-capture-missed.json"
+    },
+    {
+      "id": "tactic-hanging-piece-allowed",
+      "group": "game_review",
+      "text": "One piece is left without protection now, and the other side can take it freely.",
+      "audioPath": "recordings/celeste-v1/celeste/tactic-hanging-piece-allowed.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/tactic-hanging-piece-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-hanging-piece-allowed.json"
+    },
+    {
+      "id": "cause-abandoned-defender",
+      "group": "game_review",
+      "text": "This breaks one important connection. The piece's only real defender moves off, leaving it open to capture.",
+      "audioPath": "recordings/celeste-v1/celeste/cause-abandoned-defender.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/cause-abandoned-defender.provenance.json",
+      "alignmentPath": "alignment/cause-abandoned-defender.json"
+    },
+    {
+      "id": "cause-opponent-threat-recognition",
+      "group": "game_review",
+      "text": "A threat was born with the opponent's last move, and this reply leaves it unanswered, so a piece stays open to capture.",
+      "audioPath": "recordings/celeste-v1/celeste/cause-opponent-threat-recognition.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/cause-opponent-threat-recognition.provenance.json",
+      "alignmentPath": "alignment/cause-opponent-threat-recognition.json"
+    },
+    {
+      "id": "cause-avoiding-bad-trades",
+      "group": "game_review",
+      "text": "The capture is tempting, but the exchange isn't finished. The recapture claims a more valuable piece, so the whole trade comes out behind.",
+      "audioPath": "recordings/celeste-v1/celeste/cause-avoiding-bad-trades.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/cause-avoiding-bad-trades.provenance.json",
+      "alignmentPath": "alignment/cause-avoiding-bad-trades.json"
+    },
+    {
+      "id": "positional-development-actual",
+      "group": "game_review",
+      "text": "A minor piece steps into the game from its starting square, finding its first real place.",
+      "audioPath": "recordings/celeste-v1/celeste/positional-development-actual.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/positional-development-actual.provenance.json",
+      "alignmentPath": "alignment/positional-development-actual.json"
+    },
+    {
+      "id": "positional-development-alternative",
+      "group": "game_review",
+      "text": "With another move, a minor piece could have stepped out to join the game.",
+      "audioPath": "recordings/celeste-v1/celeste/positional-development-alternative.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/positional-development-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-development-alternative.json"
+    },
+    {
+      "id": "positional-rook-open-actual",
+      "group": "game_review",
+      "text": "An open file now belongs to the rook, with no pawn of either color to hold it back.",
+      "audioPath": "recordings/celeste-v1/celeste/positional-rook-open-actual.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/positional-rook-open-actual.provenance.json",
+      "alignmentPath": "alignment/positional-rook-open-actual.json"
+    },
+    {
+      "id": "positional-rook-open-alternative",
+      "group": "game_review",
+      "text": "With another move, a rook would have claimed an open file, free of pawns from one end to the other.",
+      "audioPath": "recordings/celeste-v1/celeste/positional-rook-open-alternative.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/positional-rook-open-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-rook-open-alternative.json"
+    },
+    {
+      "id": "positional-rook-semi-open-actual",
+      "group": "game_review",
+      "text": "Half the road is clear for the rook now, a semi-open file holding an enemy pawn or more but none of its own.",
+      "audioPath": "recordings/celeste-v1/celeste/positional-rook-semi-open-actual.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/positional-rook-semi-open-actual.provenance.json",
+      "alignmentPath": "alignment/positional-rook-semi-open-actual.json"
+    },
+    {
+      "id": "positional-rook-semi-open-alternative",
+      "group": "game_review",
+      "text": "A different move would have opened half the way for a rook, its file free of its own pawns but not of the enemy's.",
+      "audioPath": "recordings/celeste-v1/celeste/positional-rook-semi-open-alternative.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/positional-rook-semi-open-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-rook-semi-open-alternative.json"
+    },
+    {
+      "id": "positional-passed-actual",
+      "group": "game_review",
+      "text": "There's a passed pawn on the board now. Ahead of it, on its own file and on both neighbors, no enemy pawn stands in the way.",
+      "audioPath": "recordings/celeste-v1/celeste/positional-passed-actual.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/positional-passed-actual.provenance.json",
+      "alignmentPath": "alignment/positional-passed-actual.json"
+    },
+    {
+      "id": "positional-passed-alternative",
+      "group": "game_review",
+      "text": "With another move, a passed pawn would have been born, with nothing of the enemy's ahead of it on its file or either neighbor.",
+      "audioPath": "recordings/celeste-v1/celeste/positional-passed-alternative.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/positional-passed-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-passed-alternative.json"
+    },
+    {
+      "id": "positional-passer-advance-actual",
+      "group": "game_review",
+      "text": "The passed pawn moves forward again, one square nearer its promise. Watch how its journey changes the board.",
+      "audioPath": "recordings/celeste-v1/celeste/positional-passer-advance-actual.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/positional-passer-advance-actual.provenance.json",
+      "alignmentPath": "alignment/positional-passer-advance-actual.json"
+    },
+    {
+      "id": "positional-passer-advance-alternative",
+      "group": "game_review",
+      "text": "Another move would have carried the passed pawn a little further on its journey.",
+      "audioPath": "recordings/celeste-v1/celeste/positional-passer-advance-alternative.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/positional-passer-advance-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-passer-advance-alternative.json"
+    },
+    {
+      "id": "positional-isolated-actual",
+      "group": "game_review",
+      "text": "A pawn now stands apart, isolated, with no friend of its color on either neighboring file.",
+      "audioPath": "recordings/celeste-v1/celeste/positional-isolated-actual.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/positional-isolated-actual.provenance.json",
+      "alignmentPath": "alignment/positional-isolated-actual.json"
+    },
+    {
+      "id": "positional-isolated-alternative",
+      "group": "game_review",
+      "text": "Another move would have left a pawn standing isolated, its neighboring files bare of any friendly pawn.",
+      "audioPath": "recordings/celeste-v1/celeste/positional-isolated-alternative.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/positional-isolated-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-isolated-alternative.json"
+    },
+    {
+      "id": "positional-support-actual",
+      "group": "game_review",
+      "text": "A piece that had been left on its own is connected to a defender. A small connection, but a welcome one.",
+      "audioPath": "recordings/celeste-v1/celeste/positional-support-actual.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/positional-support-actual.provenance.json",
+      "alignmentPath": "alignment/positional-support-actual.json"
+    },
+    {
+      "id": "positional-support-alternative",
+      "group": "game_review",
+      "text": "With another move, a lonely piece would have found a defender and been connected to the rest.",
+      "audioPath": "recordings/celeste-v1/celeste/positional-support-alternative.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/positional-support-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-support-alternative.json"
+    },
+    {
+      "id": "positional-unsupported-actual",
+      "group": "game_review",
+      "text": "With this move, one piece loses its last defender. That's a broken connection worth noticing, though it doesn't mean the piece is lost.",
+      "audioPath": "recordings/celeste-v1/celeste/positional-unsupported-actual.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/positional-unsupported-actual.provenance.json",
+      "alignmentPath": "alignment/positional-unsupported-actual.json"
+    },
+    {
+      "id": "positional-unsupported-alternative",
+      "group": "game_review",
+      "text": "With another move, a piece would have lost its last defender, which on its own wouldn't mean it could be won.",
+      "audioPath": "recordings/celeste-v1/celeste/positional-unsupported-alternative.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/positional-unsupported-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-unsupported-alternative.json"
+    },
+    {
+      "id": "positional-king-flight-actual",
+      "group": "game_review",
+      "text": "A new legal square opens up for the king to step to. Notice which change made the room.",
+      "audioPath": "recordings/celeste-v1/celeste/positional-king-flight-actual.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/positional-king-flight-actual.provenance.json",
+      "alignmentPath": "alignment/positional-king-flight-actual.json"
+    },
+    {
+      "id": "positional-king-flight-alternative",
+      "group": "game_review",
+      "text": "Another move would have given the king a little more breathing room, a fresh legal square; notice what would have opened it.",
+      "audioPath": "recordings/celeste-v1/celeste/positional-king-flight-alternative.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/positional-king-flight-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-king-flight-alternative.json"
+    },
+    {
+      "id": "positional-castling-actual",
+      "group": "game_review",
+      "text": "The king castles, and the rook passes over to stand at its other side. Two pieces, one fluid motion.",
+      "audioPath": "recordings/celeste-v1/celeste/positional-castling-actual.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/positional-castling-actual.provenance.json",
+      "alignmentPath": "alignment/positional-castling-actual.json"
+    },
+    {
+      "id": "positional-castling-alternative",
+      "group": "game_review",
+      "text": "Castling was another option, with king and rook crossing in a single turn.",
+      "audioPath": "recordings/celeste-v1/celeste/positional-castling-alternative.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/positional-castling-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-castling-alternative.json"
+    },
+    {
+      "id": "positional-bishop-pair-actual",
+      "group": "game_review",
+      "text": "This capture parts the bishop pair, so that side can no longer cover both square colors with bishops.",
+      "audioPath": "recordings/celeste-v1/celeste/positional-bishop-pair-actual.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/positional-bishop-pair-actual.provenance.json",
+      "alignmentPath": "alignment/positional-bishop-pair-actual.json"
+    },
+    {
+      "id": "positional-bishop-pair-alternative",
+      "group": "game_review",
+      "text": "With another move, a bishop could have been taken and the opposing pair broken apart.",
+      "audioPath": "recordings/celeste-v1/celeste/positional-bishop-pair-alternative.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/positional-bishop-pair-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-bishop-pair-alternative.json"
+    },
+    {
+      "id": "positional-doubled-actual",
+      "group": "game_review",
+      "text": "Doubled pawns now, two of one color standing one behind the other on a single file.",
+      "audioPath": "recordings/celeste-v1/celeste/positional-doubled-actual.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/positional-doubled-actual.provenance.json",
+      "alignmentPath": "alignment/positional-doubled-actual.json"
+    },
+    {
+      "id": "positional-doubled-alternative",
+      "group": "game_review",
+      "text": "With another move, two pawns would have ended up doubled, one behind the other on the same file.",
+      "audioPath": "recordings/celeste-v1/celeste/positional-doubled-alternative.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/positional-doubled-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-doubled-alternative.json"
+    },
+    {
+      "id": "allowed-mate",
+      "group": "game_review",
+      "text": "Checkmate can now be forced by the other side, and that deserves a plain telling. Follow the attack back to the place the defense came open.",
+      "audioPath": "recordings/celeste-v1/celeste/allowed-mate.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/allowed-mate.provenance.json",
+      "alignmentPath": "alignment/allowed-mate.json"
+    },
+    {
+      "id": "missed-mate",
+      "group": "game_review",
+      "text": "A forced checkmate was within reach, and this move lets that finish drift away. It's well worth going back to admire it.",
+      "audioPath": "recordings/celeste-v1/celeste/missed-mate.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/missed-mate.provenance.json",
+      "alignmentPath": "alignment/missed-mate.json"
+    },
+    {
+      "id": "sound-sacrifice",
+      "group": "game_review",
+      "text": "What an elegant offer. Even when the material is accepted, the idea holds in the line that was checked.",
+      "audioPath": "recordings/celeste-v1/celeste/sound-sacrifice.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/sound-sacrifice.provenance.json",
+      "alignmentPath": "alignment/sound-sacrifice.json"
+    },
+    {
+      "id": "only-playable-move",
+      "group": "game_review",
+      "text": "The other moves examined all lost, and only this one kept the position breathing and playable. Such a narrow, graceful path.",
+      "audioPath": "recordings/celeste-v1/celeste/only-playable-move.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/only-playable-move.provenance.json",
+      "alignmentPath": "alignment/only-playable-move.json"
+    },
+    {
+      "id": "only-advantage-resource",
+      "group": "game_review",
+      "text": "This was the single move examined that kept the advantage alive, while all the others were losing. A truly precise resource.",
+      "audioPath": "recordings/celeste-v1/celeste/only-advantage-resource.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/only-advantage-resource.provenance.json",
+      "alignmentPath": "alignment/only-advantage-resource.json"
+    },
+    {
+      "id": "immediate-capture",
+      "group": "game_review",
+      "text": "Right away, the other side is able to capture something. That's the first thing to look at here.",
+      "audioPath": "recordings/celeste-v1/celeste/immediate-capture.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/immediate-capture.provenance.json",
+      "alignmentPath": "alignment/immediate-capture.json"
+    },
+    {
+      "id": "reply-check",
+      "group": "game_review",
+      "text": "The finest reply for the other side arrives with check, and the king's safety must come before everything else.",
+      "audioPath": "recordings/celeste-v1/celeste/reply-check.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/reply-check.provenance.json",
+      "alignmentPath": "alignment/reply-check.json"
+    },
+    {
+      "id": "stronger-alternative",
+      "group": "game_review",
+      "text": "There's a move the engine would rather see. Place them side by side on the board and compare how the replies unfold.",
+      "audioPath": "recordings/celeste-v1/celeste/stronger-alternative.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/stronger-alternative.provenance.json",
+      "alignmentPath": "alignment/stronger-alternative.json"
+    },
+    {
+      "id": "evaluation-loss",
+      "group": "game_review",
+      "text": "The engine finds this a little weaker than its best option, and the reply shows where some of the value drains away.",
+      "audioPath": "recordings/celeste-v1/celeste/evaluation-loss.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/evaluation-loss.provenance.json",
+      "alignmentPath": "alignment/evaluation-loss.json"
+    },
+    {
+      "id": "best-supported-choice",
+      "group": "game_review",
+      "text": "A strong choice, and a well-composed one. Among the moves the engine examined, very little is given up.",
+      "audioPath": "recordings/celeste-v1/celeste/best-supported-choice.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/best-supported-choice.provenance.json",
+      "alignmentPath": "alignment/best-supported-choice.json"
+    },
+    {
+      "id": "good-choice",
+      "group": "game_review",
+      "text": "Sound and sensible. The engine has a favorite elsewhere, yet the position keeps most of its worth.",
+      "audioPath": "recordings/celeste-v1/celeste/good-choice.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/good-choice.provenance.json",
+      "alignmentPath": "alignment/good-choice.json"
+    },
+    {
+      "id": "clock-low",
+      "group": "game_review",
+      "text": "The clock had only the barest sliver of time left when this move came.",
+      "audioPath": "recordings/celeste-v1/celeste/clock-low.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/clock-low.provenance.json",
+      "alignmentPath": "alignment/clock-low.json"
+    },
+    {
+      "id": "clock-fast",
+      "group": "game_review",
+      "text": "This move came quickly by the clock, with plenty of time still held in reserve.",
+      "audioPath": "recordings/celeste-v1/celeste/clock-fast.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/clock-fast.provenance.json",
+      "alignmentPath": "alignment/clock-fast.json"
+    },
+    {
+      "id": "clock-long",
+      "group": "game_review",
+      "text": "Before this move, the clock records a long, thoughtful pause.",
+      "audioPath": "recordings/celeste-v1/celeste/clock-long.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/clock-long.provenance.json",
+      "alignmentPath": "alignment/clock-long.json"
+    },
+    {
+      "id": "recognized-opening",
+      "group": "game_review",
+      "text": "This move finds its place within a recognized opening.",
+      "audioPath": "recordings/celeste-v1/celeste/recognized-opening.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/recognized-opening.provenance.json",
+      "alignmentPath": "alignment/recognized-opening.json"
+    },
+    {
+      "id": "opening-departure",
+      "group": "game_review",
+      "text": "Here the game leaves the opening book behind. From now on, the ideas are its own.",
+      "audioPath": "recordings/celeste-v1/celeste/opening-departure.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/opening-departure.provenance.json",
+      "alignmentPath": "alignment/opening-departure.json"
+    },
+    {
+      "id": "recovery",
+      "group": "game_review",
+      "text": "Out of the earlier setback, this brings back a playable position. The path forward has reopened, and that's worth celebrating.",
+      "audioPath": "recordings/celeste-v1/celeste/recovery.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/recovery.provenance.json",
+      "alignmentPath": "alignment/recovery.json"
+    },
+    {
+      "id": "recovery-assisted",
+      "group": "game_review",
+      "text": "The position is playable once more after the earlier setback, and errors on the other side helped make the way back.",
+      "audioPath": "recordings/celeste-v1/celeste/recovery-assisted.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/recovery-assisted.provenance.json",
+      "alignmentPath": "alignment/recovery-assisted.json"
+    },
+    {
+      "id": "chance-taken",
+      "group": "game_review",
+      "text": "The opponent's last move held a small gift, and this move accepts it with grace.",
+      "audioPath": "recordings/celeste-v1/celeste/chance-taken.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/chance-taken.provenance.json",
+      "alignmentPath": "alignment/chance-taken.json"
+    },
+    {
+      "id": "chance-missed",
+      "group": "game_review",
+      "text": "The opponent's last move held a small gift, and this reply lets it drift by. A better answer was waiting in its place.",
+      "audioPath": "recordings/celeste-v1/celeste/chance-missed.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/chance-missed.provenance.json",
+      "alignmentPath": "alignment/chance-missed.json"
+    },
+    {
+      "id": "repeated-issue",
+      "group": "game_review",
+      "text": "This same issue has shown itself earlier in the game. Seeing the examples together makes the warning sign much easier to recognize.",
+      "audioPath": "recordings/celeste-v1/celeste/repeated-issue.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/repeated-issue.provenance.json",
+      "alignmentPath": "alignment/repeated-issue.json"
+    },
+    {
+      "id": "support-restored",
+      "group": "game_review",
+      "text": "A piece left unprotected earlier is connected to its defenders again. Compare the positions to see how its support returned.",
+      "audioPath": "recordings/celeste-v1/celeste/support-restored.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/support-restored.provenance.json",
+      "alignmentPath": "alignment/support-restored.json"
+    },
+    {
+      "id": "gradual-erosion",
+      "group": "game_review",
+      "text": "Several small concessions, one after another, have worn the position down together, and this move adds to them. The pattern matters as much as the move.",
+      "audioPath": "recordings/celeste-v1/celeste/gradual-erosion.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/gradual-erosion.provenance.json",
+      "alignmentPath": "alignment/gradual-erosion.json"
+    },
+    {
+      "id": "advantage-converted",
+      "group": "game_review",
+      "text": "From there to the recorded win, the advantage was carried home. Converting it so cleanly is a quiet kind of beauty.",
+      "audioPath": "recordings/celeste-v1/celeste/advantage-converted.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/advantage-converted.provenance.json",
+      "alignmentPath": "alignment/advantage-converted.json"
+    },
+    {
+      "id": "saved-history-recurrence",
+      "group": "game_review",
+      "text": "The same issue has a few cousins in your other saved games. Studying them side by side can make the pattern clear.",
+      "audioPath": "recordings/celeste-v1/celeste/saved-history-recurrence.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/saved-history-recurrence.provenance.json",
+      "alignmentPath": "alignment/saved-history-recurrence.json"
+    },
+    {
+      "id": "mate-finished",
+      "group": "game_review",
+      "text": "Checkmate. No legal escape remains, and the attack comes to a graceful close.",
+      "audioPath": "recordings/celeste-v1/celeste/mate-finished.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/mate-finished.provenance.json",
+      "alignmentPath": "alignment/mate-finished.json"
+    },
+    {
+      "id": "mate-defense-ended",
+      "group": "game_review",
+      "text": "Checkmate; the king is left without a single legal move. It's a hard ending, but there's a lesson in the moments before it.",
+      "audioPath": "recordings/celeste-v1/celeste/mate-defense-ended.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/mate-defense-ended.provenance.json",
+      "alignmentPath": "alignment/mate-defense-ended.json"
+    },
+    {
+      "id": "draw",
+      "group": "game_review",
+      "text": "A draw. The result is settled, yet the game still holds plenty worth admiring and learning from.",
+      "audioPath": "recordings/celeste-v1/celeste/draw.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/draw.provenance.json",
+      "alignmentPath": "alignment/draw.json"
+    },
+    {
+      "id": "srs-cold",
+      "group": "srs_explanations",
+      "text": "Take in the whole position, and choose your move when it feels clear.",
+      "audioPath": "recordings/celeste-v1/celeste/srs-cold.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/srs-cold.provenance.json",
+      "alignmentPath": "alignment/srs-cold.json"
+    },
+    {
+      "id": "srs-retry",
+      "group": "srs_explanations",
+      "text": "Not quite yet. Look again; the idea is still there, waiting to be found.",
+      "audioPath": "recordings/celeste-v1/celeste/srs-retry.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/srs-retry.provenance.json",
+      "alignmentPath": "alignment/srs-retry.json"
+    },
+    {
+      "id": "srs-practice-error",
+      "group": "srs_explanations",
+      "text": "Nothing came of that attempt this time. Try the move once more whenever it suits you.",
+      "audioPath": "recordings/celeste-v1/celeste/srs-practice-error.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/srs-practice-error.provenance.json",
+      "alignmentPath": "alignment/srs-practice-error.json"
+    },
+    {
+      "id": "srs-summary-mate-for-mover",
+      "group": "srs_explanations",
+      "text": "A forced checkmate belongs to the side that made this move, according to the saved engine analysis.",
+      "audioPath": "recordings/celeste-v1/celeste/srs-summary-mate-for-mover.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/srs-summary-mate-for-mover.provenance.json",
+      "alignmentPath": "alignment/srs-summary-mate-for-mover.json"
+    },
+    {
+      "id": "srs-summary-mate-against-mover",
+      "group": "srs_explanations",
+      "text": "A hard truth from the saved engine analysis: with this move, the other side gains a forced checkmate.",
+      "audioPath": "recordings/celeste-v1/celeste/srs-summary-mate-against-mover.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/srs-summary-mate-against-mover.provenance.json",
+      "alignmentPath": "alignment/srs-summary-mate-against-mover.json"
+    },
+    {
+      "id": "srs-summary-material-gain",
+      "group": "srs_explanations",
+      "text": "By the saved line's final move, the side that made this move holds more material than it began with.",
+      "audioPath": "recordings/celeste-v1/celeste/srs-summary-material-gain.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/srs-summary-material-gain.provenance.json",
+      "alignmentPath": "alignment/srs-summary-material-gain.json"
+    },
+    {
+      "id": "srs-summary-material-loss",
+      "group": "srs_explanations",
+      "text": "By the saved line's final move, the side that made this move holds less material than it began with.",
+      "audioPath": "recordings/celeste-v1/celeste/srs-summary-material-loss.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/srs-summary-material-loss.provenance.json",
+      "alignmentPath": "alignment/srs-summary-material-loss.json"
+    },
+    {
+      "id": "srs-summary-engine-accepted",
+      "group": "srs_explanations",
+      "text": "The exercise counts this move as accepted, though no clear tactical reason shows itself in the moves shown, and inventing one wouldn't be honest.",
+      "audioPath": "recordings/celeste-v1/celeste/srs-summary-engine-accepted.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/srs-summary-engine-accepted.provenance.json",
+      "alignmentPath": "alignment/srs-summary-engine-accepted.json"
+    },
+    {
+      "id": "srs-summary-engine-rejected",
+      "group": "srs_explanations",
+      "text": "The exercise doesn't take this one, and the moves shown offer no clear tactical reason. Give the position a fresh, patient look.",
+      "audioPath": "recordings/celeste-v1/celeste/srs-summary-engine-rejected.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/srs-summary-engine-rejected.provenance.json",
+      "alignmentPath": "alignment/srs-summary-engine-rejected.json"
+    },
+    {
+      "id": "srs-summary-curated-accepted",
+      "group": "srs_explanations",
+      "text": "A saved answer, beautifully matched. Here the saved answers set the course for the whole exercise.",
+      "audioPath": "recordings/celeste-v1/celeste/srs-summary-curated-accepted.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/srs-summary-curated-accepted.provenance.json",
+      "alignmentPath": "alignment/srs-summary-curated-accepted.json"
+    },
+    {
+      "id": "srs-summary-curated-rejected",
+      "group": "srs_explanations",
+      "text": "This move sits outside the exercise's saved answers. Even so, another legal move can still be honest, sound chess.",
+      "audioPath": "recordings/celeste-v1/celeste/srs-summary-curated-rejected.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/srs-summary-curated-rejected.provenance.json",
+      "alignmentPath": "alignment/srs-summary-curated-rejected.json"
+    },
+    {
+      "id": "srs-fallback-study",
+      "group": "srs_explanations",
+      "text": "Spend a moment with the move and the idea behind it, then go on to the next position.",
+      "audioPath": "recordings/celeste-v1/celeste/srs-fallback-study.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/srs-fallback-study.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-study.json"
+    },
+    {
+      "id": "srs-fallback-good",
+      "group": "srs_explanations",
+      "text": "Well chosen. Keep its reason close; reasons travel further than moves.",
+      "audioPath": "recordings/celeste-v1/celeste/srs-fallback-good.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/srs-fallback-good.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-good.json"
+    },
+    {
+      "id": "srs-fallback-focus-saved",
+      "group": "srs_explanations",
+      "text": "Your practice is safely kept, and the review schedule stays just as it was.",
+      "audioPath": "recordings/celeste-v1/celeste/srs-fallback-focus-saved.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/srs-fallback-focus-saved.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-focus-saved.json"
+    },
+    {
+      "id": "srs-fallback-relearning",
+      "group": "srs_explanations",
+      "text": "Solved, and well done. This recall still carries its relearning mark for now.",
+      "audioPath": "recordings/celeste-v1/celeste/srs-fallback-relearning.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/srs-fallback-relearning.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-relearning.json"
+    },
+    {
+      "id": "explanation-frame-original",
+      "group": "srs_explanations",
+      "text": "Here is where the story begins, the position before any of these moves.",
+      "audioPath": "recordings/celeste-v1/celeste/explanation-frame-original.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/explanation-frame-original.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-original.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-ordinary",
+      "group": "srs_explanations",
+      "text": "Another move enters the story. Notice the change it brings.",
+      "audioPath": "recordings/celeste-v1/celeste/explanation-frame-quiet-move-ordinary.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/explanation-frame-quiet-move-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-check",
+      "group": "srs_explanations",
+      "text": "Check. Before anything else, the threatened king must be looked after.",
+      "audioPath": "recordings/celeste-v1/celeste/explanation-frame-quiet-move-check.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/explanation-frame-quiet-move-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-check.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-escape",
+      "group": "srs_explanations",
+      "text": "And with this, the king is out of danger from that check.",
+      "audioPath": "recordings/celeste-v1/celeste/explanation-frame-quiet-move-escape.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/explanation-frame-quiet-move-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-escape.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-ordinary",
+      "group": "srs_explanations",
+      "text": "The pawn completes its long journey and is crowned with promotion on the last rank.",
+      "audioPath": "recordings/celeste-v1/celeste/explanation-frame-quiet-promotion-ordinary.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/explanation-frame-quiet-promotion-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-check",
+      "group": "srs_explanations",
+      "text": "The pawn completes its journey and promotes, and its new piece gives check straight away.",
+      "audioPath": "recordings/celeste-v1/celeste/explanation-frame-quiet-promotion-check.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/explanation-frame-quiet-promotion-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-check.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-mate",
+      "group": "srs_explanations",
+      "text": "The pawn completes its journey and promotes, and that's checkmate, with every escape closed to that king.",
+      "audioPath": "recordings/celeste-v1/celeste/explanation-frame-quiet-promotion-mate.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/explanation-frame-quiet-promotion-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-mate.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-escape",
+      "group": "srs_explanations",
+      "text": "The pawn completes its journey and promotes, and its own king is released from check as well.",
+      "audioPath": "recordings/celeste-v1/celeste/explanation-frame-quiet-promotion-escape.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/explanation-frame-quiet-promotion-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-escape.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-ordinary",
+      "group": "srs_explanations",
+      "text": "A capture, and one piece leaves the board.",
+      "audioPath": "recordings/celeste-v1/celeste/explanation-frame-capture-move-ordinary.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/explanation-frame-capture-move-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-check",
+      "group": "srs_explanations",
+      "text": "A capture with check woven into it, two effects in one move.",
+      "audioPath": "recordings/celeste-v1/celeste/explanation-frame-capture-move-check.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/explanation-frame-capture-move-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-check.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-mate",
+      "group": "srs_explanations",
+      "text": "One capture, and the game is over: checkmate, with no square left for the king.",
+      "audioPath": "recordings/celeste-v1/celeste/explanation-frame-capture-move-mate.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/explanation-frame-capture-move-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-mate.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-escape",
+      "group": "srs_explanations",
+      "text": "In one motion, a piece is captured and the king is freed from check.",
+      "audioPath": "recordings/celeste-v1/celeste/explanation-frame-capture-move-escape.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/explanation-frame-capture-move-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-escape.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-ordinary",
+      "group": "srs_explanations",
+      "text": "The pawn captures on its final step and is promoted on the last rank.",
+      "audioPath": "recordings/celeste-v1/celeste/explanation-frame-capture-promotion-ordinary.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/explanation-frame-capture-promotion-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-check",
+      "group": "srs_explanations",
+      "text": "The pawn captures on its final step, promotes, and its new piece gives check.",
+      "audioPath": "recordings/celeste-v1/celeste/explanation-frame-capture-promotion-check.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/explanation-frame-capture-promotion-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-check.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-mate",
+      "group": "srs_explanations",
+      "text": "The pawn captures on its final step, promotes, and delivers checkmate, a remarkable way to end it.",
+      "audioPath": "recordings/celeste-v1/celeste/explanation-frame-capture-promotion-mate.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/explanation-frame-capture-promotion-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-mate.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-escape",
+      "group": "srs_explanations",
+      "text": "The pawn captures on its final step and promotes, and its own king is lifted out of check.",
+      "audioPath": "recordings/celeste-v1/celeste/explanation-frame-capture-promotion-escape.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/explanation-frame-capture-promotion-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-escape.json"
+    },
+    {
+      "id": "explanation-frame-castle-check",
+      "group": "srs_explanations",
+      "text": "The king castles, and the move delivers check as well.",
+      "audioPath": "recordings/celeste-v1/celeste/explanation-frame-castle-check.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/explanation-frame-castle-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-castle-check.json"
+    },
+    {
+      "id": "explanation-frame-castle-mate",
+      "group": "srs_explanations",
+      "text": "The king castles, and with that move the opposing king is checkmated, with no legal escape.",
+      "audioPath": "recordings/celeste-v1/celeste/explanation-frame-castle-mate.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/explanation-frame-castle-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-castle-mate.json"
+    },
+    {
+      "id": "explanation-finding-fork-collected",
+      "group": "srs_explanations",
+      "text": "Watch the fork unfold: a single piece aims at several targets, then gathers one of them in. In this example, it also ends with a net gain in material.",
+      "audioPath": "recordings/celeste-v1/celeste/explanation-finding-fork-collected.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/explanation-finding-fork-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-fork-collected.json"
+    },
+    {
+      "id": "explanation-finding-pin-prevents-capture",
+      "group": "srs_explanations",
+      "text": "Pinned to its king, this piece can't make the marked capture; leaving its line would expose the king behind it.",
+      "audioPath": "recordings/celeste-v1/celeste/explanation-finding-pin-prevents-capture.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/explanation-finding-pin-prevents-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-prevents-capture.json"
+    },
+    {
+      "id": "explanation-finding-pin-restricts-escape",
+      "group": "srs_explanations",
+      "text": "With its king behind it on the line, the attacked piece can only escape to squares that keep that king protected.",
+      "audioPath": "recordings/celeste-v1/celeste/explanation-finding-pin-restricts-escape.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/explanation-finding-pin-restricts-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-restricts-escape.json"
+    },
+    {
+      "id": "explanation-finding-pin-defenders-no-recapture",
+      "group": "srs_explanations",
+      "text": "Bound to their own king, the defenders can't recapture there. That's the hidden reason the capture works, and the line shown comes out with a material gain.",
+      "audioPath": "recordings/celeste-v1/celeste/explanation-finding-pin-defenders-no-recapture.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/explanation-finding-pin-defenders-no-recapture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-defenders-no-recapture.json"
+    },
+    {
+      "id": "explanation-finding-pin-collected",
+      "group": "srs_explanations",
+      "text": "Let your eye rest on the pinned piece. Held to its line by the king it shields, it's captured before this sequence is done.",
+      "audioPath": "recordings/celeste-v1/celeste/explanation-finding-pin-collected.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/explanation-finding-pin-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-collected.json"
+    },
+    {
+      "id": "explanation-finding-skewer-collected",
+      "group": "srs_explanations",
+      "text": "The front piece yields its place on the line, and the piece it was sheltering is captured there.",
+      "audioPath": "recordings/celeste-v1/celeste/explanation-finding-skewer-collected.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/explanation-finding-skewer-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-skewer-collected.json"
+    },
+    {
+      "id": "explanation-finding-king-skewer-collected",
+      "group": "srs_explanations",
+      "text": "Check drives the king off the line, and the same attacker then claims what the king had been sheltering.",
+      "audioPath": "recordings/celeste-v1/celeste/explanation-finding-king-skewer-collected.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/explanation-finding-king-skewer-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-king-skewer-collected.json"
+    },
+    {
+      "id": "explanation-finding-sole-defender-captured",
+      "group": "srs_explanations",
+      "text": "First the lone defender is captured, then the piece it protected. One capture quietly makes room for the other.",
+      "audioPath": "recordings/celeste-v1/celeste/explanation-finding-sole-defender-captured.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/explanation-finding-sole-defender-captured.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-sole-defender-captured.json"
+    },
+    {
+      "id": "explanation-finding-deflection-collected",
+      "group": "srs_explanations",
+      "text": "Lured from its post, the defender leaves its piece behind, and that piece is captured.",
+      "audioPath": "recordings/celeste-v1/celeste/explanation-finding-deflection-collected.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/explanation-finding-deflection-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-deflection-collected.json"
+    },
+    {
+      "id": "explanation-finding-discovered-capture",
+      "group": "srs_explanations",
+      "text": "As the blocker steps aside, the hidden line comes alive, and the piece behind takes what it reaches.",
+      "audioPath": "recordings/celeste-v1/celeste/explanation-finding-discovered-capture.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/explanation-finding-discovered-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-discovered-capture.json"
+    },
+    {
+      "id": "explanation-finding-discovered-check",
+      "group": "srs_explanations",
+      "text": "A piece steps aside, and the line it opens delivers check.",
+      "audioPath": "recordings/celeste-v1/celeste/explanation-finding-discovered-check.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/explanation-finding-discovered-check.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-discovered-check.json"
+    },
+    {
+      "id": "explanation-finding-double-check",
+      "group": "srs_explanations",
+      "text": "Double check, a rare and striking thing: two pieces check the king together, and only the king itself can answer them.",
+      "audioPath": "recordings/celeste-v1/celeste/explanation-finding-double-check.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/explanation-finding-double-check.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-double-check.json"
+    },
+    {
+      "id": "explanation-finding-double-attack-collected",
+      "group": "srs_explanations",
+      "text": "The moving piece threatens one target, and the line it reveals threatens another. Here it's the revealed attacker that wins its prize.",
+      "audioPath": "recordings/celeste-v1/celeste/explanation-finding-double-attack-collected.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/explanation-finding-double-attack-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-double-attack-collected.json"
+    },
+    {
+      "id": "explanation-finding-promotion-material-retained",
+      "group": "srs_explanations",
+      "text": "The pawn arrives at promotion. By the end of this example, that side has also gained material overall.",
+      "audioPath": "recordings/celeste-v1/celeste/explanation-finding-promotion-material-retained.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/explanation-finding-promotion-material-retained.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-promotion-material-retained.json"
+    },
+    {
+      "id": "explanation-finding-undefended-capture-gain",
+      "group": "srs_explanations",
+      "text": "An unprotected piece is captured here, and the capturing side ends this example ahead on material.",
+      "audioPath": "recordings/celeste-v1/celeste/explanation-finding-undefended-capture-gain.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/explanation-finding-undefended-capture-gain.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-undefended-capture-gain.json"
+    },
+    {
+      "id": "explanation-finding-relative-pin-released",
+      "group": "srs_explanations",
+      "text": "A relative pin kept the attacking piece in place, until the opponent's previous move loosened its hold. Once loosed, it captures a target that never moved, in the line shown.",
+      "audioPath": "recordings/celeste-v1/celeste/explanation-finding-relative-pin-released.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/explanation-finding-relative-pin-released.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-relative-pin-released.json"
+    },
+    {
+      "id": "game-explanation-legal-reply",
+      "group": "srs_explanations",
+      "text": "The marked reply is within the other side's choices. Try it on the board and watch the position open up.",
+      "audioPath": "recordings/celeste-v1/celeste/game-explanation-legal-reply.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/game-explanation-legal-reply.provenance.json",
+      "alignmentPath": "alignment/game-explanation-legal-reply.json"
+    },
+    {
+      "id": "explanation-cue-hanging-piece",
+      "group": "srs_explanations",
+      "text": "Before choosing a move, check that none of your pieces could be taken without a useful recapture.",
+      "audioPath": "recordings/celeste-v1/celeste/explanation-cue-hanging-piece.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/explanation-cue-hanging-piece.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-hanging-piece.json"
+    },
+    {
+      "id": "explanation-cue-missed-tactical-capture",
+      "group": "srs_explanations",
+      "text": "Before choosing something quiet, glance around for enemy pieces left without protection.",
+      "audioPath": "recordings/celeste-v1/celeste/explanation-cue-missed-tactical-capture.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/explanation-cue-missed-tactical-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-missed-tactical-capture.json"
+    },
+    {
+      "id": "explanation-cue-fork",
+      "group": "srs_explanations",
+      "text": "Look through the forcing moves for one piece that could reach two valuable targets together.",
+      "audioPath": "recordings/celeste-v1/celeste/explanation-cue-fork.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/explanation-cue-fork.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-fork.json"
+    },
+    {
+      "id": "explanation-cue-pin",
+      "group": "srs_explanations",
+      "text": "Every pin has something behind it; see whether a pinned piece shelters your king or a piece of greater worth before it moves.",
+      "audioPath": "recordings/celeste-v1/celeste/explanation-cue-pin.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/explanation-cue-pin.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-pin.json"
+    },
+    {
+      "id": "explanation-cue-skewer",
+      "group": "srs_explanations",
+      "text": "The first target may be guarding a secret: a valuable piece standing behind it on the same line.",
+      "audioPath": "recordings/celeste-v1/celeste/explanation-cue-skewer.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/explanation-cue-skewer.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-skewer.json"
+    },
+    {
+      "id": "explanation-cue-removing-defender",
+      "group": "srs_explanations",
+      "text": "Before trading a defender away, see what it's holding together.",
+      "audioPath": "recordings/celeste-v1/celeste/explanation-cue-removing-defender.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/explanation-cue-removing-defender.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-removing-defender.json"
+    },
+    {
+      "id": "explanation-cue-discovered-attack",
+      "group": "srs_explanations",
+      "text": "When a piece steps out of a line, notice what the opened line now reaches.",
+      "audioPath": "recordings/celeste-v1/celeste/explanation-cue-discovered-attack.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/explanation-cue-discovered-attack.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-discovered-attack.json"
+    },
+    {
+      "id": "explanation-cue-double-attack",
+      "group": "srs_explanations",
+      "text": "Watch for one move that carries two threats at once, including checks and lines that open.",
+      "audioPath": "recordings/celeste-v1/celeste/explanation-cue-double-attack.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/explanation-cue-double-attack.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-double-attack.json"
+    },
+    {
+      "id": "explanation-cue-back-rank",
+      "group": "srs_explanations",
+      "text": "Before a back-rank defender moves, make sure your king will still have room to escape.",
+      "audioPath": "recordings/celeste-v1/celeste/explanation-cue-back-rank.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/explanation-cue-back-rank.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-back-rank.json"
+    },
+    {
+      "id": "explanation-cue-promotion-awareness",
+      "group": "srs_explanations",
+      "text": "Count the squares a pawn still needs before it promotes, and notice which pawn moves demand a reply.",
+      "audioPath": "recordings/celeste-v1/celeste/explanation-cue-promotion-awareness.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/explanation-cue-promotion-awareness.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-promotion-awareness.json"
+    },
+    {
+      "id": "explanation-cue-abandoned-defender",
+      "group": "srs_explanations",
+      "text": "Before a defender moves, see which pieces would lose their connection to it.",
+      "audioPath": "recordings/celeste-v1/celeste/explanation-cue-abandoned-defender.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/explanation-cue-abandoned-defender.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-abandoned-defender.json"
+    },
+    {
+      "id": "explanation-cue-avoiding-bad-trades",
+      "group": "srs_explanations",
+      "text": "Before you capture, compare the prize with what the recapture would cost you.",
+      "audioPath": "recordings/celeste-v1/celeste/explanation-cue-avoiding-bad-trades.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/explanation-cue-avoiding-bad-trades.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-avoiding-bad-trades.json"
+    },
+    {
+      "id": "explanation-cue-deflection",
+      "group": "srs_explanations",
+      "text": "Notice whether a forcing exchange could tempt a defender from a second duty.",
+      "audioPath": "recordings/celeste-v1/celeste/explanation-cue-deflection.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/explanation-cue-deflection.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-deflection.json"
+    },
+    {
+      "id": "explanation-note-curated-authority",
+      "group": "srs_explanations",
+      "text": "Think of the saved answers as this exercise's compass; a legal move they leave out may still be lovely, sound chess.",
+      "audioPath": "recordings/celeste-v1/celeste/explanation-note-curated-authority.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/explanation-note-curated-authority.provenance.json",
+      "alignmentPath": "alignment/explanation-note-curated-authority.json"
+    },
+    {
+      "id": "explanation-note-strong-replies",
+      "group": "srs_explanations",
+      "text": "Here the play is shown against strong replies, which aren't necessarily the only ones.",
+      "audioPath": "recordings/celeste-v1/celeste/explanation-note-strong-replies.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/explanation-note-strong-replies.provenance.json",
+      "alignmentPath": "alignment/explanation-note-strong-replies.json"
+    },
+    {
+      "id": "explanation-note-material-scope",
+      "group": "srs_explanations",
+      "text": "Material changes count only within the line shown, from its own starting point, and the piece values behind them appear in the written explanation.",
+      "audioPath": "recordings/celeste-v1/celeste/explanation-note-material-scope.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/explanation-note-material-scope.provenance.json",
+      "alignmentPath": "alignment/explanation-note-material-scope.json"
+    },
+    {
+      "id": "explanation-note-no-simple-reason",
+      "group": "srs_explanations",
+      "text": "No simple tactical reason shows itself in the saved line, and I've chosen not to guess at a positional one. Follow it through and weigh the replies for yourself.",
+      "audioPath": "recordings/celeste-v1/celeste/explanation-note-no-simple-reason.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/explanation-note-no-simple-reason.provenance.json",
+      "alignmentPath": "alignment/explanation-note-no-simple-reason.json"
+    },
+    {
+      "id": "explanation-note-saved-policy",
+      "group": "srs_explanations",
+      "text": "The answer policy saved with this exercise shapes the explanation, and the written notes give its setting.",
+      "audioPath": "recordings/celeste-v1/celeste/explanation-note-saved-policy.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/explanation-note-saved-policy.provenance.json",
+      "alignmentPath": "alignment/explanation-note-saved-policy.json"
+    },
+    {
+      "id": "opening-recall-revealed",
+      "group": "openings",
+      "text": "Here's your opening line, every move of it in order.",
+      "audioPath": "recordings/celeste-v1/celeste/opening-recall-revealed.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/opening-recall-revealed.provenance.json",
+      "alignmentPath": "alignment/opening-recall-revealed.json"
+    },
+    {
+      "id": "opening-recall-accepted",
+      "group": "openings",
+      "text": "Yes, lovely. That one comes right from your study material.",
+      "audioPath": "recordings/celeste-v1/celeste/opening-recall-accepted.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/opening-recall-accepted.provenance.json",
+      "alignmentPath": "alignment/opening-recall-accepted.json"
+    },
+    {
+      "id": "opening-recall-retry-fallback",
+      "group": "openings",
+      "text": "Let your next move come from the opening lines in your study.",
+      "audioPath": "recordings/celeste-v1/celeste/opening-recall-retry-fallback.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/opening-recall-retry-fallback.provenance.json",
+      "alignmentPath": "alignment/opening-recall-retry-fallback.json"
+    },
+    {
+      "id": "opening-recall-cold-multiple",
+      "group": "openings",
+      "text": "Any of your chosen opening lines can supply the move here.",
+      "audioPath": "recordings/celeste-v1/celeste/opening-recall-cold-multiple.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/opening-recall-cold-multiple.provenance.json",
+      "alignmentPath": "alignment/opening-recall-cold-multiple.json"
+    },
+    {
+      "id": "opening-recall-cold-single",
+      "group": "openings",
+      "text": "Bring a move back to mind from the material in your study.",
+      "audioPath": "recordings/celeste-v1/celeste/opening-recall-cold-single.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/opening-recall-cold-single.provenance.json",
+      "alignmentPath": "alignment/opening-recall-cold-single.json"
+    },
+    {
+      "id": "opening-recall-rejected",
+      "group": "openings",
+      "text": "Your chosen opening lines wander elsewhere; that move isn't among them. Another attempt, then.",
+      "audioPath": "recordings/celeste-v1/celeste/opening-recall-rejected.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/opening-recall-rejected.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected.json"
+    },
+    {
+      "id": "opening-recall-rejected-changed",
+      "group": "openings",
+      "text": "Your chosen lines wander elsewhere, so another attempt, then. With the study changed, this saved try sets no new review dates.",
+      "audioPath": "recordings/celeste-v1/celeste/opening-recall-rejected-changed.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/opening-recall-rejected-changed.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected-changed.json"
+    },
+    {
+      "id": "opening-recall-rejected-retired",
+      "group": "openings",
+      "text": "Your chosen lines wander elsewhere, so another attempt, then. The position is retired now, and its review dates won't move.",
+      "audioPath": "recordings/celeste-v1/celeste/opening-recall-rejected-retired.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/opening-recall-rejected-retired.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected-retired.json"
+    },
+    {
+      "id": "opening-preview-active",
+      "group": "openings",
+      "text": "Mixed Due will welcome any move from this line, while dedicated practice asks for this line alone.",
+      "audioPath": "recordings/celeste-v1/celeste/opening-preview-active.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/opening-preview-active.provenance.json",
+      "alignmentPath": "alignment/opening-preview-active.json"
+    },
+    {
+      "id": "opening-preview-inactive",
+      "group": "openings",
+      "text": "When recalls come due, they'll ask for the moves of your chosen side. Where active studies meet at one position, there's only one card for it.",
+      "audioPath": "recordings/celeste-v1/celeste/opening-preview-inactive.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/opening-preview-inactive.provenance.json",
+      "alignmentPath": "alignment/opening-preview-inactive.json"
+    },
+    {
+      "id": "puzzle-error",
+      "group": "puzzles",
+      "text": "The saved session needs a reload before another move can be played.",
+      "audioPath": "recordings/celeste-v1/celeste/puzzle-error.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/puzzle-error.provenance.json",
+      "alignmentPath": "alignment/puzzle-error.json"
+    },
+    {
+      "id": "puzzle-playback",
+      "group": "puzzles",
+      "text": "The verified line now unfolds on the board, move by move.",
+      "audioPath": "recordings/celeste-v1/celeste/puzzle-playback.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/puzzle-playback.provenance.json",
+      "alignmentPath": "alignment/puzzle-playback.json"
+    },
+    {
+      "id": "puzzle-revealed",
+      "group": "puzzles",
+      "text": "This attempt goes into your record as revealed. The solution waits below whenever you'd like to see it again.",
+      "audioPath": "recordings/celeste-v1/celeste/puzzle-revealed.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/puzzle-revealed.provenance.json",
+      "alignmentPath": "alignment/puzzle-revealed.json"
+    },
+    {
+      "id": "puzzle-solved-after-retry",
+      "group": "puzzles",
+      "text": "A retry, and then the whole solution. Your record keeps the earlier miss alongside the lovely finish.",
+      "audioPath": "recordings/celeste-v1/celeste/puzzle-solved-after-retry.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/puzzle-solved-after-retry.provenance.json",
+      "alignmentPath": "alignment/puzzle-solved-after-retry.json"
+    },
+    {
+      "id": "puzzle-solved-clean",
+      "group": "puzzles",
+      "text": "The full solution, with not one misstep along the way. That was beautifully done.",
+      "audioPath": "recordings/celeste-v1/celeste/puzzle-solved-clean.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/puzzle-solved-clean.provenance.json",
+      "alignmentPath": "alignment/puzzle-solved-clean.json"
+    },
+    {
+      "id": "puzzle-rejected",
+      "group": "puzzles",
+      "text": "Not the move this puzzle is looking for, but your earlier correct moves are still saved.",
+      "audioPath": "recordings/celeste-v1/celeste/puzzle-rejected.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/puzzle-rejected.provenance.json",
+      "alignmentPath": "alignment/puzzle-rejected.json"
+    },
+    {
+      "id": "puzzle-next-move",
+      "group": "puzzles",
+      "text": "Exactly right. On to the next move of the puzzle.",
+      "audioPath": "recordings/celeste-v1/celeste/puzzle-next-move.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/puzzle-next-move.provenance.json",
+      "alignmentPath": "alignment/puzzle-next-move.json"
+    },
+    {
+      "id": "puzzle-cold",
+      "group": "puzzles",
+      "text": "Take your time, calculate carefully, and move when it's clear.",
+      "audioPath": "recordings/celeste-v1/celeste/puzzle-cold.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/puzzle-cold.provenance.json",
+      "alignmentPath": "alignment/puzzle-cold.json"
+    },
+    {
+      "id": "game-unavailable",
+      "group": "operational",
+      "text": "There isn't enough from the engine for me to explain this position, and I'd rather not guess.",
+      "audioPath": "recordings/celeste-v1/celeste/game-unavailable.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/game-unavailable.provenance.json",
+      "alignmentPath": "alignment/game-unavailable.json"
+    },
+    {
+      "id": "game-review-paused",
+      "group": "operational",
+      "text": "We've set the review aside for a moment. Pick it up below whenever you like, or try moving a piece yourself.",
+      "audioPath": "recordings/celeste-v1/celeste/game-review-paused.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/game-review-paused.provenance.json",
+      "alignmentPath": "alignment/game-review-paused.json"
+    },
+    {
+      "id": "game-browse-instructions",
+      "group": "operational",
+      "text": "Pick a move to look back at, or try a move of your own on the board.",
+      "audioPath": "recordings/celeste-v1/celeste/game-browse-instructions.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/game-browse-instructions.provenance.json",
+      "alignmentPath": "alignment/game-browse-instructions.json"
+    },
+    {
+      "id": "book-opening-entry-1",
+      "group": "game_review",
+      "text": "We've stepped into a recognized opening; this move has a place in the book.",
+      "audioPath": "recordings/celeste-v1/celeste/book-opening-entry-1.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/book-opening-entry-1.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-1.json"
+    },
+    {
+      "id": "book-opening-entry-2",
+      "group": "game_review",
+      "text": "A move from the book, belonging to a known opening.",
+      "audioPath": "recordings/celeste-v1/celeste/book-opening-entry-2.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/book-opening-entry-2.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-2.json"
+    },
+    {
+      "id": "book-opening-entry-3",
+      "group": "game_review",
+      "text": "This move has its own page in the opening book.",
+      "audioPath": "recordings/celeste-v1/celeste/book-opening-entry-3.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/book-opening-entry-3.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-3.json"
+    },
+    {
+      "id": "book-opening-follow-1",
+      "group": "game_review",
+      "text": "The opening book still walks beside us, step for step.",
+      "audioPath": "recordings/celeste-v1/celeste/book-opening-follow-1.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/book-opening-follow-1.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-1.json"
+    },
+    {
+      "id": "book-opening-follow-2",
+      "group": "game_review",
+      "text": "And this move is part of the book as well.",
+      "audioPath": "recordings/celeste-v1/celeste/book-opening-follow-2.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/book-opening-follow-2.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-2.json"
+    },
+    {
+      "id": "book-opening-follow-3",
+      "group": "game_review",
+      "text": "The reply, too, keeps step with the book.",
+      "audioPath": "recordings/celeste-v1/celeste/book-opening-follow-3.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/book-opening-follow-3.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-3.json"
+    },
+    {
+      "id": "book-opening-follow-4",
+      "group": "game_review",
+      "text": "The opening line flows onward, still in tune.",
+      "audioPath": "recordings/celeste-v1/celeste/book-opening-follow-4.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/book-opening-follow-4.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-4.json"
+    },
+    {
+      "id": "book-opening-follow-5",
+      "group": "game_review",
+      "text": "Still a move the book recognizes.",
+      "audioPath": "recordings/celeste-v1/celeste/book-opening-follow-5.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/book-opening-follow-5.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-5.json"
+    },
+    {
+      "id": "book-opening-follow-6",
+      "group": "game_review",
+      "text": "The book keeps walking alongside the game.",
+      "audioPath": "recordings/celeste-v1/celeste/book-opening-follow-6.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/book-opening-follow-6.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-6.json"
+    },
+    {
+      "id": "book-opening-follow-7",
+      "group": "game_review",
+      "text": "This step, too, is written in the book.",
+      "audioPath": "recordings/celeste-v1/celeste/book-opening-follow-7.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/book-opening-follow-7.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-7.json"
+    },
+    {
+      "id": "book-opening-follow-8",
+      "group": "game_review",
+      "text": "A book move yet again. Knowing the line tells us where we are, not how well the move was chosen.",
+      "audioPath": "recordings/celeste-v1/celeste/book-opening-follow-8.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/book-opening-follow-8.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-8.json"
+    },
+    {
+      "id": "game-review-opened",
+      "group": "operational",
+      "text": "This game is ready to unfold. I'd love to watch its ideas take shape with you.",
+      "audioPath": "recordings/celeste-v1/celeste/game-review-opened.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/game-review-opened.provenance.json",
+      "alignmentPath": "alignment/game-review-opened.json"
+    },
+    {
+      "id": "lesson-wrong-move",
+      "group": "lessons",
+      "text": "A legal choice, but this lesson walks another path. Do try again.",
+      "audioPath": "recordings/celeste-v1/celeste/lesson-wrong-move.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/lesson-wrong-move.provenance.json",
+      "alignmentPath": "alignment/lesson-wrong-move.json"
+    },
+    {
+      "id": "lesson-correct-move",
+      "group": "lessons",
+      "text": "Exactly as the lesson intended. Lovely.",
+      "audioPath": "recordings/celeste-v1/celeste/lesson-correct-move.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/lesson-correct-move.provenance.json",
+      "alignmentPath": "alignment/lesson-correct-move.json"
+    },
+    {
+      "id": "lesson-move-revealed",
+      "group": "lessons",
+      "text": "The lesson reveals its move now, there to admire.",
+      "audioPath": "recordings/celeste-v1/celeste/lesson-move-revealed.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/lesson-move-revealed.provenance.json",
+      "alignmentPath": "alignment/lesson-move-revealed.json"
+    },
+    {
+      "id": "lesson-guided-playback",
+      "group": "lessons",
+      "text": "Let the line drift across the board, one graceful step after another.",
+      "audioPath": "recordings/celeste-v1/celeste/lesson-guided-playback.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/lesson-guided-playback.provenance.json",
+      "alignmentPath": "alignment/lesson-guided-playback.json"
+    },
+    {
+      "id": "lesson-rehearsal-prompt",
+      "group": "lessons",
+      "text": "Now let your studied line come back to you, gracefully, from memory.",
+      "audioPath": "recordings/celeste-v1/celeste/lesson-rehearsal-prompt.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/lesson-rehearsal-prompt.provenance.json",
+      "alignmentPath": "alignment/lesson-rehearsal-prompt.json"
+    },
+    {
+      "id": "lesson-branch-entered",
+      "group": "lessons",
+      "text": "A quiet alternative to explore. The main line will welcome you back.",
+      "audioPath": "recordings/celeste-v1/celeste/lesson-branch-entered.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/lesson-branch-entered.provenance.json",
+      "alignmentPath": "alignment/lesson-branch-entered.json"
+    },
+    {
+      "id": "lesson-chapter-complete",
+      "group": "lessons",
+      "text": "The chapter is finished, its progress kept with care.",
+      "audioPath": "recordings/celeste-v1/celeste/lesson-chapter-complete.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/lesson-chapter-complete.provenance.json",
+      "alignmentPath": "alignment/lesson-chapter-complete.json"
+    },
+    {
+      "id": "lesson-game-opened",
+      "group": "lessons",
+      "text": "Every move of the game awaits you now, to wander through at leisure.",
+      "audioPath": "recordings/celeste-v1/celeste/lesson-game-opened.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/lesson-game-opened.provenance.json",
+      "alignmentPath": "alignment/lesson-game-opened.json"
+    },
+    {
+      "id": "lesson-error",
+      "group": "lessons",
+      "text": "Kindly press reload, and then we may go on.",
+      "audioPath": "recordings/celeste-v1/celeste/lesson-error.opus",
+      "sidecarPath": "recordings/celeste-v1/celeste/lesson-error.provenance.json",
+      "alignmentPath": "alignment/lesson-error.json"
+    }
+  ]
+}

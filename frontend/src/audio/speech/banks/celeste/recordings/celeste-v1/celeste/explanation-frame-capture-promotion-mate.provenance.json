@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-mate",
+      "label": "Explanation frame capture promotion mate",
+      "text": "The pawn captures on its final step, promotes, and delivers checkmate, a remarkable way to end it."
+    },
+    "takeId": null
+  },
+  "requestHash": "9bf368178f723da04cc291c1464bd11658fa6a0e4950f0e9a098bc6af8122e5c",
+  "recordedAt": "2026-10-03T05:23:23.834Z",
+  "sha256": "96a2213743700400a029d1087179b279c942f7dc7e9f899edb2c91f0ff07a5a9",
+  "bytes": 22618,
+  "requestId": "1xpCxSYf4BO07xButihk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "874028baf2547803916764227a3897ca33eac5436c9453a5b43c7b2479bae925",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

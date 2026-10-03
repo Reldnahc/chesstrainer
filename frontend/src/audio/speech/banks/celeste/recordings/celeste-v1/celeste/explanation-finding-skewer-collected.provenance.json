@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected",
+      "label": "Explanation finding skewer collected",
+      "text": "The front piece yields its place on the line, and the piece it was sheltering is captured there."
+    },
+    "takeId": null
+  },
+  "requestHash": "8eb8dde9a66902b3fbdb922f84731aa5e8f584fdfd61c8f1b38318ec301144af",
+  "recordedAt": "2026-10-03T05:23:40.472Z",
+  "sha256": "34a11b828644ee11a1337b129b717c49f131febd04da5b6816ea72bce0451656",
+  "bytes": 18104,
+  "requestId": "SuekWmlqKRTbksZc3e71",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "58edb384fe2efcb8dca6d5e8d23c15eb2f7d9e24a13bf696c0763454708383b5",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

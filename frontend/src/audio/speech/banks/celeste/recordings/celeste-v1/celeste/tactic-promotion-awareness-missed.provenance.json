@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "tactic-promotion-awareness-missed",
+      "label": "Tactic promotion awareness missed",
+      "text": "A stronger move would have let a promising pawn begin its walk to promotion. Instead, its journey waits."
+    },
+    "takeId": null
+  },
+  "requestHash": "a930a2a6087a9f137b61ee54908c90b30cfc198f2a3ed01882264c650f3f619f",
+  "recordedAt": "2026-10-03T05:20:38.365Z",
+  "sha256": "363b76e54d075895c7b0d37ea71c33d7a963e7ab7d690f8ba46e8f62261ac2fd",
+  "bytes": 22521,
+  "requestId": "5bkBc7VMepBrPnwUo4zo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7b4433a55f02fc3a64660f5512e643b01a4c9acc942db9cad31c36afea169d23",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

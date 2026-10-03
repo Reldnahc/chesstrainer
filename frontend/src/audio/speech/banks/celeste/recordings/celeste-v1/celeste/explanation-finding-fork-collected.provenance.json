@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "explanation-finding-fork-collected",
+      "label": "Explanation finding fork collected",
+      "text": "Watch the fork unfold: a single piece aims at several targets, then gathers one of them in. In this example, it also ends with a net gain in material."
+    },
+    "takeId": null
+  },
+  "requestHash": "00b7894a47085ac3102d20ca832574eb1549e2e1ea33f169760388f4be376113",
+  "recordedAt": "2026-10-03T05:23:30.690Z",
+  "sha256": "417af7a2cae7dbc9fe089ae67ec9347af30baf530b9c8f39b4df6e2732fcdf3b",
+  "bytes": 33719,
+  "requestId": "2zWQHi10NGBmWS6iFQqf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "381b95bf76690e051c8f5c7444db05eeccd1349bd25e86be187ffbf4e3437033",
+    "bytes": 170153
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "srs-fallback-relearning",
+      "label": "Srs fallback relearning",
+      "text": "Solved, and well done. This recall still carries its relearning mark for now."
+    },
+    "takeId": null
+  },
+  "requestHash": "a8aae34519e43058d7759b16dd3b5b09fe69b29bf7d71a540c643d1f2db12b85",
+  "recordedAt": "2026-10-03T05:23:02.531Z",
+  "sha256": "9cb8d65afb4729a177f2596af78ac60aa3f7b45f547d519ea2870f6b689e6a3a",
+  "bytes": 18550,
+  "requestId": "OJr3VJawzVyAVJcW4lJy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "470a11d4692988ea83a2acdf06cf68dae36d365a95ecae318dac463143e8bd77",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

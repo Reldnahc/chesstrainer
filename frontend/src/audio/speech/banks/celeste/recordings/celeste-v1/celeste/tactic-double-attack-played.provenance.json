@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "tactic-double-attack-played",
+      "label": "Tactic double attack played",
+      "text": "Threats bloom in two places at once, beautifully balanced. Meeting them both with one reply is rarely possible."
+    },
+    "takeId": null
+  },
+  "requestHash": "1e065fec0b8415285094badcf63f8b70693789729075e850ef929f768987d815",
+  "recordedAt": "2026-10-03T05:20:47.159Z",
+  "sha256": "f64e21abb0e927240b3519881b1d1849055e20f29afa22c1582325c8c0939348",
+  "bytes": 26014,
+  "requestId": "fJ7xiYqdwU00NBTtWTQH",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8cb6d39ffc67b86df721b3265db403c585ba1a2a1f2e554b3f539151a096d936",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary",
+      "label": "Explanation frame capture move ordinary",
+      "text": "A capture, and one piece leaves the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "10bce48a3cc4fd7b432643eb2d8227e10afe7324bbcbe1c7716afb40a22d5f52",
+  "recordedAt": "2026-10-03T05:23:15.272Z",
+  "sha256": "c13bc23a990273cc01a68e8439571b5f1d698c9afec47539f282f615e38f16e7",
+  "bytes": 10445,
+  "requestId": "4yMDyNlzP4nn8aUvEUxR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fc5dcd71c31a9793888a1b84c88c1cd41afed4efa9cb0454760da8b1e7c696dc",
+    "bytes": 51035
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

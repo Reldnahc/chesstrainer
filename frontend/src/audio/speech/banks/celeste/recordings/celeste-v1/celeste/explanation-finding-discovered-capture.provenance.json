@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-capture",
+      "label": "Explanation finding discovered capture",
+      "text": "As the blocker steps aside, the hidden line comes alive, and the piece behind takes what it reaches."
+    },
+    "takeId": null
+  },
+  "requestHash": "caf951b689f3b6b3c5c069996b4fc5093eb0772a4ab7c02384da4cb414581d49",
+  "recordedAt": "2026-10-03T05:23:47.099Z",
+  "sha256": "e5df337b9bb28aa6fc418265473ef995b077eb93d343539c47ebebcbf7ab3795",
+  "bytes": 21408,
+  "requestId": "GxCffm3rYwBUlhImWkMw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1cbcb979ccc597b2dc3569362fd6865d11ed3d0b49c7a66d8b07365cac8fa6be",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

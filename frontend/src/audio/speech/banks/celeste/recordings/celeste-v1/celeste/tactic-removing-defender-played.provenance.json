@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played",
+      "label": "Tactic removing defender played",
+      "text": "How neatly it unravels. The defender is captured, and the connection it held is broken; whatever it protected now stands without cover."
+    },
+    "takeId": null
+  },
+  "requestHash": "177cbe264f664f63562e81d1265435384e980b07ed76299e38dbf33bfa0246a0",
+  "recordedAt": "2026-10-03T05:20:22.973Z",
+  "sha256": "4615b28fbfe115bc3a555fe13048cb2d61d6adc6d6c920dc50c90be4c1302a54",
+  "bytes": 30727,
+  "requestId": "xsJOcjY49n9tMPTS00VX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "922f30262432f5c165d9e65b5974f215c7bcb5ca60e7dc36b774c7634033cec9",
+    "bytes": 155942
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

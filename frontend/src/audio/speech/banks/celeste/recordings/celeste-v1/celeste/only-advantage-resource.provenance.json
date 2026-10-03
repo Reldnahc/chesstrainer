@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "only-advantage-resource",
+      "label": "Only advantage resource",
+      "text": "This was the single move examined that kept the advantage alive, while all the others were losing. A truly precise resource."
+    },
+    "takeId": null
+  },
+  "requestHash": "86b324a11e4276d3ea350a31051c66de0042f69ff7b3ed06287283b35f20b2ac",
+  "recordedAt": "2026-10-03T05:21:57.126Z",
+  "sha256": "02927d3946a5c02120a4838ca88492a55cc2a0edfb8e375a74af680e8b09b13f",
+  "bytes": 27575,
+  "requestId": "gXrgXRtgIWmAUvTfXiP7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "aebac8180344d310a55b4b5699fefbf5645bf8b9e6458cf688618af8435604e6",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

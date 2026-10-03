@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "explanation-cue-deflection",
+      "label": "Explanation cue deflection",
+      "text": "Notice whether a forcing exchange could tempt a defender from a second duty."
+    },
+    "takeId": null
+  },
+  "requestHash": "3002c2d5e127f039fab1e41adf1665691b7008e3ff9c47dcf4acf2b78ae6629e",
+  "recordedAt": "2026-10-03T05:24:18.668Z",
+  "sha256": "e9ebf6d2b6dd4240134abf478dbc9d39f80d996bb809c25396a2849e93b634c3",
+  "bytes": 15949,
+  "requestId": "xDoEbP9o5OocVa5bok4D",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f8e9fe7aeb8466af99ff4719a8c0cdb7985c3b2b62d541baf47ca366e556f641",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

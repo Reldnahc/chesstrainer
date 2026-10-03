@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "opening-preview-active",
+      "label": "Opening preview active",
+      "text": "Mixed Due will welcome any move from this line, while dedicated practice asks for this line alone."
+    },
+    "takeId": null
+  },
+  "requestHash": "bea0a50bce158321ebd38ed8b08f39e2a13f707e59c779a9c55dd3258e4c8736",
+  "recordedAt": "2026-10-03T05:24:41.223Z",
+  "sha256": "b388c6d061afec67089fe0d7e7d443cc9c37fae9a506e91478507d69638d720a",
+  "bytes": 21687,
+  "requestId": "TSwyMVJSYBIK8Iiw5ISj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c70ce60bda23e4a06ddd78ffe922df5c639194ba5bf8583f7aa8e5215f09b0c5",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

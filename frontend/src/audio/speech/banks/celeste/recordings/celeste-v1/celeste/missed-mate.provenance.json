@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "missed-mate",
+      "label": "Missed mate",
+      "text": "A forced checkmate was within reach, and this move lets that finish drift away. It's well worth going back to admire it."
+    },
+    "takeId": null
+  },
+  "requestHash": "1557c9baff1aff2a7e458a50b7534973fdcc83d7ecdabf0e7a37b1abae1f38fc",
+  "recordedAt": "2026-10-03T05:21:51.361Z",
+  "sha256": "68f2d420acaa66552d3831d1f780dae6b5f2fc42ce75039d846ba69eaf9e02d0",
+  "bytes": 25783,
+  "requestId": "gPSKHmWGgiLDkEvtkrPz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "736a660c6291bdb98a44590d800e1e7c618bc5d884593b1a77e014f122c660e8",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

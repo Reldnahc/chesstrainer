@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "game-unavailable",
+      "label": "Game unavailable",
+      "text": "There isn't enough from the engine for me to explain this position, and I'd rather not guess."
+    },
+    "takeId": null
+  },
+  "requestHash": "d0d313a11025fa1871f0b499dc6b541026ff7ac829689bfd969938f19ad5ce94",
+  "recordedAt": "2026-10-03T05:24:55.933Z",
+  "sha256": "bfe76ddd424bb39381d6d8bdb8499fad11cbf07abe342553e887cad3b3c0eeb6",
+  "bytes": 18985,
+  "requestId": "NljGrLceLNyEsWzoJDwq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b31c1f77e79ed91ce43406d828e58841f14a2b6a7a84c8aed5c5db27da39866a",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

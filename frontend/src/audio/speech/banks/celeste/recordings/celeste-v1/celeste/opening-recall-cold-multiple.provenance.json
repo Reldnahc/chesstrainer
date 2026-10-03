@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "opening-recall-cold-multiple",
+      "label": "Opening recall cold multiple",
+      "text": "Any of your chosen opening lines can supply the move here."
+    },
+    "takeId": null
+  },
+  "requestHash": "cc26099a19f96330934ed21c719a72d3305e02108bb223831810f03a465aaa61",
+  "recordedAt": "2026-10-03T05:24:32.523Z",
+  "sha256": "48af031c6347f5009b7d9edf1e9af9fc1c8ecf8b7b120796c855b5b25fc88bca",
+  "bytes": 11746,
+  "requestId": "djOm73nswS70kGGbQoiE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "304a31b968049338d9eadd71d860b875fb33d74267c28806b75a05749a7c4111",
+    "bytes": 56050
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

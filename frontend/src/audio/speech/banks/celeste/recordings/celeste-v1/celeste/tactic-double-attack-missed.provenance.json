@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "tactic-double-attack-missed",
+      "label": "Tactic double attack missed",
+      "text": "A stronger move carried two threats in a single gesture. That double attack was left unplayed."
+    },
+    "takeId": null
+  },
+  "requestHash": "4c1df0d14cfee8cb24cbb08f340719f4a018f088948845b69a67fa93acc49cdb",
+  "recordedAt": "2026-10-03T05:20:50.999Z",
+  "sha256": "d5ab41ddaa8e24b7030f3df779dfe0ebe5c686b27810ebb2325281906c7d04c4",
+  "bytes": 21419,
+  "requestId": "yhQyHOd8XMn5s6VUBvUv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6ec174af607a32ab36c9533284ee9d8b008df7ff55c5aebc6da56c309221323c",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

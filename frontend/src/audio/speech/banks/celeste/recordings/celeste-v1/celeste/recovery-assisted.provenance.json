@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "recovery-assisted",
+      "label": "Recovery assisted",
+      "text": "The position is playable once more after the earlier setback, and errors on the other side helped make the way back."
+    },
+    "takeId": null
+  },
+  "requestHash": "6bcc48d9a7d51d3f5698098be8c059f70b82598835555115b31b7e6b4a620ca5",
+  "recordedAt": "2026-10-03T05:22:18.084Z",
+  "sha256": "8d9cdb3f730db0cf43e1727bff98ad297e462b2d8df82a72ce3a56125e78707f",
+  "bytes": 23663,
+  "requestId": "5SoBsf2joPS0upKBIOpY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4b2f21e5a5a08056a24ab686c60e1019e42a72090c930295a4907cd02fd710aa",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

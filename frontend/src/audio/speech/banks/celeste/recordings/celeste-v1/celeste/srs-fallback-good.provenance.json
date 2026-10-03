@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "srs-fallback-good",
+      "label": "Srs fallback good",
+      "text": "Well chosen. Keep its reason close; reasons travel further than moves."
+    },
+    "takeId": null
+  },
+  "requestHash": "4ae07f6b7968de59140da132678ed43b1eff69f866672b14d8aaba55756e9574",
+  "recordedAt": "2026-10-03T05:22:59.571Z",
+  "sha256": "f5749f35e8196703241b9e6fffe89015c85b4c599f3e606c2189d417f3c216db",
+  "bytes": 18710,
+  "requestId": "N61v7gOhpOCh9AT9IDgy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2342c14cb4498a2c16d664a56fd57ff3251faf3b7be8b0260c57f836ab0fa1a4",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

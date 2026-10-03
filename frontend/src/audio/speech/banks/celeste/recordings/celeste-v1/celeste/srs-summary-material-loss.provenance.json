@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "srs-summary-material-loss",
+      "label": "Srs summary material loss",
+      "text": "By the saved line's final move, the side that made this move holds less material than it began with."
+    },
+    "takeId": null
+  },
+  "requestHash": "c92991b00ee54a5d642b054c88a7d930611b062b4a4627829cbb887d414015fe",
+  "recordedAt": "2026-10-03T05:22:49.399Z",
+  "sha256": "66066f267742a7e5096422e7429f76d31205ac982301fe14c20e161265ab720e",
+  "bytes": 20603,
+  "requestId": "2f6sed7QB0dplt60H1YW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "25dc6255b5c0768436d922c1c4e595fd56bd71c28f20122c1c1daa09b538dac9",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

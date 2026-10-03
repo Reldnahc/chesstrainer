@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "tactic-back-rank-allowed",
+      "label": "Tactic back rank allowed",
+      "text": "With this move, a back-rank mate becomes possible for the other side, the king walled in by the very pieces meant to shelter it."
+    },
+    "takeId": null
+  },
+  "requestHash": "41d6fcf4a8ba4889eb5d05f30b6c48744e1b66a864a7f37124308ec922468cfe",
+  "recordedAt": "2026-10-03T05:20:30.379Z",
+  "sha256": "f428ff167ba1cef98de00a2891a05d258c29fdb45460f4bc959f42e7e4929e71",
+  "bytes": 26566,
+  "requestId": "ZMZZdstE3OiGGBarEmTY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ad6337f355aacefa43739fba17891ca12c2ea995bf85f2ce90a0b12791c74db9",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

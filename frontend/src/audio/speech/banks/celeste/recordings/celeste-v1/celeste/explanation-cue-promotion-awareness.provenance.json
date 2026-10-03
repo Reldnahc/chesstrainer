@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "explanation-cue-promotion-awareness",
+      "label": "Explanation cue promotion awareness",
+      "text": "Count the squares a pawn still needs before it promotes, and notice which pawn moves demand a reply."
+    },
+    "takeId": null
+  },
+  "requestHash": "60036fd6bffae159a0bf203f3c5b502c8af15c33c09b30337aa937609d8502b2",
+  "recordedAt": "2026-10-03T05:24:14.851Z",
+  "sha256": "6aac5822b8c4b153b1b801964f0d8d19d883a5fb83aa3c4713dc088adba69921",
+  "bytes": 20687,
+  "requestId": "iKJHieVq75aEimw3QjMY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fd12ec09905aa42cc0541991d0fd44a8fa8f07d8dbb7a2c9ea8cd14c68579e5e",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

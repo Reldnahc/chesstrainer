@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "game-browse-instructions",
+      "label": "Game browse instructions",
+      "text": "Pick a move to look back at, or try a move of your own on the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "1512b59ae33892f76799fcbb7c7a41f4de64d4cc1cfbfee2e89dcae5283a1ec1",
+  "recordedAt": "2026-10-03T05:24:58.700Z",
+  "sha256": "0baf3feac22d2c10f204212afd0b6c1c278831b14f90f171a5940e62f657df16",
+  "bytes": 14427,
+  "requestId": "Ff9go0zK7u4l6yYf9pmj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d4ea9bfd70cc598f485af28bac17219e22e57b1c8fb96811c8a4dc5aba4b4366",
+    "bytes": 70261
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

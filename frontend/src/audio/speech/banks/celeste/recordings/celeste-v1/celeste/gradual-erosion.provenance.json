@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "gradual-erosion",
+      "label": "Gradual erosion",
+      "text": "Several small concessions, one after another, have worn the position down together, and this move adds to them. The pattern matters as much as the move."
+    },
+    "takeId": null
+  },
+  "requestHash": "ae5dbe0442c0ad556ae44ee91d77b6aa7dc45225b6f739c41999ad6f08ecfbcc",
+  "recordedAt": "2026-10-03T05:22:27.292Z",
+  "sha256": "34f8469d390e7f6d24b5f6ac089033f8743bb73063f6e8c71931fef3335a768d",
+  "bytes": 31900,
+  "requestId": "PWtbWRqD02kfauFAwbHr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0b4de2c27ad410dca3409ecd5aa53c9961a4f317a9342a2a8e31b314a0673bfc",
+    "bytes": 160958
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

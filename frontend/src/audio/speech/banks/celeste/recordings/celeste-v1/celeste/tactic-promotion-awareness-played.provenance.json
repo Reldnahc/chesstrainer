@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "tactic-promotion-awareness-played",
+      "label": "Tactic promotion awareness played",
+      "text": "A pawn sets out for the far rank, and promotion is the hope it carries. Follow that journey; it's a lovely one."
+    },
+    "takeId": null
+  },
+  "requestHash": "986317f0fc45fb571f816e1843ca343360b76826e7ab51279ff1b7dcc8d7c95e",
+  "recordedAt": "2026-10-03T05:20:34.604Z",
+  "sha256": "626a77d5a2041c0d0874cd1aaea4d70d4b605b5fe676bc5b2de2cb7d0f380ba2",
+  "bytes": 25051,
+  "requestId": "J3IjtHb83CnVhvZQfsR3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "be8112affe147780f40c1d7d1a513f9f97fcb3470e047b6231445d58212d64f8",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

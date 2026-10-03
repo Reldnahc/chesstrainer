@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "positional-king-flight-alternative",
+      "label": "Positional king flight alternative",
+      "text": "Another move would have given the king a little more breathing room, a fresh legal square; notice what would have opened it."
+    },
+    "takeId": null
+  },
+  "requestHash": "11685003c39191b13f578f9f5ac58fec020ebc75853556601865fd35efb5b4f2",
+  "recordedAt": "2026-10-03T05:21:38.491Z",
+  "sha256": "5ac28eb07cc7f009d482492d5575b6ff68d4959474995e8836a13272879f98af",
+  "bytes": 23990,
+  "requestId": "8lCMOjTNx387lqqDGG3b",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "32b5bba96cbae034f12b1d18a13a65ad1a1d789005e6f10dd04a5ddfa43c48e9",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

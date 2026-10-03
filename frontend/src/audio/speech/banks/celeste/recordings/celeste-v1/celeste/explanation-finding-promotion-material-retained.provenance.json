@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "explanation-finding-promotion-material-retained",
+      "label": "Explanation finding promotion material retained",
+      "text": "The pawn arrives at promotion. By the end of this example, that side has also gained material overall."
+    },
+    "takeId": null
+  },
+  "requestHash": "274042898be5928aa1e5dd867ade2c2429e9ad770a78a5adc7cca604685a6ce2",
+  "recordedAt": "2026-10-03T05:23:53.969Z",
+  "sha256": "c5dc817e3459bdcb5d54af547b9fc37fa574adc7c2a8385bed665a1ac80bdbe0",
+  "bytes": 22740,
+  "requestId": "DM3HZyWl9I6xqeV1TsvV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2454372b755c2ae3ea012be783e0c448512de4694d2de752bcad57325b36e889",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

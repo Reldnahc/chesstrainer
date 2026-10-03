@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "positional-development-actual",
+      "label": "Positional development actual",
+      "text": "A minor piece steps into the game from its starting square, finding its first real place."
+    },
+    "takeId": null
+  },
+  "requestHash": "0dee77bae5492fbdb3907a2158e4688b6ae3485c121a710655ec82a6d4a0e42b",
+  "recordedAt": "2026-10-03T05:21:08.979Z",
+  "sha256": "daa8e4b52ae9849ea2ceef8dd962a3bed973f50383fec6027b79841c3667eb10",
+  "bytes": 18881,
+  "requestId": "7vgiMgzayY8VHBd8VClZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9d5e6aba8e798cddf1ed95bedcfd699d4dc20ea31ad55afb6fd511ce0eeb9934",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

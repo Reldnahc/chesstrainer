@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "tactic-fork-missed",
+      "label": "Tactic fork missed",
+      "text": "A fork waited inside another move, a single piece stretching toward several targets together. It's a pattern worth keeping in mind, though it went unplayed."
+    },
+    "takeId": null
+  },
+  "requestHash": "e3dc8de47661f531b4345efd7b918e81d99dd2d6fdc91d19387b9160f5238eba",
+  "recordedAt": "2026-10-03T05:20:08.748Z",
+  "sha256": "be7c029199b42cfc66bf3d13943764bd18b1f5439de4ff8440dfba01bf05178a",
+  "bytes": 32390,
+  "requestId": "7JXntCibCEoFWyJfjS73",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "32ddf03427ef8778ddfc925b161f76fc68d483b0945b07147614d2b3face4bf0",
+    "bytes": 163466
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "advantage-converted",
+      "label": "Advantage converted",
+      "text": "From there to the recorded win, the advantage was carried home. Converting it so cleanly is a quiet kind of beauty."
+    },
+    "takeId": null
+  },
+  "requestHash": "9d499847b192e74582e3580aa5ecb713f2a4215ae409c772731b9fc6a5f289a6",
+  "recordedAt": "2026-10-03T05:22:29.450Z",
+  "sha256": "2446b3b4cf6a6ae3266036c7dc14f9842424bd555208a55f02a9b37681cbbfed",
+  "bytes": 25794,
+  "requestId": "eGM5OKxBbwQKA3lxizts",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d72daa1cec28a5be495df578ff8032e8fa248625200f37171015a0c45793713a",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

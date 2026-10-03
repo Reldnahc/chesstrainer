@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "puzzle-solved-after-retry",
+      "label": "Puzzle solved after retry",
+      "text": "A retry, and then the whole solution. Your record keeps the earlier miss alongside the lovely finish."
+    },
+    "takeId": null
+  },
+  "requestHash": "2d1846cf591b5c7b3904079b505908a5359a05a8d9ece4e0a9b475cdf8f535a5",
+  "recordedAt": "2026-10-03T05:24:49.327Z",
+  "sha256": "2ae16c22bb3e8bd08abd81b8df09a2f9cdba6a99dbc60c6e0d847d55f0e9f167",
+  "bytes": 23937,
+  "requestId": "iFHzhDaobSIUJU6LpVy2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d37ad42154dc2f2bec274f2f44ee93c838a48d1f289d838ad5f6f4b7d244e75f",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

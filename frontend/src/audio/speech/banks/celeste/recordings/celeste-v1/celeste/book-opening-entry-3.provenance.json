@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "book-opening-entry-3",
+      "label": "Book opening entry 3",
+      "text": "This move has its own page in the opening book."
+    },
+    "takeId": null
+  },
+  "requestHash": "9633d26d06725c902da14806d1adfef0597c0b30f00c5a8718a6d39e8747d82f",
+  "recordedAt": "2026-10-03T05:25:01.835Z",
+  "sha256": "6dd5164f1378029ea688e3f99c8f23dfaf98b097f44a73033c57522165df0f82",
+  "bytes": 10331,
+  "requestId": "aQRc7rYepDWrZj7ttsh4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a7f5a57c4f742e1ac149597896c310e0512738e9a53427cdd5aee48c02148941",
+    "bytes": 48527
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

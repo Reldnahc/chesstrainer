@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "clock-low",
+      "label": "Clock low",
+      "text": "The clock had only the barest sliver of time left when this move came."
+    },
+    "takeId": null
+  },
+  "requestHash": "b6cb578a66d7632c9b9d33764b3770ce4d9bdbf7717ab71e6d304576d7286422",
+  "recordedAt": "2026-10-03T05:22:08.949Z",
+  "sha256": "d577b9af2e6aefa2f4e006b06f62a45e3548376287360c69e0a2857b29b3b156",
+  "bytes": 15479,
+  "requestId": "Z8e2emZevdFUKBFJEdCc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6407485fb49d36046772d4a6b97e2ca481436be536915c935764047233fad490",
+    "bytes": 75276
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

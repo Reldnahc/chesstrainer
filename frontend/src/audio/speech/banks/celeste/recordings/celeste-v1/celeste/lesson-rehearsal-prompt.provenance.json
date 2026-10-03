@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "lesson-rehearsal-prompt",
+      "label": "Lesson rehearsal prompt",
+      "text": "Now let your studied line come back to you, gracefully, from memory."
+    },
+    "takeId": null
+  },
+  "requestHash": "790580414f06270646e21459c27024cf80967ab4c92336519f555cbec9d94274",
+  "recordedAt": "2026-10-03T05:25:18.049Z",
+  "sha256": "087259ef8af473de18b04b7bce61f2fc7cbf2068e6821a288f46dd8708c5f343",
+  "bytes": 16294,
+  "requestId": "ARzvQAf6rQSuzaZsmWXA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2ee7e0def81b2c4043242606526b27d89c5d5697ebc6c8b38c36ceb0b8079d97",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "opening-departure",
+      "label": "Opening departure",
+      "text": "Here the game leaves the opening book behind. From now on, the ideas are its own."
+    },
+    "takeId": null
+  },
+  "requestHash": "4235d8508c0fbf67606567220ddc8563cc5d8d3dbb7ba28402e651f9ca0d2720",
+  "recordedAt": "2026-10-03T05:22:14.517Z",
+  "sha256": "9666a330db2c966f7ffbb37590443be815377c5b9d12c356ea67dec54ba124b8",
+  "bytes": 20088,
+  "requestId": "OtSmtRR0lu1bA62T4NOb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8ed23a0a201c1911c8670d7fd2ffdbb9f6c56469db29032d4a2b67546a6c1140",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

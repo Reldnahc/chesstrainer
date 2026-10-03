@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "srs-cold",
+      "label": "Srs cold",
+      "text": "Take in the whole position, and choose your move when it feels clear."
+    },
+    "takeId": null
+  },
+  "requestHash": "6a659060c3fc1fab36e2c051f9d1016df38eb256c46160dce0b3c8298079beff",
+  "recordedAt": "2026-10-03T05:22:37.818Z",
+  "sha256": "f78d96f8c7641a94c6ed51c1c1790d674883166aa08382c3ab579d69f0286a62",
+  "bytes": 13787,
+  "requestId": "Tf611C1BJYJHA0myvk1o",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0e240329562c0b0a3f2b4c179721dbf02d826f85140d95a0c21862ce521a7b8a",
+    "bytes": 67753
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

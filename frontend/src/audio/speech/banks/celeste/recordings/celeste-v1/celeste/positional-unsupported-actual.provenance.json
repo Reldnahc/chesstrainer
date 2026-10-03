@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "positional-unsupported-actual",
+      "label": "Positional unsupported actual",
+      "text": "With this move, one piece loses its last defender. That's a broken connection worth noticing, though it doesn't mean the piece is lost."
+    },
+    "takeId": null
+  },
+  "requestHash": "df29ad69fa713542ba4dc8f535cfce9a0b0507def5a5bcce2b60b7235f2fc4dc",
+  "recordedAt": "2026-10-03T05:21:33.635Z",
+  "sha256": "698a81b0b16e70116e2a611f7fa82ad69da546a8b8d809d52f61d2e6395faa36",
+  "bytes": 28651,
+  "requestId": "66QLsC7Sr8BfsaUVpYQ5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1ffdd0b81864e3a149b46f6a80ee65fd340aed1363bfa09689a3b2839a91be53",
+    "bytes": 145911
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "positional-castling-actual",
+      "label": "Positional castling actual",
+      "text": "The king castles, and the rook passes over to stand at its other side. Two pieces, one fluid motion."
+    },
+    "takeId": null
+  },
+  "requestHash": "c892f5d77cbe655cf7ff6e1adfac1f094870c29fe1efd85a10a3d1580cf56241",
+  "recordedAt": "2026-10-03T05:21:40.117Z",
+  "sha256": "cf855b54de3b3f97b8d847d0dd9b8c1f917206f63669db164d874e169ad4d3d5",
+  "bytes": 24113,
+  "requestId": "1m84gdkApzGjSk7RsxtR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "78639285ea6b4425b610278d07e86ba5e11799143987393d1612eb3ea3e9a9fb",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

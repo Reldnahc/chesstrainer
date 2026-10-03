@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "allowed-mate",
+      "label": "Allowed mate",
+      "text": "Checkmate can now be forced by the other side, and that deserves a plain telling. Follow the attack back to the place the defense came open."
+    },
+    "takeId": null
+  },
+  "requestHash": "5f56349b4b9d230d95ddbd92802556cc8d70c8929ad27c0d44268972998fb84c",
+  "recordedAt": "2026-10-03T05:21:49.555Z",
+  "sha256": "78eb43cc11f3bf869549add953676aaae22e011ee894a35912132d59fc73b5e7",
+  "bytes": 27874,
+  "requestId": "Vq8xEleQ4auRVvUc3ms2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4002679e1d30fccb9624fffa82b171f228db179444c681f898d78ae83c3ac3e6",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

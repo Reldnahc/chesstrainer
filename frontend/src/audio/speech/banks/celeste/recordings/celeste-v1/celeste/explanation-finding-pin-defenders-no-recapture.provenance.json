@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "explanation-finding-pin-defenders-no-recapture",
+      "label": "Explanation finding pin defenders no recapture",
+      "text": "Bound to their own king, the defenders can't recapture there. That's the hidden reason the capture works, and the line shown comes out with a material gain."
+    },
+    "takeId": null
+  },
+  "requestHash": "646180809bb878c433d63cae5131af4796c04d28de9d63cd61a03f15c250b83d",
+  "recordedAt": "2026-10-03T05:23:36.989Z",
+  "sha256": "3890cc1fdd2592ce0e9d67140521dae2a0e18506ca1f660055d7087f0858779c",
+  "bytes": 30837,
+  "requestId": "1XCMX9m8D6fxRABbAkQ1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "33d6ccce65b6c5172bcfb16af3421c3907893fea9a74cbf089c7cfa206566fa5",
+    "bytes": 154688
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

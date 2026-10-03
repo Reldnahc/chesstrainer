@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "reply-check",
+      "label": "Reply check",
+      "text": "The finest reply for the other side arrives with check, and the king's safety must come before everything else."
+    },
+    "takeId": null
+  },
+  "requestHash": "44617c421569f6641169e78a4e516ef5019f7823eb04c47dda02784fa504be7c",
+  "recordedAt": "2026-10-03T05:22:00.359Z",
+  "sha256": "bf98910d414dc9bf088e0a7b8328c51ba0b1a3db88e6b8cb9899660e0838d616",
+  "bytes": 22788,
+  "requestId": "TXyUxUQs1ZiT9CXW5bPp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "55591017d176b07b4bffc51e24a70da71880a9ec0296de21b8b05ea0e2fe1ad3",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

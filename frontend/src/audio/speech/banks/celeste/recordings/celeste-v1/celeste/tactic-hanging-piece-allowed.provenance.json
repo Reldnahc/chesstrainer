@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "tactic-hanging-piece-allowed",
+      "label": "Tactic hanging piece allowed",
+      "text": "One piece is left without protection now, and the other side can take it freely."
+    },
+    "takeId": null
+  },
+  "requestHash": "d50ddafc3b75c3f61c69dcc02ec7e81c31ea04892e188964360a2e1edddc899f",
+  "recordedAt": "2026-10-03T05:21:01.610Z",
+  "sha256": "f52f4b140b556d986d7c8d563d709cbb216b91b8c5032f9bfb38a66692d39dd4",
+  "bytes": 15896,
+  "requestId": "lwT6qwoDVeCPhMdnbiB9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0f648ec89a2fba6cf96fb93b249dd09e6235b72f19f47102b25497d3279aa7b1",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

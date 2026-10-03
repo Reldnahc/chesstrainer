@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "lesson-branch-entered",
+      "label": "Lesson branch entered",
+      "text": "A quiet alternative to explore. The main line will welcome you back."
+    },
+    "takeId": null
+  },
+  "requestHash": "16adf3bb169c2aecd819cadd6444c131151f2a528427ed641a2ed9c48105266f",
+  "recordedAt": "2026-10-03T05:25:19.374Z",
+  "sha256": "0002a581cf894e329556a98d602d67049a6463d0fc2a33e3f11d6573fda1bfe9",
+  "bytes": 16003,
+  "requestId": "WHUjx7zI5TeWz6k0gAXm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cc169c3dca424956ba3e7f4b84af67015e77ab074dec8d77b874e90f8035aac9",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "opening-recall-retry-fallback",
+      "label": "Opening recall retry fallback",
+      "text": "Let your next move come from the opening lines in your study."
+    },
+    "takeId": null
+  },
+  "requestHash": "ccd592b3b040c7750f95b6cca29db424aa4f959e71316d88202ffd59e97785ae",
+  "recordedAt": "2026-10-03T05:24:31.490Z",
+  "sha256": "c269a922272be5255df3ef7c1bfe195bcb19159eb41e74ec182f7aba54676307",
+  "bytes": 12472,
+  "requestId": "zhDD3Bel3TQPVyYgSTzw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "049c6c19d09d95e04d5b7869f7e5e1465e494b9e4e296540d0b22d91c310ef81",
+    "bytes": 59812
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "explanation-cue-fork",
+      "label": "Explanation cue fork",
+      "text": "Look through the forcing moves for one piece that could reach two valuable targets together."
+    },
+    "takeId": null
+  },
+  "requestHash": "6a4d44e7d25fe934001d6034502dbf85e390fba13c7e5dc6d6fec4691424b25c",
+  "recordedAt": "2026-10-03T05:24:03.852Z",
+  "sha256": "cf88386eeff2eb2108bdf798f0f5828c0e092e35b2adc935916d201d96af2d24",
+  "bytes": 18001,
+  "requestId": "AYU6behtbTLMZzHKSNJI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ad7730092836544d8b81c2fa3ec9fa7edb47fca04135852399351cbf4d04b57f",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

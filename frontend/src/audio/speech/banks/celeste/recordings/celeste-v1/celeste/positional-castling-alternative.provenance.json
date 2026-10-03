@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "positional-castling-alternative",
+      "label": "Positional castling alternative",
+      "text": "Castling was another option, with king and rook crossing in a single turn."
+    },
+    "takeId": null
+  },
+  "requestHash": "743fe142d11220d1e943babcdc25b75467683c1e6a41423b62844d97d1731720",
+  "recordedAt": "2026-10-03T05:21:41.464Z",
+  "sha256": "8ca897687e2f448884a341c03aa5d6123e9962de637eee4c1ed3b5c2caa75cbd",
+  "bytes": 16668,
+  "requestId": "5C6XAl5cc6R62L6mKrGM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cf83e52e3e47ee0b3aee17a498c8b5549517b0fe9d8ae9d06fb2fb7f9770ee88",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

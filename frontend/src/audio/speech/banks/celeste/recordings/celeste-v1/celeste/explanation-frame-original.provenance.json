@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "explanation-frame-original",
+      "label": "Explanation frame original",
+      "text": "Here is where the story begins, the position before any of these moves."
+    },
+    "takeId": null
+  },
+  "requestHash": "cab4d73a34188c688217b4780707ace14012c88f33d51120e0e66a75fdbaa964",
+  "recordedAt": "2026-10-03T05:23:04.315Z",
+  "sha256": "13739d7c6fd32a5b28636767a77d1c8480d4eca53c7568b183931286fcbf4a3f",
+  "bytes": 16315,
+  "requestId": "sZgqIM8B1ie57aYpDdkF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f66fae6d19bf7985e8f61fe1e6760a9c5b5ca976901b345cc5fe912ce03d5e8f",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

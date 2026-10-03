@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "srs-fallback-study",
+      "label": "Srs fallback study",
+      "text": "Spend a moment with the move and the idea behind it, then go on to the next position."
+    },
+    "takeId": null
+  },
+  "requestHash": "d0d155d1d3636a5eb25d173c5ec8f71e3a3e1577e926c8b3818a7b816907504d",
+  "recordedAt": "2026-10-03T05:22:58.112Z",
+  "sha256": "c60c27dcee5eca6b4d7b0319197d623e519ca4edc20764071150c50011bf6e6d",
+  "bytes": 18361,
+  "requestId": "bej86Cam3qWP9Kpzow01",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5ad876da1045b07b7e965f4aa4c8a42cd37f3fb4db1ce1d49f4794219c0a5688",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

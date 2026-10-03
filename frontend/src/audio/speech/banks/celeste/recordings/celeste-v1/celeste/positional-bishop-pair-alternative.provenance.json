@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "positional-bishop-pair-alternative",
+      "label": "Positional bishop pair alternative",
+      "text": "With another move, a bishop could have been taken and the opposing pair broken apart."
+    },
+    "takeId": null
+  },
+  "requestHash": "78044fff13d5f67615dd79fb88bcc934d245e72b34a1d182ab5c09690a76f9a5",
+  "recordedAt": "2026-10-03T05:21:44.213Z",
+  "sha256": "2994d796eee4bccf788b65f330334d2a07d43417b791a374744a10902a9fc76d",
+  "bytes": 16982,
+  "requestId": "e9QMav59MTkamo1QHe7H",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "65962c62a669ed882447091a3650e80508db921117ad3611aff7f44a268a1db3",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

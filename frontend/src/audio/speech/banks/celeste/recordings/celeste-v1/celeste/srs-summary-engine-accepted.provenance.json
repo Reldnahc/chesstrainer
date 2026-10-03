@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "srs-summary-engine-accepted",
+      "label": "Srs summary engine accepted",
+      "text": "The exercise counts this move as accepted, though no clear tactical reason shows itself in the moves shown, and inventing one wouldn't be honest."
+    },
+    "takeId": null
+  },
+  "requestHash": "cd7c74215e13aca7b19e42bbdacbd26d24f98250595959a5aa412e3eead62a0c",
+  "recordedAt": "2026-10-03T05:22:51.279Z",
+  "sha256": "1b180d5a2e7008bd7b22d5aca8c1262c3524c39db46e5f1c28e21ca7e11eb4e4",
+  "bytes": 30336,
+  "requestId": "8kMAej2tx8MgevL5ZdBf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "47876dd7ae8f8482458d83abe7e5efc2b384472831a8c31927a82eb9ff77ac0e",
+    "bytes": 152181
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

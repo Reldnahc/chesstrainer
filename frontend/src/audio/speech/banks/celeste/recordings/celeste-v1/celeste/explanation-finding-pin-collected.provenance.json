@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected",
+      "label": "Explanation finding pin collected",
+      "text": "Let your eye rest on the pinned piece. Held to its line by the king it shields, it's captured before this sequence is done."
+    },
+    "takeId": null
+  },
+  "requestHash": "f0bbdb49e56137f1783d6dea2ba698417247ff68039d564c97a60daea74b53c4",
+  "recordedAt": "2026-10-03T05:23:39.002Z",
+  "sha256": "c3d6824bcf33a4b7ceef0c899ffd06d7461ccc6d4bca0036bbd7ce5b6242511c",
+  "bytes": 26359,
+  "requestId": "L5C9Ui6wvfp9nt0pbbj0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "52d84155b36221f090cdf83ce0fc654484018b6f58d67a64d6469e70c7f08307",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "positional-development-alternative",
+      "label": "Positional development alternative",
+      "text": "With another move, a minor piece could have stepped out to join the game."
+    },
+    "takeId": null
+  },
+  "requestHash": "8f05a380107830e0208c6c2e8da789efd0bb25125ae4dd589f132b4b9de658b9",
+  "recordedAt": "2026-10-03T05:21:10.291Z",
+  "sha256": "06b67ad5785335874450f0289d5e5ed00ba4f0704adb85b9d9c9c37067a213a7",
+  "bytes": 14101,
+  "requestId": "KiOybAdqN1vI9msv1ZJ5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "00418ef797e03c766220d844115fe9e6075eed242e8df513d01c1f3485a5b6e8",
+    "bytes": 69007
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

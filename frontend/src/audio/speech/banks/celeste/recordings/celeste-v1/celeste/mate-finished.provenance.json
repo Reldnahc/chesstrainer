@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "mate-finished",
+      "label": "Mate finished",
+      "text": "Checkmate. No legal escape remains, and the attack comes to a graceful close."
+    },
+    "takeId": null
+  },
+  "requestHash": "c94e85baf58bf2a1cdc776e5901950f66f231e0697251e1fa6b6d6d352e3f1ce",
+  "recordedAt": "2026-10-03T05:22:32.612Z",
+  "sha256": "e8533253b9517e5cf4712660d058a39d754d7bf3ffc0b1bcd57198319ac1e600",
+  "bytes": 18746,
+  "requestId": "MrhlEb4JF85mDSYJfep5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e70eb9a7ae07249d74a8768e41b49af32481ba88090e7ad88a22f8121519fa30",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

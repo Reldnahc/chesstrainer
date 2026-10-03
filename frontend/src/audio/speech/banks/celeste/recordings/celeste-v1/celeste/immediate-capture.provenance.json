@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "immediate-capture",
+      "label": "Immediate capture",
+      "text": "Right away, the other side is able to capture something. That's the first thing to look at here."
+    },
+    "takeId": null
+  },
+  "requestHash": "dc64db3cb2b63e59ae03287274231f3d6911fad10bf0457a1356750018f0beb6",
+  "recordedAt": "2026-10-03T05:21:58.712Z",
+  "sha256": "d24b8047e31d64d22002bd1bc4a249f2179e01dba3f6b9fa4a32241f3a5b4658",
+  "bytes": 18860,
+  "requestId": "LldGLmaucCmiHfAjXn7o",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "25a4276e387efd56971f45d04f359461627706bdebb0dc28e7031ada4c51d9ec",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played",
+      "label": "Tactic undefended capture played",
+      "text": "Nothing protected that piece, and it's collected with ease. It's always worth looking for the pieces left on their own."
+    },
+    "takeId": null
+  },
+  "requestHash": "bc39cae7c0016cc7196714e622ff019f1f35a9e1997074ea7453d1f189984f0e",
+  "recordedAt": "2026-10-03T05:20:57.972Z",
+  "sha256": "76d8263687df57f208f0d3f9dddd858a9d5968301c0af796c8d4cb65e74f49e0",
+  "bytes": 23539,
+  "requestId": "ZED39wroa7O5eVm5OvlC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fa5d8a825cf9a8831bd1ac97991583ede595a363949e3e1ccfc4412e6a9d9350",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

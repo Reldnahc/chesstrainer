@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "positional-rook-open-alternative",
+      "label": "Positional rook open alternative",
+      "text": "With another move, a rook would have claimed an open file, free of pawns from one end to the other."
+    },
+    "takeId": null
+  },
+  "requestHash": "d2a6ef874d054f9d1417b97686596935c19aee3abd7365d08564d0699cc20ecc",
+  "recordedAt": "2026-10-03T05:21:13.357Z",
+  "sha256": "456e9ed7b80906511730efe6504a718013ed6f137837b240c959c069c86ca5d1",
+  "bytes": 20362,
+  "requestId": "3lZxEti8eS7xWFKpfxRf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ae9b760561c7a0e1cd60bd68a8ac6af65612c557e3882282cfe03cf8455b4ab9",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "srs-summary-mate-for-mover",
+      "label": "Srs summary mate for mover",
+      "text": "A forced checkmate belongs to the side that made this move, according to the saved engine analysis."
+    },
+    "takeId": null
+  },
+  "requestHash": "64027fdedf269bf03322a13a38a6cf6968a7cd6a964be87ef7e87833a5c5b73c",
+  "recordedAt": "2026-10-03T05:22:44.638Z",
+  "sha256": "711c294ead67b0c965ff40ed539d8132ab111c12a850ae2f116b2f9cba08241c",
+  "bytes": 19535,
+  "requestId": "6YDqrK6kqyix3Rst9lWH",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6b47d3d2c6d3eda8603307890bd4882b01a24757691248b2aa76fb698881979a",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

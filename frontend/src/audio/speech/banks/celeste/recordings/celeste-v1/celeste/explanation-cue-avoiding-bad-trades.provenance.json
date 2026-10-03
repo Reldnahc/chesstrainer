@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "explanation-cue-avoiding-bad-trades",
+      "label": "Explanation cue avoiding bad trades",
+      "text": "Before you capture, compare the prize with what the recapture would cost you."
+    },
+    "takeId": null
+  },
+  "requestHash": "93bb29945fe081428ce731cd1cac54ff531bf9e54c1f656ac66e1f74fc266191",
+  "recordedAt": "2026-10-03T05:24:17.357Z",
+  "sha256": "fdc28869699a8619c9024609ba003bd9fcfcba7d8013cbc4652bfdb281e4706a",
+  "bytes": 15862,
+  "requestId": "a0WzI8HqJ8PXRe6eyIqC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cc6e434e75e96cf245d7c1712ba607191ba77bf375244c05a09e0c0172db485f",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

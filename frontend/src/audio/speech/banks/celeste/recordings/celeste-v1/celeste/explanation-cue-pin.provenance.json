@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "explanation-cue-pin",
+      "label": "Explanation cue pin",
+      "text": "Every pin has something behind it; see whether a pinned piece shelters your king or a piece of greater worth before it moves."
+    },
+    "takeId": null
+  },
+  "requestHash": "753fac8e547f2ea8e60822460a131981990c8a28e0090105e4256a56e886ddb4",
+  "recordedAt": "2026-10-03T05:24:05.905Z",
+  "sha256": "94a11d80c19015e18fe523b55c3cd3aeb9d4ec3de63d9f6f29920dad771afcad",
+  "bytes": 26289,
+  "requestId": "mj3QSSgqPYaiLellRCut",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d4996605fa095c22a7a6c14910c4d6d11bc9e44434abcd2b98b6d12472c07d0e",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

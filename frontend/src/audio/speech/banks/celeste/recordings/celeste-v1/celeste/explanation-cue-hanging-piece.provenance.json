@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "explanation-cue-hanging-piece",
+      "label": "Explanation cue hanging piece",
+      "text": "Before choosing a move, check that none of your pieces could be taken without a useful recapture."
+    },
+    "takeId": null
+  },
+  "requestHash": "1edc5e26d87f66b6219e268b79b299fb3b5fea35273209e3ca85fcde415e713d",
+  "recordedAt": "2026-10-03T05:24:01.053Z",
+  "sha256": "555f2451d3fa07fa1b1e16e1f5e69ea64d7910c7811209c399da037174a056c6",
+  "bytes": 19999,
+  "requestId": "db4IeMUBpCEQohCmTRyh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fb6d3b1811450756b6e5721b1a750275df6addd10603bb2998cc1d4b3aebef89",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

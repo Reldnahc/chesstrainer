@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "saved-history-recurrence",
+      "label": "Saved history recurrence",
+      "text": "The same issue has a few cousins in your other saved games. Studying them side by side can make the pattern clear."
+    },
+    "takeId": null
+  },
+  "requestHash": "6e5e989393cfa0d63bc3c8c627db10cb86bf4ce58c9b86cf0c4376ef2e1f5e9f",
+  "recordedAt": "2026-10-03T05:22:31.194Z",
+  "sha256": "62b915c165e13fc52e98356b16b061488cf26d9c1e1b948abd64bcae5de53fff",
+  "bytes": 22976,
+  "requestId": "P4ARHPtOPc03bhW48Y48",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8a1ed6fe8553c7e074ff3cb48a1313980289e73756dae07e02ce42078f591fd5",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

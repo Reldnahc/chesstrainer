@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "explanation-cue-skewer",
+      "label": "Explanation cue skewer",
+      "text": "The first target may be guarding a secret: a valuable piece standing behind it on the same line."
+    },
+    "takeId": null
+  },
+  "requestHash": "a4476f43527575500b332e0675ed96643b958d87aa7b3b90b8e8b1a4519e8e6b",
+  "recordedAt": "2026-10-03T05:24:07.454Z",
+  "sha256": "1071ffaa5f5d4696bb388201b9cc904b914ce1e85f322e4b382ce38876e817c5",
+  "bytes": 20786,
+  "requestId": "XGF6o4WoakvpzR8YWczY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f8b2d9eedd9774e6a25c24a4397dff4ac5dfc4fe20bf14c6f60bc79aaf452afa",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}
