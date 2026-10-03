@@ -21,6 +21,9 @@ export type GameSpeechContext = {
   error?: boolean;
   /** Explicit replay of another visible claim; never search for a fallback. */
   claimIndex?: number;
+  /** Select the meaning for a coach without a recorded bank too, so the bubble
+   * can show the line that coach's script speaks. Playback still needs a recording. */
+  anyCoach?: boolean;
 };
 export type WalterGameSpeechContext = GameSpeechContext;
 const voicedCoaches = new Set(registry.banks.map(bank => bank.coachId));
@@ -161,8 +164,8 @@ export function selectGameOpener({ply, variation = false, report, frame, error}:
 /** Facts select whole recordings; prose, portrait expression and grade never select audio.
  * A Maia (human-move model) claim is shown in the bubble and its badge but never voiced. */
 export function selectGameRecording(context: GameSpeechContext): string | null {
-  const {game, report, frame, ply, variation = false, intent, utterance, pending, error, claimIndex = 0} = context;
-  if (pending || !frame || !nonempty(frame.fen) || !voicedCoaches.has(utterance.coachId)
+  const {game, report, frame, ply, variation = false, intent, utterance, pending, error, claimIndex = 0, anyCoach = false} = context;
+  if (pending || !frame || !nonempty(frame.fen) || (!anyCoach && !voicedCoaches.has(utterance.coachId))
     || utterance.intentId !== intent.id
     || !Number.isInteger(claimIndex) || claimIndex < 0) return null;
   const item = utterance.renderedClaims?.[claimIndex], trace = utterance.trace.variants[claimIndex];

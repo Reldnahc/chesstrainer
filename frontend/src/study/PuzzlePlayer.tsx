@@ -19,6 +19,7 @@ import { createPuzzleStarter, loadPuzzleSelection, puzzleThemeLabel } from "./pu
 import { usePuzzleSession } from "./usePuzzleSession";
 import { useCoachSpeech } from "../audio/speech/useCoachSpeech";
 import { puzzleRecording } from "../audio/speech/practiceSelection";
+import { useSelectedCoachSpokenText } from "../audio/speech/spokenText";
 
 export default function PuzzlePlayer({ sessionId }: { sessionId: string }) {
   const state = usePuzzleSession(sessionId);
@@ -30,6 +31,9 @@ export default function PuzzlePlayer({ sessionId }: { sessionId: string }) {
     automaticEventId: !error && !playing && session?.status !== "revealed"
       ? state.feedbackEventId : null,
   });
+  // Each puzzle state has one coach sentence; the bubble shows the coach's spoken
+  // form of it. An error keeps its written instruction, which a paraphrase can drop.
+  const spoken = useSelectedCoachSpokenText(error ? null : recordingId);
   const [nextError, setNextError] = useState("");
   const [openingNext, setOpeningNext] = useState(false);
   const [startNextPuzzle] = useState(createPuzzleStarter);
@@ -69,13 +73,15 @@ export default function PuzzlePlayer({ sessionId }: { sessionId: string }) {
     : incorrect ? "Try a different move."
     : correct ? "Keep going."
     : "Find the continuation.";
-  const message = error ? "Reload the saved session before making another move."
+  // A solve's saved record is a grading fact, so it stays written beside the spoken line.
+  const record = complete && session.status !== "revealed" ? session.failed ? "Saved as failed, then solved." : "Saved as a clean solve." : null;
+  const message = spoken ? record ? `${spoken} ${record}` : spoken : (error ? "Reload the saved session before making another move."
     : playing ? "The board is playing the verified line."
     : session.status === "revealed" ? "This attempt is saved as revealed. You can replay the solution below."
     : complete ? session.failed ? "You found the whole continuation after a retry. Saved as failed, then solved." : "You found the whole continuation. Saved as a clean solve."
     : incorrect ? "That move does not solve this puzzle. Your earlier correct moves are saved."
     : correct ? "That move matches the puzzle. Find your next move."
-    : "Take your time and calculate before moving.";
+    : "Take your time and calculate before moving.");
   const displayedFen = state.fen || session.fen;
   const playbackTurn = frame
     ? frame.before_fen.split(" ")[1] === (session.orientation === "white" ? "w" : "b") ? "Your move" : "Opponent reply"

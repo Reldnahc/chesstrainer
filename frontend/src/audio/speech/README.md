@@ -20,6 +20,15 @@ recordings without provider access, API keys or runtime synthesis. Exact chess
 moves, squares and scores stay in writing while the voice explains the supported
 idea. Lessons speak only nine generic prompts (see below); course text stays written.
 
+**The bubble shows what the coach says (owner decision, 2026-10-03).**
+[`spokenText.ts`](spokenText.ts) resolves a coach's line for a selected meaning:
+the bank recording's text, otherwise the coach's `scripts.json` line, so text-only
+coaches show their own scripts too. Only the script coach IDs are bundled; each
+coach's records load lazily on first use. Game review shows that line in the move
+bubble with a moves line for the exact reply and opening; practice replaces only
+one-sentence coach feedback. See
+[Bubble text is the spoken line](../../../../docs/COACH_DIALOGUE.md#bubble-text-is-the-spoken-line).
+
 Start the existing studio with `npm --prefix frontend run dev:audio` and open
 http://127.0.0.1:5176/. **Walter wording** compares eight representative examples
 or all 81 revised passages using Original/Revised controls. Text, local recording
@@ -35,7 +44,8 @@ same meaning, including the eleven opening variants. These are whole recordings,
 never runtime sentence splicing.
 
 **Coaches never speak a Maia reading (owner decision, 2026-10-02).** The Maia
-badge, its popup and the written Maia sentence in the bubble are unchanged, but no
+badge and its popup (which holds the written Maia sentence; the bubble shows the
+spoken line instead) are unchanged, but no
 `human-*` reading or objective/Maia combination is recorded or selected. The 253
 Maia meanings (7 standalone readings and 246 combinations) were removed from the
 catalogue, every script file and the recorded banks, which took the catalogue from

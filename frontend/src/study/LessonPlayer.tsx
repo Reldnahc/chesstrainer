@@ -17,6 +17,7 @@ import { lessonCoursePath, studyPaths } from "../navigation";
 import LessonAttribution from "./LessonAttribution";
 import { useLessonSession, type LessonAction } from "./useLessonSession";
 import { useCoachSpeech } from "../audio/speech/useCoachSpeech";
+import { useSelectedCoachSpokenText } from "../audio/speech/spokenText";
 
 export default function LessonPlayer({ sessionId }: { sessionId: string }) {
   const state = useLessonSession(sessionId);
@@ -28,6 +29,7 @@ export default function LessonPlayer({ sessionId }: { sessionId: string }) {
     recordingId: speech?.recordingId, ready: !!session && !loading && !busy,
     automaticEventId: speech?.eventId ?? null,
   });
+  const spoken = useSelectedCoachSpokenText(speech?.recordingId);
   useEffect(() => {
     document.title = `${session?.course_title || "Opening lesson"} · Fieldwork`;
   }, [session?.course_title]);
@@ -45,6 +47,19 @@ export default function LessonPlayer({ sessionId }: { sessionId: string }) {
     : finished ? session.failed || session.assisted ? "recovered" : "great"
     : feedback?.kind === "correct" ? "good"
     : feedback || !has("move") ? "explaining" : "neutral";
+  // The coach's own status and move feedback show as the coach says them, but
+  // only where that line replaces one written sentence. Step text, hints,
+  // authored choice feedback, game notes and a revealed move's SAN are course
+  // content and stay written. A full game's fallback stays written too: only
+  // opening it speaks, and seeking through it must not flip the sentence.
+  const spokenFor = (id: string, when: boolean) => when && speech?.recordingId === id ? spoken : null;
+  // An error keeps its written instruction, which a paraphrase can drop.
+  const status = (error ? "Reload the saved lesson before continuing." : null)
+    ?? spokenFor("lesson-guided-playback", guidedPlayback) ?? (guidedPlayback ? "Watch how this position develops." : null)
+    ?? (session.game ? session.game.note?.text || "Explore the full game. Return to the lesson whenever you’re ready." : null)
+    ?? spokenFor("lesson-chapter-complete", finished) ?? (finished ? "Your chapter progress is saved. Revisit it whenever you want to practice again." : step.text);
+  const feedbackText = feedback && (spokenFor("lesson-wrong-move", feedback.kind === "incorrect")
+    ?? spokenFor("lesson-correct-move", feedback.kind === "correct" && step.kind !== "decision") ?? feedback.text);
   const reactionKey = session.game ? `${session.id}:game:${step.id}:${expression}` : `${session.id}:${session.revision}:${expression}`;
   const turn = fen.split(" ")[1] === "w" ? "White" : "Black";
   const annotations = !playback.playing && fen === session.fen
@@ -83,7 +98,7 @@ export default function LessonPlayer({ sessionId }: { sessionId: string }) {
           {action("open_game", "Explore full game", false, <BookOpen size={16} />)}
         </>}
       </>}</>}
-    ><MoveStatus><p>{error ? "Reload the saved lesson before continuing." : guidedPlayback ? "Watch how this position develops." : session.game ? session.game.note?.text || "Explore the full game. Return to the lesson whenever you’re ready." : finished ? "Your chapter progress is saved. Revisit it whenever you want to practice again." : step.text}</p>{feedback && !playback.playing && !session.game && !finished && <p className={`lesson-feedback ${feedback.kind}`}>{feedback.text}</p>}</MoveStatus></ReviewCoach>
+    ><MoveStatus><p>{status}</p>{feedback && !playback.playing && !session.game && !finished && <p className={`lesson-feedback ${feedback.kind}`}>{feedbackText}</p>}</MoveStatus></ReviewCoach>
     {error && <Notice announcement="alert" tone="error">{error}</Notice>}
     <section className="panel lesson-context" aria-label="Lesson progress">
       <p className="eyebrow">{session.branch ? "EXPLORING AN ALTERNATIVE" : session.game ? "ILLUSTRATIVE GAME" : "YOUR CHAPTER"}</p>

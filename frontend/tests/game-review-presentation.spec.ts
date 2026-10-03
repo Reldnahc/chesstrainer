@@ -1,4 +1,17 @@
-import {test, expect} from '@playwright/test';
+import {test, expect, type Page} from '@playwright/test';
+import walterBank from '../src/audio/speech/bank/manifest.json' with {type: 'json'};
+
+const walter = (id: string) => id.split('+').map(part => walterBank.recordings.find(row => row.id === part)!.text).join(' ');
+
+/** The moves line sits outside the scrolling message, inside the bubble, fully visible. */
+async function movesLineLayout(page: Page) {
+  return page.locator('.review-coach').evaluate(element => {
+    const box = (selector: string) => element.querySelector(selector)!.getBoundingClientRect();
+    const speech = box('.coach-speech'), message = box('.coach-message'), moves = box('.coach-moves-line');
+    return {below: moves.top >= message.bottom - 0.5, inside: moves.left >= speech.left && moves.right <= speech.right + 0.5
+      && moves.bottom <= speech.bottom + 0.5, visible: moves.height > 0};
+  });
+}
 
 test('completed reviews stay move-by-move without a game story or critical-moment surface', async ({page}, info) => {
   test.setTimeout(90_000);
@@ -18,6 +31,46 @@ test('completed reviews stay move-by-move without a game story or critical-momen
   await expect(page.locator('.coach-speech')).toContainText(/\bforce(?:d)? (?:check)?mate\b/i);
   await expect(page.locator('.coach-speech')).toContainText('Black');
   await expect(page.locator('.coach-speech')).toContainText('Qh4#');
+  // The bubble shows Walter's spoken line; the moves line keeps the real reply visible.
+  const spoken = page.locator('.coach-message [data-utterance]');
+  await expect(spoken).toHaveAttribute('data-spoken', /^allowed-mate(?:\+[a-z0-9-]+)?$/);
+  // The visible line; the moves are announced after it in a screen-reader-only span.
+  const line = walter((await spoken.getAttribute('data-spoken'))!);
+  await expect.poll(() => spoken.evaluate(element => element.firstChild?.textContent)).toBe(line);
+  await expect(spoken.locator('.sr-only')).toHaveText(/strongest reply: Qh4#, forced mate\.$/);
+  const moves = page.locator('.coach-moves-line');
+  await expect(moves).toHaveText('Black’s strongest reply: Qh4#, forced mate');
+  await expect(moves.locator('strong')).toHaveText('Qh4#');
+  await page.evaluate(() => document.fonts.ready);
+  await expect.poll(() => movesLineLayout(page)).toEqual({below: true, inside: true, visible: true});
+  if (info.project.name === 'desktop') {
+    for (const size of [{width: 1366, height: 768}, {width: 1366, height: 900}]) {
+      await page.setViewportSize(size);
+      // Let the page see the new viewport and lay out before any measurement.
+      await expect.poll(() => page.evaluate(() => innerHeight)).toBe(size.height);
+      await page.evaluate(() => new Promise(done => requestAnimationFrame(() => requestAnimationFrame(done))));
+      // The board resizes to the new viewport; measure once it has settled.
+      let board = await page.locator('.board-shell').boundingBox();
+      await expect.poll(async () => {
+        const previous = board;
+        board = await page.locator('.board-shell').boundingBox();
+        return JSON.stringify(board) === JSON.stringify(previous);
+      }).toBe(true);
+      await expect.poll(() => movesLineLayout(page)).toEqual({below: true, inside: true, visible: true});
+      // The fixed bubble scrolls long lines; the board beside it never moves.
+      await page.getByRole('button', {name: 'Previous move', exact: true}).click();
+      expect(await page.locator('.board-shell').boundingBox()).toEqual(board);
+      await page.getByRole('button', {name: 'Next move', exact: true}).click();
+      await expect(move).toHaveAttribute('aria-current', 'step');
+      expect(await page.locator('.board-shell').boundingBox()).toEqual(board);
+    }
+  }
+  await page.locator('.review-coach').screenshot({path: `test-results/coach-moves-line-${info.project.name}.png`});
+  // "Show why" keeps the written explanation, so the moves line steps aside.
+  await page.getByRole('button', {name: 'Show why', exact: true}).click();
+  await expect(spoken).not.toHaveAttribute('data-spoken', /./);
+  await expect(moves).toHaveCount(0);
+  await page.getByRole('button', {name: 'Hide why', exact: true}).click();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.reload();
   await expect(move).toHaveAttribute('aria-current', 'step');

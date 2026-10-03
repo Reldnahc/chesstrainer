@@ -1,5 +1,6 @@
 import { expect, test, type Page } from "@playwright/test";
 import type { Schema } from "../src/api";
+import walterBank from "../src/audio/speech/bank/manifest.json" with { type: "json" };
 
 type LessonSession = Schema["LessonSessionView"];
 const preferences = new WeakMap<Page, {
@@ -138,7 +139,9 @@ test("lesson feedback keeps its instruction and authored result in one atomic st
   expect(result.feedback?.kind).toBe("incorrect");
   await expect(status.locator("p")).toHaveCount(2);
   await expect(status.locator("p").first()).toHaveText(result.step.text);
-  await expect(status.locator(".lesson-feedback.incorrect")).toHaveText(result.feedback!.text);
+  // The generic wrong-move sentence shows as the coach (Walter by default) says it.
+  await expect(status.locator(".lesson-feedback.incorrect")).toHaveText(
+    walterBank.recordings.find(row => row.id === "lesson-wrong-move")!.text);
   await expect(status).not.toContainText("Mistake. Try again.");
 });
 

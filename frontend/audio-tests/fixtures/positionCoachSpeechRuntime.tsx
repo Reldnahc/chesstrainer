@@ -23,6 +23,8 @@ export type PositionCoachSpeechState = {
   observed: string | null;
   observedCoach: string | null;
   utteranceId: string;
+  /** The written utterance; the bubble shows the coach's spoken line instead when one exists. */
+  utteranceText: string;
   humanIntentId: string;
   humanUtteranceId: string;
   humanText: string;
@@ -58,7 +60,7 @@ export function mountPositionCoachSpeech(game: Game): PositionCoachSpeechHarness
       ready: audio.ready && coach.ready, coachId: coach.preferences.coach_id,
       speechEventId: speechEventId ?? null,
       observed: observed?.recordingId ?? null, observedCoach: observed?.coachId ?? null,
-      utteranceId: utterance.id, intentCodes: intent.claims.map(item => item.code),
+      utteranceId: utterance.id, utteranceText: utterance.text, intentCodes: intent.claims.map(item => item.code),
       humanIntentId: humanIntent.id, humanUtteranceId: human.id, humanText: human.text,
       renderedCodes: utterance.renderedClaims?.map(item => item.code) ?? [],
     };

@@ -1,5 +1,6 @@
 import { expect, test, type Page } from "@playwright/test";
 import type { Schema } from "../src/api";
+import walterBank from "../src/audio/speech/bank/manifest.json" with { type: "json" };
 
 const created = new WeakMap<Page, string[]>();
 test.beforeEach(({ page }) => { created.set(page, []); });
@@ -102,7 +103,8 @@ test("only designated course lines can be enrolled and dedicated practice leaves
   await expect(page.getByRole("region", { name: "Lesson position" })).toBeVisible();
   await page.locator('.board-shell [data-square="g1"]').click();
   await page.locator('.board-shell [data-square="f3"]').click();
-  await expect(page.locator(".coach-message")).toContainText("different continuation");
+  // The lesson's wrong-move feedback shows as the default coach (Walter) says it.
+  await expect(page.locator(".coach-message")).toContainText(walterBank.recordings.find(row => row.id === "lesson-wrong-move")!.text);
   await expect(page.locator(".coach-title")).not.toContainText("Mistake");
   await page.getByRole("button", { name: "Show move", exact: true }).click();
   await expect(page.locator('.board-shell [data-square="e4"] [data-piece="wP"]')).toBeVisible();

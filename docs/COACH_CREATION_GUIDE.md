@@ -154,10 +154,15 @@ robotic character, readability or repetition for you.
 
 ## 4. Design the spoken coverage
 
-Visible prose and recorded scripts are different artifacts. The bubble can name
-a move, piece, square, opening or score. The recording communicates the supported
-idea without those position-specific details, so one recording can truthfully
-serve many positions. It is not verbatim TTS of every rendered sentence.
+Written templates and recorded scripts are different artifacts. The written
+templates can name a move, piece, square, opening or score; they drive selection
+and appear in Show why, in the Maia popup and wherever no spoken line exists. The
+recording communicates the supported idea without those position-specific
+details, so one recording can truthfully serve many positions. It is not verbatim
+TTS of every rendered sentence. The bubble shows the spoken line itself (the
+recording, or the coach's `scripts.json` line before it is recorded), with game
+review's moves line beneath it for the exact reply and opening, so review each
+script as on-screen text in the real bubble as well as for delivery.
 
 Start from `audio/speech/meanings.json` and the production selectors
 `gameSelection.ts` / `practiceSelection.ts`. Inventory supported primary meanings
