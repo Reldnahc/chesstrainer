@@ -142,7 +142,7 @@ dedicated audio suite; audio-only changes do not require the coach artwork matri
 
 ## Recorded coach voices
 
-Walter (`classic`) and Rivet (`robot`) each have a **448-recording bank**: 438
+Walter (`classic`) and Rivet (`robot`) each have a **195-recording bank**: 185
 non-lesson meanings, the game-review opener and the nine generic lesson prompts,
 using their owner-selected Older teacher and Retro speech terminal voices.
 The earlier Walter wording revision replaced 81 passages and retained 100 recordings. It removed repetitive
@@ -162,7 +162,10 @@ Still keeps the portrait still without muting audio.
 
 Audio summarizes the supported idea while exact moves, squares, scores, names and
 historical counts stay written. It is not a verbatim reading of every paragraph.
-Unsupported or freeform text remains written. Lessons voice only nine generic
+Unsupported or freeform text remains written. Coaches never speak a Maia
+(human-move model) reading: the Maia badge, its popup and the written Maia sentence
+stay, but no Maia recording exists or is selected (owner decision, 2026-10-02).
+Lessons voice only nine generic
 prompts (wrong, correct, revealed, follow the line, play your studied move,
 alternative, chapter complete, full game and error), one per lesson command; course
 additions, hints, game annotations and edits still do not require voice assets.
@@ -171,7 +174,7 @@ additions, hints, game annotations and edits still do not require voice assets.
 
 The [Walter manifest](../frontend/src/audio/speech/bank/manifest.json) and
 [Rivet manifest](../frontend/src/audio/speech/banks/rivet/manifest.json) identify
-all recordings and their local paths. Each covers 349 game-review meanings, 68
+all recordings and their local paths. Each covers 96 game-review meanings, 68
 additional practice/explanation meanings, 10 opening-recall/preview meanings,
 eight puzzle states and three finite review statuses. Four audited transient or
 defensive states deliberately remain silent: thinking, checking, loading an
@@ -181,18 +184,21 @@ retains trigger definitions, aliases and the original script audit. The active
 manifest is the current script source; the
 [wording revision](../frontend/src/audio/speech/bank/revisions/walter-language-v2.json)
 records the exact old/new text and the reason for each change.
-The shared `meanings.json` catalogue adds eleven Book variants and 246
-objective/human-evidence combinations to the original 181 meanings. Each coach
-has a complete recording for each combination. `banks/pilot-additions.json`
-retains the initial eleven opening and fourteen combined scripts;
-`banks/maia-combinations.json` authors the additional 232 combinations for both
-voices. Existing recordings are reused, not regenerated to expand the catalogue.
+The shared `meanings.json` catalogue adds eleven Book variants, the game-review
+opener and nine lesson prompts to 174 of the original 181 meanings, for **195
+meanings**. `banks/pilot-additions.json` holds Walter's and Rivet's opening,
+opener and lesson scripts. Until 2026-10-02 the catalogue also had the seven
+standalone human-model readings and 246 objective/Maia combinations (448 in all,
+with `banks/maia-combinations.json`); those 253 meanings, their scripts, clips,
+provenance and alignments were removed when Maia speech was retired. Git history
+keeps them. Existing recordings are reused, not regenerated to expand the catalogue.
 
 Rivet's [spoken editorial revision](../frontend/src/audio/speech/banks/rivet/revisions/wording-v2.json)
 reviews those 257 additions and replaces 197 passages, retaining 60 additions
 and all 181 original recordings. His spoken writing follows the same character
 bible as his text: lead with the concrete chess event, use compact cause/result
-clauses when they clarify it, then state the relevant human-model assessment.
+clauses when they clarify it, then (in the since-retired Maia passages) state the
+relevant human-model assessment.
 Keep occasional earned understatement, not a diagnostic catchphrase on every
 line. Remove repeated methodology explanations and redundant closing summaries,
 especially across consecutive Book moves. Tactical opportunities remain possible
@@ -206,14 +212,10 @@ Ziggy, with labeled robot readouts, and says "the other side" on plain alert
 clips that can play on either side's move. IDs, evidence and selection are unchanged.
 
 The coverage inventory follows the actual claim producers and rendering rules,
-not an unrestricted product of every move grade and model result. It includes
-natural mistakes, unusual strong choices, hard finds, difficult defenses missed
-or found, natural best moves, and natural strong alternatives. Found defenses can
-take precedence over ordinary tactical praise; terminal outcomes suppress human
-feedback. Allowed/missed back-rank mate uses the higher-priority mate explanation,
-and hidden history or positional alternatives cannot displace a stronger visible
-explanation merely because a recording exists. No grading or model thresholds
-change to make a combination eligible.
+not an unrestricted product of every move grade and model result. Allowed/missed
+back-rank mate uses the higher-priority mate explanation, and hidden history or
+positional alternatives cannot displace a stronger visible explanation merely
+because a recording exists.
 
 Recordings ship as local assets in the container. Installing, building and
 playing Fieldwork needs no ElevenLabs account, API key, model download or runtime
@@ -261,7 +263,7 @@ auditions preserve history rather than the latest wording. The
 artwork, animation and dialogue workflow.
 
 - Preserve the character's teaching voice across ordinary feedback, adverse
-  outcomes, repeated Book moves and combined Maia passages. Walter explains
+  outcomes and repeated Book moves. Walter explains
   patiently; Rivet leads with patterns and consequences in compact clauses.
   Merely adding a catchphrase to neutral prose does not meet this standard.
 - Explain the supported idea without depending on a particular square, SAN move,
@@ -273,10 +275,8 @@ artwork, animation and dialogue workflow.
   the opponent; an unplayed alternative is hypothetical; a searched mating route
   is not an already completed checkmate. Human-model estimates must never become
   engine evaluation, population percentages or promises of survival.
-- Write each eligible objective/Maia pairing as one coherent response. The bank
-  contains full recordings for supported pairings, not a second speech event or
-  stitched sentences. Review the whole passage for personality, explanation and
-  redundancy after combining its meanings.
+- Do not write Maia lines. Human-move model readings stay written in the bubble
+  and the Maia popup; no bank records them alone or combined with another meaning.
 - Inspect an opening sequence, not just an isolated Book clip. Recognition and
   follow-on variants should feel varied without claiming a Book move is best or
   safe. Sequence wording requires the existing verified prefix; invented history
@@ -287,9 +287,9 @@ artwork, animation and dialogue workflow.
   complete phone coverage prove artifact consistency, not pleasing delivery or
   perceptually correct lip sync.
 
-The current 438 recordings are a coverage snapshot, not a per-coach quota. A new
-bank should cover the current reachable non-lesson meanings intentionally; do not
-invent combinations to reach a number. Missing meanings can remain safely silent
+The current 185 non-lesson recordings are a coverage snapshot, not a per-coach
+quota. A new bank should cover the current reachable non-lesson meanings
+intentionally; do not invent meanings to reach a number. Missing meanings can remain safely silent
 during development, but a partially registered bank is not a completed coach.
 The [bank workflow](../frontend/src/audio/speech/bank/README.md#adding-or-revising-a-production-bank)
 separates artifact checks, semantic coverage and human listening review.
@@ -297,19 +297,16 @@ separates artifact checks, semantic coverage and human listening review.
 ### Meaning and selection
 
 Game dialogue owns recording selection, preserving rendered claims' exact
-identities. The selector validates their supporting facts, actor and scope. The
-first rendered non-human explanation can pair with the exact human insight shown
-by the current Maia badge, even when the bubble's sentence limit omits that
-insight or presents it before the objective explanation. `PositionCoach` prepares
-that human presentation once and supplies the same object to the badge and the
-selector. A different parent, coach, policy, trace or position cannot authorize a
-combination. Unrendered objective claims are never searched for a convenient pair.
+identities. The selector validates their supporting facts, actor and scope. A Maia
+(human-model) claim never selects a recording, whether it renders in the bubble or
+only in the Maia badge. A Maia sentence adds nothing to speech: the first other
+rendered sentence leads, even when the Maia sentence is shown before it, and a
+bubble whose only claim is Maia stays silent. Unrendered objective claims are never
+searched for a convenient recording.
 
-A matching pair selects one complete recording. A bank missing that combination
-retains the originally selected primary recording; it never joins files together.
-An unavailable primary never silently promotes a lower-priority claim. The badge
-does not have to be opened to authorize its visible insight, but opening it alone
-does not trigger speech. Show Why and practice retain their own selection rules.
+An unavailable lead recording never silently promotes a lower-priority claim.
+Opening the Maia badge does not trigger speech. Show Why and practice retain their
+own selection rules.
 Played, allowed, missed, mover-caused and hypothetical positional explanations
 remain distinct. A completed checkmate requires the board's actual termination;
 a forced-mate search is not an already finished game. Human-model claims remain
@@ -325,8 +322,7 @@ repeats. Neither recognition nor repetition establishes objective move quality.
 The bank includes secondary meanings, but explanation findings and note
 disclosures do not automatically speak. Their explicit listening actions use the
 currently visible supported selection. The Maia insight popover has no voice
-control; human-insight recordings play only inside the move's single bubble
-playback. Practice
+control, and no Maia reading is ever spoken. Practice
 producers provide structured summary, move-frame and finding facts; selectors do
 not parse English or infer tactics from ratings or facial expressions.
 
@@ -343,8 +339,8 @@ is recast as an objective Best move.
 bus, with priority/interruptibility and quieter effects while narration plays.
 The shared `useCoachSpeech` adapter submits only the current supported recording.
 A game-review move has exactly one coach playback and one Listen/Stop control.
-With a Maia reading it is the Maia-aware combined recording when one exists.
-Otherwise, when both bubble sentences have recordings, the two existing clips are
+A Maia sentence in the bubble is never voiced. When both bubble sentences are
+objective and have recordings, the two existing clips are
 joined into one buffer with a 250 ms gap (`audio/speech/sequence.ts`), and the
 second clip's mouth timing is offset by the first clip plus the gap. Stop ends
 both, and nothing overlaps. No extra recordings are needed for these pairs.
@@ -364,8 +360,8 @@ Walter, Rivet, Winston, Button and Arjun; until a bank has its take, that coach 
 silent there and keeps its own text.
 Opening the Maia insight popover neither plays nor consumes the main coach's
 pending automatic opportunity. Late Maia
-evidence can update visible text and the preferred recording without replaying
-speech or interrupting an already playing, still-supported clip. Removing its
+evidence can update visible text (and so the bubble's objective recording) without
+replaying speech or interrupting an already playing, still-supported clip. Removing its
 support cancels it. Changing Automatic to On request also revokes automatic work.
 
 The audio engine's read-only playback handle supplies the actual source clock to
@@ -384,7 +380,7 @@ complete-bank selector and the cast audition studio were removed from the tree o
 2026-10-03; Git history retains them.
 
 The **Recorded coach comparison** panel compares Walter and Rivet for the same
-meaning, with Opening run, With Maia and All lines collections. It uses the same
+meaning, with Opening run and All lines collections. It uses the same
 local recordings, portrait and mouth-track loader as production. Casting choices
 and account preferences are unaffected. The other 28 coaches retain their wording.
 Original recordings and timing archives remain authoring history; the separate

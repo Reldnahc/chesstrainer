@@ -332,21 +332,20 @@ fail. Focused authoring tests run with `python -m pytest
 backend/tests/test_coach_voice_bank.py -q`. Speech asset edits select these backend
 checks even when no Python source changes.
 
-Combined narration has both a finite coverage contract and producer-level tests.
-`audio-tests/maia-meaning-coverage.spec.ts` enumerates the approved objective/human
-pairs and exclusions. `game-speech-policy.spec.ts` projects legal positions,
-synthetic search/policy evidence and real game-context relationships through the
-production fact, dialogue and selection functions. These verify semantic
+Coaches never speak a Maia (human-move model) reading. `game-speech-policy.spec.ts`
+projects legal positions, synthetic search/policy evidence and real game-context
+relationships through the production fact, dialogue and selection functions, and
+checks that every Maia claim selects no recording while the objective line still
+speaks, including when the Maia sentence leads the bubble. These verify semantic
 reachability and attribution, not engine playing strength or model calibration.
 The companion `game-speech-opening-policy.spec.ts`,
 `game-speech-positional-policy.spec.ts` and `game-speech-tactical-policy.spec.ts`
-exercise the remaining exact combinations without filtering or reordering the
-produced claims. Together they cover every registered objective/human pair for
-both recorded coaches, including all eleven opening-sequence variants.
-`prepared-insight-selection.spec.ts` checks that a short bubble can share its
-current visible Maia insight without accepting another parent, coach or policy.
+cover the same positions that show each Maia reading, without filtering or
+reordering the produced claims, including all eleven opening-sequence variants.
+`game-speech-maia-silence.spec.ts` asserts the catalogue has no Maia meanings, a
+Maia-flagged move speaks only its objective clip and a Maia-only bubble is silent.
 `position-coach-speech.spec.ts` and `coach-speech.spec.ts` observe actual playback,
-including delayed Maia results, manual insight listening and cancellation.
+including delayed Maia results, the silent Maia popup and cancellation.
 
 `npm run test:styles` checks the style-boundary guard against direct JavaScript
 imports and nested CSS imports, then checks all three real development entrypoints.

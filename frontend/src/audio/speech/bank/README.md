@@ -9,10 +9,11 @@ covers reproducible recordings and generated mouth timing; the
 defines the editorial and listening bar.
 
 `manifest.json` identifies the approved non-lesson speech, exact text, voice,
-recording settings and asset paths. Five original contrast recordings are referenced
+recording settings and asset paths. Four original contrast recordings are referenced
 in place; the others live under `recordings/walter`, `recordings/walter-language-v2`
-and the versioned `recordings/walter-pilot-v1` and `recordings/walter-maia-v2`
-collections. The shared registry also points to Rivet's sibling
+and the versioned `recordings/walter-pilot-v1` and `recordings/walter-lessons-v1`
+collections. (The `walter-maia-v2` and `walter-pronunciation-v1` takes were all
+Maia passages and left with the 2026-10-02 Maia removal.) The shared registry also points to Rivet's sibling
 bank under `../banks/rivet`; the same validator and runtime handle both.
 Recording sidecars retain the
 provider request and source-audio fingerprints. Production never calls a speech
@@ -52,16 +53,19 @@ variants and fourteen whole objective/human-evidence combinations, for 206 activ
 meanings shared with Rivet. `../banks/pilot-additions.json` holds both characters'
 authored scripts for those additions.
 
-`../banks/maia-combinations.json` extends that pilot with 232 more complete
-passages per character. The active banks each have 438 meanings: the original
-181, eleven opening variants, and 246 objective/human-evidence combinations.
-The latter include the pilot's fourteen meanings. Expanding coverage did not
-require rerecording existing passages; subsequent editorial corrections can and
-do replace recordings while keeping their meaning IDs.
-Each combined passage is one provider recording, never playback-time splicing.
-Its shared primary/secondary IDs bind the spoken explanation to current rendered
-chess evidence and the independently displayed human insight. Full source
-provenance and automatically generated mouth timing follow the same workflow.
+A later `maia-combinations.json` extended that pilot with 232 more combined
+passages per character, for 438 non-lesson meanings: the original 181, eleven
+opening variants and 246 objective/human-evidence combinations.
+
+**Maia is no longer spoken (owner decision, 2026-10-02).** Coaches never voice a
+Maia (human-move model) reading. The Maia badge, its popup and the written bubble
+sentence are unchanged. The 253 Maia meanings (the seven standalone `human-*`
+readings and all 246 objective/Maia combinations, including the pilot's fourteen)
+were removed from `../meanings.json`, every `scripts.json`, `pilot-additions.json`
+and the five recorded banks, together with their clips, provenance and alignments;
+`maia-combinations.json` was deleted. Git history keeps them. The catalogue now
+has **195 meanings**: 174 of the original 181, eleven opening variants, the
+game-review opener and nine lesson prompts.
 
 Rivet's [wording revision](../banks/rivet/revisions/wording-v2.json) reviewed all
 257 additions, replaced 197 complete recordings and retained 60 additions plus
@@ -78,8 +82,8 @@ ledger format and workflow.
 
 Winston (`banks/winston`, coach `capybara`, locked voice "Welsh companion") and
 Button (`banks/button`, coach `mushroom`, locked voice "Woody contralto") are
-registered production banks covering all 448 catalogue meanings. Each owns its
-full authored text in `scripts.json`, including combinations, instead of adding
+registered production banks covering all 195 catalogue meanings. Each owns its
+full authored text in `scripts.json` instead of adding
 columns to the Walter/Rivet files; the manifest records exactly those scripts.
 `backend/tests/test_coach_bank_scripts.py` checks catalogue coverage, the
 spoken-text rules and that each registered manifest matches its scripts.
@@ -100,11 +104,11 @@ They were re-recorded with the same voices and settings under
 ## Arjun bank
 
 Arjun (`banks/arjun`, coach `man-partner`, locked voice "Chennai club mentor") is
-a registered production bank covering all 448 catalogue meanings, including the
+a registered production bank covering all 195 catalogue meanings, including the
 game-review opener and lesson prompts, from his own `scripts.json`. It was recorded
 on October 2 in 23 bounded plans (57,994 input characters) with `eleven_v4` and the
 shared settings, under `recordings/arjun-v1/`. ElevenLabs history billed
-7,024 credits for the 448 matched request IDs; one request timed out uncharged and
+7,024 credits for the 448 matched request IDs (before the Maia removal); one request timed out uncharged and
 was made again. His script needed one new inflection ("steadies"), covered by
 morphology revision v4's `-ies` plural rule.
 
@@ -135,13 +139,15 @@ Pip (`banks/pip/scripts.json`, coach `slime`), Ziggy
 (`banks/mateo/scripts.json`, coach `human-boy`), Tamar
 (`banks/tamar/scripts.json`, coach `woman-captain`) and Tala
 (`banks/tala/scripts.json`, coach `human-girl`) each have complete authored
-scripts for all current catalogue meanings, marked `authored-unrecorded`. They
-own their full text, including combinations, instead of adding columns to the
+scripts for all 195 current catalogue meanings, marked `authored-unrecorded`. They
+own their full text instead of adding columns to the
 Walter/Rivet files. `backend/tests/test_coach_bank_scripts.py` checks catalogue
 coverage and the spoken-text rules, including that Ziggy, Orin, Felix, Ember, Scout, Juniper, Waffles, Celeste, Jun, Fergus, Marisol, Monty, Ingrid and Tamar,
 whose personalities ask no questions, ask none aloud. None is registered: no recordings, alignment or
 tracks exist yet, so these coaches stay silent until the owner approves the
-scripts and a bank is recorded and registered.
+scripts and a bank is recorded and registered. Recording all 25 means
+25 × 195 = **4,875 clips** and **443,642 input characters** of script text
+(measured from their `scripts.json` after the Maia removal).
 
 ### Bank status
 
@@ -153,43 +159,46 @@ registered.
 
 | Coach (id) | Scripts | Review passed | Recorded | Registered |
 |---|---|---|---|---|
-| Winston (`capybara`) | Written, 438 | Yes, 2026-10-02, at commits `ad56063`/`4cddfc5` | Yes, `32abf9c` | Yes, `12a01f7` |
-| Button (`mushroom`) | Written, 438 | Yes, 2026-10-02, at commits `ad56063`/`4cddfc5` | Yes, `83dd5df` | Yes, `12a01f7` |
-| Wisp (`ghost`) | Written, 438 | Yes, 2026-10-02, at commit `6b2f07b` | No | No |
-| Pip (`slime`) | Written, 438 | Yes, 2026-10-02, at commit `7e07eff` | No | No |
-| Ziggy (`alien`) | Written, 438 | Yes, 2026-10-02, at commit `a0a9881` | No | No |
-| Percy (`living-pawn`) | Written, 438 | Yes, 2026-10-02, at commit `7e07eff` | No | No |
-| Orin (`wizard`) | Written, 438 | Yes, 2026-10-02, at commit `f9e8a4f` | No | No |
-| Felix (`cat-tuxedo`) | Written, 438 | Yes, 2026-10-02, at commit `5669e4e` | No | No |
-| Bandit (`raccoon`) | Written, 438 | Yes, 2026-10-02, at commit `7e07eff` | No | No |
-| Alfie (`dog-gentle`) | Written, 438 | Yes, 2026-10-02, at commit `5b3a4af` | No | No |
-| Pickle (`cat-kitten`) | Written, 438 | Yes, 2026-10-02, at commit `7e07eff` | No | No |
-| Ember (`dragon`) | Written, 438 | Yes, 2026-10-02, at commit `ee90487` | No | No |
-| Scout (`dog-collie`) | Written, 438 | Yes, 2026-10-02, at commit `3354f70` | No | No |
-| Juniper (`cat-black`) | Written, 438 | Yes, 2026-10-02, at commit `38d3920` | No | No |
-| Waffles (`dog-corgi`) | Written, 438 | Yes, 2026-10-02, at commit `49dd577` | No | No |
-| Celeste (`unicorn`) | Written, 438 | Yes, 2026-10-02, at commit `eddc967` | No | No |
-| Jun (`man-expert`) | Written, 438 | Yes, 2026-10-02, at commit `e32c28f` | No | No |
-| Fergus (`frog`) | Written, 438 | Yes, 2026-10-02, at commit `b2e5e45` | No | No |
-| Arjun (`man-partner`) | Written, 448 | Yes, 2026-10-02, at commit `91cda3c` | Yes, 2026-10-02 | Yes, 2026-10-02 |
-| Femi (`man-host`) | Written, 438 | Yes, 2026-10-02, at commit `8ef13cd` | No | No |
-| Marisol (`woman-analyst`) | Written, 438 | Yes, 2026-10-02, at commit `0ca83fa` | No | No |
-| Monty (`gorilla`) | Written, 438 | Yes, 2026-10-02, at commit `6de6a66` | No | No |
-| Ingrid (`woman-blonde`) | Written, 438 | Yes, 2026-10-02, at commit `5268032` | No | No |
-| Biscuit (`dog-puppy`) | Written, 438 | Yes, 2026-10-02, at commit `abd5405` | No | No |
-| Réka (`woman-spark`) | Written, 438 | Yes, 2026-10-02, at commit `bbef4b3` | No | No |
-| Mateo (`human-boy`) | Written, 438 | Yes, 2026-10-02, at commit `8907d2e` | No | No |
-| Tamar (`woman-captain`) | Written, 438 | Yes, 2026-10-02, at commit `129a272` | No | No |
-| Tala (`human-girl`) | Written, 438 | Yes, 2026-10-02, at commit `ed96ae2` | No | No |
+| Winston (`capybara`) | Written, 195 | Yes, 2026-10-02, at commits `ad56063`/`4cddfc5` | Yes, `32abf9c` | Yes, `12a01f7` |
+| Button (`mushroom`) | Written, 195 | Yes, 2026-10-02, at commits `ad56063`/`4cddfc5` | Yes, `83dd5df` | Yes, `12a01f7` |
+| Wisp (`ghost`) | Written, 195 | Yes, 2026-10-02, at commit `6b2f07b` | No | No |
+| Pip (`slime`) | Written, 195 | Yes, 2026-10-02, at commit `7e07eff` | No | No |
+| Ziggy (`alien`) | Written, 195 | Yes, 2026-10-02, at commit `a0a9881` | No | No |
+| Percy (`living-pawn`) | Written, 195 | Yes, 2026-10-02, at commit `7e07eff` | No | No |
+| Orin (`wizard`) | Written, 195 | Yes, 2026-10-02, at commit `f9e8a4f` | No | No |
+| Felix (`cat-tuxedo`) | Written, 195 | Yes, 2026-10-02, at commit `5669e4e` | No | No |
+| Bandit (`raccoon`) | Written, 195 | Yes, 2026-10-02, at commit `7e07eff` | No | No |
+| Alfie (`dog-gentle`) | Written, 195 | Yes, 2026-10-02, at commit `5b3a4af` | No | No |
+| Pickle (`cat-kitten`) | Written, 195 | Yes, 2026-10-02, at commit `7e07eff` | No | No |
+| Ember (`dragon`) | Written, 195 | Yes, 2026-10-02, at commit `ee90487` | No | No |
+| Scout (`dog-collie`) | Written, 195 | Yes, 2026-10-02, at commit `3354f70` | No | No |
+| Juniper (`cat-black`) | Written, 195 | Yes, 2026-10-02, at commit `38d3920` | No | No |
+| Waffles (`dog-corgi`) | Written, 195 | Yes, 2026-10-02, at commit `49dd577` | No | No |
+| Celeste (`unicorn`) | Written, 195 | Yes, 2026-10-02, at commit `eddc967` | No | No |
+| Jun (`man-expert`) | Written, 195 | Yes, 2026-10-02, at commit `e32c28f` | No | No |
+| Fergus (`frog`) | Written, 195 | Yes, 2026-10-02, at commit `b2e5e45` | No | No |
+| Arjun (`man-partner`) | Written, 195 | Yes, 2026-10-02, at commit `91cda3c` | Yes, 2026-10-02 | Yes, 2026-10-02 |
+| Femi (`man-host`) | Written, 195 | Yes, 2026-10-02, at commit `8ef13cd` | No | No |
+| Marisol (`woman-analyst`) | Written, 195 | Yes, 2026-10-02, at commit `0ca83fa` | No | No |
+| Monty (`gorilla`) | Written, 195 | Yes, 2026-10-02, at commit `6de6a66` | No | No |
+| Ingrid (`woman-blonde`) | Written, 195 | Yes, 2026-10-02, at commit `5268032` | No | No |
+| Biscuit (`dog-puppy`) | Written, 195 | Yes, 2026-10-02, at commit `abd5405` | No | No |
+| Réka (`woman-spark`) | Written, 195 | Yes, 2026-10-02, at commit `bbef4b3` | No | No |
+| Mateo (`human-boy`) | Written, 195 | Yes, 2026-10-02, at commit `8907d2e` | No | No |
+| Tamar (`woman-captain`) | Written, 195 | Yes, 2026-10-02, at commit `129a272` | No | No |
+| Tala (`human-girl`) | Written, 195 | Yes, 2026-10-02, at commit `ed96ae2` | No | No |
 | Game review opener (`game-review-opened`), all 30 coaches | Written, 1 each | Yes, 2026-10-02, at commit `d8bbadb` | No | No |
 | Lesson prompts (`lessons` group), coaches 1–10 (Alfie to Fergus) | Written, 9 each | Yes, 2026-10-02, at commit `88b9b84` | No | No |
 | Lesson prompts (`lessons` group), coaches 11–20 (Ingrid to Pip) | Written, 9 each | Yes, 2026-10-02, at commit `899fc94` | No | No |
 | Lesson prompts (`lessons` group), coaches 21–30 (Réka to Ziggy) | Written, 9 each | Yes, 2026-10-02, at commit `b19c358` | No | No |
 
-The opener row is a cast-wide meaning added after the banks above. Each authored
-`scripts.json` now holds 439 rows, and Walter's and Rivet's lines sit in
-`banks/pilot-additions.json`. Registered banks keep their 438 takes until the
-opener is recorded.
+The opener row is a cast-wide meaning added after the banks above. Walter's and
+Rivet's lines sit in `banks/pilot-additions.json`.
+
+The script counts were 438 when those reviews passed. On 2026-10-02 the 253 Maia
+rows were removed (see above), leaving 195 rows per coach (185 non-lesson
+meanings, the opener and nine lesson prompts); the remaining rows' review status is
+unchanged. Walter, Rivet, Winston, Button and Arjun each have 195 recordings.
 
 The lesson-prompt rows cover the nine generic `lessons` meanings. Each batch of
 coaches adds its own row as it lands; a coach's lesson lines stay silent until
@@ -212,7 +221,8 @@ automatically writes a finished personality or turns all coach prose into speech
    terms for new paid generation; do not treat historical approval as a license
    for a different voice or subscription tier.
 2. **Audit the supported meanings before writing.** `meanings.json` owns shared
-   IDs/groups and exact objective/human pairs, not character-specific prose.
+   IDs/groups, not character-specific prose. It has no Maia meanings: coaches
+   never voice a Maia reading.
    Trace eligibility through `gameSelection.ts`, `practiceSelection.ts`, the
    producer and dialogue claims. Retain cold-practice gates, the four silent
    states and the lesson rule (generic prompts only). New characterization normally changes
@@ -220,9 +230,9 @@ automatically writes a finished personality or turns all coach prose into speech
    semantic meaning needs producer/selector regression coverage.
 3. **Write and review complete scripts.** Use the character bible plus the
    spoken quality standard. Preserve the distinction between actual, allowed,
-   missed, mover-caused and alternative consequences. Review combined passages
-   and consecutive opening variants as units. Existing Walter/Rivet authoring
-   sources are `banks/pilot-additions.json` and `banks/maia-combinations.json`,
+   missed, mover-caused and alternative consequences. Review consecutive
+   opening variants as units. Existing Walter/Rivet authoring
+   sources are `banks/pilot-additions.json`,
    with `banks/rivet/scripts.json` for Rivet's base meanings; these are curated
    two-character data, not a general automatic script generator. Keep a new
    bank's authored source and consistency tests explicit rather than modifying
@@ -262,9 +272,9 @@ automatically writes a finished personality or turns all coach prose into speech
    below validates every *registered recording*, but deliberately allows a
    partial bank. Compare the bank's IDs against the reachable shared catalogue
    and add/update script-consistency and selection tests before calling it
-   complete. Walter, Rivet, Winston, Button and Arjun currently cover all 448 meanings; that number is
+   complete. Walter, Rivet, Winston, Button and Arjun currently cover all 195 meanings; that number is
    not a substitute for checking the catalogue. Exercise actual game/practice
-   playback, late Maia results, manual replay, cancellation and cold positions.
+   playback, late Maia results (shown, never spoken), manual replay, cancellation and cold positions.
    Use Recorded coach comparison in the Audio Studio for editorial/listening
    review and inspect mouth animation at desktop/mobile application sizes.
 
@@ -336,11 +346,11 @@ From `frontend`, use the checked-in desktop/mobile audio configuration, with
 port 5176 free for its managed studio:
 
 ```powershell
-npx playwright test --config playwright.audio.config.ts voice-registry.spec.ts recorded-coach-comparison.spec.ts coach-speech.spec.ts game-speech-combinations.spec.ts maia-meaning-coverage.spec.ts
+npx playwright test --config playwright.audio.config.ts voice-registry.spec.ts recorded-coach-comparison.spec.ts coach-speech.spec.ts game-speech-maia-silence.spec.ts
 ```
 
-Add the producer-level `game-speech-*-policy.spec.ts` and
-`prepared-insight-selection.spec.ts` coverage when meanings or selection change;
+Add the producer-level `game-speech-*-policy.spec.ts` coverage when meanings or
+selection change;
 add the rig/articulation suites when mouth artwork or playback changes. Build
 the application and audio studio to verify asset boundaries. These focused
 commands are not the full browser suite; choose additional checks from

@@ -43,8 +43,8 @@ problem and consequence with literal precision and occasional dry understatement
 | Idle behavior | Use the shared coordinator, expression-compatible repertoire and two character signatures. Sustain natural activity without replaying entrances or adding a character-owned clock. |
 | Opening variety | Use the shared deterministic recognition/sequence meanings. Test a run of Book moves, including the opponent's moves, rather than one isolated example. Recognition alone never means a move is good. |
 | Human evidence | Keep Maia's human-likeness/difficulty separate from Stockfish's objective judgment. Preserve uncertainty and data-domain qualifications without turning every line into a methodology lecture. |
-| Recorded speech | Author complete, natural summaries of supported ideas. When a current chess explanation and Maia insight have an approved combination, use one complete recording; never splice sentences at playback. |
-| Playback | One automatic spoken turn per review action. Late Maia can improve written feedback and the next manual replay without causing a second automatic speech turn. |
+| Recorded speech | Author complete, natural summaries of supported ideas; never splice sentences at playback. Coaches never speak Maia readings: do not write or record a Maia line, alone or combined with another meaning. |
+| Playback | One automatic spoken turn per review action. Late Maia can update written feedback without causing a second automatic speech turn, and is never voiced itself. |
 | Mouths | Inspect all nine sound shapes and real recordings at normal sizes. Use automatic alignment against the actual audio clock, not hand-timed per-clip animation. |
 | Completion | Tests establish correctness and provenance; listening, reading blind comparisons and watching real reviews establish perceptual quality. Record both honestly. |
 
@@ -147,7 +147,7 @@ Run `npm run dev:intelligence` from `frontend` (port 5175). Compare the same fac
 across characters with names hidden, then import a real review and inspect the
 exact claim/variant trace. Review praise, correction, recovery, opponent success,
 forced defense, quiet improvement, mate, uncertainty and cold practice. Check an
-opening run and Maia combinations as sequences, including revisits/reloads.
+opening run and Maia readings as sequences, including revisits/reloads.
 Inspect the real bubble on desktop and phone; a corpus report cannot judge warmth,
 robotic character, readability or repetition for you.
 
@@ -159,14 +159,16 @@ idea without those position-specific details, so one recording can truthfully
 serve many positions. It is not verbatim TTS of every rendered sentence.
 
 Start from `audio/speech/meanings.json` and the production selectors
-`gameSelection.ts` / `practiceSelection.ts`. Inventory supported primary meanings,
-intentional silence and reachable objective/Maia pairs before counting clips.
-The current complete banks each have 438 recordings: 181 original meanings,
-11 varied opening meanings and 246 whole combinations. That is today's measured
-coverage, not a required count to copy into every future test or a budget ceiling.
+`gameSelection.ts` / `practiceSelection.ts`. Inventory supported primary meanings
+and intentional silence before counting clips. Maia readings are never spoken, so
+the catalogue has no `human-*` or objective/Maia combination meanings (the 253
+such meanings were retired on 2026-10-02). The current complete banks each have
+195 recordings: 174 original meanings, 11 varied opening meanings, the game-review
+opener and nine lesson prompts. That is today's measured coverage, not a required
+count to copy into every future test or a budget ceiling.
 
-Use `banks/pilot-additions.json` and `banks/maia-combinations.json` as current
-authored-script references. They contain Walter/Rivet prose, not an automatic
+Use `banks/pilot-additions.json`, Rivet's `banks/rivet/scripts.json` and a
+registered bank's own `scripts.json` as current authored-script references. They contain Walter/Rivet prose, not an automatic
 third-coach generator. Write each new character's complete versions and verify
 meaning coverage; do not rename Walter's scripts and call them another personality.
 When adding shared meanings, update production selection and evidence tests
@@ -278,7 +280,7 @@ several layers and needs their relevant checks before being called finished.
 | Identity/preferences | `backend/tests/test_coach_preferences.py`; app `coach-selection.spec.ts`, `coach-logic.spec.ts`, `coach.spec.ts`; account suite when persistence changes |
 | Rig/acting | Coach Studio suite: full cast/expressions, repertoire, signatures, channels, hands, cadence, resting faces, diagnostics, motion and visibility |
 | Written personality | App dialogue/personality tests and Intelligence Lab suite: required slots, scoped tactics, alternatives, attribution, deterministic composition, blind samples and cold feedback |
-| Recorded scripts/selection | `test_coach_voice_bank.py`, `test_coach_pilot_scripts.py`; audio meaning coverage, production game/practice selection, prepared insight and delayed-Maia playback tests |
+| Recorded scripts/selection | `test_coach_voice_bank.py`, `test_coach_pilot_scripts.py`, `test_coach_bank_scripts.py`; production game/practice selection, Maia-silence (`game-speech-maia-silence.spec.ts`) and delayed-Maia playback tests |
 | Recording/alignment | Recorder Node tests; speech alignment/forced-alignment/pronunciation Python tests; strict complete-bank check; actual browser decode/playback |
 | Speaking mouth | Audio Studio activity, lip-sync, speech animation/lifecycle and nonhuman mouth tests, plus manual character-sized viewing |
 

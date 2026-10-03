@@ -322,11 +322,12 @@ different existing application.
 ```sh
 npx playwright test dialogue-logic.spec.ts personality.spec.ts walter-dialogue.spec.ts scoped-dialogue.spec.ts opening-dialogue.spec.ts
 npx playwright test --config playwright.intelligence.config.ts corpus.spec.ts causal-dialogue.spec.ts human-dialogue.spec.ts positional-dialogue.spec.ts walter-dialogue.spec.ts
-npm run test:audio -- game-speech-combinations.spec.ts maia-meaning-coverage.spec.ts voice-registry.spec.ts recorded-coach-comparison.spec.ts
+npm run test:audio -- game-speech-maia-silence.spec.ts voice-registry.spec.ts recorded-coach-comparison.spec.ts
 ```
 
 The first two commands cover production rendering and the writing laboratory;
-the third protects whole-recording combinations and the shared bank interface.
+the third checks that Maia readings are never voiced and protects the shared bank
+interface.
 For script changes, from repository root:
 
 ```sh
