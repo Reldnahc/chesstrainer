@@ -305,6 +305,7 @@ test("puzzles from your games hide the source game until the solve and link back
   await expect(page.getByRole("heading", { name: "Puzzle solved." })).toBeVisible();
   await expect(page.getByText("From your games · Your game as White vs fixture-opponent")).toBeVisible();
   await expect(page.getByRole("link", { name: "Open your move in the game review" })).toHaveAttribute("href", "/games/fixture-game?ply=27");
+  await page.screenshot({ path: `test-results/study-puzzle-games-solved-${info.project.name}.png`, fullPage: true });
   // The library's own-games tab explains the search and offers the backfill job.
   await page.route("**/api/puzzles", route => route.fulfill({ json: {
     available: 1,
