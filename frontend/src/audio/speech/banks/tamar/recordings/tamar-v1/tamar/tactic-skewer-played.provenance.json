@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-skewer-played",
+      "label": "Tactic skewer played",
+      "text": "The skewer bites. The front piece is attacked, and when it steps off the line, the piece behind it is next. Lines like this pay out."
+    },
+    "takeId": null
+  },
+  "requestHash": "fb18e0bc8ce3842a568c9e4a0535e74910f7e41ecb27542427117dc7b3c82055",
+  "recordedAt": "2026-10-03T06:18:44.151Z",
+  "sha256": "d2cb4eb383f6e5354580b0be587c8ef1ed068fccc368ee6b634c33744abdf6ec",
+  "bytes": 28145,
+  "requestId": "CNLcjCl0dkiobZo7ze4Z",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f6acaad3bf5aec9443dd00228aa2c80d8be09f6efb225ec060d55fbb03f625fb",
+    "bytes": 145911
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

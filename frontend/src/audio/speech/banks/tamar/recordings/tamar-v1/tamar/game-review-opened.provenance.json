@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "game-review-opened",
+      "label": "Game review opened",
+      "text": "Time to look at this game honestly. Work through it, find the moments that mattered, and take a lesson from each."
+    },
+    "takeId": null
+  },
+  "requestHash": "6a33aa7417a67fa549c0d7302ee84fe0111d71be2e60c0d0095c94b79dc6ca02",
+  "recordedAt": "2026-10-03T06:19:20.332Z",
+  "sha256": "be3523c38520b428d8a1581c8608bdf872b8f1ea843c602f6577fbbf169fdb70",
+  "bytes": 22481,
+  "requestId": "il2cPg42ksze7MVRjZcO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5ac7cd4c14de23dbabe3253a21717a25c98849af53745651d0f83e140fe16611",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

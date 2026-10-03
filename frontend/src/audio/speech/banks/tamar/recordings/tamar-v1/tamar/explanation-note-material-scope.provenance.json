@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-note-material-scope",
+      "label": "Explanation note material scope",
+      "text": "Only the line shown is counted for material, from its own first position. The written explanation is where the piece values are."
+    },
+    "takeId": null
+  },
+  "requestHash": "4fb1e8486aedb88a98dd06bd50bf1ee83b0e3992f2ed6d5d5f1ae122127a9700",
+  "recordedAt": "2026-10-03T06:19:27.978Z",
+  "sha256": "7b191df9fe23a9a999a83d35f7fc0cad85bb91f53e03f45a1b2ba00cfa4066e5",
+  "bytes": 25885,
+  "requestId": "mo5Y2YZDfajjNkzfFD35",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "76eba04188a595b84ae2258c93d8a9d6b0f43193930596fdecd959013809b641",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "positional-doubled-alternative",
+      "label": "Positional doubled alternative",
+      "text": "Another move would have doubled pawns on a single file. Compare what each structure costs."
+    },
+    "takeId": null
+  },
+  "requestHash": "31f1c3ca5caf79a2d04bdf8fd1eec2e0af643503120127c4a7530bdef89ac368",
+  "recordedAt": "2026-10-03T06:19:06.107Z",
+  "sha256": "f8e17a0622b7c00d16c0d7556edbf923a0de32b32b22dd86a4e54b3117acbe8f",
+  "bytes": 19130,
+  "requestId": "BlQ5pYqTvGM6gPfZ4t8x",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c25deb2d1df387bbd07836f0624b2c22933409b286a54f92e914ce4098abb40c",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

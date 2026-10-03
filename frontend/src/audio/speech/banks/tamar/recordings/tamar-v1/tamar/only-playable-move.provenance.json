@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "only-playable-move",
+      "label": "Only playable move",
+      "text": "A narrow path. Every other checked move failed, and this one kept the game going. Put that defense on repeat in practice."
+    },
+    "takeId": null
+  },
+  "requestHash": "84e110d89d10eb35971de39346e97c45a3ac71782034af83b66ee1a03e39503f",
+  "recordedAt": "2026-10-03T06:18:38.729Z",
+  "sha256": "d3c25e2c255334b3440f12f26e1f305c6e67c34c99e19a4f1bf8eab083b54d53",
+  "bytes": 26475,
+  "requestId": "2iwOdNagLgCszCblaq2B",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7b7b2fbc10979672326e02d1d2968fbe8eb5bef876a26fe60adbf50e99115afc",
+    "bytes": 136716
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

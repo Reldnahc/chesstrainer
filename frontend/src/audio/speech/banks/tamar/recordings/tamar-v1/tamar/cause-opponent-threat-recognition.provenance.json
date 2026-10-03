@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "cause-opponent-threat-recognition",
+      "label": "Cause opponent threat recognition",
+      "text": "The threat had to come first. The opponent's last move went after a piece, this move paid it no attention, and now that piece can be captured. I want every turn to start with their threat."
+    },
+    "takeId": null
+  },
+  "requestHash": "d3bb69168a85d0158ceaaefb9178a773a65f7953b021b5f73874a68b66e96301",
+  "recordedAt": "2026-10-03T06:18:53.512Z",
+  "sha256": "935c75b4eb962032cff53dbaf32b0ac20bd6c63568136070ec1fd3526b098de1",
+  "bytes": 38412,
+  "requestId": "FGXBmGNUxhMuJVv0A6mP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5407709809612fdb127d1f86247057361224585565d6be2bed2f8ecfdf2318e1",
+    "bytes": 198156
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-frame-castle-mate",
+      "label": "Explanation frame castle mate",
+      "text": "Castling, and the rook's arrival is checkmate."
+    },
+    "takeId": null
+  },
+  "requestHash": "ff21490c76cc81bc59d53fdae93a2c4bd1ad75b0ce91d945e9660e23dd72f460",
+  "recordedAt": "2026-10-03T06:19:27.661Z",
+  "sha256": "09a92650191919a449af3679d82228512a9843490185a1493a125f75a40b2104",
+  "bytes": 10891,
+  "requestId": "msBApa0O4vLodkLquiOK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b30e17cfc8528b348d7636f319a47366cf7e0fb183b2fc3adfc6b952381693e3",
+    "bytes": 53542
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

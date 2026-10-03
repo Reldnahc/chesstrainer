@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-move-ordinary",
+      "label": "Explanation frame quiet move ordinary",
+      "text": "Next move. Work out what it changes."
+    },
+    "takeId": null
+  },
+  "requestHash": "a1ba503224f9f1a360f284344be4f915f927990a102ac6bd5ba2439cdc873425",
+  "recordedAt": "2026-10-03T06:19:09.724Z",
+  "sha256": "d3a27bf667baa32c5cfe74d1e8647c1b0dadf4802ce0d6c48fe01fea175d8b8b",
+  "bytes": 10092,
+  "requestId": "Sn3FWYATukVnJGaEhgdm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6aea1b16b3cdb6f8434bc9730ee85ec366cc7acbe3680de05fd6d5ee37aa5d13",
+    "bytes": 49781
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

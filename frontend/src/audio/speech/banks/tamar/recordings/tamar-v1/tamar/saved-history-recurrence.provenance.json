@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "saved-history-recurrence",
+      "label": "Saved history recurrence",
+      "text": "Your saved games carry this issue as well. Time to train it directly."
+    },
+    "takeId": null
+  },
+  "requestHash": "25e2d563d5b7c325aee9ca3bf1ad480a85fcb43c2828eff90afd7e2f902ab65d",
+  "recordedAt": "2026-10-03T06:18:40.291Z",
+  "sha256": "2db2bc7a9dbbd24cdc1c220d4ce75eb761e577eb79e777bc732f383bcca0ccc1",
+  "bytes": 14459,
+  "requestId": "f3YpXxDPSTf5kIuS4frz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2ff9762de78b002d3805e39cc1e40ba71ea27a2e4ee356587b11c327b346c134",
+    "bytes": 72768
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

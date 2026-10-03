@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-double-attack-missed",
+      "label": "Tactic double attack missed",
+      "text": "A double attack was waiting. A stronger move created two threats together, and this one creates neither. Search for the move that does two jobs."
+    },
+    "takeId": null
+  },
+  "requestHash": "c249fe1e600948dc32efaaaed97bee1188c30b45253e0483bbfab82b500faf12",
+  "recordedAt": "2026-10-03T06:18:36.778Z",
+  "sha256": "8e1d89fd1cfd63fd265bcdaa4e179cc30fc698f26219752bbaafd9d750448871",
+  "bytes": 29265,
+  "requestId": "HL8ugTBmwYZHoy5HpPoS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "97a6b4deabfc62660a18daba842c606c8b1d9eca0b73d134b1cf2ecc73bde2e8",
+    "bytes": 150927
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

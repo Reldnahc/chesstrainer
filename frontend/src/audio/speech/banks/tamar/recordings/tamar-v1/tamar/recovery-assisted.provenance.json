@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "recovery-assisted",
+      "label": "Recovery assisted",
+      "text": "Playable again, and errors from the other side helped. Take the gift, then learn from the setback."
+    },
+    "takeId": null
+  },
+  "requestHash": "3f767cfba39abd9d5e96d4784c242e66d81a3e42155771b63425455ab39d2c23",
+  "recordedAt": "2026-10-03T06:19:02.399Z",
+  "sha256": "acc1d81b6cbf6e958c8aecbb50f3b8d58ba6b7b6a758a4564352182a3f5ce4b6",
+  "bytes": 20492,
+  "requestId": "KqHJMlNQM3um7yW0F65U",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c9b293efaeb98b0302a00349c1699b1e402e101f65a36f97926c86a6fd88c7d7",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

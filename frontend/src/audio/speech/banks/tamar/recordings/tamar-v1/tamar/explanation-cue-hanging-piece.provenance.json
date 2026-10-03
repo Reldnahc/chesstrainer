@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-cue-hanging-piece",
+      "label": "Explanation cue hanging piece",
+      "text": "Find every piece that could be taken without a useful recapture."
+    },
+    "takeId": null
+  },
+  "requestHash": "74131860a9ee7c2709218ab69a683b7b85edd7e2f9335ba2894faffed204ab9c",
+  "recordedAt": "2026-10-03T06:19:34.277Z",
+  "sha256": "ef083467f1f544267ad639b710689f90969502b9b7373d3a6df22678386925e0",
+  "bytes": 13730,
+  "requestId": "esk1tJH9tTAealTEc0Qo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0e6c341b48cf4b6ca1c353a3d45c48289e4e95e633c6f90f567f10e9c4ed2905",
+    "bytes": 66499
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

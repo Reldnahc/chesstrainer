@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "srs-fallback-study",
+      "label": "Srs fallback study",
+      "text": "Study this move before going on. The idea matters more than the click."
+    },
+    "takeId": null
+  },
+  "requestHash": "59cf96d18b4c669bd49d22fc462f4ab55cd3e25c5e38a149667694725e3f5684",
+  "recordedAt": "2026-10-03T06:19:03.737Z",
+  "sha256": "1049a5685ef81b3cd73164cc1ff83578f4555a4da6b72c9488c4a6b50d2d799a",
+  "bytes": 15233,
+  "requestId": "uNHDctfQSkkXnOyJNJvo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1af1b5deab20ce30eeebc0800ec312c0675808e7d14776619c87b01cd9551f43",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

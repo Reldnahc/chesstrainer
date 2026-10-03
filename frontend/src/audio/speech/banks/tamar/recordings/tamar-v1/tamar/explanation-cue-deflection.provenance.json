@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-cue-deflection",
+      "label": "Explanation cue deflection",
+      "text": "Look for a forcing exchange that drags a defender off its other duty."
+    },
+    "takeId": null
+  },
+  "requestHash": "67248784ca99667665f91a08ad08e89c9d41a276d6eaf2c4f356c39b4629a854",
+  "recordedAt": "2026-10-03T06:19:22.570Z",
+  "sha256": "4f897fe6640e41d16466581a90095859788fdbdf584fef24ac363c85e38d01b9",
+  "bytes": 14365,
+  "requestId": "1ASsFVPScmADFD6Z7KfY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ab088ab447066544518d632d737d9ba63ea28d5ce1e20a34aea4d19a400e4de0",
+    "bytes": 70261
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

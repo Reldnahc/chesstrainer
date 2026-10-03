@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "positional-castling-alternative",
+      "label": "Positional castling alternative",
+      "text": "Castling was on the table. King and rook could have moved together in one turn. Compare the king's safety in both lines."
+    },
+    "takeId": null
+  },
+  "requestHash": "922fc2261243bb382386ab7418d9107f85552f4c7f729ab054318affbddad99b",
+  "recordedAt": "2026-10-03T06:18:59.037Z",
+  "sha256": "338f9a954a1f061b7ee63ae5cc5c34c212b29874ff269ed1a5b2a5504db7bca9",
+  "bytes": 24249,
+  "requestId": "iRE7yQXDZRjyQ7USbYk3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9257784a5033f55ff13e39290beb3e76565364358efe427131ff887ac3fec683",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

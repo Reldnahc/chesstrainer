@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "positional-passed-actual",
+      "label": "Positional passed actual",
+      "text": "A passed pawn is born. No enemy pawn blocks or guards its path, on its file or the neighboring ones. Advance it when it is safe."
+    },
+    "takeId": null
+  },
+  "requestHash": "c9ba3ecc5cbd529b4ea785daa5c46496b2c0a187e19c17c657f563c0ee5b719d",
+  "recordedAt": "2026-10-03T06:19:11.234Z",
+  "sha256": "22b4fa25a55484da08b5e3fa6fb974ae339ba2ab38e7937549e078d3e6a2f33c",
+  "bytes": 30051,
+  "requestId": "4G1ij6tygJicC07ZxQbQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "049e13bfe3ba8ae8ff310c695f2f6dddd9e0e5c82719034c748ebbe7c41c58e5",
+    "bytes": 154688
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

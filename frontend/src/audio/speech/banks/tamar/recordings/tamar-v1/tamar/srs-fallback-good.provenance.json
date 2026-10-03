@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "srs-fallback-good",
+      "label": "Srs fallback good",
+      "text": "Good move. Understand why, and keep that."
+    },
+    "takeId": null
+  },
+  "requestHash": "2f0df541395fc983c59bdb4b2e9ee40eb18bce1370e3368c895020244957bf23",
+  "recordedAt": "2026-10-03T06:19:04.870Z",
+  "sha256": "1a5d22d617ee3264309b0c2655a8921e1a774b235b996aef37716e090f79213f",
+  "bytes": 11431,
+  "requestId": "Ckign0J65gWE8DXlC47o",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ff1e282e7fc6a2358c31990eb61526d36e3ce32570e120253e7d7aa890f56a62",
+    "bytes": 57304
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

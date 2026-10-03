@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "mate-finished",
+      "label": "Mate finished",
+      "text": "Well executed. Mate, and the win belongs to you."
+    },
+    "takeId": null
+  },
+  "requestHash": "e60e51dcf529400f978cd7a18c7c0dca08d29e846665a8435cdbf7cea422e418",
+  "recordedAt": "2026-10-03T06:18:41.426Z",
+  "sha256": "654e8a489136533cbec4314eb20f7b1287a2e4d0ba8eb589ef53e2d16d78eeff",
+  "bytes": 13440,
+  "requestId": "DopJ2pJrTnaF12gsmpok",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7b2a25989902a5a178b0236aba34c5ae007782f86d243f5e203e3330d3e084b0",
+    "bytes": 67753
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

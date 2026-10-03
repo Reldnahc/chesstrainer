@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-cue-removing-defender",
+      "label": "Explanation cue removing defender",
+      "text": "Before a defender is traded off, be exact about what it protects."
+    },
+    "takeId": null
+  },
+  "requestHash": "f28d7950797839ecec9c205bd67ad3fbc858813c6f7623f5760dd5a35f09c364",
+  "recordedAt": "2026-10-03T06:19:13.024Z",
+  "sha256": "4bc8c1157d7073ae22549472a9794689aa592c6c14e682ef64e28cdced52b5f6",
+  "bytes": 14627,
+  "requestId": "x0Bqb7gz67I9IkcV4jxq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dc201fcac8ae1072b6906b38e83e7eb9f8a335575116d4b410fb7b4b2f153902",
+    "bytes": 72768
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

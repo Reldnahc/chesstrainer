@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "recovery",
+      "label": "Recovery",
+      "text": "Good fight. After the earlier setback, you are back in a playable position. Study how the recovery was made."
+    },
+    "takeId": null
+  },
+  "requestHash": "458884b5bf2d823aa506535c41d0195d396f0f4b78bb32c7f519b8a793b957fa",
+  "recordedAt": "2026-10-03T06:19:00.735Z",
+  "sha256": "d41e5a3a537b67e36204748728efa385a365391de02bf4a1cfb906299b22c448",
+  "bytes": 23009,
+  "requestId": "m2eIx6HeJuOmVCerOIe1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "37644760647cac5db966ae4ad21711b5daabd04f51545866768017d41916c538",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

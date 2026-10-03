@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-escape",
+      "label": "Explanation frame capture promotion escape",
+      "text": "The pawn takes and becomes a new piece, and with that its own king is out of check."
+    },
+    "takeId": null
+  },
+  "requestHash": "75c549e47f3ee3295248513cbde79b30004499004309248ad2bacc67f541cc1c",
+  "recordedAt": "2026-10-03T06:19:25.367Z",
+  "sha256": "fd60d1d5c492d21c8844864e536ff535e2a90d1f20a0a2e7c862fe6e3dc10e1c",
+  "bytes": 18463,
+  "requestId": "vff3hWjGeTAa001IeyZx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e5067d5885fbecf32656ed0fc2e8801964cfc8a0531b1fa813163a724db8b04a",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

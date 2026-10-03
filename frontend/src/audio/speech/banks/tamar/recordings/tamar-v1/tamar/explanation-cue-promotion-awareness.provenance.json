@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-cue-promotion-awareness",
+      "label": "Explanation cue promotion awareness",
+      "text": "For each advanced pawn, count the moves to promotion and test the pushes that demand an answer."
+    },
+    "takeId": null
+  },
+  "requestHash": "53a1f95b3735122d2a4a1d076d90a1c7516f5ace351f3502a1cff0c4f684973a",
+  "recordedAt": "2026-10-03T06:19:18.629Z",
+  "sha256": "4f4e06a50fb479ed4ac11802e8f886a288b55c060b5620abc8748a78f17d41b3",
+  "bytes": 19384,
+  "requestId": "xoal12DnY0JfT3W83EId",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "81b01a9cec0ac2b8f58c7f1260cef53a05aeb63ed4a59dc2cb8bdaad939a3a61",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

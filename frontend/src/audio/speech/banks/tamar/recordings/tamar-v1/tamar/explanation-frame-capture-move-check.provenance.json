@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-check",
+      "label": "Explanation frame capture move check",
+      "text": "It captures, and it checks."
+    },
+    "takeId": null
+  },
+  "requestHash": "f4c2c86802e1f08b70035710db654180ff9cfb7e793fed3f1caac1e065f8a7d0",
+  "recordedAt": "2026-10-03T06:19:18.153Z",
+  "sha256": "0019740f8560853b6e0c17621e59dbec9c4885405e220d61f930a4e940f4285e",
+  "bytes": 8419,
+  "requestId": "8EwXzaTdXrHoeRLLfAXt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8f820edcecec521f25efad37e85ee64c0d1e50e485e4da9e2b99917c91cab2ea",
+    "bytes": 40586
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

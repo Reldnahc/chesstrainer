@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "positional-castling-actual",
+      "label": "Positional castling actual",
+      "text": "The king is tucked away. Castling moved king and rook in a single turn, with the rook settling next to the king. Safety first, then the real work."
+    },
+    "takeId": null
+  },
+  "requestHash": "1d3a2132a5d3eafb5d35e96a1444e37d40aa33b94a220b7d8e874e9436440a67",
+  "recordedAt": "2026-10-03T06:18:57.280Z",
+  "sha256": "2aa51008b5fab3d9b576e98f531bcabd4e53eaaab3a206013524f15325d160b3",
+  "bytes": 31025,
+  "requestId": "mxJ9X8MgxEPaQvg4XlHC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "30e4a7cbd708843c7da5647fa4801d614648bd54940e7081c2164fd87f2a29fb",
+    "bytes": 160958
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

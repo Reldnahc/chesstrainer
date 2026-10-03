@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "recognized-opening",
+      "label": "Recognized opening",
+      "text": "Know the territory. The opening here is a recognized one. Learn the plans behind it, not only the moves."
+    },
+    "takeId": null
+  },
+  "requestHash": "ee6caf32924ef61f6bcca17d9a80c9d99a964093c753c00c5158a16e59dd0929",
+  "recordedAt": "2026-10-03T06:18:57.650Z",
+  "sha256": "85367af2d5476d63826066e8a5991f37fdff0aab896c5cecd484786d2a07ed7e",
+  "bytes": 23466,
+  "requestId": "6bHQbsIDApWBEnpMKkRD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dcaf5cceb00163996d1d8c76ee485ad26fe61640c3d42f87a5f43f97956d3cbd",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

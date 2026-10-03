@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-mate",
+      "label": "Explanation frame capture promotion mate",
+      "text": "The pawn takes, becomes a new piece, and the result is checkmate."
+    },
+    "takeId": null
+  },
+  "requestHash": "e1a946ec5012721e2b58871cd5eed8207d3a2ef22a8b1530011635702320cdda",
+  "recordedAt": "2026-10-03T06:19:23.721Z",
+  "sha256": "5aa812d0268d6b10f06b77b180e3cdc44afac381319d6b9037d9cd8537de9568",
+  "bytes": 14908,
+  "requestId": "dSsCAcdN9PeyytSNpoJd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "292f2ce0ee0d093ac55cbee2751aad6eb0ddfea5730e911e1f34d70b5aee8281",
+    "bytes": 74022
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

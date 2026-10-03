@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-back-rank-allowed",
+      "label": "Tactic back rank allowed",
+      "text": "The back rank is brittle. The king is walled in by its own pieces, and this gives the other side a mating idea along the last rank. Give the king air before it is needed."
+    },
+    "takeId": null
+  },
+  "requestHash": "4556bc833668d379fdc5032c73a609267f54316b93e99f65699d41c35b0133a3",
+  "recordedAt": "2026-10-03T06:18:59.027Z",
+  "sha256": "8bf3ec7f200105165da729976ded556f32ceafc91d4b5c39c952bf4c66495048",
+  "bytes": 35881,
+  "requestId": "OFBePR3p9tA3iTB28xK9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "15dfc32641268d5dc5b112cbf006ff3a9da35cd7ff1372ea23a9fc5ae8cd8a3a",
+    "bytes": 182692
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

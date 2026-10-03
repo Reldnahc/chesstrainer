@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-ordinary",
+      "label": "Explanation frame capture promotion ordinary",
+      "text": "Capturing onto the last rank, the pawn turns into a new piece."
+    },
+    "takeId": null
+  },
+  "requestHash": "9efdb56e89f9ac27eb5faadac3b8ba65b9282cbf9fba2093ca33a5a0917c298d",
+  "recordedAt": "2026-10-03T06:19:21.348Z",
+  "sha256": "6ea5a4a63b2c13fc80d30c744fb2e2786c3572d5ebe7caadc40797bd06e34431",
+  "bytes": 13907,
+  "requestId": "q6oQmNNuR0nHpCIyjrFU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a24ea0313a7825e0224315d6a0e62fbb9794d3860712b084d726d2f11e1a9b1a",
+    "bytes": 69007
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

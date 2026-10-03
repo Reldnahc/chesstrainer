@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "positional-rook-semi-open-alternative",
+      "label": "Positional rook semi open alternative",
+      "text": "A semi-open file was within reach. Another move gave a rook a file free of its own pawns and holding at least one enemy pawn. Set that placement against this one."
+    },
+    "takeId": null
+  },
+  "requestHash": "e2077fd28132e1df08a5c35c4075fbbacc67801d0b0ecc56545166d191a8c814",
+  "recordedAt": "2026-10-03T06:19:08.888Z",
+  "sha256": "0afa93328c89a80439194afe852d40434c4766ebcaaa9a8ef2e56edee0f828bd",
+  "bytes": 34135,
+  "requestId": "eLblvbFGHOSIvP4tdo18",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "11c5ee31369f4ab5448e41a365c78e56e4b88277fdcdf8864dabbf92be8a755e",
+    "bytes": 175168
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

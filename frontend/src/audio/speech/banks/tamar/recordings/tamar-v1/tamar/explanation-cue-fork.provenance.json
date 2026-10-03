@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-cue-fork",
+      "label": "Explanation cue fork",
+      "text": "Among the forcing moves, find the square where one piece would hit two valuable targets."
+    },
+    "takeId": null
+  },
+  "requestHash": "6d222a638a27bba703211c94778a6bedb1306acdff6cf55ae1629f26b21d500d",
+  "recordedAt": "2026-10-03T06:19:36.905Z",
+  "sha256": "52ae05c75d689dc65226737ac42c7616030a580af25fb17db7ff13558b02e19e",
+  "bytes": 18249,
+  "requestId": "gjHQT1qIigvSWLqKfyqg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0276c1eecad3c0ffe82cbca4de3e630cd7f5a03529fa45e141cd864b9d75ab55",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

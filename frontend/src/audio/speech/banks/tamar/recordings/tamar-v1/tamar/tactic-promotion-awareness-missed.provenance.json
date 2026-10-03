@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-promotion-awareness-missed",
+      "label": "Tactic promotion awareness missed",
+      "text": "The pawn should have marched. A stronger move pushed it toward promotion, and this one holds it back. Advanced pawns get counted every single turn."
+    },
+    "takeId": null
+  },
+  "requestHash": "a6fd2ebc1f2b78a7c1cdf33e716d09785680a976d27061fb0d6e02cd4a6df4de",
+  "recordedAt": "2026-10-03T06:19:07.617Z",
+  "sha256": "f3060aff05e568d57f5a3ca7ed6445a53bd1af1fdd46866c89a111256b34cb7a",
+  "bytes": 29910,
+  "requestId": "eaWuzEWtgTaqhL4b8nib",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "85caa4d32efd7a11307d29d93f995512e993faa5cbe50136cf58e6e82acced6d",
+    "bytes": 155942
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

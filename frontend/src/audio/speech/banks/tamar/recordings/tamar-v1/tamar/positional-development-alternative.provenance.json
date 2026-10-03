@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "positional-development-alternative",
+      "label": "Positional development alternative",
+      "text": "Development was on offer. Another move would have brought out a minor piece. Compare it with what the game saw."
+    },
+    "takeId": null
+  },
+  "requestHash": "f56be7ddd2baa36493ff406061294ed4c2884bf1124ea67bd54cd2918f534a51",
+  "recordedAt": "2026-10-03T06:18:59.422Z",
+  "sha256": "b5eb072cbe187fb4525594515e5f06a1f29e78b477c4773aab4ac4896437747f",
+  "bytes": 21212,
+  "requestId": "sUUF04uCjX0ok5Q5QxUg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0fdaa61414500131cec209845363cc082fe1148fef77f25f8ef41847693678c7",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

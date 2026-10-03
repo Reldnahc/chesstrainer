@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "positional-king-flight-alternative",
+      "label": "Positional king flight alternative",
+      "text": "Air for the king was one move away. Another move opened a new legal square for it. Mating a king with room takes more work."
+    },
+    "takeId": null
+  },
+  "requestHash": "96cec4279b930cf38a5cbad93d1d9c6fb9b6c7617149a40ee0940562ce45adef",
+  "recordedAt": "2026-10-03T06:18:55.151Z",
+  "sha256": "70535bfc68f19aa0f5fda7eb8f451e40c86728db62808ee1a01e7b95d5da7d63",
+  "bytes": 26387,
+  "requestId": "qbjTmq5RCFmf6tZnynL8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6976c0942d2a09962798c61dccd34f63ae76fc829e705a7a624e0c97eb513a47",
+    "bytes": 136716
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

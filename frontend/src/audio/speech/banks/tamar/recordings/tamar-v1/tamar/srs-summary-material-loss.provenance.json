@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "srs-summary-material-loss",
+      "label": "Srs summary material loss",
+      "text": "Once the saved line runs out, the side that made this move has less material than at its start. Find where it slipped away."
+    },
+    "takeId": null
+  },
+  "requestHash": "c2b0e34cdf18abfead00aaaddae4977e3e8e1ff75244b1fbf310b83c5e382dd1",
+  "recordedAt": "2026-10-03T06:18:55.678Z",
+  "sha256": "ca3aefd542f06a32bdc44edf204005a0fd1f4db05abb98864800796a6deaa35a",
+  "bytes": 24405,
+  "requestId": "5dTUCn4Ypslz5HhK2e5l",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "365ed127bfc9d446794a659132e09b527ae423bce04b446b1bb1a0c47fc90942",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

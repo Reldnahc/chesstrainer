@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-note-curated-authority",
+      "label": "Explanation note curated authority",
+      "text": "The saved answers are what this exercise measures against. Plenty of other legal moves can still be sound chess."
+    },
+    "takeId": null
+  },
+  "requestHash": "2fccb61e218828e93ffcd1014af874ec0b022e2b4f8aad5c1a03b29911622cb4",
+  "recordedAt": "2026-10-03T06:19:24.420Z",
+  "sha256": "e4bd564981010cb4b78ab95dbf998745ae4a0a10a6d1fc3fd5250d0e37ec79ab",
+  "bytes": 23004,
+  "requestId": "id93EZWR5QwafQ5XXRYJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d588492d4a51db37d0551f094a1c8cd98435112f6636378bdb9553e618128365",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

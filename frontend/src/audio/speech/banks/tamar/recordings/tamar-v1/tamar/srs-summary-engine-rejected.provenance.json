@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "srs-summary-engine-rejected",
+      "label": "Srs summary engine rejected",
+      "text": "The exercise says no to this move. The moves shown give no clear tactical reason, so set it beside the answer."
+    },
+    "takeId": null
+  },
+  "requestHash": "1b8308333b423289dc588244ea3120e7cdc43184727d08c8e5fd227226d21c19",
+  "recordedAt": "2026-10-03T06:18:59.142Z",
+  "sha256": "e5ec6c0853276c9bbc0dade9f9e86ab3db4cdc2a8ff7ab3e3e92a1ff6dae5aaf",
+  "bytes": 24243,
+  "requestId": "O4WFNe9Uhrg0XLZBuXQ1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "32219de0e609f37e0a314ada9331b9c96a5c72a61cce9e1674c7598d11b37da2",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

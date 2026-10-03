@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "opening-preview-active",
+      "label": "Opening preview active",
+      "text": "This line is part of Mixed Due, and dedicated practice drills it on its own."
+    },
+    "takeId": null
+  },
+  "requestHash": "c048b251cd94bcaf027914760486af2b546655a33a172549778575525209f671",
+  "recordedAt": "2026-10-03T06:19:16.202Z",
+  "sha256": "9e0d8cb3e0d08fa6e0ac9a58f94eeb28b74e1f170d0c75267d7be42e597d1814",
+  "bytes": 16142,
+  "requestId": "ywLHA3M74XbaRnv9NM8G",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "34df7bdc7b1103afa9aaf6e926154c8000f480b3e58b1338789eec601bf4bfa9",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

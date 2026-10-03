@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-cue-back-rank",
+      "label": "Explanation cue back rank",
+      "text": "Before the last defender leaves the back rank, the king needs an escape square."
+    },
+    "takeId": null
+  },
+  "requestHash": "2fc79e789583e953f94e1333a5f57fe0186b15992b62872590fd389b3026666a",
+  "recordedAt": "2026-10-03T06:19:17.174Z",
+  "sha256": "7692dcd755d97d6bea8caafc817e949e626d1953b6c5bec7c274a2b0c02bb9e8",
+  "bytes": 15353,
+  "requestId": "wR5keZq1N0NbPVZ1cHwk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0c02a0bb65cab9c0dc869ae9cf0ce384cceecdb7043ce0b4b1105b713a72b213",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "opening-departure",
+      "label": "Opening departure",
+      "text": "The book is closed. From here, the position gets worked out over the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "3158ca54ce8a64e178dc8a3673217e7d0f60e1f103e5452f7b2358628f2125f3",
+  "recordedAt": "2026-10-03T06:18:58.892Z",
+  "sha256": "633335b7bd2e4ce421c17db6736452048801895e7141c953037fcdddf7f7502f",
+  "bytes": 15644,
+  "requestId": "zujd2LFLPhcsMJXsKF5T",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b329c1f9632db95b76deb8175a02080dcd67fc0897876c61c2bb29ee94e5c9e5",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

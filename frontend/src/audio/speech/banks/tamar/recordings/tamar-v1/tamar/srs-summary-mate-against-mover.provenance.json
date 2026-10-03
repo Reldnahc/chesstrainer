@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "srs-summary-mate-against-mover",
+      "label": "Srs summary mate against mover",
+      "text": "This move lets the other side force mate, according to the saved engine analysis. Find the defense that was needed."
+    },
+    "takeId": null
+  },
+  "requestHash": "45fd258e9ebff307de7088c2211c0148562f92e9326cfa93f45839d4c9375aab",
+  "recordedAt": "2026-10-03T06:18:52.100Z",
+  "sha256": "34fc22c4a68d289476b2cd8d6a341006ba6259631a2e9381324bdfa4573af00a",
+  "bytes": 23730,
+  "requestId": "Dh95PycxJISzfv0p3gLR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ca78f5eade9227e6a2a2c6663518f9091500729d15dd79c267b18780914622ae",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

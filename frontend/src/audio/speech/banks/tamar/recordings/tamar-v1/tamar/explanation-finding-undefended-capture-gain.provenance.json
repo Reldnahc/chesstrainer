@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain",
+      "label": "Explanation finding undefended capture gain",
+      "text": "No defender covers the piece, so it falls without a recapture, and the line finishes ahead in material."
+    },
+    "takeId": null
+  },
+  "requestHash": "f6131973196a9fc4e31bf29cbcced652d8e7eca070d8a07b6f82b7065e3225ef",
+  "recordedAt": "2026-10-03T06:19:30.028Z",
+  "sha256": "91bd90f0a8950902b277adc070c736f1a940e87a9e39eadf9a3dc5b4422da019",
+  "bytes": 21462,
+  "requestId": "yIXCmjpzgNFnTXYnNosy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "81c0335705f53ef4431f1c5abd313258a412ea1b0dc77b0464fe661ad3558a90",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

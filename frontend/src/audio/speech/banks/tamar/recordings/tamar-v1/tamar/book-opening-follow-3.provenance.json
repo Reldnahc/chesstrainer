@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "book-opening-follow-3",
+      "label": "Book opening follow 3",
+      "text": "Theory knew the reply in advance."
+    },
+    "takeId": null
+  },
+  "requestHash": "9acf70f5b06536377d9a06bad04139b92b033067486f32ef37ef4c23cc76e77e",
+  "recordedAt": "2026-10-03T06:19:37.670Z",
+  "sha256": "5bc8d3fccaee6f3453c9db8b23a9a860c051427e51ada6a05616aa4c17231035",
+  "bytes": 8727,
+  "requestId": "soYWVzrjv4bS8QbTbxCZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "295182896e88bed17166830f617bb4f0d2cf091904ba731bd3dd0bace7bb7302",
+    "bytes": 41839
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

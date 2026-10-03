@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape",
+      "label": "Explanation finding pin restricts escape",
+      "text": "The attacked piece is pinned to its king, so it may move only along the pin line."
+    },
+    "takeId": null
+  },
+  "requestHash": "9c156828726b0e7d15ee7b80c100616401075b07c9c1f84bcee2cdb7a2317faf",
+  "recordedAt": "2026-10-03T06:19:12.939Z",
+  "sha256": "1ae2419855c8ff31a7e7f3e0b71c0610c34d06ea7bb76b185746d4b7fdceb2b3",
+  "bytes": 16802,
+  "requestId": "4YPF1P2NLK8PVxDsbXss",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8dac297bd9ccba3360dd98ac0932cdfaa4b6a5745356804d4717852e6dfc7591",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

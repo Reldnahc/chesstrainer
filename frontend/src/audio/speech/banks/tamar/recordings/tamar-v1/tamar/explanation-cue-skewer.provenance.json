@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-cue-skewer",
+      "label": "Explanation cue skewer",
+      "text": "When something valuable is attacked, look further along the same line."
+    },
+    "takeId": null
+  },
+  "requestHash": "2bd6e454a5468be6561d50a838100efae39a7dfca82c23998b733923a3a6373e",
+  "recordedAt": "2026-10-03T06:19:39.181Z",
+  "sha256": "66e6dba7b159b733b0d2fe9c65c65fa53b189cecacdc5a899c3c118ce6d544aa",
+  "bytes": 14603,
+  "requestId": "wVsLN2cwEyoYLkENGB8x",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5ddebf8f0ee63fb3ae4ac3105fadb65a0d43ed03adca62053f6d8bf3f32a51d8",
+    "bytes": 72768
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

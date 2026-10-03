@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-finding-promotion-material-retained",
+      "label": "Explanation finding promotion material retained",
+      "text": "The pawn promotes, and the line finishes with a net material gain."
+    },
+    "takeId": null
+  },
+  "requestHash": "ceca0665a9e84bf7cbe79bd519935a99bde54225b89059fb8d6c82d2729e6e81",
+  "recordedAt": "2026-10-03T06:19:28.416Z",
+  "sha256": "9f6d8a9474a79676da55bc6a1db1353ab7d8edd073d92ce2cda3b81d0403286f",
+  "bytes": 14147,
+  "requestId": "wCUrAaOHKcxy2ppenkPU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8a757a3ecb9e3610ecb62073647cfcad34a5172a25d55c099fb1309925bd12a6",
+    "bytes": 69007
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

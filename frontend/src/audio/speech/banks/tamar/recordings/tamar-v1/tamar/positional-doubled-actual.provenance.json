@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "positional-doubled-actual",
+      "label": "Positional doubled actual",
+      "text": "Doubled pawns. Two pawns of the same color stand on one file, and they cannot defend each other. Write that structure down."
+    },
+    "takeId": null
+  },
+  "requestHash": "0660afe85246aa71d5686f3ee5e4720076baf902fd9aedc3f168583889fb40dd",
+  "recordedAt": "2026-10-03T06:19:04.706Z",
+  "sha256": "03d3d969544a83edb1e96fdefd4e00926a41f59d104fe74ac99df7c85ac58498",
+  "bytes": 25933,
+  "requestId": "rXUszFRZzvMTlcDRZ3Dr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "05ab1107f0faffbebb0f5c6dee6b5015f961c8b14c6c875008e1cce87c4d942f",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

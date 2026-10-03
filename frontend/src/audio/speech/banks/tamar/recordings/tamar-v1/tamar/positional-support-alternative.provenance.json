@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "positional-support-alternative",
+      "label": "Positional support alternative",
+      "text": "Cover was on offer. Another move gave an unprotected piece a defender. Compare which pieces each move leaves loose."
+    },
+    "takeId": null
+  },
+  "requestHash": "86b5b269cafd805f18d8d8a722ff93dd28365534e76e5de051b3247158b24d0a",
+  "recordedAt": "2026-10-03T06:18:48.224Z",
+  "sha256": "747f9a7f51494eb07ed9cf0f957282b4a8dcfbde8bcbeb80d6c40c364a2c66c4",
+  "bytes": 26018,
+  "requestId": "XWSMhIONMCPKVUWHdAMs",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9c99bbf4569e42cbc7c26a3e942d0b734450a66c43d69b12b10c32282a1d6c13",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-promotion-awareness-allowed",
+      "label": "Tactic promotion awareness allowed",
+      "text": "Keep that pawn in sight. One of the other side's pawns now has an open road to promotion. Every passed pawn gets a count, whoever owns it."
+    },
+    "takeId": null
+  },
+  "requestHash": "a68f660b8529af99a024a35e57de3bb464f1af1480d40ae44bf3d02bad973f70",
+  "recordedAt": "2026-10-03T06:19:05.635Z",
+  "sha256": "db4658c8ef5c76881a0fbb72c194a61188d1394a856f911f3fddcc1d3d0f8dd9",
+  "bytes": 28956,
+  "requestId": "7IliKyhBaOZs7Kw7N6ZD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3d13872aaf6d8b3da2aeeab59b823135b18cc402e58b4f986ea8aa361526f27a",
+    "bytes": 148419
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

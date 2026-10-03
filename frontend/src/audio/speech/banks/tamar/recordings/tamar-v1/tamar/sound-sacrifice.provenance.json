@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "sound-sacrifice",
+      "label": "Sound sacrifice",
+      "text": "The sacrifice holds. The material is there to take, and the idea survives anyway in the line we checked. Learn the line that follows the capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "a0bc15fd8b2860b9e30bf53593f59a1f3dc17adad86b7e109e983009c22c10dd",
+  "recordedAt": "2026-10-03T06:19:12.622Z",
+  "sha256": "af813ef7054e7692e62672facdf5de25cfc082e02906a0e9a28d796f65057c25",
+  "bytes": 28687,
+  "requestId": "jw5FfyZACrBnuQgjYCAf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "73122c50ce7bcbf16c5354c83546309a137a5b23db5a719c67d358acbef561f8",
+    "bytes": 148419
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

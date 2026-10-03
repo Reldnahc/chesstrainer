@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "book-opening-entry-1",
+      "label": "Book opening entry 1",
+      "text": "Know the territory. A book move, and the opening has a name."
+    },
+    "takeId": null
+  },
+  "requestHash": "7159ce4c877a89b9d07563c5439e9d909d57defd7c9a660d7dfbf23868864250",
+  "recordedAt": "2026-10-03T06:19:32.760Z",
+  "sha256": "69e90b9db4576c63c5e8a48b02a2dc8e280ed45f6ac0e017a66285de149537ae",
+  "bytes": 14438,
+  "requestId": "eYR3I0Toqh4hgKS8qFiR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4866e4e5e3b1f1de684270e8ffbff30ebb44b415ba2bc1de8853467fa22560de",
+    "bytes": 72768
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

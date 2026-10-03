@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "book-opening-follow-2",
+      "label": "Book opening follow 2",
+      "text": "Theory still claims this move. Keep the plans in view."
+    },
+    "takeId": null
+  },
+  "requestHash": "1b6f85d1360d3a30f54a49452c27caf59ee4295c0a6e25bf1c1272a5f268d7db",
+  "recordedAt": "2026-10-03T06:19:36.925Z",
+  "sha256": "5be3053b45a02d632b836e6a580d373cbbc001a7e1e83085160d2765e48ce693",
+  "bytes": 12615,
+  "requestId": "iz2BcUr8bgfSojLqG9Zi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "eee651f7148f42efd2a2eb46373e8197f7af1304c3f17fc4e17087ba78ecc7d3",
+    "bytes": 63991
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

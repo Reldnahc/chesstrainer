@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-cue-double-attack",
+      "label": "Explanation cue double attack",
+      "text": "Search for the move that creates a pair of threats, and count checks and newly opened lines in that search."
+    },
+    "takeId": null
+  },
+  "requestHash": "395874d0ec41714b2d6c25627afd3937b887471b0456a8993b10f900f161077a",
+  "recordedAt": "2026-10-03T06:19:15.954Z",
+  "sha256": "244178f5c7f448667bbeb4b2fd07b9c29cd42c8a9e8e79e3a31acd2297a5b045",
+  "bytes": 20246,
+  "requestId": "PsJcgHD1JLZUS6MktmWT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "101ab04d08ea4be58af93fcbc7d9d0b1392ec0f4f1f431bcd6de7e3ca2f483bd",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

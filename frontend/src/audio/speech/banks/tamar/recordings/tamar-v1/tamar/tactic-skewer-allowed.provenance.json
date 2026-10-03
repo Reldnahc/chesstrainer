@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed",
+      "label": "Tactic skewer allowed",
+      "text": "Two pieces sharing one line is an invitation, and this lets the other side skewer them. Notebook rule: never stack valuable pieces where one attack hits both."
+    },
+    "takeId": null
+  },
+  "requestHash": "c77f626ce30bbef70d18355725b62953880c57b8264213e6ebdb38e0608b0329",
+  "recordedAt": "2026-10-03T06:18:46.362Z",
+  "sha256": "148a42bff132b3f2f1407c15f8d7574cb5cd357d581e533ef92f5639021d637c",
+  "bytes": 34070,
+  "requestId": "0jNM6bWqYIJWWhsyOsqF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4e571ee6e840f50845497fe3bad35008fcdc583354b4ad2c9caa5d28a7faf47d",
+    "bytes": 176422
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

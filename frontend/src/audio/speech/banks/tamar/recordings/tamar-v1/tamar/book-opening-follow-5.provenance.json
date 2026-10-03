@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "book-opening-follow-5",
+      "label": "Book opening follow 5",
+      "text": "The book carries the game one move further."
+    },
+    "takeId": null
+  },
+  "requestHash": "7148e8c751a4abf38a2e579f1ce7442ef58f6e406e14069280e6c33af83810d3",
+  "recordedAt": "2026-10-03T06:19:14.950Z",
+  "sha256": "a5a18b7e3ee9bb651249dcd3705a1ac49caa5925fe6dcd97e67199d0055822b4",
+  "bytes": 9784,
+  "requestId": "op8gTiNhU3xpQSYQY0gr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f99006c50232e9aefbfe190ce4150e3a545dbe93d34e39d98eb5d1354e5329b2",
+    "bytes": 47273
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

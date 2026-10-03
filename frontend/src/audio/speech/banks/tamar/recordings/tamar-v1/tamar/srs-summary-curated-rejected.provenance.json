@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "srs-summary-curated-rejected",
+      "label": "Srs summary curated rejected",
+      "text": "Not among the saved answers. It could be sound chess all the same; it just is not what this exercise wants."
+    },
+    "takeId": null
+  },
+  "requestHash": "3052af4dd1140f41956a0cc1f353f51784be63318c7c97504edf8fac446e923a",
+  "recordedAt": "2026-10-03T06:19:02.401Z",
+  "sha256": "8488017bab5d9ebf6fab277a418513db709a9df05beec0a47d6d3b2a14eebefa",
+  "bytes": 22259,
+  "requestId": "EapwFlSNE2IghMSxtxd6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7cd4628ae32f40d29b661ab58a8484a0d4e387ad6f47e8744256a383254e6acc",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "srs-fallback-relearning",
+      "label": "Srs fallback relearning",
+      "text": "Solved. The recall keeps its relearning mark anyway, which is how it sticks."
+    },
+    "takeId": null
+  },
+  "requestHash": "3ce97c261710591472164b364c19908d53898539ec0e9ce163137ec3e0b1f55c",
+  "recordedAt": "2026-10-03T06:19:07.266Z",
+  "sha256": "6332ece9701ef37d4adaf65b0fe0e65f684c15bd71ad9fe84a3e662b89b88a05",
+  "bytes": 16613,
+  "requestId": "h5PuAleCg4PshT0xNDz9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b1ffa67ea33bb177282d28c4d2eeeeddda2f5f9336fc3a55b5e125996a5e0db5",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

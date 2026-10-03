@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-finding-pin-defenders-no-recapture",
+      "label": "Explanation finding pin defenders no recapture",
+      "text": "Every defender is pinned to its king, so none can recapture, and the line shown wins material."
+    },
+    "takeId": null
+  },
+  "requestHash": "083450527e0d99e3a7214661924511607bfcd33a1cb6de4d5488334127f61511",
+  "recordedAt": "2026-10-03T06:19:14.724Z",
+  "sha256": "e5efbcd2300c47f12253d6a1bb8a3f5a26e263451f2aa571dc8ce998475323f3",
+  "bytes": 21233,
+  "requestId": "7qOYxYFz01AL1Tnwj00b",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3f576cf66024da921646683aa16088089b51bb8c3a985b3519f6ede7aef50483",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

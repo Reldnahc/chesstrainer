@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-cue-pin",
+      "label": "Explanation cue pin",
+      "text": "Name what a pinned piece is shielding before moving it."
+    },
+    "takeId": null
+  },
+  "requestHash": "4d078824daa806b7405d76fa30285fc6ad6dcaee9878d7ba34bd0a04cf1ebacd",
+  "recordedAt": "2026-10-03T06:19:37.887Z",
+  "sha256": "9610e381dea512bbc305837a696b761d3b8bd4b3e52a1d9315b629772f2f29a2",
+  "bytes": 11250,
+  "requestId": "N1E7oyVxNIdbIXKq1ohx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b11ededa2aebd6103e5737d40692cf0bac1e46e858f79ff0032e6d2f16c5c65d",
+    "bytes": 54796
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

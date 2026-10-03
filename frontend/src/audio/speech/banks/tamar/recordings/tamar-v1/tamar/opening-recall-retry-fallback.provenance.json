@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "opening-recall-retry-fallback",
+      "label": "Opening recall retry fallback",
+      "text": "Play a move from the study line."
+    },
+    "takeId": null
+  },
+  "requestHash": "88813c1f38f58122e1ad2a9cf2e8044479c5d4ade6692d94475a5136cc23c2d7",
+  "recordedAt": "2026-10-03T06:19:34.358Z",
+  "sha256": "7e8a2654833449ada97cfaae6f3c2bc13c756d092c7ccaea1790cb22a961cfe5",
+  "bytes": 7014,
+  "requestId": "VSE3RLPlE5cvQDwrrgux",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "97f78939ec9d4dc0b9df7047eea5a0c02606ccd0304baec64510fff820520a2a",
+    "bytes": 33062
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-cue-discovered-attack",
+      "label": "Explanation cue discovered attack",
+      "text": "When a blocking piece moves, trace the line it leaves open."
+    },
+    "takeId": null
+  },
+  "requestHash": "2b37d46cfba30c46cb35868d791bf7058989a1f9c397e76c5907d3be5850d264",
+  "recordedAt": "2026-10-03T06:19:14.241Z",
+  "sha256": "513ce24c6894d59ce53903322c7b6f92246d1683eca3b0b1dcc3778d13f4e08d",
+  "bytes": 12604,
+  "requestId": "TaUW33qk23qCUEl918Vd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ebf80d8e1223f90ba1d45843071a626071d7f8994d296342eff9659ca32071f9",
+    "bytes": 62319
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

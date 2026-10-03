@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-escape",
+      "label": "Explanation frame capture move escape",
+      "text": "A capture that also brings its own king out of check."
+    },
+    "takeId": null
+  },
+  "requestHash": "173894623d41149e35e4f3de83e7836e142037c2242c4bcf01a22a2beb366fe1",
+  "recordedAt": "2026-10-03T06:19:20.152Z",
+  "sha256": "b7c5bcebe76bae399e43169a61236622e904820a967f6556d9351488b2660b09",
+  "bytes": 11591,
+  "requestId": "1QbbXPJjBIObRG5L9w2R",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "616724c0c1c5635b4cfb96f24edd2d23eaeb8b36cc039d33604008129595f71d",
+    "bytes": 56050
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

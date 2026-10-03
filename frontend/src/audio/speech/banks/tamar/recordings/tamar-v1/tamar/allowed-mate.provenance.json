@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "allowed-mate",
+      "label": "Allowed mate",
+      "text": "This decides the game. After this move, checkmate is forced. Forcing replies get looked at before anything else, every move."
+    },
+    "takeId": null
+  },
+  "requestHash": "ba30be2a81160a2ee0484240d83854a7f39b1bc00764413e3aead432bfbd1d93",
+  "recordedAt": "2026-10-03T06:19:08.172Z",
+  "sha256": "660ab32bba48ce208e64e93f443bf20b4ec75eb5ca6cd10e0654be9b384b8edf",
+  "bytes": 27897,
+  "requestId": "wGk9AaMWlGfqTjf2LJZs",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2309c232557766592837e44d1e24d7b003749700fbc192f6a8cc1f9688980c6e",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

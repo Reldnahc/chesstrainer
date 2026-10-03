@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected",
+      "label": "Explanation finding deflection collected",
+      "text": "The defender gets pulled off its post, and the piece it covered is then taken."
+    },
+    "takeId": null
+  },
+  "requestHash": "596a646d38e88d7bcc8d3c50399654104e58d9eedac38a9420eb737fa0f76f4f",
+  "recordedAt": "2026-10-03T06:19:21.461Z",
+  "sha256": "501fb230fb0a9591b4ad8fc15cccfb1337f93925254cb02a873b774356479c9a",
+  "bytes": 15932,
+  "requestId": "z36kGUSZQO1cYATa4BrV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e3ebc82282146f5b16343fe17abf65183dbe5490d261410e6d0404dc809ed209",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

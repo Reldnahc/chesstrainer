@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "book-opening-follow-1",
+      "label": "Book opening follow 1",
+      "text": "The book still covers it, so the ground is familiar."
+    },
+    "takeId": null
+  },
+  "requestHash": "4f7971e017d54f74b130ab83c4bc14bc026cb50f82f13d614391b8fb5846afea",
+  "recordedAt": "2026-10-03T06:19:35.850Z",
+  "sha256": "dfd08f530238fd8d1c4f26517d2c8841d2a4d2cf01e19b51371410db39238a07",
+  "bytes": 11103,
+  "requestId": "vhiZg7KGNZVvcQoGBfTV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "54961c60640d03a4dc0da4e4ad55bb0323468bc854b8f42210bc2c068d2aedb5",
+    "bytes": 54796
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

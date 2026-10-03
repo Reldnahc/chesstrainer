@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-frame-castle-check",
+      "label": "Explanation frame castle check",
+      "text": "Castling, and from its new square the rook is giving check."
+    },
+    "takeId": null
+  },
+  "requestHash": "9edf7345772192308ddc414ca5a940c1551baa1b0ece2f624ecd7729058b86ad",
+  "recordedAt": "2026-10-03T06:19:26.611Z",
+  "sha256": "e7ca92257bb8ffc12097bd2f275ea9e2b8ffda8c908beadbd97e59f2cf09cd12",
+  "bytes": 13495,
+  "requestId": "9hRBClyEhcPOqBkMDJ3D",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2550a9f0dba8745ce6b8d3441f34d0132ec96da92d687a3db60474b18667f3c0",
+    "bytes": 66499
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

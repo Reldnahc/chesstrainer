@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "immediate-capture",
+      "label": "Immediate capture",
+      "text": "Material is falling. A capture is ready on the very next move. Look at what hangs after every move."
+    },
+    "takeId": null
+  },
+  "requestHash": "72891c48b8723635f09a87f7a2c112b86366156286c760483ba9f1556fc81c5e",
+  "recordedAt": "2026-10-03T06:18:42.254Z",
+  "sha256": "4900e20253a630247624708f24c2b204c978cdf58e4fb02ee8a48aea713653c0",
+  "bytes": 23030,
+  "requestId": "oaZQFbOdjhAzwbGpryTI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2a9aad92f228d0be3c38f15096f8eb93a022294f933a7c544a8f275c96ed48bf",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}
