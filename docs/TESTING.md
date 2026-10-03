@@ -209,9 +209,11 @@ the production audio engine also retains application and intelligence consumers.
 The application suite runs in eight isolated jobs (desktop/mobile, four shards each)
 and the coach studio in six (three shards each); `SHARDS` in `scripts/ci_plan.py`
 sets the counts. Each config reads its shard from `TEST_SHARD`
-(`frontend/playwright.shared.ts`). The fully parallel studio suites let Playwright
-split tests evenly. The application suite keeps whole files together and assigns
-them to shards greedily by recorded duration from `frontend/tests/durations.json`;
+(`frontend/playwright.shared.ts`). The application and coach studio suites keep
+whole files together and assign them to shards greedily by recorded duration from
+`frontend/tests/durations.json` and `frontend/studio-tests/durations.json` (the
+full-cast file alone outweighs the rest of the studio, so an even split by test
+count left one shard three times longer than its siblings);
 an unrecorded file is weighted by its test count, so stale entries cost balance,
 never coverage. Refresh the record after adding or reshaping heavy specs:
 
@@ -219,6 +221,8 @@ never coverage. Refresh the record after adding or reshaping heavy specs:
 cd frontend
 PLAYWRIGHT_JSON_OUTPUT_FILE=report.json npx playwright test --project desktop --reporter=json,line
 node scripts/test-durations.mjs report.json
+PLAYWRIGHT_JSON_OUTPUT_FILE=coach.json npx playwright test --config playwright.coach.config.ts --project desktop --reporter=json,line
+node scripts/test-durations.mjs coach.json
 ```
 
 Accounts, intelligence and audio each have
