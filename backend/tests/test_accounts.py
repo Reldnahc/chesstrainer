@@ -199,7 +199,8 @@ def test_account_migration_preserves_existing_learning_history(settings):
                 ).mappings()
             ]
             assert [
-                {k: v for k, v in row.items() if k not in {"user_id", "played_at"}} for row in after
+                {k: v for k, v in row.items() if k not in {"user_id", "played_at", "move_count"}}
+                for row in after
             ] == rows
             assert all(row.get("user_id", "local") == "local" for row in after)
         assert connection.exec_driver_sql("PRAGMA foreign_key_check").all() == []
