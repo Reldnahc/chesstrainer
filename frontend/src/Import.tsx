@@ -149,7 +149,6 @@ export default function ImportSettings({
   const mounted = useRef(false);
   const generation = useRef(0);
   const jobsInFlight = useRef<number | null>(null);
-  const jobsActive = useRef(false);
   const jobsFailed = useRef(false);
   const reload = useCallback(async () => {
     const token = generation.current;
@@ -158,7 +157,6 @@ export default function ImportSettings({
     try {
       const value = await read(api.GET("/api/jobs"));
       if (mounted.current && generation.current === token) {
-        jobsActive.current = value.some(isActive);
         jobsFailed.current = false;
         setJobs(value);
       }
@@ -176,12 +174,8 @@ export default function ImportSettings({
     mounted.current = true;
     generation.current++;
     reload();
-    let ticks = 0;
     const timer = setInterval(() => {
-      ticks++;
       if (document.visibilityState === "hidden") return;
-      // Active jobs refresh every 2 s; an idle list only looks for new jobs every 10 s.
-      if (!jobsActive.current && ticks % 5) return;
       reload();
     }, 2000);
     return () => {
