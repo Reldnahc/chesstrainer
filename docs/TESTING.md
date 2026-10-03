@@ -226,7 +226,10 @@ separate desktop and mobile jobs. The studio suites (coach, intelligence, audio)
 test independent pages on stateless dev servers and run fully parallel: 2 workers
 on CI, 6 locally. On CI their per-test timeout is 60 s, because whole-family
 checks that take 10 to 20 s alone share the runner's 4 cores. The application suite starts one test server and database per
-worker (2 on CI, 4 locally; ports 8765 and 8771 upward) and keeps each file's
+worker (2 on CI, 4 locally; ports 8765 and 8771 upward) through
+`backend/tests/browser_servers.py`, which launches them all at once and answers on
+port 8769 when every server is healthy (Playwright would start a list of servers
+one after another), and keeps each file's
 tests in order within its worker. `PLAYWRIGHT_WORKERS` overrides either default;
 use it rather than `--workers`, because the application config starts one server
 per configured worker. Accounts keep one worker. Each suite owns fixed ports, so
@@ -243,9 +246,11 @@ a roster case in each file verifies equality with the studio cast and registry.
 Each gets an isolated page and the normal test timeout, so workers and shards can
 spread them without dropping expressions.
 
-The backend job runs `scripts/pytest_parallel.py -n 4`: the same suite as
-4 pytest processes over file groups balanced by `backend/tests/durations.json`.
-Stale durations only affect balance. Browser specs that load Python semantic
+The backend check runs as two jobs, each `scripts/pytest_parallel.py --shard k/2 -n 4`:
+a balanced half of the test files per job, as 4 pytest processes over file groups,
+both balanced by `backend/tests/durations.json`. Stale durations only affect
+balance. Lint, formatting, the contract export, migrations and the voice-bank check
+run once, on the second shard. Browser specs that load Python semantic
 fixtures cache their output under `frontend/node_modules/.cache` by a hash of
 the backend tree, locked requirements and interpreter, so workers and reruns do
 not start Python again. Vite dev servers substitute
@@ -277,9 +282,11 @@ instead of a second build and smoke test. A failed release leaves an untagged
 candidate in the package, which GHCR lists under its versions. The release baseline job
 runs the same change selector, so releases that ship nothing new (tests, studios,
 documentation) skip both image jobs and keep the current image. Releases are
-serialized so concurrent builds do not race the `latest` update. Python/npm
-dependency downloads and Docker layers are cached; cache hits never replace
-test execution. QEMU is unnecessary for the existing native Linux image build.
+serialized so concurrent builds do not race the `latest` update. Jobs restore
+the locked `.venv`, the Stockfish package and Playwright's Chromium from caches
+keyed on the lock files and runner image (`.github/actions/python-env` and
+`.github/actions/stockfish`); npm downloads and Docker layers are cached too.
+Cache hits never replace test execution. QEMU is unnecessary for the existing native Linux image build.
 
 Before merging, `python scripts/test_affected.py` runs locally what CI would select
 for the branch against `main`, including uncommitted and untracked files: lint,
