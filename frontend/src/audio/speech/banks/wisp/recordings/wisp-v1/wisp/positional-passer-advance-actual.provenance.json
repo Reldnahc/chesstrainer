@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "positional-passer-advance-actual",
+      "label": "Positional passer advance actual",
+      "text": "The passed pawn moves forward. It was passed before; now it stands nearer the last rank."
+    },
+    "takeId": null
+  },
+  "requestHash": "820d95ef18d62ff34c5011d0ffb1b0159abc9228f7130bd324343e740533357a",
+  "recordedAt": "2026-10-03T06:20:37.599Z",
+  "sha256": "6fceb5a06c87295707aa5cbe3de5c0110d68f51da512cfd71e8f38c3b1d98686",
+  "bytes": 19833,
+  "requestId": "I4rubG59KN7tkzkyLhev",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2312b4eb8b9fe46d8d0e8d633f33d98519feddca1bcb99cfa5f30cc870280dce",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

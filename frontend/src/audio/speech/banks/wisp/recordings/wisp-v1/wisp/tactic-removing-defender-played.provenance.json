@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played",
+      "label": "Tactic removing defender played",
+      "text": "The defender is the target. Capture it, and what it protected loses that protection."
+    },
+    "takeId": null
+  },
+  "requestHash": "754d256b02be1e0874c20b8f63022e7b13c5bac0040bdd403077462823c323f9",
+  "recordedAt": "2026-10-03T06:20:46.295Z",
+  "sha256": "a699ac14887f958eece4aa0a3cf3ee2ba66b4d303a779b76fdaba2efca0bc318",
+  "bytes": 18851,
+  "requestId": "HEBVxqss6oSEz5KK0U76",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "75b9221baa2ba95af1cc379d4871f2c6aa823edd517756ed856c929e3c596f8d",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

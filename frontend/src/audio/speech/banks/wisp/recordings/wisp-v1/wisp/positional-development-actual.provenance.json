@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "positional-development-actual",
+      "label": "Positional development actual",
+      "text": "A minor piece is off its starting square now. It is in play."
+    },
+    "takeId": null
+  },
+  "requestHash": "07f5dc5d262ae6bdf9e933d1510d902e7d08186561bece534d02fecaf6a1ca16",
+  "recordedAt": "2026-10-03T06:20:53.811Z",
+  "sha256": "4d76a0c5b0dea29d7459c04f69c63a8f3e1137de2802d50e34e166bc3ee7e585",
+  "bytes": 13670,
+  "requestId": "J9P42sc9GMdKPhuOb5Zu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "85e96d3be7c21fbd9c5b89158b1ba73379889891106c16deca2ae428825e5077",
+    "bytes": 67753
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

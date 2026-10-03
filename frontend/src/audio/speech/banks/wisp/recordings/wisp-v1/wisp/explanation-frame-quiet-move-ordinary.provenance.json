@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-move-ordinary",
+      "label": "Explanation frame quiet move ordinary",
+      "text": "The next move. Something on the board is different now."
+    },
+    "takeId": null
+  },
+  "requestHash": "7677f9961a4a5b54f5393b4e82cb2ada923329f76ae5e89a469877251168092c",
+  "recordedAt": "2026-10-03T06:21:06.560Z",
+  "sha256": "5596b278437b80dd5c9cafbc3dcf5f4ea0a4db1369135ea93c65a46207e5f02a",
+  "bytes": 12298,
+  "requestId": "7gbC7Gbud2d4DnwWUbUe",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "98468a4a9a6c27c931c2612a5d1b7382808db6575295a5efafb65e9825119f6c",
+    "bytes": 62319
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

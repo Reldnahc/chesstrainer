@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "opening-departure",
+      "label": "Opening departure",
+      "text": "The recognized line ends here. From this move on, the opening book is silent."
+    },
+    "takeId": null
+  },
+  "requestHash": "f08174784304864acb7e37591cf2df379fa4beaf151584c1749c4350fb5ef438",
+  "recordedAt": "2026-10-03T06:20:54.322Z",
+  "sha256": "9e4f45e52c2d793868f279810a79bb81cb2d50ea132d04f5600f2bf8f4305797",
+  "bytes": 18157,
+  "requestId": "XJQmgQFPLCoYBlSGuFW6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "321fab780103b4093cab7c20696eee2dd0076d55de5e84c47631bc74d0dfcf17",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

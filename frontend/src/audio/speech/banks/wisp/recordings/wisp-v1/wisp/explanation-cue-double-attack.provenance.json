@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "explanation-cue-double-attack",
+      "label": "Explanation cue double attack",
+      "text": "Look for one move that makes two threats. Checks and opened lines count."
+    },
+    "takeId": null
+  },
+  "requestHash": "edb28005dfa2f0060cf786a1ac6e897806653d9166c86c2a4094d087c231c683",
+  "recordedAt": "2026-10-03T06:21:08.186Z",
+  "sha256": "9e54615ff2e1ed6d57307eb5b26acac4144160b2b6e46eddc745b743119db587",
+  "bytes": 16776,
+  "requestId": "YUW3UI7gZmubbgH1FAgy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a2705e9ed92ec9be3716ff4ff801ac19733fccd79ef849dca9bd9a9419e61727",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

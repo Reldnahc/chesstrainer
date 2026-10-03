@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-promotion-check",
+      "label": "Explanation frame quiet promotion check",
+      "text": "The pawn reaches the last rank and becomes a new piece, and the move gives check."
+    },
+    "takeId": null
+  },
+  "requestHash": "8c434dd54626d84626fa990eba0dbd6db01420793a2722e6c370e197af155d1f",
+  "recordedAt": "2026-10-03T06:21:11.220Z",
+  "sha256": "a62e6f3ead741705bbf7515302905b5a36325f846ac0e6bb3594c9e102c1753c",
+  "bytes": 17282,
+  "requestId": "dBetqYbW0Yd2Imv3XJlo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "473782133d9885502b9cd36acb54a215a34bce43b7740922aa8faa49fed9aab9",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

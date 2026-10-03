@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "lesson-game-opened",
+      "label": "Lesson game opened",
+      "text": "The whole game waits, open and still. Move through it as you wish."
+    },
+    "takeId": null
+  },
+  "requestHash": "c71f4432cf719205d972d388d17ec79dae830efa400361a9e8cb07222a2e4d4d",
+  "recordedAt": "2026-10-03T06:21:19.194Z",
+  "sha256": "e992040a9c221e52e80d314755bfe6246bd034f40038066182aa7c70aa8a2bfe",
+  "bytes": 17312,
+  "requestId": "78SwHfQ7C9SDHW5eWrHr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f89ea40674718eb96d77c56e3aec29b584a2d3ffe805fbf8907f9ed844886a2b",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released",
+      "label": "Explanation finding relative pin released",
+      "text": "The opponent's previous move released a relative pin on the attacking piece. The target was not moved after that, and in the shown line it is captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "f9e7e52a47b5e6b1c1de025c8c3793aaebba7712a46d16584047dfdc8d5cddcc",
+  "recordedAt": "2026-10-03T06:21:26.299Z",
+  "sha256": "d6995013a138039316c17b052c0f0555d88e3ae038de28b12bc03baa97bdcc08",
+  "bytes": 29079,
+  "requestId": "5alT0gF15MiIBzmkobrB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "54ffb1b9f58e85f2b1c4110c15d28068bf1d1e8d70bfcd91a667e89eeb82fdfa",
+    "bytes": 149673
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

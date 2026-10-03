@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "reply-check",
+      "label": "Reply check",
+      "text": "The strongest reply is a check. The king has to be answered first."
+    },
+    "takeId": null
+  },
+  "requestHash": "938ec89886f934141f126579313139f04156c2a441706b60f3c204a8281f2a50",
+  "recordedAt": "2026-10-03T06:20:42.838Z",
+  "sha256": "69ccc2a7aa58710283bff4127727b9a7a4d9b5d3760f9a883a5aa9355623cf6c",
+  "bytes": 15212,
+  "requestId": "1KYIFjPO3wqgOFtitFLm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "feef389e2771685a0aed5cedd8599a2549853bcd86d441cd050ec9a26a0ea9a3",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

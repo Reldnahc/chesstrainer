@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary",
+      "label": "Explanation frame capture move ordinary",
+      "text": "A piece is taken."
+    },
+    "takeId": null
+  },
+  "requestHash": "99506c26698e49fb43aca9cdfc4ce54fa1012ce10461b26c70c4a36e8edb0031",
+  "recordedAt": "2026-10-03T06:21:15.006Z",
+  "sha256": "b38543e568e272281a88574b26d1f3ed9ed58f5d51a5a7264728dec4d464911a",
+  "bytes": 5713,
+  "requestId": "jmDnwvk3L24JY7hM3pOx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "30dada6f87d88e41ca45ae4f2652d104f36e3974f6e4b435a47f00cb342d0926",
+    "bytes": 26793
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

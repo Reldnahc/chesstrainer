@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "opening-recall-cold-multiple",
+      "label": "Opening recall cold multiple",
+      "text": "More than one move from your selected opening lines will count here."
+    },
+    "takeId": null
+  },
+  "requestHash": "fdffefac94cbcc0b4c3e5b1da3a582e1434a279e7930069367f48d228e768ea1",
+  "recordedAt": "2026-10-03T06:21:27.138Z",
+  "sha256": "1b1a82e1cd9b2b52660276c0454f30e42fff19d0c5775e84aa81c17a085ac456",
+  "bytes": 13114,
+  "requestId": "XaaQJH8g84lvScKF1Qo7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dca5e0fd509de5b26606b810a88d97a4c03403f921704a1597cc985b13425d56",
+    "bytes": 63991
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

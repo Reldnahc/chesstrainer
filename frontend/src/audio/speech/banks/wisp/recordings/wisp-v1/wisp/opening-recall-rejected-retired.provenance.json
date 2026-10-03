@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "opening-recall-rejected-retired",
+      "label": "Opening recall rejected retired",
+      "text": "That move is not in your selected opening lines. Try again. This position is retired, and its review schedule does not change."
+    },
+    "takeId": null
+  },
+  "requestHash": "5e40b160dcd2afab65068a89e9569cde840dea4fed0c0180a4af13a7cec4ea3d",
+  "recordedAt": "2026-10-03T06:21:07.418Z",
+  "sha256": "24d539321a6a3aab1fa165dde8a20a17e70d4c5d364fc9d6427482a9d519a238",
+  "bytes": 27150,
+  "requestId": "52eNOUa0Chug2lAxjcNZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3df108928119aa3363939444bce396bfa27d556417aca1cbd9ccd146a9128e7e",
+    "bytes": 139224
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

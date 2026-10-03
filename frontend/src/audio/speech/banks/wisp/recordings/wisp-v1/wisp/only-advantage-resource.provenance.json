@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "only-advantage-resource",
+      "label": "Only advantage resource",
+      "text": "This was the lone keeper of the advantage. The other moves that were checked were losing."
+    },
+    "takeId": null
+  },
+  "requestHash": "240012750e81c33eb4df2e6840f127109580773f57dd0cd9244951d042f2fd29",
+  "recordedAt": "2026-10-03T06:20:40.143Z",
+  "sha256": "dc5d984d9a3b58399457db729ca9eed58ae3cf7977a9e2a5f8b4b69ad32e041a",
+  "bytes": 17670,
+  "requestId": "UnAVuC5lHhqD45yY9h9W",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f0b8c17319b33472bdbecc3d2f7fc8035e7d487981afac621682f9a103bd3037",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

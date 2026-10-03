@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "srs-summary-material-loss",
+      "label": "Srs summary material loss",
+      "text": "When the saved line ends, the side that made this move holds less material than it started with."
+    },
+    "takeId": null
+  },
+  "requestHash": "c14d603a97d836fb33255d2d7247abcffd11f5553177e87f6b94eea1086b6cf1",
+  "recordedAt": "2026-10-03T06:20:54.369Z",
+  "sha256": "53ebc5d6a51768e2c49d06a82d3403b47911c58c9914c6db9bcc82c7df34d340",
+  "bytes": 19754,
+  "requestId": "OqMx3z2IMYyHQ7IrFXDV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "637de7a10d61727a0462c446d206c0e2743a30eacdda71f3278af197523484ed",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

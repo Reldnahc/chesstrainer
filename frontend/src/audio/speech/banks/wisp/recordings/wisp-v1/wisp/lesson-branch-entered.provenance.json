@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "lesson-branch-entered",
+      "label": "Lesson branch entered",
+      "text": "A side path appears. Float through it, then drift home to the main line."
+    },
+    "takeId": null
+  },
+  "requestHash": "824038e479bd54678f1e2278d766a7090ee56ca3338a385668a5b7df973f9b86",
+  "recordedAt": "2026-10-03T06:21:16.835Z",
+  "sha256": "fa3561a4ae48674c01911b48391c90ef15b39eead553879a37cace5b4d3b06e2",
+  "bytes": 16207,
+  "requestId": "nVrK6KhOv5VG0QfXJIhd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b27f5fa8ce6497f53458ded6e86b51e81078346aeb5f05e20670d44c82ece74a",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

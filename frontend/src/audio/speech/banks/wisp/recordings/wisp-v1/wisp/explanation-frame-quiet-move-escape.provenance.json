@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-move-escape",
+      "label": "Explanation frame quiet move escape",
+      "text": "The king leaves check with this move."
+    },
+    "takeId": null
+  },
+  "requestHash": "3e83959c21ad28f8109d43edd51e3cbb30f26ecddbcd9a7e1b7ef8523b7ed93f",
+  "recordedAt": "2026-10-03T06:21:08.727Z",
+  "sha256": "fc5e1a5a4143c936c9a120e5d1272c11ec5dba35ecdf0243891f89ec2f6a46cb",
+  "bytes": 8451,
+  "requestId": "ZdUg537g5kRcBNpeHPZ2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c17f47e3213d9b56a9935cca1e26e8df00a0b47e68602f103c2fee88d45596d1",
+    "bytes": 40586
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

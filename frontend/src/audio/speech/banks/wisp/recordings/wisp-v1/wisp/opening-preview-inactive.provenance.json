@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "opening-preview-inactive",
+      "label": "Opening preview inactive",
+      "text": "Scheduled recalls ask for your selected side's moves. Where active studies share a position, they share one card."
+    },
+    "takeId": null
+  },
+  "requestHash": "c869d26082b928a26ea18e1801243ab52b6592207c6cb12d2e54d8fae9ac8c75",
+  "recordedAt": "2026-10-03T06:21:10.751Z",
+  "sha256": "647392df43b389bc8a1e7e22712c221bca2a1a40796116ee6db2a46d982d24c6",
+  "bytes": 24318,
+  "requestId": "VXZS1zYZbq8XPMR4zlTp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "37f24ca47566862ba826d3c8c529ac257b1e3fdbd00e7d1f20ddd74f318b1234",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

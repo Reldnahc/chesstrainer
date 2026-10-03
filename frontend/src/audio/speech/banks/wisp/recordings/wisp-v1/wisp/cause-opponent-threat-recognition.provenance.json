@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "cause-opponent-threat-recognition",
+      "label": "Cause opponent threat recognition",
+      "text": "The threat arrived with the opponent's last move. It is still waiting, unanswered, and a piece can now be captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "e3b305f590d8d3fcd72f5c9b9f35a79005fae78a8ee5d4738659e3b8d55e1335",
+  "recordedAt": "2026-10-03T06:20:50.936Z",
+  "sha256": "455afa2093ef9b431a649b5aee0c1d690d16ed006212334114e4a08226b05ef5",
+  "bytes": 24261,
+  "requestId": "99htXqTsBPnMkvUgsqqF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "01c1a48ecca9a6f38d8bc43e76d35d614190ad76f7b054ca90627ccb7ce08036",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

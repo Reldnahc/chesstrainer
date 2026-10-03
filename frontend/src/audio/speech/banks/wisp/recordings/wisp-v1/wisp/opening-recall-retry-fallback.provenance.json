@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "opening-recall-retry-fallback",
+      "label": "Opening recall retry fallback",
+      "text": "The answer is among your selected study lines. Play one of those moves."
+    },
+    "takeId": null
+  },
+  "requestHash": "7182d45c6ec786e4deb245bd099a45946481da6628b83ce55e8e3270e08e8bf2",
+  "recordedAt": "2026-10-03T06:21:25.888Z",
+  "sha256": "23b4a2515d7515fe06307803388bfd486291e54ca940f2baadc6e91e697c4686",
+  "bytes": 15124,
+  "requestId": "xVPnE1WWcsbuFL50biVi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0139c85cc92360150df0a33d7666fd7deb72aece6f14609efc616d63887140f0",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

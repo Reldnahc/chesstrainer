@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "clock-low",
+      "label": "Clock low",
+      "text": "Very little time remained on the clock before this move."
+    },
+    "takeId": null
+  },
+  "requestHash": "9a2f87fce7131fd4a62f24d2a02c1976e06139eacb190c699d4a4d08a3979ba1",
+  "recordedAt": "2026-10-03T06:20:49.602Z",
+  "sha256": "fa21a2b3362d08e353fad043e429e2a1379ba20d8a2e45e335ffb044205aa9bd",
+  "bytes": 11629,
+  "requestId": "oVU956ra5j8ynsrAJqCm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c3ee97155c1373d2e3533a0ec0be2f88f160fcb7197ac3f6d03e325b965d5fa5",
+    "bytes": 56050
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

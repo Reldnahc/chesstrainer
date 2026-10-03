@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "tactic-double-attack-missed",
+      "label": "Tactic double attack missed",
+      "text": "A stronger move made two attacks at once. That double attack goes unused here."
+    },
+    "takeId": null
+  },
+  "requestHash": "63bb7b0914cd6ca91614562705f7441dbfcf5759094407b16c330afbf2867bf5",
+  "recordedAt": "2026-10-03T06:20:37.906Z",
+  "sha256": "3fae7b1fee2c51d2d59ebe714d98efdb4f98ca7d56e4a8d872a2997827c96ac2",
+  "bytes": 18107,
+  "requestId": "Zt1luElyEfgd3WC7YGM4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4eecea1564b02bffc9b1293f18fafb3532f313d08edc73213703a6b24709b5d7",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

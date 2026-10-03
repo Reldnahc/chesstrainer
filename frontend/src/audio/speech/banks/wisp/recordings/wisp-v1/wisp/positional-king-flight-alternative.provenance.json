@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "positional-king-flight-alternative",
+      "label": "Positional king flight alternative",
+      "text": "Another move would have given the king a new legal flight square."
+    },
+    "takeId": null
+  },
+  "requestHash": "f7dbd32e0e8718f5abbbf59474fdb4d23118a688f73242d0b412404136db7d3f",
+  "recordedAt": "2026-10-03T06:20:50.095Z",
+  "sha256": "6d57d78784c4cba0421947930886da06807f68306aa67014fee6a7bda7e318e3",
+  "bytes": 13016,
+  "requestId": "2ECZe1L97Izx5H9LEkBd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "56aa024cb1558fe6cdb986f1ca274f633465ee7348c097339e4616a3bf5d739a",
+    "bytes": 63991
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

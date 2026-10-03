@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "explanation-cue-missed-tactical-capture",
+      "label": "Explanation cue missed tactical capture",
+      "text": "Before a quiet move, check for enemy pieces left without a guard."
+    },
+    "takeId": null
+  },
+  "requestHash": "30d2e4f26f803d011588b907a7da7a8f8b657fc4a94c73f09a3cc8535e886297",
+  "recordedAt": "2026-10-03T06:21:30.370Z",
+  "sha256": "2cebc602615a80c64b3d47f9260a168abc03395edf97aad99d5cbbeed84d0051",
+  "bytes": 14916,
+  "requestId": "0W6Ilzywu1G8yIZDG2ZH",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2f95ac058c21c50e5e1364c6fa8ea3e6f2d2833ccb7d30094967f33b3db2e68d",
+    "bytes": 74022
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

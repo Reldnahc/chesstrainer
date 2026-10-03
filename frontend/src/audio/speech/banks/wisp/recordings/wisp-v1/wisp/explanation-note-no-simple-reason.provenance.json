@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "explanation-note-no-simple-reason",
+      "label": "Explanation note no simple reason",
+      "text": "The saved line shows no simple tactical reason. Trace it gently, reply by reply. No positional explanation has been assumed."
+    },
+    "takeId": null
+  },
+  "requestHash": "bb3f22ae8da18570e5e62baac6f8a10d8cc685971434363f4177b8f7f4b8dab8",
+  "recordedAt": "2026-10-03T06:21:21.486Z",
+  "sha256": "962415f8de21dad999a396a4b29c03baca8d6fdd8f8e9c0601f5115b7f858aa6",
+  "bytes": 29144,
+  "requestId": "pgTonccEBeDK4Oa73tua",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "99ea470cde9e68eb09383c8e390756a16ba464da266f53c2eeb6d4409fb92f77",
+    "bytes": 153435
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "explanation-cue-skewer",
+      "label": "Explanation cue skewer",
+      "text": "An attack can pass through the first target. Check for a valuable piece standing behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "dd1395f011a13e07a54df22159d5e06c2a3b9c3b8d6f63d78d562a71df644cd3",
+  "recordedAt": "2026-10-03T06:21:34.573Z",
+  "sha256": "185f943ca91feeb341a5bff2e5c3ceb6f8d3a4e7c6dd088af404b387d7c23915",
+  "bytes": 18501,
+  "requestId": "UmmtTpfbfNW8l2jaMuRI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "375baccc803488566266b3563578e8edc02143efe062e0921729144286e7d3b2",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

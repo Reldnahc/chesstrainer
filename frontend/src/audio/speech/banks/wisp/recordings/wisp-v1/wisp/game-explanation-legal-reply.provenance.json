@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "game-explanation-legal-reply",
+      "label": "Game explanation legal reply",
+      "text": "The other side can play the marked reply. Play it on the board and see what follows."
+    },
+    "takeId": null
+  },
+  "requestHash": "737810cf860ddc90aa0156d6abf9b9eb8fefeba3b78ce4a1ba9f77b79a4c2455",
+  "recordedAt": "2026-10-03T06:21:27.824Z",
+  "sha256": "21ff9b6f53293ec35623c80ed54fdada7f710f4805b35b3c82ed59dda1115a2a",
+  "bytes": 16291,
+  "requestId": "hV8VU7Wt323WxrBhtDrL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1921a5803b6e78ddb78970d6fa29f21d8119214e3a9806e800231baca307f018",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

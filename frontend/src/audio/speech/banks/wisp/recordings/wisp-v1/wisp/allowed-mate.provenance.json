@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "allowed-mate",
+      "label": "Allowed mate",
+      "text": "The king's defenses no longer hold. The other side can force checkmate now. Follow the attack in, one move at a time."
+    },
+    "takeId": null
+  },
+  "requestHash": "2b22f49c8b09dc60530af01870220f4f9e4c8371d2f89fb4ffb0f4d3d7a209a8",
+  "recordedAt": "2026-10-03T06:21:00.459Z",
+  "sha256": "cc642cc6f6b846ccfc64cc8f5dde69a104678cb2930b7a49a8e8cd4c8f7bcc81",
+  "bytes": 26360,
+  "requestId": "VIQDb711WEifTXkjihYP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5608efd03874cb6d476a84d1c446deea1dccd25fd18920216faf838a019f0b68",
+    "bytes": 137970
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

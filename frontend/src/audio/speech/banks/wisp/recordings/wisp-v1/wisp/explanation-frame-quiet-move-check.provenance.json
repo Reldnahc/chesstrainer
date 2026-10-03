@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-move-check",
+      "label": "Explanation frame quiet move check",
+      "text": "Check. The king is under attack, and that must be answered."
+    },
+    "takeId": null
+  },
+  "requestHash": "c63eef83a6ae29841d9663da666ddde819a46a5d2bdec60c90fbbb1b7a43b03b",
+  "recordedAt": "2026-10-03T06:21:07.832Z",
+  "sha256": "88af1b7d6adbffee21891774bda17d3d13b881d182bd2816021828699ec6c652",
+  "bytes": 14501,
+  "requestId": "OiD9x7SreUWsZs1HpUQZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "287f623ef0d29ad443ce8bcb8238eaca718034a83b83987f93dbaa3cca05acfb",
+    "bytes": 74022
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

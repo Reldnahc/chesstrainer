@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "tactic-hanging-piece-allowed",
+      "label": "Tactic hanging piece allowed",
+      "text": "A piece is left behind with no guard. The other side can take it."
+    },
+    "takeId": null
+  },
+  "requestHash": "c9c703fd57fc1fd67a315b9da4e31faf5c94c042fdcfa9a218f173bf93820749",
+  "recordedAt": "2026-10-03T06:20:47.272Z",
+  "sha256": "4bdb1ec9402de49b48312473025589ffda2d0bb3ab3721a304229dfc162efb86",
+  "bytes": 14034,
+  "requestId": "IDmy5zPTBC7r2zSFVLVh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ffd7ea84f70c87c6e9212a801c61f35726958e057cac467ddba0b24047d43d1d",
+    "bytes": 70261
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

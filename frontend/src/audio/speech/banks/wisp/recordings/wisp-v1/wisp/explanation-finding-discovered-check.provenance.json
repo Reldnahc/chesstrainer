@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check",
+      "label": "Explanation finding discovered check",
+      "text": "One piece steps aside, and the piece it was hiding gives check."
+    },
+    "takeId": null
+  },
+  "requestHash": "2d64f30fcff8ba7fefab78d4fe15e1b1afe418927cd4c740647f2e95a205864e",
+  "recordedAt": "2026-10-03T06:21:18.451Z",
+  "sha256": "9f2a6cbd598e4905f7ded93b59030b8f1879dfe68010f3007209e228286b07f6",
+  "bytes": 13353,
+  "requestId": "G2eQV5HmBZGwl3uHE9Qu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "49b9e6ea76df83ff145cbe23eae5ab109a7747a3d6c2c6c73d6ad8cf2eec01e7",
+    "bytes": 66499
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

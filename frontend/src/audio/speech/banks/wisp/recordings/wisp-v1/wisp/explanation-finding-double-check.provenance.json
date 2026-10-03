@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "explanation-finding-double-check",
+      "label": "Explanation finding double check",
+      "text": "Double check. Two pieces attack the king at once."
+    },
+    "takeId": null
+  },
+  "requestHash": "5dc3bb51f33e46742e9360c9cd6df86ec2f3fe163843c72fd96b8e171f7b2e14",
+  "recordedAt": "2026-10-03T06:21:19.451Z",
+  "sha256": "f48d27937537d66846f9f750f3527a4ddb30cd43ca62a4a378a66a4f8d599ab9",
+  "bytes": 12827,
+  "requestId": "YtBXkqXj3qkxlE7skdR0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3154b6258bb5d525ba9a10018d28c47aa732a292e2923650d536185d9bb20b4f",
+    "bytes": 66499
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

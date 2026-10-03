@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed",
+      "label": "Tactic deflection allowed",
+      "text": "One defender carries an important task. The other side can now draw it away, a deflection, and that task would go uncovered."
+    },
+    "takeId": null
+  },
+  "requestHash": "b5f6cf6c866fd643375bc33d61c437b70f6529e103f9e080652194687f46952e",
+  "recordedAt": "2026-10-03T06:20:41.490Z",
+  "sha256": "bc9c55db0973316f2b6b7d25789dec8b056dd013e1f4d7d6bfd4aa98691ed4c1",
+  "bytes": 26981,
+  "requestId": "tYtMIznYThGSJ0dI8TfK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4a5e9d659689e8fe812319791f77dca283341506ae1803c9e08df3ddfc503325",
+    "bytes": 139224
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

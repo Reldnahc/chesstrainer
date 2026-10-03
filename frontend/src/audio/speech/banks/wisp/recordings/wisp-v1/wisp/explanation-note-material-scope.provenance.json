@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "explanation-note-material-scope",
+      "label": "Explanation note material scope",
+      "text": "Material changes cover only the shown line, counted from its starting position. The written explanation gives the piece values."
+    },
+    "takeId": null
+  },
+  "requestHash": "6ffe95ec8e68d575d761cf505b746fd7eb2d0dc4194e8c3c4d507fb0e2a19ac5",
+  "recordedAt": "2026-10-03T06:21:19.422Z",
+  "sha256": "86a7d5ced00bc485e948a366e8ef3cf309d7b1268ed2fa8f839d22ffadc8d988",
+  "bytes": 26255,
+  "requestId": "ITiS7g7PBdUCdCfjfQbQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f1b485ffad3d472de06b99849ac1ed395a6316d2f18ad4f9d668f91a29bdbc9e",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

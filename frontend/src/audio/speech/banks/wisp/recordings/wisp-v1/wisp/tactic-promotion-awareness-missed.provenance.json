@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "tactic-promotion-awareness-missed",
+      "label": "Tactic promotion awareness missed",
+      "text": "A stronger move opened the way for a pawn to reach the last rank and promote. This move does not take that road."
+    },
+    "takeId": null
+  },
+  "requestHash": "9e089ddcdf234ef54bc081c4803bb2778f8ce972768ac68e168e9f3ee278a030",
+  "recordedAt": "2026-10-03T06:21:00.160Z",
+  "sha256": "a98382ece36e274d21b921fea854bf8335337490fd14e4156914a221f1d9dd0a",
+  "bytes": 23247,
+  "requestId": "ViDt2xL9u62Ut1sHv48q",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3d65a9bdc4f6c85f5703a45d9baed08f41e2b841287d78ea094add4b5649796c",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

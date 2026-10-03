@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "explanation-cue-avoiding-bad-trades",
+      "label": "Explanation cue avoiding bad trades",
+      "text": "Count what the capture takes, and what the recapture takes back."
+    },
+    "takeId": null
+  },
+  "requestHash": "b119b06a5d44f7b7921c68734d4b8c35788128b4bcd9696c0165af242fa3e5bb",
+  "recordedAt": "2026-10-03T06:21:13.362Z",
+  "sha256": "d7cf6bdb81b8a3f2d9e98cf0e61ea07c6d67041814a71a7e4a3c67ac935bad51",
+  "bytes": 13286,
+  "requestId": "ihQ69r9Wj3TnFX6drPRd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2726628f492542359016e0a1b05b2307242cbfa971ff196709c5a8beafae3396",
+    "bytes": 65245
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

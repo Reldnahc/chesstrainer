@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "saved-history-recurrence",
+      "label": "Saved history recurrence",
+      "text": "This issue appears in other saved games too. It has been here before, and those games belong beside this one."
+    },
+    "takeId": null
+  },
+  "requestHash": "dc8a48fa43ba05716aa3a08570a04c428cdc80a19f3d3bda22b1d0d09a8138a5",
+  "recordedAt": "2026-10-03T06:20:41.105Z",
+  "sha256": "046d91cc7bb9fa24fcb1777b29f37c841f86a3b11dd5664f4f014c9474d44465",
+  "bytes": 21601,
+  "requestId": "7hmQnXky5Ai1zlFkAu6r",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4c47cddbbe6f79588e2c35bb85bc72f480834927cf1da721c524688add4c11e4",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

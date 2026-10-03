@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "cause-abandoned-defender",
+      "label": "Cause abandoned defender",
+      "text": "Notice what just left. This move takes away a piece's only real defender, and the other side can capture what it left behind."
+    },
+    "takeId": null
+  },
+  "requestHash": "c940b0990d8c94e52d94396f53a989e8debc77775104d5933354f3ec12fee009",
+  "recordedAt": "2026-10-03T06:20:49.201Z",
+  "sha256": "f73ec0542a0f466bf137f605a77a26b29387de89a8e1cf5bfbaaecb5e020a0b8",
+  "bytes": 26414,
+  "requestId": "87SA1TbxQGmw9Os8crO0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6d53ad894d272699b15f6af4648135c629df59164eeaa093436b8195cc4403cc",
+    "bytes": 136716
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

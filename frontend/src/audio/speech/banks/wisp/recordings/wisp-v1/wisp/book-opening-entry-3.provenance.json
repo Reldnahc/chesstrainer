@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "book-opening-entry-3",
+      "label": "Book opening entry 3",
+      "text": "Book. The move sits inside a recognized opening."
+    },
+    "takeId": null
+  },
+  "requestHash": "b99dbe9a8d5ab7deced346e80cbdd54a6ab9dcd9d517a5d7e5570dd2d35f708b",
+  "recordedAt": "2026-10-03T06:21:28.199Z",
+  "sha256": "0c4e1903915f64ebb6abc904f6a523db8c9263be50a51ce99a0cbdf06e16a40e",
+  "bytes": 12536,
+  "requestId": "4ko2X4SGnhTTCyt8qIke",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "969a7bac206fc2d7abd37ef7dc597912b1ae1c0127a14fa3327986657c6d8f3a",
+    "bytes": 63991
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

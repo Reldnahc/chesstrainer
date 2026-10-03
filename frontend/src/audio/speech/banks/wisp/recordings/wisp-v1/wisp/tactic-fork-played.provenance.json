@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "tactic-fork-played",
+      "label": "Tactic fork played",
+      "text": "A single piece now reaches several targets at once. That is the fork."
+    },
+    "takeId": null
+  },
+  "requestHash": "38ccbbfde4262a2ac809d69e475c8e07d4bf7499a12e41f877f5d079a368b6ea",
+  "recordedAt": "2026-10-03T06:20:29.077Z",
+  "sha256": "2660b9e3d083b73450908716d385c97ce06c57592bbe31577f1ab47b7bd28bae",
+  "bytes": 17019,
+  "requestId": "CVwmM1xcGJ8RvHQI15BL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "eb0564f89de0f44a3182f656ff806f028b0a5840fb021535b7e95d69803797ee",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

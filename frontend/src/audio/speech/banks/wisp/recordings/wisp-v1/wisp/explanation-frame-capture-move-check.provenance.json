@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-check",
+      "label": "Explanation frame capture move check",
+      "text": "A piece is taken, and the king is in check."
+    },
+    "takeId": null
+  },
+  "requestHash": "58008c4b1005e8059b610f462cab419dcf9fc4f8206f742c42b86f7f6826c44d",
+  "recordedAt": "2026-10-03T06:21:15.968Z",
+  "sha256": "f3510304f59ae868d54d5e45d408062e85efeb6fbb4778fef994352d051d2f9c",
+  "bytes": 10224,
+  "requestId": "oS3GcrL1YfKzEH8KG0qm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2b1a1f196ceca0ca442be5de50a84273d67dff44075fd71c9d1636d7a3875987",
+    "bytes": 49781
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

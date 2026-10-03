@@ -1,0 +1,1583 @@
+{
+  "schemaVersion": 1,
+  "provider": "elevenlabs",
+  "coachId": "ghost",
+  "voiceId": "wisp",
+  "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+  "modelId": "eleven_v4",
+  "outputFormat": "mp3_44100_128",
+  "settings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75,
+    "speed": 0.95
+  },
+  "scope": "non-lesson",
+  "silentIds": [
+    "game-thinking",
+    "explanation-loading-saved",
+    "dialogue-no-renderable-claim",
+    "practice-checking"
+  ],
+  "recordings": [
+    {
+      "id": "tactic-fork-played",
+      "group": "game_review",
+      "text": "A single piece now reaches several targets at once. That is the fork.",
+      "audioPath": "recordings/wisp-v1/wisp/tactic-fork-played.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/tactic-fork-played.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-played.json"
+    },
+    {
+      "id": "tactic-fork-allowed",
+      "group": "game_review",
+      "text": "Something waits on the other side's turn. One of their pieces could attack several targets at once, a fork.",
+      "audioPath": "recordings/wisp-v1/wisp/tactic-fork-allowed.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/tactic-fork-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-allowed.json"
+    },
+    {
+      "id": "tactic-fork-missed",
+      "group": "game_review",
+      "text": "A fork sat inside another move, one piece reaching several targets together. This move leaves it untouched.",
+      "audioPath": "recordings/wisp-v1/wisp/tactic-fork-missed.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/tactic-fork-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-missed.json"
+    },
+    {
+      "id": "tactic-pin-played",
+      "group": "game_review",
+      "text": "The piece on that line cannot leave it. It is pinned to its king, and stepping off would expose the king.",
+      "audioPath": "recordings/wisp-v1/wisp/tactic-pin-played.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/tactic-pin-played.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-played.json"
+    },
+    {
+      "id": "tactic-pin-allowed",
+      "group": "game_review",
+      "text": "Look along the line to the king. The other side can pin a piece there, and a pinned piece cannot leave without exposing its king.",
+      "audioPath": "recordings/wisp-v1/wisp/tactic-pin-allowed.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/tactic-pin-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-allowed.json"
+    },
+    {
+      "id": "tactic-pin-missed",
+      "group": "game_review",
+      "text": "Another move held a pin to the king. The pinned piece would have been fixed to its line, unable to step off without exposing the king behind it.",
+      "audioPath": "recordings/wisp-v1/wisp/tactic-pin-missed.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/tactic-pin-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-missed.json"
+    },
+    {
+      "id": "tactic-skewer-played",
+      "group": "game_review",
+      "text": "Two pieces stand on one line. The attack meets the front one first, and when it steps aside, the piece behind is exposed. A skewer.",
+      "audioPath": "recordings/wisp-v1/wisp/tactic-skewer-played.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/tactic-skewer-played.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-played.json"
+    },
+    {
+      "id": "tactic-skewer-allowed",
+      "group": "game_review",
+      "text": "The front piece is not alone on its line. The other side can try a skewer, and moving that front piece could expose what stands behind it.",
+      "audioPath": "recordings/wisp-v1/wisp/tactic-skewer-allowed.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/tactic-skewer-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-allowed.json"
+    },
+    {
+      "id": "tactic-skewer-missed",
+      "group": "game_review",
+      "text": "A stronger move had a skewer in it. Had the front piece stepped aside, the one behind it would have been exposed.",
+      "audioPath": "recordings/wisp-v1/wisp/tactic-skewer-missed.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/tactic-skewer-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-missed.json"
+    },
+    {
+      "id": "tactic-removing-defender-played",
+      "group": "game_review",
+      "text": "The defender is the target. Capture it, and what it protected loses that protection.",
+      "audioPath": "recordings/wisp-v1/wisp/tactic-removing-defender-played.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/tactic-removing-defender-played.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-played.json"
+    },
+    {
+      "id": "tactic-removing-defender-allowed",
+      "group": "game_review",
+      "text": "One defender is holding something in place. The other side can now capture it, and what it guards could be left without protection.",
+      "audioPath": "recordings/wisp-v1/wisp/tactic-removing-defender-allowed.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/tactic-removing-defender-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-allowed.json"
+    },
+    {
+      "id": "tactic-removing-defender-missed",
+      "group": "game_review",
+      "text": "A different move could have captured a defender. What it guarded would have stood without that protection.",
+      "audioPath": "recordings/wisp-v1/wisp/tactic-removing-defender-missed.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/tactic-removing-defender-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-missed.json"
+    },
+    {
+      "id": "tactic-back-rank-played",
+      "group": "game_review",
+      "text": "The king is walled in by its own pieces. This move uses that: a back-rank mate pattern.",
+      "audioPath": "recordings/wisp-v1/wisp/tactic-back-rank-played.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/tactic-back-rank-played.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-played.json"
+    },
+    {
+      "id": "tactic-back-rank-allowed",
+      "group": "game_review",
+      "text": "The king's own pieces stand where it would need to escape. That gives the other side a route to a back-rank mate.",
+      "audioPath": "recordings/wisp-v1/wisp/tactic-back-rank-allowed.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/tactic-back-rank-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-allowed.json"
+    },
+    {
+      "id": "tactic-back-rank-missed",
+      "group": "game_review",
+      "text": "A back-rank mate was available, the king hemmed in by its own pieces. This move goes another way, and the mate goes unplayed.",
+      "audioPath": "recordings/wisp-v1/wisp/tactic-back-rank-missed.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/tactic-back-rank-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-missed.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-played",
+      "group": "game_review",
+      "text": "A pawn has a road to the last rank. When it arrives, it becomes a new piece. That is the aim here.",
+      "audioPath": "recordings/wisp-v1/wisp/tactic-promotion-awareness-played.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/tactic-promotion-awareness-played.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-played.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-allowed",
+      "group": "game_review",
+      "text": "One of their pawns now has a way toward the last rank. This gives the other side a chance to promote it.",
+      "audioPath": "recordings/wisp-v1/wisp/tactic-promotion-awareness-allowed.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/tactic-promotion-awareness-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-allowed.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-missed",
+      "group": "game_review",
+      "text": "A stronger move opened the way for a pawn to reach the last rank and promote. This move does not take that road.",
+      "audioPath": "recordings/wisp-v1/wisp/tactic-promotion-awareness-missed.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/tactic-promotion-awareness-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-missed.json"
+    },
+    {
+      "id": "tactic-discovered-attack-played",
+      "group": "game_review",
+      "text": "One piece steps out of the line. Behind it, another piece was already aimed. That is the discovered attack.",
+      "audioPath": "recordings/wisp-v1/wisp/tactic-discovered-attack-played.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/tactic-discovered-attack-played.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-played.json"
+    },
+    {
+      "id": "tactic-discovered-attack-allowed",
+      "group": "game_review",
+      "text": "One of their pieces is screening another. If it steps aside, the piece behind can attack. This allows that discovered attack.",
+      "audioPath": "recordings/wisp-v1/wisp/tactic-discovered-attack-allowed.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/tactic-discovered-attack-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-allowed.json"
+    },
+    {
+      "id": "tactic-discovered-attack-missed",
+      "group": "game_review",
+      "text": "Another move had a discovered attack: one piece stepping aside to uncover a threat from the piece behind. After this move, that threat stays hidden.",
+      "audioPath": "recordings/wisp-v1/wisp/tactic-discovered-attack-missed.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/tactic-discovered-attack-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-missed.json"
+    },
+    {
+      "id": "tactic-double-attack-played",
+      "group": "game_review",
+      "text": "Two threats arrive from one move. That is a double attack, two attacks working together.",
+      "audioPath": "recordings/wisp-v1/wisp/tactic-double-attack-played.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/tactic-double-attack-played.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-played.json"
+    },
+    {
+      "id": "tactic-double-attack-allowed",
+      "group": "game_review",
+      "text": "Two threats could arrive together now. This gives the other side a double attack, both made with one move.",
+      "audioPath": "recordings/wisp-v1/wisp/tactic-double-attack-allowed.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/tactic-double-attack-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-allowed.json"
+    },
+    {
+      "id": "tactic-double-attack-missed",
+      "group": "game_review",
+      "text": "A stronger move made two attacks at once. That double attack goes unused here.",
+      "audioPath": "recordings/wisp-v1/wisp/tactic-double-attack-missed.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/tactic-double-attack-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-missed.json"
+    },
+    {
+      "id": "tactic-deflection-played",
+      "group": "game_review",
+      "text": "A defender is drawn away from its post. What it was covering is left open. That is the deflection.",
+      "audioPath": "recordings/wisp-v1/wisp/tactic-deflection-played.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/tactic-deflection-played.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-played.json"
+    },
+    {
+      "id": "tactic-deflection-allowed",
+      "group": "game_review",
+      "text": "One defender carries an important task. The other side can now draw it away, a deflection, and that task would go uncovered.",
+      "audioPath": "recordings/wisp-v1/wisp/tactic-deflection-allowed.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/tactic-deflection-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-allowed.json"
+    },
+    {
+      "id": "tactic-deflection-missed",
+      "group": "game_review",
+      "text": "Another move could have drawn a defender away from its task. That deflection is not used.",
+      "audioPath": "recordings/wisp-v1/wisp/tactic-deflection-missed.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/tactic-deflection-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-missed.json"
+    },
+    {
+      "id": "tactic-undefended-capture-played",
+      "group": "game_review",
+      "text": "A piece stood with no guard. The idea is simply to take it.",
+      "audioPath": "recordings/wisp-v1/wisp/tactic-undefended-capture-played.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/tactic-undefended-capture-played.provenance.json",
+      "alignmentPath": "alignment/tactic-undefended-capture-played.json"
+    },
+    {
+      "id": "tactic-undefended-capture-missed",
+      "group": "game_review",
+      "text": "Another move could have taken an undefended piece. Nothing was guarding it, and this move does not take it.",
+      "audioPath": "recordings/wisp-v1/wisp/tactic-undefended-capture-missed.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/tactic-undefended-capture-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-undefended-capture-missed.json"
+    },
+    {
+      "id": "tactic-hanging-piece-allowed",
+      "group": "game_review",
+      "text": "A piece is left behind with no guard. The other side can take it.",
+      "audioPath": "recordings/wisp-v1/wisp/tactic-hanging-piece-allowed.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/tactic-hanging-piece-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-hanging-piece-allowed.json"
+    },
+    {
+      "id": "cause-abandoned-defender",
+      "group": "game_review",
+      "text": "Notice what just left. This move takes away a piece's only real defender, and the other side can capture what it left behind.",
+      "audioPath": "recordings/wisp-v1/wisp/cause-abandoned-defender.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/cause-abandoned-defender.provenance.json",
+      "alignmentPath": "alignment/cause-abandoned-defender.json"
+    },
+    {
+      "id": "cause-opponent-threat-recognition",
+      "group": "game_review",
+      "text": "The threat arrived with the opponent's last move. It is still waiting, unanswered, and a piece can now be captured.",
+      "audioPath": "recordings/wisp-v1/wisp/cause-opponent-threat-recognition.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/cause-opponent-threat-recognition.provenance.json",
+      "alignmentPath": "alignment/cause-opponent-threat-recognition.json"
+    },
+    {
+      "id": "cause-avoiding-bad-trades",
+      "group": "game_review",
+      "text": "The capture is only the first half. Then the recapture takes a piece of greater value. Count the whole exchange.",
+      "audioPath": "recordings/wisp-v1/wisp/cause-avoiding-bad-trades.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/cause-avoiding-bad-trades.provenance.json",
+      "alignmentPath": "alignment/cause-avoiding-bad-trades.json"
+    },
+    {
+      "id": "positional-development-actual",
+      "group": "game_review",
+      "text": "A minor piece is off its starting square now. It is in play.",
+      "audioPath": "recordings/wisp-v1/wisp/positional-development-actual.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/positional-development-actual.provenance.json",
+      "alignmentPath": "alignment/positional-development-actual.json"
+    },
+    {
+      "id": "positional-development-alternative",
+      "group": "game_review",
+      "text": "A different move would have developed a minor piece, lifting it from its starting square.",
+      "audioPath": "recordings/wisp-v1/wisp/positional-development-alternative.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/positional-development-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-development-alternative.json"
+    },
+    {
+      "id": "positional-rook-open-actual",
+      "group": "game_review",
+      "text": "The rook stands on an open file. No pawn of either color is on it.",
+      "audioPath": "recordings/wisp-v1/wisp/positional-rook-open-actual.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/positional-rook-open-actual.provenance.json",
+      "alignmentPath": "alignment/positional-rook-open-actual.json"
+    },
+    {
+      "id": "positional-rook-open-alternative",
+      "group": "game_review",
+      "text": "Another move would have placed a rook on an open file, empty of pawns of either color.",
+      "audioPath": "recordings/wisp-v1/wisp/positional-rook-open-alternative.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/positional-rook-open-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-rook-open-alternative.json"
+    },
+    {
+      "id": "positional-rook-semi-open-actual",
+      "group": "game_review",
+      "text": "The rook now stands on a semi-open file. None of its own pawns are there, and at least one enemy pawn still is.",
+      "audioPath": "recordings/wisp-v1/wisp/positional-rook-semi-open-actual.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/positional-rook-semi-open-actual.provenance.json",
+      "alignmentPath": "alignment/positional-rook-semi-open-actual.json"
+    },
+    {
+      "id": "positional-rook-semi-open-alternative",
+      "group": "game_review",
+      "text": "With another move, a rook would have stood on a semi-open file, clear of its own pawns, with an enemy pawn still on it.",
+      "audioPath": "recordings/wisp-v1/wisp/positional-rook-semi-open-alternative.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/positional-rook-semi-open-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-rook-semi-open-alternative.json"
+    },
+    {
+      "id": "positional-passed-actual",
+      "group": "game_review",
+      "text": "This pawn has no enemy pawn ahead of it, on its own file or either file beside it. It is passed.",
+      "audioPath": "recordings/wisp-v1/wisp/positional-passed-actual.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/positional-passed-actual.provenance.json",
+      "alignmentPath": "alignment/positional-passed-actual.json"
+    },
+    {
+      "id": "positional-passed-alternative",
+      "group": "game_review",
+      "text": "Another move would have made a passed pawn, with no enemy pawn ahead on its file or either neighboring file.",
+      "audioPath": "recordings/wisp-v1/wisp/positional-passed-alternative.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/positional-passed-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-passed-alternative.json"
+    },
+    {
+      "id": "positional-passer-advance-actual",
+      "group": "game_review",
+      "text": "The passed pawn moves forward. It was passed before; now it stands nearer the last rank.",
+      "audioPath": "recordings/wisp-v1/wisp/positional-passer-advance-actual.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/positional-passer-advance-actual.provenance.json",
+      "alignmentPath": "alignment/positional-passer-advance-actual.json"
+    },
+    {
+      "id": "positional-passer-advance-alternative",
+      "group": "game_review",
+      "text": "Another move would have pushed the passed pawn forward, nearer the last rank.",
+      "audioPath": "recordings/wisp-v1/wisp/positional-passer-advance-alternative.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/positional-passer-advance-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-passer-advance-alternative.json"
+    },
+    {
+      "id": "positional-isolated-actual",
+      "group": "game_review",
+      "text": "A pawn stands alone now. No friendly pawn is on either file beside it. It is isolated.",
+      "audioPath": "recordings/wisp-v1/wisp/positional-isolated-actual.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/positional-isolated-actual.provenance.json",
+      "alignmentPath": "alignment/positional-isolated-actual.json"
+    },
+    {
+      "id": "positional-isolated-alternative",
+      "group": "game_review",
+      "text": "A different move would have left an isolated pawn, with no friendly pawn on either neighboring file.",
+      "audioPath": "recordings/wisp-v1/wisp/positional-isolated-alternative.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/positional-isolated-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-isolated-alternative.json"
+    },
+    {
+      "id": "positional-support-actual",
+      "group": "game_review",
+      "text": "A piece that stood alone now has a defender.",
+      "audioPath": "recordings/wisp-v1/wisp/positional-support-actual.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/positional-support-actual.provenance.json",
+      "alignmentPath": "alignment/positional-support-actual.json"
+    },
+    {
+      "id": "positional-support-alternative",
+      "group": "game_review",
+      "text": "Another move would have given an undefended piece a defender.",
+      "audioPath": "recordings/wisp-v1/wisp/positional-support-alternative.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/positional-support-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-support-alternative.json"
+    },
+    {
+      "id": "positional-unsupported-actual",
+      "group": "game_review",
+      "text": "Nothing defends this piece now. That is worth seeing, though it does not mean the piece can be won.",
+      "audioPath": "recordings/wisp-v1/wisp/positional-unsupported-actual.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/positional-unsupported-actual.provenance.json",
+      "alignmentPath": "alignment/positional-unsupported-actual.json"
+    },
+    {
+      "id": "positional-unsupported-alternative",
+      "group": "game_review",
+      "text": "With another move, a piece would have been left with no defender. That alone would not mean it could be won.",
+      "audioPath": "recordings/wisp-v1/wisp/positional-unsupported-alternative.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/positional-unsupported-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-unsupported-alternative.json"
+    },
+    {
+      "id": "positional-king-flight-actual",
+      "group": "game_review",
+      "text": "A square opens beside the king. It has a legal flight square now that it did not have before.",
+      "audioPath": "recordings/wisp-v1/wisp/positional-king-flight-actual.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/positional-king-flight-actual.provenance.json",
+      "alignmentPath": "alignment/positional-king-flight-actual.json"
+    },
+    {
+      "id": "positional-king-flight-alternative",
+      "group": "game_review",
+      "text": "Another move would have given the king a new legal flight square.",
+      "audioPath": "recordings/wisp-v1/wisp/positional-king-flight-alternative.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/positional-king-flight-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-king-flight-alternative.json"
+    },
+    {
+      "id": "positional-castling-actual",
+      "group": "game_review",
+      "text": "The king steps aside to castle, and the rook crosses over to stand beside it.",
+      "audioPath": "recordings/wisp-v1/wisp/positional-castling-actual.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/positional-castling-actual.provenance.json",
+      "alignmentPath": "alignment/positional-castling-actual.json"
+    },
+    {
+      "id": "positional-castling-alternative",
+      "group": "game_review",
+      "text": "Castling was the alternative, moving king and rook together.",
+      "audioPath": "recordings/wisp-v1/wisp/positional-castling-alternative.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/positional-castling-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-castling-alternative.json"
+    },
+    {
+      "id": "positional-bishop-pair-actual",
+      "group": "game_review",
+      "text": "This capture breaks a bishop pair. One color of square is now left without that side's bishop.",
+      "audioPath": "recordings/wisp-v1/wisp/positional-bishop-pair-actual.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/positional-bishop-pair-actual.provenance.json",
+      "alignmentPath": "alignment/positional-bishop-pair-actual.json"
+    },
+    {
+      "id": "positional-bishop-pair-alternative",
+      "group": "game_review",
+      "text": "Another move would have captured a bishop, breaking the other side's bishop pair.",
+      "audioPath": "recordings/wisp-v1/wisp/positional-bishop-pair-alternative.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/positional-bishop-pair-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-bishop-pair-alternative.json"
+    },
+    {
+      "id": "positional-doubled-actual",
+      "group": "game_review",
+      "text": "Two pawns of one color now share a file. Doubled pawns.",
+      "audioPath": "recordings/wisp-v1/wisp/positional-doubled-actual.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/positional-doubled-actual.provenance.json",
+      "alignmentPath": "alignment/positional-doubled-actual.json"
+    },
+    {
+      "id": "positional-doubled-alternative",
+      "group": "game_review",
+      "text": "A different move would have left doubled pawns, two of one color on the same file.",
+      "audioPath": "recordings/wisp-v1/wisp/positional-doubled-alternative.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/positional-doubled-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-doubled-alternative.json"
+    },
+    {
+      "id": "allowed-mate",
+      "group": "game_review",
+      "text": "The king's defenses no longer hold. The other side can force checkmate now. Follow the attack in, one move at a time.",
+      "audioPath": "recordings/wisp-v1/wisp/allowed-mate.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/allowed-mate.provenance.json",
+      "alignmentPath": "alignment/allowed-mate.json"
+    },
+    {
+      "id": "missed-mate",
+      "group": "game_review",
+      "text": "A forced checkmate was there. This move leaves it behind. Going back, the finish can still be found.",
+      "audioPath": "recordings/wisp-v1/wisp/missed-mate.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/missed-mate.provenance.json",
+      "alignmentPath": "alignment/missed-mate.json"
+    },
+    {
+      "id": "sound-sacrifice",
+      "group": "game_review",
+      "text": "The offered material can be taken. In the line that was checked, taking it does not refute the sacrifice.",
+      "audioPath": "recordings/wisp-v1/wisp/sound-sacrifice.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/sound-sacrifice.provenance.json",
+      "alignmentPath": "alignment/sound-sacrifice.json"
+    },
+    {
+      "id": "only-playable-move",
+      "group": "game_review",
+      "text": "Every other move that was checked was losing. This one alone kept the position playable.",
+      "audioPath": "recordings/wisp-v1/wisp/only-playable-move.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/only-playable-move.provenance.json",
+      "alignmentPath": "alignment/only-playable-move.json"
+    },
+    {
+      "id": "only-advantage-resource",
+      "group": "game_review",
+      "text": "This was the lone keeper of the advantage. The other moves that were checked were losing.",
+      "audioPath": "recordings/wisp-v1/wisp/only-advantage-resource.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/only-advantage-resource.provenance.json",
+      "alignmentPath": "alignment/only-advantage-resource.json"
+    },
+    {
+      "id": "immediate-capture",
+      "group": "game_review",
+      "text": "A capture is already waiting in the reply. Something can be taken at once.",
+      "audioPath": "recordings/wisp-v1/wisp/immediate-capture.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/immediate-capture.provenance.json",
+      "alignmentPath": "alignment/immediate-capture.json"
+    },
+    {
+      "id": "reply-check",
+      "group": "game_review",
+      "text": "The strongest reply is a check. The king has to be answered first.",
+      "audioPath": "recordings/wisp-v1/wisp/reply-check.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/reply-check.provenance.json",
+      "alignmentPath": "alignment/reply-check.json"
+    },
+    {
+      "id": "stronger-alternative",
+      "group": "game_review",
+      "text": "Another move is the engine's choice. Set it on the board beside this one, and the replies differ.",
+      "audioPath": "recordings/wisp-v1/wisp/stronger-alternative.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/stronger-alternative.provenance.json",
+      "alignmentPath": "alignment/stronger-alternative.json"
+    },
+    {
+      "id": "evaluation-loss",
+      "group": "game_review",
+      "text": "This move is weaker than the engine's best. The difference shows in the reply.",
+      "audioPath": "recordings/wisp-v1/wisp/evaluation-loss.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/evaluation-loss.provenance.json",
+      "alignmentPath": "alignment/evaluation-loss.json"
+    },
+    {
+      "id": "best-supported-choice",
+      "group": "game_review",
+      "text": "A strong move. Among those the engine examined, it gives away very little.",
+      "audioPath": "recordings/wisp-v1/wisp/best-supported-choice.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/best-supported-choice.provenance.json",
+      "alignmentPath": "alignment/best-supported-choice.json"
+    },
+    {
+      "id": "good-choice",
+      "group": "game_review",
+      "text": "A sound move. The engine prefers another, but much of the position's value remains.",
+      "audioPath": "recordings/wisp-v1/wisp/good-choice.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/good-choice.provenance.json",
+      "alignmentPath": "alignment/good-choice.json"
+    },
+    {
+      "id": "clock-low",
+      "group": "game_review",
+      "text": "Very little time remained on the clock before this move.",
+      "audioPath": "recordings/wisp-v1/wisp/clock-low.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/clock-low.provenance.json",
+      "alignmentPath": "alignment/clock-low.json"
+    },
+    {
+      "id": "clock-fast",
+      "group": "game_review",
+      "text": "The clock shows a quick move. Time was still left.",
+      "audioPath": "recordings/wisp-v1/wisp/clock-fast.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/clock-fast.provenance.json",
+      "alignmentPath": "alignment/clock-fast.json"
+    },
+    {
+      "id": "clock-long",
+      "group": "game_review",
+      "text": "The clock shows a long pause before this move.",
+      "audioPath": "recordings/wisp-v1/wisp/clock-long.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/clock-long.provenance.json",
+      "alignmentPath": "alignment/clock-long.json"
+    },
+    {
+      "id": "recognized-opening",
+      "group": "game_review",
+      "text": "This move is in a recognized opening line. The ground is known here.",
+      "audioPath": "recordings/wisp-v1/wisp/recognized-opening.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/recognized-opening.provenance.json",
+      "alignmentPath": "alignment/recognized-opening.json"
+    },
+    {
+      "id": "opening-departure",
+      "group": "game_review",
+      "text": "The recognized line ends here. From this move on, the opening book is silent.",
+      "audioPath": "recordings/wisp-v1/wisp/opening-departure.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/opening-departure.provenance.json",
+      "alignmentPath": "alignment/opening-departure.json"
+    },
+    {
+      "id": "recovery",
+      "group": "game_review",
+      "text": "After the earlier setback, the position is playable again. This move brings it back.",
+      "audioPath": "recordings/wisp-v1/wisp/recovery.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/recovery.provenance.json",
+      "alignmentPath": "alignment/recovery.json"
+    },
+    {
+      "id": "recovery-assisted",
+      "group": "game_review",
+      "text": "Earlier the position slipped; now it can be held again. The other side's errors helped make that possible.",
+      "audioPath": "recordings/wisp-v1/wisp/recovery-assisted.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/recovery-assisted.provenance.json",
+      "alignmentPath": "alignment/recovery-assisted.json"
+    },
+    {
+      "id": "chance-taken",
+      "group": "game_review",
+      "text": "The opponent's last move left an opening. This move takes it.",
+      "audioPath": "recordings/wisp-v1/wisp/chance-taken.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/chance-taken.provenance.json",
+      "alignmentPath": "alignment/chance-taken.json"
+    },
+    {
+      "id": "chance-missed",
+      "group": "game_review",
+      "text": "The opponent's last move left an opportunity. This move leaves it unused.",
+      "audioPath": "recordings/wisp-v1/wisp/chance-missed.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/chance-missed.provenance.json",
+      "alignmentPath": "alignment/chance-missed.json"
+    },
+    {
+      "id": "repeated-issue",
+      "group": "game_review",
+      "text": "The same issue has appeared earlier in this game. It returns here, and the earlier moments carry the same warning sign.",
+      "audioPath": "recordings/wisp-v1/wisp/repeated-issue.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/repeated-issue.provenance.json",
+      "alignmentPath": "alignment/repeated-issue.json"
+    },
+    {
+      "id": "support-restored",
+      "group": "game_review",
+      "text": "The piece left alone before has a guardian once more.",
+      "audioPath": "recordings/wisp-v1/wisp/support-restored.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/support-restored.provenance.json",
+      "alignmentPath": "alignment/support-restored.json"
+    },
+    {
+      "id": "gradual-erosion",
+      "group": "game_review",
+      "text": "No single move did this. Several small concessions have worn the position down, and this is one of them.",
+      "audioPath": "recordings/wisp-v1/wisp/gradual-erosion.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/gradual-erosion.provenance.json",
+      "alignmentPath": "alignment/gradual-erosion.json"
+    },
+    {
+      "id": "advantage-converted",
+      "group": "game_review",
+      "text": "The advantage held through every reviewed move, to the recorded win. That stretch shows how it was kept.",
+      "audioPath": "recordings/wisp-v1/wisp/advantage-converted.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/advantage-converted.provenance.json",
+      "alignmentPath": "alignment/advantage-converted.json"
+    },
+    {
+      "id": "saved-history-recurrence",
+      "group": "game_review",
+      "text": "This issue appears in other saved games too. It has been here before, and those games belong beside this one.",
+      "audioPath": "recordings/wisp-v1/wisp/saved-history-recurrence.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/saved-history-recurrence.provenance.json",
+      "alignmentPath": "alignment/saved-history-recurrence.json"
+    },
+    {
+      "id": "mate-finished",
+      "group": "game_review",
+      "text": "Checkmate. The king cannot escape. It is over.",
+      "audioPath": "recordings/wisp-v1/wisp/mate-finished.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/mate-finished.provenance.json",
+      "alignmentPath": "alignment/mate-finished.json"
+    },
+    {
+      "id": "mate-defense-ended",
+      "group": "game_review",
+      "text": "Checkmate. The king has no legal escape left. The earlier defense is where to look now.",
+      "audioPath": "recordings/wisp-v1/wisp/mate-defense-ended.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/mate-defense-ended.provenance.json",
+      "alignmentPath": "alignment/mate-defense-ended.json"
+    },
+    {
+      "id": "draw",
+      "group": "game_review",
+      "text": "The game ends in a draw. Earlier decisions are still there to review.",
+      "audioPath": "recordings/wisp-v1/wisp/draw.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/draw.provenance.json",
+      "alignmentPath": "alignment/draw.json"
+    },
+    {
+      "id": "srs-cold",
+      "group": "srs_explanations",
+      "text": "The board is quiet. Choose your move when you see it.",
+      "audioPath": "recordings/wisp-v1/wisp/srs-cold.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/srs-cold.provenance.json",
+      "alignmentPath": "alignment/srs-cold.json"
+    },
+    {
+      "id": "srs-retry",
+      "group": "srs_explanations",
+      "text": "That attempt does not work. The answer is still on the board.",
+      "audioPath": "recordings/wisp-v1/wisp/srs-retry.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/srs-retry.provenance.json",
+      "alignmentPath": "alignment/srs-retry.json"
+    },
+    {
+      "id": "srs-practice-error",
+      "group": "srs_explanations",
+      "text": "Nothing came back from that attempt. Return to the move and try it again.",
+      "audioPath": "recordings/wisp-v1/wisp/srs-practice-error.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/srs-practice-error.provenance.json",
+      "alignmentPath": "alignment/srs-practice-error.json"
+    },
+    {
+      "id": "srs-summary-mate-for-mover",
+      "group": "srs_explanations",
+      "text": "The saved engine analysis shows a forced checkmate. It is for the side that made this move.",
+      "audioPath": "recordings/wisp-v1/wisp/srs-summary-mate-for-mover.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/srs-summary-mate-for-mover.provenance.json",
+      "alignmentPath": "alignment/srs-summary-mate-for-mover.json"
+    },
+    {
+      "id": "srs-summary-mate-against-mover",
+      "group": "srs_explanations",
+      "text": "After this move, the saved engine analysis finds a forced checkmate for the other side.",
+      "audioPath": "recordings/wisp-v1/wisp/srs-summary-mate-against-mover.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/srs-summary-mate-against-mover.provenance.json",
+      "alignmentPath": "alignment/srs-summary-mate-against-mover.json"
+    },
+    {
+      "id": "srs-summary-material-gain",
+      "group": "srs_explanations",
+      "text": "When the saved line ends, the side that made this move holds more material than it started with.",
+      "audioPath": "recordings/wisp-v1/wisp/srs-summary-material-gain.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/srs-summary-material-gain.provenance.json",
+      "alignmentPath": "alignment/srs-summary-material-gain.json"
+    },
+    {
+      "id": "srs-summary-material-loss",
+      "group": "srs_explanations",
+      "text": "When the saved line ends, the side that made this move holds less material than it started with.",
+      "audioPath": "recordings/wisp-v1/wisp/srs-summary-material-loss.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/srs-summary-material-loss.provenance.json",
+      "alignmentPath": "alignment/srs-summary-material-loss.json"
+    },
+    {
+      "id": "srs-summary-engine-accepted",
+      "group": "srs_explanations",
+      "text": "The move is accepted for this exercise. The moves shown give no clear tactical reason.",
+      "audioPath": "recordings/wisp-v1/wisp/srs-summary-engine-accepted.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/srs-summary-engine-accepted.provenance.json",
+      "alignmentPath": "alignment/srs-summary-engine-accepted.json"
+    },
+    {
+      "id": "srs-summary-engine-rejected",
+      "group": "srs_explanations",
+      "text": "The move is not accepted for this exercise. The moves shown give no clear tactical reason for that.",
+      "audioPath": "recordings/wisp-v1/wisp/srs-summary-engine-rejected.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/srs-summary-engine-rejected.provenance.json",
+      "alignmentPath": "alignment/srs-summary-engine-rejected.json"
+    },
+    {
+      "id": "srs-summary-curated-accepted",
+      "group": "srs_explanations",
+      "text": "A saved answer matches this move. For this exercise, the saved answers set what is accepted.",
+      "audioPath": "recordings/wisp-v1/wisp/srs-summary-curated-accepted.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/srs-summary-curated-accepted.provenance.json",
+      "alignmentPath": "alignment/srs-summary-curated-accepted.json"
+    },
+    {
+      "id": "srs-summary-curated-rejected",
+      "group": "srs_explanations",
+      "text": "No saved answer matches this move. A different legal move is not, on that account, bad chess.",
+      "audioPath": "recordings/wisp-v1/wisp/srs-summary-curated-rejected.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/srs-summary-curated-rejected.provenance.json",
+      "alignmentPath": "alignment/srs-summary-curated-rejected.json"
+    },
+    {
+      "id": "srs-fallback-study",
+      "group": "srs_explanations",
+      "text": "Stay with the move a moment. Then go on to the next position.",
+      "audioPath": "recordings/wisp-v1/wisp/srs-fallback-study.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/srs-fallback-study.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-study.json"
+    },
+    {
+      "id": "srs-fallback-good",
+      "group": "srs_explanations",
+      "text": "A good move. The reason belongs with it.",
+      "audioPath": "recordings/wisp-v1/wisp/srs-fallback-good.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/srs-fallback-good.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-good.json"
+    },
+    {
+      "id": "srs-fallback-focus-saved",
+      "group": "srs_explanations",
+      "text": "The practice is saved. The review schedule does not change.",
+      "audioPath": "recordings/wisp-v1/wisp/srs-fallback-focus-saved.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/srs-fallback-focus-saved.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-focus-saved.json"
+    },
+    {
+      "id": "srs-fallback-relearning",
+      "group": "srs_explanations",
+      "text": "Solved. The recall remains marked for relearning.",
+      "audioPath": "recordings/wisp-v1/wisp/srs-fallback-relearning.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/srs-fallback-relearning.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-relearning.json"
+    },
+    {
+      "id": "explanation-frame-original",
+      "group": "srs_explanations",
+      "text": "The position before any of the moves. Everything starts from here.",
+      "audioPath": "recordings/wisp-v1/wisp/explanation-frame-original.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/explanation-frame-original.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-original.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-ordinary",
+      "group": "srs_explanations",
+      "text": "The next move. Something on the board is different now.",
+      "audioPath": "recordings/wisp-v1/wisp/explanation-frame-quiet-move-ordinary.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/explanation-frame-quiet-move-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-check",
+      "group": "srs_explanations",
+      "text": "Check. The king is under attack, and that must be answered.",
+      "audioPath": "recordings/wisp-v1/wisp/explanation-frame-quiet-move-check.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/explanation-frame-quiet-move-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-check.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-escape",
+      "group": "srs_explanations",
+      "text": "The king leaves check with this move.",
+      "audioPath": "recordings/wisp-v1/wisp/explanation-frame-quiet-move-escape.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/explanation-frame-quiet-move-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-escape.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-ordinary",
+      "group": "srs_explanations",
+      "text": "The pawn reaches the last rank. It becomes a new piece.",
+      "audioPath": "recordings/wisp-v1/wisp/explanation-frame-quiet-promotion-ordinary.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/explanation-frame-quiet-promotion-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-check",
+      "group": "srs_explanations",
+      "text": "The pawn reaches the last rank and becomes a new piece, and the move gives check.",
+      "audioPath": "recordings/wisp-v1/wisp/explanation-frame-quiet-promotion-check.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/explanation-frame-quiet-promotion-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-check.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-mate",
+      "group": "srs_explanations",
+      "text": "The pawn is promoted on the last rank. Checkmate. No legal square remains for the king.",
+      "audioPath": "recordings/wisp-v1/wisp/explanation-frame-quiet-promotion-mate.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/explanation-frame-quiet-promotion-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-mate.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-escape",
+      "group": "srs_explanations",
+      "text": "The pawn promotes on the last rank, and its own king leaves check by the same move.",
+      "audioPath": "recordings/wisp-v1/wisp/explanation-frame-quiet-promotion-escape.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/explanation-frame-quiet-promotion-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-escape.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-ordinary",
+      "group": "srs_explanations",
+      "text": "A piece is taken.",
+      "audioPath": "recordings/wisp-v1/wisp/explanation-frame-capture-move-ordinary.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/explanation-frame-capture-move-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-check",
+      "group": "srs_explanations",
+      "text": "A piece is taken, and the king is in check.",
+      "audioPath": "recordings/wisp-v1/wisp/explanation-frame-capture-move-check.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/explanation-frame-capture-move-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-check.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-mate",
+      "group": "srs_explanations",
+      "text": "A piece is taken, and it is checkmate. The king cannot escape.",
+      "audioPath": "recordings/wisp-v1/wisp/explanation-frame-capture-move-mate.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/explanation-frame-capture-move-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-mate.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-escape",
+      "group": "srs_explanations",
+      "text": "A piece is taken, and with it the king leaves check.",
+      "audioPath": "recordings/wisp-v1/wisp/explanation-frame-capture-move-escape.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/explanation-frame-capture-move-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-escape.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-ordinary",
+      "group": "srs_explanations",
+      "text": "Capturing as it arrives, the pawn reaches the last rank and promotes.",
+      "audioPath": "recordings/wisp-v1/wisp/explanation-frame-capture-promotion-ordinary.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/explanation-frame-capture-promotion-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-check",
+      "group": "srs_explanations",
+      "text": "Capturing as it arrives, the pawn promotes on the last rank. The move gives check.",
+      "audioPath": "recordings/wisp-v1/wisp/explanation-frame-capture-promotion-check.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/explanation-frame-capture-promotion-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-check.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-mate",
+      "group": "srs_explanations",
+      "text": "The pawn captures, reaches the last rank and promotes. Checkmate comes with it; the king cannot escape.",
+      "audioPath": "recordings/wisp-v1/wisp/explanation-frame-capture-promotion-mate.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/explanation-frame-capture-promotion-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-mate.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-escape",
+      "group": "srs_explanations",
+      "text": "The pawn captures and becomes a new piece on the last rank. In the same move, its king leaves check.",
+      "audioPath": "recordings/wisp-v1/wisp/explanation-frame-capture-promotion-escape.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/explanation-frame-capture-promotion-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-escape.json"
+    },
+    {
+      "id": "explanation-frame-castle-check",
+      "group": "srs_explanations",
+      "text": "The king castles and the rook crosses over. Check follows from the same move.",
+      "audioPath": "recordings/wisp-v1/wisp/explanation-frame-castle-check.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/explanation-frame-castle-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-castle-check.json"
+    },
+    {
+      "id": "explanation-frame-castle-mate",
+      "group": "srs_explanations",
+      "text": "The king castles and the rook crosses over. Checkmate, softly; the other king is out of escapes.",
+      "audioPath": "recordings/wisp-v1/wisp/explanation-frame-castle-mate.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/explanation-frame-castle-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-castle-mate.json"
+    },
+    {
+      "id": "explanation-finding-fork-collected",
+      "group": "srs_explanations",
+      "text": "One piece attacks several targets, then takes one. In this example, the fork also ends with a net material gain.",
+      "audioPath": "recordings/wisp-v1/wisp/explanation-finding-fork-collected.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/explanation-finding-fork-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-fork-collected.json"
+    },
+    {
+      "id": "explanation-finding-pin-prevents-capture",
+      "group": "srs_explanations",
+      "text": "The piece cannot make that capture. It is pinned to its king, and leaving the line would expose the king.",
+      "audioPath": "recordings/wisp-v1/wisp/explanation-finding-pin-prevents-capture.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/explanation-finding-pin-prevents-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-prevents-capture.json"
+    },
+    {
+      "id": "explanation-finding-pin-restricts-escape",
+      "group": "srs_explanations",
+      "text": "The piece under attack is pinned to its king. Its escape is narrow: only moves that keep the king unexposed are legal.",
+      "audioPath": "recordings/wisp-v1/wisp/explanation-finding-pin-restricts-escape.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/explanation-finding-pin-restricts-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-restricts-escape.json"
+    },
+    {
+      "id": "explanation-finding-pin-defenders-no-recapture",
+      "group": "srs_explanations",
+      "text": "The defenders cannot take back. They are pinned to their king, and in the shown line, material is gained.",
+      "audioPath": "recordings/wisp-v1/wisp/explanation-finding-pin-defenders-no-recapture.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/explanation-finding-pin-defenders-no-recapture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-defenders-no-recapture.json"
+    },
+    {
+      "id": "explanation-finding-pin-collected",
+      "group": "srs_explanations",
+      "text": "The pinned piece stays on its line, because leaving would expose its king. Before these moves end, it is captured.",
+      "audioPath": "recordings/wisp-v1/wisp/explanation-finding-pin-collected.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/explanation-finding-pin-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-collected.json"
+    },
+    {
+      "id": "explanation-finding-skewer-collected",
+      "group": "srs_explanations",
+      "text": "The front piece leaves the line. What stood behind it is captured along that same line.",
+      "audioPath": "recordings/wisp-v1/wisp/explanation-finding-skewer-collected.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/explanation-finding-skewer-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-skewer-collected.json"
+    },
+    {
+      "id": "explanation-finding-king-skewer-collected",
+      "group": "srs_explanations",
+      "text": "Check forces the king off the line. Then the same attacker takes the piece that stood behind it.",
+      "audioPath": "recordings/wisp-v1/wisp/explanation-finding-king-skewer-collected.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/explanation-finding-king-skewer-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-king-skewer-collected.json"
+    },
+    {
+      "id": "explanation-finding-sole-defender-captured",
+      "group": "srs_explanations",
+      "text": "The only defender goes first. Later in these moves, the piece it guarded is captured too.",
+      "audioPath": "recordings/wisp-v1/wisp/explanation-finding-sole-defender-captured.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/explanation-finding-sole-defender-captured.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-sole-defender-captured.json"
+    },
+    {
+      "id": "explanation-finding-deflection-collected",
+      "group": "srs_explanations",
+      "text": "The defender is drawn away from its task. The piece it was guarding is then taken.",
+      "audioPath": "recordings/wisp-v1/wisp/explanation-finding-deflection-collected.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/explanation-finding-deflection-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-deflection-collected.json"
+    },
+    {
+      "id": "explanation-finding-discovered-capture",
+      "group": "srs_explanations",
+      "text": "A blocking piece moves. Along the line it opened, another piece makes the capture.",
+      "audioPath": "recordings/wisp-v1/wisp/explanation-finding-discovered-capture.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/explanation-finding-discovered-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-discovered-capture.json"
+    },
+    {
+      "id": "explanation-finding-discovered-check",
+      "group": "srs_explanations",
+      "text": "One piece steps aside, and the piece it was hiding gives check.",
+      "audioPath": "recordings/wisp-v1/wisp/explanation-finding-discovered-check.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/explanation-finding-discovered-check.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-discovered-check.json"
+    },
+    {
+      "id": "explanation-finding-double-check",
+      "group": "srs_explanations",
+      "text": "Double check. Two pieces attack the king at once.",
+      "audioPath": "recordings/wisp-v1/wisp/explanation-finding-double-check.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/explanation-finding-double-check.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-double-check.json"
+    },
+    {
+      "id": "explanation-finding-double-attack-collected",
+      "group": "srs_explanations",
+      "text": "The moved piece attacks one target and opens a line for another. In this example, the second piece takes its target.",
+      "audioPath": "recordings/wisp-v1/wisp/explanation-finding-double-attack-collected.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/explanation-finding-double-attack-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-double-attack-collected.json"
+    },
+    {
+      "id": "explanation-finding-promotion-material-retained",
+      "group": "srs_explanations",
+      "text": "The pawn becomes a new piece. In this example, that side ends with a net material gain.",
+      "audioPath": "recordings/wisp-v1/wisp/explanation-finding-promotion-material-retained.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/explanation-finding-promotion-material-retained.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-promotion-material-retained.json"
+    },
+    {
+      "id": "explanation-finding-undefended-capture-gain",
+      "group": "srs_explanations",
+      "text": "No one guarded the piece, and it is captured. The capturing side ends this example with a net material gain.",
+      "audioPath": "recordings/wisp-v1/wisp/explanation-finding-undefended-capture-gain.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/explanation-finding-undefended-capture-gain.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-undefended-capture-gain.json"
+    },
+    {
+      "id": "explanation-finding-relative-pin-released",
+      "group": "srs_explanations",
+      "text": "The opponent's previous move released a relative pin on the attacking piece. The target was not moved after that, and in the shown line it is captured.",
+      "audioPath": "recordings/wisp-v1/wisp/explanation-finding-relative-pin-released.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/explanation-finding-relative-pin-released.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-relative-pin-released.json"
+    },
+    {
+      "id": "game-explanation-legal-reply",
+      "group": "srs_explanations",
+      "text": "The other side can play the marked reply. Play it on the board and see what follows.",
+      "audioPath": "recordings/wisp-v1/wisp/game-explanation-legal-reply.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/game-explanation-legal-reply.provenance.json",
+      "alignmentPath": "alignment/game-explanation-legal-reply.json"
+    },
+    {
+      "id": "explanation-cue-hanging-piece",
+      "group": "srs_explanations",
+      "text": "Before moving, find any piece of yours that could be taken with no useful recapture.",
+      "audioPath": "recordings/wisp-v1/wisp/explanation-cue-hanging-piece.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/explanation-cue-hanging-piece.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-hanging-piece.json"
+    },
+    {
+      "id": "explanation-cue-missed-tactical-capture",
+      "group": "srs_explanations",
+      "text": "Before a quiet move, check for enemy pieces left without a guard.",
+      "audioPath": "recordings/wisp-v1/wisp/explanation-cue-missed-tactical-capture.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/explanation-cue-missed-tactical-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-missed-tactical-capture.json"
+    },
+    {
+      "id": "explanation-cue-fork",
+      "group": "srs_explanations",
+      "text": "Check forcing moves where one piece attacks two valuable targets.",
+      "audioPath": "recordings/wisp-v1/wisp/explanation-cue-fork.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/explanation-cue-fork.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-fork.json"
+    },
+    {
+      "id": "explanation-cue-pin",
+      "group": "srs_explanations",
+      "text": "Before a pinned piece moves, see what stands behind it: the king, or something of greater value.",
+      "audioPath": "recordings/wisp-v1/wisp/explanation-cue-pin.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/explanation-cue-pin.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-pin.json"
+    },
+    {
+      "id": "explanation-cue-skewer",
+      "group": "srs_explanations",
+      "text": "An attack can pass through the first target. Check for a valuable piece standing behind it.",
+      "audioPath": "recordings/wisp-v1/wisp/explanation-cue-skewer.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/explanation-cue-skewer.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-skewer.json"
+    },
+    {
+      "id": "explanation-cue-removing-defender",
+      "group": "srs_explanations",
+      "text": "Before a defender is exchanged, see what it protects now.",
+      "audioPath": "recordings/wisp-v1/wisp/explanation-cue-removing-defender.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/explanation-cue-removing-defender.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-removing-defender.json"
+    },
+    {
+      "id": "explanation-cue-discovered-attack",
+      "group": "srs_explanations",
+      "text": "When a blocking piece moves, lines open behind it. Check where they lead.",
+      "audioPath": "recordings/wisp-v1/wisp/explanation-cue-discovered-attack.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/explanation-cue-discovered-attack.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-discovered-attack.json"
+    },
+    {
+      "id": "explanation-cue-double-attack",
+      "group": "srs_explanations",
+      "text": "Look for one move that makes two threats. Checks and opened lines count.",
+      "audioPath": "recordings/wisp-v1/wisp/explanation-cue-double-attack.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/explanation-cue-double-attack.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-double-attack.json"
+    },
+    {
+      "id": "explanation-cue-back-rank",
+      "group": "srs_explanations",
+      "text": "Before a back-rank defender moves, find the king's escape squares.",
+      "audioPath": "recordings/wisp-v1/wisp/explanation-cue-back-rank.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/explanation-cue-back-rank.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-back-rank.json"
+    },
+    {
+      "id": "explanation-cue-promotion-awareness",
+      "group": "srs_explanations",
+      "text": "Count the moves the pawn needs to promote, and weigh each forcing pawn advance.",
+      "audioPath": "recordings/wisp-v1/wisp/explanation-cue-promotion-awareness.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/explanation-cue-promotion-awareness.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-promotion-awareness.json"
+    },
+    {
+      "id": "explanation-cue-abandoned-defender",
+      "group": "srs_explanations",
+      "text": "Before a defender moves, find every piece it protects. Those are the pieces it would leave behind.",
+      "audioPath": "recordings/wisp-v1/wisp/explanation-cue-abandoned-defender.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/explanation-cue-abandoned-defender.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-abandoned-defender.json"
+    },
+    {
+      "id": "explanation-cue-avoiding-bad-trades",
+      "group": "srs_explanations",
+      "text": "Count what the capture takes, and what the recapture takes back.",
+      "audioPath": "recordings/wisp-v1/wisp/explanation-cue-avoiding-bad-trades.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/explanation-cue-avoiding-bad-trades.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-avoiding-bad-trades.json"
+    },
+    {
+      "id": "explanation-cue-deflection",
+      "group": "srs_explanations",
+      "text": "Check whether a forcing exchange could pull a defender away from something else it guards.",
+      "audioPath": "recordings/wisp-v1/wisp/explanation-cue-deflection.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/explanation-cue-deflection.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-deflection.json"
+    },
+    {
+      "id": "explanation-note-curated-authority",
+      "group": "srs_explanations",
+      "text": "This exercise is defined by its saved answers. A different legal move may still be sound chess.",
+      "audioPath": "recordings/wisp-v1/wisp/explanation-note-curated-authority.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/explanation-note-curated-authority.provenance.json",
+      "alignmentPath": "alignment/explanation-note-curated-authority.json"
+    },
+    {
+      "id": "explanation-note-strong-replies",
+      "group": "srs_explanations",
+      "text": "These moves show play against strong replies. Not every reply here is forced.",
+      "audioPath": "recordings/wisp-v1/wisp/explanation-note-strong-replies.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/explanation-note-strong-replies.provenance.json",
+      "alignmentPath": "alignment/explanation-note-strong-replies.json"
+    },
+    {
+      "id": "explanation-note-material-scope",
+      "group": "srs_explanations",
+      "text": "Material changes cover only the shown line, counted from its starting position. The written explanation gives the piece values.",
+      "audioPath": "recordings/wisp-v1/wisp/explanation-note-material-scope.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/explanation-note-material-scope.provenance.json",
+      "alignmentPath": "alignment/explanation-note-material-scope.json"
+    },
+    {
+      "id": "explanation-note-no-simple-reason",
+      "group": "srs_explanations",
+      "text": "The saved line shows no simple tactical reason. Trace it gently, reply by reply. No positional explanation has been assumed.",
+      "audioPath": "recordings/wisp-v1/wisp/explanation-note-no-simple-reason.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/explanation-note-no-simple-reason.provenance.json",
+      "alignmentPath": "alignment/explanation-note-no-simple-reason.json"
+    },
+    {
+      "id": "explanation-note-saved-policy",
+      "group": "srs_explanations",
+      "text": "This explanation follows the answer policy saved for the exercise. The written notes show its setting.",
+      "audioPath": "recordings/wisp-v1/wisp/explanation-note-saved-policy.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/explanation-note-saved-policy.provenance.json",
+      "alignmentPath": "alignment/explanation-note-saved-policy.json"
+    },
+    {
+      "id": "opening-recall-revealed",
+      "group": "openings",
+      "text": "These are the moves of the opening line you are studying.",
+      "audioPath": "recordings/wisp-v1/wisp/opening-recall-revealed.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/opening-recall-revealed.provenance.json",
+      "alignmentPath": "alignment/opening-recall-revealed.json"
+    },
+    {
+      "id": "opening-recall-accepted",
+      "group": "openings",
+      "text": "That move is in your selected study material.",
+      "audioPath": "recordings/wisp-v1/wisp/opening-recall-accepted.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/opening-recall-accepted.provenance.json",
+      "alignmentPath": "alignment/opening-recall-accepted.json"
+    },
+    {
+      "id": "opening-recall-retry-fallback",
+      "group": "openings",
+      "text": "The answer is among your selected study lines. Play one of those moves.",
+      "audioPath": "recordings/wisp-v1/wisp/opening-recall-retry-fallback.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/opening-recall-retry-fallback.provenance.json",
+      "alignmentPath": "alignment/opening-recall-retry-fallback.json"
+    },
+    {
+      "id": "opening-recall-cold-multiple",
+      "group": "openings",
+      "text": "More than one move from your selected opening lines will count here.",
+      "audioPath": "recordings/wisp-v1/wisp/opening-recall-cold-multiple.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/opening-recall-cold-multiple.provenance.json",
+      "alignmentPath": "alignment/opening-recall-cold-multiple.json"
+    },
+    {
+      "id": "opening-recall-cold-single",
+      "group": "openings",
+      "text": "One move from your selected study material belongs here. Recall it.",
+      "audioPath": "recordings/wisp-v1/wisp/opening-recall-cold-single.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/opening-recall-cold-single.provenance.json",
+      "alignmentPath": "alignment/opening-recall-cold-single.json"
+    },
+    {
+      "id": "opening-recall-rejected",
+      "group": "openings",
+      "text": "That move is not among the opening lines you selected. Try again.",
+      "audioPath": "recordings/wisp-v1/wisp/opening-recall-rejected.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/opening-recall-rejected.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected.json"
+    },
+    {
+      "id": "opening-recall-rejected-changed",
+      "group": "openings",
+      "text": "That move is not in your selected opening lines. Try again. This saved attempt leaves the changed study's review schedule as it is.",
+      "audioPath": "recordings/wisp-v1/wisp/opening-recall-rejected-changed.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/opening-recall-rejected-changed.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected-changed.json"
+    },
+    {
+      "id": "opening-recall-rejected-retired",
+      "group": "openings",
+      "text": "That move is not in your selected opening lines. Try again. This position is retired, and its review schedule does not change.",
+      "audioPath": "recordings/wisp-v1/wisp/opening-recall-rejected-retired.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/opening-recall-rejected-retired.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected-retired.json"
+    },
+    {
+      "id": "opening-preview-active",
+      "group": "openings",
+      "text": "In mixed Due, moves from this line are accepted. Dedicated practice asks for this line by itself.",
+      "audioPath": "recordings/wisp-v1/wisp/opening-preview-active.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/opening-preview-active.provenance.json",
+      "alignmentPath": "alignment/opening-preview-active.json"
+    },
+    {
+      "id": "opening-preview-inactive",
+      "group": "openings",
+      "text": "Scheduled recalls ask for your selected side's moves. Where active studies share a position, they share one card.",
+      "audioPath": "recordings/wisp-v1/wisp/opening-preview-inactive.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/opening-preview-inactive.provenance.json",
+      "alignmentPath": "alignment/opening-preview-inactive.json"
+    },
+    {
+      "id": "puzzle-error",
+      "group": "puzzles",
+      "text": "The saved session needs to be reloaded. Then make your next move.",
+      "audioPath": "recordings/wisp-v1/wisp/puzzle-error.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/puzzle-error.provenance.json",
+      "alignmentPath": "alignment/puzzle-error.json"
+    },
+    {
+      "id": "puzzle-playback",
+      "group": "puzzles",
+      "text": "The verified line plays on the board.",
+      "audioPath": "recordings/wisp-v1/wisp/puzzle-playback.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/puzzle-playback.provenance.json",
+      "alignmentPath": "alignment/puzzle-playback.json"
+    },
+    {
+      "id": "puzzle-revealed",
+      "group": "puzzles",
+      "text": "This attempt is marked as revealed. Below, the solution can be played through again.",
+      "audioPath": "recordings/wisp-v1/wisp/puzzle-revealed.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/puzzle-revealed.provenance.json",
+      "alignmentPath": "alignment/puzzle-revealed.json"
+    },
+    {
+      "id": "puzzle-solved-after-retry",
+      "group": "puzzles",
+      "text": "Solved, after a retry. The earlier miss and the finish are both kept.",
+      "audioPath": "recordings/wisp-v1/wisp/puzzle-solved-after-retry.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/puzzle-solved-after-retry.provenance.json",
+      "alignmentPath": "alignment/puzzle-solved-after-retry.json"
+    },
+    {
+      "id": "puzzle-solved-clean",
+      "group": "puzzles",
+      "text": "The full solution, and no wrong move. Cleanly found.",
+      "audioPath": "recordings/wisp-v1/wisp/puzzle-solved-clean.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/puzzle-solved-clean.provenance.json",
+      "alignmentPath": "alignment/puzzle-solved-clean.json"
+    },
+    {
+      "id": "puzzle-rejected",
+      "group": "puzzles",
+      "text": "That move is not the solution. The correct moves before it remain saved.",
+      "audioPath": "recordings/wisp-v1/wisp/puzzle-rejected.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/puzzle-rejected.provenance.json",
+      "alignmentPath": "alignment/puzzle-rejected.json"
+    },
+    {
+      "id": "puzzle-next-move",
+      "group": "puzzles",
+      "text": "That move is right for this puzzle. Another move remains to be found.",
+      "audioPath": "recordings/wisp-v1/wisp/puzzle-next-move.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/puzzle-next-move.provenance.json",
+      "alignmentPath": "alignment/puzzle-next-move.json"
+    },
+    {
+      "id": "puzzle-cold",
+      "group": "puzzles",
+      "text": "Nothing here needs hurrying. Calculate, then move.",
+      "audioPath": "recordings/wisp-v1/wisp/puzzle-cold.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/puzzle-cold.provenance.json",
+      "alignmentPath": "alignment/puzzle-cold.json"
+    },
+    {
+      "id": "game-unavailable",
+      "group": "operational",
+      "text": "The engine has given me too little to explain this position. The board is still open to you.",
+      "audioPath": "recordings/wisp-v1/wisp/game-unavailable.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/game-unavailable.provenance.json",
+      "alignmentPath": "alignment/game-unavailable.json"
+    },
+    {
+      "id": "game-review-paused",
+      "group": "operational",
+      "text": "The review is paused. Resume it below, or move a piece and explore.",
+      "audioPath": "recordings/wisp-v1/wisp/game-review-paused.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/game-review-paused.provenance.json",
+      "alignmentPath": "alignment/game-review-paused.json"
+    },
+    {
+      "id": "game-browse-instructions",
+      "group": "operational",
+      "text": "Select a move to review it, or move a piece to explore another path.",
+      "audioPath": "recordings/wisp-v1/wisp/game-browse-instructions.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/game-browse-instructions.provenance.json",
+      "alignmentPath": "alignment/game-browse-instructions.json"
+    },
+    {
+      "id": "book-opening-entry-1",
+      "group": "game_review",
+      "text": "A book move. This position has been reached before.",
+      "audioPath": "recordings/wisp-v1/wisp/book-opening-entry-1.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/book-opening-entry-1.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-1.json"
+    },
+    {
+      "id": "book-opening-entry-2",
+      "group": "game_review",
+      "text": "This move is in the book, part of a known opening line.",
+      "audioPath": "recordings/wisp-v1/wisp/book-opening-entry-2.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/book-opening-entry-2.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-2.json"
+    },
+    {
+      "id": "book-opening-entry-3",
+      "group": "game_review",
+      "text": "Book. The move sits inside a recognized opening.",
+      "audioPath": "recordings/wisp-v1/wisp/book-opening-entry-3.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/book-opening-entry-3.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-3.json"
+    },
+    {
+      "id": "book-opening-follow-1",
+      "group": "game_review",
+      "text": "Even here, the book whispers along.",
+      "audioPath": "recordings/wisp-v1/wisp/book-opening-follow-1.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/book-opening-follow-1.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-1.json"
+    },
+    {
+      "id": "book-opening-follow-2",
+      "group": "game_review",
+      "text": "The book knows this one too.",
+      "audioPath": "recordings/wisp-v1/wisp/book-opening-follow-2.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/book-opening-follow-2.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-2.json"
+    },
+    {
+      "id": "book-opening-follow-3",
+      "group": "game_review",
+      "text": "The reply is also book.",
+      "audioPath": "recordings/wisp-v1/wisp/book-opening-follow-3.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/book-opening-follow-3.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-3.json"
+    },
+    {
+      "id": "book-opening-follow-4",
+      "group": "game_review",
+      "text": "The known line goes on.",
+      "audioPath": "recordings/wisp-v1/wisp/book-opening-follow-4.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/book-opening-follow-4.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-4.json"
+    },
+    {
+      "id": "book-opening-follow-5",
+      "group": "game_review",
+      "text": "Still on known ground.",
+      "audioPath": "recordings/wisp-v1/wisp/book-opening-follow-5.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/book-opening-follow-5.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-5.json"
+    },
+    {
+      "id": "book-opening-follow-6",
+      "group": "game_review",
+      "text": "Another known move.",
+      "audioPath": "recordings/wisp-v1/wisp/book-opening-follow-6.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/book-opening-follow-6.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-6.json"
+    },
+    {
+      "id": "book-opening-follow-7",
+      "group": "game_review",
+      "text": "The book has not ended yet.",
+      "audioPath": "recordings/wisp-v1/wisp/book-opening-follow-7.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/book-opening-follow-7.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-7.json"
+    },
+    {
+      "id": "book-opening-follow-8",
+      "group": "game_review",
+      "text": "Again, a book move. Being known does not make a move good.",
+      "audioPath": "recordings/wisp-v1/wisp/book-opening-follow-8.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/book-opening-follow-8.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-8.json"
+    },
+    {
+      "id": "game-review-opened",
+      "group": "operational",
+      "text": "Everything is still at the start. Move ahead, and we'll see what was waiting further on.",
+      "audioPath": "recordings/wisp-v1/wisp/game-review-opened.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/game-review-opened.provenance.json",
+      "alignmentPath": "alignment/game-review-opened.json"
+    },
+    {
+      "id": "lesson-wrong-move",
+      "group": "lessons",
+      "text": "A legal move, but the lesson does not go there. Try again.",
+      "audioPath": "recordings/wisp-v1/wisp/lesson-wrong-move.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/lesson-wrong-move.provenance.json",
+      "alignmentPath": "alignment/lesson-wrong-move.json"
+    },
+    {
+      "id": "lesson-correct-move",
+      "group": "lessons",
+      "text": "Yes... the lesson walks that same path.",
+      "audioPath": "recordings/wisp-v1/wisp/lesson-correct-move.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/lesson-correct-move.provenance.json",
+      "alignmentPath": "alignment/lesson-correct-move.json"
+    },
+    {
+      "id": "lesson-move-revealed",
+      "group": "lessons",
+      "text": "The lesson's move drifts into place.",
+      "audioPath": "recordings/wisp-v1/wisp/lesson-move-revealed.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/lesson-move-revealed.provenance.json",
+      "alignmentPath": "alignment/lesson-move-revealed.json"
+    },
+    {
+      "id": "lesson-guided-playback",
+      "group": "lessons",
+      "text": "Watch quietly as the lesson goes on.",
+      "audioPath": "recordings/wisp-v1/wisp/lesson-guided-playback.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/lesson-guided-playback.provenance.json",
+      "alignmentPath": "alignment/lesson-guided-playback.json"
+    },
+    {
+      "id": "lesson-rehearsal-prompt",
+      "group": "lessons",
+      "text": "Play the move you studied.",
+      "audioPath": "recordings/wisp-v1/wisp/lesson-rehearsal-prompt.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/lesson-rehearsal-prompt.provenance.json",
+      "alignmentPath": "alignment/lesson-rehearsal-prompt.json"
+    },
+    {
+      "id": "lesson-branch-entered",
+      "group": "lessons",
+      "text": "A side path appears. Float through it, then drift home to the main line.",
+      "audioPath": "recordings/wisp-v1/wisp/lesson-branch-entered.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/lesson-branch-entered.provenance.json",
+      "alignmentPath": "alignment/lesson-branch-entered.json"
+    },
+    {
+      "id": "lesson-chapter-complete",
+      "group": "lessons",
+      "text": "This chapter fades to a close. Your progress remains.",
+      "audioPath": "recordings/wisp-v1/wisp/lesson-chapter-complete.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/lesson-chapter-complete.provenance.json",
+      "alignmentPath": "alignment/lesson-chapter-complete.json"
+    },
+    {
+      "id": "lesson-game-opened",
+      "group": "lessons",
+      "text": "The whole game waits, open and still. Move through it as you wish.",
+      "audioPath": "recordings/wisp-v1/wisp/lesson-game-opened.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/lesson-game-opened.provenance.json",
+      "alignmentPath": "alignment/lesson-game-opened.json"
+    },
+    {
+      "id": "lesson-error",
+      "group": "lessons",
+      "text": "Something slipped in the lesson. Reload it to bring it back.",
+      "audioPath": "recordings/wisp-v1/wisp/lesson-error.opus",
+      "sidecarPath": "recordings/wisp-v1/wisp/lesson-error.provenance.json",
+      "alignmentPath": "alignment/lesson-error.json"
+    }
+  ]
+}

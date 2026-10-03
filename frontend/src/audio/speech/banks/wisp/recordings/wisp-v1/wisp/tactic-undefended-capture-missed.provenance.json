@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-missed",
+      "label": "Tactic undefended capture missed",
+      "text": "Another move could have taken an undefended piece. Nothing was guarding it, and this move does not take it."
+    },
+    "takeId": null
+  },
+  "requestHash": "842a61ca5a5089500fc0ba2e7e7785c7e3ab9cc225c3a8164ccd14803de170f7",
+  "recordedAt": "2026-10-03T06:20:46.023Z",
+  "sha256": "522f751f451535058569300e5fb3d2bfcd34efe43bf9d7f9977d471c2861b033",
+  "bytes": 21229,
+  "requestId": "d17cE1KjV9thWpVbKLvX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6547a44df1fe1a0f2cf8cb245ca8adb31e1a6d41e5a65b331e50e7f73704ced5",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

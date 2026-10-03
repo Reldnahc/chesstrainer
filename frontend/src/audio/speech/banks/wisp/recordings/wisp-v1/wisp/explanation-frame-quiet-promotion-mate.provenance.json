@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-promotion-mate",
+      "label": "Explanation frame quiet promotion mate",
+      "text": "The pawn is promoted on the last rank. Checkmate. No legal square remains for the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "ea5d95576c1cc033d13b59d5f27db88eeefa0b60a61a585eaf695219bfc6d65a",
+  "recordedAt": "2026-10-03T06:21:12.755Z",
+  "sha256": "220a535346d07768c8d37d7d2427b4e73fd90fcb3fb5da907f731227532257a3",
+  "bytes": 19536,
+  "requestId": "jQUL7XlnW0YtKU8UUzaC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f6e885852a944098099d712c5090c2ecf2c8407bb4b05adf75497914463ee811",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

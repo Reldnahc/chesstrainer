@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "positional-support-alternative",
+      "label": "Positional support alternative",
+      "text": "Another move would have given an undefended piece a defender."
+    },
+    "takeId": null
+  },
+  "requestHash": "5626802f71166564b7369203dbeb9446d5ae885b7ae58010214cf92ef49336cf",
+  "recordedAt": "2026-10-03T06:20:44.329Z",
+  "sha256": "1355c84ae27979c518dc3fcfe701b7f6bdea73f1495920cf350abd0d65350036",
+  "bytes": 13084,
+  "requestId": "Ua8Feu4Qz02h6fkGrO43",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8f6a5333cdf3ecfdf0c3b14c8d9d88fc7870ad17e8674b65a6753187f543a49c",
+    "bytes": 63991
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

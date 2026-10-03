@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "book-opening-follow-4",
+      "label": "Book opening follow 4",
+      "text": "The known line goes on."
+    },
+    "takeId": null
+  },
+  "requestHash": "03b817e317b2ae2ac7f30e171434802ebf086133e46462fb9a2b017e464fcb0a",
+  "recordedAt": "2026-10-03T06:21:06.029Z",
+  "sha256": "873e22157b6830fc2cf41cbe5a022066324140072cc5cdee713406d2a96fb7fe",
+  "bytes": 6806,
+  "requestId": "Q0iiczyTqOC2ChAXspup",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "52aec84ce10a3cac3faf3f693b6fe3547d2576bef1f1577fc70af67d769ac8d1",
+    "bytes": 31808
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

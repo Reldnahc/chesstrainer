@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "game-review-paused",
+      "label": "Game review paused",
+      "text": "The review is paused. Resume it below, or move a piece and explore."
+    },
+    "takeId": null
+  },
+  "requestHash": "593d401fb67c5680495f6cf5de27ce347ccb27664b7c7781d7ae1acd803a5c64",
+  "recordedAt": "2026-10-03T06:21:23.695Z",
+  "sha256": "bd879e3214c77c790089e96786dda1ec8f2796fe159303e11c7236abc33b8509",
+  "bytes": 16551,
+  "requestId": "u0X1fMVp3KlXRJyEbsI4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "89b6d527a55bf4aa0b3a0e6c7b72267b6a87b0153ef9ab2c8b6b59fa36bed5a8",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

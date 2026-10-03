@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "best-supported-choice",
+      "label": "Best supported choice",
+      "text": "A strong move. Among those the engine examined, it gives away very little."
+    },
+    "takeId": null
+  },
+  "requestHash": "1d2256076de55b4874645a900dca66f54c9470147280c0369a6bb344205e69f1",
+  "recordedAt": "2026-10-03T06:20:47.188Z",
+  "sha256": "dd8cb88fa8e4751adabebc2bf04307f7affe25c72a53b5921438f8b73e6d3673",
+  "bytes": 17568,
+  "requestId": "pUIFycj9LFEQJBS6HkN9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "94b20fa652919deacbbc5c50f3ace51045ba54c7369ccdacb06d37630d552887",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

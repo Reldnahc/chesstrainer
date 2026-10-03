@@ -65,6 +65,7 @@ REGISTERED = [
     ("human-girl", "tala"),
     ("woman-captain", "tamar"),
     ("dog-corgi", "waffles"),
+    ("ghost", "wisp"),
 ]
 # Voices whose written personality sets questionFrequency to "none".
 QUESTIONLESS = [

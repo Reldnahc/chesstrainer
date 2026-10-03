@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "tactic-pin-allowed",
+      "label": "Tactic pin allowed",
+      "text": "Look along the line to the king. The other side can pin a piece there, and a pinned piece cannot leave without exposing its king."
+    },
+    "takeId": null
+  },
+  "requestHash": "61356be018208c5be8bb731bc99bb5598b6f6563d349465d7cc1ca29ada5549c",
+  "recordedAt": "2026-10-03T06:20:36.462Z",
+  "sha256": "9f3d032c79208094586801a1a60e0b33abed906585af2c58d041ebbd56815f2a",
+  "bytes": 25161,
+  "requestId": "ysWXtFScatYmQgAb3DKq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cd6b49e650654d937ab10c6e5a721028c95189b5ead3ff8030229c62dc337883",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

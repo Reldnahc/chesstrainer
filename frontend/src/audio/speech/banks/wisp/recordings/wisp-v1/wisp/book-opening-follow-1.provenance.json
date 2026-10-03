@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "book-opening-follow-1",
+      "label": "Book opening follow 1",
+      "text": "Even here, the book whispers along."
+    },
+    "takeId": null
+  },
+  "requestHash": "1c85ebfd61b111fc490d333397d6d5265d39d1ecf940cdb21e6dae7e954149a4",
+  "recordedAt": "2026-10-03T06:21:29.080Z",
+  "sha256": "6f4d7f0d65c6c86c01532d930bd989675d4c7390d573e866ca9226512a9622b9",
+  "bytes": 9957,
+  "requestId": "RlPg3r1hI1xi9CPFEmsu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dc553e2ec5fc266088c1243600c606c53fc8e582d586886039a17d03cd65a7e2",
+    "bytes": 48527
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

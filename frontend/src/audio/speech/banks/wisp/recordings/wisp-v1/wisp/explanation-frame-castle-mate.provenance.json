@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "explanation-frame-castle-mate",
+      "label": "Explanation frame castle mate",
+      "text": "The king castles and the rook crosses over. Checkmate, softly; the other king is out of escapes."
+    },
+    "takeId": null
+  },
+  "requestHash": "8fd24163d6c0cf65cf6a3e65759dcf2696b18a604ab8ea42907404ed4051625b",
+  "recordedAt": "2026-10-03T06:21:27.221Z",
+  "sha256": "d924cd18b266e960b04585190c072271da553e9fd9b8a548e8eea877137c2a1a",
+  "bytes": 22799,
+  "requestId": "h9zDKAAJFq5Iwidl226h",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "26479b6ac757911e51a9eba8d6036b27fb2cf23f4bf9592962ec721e9b9dce1a",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

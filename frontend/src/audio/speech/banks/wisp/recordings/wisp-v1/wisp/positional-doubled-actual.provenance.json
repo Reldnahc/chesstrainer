@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "positional-doubled-actual",
+      "label": "Positional doubled actual",
+      "text": "Two pawns of one color now share a file. Doubled pawns."
+    },
+    "takeId": null
+  },
+  "requestHash": "182475902054815269c79e9772755b809be37258026f418aa4b824ed3e0bc5de",
+  "recordedAt": "2026-10-03T06:20:56.824Z",
+  "sha256": "3eb7b5ae84ec068041c86993842cb3e53981d76ab47476d75ca60ebc55edc708",
+  "bytes": 14576,
+  "requestId": "BBwlh9iSM5ldfupzFFAh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5d34ae52b2b2492be6f7558ab25ef305d78edef0f7917b8a0c3e7dc00f686752",
+    "bytes": 75276
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

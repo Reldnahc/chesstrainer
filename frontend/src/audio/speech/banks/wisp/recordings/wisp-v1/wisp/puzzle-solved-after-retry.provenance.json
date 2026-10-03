@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "puzzle-solved-after-retry",
+      "label": "Puzzle solved after retry",
+      "text": "Solved, after a retry. The earlier miss and the finish are both kept."
+    },
+    "takeId": null
+  },
+  "requestHash": "bdd6c7a8bfda5b84877b145f38bbf9f9d25eb9bfb8ba848810d5ab55216e212c",
+  "recordedAt": "2026-10-03T06:21:15.942Z",
+  "sha256": "ad6c0fb8d2d6e57c04259c650708773f17b883e81468b7e0af7f6de08faf1ef4",
+  "bytes": 17088,
+  "requestId": "YrTwvowxlfpDpZTeegAc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "551df03ec98b1451337ab4451c67c414686b48083fab174a139bab145d4d8aca",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

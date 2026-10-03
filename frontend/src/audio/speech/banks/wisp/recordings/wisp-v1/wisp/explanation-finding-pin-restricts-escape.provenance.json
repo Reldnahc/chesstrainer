@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape",
+      "label": "Explanation finding pin restricts escape",
+      "text": "The piece under attack is pinned to its king. Its escape is narrow: only moves that keep the king unexposed are legal."
+    },
+    "takeId": null
+  },
+  "requestHash": "e3865020ebcbd70b9fbd6e877cb6c7e03f075f15dc6e11cb190f89d066d6226b",
+  "recordedAt": "2026-10-03T06:21:06.602Z",
+  "sha256": "1447d617b3681ad9bc9549323d4c45da7a2297d122b9c9763fe833503b543426",
+  "bytes": 26268,
+  "requestId": "u6Jq40Ws6Z6MIGAGmPvb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "153a709c647b0af728ef98b16e462782235436be40269ee81e4040ff36a7acd3",
+    "bytes": 136716
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

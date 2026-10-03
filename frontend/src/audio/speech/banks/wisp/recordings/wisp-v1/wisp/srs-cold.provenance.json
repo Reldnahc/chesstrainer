@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "srs-cold",
+      "label": "Srs cold",
+      "text": "The board is quiet. Choose your move when you see it."
+    },
+    "takeId": null
+  },
+  "requestHash": "49100d419a4c60f1d0e67b87e8124bdcc44234c6772030753d79279d58a8f98f",
+  "recordedAt": "2026-10-03T06:20:45.941Z",
+  "sha256": "52af6ae3b9e22e3783a246ff6c69cf6028a31aa5f3fa2084c35ef13bbff98ea0",
+  "bytes": 12006,
+  "requestId": "dSOHmORJ7kg9PkX7l4Oh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ec8410818aaaf374449cd8139393ecec7c646d1ef8f441cc0d805ab3e7a3d153",
+    "bytes": 61066
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

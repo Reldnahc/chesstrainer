@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed",
+      "label": "Tactic removing defender allowed",
+      "text": "One defender is holding something in place. The other side can now capture it, and what it guards could be left without protection."
+    },
+    "takeId": null
+  },
+  "requestHash": "a45dc5a5c4eca7b0a15e3f885514808bb90d5920df50391f71bd293c3705bbb6",
+  "recordedAt": "2026-10-03T06:20:48.363Z",
+  "sha256": "37f017309c3f1fad79829e992e7c28a8aa9aca19b78707e9a12fbb473d8cd8fe",
+  "bytes": 25544,
+  "requestId": "IttONCuhViYIgGOsTHuE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "edfc8dd2500ffe2e63b8a5a57803b49a302395fa4a00dbcc0253d485f39c7257",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

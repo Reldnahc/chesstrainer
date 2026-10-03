@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "explanation-finding-pin-prevents-capture",
+      "label": "Explanation finding pin prevents capture",
+      "text": "The piece cannot make that capture. It is pinned to its king, and leaving the line would expose the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "864ba2e4436ffb75cf042c9c91440af9d8b7d90acb68f908295f2c74fe05d6d1",
+  "recordedAt": "2026-10-03T06:21:30.760Z",
+  "sha256": "15470546007fa99dc8d44403cd45c9c065c6b666b79ab36a60d69bd5b407b7bd",
+  "bytes": 21544,
+  "requestId": "zlMX34xuubqEAmUfStyR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c93678861a29e12bdb52f9a909ef483234f1fbc5e52cd12da8da061d3c4ea149",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

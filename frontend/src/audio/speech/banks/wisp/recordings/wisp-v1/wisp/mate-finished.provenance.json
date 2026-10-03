@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "mate-finished",
+      "label": "Mate finished",
+      "text": "Checkmate. The king cannot escape. It is over."
+    },
+    "takeId": null
+  },
+  "requestHash": "6e979202d180eb6ca9ad00c4dc284d1b7f76feeb6a55574b8b8dc8afbbb7d3fc",
+  "recordedAt": "2026-10-03T06:20:42.098Z",
+  "sha256": "5a822bdd327a7431e0492db12058906684790b24c01751559b4b286250a7cc7f",
+  "bytes": 12629,
+  "requestId": "MwWZ8FeufA1u4BDwVsI0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e8ac787c0168fc9f4959980bc4d9c9fdba5f3900e3ef52873327acb44023f226",
+    "bytes": 65245
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}
