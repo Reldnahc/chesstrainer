@@ -64,6 +64,24 @@ class MaiaPredictor:
         self.indices = {move: index for index, move in enumerate(self.moves)}
 
     def predict(self, request):
+        return self.predict_many([request])[0]
+
+    def predict_many(self, requests):
+        """Score several positions in one forward pass; same policies as one at a time."""
+        prepared = [self._prepare(request) for request in requests]
+        tokens = torch.stack([tokens for _, tokens, _ in prepared]).to(self.device)
+        ratings = [
+            torch.tensor([getattr(r.conditioning, side) for r in requests], device=self.device)
+            for side in ("self_rating", "opponent_rating")
+        ]
+        with torch.inference_mode():
+            logits, _, _ = self.model(tokens, *(rating.long() for rating in ratings))
+            return [
+                self._policy(board, row, mask)
+                for (board, _, mask), row in zip(prepared, logits, strict=True)
+            ]
+
+    def _prepare(self, request):
         board = valid_board(request.history.root)
         history = deque([tokenize_board(board)], maxlen=self.cfg.history)
         for uci in request.history.moves:
@@ -77,21 +95,13 @@ class MaiaPredictor:
         mask = get_legal_moves_mask(board, self.indices).to(self.device)
         if not mask.any():
             raise ValueError("terminal_position")
-        tokens = get_historical_tokens(history, self.cfg, 0, 0, 0, 0).unsqueeze(0).to(self.device)
-        with torch.inference_mode():
-            logits, _, _ = self.model(
-                tokens,
-                torch.tensor(
-                    [request.conditioning.self_rating], device=self.device, dtype=torch.long
-                ),
-                torch.tensor(
-                    [request.conditioning.opponent_rating], device=self.device, dtype=torch.long
-                ),
-            )
-            probabilities = torch.softmax(logits[0].float().masked_fill(~mask, float("-inf")), -1)
-            legal_indices = torch.nonzero(mask, as_tuple=False).flatten()
-            values = probabilities[legal_indices].tolist()
-            indices = legal_indices.tolist()
+        return board, get_historical_tokens(history, self.cfg, 0, 0, 0, 0), mask
+
+    def _policy(self, board, logits, mask):
+        probabilities = torch.softmax(logits.float().masked_fill(~mask, float("-inf")), -1)
+        legal_indices = torch.nonzero(mask, as_tuple=False).flatten()
+        values = probabilities[legal_indices].tolist()
+        indices = legal_indices.tolist()
         moves = [
             (self.moves[index] if board.turn else mirror_move(self.moves[index]), probability)
             for index, probability in zip(indices, values)

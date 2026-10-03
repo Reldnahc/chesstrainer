@@ -70,9 +70,20 @@ hashing, inference or Torch import. Completed game reviews can acquire missing o
 outdated human evidence on reopening without rerunning their Stockfish baseline.
 Account-owned cached evidence remains readable if the model is later unavailable.
 
-Optional CUDA requires an administrator-provided compatible Torch 2.8.0 CUDA
-runtime, host GPU support and `HUMAN_MODEL_DEVICE=cuda`; the shipped image is CPU
-only. Do not apply the CPU Torch constraint to that environment. Device and
+Optional CUDA requires a compatible Torch 2.8.0 CUDA runtime, host GPU support and
+`HUMAN_MODEL_DEVICE=cuda`. The image ships only the CPU Torch build. In Docker,
+give the container the GPU (see the commented `deploy` block in `compose.yaml`;
+the host needs the NVIDIA Container Toolkit) and set `HUMAN_MODEL_DEVICE=cuda`. On
+its first start with that setting, the entrypoint downloads Torch 2.8.0 for CUDA
+12.8 (about 3 GB to download, 6.4 GB on disk, at the image's locked dependency versions) into
+`/data/runtime/torch-2.8.0-cu128` and puts it ahead of the CPU build; later starts
+reuse it. CPU containers download nothing. Outside Docker, install the CUDA Torch
+wheel yourself; do not apply the CPU Torch pin to that environment.
+
+On a GPU, a game review sends all of its positions to Maia in batches of 32 before
+the Stockfish pass. On CPU the forward pass itself is the cost (batching measured
+only about 1.5x faster), so reviews keep scoring move by move alongside the
+Stockfish searches. Device and
 runtime identity invalidate inference caches. CPU is fully supported; there is
 no automatic GPU requirement or silent CPU/GPU switch.
 

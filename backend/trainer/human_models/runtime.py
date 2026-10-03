@@ -14,6 +14,10 @@ from trainer.cancellation import throttled
 from trainer.human_models.preset import provenance
 from trainer.human_models.types import HumanPolicy, HumanReadiness, ModelProvenance
 
+# Positions per worker exchange: one forward pass each, and request and reply
+# lines stay well under the worker's 256 KiB line limit.
+BATCH_POSITIONS = 32
+
 
 class HumanUnavailable(RuntimeError):
     pass
@@ -164,6 +168,35 @@ class MaiaProvider:
             )
 
     def predict(self, request, cancelled=lambda: False):
+        return self.predict_many([request], cancelled)[0]
+
+    def predict_many(self, requests, cancelled=lambda: False):
+        """One worker exchange per BATCH_POSITIONS requests, in request order."""
+        policies = []
+        for start in range(0, len(requests), BATCH_POSITIONS):
+            chunk = requests[start : start + BATCH_POSITIONS]
+            payload = (
+                chunk[0].model_dump(mode="json")
+                if len(chunk) == 1
+                else {"batch": [request.model_dump(mode="json") for request in chunk]}
+            )
+            reply = self._exchange(payload, cancelled)
+            rows = [reply.get("policy")] if len(chunk) == 1 else reply.get("policies")
+            if not isinstance(rows, list) or len(rows) != len(chunk):
+                raise HumanUnavailable("prediction_unavailable")
+            policies.extend(self._checked(row) for row in rows)
+        return policies
+
+    def _checked(self, row):
+        try:
+            policy = HumanPolicy.model_validate(row)
+        except ValueError as exc:
+            raise HumanUnavailable("prediction_unavailable") from exc
+        if policy.provenance != self.provenance:
+            raise HumanUnavailable("prediction_unavailable")
+        return policy
+
+    def _exchange(self, payload, cancelled):
         if self.snapshot().status in {"disabled", "not_configured"}:
             raise HumanUnavailable("not_configured")
         if self.provenance.inference.get("torch") == "unavailable":
@@ -212,13 +245,10 @@ class MaiaProvider:
                 if reply.get("ready") is not True:
                     raise HumanUnavailable("invalid_initialization")
                 worker.initialized = True
-            result = worker.exchange(request.model_dump(mode="json"), deadline, stopping)
-            policy = HumanPolicy.model_validate(result.get("policy"))
-            if policy.provenance != self.provenance:
-                raise HumanUnavailable("provenance_mismatch")
+            result = worker.exchange(payload, deadline, stopping)
             with self._guard:
                 self._state = "ready"
-            return policy
+            return result
         except Exception as exc:
             if worker is not None:
                 worker.close()

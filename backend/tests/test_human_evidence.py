@@ -181,3 +181,33 @@ def test_pinned_source_and_missing_model_never_download(settings, sessions, monk
     assert service.snapshot().status == "not_configured"
     assert evidence(service, sessions)["status"] == "unavailable"
     service.close()
+
+
+class BatchProvider(PolicyProvider):
+    def __init__(self, settings):
+        super().__init__(settings)
+        self.batches = []
+
+    def predict_many(self, requests, cancelled=lambda: False):
+        self.batches.append(len(requests))
+        return [PolicyProvider.predict(self, request) for request in requests]
+
+
+def test_prefetch_batches_uncached_positions_and_evidence_reads_them(settings, sessions):
+    provider = BatchProvider(settings)
+    service = HumanModels(settings, provider)
+    game = parsed()
+    boards, board = [], game.board()
+    for move in game.mainline_moves():
+        boards.append(board.copy())
+        board.push(move)
+    boards.append(board.copy())
+    service.prefetch(sessions, game, boards, 1000)
+    assert provider.batches == [3]
+    provider.calls.clear()
+    for item in boards:
+        assert evidence(service, sessions, game, item)["status"] == "available"
+    assert provider.calls == []
+    # Already cached positions are not sent again.
+    service.prefetch(sessions, game, boards, 1000)
+    assert provider.batches == [3]

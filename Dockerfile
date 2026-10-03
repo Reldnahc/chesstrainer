@@ -25,6 +25,7 @@ COPY pyproject.toml alembic.ini LICENSE NOTICE.md README.md ./
 COPY backend ./backend
 COPY migrations ./migrations
 COPY scripts ./scripts
+COPY --chmod=755 scripts/docker-entrypoint.sh /usr/local/bin/fieldwork-entrypoint
 COPY docs ./docs
 COPY --from=frontend /app/frontend/dist ./frontend/dist
 RUN pip install --no-cache-dir --constraint requirements.lock \
@@ -34,4 +35,6 @@ EXPOSE 8000
 VOLUME ["/data"]
 HEALTHCHECK --interval=30s --timeout=5s --start-period=30s --retries=3 \
     CMD python -c "import os, urllib.request; urllib.request.urlopen('http://127.0.0.1:%s/api/auth/me' % os.environ.get('SERVER_PORT', '8000'), timeout=4).close()"
+# HUMAN_MODEL_DEVICE=cuda makes the entrypoint fetch CUDA PyTorch into /data once.
+ENTRYPOINT ["fieldwork-entrypoint"]
 CMD ["python", "-m", "trainer"]

@@ -75,6 +75,21 @@ def run_baseline(runner, job_id, engine_override=None):
             )
         return report
 
+    if human and runner.settings.human_model_device == "cuda":
+        # A GPU scores a whole game in one batch far faster than move by move. On
+        # CPU the per-move path is kept: it overlaps Maia with the Stockfish
+        # searches, and CPU batching saves little (about 1.5x) since the
+        # forward pass itself is the cost.
+        board, boards = parsed.board(), []
+        for ply, move in enumerate(moves, start=1):
+            cached = saved.get(ply)
+            if cached is None or human.needs_refresh(
+                cached.get("human"), parsed, board.turn, rating
+            ):
+                boards.append(board.copy(stack=True))
+            board.push(move)
+        human.prefetch(runner.sessions, parsed, boards, rating, lambda: runner.cancelled(job_id))
+
     executor = ThreadPoolExecutor(max_workers=workers, thread_name_prefix="game-review")
     try:
         board = parsed.board()

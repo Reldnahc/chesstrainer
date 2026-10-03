@@ -147,6 +147,13 @@ def test_native_policy_worker_offline_history_special_moves(settings, monkeypatc
             assert {m.uci for m in policy.moves} == {m.uci() for m in board.legal_moves}
             assert sum(m.probability for m in policy.moves) == pytest.approx(1)
         assert human.predict(request_for(game, boards[0], 1200)) == policies[0]
+        # One batched forward pass gives the same policies as one position at a time.
+        batched = human.predict_many([request_for(game, board, 1200) for board in boards])
+        for one, many in zip(policies, batched, strict=True):
+            assert [m.uci for m in many.moves] == [m.uci for m in one.moves]
+            assert [m.probability for m in many.moves] == pytest.approx(
+                [m.probability for m in one.moves], abs=1e-5
+            )
         assert policies[0].moves != policies[-1].moves
         assert ("torch" in sys.modules) == torch_was_loaded  # Native memory stays in the child.
     finally:
