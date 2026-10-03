@@ -43,10 +43,14 @@ test('completed reviews stay move-by-move without a game story or critical-momen
   const moves = page.locator('.coach-moves-line');
   await expect(moves).toHaveText('Black’s strongest reply: Qh4#, forced mate');
   await expect(moves.locator('strong')).toHaveText('Qh4#');
-  expect(await movesLineLayout(page)).toEqual({below: true, inside: true, visible: true, scrolls: false});
+  await page.evaluate(() => document.fonts.ready);
+  await expect.poll(() => movesLineLayout(page)).toEqual({below: true, inside: true, visible: true, scrolls: false});
   if (info.project.name === 'desktop') {
     for (const size of [{width: 1366, height: 768}, {width: 1366, height: 900}]) {
       await page.setViewportSize(size);
+      // Let the page see the new viewport and lay out before any measurement.
+      await expect.poll(() => page.evaluate(() => innerHeight)).toBe(size.height);
+      await page.evaluate(() => new Promise(done => requestAnimationFrame(() => requestAnimationFrame(done))));
       // The board resizes to the new viewport; measure once it has settled.
       let board = await page.locator('.board-shell').boundingBox();
       await expect.poll(async () => {
@@ -54,7 +58,7 @@ test('completed reviews stay move-by-move without a game story or critical-momen
         board = await page.locator('.board-shell').boundingBox();
         return JSON.stringify(board) === JSON.stringify(previous);
       }).toBe(true);
-      expect(await movesLineLayout(page)).toEqual({below: true, inside: true, visible: true, scrolls: false});
+      await expect.poll(() => movesLineLayout(page)).toEqual({below: true, inside: true, visible: true, scrolls: false});
       // The bubble grows in the sidebar; the board beside it never moves.
       await page.getByRole('button', {name: 'Previous move', exact: true}).click();
       expect(await page.locator('.board-shell').boundingBox()).toEqual(board);
