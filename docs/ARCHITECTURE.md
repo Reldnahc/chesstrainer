@@ -55,6 +55,7 @@ Whole-game review and training analysis are separately requested from the game.
 | routes/games.py | Game library, saved both-color reports, review jobs and history-preserving variation analysis |
 | routes/insights.py, game_insights.py | Read-only library insights recomputed from saved PGNs and completed reviews; see [Insights](INSIGHTS.md) |
 | game_analysis.py, game_sync.py | One analysis job per saved game with requested/fresh/backfill priority, and the server-side connection poller; see [Automatic game analysis](GAME_ANALYSIS.md) |
+| play/ / routes/play.py | Games against the coach's bot: Maia-sampled human-like moves with a Stockfish guardrail, strength-limited engine moves, the per-account level fit, play sessions, on-request or live per-move reports and the hand-off of finished games into the library. See [Play](PLAY.md) |
 | routes/classification.py | Saved classification/enrichment jobs, weaknesses, evidence and classification audits |
 | routes/compatibility.py | Course/lesson/repertoire tombstones, historical teaching audits and retained manual exercise creation |
 | contracts/ | Explicit HTTP response schemas grouped by endpoint domain; reused chess evidence types retain their original owners |
@@ -286,6 +287,7 @@ commands and the intentional-change review process are in [TESTING.md](TESTING.m
 - chess_core.py: python-chess rules, legal-position identity, deterministic facts, explicit score types and shared legal-move interaction serialization. Callers retain termination policy: whole-game review stops legal options at an outcome, while SRS exposes all legal interaction aids.
 - engine.py: native UCI lifecycle, bounded searches and compatible persistent cache; no training policy.
 - policy.py: configurable move acceptance over verified scores.
+- play/bot.py / play/level.py / play/sessions.py: human-like move choice from the shared human policy with engine veto rules by rating, the measured level fit over imported games, and game-session state whose finished games are imported like any other game. See [Play](PLAY.md).
 - game_review.py: independent game-review labels, both-color coaching evidence, saved per-ply reports and variation replay. See [Game review](GAME_REVIEW.md); these reports never create training Decisions or scheduled recalls.
 - review_cues.py: projects saved immediate witnesses into current-board arrows and square roles without new engine searches; skips later witnesses and checks attack geometry with python-chess. Cues are derived when reports are read, so existing reviews need no reanalysis.
 - imports.py / chesscom.py: learner resolution, provenance, deduplication and bounded serial public-game download.

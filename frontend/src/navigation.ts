@@ -3,6 +3,7 @@ import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 export const pagePaths = {
   Home: "/",
   Study: "/study",
+  Play: "/play",
   Games: "/games",
   Insights: "/insights",
   Settings: "/settings",
@@ -60,18 +61,21 @@ function readRoute() {
     window.history.replaceState({ ...window.history.state, [entryKey]: entry }, "", url);
   const path = url.pathname.replace(/\/$/, "") || "/";
   const gameMatch = path.match(/^\/games\/([^/]+)$/);
+  const playMatch = path.match(/^\/play\/([^/]+)$/);
   const puzzleMatch = path.match(/^\/study\/puzzles\/sessions\/([^/]+)$/);
   const lessonMatch = path.match(/^\/study\/openings\/sessions\/([^/]+)$/);
   const courseMatch = path.match(/^\/study\/openings\/courses\/([^/]+)$/);
   const catalogueMatch = path.match(/^\/study\/openings\/catalogue\/([^/]+)$/);
   const courseLineMatch = path.match(/^\/study\/openings\/courses\/([^/]+)\/lines\/([^/]+)$/);
   let gameId: string | null = null;
+  let playGameId: string | null = null;
   let puzzleSessionId: string | null = null;
   let lessonSessionId: string | null = null;
   let lessonCourseId: string | null = null;
   let openingCatalogueKey: string | null = null;
   let openingCourseLine: { courseId: string; lineId: string; revision: string; color: "white" | "black" } | null = null;
   try { if (gameMatch) gameId = decodeURIComponent(gameMatch[1]); } catch { /* An invalid URL shows the not-found screen. */ }
+  try { if (playMatch) playGameId = decodeURIComponent(playMatch[1]); } catch { /* An invalid URL shows the not-found screen. */ }
   try { if (puzzleMatch) puzzleSessionId = decodeURIComponent(puzzleMatch[1]); } catch { /* An invalid URL shows the not-found screen. */ }
   try { if (lessonMatch) lessonSessionId = decodeURIComponent(lessonMatch[1]); } catch { /* An invalid URL shows the not-found screen. */ }
   try { if (courseMatch) lessonCourseId = decodeURIComponent(courseMatch[1]); } catch { /* An invalid URL shows the not-found screen. */ }
@@ -85,7 +89,7 @@ function readRoute() {
     : puzzleSessionId || puzzleSource ? "puzzles"
     : lessonSessionId || lessonCourseId || openingCatalogueKey || openingCourseLine || openingSection !== "lessons" ? "openings"
     : (Object.keys(studyPaths) as (keyof typeof studyPaths)[]).find(mode => studyPaths[mode] === path) ?? null;
-  const tab: Tab | null = studyMode ? "Study" : gameId ? "Games"
+  const tab: Tab | null = studyMode ? "Study" : gameId ? "Games" : playGameId ? "Play"
     : (Object.keys(pagePaths) as Tab[]).find(name => pagePaths[name] === path) ?? null;
   const settingsSection = url.searchParams.get("section");
   return {
@@ -97,6 +101,7 @@ function readRoute() {
     importSource: url.searchParams.get("import"),
     insightsSection: (["patterns", "outcomes"].includes(url.searchParams.get("section") ?? "") ? url.searchParams.get("section") : "overview") as InsightsSection,
     gameId,
+    playGameId,
     studyMode,
     puzzleSessionId,
     puzzleSource,
@@ -138,6 +143,10 @@ export function navigate(href: string) {
 
 export function gamesPath(page = 1, id?: string) {
   return `/games${id ? `/${encodeURIComponent(id)}` : ""}${page > 1 ? `?page=${page}` : ""}`;
+}
+
+export function playGamePath(id: string) {
+  return `/play/${encodeURIComponent(id)}`;
 }
 
 export function puzzleSessionPath(id: string) {

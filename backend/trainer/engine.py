@@ -103,6 +103,25 @@ class Stockfish:
                 self.process = None
                 log.info("engine_stopped")
 
+    def play_limited(self, board: chess.Board, elo: int, time: float, cancelled=None) -> str:
+        """One strength-limited move for the engine opponent; never cached or graded."""
+        with search_lock(self.lock, cancelled):
+            self.start()
+            try:
+                self.process.configure(
+                    {"UCI_LimitStrength": True, "UCI_Elo": max(1320, min(3190, int(elo)))}
+                )
+                result = self.process.play(board, chess.engine.Limit(time=time), game=object())
+            except (chess.engine.EngineError, TimeoutError) as exc:
+                self.close()
+                raise EngineUnavailable("Stockfish stopped responding during play.") from exc
+            finally:
+                if self.process is not None:
+                    self.process.configure({"UCI_LimitStrength": False})
+            if result.move is None:
+                raise EngineUnavailable("Stockfish returned no move for this position")
+            return result.move.uci()
+
     def analyze(
         self,
         board: chess.Board,

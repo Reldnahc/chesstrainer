@@ -1,0 +1,18 @@
+/* Setup for a game against the coach: one form panel beside the coach's portrait. */
+.play-setup { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 18px; align-items: start; }
+.play-setup-coach { width: min(100%, 240px); justify-self: center; }
+.play-setup-form { display: grid; gap: 20px; }
+.play-field { display: grid; gap: 8px; }
+.play-field > span:first-child { font-weight: 600; }
+.play-field .small { margin: 0; }
+.play-strength { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; align-items: center; }
+.play-strength input[type="range"] { width: 100%; accent-color: var(--accent); }
+.play-strength output { font-variant-numeric: tabular-nums; font-weight: 650; font-size: 20px; min-width: 3.5ch; text-align: right; }
+.play-level { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: baseline; }
+.play-level strong { font-size: 28px; font-weight: 650; }
+.play-resume { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; }
+.play-result { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; }
+@media (max-width: 760px) {
+  .play-setup { grid-template-columns: 1fr; }
+  .play-setup-coach { order: -1; width: 160px; }
+}

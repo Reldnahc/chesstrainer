@@ -632,6 +632,159 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/play": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Start Game */
+        post: operations["start_game_api_play_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/play/active": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Active Game */
+        get: operations["active_game_api_play_active_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/play/profile": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Level Profile */
+        get: operations["level_profile_api_play_profile_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/play/profile/refresh": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Refresh Level Profile */
+        post: operations["refresh_level_profile_api_play_profile_refresh_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/play/{play_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Game State */
+        get: operations["game_state_api_play__play_id__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/play/{play_id}/analyze": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Analyze Play Move */
+        post: operations["analyze_play_move_api_play__play_id__analyze_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/play/{play_id}/draw": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Offer Draw */
+        post: operations["offer_draw_api_play__play_id__draw_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/play/{play_id}/move": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Play Move */
+        post: operations["play_move_api_play__play_id__move_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/play/{play_id}/resign": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Resign */
+        post: operations["resign_api_play__play_id__resign_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/practice/queue": {
         parameters: {
             query?: never;
@@ -1231,6 +1384,10 @@ export interface components {
         /** AccountProfile */
         AccountProfile: {
             user: components["schemas"]["Account"];
+        };
+        /** ActivePlay */
+        ActivePlay: {
+            game: components["schemas"]["PlayState"] | null;
         };
         /**
          * AnalysisQueue
@@ -3155,6 +3312,138 @@ export interface components {
              * @enum {string}
              */
             phase: "opening" | "middlegame" | "endgame";
+        };
+        /** PlayMoveRequest */
+        PlayMoveRequest: {
+            /** Ply */
+            ply: number;
+            /** Uci */
+            uci: string;
+        };
+        /** PlayProfile */
+        PlayProfile: {
+            /** Computed At */
+            computed_at: string | null;
+            /** Default Rating */
+            default_rating: number;
+            /** Fitted Rating */
+            fitted_rating: number | null;
+            /** Games */
+            games: number;
+            /** Platform */
+            platform: string | null;
+            /** Platform Rating */
+            platform_rating: number | null;
+            /** Positions */
+            positions: number;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "ready" | "computing" | "unavailable" | "no_games" | "disabled";
+        };
+        /** PlayReply */
+        PlayReply: {
+            /** Ply */
+            ply: number;
+            /** San */
+            san: string;
+            /**
+             * Source
+             * @enum {string}
+             */
+            source: "human" | "engine" | "fallback";
+            /** Think Ms */
+            think_ms: number;
+            /** Uci */
+            uci: string;
+        };
+        /** PlayRequest */
+        PlayRequest: {
+            /**
+             * Coach Id
+             * @enum {string}
+             */
+            coach_id: "classic" | "man-host" | "man-expert" | "man-partner" | "woman-captain" | "woman-analyst" | "woman-spark" | "woman-blonde" | "cat-tuxedo" | "cat-black" | "dog-gentle" | "dog-corgi" | "dog-collie" | "human-boy" | "human-girl" | "dog-puppy" | "cat-kitten" | "alien" | "unicorn" | "gorilla" | "robot" | "wizard" | "slime" | "dragon" | "ghost" | "raccoon" | "frog" | "capybara" | "mushroom" | "living-pawn";
+            /** Coach Name */
+            coach_name: string;
+            /**
+             * Color
+             * @default random
+             * @enum {string}
+             */
+            color: "white" | "black" | "random";
+            /**
+             * Commentary
+             * @default live
+             * @enum {string}
+             */
+            commentary: "live" | "request" | "after";
+            /**
+             * Opponent
+             * @default human
+             * @enum {string}
+             */
+            opponent: "human" | "engine";
+            /** Rating */
+            rating: number;
+        };
+        /** PlayState */
+        PlayState: {
+            /** Black */
+            black: string;
+            /** Black Rating */
+            black_rating: number;
+            /** Coach Id */
+            coach_id: string;
+            /** Coach Name */
+            coach_name: string;
+            /**
+             * Commentary
+             * @enum {string}
+             */
+            commentary: "live" | "request" | "after";
+            /** Draw Declined */
+            draw_declined: boolean;
+            /** Frames */
+            frames: components["schemas"]["GameFrame"][];
+            /** Id */
+            id: string;
+            /**
+             * Learner Color
+             * @enum {string}
+             */
+            learner_color: "white" | "black";
+            /** Learner Rating */
+            learner_rating: number;
+            /**
+             * Opponent
+             * @enum {string}
+             */
+            opponent: "human" | "engine";
+            /** Rating */
+            rating: number;
+            reply: components["schemas"]["PlayReply"] | null;
+            /** Result */
+            result: string | null;
+            /** Saved Game Id */
+            saved_game_id: string | null;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "active" | "finished";
+            /** Termination */
+            termination: string | null;
+            /** White */
+            white: string;
+            /** White Rating */
+            white_rating: number;
+        };
+        /** PlyRequest */
+        PlyRequest: {
+            /** Ply */
+            ply: number;
         };
         /** PracticalAssessment */
         PracticalAssessment: {
@@ -5288,6 +5577,262 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["OpeningLineView"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    start_game_api_play_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PlayRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PlayState"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    active_game_api_play_active_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ActivePlay"];
+                };
+            };
+        };
+    };
+    level_profile_api_play_profile_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PlayProfile"];
+                };
+            };
+        };
+    };
+    refresh_level_profile_api_play_profile_refresh_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PlayProfile"];
+                };
+            };
+        };
+    };
+    game_state_api_play__play_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                play_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PlayState"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    analyze_play_move_api_play__play_id__analyze_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                play_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PlyRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["GameAnalysis"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    offer_draw_api_play__play_id__draw_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                play_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PlayState"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    play_move_api_play__play_id__move_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                play_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PlayMoveRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PlayState"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    resign_api_play__play_id__resign_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                play_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PlayState"];
                 };
             };
             /** @description Validation Error */

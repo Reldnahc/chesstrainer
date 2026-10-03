@@ -15,7 +15,8 @@ export default function ReviewMoves({
   progress,
 }: {
   game: Game;
-  exploration: GameExploration;
+  /** Game review passes its exploration; a live game passes its own cursor and navigation. */
+  exploration: Pick<GameExploration, "cursor" | "branch" | "branches" | "navigate" | "selectBranch">;
   getAnalysis: (root: number, path: string[]) => Analysis | undefined;
   progress: ReactNode;
 }) {

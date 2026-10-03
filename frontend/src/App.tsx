@@ -7,6 +7,7 @@ import {
   LockKeyhole,
   Settings2,
   ShieldCheck,
+  Swords,
   X,
 } from "lucide-react";
 import { api, read, type Health } from "./api";
@@ -18,6 +19,7 @@ import HomeScreen from "./Home";
 import EvidenceDialog from "./EvidenceDialog";
 import { pagePaths, useRoute } from "./navigation";
 import StudyScreen from "./study/StudyScreen";
+import PlayScreen from "./play/PlayScreen";
 import PuzzlePlayer from "./study/PuzzlePlayer";
 import LessonPlayer from "./study/LessonPlayer";
 import OpeningLinePreview from "./study/OpeningLinePreview";
@@ -34,6 +36,7 @@ import { useAudioPreferences } from "./audio/AudioProvider";
 const tabs = [
   ["Home", House],
   ["Study", Focus],
+  ["Play", Swords],
   ["Games", BookOpen],
   ["Insights", ChartColumn],
   ["Settings", Settings2],
@@ -119,7 +122,7 @@ export default function App() {
         id="main-content"
         tabIndex={-1}
         className={
-          route.studyMode === "due" || route.puzzleSessionId || route.lessonSessionId || route.openingCatalogueKey || route.openingCourseLine || (tab === "Games" && route.gameId)
+          route.studyMode === "due" || route.puzzleSessionId || route.lessonSessionId || route.openingCatalogueKey || route.openingCourseLine || (tab === "Games" && route.gameId) || route.playGameId
             ? "review-page"
             : "workspace-page"
         }
@@ -188,6 +191,9 @@ export default function App() {
               <LessonPlayer key={`${refresh}-${route.lessonSessionId}`} sessionId={route.lessonSessionId} />
             )}
             {(route.openingCatalogueKey || route.openingCourseLine) && <OpeningLinePreview key={`${refresh}-${route.href}`} catalogueKey={route.openingCatalogueKey} courseLine={route.openingCourseLine} />}
+            {tab === "Play" && (
+              <PlayScreen key={`${refresh}-${route.href}`} gameId={route.playGameId} />
+            )}
             {tab === "Games" && (
               <GamesScreen
                 key={route.href}

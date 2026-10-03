@@ -3,6 +3,7 @@
 import threading
 from time import monotonic
 
+import chess
 from sqlalchemy import select
 from sqlalchemy.exc import IntegrityError
 
@@ -106,20 +107,14 @@ class HumanModels:
                 # Another job saved some of these first; per-move reads find them.
                 db.rollback()
 
-    def evidence(self, sessions, parsed, board, played, best, fallback, cancelled=lambda: False):
-        request = request_for(parsed, board, fallback)
-        base = dict(
-            configuration_key=self.configuration_key,
-            history_key=digest(request.history.model_dump()),
-            mover=request.mover,
-            conditioning=request.conditioning,
-            domain=request.domain,
-            legal_count=board.legal_moves.count(),
-        )
-        if board.is_game_over() or board.uci_variant != "chess":
-            return HumanEvidence(status="not_applicable", **base).model_dump(mode="json")
+    def policy(self, sessions, request, cancelled=lambda: False):
+        """The complete legal-move policy for one request, cached per account.
+
+        Returns the policy and its saved evidence id. Raises HumanUnavailable or
+        HumanCancelled; evidence() maps those onto the saved status vocabulary.
+        """
         if not self.settings.human_model_enabled:
-            return HumanEvidence(status="disabled", **base).model_dump(mode="json")
+            raise HumanUnavailable("disabled")
         key = self.cache_key(request)
         owner = sessions.kw["info"]["user_id"]
         lock = self._locks[int(digest([owner, key])[:4], 16) % len(self._locks)]
@@ -143,7 +138,7 @@ class HumanModels:
                 if not saved:
                     policy = self.provider.predict(request, cancelled)
                     self._failed = False
-                legal = {move.uci() for move in board.legal_moves}
+                legal = {move.uci() for move in chess.Board(request.history.fen).legal_moves}
                 predicted = {row.uci for row in policy.moves}
                 if not predicted <= legal or policy.complete and predicted != legal:
                     raise HumanUnavailable("invalid_policy")
@@ -163,6 +158,29 @@ class HumanModels:
                         evidence_id = saved.id
             finally:
                 lock.release()
+            return policy, evidence_id
+        except HumanCancelled:
+            raise
+        except (HumanUnavailable, ValueError, OSError) as exc:
+            self._failed = True
+            raise HumanUnavailable("human_model_unavailable") from exc
+
+    def evidence(self, sessions, parsed, board, played, best, fallback, cancelled=lambda: False):
+        request = request_for(parsed, board, fallback)
+        base = dict(
+            configuration_key=self.configuration_key,
+            history_key=digest(request.history.model_dump()),
+            mover=request.mover,
+            conditioning=request.conditioning,
+            domain=request.domain,
+            legal_count=board.legal_moves.count(),
+        )
+        if board.is_game_over() or board.uci_variant != "chess":
+            return HumanEvidence(status="not_applicable", **base).model_dump(mode="json")
+        if not self.settings.human_model_enabled:
+            return HumanEvidence(status="disabled", **base).model_dump(mode="json")
+        try:
+            policy, evidence_id = self.policy(sessions, request, cancelled)
             return HumanEvidence(
                 status="available",
                 evidence_id=evidence_id,
@@ -171,8 +189,7 @@ class HumanModels:
             ).model_dump(mode="json")
         except HumanCancelled:
             return HumanEvidence(status="cancelled", **base).model_dump(mode="json")
-        except (HumanUnavailable, ValueError, OSError):
-            self._failed = True
+        except HumanUnavailable:
             return HumanEvidence(
                 status="unavailable", unavailable_reason="human_model_unavailable", **base
             ).model_dump(mode="json")

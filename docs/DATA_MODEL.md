@@ -11,6 +11,7 @@ SQLAlchemy 2 mapped models use SQLite WAL, foreign keys and a 30-second busy tim
 | analysis_jobs | Lifecycle, import/kind, progress, cancellation and sanitized errors |
 | chesscom_imports, chesscom_archives | Query/filter settings, download diagnostics and per-job archive checkpoints |
 | engine_analyses | Compatible durable cache, engine/configuration, FEN and validated candidate/PV payloads |
+| play_games, play_profiles | Account-owned games against the coach's bot (moves, saved per-ply reports, result, the saved library game) and the measured level fit with its evidence size |
 | game_reviews, game_review_moves | Account-owned resumable whole-game review metadata and per-ply engine evidence, independent of training/FSRS |
 | decisions | Unique game/ply, FEN/key/move/color, original analysis references, loss/facts/deep/meaningful flags |
 | skills, skill_evidence, classification_runs | Controlled IDs, current evidence projection and immutable local/historical classification audits |
