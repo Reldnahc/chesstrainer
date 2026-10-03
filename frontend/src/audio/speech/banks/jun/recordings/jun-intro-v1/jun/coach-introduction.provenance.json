@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "coach-introduction",
+      "label": "Coach introduction",
+      "text": "I am Jun. I state what a move concedes and what was available instead. When you play precisely, I will say so."
+    },
+    "takeId": null
+  },
+  "requestHash": "322f94c85d04f001d69be63383b1a7af53a3d7dbc492922b3c126bb978f64f0d",
+  "recordedAt": "2026-10-03T16:21:28.212Z",
+  "sha256": "256d73f2b0435c4d53830c1332a54ec3d30fba9e5bb9854cb543b296fc365c34",
+  "bytes": 25353,
+  "requestId": "TUgNc234JeD2L8qwEMNn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "758521429f74000fba2f5648e3f453f18fb568e1c09a9a1a56d7848332308343",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

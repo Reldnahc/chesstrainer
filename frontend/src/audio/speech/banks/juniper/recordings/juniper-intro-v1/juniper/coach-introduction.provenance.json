@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "coach-introduction",
+      "label": "Coach introduction",
+      "text": "I'm Juniper. I look for what a move leaves unguarded, and when I see it, I'll tell you, gently."
+    },
+    "takeId": null
+  },
+  "requestHash": "0a61f715881136f149cfa5634d0cd4422cc306896329cbdb88156afd4c94ae91",
+  "recordedAt": "2026-10-03T16:21:28.037Z",
+  "sha256": "286b7736bb75b22e2b993df5d627290064103b51d59514bd051f12b9260667ec",
+  "bytes": 21845,
+  "requestId": "6eP0c4WLbOjphkqw5yTf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1263faa3435dd266ac53bbf47205d37b1c24089073fb37e6c968d6561cd66128",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

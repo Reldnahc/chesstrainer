@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "coach-introduction",
+      "label": "Coach introduction",
+      "text": "I am Tamar. I expect you to improve. I will show you exactly what to fix, and we will train it until it holds."
+    },
+    "takeId": null
+  },
+  "requestHash": "d0d5431936ff646001cd536afbbb7546c338ed7415d09ae9b9134002b473beaa",
+  "recordedAt": "2026-10-03T16:21:33.820Z",
+  "sha256": "bb2259e2a01a5c3cb36725b8c9d1ac9b3b0e7e72bb321b7a280f68ffe2274c2a",
+  "bytes": 24373,
+  "requestId": "LSzDrb5XxHB0KlV8jEX9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ce4c2a814b23150d790c5de94c6b9eb03456faa97c18d00f1565efb7c0f1bf9e",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "coach-introduction",
+      "label": "Coach introduction",
+      "text": "I'm Celeste. There's real beauty in a well-played idea, and I'd love to help you see why the good ones work."
+    },
+    "takeId": null
+  },
+  "requestHash": "1d66ca705e15000f62f61c2df53d4f34b1e91e7aee3816327d29a6819b2eaa29",
+  "recordedAt": "2026-10-03T16:21:25.499Z",
+  "sha256": "8874f33dc7f081a900cf104d2480ce4eb1b17af22b04594aa5404c57d6057ca4",
+  "bytes": 23072,
+  "requestId": "2sDJjxTwOmpGkGth3Csx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0ef8318e79258098d3387d14d2692836d41b675d24153ab023ed268ddd8715ff",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

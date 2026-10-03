@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "coach-introduction",
+      "label": "Coach introduction",
+      "text": "Hello, I'm Ziggy. Human chess fascinates me. Let's compare the moves that feel natural to people with the moves that actually hold up."
+    },
+    "takeId": null
+  },
+  "requestHash": "79a5d1a425711c76986f2c7b4f644cb8a59ebb21914ca28a5c25fc488f219663",
+  "recordedAt": "2026-10-03T16:21:36.708Z",
+  "sha256": "280c6e975ce153a92fae9a4f26cb64fc09c39b429df70280318fbb7bca43dbc9",
+  "bytes": 27756,
+  "requestId": "dXmPMK8oo4XUBWBJr4dC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "410fce40d7603c6017fb92f124547d6ade5804273c228a79e21381ce0254f7ea",
+    "bytes": 147165
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

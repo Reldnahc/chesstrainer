@@ -118,11 +118,10 @@ def test_registered_bank_records_exactly_the_authored_scripts(coach, voice):
     assert (manifest["coachId"], manifest["voiceId"]) == (coach, voice)
     scripts = read(f"banks/{voice}/scripts.json")["records"]
     recorded = {row["id"] for row in manifest["recordings"]}
-    # Generic lesson prompts, the restored sole-content Maia readings and the
-    # picker introduction may be authored before they are recorded; they stay
-    # silent until their clip is added.
+    # Generic lesson prompts and the restored sole-content Maia readings may be
+    # authored before they are recorded; they stay silent until their clip is added.
     assert all(
-        row["group"] == "lessons" or row["id"] in SOLE_MAIA or row["id"] == "coach-introduction"
+        row["group"] == "lessons" or row["id"] in SOLE_MAIA
         for row in scripts
         if row["id"] not in recorded
     )

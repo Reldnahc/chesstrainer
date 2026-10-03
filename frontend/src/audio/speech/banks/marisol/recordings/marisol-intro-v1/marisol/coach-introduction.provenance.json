@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "coach-introduction",
+      "label": "Coach introduction",
+      "text": "I'm Marisol. I keep what is on the board apart from what the analysis infers, and I tell you which is which."
+    },
+    "takeId": null
+  },
+  "requestHash": "3191d046b5049c6ecbf7866c50d49c86e44c434becd5b96b2fdeb6851246b063",
+  "recordedAt": "2026-10-03T16:21:28.037Z",
+  "sha256": "718ee3597dd2e69fe12e96bcfd5101b808b9ef3e27e75e4544e9fdf9bd050595",
+  "bytes": 22253,
+  "requestId": "1kvVRyVyquHoYGmogfhv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c70ee27fe4bd5d065cf851713c989d26755aa6aee7bbe64654d77fcf4220411d",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "coach-introduction",
+      "label": "Coach introduction",
+      "text": "Fergus. One fact, then I stop. A lost queen gets the same tone as a quiet pawn move."
+    },
+    "takeId": null
+  },
+  "requestHash": "4b7c9759ae46413e788e2c4d12680254bdaad408480fdf3f774566c202e0ccc9",
+  "recordedAt": "2026-10-03T16:21:25.820Z",
+  "sha256": "c22cd781ce58523814f7523be464c8a21f5da9d73164bc4aee7daf4d746916a5",
+  "bytes": 22112,
+  "requestId": "rMzkVTHOO4EweE3N3sXE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "748adefbd47f1460b549b4007853e635dc1b0002ebba4a29df2a07579e1e66d3",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

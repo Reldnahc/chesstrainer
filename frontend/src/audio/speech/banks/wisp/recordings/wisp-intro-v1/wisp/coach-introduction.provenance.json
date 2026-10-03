@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "coach-introduction",
+      "label": "Coach introduction",
+      "text": "I'm Wisp. Some threats are already waiting a move or two before anyone sees them. Those are what I watch for."
+    },
+    "takeId": null
+  },
+  "requestHash": "44faf6b2dc5b004f046a0aba85f2a44acccb9ea8ed7c6adac02a6fed3e5e037e",
+  "recordedAt": "2026-10-03T16:21:36.177Z",
+  "sha256": "30940ce18ffe40bebb5b714f21524bdb0d586e9ce8c062a2432bf001b1d65675",
+  "bytes": 22920,
+  "requestId": "C3a2eVNF39jLXAFXBG0d",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6f471a5a14108647dc20a3468debc19001045d01f6eb09eed9bc8ab6f46c1f3c",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

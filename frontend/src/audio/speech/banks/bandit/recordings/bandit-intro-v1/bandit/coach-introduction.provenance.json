@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "coach-introduction",
+      "label": "Coach introduction",
+      "text": "Name's Bandit. Loose pieces, stray pawns, anything left lying around, I notice it. Yours we keep safe. Theirs are fair game."
+    },
+    "takeId": null
+  },
+  "requestHash": "7f1be4906e2fbeb341f98f69f0ba9c8f24d123e91bde77244f9e3a34ae24fe5a",
+  "recordedAt": "2026-10-03T16:21:23.121Z",
+  "sha256": "7d7370c0e2775544fe310d9a7adf1cf0eb9e65ce3b34c0bcf5058b3402dfa4ef",
+  "bytes": 31341,
+  "requestId": "RGEt7cGnXhRayJdg4qxY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f5fb411a67404281bc47a07d0a3d1f919a8aa5db5f21cf22d63178ab2d647803",
+    "bytes": 160958
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

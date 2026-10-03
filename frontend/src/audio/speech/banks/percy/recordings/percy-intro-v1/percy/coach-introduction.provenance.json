@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "coach-introduction",
+      "label": "Coach introduction",
+      "text": "Hey, Percy here! I take this game real serious. I'll show you what your pieces guard, block and open up, and who gets to use it."
+    },
+    "takeId": null
+  },
+  "requestHash": "39110f7a36f7ba901d792fb14514029c3bc90836a69ec392447593abfde80270",
+  "recordedAt": "2026-10-03T16:21:30.977Z",
+  "sha256": "d313f14c229db9ba649c8afdb3fa0f4addd4ba7b2cc6f16ae17b040d932a60ad",
+  "bytes": 29193,
+  "requestId": "XgE8rG8u0AjrJRAQujW3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d3a1593dbbf948c9316bbffeb3c1c0c1333ed1e0168304d347652ee75640a0c0",
+    "bytes": 148419
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

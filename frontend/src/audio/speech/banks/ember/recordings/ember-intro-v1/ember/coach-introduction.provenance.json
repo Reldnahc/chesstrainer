@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "coach-introduction",
+      "label": "Coach introduction",
+      "text": "I am Ember. My respect is not given freely, but accurate defense and real initiative will earn it. Show me what you can do."
+    },
+    "takeId": null
+  },
+  "requestHash": "f4b26828da632fb9401658957246550bf505996462ccdb586cb1bcd65af92b05",
+  "recordedAt": "2026-10-03T16:21:25.645Z",
+  "sha256": "64d7caedd2f6dd58c878c689baf6f61d7f0ca566c2335630beacc339ee18679c",
+  "bytes": 27717,
+  "requestId": "F2btTcLm2t6pdzLIZxvB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b16739022424dc5a409ce7d1f4ae7bc095ac7eb40e72979cb730d2ab6d33bebb",
+    "bytes": 141732
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

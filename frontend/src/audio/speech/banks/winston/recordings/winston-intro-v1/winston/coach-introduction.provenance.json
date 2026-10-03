@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "coach-introduction",
+      "label": "Coach introduction",
+      "text": "Hello, I'm Winston. Good game or rough one, we'll take it calmly and look at what comes next."
+    },
+    "takeId": null
+  },
+  "requestHash": "21e367f83e039425743e6b8b24b31c041e232e6aaeb79ed6f322a9ba00d4364e",
+  "recordedAt": "2026-10-03T16:21:36.024Z",
+  "sha256": "2e3a8341c00a1970e2317f604214ee3d8f1ae8be8858ba5da5258be677d21adb",
+  "bytes": 19529,
+  "requestId": "WCmouLFJWWaw9EB7dtec",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "47332e8fd14ffe276a59546240bb22b5a87e8ff759af6a529ffa4ed881ae1b99",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

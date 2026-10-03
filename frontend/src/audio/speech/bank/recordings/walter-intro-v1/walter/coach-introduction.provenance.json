@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "coach-introduction",
+      "label": "Coach introduction",
+      "text": "I'm Walter. Every game has a few moments where it turns. I'd like to find them in yours, and show you how they connect."
+    },
+    "takeId": null
+  },
+  "requestHash": "fc28b6b8267e69e8a179559059990094003b7bdd43eca82d06908809518eb168",
+  "recordedAt": "2026-10-03T16:21:35.877Z",
+  "sha256": "2052750730b39d76baeada77bee4191cd6acca30554f51876439ca36ce75c1cc",
+  "bytes": 24013,
+  "requestId": "DDpCq2f5IGMfbqqmhTHW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b8f5ee12dd923118483046fea3d0a27d58fe48486c58d8de4b34a987c6c21014",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

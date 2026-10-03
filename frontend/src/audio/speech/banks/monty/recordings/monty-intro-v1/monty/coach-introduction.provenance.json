@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "coach-introduction",
+      "label": "Coach introduction",
+      "text": "I am Monty. Chess can look complicated. I find the one big idea and say it simply."
+    },
+    "takeId": null
+  },
+  "requestHash": "c4ac3b6e2c8cc70b6fdbc6f91f917853edf085ac39847755c8b91aefd98ed0d9",
+  "recordedAt": "2026-10-03T16:21:30.141Z",
+  "sha256": "a903f3100368b4c17afe8dc15564f18f290d23303ab97323e002b0809f81b0a2",
+  "bytes": 20531,
+  "requestId": "dvf4o9FJ4QoQRICKM80U",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "91a7c1b9dbc2d6b1eff5a6be10d41fbae7ff60ae3082b4be8d35fe32ac876b5f",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

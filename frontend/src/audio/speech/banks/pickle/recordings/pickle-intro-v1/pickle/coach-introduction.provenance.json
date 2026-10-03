@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "coach-introduction",
+      "label": "Coach introduction",
+      "text": "Pickle, on the case! Ordinary-looking moves are my favorite suspects. If one hides a catch, I'll poke at it until it shows."
+    },
+    "takeId": null
+  },
+  "requestHash": "c565deb550e2ddb8fe79580340b08fa2eeee575e22808949c4a2407f90c72b77",
+  "recordedAt": "2026-10-03T16:21:31.318Z",
+  "sha256": "51beb74fcd43ae76c90e60e6134ed9d2b24d091b56f89b449849b9f7e747e7b6",
+  "bytes": 26734,
+  "requestId": "T2B04mqw5uZTbm8rHLXP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f4c275ae2937d9dc775f80d97e5e81c3c55550b6bce89d9eae425e449721e695",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

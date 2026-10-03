@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "coach-introduction",
+      "label": "Coach introduction",
+      "text": "Hi, I'm Mateo! When there's a trick hiding in your game, I'll point right at it, then slow down and explain how it works."
+    },
+    "takeId": null
+  },
+  "requestHash": "ff954066d2e8a236fa200a5bef48b8a843273f9a1c6a6f2c84dcbe4f74b69443",
+  "recordedAt": "2026-10-03T16:21:28.517Z",
+  "sha256": "0e5701de50c0c89750790d7622bbcaed6ec7ee8947010e8c56d06e71bfd9154a",
+  "bytes": 25274,
+  "requestId": "izrmie1cSzMQ3O5LrGLa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6b10b2d625bf80e6880287452df3a891f61a4c08ed292a79d700091f794b7905",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}
