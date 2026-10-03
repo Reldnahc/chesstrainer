@@ -19,9 +19,11 @@ export default defineConfig({
   use: {baseURL: `http://127.0.0.1:${port(slot)}`, trace: 'retain-on-failure'},
   projects: [{name: 'desktop', use: {...devices['Desktop Chrome'], viewport: {width: 1440, height: 1100}}},
              {name: 'mobile', use: {...devices['iPhone 13'], defaultBrowserType: 'chromium'}}],
-  webServer: Array.from({length: workers}, (_, server) => ({
-    command: `"${python}" -m uvicorn browser_app:create_app --app-dir backend/tests --factory --host 127.0.0.1 --port ${port(server)}`,
-    cwd: root, url: `http://127.0.0.1:${port(server)}/api/health`, reuseExistingServer: false,
-    env: {DATABASE_PATH: path.join(root, `data/ui-test-${stamp}-${server}.sqlite3`), ACCOUNTS_ENABLED: 'false', LAN_ACCESS_TOKEN: ''},
-  })),
+  // One launcher starts every worker's server at the same time and answers on 8769 once
+  // all are healthy; Playwright would otherwise start a list of servers one by one.
+  webServer: {
+    command: `"${python}" backend/tests/browser_servers.py --ready-port 8769 --ports ${Array.from({length: workers}, (_, server) => port(server)).join(',')} --database-template "${path.join(root, `data/ui-test-${stamp}-{index}.sqlite3`)}"`,
+    cwd: root, url: 'http://127.0.0.1:8769/', reuseExistingServer: false,
+    env: {ACCOUNTS_ENABLED: 'false', LAN_ACCESS_TOKEN: ''},
+  },
 });
