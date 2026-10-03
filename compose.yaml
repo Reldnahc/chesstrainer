@@ -21,8 +21,8 @@ services:
       STOCKFISH_THREADS: "${STOCKFISH_THREADS:-1}"
       STOCKFISH_HASH_MB: "${STOCKFISH_HASH_MB:-64}"
       STOCKFISH_WORKERS: "${STOCKFISH_WORKERS:-1}"
-      # cpu works in the default image. cuda needs an image built with
-      # MAIA_RUNTIME=cuda plus the GPU reservation below.
+      # cpu needs nothing extra. cuda downloads CUDA PyTorch (about 3 GB) into
+      # /data once on first start and needs the GPU reservation below.
       HUMAN_MODEL_DEVICE: "${HUMAN_MODEL_DEVICE:-cpu}"
       CHESSCOM_USER_AGENT: "${CHESSCOM_USER_AGENT:-FieldworkChessTrainer/0.1}"
     stop_grace_period: 90s

@@ -71,12 +71,14 @@ outdated human evidence on reopening without rerunning their Stockfish baseline.
 Account-owned cached evidence remains readable if the model is later unavailable.
 
 Optional CUDA requires a compatible Torch 2.8.0 CUDA runtime, host GPU support and
-`HUMAN_MODEL_DEVICE=cuda`. The default image is CPU only. Build a GPU image with
-`docker build --build-arg MAIA_RUNTIME=cuda .` (Torch 2.8.0 for CUDA 12.8), give
-the container the GPU (see the commented `deploy` block in `compose.yaml`; the
-host needs the NVIDIA Container Toolkit) and set `HUMAN_MODEL_DEVICE=cuda`. Outside
-Docker, install the CUDA Torch wheel yourself; do not apply the CPU Torch pin to
-that environment.
+`HUMAN_MODEL_DEVICE=cuda`. The image ships only the CPU Torch build. In Docker,
+give the container the GPU (see the commented `deploy` block in `compose.yaml`;
+the host needs the NVIDIA Container Toolkit) and set `HUMAN_MODEL_DEVICE=cuda`. On
+its first start with that setting, the entrypoint downloads Torch 2.8.0 for CUDA
+12.8 (about 3 GB, at the image's locked dependency versions) into
+`/data/runtime/torch-2.8.0-cu128` and puts it ahead of the CPU build; later starts
+reuse it. CPU containers download nothing. Outside Docker, install the CUDA Torch
+wheel yourself; do not apply the CPU Torch pin to that environment.
 
 On a GPU, a game review sends all of its positions to Maia in batches of 32 before
 the Stockfish pass. On CPU the forward pass itself is the cost (batching measured

@@ -17,31 +17,24 @@ RUN apt-get update && apt-get install -y --no-install-recommends stockfish \
     && mkdir /data && chown 1000:1000 /data
 WORKDIR /app
 COPY requirements.lock requirements-human-cpu.lock ./
-# MAIA_RUNTIME=cpu (default) keeps the image small and runs anywhere. Build with
-# --build-arg MAIA_RUNTIME=cuda for a CUDA 12.8 Torch, then run with a GPU and
-# HUMAN_MODEL_DEVICE=cuda. The same human lock applies minus its CPU Torch pin.
-ARG MAIA_RUNTIME=cpu
-# Keep the large Torch layer reusable when application code or writing changes.
-RUN if [ "$MAIA_RUNTIME" = "cuda" ]; then \
-        grep -v '^torch==' requirements-human-cpu.lock > requirements-human.lock \
-        && pip install --no-cache-dir torch==2.8.0 --index-url https://download.pytorch.org/whl/cu128; \
-    elif [ "$MAIA_RUNTIME" = "cpu" ]; then \
-        cp requirements-human-cpu.lock requirements-human.lock \
-        && pip install --no-cache-dir --no-deps torch==2.8.0+cpu --index-url https://download.pytorch.org/whl/cpu; \
-    else echo "MAIA_RUNTIME must be cpu or cuda" >&2; exit 1; fi \
+# Keep the large CPU runtime layer reusable when application code or writing changes.
+RUN pip install --no-cache-dir --no-deps torch==2.8.0+cpu --index-url https://download.pytorch.org/whl/cpu \
     && pip install --no-cache-dir --constraint requirements.lock \
-       --requirement requirements-human.lock
+       --requirement requirements-human-cpu.lock
 COPY pyproject.toml alembic.ini LICENSE NOTICE.md README.md ./
 COPY backend ./backend
 COPY migrations ./migrations
 COPY scripts ./scripts
+COPY --chmod=755 scripts/docker-entrypoint.sh /usr/local/bin/fieldwork-entrypoint
 COPY docs ./docs
 COPY --from=frontend /app/frontend/dist ./frontend/dist
 RUN pip install --no-cache-dir --constraint requirements.lock \
-       --constraint requirements-human.lock --editable '.[human]'
+       --constraint requirements-human-cpu.lock --editable '.[human]'
 USER 1000:1000
 EXPOSE 8000
 VOLUME ["/data"]
 HEALTHCHECK --interval=30s --timeout=5s --start-period=30s --retries=3 \
     CMD python -c "import os, urllib.request; urllib.request.urlopen('http://127.0.0.1:%s/api/auth/me' % os.environ.get('SERVER_PORT', '8000'), timeout=4).close()"
+# HUMAN_MODEL_DEVICE=cuda makes the entrypoint fetch CUDA PyTorch into /data once.
+ENTRYPOINT ["fieldwork-entrypoint"]
 CMD ["python", "-m", "trainer"]
