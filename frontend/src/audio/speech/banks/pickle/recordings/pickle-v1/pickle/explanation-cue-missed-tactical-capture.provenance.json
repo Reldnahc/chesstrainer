@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "explanation-cue-missed-tactical-capture",
+      "label": "Explanation cue missed tactical capture",
+      "text": "Before a quiet move, sniff out any enemy piece that's missing a guard."
+    },
+    "takeId": null
+  },
+  "requestHash": "8a496c02baaf6434cd33b713072e51e37b211650e6583cfcff3ee842339c2b6a",
+  "recordedAt": "2026-10-03T06:14:31.649Z",
+  "sha256": "311b8ba65e05488acf62cae53b88a490cb06009fa78b4927ed4bd64803f1d28b",
+  "bytes": 15552,
+  "requestId": "j8cltoWcWykB0YLCCHF4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cd1dbb8ed023a0cf29b8a142acbd37910662d401652239bfbbb1b95a34e3b6ad",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

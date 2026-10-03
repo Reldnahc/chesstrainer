@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "explanation-cue-pin",
+      "label": "Explanation cue pin",
+      "text": "Thinking of moving a pinned piece? Peek at what's behind it first. Is it the king, or something worth more?"
+    },
+    "takeId": null
+  },
+  "requestHash": "36ed955b3f2658b58f6d78968719d2299ff3a312117f863d30133038bf57bfd3",
+  "recordedAt": "2026-10-03T06:14:34.544Z",
+  "sha256": "1c90faa9f9fb459f96c2f7709f6fcccb337cd934ed24a34b4036d2cea7a0cd5e",
+  "bytes": 21713,
+  "requestId": "zMT4HqP3bvTyRe9aNdHp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c09adb9a31db06f8783d1e90051360d0c7a5f50e0a099a1629e5a4cf8090d7a9",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

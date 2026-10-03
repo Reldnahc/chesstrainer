@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "allowed-mate",
+      "label": "Allowed mate",
+      "text": "Big clue. After this move, forced checkmate is on for the other side. Let's trace the attack and find where the defense gave out."
+    },
+    "takeId": null
+  },
+  "requestHash": "9d11f6f80f89f73ad490063d61cc80b08c08030cdfb5a81471bd3b6d639c8fe8",
+  "recordedAt": "2026-10-03T06:13:57.256Z",
+  "sha256": "32fafac319220f3170af0dce23be8a1ad66c72554cd5f2ec07f4aa7c7062e8d9",
+  "bytes": 27754,
+  "requestId": "hJgUY9qlx4D5q2SFoL8E",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "66ecd05019f977770efb062e29d74f85eeb808adf47795b0d523a0ce85ce318e",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

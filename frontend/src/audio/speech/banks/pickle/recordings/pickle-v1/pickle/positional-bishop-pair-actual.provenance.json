@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "positional-bishop-pair-actual",
+      "label": "Positional bishop pair actual",
+      "text": "Snap! One side's bishop pair is gone after this capture. Now one side only has a bishop on one color of square."
+    },
+    "takeId": null
+  },
+  "requestHash": "73489dad4f0ead1fe32b3b9cad60e8b98bbb33ec3d82b68f5caa53ed4598cde9",
+  "recordedAt": "2026-10-03T06:13:50.832Z",
+  "sha256": "9632dc362ea93374a4666ed1853f9f3090502871ebee383cbf2cacf8b1472728",
+  "bytes": 24795,
+  "requestId": "hI8Nh8N9W32XNm9I7CI6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d76ca4c35ebe04c04a0df22af59d8c40ea5b44ad16f7ffd587632a8a96607e3d",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

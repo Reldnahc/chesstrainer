@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "explanation-cue-deflection",
+      "label": "Explanation cue deflection",
+      "text": "Could a forcing exchange tempt a defender away from another job? Check that."
+    },
+    "takeId": null
+  },
+  "requestHash": "80692f268a5dfd8aa2b43217f4ea47da3abe4acc49bb6c6393752ed809b06083",
+  "recordedAt": "2026-10-03T06:14:13.827Z",
+  "sha256": "beb8bbbb117841b2ed931a380ae1880b8470794d9360e4f89b9802c8cccf5cb4",
+  "bytes": 15847,
+  "requestId": "8kRdOV4bYzdRg2W3VxIY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e80336e0b1d76261884c47d024485559942343e57c4f447b182a941ef0284f76",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

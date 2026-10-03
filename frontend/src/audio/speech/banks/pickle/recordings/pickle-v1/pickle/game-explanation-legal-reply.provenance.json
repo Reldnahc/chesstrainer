@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "game-explanation-legal-reply",
+      "label": "Game explanation legal reply",
+      "text": "That marked reply is fair game for the other side. Pop it on the board for a closer look!"
+    },
+    "takeId": null
+  },
+  "requestHash": "cc9b712ea9c0579d00359985eeabe7f211b33be7f897977412af4cd477ac19a4",
+  "recordedAt": "2026-10-03T06:14:28.812Z",
+  "sha256": "77409050261906af85236682df4e51ade8645be6736b1daacf24bc466c624924",
+  "bytes": 17741,
+  "requestId": "S9PZAG5mvvwPuVmC7GBo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "758012f27d9ff15d9021ca977544f2eeae02f6a8d8691bb99c4302a93f559134",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

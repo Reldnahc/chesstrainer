@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "tactic-pin-played",
+      "label": "Tactic pin played",
+      "text": "See that piece on the line? It can't budge, because its king sits somewhere behind it on that line. Frozen in place by a pin!"
+    },
+    "takeId": null
+  },
+  "requestHash": "0334ca741504f2d56d1270b71326d7b4c00a0b93cdc05875a511e0b5a2bb64c9",
+  "recordedAt": "2026-10-03T06:13:30.425Z",
+  "sha256": "15e7c838d7ec94f04e08218de9cbfbdea80a3a582929a5234422e8b897c53dad",
+  "bytes": 27513,
+  "requestId": "wIzXVZ3v6hDW4dPZjYOk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fb9836dae120b9f29c0a92e8e2fe47ca91d2bec08e2c223946e654fc72394f00",
+    "bytes": 142986
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

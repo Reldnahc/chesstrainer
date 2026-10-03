@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "tactic-pin-missed",
+      "label": "Tactic pin missed",
+      "text": "Psst, another move had a pin to the king tucked inside it. That piece would have been frozen on its line. This move never noticed."
+    },
+    "takeId": null
+  },
+  "requestHash": "4385542b8d3ae7be2ae722a1c9d1b9fd5617b90281ac88ceceb9ab257786816b",
+  "recordedAt": "2026-10-03T06:13:34.218Z",
+  "sha256": "53ff5e7b88b21fdf408e8f7354adf713b6fba13e5675df82fb4a3590f3578c7a",
+  "bytes": 26266,
+  "requestId": "HvI5sq832PmtFyUKl1ro",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2e0789e36742baa87f5dbf3cc3c2d7cb461658a6a1c20bfaea094cd58fa2c808",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

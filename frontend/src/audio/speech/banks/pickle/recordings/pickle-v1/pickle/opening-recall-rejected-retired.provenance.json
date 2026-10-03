@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "opening-recall-rejected-retired",
+      "label": "Opening recall rejected retired",
+      "text": "Nope, that move isn't on any of your selected opening lines. Back to the clues! It's a retired position, so nothing changes in its review schedule."
+    },
+    "takeId": null
+  },
+  "requestHash": "263c55cbe4e337126d11c515930e520d15abc53d4604f0457faa682f81280ed0",
+  "recordedAt": "2026-10-03T06:14:06.014Z",
+  "sha256": "98c81d8d75ed7245d5739b3a1386109175fc4ebc8b7f23fd1cee7119a7fcb26a",
+  "bytes": 30268,
+  "requestId": "iSpuDzKoD3QFIM334IhJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b32c4585f466a0cdb00fcdd10e025aadb5dff11cd2f72e6f1580c639f49d3345",
+    "bytes": 154688
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

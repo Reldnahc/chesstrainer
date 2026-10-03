@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "cause-abandoned-defender",
+      "label": "Cause abandoned defender",
+      "text": "Case file: who was protecting that piece? Just one real defender, and this move walked it away. The piece it abandoned is now up for grabs."
+    },
+    "takeId": null
+  },
+  "requestHash": "29ae94d7cb3b311e46fed996d12b31eb1b40ece4a02b612a5c638bbf17f73151",
+  "recordedAt": "2026-10-03T06:13:49.105Z",
+  "sha256": "a696a9051cc95bc169a7dbb09dd60f6dd390f560e9178a6f3114d39d18cee40f",
+  "bytes": 30683,
+  "requestId": "Es5TYWByzLV6TQqv4lqU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9e94afbe9139c73fd4b15b87737c8209df80fdd56c0cf0399fcdaf242845e55d",
+    "bytes": 159704
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

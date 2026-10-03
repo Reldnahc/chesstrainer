@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "repeated-issue",
+      "label": "Repeated issue",
+      "text": "Hey, I've seen this clue before! This exact trouble already turned up in an earlier moment of this game. Let's put those moments next to each other."
+    },
+    "takeId": null
+  },
+  "requestHash": "ad72ed9196f90969782ef0c312e9255abb858802f15f2c5d9ffdf71a0009f5dc",
+  "recordedAt": "2026-10-03T06:13:57.665Z",
+  "sha256": "b82965e29b72cff37492ab7d69433a7c96545eb1936b7a4fbbab731f6d975603",
+  "bytes": 29003,
+  "requestId": "8HiC9ZadI077Df3dL9Qz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8555b75f472bd5efd612ff46f10966789203a0d93c191becf187bd6c11db30f3",
+    "bytes": 148419
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

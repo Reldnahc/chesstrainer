@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "positional-castling-alternative",
+      "label": "Positional castling alternative",
+      "text": "Another option was castling, moving the king and rook together in a single move."
+    },
+    "takeId": null
+  },
+  "requestHash": "f900bfab02c580f29cbaec2a2995c4dfc27d9443d51244aa22cffae4fb7256e9",
+  "recordedAt": "2026-10-03T06:13:48.934Z",
+  "sha256": "d87e643f3b9891974560fe90d184e55f688a549f75711aedc23a5fb5ccf0570f",
+  "bytes": 17472,
+  "requestId": "g0E3o7xGXtQw5Slb1lEn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "69433fce5ed20a2232bd1c8cec003ce674fbb529086ff3b38ebb2d96720cf3e8",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

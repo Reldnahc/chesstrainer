@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "tactic-deflection-played",
+      "label": "Tactic deflection played",
+      "text": "Shoo! The defender gets lured away from its post, and its old post has nobody minding it. Lured right off, the classic deflection!"
+    },
+    "takeId": null
+  },
+  "requestHash": "e64d233017b4801bf86269522b90cd9ab2ad4e3435c1c061608720ed9539d137",
+  "recordedAt": "2026-10-03T06:13:37.660Z",
+  "sha256": "e2aecaefcf79a34214914532c4c12a52d7d5d4d237839dda9766d8a54e357193",
+  "bytes": 28969,
+  "requestId": "tVXfTwkPxLTspobtB39Y",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f45ed871c1d4a8fb0201951daa5854349d46edd432c77beeeeac4dbcd7f922b1",
+    "bytes": 149673
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

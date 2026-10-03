@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "book-opening-follow-3",
+      "label": "Book opening follow 3",
+      "text": "Look, the reply is a book move as well."
+    },
+    "takeId": null
+  },
+  "requestHash": "7077e7c6a915b63c3842d9771c2c5eb7046081a3b5b1759985ae86417a8d8956",
+  "recordedAt": "2026-10-03T06:14:31.068Z",
+  "sha256": "60ca7026ef99a3646a331871a6b1c95280afe392670f4cceebb57ea607da4cbf",
+  "bytes": 10334,
+  "requestId": "JYlU3JSVxuQBMIQZKXyQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "24c4274b4ef7e6db27a367445b31b08c8d3def2ba8178ed9ad857f57a99de3dc",
+    "bytes": 51035
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

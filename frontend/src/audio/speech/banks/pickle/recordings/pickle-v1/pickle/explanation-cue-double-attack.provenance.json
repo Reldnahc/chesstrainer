@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "explanation-cue-double-attack",
+      "label": "Explanation cue double attack",
+      "text": "Sniff out a move with two threats packed inside. Checks count, and so do lines that just opened up!"
+    },
+    "takeId": null
+  },
+  "requestHash": "0c52ad25537d891db0ad78695699d40948e74d3fb49a1e70845d99609b92733d",
+  "recordedAt": "2026-10-03T06:14:07.108Z",
+  "sha256": "ceef4ebdec287198014730bf501bedd765b447e00b71934845cae893a9eec24f",
+  "bytes": 20867,
+  "requestId": "kSss7rjiadjMYa7z1tzv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3aac283bdddfdb820a923e5fb1a3e688765f893d922a8bc8c93f8c5e245777da",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

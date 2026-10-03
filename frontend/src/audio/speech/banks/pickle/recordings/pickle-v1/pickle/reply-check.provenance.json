@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "reply-check",
+      "label": "Reply check",
+      "text": "Clue: the top reply checks the king! Nothing else matters until the king is out of trouble."
+    },
+    "takeId": null
+  },
+  "requestHash": "412977ca94561731a87e5f6dfd49c4ca246c087847644fd2455e3ca7877cda6a",
+  "recordedAt": "2026-10-03T06:13:36.116Z",
+  "sha256": "37e51a43f85fbb90571777e9692b6ea183088d43e3b43fc38207d9ebe35f4e59",
+  "bytes": 19903,
+  "requestId": "Tmxlyxww5VXq1Ok7zeqI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "66b6df4d09b270b0ee3a39b3553e396194c85bb2fac9d01ee80d3b7be4892767",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

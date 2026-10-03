@@ -1,0 +1,1583 @@
+{
+  "schemaVersion": 1,
+  "provider": "elevenlabs",
+  "coachId": "cat-kitten",
+  "voiceId": "pickle",
+  "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+  "modelId": "eleven_v4",
+  "outputFormat": "mp3_44100_128",
+  "settings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75,
+    "speed": 0.95
+  },
+  "scope": "non-lesson",
+  "silentIds": [
+    "game-thinking",
+    "explanation-loading-saved",
+    "dialogue-no-renderable-claim",
+    "practice-checking"
+  ],
+  "recordings": [
+    {
+      "id": "tactic-fork-played",
+      "group": "game_review",
+      "text": "Ooh, look where that piece landed. It's poking at several targets at the same time, which makes it a fork. Sneaky!",
+      "audioPath": "recordings/pickle-v1/pickle/tactic-fork-played.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/tactic-fork-played.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-played.json"
+    },
+    {
+      "id": "tactic-fork-allowed",
+      "group": "game_review",
+      "text": "Hmm, notice anything off? One of the other side's pieces can now jump on several targets in one go. That's a fork waiting to happen.",
+      "audioPath": "recordings/pickle-v1/pickle/tactic-fork-allowed.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/tactic-fork-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-allowed.json"
+    },
+    {
+      "id": "tactic-fork-missed",
+      "group": "game_review",
+      "text": "Psst, there was a fork tucked inside another move! One piece could have poked at a bunch of targets together. This move walked right by that clue.",
+      "audioPath": "recordings/pickle-v1/pickle/tactic-fork-missed.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/tactic-fork-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-missed.json"
+    },
+    {
+      "id": "tactic-pin-played",
+      "group": "game_review",
+      "text": "See that piece on the line? It can't budge, because its king sits somewhere behind it on that line. Frozen in place by a pin!",
+      "audioPath": "recordings/pickle-v1/pickle/tactic-pin-played.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/tactic-pin-played.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-played.json"
+    },
+    {
+      "id": "tactic-pin-allowed",
+      "group": "game_review",
+      "text": "Suspicious line alert! A pin is on offer for the other side: one piece could get frozen in front of its king.",
+      "audioPath": "recordings/pickle-v1/pickle/tactic-pin-allowed.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/tactic-pin-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-allowed.json"
+    },
+    {
+      "id": "tactic-pin-missed",
+      "group": "game_review",
+      "text": "Psst, another move had a pin to the king tucked inside it. That piece would have been frozen on its line. This move never noticed.",
+      "audioPath": "recordings/pickle-v1/pickle/tactic-pin-missed.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/tactic-pin-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-missed.json"
+    },
+    {
+      "id": "tactic-skewer-played",
+      "group": "game_review",
+      "text": "Skewer spotted! The front piece is under fire, and when it scoots out of the way, the one hiding behind it gets exposed.",
+      "audioPath": "recordings/pickle-v1/pickle/tactic-skewer-played.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/tactic-skewer-played.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-played.json"
+    },
+    {
+      "id": "tactic-skewer-allowed",
+      "group": "game_review",
+      "text": "Hmm, two pieces are lined up like ducks. The other side can skewer them: if the front one shuffles aside, the back one could be exposed.",
+      "audioPath": "recordings/pickle-v1/pickle/tactic-skewer-allowed.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/tactic-skewer-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-allowed.json"
+    },
+    {
+      "id": "tactic-skewer-missed",
+      "group": "game_review",
+      "text": "Ooh, a skewer was hiding in another move. Chase the front piece off the line, and the one behind would have been exposed. Missed clue!",
+      "audioPath": "recordings/pickle-v1/pickle/tactic-skewer-missed.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/tactic-skewer-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-missed.json"
+    },
+    {
+      "id": "tactic-removing-defender-played",
+      "group": "game_review",
+      "text": "Who was guarding that? This defender, that's who. Take the defender away, and the thing it guarded is suddenly on its own.",
+      "audioPath": "recordings/pickle-v1/pickle/tactic-removing-defender-played.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/tactic-removing-defender-played.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-played.json"
+    },
+    {
+      "id": "tactic-removing-defender-allowed",
+      "group": "game_review",
+      "text": "Interesting! Somebody's defender is a sitting target now, and if it goes, whatever it was guarding goes unprotected too.",
+      "audioPath": "recordings/pickle-v1/pickle/tactic-removing-defender-allowed.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/tactic-removing-defender-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-allowed.json"
+    },
+    {
+      "id": "tactic-removing-defender-missed",
+      "group": "game_review",
+      "text": "Hmm, a different move could have snatched a defender and left its job undone. This one let that little trick slip away.",
+      "audioPath": "recordings/pickle-v1/pickle/tactic-removing-defender-missed.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/tactic-removing-defender-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-missed.json"
+    },
+    {
+      "id": "tactic-back-rank-played",
+      "group": "game_review",
+      "text": "Peek at the back rank! The king is stuck behind its own pieces with nowhere to run, and this move goes right for it.",
+      "audioPath": "recordings/pickle-v1/pickle/tactic-back-rank-played.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/tactic-back-rank-played.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-played.json"
+    },
+    {
+      "id": "tactic-back-rank-allowed",
+      "group": "game_review",
+      "text": "Clue spotted: the king's own pieces are blocking its escape hatch. Now the other side has a shot at a back-rank mate.",
+      "audioPath": "recordings/pickle-v1/pickle/tactic-back-rank-allowed.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/tactic-back-rank-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-allowed.json"
+    },
+    {
+      "id": "tactic-back-rank-missed",
+      "group": "game_review",
+      "text": "A back-rank mate was hiding here! The king was trapped by its own pieces, and this move tiptoed past it.",
+      "audioPath": "recordings/pickle-v1/pickle/tactic-back-rank-missed.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/tactic-back-rank-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-missed.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-played",
+      "group": "game_review",
+      "text": "Watch that little pawn go. It's scampering off to the far end, and once it reaches the last rank, it turns into a brand-new piece!",
+      "audioPath": "recordings/pickle-v1/pickle/tactic-promotion-awareness-played.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/tactic-promotion-awareness-played.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-played.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-allowed",
+      "group": "game_review",
+      "text": "Hmm, one of their pawns is sneaking toward the last rank. That's a promotion chance for them.",
+      "audioPath": "recordings/pickle-v1/pickle/tactic-promotion-awareness-allowed.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/tactic-promotion-awareness-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-allowed.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-missed",
+      "group": "game_review",
+      "text": "Ooh, a stronger move would have opened the way for a pawn to promote. This move kept that door shut.",
+      "audioPath": "recordings/pickle-v1/pickle/tactic-promotion-awareness-missed.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/tactic-promotion-awareness-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-missed.json"
+    },
+    {
+      "id": "tactic-discovered-attack-played",
+      "group": "game_review",
+      "text": "Sneaky! One piece slides out of the way, and surprise, the piece behind it was aiming all along. That's a discovered attack, sneaking up out of nowhere!",
+      "audioPath": "recordings/pickle-v1/pickle/tactic-discovered-attack-played.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/tactic-discovered-attack-played.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-played.json"
+    },
+    {
+      "id": "tactic-discovered-attack-allowed",
+      "group": "game_review",
+      "text": "Something's hiding behind one of their pieces. If that piece wanders off, the one behind it gets to attack. A discovered attack, theirs for the taking.",
+      "audioPath": "recordings/pickle-v1/pickle/tactic-discovered-attack-allowed.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/tactic-discovered-attack-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-allowed.json"
+    },
+    {
+      "id": "tactic-discovered-attack-missed",
+      "group": "game_review",
+      "text": "A discovered attack was tucked inside another move! One piece could have stepped aside to unveil the attacker behind it. This move kept the curtain closed.",
+      "audioPath": "recordings/pickle-v1/pickle/tactic-discovered-attack-missed.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/tactic-discovered-attack-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-missed.json"
+    },
+    {
+      "id": "tactic-double-attack-played",
+      "group": "game_review",
+      "text": "Two threats popping out of this one move! Both threats are going to need answers.",
+      "audioPath": "recordings/pickle-v1/pickle/tactic-double-attack-played.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/tactic-double-attack-played.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-played.json"
+    },
+    {
+      "id": "tactic-double-attack-allowed",
+      "group": "game_review",
+      "text": "Hmm, one move from the other side could now carry two threats. A double attack like that means answering twice.",
+      "audioPath": "recordings/pickle-v1/pickle/tactic-double-attack-allowed.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/tactic-double-attack-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-allowed.json"
+    },
+    {
+      "id": "tactic-double-attack-missed",
+      "group": "game_review",
+      "text": "A stronger move could have poked at two things at once. Ooh, that double attack stayed hidden this time.",
+      "audioPath": "recordings/pickle-v1/pickle/tactic-double-attack-missed.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/tactic-double-attack-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-missed.json"
+    },
+    {
+      "id": "tactic-deflection-played",
+      "group": "game_review",
+      "text": "Shoo! The defender gets lured away from its post, and its old post has nobody minding it. Lured right off, the classic deflection!",
+      "audioPath": "recordings/pickle-v1/pickle/tactic-deflection-played.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/tactic-deflection-played.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-played.json"
+    },
+    {
+      "id": "tactic-deflection-allowed",
+      "group": "game_review",
+      "text": "Look at that defender, working so hard. The other side can now lure it off its job, a deflection, and leave its post empty.",
+      "audioPath": "recordings/pickle-v1/pickle/tactic-deflection-allowed.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/tactic-deflection-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-allowed.json"
+    },
+    {
+      "id": "tactic-deflection-missed",
+      "group": "game_review",
+      "text": "A deflection was waiting in another move, a defender just begging to be lured off. That deflection is still sitting there, unused.",
+      "audioPath": "recordings/pickle-v1/pickle/tactic-deflection-missed.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/tactic-deflection-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-missed.json"
+    },
+    {
+      "id": "tactic-undefended-capture-played",
+      "group": "game_review",
+      "text": "Who's guarding that piece? Nobody! So it gets taken. Simple as that.",
+      "audioPath": "recordings/pickle-v1/pickle/tactic-undefended-capture-played.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/tactic-undefended-capture-played.provenance.json",
+      "alignmentPath": "alignment/tactic-undefended-capture-played.json"
+    },
+    {
+      "id": "tactic-undefended-capture-missed",
+      "group": "game_review",
+      "text": "Wait, there was an unguarded piece up for grabs with another move. Nobody was watching it, and this move left it alone.",
+      "audioPath": "recordings/pickle-v1/pickle/tactic-undefended-capture-missed.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/tactic-undefended-capture-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-undefended-capture-missed.json"
+    },
+    {
+      "id": "tactic-hanging-piece-allowed",
+      "group": "game_review",
+      "text": "Hmm, who's guarding that piece now? Nobody, and the other side can just take it.",
+      "audioPath": "recordings/pickle-v1/pickle/tactic-hanging-piece-allowed.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/tactic-hanging-piece-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-hanging-piece-allowed.json"
+    },
+    {
+      "id": "cause-abandoned-defender",
+      "group": "game_review",
+      "text": "Case file: who was protecting that piece? Just one real defender, and this move walked it away. The piece it abandoned is now up for grabs.",
+      "audioPath": "recordings/pickle-v1/pickle/cause-abandoned-defender.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/cause-abandoned-defender.provenance.json",
+      "alignmentPath": "alignment/cause-abandoned-defender.json"
+    },
+    {
+      "id": "cause-opponent-threat-recognition",
+      "group": "game_review",
+      "text": "Here's the clue: the opponent's last move made a threat. This move never dealt with it, so a piece can be captured.",
+      "audioPath": "recordings/pickle-v1/pickle/cause-opponent-threat-recognition.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/cause-opponent-threat-recognition.provenance.json",
+      "alignmentPath": "alignment/cause-opponent-threat-recognition.json"
+    },
+    {
+      "id": "cause-avoiding-bad-trades",
+      "group": "game_review",
+      "text": "The capture looks tasty, but then comes the recapture, and it takes back something bigger. Peek at both halves of the trade first.",
+      "audioPath": "recordings/pickle-v1/pickle/cause-avoiding-bad-trades.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/cause-avoiding-bad-trades.provenance.json",
+      "alignmentPath": "alignment/cause-avoiding-bad-trades.json"
+    },
+    {
+      "id": "positional-development-actual",
+      "group": "game_review",
+      "text": "Hop! A minor piece jumps out of its starting spot. Out of bed and into the game!",
+      "audioPath": "recordings/pickle-v1/pickle/positional-development-actual.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/positional-development-actual.provenance.json",
+      "alignmentPath": "alignment/positional-development-actual.json"
+    },
+    {
+      "id": "positional-development-alternative",
+      "group": "game_review",
+      "text": "Another move could have developed a minor piece, getting it off its starting square.",
+      "audioPath": "recordings/pickle-v1/pickle/positional-development-alternative.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/positional-development-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-development-alternative.json"
+    },
+    {
+      "id": "positional-rook-open-actual",
+      "group": "game_review",
+      "text": "The rook found an open file! Not a single pawn on it, of either color.",
+      "audioPath": "recordings/pickle-v1/pickle/positional-rook-open-actual.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/positional-rook-open-actual.provenance.json",
+      "alignmentPath": "alignment/positional-rook-open-actual.json"
+    },
+    {
+      "id": "positional-rook-open-alternative",
+      "group": "game_review",
+      "text": "A different move could have handed a rook an open file, empty of pawns of both colors.",
+      "audioPath": "recordings/pickle-v1/pickle/positional-rook-open-alternative.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/positional-rook-open-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-rook-open-alternative.json"
+    },
+    {
+      "id": "positional-rook-semi-open-actual",
+      "group": "game_review",
+      "text": "Ooh, the rook found itself a semi-open file. None of its own pawns there, but at least one enemy pawn is still loitering.",
+      "audioPath": "recordings/pickle-v1/pickle/positional-rook-semi-open-actual.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/positional-rook-semi-open-actual.provenance.json",
+      "alignmentPath": "alignment/positional-rook-semi-open-actual.json"
+    },
+    {
+      "id": "positional-rook-semi-open-alternative",
+      "group": "game_review",
+      "text": "With another move, a rook would have landed on a semi-open file, clear of its own pawns while an enemy pawn lingers.",
+      "audioPath": "recordings/pickle-v1/pickle/positional-rook-semi-open-alternative.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/positional-rook-semi-open-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-rook-semi-open-alternative.json"
+    },
+    {
+      "id": "positional-passed-actual",
+      "group": "game_review",
+      "text": "Look closely at that pawn! Not one enemy pawn blocks it, on its file or the two next to it. It's a passed pawn.",
+      "audioPath": "recordings/pickle-v1/pickle/positional-passed-actual.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/positional-passed-actual.provenance.json",
+      "alignmentPath": "alignment/positional-passed-actual.json"
+    },
+    {
+      "id": "positional-passed-alternative",
+      "group": "game_review",
+      "text": "Another move would have made a passed pawn, with not one enemy pawn ahead of it on its file or the files next to it.",
+      "audioPath": "recordings/pickle-v1/pickle/positional-passed-alternative.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/positional-passed-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-passed-alternative.json"
+    },
+    {
+      "id": "positional-passer-advance-actual",
+      "group": "game_review",
+      "text": "Sneak, sneak, the passed pawn moves up again. Closer and closer to the last rank.",
+      "audioPath": "recordings/pickle-v1/pickle/positional-passer-advance-actual.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/positional-passer-advance-actual.provenance.json",
+      "alignmentPath": "alignment/positional-passer-advance-actual.json"
+    },
+    {
+      "id": "positional-passer-advance-alternative",
+      "group": "game_review",
+      "text": "A different move could have nudged the passed pawn closer to the last rank.",
+      "audioPath": "recordings/pickle-v1/pickle/positional-passer-advance-alternative.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/positional-passer-advance-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-passer-advance-alternative.json"
+    },
+    {
+      "id": "positional-isolated-actual",
+      "group": "game_review",
+      "text": "Aw, this pawn is all by itself now, no friendly pawn on the files on either side. Poor little isolated pawn.",
+      "audioPath": "recordings/pickle-v1/pickle/positional-isolated-actual.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/positional-isolated-actual.provenance.json",
+      "alignmentPath": "alignment/positional-isolated-actual.json"
+    },
+    {
+      "id": "positional-isolated-alternative",
+      "group": "game_review",
+      "text": "Another move would have left a pawn isolated, with no friendly pawns on the files on either side of it.",
+      "audioPath": "recordings/pickle-v1/pickle/positional-isolated-alternative.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/positional-isolated-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-isolated-alternative.json"
+    },
+    {
+      "id": "positional-support-actual",
+      "group": "game_review",
+      "text": "That piece was standing around unguarded, and now it has a buddy watching its back. A defender!",
+      "audioPath": "recordings/pickle-v1/pickle/positional-support-actual.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/positional-support-actual.provenance.json",
+      "alignmentPath": "alignment/positional-support-actual.json"
+    },
+    {
+      "id": "positional-support-alternative",
+      "group": "game_review",
+      "text": "With another move, that unguarded piece would have had company. Nobody likes standing alone.",
+      "audioPath": "recordings/pickle-v1/pickle/positional-support-alternative.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/positional-support-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-support-alternative.json"
+    },
+    {
+      "id": "positional-unsupported-actual",
+      "group": "game_review",
+      "text": "Hmm, this piece is left without a single guard. Suspicious! Though unguarded doesn't mean it can actually be won.",
+      "audioPath": "recordings/pickle-v1/pickle/positional-unsupported-actual.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/positional-unsupported-actual.provenance.json",
+      "alignmentPath": "alignment/positional-unsupported-actual.json"
+    },
+    {
+      "id": "positional-unsupported-alternative",
+      "group": "game_review",
+      "text": "With another move, a piece would have been left unguarded. That on its own wouldn't prove it could be won.",
+      "audioPath": "recordings/pickle-v1/pickle/positional-unsupported-alternative.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/positional-unsupported-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-unsupported-alternative.json"
+    },
+    {
+      "id": "positional-king-flight-actual",
+      "group": "game_review",
+      "text": "The king just got a new escape hatch, a legal square it didn't have before.",
+      "audioPath": "recordings/pickle-v1/pickle/positional-king-flight-actual.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/positional-king-flight-actual.provenance.json",
+      "alignmentPath": "alignment/positional-king-flight-actual.json"
+    },
+    {
+      "id": "positional-king-flight-alternative",
+      "group": "game_review",
+      "text": "A different move could have given the king a new legal square to step to.",
+      "audioPath": "recordings/pickle-v1/pickle/positional-king-flight-alternative.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/positional-king-flight-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-king-flight-alternative.json"
+    },
+    {
+      "id": "positional-castling-actual",
+      "group": "game_review",
+      "text": "Whoosh, the king castles! King and rook hop past each other in one quick move.",
+      "audioPath": "recordings/pickle-v1/pickle/positional-castling-actual.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/positional-castling-actual.provenance.json",
+      "alignmentPath": "alignment/positional-castling-actual.json"
+    },
+    {
+      "id": "positional-castling-alternative",
+      "group": "game_review",
+      "text": "Another option was castling, moving the king and rook together in a single move.",
+      "audioPath": "recordings/pickle-v1/pickle/positional-castling-alternative.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/positional-castling-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-castling-alternative.json"
+    },
+    {
+      "id": "positional-bishop-pair-actual",
+      "group": "game_review",
+      "text": "Snap! One side's bishop pair is gone after this capture. Now one side only has a bishop on one color of square.",
+      "audioPath": "recordings/pickle-v1/pickle/positional-bishop-pair-actual.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/positional-bishop-pair-actual.provenance.json",
+      "alignmentPath": "alignment/positional-bishop-pair-actual.json"
+    },
+    {
+      "id": "positional-bishop-pair-alternative",
+      "group": "game_review",
+      "text": "Another move would have nabbed a bishop, leaving the other side without its pair.",
+      "audioPath": "recordings/pickle-v1/pickle/positional-bishop-pair-alternative.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/positional-bishop-pair-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-bishop-pair-alternative.json"
+    },
+    {
+      "id": "positional-doubled-actual",
+      "group": "game_review",
+      "text": "Two pawns of one color, piled up on the same file. They're doubled!",
+      "audioPath": "recordings/pickle-v1/pickle/positional-doubled-actual.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/positional-doubled-actual.provenance.json",
+      "alignmentPath": "alignment/positional-doubled-actual.json"
+    },
+    {
+      "id": "positional-doubled-alternative",
+      "group": "game_review",
+      "text": "A different move would have left doubled pawns, two of one color piled up on a single file.",
+      "audioPath": "recordings/pickle-v1/pickle/positional-doubled-alternative.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/positional-doubled-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-doubled-alternative.json"
+    },
+    {
+      "id": "allowed-mate",
+      "group": "game_review",
+      "text": "Big clue. After this move, forced checkmate is on for the other side. Let's trace the attack and find where the defense gave out.",
+      "audioPath": "recordings/pickle-v1/pickle/allowed-mate.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/allowed-mate.provenance.json",
+      "alignmentPath": "alignment/allowed-mate.json"
+    },
+    {
+      "id": "missed-mate",
+      "group": "game_review",
+      "text": "Wait a second! A forced checkmate was right there, and this move missed it. Rewind and sniff out that finish.",
+      "audioPath": "recordings/pickle-v1/pickle/missed-mate.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/missed-mate.provenance.json",
+      "alignmentPath": "alignment/missed-mate.json"
+    },
+    {
+      "id": "sound-sacrifice",
+      "group": "game_review",
+      "text": "Ooh, a gift that isn't really a gift! The other side can take the material, but in the line we checked, the trick keeps working.",
+      "audioPath": "recordings/pickle-v1/pickle/sound-sacrifice.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/sound-sacrifice.provenance.json",
+      "alignmentPath": "alignment/sound-sacrifice.json"
+    },
+    {
+      "id": "only-playable-move",
+      "group": "game_review",
+      "text": "Case file: every other suspect we questioned was a losing move. This sneaky little move was the only one keeping the position playable. Tricky!",
+      "audioPath": "recordings/pickle-v1/pickle/only-playable-move.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/only-playable-move.provenance.json",
+      "alignmentPath": "alignment/only-playable-move.json"
+    },
+    {
+      "id": "only-advantage-resource",
+      "group": "game_review",
+      "text": "Only this move keeps the advantage alive; all the other suspects were losing moves. Case closed on that one.",
+      "audioPath": "recordings/pickle-v1/pickle/only-advantage-resource.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/only-advantage-resource.provenance.json",
+      "alignmentPath": "alignment/only-advantage-resource.json"
+    },
+    {
+      "id": "immediate-capture",
+      "group": "game_review",
+      "text": "Something's up with the reply: the other side can snatch something straight away. What would they grab?",
+      "audioPath": "recordings/pickle-v1/pickle/immediate-capture.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/immediate-capture.provenance.json",
+      "alignmentPath": "alignment/immediate-capture.json"
+    },
+    {
+      "id": "reply-check",
+      "group": "game_review",
+      "text": "Clue: the top reply checks the king! Nothing else matters until the king is out of trouble.",
+      "audioPath": "recordings/pickle-v1/pickle/reply-check.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/reply-check.provenance.json",
+      "alignmentPath": "alignment/reply-check.json"
+    },
+    {
+      "id": "stronger-alternative",
+      "group": "game_review",
+      "text": "Hmm, why does the engine prefer a different move here? Set its move up on the board and see how the replies change.",
+      "audioPath": "recordings/pickle-v1/pickle/stronger-alternative.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/stronger-alternative.provenance.json",
+      "alignmentPath": "alignment/stronger-alternative.json"
+    },
+    {
+      "id": "evaluation-loss",
+      "group": "game_review",
+      "text": "What's this move costing? A bit of value against the engine's best, and the reply holds the clue.",
+      "audioPath": "recordings/pickle-v1/pickle/evaluation-loss.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/evaluation-loss.provenance.json",
+      "alignmentPath": "alignment/evaluation-loss.json"
+    },
+    {
+      "id": "best-supported-choice",
+      "group": "game_review",
+      "text": "Case report: strong. Even under the engine's magnifying glass, it gives away almost nothing.",
+      "audioPath": "recordings/pickle-v1/pickle/best-supported-choice.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/best-supported-choice.provenance.json",
+      "alignmentPath": "alignment/best-supported-choice.json"
+    },
+    {
+      "id": "good-choice",
+      "group": "game_review",
+      "text": "Sound as can be. The engine likes a different one a bit more, but this keeps most of what the position had.",
+      "audioPath": "recordings/pickle-v1/pickle/good-choice.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/good-choice.provenance.json",
+      "alignmentPath": "alignment/good-choice.json"
+    },
+    {
+      "id": "clock-low",
+      "group": "game_review",
+      "text": "Psst, the clock was nearly out of time before this move. That's a clue too.",
+      "audioPath": "recordings/pickle-v1/pickle/clock-low.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/clock-low.provenance.json",
+      "alignmentPath": "alignment/clock-low.json"
+    },
+    {
+      "id": "clock-fast",
+      "group": "game_review",
+      "text": "Zoom! That move came quickly, with time still left.",
+      "audioPath": "recordings/pickle-v1/pickle/clock-fast.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/clock-fast.provenance.json",
+      "alignmentPath": "alignment/clock-fast.json"
+    },
+    {
+      "id": "clock-long",
+      "group": "game_review",
+      "text": "That was a long, long ponder. The clock ticked for a good long while.",
+      "audioPath": "recordings/pickle-v1/pickle/clock-long.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/clock-long.provenance.json",
+      "alignmentPath": "alignment/clock-long.json"
+    },
+    {
+      "id": "recognized-opening",
+      "group": "game_review",
+      "text": "A recognized opening line has this move in it. We're on a mapped trail for now.",
+      "audioPath": "recordings/pickle-v1/pickle/recognized-opening.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/recognized-opening.provenance.json",
+      "alignmentPath": "alignment/recognized-opening.json"
+    },
+    {
+      "id": "opening-departure",
+      "group": "game_review",
+      "text": "Bye-bye, opening book! No more map from this point on.",
+      "audioPath": "recordings/pickle-v1/pickle/opening-departure.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/opening-departure.provenance.json",
+      "alignmentPath": "alignment/opening-departure.json"
+    },
+    {
+      "id": "recovery",
+      "group": "game_review",
+      "text": "Look who's back! The earlier setback is behind us, and this move makes the position playable again.",
+      "audioPath": "recordings/pickle-v1/pickle/recovery.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/recovery.provenance.json",
+      "alignmentPath": "alignment/recovery.json"
+    },
+    {
+      "id": "recovery-assisted",
+      "group": "game_review",
+      "text": "We're back to playable after that earlier setback! The other side's errors helped us along.",
+      "audioPath": "recordings/pickle-v1/pickle/recovery-assisted.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/recovery-assisted.provenance.json",
+      "alignmentPath": "alignment/recovery-assisted.json"
+    },
+    {
+      "id": "chance-taken",
+      "group": "game_review",
+      "text": "The opponent's last move left a little gap, and this move pounces!",
+      "audioPath": "recordings/pickle-v1/pickle/chance-taken.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/chance-taken.provenance.json",
+      "alignmentPath": "alignment/chance-taken.json"
+    },
+    {
+      "id": "chance-missed",
+      "group": "game_review",
+      "text": "The opponent's last move left a little gap. This move didn't spot it.",
+      "audioPath": "recordings/pickle-v1/pickle/chance-missed.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/chance-missed.provenance.json",
+      "alignmentPath": "alignment/chance-missed.json"
+    },
+    {
+      "id": "repeated-issue",
+      "group": "game_review",
+      "text": "Hey, I've seen this clue before! This exact trouble already turned up in an earlier moment of this game. Let's put those moments next to each other.",
+      "audioPath": "recordings/pickle-v1/pickle/repeated-issue.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/repeated-issue.provenance.json",
+      "alignmentPath": "alignment/repeated-issue.json"
+    },
+    {
+      "id": "support-restored",
+      "group": "game_review",
+      "text": "That piece left unguarded earlier has a defender again. Patched up!",
+      "audioPath": "recordings/pickle-v1/pickle/support-restored.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/support-restored.provenance.json",
+      "alignmentPath": "alignment/support-restored.json"
+    },
+    {
+      "id": "gradual-erosion",
+      "group": "game_review",
+      "text": "Where did it all go wrong? Nowhere big! Just lots of small concessions adding up, and this is one more of them.",
+      "audioPath": "recordings/pickle-v1/pickle/gradual-erosion.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/gradual-erosion.provenance.json",
+      "alignmentPath": "alignment/gradual-erosion.json"
+    },
+    {
+      "id": "advantage-converted",
+      "group": "game_review",
+      "text": "The advantage never slipped away, right up to the recorded win. Mystery solved, and nicely handled!",
+      "audioPath": "recordings/pickle-v1/pickle/advantage-converted.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/advantage-converted.provenance.json",
+      "alignmentPath": "alignment/advantage-converted.json"
+    },
+    {
+      "id": "saved-history-recurrence",
+      "group": "game_review",
+      "text": "This issue keeps turning up! It's lurking in your other saved games too. Line them up and look for the pattern.",
+      "audioPath": "recordings/pickle-v1/pickle/saved-history-recurrence.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/saved-history-recurrence.provenance.json",
+      "alignmentPath": "alignment/saved-history-recurrence.json"
+    },
+    {
+      "id": "mate-finished",
+      "group": "game_review",
+      "text": "Checkmate, and every escape hatch is shut. All wrapped up!",
+      "audioPath": "recordings/pickle-v1/pickle/mate-finished.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/mate-finished.provenance.json",
+      "alignmentPath": "alignment/mate-finished.json"
+    },
+    {
+      "id": "mate-defense-ended",
+      "group": "game_review",
+      "text": "That's checkmate; the king had no legal escape left. The clue to look for is earlier, in the defense.",
+      "audioPath": "recordings/pickle-v1/pickle/mate-defense-ended.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/mate-defense-ended.provenance.json",
+      "alignmentPath": "alignment/mate-defense-ended.json"
+    },
+    {
+      "id": "draw",
+      "group": "game_review",
+      "text": "A draw, so nobody wins this one, but there are still earlier decisions worth poking at.",
+      "audioPath": "recordings/pickle-v1/pickle/draw.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/draw.provenance.json",
+      "alignmentPath": "alignment/draw.json"
+    },
+    {
+      "id": "srs-cold",
+      "group": "srs_explanations",
+      "text": "What's going on in this position? Have a sniff around, then pick your move.",
+      "audioPath": "recordings/pickle-v1/pickle/srs-cold.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/srs-cold.provenance.json",
+      "alignmentPath": "alignment/srs-cold.json"
+    },
+    {
+      "id": "srs-retry",
+      "group": "srs_explanations",
+      "text": "Hmm, that one doesn't work. Poke around a bit more and try a different move.",
+      "audioPath": "recordings/pickle-v1/pickle/srs-retry.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/srs-retry.provenance.json",
+      "alignmentPath": "alignment/srs-retry.json"
+    },
+    {
+      "id": "srs-practice-error",
+      "group": "srs_explanations",
+      "text": "Hmm, that attempt came back with nothing. Have one more try at the move.",
+      "audioPath": "recordings/pickle-v1/pickle/srs-practice-error.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/srs-practice-error.provenance.json",
+      "alignmentPath": "alignment/srs-practice-error.json"
+    },
+    {
+      "id": "srs-summary-mate-for-mover",
+      "group": "srs_explanations",
+      "text": "Forced checkmate! The saved engine analysis found it, and it belongs to the side that just moved.",
+      "audioPath": "recordings/pickle-v1/pickle/srs-summary-mate-for-mover.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/srs-summary-mate-for-mover.provenance.json",
+      "alignmentPath": "alignment/srs-summary-mate-for-mover.json"
+    },
+    {
+      "id": "srs-summary-mate-against-mover",
+      "group": "srs_explanations",
+      "text": "Uh-oh, bad news. With this move on the board, the saved engine analysis finds forced checkmate for the other side.",
+      "audioPath": "recordings/pickle-v1/pickle/srs-summary-mate-against-mover.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/srs-summary-mate-against-mover.provenance.json",
+      "alignmentPath": "alignment/srs-summary-mate-against-mover.json"
+    },
+    {
+      "id": "srs-summary-material-gain",
+      "group": "srs_explanations",
+      "text": "By the end of the saved line, the side that made this move has more material than it started with.",
+      "audioPath": "recordings/pickle-v1/pickle/srs-summary-material-gain.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/srs-summary-material-gain.provenance.json",
+      "alignmentPath": "alignment/srs-summary-material-gain.json"
+    },
+    {
+      "id": "srs-summary-material-loss",
+      "group": "srs_explanations",
+      "text": "By the end of the saved line, the side that made this move has less material than it started with.",
+      "audioPath": "recordings/pickle-v1/pickle/srs-summary-material-loss.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/srs-summary-material-loss.provenance.json",
+      "alignmentPath": "alignment/srs-summary-material-loss.json"
+    },
+    {
+      "id": "srs-summary-engine-accepted",
+      "group": "srs_explanations",
+      "text": "The exercise is happy with this move! The moves shown don't reveal a clear tactical reason, so no mystery is made up.",
+      "audioPath": "recordings/pickle-v1/pickle/srs-summary-engine-accepted.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/srs-summary-engine-accepted.provenance.json",
+      "alignmentPath": "alignment/srs-summary-engine-accepted.json"
+    },
+    {
+      "id": "srs-summary-engine-rejected",
+      "group": "srs_explanations",
+      "text": "The exercise won't accept this move. The moves shown don't reveal a clear tactical reason for that either.",
+      "audioPath": "recordings/pickle-v1/pickle/srs-summary-engine-rejected.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/srs-summary-engine-rejected.provenance.json",
+      "alignmentPath": "alignment/srs-summary-engine-rejected.json"
+    },
+    {
+      "id": "srs-summary-curated-accepted",
+      "group": "srs_explanations",
+      "text": "Match found among the saved answers! In this exercise, only the saved answers count.",
+      "audioPath": "recordings/pickle-v1/pickle/srs-summary-curated-accepted.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/srs-summary-curated-accepted.provenance.json",
+      "alignmentPath": "alignment/srs-summary-curated-accepted.json"
+    },
+    {
+      "id": "srs-summary-curated-rejected",
+      "group": "srs_explanations",
+      "text": "None of the saved answers match that move. It could still be decent chess; this exercise is just after something else.",
+      "audioPath": "recordings/pickle-v1/pickle/srs-summary-curated-rejected.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/srs-summary-curated-rejected.provenance.json",
+      "alignmentPath": "alignment/srs-summary-curated-rejected.json"
+    },
+    {
+      "id": "srs-fallback-study",
+      "group": "srs_explanations",
+      "text": "Take a peek at the move, then hop along to the next position.",
+      "audioPath": "recordings/pickle-v1/pickle/srs-fallback-study.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/srs-fallback-study.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-study.json"
+    },
+    {
+      "id": "srs-fallback-good",
+      "group": "srs_explanations",
+      "text": "Nice move! Hang on to the reason it works.",
+      "audioPath": "recordings/pickle-v1/pickle/srs-fallback-good.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/srs-fallback-good.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-good.json"
+    },
+    {
+      "id": "srs-fallback-focus-saved",
+      "group": "srs_explanations",
+      "text": "Your practice is tucked away safely, and your review dates stay exactly as they were.",
+      "audioPath": "recordings/pickle-v1/pickle/srs-fallback-focus-saved.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/srs-fallback-focus-saved.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-focus-saved.json"
+    },
+    {
+      "id": "srs-fallback-relearning",
+      "group": "srs_explanations",
+      "text": "Solved it! It's still marked for relearning, though.",
+      "audioPath": "recordings/pickle-v1/pickle/srs-fallback-relearning.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/srs-fallback-relearning.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-relearning.json"
+    },
+    {
+      "id": "explanation-frame-original",
+      "group": "srs_explanations",
+      "text": "Here's where it all starts, before any of these moves.",
+      "audioPath": "recordings/pickle-v1/pickle/explanation-frame-original.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/explanation-frame-original.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-original.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-ordinary",
+      "group": "srs_explanations",
+      "text": "On to the next one. What changed? Have a peek.",
+      "audioPath": "recordings/pickle-v1/pickle/explanation-frame-quiet-move-ordinary.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/explanation-frame-quiet-move-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-check",
+      "group": "srs_explanations",
+      "text": "Ooh, check! The king needs an answer right away.",
+      "audioPath": "recordings/pickle-v1/pickle/explanation-frame-quiet-move-check.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/explanation-frame-quiet-move-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-check.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-escape",
+      "group": "srs_explanations",
+      "text": "Phew, the king is out of check thanks to this move.",
+      "audioPath": "recordings/pickle-v1/pickle/explanation-frame-quiet-move-escape.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/explanation-frame-quiet-move-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-escape.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-ordinary",
+      "group": "srs_explanations",
+      "text": "The pawn made it to the last rank and turns into a new piece!",
+      "audioPath": "recordings/pickle-v1/pickle/explanation-frame-quiet-promotion-ordinary.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/explanation-frame-quiet-promotion-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-check",
+      "group": "srs_explanations",
+      "text": "The pawn gets to the last rank, turns into a new piece, and gives check too!",
+      "audioPath": "recordings/pickle-v1/pickle/explanation-frame-quiet-promotion-check.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/explanation-frame-quiet-promotion-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-check.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-mate",
+      "group": "srs_explanations",
+      "text": "Up to the last rank, a promotion, and checkmate! Not a single legal escape for the king.",
+      "audioPath": "recordings/pickle-v1/pickle/explanation-frame-quiet-promotion-mate.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/explanation-frame-quiet-promotion-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-mate.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-escape",
+      "group": "srs_explanations",
+      "text": "The pawn promotes on the last rank, and with that same move, its own king escapes the check.",
+      "audioPath": "recordings/pickle-v1/pickle/explanation-frame-quiet-promotion-escape.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/explanation-frame-quiet-promotion-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-escape.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-ordinary",
+      "group": "srs_explanations",
+      "text": "Snatch! A piece gets captured.",
+      "audioPath": "recordings/pickle-v1/pickle/explanation-frame-capture-move-ordinary.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/explanation-frame-capture-move-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-check",
+      "group": "srs_explanations",
+      "text": "A capture, and it's check too!",
+      "audioPath": "recordings/pickle-v1/pickle/explanation-frame-capture-move-check.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/explanation-frame-capture-move-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-check.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-mate",
+      "group": "srs_explanations",
+      "text": "A capture, and that's checkmate! The king has nowhere left to wriggle.",
+      "audioPath": "recordings/pickle-v1/pickle/explanation-frame-capture-move-mate.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/explanation-frame-capture-move-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-mate.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-escape",
+      "group": "srs_explanations",
+      "text": "A capture that rescues the king from check. Two jobs in one!",
+      "audioPath": "recordings/pickle-v1/pickle/explanation-frame-capture-move-escape.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/explanation-frame-capture-move-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-escape.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-ordinary",
+      "group": "srs_explanations",
+      "text": "Snatch and promote! The pawn captures as it lands on the last rank.",
+      "audioPath": "recordings/pickle-v1/pickle/explanation-frame-capture-promotion-ordinary.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/explanation-frame-capture-promotion-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-check",
+      "group": "srs_explanations",
+      "text": "Capture, promotion and check, all packed into one pawn move!",
+      "audioPath": "recordings/pickle-v1/pickle/explanation-frame-capture-promotion-check.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/explanation-frame-capture-promotion-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-check.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-mate",
+      "group": "srs_explanations",
+      "text": "The pawn captures onto the last rank and promotes, and it's checkmate! The king has nowhere left to wriggle.",
+      "audioPath": "recordings/pickle-v1/pickle/explanation-frame-capture-promotion-mate.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/explanation-frame-capture-promotion-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-mate.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-escape",
+      "group": "srs_explanations",
+      "text": "The pawn captures onto the last rank and promotes, and with that same move, its own king escapes the check.",
+      "audioPath": "recordings/pickle-v1/pickle/explanation-frame-capture-promotion-escape.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/explanation-frame-capture-promotion-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-escape.json"
+    },
+    {
+      "id": "explanation-frame-castle-check",
+      "group": "srs_explanations",
+      "text": "The king castles, and that move delivers check too. Surprise!",
+      "audioPath": "recordings/pickle-v1/pickle/explanation-frame-castle-check.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/explanation-frame-castle-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-castle-check.json"
+    },
+    {
+      "id": "explanation-frame-castle-mate",
+      "group": "srs_explanations",
+      "text": "The king castles, and that's checkmate! That enemy king is locked in tight, no legal moves left.",
+      "audioPath": "recordings/pickle-v1/pickle/explanation-frame-castle-mate.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/explanation-frame-castle-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-castle-mate.json"
+    },
+    {
+      "id": "explanation-finding-fork-collected",
+      "group": "srs_explanations",
+      "text": "One piece pokes at several targets, then grabs one of them. The fork comes out ahead in material here, net.",
+      "audioPath": "recordings/pickle-v1/pickle/explanation-finding-fork-collected.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/explanation-finding-fork-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-fork-collected.json"
+    },
+    {
+      "id": "explanation-finding-pin-prevents-capture",
+      "group": "srs_explanations",
+      "text": "That capture is off-limits for that piece. It's stuck on a pin, and leaving the line would expose its own king.",
+      "audioPath": "recordings/pickle-v1/pickle/explanation-finding-pin-prevents-capture.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/explanation-finding-pin-prevents-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-prevents-capture.json"
+    },
+    {
+      "id": "explanation-finding-pin-restricts-escape",
+      "group": "srs_explanations",
+      "text": "The piece under attack is stuck in a pin against its king, so it can't just run away. Whatever it does, the king has to stay hidden behind it.",
+      "audioPath": "recordings/pickle-v1/pickle/explanation-finding-pin-restricts-escape.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/explanation-finding-pin-restricts-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-restricts-escape.json"
+    },
+    {
+      "id": "explanation-finding-pin-defenders-no-recapture",
+      "group": "srs_explanations",
+      "text": "The defenders are stuck in pins against their king, so nobody can take back. The line shown ends up with extra material, too.",
+      "audioPath": "recordings/pickle-v1/pickle/explanation-finding-pin-defenders-no-recapture.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/explanation-finding-pin-defenders-no-recapture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-defenders-no-recapture.json"
+    },
+    {
+      "id": "explanation-finding-pin-collected",
+      "group": "srs_explanations",
+      "text": "Stepping off the line would leave its king exposed, so the pinned piece just has to sit there. Before the moves run out, it's captured anyway.",
+      "audioPath": "recordings/pickle-v1/pickle/explanation-finding-pin-collected.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/explanation-finding-pin-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-collected.json"
+    },
+    {
+      "id": "explanation-finding-skewer-collected",
+      "group": "srs_explanations",
+      "text": "Out of the way goes the front piece, and the one that was hiding behind it is captured along the line.",
+      "audioPath": "recordings/pickle-v1/pickle/explanation-finding-skewer-collected.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/explanation-finding-skewer-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-skewer-collected.json"
+    },
+    {
+      "id": "explanation-finding-king-skewer-collected",
+      "group": "srs_explanations",
+      "text": "The king gets checked and has to hop off the line. Then the very same attacker scoops up whatever was behind it.",
+      "audioPath": "recordings/pickle-v1/pickle/explanation-finding-king-skewer-collected.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/explanation-finding-king-skewer-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-king-skewer-collected.json"
+    },
+    {
+      "id": "explanation-finding-sole-defender-captured",
+      "group": "srs_explanations",
+      "text": "Step one: the lone defender is snapped up. Step two, later on: whatever it was guarding gets snapped up as well.",
+      "audioPath": "recordings/pickle-v1/pickle/explanation-finding-sole-defender-captured.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/explanation-finding-sole-defender-captured.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-sole-defender-captured.json"
+    },
+    {
+      "id": "explanation-finding-deflection-collected",
+      "group": "srs_explanations",
+      "text": "The defender gets tempted away, and its old charge gets captured right after.",
+      "audioPath": "recordings/pickle-v1/pickle/explanation-finding-deflection-collected.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/explanation-finding-deflection-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-deflection-collected.json"
+    },
+    {
+      "id": "explanation-finding-discovered-capture",
+      "group": "srs_explanations",
+      "text": "The blocking piece moves out of the way, and the newly opened line lets another piece capture.",
+      "audioPath": "recordings/pickle-v1/pickle/explanation-finding-discovered-capture.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/explanation-finding-discovered-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-discovered-capture.json"
+    },
+    {
+      "id": "explanation-finding-discovered-check",
+      "group": "srs_explanations",
+      "text": "One piece steps aside, and surprise, there's check from the piece that was hiding. Peekaboo!",
+      "audioPath": "recordings/pickle-v1/pickle/explanation-finding-discovered-check.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/explanation-finding-discovered-check.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-discovered-check.json"
+    },
+    {
+      "id": "explanation-finding-double-check",
+      "group": "srs_explanations",
+      "text": "Double check, ooh! Two attackers on the king at the same moment, so only a king move can answer.",
+      "audioPath": "recordings/pickle-v1/pickle/explanation-finding-double-check.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/explanation-finding-double-check.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-double-check.json"
+    },
+    {
+      "id": "explanation-finding-double-attack-collected",
+      "group": "srs_explanations",
+      "text": "The moving piece attacks once and reveals another attack behind it. This time, the second attacker gets its prize.",
+      "audioPath": "recordings/pickle-v1/pickle/explanation-finding-double-attack-collected.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/explanation-finding-double-attack-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-double-attack-collected.json"
+    },
+    {
+      "id": "explanation-finding-promotion-material-retained",
+      "group": "srs_explanations",
+      "text": "A promotion, and in this example that side comes out with more material, net.",
+      "audioPath": "recordings/pickle-v1/pickle/explanation-finding-promotion-material-retained.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/explanation-finding-promotion-material-retained.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-promotion-material-retained.json"
+    },
+    {
+      "id": "explanation-finding-undefended-capture-gain",
+      "group": "srs_explanations",
+      "text": "That piece had no guard, so off it goes. The side that grabbed it is ahead in material by the end of this example.",
+      "audioPath": "recordings/pickle-v1/pickle/explanation-finding-undefended-capture-gain.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/explanation-finding-undefended-capture-gain.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-undefended-capture-gain.json"
+    },
+    {
+      "id": "explanation-finding-relative-pin-released",
+      "group": "srs_explanations",
+      "text": "Here's a sneaky one. Until the opponent's previous move, the attacking piece sat in a relative pin, and that move let it go. The target never moved, and in the line shown, it gets captured.",
+      "audioPath": "recordings/pickle-v1/pickle/explanation-finding-relative-pin-released.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/explanation-finding-relative-pin-released.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-relative-pin-released.json"
+    },
+    {
+      "id": "game-explanation-legal-reply",
+      "group": "srs_explanations",
+      "text": "That marked reply is fair game for the other side. Pop it on the board for a closer look!",
+      "audioPath": "recordings/pickle-v1/pickle/game-explanation-legal-reply.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/game-explanation-legal-reply.provenance.json",
+      "alignmentPath": "alignment/game-explanation-legal-reply.json"
+    },
+    {
+      "id": "explanation-cue-hanging-piece",
+      "group": "srs_explanations",
+      "text": "Before moving, hunt for any piece of yours that could be taken without a useful recapture.",
+      "audioPath": "recordings/pickle-v1/pickle/explanation-cue-hanging-piece.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/explanation-cue-hanging-piece.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-hanging-piece.json"
+    },
+    {
+      "id": "explanation-cue-missed-tactical-capture",
+      "group": "srs_explanations",
+      "text": "Before a quiet move, sniff out any enemy piece that's missing a guard.",
+      "audioPath": "recordings/pickle-v1/pickle/explanation-cue-missed-tactical-capture.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/explanation-cue-missed-tactical-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-missed-tactical-capture.json"
+    },
+    {
+      "id": "explanation-cue-fork",
+      "group": "srs_explanations",
+      "text": "Look for forcing moves where one piece can poke at two valuable targets.",
+      "audioPath": "recordings/pickle-v1/pickle/explanation-cue-fork.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/explanation-cue-fork.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-fork.json"
+    },
+    {
+      "id": "explanation-cue-pin",
+      "group": "srs_explanations",
+      "text": "Thinking of moving a pinned piece? Peek at what's behind it first. Is it the king, or something worth more?",
+      "audioPath": "recordings/pickle-v1/pickle/explanation-cue-pin.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/explanation-cue-pin.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-pin.json"
+    },
+    {
+      "id": "explanation-cue-skewer",
+      "group": "srs_explanations",
+      "text": "An attack might go right through the first target. Is something valuable hiding behind it?",
+      "audioPath": "recordings/pickle-v1/pickle/explanation-cue-skewer.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/explanation-cue-skewer.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-skewer.json"
+    },
+    {
+      "id": "explanation-cue-removing-defender",
+      "group": "srs_explanations",
+      "text": "Planning to swap off a defender? First find out what it's protecting right now.",
+      "audioPath": "recordings/pickle-v1/pickle/explanation-cue-removing-defender.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/explanation-cue-removing-defender.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-removing-defender.json"
+    },
+    {
+      "id": "explanation-cue-discovered-attack",
+      "group": "srs_explanations",
+      "text": "When a blocking piece moves, peek at every line it opens behind it.",
+      "audioPath": "recordings/pickle-v1/pickle/explanation-cue-discovered-attack.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/explanation-cue-discovered-attack.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-discovered-attack.json"
+    },
+    {
+      "id": "explanation-cue-double-attack",
+      "group": "srs_explanations",
+      "text": "Sniff out a move with two threats packed inside. Checks count, and so do lines that just opened up!",
+      "audioPath": "recordings/pickle-v1/pickle/explanation-cue-double-attack.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/explanation-cue-double-attack.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-double-attack.json"
+    },
+    {
+      "id": "explanation-cue-back-rank",
+      "group": "srs_explanations",
+      "text": "Thinking of moving a back-rank defender? First spot where the king could run.",
+      "audioPath": "recordings/pickle-v1/pickle/explanation-cue-back-rank.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/explanation-cue-back-rank.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-back-rank.json"
+    },
+    {
+      "id": "explanation-cue-promotion-awareness",
+      "group": "srs_explanations",
+      "text": "How many moves does the pawn need to promote? Count them, then check every forcing pawn push.",
+      "audioPath": "recordings/pickle-v1/pickle/explanation-cue-promotion-awareness.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/explanation-cue-promotion-awareness.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-promotion-awareness.json"
+    },
+    {
+      "id": "explanation-cue-abandoned-defender",
+      "group": "srs_explanations",
+      "text": "Before a defender moves, check which pieces it's guarding. Those are the ones it would abandon.",
+      "audioPath": "recordings/pickle-v1/pickle/explanation-cue-abandoned-defender.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/explanation-cue-abandoned-defender.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-abandoned-defender.json"
+    },
+    {
+      "id": "explanation-cue-avoiding-bad-trades",
+      "group": "srs_explanations",
+      "text": "Count what you capture, then count what the recapture takes back.",
+      "audioPath": "recordings/pickle-v1/pickle/explanation-cue-avoiding-bad-trades.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/explanation-cue-avoiding-bad-trades.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-avoiding-bad-trades.json"
+    },
+    {
+      "id": "explanation-cue-deflection",
+      "group": "srs_explanations",
+      "text": "Could a forcing exchange tempt a defender away from another job? Check that.",
+      "audioPath": "recordings/pickle-v1/pickle/explanation-cue-deflection.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/explanation-cue-deflection.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-deflection.json"
+    },
+    {
+      "id": "explanation-note-curated-authority",
+      "group": "srs_explanations",
+      "text": "The saved answers decide what counts in this exercise. Lots of legal moves outside that list can be fine chess.",
+      "audioPath": "recordings/pickle-v1/pickle/explanation-note-curated-authority.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/explanation-note-curated-authority.provenance.json",
+      "alignmentPath": "alignment/explanation-note-curated-authority.json"
+    },
+    {
+      "id": "explanation-note-strong-replies",
+      "group": "srs_explanations",
+      "text": "This line assumes strong replies at every turn. Some of them aren't forced, though.",
+      "audioPath": "recordings/pickle-v1/pickle/explanation-note-strong-replies.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/explanation-note-strong-replies.provenance.json",
+      "alignmentPath": "alignment/explanation-note-strong-replies.json"
+    },
+    {
+      "id": "explanation-note-material-scope",
+      "group": "srs_explanations",
+      "text": "Material changes only count the line shown, starting from its first position. Piece values are listed in the written explanation, if you're curious.",
+      "audioPath": "recordings/pickle-v1/pickle/explanation-note-material-scope.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/explanation-note-material-scope.provenance.json",
+      "alignmentPath": "alignment/explanation-note-material-scope.json"
+    },
+    {
+      "id": "explanation-note-no-simple-reason",
+      "group": "srs_explanations",
+      "text": "The saved line hides no simple tactical reason. Click through it and compare what each reply does. Nobody's assuming a positional story, either.",
+      "audioPath": "recordings/pickle-v1/pickle/explanation-note-no-simple-reason.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/explanation-note-no-simple-reason.provenance.json",
+      "alignmentPath": "alignment/explanation-note-no-simple-reason.json"
+    },
+    {
+      "id": "explanation-note-saved-policy",
+      "group": "srs_explanations",
+      "text": "Detective rules for this one come from the exercise's saved answer policy. Peek at the written notes to see which setting it is.",
+      "audioPath": "recordings/pickle-v1/pickle/explanation-note-saved-policy.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/explanation-note-saved-policy.provenance.json",
+      "alignmentPath": "alignment/explanation-note-saved-policy.json"
+    },
+    {
+      "id": "opening-recall-revealed",
+      "group": "openings",
+      "text": "The opening line you're studying, one move after another.",
+      "audioPath": "recordings/pickle-v1/pickle/opening-recall-revealed.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/opening-recall-revealed.provenance.json",
+      "alignmentPath": "alignment/opening-recall-revealed.json"
+    },
+    {
+      "id": "opening-recall-accepted",
+      "group": "openings",
+      "text": "Bingo! That move is right there in your study material.",
+      "audioPath": "recordings/pickle-v1/pickle/opening-recall-accepted.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/opening-recall-accepted.provenance.json",
+      "alignmentPath": "alignment/opening-recall-accepted.json"
+    },
+    {
+      "id": "opening-recall-retry-fallback",
+      "group": "openings",
+      "text": "Pick a move from the study lines you chose.",
+      "audioPath": "recordings/pickle-v1/pickle/opening-recall-retry-fallback.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/opening-recall-retry-fallback.provenance.json",
+      "alignmentPath": "alignment/opening-recall-retry-fallback.json"
+    },
+    {
+      "id": "opening-recall-cold-multiple",
+      "group": "openings",
+      "text": "Your selected opening lines allow more than one move here. Which one do you remember?",
+      "audioPath": "recordings/pickle-v1/pickle/opening-recall-cold-multiple.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/opening-recall-cold-multiple.provenance.json",
+      "alignmentPath": "alignment/opening-recall-cold-multiple.json"
+    },
+    {
+      "id": "opening-recall-cold-single",
+      "group": "openings",
+      "text": "There's one right move here, from your selected study material. Can you remember it?",
+      "audioPath": "recordings/pickle-v1/pickle/opening-recall-cold-single.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/opening-recall-cold-single.provenance.json",
+      "alignmentPath": "alignment/opening-recall-cold-single.json"
+    },
+    {
+      "id": "opening-recall-rejected",
+      "group": "openings",
+      "text": "Hmm, that one's not part of the opening lines you picked. Back to the clues!",
+      "audioPath": "recordings/pickle-v1/pickle/opening-recall-rejected.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/opening-recall-rejected.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected.json"
+    },
+    {
+      "id": "opening-recall-rejected-changed",
+      "group": "openings",
+      "text": "Nope, that move isn't on any of your selected opening lines. Back to the clues! This saved attempt doesn't touch the changed study's review schedule.",
+      "audioPath": "recordings/pickle-v1/pickle/opening-recall-rejected-changed.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/opening-recall-rejected-changed.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected-changed.json"
+    },
+    {
+      "id": "opening-recall-rejected-retired",
+      "group": "openings",
+      "text": "Nope, that move isn't on any of your selected opening lines. Back to the clues! It's a retired position, so nothing changes in its review schedule.",
+      "audioPath": "recordings/pickle-v1/pickle/opening-recall-rejected-retired.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/opening-recall-rejected-retired.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected-retired.json"
+    },
+    {
+      "id": "opening-preview-active",
+      "group": "openings",
+      "text": "Mixed Due counts moves from this line, while dedicated practice sticks to this one line only.",
+      "audioPath": "recordings/pickle-v1/pickle/opening-preview-active.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/opening-preview-active.provenance.json",
+      "alignmentPath": "alignment/opening-preview-active.json"
+    },
+    {
+      "id": "opening-preview-inactive",
+      "group": "openings",
+      "text": "Scheduled recalls will ask for moves by your chosen side. When active studies share a position, they share one card.",
+      "audioPath": "recordings/pickle-v1/pickle/opening-preview-inactive.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/opening-preview-inactive.provenance.json",
+      "alignmentPath": "alignment/opening-preview-inactive.json"
+    },
+    {
+      "id": "puzzle-error",
+      "group": "puzzles",
+      "text": "Psst, the saved session wants a reload. After that, your next move!",
+      "audioPath": "recordings/pickle-v1/pickle/puzzle-error.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/puzzle-error.provenance.json",
+      "alignmentPath": "alignment/puzzle-error.json"
+    },
+    {
+      "id": "puzzle-playback",
+      "group": "puzzles",
+      "text": "Watch the verified line play itself out on the board.",
+      "audioPath": "recordings/pickle-v1/pickle/puzzle-playback.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/puzzle-playback.provenance.json",
+      "alignmentPath": "alignment/puzzle-playback.json"
+    },
+    {
+      "id": "puzzle-revealed",
+      "group": "puzzles",
+      "text": "We'll mark this attempt as revealed. The solution is below, ready to replay whenever you like.",
+      "audioPath": "recordings/pickle-v1/pickle/puzzle-revealed.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/puzzle-revealed.provenance.json",
+      "alignmentPath": "alignment/puzzle-revealed.json"
+    },
+    {
+      "id": "puzzle-solved-after-retry",
+      "group": "puzzles",
+      "text": "Solved, on the second try! The slip and the finish both get saved.",
+      "audioPath": "recordings/pickle-v1/pickle/puzzle-solved-after-retry.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/puzzle-solved-after-retry.provenance.json",
+      "alignmentPath": "alignment/puzzle-solved-after-retry.json"
+    },
+    {
+      "id": "puzzle-solved-clean",
+      "group": "puzzles",
+      "text": "The whole solution, not one wrong move along the way. Case cracked!",
+      "audioPath": "recordings/pickle-v1/pickle/puzzle-solved-clean.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/puzzle-solved-clean.provenance.json",
+      "alignmentPath": "alignment/puzzle-solved-clean.json"
+    },
+    {
+      "id": "puzzle-rejected",
+      "group": "puzzles",
+      "text": "Hmm, that's not the solution. Everything you got right up to here is still saved.",
+      "audioPath": "recordings/pickle-v1/pickle/puzzle-rejected.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/puzzle-rejected.provenance.json",
+      "alignmentPath": "alignment/puzzle-rejected.json"
+    },
+    {
+      "id": "puzzle-next-move",
+      "group": "puzzles",
+      "text": "Yes, that's the right move! There's another one to find.",
+      "audioPath": "recordings/pickle-v1/pickle/puzzle-next-move.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/puzzle-next-move.provenance.json",
+      "alignmentPath": "alignment/puzzle-next-move.json"
+    },
+    {
+      "id": "puzzle-cold",
+      "group": "puzzles",
+      "text": "What's the trick here? No rush; crack the case, then make your move.",
+      "audioPath": "recordings/pickle-v1/pickle/puzzle-cold.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/puzzle-cold.provenance.json",
+      "alignmentPath": "alignment/puzzle-cold.json"
+    },
+    {
+      "id": "game-unavailable",
+      "group": "operational",
+      "text": "The engine didn't give me enough to explain this position. The board is still yours to explore, so go snoop!",
+      "audioPath": "recordings/pickle-v1/pickle/game-unavailable.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/game-unavailable.provenance.json",
+      "alignmentPath": "alignment/game-unavailable.json"
+    },
+    {
+      "id": "game-review-paused",
+      "group": "operational",
+      "text": "We're paused. Pick it back up below, or move a piece and poke around.",
+      "audioPath": "recordings/pickle-v1/pickle/game-review-paused.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/game-review-paused.provenance.json",
+      "alignmentPath": "alignment/game-review-paused.json"
+    },
+    {
+      "id": "game-browse-instructions",
+      "group": "operational",
+      "text": "Pick a move to look at, or move a piece to try a different path.",
+      "audioPath": "recordings/pickle-v1/pickle/game-browse-instructions.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/game-browse-instructions.provenance.json",
+      "alignmentPath": "alignment/game-browse-instructions.json"
+    },
+    {
+      "id": "book-opening-entry-1",
+      "group": "game_review",
+      "text": "Ooh, I know this trail! A recognized opening, step for step.",
+      "audioPath": "recordings/pickle-v1/pickle/book-opening-entry-1.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/book-opening-entry-1.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-1.json"
+    },
+    {
+      "id": "book-opening-entry-2",
+      "group": "game_review",
+      "text": "Ooh, a known opening line, and we're on it.",
+      "audioPath": "recordings/pickle-v1/pickle/book-opening-entry-2.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/book-opening-entry-2.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-2.json"
+    },
+    {
+      "id": "book-opening-entry-3",
+      "group": "game_review",
+      "text": "This move has been spotted in the opening book before.",
+      "audioPath": "recordings/pickle-v1/pickle/book-opening-entry-3.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/book-opening-entry-3.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-3.json"
+    },
+    {
+      "id": "book-opening-follow-1",
+      "group": "game_review",
+      "text": "The book hasn't left our side.",
+      "audioPath": "recordings/pickle-v1/pickle/book-opening-follow-1.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/book-opening-follow-1.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-1.json"
+    },
+    {
+      "id": "book-opening-follow-2",
+      "group": "game_review",
+      "text": "The book has this one on its pages too.",
+      "audioPath": "recordings/pickle-v1/pickle/book-opening-follow-2.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/book-opening-follow-2.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-2.json"
+    },
+    {
+      "id": "book-opening-follow-3",
+      "group": "game_review",
+      "text": "Look, the reply is a book move as well.",
+      "audioPath": "recordings/pickle-v1/pickle/book-opening-follow-3.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/book-opening-follow-3.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-3.json"
+    },
+    {
+      "id": "book-opening-follow-4",
+      "group": "game_review",
+      "text": "The known trail keeps going.",
+      "audioPath": "recordings/pickle-v1/pickle/book-opening-follow-4.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/book-opening-follow-4.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-4.json"
+    },
+    {
+      "id": "book-opening-follow-5",
+      "group": "game_review",
+      "text": "Still on the mapped part of the board.",
+      "audioPath": "recordings/pickle-v1/pickle/book-opening-follow-5.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/book-opening-follow-5.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-5.json"
+    },
+    {
+      "id": "book-opening-follow-6",
+      "group": "game_review",
+      "text": "Yet another book move.",
+      "audioPath": "recordings/pickle-v1/pickle/book-opening-follow-6.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/book-opening-follow-6.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-6.json"
+    },
+    {
+      "id": "book-opening-follow-7",
+      "group": "game_review",
+      "text": "The book still has more pages.",
+      "audioPath": "recordings/pickle-v1/pickle/book-opening-follow-7.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/book-opening-follow-7.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-7.json"
+    },
+    {
+      "id": "book-opening-follow-8",
+      "group": "game_review",
+      "text": "Page after page of book. The book is a map, not a report card.",
+      "audioPath": "recordings/pickle-v1/pickle/book-opening-follow-8.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/book-opening-follow-8.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-8.json"
+    },
+    {
+      "id": "game-review-opened",
+      "group": "operational",
+      "text": "Hmm, a whole game to investigate! Let's poke at every move that looks a little suspicious.",
+      "audioPath": "recordings/pickle-v1/pickle/game-review-opened.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/game-review-opened.provenance.json",
+      "alignmentPath": "alignment/game-review-opened.json"
+    },
+    {
+      "id": "lesson-wrong-move",
+      "group": "lessons",
+      "text": "Hmm, that's not the move this chapter is hunting for. Sniff around and try again.",
+      "audioPath": "recordings/pickle-v1/pickle/lesson-wrong-move.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/lesson-wrong-move.provenance.json",
+      "alignmentPath": "alignment/lesson-wrong-move.json"
+    },
+    {
+      "id": "lesson-correct-move",
+      "group": "lessons",
+      "text": "Clue found! That's exactly the move this chapter wanted.",
+      "audioPath": "recordings/pickle-v1/pickle/lesson-correct-move.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/lesson-correct-move.provenance.json",
+      "alignmentPath": "alignment/lesson-correct-move.json"
+    },
+    {
+      "id": "lesson-move-revealed",
+      "group": "lessons",
+      "text": "Ta-da, the chapter's hidden answer! Study it, then pad on to the next part.",
+      "audioPath": "recordings/pickle-v1/pickle/lesson-move-revealed.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/lesson-move-revealed.provenance.json",
+      "alignmentPath": "alignment/lesson-move-revealed.json"
+    },
+    {
+      "id": "lesson-guided-playback",
+      "group": "lessons",
+      "text": "Watch the moves tiptoe across the board, step by step. Follow the trail.",
+      "audioPath": "recordings/pickle-v1/pickle/lesson-guided-playback.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/lesson-guided-playback.provenance.json",
+      "alignmentPath": "alignment/lesson-guided-playback.json"
+    },
+    {
+      "id": "lesson-rehearsal-prompt",
+      "group": "lessons",
+      "text": "Paws ready! Your study left a clue for this spot. Play the move it points to.",
+      "audioPath": "recordings/pickle-v1/pickle/lesson-rehearsal-prompt.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/lesson-rehearsal-prompt.provenance.json",
+      "alignmentPath": "alignment/lesson-rehearsal-prompt.json"
+    },
+    {
+      "id": "lesson-branch-entered",
+      "group": "lessons",
+      "text": "Ooh, a sneaky detour! We're looking at a different idea before going back.",
+      "audioPath": "recordings/pickle-v1/pickle/lesson-branch-entered.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/lesson-branch-entered.provenance.json",
+      "alignmentPath": "alignment/lesson-branch-entered.json"
+    },
+    {
+      "id": "lesson-chapter-complete",
+      "group": "lessons",
+      "text": "Chapter solved, and your notes are all saved. Case closed for now!",
+      "audioPath": "recordings/pickle-v1/pickle/lesson-chapter-complete.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/lesson-chapter-complete.provenance.json",
+      "alignmentPath": "alignment/lesson-chapter-complete.json"
+    },
+    {
+      "id": "lesson-game-opened",
+      "group": "lessons",
+      "text": "Every move of this game is ready to explore. Peek in every corner, then trot back to the chapter.",
+      "audioPath": "recordings/pickle-v1/pickle/lesson-game-opened.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/lesson-game-opened.provenance.json",
+      "alignmentPath": "alignment/lesson-game-opened.json"
+    },
+    {
+      "id": "lesson-error",
+      "group": "lessons",
+      "text": "Psst, the lesson got tangled. Reload it, then we'll carry on sleuthing.",
+      "audioPath": "recordings/pickle-v1/pickle/lesson-error.opus",
+      "sidecarPath": "recordings/pickle-v1/pickle/lesson-error.provenance.json",
+      "alignmentPath": "alignment/lesson-error.json"
+    }
+  ]
+}

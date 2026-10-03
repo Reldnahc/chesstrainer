@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-move-escape",
+      "label": "Explanation frame quiet move escape",
+      "text": "Phew, the king is out of check thanks to this move."
+    },
+    "takeId": null
+  },
+  "requestHash": "42a45efb3cae1ee43968871ce3d9a125a397dec7df7ed2358692c1a9eb0e467e",
+  "recordedAt": "2026-10-03T06:14:05.468Z",
+  "sha256": "fc6a790f81b78f34d73929f832dae6fda8532844a46fa434ea373f11fa66f417",
+  "bytes": 12311,
+  "requestId": "7KZeO3i0f059dsWI2TWb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0089d7e2e73c0d97948dcb07f423ad97b194ec8f8cf5168c8f5a0ca48ddea92f",
+    "bytes": 59812
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

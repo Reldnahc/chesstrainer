@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "puzzle-cold",
+      "label": "Puzzle cold",
+      "text": "What's the trick here? No rush; crack the case, then make your move."
+    },
+    "takeId": null
+  },
+  "requestHash": "2a8029bd5dae83e903b5f3a815b00b39df6b7a5fca8561730001644c99ecb0c5",
+  "recordedAt": "2026-10-03T06:14:20.168Z",
+  "sha256": "b63b8f8691d6e894dce9d4f88f60926cc56984dc705f706ca6f47f0e729f186f",
+  "bytes": 15530,
+  "requestId": "TPQfzcqbLjH97pIJRxpG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "520b6ae9bd55aeaeb5594a73efeff403383cdc8b2074becb8c44231fef2ed850",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

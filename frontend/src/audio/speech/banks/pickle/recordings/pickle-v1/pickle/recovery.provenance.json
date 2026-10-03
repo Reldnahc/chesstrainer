@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "recovery",
+      "label": "Recovery",
+      "text": "Look who's back! The earlier setback is behind us, and this move makes the position playable again."
+    },
+    "takeId": null
+  },
+  "requestHash": "1d98916369dce22851dcc7ede94f76dcb62787865445cdcca3a2608accdb6b0a",
+  "recordedAt": "2026-10-03T06:13:51.540Z",
+  "sha256": "ce14314c8cc9921c2fb181c29802fea064bbc7f2a90690ae913c5648b6fd3a37",
+  "bytes": 20719,
+  "requestId": "cAnM0EGxYukXI6uhq2tk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c3c2877cc7973a3128c25a02a697423ada1e73c8f55eca4397918febf00eb0a7",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

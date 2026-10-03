@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed",
+      "label": "Tactic deflection allowed",
+      "text": "Look at that defender, working so hard. The other side can now lure it off its job, a deflection, and leave its post empty."
+    },
+    "takeId": null
+  },
+  "requestHash": "670cfac83bd5dd2611a047d195424f828755d911fd15331085fdcba226763b46",
+  "recordedAt": "2026-10-03T06:13:39.870Z",
+  "sha256": "faff874cf562ee64f03a5dded97879ee0fd925f92661200fa235e12cd5e70a17",
+  "bytes": 27091,
+  "requestId": "sblcxeKbR4GxYxXuPRkC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "af371688da13e1dec3b54ced0be51a043f28f22ab6e44ba9af69ee274890dcdc",
+    "bytes": 139224
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

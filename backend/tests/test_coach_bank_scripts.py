@@ -58,6 +58,7 @@ REGISTERED = [
     ("gorilla", "monty"),
     ("wizard", "orin"),
     ("living-pawn", "percy"),
+    ("cat-kitten", "pickle"),
 ]
 # Voices whose written personality sets questionFrequency to "none".
 QUESTIONLESS = [

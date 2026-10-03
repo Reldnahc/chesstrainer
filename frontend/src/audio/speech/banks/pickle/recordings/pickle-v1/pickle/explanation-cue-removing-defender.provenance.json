@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "explanation-cue-removing-defender",
+      "label": "Explanation cue removing defender",
+      "text": "Planning to swap off a defender? First find out what it's protecting right now."
+    },
+    "takeId": null
+  },
+  "requestHash": "35ef3fe7f5e2bde8e25af3ab55647689eacd3d6ff20d00133b243c387c0f64d0",
+  "recordedAt": "2026-10-03T06:14:04.184Z",
+  "sha256": "aba7161969792f41660853f824d410f810e2ffd24f79c3343b3aeea5191164f2",
+  "bytes": 15914,
+  "requestId": "4nfHGYyFn9ozymIzlDPW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b662d781ba4f52743da4d9939b53065b4f82fe77e2ed9b79dd428170e5b0cc3c",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

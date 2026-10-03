@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected",
+      "label": "Explanation finding pin collected",
+      "text": "Stepping off the line would leave its king exposed, so the pinned piece just has to sit there. Before the moves run out, it's captured anyway."
+    },
+    "takeId": null
+  },
+  "requestHash": "fa9cabb14e639d8c44de95aa729240e9227873b6b22706c0f0c4282ca0252446",
+  "recordedAt": "2026-10-03T06:14:07.962Z",
+  "sha256": "5e3286dd3485cb5a30d5f8d325069e5ed3d08350cdc6f5f80a664a8c95c3b3a1",
+  "bytes": 26620,
+  "requestId": "DGLyXL3BEWMuALRDm3oW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e76f8f595e53839bbb41fcd8808681b9a69736bc5837ee74be27c7e52ea2fceb",
+    "bytes": 136716
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

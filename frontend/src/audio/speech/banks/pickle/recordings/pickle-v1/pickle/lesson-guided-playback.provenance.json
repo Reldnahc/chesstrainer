@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "lesson-guided-playback",
+      "label": "Lesson guided playback",
+      "text": "Watch the moves tiptoe across the board, step by step. Follow the trail."
+    },
+    "takeId": null
+  },
+  "requestHash": "04b98caa814dcd6a26c0f231198e47b31edf3d84e02eae592296fc76fd2d0092",
+  "recordedAt": "2026-10-03T06:14:17.984Z",
+  "sha256": "0cc491f01be8aaacdd82fbcd09e100dcb087c7e17ae5fade9687352f88053e1c",
+  "bytes": 17248,
+  "requestId": "TLSVaiKChi6M5kvOSYDn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0124bb5fff0d88e64e4eeeaff88a36898bbd208ceefb23d06d48ec1be82bde29",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

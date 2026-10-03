@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "srs-summary-mate-against-mover",
+      "label": "Srs summary mate against mover",
+      "text": "Uh-oh, bad news. With this move on the board, the saved engine analysis finds forced checkmate for the other side."
+    },
+    "takeId": null
+  },
+  "requestHash": "016b04b759af9e194109f193478b6c4a14d9b29ced49b2b7c6ba145a5c667ac6",
+  "recordedAt": "2026-10-03T06:13:48.676Z",
+  "sha256": "58b62aaba905b7f3251c64382129adda9df0a9076a106f7e188ef0f41a2fccad",
+  "bytes": 24484,
+  "requestId": "OlSr9Wz4CRZSDjYtvzNs",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1d7d0249d51cb92ebf6986d7694128af78bcb8f1ad5df5bff62df038ce18f608",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

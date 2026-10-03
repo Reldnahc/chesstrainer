@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "only-advantage-resource",
+      "label": "Only advantage resource",
+      "text": "Only this move keeps the advantage alive; all the other suspects were losing moves. Case closed on that one."
+    },
+    "takeId": null
+  },
+  "requestHash": "263ac47b90eaad0d8ab7b18e17a6426ffc3e4f9a045de7ce84d4013aa006ebe8",
+  "recordedAt": "2026-10-03T06:13:32.835Z",
+  "sha256": "7e3b937265ca3e4c518b17b7c663f2c925bbbfa27d30fae0d9f2b0fc09ee8130",
+  "bytes": 22114,
+  "requestId": "IqaDl9RWhKb5upioJcn6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2518caeb7077b190b0048a66a275373f6820b5c74370ef976ba504a39449aec3",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

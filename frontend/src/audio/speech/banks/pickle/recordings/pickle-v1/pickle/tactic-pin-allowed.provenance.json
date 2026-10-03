@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "tactic-pin-allowed",
+      "label": "Tactic pin allowed",
+      "text": "Suspicious line alert! A pin is on offer for the other side: one piece could get frozen in front of its king."
+    },
+    "takeId": null
+  },
+  "requestHash": "643f6763d35873cae5097dcc845f816e6bcf1ae26f90a4b96871fae3e623e223",
+  "recordedAt": "2026-10-03T06:13:32.189Z",
+  "sha256": "64d5640af47b3d38171070176e3ea3bb83ded110cda3d86e6557ee8cb7a714e4",
+  "bytes": 22734,
+  "requestId": "Xs2BXlWiSb4KL4yHHGvK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "69cb9ae63f6294286cc87aecd68c6c6264ad79a6f66404727022feea3f9185d3",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

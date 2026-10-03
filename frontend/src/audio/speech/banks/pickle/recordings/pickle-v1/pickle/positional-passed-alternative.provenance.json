@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "positional-passed-alternative",
+      "label": "Positional passed alternative",
+      "text": "Another move would have made a passed pawn, with not one enemy pawn ahead of it on its file or the files next to it."
+    },
+    "takeId": null
+  },
+  "requestHash": "4bcde78fb4eb6bbc4c3d397198132bba1edbb38129f9d91b11873b7bec49b0ad",
+  "recordedAt": "2026-10-03T06:13:30.702Z",
+  "sha256": "36e14c7f778381b4d9bc765ff55449a27aa25e1a7dc23495a2096d5ce576371e",
+  "bytes": 23140,
+  "requestId": "t3YQlKeKUVTo9SkCivu9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6f364fde73c10079d48a76ba69d1d448953e828d3ef5ea287aaa26df224142bc",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

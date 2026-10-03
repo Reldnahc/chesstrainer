@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released",
+      "label": "Explanation finding relative pin released",
+      "text": "Here's a sneaky one. Until the opponent's previous move, the attacking piece sat in a relative pin, and that move let it go. The target never moved, and in the line shown, it gets captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "c786986ee96854f66a1ee8817ca03adc96b42ff486023924f40fdc565e6d3de5",
+  "recordedAt": "2026-10-03T06:14:27.380Z",
+  "sha256": "767b43299a33ea052f7585eb3087907e84ae5da7773405652383f9013a7adb11",
+  "bytes": 39126,
+  "requestId": "ZYDVyBGQtJYI6a67GCdh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7d0e34f3e148ab4cef61436497c140924033c745cb2110c641ec219acfc51e65",
+    "bytes": 204426
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

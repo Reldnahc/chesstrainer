@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "explanation-cue-promotion-awareness",
+      "label": "Explanation cue promotion awareness",
+      "text": "How many moves does the pawn need to promote? Count them, then check every forcing pawn push."
+    },
+    "takeId": null
+  },
+  "requestHash": "a37f548fa171af7365a99e42f3da7f67480313367a4bb0f42f1c8c9878619a2e",
+  "recordedAt": "2026-10-03T06:14:09.908Z",
+  "sha256": "677963d9ad5e49aa9a18ff4dc88ef5b8a776c0296482b48422d188cba4018ca1",
+  "bytes": 19481,
+  "requestId": "f1U4M6WkESCmKMZaAvoF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b5c15f58545cc9bd4d1a9c48d156c70564c088276b4e652e8e3313c67ce99c9a",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

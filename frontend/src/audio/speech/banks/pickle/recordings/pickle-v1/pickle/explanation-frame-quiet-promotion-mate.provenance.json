@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-promotion-mate",
+      "label": "Explanation frame quiet promotion mate",
+      "text": "Up to the last rank, a promotion, and checkmate! Not a single legal escape for the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "25deea8eead78899526ba83f55d785befd34d0e3882a65c69479dbc4e7924ef9",
+  "recordedAt": "2026-10-03T06:14:09.451Z",
+  "sha256": "d1dc2ad27eb9df286c3429ed571dea8b0258188ac448844110ef2065e7ba66b6",
+  "bytes": 20808,
+  "requestId": "bmhrOpQkWNQ4DQX8YLX3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ce7abfc0a865dcef27783c77d1a7c1cf913a934ce93dae3325ce760063e8fe81",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

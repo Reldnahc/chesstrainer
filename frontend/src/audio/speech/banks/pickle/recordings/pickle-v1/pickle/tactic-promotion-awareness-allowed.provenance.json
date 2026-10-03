@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "tactic-promotion-awareness-allowed",
+      "label": "Tactic promotion awareness allowed",
+      "text": "Hmm, one of their pawns is sneaking toward the last rank. That's a promotion chance for them."
+    },
+    "takeId": null
+  },
+  "requestHash": "da7c060114d7d0b268dd9d09c48a4cd187550f2decaeadec1588ccf52555bbeb",
+  "recordedAt": "2026-10-03T06:13:55.533Z",
+  "sha256": "d9c25648c237fe4ff51af07e80b468e8d51145aff62a5788ccf290405ef4eccf",
+  "bytes": 18979,
+  "requestId": "fDXzg13rfNhpzhHJ2Q25",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "578d41f34d0b47709979c93a80507b7c4e21ca8bc1875c0c61490c3ee3523c53",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "explanation-cue-hanging-piece",
+      "label": "Explanation cue hanging piece",
+      "text": "Before moving, hunt for any piece of yours that could be taken without a useful recapture."
+    },
+    "takeId": null
+  },
+  "requestHash": "e9f9f49997e7b591bec3e160a6970bd020d76d02726e4010eb47ba7714e17476",
+  "recordedAt": "2026-10-03T06:14:30.350Z",
+  "sha256": "11a1a89393483615128998a8e4ac759eb35dfdeeccdea8e49e717e0dd1016e8a",
+  "bytes": 18600,
+  "requestId": "puedbKAzcFblJzuQXXBc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ee926d1381082c482a5757998751efec36f341c0be0add717d3e386bc5f7f600",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "gradual-erosion",
+      "label": "Gradual erosion",
+      "text": "Where did it all go wrong? Nowhere big! Just lots of small concessions adding up, and this is one more of them."
+    },
+    "takeId": null
+  },
+  "requestHash": "18a3ca9b28b853a0bdfd316889127b97caa7540976f145466c825f87a6d633aa",
+  "recordedAt": "2026-10-03T06:14:00.740Z",
+  "sha256": "a3bec1a433b64d7ed41320460424af21bf81b84766e305bc1750f84c94bd2e9c",
+  "bytes": 25365,
+  "requestId": "rJSSmBRiAaES7LlLrqE0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2d055d77eb6639390149499ff2b5f73c2ac0692059eb13f39e405fd500062c63",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "clock-fast",
+      "label": "Clock fast",
+      "text": "Zoom! That move came quickly, with time still left."
+    },
+    "takeId": null
+  },
+  "requestHash": "9c2f85a99ec90c40524b95bc9a6b3bfc102b7ef797d9ce674da45eb3d7218136",
+  "recordedAt": "2026-10-03T06:13:45.805Z",
+  "sha256": "9fab0b92f13a33b83c25ed2f70ef94cb4f3def2f4b0e4e2bf7a1bbfd7aceceb6",
+  "bytes": 13351,
+  "requestId": "ecFP0AiFeO4wIha7Ux4p",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d71c77368bfdaa27f379a11017880362d33050c99422dd595c6705cfc9267369",
+    "bytes": 67753
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

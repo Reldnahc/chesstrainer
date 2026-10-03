@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "book-opening-entry-2",
+      "label": "Book opening entry 2",
+      "text": "Ooh, a known opening line, and we're on it."
+    },
+    "takeId": null
+  },
+  "requestHash": "85c90125350b8efd3b3ad8ddef3faba0cd8acb9bf5dbd7f741127ff594247ef1",
+  "recordedAt": "2026-10-03T06:14:27.399Z",
+  "sha256": "d4d5dfdb4b1abfb9a961c045863034dc2573efacb7bbc1a8f8fbfba48b8357c8",
+  "bytes": 12291,
+  "requestId": "gwPYhthvzaLptpnpxYOS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4151dc227bf020394a50a5e2f3c0e2ca6bdec6ddcc510696fe69eee32cd3dd14",
+    "bytes": 59812
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "positional-doubled-alternative",
+      "label": "Positional doubled alternative",
+      "text": "A different move would have left doubled pawns, two of one color piled up on a single file."
+    },
+    "takeId": null
+  },
+  "requestHash": "19ba6a27d608f4a893209dc1ab986b19386b6d7156ff8f7dbbaf8c98198e1409",
+  "recordedAt": "2026-10-03T06:13:55.355Z",
+  "sha256": "b837c11c0a6e7adeeefff8266a81e0096ed0c2910a56bc1df10f7eff184a5c06",
+  "bytes": 19290,
+  "requestId": "Y7LiuzZ90ZBvCEC4q3Dk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6db95a291bb6463ad3636ce5bc3ab72e2fa88d5921e8496bac6c8ec2b17a6aae",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

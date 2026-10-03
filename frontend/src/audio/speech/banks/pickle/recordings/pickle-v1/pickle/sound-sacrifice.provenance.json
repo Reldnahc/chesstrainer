@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "sound-sacrifice",
+      "label": "Sound sacrifice",
+      "text": "Ooh, a gift that isn't really a gift! The other side can take the material, but in the line we checked, the trick keeps working."
+    },
+    "takeId": null
+  },
+  "requestHash": "c76b5251405be5db3bd0483441e1575132790ec86ccb1c16bc1e80823c0fb01d",
+  "recordedAt": "2026-10-03T06:14:01.560Z",
+  "sha256": "0a1ee9ddced25baf220bded1dc0267def1a9132c8f153a248725a6ab02899068",
+  "bytes": 27340,
+  "requestId": "jcLDX5QyllSnjFSEXWFR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2e9e7c473c3e7c1a4bfbab9def9e656db63dfd3bce95f77f491f793c0bd8ae8e",
+    "bytes": 139224
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

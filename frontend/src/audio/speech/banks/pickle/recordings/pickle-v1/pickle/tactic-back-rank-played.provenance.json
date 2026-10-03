@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "tactic-back-rank-played",
+      "label": "Tactic back rank played",
+      "text": "Peek at the back rank! The king is stuck behind its own pieces with nowhere to run, and this move goes right for it."
+    },
+    "takeId": null
+  },
+  "requestHash": "cc1ae28e15b492252a360aae712ddb17edd49f31d28d6cccbac33769de3bc4ea",
+  "recordedAt": "2026-10-03T06:13:47.990Z",
+  "sha256": "582288c87b602a998b044cfe3c9b75c59baf435541831d6d23525fc9534bf546",
+  "bytes": 24666,
+  "requestId": "zOxnKuD9MBPkMuDG9jFk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "71430f2242025d828f2b0a3f6ac5f71e895719297046049e0c136a77748670dd",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

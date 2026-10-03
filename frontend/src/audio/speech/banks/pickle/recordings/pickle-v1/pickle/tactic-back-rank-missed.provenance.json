@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "tactic-back-rank-missed",
+      "label": "Tactic back rank missed",
+      "text": "A back-rank mate was hiding here! The king was trapped by its own pieces, and this move tiptoed past it."
+    },
+    "takeId": null
+  },
+  "requestHash": "bee880c766d357e8e3c1cb51bfa4b8bbdab51e7b52b9a12f51cd667754e81885",
+  "recordedAt": "2026-10-03T06:13:52.079Z",
+  "sha256": "69fde3732c84efde12105eb3a247dfba2ef0eb823d37dea8baf6468430a21754",
+  "bytes": 23034,
+  "requestId": "DbvCGelGtt2awW5594Bk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5c307d593f755b70227c967eb807e1237de436d66f9b4cdeb2812d736b5cf41f",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

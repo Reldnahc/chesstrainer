@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed",
+      "label": "Tactic discovered attack missed",
+      "text": "A discovered attack was tucked inside another move! One piece could have stepped aside to unveil the attacker behind it. This move kept the curtain closed."
+    },
+    "takeId": null
+  },
+  "requestHash": "c21c46ff2c4fdfe2b88e991110c8a80e8fa3e1dae565198c8841b71eaad52727",
+  "recordedAt": "2026-10-03T06:13:30.355Z",
+  "sha256": "2ad35eb6ea48b11e66df84621a42fd9ed7d95115dc8120d0aa0aadb3717f730b",
+  "bytes": 30029,
+  "requestId": "dtFxwDdftH59QtcAxyG0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "47b1033e0a89f484f1c1405332063a7743782c47eed644a6d6f4fa00106f7889",
+    "bytes": 154688
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}
