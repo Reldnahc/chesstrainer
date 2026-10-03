@@ -36,7 +36,7 @@ test('completed reviews stay move-by-move without a game story or critical-momen
   await expect(spoken).toHaveAttribute('data-spoken', /^allowed-mate(?:\+[a-z0-9-]+)?$/);
   await expect(spoken).toHaveText(walter((await spoken.getAttribute('data-spoken'))!));
   const moves = page.locator('.coach-moves-line');
-  await expect(moves).toHaveText('Black replies Qh4#, forced mate');
+  await expect(moves).toHaveText('Black’s strongest reply: Qh4#, forced mate');
   await expect(moves.locator('strong')).toHaveText('Qh4#');
   expect(await movesLineLayout(page)).toEqual({below: true, inside: true, visible: true});
   if (info.project.name === 'desktop') {

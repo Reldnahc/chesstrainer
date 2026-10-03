@@ -92,7 +92,7 @@ test("saved coach selection changes reviewed wording without new searches or alt
     await expect(line).toHaveAttribute("data-spoken", /^allowed-mate/);
     await expect(line).not.toHaveText(text);
     await expect(line).toHaveAttribute("data-intent", intentId!);
-    await expect(moves).toHaveText("Black replies Qh4#, forced mate");
+    await expect(moves).toHaveText("Black’s strongest reply: Qh4#, forced mate");
     const after = await (await page.request.get(`/api/games/${id}`)).json();
     expect(after.frames).toEqual(before.frames);
     expect(after.context).toEqual(before.context);

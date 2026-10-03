@@ -43,7 +43,7 @@ test("a recorded coach's bubble shows its recorded line, and Maia's popup keeps 
   // Selection still validates the written utterance; only the displayed text changes.
   await expect(bubble(page)).toHaveAttribute("data-utterance", current.utteranceId);
   expect(current.utteranceText).not.toBe(line(arjun.recordings, spoken));
-  await expect(movesLine(page)).toHaveText("Black replies Qxa1+");
+  await expect(movesLine(page)).toHaveText("Black’s strongest reply: Qxa1+");
   await expect(movesLine(page).locator("strong")).toHaveText("Qxa1+");
   // The written Maia sentence left the bubble but stays one tap away.
   expect(current.humanText).toBeTruthy();
@@ -61,7 +61,7 @@ test("a text-only coach's bubble shows its script line for the same meaning, wit
   await expect(bubble(page)).toHaveText(line(alfie.records, (await bubble(page).getAttribute("data-spoken"))!));
   await expect(region(page).getByRole("button", {name: /^Listen/})).toHaveCount(0);
   // The mate claim proves the qualifier; the opening has no name, so no opening appears.
-  await expect(movesLine(page)).toHaveText("Black replies Qh4#, forced mate");
+  await expect(movesLine(page)).toHaveText("Black’s strongest reply: Qh4#, forced mate");
   await expect(movesLine(page).locator("strong")).toHaveText("Qh4#");
 });
 
@@ -80,7 +80,7 @@ test("a long moves line wraps inside the bubble beside the Maia chip without scr
     name: "Italian Game: Two Knights Defense, Fried Liver Attack, Lolli Variation"};
   await mount(page, "man-partner", game);
   await expect(bubble(page)).toHaveAttribute("data-spoken", /./);
-  await expect(movesLine(page)).toHaveText(`${game.frames[1].report!.opening!.name} · Black replies Qxa1+`);
+  await expect(movesLine(page)).toHaveText(`${game.frames[1].report!.opening!.name} · Black’s strongest reply: Qxa1+`);
   const layout = await region(page).evaluate(element => {
     const box = (selector: string) => element.querySelector(selector)!.getBoundingClientRect();
     const moves = element.querySelector(".coach-moves-line")!, style = getComputedStyle(moves);
@@ -101,4 +101,17 @@ test("a long moves line wraps inside the bubble beside the Maia chip without scr
   }
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await region(page).screenshot({path: `audio-test-results/coach-moves-line-${test.info().project.name}.png`});
+});
+
+test("the moves line names the engine's strongest reply, never the move actually played next", async ({page}) => {
+  const game = structuredClone(games["allowed-mate-natural"]);
+  // The game went on with a different move than the engine's mating reply.
+  game.frames.push({...game.frames[1], san: "Nc6", uci: "b8c6", actor: "black", turn: "white", report: null});
+  await mount(page, "man-partner", game);
+  await expect(movesLine(page)).toHaveText("Black’s strongest reply: Qh4#, forced mate");
+  await expect(movesLine(page)).not.toContainText(/\breplie[sd]\b|\bplayed\b|Nc6/);
+  // Supplementary text: the bubble's line is the one announcement for this move.
+  await expect(movesLine(page)).not.toHaveAttribute("aria-live", /polite|assertive/);
+  await expect(region(page).locator(".coach-moves-line[aria-live], .coach-moves-line [aria-live]")).toHaveCount(0);
+  await expect(region(page).locator(".coach-message [aria-live=polite]")).toHaveCount(1);
 });

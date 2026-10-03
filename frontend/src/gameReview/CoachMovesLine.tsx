@@ -25,11 +25,14 @@ export function movesLineFacts({report, frame, intent}: {
   return facts.opening || facts.reply ? facts : null;
 }
 
-/** The game review bubble's moves line: it wraps rather than truncating. */
+/** The game review bubble's moves line: it wraps rather than truncating. The
+ * reply is the engine's strongest answer, not the game's next move, so it is
+ * named as such. It is supplementary, not a second live region: each move is
+ * announced once, by the bubble's text. */
 export default function CoachMovesLine({facts}: {facts: MovesLineFacts}) {
-  return <p className="coach-moves-line" aria-live="polite">
+  return <p className="coach-moves-line">
     {facts.opening && <span>{facts.opening}</span>}
     {facts.opening && facts.reply && " · "}
-    {facts.reply && <span>{facts.reply.side} replies <strong>{facts.reply.san}</strong>{facts.qualifier && `, ${facts.qualifier}`}</span>}
+    {facts.reply && <span>{facts.reply.side}’s strongest reply: <strong>{facts.reply.san}</strong>{facts.qualifier && `, ${facts.qualifier}`}</span>}
   </p>;
 }

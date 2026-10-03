@@ -297,7 +297,7 @@ text shows instead.
   (pending, no report, legacy prose, a Maia-only bubble) keeps the written text.
   Show why keeps the written detailed explanation. While the spoken line shows,
   a moves line beneath it carries the concrete facts from report/position data
-  only: the opening name (`report.opening`), `<Side> replies <SAN>` for a
+  only: the opening name (`report.opening`), `<Side>’s strongest reply: <SAN>` (the engine's reply, never a claim about the move actually played) for a
   non-terminal position with an `immediate_reply`, and ", forced mate" only when an
   `allowed_mate` claim proves it. It wraps beside the Maia chip, outside the
   scrolling message.
