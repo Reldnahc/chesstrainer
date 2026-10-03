@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "repeated-issue",
+      "label": "Repeated issue",
+      "text": "This same issue has turned up again in this game, which makes it a theme."
+    },
+    "takeId": null
+  },
+  "requestHash": "fa21a58473b75096faad1b75cf9b5a1f165e117974181125e95ec00932768353",
+  "recordedAt": "2026-10-03T05:42:16.382Z",
+  "sha256": "9736be2d36154f778940d2704897d8d14ff1374a9b45761c4a3668c133664f33",
+  "bytes": 15086,
+  "requestId": "dHrblwLnyyA68MAC8Ych",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8f9a51bd83ca0ee2e41a1b1445b8a24a1c199b0516c47c27c588929d158bf184",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

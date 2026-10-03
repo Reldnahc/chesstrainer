@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "positional-king-flight-alternative",
+      "label": "Positional king flight alternative",
+      "text": "A fresh legal square for the king was one different move away."
+    },
+    "takeId": null
+  },
+  "requestHash": "a66bc5550d31409247ada7bb1ee345b5fa462dbe14b5d9b70d04a7220bfbb8ad",
+  "recordedAt": "2026-10-03T05:41:38.098Z",
+  "sha256": "73c109adab03eccb52d00a14e97ac8e018ee58926b53428794f890e9434bcf22",
+  "bytes": 13912,
+  "requestId": "ELHAUJxGg45HrloUGIU2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6e81b7bc2a7c668ef44656ec73fb68a1f0aa5ec3a91fb93fac441661dda2262b",
+    "bytes": 69007
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

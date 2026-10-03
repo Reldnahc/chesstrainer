@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed",
+      "label": "Tactic removing defender missed",
+      "text": "Taking out a defender was possible with a different move; this one lets the defender keep its job."
+    },
+    "takeId": null
+  },
+  "requestHash": "c89b383a969d79541895954e3286ee302afc873a96946aaa399817f284d3382d",
+  "recordedAt": "2026-10-03T05:40:37.088Z",
+  "sha256": "5cb869e4c3fb52008c383a4d9e33ec45e44733c91f98b38a236478c13bad4658",
+  "bytes": 21221,
+  "requestId": "R23lrrZSwbImvnMidrta",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dd2702af7c4deba619ca62b7bcba66be3cab34878d30c92b495e9fb8b63660df",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "opening-recall-revealed",
+      "label": "Opening recall revealed",
+      "text": "Here is the opening line you are studying, in order."
+    },
+    "takeId": null
+  },
+  "requestHash": "09ca25517bd08cd598978c961eb19285abd2371e18e0ca45bc44e9461050765e",
+  "recordedAt": "2026-10-03T05:44:02.863Z",
+  "sha256": "a7ac3ed96b38ea96e87197e9fc64bd91ff055f31691b7c70fd202ea7805d3aff",
+  "bytes": 11248,
+  "requestId": "MyBcDykyRXz1X38yeBfD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "022954d4e9953ad6ed3a5b593732fcd07b89177f29ecce3d8b93c7dd4786aa58",
+    "bytes": 56050
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

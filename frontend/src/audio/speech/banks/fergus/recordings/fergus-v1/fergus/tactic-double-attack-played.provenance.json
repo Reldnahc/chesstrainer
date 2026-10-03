@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "tactic-double-attack-played",
+      "label": "Tactic double attack played",
+      "text": "A double attack: this move threatens two things, and answering both is a lot to ask."
+    },
+    "takeId": null
+  },
+  "requestHash": "f3bfd5e73cd9aebe3e98dd1d526fac04d1933d4713c730dc6bea68b036f3e1f0",
+  "recordedAt": "2026-10-03T05:40:53.608Z",
+  "sha256": "fdbb477ffe3e6372d59532d28f1770ec7a53ce09cc439db6bee99c54065aabd9",
+  "bytes": 20217,
+  "requestId": "gO9dcPN7KFytDfBH2LIP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8623d3451958f202364a0bf6011927785bcd84bbb2fcc681825a597bcdf15d37",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

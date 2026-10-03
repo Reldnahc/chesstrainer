@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "explanation-cue-deflection",
+      "label": "Explanation cue deflection",
+      "text": "A forcing exchange can pull a defender off another job, so look for that."
+    },
+    "takeId": null
+  },
+  "requestHash": "3ca9d295f21660146a74d494f6ece00baf56daefb0feba427ba96d932c11fc4e",
+  "recordedAt": "2026-10-03T05:43:53.573Z",
+  "sha256": "dcc7b3eb37dc4e3dab663561624047934af46c5a49a4a81a43e0f81d21437b4f",
+  "bytes": 15533,
+  "requestId": "L3yVBZevRihZvjGDErmN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0e97e783da2b4bf425dfc8f70f22420fc7668d60f978ff93f3f5bff15e2c6281",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

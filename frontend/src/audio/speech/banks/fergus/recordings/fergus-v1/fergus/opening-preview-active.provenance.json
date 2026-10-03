@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "opening-preview-active",
+      "label": "Opening preview active",
+      "text": "Mixed Due accepts this line, and dedicated practice asks for it alone."
+    },
+    "takeId": null
+  },
+  "requestHash": "2f21b5c7314f243cd23076b1d44dd5daee90627840d2f2f1b7f7ae27ba063283",
+  "recordedAt": "2026-10-03T05:44:13.639Z",
+  "sha256": "cb347233e87eb64870d450c53171334e6ce49d90cac4f3c014b095e798214044",
+  "bytes": 17122,
+  "requestId": "48DUgGHRHS9u2LQwR1e4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9adbc88d1fbdd04603f01d432c02d9b097795af2f9fc91065e559b951e2d359b",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

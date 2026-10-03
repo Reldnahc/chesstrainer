@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "clock-long",
+      "label": "Clock long",
+      "text": "A long think went into this one, and the clock knows it."
+    },
+    "takeId": null
+  },
+  "requestHash": "f5ddefb7fbb01bc3f787116c76ebcbe88a203ce003a5498a36a53b671e86178f",
+  "recordedAt": "2026-10-03T05:42:05.715Z",
+  "sha256": "dc814593dcd57db4111e4550519245d8feaf8a90b7060d8898bfbdd06ab6d596",
+  "bytes": 12959,
+  "requestId": "Yf3eRSM4H6v4lHMVG7z3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "76a399137d9233122e02674695f8dcca0345376770e89e7b98e84f7f08bc2bec",
+    "bytes": 63991
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

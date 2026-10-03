@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "explanation-cue-pin",
+      "label": "Explanation cue pin",
+      "text": "A pinned piece is covering for something, so check what before moving it."
+    },
+    "takeId": null
+  },
+  "requestHash": "dd065ac3e04a2b45a9aa3cbf0f641ca20185556475646cae8d7d88065ab9cce6",
+  "recordedAt": "2026-10-03T05:43:41.358Z",
+  "sha256": "019edb0a85a5b6befe35210d30744ae2b9321498fe54a3113c3ef9f3a8de1c97",
+  "bytes": 16271,
+  "requestId": "eypRLCG8HJ58wMCViSmA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a260f51366b0f8cbf5ec1215303fba52e34b286e3820db66b0c69c2149208775",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

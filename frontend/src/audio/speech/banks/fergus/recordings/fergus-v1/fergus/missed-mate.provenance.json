@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "missed-mate",
+      "label": "Missed mate",
+      "text": "There was a forced checkmate, and this move goes straight past it."
+    },
+    "takeId": null
+  },
+  "requestHash": "6cc4623d178a5a46fdd7de50a1d6d239e708ec5c792d842df5b94b99c964b620",
+  "recordedAt": "2026-10-03T05:41:49.787Z",
+  "sha256": "b322e5534e2752629eafd07be9c35b066b28db1cacb17d12ed946edf2b134753",
+  "bytes": 14313,
+  "requestId": "DUQOFg65UM9kUBhnaGv0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e09a50afd556f976968b89953d0b7cc009d21a8ecc5c74394d730c515e94fb95",
+    "bytes": 71515
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

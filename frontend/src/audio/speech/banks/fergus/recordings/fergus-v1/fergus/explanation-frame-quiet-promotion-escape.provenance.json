@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-promotion-escape",
+      "label": "Explanation frame quiet promotion escape",
+      "text": "Promoting also takes its own king out of check."
+    },
+    "takeId": null
+  },
+  "requestHash": "34ee318d37ad0108a561d4ee405cc230581ba6ca3f6c75075fd4795f57302548",
+  "recordedAt": "2026-10-03T05:42:56.296Z",
+  "sha256": "4d72d4a0c76f0fca4c175c50b485dc5fa9cf1774507f53428beda2002c0427ba",
+  "bytes": 11985,
+  "requestId": "YXn2ROUKRnjWPLfLlPyM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4a42eecc546bff1e29cb75d6e1b1a423a844cfa32445c138644b52dcc687e2f1",
+    "bytes": 58558
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

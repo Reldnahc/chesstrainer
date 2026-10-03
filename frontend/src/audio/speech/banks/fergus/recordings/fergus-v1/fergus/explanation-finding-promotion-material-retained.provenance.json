@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "explanation-finding-promotion-material-retained",
+      "label": "Explanation finding promotion material retained",
+      "text": "Promotion happens, and this example finishes with a net material gain."
+    },
+    "takeId": null
+  },
+  "requestHash": "d19f13dc439fa400be85b39680f2677a657bbb1c987c9d6148b55513f78712c0",
+  "recordedAt": "2026-10-03T05:43:30.478Z",
+  "sha256": "7bedb3580628a3f4c5bb5e5d19335e36930b95adf732a260175a76507f9b3894",
+  "bytes": 17087,
+  "requestId": "f5MY9pz8HlQTIk1E1eNw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d6c5b28c16cc88b5d9c64a597c586c5078d607ec4cc4d1a9b45df2cb0fac2827",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

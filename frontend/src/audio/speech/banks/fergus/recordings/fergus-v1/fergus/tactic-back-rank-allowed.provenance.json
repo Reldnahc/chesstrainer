@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "tactic-back-rank-allowed",
+      "label": "Tactic back rank allowed",
+      "text": "The king's own pieces wall it in, and this gives the other side a back-rank mate idea, which is how back ranks go."
+    },
+    "takeId": null
+  },
+  "requestHash": "197d3b15a4a318e41665bedf48f01190a67829406d2a1fcb8983c671b7a14437",
+  "recordedAt": "2026-10-03T05:40:40.944Z",
+  "sha256": "1d012ea1b580f8b93ca8fed172a1902251d1bb2d24043bcd5fb7de4a57ad9e64",
+  "bytes": 24896,
+  "requestId": "qLrVwECHjzLaFkQAz1rc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "22480cece462cc70d8728a8b2eced2bd0126fdfa6456601618f1d796c298b576",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

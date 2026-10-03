@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "clock-low",
+      "label": "Clock low",
+      "text": "There was barely any time on the clock for this move, which is noted."
+    },
+    "takeId": null
+  },
+  "requestHash": "a00d76d664f02793fb14a909356c958465b0c8df3f886f1722488802c2165d55",
+  "recordedAt": "2026-10-03T05:42:03.310Z",
+  "sha256": "1cfb7169ed93d41b1672091fe3aad6e021c3ae189a34d2e25b6ed0d662ae02cc",
+  "bytes": 13868,
+  "requestId": "jnNtASJ9dv5s2U9N8qD2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "df1f68ce59ba6203c33fcacee13e5cf77978f66a0330fec79f0650975c7d12ff",
+    "bytes": 69007
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

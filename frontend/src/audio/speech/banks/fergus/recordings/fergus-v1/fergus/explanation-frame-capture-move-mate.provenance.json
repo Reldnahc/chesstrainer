@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate",
+      "label": "Explanation frame capture move mate",
+      "text": "A capture that is also checkmate, with no legal escape."
+    },
+    "takeId": null
+  },
+  "requestHash": "b4ab095dbc8589ff37a02a9642613ebce006d8d21079fac62e6ce8cd4aeec653",
+  "recordedAt": "2026-10-03T05:42:59.658Z",
+  "sha256": "dbd18990324f2a78f82ea9d70c1729632e72959f8158d85f7e0d6d8e8339f0f9",
+  "bytes": 14376,
+  "requestId": "zqS1NWkfUS8SYU0szmBS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b02e05bc42b558ea4999788211c2c38b55651c74b31aca8382143d57cba2ecac",
+    "bytes": 71515
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

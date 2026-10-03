@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed",
+      "label": "Tactic discovered attack allowed",
+      "text": "This lets one of their pieces step aside and unmask an attack from the piece behind, a discovered attack."
+    },
+    "takeId": null
+  },
+  "requestHash": "3941ce9e3e276b359750c666ecbb8fbf95c4c0a86e4ade0493106e2045489126",
+  "recordedAt": "2026-10-03T05:40:50.305Z",
+  "sha256": "47a7beb12e1fdc250485aee6b383885fa3c7d744475a0faab758e80f6f83a093",
+  "bytes": 23114,
+  "requestId": "ECo8gc4cXUPa608qebFx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "89f6a6f9c4f0bd94e29d516c1c821dadd6e29a9083f1f6ccc6e4539c3b1f0c7f",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

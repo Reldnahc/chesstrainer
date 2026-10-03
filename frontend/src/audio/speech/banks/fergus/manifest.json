@@ -1,0 +1,1583 @@
+{
+  "schemaVersion": 1,
+  "provider": "elevenlabs",
+  "coachId": "frog",
+  "voiceId": "fergus",
+  "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+  "modelId": "eleven_v4",
+  "outputFormat": "mp3_44100_128",
+  "settings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75,
+    "speed": 0.95
+  },
+  "scope": "non-lesson",
+  "silentIds": [
+    "game-thinking",
+    "explanation-loading-saved",
+    "dialogue-no-renderable-claim",
+    "practice-checking"
+  ],
+  "recordings": [
+    {
+      "id": "tactic-fork-played",
+      "group": "game_review",
+      "text": "One piece is now hitting several targets at once, which is a fork, and somebody is about to lose something.",
+      "audioPath": "recordings/fergus-v1/fergus/tactic-fork-played.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/tactic-fork-played.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-played.json"
+    },
+    {
+      "id": "tactic-fork-allowed",
+      "group": "game_review",
+      "text": "This hands the other side a fork, one of their pieces against several targets, which makes for a crowded position.",
+      "audioPath": "recordings/fergus-v1/fergus/tactic-fork-allowed.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/tactic-fork-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-allowed.json"
+    },
+    {
+      "id": "tactic-fork-missed",
+      "group": "game_review",
+      "text": "A different move had a fork in it, several targets for one piece, and nobody played it.",
+      "audioPath": "recordings/fergus-v1/fergus/tactic-fork-missed.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/tactic-fork-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-missed.json"
+    },
+    {
+      "id": "tactic-pin-played",
+      "group": "game_review",
+      "text": "A piece is pinned to its king now, so stepping off that line would expose the king, and it will mostly stay put.",
+      "audioPath": "recordings/fergus-v1/fergus/tactic-pin-played.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/tactic-pin-played.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-played.json"
+    },
+    {
+      "id": "tactic-pin-allowed",
+      "group": "game_review",
+      "text": "This lets the other side pin a piece to its own king, which puts that piece on a short leash.",
+      "audioPath": "recordings/fergus-v1/fergus/tactic-pin-allowed.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/tactic-pin-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-allowed.json"
+    },
+    {
+      "id": "tactic-pin-missed",
+      "group": "game_review",
+      "text": "Pinning a piece to its king was on offer elsewhere; this move went another direction.",
+      "audioPath": "recordings/fergus-v1/fergus/tactic-pin-missed.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/tactic-pin-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-missed.json"
+    },
+    {
+      "id": "tactic-skewer-played",
+      "group": "game_review",
+      "text": "Skewer, then: the front piece is hit, and should it step away, the piece behind is exposed on the same line.",
+      "audioPath": "recordings/fergus-v1/fergus/tactic-skewer-played.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/tactic-skewer-played.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-played.json"
+    },
+    {
+      "id": "tactic-skewer-allowed",
+      "group": "game_review",
+      "text": "Two pieces sit on one line, and this lets the other side skewer them through the front one, which is simple geometry.",
+      "audioPath": "recordings/fergus-v1/fergus/tactic-skewer-allowed.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/tactic-skewer-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-allowed.json"
+    },
+    {
+      "id": "tactic-skewer-missed",
+      "group": "game_review",
+      "text": "A skewer down one line was available with another move, front piece then back piece, and it was passed up.",
+      "audioPath": "recordings/fergus-v1/fergus/tactic-skewer-missed.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/tactic-skewer-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-missed.json"
+    },
+    {
+      "id": "tactic-removing-defender-played",
+      "group": "game_review",
+      "text": "The defender comes off the board, so whatever it was guarding may now be loose.",
+      "audioPath": "recordings/fergus-v1/fergus/tactic-removing-defender-played.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/tactic-removing-defender-played.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-played.json"
+    },
+    {
+      "id": "tactic-removing-defender-allowed",
+      "group": "game_review",
+      "text": "This exposes a defender to capture, and its duties would go unattended.",
+      "audioPath": "recordings/fergus-v1/fergus/tactic-removing-defender-allowed.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/tactic-removing-defender-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-allowed.json"
+    },
+    {
+      "id": "tactic-removing-defender-missed",
+      "group": "game_review",
+      "text": "Taking out a defender was possible with a different move; this one lets the defender keep its job.",
+      "audioPath": "recordings/fergus-v1/fergus/tactic-removing-defender-missed.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/tactic-removing-defender-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-missed.json"
+    },
+    {
+      "id": "tactic-back-rank-played",
+      "group": "game_review",
+      "text": "The enemy king is boxed in by its own pieces, which is the back-rank mate idea, and the king has no room.",
+      "audioPath": "recordings/fergus-v1/fergus/tactic-back-rank-played.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/tactic-back-rank-played.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-played.json"
+    },
+    {
+      "id": "tactic-back-rank-allowed",
+      "group": "game_review",
+      "text": "The king's own pieces wall it in, and this gives the other side a back-rank mate idea, which is how back ranks go.",
+      "audioPath": "recordings/fergus-v1/fergus/tactic-back-rank-allowed.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/tactic-back-rank-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-allowed.json"
+    },
+    {
+      "id": "tactic-back-rank-missed",
+      "group": "game_review",
+      "text": "There was a back-rank mate idea against a king with no exit square, and it went unused.",
+      "audioPath": "recordings/fergus-v1/fergus/tactic-back-rank-missed.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/tactic-back-rank-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-missed.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-played",
+      "group": "game_review",
+      "text": "A pawn is heading for the last rank to become something bigger, which is the whole point of this move.",
+      "audioPath": "recordings/fergus-v1/fergus/tactic-promotion-awareness-played.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/tactic-promotion-awareness-played.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-played.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-allowed",
+      "group": "game_review",
+      "text": "One of the other side's pawns now has a road to promotion, so the squares are worth counting.",
+      "audioPath": "recordings/fergus-v1/fergus/tactic-promotion-awareness-allowed.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/tactic-promotion-awareness-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-allowed.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-missed",
+      "group": "game_review",
+      "text": "A stronger move sent a pawn toward promotion; this one leaves the pawn standing still.",
+      "audioPath": "recordings/fergus-v1/fergus/tactic-promotion-awareness-missed.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/tactic-promotion-awareness-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-missed.json"
+    },
+    {
+      "id": "tactic-discovered-attack-played",
+      "group": "game_review",
+      "text": "One piece steps aside so the one behind it can attack along the line, which is a discovered attack.",
+      "audioPath": "recordings/fergus-v1/fergus/tactic-discovered-attack-played.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/tactic-discovered-attack-played.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-played.json"
+    },
+    {
+      "id": "tactic-discovered-attack-allowed",
+      "group": "game_review",
+      "text": "This lets one of their pieces step aside and unmask an attack from the piece behind, a discovered attack.",
+      "audioPath": "recordings/fergus-v1/fergus/tactic-discovered-attack-allowed.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/tactic-discovered-attack-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-allowed.json"
+    },
+    {
+      "id": "tactic-discovered-attack-missed",
+      "group": "game_review",
+      "text": "A discovered attack was sitting in a different move, and it stayed sitting there.",
+      "audioPath": "recordings/fergus-v1/fergus/tactic-discovered-attack-missed.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/tactic-discovered-attack-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-missed.json"
+    },
+    {
+      "id": "tactic-double-attack-played",
+      "group": "game_review",
+      "text": "A double attack: this move threatens two things, and answering both is a lot to ask.",
+      "audioPath": "recordings/fergus-v1/fergus/tactic-double-attack-played.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/tactic-double-attack-played.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-played.json"
+    },
+    {
+      "id": "tactic-double-attack-allowed",
+      "group": "game_review",
+      "text": "The other side now has a double attack available, threatening two things at once, which makes for a busy position.",
+      "audioPath": "recordings/fergus-v1/fergus/tactic-double-attack-allowed.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/tactic-double-attack-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-allowed.json"
+    },
+    {
+      "id": "tactic-double-attack-missed",
+      "group": "game_review",
+      "text": "A stronger move threatened two things together, and this one threatens neither.",
+      "audioPath": "recordings/fergus-v1/fergus/tactic-double-attack-missed.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/tactic-double-attack-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-missed.json"
+    },
+    {
+      "id": "tactic-deflection-played",
+      "group": "game_review",
+      "text": "A defender gets pulled off its post, which is a deflection, and the post is left empty.",
+      "audioPath": "recordings/fergus-v1/fergus/tactic-deflection-played.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/tactic-deflection-played.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-played.json"
+    },
+    {
+      "id": "tactic-deflection-allowed",
+      "group": "game_review",
+      "text": "This lets the other side lure a defender away, and what it covers would be left uncovered.",
+      "audioPath": "recordings/fergus-v1/fergus/tactic-deflection-allowed.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/tactic-deflection-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-allowed.json"
+    },
+    {
+      "id": "tactic-deflection-missed",
+      "group": "game_review",
+      "text": "Deflecting a defender was possible with a different move; here the defender stays exactly where it was.",
+      "audioPath": "recordings/fergus-v1/fergus/tactic-deflection-missed.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/tactic-deflection-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-missed.json"
+    },
+    {
+      "id": "tactic-undefended-capture-played",
+      "group": "game_review",
+      "text": "Nothing was guarding that piece, so it was taken, and the piece is gone.",
+      "audioPath": "recordings/fergus-v1/fergus/tactic-undefended-capture-played.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/tactic-undefended-capture-played.provenance.json",
+      "alignmentPath": "alignment/tactic-undefended-capture-played.json"
+    },
+    {
+      "id": "tactic-undefended-capture-missed",
+      "group": "game_review",
+      "text": "There was a piece with no guard available to take, and it is still standing there.",
+      "audioPath": "recordings/fergus-v1/fergus/tactic-undefended-capture-missed.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/tactic-undefended-capture-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-undefended-capture-missed.json"
+    },
+    {
+      "id": "tactic-hanging-piece-allowed",
+      "group": "game_review",
+      "text": "A piece is left without a guard, and the other side is free to take it, should it care to.",
+      "audioPath": "recordings/fergus-v1/fergus/tactic-hanging-piece-allowed.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/tactic-hanging-piece-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-hanging-piece-allowed.json"
+    },
+    {
+      "id": "cause-abandoned-defender",
+      "group": "game_review",
+      "text": "Its one real defender has left, so the piece it guarded is now there to be captured.",
+      "audioPath": "recordings/fergus-v1/fergus/cause-abandoned-defender.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/cause-abandoned-defender.provenance.json",
+      "alignmentPath": "alignment/cause-abandoned-defender.json"
+    },
+    {
+      "id": "cause-opponent-threat-recognition",
+      "group": "game_review",
+      "text": "The previous move by the opponent made a threat, this move ignores it, and a piece can now be taken.",
+      "audioPath": "recordings/fergus-v1/fergus/cause-opponent-threat-recognition.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/cause-opponent-threat-recognition.provenance.json",
+      "alignmentPath": "alignment/cause-opponent-threat-recognition.json"
+    },
+    {
+      "id": "cause-avoiding-bad-trades",
+      "group": "game_review",
+      "text": "This capture gets answered by a recapture of something more valuable, so the sums don't work.",
+      "audioPath": "recordings/fergus-v1/fergus/cause-avoiding-bad-trades.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/cause-avoiding-bad-trades.provenance.json",
+      "alignmentPath": "alignment/cause-avoiding-bad-trades.json"
+    },
+    {
+      "id": "positional-development-actual",
+      "group": "game_review",
+      "text": "A minor piece is out of its starting square, which is development, done without fuss.",
+      "audioPath": "recordings/fergus-v1/fergus/positional-development-actual.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/positional-development-actual.provenance.json",
+      "alignmentPath": "alignment/positional-development-actual.json"
+    },
+    {
+      "id": "positional-development-alternative",
+      "group": "game_review",
+      "text": "Bringing out a minor piece was on offer with another move. Worth a comparison.",
+      "audioPath": "recordings/fergus-v1/fergus/positional-development-alternative.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/positional-development-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-development-alternative.json"
+    },
+    {
+      "id": "positional-rook-open-actual",
+      "group": "game_review",
+      "text": "The rook ends up on a file without a single pawn on it, which is an open file.",
+      "audioPath": "recordings/fergus-v1/fergus/positional-rook-open-actual.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/positional-rook-open-actual.provenance.json",
+      "alignmentPath": "alignment/positional-rook-open-actual.json"
+    },
+    {
+      "id": "positional-rook-open-alternative",
+      "group": "game_review",
+      "text": "A different move would have given a rook an open file, with no pawns on it.",
+      "audioPath": "recordings/fergus-v1/fergus/positional-rook-open-alternative.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/positional-rook-open-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-rook-open-alternative.json"
+    },
+    {
+      "id": "positional-rook-semi-open-actual",
+      "group": "game_review",
+      "text": "A semi-open file for this rook, as it turns out. No pawns of its own on it, and at least one of the enemy's.",
+      "audioPath": "recordings/fergus-v1/fergus/positional-rook-semi-open-actual.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/positional-rook-semi-open-actual.provenance.json",
+      "alignmentPath": "alignment/positional-rook-semi-open-actual.json"
+    },
+    {
+      "id": "positional-rook-semi-open-alternative",
+      "group": "game_review",
+      "text": "Another move would have put a rook on a semi-open file, where it has no pawns of its own and the enemy has at least one.",
+      "audioPath": "recordings/fergus-v1/fergus/positional-rook-semi-open-alternative.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/positional-rook-semi-open-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-rook-semi-open-alternative.json"
+    },
+    {
+      "id": "positional-passed-actual",
+      "group": "game_review",
+      "text": "This pawn is passed, with no enemy pawns ahead of it on its file or the two next door.",
+      "audioPath": "recordings/fergus-v1/fergus/positional-passed-actual.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/positional-passed-actual.provenance.json",
+      "alignmentPath": "alignment/positional-passed-actual.json"
+    },
+    {
+      "id": "positional-passed-alternative",
+      "group": "game_review",
+      "text": "Another move would have produced a passed pawn. Nothing of the enemy's, pawn-wise, would sit ahead of it on that file or either adjacent one.",
+      "audioPath": "recordings/fergus-v1/fergus/positional-passed-alternative.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/positional-passed-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-passed-alternative.json"
+    },
+    {
+      "id": "positional-passer-advance-actual",
+      "group": "game_review",
+      "text": "The passed pawn takes another step, which leaves one square fewer to go.",
+      "audioPath": "recordings/fergus-v1/fergus/positional-passer-advance-actual.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/positional-passer-advance-actual.provenance.json",
+      "alignmentPath": "alignment/positional-passer-advance-actual.json"
+    },
+    {
+      "id": "positional-passer-advance-alternative",
+      "group": "game_review",
+      "text": "A different move would have pushed the passed pawn; here the pawn waits.",
+      "audioPath": "recordings/fergus-v1/fergus/positional-passer-advance-alternative.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/positional-passer-advance-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-passer-advance-alternative.json"
+    },
+    {
+      "id": "positional-isolated-actual",
+      "group": "game_review",
+      "text": "This pawn is isolated, with no friendly pawns on the files beside it, which leaves it on its own.",
+      "audioPath": "recordings/fergus-v1/fergus/positional-isolated-actual.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/positional-isolated-actual.provenance.json",
+      "alignmentPath": "alignment/positional-isolated-actual.json"
+    },
+    {
+      "id": "positional-isolated-alternative",
+      "group": "game_review",
+      "text": "A different move would have isolated a pawn, leaving no friendly pawns on either side of it.",
+      "audioPath": "recordings/fergus-v1/fergus/positional-isolated-alternative.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/positional-isolated-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-isolated-alternative.json"
+    },
+    {
+      "id": "positional-support-actual",
+      "group": "game_review",
+      "text": "A piece that was standing unguarded has a defender now, which is fine.",
+      "audioPath": "recordings/fergus-v1/fergus/positional-support-actual.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/positional-support-actual.provenance.json",
+      "alignmentPath": "alignment/positional-support-actual.json"
+    },
+    {
+      "id": "positional-support-alternative",
+      "group": "game_review",
+      "text": "A different move would have given a lone piece a defender, which is worth a comparison.",
+      "audioPath": "recordings/fergus-v1/fergus/positional-support-alternative.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/positional-support-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-support-alternative.json"
+    },
+    {
+      "id": "positional-unsupported-actual",
+      "group": "game_review",
+      "text": "A piece has no defender after this, which is a fact about the piece and not a loss of it.",
+      "audioPath": "recordings/fergus-v1/fergus/positional-unsupported-actual.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/positional-unsupported-actual.provenance.json",
+      "alignmentPath": "alignment/positional-unsupported-actual.json"
+    },
+    {
+      "id": "positional-unsupported-alternative",
+      "group": "game_review",
+      "text": "A different move would have left a piece with no defender, which by itself would lose nothing.",
+      "audioPath": "recordings/fergus-v1/fergus/positional-unsupported-alternative.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/positional-unsupported-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-unsupported-alternative.json"
+    },
+    {
+      "id": "positional-king-flight-actual",
+      "group": "game_review",
+      "text": "The king has a legal square it lacked before, because something got out of the way.",
+      "audioPath": "recordings/fergus-v1/fergus/positional-king-flight-actual.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/positional-king-flight-actual.provenance.json",
+      "alignmentPath": "alignment/positional-king-flight-actual.json"
+    },
+    {
+      "id": "positional-king-flight-alternative",
+      "group": "game_review",
+      "text": "A fresh legal square for the king was one different move away.",
+      "audioPath": "recordings/fergus-v1/fergus/positional-king-flight-alternative.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/positional-king-flight-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-king-flight-alternative.json"
+    },
+    {
+      "id": "positional-castling-actual",
+      "group": "game_review",
+      "text": "King and rook moved together in one turn, the rook ending up beside the king, which is castling.",
+      "audioPath": "recordings/fergus-v1/fergus/positional-castling-actual.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/positional-castling-actual.provenance.json",
+      "alignmentPath": "alignment/positional-castling-actual.json"
+    },
+    {
+      "id": "positional-castling-alternative",
+      "group": "game_review",
+      "text": "Castling was on offer, king and rook together in a single move.",
+      "audioPath": "recordings/fergus-v1/fergus/positional-castling-alternative.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/positional-castling-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-castling-alternative.json"
+    },
+    {
+      "id": "positional-bishop-pair-actual",
+      "group": "game_review",
+      "text": "This capture breaks the bishop pair, so that side now covers one square color with bishops instead of two.",
+      "audioPath": "recordings/fergus-v1/fergus/positional-bishop-pair-actual.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/positional-bishop-pair-actual.provenance.json",
+      "alignmentPath": "alignment/positional-bishop-pair-actual.json"
+    },
+    {
+      "id": "positional-bishop-pair-alternative",
+      "group": "game_review",
+      "text": "Taking a bishop, and with it the other side's pair, was available with a different move.",
+      "audioPath": "recordings/fergus-v1/fergus/positional-bishop-pair-alternative.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/positional-bishop-pair-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-bishop-pair-alternative.json"
+    },
+    {
+      "id": "positional-doubled-actual",
+      "group": "game_review",
+      "text": "Two pawns of one color now share a file, which is doubled pawns, and neither one can protect the other.",
+      "audioPath": "recordings/fergus-v1/fergus/positional-doubled-actual.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/positional-doubled-actual.provenance.json",
+      "alignmentPath": "alignment/positional-doubled-actual.json"
+    },
+    {
+      "id": "positional-doubled-alternative",
+      "group": "game_review",
+      "text": "Stacking two same-colored pawns on one file is what a different move would have done.",
+      "audioPath": "recordings/fergus-v1/fergus/positional-doubled-alternative.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/positional-doubled-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-doubled-alternative.json"
+    },
+    {
+      "id": "allowed-mate",
+      "group": "game_review",
+      "text": "This allows a forced checkmate, and that is the headline.",
+      "audioPath": "recordings/fergus-v1/fergus/allowed-mate.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/allowed-mate.provenance.json",
+      "alignmentPath": "alignment/allowed-mate.json"
+    },
+    {
+      "id": "missed-mate",
+      "group": "game_review",
+      "text": "There was a forced checkmate, and this move goes straight past it.",
+      "audioPath": "recordings/fergus-v1/fergus/missed-mate.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/missed-mate.provenance.json",
+      "alignmentPath": "alignment/missed-mate.json"
+    },
+    {
+      "id": "sound-sacrifice",
+      "group": "game_review",
+      "text": "An offer of material, which survives being taken in the line we checked. Odd, but true.",
+      "audioPath": "recordings/fergus-v1/fergus/sound-sacrifice.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/sound-sacrifice.provenance.json",
+      "alignmentPath": "alignment/sound-sacrifice.json"
+    },
+    {
+      "id": "only-playable-move",
+      "group": "game_review",
+      "text": "Of everything checked, this alone kept things playable. Losses all round otherwise.",
+      "audioPath": "recordings/fergus-v1/fergus/only-playable-move.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/only-playable-move.provenance.json",
+      "alignmentPath": "alignment/only-playable-move.json"
+    },
+    {
+      "id": "only-advantage-resource",
+      "group": "game_review",
+      "text": "Of the moves we checked, this was the one that kept the advantage, and all the others lost.",
+      "audioPath": "recordings/fergus-v1/fergus/only-advantage-resource.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/only-advantage-resource.provenance.json",
+      "alignmentPath": "alignment/only-advantage-resource.json"
+    },
+    {
+      "id": "immediate-capture",
+      "group": "game_review",
+      "text": "Something can be captured on the very next move, which is quick.",
+      "audioPath": "recordings/fergus-v1/fergus/immediate-capture.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/immediate-capture.provenance.json",
+      "alignmentPath": "alignment/immediate-capture.json"
+    },
+    {
+      "id": "reply-check",
+      "group": "game_review",
+      "text": "The strongest answer to this is a check, so the king gets attention first.",
+      "audioPath": "recordings/fergus-v1/fergus/reply-check.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/reply-check.provenance.json",
+      "alignmentPath": "alignment/reply-check.json"
+    },
+    {
+      "id": "stronger-alternative",
+      "group": "game_review",
+      "text": "The engine prefers another move here, so it may be worth trying both.",
+      "audioPath": "recordings/fergus-v1/fergus/stronger-alternative.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/stronger-alternative.provenance.json",
+      "alignmentPath": "alignment/stronger-alternative.json"
+    },
+    {
+      "id": "evaluation-loss",
+      "group": "game_review",
+      "text": "Some value went missing with this move, compared with the engine's top choice.",
+      "audioPath": "recordings/fergus-v1/fergus/evaluation-loss.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/evaluation-loss.provenance.json",
+      "alignmentPath": "alignment/evaluation-loss.json"
+    },
+    {
+      "id": "best-supported-choice",
+      "group": "game_review",
+      "text": "Strong move, and that is the whole report.",
+      "audioPath": "recordings/fergus-v1/fergus/best-supported-choice.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/best-supported-choice.provenance.json",
+      "alignmentPath": "alignment/best-supported-choice.json"
+    },
+    {
+      "id": "good-choice",
+      "group": "game_review",
+      "text": "This is sound, the engine has a different favorite, and most of the value survives regardless.",
+      "audioPath": "recordings/fergus-v1/fergus/good-choice.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/good-choice.provenance.json",
+      "alignmentPath": "alignment/good-choice.json"
+    },
+    {
+      "id": "clock-low",
+      "group": "game_review",
+      "text": "There was barely any time on the clock for this move, which is noted.",
+      "audioPath": "recordings/fergus-v1/fergus/clock-low.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/clock-low.provenance.json",
+      "alignmentPath": "alignment/clock-low.json"
+    },
+    {
+      "id": "clock-fast",
+      "group": "game_review",
+      "text": "This was played fast with time still left over, which went unused.",
+      "audioPath": "recordings/fergus-v1/fergus/clock-fast.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/clock-fast.provenance.json",
+      "alignmentPath": "alignment/clock-fast.json"
+    },
+    {
+      "id": "clock-long",
+      "group": "game_review",
+      "text": "A long think went into this one, and the clock knows it.",
+      "audioPath": "recordings/fergus-v1/fergus/clock-long.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/clock-long.provenance.json",
+      "alignmentPath": "alignment/clock-long.json"
+    },
+    {
+      "id": "recognized-opening",
+      "group": "game_review",
+      "text": "This belongs to a recognized opening line, and nothing more than that is implied.",
+      "audioPath": "recordings/fergus-v1/fergus/recognized-opening.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/recognized-opening.provenance.json",
+      "alignmentPath": "alignment/recognized-opening.json"
+    },
+    {
+      "id": "opening-departure",
+      "group": "game_review",
+      "text": "The opening book stops here, and from now on it is just chess.",
+      "audioPath": "recordings/fergus-v1/fergus/opening-departure.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/opening-departure.provenance.json",
+      "alignmentPath": "alignment/opening-departure.json"
+    },
+    {
+      "id": "recovery",
+      "group": "game_review",
+      "text": "After the earlier setback, the position is playable again, which is better than the alternative.",
+      "audioPath": "recordings/fergus-v1/fergus/recovery.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/recovery.provenance.json",
+      "alignmentPath": "alignment/recovery.json"
+    },
+    {
+      "id": "recovery-assisted",
+      "group": "game_review",
+      "text": "The position is playable again after the setback, with help from the other side's errors, and gifts count.",
+      "audioPath": "recordings/fergus-v1/fergus/recovery-assisted.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/recovery-assisted.provenance.json",
+      "alignmentPath": "alignment/recovery-assisted.json"
+    },
+    {
+      "id": "chance-taken",
+      "group": "game_review",
+      "text": "A chance was left on the table by the opponent's last move, and this move collects it, efficiently.",
+      "audioPath": "recordings/fergus-v1/fergus/chance-taken.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/chance-taken.provenance.json",
+      "alignmentPath": "alignment/chance-taken.json"
+    },
+    {
+      "id": "chance-missed",
+      "group": "game_review",
+      "text": "The opponent's last move left a chance on the table, and it is still on the table.",
+      "audioPath": "recordings/fergus-v1/fergus/chance-missed.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/chance-missed.provenance.json",
+      "alignmentPath": "alignment/chance-missed.json"
+    },
+    {
+      "id": "repeated-issue",
+      "group": "game_review",
+      "text": "This same issue has turned up again in this game, which makes it a theme.",
+      "audioPath": "recordings/fergus-v1/fergus/repeated-issue.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/repeated-issue.provenance.json",
+      "alignmentPath": "alignment/repeated-issue.json"
+    },
+    {
+      "id": "support-restored",
+      "group": "game_review",
+      "text": "Previously unguarded, the piece now has cover again. Tidy.",
+      "audioPath": "recordings/fergus-v1/fergus/support-restored.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/support-restored.provenance.json",
+      "alignmentPath": "alignment/support-restored.json"
+    },
+    {
+      "id": "gradual-erosion",
+      "group": "game_review",
+      "text": "This is another small concession, minor on its own and a problem in the collection.",
+      "audioPath": "recordings/fergus-v1/fergus/gradual-erosion.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/gradual-erosion.provenance.json",
+      "alignmentPath": "alignment/gradual-erosion.json"
+    },
+    {
+      "id": "advantage-converted",
+      "group": "game_review",
+      "text": "The advantage lasted all the way to the recorded win, so that job is done.",
+      "audioPath": "recordings/fergus-v1/fergus/advantage-converted.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/advantage-converted.provenance.json",
+      "alignmentPath": "alignment/advantage-converted.json"
+    },
+    {
+      "id": "saved-history-recurrence",
+      "group": "game_review",
+      "text": "The issue has company in other saved games, which suggests a habit.",
+      "audioPath": "recordings/fergus-v1/fergus/saved-history-recurrence.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/saved-history-recurrence.provenance.json",
+      "alignmentPath": "alignment/saved-history-recurrence.json"
+    },
+    {
+      "id": "mate-finished",
+      "group": "game_review",
+      "text": "That is checkmate, with no legal escape for the king, which settles things.",
+      "audioPath": "recordings/fergus-v1/fergus/mate-finished.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/mate-finished.provenance.json",
+      "alignmentPath": "alignment/mate-finished.json"
+    },
+    {
+      "id": "mate-defense-ended",
+      "group": "game_review",
+      "text": "That is checkmate, the king has nowhere legal to go, and that is the end of that.",
+      "audioPath": "recordings/fergus-v1/fergus/mate-defense-ended.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/mate-defense-ended.provenance.json",
+      "alignmentPath": "alignment/mate-defense-ended.json"
+    },
+    {
+      "id": "draw",
+      "group": "game_review",
+      "text": "The game ends drawn, though the decisions on the way may still deserve a look.",
+      "audioPath": "recordings/fergus-v1/fergus/draw.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/draw.provenance.json",
+      "alignmentPath": "alignment/draw.json"
+    },
+    {
+      "id": "srs-cold",
+      "group": "srs_explanations",
+      "text": "It's your move, and there's no rush about it.",
+      "audioPath": "recordings/fergus-v1/fergus/srs-cold.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/srs-cold.provenance.json",
+      "alignmentPath": "alignment/srs-cold.json"
+    },
+    {
+      "id": "srs-retry",
+      "group": "srs_explanations",
+      "text": "That one isn't it, so another move, please.",
+      "audioPath": "recordings/fergus-v1/fergus/srs-retry.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/srs-retry.provenance.json",
+      "alignmentPath": "alignment/srs-retry.json"
+    },
+    {
+      "id": "srs-practice-error",
+      "group": "srs_explanations",
+      "text": "Nothing came back on that attempt, so play the move again.",
+      "audioPath": "recordings/fergus-v1/fergus/srs-practice-error.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/srs-practice-error.provenance.json",
+      "alignmentPath": "alignment/srs-practice-error.json"
+    },
+    {
+      "id": "srs-summary-mate-for-mover",
+      "group": "srs_explanations",
+      "text": "Per the saved engine analysis, whoever made this move has a forced mate.",
+      "audioPath": "recordings/fergus-v1/fergus/srs-summary-mate-for-mover.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/srs-summary-mate-for-mover.provenance.json",
+      "alignmentPath": "alignment/srs-summary-mate-for-mover.json"
+    },
+    {
+      "id": "srs-summary-mate-against-mover",
+      "group": "srs_explanations",
+      "text": "Mate by force, for the other side, is what the saved engine analysis finds after this move.",
+      "audioPath": "recordings/fergus-v1/fergus/srs-summary-mate-against-mover.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/srs-summary-mate-against-mover.provenance.json",
+      "alignmentPath": "alignment/srs-summary-mate-against-mover.json"
+    },
+    {
+      "id": "srs-summary-material-gain",
+      "group": "srs_explanations",
+      "text": "Over the saved line, the side that made this move gains material, on balance.",
+      "audioPath": "recordings/fergus-v1/fergus/srs-summary-material-gain.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/srs-summary-material-gain.provenance.json",
+      "alignmentPath": "alignment/srs-summary-material-gain.json"
+    },
+    {
+      "id": "srs-summary-material-loss",
+      "group": "srs_explanations",
+      "text": "Over the saved line, the side that made this move loses material, on balance.",
+      "audioPath": "recordings/fergus-v1/fergus/srs-summary-material-loss.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/srs-summary-material-loss.provenance.json",
+      "alignmentPath": "alignment/srs-summary-material-loss.json"
+    },
+    {
+      "id": "srs-summary-engine-accepted",
+      "group": "srs_explanations",
+      "text": "This move passes the exercise. As for a tactical reason, the moves shown offer none that is clear.",
+      "audioPath": "recordings/fergus-v1/fergus/srs-summary-engine-accepted.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/srs-summary-engine-accepted.provenance.json",
+      "alignmentPath": "alignment/srs-summary-engine-accepted.json"
+    },
+    {
+      "id": "srs-summary-engine-rejected",
+      "group": "srs_explanations",
+      "text": "This move is not accepted by the exercise, and the moves shown offer no clear tactical reason one way or the other.",
+      "audioPath": "recordings/fergus-v1/fergus/srs-summary-engine-rejected.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/srs-summary-engine-rejected.provenance.json",
+      "alignmentPath": "alignment/srs-summary-engine-rejected.json"
+    },
+    {
+      "id": "srs-summary-curated-accepted",
+      "group": "srs_explanations",
+      "text": "This is one of the saved answers, and saved answers decide the matter here.",
+      "audioPath": "recordings/fergus-v1/fergus/srs-summary-curated-accepted.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/srs-summary-curated-accepted.provenance.json",
+      "alignmentPath": "alignment/srs-summary-curated-accepted.json"
+    },
+    {
+      "id": "srs-summary-curated-rejected",
+      "group": "srs_explanations",
+      "text": "This is not among the saved answers, which does not make it bad chess.",
+      "audioPath": "recordings/fergus-v1/fergus/srs-summary-curated-rejected.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/srs-summary-curated-rejected.provenance.json",
+      "alignmentPath": "alignment/srs-summary-curated-rejected.json"
+    },
+    {
+      "id": "srs-fallback-study",
+      "group": "srs_explanations",
+      "text": "Study the move. The next position can wait until then.",
+      "audioPath": "recordings/fergus-v1/fergus/srs-fallback-study.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/srs-fallback-study.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-study.json"
+    },
+    {
+      "id": "srs-fallback-good",
+      "group": "srs_explanations",
+      "text": "That is a good move, so keep the reason attached to it.",
+      "audioPath": "recordings/fergus-v1/fergus/srs-fallback-good.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/srs-fallback-good.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-good.json"
+    },
+    {
+      "id": "srs-fallback-focus-saved",
+      "group": "srs_explanations",
+      "text": "The practice is saved, and the schedule has not moved.",
+      "audioPath": "recordings/fergus-v1/fergus/srs-fallback-focus-saved.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/srs-fallback-focus-saved.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-focus-saved.json"
+    },
+    {
+      "id": "srs-fallback-relearning",
+      "group": "srs_explanations",
+      "text": "It is solved, though the recall stays marked for relearning all the same.",
+      "audioPath": "recordings/fergus-v1/fergus/srs-fallback-relearning.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/srs-fallback-relearning.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-relearning.json"
+    },
+    {
+      "id": "explanation-frame-original",
+      "group": "srs_explanations",
+      "text": "This is where the line starts, before anything has moved.",
+      "audioPath": "recordings/fergus-v1/fergus/explanation-frame-original.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/explanation-frame-original.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-original.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-ordinary",
+      "group": "srs_explanations",
+      "text": "Here is the next move, and something has changed, so find it.",
+      "audioPath": "recordings/fergus-v1/fergus/explanation-frame-quiet-move-ordinary.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/explanation-frame-quiet-move-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-check",
+      "group": "srs_explanations",
+      "text": "Check, which outranks everything else, so it gets answered first.",
+      "audioPath": "recordings/fergus-v1/fergus/explanation-frame-quiet-move-check.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/explanation-frame-quiet-move-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-check.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-escape",
+      "group": "srs_explanations",
+      "text": "Check is over for the king after this.",
+      "audioPath": "recordings/fergus-v1/fergus/explanation-frame-quiet-move-escape.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/explanation-frame-quiet-move-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-escape.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-ordinary",
+      "group": "srs_explanations",
+      "text": "The pawn reaches the last rank and turns into something new.",
+      "audioPath": "recordings/fergus-v1/fergus/explanation-frame-quiet-promotion-ordinary.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/explanation-frame-quiet-promotion-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-check",
+      "group": "srs_explanations",
+      "text": "On promotion, the new piece gives check.",
+      "audioPath": "recordings/fergus-v1/fergus/explanation-frame-quiet-promotion-check.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/explanation-frame-quiet-promotion-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-check.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-mate",
+      "group": "srs_explanations",
+      "text": "On promotion, the new piece gives checkmate, with no legal escape.",
+      "audioPath": "recordings/fergus-v1/fergus/explanation-frame-quiet-promotion-mate.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/explanation-frame-quiet-promotion-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-mate.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-escape",
+      "group": "srs_explanations",
+      "text": "Promoting also takes its own king out of check.",
+      "audioPath": "recordings/fergus-v1/fergus/explanation-frame-quiet-promotion-escape.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/explanation-frame-quiet-promotion-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-escape.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-ordinary",
+      "group": "srs_explanations",
+      "text": "A capture, so one fewer piece is on the board.",
+      "audioPath": "recordings/fergus-v1/fergus/explanation-frame-capture-move-ordinary.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/explanation-frame-capture-move-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-check",
+      "group": "srs_explanations",
+      "text": "A capture that also gives check, two things at once.",
+      "audioPath": "recordings/fergus-v1/fergus/explanation-frame-capture-move-check.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/explanation-frame-capture-move-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-check.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-mate",
+      "group": "srs_explanations",
+      "text": "A capture that is also checkmate, with no legal escape.",
+      "audioPath": "recordings/fergus-v1/fergus/explanation-frame-capture-move-mate.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/explanation-frame-capture-move-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-mate.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-escape",
+      "group": "srs_explanations",
+      "text": "A capture that happens to end the check as well.",
+      "audioPath": "recordings/fergus-v1/fergus/explanation-frame-capture-move-escape.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/explanation-frame-capture-move-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-escape.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-ordinary",
+      "group": "srs_explanations",
+      "text": "On the last rank, the pawn takes something and promotes.",
+      "audioPath": "recordings/fergus-v1/fergus/explanation-frame-capture-promotion-ordinary.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/explanation-frame-capture-promotion-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-check",
+      "group": "srs_explanations",
+      "text": "The pawn takes, becomes a new piece, and gives check, in a single move.",
+      "audioPath": "recordings/fergus-v1/fergus/explanation-frame-capture-promotion-check.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/explanation-frame-capture-promotion-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-check.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-mate",
+      "group": "srs_explanations",
+      "text": "The pawn captures, promotes, and gives checkmate, and the king has no legal way out.",
+      "audioPath": "recordings/fergus-v1/fergus/explanation-frame-capture-promotion-mate.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/explanation-frame-capture-promotion-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-mate.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-escape",
+      "group": "srs_explanations",
+      "text": "A pawn capture that promotes and, at the same time, ends the check on its own king.",
+      "audioPath": "recordings/fergus-v1/fergus/explanation-frame-capture-promotion-escape.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/explanation-frame-capture-promotion-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-escape.json"
+    },
+    {
+      "id": "explanation-frame-castle-check",
+      "group": "srs_explanations",
+      "text": "The king castles, and the rook, once settled, is giving check. Efficient.",
+      "audioPath": "recordings/fergus-v1/fergus/explanation-frame-castle-check.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/explanation-frame-castle-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-castle-check.json"
+    },
+    {
+      "id": "explanation-frame-castle-mate",
+      "group": "srs_explanations",
+      "text": "Castling, and the rook arrives giving checkmate, with no legal move out for the opposing king.",
+      "audioPath": "recordings/fergus-v1/fergus/explanation-frame-castle-mate.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/explanation-frame-castle-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-castle-mate.json"
+    },
+    {
+      "id": "explanation-finding-fork-collected",
+      "group": "srs_explanations",
+      "text": "The fork collects one of its targets, and this example finishes with a net material gain.",
+      "audioPath": "recordings/fergus-v1/fergus/explanation-finding-fork-collected.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/explanation-finding-fork-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-fork-collected.json"
+    },
+    {
+      "id": "explanation-finding-pin-prevents-capture",
+      "group": "srs_explanations",
+      "text": "That piece is pinned to its king, so the marked capture is not legal.",
+      "audioPath": "recordings/fergus-v1/fergus/explanation-finding-pin-prevents-capture.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/explanation-finding-pin-prevents-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-prevents-capture.json"
+    },
+    {
+      "id": "explanation-finding-pin-restricts-escape",
+      "group": "srs_explanations",
+      "text": "The attacked piece is pinned to its king, so any move it makes must keep to the pin line.",
+      "audioPath": "recordings/fergus-v1/fergus/explanation-finding-pin-restricts-escape.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/explanation-finding-pin-restricts-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-restricts-escape.json"
+    },
+    {
+      "id": "explanation-finding-pin-defenders-no-recapture",
+      "group": "srs_explanations",
+      "text": "The defenders are pinned to their king, so nobody can recapture, and the line shown gains material.",
+      "audioPath": "recordings/fergus-v1/fergus/explanation-finding-pin-defenders-no-recapture.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/explanation-finding-pin-defenders-no-recapture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-defenders-no-recapture.json"
+    },
+    {
+      "id": "explanation-finding-pin-collected",
+      "group": "srs_explanations",
+      "text": "The pinned piece cannot leave its line without exposing the king, and sooner or later it gets taken.",
+      "audioPath": "recordings/fergus-v1/fergus/explanation-finding-pin-collected.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/explanation-finding-pin-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-collected.json"
+    },
+    {
+      "id": "explanation-finding-skewer-collected",
+      "group": "srs_explanations",
+      "text": "Once the front piece is off the line, the piece behind it is captured along it.",
+      "audioPath": "recordings/fergus-v1/fergus/explanation-finding-skewer-collected.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/explanation-finding-skewer-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-skewer-collected.json"
+    },
+    {
+      "id": "explanation-finding-king-skewer-collected",
+      "group": "srs_explanations",
+      "text": "The king, being in check, steps off the line, and the same attacker takes what was behind it.",
+      "audioPath": "recordings/fergus-v1/fergus/explanation-finding-king-skewer-collected.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/explanation-finding-king-skewer-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-king-skewer-collected.json"
+    },
+    {
+      "id": "explanation-finding-sole-defender-captured",
+      "group": "srs_explanations",
+      "text": "The lone defender is taken first, and later the piece it guarded goes too.",
+      "audioPath": "recordings/fergus-v1/fergus/explanation-finding-sole-defender-captured.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/explanation-finding-sole-defender-captured.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-sole-defender-captured.json"
+    },
+    {
+      "id": "explanation-finding-deflection-collected",
+      "group": "srs_explanations",
+      "text": "A defender gets lured off duty, and what it was covering is captured.",
+      "audioPath": "recordings/fergus-v1/fergus/explanation-finding-deflection-collected.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/explanation-finding-deflection-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-deflection-collected.json"
+    },
+    {
+      "id": "explanation-finding-discovered-capture",
+      "group": "srs_explanations",
+      "text": "A blocker moves out of the way, and the piece behind it makes the capture.",
+      "audioPath": "recordings/fergus-v1/fergus/explanation-finding-discovered-capture.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/explanation-finding-discovered-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-discovered-capture.json"
+    },
+    {
+      "id": "explanation-finding-discovered-check",
+      "group": "srs_explanations",
+      "text": "The front piece steps aside, and check arrives from the piece it was blocking.",
+      "audioPath": "recordings/fergus-v1/fergus/explanation-finding-discovered-check.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/explanation-finding-discovered-check.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-discovered-check.json"
+    },
+    {
+      "id": "explanation-finding-double-check",
+      "group": "srs_explanations",
+      "text": "This is double check, two pieces at once, so only a king move will do.",
+      "audioPath": "recordings/fergus-v1/fergus/explanation-finding-double-check.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/explanation-finding-double-check.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-double-check.json"
+    },
+    {
+      "id": "explanation-finding-double-attack-collected",
+      "group": "srs_explanations",
+      "text": "The moving piece attacks, the piece behind it attacks as well, and the one behind does the capturing.",
+      "audioPath": "recordings/fergus-v1/fergus/explanation-finding-double-attack-collected.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/explanation-finding-double-attack-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-double-attack-collected.json"
+    },
+    {
+      "id": "explanation-finding-promotion-material-retained",
+      "group": "srs_explanations",
+      "text": "Promotion happens, and this example finishes with a net material gain.",
+      "audioPath": "recordings/fergus-v1/fergus/explanation-finding-promotion-material-retained.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/explanation-finding-promotion-material-retained.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-promotion-material-retained.json"
+    },
+    {
+      "id": "explanation-finding-undefended-capture-gain",
+      "group": "srs_explanations",
+      "text": "Nothing guards the piece, so it is taken with no recapture, and this example finishes ahead in material.",
+      "audioPath": "recordings/fergus-v1/fergus/explanation-finding-undefended-capture-gain.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/explanation-finding-undefended-capture-gain.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-undefended-capture-gain.json"
+    },
+    {
+      "id": "explanation-finding-relative-pin-released",
+      "group": "srs_explanations",
+      "text": "The opponent's previous move freed the attacker from a relative pin, the target stayed where it was, and it was captured in the line shown.",
+      "audioPath": "recordings/fergus-v1/fergus/explanation-finding-relative-pin-released.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/explanation-finding-relative-pin-released.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-relative-pin-released.json"
+    },
+    {
+      "id": "game-explanation-legal-reply",
+      "group": "srs_explanations",
+      "text": "The other side is allowed the marked reply, so go ahead and try it.",
+      "audioPath": "recordings/fergus-v1/fergus/game-explanation-legal-reply.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/game-explanation-legal-reply.provenance.json",
+      "alignmentPath": "alignment/game-explanation-legal-reply.json"
+    },
+    {
+      "id": "explanation-cue-hanging-piece",
+      "group": "srs_explanations",
+      "text": "Check which pieces could be taken without any useful recapture.",
+      "audioPath": "recordings/fergus-v1/fergus/explanation-cue-hanging-piece.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/explanation-cue-hanging-piece.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-hanging-piece.json"
+    },
+    {
+      "id": "explanation-cue-missed-tactical-capture",
+      "group": "srs_explanations",
+      "text": "Before a quiet move, check whether any enemy piece is loose.",
+      "audioPath": "recordings/fergus-v1/fergus/explanation-cue-missed-tactical-capture.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/explanation-cue-missed-tactical-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-missed-tactical-capture.json"
+    },
+    {
+      "id": "explanation-cue-fork",
+      "group": "srs_explanations",
+      "text": "One piece, two valuable targets: that is what to look for among the forcing moves.",
+      "audioPath": "recordings/fergus-v1/fergus/explanation-cue-fork.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/explanation-cue-fork.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-fork.json"
+    },
+    {
+      "id": "explanation-cue-pin",
+      "group": "srs_explanations",
+      "text": "A pinned piece is covering for something, so check what before moving it.",
+      "audioPath": "recordings/fergus-v1/fergus/explanation-cue-pin.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/explanation-cue-pin.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-pin.json"
+    },
+    {
+      "id": "explanation-cue-skewer",
+      "group": "srs_explanations",
+      "text": "Look behind the first target, because sometimes there is a second one.",
+      "audioPath": "recordings/fergus-v1/fergus/explanation-cue-skewer.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/explanation-cue-skewer.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-skewer.json"
+    },
+    {
+      "id": "explanation-cue-removing-defender",
+      "group": "srs_explanations",
+      "text": "Before trading off a defender, check what it is defending right now.",
+      "audioPath": "recordings/fergus-v1/fergus/explanation-cue-removing-defender.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/explanation-cue-removing-defender.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-removing-defender.json"
+    },
+    {
+      "id": "explanation-cue-discovered-attack",
+      "group": "srs_explanations",
+      "text": "When a blocking piece moves, a line opens, so check where it leads.",
+      "audioPath": "recordings/fergus-v1/fergus/explanation-cue-discovered-attack.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/explanation-cue-discovered-attack.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-discovered-attack.json"
+    },
+    {
+      "id": "explanation-cue-double-attack",
+      "group": "srs_explanations",
+      "text": "A single move threatening two things is what to look for, with checks and freshly opened lines included.",
+      "audioPath": "recordings/fergus-v1/fergus/explanation-cue-double-attack.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/explanation-cue-double-attack.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-double-attack.json"
+    },
+    {
+      "id": "explanation-cue-back-rank",
+      "group": "srs_explanations",
+      "text": "If a back-rank defender is about to leave, the king needs an exit first.",
+      "audioPath": "recordings/fergus-v1/fergus/explanation-cue-back-rank.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/explanation-cue-back-rank.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-back-rank.json"
+    },
+    {
+      "id": "explanation-cue-promotion-awareness",
+      "group": "srs_explanations",
+      "text": "For every advanced pawn, count the steps to promotion, and look at pushes that force a reply.",
+      "audioPath": "recordings/fergus-v1/fergus/explanation-cue-promotion-awareness.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/explanation-cue-promotion-awareness.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-promotion-awareness.json"
+    },
+    {
+      "id": "explanation-cue-abandoned-defender",
+      "group": "srs_explanations",
+      "text": "Before a defender moves, see who loses cover.",
+      "audioPath": "recordings/fergus-v1/fergus/explanation-cue-abandoned-defender.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/explanation-cue-abandoned-defender.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-abandoned-defender.json"
+    },
+    {
+      "id": "explanation-cue-avoiding-bad-trades",
+      "group": "srs_explanations",
+      "text": "Count your capture, then count their recapture, then decide.",
+      "audioPath": "recordings/fergus-v1/fergus/explanation-cue-avoiding-bad-trades.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/explanation-cue-avoiding-bad-trades.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-avoiding-bad-trades.json"
+    },
+    {
+      "id": "explanation-cue-deflection",
+      "group": "srs_explanations",
+      "text": "A forcing exchange can pull a defender off another job, so look for that.",
+      "audioPath": "recordings/fergus-v1/fergus/explanation-cue-deflection.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/explanation-cue-deflection.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-deflection.json"
+    },
+    {
+      "id": "explanation-note-curated-authority",
+      "group": "srs_explanations",
+      "text": "Saved answers make the rules in this exercise, and other legal moves can still be decent chess.",
+      "audioPath": "recordings/fergus-v1/fergus/explanation-note-curated-authority.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/explanation-note-curated-authority.provenance.json",
+      "alignmentPath": "alignment/explanation-note-curated-authority.json"
+    },
+    {
+      "id": "explanation-note-strong-replies",
+      "group": "srs_explanations",
+      "text": "This is one way things go against strong replies, and not every reply is forced.",
+      "audioPath": "recordings/fergus-v1/fergus/explanation-note-strong-replies.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/explanation-note-strong-replies.provenance.json",
+      "alignmentPath": "alignment/explanation-note-strong-replies.json"
+    },
+    {
+      "id": "explanation-note-material-scope",
+      "group": "srs_explanations",
+      "text": "Material is counted only for the line shown, from its first position, and the written explanation lists the piece values.",
+      "audioPath": "recordings/fergus-v1/fergus/explanation-note-material-scope.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/explanation-note-material-scope.provenance.json",
+      "alignmentPath": "alignment/explanation-note-material-scope.json"
+    },
+    {
+      "id": "explanation-note-no-simple-reason",
+      "group": "srs_explanations",
+      "text": "The saved line shows no simple tactical reason, no positional reason has been assumed, so step through the replies.",
+      "audioPath": "recordings/fergus-v1/fergus/explanation-note-no-simple-reason.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/explanation-note-no-simple-reason.provenance.json",
+      "alignmentPath": "alignment/explanation-note-no-simple-reason.json"
+    },
+    {
+      "id": "explanation-note-saved-policy",
+      "group": "srs_explanations",
+      "text": "The answer policy saved for this exercise applies here, and the written notes name it.",
+      "audioPath": "recordings/fergus-v1/fergus/explanation-note-saved-policy.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/explanation-note-saved-policy.provenance.json",
+      "alignmentPath": "alignment/explanation-note-saved-policy.json"
+    },
+    {
+      "id": "opening-recall-revealed",
+      "group": "openings",
+      "text": "Here is the opening line you are studying, in order.",
+      "audioPath": "recordings/fergus-v1/fergus/opening-recall-revealed.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/opening-recall-revealed.provenance.json",
+      "alignmentPath": "alignment/opening-recall-revealed.json"
+    },
+    {
+      "id": "opening-recall-accepted",
+      "group": "openings",
+      "text": "Correct. That move is in the study material, as it happens.",
+      "audioPath": "recordings/fergus-v1/fergus/opening-recall-accepted.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/opening-recall-accepted.provenance.json",
+      "alignmentPath": "alignment/opening-recall-accepted.json"
+    },
+    {
+      "id": "opening-recall-retry-fallback",
+      "group": "openings",
+      "text": "A study-line move, please.",
+      "audioPath": "recordings/fergus-v1/fergus/opening-recall-retry-fallback.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/opening-recall-retry-fallback.provenance.json",
+      "alignmentPath": "alignment/opening-recall-retry-fallback.json"
+    },
+    {
+      "id": "opening-recall-cold-multiple",
+      "group": "openings",
+      "text": "Here, anything from your selected opening lines counts.",
+      "audioPath": "recordings/fergus-v1/fergus/opening-recall-cold-multiple.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/opening-recall-cold-multiple.provenance.json",
+      "alignmentPath": "alignment/opening-recall-cold-multiple.json"
+    },
+    {
+      "id": "opening-recall-cold-single",
+      "group": "openings",
+      "text": "Recall the move your study material gives for this position.",
+      "audioPath": "recordings/fergus-v1/fergus/opening-recall-cold-single.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/opening-recall-cold-single.provenance.json",
+      "alignmentPath": "alignment/opening-recall-cold-single.json"
+    },
+    {
+      "id": "opening-recall-rejected",
+      "group": "openings",
+      "text": "That is not in your selected lines, so try again.",
+      "audioPath": "recordings/fergus-v1/fergus/opening-recall-rejected.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/opening-recall-rejected.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected.json"
+    },
+    {
+      "id": "opening-recall-rejected-changed",
+      "group": "openings",
+      "text": "That is not in your selected lines, so try again; the study changed, so this attempt leaves the schedule alone.",
+      "audioPath": "recordings/fergus-v1/fergus/opening-recall-rejected-changed.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/opening-recall-rejected-changed.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected-changed.json"
+    },
+    {
+      "id": "opening-recall-rejected-retired",
+      "group": "openings",
+      "text": "That is not in your selected lines, so try again; this position is retired, so the schedule does not move.",
+      "audioPath": "recordings/fergus-v1/fergus/opening-recall-rejected-retired.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/opening-recall-rejected-retired.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected-retired.json"
+    },
+    {
+      "id": "opening-preview-active",
+      "group": "openings",
+      "text": "Mixed Due accepts this line, and dedicated practice asks for it alone.",
+      "audioPath": "recordings/fergus-v1/fergus/opening-preview-active.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/opening-preview-active.provenance.json",
+      "alignmentPath": "alignment/opening-preview-active.json"
+    },
+    {
+      "id": "opening-preview-inactive",
+      "group": "openings",
+      "text": "Scheduled recalls ask for the moves of your selected side, and shared positions get one card.",
+      "audioPath": "recordings/fergus-v1/fergus/opening-preview-inactive.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/opening-preview-inactive.provenance.json",
+      "alignmentPath": "alignment/opening-preview-inactive.json"
+    },
+    {
+      "id": "puzzle-error",
+      "group": "puzzles",
+      "text": "First reload the saved session, and then move.",
+      "audioPath": "recordings/fergus-v1/fergus/puzzle-error.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/puzzle-error.provenance.json",
+      "alignmentPath": "alignment/puzzle-error.json"
+    },
+    {
+      "id": "puzzle-playback",
+      "group": "puzzles",
+      "text": "The verified line is playing through now.",
+      "audioPath": "recordings/fergus-v1/fergus/puzzle-playback.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/puzzle-playback.provenance.json",
+      "alignmentPath": "alignment/puzzle-playback.json"
+    },
+    {
+      "id": "puzzle-revealed",
+      "group": "puzzles",
+      "text": "This is recorded as revealed, and the solution is below.",
+      "audioPath": "recordings/fergus-v1/fergus/puzzle-revealed.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/puzzle-revealed.provenance.json",
+      "alignmentPath": "alignment/puzzle-revealed.json"
+    },
+    {
+      "id": "puzzle-solved-after-retry",
+      "group": "puzzles",
+      "text": "Solved on the second go, and both the miss and the solve are on record.",
+      "audioPath": "recordings/fergus-v1/fergus/puzzle-solved-after-retry.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/puzzle-solved-after-retry.provenance.json",
+      "alignmentPath": "alignment/puzzle-solved-after-retry.json"
+    },
+    {
+      "id": "puzzle-solved-clean",
+      "group": "puzzles",
+      "text": "Solved without a wrong move, which is good.",
+      "audioPath": "recordings/fergus-v1/fergus/puzzle-solved-clean.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/puzzle-solved-clean.provenance.json",
+      "alignmentPath": "alignment/puzzle-solved-clean.json"
+    },
+    {
+      "id": "puzzle-rejected",
+      "group": "puzzles",
+      "text": "That move does not solve it, and your earlier correct moves are kept.",
+      "audioPath": "recordings/fergus-v1/fergus/puzzle-rejected.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/puzzle-rejected.provenance.json",
+      "alignmentPath": "alignment/puzzle-rejected.json"
+    },
+    {
+      "id": "puzzle-next-move",
+      "group": "puzzles",
+      "text": "Next one, then.",
+      "audioPath": "recordings/fergus-v1/fergus/puzzle-next-move.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/puzzle-next-move.provenance.json",
+      "alignmentPath": "alignment/puzzle-next-move.json"
+    },
+    {
+      "id": "puzzle-cold",
+      "group": "puzzles",
+      "text": "Calculate it out, and only then move.",
+      "audioPath": "recordings/fergus-v1/fergus/puzzle-cold.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/puzzle-cold.provenance.json",
+      "alignmentPath": "alignment/puzzle-cold.json"
+    },
+    {
+      "id": "game-unavailable",
+      "group": "operational",
+      "text": "The engine has not said enough to explain this, but the board still works fine.",
+      "audioPath": "recordings/fergus-v1/fergus/game-unavailable.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/game-unavailable.provenance.json",
+      "alignmentPath": "alignment/game-unavailable.json"
+    },
+    {
+      "id": "game-review-paused",
+      "group": "operational",
+      "text": "The review is paused, so resume below or move a piece around.",
+      "audioPath": "recordings/fergus-v1/fergus/game-review-paused.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/game-review-paused.provenance.json",
+      "alignmentPath": "alignment/game-review-paused.json"
+    },
+    {
+      "id": "game-browse-instructions",
+      "group": "operational",
+      "text": "Pick a move, or move a piece to try your own idea.",
+      "audioPath": "recordings/fergus-v1/fergus/game-browse-instructions.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/game-browse-instructions.provenance.json",
+      "alignmentPath": "alignment/game-browse-instructions.json"
+    },
+    {
+      "id": "book-opening-entry-1",
+      "group": "game_review",
+      "text": "Book move, from a recognized opening, and that is all it says.",
+      "audioPath": "recordings/fergus-v1/fergus/book-opening-entry-1.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/book-opening-entry-1.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-1.json"
+    },
+    {
+      "id": "book-opening-entry-2",
+      "group": "game_review",
+      "text": "This move is on file in the opening book.",
+      "audioPath": "recordings/fergus-v1/fergus/book-opening-entry-2.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/book-opening-entry-2.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-2.json"
+    },
+    {
+      "id": "book-opening-entry-3",
+      "group": "game_review",
+      "text": "Opening theory covers this move, as it happens.",
+      "audioPath": "recordings/fergus-v1/fergus/book-opening-entry-3.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/book-opening-entry-3.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-3.json"
+    },
+    {
+      "id": "book-opening-follow-1",
+      "group": "game_review",
+      "text": "The next move is also from the book, unsurprisingly.",
+      "audioPath": "recordings/fergus-v1/fergus/book-opening-follow-1.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/book-opening-follow-1.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-1.json"
+    },
+    {
+      "id": "book-opening-follow-2",
+      "group": "game_review",
+      "text": "Page turned, and the book still covers it.",
+      "audioPath": "recordings/fergus-v1/fergus/book-opening-follow-2.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/book-opening-follow-2.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-2.json"
+    },
+    {
+      "id": "book-opening-follow-3",
+      "group": "game_review",
+      "text": "The reply is from the book as well, which is consistent.",
+      "audioPath": "recordings/fergus-v1/fergus/book-opening-follow-3.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/book-opening-follow-3.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-3.json"
+    },
+    {
+      "id": "book-opening-follow-4",
+      "group": "game_review",
+      "text": "Theory keeps going for one more move.",
+      "audioPath": "recordings/fergus-v1/fergus/book-opening-follow-4.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/book-opening-follow-4.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-4.json"
+    },
+    {
+      "id": "book-opening-follow-5",
+      "group": "game_review",
+      "text": "A known move, followed by moving on.",
+      "audioPath": "recordings/fergus-v1/fergus/book-opening-follow-5.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/book-opening-follow-5.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-5.json"
+    },
+    {
+      "id": "book-opening-follow-6",
+      "group": "game_review",
+      "text": "More book, as expected by now.",
+      "audioPath": "recordings/fergus-v1/fergus/book-opening-follow-6.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/book-opening-follow-6.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-6.json"
+    },
+    {
+      "id": "book-opening-follow-7",
+      "group": "game_review",
+      "text": "Book again, which is fine.",
+      "audioPath": "recordings/fergus-v1/fergus/book-opening-follow-7.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/book-opening-follow-7.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-7.json"
+    },
+    {
+      "id": "book-opening-follow-8",
+      "group": "game_review",
+      "text": "The book is still in charge here, which tells us where we are and nothing about quality.",
+      "audioPath": "recordings/fergus-v1/fergus/book-opening-follow-8.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/book-opening-follow-8.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-8.json"
+    },
+    {
+      "id": "game-review-opened",
+      "group": "operational",
+      "text": "Game's open. Go ahead.",
+      "audioPath": "recordings/fergus-v1/fergus/game-review-opened.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/game-review-opened.provenance.json",
+      "alignmentPath": "alignment/game-review-opened.json"
+    },
+    {
+      "id": "lesson-wrong-move",
+      "group": "lessons",
+      "text": "Legal, but the lesson wants another move.",
+      "audioPath": "recordings/fergus-v1/fergus/lesson-wrong-move.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/lesson-wrong-move.provenance.json",
+      "alignmentPath": "alignment/lesson-wrong-move.json"
+    },
+    {
+      "id": "lesson-correct-move",
+      "group": "lessons",
+      "text": "Correct, nothing more to add.",
+      "audioPath": "recordings/fergus-v1/fergus/lesson-correct-move.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/lesson-correct-move.provenance.json",
+      "alignmentPath": "alignment/lesson-correct-move.json"
+    },
+    {
+      "id": "lesson-move-revealed",
+      "group": "lessons",
+      "text": "The move is shown.",
+      "audioPath": "recordings/fergus-v1/fergus/lesson-move-revealed.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/lesson-move-revealed.provenance.json",
+      "alignmentPath": "alignment/lesson-move-revealed.json"
+    },
+    {
+      "id": "lesson-guided-playback",
+      "group": "lessons",
+      "text": "The line plays through.",
+      "audioPath": "recordings/fergus-v1/fergus/lesson-guided-playback.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/lesson-guided-playback.provenance.json",
+      "alignmentPath": "alignment/lesson-guided-playback.json"
+    },
+    {
+      "id": "lesson-rehearsal-prompt",
+      "group": "lessons",
+      "text": "Play what you learned.",
+      "audioPath": "recordings/fergus-v1/fergus/lesson-rehearsal-prompt.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/lesson-rehearsal-prompt.provenance.json",
+      "alignmentPath": "alignment/lesson-rehearsal-prompt.json"
+    },
+    {
+      "id": "lesson-branch-entered",
+      "group": "lessons",
+      "text": "This line is an alternative, and the main one waits.",
+      "audioPath": "recordings/fergus-v1/fergus/lesson-branch-entered.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/lesson-branch-entered.provenance.json",
+      "alignmentPath": "alignment/lesson-branch-entered.json"
+    },
+    {
+      "id": "lesson-chapter-complete",
+      "group": "lessons",
+      "text": "Chapter over, progress kept.",
+      "audioPath": "recordings/fergus-v1/fergus/lesson-chapter-complete.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/lesson-chapter-complete.provenance.json",
+      "alignmentPath": "alignment/lesson-chapter-complete.json"
+    },
+    {
+      "id": "lesson-game-opened",
+      "group": "lessons",
+      "text": "The full game can be stepped through now.",
+      "audioPath": "recordings/fergus-v1/fergus/lesson-game-opened.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/lesson-game-opened.provenance.json",
+      "alignmentPath": "alignment/lesson-game-opened.json"
+    },
+    {
+      "id": "lesson-error",
+      "group": "lessons",
+      "text": "A reload is needed.",
+      "audioPath": "recordings/fergus-v1/fergus/lesson-error.opus",
+      "sidecarPath": "recordings/fergus-v1/fergus/lesson-error.provenance.json",
+      "alignmentPath": "alignment/lesson-error.json"
+    }
+  ]
+}

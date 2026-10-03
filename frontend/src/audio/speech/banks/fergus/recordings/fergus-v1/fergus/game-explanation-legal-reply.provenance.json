@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "game-explanation-legal-reply",
+      "label": "Game explanation legal reply",
+      "text": "The other side is allowed the marked reply, so go ahead and try it."
+    },
+    "takeId": null
+  },
+  "requestHash": "c3127588a5a4320aea19156e70433e4fce49a49949446603946c1f4c36174543",
+  "recordedAt": "2026-10-03T05:43:35.984Z",
+  "sha256": "17f609d5f0c07a3a2eb92f80cb6a5a32e2449fa534b354b69241b8d3a1be206c",
+  "bytes": 14579,
+  "requestId": "ieKCTjhaceHQQYlqSJ1D",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e957bdfbf01f717c332d0e249ecbb66b174e125bc254f009b410b61744d7eb7d",
+    "bytes": 72768
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

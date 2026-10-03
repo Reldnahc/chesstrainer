@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "positional-rook-open-alternative",
+      "label": "Positional rook open alternative",
+      "text": "A different move would have given a rook an open file, with no pawns on it."
+    },
+    "takeId": null
+  },
+  "requestHash": "c1458df56e83ee7d4fdc111a08d78ca1050af6a904906c40555a845665b963f5",
+  "recordedAt": "2026-10-03T05:41:15.937Z",
+  "sha256": "a941b53e0a5c4a7ecd7d590112d78ed69b259a4adb5f4d4c9040f7ccbfcf52aa",
+  "bytes": 15889,
+  "requestId": "Wkyc4Em7TqvukHNJrBHR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7dfdbfdaf7aae94de0569f4e853bb0356382a6acda0c7cac507b10c87d2e48e4",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-check",
+      "label": "Explanation frame capture promotion check",
+      "text": "The pawn takes, becomes a new piece, and gives check, in a single move."
+    },
+    "takeId": null
+  },
+  "requestHash": "bcee23fcff58cf4a53303cf5207b36232bf887a10849073f8ceacc0c23b346bf",
+  "recordedAt": "2026-10-03T05:43:03.249Z",
+  "sha256": "670b3b0331b6d59fab503410d890aa04ad7f8d5c2dc9d56575750a2f79822b13",
+  "bytes": 16910,
+  "requestId": "E8LvuhQ3npL4U8psnh1B",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6945e75b870046e87ba02222e088d64a69322ac3cb7322c737ddb87d1fa13306",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

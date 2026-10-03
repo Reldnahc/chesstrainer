@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "opening-recall-rejected-changed",
+      "label": "Opening recall rejected changed",
+      "text": "That is not in your selected lines, so try again; the study changed, so this attempt leaves the schedule alone."
+    },
+    "takeId": null
+  },
+  "requestHash": "1b9bc6ab5a1aabd987d996f27bcf94765ff22aaa6e2c3d2fc19c7dcad1bba2c2",
+  "recordedAt": "2026-10-03T05:44:09.853Z",
+  "sha256": "6577a8a76d28f6e74160a99c1dcf9d1af4ce3d63f2fcf2de7858b7b71eea066e",
+  "bytes": 24248,
+  "requestId": "NY1mnyXiDoTXKcriTWhB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f6e963cd999c597bd0010c8dd50d0301e28f99fe1fffa156e5334eeb40db4032",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

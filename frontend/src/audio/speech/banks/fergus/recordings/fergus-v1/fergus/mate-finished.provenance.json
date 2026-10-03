@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "mate-finished",
+      "label": "Mate finished",
+      "text": "That is checkmate, with no legal escape for the king, which settles things."
+    },
+    "takeId": null
+  },
+  "requestHash": "d126490651c7d77f45f5f5f103a2ea455e37e6ee63a6e495f6f421fc3924ff9d",
+  "recordedAt": "2026-10-03T05:42:23.835Z",
+  "sha256": "3c262cd87de331f34b24d440e15daf84ede121cfecbdb6ce201e0a6cbce10c4c",
+  "bytes": 17233,
+  "requestId": "2gWkpEIi6wSDxjqlkQYK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a93d2bd0450544c3348ec6041839a6c22a2c03802e1e4d72dcbfde7702cd96b2",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

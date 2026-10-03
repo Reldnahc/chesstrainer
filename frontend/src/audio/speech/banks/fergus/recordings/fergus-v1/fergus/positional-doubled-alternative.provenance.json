@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "positional-doubled-alternative",
+      "label": "Positional doubled alternative",
+      "text": "Stacking two same-colored pawns on one file is what a different move would have done."
+    },
+    "takeId": null
+  },
+  "requestHash": "8bd63f408a79a611bd3b1a7d5d5fc88ab137ea17108e5de6f69190dbe22d4ab1",
+  "recordedAt": "2026-10-03T05:41:47.304Z",
+  "sha256": "9f306cfbcbc26f41cff096075cae791f3e0bff10771a26eb4c07301c1160bfa8",
+  "bytes": 17330,
+  "requestId": "VBgfNlv9G4VRPnmPND8d",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1dfa7cdf169968be2c2ba857684cd81d08db62008f9e1d58a7e8f74c3b32b5a6",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

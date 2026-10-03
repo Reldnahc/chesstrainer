@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-capture",
+      "label": "Explanation finding discovered capture",
+      "text": "A blocker moves out of the way, and the piece behind it makes the capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "abec256935f0a5e76e1c649a53f51636fa5e035a7e8633db962468e826a8fca2",
+  "recordedAt": "2026-10-03T05:43:24.710Z",
+  "sha256": "e4525a0f94b1bc9d33010fdd55566f9cdb3aaa8886ab085a120cfb245a704179",
+  "bytes": 15088,
+  "requestId": "yjQGuUeU1M68z7LNLj6A",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1dd79780664a6b67ad248090e4e9ff1920d9ccfd446f89f6120f5aec568c83e2",
+    "bytes": 74022
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

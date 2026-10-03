@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "explanation-frame-castle-mate",
+      "label": "Explanation frame castle mate",
+      "text": "Castling, and the rook arrives giving checkmate, with no legal move out for the opposing king."
+    },
+    "takeId": null
+  },
+  "requestHash": "b5a21ee299f19c4bc1a3d288bd2396c5d60aba493b00a8cd265e402c1863bdae",
+  "recordedAt": "2026-10-03T05:43:09.534Z",
+  "sha256": "8baa039545eda4d628eb0df215d48cdd506db40b4913177ff855a1fe7eff634b",
+  "bytes": 20230,
+  "requestId": "wPk4Vjq2ryIko9Os7VmJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c5690ff5f4f1fb7e8fed8dda44888b41c0652e9fa9895c4e8544bb39bba9f366",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

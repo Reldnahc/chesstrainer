@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "explanation-finding-double-check",
+      "label": "Explanation finding double check",
+      "text": "This is double check, two pieces at once, so only a king move will do."
+    },
+    "takeId": null
+  },
+  "requestHash": "8e8f8123d18256c35bc45702854461bc0f4920961252840dcecefa763463eae2",
+  "recordedAt": "2026-10-03T05:43:27.416Z",
+  "sha256": "434690cb96237450c0eeddc643a830dea9611d426de71b05794c4979ddfdfb95",
+  "bytes": 16604,
+  "requestId": "s5ffWQlF1yMNUmmNPjDE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "472cad84aeccc6cc753ec059fef23164e2211cc9375a004d849efc0a315f7f2a",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

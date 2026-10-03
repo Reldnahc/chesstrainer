@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "positional-passer-advance-actual",
+      "label": "Positional passer advance actual",
+      "text": "The passed pawn takes another step, which leaves one square fewer to go."
+    },
+    "takeId": null
+  },
+  "requestHash": "0be3728c6be7cefa86842d2076ac71f0b9015afc50e7cdf71affd070651e8c56",
+  "recordedAt": "2026-10-03T05:41:25.153Z",
+  "sha256": "195c319d43603c028d21ae6e3e494f556da4c4213667fda7883dd3aefc7bbc0e",
+  "bytes": 16248,
+  "requestId": "lunPECMj8iarcBEVRs7t",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cdb04c88ac738add64c040ccf83f80174855e18887304eaf830df3102e257f27",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

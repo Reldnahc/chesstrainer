@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "positional-development-actual",
+      "label": "Positional development actual",
+      "text": "A minor piece is out of its starting square, which is development, done without fuss."
+    },
+    "takeId": null
+  },
+  "requestHash": "be60a10c47837d6eba503bf9bfc5fcd16c97fcda4f328e1acd30cb95dcafeefd",
+  "recordedAt": "2026-10-03T05:41:11.634Z",
+  "sha256": "d4a93488d47d9dd5846126eaadd5d68a1c796676e50f6a29c2e04e80f5030639",
+  "bytes": 19081,
+  "requestId": "r7QXLJf0SWEmU0LxBjcR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "76e42c296414e3faae58902e1af2c3a23435c4edbe432bbcbf984905eb1b59d8",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

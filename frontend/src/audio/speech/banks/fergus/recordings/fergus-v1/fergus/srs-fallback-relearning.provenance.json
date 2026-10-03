@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "srs-fallback-relearning",
+      "label": "Srs fallback relearning",
+      "text": "It is solved, though the recall stays marked for relearning all the same."
+    },
+    "takeId": null
+  },
+  "requestHash": "775c764ae513b028aed1ebefca593fe6b5cdb719a1fe698a89bab2d2fb6184d1",
+  "recordedAt": "2026-10-03T05:42:47.135Z",
+  "sha256": "bfb8a7f5935a52e94d4dff54689547686cf7a8ba2c5ad3920bd7ce6e4bdce54b",
+  "bytes": 15529,
+  "requestId": "IXCAid23C0h0kfzTrWm8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1b9901b7a1efcaa2e1dfcea708277d3b47a8da975d28182929120c7479981876",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

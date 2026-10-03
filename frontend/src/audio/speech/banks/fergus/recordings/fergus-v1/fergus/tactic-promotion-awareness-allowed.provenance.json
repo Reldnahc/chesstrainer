@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "tactic-promotion-awareness-allowed",
+      "label": "Tactic promotion awareness allowed",
+      "text": "One of the other side's pawns now has a road to promotion, so the squares are worth counting."
+    },
+    "takeId": null
+  },
+  "requestHash": "1a0a597f03358ab706bdd2cb37432deaec2b99804e62e33c58a1a92d8b354b20",
+  "recordedAt": "2026-10-03T05:40:45.552Z",
+  "sha256": "d47e054fb62eac7fa6cd5fb056fc2bf45d9664aedc6b48aa56ef2809590919df",
+  "bytes": 19036,
+  "requestId": "ypT3IFqIueiscTDERN3g",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "58e4861629f5b0f76be8c23f6db9da777c39e31215cc02b0405238b82f81cb5c",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

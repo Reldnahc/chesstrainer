@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "chance-taken",
+      "label": "Chance taken",
+      "text": "A chance was left on the table by the opponent's last move, and this move collects it, efficiently."
+    },
+    "takeId": null
+  },
+  "requestHash": "304eb89b915393b931e2d579b17cd0031ef349e7b638893474017e02183e3dfc",
+  "recordedAt": "2026-10-03T05:42:13.515Z",
+  "sha256": "fe75d68a46b632a0c2641635f36c8c6acce72ddbbc62fbed2756f383e1552511",
+  "bytes": 21758,
+  "requestId": "ZKXh7FuuJ5BUz0TmPgtx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d17d0e13b7a1df7f826885321206ce8243d0790857a62c75d8da35b0c5bc4769",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

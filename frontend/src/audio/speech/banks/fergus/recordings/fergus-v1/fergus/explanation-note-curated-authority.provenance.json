@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "explanation-note-curated-authority",
+      "label": "Explanation note curated authority",
+      "text": "Saved answers make the rules in this exercise, and other legal moves can still be decent chess."
+    },
+    "takeId": null
+  },
+  "requestHash": "d4d8fe93999227f8a04037f0630cdc9483758b041f1964b87bc58590314c4d4c",
+  "recordedAt": "2026-10-03T05:43:55.134Z",
+  "sha256": "544f353a2f77160d53b89f5a6b7a5238195fb812f6c7869651b083d3f1b0d95d",
+  "bytes": 20279,
+  "requestId": "dHRbdnj7pmyQrglzFJzo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1281996c2b18a2c4b44172a93351e462387c3c21ad4b2cd9ffe1af2150df0b73",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

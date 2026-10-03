@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-promotion-ordinary",
+      "label": "Explanation frame quiet promotion ordinary",
+      "text": "The pawn reaches the last rank and turns into something new."
+    },
+    "takeId": null
+  },
+  "requestHash": "c416daf1e81df0a5731404355e285a78f362b6253a4c1fc02c9025f419ef2806",
+  "recordedAt": "2026-10-03T05:42:53.027Z",
+  "sha256": "eefe1c1ba33ec179fd3279ecaddeb98cfbbb0b9709cc963cab9b59f0dd6dde5b",
+  "bytes": 13867,
+  "requestId": "tk6yFpG2o3Zlek5QfuIn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bda978e22a6277d963a6ae166b21a1acd54e36052a642aa8c8577da775d5c7e9",
+    "bytes": 69007
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "explanation-cue-abandoned-defender",
+      "label": "Explanation cue abandoned defender",
+      "text": "Before a defender moves, see who loses cover."
+    },
+    "takeId": null
+  },
+  "requestHash": "0bd974fa1ee268c6b8351412635abf26616ac869aae12224fb0ff47bdf29d600",
+  "recordedAt": "2026-10-03T05:43:51.146Z",
+  "sha256": "a4b93f5d3d215c498d582bbfb04ab9aa57b697fa975971c84661ab04223a0a18",
+  "bytes": 11805,
+  "requestId": "6NjUWLonOBlxuRIK2Hlq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e1b2a146fa48b07caf43cdc1635ad9e7a3e7bc83fc032f54ec31a86cecccac66",
+    "bytes": 58558
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

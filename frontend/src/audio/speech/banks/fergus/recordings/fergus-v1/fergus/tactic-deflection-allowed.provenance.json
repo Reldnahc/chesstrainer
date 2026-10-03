@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed",
+      "label": "Tactic deflection allowed",
+      "text": "This lets the other side lure a defender away, and what it covers would be left uncovered."
+    },
+    "takeId": null
+  },
+  "requestHash": "c8d4d7bf8b4b47e294096cd97fcb450cd8c5af476e40f488c1b1b0c21e4b3341",
+  "recordedAt": "2026-10-03T05:40:59.469Z",
+  "sha256": "04549f8131841eaeec8328e8f54d29f71d1e157812c56c4b615a7385c3729c9c",
+  "bytes": 19592,
+  "requestId": "8ORc5JCstxwqQq1787G8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5d646c241f5b706f207b54ba80ea3da744e858c33914fc3b23d4316572ae0046",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

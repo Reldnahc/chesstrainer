@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "tactic-promotion-awareness-played",
+      "label": "Tactic promotion awareness played",
+      "text": "A pawn is heading for the last rank to become something bigger, which is the whole point of this move."
+    },
+    "takeId": null
+  },
+  "requestHash": "129f6c116d079e24433b6ef0d6b8a8846a34d4f49559be0c40c3277e60c0db2b",
+  "recordedAt": "2026-10-03T05:40:43.906Z",
+  "sha256": "511304d5fbc8e35265387681e17e456f717c6bfd73b2ccc613562e42db9528ef",
+  "bytes": 19887,
+  "requestId": "iaLD7hRNud7W57jlJPls",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9ee579d7e262fc58f2a69168d6b55ecb64a86e4fd0b37bfeab00fcd861569f65",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

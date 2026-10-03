@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "tactic-skewer-missed",
+      "label": "Tactic skewer missed",
+      "text": "A skewer down one line was available with another move, front piece then back piece, and it was passed up."
+    },
+    "takeId": null
+  },
+  "requestHash": "b2324a8cf7bff26c3abfc6d4d43ab55beb8b2d92f20a278a73a854388e6ff6fc",
+  "recordedAt": "2026-10-03T05:40:32.894Z",
+  "sha256": "52c902a9787f345cca91fa15b17b8b95afc18b747c527bdff1947acf04dba4c0",
+  "bytes": 21725,
+  "requestId": "SD6nmiqEZTKKz6uO26HB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ba60b4c2d1be25163409016bdf16317ab45611352d2b08712d5b4ce6c19d4e6b",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "srs-cold",
+      "label": "Srs cold",
+      "text": "It's your move, and there's no rush about it."
+    },
+    "takeId": null
+  },
+  "requestHash": "02beadd4154cd1e0fa2af81073eb5cb5786480ecd32ffe8dbfe9e06e52582bd6",
+  "recordedAt": "2026-10-03T05:42:27.812Z",
+  "sha256": "4655570dfcaa8ce3971b3adff88ddbb75adafd77fcb2deab8119a096c1284aa9",
+  "bytes": 10165,
+  "requestId": "EBXKkgJIk0leAcIWaChU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2d962cff7a30d241e7e4235ba7c4073c482a696a938e926e23b0de29d49ee56c",
+    "bytes": 51035
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

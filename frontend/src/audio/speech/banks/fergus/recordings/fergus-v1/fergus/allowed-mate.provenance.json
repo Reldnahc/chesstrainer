@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "allowed-mate",
+      "label": "Allowed mate",
+      "text": "This allows a forced checkmate, and that is the headline."
+    },
+    "takeId": null
+  },
+  "requestHash": "938dc29735897b562640d0a9a84908d7a82be6c31ca144805cd16c8a26568474",
+  "recordedAt": "2026-10-03T05:41:48.606Z",
+  "sha256": "53df4a38a1823fa93030cc45ee412d11b2a12ae30296e54666b94dd87965afbe",
+  "bytes": 14177,
+  "requestId": "vB8twOxRPG4UE9ASCWIZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1821f8bbaf47ffe14fc7ac7d8f9baf83106a8f3f9949640aa5b3d279a207471c",
+    "bytes": 71515
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

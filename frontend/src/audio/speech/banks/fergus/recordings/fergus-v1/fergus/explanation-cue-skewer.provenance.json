@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "explanation-cue-skewer",
+      "label": "Explanation cue skewer",
+      "text": "Look behind the first target, because sometimes there is a second one."
+    },
+    "takeId": null
+  },
+  "requestHash": "0bdfe1d58f47b9a8e4458af4245ca079a846066f99ec5359792430a36f2eb4a1",
+  "recordedAt": "2026-10-03T05:43:42.471Z",
+  "sha256": "6425cf49a40b25f18f748376ded201b878d9c411880c3fc531a05f5e37997037",
+  "bytes": 14398,
+  "requestId": "fAkwv3apH6SUQT9SHlz1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c61639c513eae4e6398a5863cc8f1975c0f6800dd29cc9a9a7770d16917cdf6b",
+    "bytes": 71515
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

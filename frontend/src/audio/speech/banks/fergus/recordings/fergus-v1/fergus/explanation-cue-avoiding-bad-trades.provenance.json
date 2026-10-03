@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "explanation-cue-avoiding-bad-trades",
+      "label": "Explanation cue avoiding bad trades",
+      "text": "Count your capture, then count their recapture, then decide."
+    },
+    "takeId": null
+  },
+  "requestHash": "6f769f8259cf03128774ad92463a544d22463b918b833ab7002202899f6ccb2b",
+  "recordedAt": "2026-10-03T05:43:52.286Z",
+  "sha256": "502cd3252fb35919bcc7268ba5d9c989e980dabd488643cf02cc0fcfbb151b37",
+  "bytes": 14835,
+  "requestId": "aNQDq546LpDMHUuolJ9R",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b6a791888d2bbc0487aca06bcd7eddb96c5b9d8b165ebe74b882c66a52261664",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

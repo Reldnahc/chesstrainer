@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "srs-summary-material-loss",
+      "label": "Srs summary material loss",
+      "text": "Over the saved line, the side that made this move loses material, on balance."
+    },
+    "takeId": null
+  },
+  "requestHash": "df587b83604b2629d71df05d111936b0c820f5155c1252e288b7ce35b41bfda1",
+  "recordedAt": "2026-10-03T05:42:35.928Z",
+  "sha256": "5793634511abfd537908583e5dc311d51aa3305512fb578f79226dd99dc9e629",
+  "bytes": 17838,
+  "requestId": "hZGLbeH1QtcqBlX1jT9W",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3bb5ef575a89a6100c033921fa60045f3dcf9b630e13f3567bfbbb70752e9ccb",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "explanation-cue-back-rank",
+      "label": "Explanation cue back rank",
+      "text": "If a back-rank defender is about to leave, the king needs an exit first."
+    },
+    "takeId": null
+  },
+  "requestHash": "ee534eeade2282db5acf508a7eb34744f94f5fa26a9cd326a068a6095f9e7888",
+  "recordedAt": "2026-10-03T05:43:48.561Z",
+  "sha256": "c02bca2d22b9c315f63c8ccab0cb008bc971da8ab7c1dc170a32a40de06f3f96",
+  "bytes": 16445,
+  "requestId": "rpo8vpai1Xb6kPiV3l40",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8dbeabaa1d0500d11d4bc318157a76106a969ce84f808203a2126503aba00c06",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

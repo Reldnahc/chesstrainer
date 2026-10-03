@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "explanation-cue-discovered-attack",
+      "label": "Explanation cue discovered attack",
+      "text": "When a blocking piece moves, a line opens, so check where it leads."
+    },
+    "takeId": null
+  },
+  "requestHash": "ff833de52f62d5afd46a86e079014ca060525c6c4c95a330a5dcf011dac703c9",
+  "recordedAt": "2026-10-03T05:43:45.423Z",
+  "sha256": "8a6714e89e3db758b54b4113914b65a5710b852a1961d5096b5b59c477e65448",
+  "bytes": 16320,
+  "requestId": "cIAPuBh4VJzyYplzfNaz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "12870ecbc094ebf8cd33b6b0e5cfaac84f1f1f68e250da8a50210f4b4db50d6b",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

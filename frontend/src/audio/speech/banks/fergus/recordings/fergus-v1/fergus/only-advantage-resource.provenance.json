@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "only-advantage-resource",
+      "label": "Only advantage resource",
+      "text": "Of the moves we checked, this was the one that kept the advantage, and all the others lost."
+    },
+    "takeId": null
+  },
+  "requestHash": "4797f203af1bd033c098865a79bd3c19a49b15c75ac9ece96f0ff822df33c04d",
+  "recordedAt": "2026-10-03T05:41:54.453Z",
+  "sha256": "b202cd849570c39b25ffeb7b0adc0673848293ef710cd066f8b173dc1db37533",
+  "bytes": 19067,
+  "requestId": "vot28KxGs4maaS2qsEDU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "07b641615d3614ae14ea087d021cfd4a1d480d87705725a305419c34fdbacf70",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

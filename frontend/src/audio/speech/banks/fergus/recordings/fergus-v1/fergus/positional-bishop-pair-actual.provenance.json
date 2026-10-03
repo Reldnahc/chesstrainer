@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "positional-bishop-pair-actual",
+      "label": "Positional bishop pair actual",
+      "text": "This capture breaks the bishop pair, so that side now covers one square color with bishops instead of two."
+    },
+    "takeId": null
+  },
+  "requestHash": "41cf5c666cc5ebb55837e0b8a42fa9e296eb46bf287d799aefd941d29f3f0a8b",
+  "recordedAt": "2026-10-03T05:41:42.592Z",
+  "sha256": "b62fe340a05173959b2582a3cfe4642ec6a03df77abca7072b5e34129cdf8cbf",
+  "bytes": 21789,
+  "requestId": "xg3us3mP9j6Q3MNhmSS0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9143f26fb693070fbd2e20db610ce620aa011382cf3d94489bcb0ed0d6a409ec",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}
