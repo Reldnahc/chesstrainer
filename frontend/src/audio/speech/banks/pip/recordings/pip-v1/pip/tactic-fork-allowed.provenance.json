@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "tactic-fork-allowed",
+      "label": "Tactic fork allowed",
+      "text": "Ah, here's the detail. This lets the other side set up a fork, with one of their pieces going after more than one target together."
+    },
+    "takeId": null
+  },
+  "requestHash": "29ccc4288321a367a509db52ea10709aa9fb3da1bbeae76ab66d75f962ebb284",
+  "recordedAt": "2026-10-03T06:14:30.485Z",
+  "sha256": "5316934522fe127548e024e2ad2dc7c8d24a2d68a1c52f165f41397ef3df826d",
+  "bytes": 27415,
+  "requestId": "eRJcG66AFmx0ZvP37mC2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "75975992a0e703a91ac9a020b41f862919c9afb5ee328f218ca65a001f31c7ae",
+    "bytes": 139224
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

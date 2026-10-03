@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "game-unavailable",
+      "label": "Game unavailable",
+      "text": "I haven't got enough from the engine to explain this position. You can still move the pieces about."
+    },
+    "takeId": null
+  },
+  "requestHash": "d42038a1ca15a6070a96a5d5ff3ec1929215d41987ccef5abb81e51d4c727357",
+  "recordedAt": "2026-10-03T06:15:23.968Z",
+  "sha256": "42e1b35e98fad5454cef54db84d2c8cb20bf183793eec5a40ada7f90d3aa9fe8",
+  "bytes": 18561,
+  "requestId": "16kBr9iFdbOlfCvg2p0V",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c744098f715bd0f6639893253ad19a5793839817d15dfc00a110e3e4b582efa5",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

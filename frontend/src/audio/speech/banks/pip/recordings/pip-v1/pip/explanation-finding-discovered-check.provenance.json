@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check",
+      "label": "Explanation finding discovered check",
+      "text": "The moving piece gets out of the way, and check comes from the piece behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "d3393318a391fa82563f4002e31cbd2c300fe9c6c63dc3c2ae9c53496e3b7b18",
+  "recordedAt": "2026-10-03T06:15:19.282Z",
+  "sha256": "d777a226dd4dd68beabadf9f82b293b319a15ed5a1973db550b3a725efb9f25d",
+  "bytes": 15804,
+  "requestId": "PXGu9qIXW2WTpGRUyQwo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7ae5506cb23d1c123494317435205916fcc762cf5fd8ef99c17815adcb8c60b1",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

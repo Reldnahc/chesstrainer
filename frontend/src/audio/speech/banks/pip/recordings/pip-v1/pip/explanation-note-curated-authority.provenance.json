@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "explanation-note-curated-authority",
+      "label": "Explanation note curated authority",
+      "text": "For this exercise, the saved answers are the ones that count. A different legal move isn't bad chess just because of that."
+    },
+    "takeId": null
+  },
+  "requestHash": "2773e94c8030ccc0697c1f1c380698f2e509bdfced1334934c876a81e4a2eb7e",
+  "recordedAt": "2026-10-03T06:15:17.783Z",
+  "sha256": "9a7fde2ad83fbde2ab275c97362837ca9cea017a76b4c741646654290babff5c",
+  "bytes": 24960,
+  "requestId": "h6hnbI9U9AEQ7HCLCulX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5847216af5360f3463880d3f3c3b9548ae837c9335055787bb0fda8618b2ebd6",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

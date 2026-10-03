@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "reply-check",
+      "label": "Reply check",
+      "text": "The strongest reply is check. So the king comes first, before anything else."
+    },
+    "takeId": null
+  },
+  "requestHash": "9bb5eb29caab4d97e1603aa0ad292be523a5e63b9cf664558a223197a215be24",
+  "recordedAt": "2026-10-03T06:14:40.178Z",
+  "sha256": "da5692d010ac003fdf40eabe09698f37b824b95eeef23ddfb9bc27c899e86d18",
+  "bytes": 19224,
+  "requestId": "g19uzuxsPXZBDLBH14wn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d593b67024bd5626f778b0964ef95e8c1818f2feb790f5b206f5e9fe9e17f570",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

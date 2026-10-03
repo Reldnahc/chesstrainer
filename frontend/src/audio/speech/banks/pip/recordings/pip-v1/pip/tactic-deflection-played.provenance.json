@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "tactic-deflection-played",
+      "label": "Tactic deflection played",
+      "text": "That's the stuff. A deflection pulls a defender away from its job, and then the gap it leaves gets used."
+    },
+    "takeId": null
+  },
+  "requestHash": "fde75b4354ddd98242f641fa866685bf94c22f56efc6be6764cc2f85136e4a0a",
+  "recordedAt": "2026-10-03T06:14:38.802Z",
+  "sha256": "1481d57ddb6003443ecefb5d45fb667bf045c2ef23409c984c55bd2062b177b1",
+  "bytes": 23665,
+  "requestId": "UyatejCzfaaYDGxedm81",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fe1b8723bd251d10ece8c2e232e655ccc5429139e1be557f492809fa9020e20a",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

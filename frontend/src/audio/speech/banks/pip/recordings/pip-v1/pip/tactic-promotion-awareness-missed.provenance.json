@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "tactic-promotion-awareness-missed",
+      "label": "Tactic promotion awareness missed",
+      "text": "A stronger move had a pawn on its way to promotion. This move misses the chance to get it to the last rank."
+    },
+    "takeId": null
+  },
+  "requestHash": "1f934db4b9f7e7757ce128bfbdf9c08bf465c0df0ba3b09a59f20bb552005de9",
+  "recordedAt": "2026-10-03T06:15:01.897Z",
+  "sha256": "0880581d732a03bb5df8d7dc22696789d25a33d9d09eb5093ce0bad6fa5343be",
+  "bytes": 21844,
+  "requestId": "vAauZauF2qCHd8cgQbrk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4a17afdc6bc8206658aef2498c8d0f36f11548bce1e69171497dbea34ee65e3a",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

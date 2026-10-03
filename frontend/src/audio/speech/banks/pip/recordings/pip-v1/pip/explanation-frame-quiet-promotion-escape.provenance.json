@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-promotion-escape",
+      "label": "Explanation frame quiet promotion escape",
+      "text": "The pawn reaches the last rank and promotes, and that gets its own king out of check too."
+    },
+    "takeId": null
+  },
+  "requestHash": "2a0e06ae52c6a1678a6deb2e4b679d82a22493c30b1cec4984824567df63e83d",
+  "recordedAt": "2026-10-03T06:15:12.187Z",
+  "sha256": "d0bd05ac26b8236e88e62380a47f16ca2fe808cf21ac439529776b8ce098f54a",
+  "bytes": 18611,
+  "requestId": "RC1gLypjgMLDcB1Im11X",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bdb69bb0772666fcc1052faa4a98cac67af820a110a5d4c8f82a92bcd10a4366",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "explanation-cue-abandoned-defender",
+      "label": "Explanation cue abandoned defender",
+      "text": "Before you move a defender, check which pieces would lose its protection."
+    },
+    "takeId": null
+  },
+  "requestHash": "8101a50d821ff8627414f04becdfb0b71218181d43d8fa5cf458136f472b2aaa",
+  "recordedAt": "2026-10-03T06:15:13.364Z",
+  "sha256": "01d1627e5691a2d72202c3e760a46d3f60af5c9754fcfb8cdd029e727669c62c",
+  "bytes": 15571,
+  "requestId": "qulNkEYJU6Wmyl4IlkQr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "589620c98d94458ade176cf85a287bc8b0605174f9ba1a63cb16350260340eb0",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

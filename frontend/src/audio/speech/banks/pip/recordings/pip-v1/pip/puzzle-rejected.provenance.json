@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "puzzle-rejected",
+      "label": "Puzzle rejected",
+      "text": "Not that one. It doesn't solve the puzzle, but your correct moves so far are still saved."
+    },
+    "takeId": null
+  },
+  "requestHash": "027a4c773a71630a0eb1fa1962c92dce71a3f6b8f536b13f92f0437704645202",
+  "recordedAt": "2026-10-03T06:15:20.208Z",
+  "sha256": "ec3f9f8c223f6aa9d680035a40b1a142fa283fb973316ff86ad092ca23cf5839",
+  "bytes": 19638,
+  "requestId": "yLj14ZexRprQ749DGvNr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "be8d58e5fd234fc27054b8e30229ee6015d2e7d20b51ff5a78a76d92cc0ef2b5",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

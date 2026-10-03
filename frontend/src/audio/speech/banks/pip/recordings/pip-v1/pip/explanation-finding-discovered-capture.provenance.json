@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-capture",
+      "label": "Explanation finding discovered capture",
+      "text": "The blocking piece moves out of the way, and that opens a line for another piece. That second piece makes the capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "1c0ef89b28efd6917ace1a92e93d0b3a0e77186a4d4b4d4cb2b1ed59c6926bd5",
+  "recordedAt": "2026-10-03T06:15:17.989Z",
+  "sha256": "4744f2826e348c4fff11bb8919adfe21f306b9ff51924ae25da5db1abacf9c22",
+  "bytes": 24212,
+  "requestId": "OqwBanEhWIahLb6AwuIK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "88f264299bff9bb6e97cb36390f0c4ae787045d42e82c802693b578ca556a6fc",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

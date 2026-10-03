@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "book-opening-follow-7",
+      "label": "Book opening follow 7",
+      "text": "Still on the known track."
+    },
+    "takeId": null
+  },
+  "requestHash": "04bb9b6c76d400d0b5006cacf2f1635edaf19f24a2860d1e160b2e5ad0afe4be",
+  "recordedAt": "2026-10-03T06:15:10.538Z",
+  "sha256": "8d09827d71bb4e0f1097c78cbccd561bb98fc977c8dda4efc197e2a4a666e1da",
+  "bytes": 6630,
+  "requestId": "EEKdgMVAvnmMlwRV3cB7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9631e2702752e983a13e07a57ea6e2aa749c4dc27364a810972d4a9b44b1f963",
+    "bytes": 31808
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "lesson-game-opened",
+      "label": "Lesson game opened",
+      "text": "The entire game's there for a nosy. Have a wander, and pop back to the chapter whenever."
+    },
+    "takeId": null
+  },
+  "requestHash": "6c0b726b2534bdb127e7233939c6339819e2462f5dc1ba3358a782f516440a6c",
+  "recordedAt": "2026-10-03T06:15:24.001Z",
+  "sha256": "b79becd27cd73d2cce5aec87b1ef945688320bcbccde7ad00fe6e4d8b28e78bd",
+  "bytes": 18342,
+  "requestId": "Kt33EnII2blwrIU6J2Hv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "28a59e4c559102f2e9858006d99695dbc91d5a6c421a4cef1e923ad8f95b9dc9",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

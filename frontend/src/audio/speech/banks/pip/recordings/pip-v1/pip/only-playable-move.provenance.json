@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "only-playable-move",
+      "label": "Only playable move",
+      "text": "One move and no other. Of all the moves we checked, only this one kept the game playable. All the others were losing."
+    },
+    "takeId": null
+  },
+  "requestHash": "0106e58b939b1443ff810bc85dc736720dc9818677873f7b145ef349c9cfcc7a",
+  "recordedAt": "2026-10-03T06:14:35.635Z",
+  "sha256": "b26fcec95359b33422e366659eb50da5ce48c203ed32911c402a1c36af9e4cd7",
+  "bytes": 25862,
+  "requestId": "fsjAt88O6kOteAGKwNp8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5684a2fa238a2642d4accff839f294dfa39fc839ab46ef87766fba45fb53748f",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

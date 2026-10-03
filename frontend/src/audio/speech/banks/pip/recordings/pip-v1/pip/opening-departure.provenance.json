@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "opening-departure",
+      "label": "Opening departure",
+      "text": "The known opening moves stop here. From now on, it's all fresh."
+    },
+    "takeId": null
+  },
+  "requestHash": "8d61c453e529c37865edd2a425639b1148bf9c805be656d3b520d3f84090f4e6",
+  "recordedAt": "2026-10-03T06:14:53.213Z",
+  "sha256": "9d4d8f052b9e46495ebc184361d611d71aab9164b75745c5b7df037b55d3eec9",
+  "bytes": 16015,
+  "requestId": "CWCKSotRw7nVtYxQhSNY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4ff524681073a8480d93a0672e29c7701b11295411c558ad8384841998cd7dd9",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

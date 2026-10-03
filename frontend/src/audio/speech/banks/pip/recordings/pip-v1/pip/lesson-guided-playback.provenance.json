@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "lesson-guided-playback",
+      "label": "Lesson guided playback",
+      "text": "The moves are sliding along by themselves now. Keep your eyes on the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "ab031c6ba7b4b185555c0c439955d37a79dc67a411a3e7e5c13ea063d309984a",
+  "recordedAt": "2026-10-03T06:15:18.177Z",
+  "sha256": "d513eefaedbca1c72a8693cb94aaa1e6d42b9185a48c775f8825db67ea5a7c33",
+  "bytes": 15157,
+  "requestId": "FVgMOhD9HwBGxnmi9udC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c8932370ff5623b4a571cd43843e6ceaacd05fa5b8224dfb7c414f082e61036d",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

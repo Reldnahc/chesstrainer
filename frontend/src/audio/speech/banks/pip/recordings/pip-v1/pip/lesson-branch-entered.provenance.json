@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "lesson-branch-entered",
+      "label": "Lesson branch entered",
+      "text": "We've wobbled off down a different road for a bit. The main one's still there for later."
+    },
+    "takeId": null
+  },
+  "requestHash": "8cd5bf2ad9ce5e66d502296413f780b849740b88728d946be96fd1ba81b611ce",
+  "recordedAt": "2026-10-03T06:15:21.128Z",
+  "sha256": "ff462f6c44425bb1637107621fa7bb205bcde01a245c6fafb91fb62917634759",
+  "bytes": 15834,
+  "requestId": "QIW9BBRNj31Y4W61HKR4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9dd2fb8ff66c16f3583e1de1f54a79ffa969a7d87bd79cc4b2b5cb425d07c411",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

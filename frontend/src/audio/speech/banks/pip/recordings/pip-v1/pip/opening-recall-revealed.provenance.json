@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "opening-recall-revealed",
+      "label": "Opening recall revealed",
+      "text": "Here's how the opening line you're studying goes, move by move."
+    },
+    "takeId": null
+  },
+  "requestHash": "c642dec5b55b309d27e3c90344be1f9f0e5dc3d17d2e5353179c79f00e2d9e2c",
+  "recordedAt": "2026-10-03T06:15:26.611Z",
+  "sha256": "4faaf9c66f6503ce8d96fc6330202be8f2b24240664af0e2cb942df361058027",
+  "bytes": 14007,
+  "requestId": "kSFaj0RPMpNvcKUxGjVR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ca42ceef22634d8f1393d33bbf3fd81a712bac3d2681d48596b0c1310b31da69",
+    "bytes": 70261
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

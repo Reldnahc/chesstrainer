@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "repeated-issue",
+      "label": "Repeated issue",
+      "text": "This one's come up before. The same problem showed up earlier in this game. Put those moments side by side and look for the shared warning."
+    },
+    "takeId": null
+  },
+  "requestHash": "23cff65674ae6c0bbcb30af9b325d43eab9a1955e0cb57ae07109b5ccffcba02",
+  "recordedAt": "2026-10-03T06:15:01.632Z",
+  "sha256": "ab699440edb147dffd203e208e923d646f8bae76f588cba68ec343d643eb1ba1",
+  "bytes": 27825,
+  "requestId": "6LwDWrv4mVJMF663IjfT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6f0c0a53241816e661c33423d78ee70006f920be39b8e05843c4726d79a74a4e",
+    "bytes": 142986
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

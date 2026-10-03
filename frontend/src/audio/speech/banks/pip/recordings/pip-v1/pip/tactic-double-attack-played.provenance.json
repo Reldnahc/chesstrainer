@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "tactic-double-attack-played",
+      "label": "Tactic double attack played",
+      "text": "Two threats with the one move! That's a double attack, and each threat wants its own answer."
+    },
+    "takeId": null
+  },
+  "requestHash": "b09ddf83d580fdedd7c23dbc4386ba2ca95351154e5f7a20d42b14544e9f8637",
+  "recordedAt": "2026-10-03T06:14:32.982Z",
+  "sha256": "4ea943ac148b11aab51c88153e923af26d641b09c0e8fbdd3f1319eafb3180f0",
+  "bytes": 20607,
+  "requestId": "vDF9K7QrBleingLPhdJA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d903372530d412adb13cd2984950553b2ebc2020ecffa03f2da9678f4665b1f5",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

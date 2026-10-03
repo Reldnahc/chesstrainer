@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed",
+      "label": "Tactic discovered attack missed",
+      "text": "A different move had a discovered attack in it: shift one piece out of the way, and the one behind it attacks. This move doesn't do it."
+    },
+    "takeId": null
+  },
+  "requestHash": "d78de1730a4957f70fd952ff7b738c7ebf5e3c5511e67d5c271ed96047964f9e",
+  "recordedAt": "2026-10-03T06:14:31.250Z",
+  "sha256": "b45cf9823c75b1d519e8e4e093cd5ef5167afa838be941223c9c146d3dc61b16",
+  "bytes": 27918,
+  "requestId": "6tLvQpYZDbAnKKQLCXpr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f8414e4f413284323bcdc9d4dd48cdeabd82ac48393fc8e26ba818109b4c1f17",
+    "bytes": 142986
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

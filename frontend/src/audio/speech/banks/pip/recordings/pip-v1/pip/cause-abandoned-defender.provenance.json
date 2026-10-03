@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "cause-abandoned-defender",
+      "label": "Cause abandoned defender",
+      "text": "Right so. This move takes away the only real defender. Now the other side can capture the piece it was guarding."
+    },
+    "takeId": null
+  },
+  "requestHash": "4b5c2b7c5d4419fb39f4e730bbb2fe7b3cf963093f8ab321b719aba3df00f801",
+  "recordedAt": "2026-10-03T06:14:50.749Z",
+  "sha256": "6f7565d5398b8f21a725dae143797ac4be128dee14bc1c59d19069db8e15a28f",
+  "bytes": 24846,
+  "requestId": "PAkwc2B4ewQPmqlc2tUi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a31657e83578b3f0d4d23ad155588c9de75b79a60cd2d15b830fd1d7989429f1",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

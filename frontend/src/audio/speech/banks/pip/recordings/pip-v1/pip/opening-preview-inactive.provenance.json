@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "opening-preview-inactive",
+      "label": "Opening preview inactive",
+      "text": "Scheduled recalls will ask for the moves of the side you picked. A position your active studies share gets just the one card."
+    },
+    "takeId": null
+  },
+  "requestHash": "0e60bdef67361faf623e6847033908d7b73dbdc503fb22b532da05aeb438d7ea",
+  "recordedAt": "2026-10-03T06:15:10.963Z",
+  "sha256": "1fb41dbce043c094a83390b087d34d3b41c6b8a2d209a2fd99b3882d4e8cbf7d",
+  "bytes": 25045,
+  "requestId": "1QKbpblj414MmWkHakez",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "04c1315757f84c8abd3f4f058dda63024e35b9893da63c2856ebac200f2957d5",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

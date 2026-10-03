@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "srs-fallback-relearning",
+      "label": "Srs fallback relearning",
+      "text": "Solved! This one still stays marked for relearning, though."
+    },
+    "takeId": null
+  },
+  "requestHash": "e7f9afc38dde5ff5375d302d16661a09c9fbc6e33eb1be1bc8639836d939b8e1",
+  "recordedAt": "2026-10-03T06:22:39.924Z",
+  "sha256": "b6eff74b03f7740d4c42f8c0deffa8c88034d53f6ef9548ac0ddb34d8f1dbf65",
+  "bytes": 13754,
+  "requestId": "hJ409dL5qTAWH5SsULv6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5aacd383e8df7e84bcc651c3bdde57f04202360eb5eb4a587c8d8b34c6df1b07",
+    "bytes": 69007
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

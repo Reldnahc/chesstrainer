@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "explanation-cue-double-attack",
+      "label": "Explanation cue double attack",
+      "text": "Look for a single move with two threats in it. Checks and newly opened lines count too."
+    },
+    "takeId": null
+  },
+  "requestHash": "0df7afcd123072c62a8064f3b16179ba563344a627b69c400322a50424703ddf",
+  "recordedAt": "2026-10-03T06:15:09.312Z",
+  "sha256": "3620d77eea66228de3db8d020974156a0772f4551c3fef7af3e872fc1ec40a24",
+  "bytes": 19116,
+  "requestId": "xvyNihz5MqD5QY2HoHnC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "33f50f78b6c3a029726d50291533d1f84a37524250563cde1771df4190d9b556",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

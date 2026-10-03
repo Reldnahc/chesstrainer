@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "sound-sacrifice",
+      "label": "Sound sacrifice",
+      "text": "Now there's an offer, and it holds up! The sacrifice still works even if it's taken. Grabbing the material doesn't break it, in the line we checked."
+    },
+    "takeId": null
+  },
+  "requestHash": "bf9f0e71e777180377880bb5d798129acf7eea87e405e94e2adffe8f189ed760",
+  "recordedAt": "2026-10-03T06:15:04.879Z",
+  "sha256": "9fef85e98fab87181f7b50bb3b90be6e099ffb55f62f2074341521fe31397f58",
+  "bytes": 30783,
+  "requestId": "jRBTfqRjCgkxmWsIrpNF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f1eceb4c731b5052faf58a70df47d84793047daa435583f4e1c13996df117e5d",
+    "bytes": 157196
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

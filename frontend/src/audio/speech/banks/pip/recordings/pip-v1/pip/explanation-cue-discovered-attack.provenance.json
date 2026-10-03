@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "explanation-cue-discovered-attack",
+      "label": "Explanation cue discovered attack",
+      "text": "When a blocking piece moves, check which lines it opens up."
+    },
+    "takeId": null
+  },
+  "requestHash": "a6b1e816e07e3efa44160bd1b2dc8df3c66a3666e84f6c9e5f76959ebec73155",
+  "recordedAt": "2026-10-03T06:15:07.791Z",
+  "sha256": "057434f1eb0e1e499c71b0cd4f865f98d8f60c870767b2403f1331fa3e3c9479",
+  "bytes": 13368,
+  "requestId": "tnCwRRVkUBsBwk9VuSqI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "101f322b4db3783cee9ce0739158efe7bbf3086eed9bf4fd9d2f82c9fc171524",
+    "bytes": 66499
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

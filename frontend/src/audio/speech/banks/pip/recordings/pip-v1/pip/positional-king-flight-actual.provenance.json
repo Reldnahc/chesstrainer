@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "positional-king-flight-actual",
+      "label": "Positional king flight actual",
+      "text": "The king gets a bit of breathing room. There's a legal square to step to now that wasn't there before."
+    },
+    "takeId": null
+  },
+  "requestHash": "9ab7def5c5fc1e026cab9794f1ad1443194e8f3da641dd6d21217272caa54a38",
+  "recordedAt": "2026-10-03T06:14:47.647Z",
+  "sha256": "f07d785dca3cb01f2222363d6f41ac159505a70a4b382dc77b6236b4a4c404df",
+  "bytes": 18852,
+  "requestId": "RsLmmf18ffBpg3SY14cu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "284d9a456a42061c0721aa3ebf40bf49778c8194c581f708f3df70a1039345a6",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

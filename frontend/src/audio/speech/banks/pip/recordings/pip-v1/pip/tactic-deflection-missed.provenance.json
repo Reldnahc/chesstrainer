@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "tactic-deflection-missed",
+      "label": "Tactic deflection missed",
+      "text": "Another move could have pulled a defender off its job. That deflection would have left something open. This move doesn't try it."
+    },
+    "takeId": null
+  },
+  "requestHash": "05b5351cc9177384ecda18794ea4551ffbd13ee0e2ddecbba12c22f3f88cf3a0",
+  "recordedAt": "2026-10-03T06:14:42.857Z",
+  "sha256": "8e5fcbead127505687723b5dbde30fd2cb7133169f686be34dbab5933968caa6",
+  "bytes": 24852,
+  "requestId": "2XAOQg7k3njd8mcXz2Uf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1b43180648a547d1c76d50d5acb15d30dbd24204d074969318d73b57a672bcdc",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

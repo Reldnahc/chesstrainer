@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate",
+      "label": "Explanation frame capture move mate",
+      "text": "This move takes a piece, and it's checkmate. The king has no legal square left."
+    },
+    "takeId": null
+  },
+  "requestHash": "364ccd670c29a9e76117a75714b35e6ebe21c1413be51ed995742286f6f3c80b",
+  "recordedAt": "2026-10-03T06:15:16.165Z",
+  "sha256": "4f361000bb37f9e40654cf545109bb3a96ae2c4de3de36f6d088d71d4aa302ec",
+  "bytes": 18706,
+  "requestId": "qH52QGtM4wNQJzrHIRTq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2b129a4d6f5331222bf550cc354e1cf890d926d21df13e4d1a9a1482a61c08eb",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

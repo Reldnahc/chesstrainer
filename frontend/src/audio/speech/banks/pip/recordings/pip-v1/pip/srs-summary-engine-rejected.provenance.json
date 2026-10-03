@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "srs-summary-engine-rejected",
+      "label": "Srs summary engine rejected",
+      "text": "That move isn't accepted for this exercise. The moves shown don't give a clear tactical reason, so look again."
+    },
+    "takeId": null
+  },
+  "requestHash": "ab13a7a983846b86d5bb1c81db592e79a199f0c12626723f14532c97e5103c13",
+  "recordedAt": "2026-10-03T06:14:59.420Z",
+  "sha256": "121264be4f4543f02b64db78fb209b83436ab3a940a78e9d38fe9cbd2f3ac4ee",
+  "bytes": 24274,
+  "requestId": "uQd6yOUrPEEuiJVO0Yeh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "91122a53ed63c90ca87276cc039c6e12de87d554c7369f5594e54ee5adeade55",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

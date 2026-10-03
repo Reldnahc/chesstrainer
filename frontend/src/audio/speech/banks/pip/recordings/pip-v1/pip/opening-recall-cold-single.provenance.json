@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "opening-recall-cold-single",
+      "label": "Opening recall cold single",
+      "text": "Play a move you remember from your chosen study material."
+    },
+    "takeId": null
+  },
+  "requestHash": "3dcfd21a716d626b667bde23437bf4da0c04047f191705c66ae8d6a554547967",
+  "recordedAt": "2026-10-03T06:15:31.116Z",
+  "sha256": "26047b4b2b283d5abccc5cd764d9af6d547685f7808f08a7fcd9c68e91173f5e",
+  "bytes": 12016,
+  "requestId": "nQ8FQ7tcnuG2Wa2UOXfh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0960807c4d2a420ac79e55496f0b7704319bfe2577dd88f0bd4d3386b840e941",
+    "bytes": 59812
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "tactic-back-rank-played",
+      "label": "Tactic back rank played",
+      "text": "Deadly. That's the back-rank mate idea: the king is boxed in by its own pieces, with no square to escape to."
+    },
+    "takeId": null
+  },
+  "requestHash": "938963a8f1d3b30a2ffdd07c9007daa32728751cc276ae2b418d41a84c129aa5",
+  "recordedAt": "2026-10-03T06:14:52.341Z",
+  "sha256": "17bbccad71d7398fe28178a195f7b2f49be1c9e7d76852cc5b029b374108c35d",
+  "bytes": 27348,
+  "requestId": "NEUD3ra9xZQTUbLvpfih",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9c182e758a343fd972d9690063bf752a0a799f9d4d2dba0a102b8318fe19a815",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

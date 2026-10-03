@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-missed",
+      "label": "Tactic undefended capture missed",
+      "text": "Ah, there was a loose piece going. Another move could take it, with nothing guarding it. This move leaves it be."
+    },
+    "takeId": null
+  },
+  "requestHash": "77e50791ad14579cfd5f8250f02223d4f106905b67915ed41943409d4bbc2dce",
+  "recordedAt": "2026-10-03T06:14:46.882Z",
+  "sha256": "291ac52af758ce0cab7efb0424ef67e1c8685d49324c6f7fb8e091a8a055df69",
+  "bytes": 24525,
+  "requestId": "V9tUYuevqhgePbF9Yjw1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9e6557bd495814c9e212553a9e0a9fb870a191ca71329ee4cafa7faed04d9a4e",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

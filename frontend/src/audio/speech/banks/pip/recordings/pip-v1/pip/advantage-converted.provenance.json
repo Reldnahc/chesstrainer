@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "advantage-converted",
+      "label": "Advantage converted",
+      "text": "The advantage stayed with that side all the way to the win. That's how it's done! Follow that stretch to see how it was kept."
+    },
+    "takeId": null
+  },
+  "requestHash": "0d5ec0c9a3196d4ea6de87495223b99b5a89b7632b970e747d5fc542d0e469b9",
+  "recordedAt": "2026-10-03T06:14:38.916Z",
+  "sha256": "7b4c415b62b6f57b6b392e79af2f436b338a012c0f81bd48e19e268ff3899eef",
+  "bytes": 24764,
+  "requestId": "EQBuxMm75e894lkcVP1W",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ce01b08bef1744b7a3c4f1a93a8dad4daa5b10760bb6df6c77cb3348dd83e89d",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "game-explanation-legal-reply",
+      "label": "Game explanation legal reply",
+      "text": "The reply marked on the board is one the other side can play. Play it out and see what it does."
+    },
+    "takeId": null
+  },
+  "requestHash": "a93c20135e92f468d393eb9795d572878d1c7a3fda6517bab99f9e472adda341",
+  "recordedAt": "2026-10-03T06:15:29.963Z",
+  "sha256": "cfcc0240a37a67d4c98d482e216cf8ee3b997e679ac2b6715956e2db8a424f79",
+  "bytes": 18784,
+  "requestId": "ODMfiapRb2gxgPJF3Yu5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ba7ac6c3f75f25655272e936b0fb1bcc32332c9df9b24667b810bf7f91b6a8d3",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

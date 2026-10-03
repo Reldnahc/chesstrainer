@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected",
+      "label": "Explanation finding deflection collected",
+      "text": "The defender gets pulled away from its job, and the piece it was guarding is then captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "3d8f2dfda07af509aca3cdae95f5523e2a1b7ab5bd85220e9b42ff681da7b30b",
+  "recordedAt": "2026-10-03T06:15:16.013Z",
+  "sha256": "9c6e105132be729cc99991b47ed19f5e5716b8406cf28db8cd3b9518e36aec63",
+  "bytes": 17885,
+  "requestId": "Zo7zyUe0DSLIwBoy5ktG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e1dea39ae5123657a23376fa8c46cbffbec40a753cb326840a11b422a61bc8d6",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

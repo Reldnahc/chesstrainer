@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "srs-summary-mate-for-mover",
+      "label": "Srs summary mate for mover",
+      "text": "Good news for the side that made this move: the saved engine analysis has a forced checkmate for them."
+    },
+    "takeId": null
+  },
+  "requestHash": "b1a1de2121e389b8c784247f5ac38bb81d23dd3262ccae58f900017b53e56300",
+  "recordedAt": "2026-10-03T06:14:50.774Z",
+  "sha256": "9d11bc614d99f12c86a8c210eae04301ca594364a50947a99d3315a0985f98db",
+  "bytes": 20386,
+  "requestId": "7wynnyrClzqxAwWoq0Eh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2c1262921476f18660f169e53f99a525709354722850b1c4496fe276075dabc6",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

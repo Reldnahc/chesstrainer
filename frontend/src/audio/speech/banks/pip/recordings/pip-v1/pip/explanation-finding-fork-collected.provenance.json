@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "explanation-finding-fork-collected",
+      "label": "Explanation finding fork collected",
+      "text": "Here's the fork doing its job. One piece attacks more than one target, then takes one. In this example, that side ends up ahead in material too."
+    },
+    "takeId": null
+  },
+  "requestHash": "b74dc24308632ff754669aec94c86e1dc72772c6b461a76bc38dd8f0de382be4",
+  "recordedAt": "2026-10-03T06:15:28.757Z",
+  "sha256": "616a01023383ed23298f733f14c6b866d76e5bdcab8ff2377aba5dc6f7ad8d12",
+  "bytes": 31391,
+  "requestId": "6LAERESvUL3tqZXAik4S",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a937b37acaa189892e6e215ab193f9cbdb1eb6d467b929c098b9828c283f6474",
+    "bytes": 159704
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

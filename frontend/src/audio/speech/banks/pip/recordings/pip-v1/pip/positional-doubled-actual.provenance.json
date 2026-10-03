@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "positional-doubled-actual",
+      "label": "Positional doubled actual",
+      "text": "This leaves doubled pawns: two pawns of the same color on one file, one stacked in front of the other."
+    },
+    "takeId": null
+  },
+  "requestHash": "a5a00a3a0b706095075fa899495ec7b1c32dde6cb3554011c9924eb5b0bca583",
+  "recordedAt": "2026-10-03T06:14:57.294Z",
+  "sha256": "eb406d05fd7808f64911ab2937123ab9483ded87d405ce3a64eb7296085bafee",
+  "bytes": 22990,
+  "requestId": "yti58RDWM3Hz4lGOsdGY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a7a92b433fd27e694174fa0b5c0239baf29ff4f9845d021c0113cc905038b1a7",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "tactic-pin-played",
+      "label": "Tactic pin played",
+      "text": "Ah, a pin, plain as day. The piece is pinned to its king, so it can't step off its line. Moving would leave its own king exposed."
+    },
+    "takeId": null
+  },
+  "requestHash": "8b3271fc4b271aa0096571a0610e6ab09a75b6ea2c2be645bada4e47506012f1",
+  "recordedAt": "2026-10-03T06:14:34.281Z",
+  "sha256": "799789d558ee5c854204799edef79f9afad673941b4c671d7df7cca205ca0fdb",
+  "bytes": 30418,
+  "requestId": "2BNG6QdzSW6fNojNThmI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "be6ca83c7dbf8f2d5180deee2d43c293c6a2a8e829220b9d64ff59f764db0a13",
+    "bytes": 155942
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

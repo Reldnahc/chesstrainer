@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "tactic-promotion-awareness-played",
+      "label": "Tactic promotion awareness played",
+      "text": "Go on! This is all about promotion. Walk the pawn all the way to the last rank, and it becomes a new piece."
+    },
+    "takeId": null
+  },
+  "requestHash": "94c6eea2a752e57cc6ae8824b6eafa389b9f90b77e9694b415255457048ed4c4",
+  "recordedAt": "2026-10-03T06:14:58.372Z",
+  "sha256": "9d8bbe7a8379ce2e4ead7be8d9b1d76946935b8c0427acd211b3d43a1253d23e",
+  "bytes": 23831,
+  "requestId": "werHa8DnGoC9BfyrxQgE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0f7a6ffe39043411737c341ce4ba3747625d8b1bd84603d8191b7841ce6e3d01",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "puzzle-solved-after-retry",
+      "label": "Puzzle solved after retry",
+      "text": "Now you have it! The full solution, found after a retry. Your record keeps the earlier miss as well as the finish."
+    },
+    "takeId": null
+  },
+  "requestHash": "6305b1af0767f4437f03039b893d0942adc36bae708901b0f9b47a9b7e831a68",
+  "recordedAt": "2026-10-03T06:15:17.363Z",
+  "sha256": "31a84c4613a4f734ead9d52e99b229fbcc7c300328fe591d5b4bd6dcecadb935",
+  "bytes": 26222,
+  "requestId": "xHrgocBKoD74mCTPg3EJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "721ce606961a08cad8070d08c4aedb64b1bb5e5d17c2fdcd2dc669a9784a8d62",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

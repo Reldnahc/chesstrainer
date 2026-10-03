@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "positional-castling-alternative",
+      "label": "Positional castling alternative",
+      "text": "The other choice was to castle, moving the king and the rook on the same turn."
+    },
+    "takeId": null
+  },
+  "requestHash": "8b8e59fdbe7aa11564648f9e6553fc49172807269e1ea0c510be692dd658146a",
+  "recordedAt": "2026-10-03T06:14:52.279Z",
+  "sha256": "36966e5397d4d1948e79f6fb615d21a8cdffb9e098a7d13d1ef2ec795dffa98d",
+  "bytes": 16932,
+  "requestId": "vxaqLqkpi94OfkSTA360",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "88743be3a81e8efb0e1aba6704241ce0fdab97463b753f48b4168ba83586577b",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

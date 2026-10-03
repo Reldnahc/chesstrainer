@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "explanation-cue-skewer",
+      "label": "Explanation cue skewer",
+      "text": "Look out for an attack that goes through the first target to a valuable piece standing behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "011199afa006c8ea745ccfba615696de3b3339056dc1d3ab5eb0b4a568541cca",
+  "recordedAt": "2026-10-03T06:15:37.370Z",
+  "sha256": "6a3a9e0fb25f83082f52b405dd2fdab9fe389803e20f3837d3a915c94326b22b",
+  "bytes": 18091,
+  "requestId": "uTPP6fe0sWZI7jLYUy0t",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7acf086ca3a70f9a43475b7a7c10fbd1338ad97cb35751af5daa79f0d09c034e",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

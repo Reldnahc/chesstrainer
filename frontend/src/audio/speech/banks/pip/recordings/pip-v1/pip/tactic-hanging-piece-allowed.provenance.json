@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "tactic-hanging-piece-allowed",
+      "label": "Tactic hanging piece allowed",
+      "text": "Ah, a loose piece. This leaves a piece with no defender at all, and the other side can take it."
+    },
+    "takeId": null
+  },
+  "requestHash": "30b8901141274e3152f82b0aabde5c49ad9c23464fae524239ffed5a5c36e915",
+  "recordedAt": "2026-10-03T06:14:48.635Z",
+  "sha256": "bb1f3319420b029a691df579c17035cbc13b5d004f68776fae502d8ecb2e97d8",
+  "bytes": 20969,
+  "requestId": "IQLS2nWLJwvp8USg8SuM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b0698b3e326ac611591f5b1c9fa75de8c20f37967d064d2131cc60a7b481b7ba",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

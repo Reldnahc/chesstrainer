@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-escape",
+      "label": "Explanation frame capture move escape",
+      "text": "This move takes a piece and gets the king out of check, both at once."
+    },
+    "takeId": null
+  },
+  "requestHash": "a741c79662f8f3fe69fcec5cfb0efcbfb1884d192721c50c5dbc72bc93cfb36b",
+  "recordedAt": "2026-10-03T06:15:17.446Z",
+  "sha256": "2febbb6ed64b8e626e59d1e21d55db2a7010fc8ed33d28096dfb294ce9473935",
+  "bytes": 15617,
+  "requestId": "ayB8NgPLsuwdLdZLmVsM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0abaf4d521119f6743dd502073a131989ef01e0c9738171164032d5fc95add40",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

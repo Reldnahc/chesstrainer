@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "explanation-finding-promotion-material-retained",
+      "label": "Explanation finding promotion material retained",
+      "text": "Here comes the promotion. In this example, that side also comes out ahead in material."
+    },
+    "takeId": null
+  },
+  "requestHash": "8d188ba277ecbbae689ade6d66ffba040fef716a177c7067b93ef712077ebd7e",
+  "recordedAt": "2026-10-03T06:15:24.358Z",
+  "sha256": "190138f6a2907291c49b6e9e88ce79d4707e69186b1272d86ee03f99cee2fa5f",
+  "bytes": 19528,
+  "requestId": "2llNAuJH3CkT6IkdHcn3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "91038f78d8e1523d3a091de1e3e4225fb937fd94dd7a4b5d8b832d3f8114c985",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

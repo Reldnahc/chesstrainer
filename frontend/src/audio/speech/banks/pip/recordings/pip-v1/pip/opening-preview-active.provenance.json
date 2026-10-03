@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "opening-preview-active",
+      "label": "Opening preview active",
+      "text": "This line's moves count in mixed Due. In dedicated practice, it's this line by itself."
+    },
+    "takeId": null
+  },
+  "requestHash": "cd8cb751cb0f48d955cb21f0452cac3d0f1ca78181548caecbf38163862919e1",
+  "recordedAt": "2026-10-03T06:15:08.932Z",
+  "sha256": "974c8176d35100b0b524b936c1c31c59fbbbf3053c06a422b7a544c9ed681bb6",
+  "bytes": 20284,
+  "requestId": "KAaVgW54W5rGuCnAUGnl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fe2586145f6b4e9cd76b09ccc7010684111b482e1431d2b2bce1232c39858a74",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

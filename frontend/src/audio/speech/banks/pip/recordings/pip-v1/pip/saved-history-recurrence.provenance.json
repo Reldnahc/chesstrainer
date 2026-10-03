@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "saved-history-recurrence",
+      "label": "Saved history recurrence",
+      "text": "This problem shows up in other saved games too. Look at them alongside this one, and the pattern gets easier to spot."
+    },
+    "takeId": null
+  },
+  "requestHash": "6da3f8910310b435fe8e8c41fac555d19fa5972c8de3159aa0ec5a929fe6a156",
+  "recordedAt": "2026-10-03T06:14:40.726Z",
+  "sha256": "17ebaf2ac31b4135690faf1d33310ca79687ffd9ff7420f9f695d1621b81a5f9",
+  "bytes": 24046,
+  "requestId": "4T0foZM2iM8FTUe8XJKl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c4aae4c7566b61b328988af1f7b6f8f500c14fe8046e8e0000b0f07b481ff0d6",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

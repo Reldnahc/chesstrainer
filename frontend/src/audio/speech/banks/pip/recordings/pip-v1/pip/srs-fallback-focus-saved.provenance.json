@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "srs-fallback-focus-saved",
+      "label": "Srs fallback focus saved",
+      "text": "Your practice is saved, and the review schedule hasn't changed."
+    },
+    "takeId": null
+  },
+  "requestHash": "5cc7e8fc905e7d27eb41e7122875f458f5872d1660c95ac6d0f703f2306f5770",
+  "recordedAt": "2026-10-03T06:22:38.889Z",
+  "sha256": "8a059b082dad4b61180a2d207d2b0ebba351c35fb9b5d9bde851d5d9c8c6ede7",
+  "bytes": 13066,
+  "requestId": "4L6CkyqR0lSI9H8SfFcL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "505ab2e16f952d36000ac674c2aed9944523c35f947eb7191b2ced4ebb3bdf79",
+    "bytes": 63991
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

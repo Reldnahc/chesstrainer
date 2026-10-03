@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "srs-summary-curated-accepted",
+      "label": "Srs summary curated accepted",
+      "text": "That matches one of the saved answers for this exercise. Here, the saved answers are what count."
+    },
+    "takeId": null
+  },
+  "requestHash": "ca30aa17e98675721dab2e3924a072e2a98a55bfd224c0a47913148def197188",
+  "recordedAt": "2026-10-03T06:15:00.869Z",
+  "sha256": "53f0747fef61a2e3ff1f8717275de064704d3b725a0b74ab5abc230d9180fe77",
+  "bytes": 19985,
+  "requestId": "hsBGDS3T92D4bwQicKb0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e96584466642287f8cd26b2988eab8ebbe5742e1bfad8c9052b87f400bc422af",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

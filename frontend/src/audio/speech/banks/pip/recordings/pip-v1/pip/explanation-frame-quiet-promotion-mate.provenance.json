@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-promotion-mate",
+      "label": "Explanation frame quiet promotion mate",
+      "text": "Up goes the pawn to the last rank, it promotes, and that's checkmate. The king can't escape anywhere legal."
+    },
+    "takeId": null
+  },
+  "requestHash": "4cec3dab817fd9fd93d0ffaa347c43b4ba8eabdfebef3548667cd223b4a91155",
+  "recordedAt": "2026-10-03T06:15:10.691Z",
+  "sha256": "a90c5acf6100281fbedafc2bf07cd3a79cf2ed49a0e9e26a982e94d30c7f72a2",
+  "bytes": 24180,
+  "requestId": "cT1X2rDExdhZKO8kadsn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "07c33e455665794b041dfba6c4e565aaf08603f93a2d0101684c2e88c4c11cf0",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

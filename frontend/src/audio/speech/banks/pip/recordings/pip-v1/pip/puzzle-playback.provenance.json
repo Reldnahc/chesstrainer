@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "puzzle-playback",
+      "label": "Puzzle playback",
+      "text": "Here's the verified line, playing out on the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "c9f66382eed547a291eafdcffae90d8fe75c14058952032e8fcba935f40a3537",
+  "recordedAt": "2026-10-03T06:15:13.422Z",
+  "sha256": "8fa30f1d6cf79c1b15f98440d125e88a3c1c2802499d9e053d2eff9e97a0e8ad",
+  "bytes": 10797,
+  "requestId": "kus77SXwP1DgH2hEwufE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f61f998ade64c5c7a64399fbf799e25f72b403e6018121da42c85fcee2fe4349",
+    "bytes": 53542
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

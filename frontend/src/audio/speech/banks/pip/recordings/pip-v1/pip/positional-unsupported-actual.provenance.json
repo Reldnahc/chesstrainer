@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "positional-unsupported-actual",
+      "label": "Positional unsupported actual",
+      "text": "This leaves a piece with no defender. Good to notice, but on its own that doesn't mean it can be won."
+    },
+    "takeId": null
+  },
+  "requestHash": "3de5d9e8d635635d4164659bf6a83867d0a5cb3a754953fc86c4120d4bfa1e52",
+  "recordedAt": "2026-10-03T06:14:44.569Z",
+  "sha256": "ccdc66e45accc2bef1614ee7dd36e855fdaff77792b31cbd3f61c0f3011b64b8",
+  "bytes": 22099,
+  "requestId": "Mk8rpnindDGPmncNfu9h",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b8328bf708c5e0d0bd8055db8cbfee4f7c7ebcc251b6a30076a16cf0741f2319",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

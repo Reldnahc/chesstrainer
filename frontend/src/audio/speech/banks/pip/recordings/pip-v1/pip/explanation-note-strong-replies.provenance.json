@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "explanation-note-strong-replies",
+      "label": "Explanation note strong replies",
+      "text": "These moves show one way play could go against strong replies. That doesn't mean each reply is forced."
+    },
+    "takeId": null
+  },
+  "requestHash": "522e2dabf80a4f925dc3be0c4c64de823f3f93a52a7de8e21498809f2cef64e9",
+  "recordedAt": "2026-10-03T06:15:19.299Z",
+  "sha256": "b14223f8ce5d54c29387c9b11ec9ea86218600ba1d868ea87f4134f817b691b3",
+  "bytes": 21492,
+  "requestId": "9dEvmOzkBv8MvmWuKlwt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "caf8a2a59e18923e4e9dc2572ed67e35656294998410cf46a77c438df6a617b7",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

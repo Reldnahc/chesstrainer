@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "srs-summary-material-gain",
+      "label": "Srs summary material gain",
+      "text": "By the end of the saved line, the side that made this move is up material, next to where the line started."
+    },
+    "takeId": null
+  },
+  "requestHash": "c83a5ff22919bebe13d37828803027a3a3aba32be66ad6849224f4e076c465e9",
+  "recordedAt": "2026-10-03T06:14:54.352Z",
+  "sha256": "500310da2cc863ba09051d55f03cbafa1470a56307b57ecf293fb7648053736a",
+  "bytes": 22585,
+  "requestId": "l4GpS0oI8UdTPcE0HB41",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "35d913d44e903829bedffe07a9a2e340d52855da34087bb81e8fb12832f4c2d5",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

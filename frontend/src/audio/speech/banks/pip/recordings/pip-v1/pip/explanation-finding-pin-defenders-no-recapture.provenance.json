@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "explanation-finding-pin-defenders-no-recapture",
+      "label": "Explanation finding pin defenders no recapture",
+      "text": "The capture works because the defenders are pinned to their king, so they can't take back. The line shown ends up ahead in material."
+    },
+    "takeId": null
+  },
+  "requestHash": "941ae19c61ee9e4b9ac2aca31c0b41b073c1379ad28b3eed1e98f11b8a7b8ec1",
+  "recordedAt": "2026-10-03T06:15:07.061Z",
+  "sha256": "9b30969de79a0dca1d733df9d589c837ea5d2c95d34e7a9478523ad1886606f9",
+  "bytes": 27047,
+  "requestId": "qcyieEab2fLqOxp8cE3R",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "330bd8e3288fbee6a489713a20c84c9f593ad5aec79df0e41527d557621e4ce1",
+    "bytes": 137970
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "explanation-cue-fork",
+      "label": "Explanation cue fork",
+      "text": "Look for forcing moves that attack two valuable targets at the same time."
+    },
+    "takeId": null
+  },
+  "requestHash": "3f975c98b4e1c6ddd2453269d30ad1613ff5c2f22e4371e2dc46f155b6d27d53",
+  "recordedAt": "2026-10-03T06:15:34.137Z",
+  "sha256": "1bf43b41a0192496e0a461e3bbd292f1f0562b352749d8af87857c932a8fb8d4",
+  "bytes": 15732,
+  "requestId": "1L8bhM1O2xm7uqQNG9EN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f9edc8d42f102bfe8caad51c34c8b625064e80494ee8893776cd83a54373a75c",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

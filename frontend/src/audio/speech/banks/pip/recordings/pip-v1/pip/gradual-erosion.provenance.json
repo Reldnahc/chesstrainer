@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "gradual-erosion",
+      "label": "Gradual erosion",
+      "text": "No single move did it. This is one more small concession, and together they've made the position worse. Look at the whole run of them."
+    },
+    "takeId": null
+  },
+  "requestHash": "0b23829d749a2b544b5820984e3d891b9dd99852edf0858e105b6b5ebb25cf3d",
+  "recordedAt": "2026-10-03T06:15:05.002Z",
+  "sha256": "e7e1bed5dbec12b4eea47c60d87f5e85134d8f539723edb8c7d333b74d65841c",
+  "bytes": 29900,
+  "requestId": "pzX1pJsodefbbMj9iqAY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bfd8ae21acb9b7ca772baf4c080247b13e79dfc227f0c3b0f859f3add51ec0ea",
+    "bytes": 153435
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}
