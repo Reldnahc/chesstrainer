@@ -28,6 +28,10 @@ a browser-history stop for each move.
 
 - **Home** is the default landing page at `/`: the authoritative due count and a study action, four latest saved games, up to two resumable lessons (or an available course), active opening-line count and up to three supported tactical practice priorities. Priorities retain backend evidence ordering and mark early evidence. Each area loads and retries independently. Home starts no sessions, imports or analysis; its links open the existing pages. It never previews cold recall answers or boards.
 - **Games** browses imported games, runs resumable analysis of both colors, and shows Lichess accuracy for each player, move-quality labels, a timeline and an illustrated tactical coach. Accuracy uses saved evaluations with no Elo adjustment or extra engine searches. The board accepts variations at any point, with undo, saved in-session branches and a return to the original game. Coach evidence and variation analysis never count as scheduled recalls. See [Game review](GAME_REVIEW.md) for scoring rules and limits.
+  **Games → Insights** summarizes patterns across saved games: when and how they
+  are won or lost, records and ratings, openings, conversion and escapes, game
+  shapes, accuracy by move and phase, play after a loss, clock pressure and
+  endgames. It is read-only and starts no analysis; see [Insights](INSIGHTS.md).
   The progress panel closes after baseline analysis. Targeted deeper checks
   continue in the background and update the review as results arrive. Interrupted
   or failed work retains recovery controls.

@@ -12,6 +12,7 @@ export const studyPaths = {
   openings: "/study/openings",
   puzzles: "/study/puzzles",
 } as const;
+export const gamesInsightsPath = "/games/insights";
 export type StudyMode = "home" | keyof typeof studyPaths;
 export type Tab = keyof typeof pagePaths;
 export type SettingsTab = "imports" | "coach" | "sound" | "account" | "advanced";
@@ -46,7 +47,7 @@ function readRoute() {
   if (url.href !== window.location.href || !window.history.state?.[entryKey])
     window.history.replaceState({ ...window.history.state, [entryKey]: entry }, "", url);
   const path = url.pathname.replace(/\/$/, "") || "/";
-  const gameMatch = path.match(/^\/games\/([^/]+)$/);
+  const gameMatch = path === gamesInsightsPath ? null : path.match(/^\/games\/([^/]+)$/);
   const puzzleMatch = path.match(/^\/study\/puzzles\/sessions\/([^/]+)$/);
   const lessonMatch = path.match(/^\/study\/openings\/sessions\/([^/]+)$/);
   const courseMatch = path.match(/^\/study\/openings\/courses\/([^/]+)$/);
@@ -72,7 +73,7 @@ function readRoute() {
     : puzzleSessionId || puzzleSource ? "puzzles"
     : lessonSessionId || lessonCourseId || openingCatalogueKey || openingCourseLine || openingSection !== "lessons" ? "openings"
     : (Object.keys(studyPaths) as (keyof typeof studyPaths)[]).find(mode => studyPaths[mode] === path) ?? null;
-  const tab: Tab | null = studyMode ? "Study" : gameId ? "Games"
+  const tab: Tab | null = studyMode ? "Study" : gameId || path === gamesInsightsPath ? "Games"
     : (Object.keys(pagePaths) as Tab[]).find(name => pagePaths[name] === path) ?? null;
   const settingsSection = url.searchParams.get("section");
   return {
@@ -84,6 +85,7 @@ function readRoute() {
     importSource: url.searchParams.get("import"),
     weaknessCategory: (url.searchParams.get("category") === "outcomes" ? "outcomes" : "patterns") as WeaknessCategory,
     gameId,
+    gamesSection: (path === gamesInsightsPath ? "insights" : "library") as "library" | "insights",
     studyMode,
     puzzleSessionId,
     puzzleSource,
