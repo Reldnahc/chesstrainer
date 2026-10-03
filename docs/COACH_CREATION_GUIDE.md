@@ -44,8 +44,8 @@ problem and consequence with literal precision and occasional dry understatement
 | Idle behavior | Use the shared coordinator, expression-compatible repertoire and two character signatures. Sustain natural activity without replaying entrances or adding a character-owned clock. |
 | Opening variety | Use the shared deterministic recognition/sequence meanings. Test a run of Book moves, including the opponent's moves, rather than one isolated example. Recognition alone never means a move is good. |
 | Human evidence | Keep Maia's human-likeness/difficulty separate from Stockfish's objective judgment. Preserve uncertainty and data-domain qualifications without turning every line into a methodology lecture. |
-| Recorded speech | Author complete, natural summaries of supported ideas; never splice sentences at playback. Coaches never speak Maia readings: do not write or record a Maia line, alone or combined with another meaning. |
-| Playback | One automatic spoken turn per review action. Late Maia can update written feedback without causing a second automatic speech turn, and is never voiced itself. |
+| Recorded speech | Author complete, natural summaries of supported ideas; never splice sentences at playback. A coach speaks a Maia reading only as a ply's whole content, through the five sole-content `human-*` meanings and their already reviewed texts. Do not write new Maia lines or record one combined with another meaning. |
+| Playback | One automatic spoken turn per review action. Late Maia can update written feedback without causing a second automatic speech turn, and is voiced only when it is the ply's whole content. |
 | Mouths | Inspect all nine sound shapes and real recordings at normal sizes. Use automatic alignment against the actual audio clock, not hand-timed per-clip animation. |
 | Completion | Tests establish correctness and provenance; listening, reading blind comparisons and watching real reviews establish perceptual quality. Record both honestly. |
 
@@ -166,11 +166,13 @@ script as on-screen text in the real bubble as well as for delivery.
 
 Start from `audio/speech/meanings.json` and the production selectors
 `gameSelection.ts` / `practiceSelection.ts`. Inventory supported primary meanings
-and intentional silence before counting clips. Maia readings are never spoken, so
-the catalogue has no `human-*` or objective/Maia combination meanings (the 253
-such meanings were retired on 2026-10-02). The current complete banks each have
-195 recordings: 174 original meanings, 11 varied opening meanings, the game-review
-opener and nine lesson prompts. That is today's measured coverage, not a required
+and intentional silence before counting clips. Maia readings are spoken only as a ply's
+whole content, so the catalogue keeps five `human-*` meanings and no objective/Maia
+combinations (the other 248 Maia meanings were retired on 2026-10-02). The
+catalogue has 200 meanings: 179 original meanings, 11 varied opening meanings, the
+game-review opener and nine lesson prompts. Walter, Rivet, Winston, Button and Arjun
+have all 200 recorded; the other 25 banks have 195 until their five sole-content
+Maia lines are recorded. That is today's measured coverage, not a required
 count to copy into every future test or a budget ceiling.
 
 Use `banks/pilot-additions.json`, Rivet's `banks/rivet/scripts.json` and a
@@ -212,8 +214,8 @@ the existing [voice notices](AUDIO.md#locked-voice-and-permissions).
 
 Prepare reviewed plans for `scripts/record_coach_speech.mjs`: exact voice/model,
 settings, scripts and versioned output paths. Default invocation is a dry run.
-The recorder refuses retired Maia readings (`human-*`, `combo-*`, `combined-*` IDs
-or human-model wording); coaches no longer speak Maia lines.
+The recorder accepts only the five sole-content Maia meanings and refuses every
+other Maia reading (`human-*`, `combo-*`, `combined-*` IDs or human-model wording).
 Paid generation requires `--generate` and the process environment's
 `ELEVENLABS_API_KEY`; neither the app nor the container needs that secret.
 Plans are bounded to 20 voice/script pairs, 1,000 characters per script and

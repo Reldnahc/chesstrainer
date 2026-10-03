@@ -5,13 +5,15 @@ import {renderDialogue} from "../src/dialogue/neutral";
 import {storyteller} from "../src/dialogue/characters/storyteller";
 import {robot} from "../src/dialogue/characters/robot";
 import {gameReaction} from "../src/coach/reactions";
-import {selectGameRecording, selectGameSpeech, type GameSpeechContext} from "../src/audio/speech/gameSelection";
+import {selectGameRecording, selectGameSpeech, soleMaiaIds, type GameSpeechContext} from "../src/audio/speech/gameSelection";
 import {humanInsightIntent, humanInsightLabels} from "../src/dialogue/humanClaims";
 import {semanticFixtures} from "../tests/semantic-fixtures";
+import {humanGames} from "../tests/human-fixtures";
 import catalogue from "../src/audio/speech/meanings.json" with {type: "json"};
 
-// Coaches never speak a Maia (human-move model) reading. The badge, its popup
-// and the written bubble sentence stay; speech carries only objective facts.
+// A coach speaks a Maia (human-move model) reading only when it is the ply's
+// whole content. Beside an objective fact it stays written: the badge, its
+// popup and the bubble sentence show it, and speech carries only the fact.
 const games = semanticFixtures<Record<string, Game>>("review_speech_combination_fixtures.py");
 const coaches = [{id: "classic", personality: storyteller}, {id: "robot", personality: robot}];
 // Positions whose bubble renders an objective fact followed by a Maia sentence.
@@ -42,9 +44,10 @@ function context(name: string, coach = coaches[0], game = structuredClone(games[
   return {game, frame, report, ply: 1, intent, utterance: renderDialogue(intent, coach)};
 }
 
-test("the speech catalogue has no Maia meanings or objective/Maia combinations", () => {
+test("the speech catalogue has only the sole-content Maia meanings and no combinations", () => {
   const ids = catalogue.meanings.map(item => item.id);
-  expect(ids.filter(id => /^(?:human-|combo-|combined-)/.test(id))).toEqual([]);
+  expect(ids.filter(id => /^(?:human-|combo-|combined-)/.test(id)).sort())
+    .toEqual(Object.values(soleMaiaIds).sort());
   expect(catalogue.meanings.filter(item => "primary" in item || "secondary" in item)).toEqual([]);
 });
 
@@ -101,11 +104,55 @@ for (const coach of coaches) {
     }
   });
 
-  test(`${coach.id}: a bubble whose only claim is Maia stays silent`, () => {
+  test(`${coach.id}: a ply whose only content is a Maia reading speaks it`, () => {
     const current = context("human-without-objective", coach);
     expect(current.intent.claims.map(item => item.code)).toEqual(["human_rare"]);
     expect(current.utterance.renderedClaims!.map(item => item.code)).toEqual(["human_rare"]);
-    expect(selectGameRecording(current)).toBeNull();
+    expect(selectGameRecording(current)).toBe("human-unusual-strong");
+    expect(selectGameSpeech(current)).toEqual({primaryId: "human-unusual-strong", recordingId: "human-unusual-strong"});
+  });
+
+  for (const [kind, code] of [["hard_find", "human_challenging"], ["unusual_strong", "human_rare"],
+    ["natural_best", "human_natural_best"], ["natural_strong", "human_natural_strong"]] as const)
+    test(`${coach.id}: a sole ${kind} reading speaks its own Maia line`, () => {
+      // These policy fixtures open 1.e4/1.d4; without the book line Maia is all they say.
+      const game = structuredClone(humanGames[kind]);
+      game.frames[1].report!.opening = null;
+      const current = context(`human-${kind}`, coach, game);
+      expect(current.intent.claims.map(item => item.code)).toEqual([code]);
+      expect(selectGameSpeech(current)).toEqual({primaryId: soleMaiaIds[code], recordingId: soleMaiaIds[code]});
+    });
+
+  test(`${coach.id}: a sole hard defense found speaks its own Maia line`, () => {
+    const game = structuredClone(games["human-without-objective"]);
+    const report = game.frames[1].report!;
+    expect(report.actual.uci).toBe(report.best.uci);
+    report.practical!.interpretations = [...report.practical!.interpretations ?? [], "hard_to_find_defense"];
+    const current = context("human-defense-found", coach, game);
+    expect(current.intent.claims.map(item => item.code)).toEqual(["human_defense_found"]);
+    expect(selectGameSpeech(current)).toEqual({primaryId: "human-hard-defense-found", recordingId: "human-hard-defense-found"});
+  });
+
+  test(`${coach.id}: a Maia sentence shown alone beside an unshown fact stays silent`, () => {
+    // A one-sentence bubble can show a Maia reading that outranks an objective
+    // fact. The ply still has that fact to say, so Maia is not voiced.
+    const current = context("evaluation-natural", coach);
+    const utterance = structuredClone(current.utterance);
+    const index = utterance.renderedClaims!.findIndex(item => humanInsightLabels[item.code]);
+    utterance.renderedClaims = [utterance.renderedClaims![index]];
+    utterance.trace.variants = [utterance.trace.variants[index]];
+    expect(selectGameRecording({...current, utterance})).toBeNull();
+    expect(selectGameSpeech({...current, utterance})).toEqual({primaryId: null, recordingId: null});
+  });
+
+  test(`${coach.id}: a Maia-only snapshot whose refreshed ply gained a fact stays silent`, () => {
+    const current = context("human-without-objective", coach);
+    // The visible utterance predates a report that now also carries a clock note.
+    const report = current.report!, game = current.game;
+    const clock: NonNullable<typeof report.intelligence>["events"][number] = {...report.intelligence!.events[0], id: "late-clock",
+      kind: "clock_observation", actor: game.orientation, confidence: "board_fact",
+      facts: {before_band: "low", before_seconds: 9, elapsed_seconds: 2, tempo: "normal"}};
+    report.intelligence!.events = [...report.intelligence!.events, clock];
     expect(selectGameSpeech(current)).toEqual({primaryId: null, recordingId: null});
   });
 

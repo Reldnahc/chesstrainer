@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "human-natural-best",
+      "label": "Human natural best",
+      "text": "Here the move most players reach for is also the strongest: the human-move model expects it, and the engine's comparison finds nothing that beats it."
+    },
+    "takeId": null
+  },
+  "requestHash": "c20aba9c39717b3f6e2e2247ec47a76ade51311f19f7d591cc295a5c78dacf7b",
+  "recordedAt": "2026-10-02T23:39:04.571Z",
+  "sha256": "1a11af8b4fcf0db20bef20c1b6dba03eb2207cf98a414c0eb70b8e93e8bae8bc",
+  "bytes": 30768,
+  "requestId": "tIfMSBpuW2udmwkpHqWm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fbc799a9baebae9b562cf027ddb5e08a8a61b201c0d0c322f25c7c14fc3179c6",
+    "bytes": 157196
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

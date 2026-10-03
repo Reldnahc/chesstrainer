@@ -6,7 +6,7 @@ import {renderDialogue} from "../src/dialogue/neutral";
 import {storyteller} from "../src/dialogue/characters/storyteller";
 import {robot} from "../src/dialogue/characters/robot";
 import {gameReaction} from "../src/coach/reactions";
-import {selectGameRecording, selectGameSpeech, type GameSpeechContext} from "../src/audio/speech/gameSelection";
+import {selectGameRecording, selectGameSpeech, soleMaiaIds, type GameSpeechContext} from "../src/audio/speech/gameSelection";
 import {semanticFixtures} from "../tests/semantic-fixtures";
 
 const games = {
@@ -15,7 +15,8 @@ const games = {
 };
 const coaches = [{id: "classic", personality: storyteller}, {id: "robot", personality: robot}];
 // Objective explanations that the policy profiles reach while a Maia reading
-// is also available. Each speaks its own objective line; Maia is never voiced.
+// is also available. Each speaks its own objective line; Maia is voiced only
+// when it is the ply's whole content.
 const observedFamilies = [
   "evaluation-loss", "allowed-mate", "missed-mate", "immediate-capture", "recognized-opening",
   "cause-abandoned-defender", "cause-opponent-threat-recognition", "cause-avoiding-bad-trades",
@@ -38,23 +39,25 @@ function presentation(name: string, coach = coaches[0], game = structuredClone(g
 }
 
 for (const coach of coaches) {
-  test(`${coach.id}: coherent policy profiles show all seven insights and never voice one`, () => {
+  test(`${coach.id}: coherent policy profiles show all seven insights and voice only a sole one`, () => {
     const observed = new Set<string>(), shown = new Set<string>();
     let humanFirst = 0, badgeOnly = 0;
     for (const name of Object.keys(games)) {
       const {context, insight} = presentation(name, coach);
       for (const item of insight.utterance.renderedClaims ?? []) shown.add(item.code);
       const claims = context.utterance.renderedClaims!;
+      const maiaOnly = context.intent.claims.every(item => humanInsightLabels[item.code]);
       const objective = claims.map((item, claimIndex) => {
         const id = selectGameRecording({...context, claimIndex});
-        if (humanInsightLabels[item.code]) expect(id, `${name}: Maia claim ${item.code}`).toBeNull();
+        if (humanInsightLabels[item.code])
+          expect(id, `${name}: Maia claim ${item.code}`).toBe(maiaOnly ? soleMaiaIds[item.code] ?? null : null);
         return id;
       }).filter((id): id is string => !!id);
       const speech = selectGameSpeech(context);
       const parts = speech.recordingId?.split("+") ?? [];
       expect(parts.every(id => objective.includes(id)), `${name}: ${speech.recordingId}`).toBe(true);
-      expect(parts.some(id => /^(?:human-|combo-|combined-)/.test(id))).toBe(false);
-      const lead = claims.findIndex(item => !humanInsightLabels[item.code]);
+      expect(parts.some(id => /^(?:combo-|combined-)/.test(id) || (!maiaOnly && id.startsWith("human-")))).toBe(false);
+      const lead = maiaOnly ? 0 : claims.findIndex(item => !humanInsightLabels[item.code]);
       expect(speech.primaryId, name).toBe(lead < 0 ? null : selectGameRecording({...context, claimIndex: lead}));
       if (!insight.intent.claims.length || !speech.primaryId) continue;
       observed.add(speech.primaryId);

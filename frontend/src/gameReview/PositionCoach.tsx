@@ -89,7 +89,7 @@ export default function PositionCoach({
     error: !!errorAtPosition || (!report && game.job?.status === "failed")};
   // anyCoach: a coach without a recorded bank still shows its script's line.
   const selection = {...speechContext, intent: displayedIntent, utterance, anyCoach: true};
-  // The Maia insight is shown beside the bubble but never voiced.
+  // A Maia reading is voiced only when it is all this ply has to say.
   const speech = selectGameSpeech(selection);
   const {primaryId} = speech;
   const coachId = utterance.coachId, voiced = hasCoachVoice(coachId);

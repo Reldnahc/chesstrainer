@@ -7,6 +7,13 @@ from pathlib import Path
 import pytest
 
 SPEECH = Path(__file__).resolve().parents[2] / "frontend/src/audio/speech"
+SOLE_MAIA = {
+    "human-natural-best",
+    "human-natural-strong",
+    "human-unusual-strong",
+    "human-hard-find",
+    "human-hard-defense-found",
+}
 # Each new voice owns one complete script source; Walter/Rivet text fields stay theirs.
 AUTHORED = [
     ("capybara", "winston"),
@@ -111,9 +118,13 @@ def test_registered_bank_records_exactly_the_authored_scripts(coach, voice):
     assert (manifest["coachId"], manifest["voiceId"]) == (coach, voice)
     scripts = read(f"banks/{voice}/scripts.json")["records"]
     recorded = {row["id"] for row in manifest["recordings"]}
-    # Generic lesson prompts may be authored before they are recorded; they stay
-    # silent until their clip is added.
-    assert all(row["group"] == "lessons" for row in scripts if row["id"] not in recorded)
+    # Generic lesson prompts and the restored sole-content Maia readings may be
+    # authored before they are recorded; they stay silent until their clip is added.
+    assert all(
+        row["group"] == "lessons" or row["id"] in SOLE_MAIA
+        for row in scripts
+        if row["id"] not in recorded
+    )
     assert [(row["id"], row["group"], row["text"]) for row in manifest["recordings"]] == [
         (row["id"], row["group"], row["text"]) for row in scripts if row["id"] in recorded
     ]

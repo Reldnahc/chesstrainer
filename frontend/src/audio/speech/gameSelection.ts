@@ -1,7 +1,7 @@
 import type {Schema} from "../../api";
 import type {Game, Position, Report} from "../../gameReview/types";
 import {gameIntent} from "../../dialogue/gameIntent";
-import {humanInsightLabels} from "../../dialogue/humanClaims";
+import {humanClaims, humanInsightLabels} from "../../dialogue/humanClaims";
 import {object, strings} from "../../dialogue/eventClaims";
 import type {Claim, CoachUtterance, DialogueIntent} from "../../dialogue/model";
 import {bookRecordingId} from "../../dialogue/openingPresentation";
@@ -54,6 +54,16 @@ const simpleIds: Readonly<Record<string, string>> = {
   repeated: "repeated-issue", support_restored: "support-restored", erosion: "gradual-erosion",
   conversion: "advantage-converted", history: "saved-history-recurrence",
 };
+/** The Maia readings a coach speaks, only when one is all a ply has to say. A
+ * natural mistake or a missed hard defense always comes with a stronger
+ * alternative, so neither is ever a ply's only claim. */
+export const soleMaiaIds: Readonly<Record<string, string>> = {
+  human_natural_best: "human-natural-best", human_natural_strong: "human-natural-strong",
+  human_rare: "human-unusual-strong", human_challenging: "human-hard-find",
+  human_defense_found: "human-hard-defense-found",
+};
+const maiaOnly = (intent: DialogueIntent) => intent.claims.length > 0
+  && intent.claims.every(item => !!humanInsightLabels[item.code]);
 const tacticalMotifs = new Set(["fork", "pin", "skewer", "removing_defender", "back_rank", "promotion_awareness",
   "discovered_attack", "double_attack", "deflection"]);
 const causes = new Set(["abandoned_defender", "opponent_threat_recognition", "avoiding_bad_trades"]);
@@ -162,7 +172,7 @@ export function selectGameOpener({ply, variation = false, report, frame, error}:
 }
 
 /** Facts select whole recordings; prose, portrait expression and grade never select audio.
- * A Maia (human-move model) claim is shown in the bubble and its badge but never voiced. */
+ * A Maia (human-move model) claim is voiced only when it is the ply's whole content. */
 export function selectGameRecording(context: GameSpeechContext): string | null {
   const {game, report, frame, ply, variation = false, intent, utterance, pending, error, claimIndex = 0, anyCoach = false} = context;
   if (pending || !frame || !nonempty(frame.fen) || (!anyCoach && !voicedCoaches.has(utterance.coachId))
@@ -170,7 +180,8 @@ export function selectGameRecording(context: GameSpeechContext): string | null {
     || !Number.isInteger(claimIndex) || claimIndex < 0) return null;
   const item = utterance.renderedClaims?.[claimIndex], trace = utterance.trace.variants[claimIndex];
   if (!item || !trace || trace.code !== item.code || !same(trace.sourceIds, item.sourceIds)
-    || !intent.claims.some(candidate => same(candidate, item)) || humanInsightLabels[item.code]) return null;
+    || !intent.claims.some(candidate => same(candidate, item))
+    || (humanInsightLabels[item.code] && !maiaOnly(intent))) return null;
   if (!variation && game.frames[ply]?.fen !== frame.fen) return null;
   const mode = variation ? "variation" : "game";
   if (claimIndex === 0 && !report && intent.mode === mode) {
@@ -200,6 +211,9 @@ export function selectGameRecording(context: GameSpeechContext): string | null {
     || (report.board_cues && report.board_cues.fen !== frame.fen)
     || (report.intelligence.ply !== null && report.intelligence.ply !== ply)) return null;
   const mover = opposite(frame.turn);
+  // The refreshed intent must still have nothing but this reading to say.
+  if (humanInsightLabels[item.code]) return maiaOnly(fresh) && mover === game.orientation && searchEvidence(item)
+    && humanClaims(report, ply, mover).some(candidate => same(candidate, item)) ? soleMaiaIds[item.code] ?? null : null;
   const event = eventFor(item, report);
   if (item.code.startsWith("tactic_") || item.code.startsWith("cause_"))
     return event ? tacticalRecording(item, event, mover, report) : null;
@@ -231,14 +245,14 @@ export function selectGameRecording(context: GameSpeechContext): string | null {
     && searchEvidence(item) ? simpleIds[item.code] ?? null : null;
 }
 
-/** A move has exactly one coach clip. Maia sentences add nothing to it: the
- * first other sentence leads, and a bubble with only a Maia claim is silent.
- * A following bubble sentence with its own recording joins the lead as one
- * back-to-back playback, never a separate clip. Display order and the sentence
- * limit are not evidence boundaries. */
+/** A move has exactly one coach clip. A Maia sentence beside another fact adds
+ * nothing to it: the first other sentence leads. A ply whose only content is a
+ * Maia reading speaks that reading. A following bubble sentence with its own
+ * recording joins the lead as one back-to-back playback, never a separate clip.
+ * Display order and the sentence limit are not evidence boundaries. */
 export function selectGameSpeech(context: GameSpeechContext) {
   const claims = context.utterance.renderedClaims ?? [];
-  const lead = claims.findIndex(item => !humanInsightLabels[item.code]);
+  const lead = maiaOnly(context.intent) ? 0 : claims.findIndex(item => !humanInsightLabels[item.code]);
   const primaryId = lead < 0 ? null : selectGameRecording({...context, claimIndex: lead});
   let recordingId = primaryId;
   const second = claims[lead + 1];
