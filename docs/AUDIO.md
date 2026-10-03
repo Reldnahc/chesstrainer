@@ -83,6 +83,10 @@ before an attempt or reveal permits feedback.
 - `engine.ts` owns a lazily created Web Audio context, decoded asset cache, master
   gain, separate effects/speech buses, bounded playback, short cancellation fades,
   duplicate suppression, visibility and disposal. Suppressed requests are dropped.
+  Every speech clip fades out over its last 20 ms: about 1 in 60 provider
+  recordings ends on a sample spike after its trailing silence (present in the
+  provider's MP3, not added by the Opus encode), and the fade keeps it from
+  thumping without re-recording or re-encoding.
 - `AudioProvider.tsx` lives inside the existing account boundary and reuses
   `useSavedPreferences`. `useAudioScope` gives session hooks stable play/move/cancel
   methods and cancels their work on scope changes or unmount. The Board and coach
