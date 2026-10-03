@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-missed",
+      "label": "Tactic undefended capture missed",
+      "text": "An unguarded enemy piece was sitting there for the stronger move to grab. Always peek for loose pieces before a quiet move."
+    },
+    "takeId": null
+  },
+  "requestHash": "2f254c1970ea2548df5f2b1991595f40c18896b09ff8d9e3d522e14d81b1cc41",
+  "recordedAt": "2026-10-03T06:05:54.608Z",
+  "sha256": "2dd0bfd512863945d32af62828a55e8f32f687db73dd662b45daaed63e9c942c",
+  "bytes": 24437,
+  "requestId": "466dedikDsRS4wKPtlWJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "45a134e5213fe2276851fb3aca8dfc0e27ccbb0c9e079364525edaea087a1fe4",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

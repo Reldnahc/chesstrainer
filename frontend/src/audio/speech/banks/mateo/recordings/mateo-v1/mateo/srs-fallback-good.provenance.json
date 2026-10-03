@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "srs-fallback-good",
+      "label": "Srs fallback good",
+      "text": "Good pick! Remember why it works, because that reason shows up in other games too."
+    },
+    "takeId": null
+  },
+  "requestHash": "b58921236f97bcda677a04f7ce7129152aaab3ad2e1e42bcf7a015503521b2df",
+  "recordedAt": "2026-10-03T06:07:44.414Z",
+  "sha256": "f77a3b4d000307fb6cfd91c25f9223038b6c14918909f3d35b1bb2b3f6cd6d13",
+  "bytes": 18125,
+  "requestId": "ieG7RCVqIunXfMjbP7Wv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c6365dd920b9f68408c9fe05ff82e118043b706c9ea718df5a97260d4d98d654",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

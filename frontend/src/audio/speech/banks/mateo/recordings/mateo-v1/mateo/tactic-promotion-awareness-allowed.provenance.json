@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "tactic-promotion-awareness-allowed",
+      "label": "Tactic promotion awareness allowed",
+      "text": "An enemy pawn now has a clearer path to promoting. Each step it takes needs an answer from here on."
+    },
+    "takeId": null
+  },
+  "requestHash": "3210f7ae77d75196adfe4c889d48795ab2f83d8430d36fb95ef3ffde5fbdc595",
+  "recordedAt": "2026-10-03T06:05:31.819Z",
+  "sha256": "3ae38956c48bd68e0ada4bb92ae25fc755a8888906939d064ccbe593e8edf34d",
+  "bytes": 21591,
+  "requestId": "95qe3XeHpyQDV8Vx6lq7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a5e61606e04a94ae129ce7dc904eed1a1a3c3ea876c08f5f49a470ca63c4a7b9",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

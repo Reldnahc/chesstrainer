@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "positional-king-flight-alternative",
+      "label": "Positional king flight alternative",
+      "text": "Another move would have handed the king an extra empty square nearby to use."
+    },
+    "takeId": null
+  },
+  "requestHash": "1330a9905f9aedc92cd450772f157eaa212756a8a987b7a038d4f6febad28a74",
+  "recordedAt": "2026-10-03T06:06:31.049Z",
+  "sha256": "ee503952614b9fccfc404ad28b6a883c1c61ad1f05848d2d0ea5a98dd62e808b",
+  "bytes": 16265,
+  "requestId": "WF9yqagOgp2OOIcT0Yow",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d8efb09e76cda3d863fc18c693026bf83c7689ab87e2688bd89b0408cf923729",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

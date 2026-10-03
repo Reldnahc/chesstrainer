@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed",
+      "label": "Tactic removing defender missed",
+      "text": "The stronger move knocked out a defender first, so the piece behind it had nobody watching it. That's a clever move order."
+    },
+    "takeId": null
+  },
+  "requestHash": "eb7410336ec903ac639943f6f95ad5de8f469c8391aa32c1e2b676a18da9e820",
+  "recordedAt": "2026-10-03T06:05:22.875Z",
+  "sha256": "9590175ddc1a43c714445c98c4096ecf98210503487efc0c27b5f08894b57036",
+  "bytes": 25366,
+  "requestId": "fusXd4bmMgEVdoXEXfBO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "840d4c4d38ccd68496f5470f5f21ca91a99d26a5c577676233648362e576d145",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

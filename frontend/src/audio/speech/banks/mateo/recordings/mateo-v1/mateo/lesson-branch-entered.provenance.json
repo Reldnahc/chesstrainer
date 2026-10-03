@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "lesson-branch-entered",
+      "label": "Lesson branch entered",
+      "text": "Side quest! We're checking out a different idea before heading back to the main road."
+    },
+    "takeId": null
+  },
+  "requestHash": "2737d514d5967941c03c69888f24d1f787ee833b89cff70a56150545e3df6ec0",
+  "recordedAt": "2026-10-03T06:09:54.005Z",
+  "sha256": "8f4799f7832eedde9102f1f72497bd449a8d2a0e79f95c8492fa802aa3da7957",
+  "bytes": 15975,
+  "requestId": "71ZuRgl25eGignYMud8y",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cf49c613a4006e1a0771a7d63071d811d2035ba90359c3544b4f19ab53c6c0de",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

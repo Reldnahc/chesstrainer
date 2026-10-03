@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-finding-promotion-material-retained",
+      "label": "Explanation finding promotion material retained",
+      "text": "The pawn promotes, and that side also finishes this example ahead in material."
+    },
+    "takeId": null
+  },
+  "requestHash": "efa9b529113b203219ad7aaf8517d675f50fe9fad089cba24da7a6b1cfe740dd",
+  "recordedAt": "2026-10-03T06:08:31.405Z",
+  "sha256": "4945fdc510b9f25f4f43437000e3dfafe3b00a16cc51442cd9596419d7329128",
+  "bytes": 16852,
+  "requestId": "Qhlzxk0MoqzgpSFZ9imf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "00db051ce467cff89e6d1521357897ee715e37b17531409e4bffcf90dfa608f8",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

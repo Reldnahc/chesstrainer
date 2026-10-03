@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-cue-back-rank",
+      "label": "Explanation cue back rank",
+      "text": "Before a back-row defender walks away, make sure the king still has a square to run to."
+    },
+    "takeId": null
+  },
+  "requestHash": "4909dbca783ad8eca5a30d2281e0e43fdf24f79b169ebe25756dd678973234bd",
+  "recordedAt": "2026-10-03T06:08:49.832Z",
+  "sha256": "55ee01b0b111e8c4571f4e3b84c40d7c877ba2a1fbcd8fb86a76839dc5b08ce2",
+  "bytes": 18188,
+  "requestId": "wUrvunspzyoiCNLmAFLz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c535a04ff9d42f2db8285a4d8402a764bee1ab03435f6aebd4a55e378266bde9",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

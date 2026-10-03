@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-cue-fork",
+      "label": "Explanation cue fork",
+      "text": "In the checks and captures, look for one piece that can land on two big targets at once."
+    },
+    "takeId": null
+  },
+  "requestHash": "2e28d6c4678383735293ea299fb87b1858747a88d1b3afb75b3eef2a775e2ee8",
+  "recordedAt": "2026-10-03T06:08:41.128Z",
+  "sha256": "6c445c27af40a5a953986b8038358655c714a8e73217eb0b88537d10dc18f87a",
+  "bytes": 17826,
+  "requestId": "QhqEP9S6k9olDpRQ0hOK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0439f173070937af400ff2aa89cf117b7e3827f9706904172a1f5f5d252241ec",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

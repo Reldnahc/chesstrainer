@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "tactic-skewer-played",
+      "label": "Tactic skewer played",
+      "text": "Skewer! The big piece in front has to get out of the way, and then the piece behind it is up for grabs."
+    },
+    "takeId": null
+  },
+  "requestHash": "a9828f700ba9db0e16d0160b7842c2692bf163ca6c309c3a63b6cb47dfe8b439",
+  "recordedAt": "2026-10-03T06:05:13.344Z",
+  "sha256": "99b75ca4d1b7aadf66c7c864ad711d4ad07b7593c91be4f7f4cdc4a9f7d599cf",
+  "bytes": 22237,
+  "requestId": "kNxJw264h8RqQ98d4FVz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7321c40a8172435f4e2dba0d0f92e40ce086208837f4430146fe4319cfbccb26",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-frame-castle-check",
+      "label": "Explanation frame castle check",
+      "text": "Castling, and the rook lands with check."
+    },
+    "takeId": null
+  },
+  "requestHash": "9fa1e1d51b861104978fb88a472e8096b1c0ef707097bc5d5ad0f05991f90a2f",
+  "recordedAt": "2026-10-03T06:08:06.452Z",
+  "sha256": "5c00fd2963888cfba8cf095a7d8c031f02e7b61d55ec2908afdb1de17571cf31",
+  "bytes": 9770,
+  "requestId": "mbR4EEMWpE3AClwhXoHS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "78f5db5f5bb3e839a492468a8c662db36a212d382c31257218ba3d6f6a9a8758",
+    "bytes": 47273
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

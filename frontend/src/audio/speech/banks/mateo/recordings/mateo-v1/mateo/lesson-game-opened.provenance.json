@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "lesson-game-opened",
+      "label": "Lesson game opened",
+      "text": "The entire game is yours to click through now! Explore as much as you want, then jump back to the chapter."
+    },
+    "takeId": null
+  },
+  "requestHash": "d4349a485e7c15834ce37156cfe2e9e2668d086aa0ed6b2fab89344ad2722e73",
+  "recordedAt": "2026-10-03T06:09:57.238Z",
+  "sha256": "7a234910cfbd508e6aa513e54d6d376545ecff10cecf763c0af76cf7b06c292e",
+  "bytes": 21935,
+  "requestId": "NIyD6vxoGCESDlFZ2nIa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d64594f697e2e65fd4a05855c3d8064d83d872b55f56d870179de2748fc2956b",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

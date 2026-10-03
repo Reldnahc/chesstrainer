@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-note-curated-authority",
+      "label": "Explanation note curated authority",
+      "text": "This exercise goes by the saved answers, but a legal move outside them can still be decent chess."
+    },
+    "takeId": null
+  },
+  "requestHash": "75ec54046d46826c03f43bb8950a26052821fcc87ec252dc3e054b42e346b866",
+  "recordedAt": "2026-10-03T06:08:57.462Z",
+  "sha256": "a1e4ee1a672dc3a47fb79c083e3fdd117c9aaca20b4f0e2399a89703fe8b4f02",
+  "bytes": 20948,
+  "requestId": "oMs2NJCLpk0QCenXXvji",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4bcecc23f9adb41d6456e1e1b5fbaa751e8e370cc33c700e26a9c1ad526f9ec1",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

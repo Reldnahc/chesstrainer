@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "tactic-promotion-awareness-missed",
+      "label": "Tactic promotion awareness missed",
+      "text": "The stronger move kept a pawn racing toward promoting. This one leaves it sitting still, so the race looks different."
+    },
+    "takeId": null
+  },
+  "requestHash": "489442467a9ffbfe13a8e04beadd5d8a34d4427fa98e912f25d8a3bae2daee50",
+  "recordedAt": "2026-10-03T06:05:33.601Z",
+  "sha256": "48d8f4ad8f21ded73911d9dfbd1dbc5fee4377664975f33a14851ab1382e539d",
+  "bytes": 23887,
+  "requestId": "lrDTwwUcxo0S3T7Mr3va",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "49645cc0701652d58ca905803a873828f92eb29814d4e37015e0efbc12b99427",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

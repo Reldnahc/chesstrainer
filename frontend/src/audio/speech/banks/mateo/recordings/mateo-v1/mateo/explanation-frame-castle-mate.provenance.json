@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-frame-castle-mate",
+      "label": "Explanation frame castle mate",
+      "text": "Castling, and boom, that's checkmate!"
+    },
+    "takeId": null
+  },
+  "requestHash": "a9b139b06c4dde9fd10e9c335223b876340a4f564fa8b150d856892a9601ed68",
+  "recordedAt": "2026-10-03T06:08:07.502Z",
+  "sha256": "bda358e76deb4ae847fad545e2c906392238ee8b4d792fca4d40220f6c879359",
+  "bytes": 11249,
+  "requestId": "f7eLIgqQeZ5JfvzvjNqe",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9be07b1c9c3599c276b0336c4f687425c56d7c99c666c7764f1091e9c5c69f18",
+    "bytes": 54796
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

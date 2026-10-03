@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "opening-recall-rejected-retired",
+      "label": "Opening recall rejected retired",
+      "text": "That's not in your opening lines, so try again. Retired positions don't get new review dates, so nothing changes there."
+    },
+    "takeId": null
+  },
+  "requestHash": "55c5d7203e4252d3fefe496fbc6e2d9900c406070223f9c56b2ecb1ef5f5b13b",
+  "recordedAt": "2026-10-03T06:09:16.089Z",
+  "sha256": "fd89b35d30e7f332e95c5c8bf5f46860b35eb4008c8b42b20f1eb8df7d5a52a3",
+  "bytes": 25065,
+  "requestId": "3trrslDuq46fXMKCH99p",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "843d01d4b9f008ed8cdc53ecbf7c936cf84c3ac48dec233c6ed3d5557d869240",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

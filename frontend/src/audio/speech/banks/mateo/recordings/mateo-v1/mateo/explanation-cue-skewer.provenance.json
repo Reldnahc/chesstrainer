@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-cue-skewer",
+      "label": "Explanation cue skewer",
+      "text": "Peek past the first target, because something worth more might be lined up behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "fea301de54c80fbf210d429049f9ad8053eebf4f2bd05b53d2e41be70fba9d6a",
+  "recordedAt": "2026-10-03T06:08:44.078Z",
+  "sha256": "32ab8812103648ee078bd8c89f0dca47d9e41bec1a2bd3c1f7547c6b7fe04450",
+  "bytes": 16431,
+  "requestId": "dzIg9FjqpCQES9u7kXr6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "62fc985284983c8b024479ac2e811e68bf9ff3f1c41c174cadc6dd475837affa",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

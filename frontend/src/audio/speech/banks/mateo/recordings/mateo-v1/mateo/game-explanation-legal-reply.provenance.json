@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "game-explanation-legal-reply",
+      "label": "Game explanation legal reply",
+      "text": "The marked reply is one of the moves the other side is legally allowed to make. Set it up and see what changes."
+    },
+    "takeId": null
+  },
+  "requestHash": "326c10eb23ab9fc7668feabed520c109e2d7b163d63d89bc98feb859f0a0d1ae",
+  "recordedAt": "2026-10-03T06:08:36.890Z",
+  "sha256": "2b0e81cbabb9fad11b7e6807c83bc52d29d7c5890708e91be9d2dcb87957d4f0",
+  "bytes": 21657,
+  "requestId": "DbRUl1Y108fOr2XZxvCf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6f4eccc6043b2fa26fe7b85487f35228e8b1e0b4504e47110f8e5621bed44b20",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

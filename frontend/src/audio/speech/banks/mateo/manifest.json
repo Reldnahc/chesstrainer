@@ -1,0 +1,1583 @@
+{
+  "schemaVersion": 1,
+  "provider": "elevenlabs",
+  "coachId": "human-boy",
+  "voiceId": "mateo",
+  "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+  "modelId": "eleven_v4",
+  "outputFormat": "mp3_44100_128",
+  "settings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75,
+    "speed": 0.95
+  },
+  "scope": "non-lesson",
+  "silentIds": [
+    "game-thinking",
+    "explanation-loading-saved",
+    "dialogue-no-renderable-claim",
+    "practice-checking"
+  ],
+  "recordings": [
+    {
+      "id": "tactic-fork-played",
+      "group": "game_review",
+      "text": "Oh, a fork! One piece jumps to a square that hits several targets at once, and a single reply rarely rescues all of them.",
+      "audioPath": "recordings/mateo-v1/mateo/tactic-fork-played.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/tactic-fork-played.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-played.json"
+    },
+    {
+      "id": "tactic-fork-allowed",
+      "group": "game_review",
+      "text": "Wait, look at this. One of the other side's pieces now has a jump that forks several targets. Which square is it heading for?",
+      "audioPath": "recordings/mateo-v1/mateo/tactic-fork-allowed.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/tactic-fork-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-allowed.json"
+    },
+    {
+      "id": "tactic-fork-missed",
+      "group": "game_review",
+      "text": "A fork was hiding inside the stronger move, with one piece hitting several targets from a single square. That's the kind of trick worth hunting for every time.",
+      "audioPath": "recordings/mateo-v1/mateo/tactic-fork-missed.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/tactic-fork-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-missed.json"
+    },
+    {
+      "id": "tactic-pin-played",
+      "group": "game_review",
+      "text": "A pin! The piece in front can't step off the line, because its own king is standing behind it on that line.",
+      "audioPath": "recordings/mateo-v1/mateo/tactic-pin-played.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/tactic-pin-played.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-played.json"
+    },
+    {
+      "id": "tactic-pin-allowed",
+      "group": "game_review",
+      "text": "Hmm, there's a pin coming. After this move, a piece in front of its king can get stuck there, and stepping off the line wouldn't be legal.",
+      "audioPath": "recordings/mateo-v1/mateo/tactic-pin-allowed.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/tactic-pin-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-allowed.json"
+    },
+    {
+      "id": "tactic-pin-missed",
+      "group": "game_review",
+      "text": "The stronger move had a pin that would have kept an enemy piece stuck in front of its king like glue. Here that piece stays free to wander around.",
+      "audioPath": "recordings/mateo-v1/mateo/tactic-pin-missed.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/tactic-pin-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-missed.json"
+    },
+    {
+      "id": "tactic-skewer-played",
+      "group": "game_review",
+      "text": "Skewer! The big piece in front has to get out of the way, and then the piece behind it is up for grabs.",
+      "audioPath": "recordings/mateo-v1/mateo/tactic-skewer-played.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/tactic-skewer-played.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-played.json"
+    },
+    {
+      "id": "tactic-skewer-allowed",
+      "group": "game_review",
+      "text": "Look at this line. Two pieces are stacked on it, just right for a skewer by the other side, which wins whatever stands in back once the front piece moves.",
+      "audioPath": "recordings/mateo-v1/mateo/tactic-skewer-allowed.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/tactic-skewer-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-allowed.json"
+    },
+    {
+      "id": "tactic-skewer-missed",
+      "group": "game_review",
+      "text": "Ooh, a skewer was waiting inside the stronger move! Hit the front piece, it steps aside, grab the one behind. Such a fun pattern.",
+      "audioPath": "recordings/mateo-v1/mateo/tactic-skewer-missed.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/tactic-skewer-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-missed.json"
+    },
+    {
+      "id": "tactic-removing-defender-played",
+      "group": "game_review",
+      "text": "Knock out the defender first, and the piece it was guarding has nobody watching it anymore. That's the whole trick.",
+      "audioPath": "recordings/mateo-v1/mateo/tactic-removing-defender-played.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/tactic-removing-defender-played.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-played.json"
+    },
+    {
+      "id": "tactic-removing-defender-allowed",
+      "group": "game_review",
+      "text": "Hmm, a defender can get captured now, and then the piece it was guarding loses its help. Which piece is counting on it?",
+      "audioPath": "recordings/mateo-v1/mateo/tactic-removing-defender-allowed.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/tactic-removing-defender-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-allowed.json"
+    },
+    {
+      "id": "tactic-removing-defender-missed",
+      "group": "game_review",
+      "text": "The stronger move knocked out a defender first, so the piece behind it had nobody watching it. That's a clever move order.",
+      "audioPath": "recordings/mateo-v1/mateo/tactic-removing-defender-missed.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/tactic-removing-defender-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-missed.json"
+    },
+    {
+      "id": "tactic-back-rank-played",
+      "group": "game_review",
+      "text": "The back rank. The king is boxed in by its own pieces, so that last row is a real weak spot.",
+      "audioPath": "recordings/mateo-v1/mateo/tactic-back-rank-played.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/tactic-back-rank-played.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-played.json"
+    },
+    {
+      "id": "tactic-back-rank-allowed",
+      "group": "game_review",
+      "text": "See that back rank? After this move the king can't get off it, and the other side has a mate along that row.",
+      "audioPath": "recordings/mateo-v1/mateo/tactic-back-rank-allowed.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/tactic-back-rank-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-allowed.json"
+    },
+    {
+      "id": "tactic-back-rank-missed",
+      "group": "game_review",
+      "text": "The enemy king was stuck on its back row behind its own pieces, and there was mate right there. Set it up and play the mate yourself, it's really cool.",
+      "audioPath": "recordings/mateo-v1/mateo/tactic-back-rank-missed.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/tactic-back-rank-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-missed.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-played",
+      "group": "game_review",
+      "text": "The pawn marches one more step toward promoting. Count the squares: the defenders have less time to stop it now.",
+      "audioPath": "recordings/mateo-v1/mateo/tactic-promotion-awareness-played.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/tactic-promotion-awareness-played.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-played.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-allowed",
+      "group": "game_review",
+      "text": "An enemy pawn now has a clearer path to promoting. Each step it takes needs an answer from here on.",
+      "audioPath": "recordings/mateo-v1/mateo/tactic-promotion-awareness-allowed.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/tactic-promotion-awareness-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-allowed.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-missed",
+      "group": "game_review",
+      "text": "The stronger move kept a pawn racing toward promoting. This one leaves it sitting still, so the race looks different.",
+      "audioPath": "recordings/mateo-v1/mateo/tactic-promotion-awareness-missed.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/tactic-promotion-awareness-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-missed.json"
+    },
+    {
+      "id": "tactic-discovered-attack-played",
+      "group": "game_review",
+      "text": "Discovered attack! The front piece slides off, and boom, the piece hiding behind it is suddenly attacking down the line.",
+      "audioPath": "recordings/mateo-v1/mateo/tactic-discovered-attack-played.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/tactic-discovered-attack-played.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-played.json"
+    },
+    {
+      "id": "tactic-discovered-attack-allowed",
+      "group": "game_review",
+      "text": "Look at this line. One enemy piece is hiding behind another, so when the front piece steps off, the hidden one gets to attack.",
+      "audioPath": "recordings/mateo-v1/mateo/tactic-discovered-attack-allowed.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/tactic-discovered-attack-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-allowed.json"
+    },
+    {
+      "id": "tactic-discovered-attack-missed",
+      "group": "game_review",
+      "text": "A discovered attack was sitting inside the stronger move: slide one piece off the line, and the hidden one behind it strikes. Here that line stays shut.",
+      "audioPath": "recordings/mateo-v1/mateo/tactic-discovered-attack-missed.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/tactic-discovered-attack-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-missed.json"
+    },
+    {
+      "id": "tactic-double-attack-played",
+      "group": "game_review",
+      "text": "Ooh, a double attack, two targets hit at the same moment! A single reply rarely covers both of them.",
+      "audioPath": "recordings/mateo-v1/mateo/tactic-double-attack-played.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/tactic-double-attack-played.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-played.json"
+    },
+    {
+      "id": "tactic-double-attack-allowed",
+      "group": "game_review",
+      "text": "Ooh, see the double attack? After this, the other side gets one move that makes two threats together.",
+      "audioPath": "recordings/mateo-v1/mateo/tactic-double-attack-allowed.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/tactic-double-attack-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-allowed.json"
+    },
+    {
+      "id": "tactic-double-attack-missed",
+      "group": "game_review",
+      "text": "Two threats in one go were waiting in the stronger move. This one leaves them there, and that's the difference.",
+      "audioPath": "recordings/mateo-v1/mateo/tactic-double-attack-missed.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/tactic-double-attack-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-missed.json"
+    },
+    {
+      "id": "tactic-deflection-played",
+      "group": "game_review",
+      "text": "Deflection! The defender gets dragged away to handle something else, and whatever it was guarding is left with no one.",
+      "audioPath": "recordings/mateo-v1/mateo/tactic-deflection-played.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/tactic-deflection-played.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-played.json"
+    },
+    {
+      "id": "tactic-deflection-allowed",
+      "group": "game_review",
+      "text": "Look, there's a defender here that can be lured away from what it's guarding. What job is it doing right now?",
+      "audioPath": "recordings/mateo-v1/mateo/tactic-deflection-allowed.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/tactic-deflection-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-allowed.json"
+    },
+    {
+      "id": "tactic-deflection-missed",
+      "group": "game_review",
+      "text": "The stronger move tempted a defender off its spot. Set it up and watch everything it was holding fall apart once it leaves.",
+      "audioPath": "recordings/mateo-v1/mateo/tactic-deflection-missed.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/tactic-deflection-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-missed.json"
+    },
+    {
+      "id": "tactic-undefended-capture-played",
+      "group": "game_review",
+      "text": "Free piece! Nothing was guarding it, so it comes off the board without costing anything.",
+      "audioPath": "recordings/mateo-v1/mateo/tactic-undefended-capture-played.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/tactic-undefended-capture-played.provenance.json",
+      "alignmentPath": "alignment/tactic-undefended-capture-played.json"
+    },
+    {
+      "id": "tactic-undefended-capture-missed",
+      "group": "game_review",
+      "text": "An unguarded enemy piece was sitting there for the stronger move to grab. Always peek for loose pieces before a quiet move.",
+      "audioPath": "recordings/mateo-v1/mateo/tactic-undefended-capture-missed.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/tactic-undefended-capture-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-undefended-capture-missed.json"
+    },
+    {
+      "id": "tactic-hanging-piece-allowed",
+      "group": "game_review",
+      "text": "Look, one piece has nothing guarding it now, and the other side is free to just take it.",
+      "audioPath": "recordings/mateo-v1/mateo/tactic-hanging-piece-allowed.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/tactic-hanging-piece-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-hanging-piece-allowed.json"
+    },
+    {
+      "id": "cause-abandoned-defender",
+      "group": "game_review",
+      "text": "Wait, look at this. That piece was the only real guard of another piece, and now it's walked away, so the other piece can be taken.",
+      "audioPath": "recordings/mateo-v1/mateo/cause-abandoned-defender.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/cause-abandoned-defender.provenance.json",
+      "alignmentPath": "alignment/cause-abandoned-defender.json"
+    },
+    {
+      "id": "cause-opponent-threat-recognition",
+      "group": "game_review",
+      "text": "The opponent's last move made a threat, and this reply doesn't stop it. So a piece can still be captured.",
+      "audioPath": "recordings/mateo-v1/mateo/cause-opponent-threat-recognition.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/cause-opponent-threat-recognition.provenance.json",
+      "alignmentPath": "alignment/cause-opponent-threat-recognition.json"
+    },
+    {
+      "id": "cause-avoiding-bad-trades",
+      "group": "game_review",
+      "text": "Count the trade all the way to the end. The recapture gets back more than was taken, so the swap loses material.",
+      "audioPath": "recordings/mateo-v1/mateo/cause-avoiding-bad-trades.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/cause-avoiding-bad-trades.provenance.json",
+      "alignmentPath": "alignment/cause-avoiding-bad-trades.json"
+    },
+    {
+      "id": "positional-development-actual",
+      "group": "game_review",
+      "text": "Another minor piece leaves its starting square and gets into the action.",
+      "audioPath": "recordings/mateo-v1/mateo/positional-development-actual.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/positional-development-actual.provenance.json",
+      "alignmentPath": "alignment/positional-development-actual.json"
+    },
+    {
+      "id": "positional-development-alternative",
+      "group": "game_review",
+      "text": "With another move, a minor piece would have come out to play, but it's still waiting at home.",
+      "audioPath": "recordings/mateo-v1/mateo/positional-development-alternative.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/positional-development-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-development-alternative.json"
+    },
+    {
+      "id": "positional-rook-open-actual",
+      "group": "game_review",
+      "text": "The rook is parked on an open file now, with zero pawns anywhere on it.",
+      "audioPath": "recordings/mateo-v1/mateo/positional-rook-open-actual.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/positional-rook-open-actual.provenance.json",
+      "alignmentPath": "alignment/positional-rook-open-actual.json"
+    },
+    {
+      "id": "positional-rook-open-alternative",
+      "group": "game_review",
+      "text": "Another move would have given a rook a file with zero pawns on it, wide open.",
+      "audioPath": "recordings/mateo-v1/mateo/positional-rook-open-alternative.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/positional-rook-open-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-rook-open-alternative.json"
+    },
+    {
+      "id": "positional-rook-semi-open-actual",
+      "group": "game_review",
+      "text": "The rook just moved onto a semi-open file, with none of its own pawns there and only enemy pawns further up.",
+      "audioPath": "recordings/mateo-v1/mateo/positional-rook-semi-open-actual.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/positional-rook-semi-open-actual.provenance.json",
+      "alignmentPath": "alignment/positional-rook-semi-open-actual.json"
+    },
+    {
+      "id": "positional-rook-semi-open-alternative",
+      "group": "game_review",
+      "text": "With another move, a rook would have had a half-open file, its own pawns gone and only enemy pawns up ahead.",
+      "audioPath": "recordings/mateo-v1/mateo/positional-rook-semi-open-alternative.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/positional-rook-semi-open-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-rook-semi-open-alternative.json"
+    },
+    {
+      "id": "positional-passed-actual",
+      "group": "game_review",
+      "text": "Passed pawn. No enemy pawn stands in front of it on its file or the files right beside it, so no pawn can block or capture it.",
+      "audioPath": "recordings/mateo-v1/mateo/positional-passed-actual.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/positional-passed-actual.provenance.json",
+      "alignmentPath": "alignment/positional-passed-actual.json"
+    },
+    {
+      "id": "positional-passed-alternative",
+      "group": "game_review",
+      "text": "Another move would have turned a pawn into a passed pawn, with not one enemy pawn in front of it on its file or the neighbouring ones.",
+      "audioPath": "recordings/mateo-v1/mateo/positional-passed-alternative.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/positional-passed-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-passed-alternative.json"
+    },
+    {
+      "id": "positional-passer-advance-actual",
+      "group": "game_review",
+      "text": "Go, passed pawn! It marches one more square. So how many are left, and can anybody still catch it?",
+      "audioPath": "recordings/mateo-v1/mateo/positional-passer-advance-actual.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/positional-passer-advance-actual.provenance.json",
+      "alignmentPath": "alignment/positional-passer-advance-actual.json"
+    },
+    {
+      "id": "positional-passer-advance-alternative",
+      "group": "game_review",
+      "text": "A different move would have kept the passed pawn marching up the board. With this one it just sits there.",
+      "audioPath": "recordings/mateo-v1/mateo/positional-passer-advance-alternative.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/positional-passer-advance-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-passer-advance-alternative.json"
+    },
+    {
+      "id": "positional-isolated-actual",
+      "group": "game_review",
+      "text": "This leaves a pawn with no friends next door, no pawn of its own color on the files beside it.",
+      "audioPath": "recordings/mateo-v1/mateo/positional-isolated-actual.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/positional-isolated-actual.provenance.json",
+      "alignmentPath": "alignment/positional-isolated-actual.json"
+    },
+    {
+      "id": "positional-isolated-alternative",
+      "group": "game_review",
+      "text": "Another move would have left a pawn all alone, with no friendly pawn on the neighbouring files.",
+      "audioPath": "recordings/mateo-v1/mateo/positional-isolated-alternative.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/positional-isolated-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-isolated-alternative.json"
+    },
+    {
+      "id": "positional-support-actual",
+      "group": "game_review",
+      "text": "A piece that had no guard gets a defender now. Small move, but it helps.",
+      "audioPath": "recordings/mateo-v1/mateo/positional-support-actual.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/positional-support-actual.provenance.json",
+      "alignmentPath": "alignment/positional-support-actual.json"
+    },
+    {
+      "id": "positional-support-alternative",
+      "group": "game_review",
+      "text": "With another move, a piece that has no defender right now would have picked one up.",
+      "audioPath": "recordings/mateo-v1/mateo/positional-support-alternative.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/positional-support-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-support-alternative.json"
+    },
+    {
+      "id": "positional-unsupported-actual",
+      "group": "game_review",
+      "text": "After this, one piece has no defender at all. That's not the same as losing it, but it's worth keeping an eye on.",
+      "audioPath": "recordings/mateo-v1/mateo/positional-unsupported-actual.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/positional-unsupported-actual.provenance.json",
+      "alignmentPath": "alignment/positional-unsupported-actual.json"
+    },
+    {
+      "id": "positional-unsupported-alternative",
+      "group": "game_review",
+      "text": "With another move, some piece would have been left with no defender, though that alone wouldn't mean losing it.",
+      "audioPath": "recordings/mateo-v1/mateo/positional-unsupported-alternative.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/positional-unsupported-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-unsupported-alternative.json"
+    },
+    {
+      "id": "positional-king-flight-actual",
+      "group": "game_review",
+      "text": "The king gets one more square it can step to. A little extra room.",
+      "audioPath": "recordings/mateo-v1/mateo/positional-king-flight-actual.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/positional-king-flight-actual.provenance.json",
+      "alignmentPath": "alignment/positional-king-flight-actual.json"
+    },
+    {
+      "id": "positional-king-flight-alternative",
+      "group": "game_review",
+      "text": "Another move would have handed the king an extra empty square nearby to use.",
+      "audioPath": "recordings/mateo-v1/mateo/positional-king-flight-alternative.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/positional-king-flight-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-king-flight-alternative.json"
+    },
+    {
+      "id": "positional-castling-actual",
+      "group": "game_review",
+      "text": "Castling. The king slides two squares over, and the rook jumps across to stand right next to it.",
+      "audioPath": "recordings/mateo-v1/mateo/positional-castling-actual.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/positional-castling-actual.provenance.json",
+      "alignmentPath": "alignment/positional-castling-actual.json"
+    },
+    {
+      "id": "positional-castling-alternative",
+      "group": "game_review",
+      "text": "Castling was on the menu here, king and rook both going in one turn.",
+      "audioPath": "recordings/mateo-v1/mateo/positional-castling-alternative.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/positional-castling-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-castling-alternative.json"
+    },
+    {
+      "id": "positional-bishop-pair-actual",
+      "group": "game_review",
+      "text": "After this capture, the bishop pair is split up. Now that side has one bishop, covering only one square color.",
+      "audioPath": "recordings/mateo-v1/mateo/positional-bishop-pair-actual.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/positional-bishop-pair-actual.provenance.json",
+      "alignmentPath": "alignment/positional-bishop-pair-actual.json"
+    },
+    {
+      "id": "positional-bishop-pair-alternative",
+      "group": "game_review",
+      "text": "One of the other moves would have taken a bishop, leaving the other side with just one, so no more bishop pair.",
+      "audioPath": "recordings/mateo-v1/mateo/positional-bishop-pair-alternative.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/positional-bishop-pair-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-bishop-pair-alternative.json"
+    },
+    {
+      "id": "positional-doubled-actual",
+      "group": "game_review",
+      "text": "Doubled pawns: two pawns of the same color now stand one behind the other on a single file.",
+      "audioPath": "recordings/mateo-v1/mateo/positional-doubled-actual.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/positional-doubled-actual.provenance.json",
+      "alignmentPath": "alignment/positional-doubled-actual.json"
+    },
+    {
+      "id": "positional-doubled-alternative",
+      "group": "game_review",
+      "text": "Another move would have left two pawns stacked on the same file.",
+      "audioPath": "recordings/mateo-v1/mateo/positional-doubled-alternative.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/positional-doubled-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-doubled-alternative.json"
+    },
+    {
+      "id": "allowed-mate",
+      "group": "game_review",
+      "text": "Wait, look at this. Checkmate is forced for the other side from here on. The useful part is digging back to find where the defense cracked.",
+      "audioPath": "recordings/mateo-v1/mateo/allowed-mate.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/allowed-mate.provenance.json",
+      "alignmentPath": "alignment/allowed-mate.json"
+    },
+    {
+      "id": "missed-mate",
+      "group": "game_review",
+      "text": "There was a forced checkmate right there! This move goes off in another direction. Play the mating line out later, it's a great one to see.",
+      "audioPath": "recordings/mateo-v1/mateo/missed-mate.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/missed-mate.provenance.json",
+      "alignmentPath": "alignment/missed-mate.json"
+    },
+    {
+      "id": "sound-sacrifice",
+      "group": "game_review",
+      "text": "A sacrifice, and it works! Take the material or leave it, the checked line still holds up for the side that gave it.",
+      "audioPath": "recordings/mateo-v1/mateo/sound-sacrifice.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/sound-sacrifice.provenance.json",
+      "alignmentPath": "alignment/sound-sacrifice.json"
+    },
+    {
+      "id": "only-playable-move",
+      "group": "game_review",
+      "text": "Whoa, every single other checked move was a losing one! Only this one kept the game going.",
+      "audioPath": "recordings/mateo-v1/mateo/only-playable-move.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/only-playable-move.provenance.json",
+      "alignmentPath": "alignment/only-playable-move.json"
+    },
+    {
+      "id": "only-advantage-resource",
+      "group": "game_review",
+      "text": "Just this one move kept the advantage, and every other checked move let it go.",
+      "audioPath": "recordings/mateo-v1/mateo/only-advantage-resource.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/only-advantage-resource.provenance.json",
+      "alignmentPath": "alignment/only-advantage-resource.json"
+    },
+    {
+      "id": "immediate-capture",
+      "group": "game_review",
+      "text": "Wait, on its very next move the other side gets to capture something. Check that reply first.",
+      "audioPath": "recordings/mateo-v1/mateo/immediate-capture.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/immediate-capture.provenance.json",
+      "alignmentPath": "alignment/immediate-capture.json"
+    },
+    {
+      "id": "reply-check",
+      "group": "game_review",
+      "text": "Heads up, the reply that hits hardest is a check. So the king has to be taken care of before anything else.",
+      "audioPath": "recordings/mateo-v1/mateo/reply-check.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/reply-check.provenance.json",
+      "alignmentPath": "alignment/reply-check.json"
+    },
+    {
+      "id": "stronger-alternative",
+      "group": "game_review",
+      "text": "There's a different move the engine likes the most here. Put both side by side, play the strongest reply, and see what changes.",
+      "audioPath": "recordings/mateo-v1/mateo/stronger-alternative.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/stronger-alternative.provenance.json",
+      "alignmentPath": "alignment/stronger-alternative.json"
+    },
+    {
+      "id": "evaluation-loss",
+      "group": "game_review",
+      "text": "Next to the engine's top move, this one drops some value. Play the reply and look at what slips.",
+      "audioPath": "recordings/mateo-v1/mateo/evaluation-loss.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/evaluation-loss.provenance.json",
+      "alignmentPath": "alignment/evaluation-loss.json"
+    },
+    {
+      "id": "best-supported-choice",
+      "group": "game_review",
+      "text": "Strong stuff. Next to everything the engine checked, almost nothing is lost.",
+      "audioPath": "recordings/mateo-v1/mateo/best-supported-choice.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/best-supported-choice.provenance.json",
+      "alignmentPath": "alignment/best-supported-choice.json"
+    },
+    {
+      "id": "good-choice",
+      "group": "game_review",
+      "text": "Pretty good. The engine has another one it likes a bit more, but most of the value stays put.",
+      "audioPath": "recordings/mateo-v1/mateo/good-choice.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/good-choice.provenance.json",
+      "alignmentPath": "alignment/good-choice.json"
+    },
+    {
+      "id": "clock-low",
+      "group": "game_review",
+      "text": "This move got played with the clock almost at zero.",
+      "audioPath": "recordings/mateo-v1/mateo/clock-low.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/clock-low.provenance.json",
+      "alignmentPath": "alignment/clock-low.json"
+    },
+    {
+      "id": "clock-fast",
+      "group": "game_review",
+      "text": "Super quick, and there was still lots of time on the clock.",
+      "audioPath": "recordings/mateo-v1/mateo/clock-fast.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/clock-fast.provenance.json",
+      "alignmentPath": "alignment/clock-fast.json"
+    },
+    {
+      "id": "clock-long",
+      "group": "game_review",
+      "text": "This move took a really long think.",
+      "audioPath": "recordings/mateo-v1/mateo/clock-long.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/clock-long.provenance.json",
+      "alignmentPath": "alignment/clock-long.json"
+    },
+    {
+      "id": "recognized-opening",
+      "group": "game_review",
+      "text": "This move is part of known opening theory.",
+      "audioPath": "recordings/mateo-v1/mateo/recognized-opening.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/recognized-opening.provenance.json",
+      "alignmentPath": "alignment/recognized-opening.json"
+    },
+    {
+      "id": "opening-departure",
+      "group": "game_review",
+      "text": "Here the game leaves the opening book, so everything from now on is new.",
+      "audioPath": "recordings/mateo-v1/mateo/opening-departure.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/opening-departure.provenance.json",
+      "alignmentPath": "alignment/opening-departure.json"
+    },
+    {
+      "id": "recovery",
+      "group": "game_review",
+      "text": "After that earlier mistake, the game is back to playable. That's how to bounce back. Keep it going.",
+      "audioPath": "recordings/mateo-v1/mateo/recovery.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/recovery.provenance.json",
+      "alignmentPath": "alignment/recovery.json"
+    },
+    {
+      "id": "recovery-assisted",
+      "group": "game_review",
+      "text": "After that earlier mistake, the position works again, and the other side's mistakes gave a hand. Grabbing chances like that matters!",
+      "audioPath": "recordings/mateo-v1/mateo/recovery-assisted.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/recovery-assisted.provenance.json",
+      "alignmentPath": "alignment/recovery-assisted.json"
+    },
+    {
+      "id": "chance-taken",
+      "group": "game_review",
+      "text": "The opponent's last move left a little something lying around, and this move snaps it right up. Nice catch!",
+      "audioPath": "recordings/mateo-v1/mateo/chance-taken.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/chance-taken.provenance.json",
+      "alignmentPath": "alignment/chance-taken.json"
+    },
+    {
+      "id": "chance-missed",
+      "group": "game_review",
+      "text": "The opponent's last move left something there for the taking, and this reply doesn't grab it. Look again later, there's a better answer.",
+      "audioPath": "recordings/mateo-v1/mateo/chance-missed.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/chance-missed.provenance.json",
+      "alignmentPath": "alignment/chance-missed.json"
+    },
+    {
+      "id": "repeated-issue",
+      "group": "game_review",
+      "text": "Hey, this exact problem popped up earlier in this game too. Line up the two moments and the pattern is easier to catch.",
+      "audioPath": "recordings/mateo-v1/mateo/repeated-issue.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/repeated-issue.provenance.json",
+      "alignmentPath": "alignment/repeated-issue.json"
+    },
+    {
+      "id": "support-restored",
+      "group": "game_review",
+      "text": "A piece that was unguarded before has a defender again. Good fix!",
+      "audioPath": "recordings/mateo-v1/mateo/support-restored.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/support-restored.provenance.json",
+      "alignmentPath": "alignment/support-restored.json"
+    },
+    {
+      "id": "gradual-erosion",
+      "group": "game_review",
+      "text": "Little losses keep stacking up, and here's another one. Not one of them is big by itself, but together they add up.",
+      "audioPath": "recordings/mateo-v1/mateo/gradual-erosion.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/gradual-erosion.provenance.json",
+      "alignmentPath": "alignment/gradual-erosion.json"
+    },
+    {
+      "id": "advantage-converted",
+      "group": "game_review",
+      "text": "From that point on, the advantage stayed safe right up to the win. Kept it the whole way.",
+      "audioPath": "recordings/mateo-v1/mateo/advantage-converted.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/advantage-converted.provenance.json",
+      "alignmentPath": "alignment/advantage-converted.json"
+    },
+    {
+      "id": "saved-history-recurrence",
+      "group": "game_review",
+      "text": "This exact problem pops up in some of your other saved games too. Looking at them together could help you catch it next time.",
+      "audioPath": "recordings/mateo-v1/mateo/saved-history-recurrence.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/saved-history-recurrence.provenance.json",
+      "alignmentPath": "alignment/saved-history-recurrence.json"
+    },
+    {
+      "id": "mate-finished",
+      "group": "game_review",
+      "text": "Checkmate! The king has no legal moves left, so the game ends right there.",
+      "audioPath": "recordings/mateo-v1/mateo/mate-finished.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/mate-finished.provenance.json",
+      "alignmentPath": "alignment/mate-finished.json"
+    },
+    {
+      "id": "mate-defense-ended",
+      "group": "game_review",
+      "text": "Checkmate, and the defending king has no square to escape to. The moves right before this are where the lesson is.",
+      "audioPath": "recordings/mateo-v1/mateo/mate-defense-ended.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/mate-defense-ended.provenance.json",
+      "alignmentPath": "alignment/mate-defense-ended.json"
+    },
+    {
+      "id": "draw",
+      "group": "game_review",
+      "text": "Draw. The result is settled, but there's still cool stuff in the game to go back and look at.",
+      "audioPath": "recordings/mateo-v1/mateo/draw.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/draw.provenance.json",
+      "alignmentPath": "alignment/draw.json"
+    },
+    {
+      "id": "srs-cold",
+      "group": "srs_explanations",
+      "text": "Look over the whole board, then play your move when you're ready.",
+      "audioPath": "recordings/mateo-v1/mateo/srs-cold.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/srs-cold.provenance.json",
+      "alignmentPath": "alignment/srs-cold.json"
+    },
+    {
+      "id": "srs-retry",
+      "group": "srs_explanations",
+      "text": "Hmm, not that move. Look again, the idea is still in there.",
+      "audioPath": "recordings/mateo-v1/mateo/srs-retry.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/srs-retry.provenance.json",
+      "alignmentPath": "alignment/srs-retry.json"
+    },
+    {
+      "id": "srs-practice-error",
+      "group": "srs_explanations",
+      "text": "That attempt didn't count. Give that same move another go.",
+      "audioPath": "recordings/mateo-v1/mateo/srs-practice-error.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/srs-practice-error.provenance.json",
+      "alignmentPath": "alignment/srs-practice-error.json"
+    },
+    {
+      "id": "srs-summary-mate-for-mover",
+      "group": "srs_explanations",
+      "text": "Here, the saved engine analysis shows the side that made this move can force mate.",
+      "audioPath": "recordings/mateo-v1/mateo/srs-summary-mate-for-mover.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/srs-summary-mate-for-mover.provenance.json",
+      "alignmentPath": "alignment/srs-summary-mate-for-mover.json"
+    },
+    {
+      "id": "srs-summary-mate-against-mover",
+      "group": "srs_explanations",
+      "text": "Here's what the saved engine analysis found: with this move played, the other side has a mate it can force.",
+      "audioPath": "recordings/mateo-v1/mateo/srs-summary-mate-against-mover.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/srs-summary-mate-against-mover.provenance.json",
+      "alignmentPath": "alignment/srs-summary-mate-against-mover.json"
+    },
+    {
+      "id": "srs-summary-material-gain",
+      "group": "srs_explanations",
+      "text": "By the end of the saved line, the side that made this move is ahead in material.",
+      "audioPath": "recordings/mateo-v1/mateo/srs-summary-material-gain.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/srs-summary-material-gain.provenance.json",
+      "alignmentPath": "alignment/srs-summary-material-gain.json"
+    },
+    {
+      "id": "srs-summary-material-loss",
+      "group": "srs_explanations",
+      "text": "By the end of the saved line, the side that made this move is behind in material.",
+      "audioPath": "recordings/mateo-v1/mateo/srs-summary-material-loss.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/srs-summary-material-loss.provenance.json",
+      "alignmentPath": "alignment/srs-summary-material-loss.json"
+    },
+    {
+      "id": "srs-summary-engine-accepted",
+      "group": "srs_explanations",
+      "text": "The exercise counts this move as right, even though the moves shown don't make the tactic obvious, so no guessing at a reason.",
+      "audioPath": "recordings/mateo-v1/mateo/srs-summary-engine-accepted.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/srs-summary-engine-accepted.provenance.json",
+      "alignmentPath": "alignment/srs-summary-engine-accepted.json"
+    },
+    {
+      "id": "srs-summary-engine-rejected",
+      "group": "srs_explanations",
+      "text": "The exercise doesn't take this move, and the moves shown don't make the tactic plain. Take a fresh look and try again.",
+      "audioPath": "recordings/mateo-v1/mateo/srs-summary-engine-rejected.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/srs-summary-engine-rejected.provenance.json",
+      "alignmentPath": "alignment/srs-summary-engine-rejected.json"
+    },
+    {
+      "id": "srs-summary-curated-accepted",
+      "group": "srs_explanations",
+      "text": "It matches one of the saved answers, and that's what this exercise checks against.",
+      "audioPath": "recordings/mateo-v1/mateo/srs-summary-curated-accepted.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/srs-summary-curated-accepted.provenance.json",
+      "alignmentPath": "alignment/srs-summary-curated-accepted.json"
+    },
+    {
+      "id": "srs-summary-curated-rejected",
+      "group": "srs_explanations",
+      "text": "This isn't one of the saved answers for the exercise, though another legal move can still be decent chess.",
+      "audioPath": "recordings/mateo-v1/mateo/srs-summary-curated-rejected.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/srs-summary-curated-rejected.provenance.json",
+      "alignmentPath": "alignment/srs-summary-curated-rejected.json"
+    },
+    {
+      "id": "srs-fallback-study",
+      "group": "srs_explanations",
+      "text": "Think about the move and why it works for a second, then go on to the next position.",
+      "audioPath": "recordings/mateo-v1/mateo/srs-fallback-study.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/srs-fallback-study.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-study.json"
+    },
+    {
+      "id": "srs-fallback-good",
+      "group": "srs_explanations",
+      "text": "Good pick! Remember why it works, because that reason shows up in other games too.",
+      "audioPath": "recordings/mateo-v1/mateo/srs-fallback-good.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/srs-fallback-good.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-good.json"
+    },
+    {
+      "id": "srs-fallback-focus-saved",
+      "group": "srs_explanations",
+      "text": "Saved. The review schedule stays exactly the same.",
+      "audioPath": "recordings/mateo-v1/mateo/srs-fallback-focus-saved.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/srs-fallback-focus-saved.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-focus-saved.json"
+    },
+    {
+      "id": "srs-fallback-relearning",
+      "group": "srs_explanations",
+      "text": "Got it! This card keeps its relearning tag a little while longer, and that's totally fine.",
+      "audioPath": "recordings/mateo-v1/mateo/srs-fallback-relearning.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/srs-fallback-relearning.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-relearning.json"
+    },
+    {
+      "id": "explanation-frame-original",
+      "group": "srs_explanations",
+      "text": "Here's the board from before any of these moves happened, the very start of the line.",
+      "audioPath": "recordings/mateo-v1/mateo/explanation-frame-original.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/explanation-frame-original.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-original.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-ordinary",
+      "group": "srs_explanations",
+      "text": "Here comes a move. What changed?",
+      "audioPath": "recordings/mateo-v1/mateo/explanation-frame-quiet-move-ordinary.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/explanation-frame-quiet-move-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-check",
+      "group": "srs_explanations",
+      "text": "Check. The king has to deal with it first.",
+      "audioPath": "recordings/mateo-v1/mateo/explanation-frame-quiet-move-check.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/explanation-frame-quiet-move-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-check.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-escape",
+      "group": "srs_explanations",
+      "text": "The king wriggles out of check with this one.",
+      "audioPath": "recordings/mateo-v1/mateo/explanation-frame-quiet-move-escape.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/explanation-frame-quiet-move-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-escape.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-ordinary",
+      "group": "srs_explanations",
+      "text": "The pawn makes it all the way to the end and turns into a new piece.",
+      "audioPath": "recordings/mateo-v1/mateo/explanation-frame-quiet-promotion-ordinary.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/explanation-frame-quiet-promotion-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-check",
+      "group": "srs_explanations",
+      "text": "The pawn promotes, and the new piece gives check right away.",
+      "audioPath": "recordings/mateo-v1/mateo/explanation-frame-quiet-promotion-check.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/explanation-frame-quiet-promotion-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-check.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-mate",
+      "group": "srs_explanations",
+      "text": "The pawn promotes, and it's checkmate!",
+      "audioPath": "recordings/mateo-v1/mateo/explanation-frame-quiet-promotion-mate.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/explanation-frame-quiet-promotion-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-mate.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-escape",
+      "group": "srs_explanations",
+      "text": "The pawn promotes, and that also gets its own king out of check.",
+      "audioPath": "recordings/mateo-v1/mateo/explanation-frame-quiet-promotion-escape.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/explanation-frame-quiet-promotion-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-escape.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-ordinary",
+      "group": "srs_explanations",
+      "text": "Capture. One piece gets knocked off the board.",
+      "audioPath": "recordings/mateo-v1/mateo/explanation-frame-capture-move-ordinary.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/explanation-frame-capture-move-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-check",
+      "group": "srs_explanations",
+      "text": "Capture, and check on top of it.",
+      "audioPath": "recordings/mateo-v1/mateo/explanation-frame-capture-move-check.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/explanation-frame-capture-move-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-check.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-mate",
+      "group": "srs_explanations",
+      "text": "Capture, and that ends it with checkmate!",
+      "audioPath": "recordings/mateo-v1/mateo/explanation-frame-capture-move-mate.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/explanation-frame-capture-move-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-mate.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-escape",
+      "group": "srs_explanations",
+      "text": "Capturing is the way the king gets out of check here.",
+      "audioPath": "recordings/mateo-v1/mateo/explanation-frame-capture-move-escape.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/explanation-frame-capture-move-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-escape.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-ordinary",
+      "group": "srs_explanations",
+      "text": "The pawn knocks off a piece on its way to the last row and turns into a new one.",
+      "audioPath": "recordings/mateo-v1/mateo/explanation-frame-capture-promotion-ordinary.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/explanation-frame-capture-promotion-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-check",
+      "group": "srs_explanations",
+      "text": "The pawn takes, promotes, and the new piece gives check straight away.",
+      "audioPath": "recordings/mateo-v1/mateo/explanation-frame-capture-promotion-check.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/explanation-frame-capture-promotion-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-check.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-mate",
+      "group": "srs_explanations",
+      "text": "The pawn captures, promotes, and gives checkmate, all at once.",
+      "audioPath": "recordings/mateo-v1/mateo/explanation-frame-capture-promotion-mate.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/explanation-frame-capture-promotion-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-mate.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-escape",
+      "group": "srs_explanations",
+      "text": "The pawn grabs a piece and promotes, and that one move also rescues its own king from check.",
+      "audioPath": "recordings/mateo-v1/mateo/explanation-frame-capture-promotion-escape.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/explanation-frame-capture-promotion-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-escape.json"
+    },
+    {
+      "id": "explanation-frame-castle-check",
+      "group": "srs_explanations",
+      "text": "Castling, and the rook lands with check.",
+      "audioPath": "recordings/mateo-v1/mateo/explanation-frame-castle-check.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/explanation-frame-castle-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-castle-check.json"
+    },
+    {
+      "id": "explanation-frame-castle-mate",
+      "group": "srs_explanations",
+      "text": "Castling, and boom, that's checkmate!",
+      "audioPath": "recordings/mateo-v1/mateo/explanation-frame-castle-mate.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/explanation-frame-castle-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-castle-mate.json"
+    },
+    {
+      "id": "explanation-finding-fork-collected",
+      "group": "srs_explanations",
+      "text": "Look how the fork works: one piece hits a bunch of targets, then snags one of them. When this example is over, that side is up material too.",
+      "audioPath": "recordings/mateo-v1/mateo/explanation-finding-fork-collected.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/explanation-finding-fork-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-fork-collected.json"
+    },
+    {
+      "id": "explanation-finding-pin-prevents-capture",
+      "group": "srs_explanations",
+      "text": "That marked capture is illegal, since this piece is pinned to its king. If it moved, its own king would be sitting in check.",
+      "audioPath": "recordings/mateo-v1/mateo/explanation-finding-pin-prevents-capture.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/explanation-finding-pin-prevents-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-prevents-capture.json"
+    },
+    {
+      "id": "explanation-finding-pin-restricts-escape",
+      "group": "srs_explanations",
+      "text": "The attacked piece can't run away, because it's pinned to its king and has to keep blocking the line.",
+      "audioPath": "recordings/mateo-v1/mateo/explanation-finding-pin-restricts-escape.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/explanation-finding-pin-restricts-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-restricts-escape.json"
+    },
+    {
+      "id": "explanation-finding-pin-defenders-no-recapture",
+      "group": "srs_explanations",
+      "text": "Nobody can take back, since every single defender is pinned to its king. That's why the capture is safe, and the line ends up ahead in material.",
+      "audioPath": "recordings/mateo-v1/mateo/explanation-finding-pin-defenders-no-recapture.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/explanation-finding-pin-defenders-no-recapture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-defenders-no-recapture.json"
+    },
+    {
+      "id": "explanation-finding-pin-collected",
+      "group": "srs_explanations",
+      "text": "Watch that pinned piece the whole time. The king is somewhere down that line, so it's stuck there, and it gets captured before the sequence is over.",
+      "audioPath": "recordings/mateo-v1/mateo/explanation-finding-pin-collected.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/explanation-finding-pin-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-collected.json"
+    },
+    {
+      "id": "explanation-finding-skewer-collected",
+      "group": "srs_explanations",
+      "text": "The front piece hops off the line, and the piece it was hiding gets taken.",
+      "audioPath": "recordings/mateo-v1/mateo/explanation-finding-skewer-collected.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/explanation-finding-skewer-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-skewer-collected.json"
+    },
+    {
+      "id": "explanation-finding-king-skewer-collected",
+      "group": "srs_explanations",
+      "text": "Check pushes the king out of the way, and the same attacker grabs the piece standing behind it.",
+      "audioPath": "recordings/mateo-v1/mateo/explanation-finding-king-skewer-collected.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/explanation-finding-king-skewer-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-king-skewer-collected.json"
+    },
+    {
+      "id": "explanation-finding-sole-defender-captured",
+      "group": "srs_explanations",
+      "text": "The only defender gets taken first, and then the piece it was guarding is next on the menu.",
+      "audioPath": "recordings/mateo-v1/mateo/explanation-finding-sole-defender-captured.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/explanation-finding-sole-defender-captured.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-sole-defender-captured.json"
+    },
+    {
+      "id": "explanation-finding-deflection-collected",
+      "group": "srs_explanations",
+      "text": "Lure the defender away, and the piece it was protecting falls.",
+      "audioPath": "recordings/mateo-v1/mateo/explanation-finding-deflection-collected.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/explanation-finding-deflection-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-deflection-collected.json"
+    },
+    {
+      "id": "explanation-finding-discovered-capture",
+      "group": "srs_explanations",
+      "text": "Move the front piece, and the piece hiding behind it captures straight down the open line.",
+      "audioPath": "recordings/mateo-v1/mateo/explanation-finding-discovered-capture.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/explanation-finding-discovered-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-discovered-capture.json"
+    },
+    {
+      "id": "explanation-finding-discovered-check",
+      "group": "srs_explanations",
+      "text": "One piece slides aside, and the line it opens is check.",
+      "audioPath": "recordings/mateo-v1/mateo/explanation-finding-discovered-check.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/explanation-finding-discovered-check.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-discovered-check.json"
+    },
+    {
+      "id": "explanation-finding-double-check",
+      "group": "srs_explanations",
+      "text": "Double check! Two pieces give check together, so the only way out is moving the king.",
+      "audioPath": "recordings/mateo-v1/mateo/explanation-finding-double-check.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/explanation-finding-double-check.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-double-check.json"
+    },
+    {
+      "id": "explanation-finding-double-attack-collected",
+      "group": "srs_explanations",
+      "text": "One target is hit by the piece that moved, a second one by the line that just opened up, and the piece in back is the one that grabs.",
+      "audioPath": "recordings/mateo-v1/mateo/explanation-finding-double-attack-collected.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/explanation-finding-double-attack-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-double-attack-collected.json"
+    },
+    {
+      "id": "explanation-finding-promotion-material-retained",
+      "group": "srs_explanations",
+      "text": "The pawn promotes, and that side also finishes this example ahead in material.",
+      "audioPath": "recordings/mateo-v1/mateo/explanation-finding-promotion-material-retained.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/explanation-finding-promotion-material-retained.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-promotion-material-retained.json"
+    },
+    {
+      "id": "explanation-finding-undefended-capture-gain",
+      "group": "srs_explanations",
+      "text": "A piece with no guard comes off the board, and the side that took it ends this example ahead in material.",
+      "audioPath": "recordings/mateo-v1/mateo/explanation-finding-undefended-capture-gain.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/explanation-finding-undefended-capture-gain.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-undefended-capture-gain.json"
+    },
+    {
+      "id": "explanation-finding-relative-pin-released",
+      "group": "srs_explanations",
+      "text": "A relative pin was holding the attacker back, and the opponent's previous move set it free. In the line shown, it then captures a target that never moved.",
+      "audioPath": "recordings/mateo-v1/mateo/explanation-finding-relative-pin-released.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/explanation-finding-relative-pin-released.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-relative-pin-released.json"
+    },
+    {
+      "id": "game-explanation-legal-reply",
+      "group": "srs_explanations",
+      "text": "The marked reply is one of the moves the other side is legally allowed to make. Set it up and see what changes.",
+      "audioPath": "recordings/mateo-v1/mateo/game-explanation-legal-reply.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/game-explanation-legal-reply.provenance.json",
+      "alignmentPath": "alignment/game-explanation-legal-reply.json"
+    },
+    {
+      "id": "explanation-cue-hanging-piece",
+      "group": "srs_explanations",
+      "text": "Before you play your move, check that nothing of yours can be taken for free.",
+      "audioPath": "recordings/mateo-v1/mateo/explanation-cue-hanging-piece.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/explanation-cue-hanging-piece.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-hanging-piece.json"
+    },
+    {
+      "id": "explanation-cue-missed-tactical-capture",
+      "group": "srs_explanations",
+      "text": "Before a quiet move, take a peek at whether any enemy piece is unguarded.",
+      "audioPath": "recordings/mateo-v1/mateo/explanation-cue-missed-tactical-capture.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/explanation-cue-missed-tactical-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-missed-tactical-capture.json"
+    },
+    {
+      "id": "explanation-cue-fork",
+      "group": "srs_explanations",
+      "text": "In the checks and captures, look for one piece that can land on two big targets at once.",
+      "audioPath": "recordings/mateo-v1/mateo/explanation-cue-fork.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/explanation-cue-fork.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-fork.json"
+    },
+    {
+      "id": "explanation-cue-pin",
+      "group": "srs_explanations",
+      "text": "Before a pinned piece moves, peek behind it. What's back there, the king or a bigger piece?",
+      "audioPath": "recordings/mateo-v1/mateo/explanation-cue-pin.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/explanation-cue-pin.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-pin.json"
+    },
+    {
+      "id": "explanation-cue-skewer",
+      "group": "srs_explanations",
+      "text": "Peek past the first target, because something worth more might be lined up behind it.",
+      "audioPath": "recordings/mateo-v1/mateo/explanation-cue-skewer.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/explanation-cue-skewer.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-skewer.json"
+    },
+    {
+      "id": "explanation-cue-removing-defender",
+      "group": "srs_explanations",
+      "text": "Before trading off a defender, look at what it was keeping safe.",
+      "audioPath": "recordings/mateo-v1/mateo/explanation-cue-removing-defender.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/explanation-cue-removing-defender.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-removing-defender.json"
+    },
+    {
+      "id": "explanation-cue-discovered-attack",
+      "group": "srs_explanations",
+      "text": "If a piece leaves a line, look at what that line hits next.",
+      "audioPath": "recordings/mateo-v1/mateo/explanation-cue-discovered-attack.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/explanation-cue-discovered-attack.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-discovered-attack.json"
+    },
+    {
+      "id": "explanation-cue-double-attack",
+      "group": "srs_explanations",
+      "text": "Look for single moves that make two threats, including checks and lines that just opened.",
+      "audioPath": "recordings/mateo-v1/mateo/explanation-cue-double-attack.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/explanation-cue-double-attack.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-double-attack.json"
+    },
+    {
+      "id": "explanation-cue-back-rank",
+      "group": "srs_explanations",
+      "text": "Before a back-row defender walks away, make sure the king still has a square to run to.",
+      "audioPath": "recordings/mateo-v1/mateo/explanation-cue-back-rank.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/explanation-cue-back-rank.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-back-rank.json"
+    },
+    {
+      "id": "explanation-cue-promotion-awareness",
+      "group": "srs_explanations",
+      "text": "Count how far a pawn is from promoting, and watch which of its steps need an answer.",
+      "audioPath": "recordings/mateo-v1/mateo/explanation-cue-promotion-awareness.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/explanation-cue-promotion-awareness.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-promotion-awareness.json"
+    },
+    {
+      "id": "explanation-cue-abandoned-defender",
+      "group": "srs_explanations",
+      "text": "Before a defender moves, see which pieces are counting on it.",
+      "audioPath": "recordings/mateo-v1/mateo/explanation-cue-abandoned-defender.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/explanation-cue-abandoned-defender.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-abandoned-defender.json"
+    },
+    {
+      "id": "explanation-cue-avoiding-bad-trades",
+      "group": "srs_explanations",
+      "text": "Before you capture, compare what you take with what the recapture takes back.",
+      "audioPath": "recordings/mateo-v1/mateo/explanation-cue-avoiding-bad-trades.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/explanation-cue-avoiding-bad-trades.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-avoiding-bad-trades.json"
+    },
+    {
+      "id": "explanation-cue-deflection",
+      "group": "srs_explanations",
+      "text": "When a defender is busy guarding two things, look for a forcing trade that drags it off one of them.",
+      "audioPath": "recordings/mateo-v1/mateo/explanation-cue-deflection.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/explanation-cue-deflection.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-deflection.json"
+    },
+    {
+      "id": "explanation-note-curated-authority",
+      "group": "srs_explanations",
+      "text": "This exercise goes by the saved answers, but a legal move outside them can still be decent chess.",
+      "audioPath": "recordings/mateo-v1/mateo/explanation-note-curated-authority.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/explanation-note-curated-authority.provenance.json",
+      "alignmentPath": "alignment/explanation-note-curated-authority.json"
+    },
+    {
+      "id": "explanation-note-strong-replies",
+      "group": "srs_explanations",
+      "text": "The replies in the line are strong ones, but there are other replies too.",
+      "audioPath": "recordings/mateo-v1/mateo/explanation-note-strong-replies.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/explanation-note-strong-replies.provenance.json",
+      "alignmentPath": "alignment/explanation-note-strong-replies.json"
+    },
+    {
+      "id": "explanation-note-material-scope",
+      "group": "srs_explanations",
+      "text": "Material only counts inside the line shown, starting where it starts. The piece values are written out in the explanation.",
+      "audioPath": "recordings/mateo-v1/mateo/explanation-note-material-scope.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/explanation-note-material-scope.provenance.json",
+      "alignmentPath": "alignment/explanation-note-material-scope.json"
+    },
+    {
+      "id": "explanation-note-no-simple-reason",
+      "group": "srs_explanations",
+      "text": "The saved line has no simple tactical reason, and making up a positional one wouldn't help. Click through it one move at a time and compare the replies.",
+      "audioPath": "recordings/mateo-v1/mateo/explanation-note-no-simple-reason.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/explanation-note-no-simple-reason.provenance.json",
+      "alignmentPath": "alignment/explanation-note-no-simple-reason.json"
+    },
+    {
+      "id": "explanation-note-saved-policy",
+      "group": "srs_explanations",
+      "text": "The answer policy saved with the exercise is what this explanation follows, and the setting is written in the notes.",
+      "audioPath": "recordings/mateo-v1/mateo/explanation-note-saved-policy.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/explanation-note-saved-policy.provenance.json",
+      "alignmentPath": "alignment/explanation-note-saved-policy.json"
+    },
+    {
+      "id": "opening-recall-revealed",
+      "group": "openings",
+      "text": "Here comes the whole opening line, one move at a time.",
+      "audioPath": "recordings/mateo-v1/mateo/opening-recall-revealed.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/opening-recall-revealed.provenance.json",
+      "alignmentPath": "alignment/opening-recall-revealed.json"
+    },
+    {
+      "id": "opening-recall-accepted",
+      "group": "openings",
+      "text": "Yes! That's the move from your study.",
+      "audioPath": "recordings/mateo-v1/mateo/opening-recall-accepted.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/opening-recall-accepted.provenance.json",
+      "alignmentPath": "alignment/opening-recall-accepted.json"
+    },
+    {
+      "id": "opening-recall-retry-fallback",
+      "group": "openings",
+      "text": "Any move that's in the opening lines you're studying is okay here.",
+      "audioPath": "recordings/mateo-v1/mateo/opening-recall-retry-fallback.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/opening-recall-retry-fallback.provenance.json",
+      "alignmentPath": "alignment/opening-recall-retry-fallback.json"
+    },
+    {
+      "id": "opening-recall-cold-multiple",
+      "group": "openings",
+      "text": "More than one of your opening lines reaches this position, so a few different moves count here.",
+      "audioPath": "recordings/mateo-v1/mateo/opening-recall-cold-multiple.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/opening-recall-cold-multiple.provenance.json",
+      "alignmentPath": "alignment/opening-recall-cold-multiple.json"
+    },
+    {
+      "id": "opening-recall-cold-single",
+      "group": "openings",
+      "text": "What's the next move in your study? Play it!",
+      "audioPath": "recordings/mateo-v1/mateo/opening-recall-cold-single.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/opening-recall-cold-single.provenance.json",
+      "alignmentPath": "alignment/opening-recall-cold-single.json"
+    },
+    {
+      "id": "opening-recall-rejected",
+      "group": "openings",
+      "text": "Nope, your opening lines take a different path here. Try again!",
+      "audioPath": "recordings/mateo-v1/mateo/opening-recall-rejected.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/opening-recall-rejected.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected.json"
+    },
+    {
+      "id": "opening-recall-rejected-changed",
+      "group": "openings",
+      "text": "That's not in your opening lines, so try again. The study was edited, so this saved attempt won't change any review dates.",
+      "audioPath": "recordings/mateo-v1/mateo/opening-recall-rejected-changed.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/opening-recall-rejected-changed.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected-changed.json"
+    },
+    {
+      "id": "opening-recall-rejected-retired",
+      "group": "openings",
+      "text": "That's not in your opening lines, so try again. Retired positions don't get new review dates, so nothing changes there.",
+      "audioPath": "recordings/mateo-v1/mateo/opening-recall-rejected-retired.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/opening-recall-rejected-retired.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected-retired.json"
+    },
+    {
+      "id": "opening-preview-active",
+      "group": "openings",
+      "text": "Mixed Due takes any move from this line, but dedicated practice only takes this exact one.",
+      "audioPath": "recordings/mateo-v1/mateo/opening-preview-active.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/opening-preview-active.provenance.json",
+      "alignmentPath": "alignment/opening-preview-active.json"
+    },
+    {
+      "id": "opening-preview-inactive",
+      "group": "openings",
+      "text": "Due recalls want you to play the side you chose. When several active studies share a position, it turns into just one card.",
+      "audioPath": "recordings/mateo-v1/mateo/opening-preview-inactive.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/opening-preview-inactive.provenance.json",
+      "alignmentPath": "alignment/opening-preview-inactive.json"
+    },
+    {
+      "id": "puzzle-error",
+      "group": "puzzles",
+      "text": "The saved session needs a reload before the next move.",
+      "audioPath": "recordings/mateo-v1/mateo/puzzle-error.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/puzzle-error.provenance.json",
+      "alignmentPath": "alignment/puzzle-error.json"
+    },
+    {
+      "id": "puzzle-playback",
+      "group": "puzzles",
+      "text": "Watch the board, the checked line is about to play out.",
+      "audioPath": "recordings/mateo-v1/mateo/puzzle-playback.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/puzzle-playback.provenance.json",
+      "alignmentPath": "alignment/puzzle-playback.json"
+    },
+    {
+      "id": "puzzle-revealed",
+      "group": "puzzles",
+      "text": "This one counts as revealed. The answer is right below whenever you want it.",
+      "audioPath": "recordings/mateo-v1/mateo/puzzle-revealed.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/puzzle-revealed.provenance.json",
+      "alignmentPath": "alignment/puzzle-revealed.json"
+    },
+    {
+      "id": "puzzle-solved-after-retry",
+      "group": "puzzles",
+      "text": "Solved, second time around! The earlier miss stays on the record, and that's okay.",
+      "audioPath": "recordings/mateo-v1/mateo/puzzle-solved-after-retry.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/puzzle-solved-after-retry.provenance.json",
+      "alignmentPath": "alignment/puzzle-solved-after-retry.json"
+    },
+    {
+      "id": "puzzle-solved-clean",
+      "group": "puzzles",
+      "text": "Zero wrong moves the whole way. That was awesome!",
+      "audioPath": "recordings/mateo-v1/mateo/puzzle-solved-clean.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/puzzle-solved-clean.provenance.json",
+      "alignmentPath": "alignment/puzzle-solved-clean.json"
+    },
+    {
+      "id": "puzzle-rejected",
+      "group": "puzzles",
+      "text": "The puzzle wants a different move here, but the right moves you already played are still saved.",
+      "audioPath": "recordings/mateo-v1/mateo/puzzle-rejected.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/puzzle-rejected.provenance.json",
+      "alignmentPath": "alignment/puzzle-rejected.json"
+    },
+    {
+      "id": "puzzle-next-move",
+      "group": "puzzles",
+      "text": "Yes! Now find the next move in the puzzle.",
+      "audioPath": "recordings/mateo-v1/mateo/puzzle-next-move.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/puzzle-next-move.provenance.json",
+      "alignmentPath": "alignment/puzzle-next-move.json"
+    },
+    {
+      "id": "puzzle-cold",
+      "group": "puzzles",
+      "text": "No hurry. Work the whole line out, then play the move when you're sure.",
+      "audioPath": "recordings/mateo-v1/mateo/puzzle-cold.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/puzzle-cold.provenance.json",
+      "alignmentPath": "alignment/puzzle-cold.json"
+    },
+    {
+      "id": "game-unavailable",
+      "group": "operational",
+      "text": "There isn't enough engine analysis here to explain it, and guessing wouldn't help anybody.",
+      "audioPath": "recordings/mateo-v1/mateo/game-unavailable.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/game-unavailable.provenance.json",
+      "alignmentPath": "alignment/game-unavailable.json"
+    },
+    {
+      "id": "game-review-paused",
+      "group": "operational",
+      "text": "The review is frozen right here for now. Jump back in below, or try something out on the board.",
+      "audioPath": "recordings/mateo-v1/mateo/game-review-paused.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/game-review-paused.provenance.json",
+      "alignmentPath": "alignment/game-review-paused.json"
+    },
+    {
+      "id": "game-browse-instructions",
+      "group": "operational",
+      "text": "Choose a move to jump back to, or try out your own idea on the board.",
+      "audioPath": "recordings/mateo-v1/mateo/game-browse-instructions.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/game-browse-instructions.provenance.json",
+      "alignmentPath": "alignment/game-browse-instructions.json"
+    },
+    {
+      "id": "book-opening-entry-1",
+      "group": "game_review",
+      "text": "And now the game is in a known opening.",
+      "audioPath": "recordings/mateo-v1/mateo/book-opening-entry-1.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/book-opening-entry-1.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-1.json"
+    },
+    {
+      "id": "book-opening-entry-2",
+      "group": "game_review",
+      "text": "This move takes the game into opening book territory.",
+      "audioPath": "recordings/mateo-v1/mateo/book-opening-entry-2.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/book-opening-entry-2.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-2.json"
+    },
+    {
+      "id": "book-opening-entry-3",
+      "group": "game_review",
+      "text": "Okay, this exact move is printed in the opening book.",
+      "audioPath": "recordings/mateo-v1/mateo/book-opening-entry-3.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/book-opening-entry-3.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-3.json"
+    },
+    {
+      "id": "book-opening-follow-1",
+      "group": "game_review",
+      "text": "More book. It's still going.",
+      "audioPath": "recordings/mateo-v1/mateo/book-opening-follow-1.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/book-opening-follow-1.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-1.json"
+    },
+    {
+      "id": "book-opening-follow-2",
+      "group": "game_review",
+      "text": "Book move! Listed there as well.",
+      "audioPath": "recordings/mateo-v1/mateo/book-opening-follow-2.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/book-opening-follow-2.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-2.json"
+    },
+    {
+      "id": "book-opening-follow-3",
+      "group": "game_review",
+      "text": "Even the reply is one the book already knows.",
+      "audioPath": "recordings/mateo-v1/mateo/book-opening-follow-3.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/book-opening-follow-3.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-3.json"
+    },
+    {
+      "id": "book-opening-follow-4",
+      "group": "game_review",
+      "text": "Book, again.",
+      "audioPath": "recordings/mateo-v1/mateo/book-opening-follow-4.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/book-opening-follow-4.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-4.json"
+    },
+    {
+      "id": "book-opening-follow-5",
+      "group": "game_review",
+      "text": "Book, still going strong.",
+      "audioPath": "recordings/mateo-v1/mateo/book-opening-follow-5.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/book-opening-follow-5.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-5.json"
+    },
+    {
+      "id": "book-opening-follow-6",
+      "group": "game_review",
+      "text": "The book isn't done yet.",
+      "audioPath": "recordings/mateo-v1/mateo/book-opening-follow-6.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/book-opening-follow-6.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-6.json"
+    },
+    {
+      "id": "book-opening-follow-7",
+      "group": "game_review",
+      "text": "Book move again.",
+      "audioPath": "recordings/mateo-v1/mateo/book-opening-follow-7.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/book-opening-follow-7.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-7.json"
+    },
+    {
+      "id": "book-opening-follow-8",
+      "group": "game_review",
+      "text": "More book. It shows which opening path the game is on, not whether the move was any good.",
+      "audioPath": "recordings/mateo-v1/mateo/book-opening-follow-8.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/book-opening-follow-8.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-8.json"
+    },
+    {
+      "id": "game-review-opened",
+      "group": "operational",
+      "text": "Okay, a whole game to go through! Let's jump in and find out what happened.",
+      "audioPath": "recordings/mateo-v1/mateo/game-review-opened.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/game-review-opened.provenance.json",
+      "alignmentPath": "alignment/game-review-opened.json"
+    },
+    {
+      "id": "lesson-wrong-move",
+      "group": "lessons",
+      "text": "Hmm, not the one this chapter's teaching. Pick another!",
+      "audioPath": "recordings/mateo-v1/mateo/lesson-wrong-move.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/lesson-wrong-move.provenance.json",
+      "alignmentPath": "alignment/lesson-wrong-move.json"
+    },
+    {
+      "id": "lesson-correct-move",
+      "group": "lessons",
+      "text": "Yes! Nailed the chapter's move. Onward!",
+      "audioPath": "recordings/mateo-v1/mateo/lesson-correct-move.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/lesson-correct-move.provenance.json",
+      "alignmentPath": "alignment/lesson-correct-move.json"
+    },
+    {
+      "id": "lesson-move-revealed",
+      "group": "lessons",
+      "text": "Whoa, the answer just showed up! Check out what it does, then keep going.",
+      "audioPath": "recordings/mateo-v1/mateo/lesson-move-revealed.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/lesson-move-revealed.provenance.json",
+      "alignmentPath": "alignment/lesson-move-revealed.json"
+    },
+    {
+      "id": "lesson-guided-playback",
+      "group": "lessons",
+      "text": "Ooh, watch this, the moves are playing all by themselves.",
+      "audioPath": "recordings/mateo-v1/mateo/lesson-guided-playback.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/lesson-guided-playback.provenance.json",
+      "alignmentPath": "alignment/lesson-guided-playback.json"
+    },
+    {
+      "id": "lesson-rehearsal-prompt",
+      "group": "lessons",
+      "text": "Okay, your turn! Think back to this spot in your study and play that move.",
+      "audioPath": "recordings/mateo-v1/mateo/lesson-rehearsal-prompt.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/lesson-rehearsal-prompt.provenance.json",
+      "alignmentPath": "alignment/lesson-rehearsal-prompt.json"
+    },
+    {
+      "id": "lesson-branch-entered",
+      "group": "lessons",
+      "text": "Side quest! We're checking out a different idea before heading back to the main road.",
+      "audioPath": "recordings/mateo-v1/mateo/lesson-branch-entered.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/lesson-branch-entered.provenance.json",
+      "alignmentPath": "alignment/lesson-branch-entered.json"
+    },
+    {
+      "id": "lesson-chapter-complete",
+      "group": "lessons",
+      "text": "Chapter finished! Everything you did is saved, so it's all locked in.",
+      "audioPath": "recordings/mateo-v1/mateo/lesson-chapter-complete.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/lesson-chapter-complete.provenance.json",
+      "alignmentPath": "alignment/lesson-chapter-complete.json"
+    },
+    {
+      "id": "lesson-game-opened",
+      "group": "lessons",
+      "text": "The entire game is yours to click through now! Explore as much as you want, then jump back to the chapter.",
+      "audioPath": "recordings/mateo-v1/mateo/lesson-game-opened.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/lesson-game-opened.provenance.json",
+      "alignmentPath": "alignment/lesson-game-opened.json"
+    },
+    {
+      "id": "lesson-error",
+      "group": "lessons",
+      "text": "Uh-oh, the lesson got stuck. Hit reload so we can keep playing.",
+      "audioPath": "recordings/mateo-v1/mateo/lesson-error.opus",
+      "sidecarPath": "recordings/mateo-v1/mateo/lesson-error.provenance.json",
+      "alignmentPath": "alignment/lesson-error.json"
+    }
+  ]
+}

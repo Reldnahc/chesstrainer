@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-move-ordinary",
+      "label": "Explanation frame quiet move ordinary",
+      "text": "Here comes a move. What changed?"
+    },
+    "takeId": null
+  },
+  "requestHash": "6c11f3b0972297a5b23ab09d7ebc187cf23bdff984b36550e67a2c107b934036",
+  "recordedAt": "2026-10-03T06:07:49.741Z",
+  "sha256": "d14468ebfb93f2204c1f206f42f7e939353959e9398296a6383e1827a276279c",
+  "bytes": 8627,
+  "requestId": "9Cxh0okIVpqTr7MxgwBE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "69fd707f9a781d8b3a49677088403cbda4b5b406673439fddb8424ce700c699a",
+    "bytes": 41839
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

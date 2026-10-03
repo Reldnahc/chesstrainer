@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "draw",
+      "label": "Draw",
+      "text": "Draw. The result is settled, but there's still cool stuff in the game to go back and look at."
+    },
+    "takeId": null
+  },
+  "requestHash": "fe3041e122537bca571bd10bf8a3fddeada6005f4044deb3ed19ea80fbe36148",
+  "recordedAt": "2026-10-03T06:07:25.309Z",
+  "sha256": "bff03db6877017b2cad4eafbdb0e0cc00dcbc7408ca7184e8ed06e90e52224f0",
+  "bytes": 18026,
+  "requestId": "KZnHPUGKWKM6cBW2BshX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "459dc35d2bfc831691e1baad6a670457db8d3e57277f222f89149e98551301cb",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

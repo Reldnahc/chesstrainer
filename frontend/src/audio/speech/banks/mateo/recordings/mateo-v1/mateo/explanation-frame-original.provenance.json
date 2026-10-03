@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-frame-original",
+      "label": "Explanation frame original",
+      "text": "Here's the board from before any of these moves happened, the very start of the line."
+    },
+    "takeId": null
+  },
+  "requestHash": "a28ad0e3c5b28b50de98fdc402ac897f70983acb2e7386e4c758e579046a5895",
+  "recordedAt": "2026-10-03T06:07:48.875Z",
+  "sha256": "e4deb18c0972c6d10fec115e05f809a136602d786495cd62f0568325b556c745",
+  "bytes": 16542,
+  "requestId": "oyQkzKDf7lGNagcsdHza",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c2492562e84853434eaea45ee8f8381779dac3ddd5969b9181d1678d70b75be9",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

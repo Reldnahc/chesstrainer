@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "opening-recall-revealed",
+      "label": "Opening recall revealed",
+      "text": "Here comes the whole opening line, one move at a time."
+    },
+    "takeId": null
+  },
+  "requestHash": "7e6b24952170d894476a65f4440f8a8f7c41fa76be763de57ab973ed5f91881d",
+  "recordedAt": "2026-10-03T06:09:06.213Z",
+  "sha256": "f07d13860ddb8d4cc32a60a6acc0a9f72326612252e4975f6f2d06584a17beed",
+  "bytes": 13706,
+  "requestId": "xfgo2ht9hV0H2sv5mNFN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4864acb3d6084798f3d695e573e85c226137a7ed916b407e082a62b62b84559c",
+    "bytes": 67753
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

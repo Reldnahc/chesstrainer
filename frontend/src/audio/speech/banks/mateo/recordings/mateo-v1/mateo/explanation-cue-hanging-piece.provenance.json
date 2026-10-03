@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-cue-hanging-piece",
+      "label": "Explanation cue hanging piece",
+      "text": "Before you play your move, check that nothing of yours can be taken for free."
+    },
+    "takeId": null
+  },
+  "requestHash": "854e26cf64a356e1a51ffb2bcef0e1805f5757af3769193e13c4ccda91b7066d",
+  "recordedAt": "2026-10-03T06:08:38.176Z",
+  "sha256": "0056ded07ef2007b51bed86730e601eb9235bd7b4a4203007109766cec56cd49",
+  "bytes": 15344,
+  "requestId": "e2s7ywpzZ0D9Xzh4IOIj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c3ed35bcc76d7b313019adbc4c3f8f9ec8f3d4ffd3a843c32c7a6e9ac1640861",
+    "bytes": 75276
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

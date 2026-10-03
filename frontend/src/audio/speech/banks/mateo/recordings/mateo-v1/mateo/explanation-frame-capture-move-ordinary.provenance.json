@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary",
+      "label": "Explanation frame capture move ordinary",
+      "text": "Capture. One piece gets knocked off the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "626c73fff425e9e1b08fe2819daabf4658d7ce53d810201eee4a9b5a432ae536",
+  "recordedAt": "2026-10-03T06:07:57.044Z",
+  "sha256": "26ddfc4a5533ed4a8c2f9c0e9a9535797054751cb4ef273411ccdece0d3b116c",
+  "bytes": 10628,
+  "requestId": "QALncxPj3LVhwJKcIi4g",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bfe0a1382a202533c08f2d070352ac4fb6eeba83c2b0a00e0b2db4707b5599d6",
+    "bytes": 52288
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

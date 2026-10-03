@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-promotion-escape",
+      "label": "Explanation frame quiet promotion escape",
+      "text": "The pawn promotes, and that also gets its own king out of check."
+    },
+    "takeId": null
+  },
+  "requestHash": "a6abe2b278129b51b87c8991437619c8e677d315d85e9ceb93a70754e371b409",
+  "recordedAt": "2026-10-03T06:07:56.091Z",
+  "sha256": "7613f723c47d6fdd16ad24723c319331e469d511499a9bdc0fc0ef6a65ea38ad",
+  "bytes": 13728,
+  "requestId": "krgWocGz5NvzoDkLuWZh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e9b27e39a6e30c42732d3c0a34a8720edcf812c0b7604b64d5f142f6f0d0a822",
+    "bytes": 66499
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

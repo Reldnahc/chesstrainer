@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "srs-summary-material-loss",
+      "label": "Srs summary material loss",
+      "text": "By the end of the saved line, the side that made this move is behind in material."
+    },
+    "takeId": null
+  },
+  "requestHash": "267146ef2b7cdbbc494cf4c12e8cab9898aa4c36c85d843d01c3bf3f10335288",
+  "recordedAt": "2026-10-03T06:07:34.694Z",
+  "sha256": "7dd0597888ae689bc88ec7afa7d9b8dd927c142d44ac64e2a4f482fbd6e2e546",
+  "bytes": 16712,
+  "requestId": "aL98zHPMBtBS0pJUzqY2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "27d602e184551ad6e09c5ceaace6c85940e23a5ab52507b4b9c9f81b40c7fc05",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-cue-deflection",
+      "label": "Explanation cue deflection",
+      "text": "When a defender is busy guarding two things, look for a forcing trade that drags it off one of them."
+    },
+    "takeId": null
+  },
+  "requestHash": "408ba05b606fd386db50ca3831218f1a9107c661c392aee5838514fd4cdac29a",
+  "recordedAt": "2026-10-03T06:08:55.861Z",
+  "sha256": "21ece5abea26ccd80d9a688a0c76eabffbe0e98b4f25e02a5fe8d67afa13d2b8",
+  "bytes": 19098,
+  "requestId": "79HktBSBsMNvB9hcKzcP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "05ad591be1b22659b22f60a3891675ca97760c71c1cde37b44dc619de119940b",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "only-advantage-resource",
+      "label": "Only advantage resource",
+      "text": "Just this one move kept the advantage, and every other checked move let it go."
+    },
+    "takeId": null
+  },
+  "requestHash": "1573cfe6e20ce7783406b48f24e573a2a68e26f377f641b0c5711f691c8e700d",
+  "recordedAt": "2026-10-03T06:06:49.841Z",
+  "sha256": "8fe4e4d033b0be7a7c6accf01b23b0b9b1b5ce7d11e38442908968d875c39af1",
+  "bytes": 16305,
+  "requestId": "oCHjiRQi1VWPlPkgKiJs",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "75996108589f4018d7bd61dd419f560a813ea7f9f886f1bb20a6f40b70cb11a9",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

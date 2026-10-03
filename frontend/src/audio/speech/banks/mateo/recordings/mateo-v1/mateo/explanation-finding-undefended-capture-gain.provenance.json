@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain",
+      "label": "Explanation finding undefended capture gain",
+      "text": "A piece with no guard comes off the board, and the side that took it ends this example ahead in material."
+    },
+    "takeId": null
+  },
+  "requestHash": "2c8f31c8b671cca0f311e028684497afaabb7129f3369cc7468cb9f1ef39f161",
+  "recordedAt": "2026-10-03T06:08:32.980Z",
+  "sha256": "12021cded75634d9ca6124e9f4e2d8d0ef1f39d92e10a57d6d8603e3e2f38649",
+  "bytes": 21082,
+  "requestId": "vkTF3adVl9eJESu0tAMj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "886b3ae224080b9a18bea86a8449484e3f30edb9b249d8cf28d824fb7d1ba7b8",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

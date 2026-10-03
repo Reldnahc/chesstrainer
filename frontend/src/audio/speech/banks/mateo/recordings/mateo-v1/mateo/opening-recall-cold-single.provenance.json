@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "opening-recall-cold-single",
+      "label": "Opening recall cold single",
+      "text": "What's the next move in your study? Play it!"
+    },
+    "takeId": null
+  },
+  "requestHash": "6c89608c527f6d1ec0b0195e86f178c8d93a227adeb994f3e733786766740fdd",
+  "recordedAt": "2026-10-03T06:09:10.726Z",
+  "sha256": "1ec68465521e9e230797b71c538ffdb66366d258b165670adaa1f10ab852908f",
+  "bytes": 9695,
+  "requestId": "3NFPqDAsX9zJ8Rew9vOs",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "06e4db39e0e3a5936ddfab592844abefb856e19c44773b8f909f7efa4cab1b8d",
+    "bytes": 48527
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

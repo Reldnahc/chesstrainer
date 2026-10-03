@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "book-opening-follow-2",
+      "label": "Book opening follow 2",
+      "text": "Book move! Listed there as well."
+    },
+    "takeId": null
+  },
+  "requestHash": "8932f92ac73e1f209928b83418ba8cca1c5e3a5416aaeb825a0d8d391c642969",
+  "recordedAt": "2026-10-03T06:09:38.929Z",
+  "sha256": "9305fa69826c10451cd6fdc9530d43bae096435554e1b3a5f501af316ddd81a3",
+  "bytes": 8571,
+  "requestId": "tqPEJHzCe807Bjso5FFu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7a4d3aa141b709db465232314d2aa3fd0fde2becc65f73f6393499e0bb3c2091",
+    "bytes": 40586
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

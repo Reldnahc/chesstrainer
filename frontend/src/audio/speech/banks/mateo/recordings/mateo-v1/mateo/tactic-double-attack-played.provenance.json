@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "tactic-double-attack-played",
+      "label": "Tactic double attack played",
+      "text": "Ooh, a double attack, two targets hit at the same moment! A single reply rarely covers both of them."
+    },
+    "takeId": null
+  },
+  "requestHash": "4064f5f0491123aabacb27977e4ec0aabf659699e08ca103e07f2d04300a2b36",
+  "recordedAt": "2026-10-03T06:05:41.633Z",
+  "sha256": "552f2615ada605c6e76cc355bc13223bbb5cbe42c5d62abcb670743b8f44eeb1",
+  "bytes": 23135,
+  "requestId": "ZH0AAkbvnYsaD4ewYybh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2a595e15cb348d669fcaff969efd74c6d0422bb843a76c33af44d81e3fea0855",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

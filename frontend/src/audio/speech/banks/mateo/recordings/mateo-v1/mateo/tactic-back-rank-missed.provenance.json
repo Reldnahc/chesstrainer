@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "tactic-back-rank-missed",
+      "label": "Tactic back rank missed",
+      "text": "The enemy king was stuck on its back row behind its own pieces, and there was mate right there. Set it up and play the mate yourself, it's really cool."
+    },
+    "takeId": null
+  },
+  "requestHash": "446fc4c4280785b5b1ab7a7f5f1ad2701b368e7d3baafdab9909071b3c6f4437",
+  "recordedAt": "2026-10-03T06:05:28.225Z",
+  "sha256": "ea0145b48421e9d15d2f0896e759ebcd29cbdc70b91ed6f481289323744bf86a",
+  "bytes": 30367,
+  "requestId": "4gOZrVCaoLGTFz8w9tS6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cbce5fd11b4aada4df5041934d39d40d75c723d5a682ea518245ca66b44d63be",
+    "bytes": 152181
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "positional-isolated-alternative",
+      "label": "Positional isolated alternative",
+      "text": "Another move would have left a pawn all alone, with no friendly pawn on the neighbouring files."
+    },
+    "takeId": null
+  },
+  "requestHash": "891eb6a7f3b9857815f3ea80d4b094fbe24dd113b7341f74b96ecfbeeec0c07f",
+  "recordedAt": "2026-10-03T06:06:22.268Z",
+  "sha256": "a000a6732a2efaaab1cbf43de91a6c96fdeedcbf8aae6b8f81b023205890b0e8",
+  "bytes": 18034,
+  "requestId": "36apO8jaxocjX4uk6WBG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9e68ed9b2740608e036ab99150a3d4e703d70c6ce4b0126c1c19db450d9a0c0b",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

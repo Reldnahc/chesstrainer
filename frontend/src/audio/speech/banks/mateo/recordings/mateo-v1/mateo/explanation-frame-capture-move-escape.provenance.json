@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-escape",
+      "label": "Explanation frame capture move escape",
+      "text": "Capturing is the way the king gets out of check here."
+    },
+    "takeId": null
+  },
+  "requestHash": "17402e5f2825d46876ec66660e0fdf95c8ac3d47fd03e23cab211358df740583",
+  "recordedAt": "2026-10-03T06:07:59.993Z",
+  "sha256": "ebd83295954015308f08949c8a4bf3fdf406c8e9864f1a9600a7a6954962be46",
+  "bytes": 10934,
+  "requestId": "0TuSU5aL7NmC43gN5hnR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "64bf7dfa583d5deb4666fb434f19ffd7e212c3813de871f0728017cbb4fcdf69",
+    "bytes": 53542
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

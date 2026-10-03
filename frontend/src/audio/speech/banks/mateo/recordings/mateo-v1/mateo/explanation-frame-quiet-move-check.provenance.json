@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-move-check",
+      "label": "Explanation frame quiet move check",
+      "text": "Check. The king has to deal with it first."
+    },
+    "takeId": null
+  },
+  "requestHash": "cd030a153aba92867441f6bca04f39bf41ddd8ae9c5380d0a1a598ce34b0b868",
+  "recordedAt": "2026-10-03T06:07:50.770Z",
+  "sha256": "83c0b105e4da0ed4767b7f8cce6aece31eef4baa1cd15304c255daa52a3e11f1",
+  "bytes": 10224,
+  "requestId": "C2iC9UgcC133ws4gzUUP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ff6519cf181933707e7dfede62a152ad32d7d85e081fde79c42d488bfc58eb9c",
+    "bytes": 49781
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

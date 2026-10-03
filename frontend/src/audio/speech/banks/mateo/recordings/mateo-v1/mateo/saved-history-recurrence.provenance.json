@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "saved-history-recurrence",
+      "label": "Saved history recurrence",
+      "text": "This exact problem pops up in some of your other saved games too. Looking at them together could help you catch it next time."
+    },
+    "takeId": null
+  },
+  "requestHash": "c45a832be967ce406962cb55bfa682a57f6a0be7e16c74e5ec40109fcbc0164b",
+  "recordedAt": "2026-10-03T06:07:20.782Z",
+  "sha256": "5f31a32c77637aaf3d3e2fa8c48fcd243eef029157b19ca8542d1b63056594f0",
+  "bytes": 23025,
+  "requestId": "gq57HZRyxKvbZjYWs8Sk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "eb269e1afc66df7852b5abfe2ea3416e3cd8c7f77bfd1872aae0984d1a04e1df",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

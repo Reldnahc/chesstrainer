@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check",
+      "label": "Explanation finding discovered check",
+      "text": "One piece slides aside, and the line it opens is check."
+    },
+    "takeId": null
+  },
+  "requestHash": "294efa01d3d2d5f28265a5d6dacd356b43d70ca170ea443fdd40c62a6b321717",
+  "recordedAt": "2026-10-03T06:08:26.642Z",
+  "sha256": "d0813ba69dff3f3128da81b8e587a7f638d175dc4a46381a9e3133f50e987c46",
+  "bytes": 12822,
+  "requestId": "ZhBafEK1vRsM5G1ryYo7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "74d4acdd10f92e73e737f2fc80c040dbbf3dc8d7c5095fc4bac1fd4189792904",
+    "bytes": 62319
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

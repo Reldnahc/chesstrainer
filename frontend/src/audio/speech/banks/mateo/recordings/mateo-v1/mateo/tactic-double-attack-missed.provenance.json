@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "tactic-double-attack-missed",
+      "label": "Tactic double attack missed",
+      "text": "Two threats in one go were waiting in the stronger move. This one leaves them there, and that's the difference."
+    },
+    "takeId": null
+  },
+  "requestHash": "daf6ba89751789e94ffbc7f75badd4e41861502db52bdcc628f1003ef7276905",
+  "recordedAt": "2026-10-03T06:05:45.157Z",
+  "sha256": "9f0f518bcfd8b52f56cf9fa86792c19157a82e672f7d10fd87fc2317d29b3674",
+  "bytes": 22234,
+  "requestId": "vO5zhpaKyhbU8Pg95g9E",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "38ca022087916b5fd6124289f08df04a691c531cceaa5815d33434bf1b55d95a",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

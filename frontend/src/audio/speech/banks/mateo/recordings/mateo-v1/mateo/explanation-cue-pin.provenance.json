@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-cue-pin",
+      "label": "Explanation cue pin",
+      "text": "Before a pinned piece moves, peek behind it. What's back there, the king or a bigger piece?"
+    },
+    "takeId": null
+  },
+  "requestHash": "f4c21a105a93f7fb4be63cae0a8ed004e5480bd009d0d4af1590a2104be1bc20",
+  "recordedAt": "2026-10-03T06:08:42.684Z",
+  "sha256": "a74f775812be443deb7d7f4f0dd7ff8e1b083a8e1ed9078f97ee811d47518c66",
+  "bytes": 19853,
+  "requestId": "NxvmnTNUcQFxnt7NN4QL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4a8104de63a5b15a801169f8ec37fb002a2826c531251e792bcd9ef51faf80a2",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "positional-development-alternative",
+      "label": "Positional development alternative",
+      "text": "With another move, a minor piece would have come out to play, but it's still waiting at home."
+    },
+    "takeId": null
+  },
+  "requestHash": "91e6ce7eeafdbe7d3241e99f0ea684996bf8a67abe6901d100c03e836f133b85",
+  "recordedAt": "2026-10-03T06:06:04.867Z",
+  "sha256": "2998a07e364c226e739b5a92265dbf3acf6d0e6a6152bd37cef704c8054f1af4",
+  "bytes": 18180,
+  "requestId": "9wO4IPsY9B7rnrxW5X4v",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dd6b51ab87ad0c22361622d68274f3133078ec875882fe739a9a63f204613471",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

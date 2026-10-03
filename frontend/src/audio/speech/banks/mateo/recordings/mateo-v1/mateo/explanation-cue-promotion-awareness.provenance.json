@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-cue-promotion-awareness",
+      "label": "Explanation cue promotion awareness",
+      "text": "Count how far a pawn is from promoting, and watch which of its steps need an answer."
+    },
+    "takeId": null
+  },
+  "requestHash": "1cb4f58c4fc4c3b3a392ba8eb12facd5237b1cb291ea22223c61766f3eb0aa9b",
+  "recordedAt": "2026-10-03T06:08:51.413Z",
+  "sha256": "19cce28cbffb9f1b3c3ca73ebfbde41bb3dedc62743dcb160cb4ef9c3519dbb4",
+  "bytes": 16892,
+  "requestId": "J2MiX6DGOEi8EylInuvs",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4ae1161991b3be1f4855e036cfa17c86e9017f01e9a0d3c204897421f1944235",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

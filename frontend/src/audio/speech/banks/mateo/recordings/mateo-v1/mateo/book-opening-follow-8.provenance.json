@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "book-opening-follow-8",
+      "label": "Book opening follow 8",
+      "text": "More book. It shows which opening path the game is on, not whether the move was any good."
+    },
+    "takeId": null
+  },
+  "requestHash": "ef3157d4b234a42ef92d7adc0bc8e279b6d16481a8060260efbd574cca008932",
+  "recordedAt": "2026-10-03T06:09:44.902Z",
+  "sha256": "bfd90db123576a9415f3e8506474e3a6169a4c8adfd46874deda26202f4b89b3",
+  "bytes": 18607,
+  "requestId": "QGM8CsRFdUIjwWrX4FNl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3b458c17ebd8ab5af93e61d95bee4cb8bb03e00bad8890733804b68ac0c46280",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

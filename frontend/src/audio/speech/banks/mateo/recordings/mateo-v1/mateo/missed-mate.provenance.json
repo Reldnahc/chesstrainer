@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "missed-mate",
+      "label": "Missed mate",
+      "text": "There was a forced checkmate right there! This move goes off in another direction. Play the mating line out later, it's a great one to see."
+    },
+    "takeId": null
+  },
+  "requestHash": "fd15ed25dd908f4b6fb332a7898de93c466ed2e104f645e38ca76c246ca35f2b",
+  "recordedAt": "2026-10-03T06:06:44.652Z",
+  "sha256": "7d549d3105cfa47759009db42469d4d2e1c0beca4ab2fe02f5af839afaa5cd22",
+  "bytes": 27415,
+  "requestId": "7tDCj8zWdj8RkmjiI41f",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a87222d1017a734ee6db5ccd54ff9c93223cd4738e79baa97674ea5514fb8308",
+    "bytes": 136716
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

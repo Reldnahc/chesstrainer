@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "srs-summary-mate-for-mover",
+      "label": "Srs summary mate for mover",
+      "text": "Here, the saved engine analysis shows the side that made this move can force mate."
+    },
+    "takeId": null
+  },
+  "requestHash": "825ccaaf0b01716d0b84b5c3d6cec81f1c2b38d553ec94502ba54cce89d1d26f",
+  "recordedAt": "2026-10-03T06:07:30.262Z",
+  "sha256": "b6e2a219f22786ff18c80395e23b7965c4b447bf7724298bc90ca573a9f52f4c",
+  "bytes": 17290,
+  "requestId": "h7pKVDqkbg20ZzbZIwFw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c73245c9ba36ec06fd53c178695005a010f16f1f253db75bb202b4a8b8b1e2d4",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

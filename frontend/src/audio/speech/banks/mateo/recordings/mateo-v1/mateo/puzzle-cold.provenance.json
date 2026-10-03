@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "puzzle-cold",
+      "label": "Puzzle cold",
+      "text": "No hurry. Work the whole line out, then play the move when you're sure."
+    },
+    "takeId": null
+  },
+  "requestHash": "219e5c0fa91161c6875a9a1eca92dba55fd3e7118be68c25892604493dd9613a",
+  "recordedAt": "2026-10-03T06:09:29.333Z",
+  "sha256": "d55d45c5a84068f65076455e17f7fc713f3d9821beaf3a0eab92b34fd52c8c16",
+  "bytes": 15131,
+  "requestId": "IqjjREfqfHygclF391Dv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "968bcf4d051547a5be664f1a66e964872788d1dc1da17196fd0ab41eef3d3eb6",
+    "bytes": 74022
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

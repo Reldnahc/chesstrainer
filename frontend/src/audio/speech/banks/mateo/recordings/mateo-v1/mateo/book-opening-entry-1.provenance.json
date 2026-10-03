@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "book-opening-entry-1",
+      "label": "Book opening entry 1",
+      "text": "And now the game is in a known opening."
+    },
+    "takeId": null
+  },
+  "requestHash": "ec21382994fa95255708a912055ff59a6dd15347e0eb92c6fa54e802f977347d",
+  "recordedAt": "2026-10-03T06:09:34.890Z",
+  "sha256": "dc1b373fb5ee7b976b78d6fd5ed784745b4bd3916ab3c08064256fc2e7aff291",
+  "bytes": 9904,
+  "requestId": "VRFxS6VJUtZMn37hMqnc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "105826b36dccd485b0fb637dc3841fab6bb521ba0afee3202cf62df43aaf6c1e",
+    "bytes": 47273
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

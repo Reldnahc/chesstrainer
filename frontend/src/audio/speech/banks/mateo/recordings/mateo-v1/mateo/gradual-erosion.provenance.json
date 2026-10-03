@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "gradual-erosion",
+      "label": "Gradual erosion",
+      "text": "Little losses keep stacking up, and here's another one. Not one of them is big by itself, but together they add up."
+    },
+    "takeId": null
+  },
+  "requestHash": "a4227b8c4a85177a2b9eb0b4c5fc4513f2735de97c6e88695278f977d9f3c8b8",
+  "recordedAt": "2026-10-03T06:07:16.978Z",
+  "sha256": "aad3a6244d30e130060761558fb509b7ee9932e7d58fb4f6fbe5cf4ab60c1b73",
+  "bytes": 25485,
+  "requestId": "0MCuRdChg8hDgKtzD6sA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "266c2b74571fa1620b4f76582d2880d8cc6c11b8b2ed0c2a9f1bae8732d21c16",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

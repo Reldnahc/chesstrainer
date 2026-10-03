@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "positional-doubled-actual",
+      "label": "Positional doubled actual",
+      "text": "Doubled pawns: two pawns of the same color now stand one behind the other on a single file."
+    },
+    "takeId": null
+  },
+  "requestHash": "376e4ca07d89efdd0ba6909420ec8d13e48e08e9a73995c173354a66107469f0",
+  "recordedAt": "2026-10-03T06:06:39.335Z",
+  "sha256": "c0ccbc89c0b24989957259bf50533d092ce76113f13cc9120334cb7ad7aa74b6",
+  "bytes": 21453,
+  "requestId": "nOmsbp8IuzRJ5QWO5sJB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "49971a9d1dff44f3e20c0aad9415b37fc5fc35db2edbb3c556728b8d4c7319b7",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}
