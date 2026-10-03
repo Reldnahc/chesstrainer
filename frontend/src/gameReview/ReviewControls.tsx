@@ -2,6 +2,7 @@ import { ArrowLeft, FlipVertical2 } from "lucide-react";
 import ActionLink from "../ActionLink";
 import { IconButton } from "../Button";
 import MovePlaybackControls from "../MovePlaybackControls";
+import AudioMuteButton from "../audio/AudioMuteButton";
 import type { GameExploration } from "./useGameExploration";
 
 export default function ReviewControls({
@@ -29,9 +30,12 @@ export default function ReviewControls({
         previous={{ "aria-label": "Previous move", disabled: current === 0, onClick: () => step(-1) }}
         next={{ "aria-label": "Next move", disabled: current === maximum, onClick: () => step(1) }}
         last={{ "aria-label": "Last move", disabled: current === maximum, onClick: () => selectStep(maximum) }} />
-      <IconButton aria-label="Flip board" onClick={flip}>
-        <FlipVertical2 size={17} />
-      </IconButton>
+      <div className="game-board-tools">
+        <IconButton aria-label="Flip board" onClick={flip}>
+          <FlipVertical2 size={17} />
+        </IconButton>
+        <AudioMuteButton />
+      </div>
     </div>
   );
 }

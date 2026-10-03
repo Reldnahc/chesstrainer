@@ -9,6 +9,7 @@ import Button from "../Button";
 import ContinuationMoves from "../ContinuationMoves";
 import { LoadingState, UnavailableState } from "../LoadState";
 import MovePlaybackControls from "../MovePlaybackControls";
+import AudioMuteButton from "../audio/AudioMuteButton";
 import ReviewCoach from "../ReviewCoach";
 import Notice from "../Notice";
 import ReviewWorkspace from "../ReviewWorkspace";
@@ -105,7 +106,7 @@ export default function OpeningLinePreview({ catalogueKey, courseLine }: {
     belowBoard={<div className="review-board-hint">{frame ? frame.san : "Starting position"} · Preview the continuation before adding it to study.</div>}
     boardControls={<div className="lesson-board-controls"><ActionLink variant="secondary" href={back}><ArrowLeft size={16} />Back</ActionLink><MovePlaybackControls label="Opening line playback" current={ply} maximum={line.frames.length}
       previous={{ "aria-label": "Previous line move", disabled: !ply, onClick: () => seek(ply - 1) }}
-      next={{ "aria-label": "Next line move", disabled: ply === line.frames.length, onClick: () => seek(ply + 1) }} /></div>}
+      next={{ "aria-label": "Next line move", disabled: ply === line.frames.length, onClick: () => seek(ply + 1) }} /><AudioMuteButton /></div>}
     board={<Board fen={frame?.after_fen || line.line.initial_fen} orientation={color} disabled highlights={frame ? [frame.uci.slice(0, 2), frame.uci.slice(2, 4)] : []} />}
   >
     <ReviewCoach title={<h2>{selectedStudy?.active ? "This line is in your study." : "Choose what to remember."}</h2>} voice={voice}

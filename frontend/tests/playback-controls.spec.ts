@@ -46,11 +46,14 @@ test("shared move playback preserves counter geometry and fits the complete game
           || control.top >= previous.bottom - 1 || control.bottom <= previous.top + 1).toBe(true);
       }
     }
-    const mute = completeToolbar.getByRole("button", { name: "Mute sound on this device", exact: true });
-    const muteBox = (await mute.boundingBox())!;
+    // Quick mute is the last control in the same group, sized and spaced like Flip.
+    const mute = (await toolbar.getByRole("button", { name: "Mute sound on this device", exact: true }).boundingBox())!;
+    const flip = (await toolbar.getByRole("button", { name: "Flip board", exact: true }).boundingBox())!;
     const navigationBox = (await toolbar.boundingBox())!;
-    if (width <= 350) expect(muteBox.y).toBeGreaterThanOrEqual(navigationBox.y + navigationBox.height);
-    else expect(muteBox.y).toBe(navigationBox.y);
+    expect(mute.y).toBe(flip.y);
+    expect(mute.width).toBeCloseTo(flip.width, 1);
+    expect(mute.x - flip.x - flip.width).toBeCloseTo(width <= 760 ? 2 : 6, 1);
+    expect(mute.x + mute.width).toBeCloseTo(navigationBox.x + navigationBox.width, 1);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   }
   await toolbar.getByRole("button", { name: "Start of game", exact: true }).click();

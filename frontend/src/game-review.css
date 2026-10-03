@@ -77,7 +77,7 @@
 }
 .game-board-controls {
   display: grid;
-  grid-template-columns: minmax(max-content, 1fr) minmax(0, max-content) minmax(42px, 1fr);
+  grid-template-columns: minmax(max-content, 1fr) minmax(0, max-content) minmax(max-content, 1fr);
   gap: 6px;
   align-items: center;
 }
@@ -85,12 +85,16 @@
   justify-self: start;
   white-space: nowrap;
 }
-.game-board-controls > .action-control--icon {
+.game-board-tools {
   justify-self: end;
+  display: flex;
+  gap: inherit;
+  min-width: 0;
 }
 /* Short windows can constrain the board even at desktop widths. The canonical
    button widths shrink only when this complete toolbar cannot fit them. */
-.game-board-controls .move-playback-controls > .action-control--icon {
+.game-board-controls .move-playback-controls > .action-control--icon,
+.game-board-tools > .action-control--icon {
   flex: 0 1 auto;
   min-width: 20px;
 }
@@ -455,18 +459,6 @@
 @media (max-width: 760px) {
   .game-player {
     min-height: 27px;
-  }
-  /* Keep sound reachable without squeezing playback into the All games link.
-     Only very narrow boards need the mute action on a second row. */
-  .review-board-toolbar:has(.game-board-controls) {
-    flex-wrap: wrap;
-    gap: 4px 6px;
-  }
-  .review-board-toolbar > .review-board-controls:has(.game-board-controls) {
-    flex-basis: 280px;
-  }
-  .review-board-toolbar:has(.game-board-controls) > .audio-quick-mute {
-    margin-left: auto;
   }
   .game-board-controls {
     display: flex;

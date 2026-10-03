@@ -59,8 +59,7 @@ export default function ReviewWorkspace({ heading, boardLabel, board, aboveBoard
       </div>
       <div className="review-board-meta" data-review-chrome>{belowBoard}</div>
       <div className="review-board-toolbar" data-review-chrome>
-        {boardControls && <div className="review-board-controls">{boardControls}</div>}
-        <AudioMuteButton />
+        {boardControls ? <div className="review-board-controls">{boardControls}</div> : <AudioMuteButton />}
       </div>
     </section>
     <aside className="review-sidebar">
