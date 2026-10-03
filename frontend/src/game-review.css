@@ -85,6 +85,14 @@
   justify-self: start;
   white-space: nowrap;
 }
+/* A live game's Resign and Offer draw share the library link's start slot. */
+.game-board-actions {
+  justify-self: start;
+  display: flex;
+  gap: inherit;
+  min-width: 0;
+}
+.game-board-actions > .action-control { white-space: nowrap; }
 .game-board-tools {
   justify-self: end;
   display: flex;
@@ -465,6 +473,8 @@
     flex-wrap: nowrap;
     gap: 2px;
   }
+  .game-board-actions { flex: 0 0 auto; gap: 2px; }
+  .game-board-actions > .action-control { padding: 5px 6px; font-size: 11px; }
   .game-library-link.action-control {
     flex: 0 0 auto;
     padding: 5px 6px;

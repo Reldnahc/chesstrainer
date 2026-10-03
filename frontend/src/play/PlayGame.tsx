@@ -147,10 +147,10 @@ export default function PlayGame({ id }: { id: string }) {
             {finished ? (
               <ActionLink size="compact" className="game-library-link" href={pagePaths.Play}>New game</ActionLink>
             ) : (
-              <>
+              <div className="game-board-actions">
                 <Button size="compact" onClick={session.resign}>Resign</Button>
                 <Button size="compact" onClick={session.offerDraw} disabled={state.draw_declined}>Offer draw</Button>
-              </>
+              </div>
             )}
             <MovePlaybackControls label="Game move playback" current={ply} maximum={latest}
               first={{ "aria-label": "Start of game", title: "Starting position", disabled: ply === 0, onClick: () => session.navigate(0) }}

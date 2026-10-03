@@ -90,7 +90,7 @@ not React components.
 | Game review moves line | [CoachMovesLine](../frontend/src/gameReview/CoachMovesLine.tsx) | Opening name, `<Side>’s strongest reply: <SAN>` (the engine reply, never the move played) and a claim-proven qualifier, read from report/position facts only (never prose). Rendered in ReviewCoach's `detail` slot only while the bubble shows a spoken line; it wraps rather than truncating and is not a separate live region. Game-review specific; other modes keep their own concrete text. |
 | Move-quality symbol and labelled badge | [MoveSymbol](../frontend/src/MoveSymbol.tsx), [MoveBadge](../frontend/src/MoveBadge.tsx) | One icon/label rendering path. Objective move quality and practice attempt outcomes remain different concepts. |
 | White-perspective position score | [EvaluationScore](../frontend/src/EvaluationScore.tsx), [evaluation helpers](../frontend/src/evaluation.ts) | Signed pawn/mate formatting, winning-side styling and accessible perspective. Never pass side-to-move candidate scores without conversion. |
-| Accuracy display | [AccuracyReadout / PlayerRow](../frontend/src/gameReview/Players.tsx) | Player, summary and passive history presentations share unavailable/completion wording and one-decimal formatting. History keeps its row-level accessible description. |
+| Accuracy display | [AccuracyReadout / PlayerRow](../frontend/src/gameReview/Players.tsx) | Player, summary and passive history presentations share unavailable/completion wording and one-decimal formatting. History keeps its row-level accessible description. A game in progress omits the `accuracy` prop and reserves no readout. |
 | Library insights | [GameInsights](../frontend/src/GameInsights.tsx), [game-insights.css](../frontend/src/game-insights.css) | Insights → Overview only. Composes ChoiceGroup filters, StatList, LoadState, EmptyState, Link and the shared outcome colours; its bar, split and heatmap marks are local because no other screen charts aggregates. Promote them before a second consumer copies them. |
 | Saved game list | [GameHistory](../frontend/src/GameHistory.tsx), [game-history.css](../frontend/src/game-history.css) | Shared dates, player rows, outcomes, passive accuracy and review links. Games uses the default comparison table, adapting to its container width. Home uses explicit compact presentation: full-width player/score rows and a wrapping result/time/date/accuracy/review footer, without column headings or striping. Move count remains in the accessible description and the full library. All variant styles live with GameHistory; callers own fetch limits, enclosing panels and pagination. |
 | Practice move status | [MoveStatus](../frontend/src/MoveStatus.tsx), [move-status.css](../frontend/src/move-status.css) | Stable atomic live region, 350ms delayed checking and retry presentation. Optional rich content retains lesson paragraphs; do not pass general playback/navigation busy state as move grading. |
@@ -110,7 +110,7 @@ not React components.
 | Import option and submit action | [ImportControls](../frontend/src/ImportControls.tsx) | Shared optional training-analysis checkbox and submit label/icon/busy presentation. PGN matching, provider filters and request payloads remain caller-owned. |
 | Active/completed import jobs | [ImportJob](../frontend/src/ProviderImport.tsx) | Shared job contents with active and compact history presentations. |
 | Source attribution | [SourceLine](../frontend/src/SourceLine.tsx), [LessonAttribution](../frontend/src/study/LessonAttribution.tsx) | Shared text, optional license/revision and valid absolute HTTP(S) source/license links. Optional licenseUrl links the existing license label separately from View source. LessonAttribution resolves Repository license at render time without changing saved course fingerprints. Lesson sources remain multiple records; puzzle provenance remains completion-only. The audio studio uses SourceLine for recording credits; source-line.css is shared-safe. |
-| Local review tabs | [ReviewMoves](../frontend/src/gameReview/ReviewMoves.tsx) | The existing implementation has linked tab/panel IDs, roving focus and arrow/Home/End behavior. It is not yet an exported generic tabs component. |
+| Local review tabs | [ReviewMoves](../frontend/src/gameReview/ReviewMoves.tsx) | The existing implementation has linked tab/panel IDs, roving focus and arrow/Home/End behavior. It is not yet an exported generic tabs component. It accepts any navigator with the exploration fields it reads, so the live game shares the notation and quality tabs. |
 | Native controls and visual utilities | [foundation.css](../frontend/src/foundation.css), [base.css](../frontend/src/base.css) | Specialized native controls, typography, panels and action rows retain CSS foundations. Use the named components above for ordinary actions, notices, pagination and empty states; native dialogs share useModalDialog. |
 
 Quick mute belongs to each page's board-controls group rather than trailing it,
@@ -460,9 +460,12 @@ Keep their standalone dependency boundaries intact.
   Moves/Move quality is local tab content; PGN input selection is a form choice.
   Share a visual family, not one ambiguous interaction. The main site navigation
   also retains its top-level icon hierarchy and phone layout.
-- **Whole players:** Game review, scheduled recall, lesson and puzzle sessions
-  already compose Board, ReviewWorkspace and ReviewCoach. Their state, answer
-  visibility, progress and grading are intentionally different.
+- **Whole players:** Game review, scheduled recall, lesson, puzzle and live play
+  sessions already compose Board, ReviewWorkspace and ReviewCoach. Their state,
+  answer visibility, progress and grading are intentionally different. The Play
+  page ([PlayGame](../frontend/src/play/PlayGame.tsx)) reuses PositionCoach,
+  ReviewMoves, EvaluationGraph, PlayerRow and MovePlaybackControls by giving them
+  a game-shaped object and its own cursor; it owns no copies of their markup.
 - **Progress:** Background analysis pause/resume and numerical job completion are
   not the same as a lesson chapter, rehearsal or puzzle completion. ImportJob's
   active/compact presentations and ReviewProgress remain domain components.
