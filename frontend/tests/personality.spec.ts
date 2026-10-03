@@ -88,7 +88,7 @@ test("saved coach selection changes reviewed wording without new searches or alt
     await expect(page).toHaveURL("/settings");
     await reopen(() => page.goBack());
     await expect(line).toHaveAttribute("data-dialogue-coach", "woman-analyst");
-    // Marisol has no recordings; her script's line for the same meaning loads lazily.
+    // Marisol's own spoken line for the same meaning replaces Walter's.
     await expect(line).toHaveAttribute("data-spoken", /^allowed-mate/);
     await expect(line).not.toHaveText(text);
     await expect(line).toHaveAttribute("data-intent", intentId!);

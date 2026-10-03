@@ -164,7 +164,7 @@ Audio summarizes the supported idea while exact moves, squares, scores, names an
 historical counts stay written. It is not a verbatim reading of every paragraph.
 Unsupported or freeform text remains written. The bubble shows what the coach
 says: the selected coach's spoken line (its recording, or its script for a
-text-only coach) replaces the written sentence whenever one exists, with voice on
+line written but not yet recorded) replaces the written sentence whenever one exists, with voice on
 or off, and game review adds a moves line for the concrete reply and opening; see
 [Bubble text is the spoken line](COACH_DIALOGUE.md#bubble-text-is-the-spoken-line). Coaches never speak a Maia
 (human-move model) reading: the Maia badge, its popup and the written Maia sentence

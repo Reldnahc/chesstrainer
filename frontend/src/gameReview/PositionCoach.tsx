@@ -101,12 +101,12 @@ export default function PositionCoach({
   const opener = openerId && coachRecording(coachId, openerId) ? openerId : null;
   const recordingId = opener ?? selected;
   // The bubble shows what the coach says: a recorded coach's exact playback
-  // line, or a text-only coach's script line for the same meaning. "Show why"
+  // line, or the coach's script line for a meaning not yet recorded. "Show why"
   // keeps the written explanation, where the concrete detail lives, and
   // selection keeps validating against the written utterance throughout.
   const spokenId = explaining ? null : voiced ? recordingId : openerId ?? speech.recordingId;
   const spokenLine = useSpokenText(coachId, spokenId);
-  // A text-only coach whose script lacks one sentence of a pair still speaks the lead.
+  // A script that lacks one sentence of a pair still speaks the lead.
   const spokenLead = useSpokenText(coachId, explaining || voiced || openerId ? null : primaryId);
   const spoken = spokenLine ?? spokenLead, spokenSource = spokenLine ? spokenId : spokenLead ? primaryId : null;
   const displayed = !spoken ? utterance : openerId

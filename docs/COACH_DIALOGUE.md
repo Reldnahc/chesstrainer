@@ -293,7 +293,7 @@ text shows instead.
 
 - **Game review:** the move bubble shows the spoken line for the same recording
   ID used for playback (a recorded coach's exact clip, including the greeting) or,
-  for a text-only coach, its script line for the selected meaning. No meaning
+  for a line written but not yet recorded, the coach's script line for that meaning. No meaning
   (pending, no report, legacy prose, a Maia-only bubble) keeps the written text.
   Show why keeps the written detailed explanation. While the spoken line shows,
   a moves line beneath it carries the concrete facts from report/position data

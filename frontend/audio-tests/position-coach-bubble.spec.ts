@@ -3,7 +3,7 @@ import path from "node:path";
 import {defaultAudioPreferences, type AudioPreferences} from "../src/audio/model";
 import type {Game} from "../src/gameReview/types";
 import arjun from "../src/audio/speech/banks/arjun/manifest.json" with {type: "json"};
-import alfie from "../src/audio/speech/banks/alfie/scripts.json" with {type: "json"};
+import alfie from "../src/audio/speech/banks/alfie/manifest.json" with {type: "json"};
 import {viteFsPath} from "../studio-tests/helpers/viteFsPath";
 import {semanticFixtures} from "../tests/semantic-fixtures";
 import {openAudioFixturePage} from "./fixtures/openAudioFixture";
@@ -56,12 +56,12 @@ test("a recorded coach's bubble shows its recorded line, and Maia's popup keeps 
   await expect(dialog.locator("[data-utterance]")).toHaveAttribute("data-utterance", current.humanUtteranceId);
 });
 
-test("a text-only coach's bubble shows its script line for the same meaning, with voice off", async ({page}) => {
+test("with voice off, a coach's bubble still shows its spoken line and offers no Listen control", async ({page}) => {
   await mount(page, "dog-gentle", games["allowed-mate-natural"], {voice: "off"});
   // The book claim's recognition joins the mate line as the coach's second sentence.
   await expect(bubble(page)).toHaveAttribute("data-spoken", /^allowed-mate(?:\+[a-z0-9-]+)?$/);
   const spoken = (await bubble(page).getAttribute("data-spoken"))!;
-  await expect.poll(() => shown(page)).toBe(line(alfie.records, spoken));
+  await expect.poll(() => shown(page)).toBe(line(alfie.recordings, spoken));
   await expect(region(page).getByRole("button", {name: /^Listen/})).toHaveCount(0);
   // The mate claim proves the qualifier; the opening has no name, so no opening appears.
   await expect(movesLine(page)).toHaveText("Black’s strongest reply: Qh4#, forced mate");
