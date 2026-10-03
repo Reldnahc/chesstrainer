@@ -17,23 +17,26 @@ api.use({
   },
   async onResponse({ response, schemaPath }) {
     if (response.ok) return;
-    if (response.status === 401 && !schemaPath.startsWith("/api/auth/")) {
-      window.dispatchEvent(
-        new Event(accountMode ? "account-required" : "connection-required"),
-      );
-    }
     const result: unknown = await response
       .clone()
       .json()
       .catch(() => null);
-    throw new Error(
+    const detail =
       result &&
       typeof result === "object" &&
       "detail" in result &&
       typeof result.detail === "string"
         ? result.detail
-        : "Please check the submitted fields.",
-    );
+        : null;
+    if (response.status === 401 && !schemaPath.startsWith("/api/auth/")) {
+      window.dispatchEvent(
+        new Event(accountMode ? "account-required" : "connection-required"),
+      );
+    } else if (accountMode && response.status === 403 && detail?.startsWith("Refresh the page")) {
+      // The session cookie rotated in another tab; refresh identity to get the current token.
+      window.dispatchEvent(new Event("account-required"));
+    }
+    throw new Error(detail ?? "Please check the submitted fields.");
   },
 });
 

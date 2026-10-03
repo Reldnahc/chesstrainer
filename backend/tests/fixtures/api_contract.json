@@ -5436,18 +5436,6 @@
         "title": "PracticeQueueItem",
         "type": "object"
       },
-      "Profile": {
-        "properties": {
-          "chesscom_username": {
-            "default": "",
-            "maxLength": 50,
-            "title": "Chesscom Username",
-            "type": "string"
-          }
-        },
-        "title": "Profile",
-        "type": "object"
-      },
       "ProviderConnectionRequest": {
         "additionalProperties": false,
         "properties": {
@@ -7428,10 +7416,6 @@
             "title": "Chesscom Timeout Seconds",
             "type": "number"
           },
-          "chesscom_user_agent": {
-            "title": "Chesscom User Agent",
-            "type": "string"
-          },
           "classification_abstained": {
             "title": "Classification Abstained",
             "type": "integer"
@@ -7502,10 +7486,6 @@
           },
           "coverage": {
             "$ref": "#/components/schemas/Coverage"
-          },
-          "database_path": {
-            "title": "Database Path",
-            "type": "string"
           },
           "deep_depth": {
             "title": "Deep Depth",
@@ -7588,10 +7568,6 @@
             "title": "Human Model Enabled",
             "type": "boolean"
           },
-          "human_model_path": {
-            "title": "Human Model Path",
-            "type": "string"
-          },
           "human_model_threads": {
             "title": "Human Model Threads",
             "type": "integer"
@@ -7640,10 +7616,6 @@
             "title": "Provider Timeout Seconds",
             "type": "number"
           },
-          "public_origin": {
-            "title": "Public Origin",
-            "type": "string"
-          },
           "puzzle_pack_path": {
             "anyOf": [
               {
@@ -7683,10 +7655,6 @@
             "title": "Review Refinement Time",
             "type": "number"
           },
-          "server_host": {
-            "title": "Server Host",
-            "type": "string"
-          },
           "server_port": {
             "title": "Server Port",
             "type": "integer"
@@ -7702,10 +7670,6 @@
           "stockfish_hash_mb": {
             "title": "Stockfish Hash Mb",
             "type": "integer"
-          },
-          "stockfish_path": {
-            "title": "Stockfish Path",
-            "type": "string"
           },
           "stockfish_threads": {
             "title": "Stockfish Threads",
@@ -7749,15 +7713,11 @@
           "engine_error",
           "engine_version",
           "classification_available",
-          "server_host",
           "server_port",
-          "database_path",
           "accounts_enabled",
           "session_secure",
-          "public_origin",
           "engine_slots",
           "human_model_enabled",
-          "human_model_path",
           "human_model_device",
           "human_model_threads",
           "human_model_workers",
@@ -7767,7 +7727,6 @@
           "review_refinement_depth",
           "review_refinement_time",
           "review_refinement_multipv",
-          "stockfish_path",
           "stockfish_threads",
           "stockfish_hash_mb",
           "stockfish_workers",
@@ -7800,7 +7759,6 @@
           "max_import_bytes",
           "chesscom_timeout_seconds",
           "chesscom_max_response_bytes",
-          "chesscom_user_agent",
           "provider_timeout_seconds",
           "provider_max_response_bytes",
           "provider_max_scan_games",
@@ -7934,44 +7892,6 @@
           }
         },
         "summary": "Complete Onboarding"
-      }
-    },
-    "/api/auth/profile": {
-      "post": {
-        "operationId": "profile_api_auth_profile_post",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Profile"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AccountProfile"
-                }
-              }
-            },
-            "description": "Successful Response"
-          },
-          "422": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            },
-            "description": "Validation Error"
-          }
-        },
-        "summary": "Profile"
       }
     },
     "/api/auth/signup": {

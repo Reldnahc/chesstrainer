@@ -95,3 +95,25 @@ def test_token_and_origin(settings):
             ).status_code
             == 403
         )
+
+
+def test_local_mode_answers_lan_hosts_only(settings):
+    settings.stockfish_path = "missing-stockfish-test"
+    settings.allowed_hosts = "Chess.Example.net, nas-two"
+    with TestClient(create_app(settings, workers=False)) as client:
+        for host in (
+            "localhost",
+            "127.0.0.1:8000",
+            "[::1]:8000",
+            "192.168.1.12:8000",
+            "nas",
+            "nas.local",
+            "office.lan",
+            "chess.example.net",
+        ):
+            assert client.get("/api/health", headers={"host": host}).status_code == 200, host
+        # A public name re-pointed at this server (DNS rebinding) is refused outright.
+        response = client.get("/api/health", headers={"host": "attacker.example"})
+        assert response.status_code == 403 and "ALLOWED_HOSTS" in response.json()["detail"]
+        rebound = {"host": "attacker.example", "origin": "http://attacker.example"}
+        assert client.post("/api/course/rebuild", headers=rebound).status_code == 403

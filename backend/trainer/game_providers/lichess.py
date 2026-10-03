@@ -14,6 +14,8 @@ from trainer.game_providers.base import (
     check_cancel,
 )
 
+GROUP_SIZE = 50
+
 
 class LichessClient:
     check_cancel = staticmethod(check_cancel)
@@ -69,6 +71,19 @@ class LichessClient:
             )
         scanned = 0
         deadline = time.monotonic() + 600
+        # One NDJSON line is one game. Group records so the importer checkpoints a
+        # bounded transaction per group rather than one per game.
+        group = []
+
+        def grouped():
+            batch = ProviderBatch(
+                group[0].key,
+                [record for item in group for record in item.games],
+                keys=tuple(item.key for item in group),
+            )
+            group.clear()
+            return batch
+
         try:
             check_cancel(cancelled)
             with self.client.stream(
@@ -112,7 +127,9 @@ class LichessClient:
                             )
                         record = self.record(line)
                         if record.key not in completed:
-                            yield record
+                            group.append(record)
+                        if len(group) >= GROUP_SIZE:
+                            yield grouped()
                     if len(pending) > 1_000_000:
                         raise ProviderError("Lichess returned an oversized game record.")
                 if pending.strip():
@@ -122,8 +139,17 @@ class LichessClient:
                         )
                     record = self.record(pending)
                     if record.key not in completed:
-                        yield record
+                        group.append(record)
+                if group:
+                    yield grouped()
+        except ProviderError:
+            # Save the valid records read so far before reporting the problem.
+            if group:
+                yield grouped()
+            raise
         except httpx.RequestError as exc:
+            if group:
+                yield grouped()
             raise ProviderError(
                 "Could not finish the Lichess export. Check the host connection and retry; saved games are retained."
             ) from exc

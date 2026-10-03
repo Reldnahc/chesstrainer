@@ -17,7 +17,6 @@ from trainer.accounts import (
     password_hash,
     password_matches,
 )
-from trainer.chesscom import ChessComRequest
 from trainer.contracts.accounts import AccountProfile, Identity
 from trainer.contracts.common import Ok
 
@@ -25,10 +24,6 @@ from trainer.contracts.common import Ok
 class Credentials(BaseModel):
     username: str = Field(min_length=3, max_length=32)
     password: str = Field(min_length=10, max_length=128)
-
-
-class Profile(BaseModel):
-    chesscom_username: str = Field(default="", max_length=50)
 
 
 def configure_accounts(app, settings):
@@ -61,7 +56,7 @@ def configure_accounts(app, settings):
                         status_code=403,
                     )
                 if not public and not secrets.compare_digest(
-                    request.headers.get("x-csrf-token", ""), csrf_token(token)
+                    request.headers.get("x-csrf-token", "").encode(), csrf_token(token).encode()
                 ):
                     return JSONResponse(
                         {"detail": "Refresh the page before trying again."}, status_code=403
@@ -69,18 +64,44 @@ def configure_accounts(app, settings):
         return await call_next(request)
 
     def throttle(request, name):
+        """Refuse when recent attempts exceed a limit; return the keys to charge afterwards.
+
+        Every attempt counts toward the host-wide limit, which bounds password hashing.
+        Only failures count per address and per username, so a busy household or a
+        proxy address shared by every visitor (see FORWARDED_ALLOW_IPS) cannot lock
+        everyone out by signing in successfully.
+        """
         now = time.monotonic()
         host = request.client.host if request.client else "unknown"
+        keys = ("global", "ip:" + host, "user:" + name.lower())
         with attempts_lock:
             for key in list(attempts):
                 attempts[key] = [t for t in attempts[key] if now - t < 60]
                 if not attempts[key]:
                     del attempts[key]
-            for key, limit in (("global", 30), ("ip:" + host, 15), ("user:" + name.lower(), 6)):
+            for key, limit in zip(keys, (60, 15, 6)):
                 if len(attempts.get(key, [])) >= limit:
                     raise HTTPException(429, "Too many sign-in attempts. Try again in a minute.")
-            for key in ("global", "ip:" + host, "user:" + name.lower()):
+        return keys
+
+    def charge(keys, failed):
+        now = time.monotonic()
+        with attempts_lock:
+            for key in keys if failed else keys[:1]:
                 attempts.setdefault(key, []).append(now)
+
+    async def attempt(data, request, signup):
+        keys = throttle(request, data.username)
+        try:
+            user = await run_in_threadpool(authenticate, data, signup)
+        except HTTPException as exc:
+            charge(keys, exc.status_code == 401)
+            raise
+        except ValueError:
+            charge(keys, True)
+            raise
+        charge(keys, False)
+        return user
 
     def authenticate(data, signup):
         # Bound memory consumption of password hashing, independently of Stockfish.
@@ -132,14 +153,12 @@ def configure_accounts(app, settings):
         response_model_exclude_unset=True,
     )
     async def signup(data: Credentials, request: Request, response: Response):
-        throttle(request, data.username)
-        user = await run_in_threadpool(authenticate, data, True)
+        user = await attempt(data, request, True)
         return signed_in(user, response)
 
     @app.post("/api/auth/login", response_model=Identity, response_model_exclude_unset=True)
     async def login(data: Credentials, request: Request, response: Response):
-        throttle(request, data.username)
-        user = await run_in_threadpool(authenticate, data, False)
+        user = await attempt(data, request, False)
         return signed_in(user, response)
 
     @app.post("/api/auth/logout", response_model=Ok, response_model_exclude_unset=True)
@@ -149,22 +168,6 @@ def configure_accounts(app, settings):
             COOKIE, path="/", secure=settings.session_secure, httponly=True, samesite="lax"
         )
         return {"ok": True}
-
-    @app.post("/api/auth/profile", response_model=AccountProfile, response_model_exclude_unset=True)
-    def profile(data: Profile, request: Request):
-        name = data.chesscom_username.strip()
-        if name:
-            name = ChessComRequest(username=name).username
-        with accounts.connect() as db:
-            db.execute(
-                "UPDATE users SET chesscom_username=? WHERE id=?", (name, request.state.user["id"])
-            )
-            db.execute(
-                "INSERT INTO provider_connections (user_id, provider, username) VALUES (?, 'chesscom', ?) ON CONFLICT(user_id, provider) DO UPDATE SET username=excluded.username",
-                (request.state.user["id"], name),
-            )
-        user = accounts.by_name(request.state.user["username"])
-        return {"user": accounts.public(user)}
 
     @app.post("/api/auth/onboarding/complete", response_model=AccountProfile)
     def complete_onboarding(request: Request):

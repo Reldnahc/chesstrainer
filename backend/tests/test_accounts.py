@@ -199,7 +199,8 @@ def test_account_migration_preserves_existing_learning_history(settings):
                 ).mappings()
             ]
             assert [
-                {k: v for k, v in row.items() if k not in {"user_id", "played_at"}} for row in after
+                {k: v for k, v in row.items() if k not in {"user_id", "played_at", "move_count"}}
+                for row in after
             ] == rows
             assert all(row.get("user_id", "local") == "local" for row in after)
         assert connection.exec_driver_sql("PRAGMA foreign_key_check").all() == []
@@ -207,3 +208,26 @@ def test_account_migration_preserves_existing_learning_history(settings):
             connection.exec_driver_sql("SELECT disabled FROM users WHERE id='local'").scalar() == 1
         )
     engine.dispose()
+
+
+def test_failed_sign_ins_count_against_limits_but_successful_ones_do_not(settings):
+    settings.accounts_enabled = True
+    settings.public_origin = ORIGIN["Origin"]
+    settings.session_secure = False
+    settings.stockfish_path = "missing-no-signup-engine"
+    with TestClient(create_app(settings, workers=False, start_engine=False)) as client:
+        signup(client, "alice")
+
+        def login(password):
+            return client.post(
+                "/api/auth/login",
+                json={"username": "alice", "password": password},
+                headers=ORIGIN,
+            )
+
+        # Eight good sign-ins exceed the old per-username limit without being refused.
+        for _ in range(8):
+            assert login("testing-password").status_code == 200
+        for index in range(6):
+            assert login("wrong-password-1").status_code == 401, index
+        assert login("testing-password").status_code == 429

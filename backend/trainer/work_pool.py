@@ -3,6 +3,8 @@
 import threading
 from concurrent.futures import ThreadPoolExecutor
 
+from trainer.cancellation import throttled
+
 
 class WorkPool:
     def __init__(self, workers, name, cancelled):
@@ -15,8 +17,9 @@ class WorkPool:
         self.errors = []
 
     def submit(self, function, *args):
+        waiting = throttled(self.cancelled)
         while not self.slots.acquire(timeout=0.1):
-            if self.cancelled():
+            if waiting():
                 return False
         if self.cancelled():
             self.slots.release()

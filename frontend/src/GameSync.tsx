@@ -64,6 +64,7 @@ export default function GameSync({ onChanged, compact = false, onStatusChange, o
   const versions = useRef<Record<string, string>>({});
   const generation = useRef(0);
   const inFlight = useRef<number | null>(null);
+  const inFlightRun = useRef<Promise<void> | null>(null);
   const edits = useRef<Record<string, number>>({});
   function update(value: Sync, token: number) {
     if (generation.current !== token) return;
@@ -73,23 +74,41 @@ export default function GameSync({ onChanged, compact = false, onStatusChange, o
     if (version !== versions.current[value.provider] && value.job_id) callback.current?.();
     versions.current[value.provider] = version;
   }
-  async function check(items: Provider[], token: number, refresh: boolean) {
-    if (inFlight.current === token) return;
+  async function check(items: Provider[], token: number, refresh: boolean, explicit = false) {
+    if (inFlight.current === token) {
+      // A background pass is running. Explicit requests run after it; ticks are dropped.
+      if (!explicit || !inFlightRun.current) return;
+      await inFlightRun.current;
+      if (generation.current !== token) return;
+    }
     inFlight.current = token;
-    try {
-      for (const provider of items) {
-        if (generation.current !== token) return;
-        const revision = edits.current[provider.id];
-        let value = await read(api.GET("/api/providers/{provider}/sync", { params: path(provider.id) }));
-        if (generation.current !== token) return;
-        if (edits.current[provider.id] !== revision) continue;
-        update(value, token);
-        if (refresh && value.username && !running(value)) {
-          value = await read(api.POST("/api/providers/{provider}/sync", { params: path(provider.id) }));
-          if (edits.current[provider.id] === revision) update(value, token);
+    const run = (async () => {
+      let firstError: unknown = null;
+      try {
+        for (const provider of items) {
+          if (generation.current !== token) return;
+          try {
+            const revision = edits.current[provider.id];
+            let value = await read(api.GET("/api/providers/{provider}/sync", { params: path(provider.id) }));
+            if (generation.current !== token) return;
+            if (edits.current[provider.id] !== revision) continue;
+            update(value, token);
+            if (refresh && value.username && !running(value)) {
+              value = await read(api.POST("/api/providers/{provider}/sync", { params: path(provider.id) }));
+              if (edits.current[provider.id] === revision) update(value, token);
+            }
+          } catch (e) {
+            // Keep checking the other providers; report the first problem afterwards.
+            firstError ??= e;
+          }
         }
+        if (firstError) throw firstError;
+      } finally {
+        if (inFlight.current === token) { inFlight.current = null; inFlightRun.current = null; }
       }
-    } finally { if (inFlight.current === token) inFlight.current = null; }
+    })();
+    inFlightRun.current = run;
+    await run;
   }
   useEffect(() => {
     const token = ++generation.current;
@@ -116,7 +135,7 @@ export default function GameSync({ onChanged, compact = false, onStatusChange, o
   async function refresh() {
     const token = generation.current;
     setBusy(true); setError("");
-    try { await check(providers, token, true); }
+    try { await check(providers, token, true, true); }
     catch (e) { if (generation.current === token) setError((e as Error).message); }
     finally { if (generation.current === token) setBusy(false); }
   }

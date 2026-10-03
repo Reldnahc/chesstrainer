@@ -50,13 +50,15 @@ export function useGameReviewSession(id: string) {
     setReviewStarting(true);
     setError("");
     try {
-      await read(
+      const started = await read(
         api.POST("/api/games/{game_id}/review", {
           params: { path: { game_id: id } },
           body: { refine: false },
         }),
       );
       if (!mounted.current) return;
+      // A review that is already complete and unchanged keeps its loaded frames and cache.
+      if (started.status === "completed") return;
       setAnalysisEpoch((value) => value + 1);
       await load();
     } catch (e) {

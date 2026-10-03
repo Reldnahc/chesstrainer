@@ -51,6 +51,15 @@
 !frontend/type-tests/**
 !frontend/public/
 !frontend/public/**
+# A negated directory re-includes its whole tree, so the per-file entries above are
+# documentation; these suffix and directory rules are what keep local files out.
+frontend/audio-studio-dist
+frontend/studio-test-results*
+frontend/intelligence-test-results
+frontend/audio-test-results
+frontend/blob-report
+frontend/playwright/.cache
+**/*.pgn
 **/__pycache__/**
 **/*.pyc
 **/*.sqlite*

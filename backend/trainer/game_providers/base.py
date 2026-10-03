@@ -48,6 +48,12 @@ class ProviderBatch:
     key: str
     games: list[dict]
     total: int | None = None
+    # Every record key this batch completes when a provider groups several
+    # independently keyed records into one checkpointed write. Defaults to the key.
+    keys: tuple[str, ...] | None = None
+
+    def checkpoint_keys(self) -> tuple[str, ...]:
+        return self.keys or (self.key,)
 
 
 def check_cancel(cancelled):

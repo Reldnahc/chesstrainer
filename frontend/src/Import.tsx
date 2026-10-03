@@ -149,15 +149,23 @@ export default function ImportSettings({
   const mounted = useRef(false);
   const generation = useRef(0);
   const jobsInFlight = useRef<number | null>(null);
+  const jobsFailed = useRef(false);
   const reload = useCallback(async () => {
     const token = generation.current;
     if (!mounted.current || jobsInFlight.current === token) return;
     jobsInFlight.current = token;
     try {
       const value = await read(api.GET("/api/jobs"));
-      if (mounted.current && generation.current === token) setJobs(value);
+      if (mounted.current && generation.current === token) {
+        jobsFailed.current = false;
+        setJobs(value);
+      }
     } catch (error) {
-      if (mounted.current && generation.current === token) fail(error);
+      // One banner per outage: the next successful poll clears the way for another.
+      if (mounted.current && generation.current === token && !jobsFailed.current) {
+        jobsFailed.current = true;
+        fail(error);
+      }
     } finally {
       if (jobsInFlight.current === token) jobsInFlight.current = null;
     }
@@ -166,7 +174,10 @@ export default function ImportSettings({
     mounted.current = true;
     generation.current++;
     reload();
-    const timer = setInterval(reload, 2000);
+    const timer = setInterval(() => {
+      if (document.visibilityState === "hidden") return;
+      reload();
+    }, 2000);
     return () => {
       mounted.current = false;
       generation.current++;

@@ -270,3 +270,33 @@ def test_unavailable_unknown_move_does_not_fail_recall(settings, sessions, decis
         with pytest.raises(EngineUnavailable):
             submit_move(db, session["session_id"], "d2d4", MissingEngine(), scheduler, settings)
         assert db.get(SRSState, exercise.id).reviews == 0
+
+
+def test_restore_refuses_stale_sqlite_sidecars_and_leaves_no_partial_files(
+    settings, sessions, tmp_path
+):
+    spec = importlib.util.spec_from_file_location("backup", Path("scripts/backup.py"))
+    backup = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(backup)
+    with sessions() as db:
+        manual_exercise(db, FSRSScheduler(settings), chess.STARTING_FEN, ["e2e4"], "white")
+    archive = backup.export_backup(tmp_path / "backup.zip", settings)
+    destination = tmp_path / "restored.sqlite3"
+    stale = tmp_path / "restored.sqlite3-wal"
+    stale.write_bytes(b"frames left behind by an interrupted server")
+    # SQLite would replay a same-named WAL over the restored pages, so refuse up front.
+    with pytest.raises(ValueError, match="sidecar"):
+        backup.restore_backup(archive, destination)
+    assert not destination.exists()
+    stale.unlink()
+    backup.restore_backup(archive, destination)
+    assert destination.exists() and not list(tmp_path.glob("*.partial"))
+
+    def interrupted(path):
+        path.write_bytes(b"truncated")
+        raise OSError("disk full")
+
+    with pytest.raises(OSError):
+        backup.write_atomically(interrupted, tmp_path / "broken.zip")
+    assert not (tmp_path / "broken.zip").exists()
+    assert not (tmp_path / "broken.zip.partial").exists()

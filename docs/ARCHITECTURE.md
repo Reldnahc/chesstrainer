@@ -42,7 +42,7 @@ Whole-game review and training analysis are separately requested from the game.
 | multiuser.py | Cookie authentication, account/profile endpoints and request authentication; no child applications |
 | workspaces.py | Explicit account scopes for requests/jobs, bound sessions and locks retained only during active work |
 | jobs.py / job_queue.py / job_execution.py | Bounded host workers, scheduling metadata, and account-bound job execution |
-| backend/trainer/web.py | LAN token/origin middleware, HTTP error translation, production assets and SPA fallback |
+| backend/trainer/web.py | LAN host allowlist, token and origin middleware, HTTP error translation, production assets and SPA fallback |
 | engine_health.py | Thread-safe last-observed engine availability shared across interactive requests and workers; no native process starts during a health read |
 | human_models/ | Versioned human-policy contracts, domain provenance, private durable cache, bounded shared native workers and explicit checkpoint setup; independent of Stockfish and grading |
 | review_intelligence/ | Versioned difficulty, event/clock/positional facts, game relationships and owned history; bounded refinement planning uses the existing engine authority |
@@ -316,6 +316,9 @@ mode and belong to the job in local mode. Moves within a game stay ordered.
 Meaningful decisions flow to CLASSIFICATION_WORKERS local tasks. Each pool admits
 at most twice its worker count. Cancellation stops new work and lets started tasks
 save; a game is complete after its classification tasks settle.
+Cancellation is read from the job row: task boundaries check it exactly, while loops
+waiting for a lock, a pooled process or a running native search re-check it at most
+every 250 ms.
 
 Full-game review jobs instead parallelize independent move evidence, with at most
 `min(STOCKFISH_WORKERS, ENGINE_SLOTS)` outstanding moves. The coordinator commits

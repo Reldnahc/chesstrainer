@@ -43,6 +43,9 @@ Configure a host-based HTTPS proxy to forward to `http://127.0.0.1:18001`, prese
 Host. For a containerized proxy, attach both containers to the same Docker network
 and forward to `http://fieldwork-shared:8000`, or publish to a reachable LAN address.
 Another container cannot reach the host through its own loopback address.
+Set `FORWARDED_ALLOW_IPS` to the proxy's address (the proxy container's network
+address, or `*` on a private Docker network) so the app sees each browser's address;
+otherwise every visitor shares the proxy's address for sign-in rate limiting.
 
 Open the configured HTTPS address and create an account. Each account has private
 games and progress across devices. The image enables account support and secure
@@ -71,9 +74,11 @@ installations additionally require `ACCOUNTS_ENABLED=true` for accounts. See
 | `DATABASE_PATH` | `/data/trainer.sqlite3` | Persistent SQLite file; normally keep unchanged. |
 | `STOCKFISH_PATH` | `/usr/games/stockfish` | Bundled engine binary; normally keep unchanged. |
 | `SERVER_HOST` | `0.0.0.0` | Bind inside the container; Docker's published address controls host exposure. |
-| `SERVER_PORT` | `8000` | Keep this internal port for the image health check. Change the published host port instead. |
+| `SERVER_PORT` | `8000` | Internal container port; the image health check follows it. Normally change the published host port instead. |
+| `FORWARDED_ALLOW_IPS` | `127.0.0.1` | Proxy addresses trusted for `X-Forwarded-For`. Set to your reverse proxy so sign-in limits apply per visitor. |
 | `CHESSCOM_USER_AGENT` | Fieldwork identification | Optional identification for public Chess.com API calls; no Chess.com password needed. |
 | `LAN_ACCESS_TOKEN` | empty | Optional shared token for local mode; unused in account mode. |
+| `ALLOWED_HOSTS` | empty | Local mode: extra host names the API answers to. LAN IP addresses, localhost, short names and `.local`/`.lan` names need no entry. |
 
 In account mode, slots times threads bounds native search threads; slots times hash
 MB estimates search-table RAM, plus app/engine overhead. Local mode uses separate

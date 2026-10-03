@@ -1,4 +1,6 @@
 import { test, expect } from "@playwright/test";
+import walterBank from "../src/audio/speech/bank/manifest.json" with { type: "json" };
+const walterGreeting = walterBank.recordings.find(record => record.id === "game-review-opened")!.text;
 
 test("the app offers coach selection without an expression viewer route", async ({ page }) => {
   await page.goto("/settings?section=coach");
@@ -107,7 +109,8 @@ test("game navigation and SRS attempts drive the real shared coach", async ({
   await page.getByRole("button", { name: "Start of game", exact: true }).click();
   await expect(page.getByRole("button", { name: "Previous move", exact: true })).toBeDisabled();
   await expect(avatar).toHaveAttribute("data-expression", "neutral");
-  await expect(page.locator(".coach-message")).toContainText("Select a move");
+  // Returning to the start shows the coach's recorded greeting again, not the move prompt.
+  await expect(page.locator(".coach-message")).toContainText(walterGreeting);
   await expect(page.getByRole("region", {name: "Game story"})).toHaveCount(0);
   const fixture = await (
     await page.request.post(

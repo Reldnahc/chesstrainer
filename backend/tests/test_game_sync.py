@@ -52,13 +52,11 @@ def test_sync_fetches_recent_games_without_engine_and_preserves_explicit_analysi
     with TestClient(app) as client:
         identity, _ = signup(client, "alice")
         headers = ORIGIN | {"X-CSRF-Token": identity["csrf"]}
-        assert (
-            client.post(
-                "/api/auth/profile", json={"chesscom_username": " Learner "}, headers=headers
-            ).status_code
-            == 200
+        saved = client.put(
+            "/api/providers/chesscom/connection", json={"username": " Learner "}, headers=headers
         )
-        assert client.get("/api/auth/me").json()["user"]["chesscom_username"] == "learner"
+        assert saved.status_code == 200, saved.text
+        assert saved.json()["username"] == "learner"
         job = client.post("/api/sync", headers=headers).json()
         assert client.post("/api/sync", headers=headers).json()["job_id"] == job["job_id"]
         sessions = app.state.workspaces.sessions(identity["user"]["id"])

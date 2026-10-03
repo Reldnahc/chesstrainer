@@ -147,6 +147,7 @@ def import_games(
                 ),
                 played_on=parsed.headers.get("Date"),
                 played_at=played_at(parsed),
+                move_count=sum(1 for _ in parsed.mainline_moves()),
             )
             db.add(game)
             db.flush()

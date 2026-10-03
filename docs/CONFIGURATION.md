@@ -42,6 +42,7 @@ status is returned.
 | CLASSIFICATION_PROBE_DEPTH / CLASSIFICATION_PROBE_TIME | 22 / 2 seconds (depth 1..40, time greater than 0 and at most 10) |
 | CLASSIFICATION_PROBE_QUERIES | 6 (2..12) |
 | LAN_ACCESS_TOKEN | empty, optional shared bearer token |
+| ALLOWED_HOSTS | empty; extra host names the local-mode API answers to. IP addresses, localhost, single-label names and `.local`/`.lan`/`.home`/`.home.arpa`/`.internal` names are always accepted |
 | MAX_IMPORT_BYTES | 10000000 |
 | CHESSCOM_TIMEOUT_SECONDS | 20 seconds per provider request |
 | CHESSCOM_MAX_RESPONSE_BYTES | 25000000 decompressed bytes per response |
@@ -98,6 +99,8 @@ Chess.com import requires internet access on the host and no account credentials
 
 Use one backend process. For LAN access, bind SERVER_HOST to the host's home-network IPv4 address and optionally configure LAN_ACCESS_TOKEN. Open http://HOST-LAN-IP:SERVER_PORT from the same trusted network. Binding 0.0.0.0 instead listens on every IPv4 interface. The token is a shared access gate and does not add transport encryption; do not expose the app directly to the public internet.
 
+In local mode the API answers only requests whose Host is an IP address, `localhost`, a single-label name such as `nas`, or a `.local`, `.lan`, `.home`, `.home.arpa` or `.internal` name. List any other name in ALLOWED_HOSTS (comma-separated). This stops a public web page from reaching the server through DNS rebinding, which does not need port forwarding. Account mode is protected by the exact PUBLIC_ORIGIN instead.
+
 On Windows, run scripts/allow-lan.ps1 with -LocalAddress in administrator PowerShell. It permits TCP 8000 at that address from LocalSubnet on Private networks only; pass -Port for another port. It does not change network profiles or router forwarding. Keep the host awake, avoid isolated Wi-Fi, and update binding/firewall if DHCP changes the address.
 
 The Vite development proxy specifically targets 127.0.0.1:8000. Override SERVER_HOST and SERVER_PORT in the development backend terminal as shown in [README.md](../README.md#development-and-tests); a backend bound only to its LAN address will not answer that proxy.
@@ -126,6 +129,9 @@ raw exception details. There are no additional container variables for this.
   Docker defaults the flag to true; blank origin still selects the shared local workspace.
 - `PUBLIC_ORIGIN` is the exact public HTTPS origin used for authenticated writes.
 - `SESSION_SECURE=true` protects account cookies; disable only for local HTTP development.
+- `FORWARDED_ALLOW_IPS` (read by Uvicorn; default `127.0.0.1`) lists the proxy addresses
+  whose `X-Forwarded-For` header is trusted. Set it to your reverse proxy's address so
+  sign-in rate limits apply per browser instead of to everyone behind the proxy.
 - `ENGINE_SLOTS=4` caps native engine processes and concurrent analysis jobs across
   all accounts in shared mode. One additional coordinator handles fetch-only jobs.
   Each account runs at most one analysis job at a time. Idle accounts allocate no

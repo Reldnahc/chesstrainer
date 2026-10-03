@@ -1,6 +1,7 @@
 """Refinement ownership and additive schema changes preserve existing reviews."""
 
 import json
+from datetime import datetime, timezone
 
 import pytest
 from alembic import command
@@ -8,7 +9,7 @@ from alembic.config import Config
 from sqlalchemy import select, text
 from trainer.accounts import Accounts
 from trainer.db import database, migrate
-from trainer.models import AnalysisJob, Game, GameReview, GameReviewMove, ReviewRefinement
+from trainer.models import AnalysisJob, Game, GameReview, GameReviewMove, ReviewRefinement, uid
 from trainer.ownership import account_sessions
 from trainer.review_reports import effective_report
 
@@ -63,30 +64,37 @@ def test_upgrade_retains_reports_ids_ownership_and_legacy_defaults(settings):
         command.upgrade(config, "39c94b22a711")
         connection.commit()
     with sessions() as db:
-        # GameReview currently has new columns, so insert only the legacy shape
-        # through a migration connection below, after creating its owned parents.
-        game = Game(fingerprint="old-review", white="A", black="B", learner_color=True, pgn="*")
+        # GameReview and Game have newer columns than this revision, so insert only
+        # the legacy shapes through a migration connection below.
         job = AnalysisJob(kind="game_review", status="completed")
-        db.add_all([game, job])
+        db.add(job)
         db.commit()
+    game_id = uid()
     payload = {"before_analysis_id": "baseline", "depth": 16}
     with sql.begin() as connection:
         connection.execute(
             text(
+                "INSERT INTO games (id,fingerprint,white,black,learner_color,pgn,created_at,user_id)"
+                " VALUES (:game,'old-review','A','B',1,'*',:created,'local')"
+            ),
+            {"game": game_id, "created": datetime.now(timezone.utc).isoformat(" ")},
+        )
+        connection.execute(
+            text(
                 "INSERT INTO game_reviews (game_id,job_id,rating,user_id) VALUES (:game,:job,900,'local')"
             ),
-            {"game": game.id, "job": job.id},
+            {"game": game_id, "job": job.id},
         )
         connection.execute(
             text(
                 "INSERT INTO game_review_moves (game_id,ply,report,user_id) VALUES (:game,1,:report,'local')"
             ),
-            {"game": game.id, "report": json.dumps(payload)},
+            {"game": game_id, "report": json.dumps(payload)},
         )
     migrate(sql)
     with sessions() as db:
-        review = db.get(GameReview, game.id)
-        row = db.get(GameReviewMove, (game.id, 1))
+        review = db.get(GameReview, game_id)
+        row = db.get(GameReviewMove, (game_id, 1))
         assert (review.job_id, review.rating, review.revision, review.refinement_plan) == (
             job.id,
             900,

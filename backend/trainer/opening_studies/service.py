@@ -13,6 +13,15 @@ from trainer.study_lessons.providers import CourseProviders
 from trainer.study_lessons.sessions import start_session
 
 
+def line_identity(snapshot):
+    """The content that must match between enrollments of one pinned line.
+
+    Additive presentation fields on OpeningLine must not make an existing study's
+    other-colour enrollment fail forever.
+    """
+    return {key: snapshot.get(key) for key in ("initial_fen", "moves", "name", "eco")}
+
+
 def require_study(db, study_id):
     study = db.get(OpeningStudy, study_id)
     if study is None:
@@ -46,7 +55,8 @@ def enroll_line(db, providers, request, scheduler):
                 OpeningStudy.source_version == line.source_version,
             )
         )
-        if any(row.snapshot != line.model_dump(mode="json") for row in siblings):
+        current = line_identity(line.model_dump(mode="json"))
+        if any(line_identity(row.snapshot) != current for row in siblings):
             raise HTTPException(409, "Opening content changed without a new source revision")
         study = OpeningStudy(
             source=line.source,

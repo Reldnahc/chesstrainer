@@ -1,5 +1,6 @@
 """A bounded host-wide scheduler; account resources exist only during execution."""
 
+import logging
 import threading
 
 from trainer.chesscom import ChessComClient
@@ -8,6 +9,8 @@ from trainer.job_execution import JobExecution
 from trainer.job_queue import JobQueue
 from trainer.models import AnalysisJob
 from trainer.workspaces import Workspaces
+
+log = logging.getLogger(__name__)
 
 
 class JobRunner:
@@ -76,7 +79,11 @@ class JobRunner:
         while not self.stop_event.is_set():
             claimed = self.queue.claim(sync_only)
             if claimed:
-                self._run(claimed[0], claimed[1])
+                try:
+                    self._run(claimed[0], claimed[1])
+                except Exception:
+                    # A coordinator must outlive any one job's unexpected failure.
+                    log.exception("job_coordinator_error", extra={"job_id": claimed[0]})
             else:
                 self.stop_event.wait(0.5)
 
@@ -92,7 +99,9 @@ class JobRunner:
             execution = JobExecution(self, workspace)
             with self._active_lock:
                 if job_id in self._active:
-                    raise ValueError("Job is already executing")
+                    # Requeued while still finishing: that execution records the outcome.
+                    log.warning("job_already_executing", extra={"job_id": job_id})
+                    return
                 self._active[job_id] = execution
             try:
                 execution.run(job_id, engine)

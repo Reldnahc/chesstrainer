@@ -3,6 +3,7 @@
 from contextlib import contextmanager
 from time import monotonic, sleep
 
+from trainer.cancellation import throttled
 from trainer.search_limits import EngineCancelled
 
 
@@ -12,6 +13,7 @@ def search_lock(lock, cancelled):
         with lock:
             yield
         return
+    cancelled = throttled(cancelled)
     while not lock.acquire(timeout=0.05):
         if cancelled():
             raise EngineCancelled()
@@ -24,6 +26,7 @@ def search_lock(lock, cancelled):
 
 
 def cancellable_search(process, board, limit, *, multipv, root_moves, cancelled):
+    cancelled = throttled(cancelled)
     deadline = monotonic() + limit.time + 15
     with process.analysis(
         board, limit, multipv=multipv, root_moves=root_moves, game=object()

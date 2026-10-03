@@ -5,6 +5,21 @@ from urllib.parse import urlsplit
 from pydantic import Field, SecretStr
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
+# Host paths, the bound address and contact details stay with the administrator;
+# every signed-in account can read the rest of the configuration.
+PRIVATE_SETTINGS = frozenset(
+    {
+        "lan_access_token",
+        "allowed_hosts",
+        "server_host",
+        "database_path",
+        "public_origin",
+        "stockfish_path",
+        "human_model_path",
+        "chesscom_user_agent",
+    }
+)
+
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
@@ -57,6 +72,8 @@ class Settings(BaseSettings):
     desired_retention: float = Field(default=0.9, ge=0.7, le=0.99)
     min_independent_games: int = Field(default=2, ge=2, le=20)
     lan_access_token: SecretStr = SecretStr("")
+    # Extra host names the local-mode API answers to; LAN addresses need no entry.
+    allowed_hosts: str = ""
     max_import_bytes: int = Field(default=10_000_000, ge=1000, le=100_000_000)
     chesscom_timeout_seconds: float = Field(default=20, gt=0, le=60)
     chesscom_max_response_bytes: int = Field(default=25_000_000, ge=1000, le=100_000_000)
@@ -105,6 +122,6 @@ class Settings(BaseSettings):
         )
 
     def public(self) -> dict:
-        return self.model_dump(mode="json", exclude={"lan_access_token"}) | {
+        return self.model_dump(mode="json", exclude=set(PRIVATE_SETTINGS)) | {
             "lan_token_configured": bool(self.lan_access_token.get_secret_value()),
         }

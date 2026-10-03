@@ -1,6 +1,7 @@
 """Opt-in, bounded extra Stockfish work for insufficient classification evidence."""
 
 import logging
+from contextlib import nullcontext
 
 from sqlalchemy import select
 
@@ -42,7 +43,8 @@ def probe_key(decision, settings, engine):
     )
 
 
-def plan_probes(db, job_id, settings, engine):
+def plan_probes(db, job_id, settings, engine, *, write_lock=None):
+    """Select decisions worth probing; only the task rows are written under the account lock."""
     saved = db.scalars(select(ClassificationTask).where(ClassificationTask.job_id == job_id)).all()
     if saved:
         return saved
@@ -80,12 +82,21 @@ def plan_probes(db, job_id, settings, engine):
     candidates.sort(
         key=lambda item: item[:3]
     )  # Concrete defensive questions first, then missing outcomes.
-    tasks = []
-    for _, _, _, decision_id, key in candidates[: settings.classification_probe_positions]:
-        task = ClassificationTask(job_id=job_id, decision_id=decision_id, cache_key=key)
-        db.add(task)
-        tasks.append(task)
-    db.commit()
+    lock = write_lock if write_lock is not None else nullcontext()
+    with lock:
+        # The classification pass above ran without the lock, so this account's
+        # handlers stayed responsive; re-check before the short write.
+        saved = db.scalars(
+            select(ClassificationTask).where(ClassificationTask.job_id == job_id)
+        ).all()
+        if saved:
+            return saved
+        tasks = []
+        for _, _, _, decision_id, key in candidates[: settings.classification_probe_positions]:
+            task = ClassificationTask(job_id=job_id, decision_id=decision_id, cache_key=key)
+            db.add(task)
+            tasks.append(task)
+        db.commit()
     return tasks
 
 

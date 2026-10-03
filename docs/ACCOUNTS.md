@@ -76,7 +76,10 @@ Do not expose local single-user mode publicly. Do not switch a shared deployment
 back to single-user mode: that mode intentionally opens the original `local` account.
 
 Passwords use salted scrypt (N=131072, r=8, p=1). Hashing is memory-bounded by a
-single authentication slot and rate-limited. Random session cookies are HttpOnly,
+single authentication slot and rate-limited: failed attempts are counted per source
+address and per username, and every attempt counts toward a host-wide limit. Behind
+a reverse proxy, set `FORWARDED_ALLOW_IPS` to the proxy's address so each browser
+keeps its own address. Random session cookies are HttpOnly,
 SameSite=Lax and Secure by default; only token digests are stored. Sessions expire
 after 30 days, survive application restarts, and are independent across devices.
 Writes require the configured Origin and a session-bound CSRF header. Passwords
@@ -94,6 +97,7 @@ python -m trainer.accounts enable USERNAME
 
 These revoke existing sessions. Disabling prevents further requests; stop/restart
 the service if you also need to interrupt that account's already-running analysis.
+Enabling requeues analysis that was interrupted while the account was disabled.
 There is no email delivery dependency or web admin dashboard in this version.
 The existing SQLite backup/restore tool includes all accounts and their data in
 one snapshot. Treat backups as private: they include password hashes and sessions.
