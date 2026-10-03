@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "lesson-branch-entered",
+      "label": "Lesson branch entered",
+      "text": "This branch departs from the main sequence. Notice exactly where the two diverge."
+    },
+    "takeId": null
+  },
+  "requestHash": "004a9b0ce8b665ebdd20018bde8fb0e3ecde0b086d87c982795e5a1c27a5c1ab",
+  "recordedAt": "2026-10-03T06:04:55.205Z",
+  "sha256": "962e81b7007c49df002592b34b1a40addc41dc873ce305da151d9d0838d4d1ca",
+  "bytes": 17398,
+  "requestId": "ZPHVQDdYimznezWUPXgU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2443908393e681db8fe5531cfaaa89ea5dd8c0eafd48c735dbe0b2bf6afe5027",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

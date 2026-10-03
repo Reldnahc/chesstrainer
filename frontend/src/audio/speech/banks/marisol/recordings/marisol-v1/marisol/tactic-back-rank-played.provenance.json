@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-back-rank-played",
+      "label": "Tactic back rank played",
+      "text": "The king's exits are occupied by its own pieces, and its last rank has become the point of attack."
+    },
+    "takeId": null
+  },
+  "requestHash": "c2ac352f36e24914f5c8737ab81301240b8b77ccc57ee7e7c3eb5b7a39e5ece9",
+  "recordedAt": "2026-10-03T06:00:30.628Z",
+  "sha256": "1639ea6a2731479723327623869ac5aa0282d3a0ff5c1a05bf4fb4d5f681898f",
+  "bytes": 19914,
+  "requestId": "OSEp4dzlEbHwfXZA685R",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c970a8bdc35ff49dfa8ba9b163745d31e51d04adf8437a30166fcef5c7f9066d",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

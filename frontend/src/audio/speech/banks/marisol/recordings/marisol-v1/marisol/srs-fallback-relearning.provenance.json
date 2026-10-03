@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "srs-fallback-relearning",
+      "label": "Srs fallback relearning",
+      "text": "Solved. For now, this recall stays marked as relearning."
+    },
+    "takeId": null
+  },
+  "requestHash": "e66cbde2c155a3f023ce5c6c20bf24211776e0cc9ed91eb5229262b74532ac12",
+  "recordedAt": "2026-10-03T06:02:49.264Z",
+  "sha256": "efd25a69615bbb693f8e9144461ee3330cd5da9fa5190247b5cb42bc5be81dd2",
+  "bytes": 14287,
+  "requestId": "plL7B1b8xFF74BU9mxpc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "21de135c67e5fbf6d9dce6c352e261f8c605a08934f03a0d54174d0f29c7b71a",
+    "bytes": 74022
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

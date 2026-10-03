@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "lesson-wrong-move",
+      "label": "Lesson wrong move",
+      "text": "That move differs from the one this chapter expects. Compare the position again and choose once more."
+    },
+    "takeId": null
+  },
+  "requestHash": "9014e54a4e74abb22200ca720117a86f60a090474c01ee05e03c16c23632e907",
+  "recordedAt": "2026-10-03T06:04:47.937Z",
+  "sha256": "ab46efc3ef139eef27cde525d3af894fd2559a0e8d392fb5f0bb567a2de922c3",
+  "bytes": 19968,
+  "requestId": "Y9zPhzuKRYiljQnR3Eli",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "13c5946557f57c5eb240ca1b911f79c0842b4a998a9a31e65f04515ad21ee2d7",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

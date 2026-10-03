@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain",
+      "label": "Explanation finding undefended capture gain",
+      "text": "A piece without protection is taken, and the capturing side finishes this example with more material."
+    },
+    "takeId": null
+  },
+  "requestHash": "4a6e7f66406807e2afe14d283d97fac062b99d3c8ae658438ee2ad8aa9098cbf",
+  "recordedAt": "2026-10-03T06:03:33.753Z",
+  "sha256": "a83c9c690a2fe41371853c4be12a8abd04bb93afd67bf72aadacb7174db17755",
+  "bytes": 20197,
+  "requestId": "GBrjbAObw98Xsnkr6yzU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b76729bb69fdf3b18dfcfcce47e252ee95c8956ad208e800d18759ad114d1fa0",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

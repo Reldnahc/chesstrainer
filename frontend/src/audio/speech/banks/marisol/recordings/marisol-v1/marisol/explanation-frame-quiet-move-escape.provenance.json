@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-move-escape",
+      "label": "Explanation frame quiet move escape",
+      "text": "The check has been answered; the king is clear."
+    },
+    "takeId": null
+  },
+  "requestHash": "3ae533aa58f24b869fe47a2503ce14ac083b84647a53d943ec212048b10526fc",
+  "recordedAt": "2026-10-03T06:02:53.874Z",
+  "sha256": "094a9a65d471bbd13b768cebd0e57b4f1fd0bab10903ae35c5273068d48d0e9e",
+  "bytes": 10644,
+  "requestId": "uzfeoqBdJhRsMtPNyeQD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5d225f1e47b8206430284bf27e79c15b7d6071ea195e6b3b513b4b3dc6a2b096",
+    "bytes": 53542
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

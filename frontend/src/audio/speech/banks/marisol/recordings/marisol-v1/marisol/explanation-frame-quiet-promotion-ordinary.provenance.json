@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-promotion-ordinary",
+      "label": "Explanation frame quiet promotion ordinary",
+      "text": "The pawn has reached the last rank and been replaced by a new piece."
+    },
+    "takeId": null
+  },
+  "requestHash": "1c1bb77dae2bd058a108492f115153ba00a2b05031591a2c4037671bf49e20e9",
+  "recordedAt": "2026-10-03T06:02:55.085Z",
+  "sha256": "70e0a3636d3dc1ec9d51298e8126c301109d8a7f11a680c2cdb4d8e726cb7e4e",
+  "bytes": 14363,
+  "requestId": "kbuYw1t3VVGDWQCDTnB9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "337b94e735bc27f4ecd68b5a2550fad63248551ff74ef3bb2387aa2b94f3b864",
+    "bytes": 71515
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

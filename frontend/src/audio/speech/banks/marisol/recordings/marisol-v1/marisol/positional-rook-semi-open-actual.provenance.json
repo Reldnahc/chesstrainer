@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "positional-rook-semi-open-actual",
+      "label": "Positional rook semi open actual",
+      "text": "The rook's file now has no pawn of its own color and at least one enemy pawn. That makes it semi-open."
+    },
+    "takeId": null
+  },
+  "requestHash": "396de22984c095a2c80e7f14d8e7304eb2d25d175e78af4cd4b57ca70358360f",
+  "recordedAt": "2026-10-03T06:01:12.212Z",
+  "sha256": "0e3e6fb360d3b87f6454f8a9bb7e25fb31e4d71e2328b5410bce06ba18e68c51",
+  "bytes": 22994,
+  "requestId": "azoX0rCs9dgcjlHO80PW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5d9d8cac058f4d0bce547aa4c1efc81d4f5c5bc727bd05b9c63ca7d46902d811",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

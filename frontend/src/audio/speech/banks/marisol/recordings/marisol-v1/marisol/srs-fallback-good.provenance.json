@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "srs-fallback-good",
+      "label": "Srs fallback good",
+      "text": "Correct. What transfers to other positions is the reason, more than the move itself."
+    },
+    "takeId": null
+  },
+  "requestHash": "1c6bef1a614a27bbd3ff7e6fd525c7b4437fe2d0f15c673d1f56014bc35c9101",
+  "recordedAt": "2026-10-03T06:02:46.691Z",
+  "sha256": "a72c19c181822c53e5effa94de6f388cd862424c41ad4ca4cbdec7aed9c2f682",
+  "bytes": 18103,
+  "requestId": "N2WkVIsvvTsjOnfpczqC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5339e2f914073a52e5352ea6c0de648ec138ef956066478eb935f54743bcc078",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

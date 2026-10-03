@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "book-opening-entry-2",
+      "label": "Book opening entry 2",
+      "text": "The game stays on mapped ground; a known opening already has this move on file."
+    },
+    "takeId": null
+  },
+  "requestHash": "ba1f493ce166988678708e4b317349767e323c6164a4284d861ba1273c8948ee",
+  "recordedAt": "2026-10-03T06:04:36.133Z",
+  "sha256": "e5d37ce97e7ff293f36075ac057b8cc91cda1d16d0e1eb7cb7a710047cadcd13",
+  "bytes": 17254,
+  "requestId": "4zMSox27IdvfSITLaM6J",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e77dc9bac9d72b6943d94b22b0626547927ab511b7b2d2643aa08bfa2b2fd6b7",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

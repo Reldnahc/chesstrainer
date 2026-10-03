@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "explanation-note-no-simple-reason",
+      "label": "Explanation note no simple reason",
+      "text": "No simple tactical reason can be read from the saved line, and no positional one is supposed. Play it out and note how each reply changes things."
+    },
+    "takeId": null
+  },
+  "requestHash": "bba844493b58c473ee6868cd7e6d004439dfd65d0eaea35f1db720d079cfb9a6",
+  "recordedAt": "2026-10-03T06:04:03.478Z",
+  "sha256": "7a7ba3cabec89046ffca44337745cadc3168c876450042b48b80c3f91b2877a0",
+  "bytes": 30116,
+  "requestId": "Q9fYGas5ruW8YgTVvPuk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c274023ccb1c854452ad680c7905a90c66b0249bddfbcd7d0a9f2550a2a7cc99",
+    "bytes": 155942
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

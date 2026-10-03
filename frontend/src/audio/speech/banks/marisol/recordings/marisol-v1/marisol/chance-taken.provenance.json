@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "chance-taken",
+      "label": "Chance taken",
+      "text": "The opponent's last move left something available. This move collects it."
+    },
+    "takeId": null
+  },
+  "requestHash": "c7a9c369029d800b9fde57bdedc96681dd87c623db7e31de9cb479cfba882fef",
+  "recordedAt": "2026-10-03T06:02:11.232Z",
+  "sha256": "5c0fb5155359c0ecc5a2e838a70b5a230bc270b32e6fbb58e7fdf8fe32fb7ca1",
+  "bytes": 16084,
+  "requestId": "suKF4y74KhR2R7arqqFJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9193d2d84be8b342b97e24c81aed32d572aa88d89a8a7b09a7c408af6d4d190d",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

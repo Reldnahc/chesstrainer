@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "positional-king-flight-actual",
+      "label": "Positional king flight actual",
+      "text": "The king has one more legal square than before. Something on the board changed to make that room."
+    },
+    "takeId": null
+  },
+  "requestHash": "e3e8c7c3af507e7741c17b1c6e5e21c202860fca96ae78786235508c2f93a5ec",
+  "recordedAt": "2026-10-03T06:01:31.198Z",
+  "sha256": "71f1487b0cb6a28504c1cc45fb0b42722ede84269744dbdcfc49a3b6e28d7114",
+  "bytes": 19789,
+  "requestId": "vfEEq8Qgoyu9Nb6534nB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ecf39ec2725b23d77542eae7a4d368e5b3e7f0fbf69eb00c9ce656c91d83e428",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played",
+      "label": "Tactic discovered attack played",
+      "text": "The front piece has stepped off the line, and the piece that was behind it now attacks along it."
+    },
+    "takeId": null
+  },
+  "requestHash": "8f7690efec92e457f68f3bb47ab5e1f490e75c4e7d068dd024638a9abbea1b57",
+  "recordedAt": "2026-10-03T06:00:40.831Z",
+  "sha256": "53e6a8e2722ed006957246cda10d90feb36e06e769489f46a97df7208a27e866",
+  "bytes": 17780,
+  "requestId": "lcHLd5D1r569taxiEkWt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a8e4a3f245b620469d397435abc1ba8daf4a32588367a571e58f1f0fb0f9348c",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "repeated-issue",
+      "label": "Repeated issue",
+      "text": "This issue is not new in this game; it came up once already. Placed side by side, the two moments share a pattern."
+    },
+    "takeId": null
+  },
+  "requestHash": "028a51b47440c6bc9127afb15b673b23869ab2dae16fb62f6a09747eee2a8dc7",
+  "recordedAt": "2026-10-03T06:02:15.137Z",
+  "sha256": "562a208c79c10deeb56ff6c4f179720d83491f7ca059408b88d8fe4537e29c77",
+  "bytes": 24945,
+  "requestId": "8oevVYrqkWR7wcwlFEQW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b3470537d5c131563f4c668819641c2c0915774fd06227509d21a26827e9818c",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

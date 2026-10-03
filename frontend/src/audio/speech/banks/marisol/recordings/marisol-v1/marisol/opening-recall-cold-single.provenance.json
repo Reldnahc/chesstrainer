@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "opening-recall-cold-single",
+      "label": "Opening recall cold single",
+      "text": "Recall the move that comes next in your study material."
+    },
+    "takeId": null
+  },
+  "requestHash": "a1bc229ddfcb023b110eff12837709bc1a5ca6d8ce221b7d316030e2e3bb76ea",
+  "recordedAt": "2026-10-03T06:04:10.721Z",
+  "sha256": "b1a15898d9446b7fe8953e80acbe4d804d9e6023fba43ff13431b42cf7d7b634",
+  "bytes": 11550,
+  "requestId": "tGO9g4ZZAf0LbavGpfCU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "85be38c02fd7fdddf73a8fff9e41a38cdb829ae568c66384b2c9baf2b2b0d986",
+    "bytes": 56050
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

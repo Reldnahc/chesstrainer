@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "explanation-cue-deflection",
+      "label": "Explanation cue deflection",
+      "text": "Note whether a forcing exchange could draw a defender away from a second task."
+    },
+    "takeId": null
+  },
+  "requestHash": "1877cce29573481271877deb8eb9fa34ed1104fc524a44b85ae55e75a6e62357",
+  "recordedAt": "2026-10-03T06:03:56.649Z",
+  "sha256": "35848844da148e8468f197c034ba82478d684ae5e5d57f771c1c8917c33cc6d0",
+  "bytes": 16436,
+  "requestId": "dDYjkuPnx5bMwemio9mO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7ff16b817f6530943123218ba00190476413e5099ecd4d60a3c96aaa56338d0e",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

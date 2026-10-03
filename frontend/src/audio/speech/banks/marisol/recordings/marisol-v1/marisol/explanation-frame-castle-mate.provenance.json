@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "explanation-frame-castle-mate",
+      "label": "Explanation frame castle mate",
+      "text": "After castling, the position is checkmate."
+    },
+    "takeId": null
+  },
+  "requestHash": "a5d08788b606b57537929ea7d250aeef7639d82402dbca275aacb920a02226a4",
+  "recordedAt": "2026-10-03T06:03:08.674Z",
+  "sha256": "80a62aa49a696dcf2c8d39cb5e3e2af3ddd7fa684f97792c04bcbb3b2d83d566",
+  "bytes": 10493,
+  "requestId": "3osvYN5MeiuAufggKlmM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1fb9e5c8a0c02d3a82bc78d473a9237257785a30088cdc35162a9e3e59103081",
+    "bytes": 52288
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

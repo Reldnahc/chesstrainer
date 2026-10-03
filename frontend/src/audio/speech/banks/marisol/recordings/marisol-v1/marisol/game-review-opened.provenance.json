@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "game-review-opened",
+      "label": "Game review opened",
+      "text": "The game begins here. Move ahead when ready, and note what each move changes."
+    },
+    "takeId": null
+  },
+  "requestHash": "9cc8df5ebd84f376c7e1f2f815655b0f8bd5b9f6f0c1501375cb8804be987335",
+  "recordedAt": "2026-10-03T06:04:46.332Z",
+  "sha256": "a64fe259b216fa1355fd27c41c356542034e1e89e731339bd6b71d418bf6fbab",
+  "bytes": 16916,
+  "requestId": "JT8DAzBxmNV5TPRhm38I",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7e07f7ce6f35d3b9031543a0e0cddb8fc0f8b29ffe93f22a7193c94105f5ea34",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

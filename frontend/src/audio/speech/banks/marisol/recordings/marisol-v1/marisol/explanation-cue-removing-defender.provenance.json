@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "explanation-cue-removing-defender",
+      "label": "Explanation cue removing defender",
+      "text": "Before a defender is traded, note what it is protecting."
+    },
+    "takeId": null
+  },
+  "requestHash": "630ae126a2fe06fd867802fe6686dd967f6ba9783fb306050646b9f32ec8ab15",
+  "recordedAt": "2026-10-03T06:03:46.789Z",
+  "sha256": "bc5aa9ba579ac88089ec99e6bb37b42af78ed51b491abf4e6797624af0c8da6f",
+  "bytes": 12883,
+  "requestId": "2jIDbbOeMYcstkF3D9V4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8499c4416ddb71e4deee824f391202d8f4886bf17ccb784cef56a6815fc17a52",
+    "bytes": 65245
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

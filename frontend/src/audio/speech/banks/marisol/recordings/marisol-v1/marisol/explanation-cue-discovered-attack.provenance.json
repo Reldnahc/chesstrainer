@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "explanation-cue-discovered-attack",
+      "label": "Explanation cue discovered attack",
+      "text": "When a piece moves off a line, note what that line now reaches."
+    },
+    "takeId": null
+  },
+  "requestHash": "06e9f57adf79c28f5f19adf7efcac320e421f1d1f7f667fd142be453dd49c9ae",
+  "recordedAt": "2026-10-03T06:03:48.095Z",
+  "sha256": "92459b18a2fe3b67adff7efc7ae25722614a6f36d3b9d77ada2849eb4519f170",
+  "bytes": 13707,
+  "requestId": "4FvgxaNeRslDBtTCvltj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "41e7b03fac7078bfef3637e1696693717b0db92b65db133cd8041757fb77a6f8",
+    "bytes": 69007
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

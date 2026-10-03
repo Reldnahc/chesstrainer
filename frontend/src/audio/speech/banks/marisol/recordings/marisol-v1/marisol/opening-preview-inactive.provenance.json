@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "opening-preview-inactive",
+      "label": "Opening preview inactive",
+      "text": "Due recalls will ask for the moves of your chosen side. Where several active studies share a position, there is one card for it."
+    },
+    "takeId": null
+  },
+  "requestHash": "6b7a1e3fdabded2d7a0dde8c6c3d232e3b880ff057068d37a9c8e50fb22edc7f",
+  "recordedAt": "2026-10-03T06:04:19.651Z",
+  "sha256": "4c1384ea3c927daf2402fa051f5908e193ab211ea9304e46c7aefa98744c13b7",
+  "bytes": 25063,
+  "requestId": "ObZHMtIwUCayUR6ysXwt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "99ee20be65444009ae6c6a58f4e76e507336a13e3b56a91c267687391566e8d5",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

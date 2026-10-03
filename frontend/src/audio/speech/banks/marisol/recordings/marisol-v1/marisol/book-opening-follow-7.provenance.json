@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "book-opening-follow-7",
+      "label": "Book opening follow 7",
+      "text": "Once more, a book move."
+    },
+    "takeId": null
+  },
+  "requestHash": "baaf050c5b7cc8ee7672bc89500d4bfbd9d3cb0e20920a096efd19e3736f7ef0",
+  "recordedAt": "2026-10-03T06:04:43.192Z",
+  "sha256": "d794312a54b895246f04ce5db699582f110403fe5724c0c3b49bceb5f3d81346",
+  "bytes": 7347,
+  "requestId": "q1Zn3bgcH7IYTHRXOUzb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "365fa353c632292748cd685df0adcd07c212278d78595d2decbd5003e32d60d9",
+    "bytes": 36824
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

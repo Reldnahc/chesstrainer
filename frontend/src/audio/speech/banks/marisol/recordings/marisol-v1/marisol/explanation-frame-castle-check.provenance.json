@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "explanation-frame-castle-check",
+      "label": "Explanation frame castle check",
+      "text": "After castling, the opposing king is in check."
+    },
+    "takeId": null
+  },
+  "requestHash": "fc7a9644c2d734ff9fe38a327327adaa8f58e65fe61bb3a849766338afa9cedb",
+  "recordedAt": "2026-10-03T06:03:07.757Z",
+  "sha256": "bebf7cd06ae5ca33dfed807f738a16a7a65b264949de7403b5e778af2c3502d3",
+  "bytes": 11234,
+  "requestId": "nCWFHuXzYoPeDl8r5XdW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "41d514592cd34723a5fb5ba5a4a6f93ed496591ed64ffbe2328aa23bb74a57a9",
+    "bytes": 56050
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

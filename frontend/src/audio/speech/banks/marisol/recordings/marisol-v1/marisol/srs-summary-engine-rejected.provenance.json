@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "srs-summary-engine-rejected",
+      "label": "Srs summary engine rejected",
+      "text": "The exercise does not take this move, and nothing in the moves shown points to a clear tactical reason. Look over what changed once more."
+    },
+    "takeId": null
+  },
+  "requestHash": "0796bed9576c01d6ca432a7e85ceed556fcc4a776a4ba2aec531e309643f862a",
+  "recordedAt": "2026-10-03T06:02:41.190Z",
+  "sha256": "f71e78ccb9606554c8d911cd4478bb6bf949d479b79b2b22248495bfc70b55c6",
+  "bytes": 27608,
+  "requestId": "PNUMsl9mAwWcHesVvhU0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8cd755ebc35791c6f9591f5d58c96ad1f7681b16ae49b310b2045df790bc58a1",
+    "bytes": 141732
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

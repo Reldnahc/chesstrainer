@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed",
+      "label": "Tactic discovered attack missed",
+      "text": "The stronger move would have uncovered an attack by moving a front piece off its line. That line has stayed shut."
+    },
+    "takeId": null
+  },
+  "requestHash": "96c87d5ded9232d4af0290bdbf537424229e442440dcc28c39346d3d431ace6c",
+  "recordedAt": "2026-10-03T06:00:44.849Z",
+  "sha256": "3d0d8c85a2ac3635b2e85c005ffb59232892bca637e84ae05aabb95302e646e6",
+  "bytes": 22192,
+  "requestId": "Gwdup1qPtHgwYCu2gs1m",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6b7301e9dd24e5ff347363d349e35cdd1449e86e0a3d69aa87e1cd780278e785",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-move-ordinary",
+      "label": "Explanation frame quiet move ordinary",
+      "text": "One move is played. Note what is different afterward."
+    },
+    "takeId": null
+  },
+  "requestHash": "fc64162aec421f2b9e0efcf22f8c9c9cc0a8d0e3f0f274be42ecf476a1d98103",
+  "recordedAt": "2026-10-03T06:02:51.792Z",
+  "sha256": "e805c4a3e97a5c158df60cb3feab349e5ff3bb0af327d640a6d9ed28f60999cc",
+  "bytes": 12450,
+  "requestId": "N81YuT8niwIcFDIKlqyv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "71cb5c281943815c70ec68221d90d5978fe75a0c033f265bad02e3ff2d9e7ad1",
+    "bytes": 63991
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-promotion-awareness-played",
+      "label": "Tactic promotion awareness played",
+      "text": "The pawn has moved a step nearer promotion. It follows that the defense has fewer moves in hand."
+    },
+    "takeId": null
+  },
+  "requestHash": "415c3b5d62f77969f16ccefe39fbe7ddce9128180f1205c8e7887e40f9cd4381",
+  "recordedAt": "2026-10-03T06:00:35.701Z",
+  "sha256": "1390381fb27b3b396faabaa90c52dc7213466e38f131c9a450548ab4e10b3e43",
+  "bytes": 20184,
+  "requestId": "wWIwqDO68lqzLjg29GgX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "139a91cc4ae413f5739fe1742df7b140d7eab86deee6bc7d2b4aa1e88e858afc",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

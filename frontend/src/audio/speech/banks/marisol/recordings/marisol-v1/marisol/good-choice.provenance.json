@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "good-choice",
+      "label": "Good choice",
+      "text": "Sound. The engine leans toward another move, yet most of the position's value is still in place."
+    },
+    "takeId": null
+  },
+  "requestHash": "be2fea6b4073f45383fb87b0bf29b3f07ff207c1c5b5751b126e72b6c58ce41f",
+  "recordedAt": "2026-10-03T06:01:59.862Z",
+  "sha256": "68bb41af2d4353ca0200ceb0b3f52627aa3f653964616888e68060fd4fb93276",
+  "bytes": 21054,
+  "requestId": "EGt3Uh1oOyANm0xRBJlN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f54e7d152e65d3e2f934a02c1075e9dbd00502ee037583aa0851167668bf98aa",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

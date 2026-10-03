@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "positional-bishop-pair-actual",
+      "label": "Positional bishop pair actual",
+      "text": "Before this capture there was a bishop pair; now there is not. That side's remaining bishop covers only one square color."
+    },
+    "takeId": null
+  },
+  "requestHash": "bc677253d23b4cf04305f038b12103ec335334ecceafee2b46723cf4d416a8b2",
+  "recordedAt": "2026-10-03T06:01:37.006Z",
+  "sha256": "473b5766512bb37bafde6b9434a05f4fd9682e5110f812356f8e35efa1b29c3f",
+  "bytes": 25656,
+  "requestId": "POHXb1oCZUMArdKcAZG7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8385096d16ea96e39eb279a992753ceac170eca510cd50d6c137f86e4d2a4e2e",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "explanation-finding-fork-collected",
+      "label": "Explanation finding fork collected",
+      "text": "A fork in operation: one piece threatens several targets and, a little later, captures one. By the end of this example there is a net material gain."
+    },
+    "takeId": null
+  },
+  "requestHash": "791ac45bd6f6fc7d15e3424238b00a38b295a59612fc3846964818eef4bdbe92",
+  "recordedAt": "2026-10-03T06:03:10.860Z",
+  "sha256": "49a3414581af42a45045759949fc6781b36f51815969deafb01ab3ea53f2dcc5",
+  "bytes": 31689,
+  "requestId": "C3J1aWK1RBsEhLeYbrZZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1d439a7c78ad9209f7b5c364d454bcae6df775a8ec592baa5c14094ba827c9c3",
+    "bytes": 166391
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

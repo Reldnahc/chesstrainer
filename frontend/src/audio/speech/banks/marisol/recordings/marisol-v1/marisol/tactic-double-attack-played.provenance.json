@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-double-attack-played",
+      "label": "Tactic double attack played",
+      "text": "One move, and now there are threats in two places. It follows that a single reply rarely deals with both."
+    },
+    "takeId": null
+  },
+  "requestHash": "ccc59b940f7bd8d216b38d62e122f1355a8d0a09d30d382d7049613e13c67a13",
+  "recordedAt": "2026-10-03T06:00:46.811Z",
+  "sha256": "126e9386708fe2c39e02dcb9f84cba242d788495bb2a93cb6f1c67dd8d646103",
+  "bytes": 22604,
+  "requestId": "eDZF5ctie6fTWseuRg4J",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "00e3659725d463bdf6c710dc44ee976a532fbdc4eb5bc667203ecd51d30e8a16",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

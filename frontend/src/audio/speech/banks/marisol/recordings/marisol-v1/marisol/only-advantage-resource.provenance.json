@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "only-advantage-resource",
+      "label": "Only advantage resource",
+      "text": "Among the examined moves, this is the one that keeps the advantage. All the others lose."
+    },
+    "takeId": null
+  },
+  "requestHash": "8c99a07265b8498832097b898233249e6045b6b0f4746a9063fbb0a5ab161395",
+  "recordedAt": "2026-10-03T06:01:50.643Z",
+  "sha256": "33c2fe6bd130b7897b96d90101a89f2dd0bab8e6d1dd63d7eaff6a2bf9afc498",
+  "bytes": 19026,
+  "requestId": "zEHY6d1KOfKWlYTtwG73",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a8e3716c1d08fe31b138f004e10709fa2be674c26f9bbf57de9b566cbe10be84",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

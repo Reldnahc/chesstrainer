@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check",
+      "label": "Explanation finding discovered check",
+      "text": "One piece leaves the line, and check comes through the gap it left."
+    },
+    "takeId": null
+  },
+  "requestHash": "702d5c4357f2edf403c2ec6d66c9c7e4404ff636d14747eb88044bfa07bd4e03",
+  "recordedAt": "2026-10-03T06:03:26.826Z",
+  "sha256": "ec86b0e398e7104c47c8fb0add6dc30f049a93f2937862e264b544cba2148a0d",
+  "bytes": 13860,
+  "requestId": "K4MYES0hNZThohvfZJ0u",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9ed74d0de11a9444a333a3df2b17e8ae2d635970262f591074746fd1a07078ee",
+    "bytes": 70261
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

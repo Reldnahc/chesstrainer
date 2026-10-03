@@ -1,0 +1,1583 @@
+{
+  "schemaVersion": 1,
+  "provider": "elevenlabs",
+  "coachId": "woman-analyst",
+  "voiceId": "marisol",
+  "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+  "modelId": "eleven_v4",
+  "outputFormat": "mp3_44100_128",
+  "settings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75,
+    "speed": 0.95
+  },
+  "scope": "non-lesson",
+  "silentIds": [
+    "game-thinking",
+    "explanation-loading-saved",
+    "dialogue-no-renderable-claim",
+    "practice-checking"
+  ],
+  "recordings": [
+    {
+      "id": "tactic-fork-played",
+      "group": "game_review",
+      "text": "What changed: a single piece now sits where it touches several targets at once. It follows that one reply is unlikely to cover all of them.",
+      "audioPath": "recordings/marisol-v1/marisol/tactic-fork-played.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/tactic-fork-played.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-played.json"
+    },
+    {
+      "id": "tactic-fork-allowed",
+      "group": "game_review",
+      "text": "One detail is different after this move: an enemy piece can now reach a square from which several targets are hit together.",
+      "audioPath": "recordings/marisol-v1/marisol/tactic-fork-allowed.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/tactic-fork-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-allowed.json"
+    },
+    {
+      "id": "tactic-fork-missed",
+      "group": "game_review",
+      "text": "The stronger move would have set one piece against several targets. After this move, that arrangement never appears.",
+      "audioPath": "recordings/marisol-v1/marisol/tactic-fork-missed.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/tactic-fork-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-missed.json"
+    },
+    {
+      "id": "tactic-pin-played",
+      "group": "game_review",
+      "text": "A piece now stands on the line between its king and an attacker. Stepping off that line is no longer a legal option for it.",
+      "audioPath": "recordings/marisol-v1/marisol/tactic-pin-played.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/tactic-pin-played.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-played.json"
+    },
+    {
+      "id": "tactic-pin-allowed",
+      "group": "game_review",
+      "text": "The piece in front of the king has become pinnable. Once the pin arrives, leaving that line stops being legal.",
+      "audioPath": "recordings/marisol-v1/marisol/tactic-pin-allowed.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/tactic-pin-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-allowed.json"
+    },
+    {
+      "id": "tactic-pin-missed",
+      "group": "game_review",
+      "text": "With the stronger move, an enemy piece would have been fixed in front of its king. As it is, that piece keeps every option.",
+      "audioPath": "recordings/marisol-v1/marisol/tactic-pin-missed.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/tactic-pin-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-missed.json"
+    },
+    {
+      "id": "tactic-skewer-played",
+      "group": "game_review",
+      "text": "The front piece on the line is under attack now. When it steps away, what was standing behind it becomes the target.",
+      "audioPath": "recordings/marisol-v1/marisol/tactic-skewer-played.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/tactic-skewer-played.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-played.json"
+    },
+    {
+      "id": "tactic-skewer-allowed",
+      "group": "game_review",
+      "text": "After this move, two pieces are lined up so the other side can skewer them. The front one would have to step away, leaving the rear one exposed.",
+      "audioPath": "recordings/marisol-v1/marisol/tactic-skewer-allowed.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/tactic-skewer-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-allowed.json"
+    },
+    {
+      "id": "tactic-skewer-missed",
+      "group": "game_review",
+      "text": "A skewer sat inside the stronger move: pressure on the front piece, the real target behind it. After this move the line remains untouched.",
+      "audioPath": "recordings/marisol-v1/marisol/tactic-skewer-missed.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/tactic-skewer-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-missed.json"
+    },
+    {
+      "id": "tactic-removing-defender-played",
+      "group": "game_review",
+      "text": "The piece doing the defending has been captured. Whatever depended on it has lost that cover.",
+      "audioPath": "recordings/marisol-v1/marisol/tactic-removing-defender-played.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/tactic-removing-defender-played.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-played.json"
+    },
+    {
+      "id": "tactic-removing-defender-allowed",
+      "group": "game_review",
+      "text": "A defender has become capturable. If it is taken, the piece it was covering no longer has that support.",
+      "audioPath": "recordings/marisol-v1/marisol/tactic-removing-defender-allowed.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/tactic-removing-defender-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-allowed.json"
+    },
+    {
+      "id": "tactic-removing-defender-missed",
+      "group": "game_review",
+      "text": "The stronger move would have captured a defender and stripped cover from what it guarded. That defender is still standing.",
+      "audioPath": "recordings/marisol-v1/marisol/tactic-removing-defender-missed.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/tactic-removing-defender-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-missed.json"
+    },
+    {
+      "id": "tactic-back-rank-played",
+      "group": "game_review",
+      "text": "The king's exits are occupied by its own pieces, and its last rank has become the point of attack.",
+      "audioPath": "recordings/marisol-v1/marisol/tactic-back-rank-played.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/tactic-back-rank-played.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-played.json"
+    },
+    {
+      "id": "tactic-back-rank-allowed",
+      "group": "game_review",
+      "text": "After this move the king has no square off its back rank, and a mate along that rank is available to the other side.",
+      "audioPath": "recordings/marisol-v1/marisol/tactic-back-rank-allowed.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/tactic-back-rank-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-allowed.json"
+    },
+    {
+      "id": "tactic-back-rank-missed",
+      "group": "game_review",
+      "text": "The enemy king had no way off its back rank; its own pieces were in the way. The mate that this allowed was not played.",
+      "audioPath": "recordings/marisol-v1/marisol/tactic-back-rank-missed.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/tactic-back-rank-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-missed.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-played",
+      "group": "game_review",
+      "text": "The pawn has moved a step nearer promotion. It follows that the defense has fewer moves in hand.",
+      "audioPath": "recordings/marisol-v1/marisol/tactic-promotion-awareness-played.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/tactic-promotion-awareness-played.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-played.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-allowed",
+      "group": "game_review",
+      "text": "A route toward promotion has opened for an enemy pawn. Each further step it takes will require an answer.",
+      "audioPath": "recordings/marisol-v1/marisol/tactic-promotion-awareness-allowed.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/tactic-promotion-awareness-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-allowed.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-missed",
+      "group": "game_review",
+      "text": "The stronger move would have carried a pawn closer to its promotion square. In this position that pawn is where it was.",
+      "audioPath": "recordings/marisol-v1/marisol/tactic-promotion-awareness-missed.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/tactic-promotion-awareness-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-missed.json"
+    },
+    {
+      "id": "tactic-discovered-attack-played",
+      "group": "game_review",
+      "text": "The front piece has stepped off the line, and the piece that was behind it now attacks along it.",
+      "audioPath": "recordings/marisol-v1/marisol/tactic-discovered-attack-played.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/tactic-discovered-attack-played.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-played.json"
+    },
+    {
+      "id": "tactic-discovered-attack-allowed",
+      "group": "game_review",
+      "text": "One enemy piece now screens another. Once the screening piece moves, the one behind it attacks down the opened line.",
+      "audioPath": "recordings/marisol-v1/marisol/tactic-discovered-attack-allowed.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/tactic-discovered-attack-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-allowed.json"
+    },
+    {
+      "id": "tactic-discovered-attack-missed",
+      "group": "game_review",
+      "text": "The stronger move would have uncovered an attack by moving a front piece off its line. That line has stayed shut.",
+      "audioPath": "recordings/marisol-v1/marisol/tactic-discovered-attack-missed.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/tactic-discovered-attack-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-missed.json"
+    },
+    {
+      "id": "tactic-double-attack-played",
+      "group": "game_review",
+      "text": "One move, and now there are threats in two places. It follows that a single reply rarely deals with both.",
+      "audioPath": "recordings/marisol-v1/marisol/tactic-double-attack-played.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/tactic-double-attack-played.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-played.json"
+    },
+    {
+      "id": "tactic-double-attack-allowed",
+      "group": "game_review",
+      "text": "After this move, the other side could create two threats with a single move.",
+      "audioPath": "recordings/marisol-v1/marisol/tactic-double-attack-allowed.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/tactic-double-attack-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-allowed.json"
+    },
+    {
+      "id": "tactic-double-attack-missed",
+      "group": "game_review",
+      "text": "The stronger move would have produced two threats together. No such pair arises from this one.",
+      "audioPath": "recordings/marisol-v1/marisol/tactic-double-attack-missed.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/tactic-double-attack-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-missed.json"
+    },
+    {
+      "id": "tactic-deflection-played",
+      "group": "game_review",
+      "text": "The defender has been drawn away from its job, and what it was covering is uncovered now.",
+      "audioPath": "recordings/marisol-v1/marisol/tactic-deflection-played.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/tactic-deflection-played.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-played.json"
+    },
+    {
+      "id": "tactic-deflection-allowed",
+      "group": "game_review",
+      "text": "One defender can now be lured away from what it was covering.",
+      "audioPath": "recordings/marisol-v1/marisol/tactic-deflection-allowed.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/tactic-deflection-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-allowed.json"
+    },
+    {
+      "id": "tactic-deflection-missed",
+      "group": "game_review",
+      "text": "Under the stronger move, a defender would have been pulled away from what it guards. Here that defender is undisturbed.",
+      "audioPath": "recordings/marisol-v1/marisol/tactic-deflection-missed.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/tactic-deflection-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-missed.json"
+    },
+    {
+      "id": "tactic-undefended-capture-played",
+      "group": "game_review",
+      "text": "The piece that was captured had no defender, so there is no recapture available.",
+      "audioPath": "recordings/marisol-v1/marisol/tactic-undefended-capture-played.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/tactic-undefended-capture-played.provenance.json",
+      "alignmentPath": "alignment/tactic-undefended-capture-played.json"
+    },
+    {
+      "id": "tactic-undefended-capture-missed",
+      "group": "game_review",
+      "text": "With the stronger move, an enemy piece without protection could have been taken. It is still standing.",
+      "audioPath": "recordings/marisol-v1/marisol/tactic-undefended-capture-missed.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/tactic-undefended-capture-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-undefended-capture-missed.json"
+    },
+    {
+      "id": "tactic-hanging-piece-allowed",
+      "group": "game_review",
+      "text": "After this move one piece stands without protection, and the other side can take it with nothing coming back.",
+      "audioPath": "recordings/marisol-v1/marisol/tactic-hanging-piece-allowed.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/tactic-hanging-piece-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-hanging-piece-allowed.json"
+    },
+    {
+      "id": "cause-abandoned-defender",
+      "group": "game_review",
+      "text": "This piece was the only real defender of another. It has gone elsewhere, so the piece it guarded is now open to capture.",
+      "audioPath": "recordings/marisol-v1/marisol/cause-abandoned-defender.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/cause-abandoned-defender.provenance.json",
+      "alignmentPath": "alignment/cause-abandoned-defender.json"
+    },
+    {
+      "id": "cause-opponent-threat-recognition",
+      "group": "game_review",
+      "text": "A threat appeared with the opponent's last move. This reply leaves the threat as it was, so a piece is still capturable.",
+      "audioPath": "recordings/marisol-v1/marisol/cause-opponent-threat-recognition.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/cause-opponent-threat-recognition.provenance.json",
+      "alignmentPath": "alignment/cause-opponent-threat-recognition.json"
+    },
+    {
+      "id": "cause-avoiding-bad-trades",
+      "group": "game_review",
+      "text": "The exchange has a second half. The recapture removes a more valuable piece, so the material count falls overall.",
+      "audioPath": "recordings/marisol-v1/marisol/cause-avoiding-bad-trades.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/cause-avoiding-bad-trades.provenance.json",
+      "alignmentPath": "alignment/cause-avoiding-bad-trades.json"
+    },
+    {
+      "id": "positional-development-actual",
+      "group": "game_review",
+      "text": "One minor piece is no longer at home; it has been brought into play.",
+      "audioPath": "recordings/marisol-v1/marisol/positional-development-actual.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/positional-development-actual.provenance.json",
+      "alignmentPath": "alignment/positional-development-actual.json"
+    },
+    {
+      "id": "positional-development-alternative",
+      "group": "game_review",
+      "text": "With the alternative, a minor piece would have been developed. Here that piece is still at home.",
+      "audioPath": "recordings/marisol-v1/marisol/positional-development-alternative.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/positional-development-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-development-alternative.json"
+    },
+    {
+      "id": "positional-rook-open-actual",
+      "group": "game_review",
+      "text": "The rook now stands on a file that holds no pawn of either color.",
+      "audioPath": "recordings/marisol-v1/marisol/positional-rook-open-actual.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/positional-rook-open-actual.provenance.json",
+      "alignmentPath": "alignment/positional-rook-open-actual.json"
+    },
+    {
+      "id": "positional-rook-open-alternative",
+      "group": "game_review",
+      "text": "The alternative would have put a rook on a file free of pawns of both colors.",
+      "audioPath": "recordings/marisol-v1/marisol/positional-rook-open-alternative.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/positional-rook-open-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-rook-open-alternative.json"
+    },
+    {
+      "id": "positional-rook-semi-open-actual",
+      "group": "game_review",
+      "text": "The rook's file now has no pawn of its own color and at least one enemy pawn. That makes it semi-open.",
+      "audioPath": "recordings/marisol-v1/marisol/positional-rook-semi-open-actual.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/positional-rook-semi-open-actual.provenance.json",
+      "alignmentPath": "alignment/positional-rook-semi-open-actual.json"
+    },
+    {
+      "id": "positional-rook-semi-open-alternative",
+      "group": "game_review",
+      "text": "The alternative would have placed a rook where none of its own pawns block the file and enemy pawns still stand.",
+      "audioPath": "recordings/marisol-v1/marisol/positional-rook-semi-open-alternative.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/positional-rook-semi-open-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-rook-semi-open-alternative.json"
+    },
+    {
+      "id": "positional-passed-actual",
+      "group": "game_review",
+      "text": "A pawn has become passed. Neither on its file nor on the two beside it is there an enemy pawn ahead.",
+      "audioPath": "recordings/marisol-v1/marisol/positional-passed-actual.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/positional-passed-actual.provenance.json",
+      "alignmentPath": "alignment/positional-passed-actual.json"
+    },
+    {
+      "id": "positional-passed-alternative",
+      "group": "game_review",
+      "text": "The alternative would have given a pawn a clear path, with no enemy pawn ahead on its own file or on either side.",
+      "audioPath": "recordings/marisol-v1/marisol/positional-passed-alternative.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/positional-passed-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-passed-alternative.json"
+    },
+    {
+      "id": "positional-passer-advance-actual",
+      "group": "game_review",
+      "text": "The passed pawn stands a square further on than before.",
+      "audioPath": "recordings/marisol-v1/marisol/positional-passer-advance-actual.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/positional-passer-advance-actual.provenance.json",
+      "alignmentPath": "alignment/positional-passer-advance-actual.json"
+    },
+    {
+      "id": "positional-passer-advance-alternative",
+      "group": "game_review",
+      "text": "The alternative pushed the passed pawn on. Here it keeps its square.",
+      "audioPath": "recordings/marisol-v1/marisol/positional-passer-advance-alternative.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/positional-passer-advance-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-passer-advance-alternative.json"
+    },
+    {
+      "id": "positional-isolated-actual",
+      "group": "game_review",
+      "text": "A pawn has become isolated: neither neighboring file holds a pawn of its color any longer.",
+      "audioPath": "recordings/marisol-v1/marisol/positional-isolated-actual.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/positional-isolated-actual.provenance.json",
+      "alignmentPath": "alignment/positional-isolated-actual.json"
+    },
+    {
+      "id": "positional-isolated-alternative",
+      "group": "game_review",
+      "text": "The alternative would have isolated a pawn, leaving both neighboring files without a pawn of its color.",
+      "audioPath": "recordings/marisol-v1/marisol/positional-isolated-alternative.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/positional-isolated-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-isolated-alternative.json"
+    },
+    {
+      "id": "positional-support-actual",
+      "group": "game_review",
+      "text": "Before this move, a piece had no defender. Now it has one.",
+      "audioPath": "recordings/marisol-v1/marisol/positional-support-actual.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/positional-support-actual.provenance.json",
+      "alignmentPath": "alignment/positional-support-actual.json"
+    },
+    {
+      "id": "positional-support-alternative",
+      "group": "game_review",
+      "text": "The alternative would have supplied a defender to a piece that has none at the moment.",
+      "audioPath": "recordings/marisol-v1/marisol/positional-support-alternative.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/positional-support-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-support-alternative.json"
+    },
+    {
+      "id": "positional-unsupported-actual",
+      "group": "game_review",
+      "text": "A piece has lost its last defender. The weakness is real; it does not on its own show the piece can be won.",
+      "audioPath": "recordings/marisol-v1/marisol/positional-unsupported-actual.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/positional-unsupported-actual.provenance.json",
+      "alignmentPath": "alignment/positional-unsupported-actual.json"
+    },
+    {
+      "id": "positional-unsupported-alternative",
+      "group": "game_review",
+      "text": "The alternative would have taken away a piece's last defender. By itself, that would not have shown it could be won.",
+      "audioPath": "recordings/marisol-v1/marisol/positional-unsupported-alternative.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/positional-unsupported-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-unsupported-alternative.json"
+    },
+    {
+      "id": "positional-king-flight-actual",
+      "group": "game_review",
+      "text": "The king has one more legal square than before. Something on the board changed to make that room.",
+      "audioPath": "recordings/marisol-v1/marisol/positional-king-flight-actual.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/positional-king-flight-actual.provenance.json",
+      "alignmentPath": "alignment/positional-king-flight-actual.json"
+    },
+    {
+      "id": "positional-king-flight-alternative",
+      "group": "game_review",
+      "text": "The alternative would have given the king one additional legal square.",
+      "audioPath": "recordings/marisol-v1/marisol/positional-king-flight-alternative.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/positional-king-flight-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-king-flight-alternative.json"
+    },
+    {
+      "id": "positional-castling-actual",
+      "group": "game_review",
+      "text": "The king has castled. It moved two squares, and the rook has crossed to its other side.",
+      "audioPath": "recordings/marisol-v1/marisol/positional-castling-actual.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/positional-castling-actual.provenance.json",
+      "alignmentPath": "alignment/positional-castling-actual.json"
+    },
+    {
+      "id": "positional-castling-alternative",
+      "group": "game_review",
+      "text": "Castling was available, moving king and rook together in a single turn.",
+      "audioPath": "recordings/marisol-v1/marisol/positional-castling-alternative.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/positional-castling-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-castling-alternative.json"
+    },
+    {
+      "id": "positional-bishop-pair-actual",
+      "group": "game_review",
+      "text": "Before this capture there was a bishop pair; now there is not. That side's remaining bishop covers only one square color.",
+      "audioPath": "recordings/marisol-v1/marisol/positional-bishop-pair-actual.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/positional-bishop-pair-actual.provenance.json",
+      "alignmentPath": "alignment/positional-bishop-pair-actual.json"
+    },
+    {
+      "id": "positional-bishop-pair-alternative",
+      "group": "game_review",
+      "text": "With the alternative, a bishop would have been captured and the opposing pair would have ended.",
+      "audioPath": "recordings/marisol-v1/marisol/positional-bishop-pair-alternative.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/positional-bishop-pair-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-bishop-pair-alternative.json"
+    },
+    {
+      "id": "positional-doubled-actual",
+      "group": "game_review",
+      "text": "Before this move the pawns stood on different files; now two of the same color share one. They are doubled.",
+      "audioPath": "recordings/marisol-v1/marisol/positional-doubled-actual.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/positional-doubled-actual.provenance.json",
+      "alignmentPath": "alignment/positional-doubled-actual.json"
+    },
+    {
+      "id": "positional-doubled-alternative",
+      "group": "game_review",
+      "text": "The alternative would have left two pawns doubled up on a single file.",
+      "audioPath": "recordings/marisol-v1/marisol/positional-doubled-alternative.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/positional-doubled-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-doubled-alternative.json"
+    },
+    {
+      "id": "allowed-mate",
+      "group": "game_review",
+      "text": "Something decisive has shifted. From here a forced checkmate is in the other side's hands, and the reason lies in the moves before this one.",
+      "audioPath": "recordings/marisol-v1/marisol/allowed-mate.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/allowed-mate.provenance.json",
+      "alignmentPath": "alignment/allowed-mate.json"
+    },
+    {
+      "id": "missed-mate",
+      "group": "game_review",
+      "text": "The mating line that existed before this move no longer exists after it. A forced checkmate went unplayed.",
+      "audioPath": "recordings/marisol-v1/marisol/missed-mate.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/missed-mate.provenance.json",
+      "alignmentPath": "alignment/missed-mate.json"
+    },
+    {
+      "id": "sound-sacrifice",
+      "group": "game_review",
+      "text": "Material has been offered. The checked line shows the idea survives even if the offer is accepted.",
+      "audioPath": "recordings/marisol-v1/marisol/sound-sacrifice.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/sound-sacrifice.provenance.json",
+      "alignmentPath": "alignment/sound-sacrifice.json"
+    },
+    {
+      "id": "only-playable-move",
+      "group": "game_review",
+      "text": "Among the examined moves, only this one keeps the position playable. Every other one loses.",
+      "audioPath": "recordings/marisol-v1/marisol/only-playable-move.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/only-playable-move.provenance.json",
+      "alignmentPath": "alignment/only-playable-move.json"
+    },
+    {
+      "id": "only-advantage-resource",
+      "group": "game_review",
+      "text": "Among the examined moves, this is the one that keeps the advantage. All the others lose.",
+      "audioPath": "recordings/marisol-v1/marisol/only-advantage-resource.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/only-advantage-resource.provenance.json",
+      "alignmentPath": "alignment/only-advantage-resource.json"
+    },
+    {
+      "id": "immediate-capture",
+      "group": "game_review",
+      "text": "The first change to note: on its next move, the other side has a capture available.",
+      "audioPath": "recordings/marisol-v1/marisol/immediate-capture.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/immediate-capture.provenance.json",
+      "alignmentPath": "alignment/immediate-capture.json"
+    },
+    {
+      "id": "reply-check",
+      "group": "game_review",
+      "text": "The strongest reply arrives as a check. The king's safety now comes before anything else.",
+      "audioPath": "recordings/marisol-v1/marisol/reply-check.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/reply-check.provenance.json",
+      "alignmentPath": "alignment/reply-check.json"
+    },
+    {
+      "id": "stronger-alternative",
+      "group": "game_review",
+      "text": "What the engine would play here is something different. After the strongest reply, the two lines go different ways.",
+      "audioPath": "recordings/marisol-v1/marisol/stronger-alternative.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/stronger-alternative.provenance.json",
+      "alignmentPath": "alignment/stronger-alternative.json"
+    },
+    {
+      "id": "evaluation-loss",
+      "group": "game_review",
+      "text": "Compared with the engine's top move, part of the value is gone. Follow the reply to see where the gap opens.",
+      "audioPath": "recordings/marisol-v1/marisol/evaluation-loss.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/evaluation-loss.provenance.json",
+      "alignmentPath": "alignment/evaluation-loss.json"
+    },
+    {
+      "id": "best-supported-choice",
+      "group": "game_review",
+      "text": "Strong. Compared with the engine's choices, very little value has changed hands.",
+      "audioPath": "recordings/marisol-v1/marisol/best-supported-choice.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/best-supported-choice.provenance.json",
+      "alignmentPath": "alignment/best-supported-choice.json"
+    },
+    {
+      "id": "good-choice",
+      "group": "game_review",
+      "text": "Sound. The engine leans toward another move, yet most of the position's value is still in place.",
+      "audioPath": "recordings/marisol-v1/marisol/good-choice.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/good-choice.provenance.json",
+      "alignmentPath": "alignment/good-choice.json"
+    },
+    {
+      "id": "clock-low",
+      "group": "game_review",
+      "text": "The clock had almost run down by the time this move was chosen.",
+      "audioPath": "recordings/marisol-v1/marisol/clock-low.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/clock-low.provenance.json",
+      "alignmentPath": "alignment/clock-low.json"
+    },
+    {
+      "id": "clock-fast",
+      "group": "game_review",
+      "text": "This move came quickly; most of the clock was still unused.",
+      "audioPath": "recordings/marisol-v1/marisol/clock-fast.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/clock-fast.provenance.json",
+      "alignmentPath": "alignment/clock-fast.json"
+    },
+    {
+      "id": "clock-long",
+      "group": "game_review",
+      "text": "A good deal of clock time was used before this move.",
+      "audioPath": "recordings/marisol-v1/marisol/clock-long.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/clock-long.provenance.json",
+      "alignmentPath": "alignment/clock-long.json"
+    },
+    {
+      "id": "recognized-opening",
+      "group": "game_review",
+      "text": "This move is one a recognized opening contains.",
+      "audioPath": "recordings/marisol-v1/marisol/recognized-opening.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/recognized-opening.provenance.json",
+      "alignmentPath": "alignment/recognized-opening.json"
+    },
+    {
+      "id": "opening-departure",
+      "group": "game_review",
+      "text": "The game moves outside the known opening at this point. From here, the position is unfamiliar.",
+      "audioPath": "recordings/marisol-v1/marisol/opening-departure.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/opening-departure.provenance.json",
+      "alignmentPath": "alignment/opening-departure.json"
+    },
+    {
+      "id": "recovery",
+      "group": "game_review",
+      "text": "After the earlier error, the position has become playable again. That is the change worth recording.",
+      "audioPath": "recordings/marisol-v1/marisol/recovery.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/recovery.provenance.json",
+      "alignmentPath": "alignment/recovery.json"
+    },
+    {
+      "id": "recovery-assisted",
+      "group": "game_review",
+      "text": "The earlier error has stopped being decisive, and the game is playable once more. The other side's mistakes played a part in that.",
+      "audioPath": "recordings/marisol-v1/marisol/recovery-assisted.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/recovery-assisted.provenance.json",
+      "alignmentPath": "alignment/recovery-assisted.json"
+    },
+    {
+      "id": "chance-taken",
+      "group": "game_review",
+      "text": "The opponent's last move left something available. This move collects it.",
+      "audioPath": "recordings/marisol-v1/marisol/chance-taken.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/chance-taken.provenance.json",
+      "alignmentPath": "alignment/chance-taken.json"
+    },
+    {
+      "id": "chance-missed",
+      "group": "game_review",
+      "text": "The opponent's last move left something available. This reply does not take it, and a stronger answer existed.",
+      "audioPath": "recordings/marisol-v1/marisol/chance-missed.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/chance-missed.provenance.json",
+      "alignmentPath": "alignment/chance-missed.json"
+    },
+    {
+      "id": "repeated-issue",
+      "group": "game_review",
+      "text": "This issue is not new in this game; it came up once already. Placed side by side, the two moments share a pattern.",
+      "audioPath": "recordings/marisol-v1/marisol/repeated-issue.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/repeated-issue.provenance.json",
+      "alignmentPath": "alignment/repeated-issue.json"
+    },
+    {
+      "id": "support-restored",
+      "group": "game_review",
+      "text": "A piece lost its protection earlier on. That protection has returned.",
+      "audioPath": "recordings/marisol-v1/marisol/support-restored.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/support-restored.provenance.json",
+      "alignmentPath": "alignment/support-restored.json"
+    },
+    {
+      "id": "gradual-erosion",
+      "group": "game_review",
+      "text": "Small concessions keep accumulating, and this move is another of them. One by one they are minor; together they have shifted the position.",
+      "audioPath": "recordings/marisol-v1/marisol/gradual-erosion.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/gradual-erosion.provenance.json",
+      "alignmentPath": "alignment/gradual-erosion.json"
+    },
+    {
+      "id": "advantage-converted",
+      "group": "game_review",
+      "text": "From that point until the recorded win, the advantage stayed in place and was never handed back.",
+      "audioPath": "recordings/marisol-v1/marisol/advantage-converted.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/advantage-converted.provenance.json",
+      "alignmentPath": "alignment/advantage-converted.json"
+    },
+    {
+      "id": "saved-history-recurrence",
+      "group": "game_review",
+      "text": "This issue is not limited to this game; other saved games contain it as well. The positions share a common thread.",
+      "audioPath": "recordings/marisol-v1/marisol/saved-history-recurrence.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/saved-history-recurrence.provenance.json",
+      "alignmentPath": "alignment/saved-history-recurrence.json"
+    },
+    {
+      "id": "mate-finished",
+      "group": "game_review",
+      "text": "Checkmate. No legal move remains for the king, and the game has ended.",
+      "audioPath": "recordings/marisol-v1/marisol/mate-finished.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/mate-finished.provenance.json",
+      "alignmentPath": "alignment/mate-finished.json"
+    },
+    {
+      "id": "mate-defense-ended",
+      "group": "game_review",
+      "text": "Checkmate. Every legal move is gone for the defending king. The decisions leading here are where things changed.",
+      "audioPath": "recordings/marisol-v1/marisol/mate-defense-ended.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/mate-defense-ended.provenance.json",
+      "alignmentPath": "alignment/mate-defense-ended.json"
+    },
+    {
+      "id": "draw",
+      "group": "game_review",
+      "text": "A draw. The result is fixed, though the decisions along the way remain worth examining.",
+      "audioPath": "recordings/marisol-v1/marisol/draw.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/draw.provenance.json",
+      "alignmentPath": "alignment/draw.json"
+    },
+    {
+      "id": "srs-cold",
+      "group": "srs_explanations",
+      "text": "Look at the position as it stands, then choose a move.",
+      "audioPath": "recordings/marisol-v1/marisol/srs-cold.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/srs-cold.provenance.json",
+      "alignmentPath": "alignment/srs-cold.json"
+    },
+    {
+      "id": "srs-retry",
+      "group": "srs_explanations",
+      "text": "Not the answer. Look again at what the last move changed.",
+      "audioPath": "recordings/marisol-v1/marisol/srs-retry.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/srs-retry.provenance.json",
+      "alignmentPath": "alignment/srs-retry.json"
+    },
+    {
+      "id": "srs-practice-error",
+      "group": "srs_explanations",
+      "text": "The attempt went through without a result. Enter the move once again.",
+      "audioPath": "recordings/marisol-v1/marisol/srs-practice-error.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/srs-practice-error.provenance.json",
+      "alignmentPath": "alignment/srs-practice-error.json"
+    },
+    {
+      "id": "srs-summary-mate-for-mover",
+      "group": "srs_explanations",
+      "text": "According to the saved engine analysis, a forced checkmate is now in the hands of the side that played this move.",
+      "audioPath": "recordings/marisol-v1/marisol/srs-summary-mate-for-mover.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/srs-summary-mate-for-mover.provenance.json",
+      "alignmentPath": "alignment/srs-summary-mate-for-mover.json"
+    },
+    {
+      "id": "srs-summary-mate-against-mover",
+      "group": "srs_explanations",
+      "text": "The saved engine analysis records that this move leaves its own side facing a forced checkmate.",
+      "audioPath": "recordings/marisol-v1/marisol/srs-summary-mate-against-mover.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/srs-summary-mate-against-mover.provenance.json",
+      "alignmentPath": "alignment/srs-summary-mate-against-mover.json"
+    },
+    {
+      "id": "srs-summary-material-gain",
+      "group": "srs_explanations",
+      "text": "Set the material at the end of the saved line beside the material at its start: the side that played this move has gained.",
+      "audioPath": "recordings/marisol-v1/marisol/srs-summary-material-gain.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/srs-summary-material-gain.provenance.json",
+      "alignmentPath": "alignment/srs-summary-material-gain.json"
+    },
+    {
+      "id": "srs-summary-material-loss",
+      "group": "srs_explanations",
+      "text": "Set the material at the end of the saved line beside the material at its start: the side that played this move has lost some.",
+      "audioPath": "recordings/marisol-v1/marisol/srs-summary-material-loss.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/srs-summary-material-loss.provenance.json",
+      "alignmentPath": "alignment/srs-summary-material-loss.json"
+    },
+    {
+      "id": "srs-summary-engine-accepted",
+      "group": "srs_explanations",
+      "text": "This move is accepted. Nothing in the moves shown gives a clear tactical reason, and none is supposed.",
+      "audioPath": "recordings/marisol-v1/marisol/srs-summary-engine-accepted.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/srs-summary-engine-accepted.provenance.json",
+      "alignmentPath": "alignment/srs-summary-engine-accepted.json"
+    },
+    {
+      "id": "srs-summary-engine-rejected",
+      "group": "srs_explanations",
+      "text": "The exercise does not take this move, and nothing in the moves shown points to a clear tactical reason. Look over what changed once more.",
+      "audioPath": "recordings/marisol-v1/marisol/srs-summary-engine-rejected.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/srs-summary-engine-rejected.provenance.json",
+      "alignmentPath": "alignment/srs-summary-engine-rejected.json"
+    },
+    {
+      "id": "srs-summary-curated-accepted",
+      "group": "srs_explanations",
+      "text": "It appears among the saved answers, which are the standard in this exercise.",
+      "audioPath": "recordings/marisol-v1/marisol/srs-summary-curated-accepted.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/srs-summary-curated-accepted.provenance.json",
+      "alignmentPath": "alignment/srs-summary-curated-accepted.json"
+    },
+    {
+      "id": "srs-summary-curated-rejected",
+      "group": "srs_explanations",
+      "text": "None of the saved answers is this move. That does not rule it out as sound chess.",
+      "audioPath": "recordings/marisol-v1/marisol/srs-summary-curated-rejected.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/srs-summary-curated-rejected.provenance.json",
+      "alignmentPath": "alignment/srs-summary-curated-rejected.json"
+    },
+    {
+      "id": "srs-fallback-study",
+      "group": "srs_explanations",
+      "text": "Take note of the move and its reason, and continue with the next position.",
+      "audioPath": "recordings/marisol-v1/marisol/srs-fallback-study.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/srs-fallback-study.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-study.json"
+    },
+    {
+      "id": "srs-fallback-good",
+      "group": "srs_explanations",
+      "text": "Correct. What transfers to other positions is the reason, more than the move itself.",
+      "audioPath": "recordings/marisol-v1/marisol/srs-fallback-good.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/srs-fallback-good.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-good.json"
+    },
+    {
+      "id": "srs-fallback-focus-saved",
+      "group": "srs_explanations",
+      "text": "The practice has been recorded, and the review schedule is the same as before.",
+      "audioPath": "recordings/marisol-v1/marisol/srs-fallback-focus-saved.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/srs-fallback-focus-saved.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-focus-saved.json"
+    },
+    {
+      "id": "srs-fallback-relearning",
+      "group": "srs_explanations",
+      "text": "Solved. For now, this recall stays marked as relearning.",
+      "audioPath": "recordings/marisol-v1/marisol/srs-fallback-relearning.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/srs-fallback-relearning.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-relearning.json"
+    },
+    {
+      "id": "explanation-frame-original",
+      "group": "srs_explanations",
+      "text": "This is how the position looked before any of these moves.",
+      "audioPath": "recordings/marisol-v1/marisol/explanation-frame-original.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/explanation-frame-original.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-original.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-ordinary",
+      "group": "srs_explanations",
+      "text": "One move is played. Note what is different afterward.",
+      "audioPath": "recordings/marisol-v1/marisol/explanation-frame-quiet-move-ordinary.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/explanation-frame-quiet-move-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-check",
+      "group": "srs_explanations",
+      "text": "Check. Until it is answered, nothing else matters.",
+      "audioPath": "recordings/marisol-v1/marisol/explanation-frame-quiet-move-check.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/explanation-frame-quiet-move-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-check.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-escape",
+      "group": "srs_explanations",
+      "text": "The check has been answered; the king is clear.",
+      "audioPath": "recordings/marisol-v1/marisol/explanation-frame-quiet-move-escape.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/explanation-frame-quiet-move-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-escape.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-ordinary",
+      "group": "srs_explanations",
+      "text": "The pawn has reached the last rank and been replaced by a new piece.",
+      "audioPath": "recordings/marisol-v1/marisol/explanation-frame-quiet-promotion-ordinary.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/explanation-frame-quiet-promotion-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-check",
+      "group": "srs_explanations",
+      "text": "After the promotion, the new piece is giving check.",
+      "audioPath": "recordings/marisol-v1/marisol/explanation-frame-quiet-promotion-check.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/explanation-frame-quiet-promotion-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-check.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-mate",
+      "group": "srs_explanations",
+      "text": "After the promotion, the position is checkmate.",
+      "audioPath": "recordings/marisol-v1/marisol/explanation-frame-quiet-promotion-mate.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/explanation-frame-quiet-promotion-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-mate.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-escape",
+      "group": "srs_explanations",
+      "text": "After the promotion, its own king is out of check as well.",
+      "audioPath": "recordings/marisol-v1/marisol/explanation-frame-quiet-promotion-escape.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/explanation-frame-quiet-promotion-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-escape.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-ordinary",
+      "group": "srs_explanations",
+      "text": "A capture. There is one piece fewer on the board.",
+      "audioPath": "recordings/marisol-v1/marisol/explanation-frame-capture-move-ordinary.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/explanation-frame-capture-move-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-check",
+      "group": "srs_explanations",
+      "text": "After the capture, the king is in check.",
+      "audioPath": "recordings/marisol-v1/marisol/explanation-frame-capture-move-check.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/explanation-frame-capture-move-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-check.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-mate",
+      "group": "srs_explanations",
+      "text": "After the capture, the position is checkmate.",
+      "audioPath": "recordings/marisol-v1/marisol/explanation-frame-capture-move-mate.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/explanation-frame-capture-move-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-mate.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-escape",
+      "group": "srs_explanations",
+      "text": "After the capture, the king is out of check.",
+      "audioPath": "recordings/marisol-v1/marisol/explanation-frame-capture-move-escape.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/explanation-frame-capture-move-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-escape.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-ordinary",
+      "group": "srs_explanations",
+      "text": "With a capture, the pawn arrives on the last rank and is replaced by a new piece.",
+      "audioPath": "recordings/marisol-v1/marisol/explanation-frame-capture-promotion-ordinary.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/explanation-frame-capture-promotion-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-check",
+      "group": "srs_explanations",
+      "text": "After capturing and promoting, the new piece is giving check.",
+      "audioPath": "recordings/marisol-v1/marisol/explanation-frame-capture-promotion-check.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/explanation-frame-capture-promotion-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-check.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-mate",
+      "group": "srs_explanations",
+      "text": "After capturing and promoting, the position is checkmate.",
+      "audioPath": "recordings/marisol-v1/marisol/explanation-frame-capture-promotion-mate.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/explanation-frame-capture-promotion-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-mate.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-escape",
+      "group": "srs_explanations",
+      "text": "After capturing and promoting, its own king is out of check.",
+      "audioPath": "recordings/marisol-v1/marisol/explanation-frame-capture-promotion-escape.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/explanation-frame-capture-promotion-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-escape.json"
+    },
+    {
+      "id": "explanation-frame-castle-check",
+      "group": "srs_explanations",
+      "text": "After castling, the opposing king is in check.",
+      "audioPath": "recordings/marisol-v1/marisol/explanation-frame-castle-check.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/explanation-frame-castle-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-castle-check.json"
+    },
+    {
+      "id": "explanation-frame-castle-mate",
+      "group": "srs_explanations",
+      "text": "After castling, the position is checkmate.",
+      "audioPath": "recordings/marisol-v1/marisol/explanation-frame-castle-mate.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/explanation-frame-castle-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-castle-mate.json"
+    },
+    {
+      "id": "explanation-finding-fork-collected",
+      "group": "srs_explanations",
+      "text": "A fork in operation: one piece threatens several targets and, a little later, captures one. By the end of this example there is a net material gain.",
+      "audioPath": "recordings/marisol-v1/marisol/explanation-finding-fork-collected.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/explanation-finding-fork-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-fork-collected.json"
+    },
+    {
+      "id": "explanation-finding-pin-prevents-capture",
+      "group": "srs_explanations",
+      "text": "The marked capture is not legal here. This piece is pinned, and moving it would expose its king.",
+      "audioPath": "recordings/marisol-v1/marisol/explanation-finding-pin-prevents-capture.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/explanation-finding-pin-prevents-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-prevents-capture.json"
+    },
+    {
+      "id": "explanation-finding-pin-restricts-escape",
+      "group": "srs_explanations",
+      "text": "Pinned to its king, the attacked piece only has moves that keep that king shielded.",
+      "audioPath": "recordings/marisol-v1/marisol/explanation-finding-pin-restricts-escape.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/explanation-finding-pin-restricts-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-restricts-escape.json"
+    },
+    {
+      "id": "explanation-finding-pin-defenders-no-recapture",
+      "group": "srs_explanations",
+      "text": "No recapture comes, because each defender is pinned to its king. That is why the capture is possible, and the line shown ends with more material.",
+      "audioPath": "recordings/marisol-v1/marisol/explanation-finding-pin-defenders-no-recapture.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/explanation-finding-pin-defenders-no-recapture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-defenders-no-recapture.json"
+    },
+    {
+      "id": "explanation-finding-pin-collected",
+      "group": "srs_explanations",
+      "text": "The pinned piece cannot leave its line while its king stands behind. Before the sequence ends, it is captured.",
+      "audioPath": "recordings/marisol-v1/marisol/explanation-finding-pin-collected.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/explanation-finding-pin-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-collected.json"
+    },
+    {
+      "id": "explanation-finding-skewer-collected",
+      "group": "srs_explanations",
+      "text": "Once the front piece steps off the line, the one that stood behind it is captured.",
+      "audioPath": "recordings/marisol-v1/marisol/explanation-finding-skewer-collected.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/explanation-finding-skewer-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-skewer-collected.json"
+    },
+    {
+      "id": "explanation-finding-king-skewer-collected",
+      "group": "srs_explanations",
+      "text": "A check sends the king off the line, and the same attacker then captures what was behind it.",
+      "audioPath": "recordings/marisol-v1/marisol/explanation-finding-king-skewer-collected.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/explanation-finding-king-skewer-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-king-skewer-collected.json"
+    },
+    {
+      "id": "explanation-finding-sole-defender-captured",
+      "group": "srs_explanations",
+      "text": "The lone defender is captured, and after it, the piece it was protecting.",
+      "audioPath": "recordings/marisol-v1/marisol/explanation-finding-sole-defender-captured.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/explanation-finding-sole-defender-captured.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-sole-defender-captured.json"
+    },
+    {
+      "id": "explanation-finding-deflection-collected",
+      "group": "srs_explanations",
+      "text": "The defender is drawn away from where it stood, and what it was covering is captured next.",
+      "audioPath": "recordings/marisol-v1/marisol/explanation-finding-deflection-collected.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/explanation-finding-deflection-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-deflection-collected.json"
+    },
+    {
+      "id": "explanation-finding-discovered-capture",
+      "group": "srs_explanations",
+      "text": "The blocking piece steps off the line; the piece behind it then captures along the opening it left.",
+      "audioPath": "recordings/marisol-v1/marisol/explanation-finding-discovered-capture.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/explanation-finding-discovered-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-discovered-capture.json"
+    },
+    {
+      "id": "explanation-finding-discovered-check",
+      "group": "srs_explanations",
+      "text": "One piece leaves the line, and check comes through the gap it left.",
+      "audioPath": "recordings/marisol-v1/marisol/explanation-finding-discovered-check.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/explanation-finding-discovered-check.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-discovered-check.json"
+    },
+    {
+      "id": "explanation-finding-double-check",
+      "group": "srs_explanations",
+      "text": "Double check. With two pieces giving check, only a king move is possible.",
+      "audioPath": "recordings/marisol-v1/marisol/explanation-finding-double-check.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/explanation-finding-double-check.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-double-check.json"
+    },
+    {
+      "id": "explanation-finding-double-attack-collected",
+      "group": "srs_explanations",
+      "text": "Two targets, two attackers: the moving piece threatens one, and the line it opened threatens the other. The piece behind collects.",
+      "audioPath": "recordings/marisol-v1/marisol/explanation-finding-double-attack-collected.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/explanation-finding-double-attack-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-double-attack-collected.json"
+    },
+    {
+      "id": "explanation-finding-promotion-material-retained",
+      "group": "srs_explanations",
+      "text": "Promotion. When this example finishes, that side is also ahead on material.",
+      "audioPath": "recordings/marisol-v1/marisol/explanation-finding-promotion-material-retained.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/explanation-finding-promotion-material-retained.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-promotion-material-retained.json"
+    },
+    {
+      "id": "explanation-finding-undefended-capture-gain",
+      "group": "srs_explanations",
+      "text": "A piece without protection is taken, and the capturing side finishes this example with more material.",
+      "audioPath": "recordings/marisol-v1/marisol/explanation-finding-undefended-capture-gain.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/explanation-finding-undefended-capture-gain.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-undefended-capture-gain.json"
+    },
+    {
+      "id": "explanation-finding-relative-pin-released",
+      "group": "srs_explanations",
+      "text": "A relative pin had been holding the attacking piece. The opponent's previous move lifted it, and the piece captures a target that never moved, in the line shown.",
+      "audioPath": "recordings/marisol-v1/marisol/explanation-finding-relative-pin-released.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/explanation-finding-relative-pin-released.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-relative-pin-released.json"
+    },
+    {
+      "id": "game-explanation-legal-reply",
+      "group": "srs_explanations",
+      "text": "The other side is permitted the marked reply. Play it on the board and note what changes.",
+      "audioPath": "recordings/marisol-v1/marisol/game-explanation-legal-reply.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/game-explanation-legal-reply.provenance.json",
+      "alignmentPath": "alignment/game-explanation-legal-reply.json"
+    },
+    {
+      "id": "explanation-cue-hanging-piece",
+      "group": "srs_explanations",
+      "text": "Before moving, check that no piece is left to be taken without a recapture.",
+      "audioPath": "recordings/marisol-v1/marisol/explanation-cue-hanging-piece.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/explanation-cue-hanging-piece.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-hanging-piece.json"
+    },
+    {
+      "id": "explanation-cue-missed-tactical-capture",
+      "group": "srs_explanations",
+      "text": "Before a quiet move, check whether any enemy piece has lost its protection.",
+      "audioPath": "recordings/marisol-v1/marisol/explanation-cue-missed-tactical-capture.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/explanation-cue-missed-tactical-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-missed-tactical-capture.json"
+    },
+    {
+      "id": "explanation-cue-fork",
+      "group": "srs_explanations",
+      "text": "Among the forcing moves, notice whether one piece could land on two valuable targets.",
+      "audioPath": "recordings/marisol-v1/marisol/explanation-cue-fork.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/explanation-cue-fork.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-fork.json"
+    },
+    {
+      "id": "explanation-cue-pin",
+      "group": "srs_explanations",
+      "text": "Before a pinned piece moves, consider what it shields, whether that is the king or a piece of greater value.",
+      "audioPath": "recordings/marisol-v1/marisol/explanation-cue-pin.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/explanation-cue-pin.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-pin.json"
+    },
+    {
+      "id": "explanation-cue-skewer",
+      "group": "srs_explanations",
+      "text": "Note what stands behind the first target. A more valuable piece may be on the same line.",
+      "audioPath": "recordings/marisol-v1/marisol/explanation-cue-skewer.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/explanation-cue-skewer.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-skewer.json"
+    },
+    {
+      "id": "explanation-cue-removing-defender",
+      "group": "srs_explanations",
+      "text": "Before a defender is traded, note what it is protecting.",
+      "audioPath": "recordings/marisol-v1/marisol/explanation-cue-removing-defender.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/explanation-cue-removing-defender.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-removing-defender.json"
+    },
+    {
+      "id": "explanation-cue-discovered-attack",
+      "group": "srs_explanations",
+      "text": "When a piece moves off a line, note what that line now reaches.",
+      "audioPath": "recordings/marisol-v1/marisol/explanation-cue-discovered-attack.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/explanation-cue-discovered-attack.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-discovered-attack.json"
+    },
+    {
+      "id": "explanation-cue-double-attack",
+      "group": "srs_explanations",
+      "text": "Note any single move that creates two threats, including checks and lines it opens.",
+      "audioPath": "recordings/marisol-v1/marisol/explanation-cue-double-attack.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/explanation-cue-double-attack.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-double-attack.json"
+    },
+    {
+      "id": "explanation-cue-back-rank",
+      "group": "srs_explanations",
+      "text": "If a back-rank defender is about to move, first confirm the king will still have an escape square.",
+      "audioPath": "recordings/marisol-v1/marisol/explanation-cue-back-rank.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/explanation-cue-back-rank.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-back-rank.json"
+    },
+    {
+      "id": "explanation-cue-promotion-awareness",
+      "group": "srs_explanations",
+      "text": "Note how many squares a pawn still needs to promote, and which of its moves demand a reply.",
+      "audioPath": "recordings/marisol-v1/marisol/explanation-cue-promotion-awareness.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/explanation-cue-promotion-awareness.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-promotion-awareness.json"
+    },
+    {
+      "id": "explanation-cue-abandoned-defender",
+      "group": "srs_explanations",
+      "text": "Before a defender moves, note which pieces rely on it.",
+      "audioPath": "recordings/marisol-v1/marisol/explanation-cue-abandoned-defender.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/explanation-cue-abandoned-defender.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-abandoned-defender.json"
+    },
+    {
+      "id": "explanation-cue-avoiding-bad-trades",
+      "group": "srs_explanations",
+      "text": "Before capturing, weigh what is won against what the recapture would remove.",
+      "audioPath": "recordings/marisol-v1/marisol/explanation-cue-avoiding-bad-trades.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/explanation-cue-avoiding-bad-trades.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-avoiding-bad-trades.json"
+    },
+    {
+      "id": "explanation-cue-deflection",
+      "group": "srs_explanations",
+      "text": "Note whether a forcing exchange could draw a defender away from a second task.",
+      "audioPath": "recordings/marisol-v1/marisol/explanation-cue-deflection.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/explanation-cue-deflection.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-deflection.json"
+    },
+    {
+      "id": "explanation-note-curated-authority",
+      "group": "srs_explanations",
+      "text": "Here the saved answers are the measure. Outside them, a legal move may still be sound.",
+      "audioPath": "recordings/marisol-v1/marisol/explanation-note-curated-authority.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/explanation-note-curated-authority.provenance.json",
+      "alignmentPath": "alignment/explanation-note-curated-authority.json"
+    },
+    {
+      "id": "explanation-note-strong-replies",
+      "group": "srs_explanations",
+      "text": "The line uses strong replies. Those are not the only ones possible.",
+      "audioPath": "recordings/marisol-v1/marisol/explanation-note-strong-replies.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/explanation-note-strong-replies.provenance.json",
+      "alignmentPath": "alignment/explanation-note-strong-replies.json"
+    },
+    {
+      "id": "explanation-note-material-scope",
+      "group": "srs_explanations",
+      "text": "Within the line shown, material is counted from that line's own first position. The written explanation gives the values used for each piece.",
+      "audioPath": "recordings/marisol-v1/marisol/explanation-note-material-scope.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/explanation-note-material-scope.provenance.json",
+      "alignmentPath": "alignment/explanation-note-material-scope.json"
+    },
+    {
+      "id": "explanation-note-no-simple-reason",
+      "group": "srs_explanations",
+      "text": "No simple tactical reason can be read from the saved line, and no positional one is supposed. Play it out and note how each reply changes things.",
+      "audioPath": "recordings/marisol-v1/marisol/explanation-note-no-simple-reason.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/explanation-note-no-simple-reason.provenance.json",
+      "alignmentPath": "alignment/explanation-note-no-simple-reason.json"
+    },
+    {
+      "id": "explanation-note-saved-policy",
+      "group": "srs_explanations",
+      "text": "The answer policy stored with this exercise determines how it is explained, and its setting is written in the notes.",
+      "audioPath": "recordings/marisol-v1/marisol/explanation-note-saved-policy.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/explanation-note-saved-policy.provenance.json",
+      "alignmentPath": "alignment/explanation-note-saved-policy.json"
+    },
+    {
+      "id": "opening-recall-revealed",
+      "group": "openings",
+      "text": "Here is the opening line, each move in order.",
+      "audioPath": "recordings/marisol-v1/marisol/opening-recall-revealed.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/opening-recall-revealed.provenance.json",
+      "alignmentPath": "alignment/opening-recall-revealed.json"
+    },
+    {
+      "id": "opening-recall-accepted",
+      "group": "openings",
+      "text": "Correct. That move belongs to your study material.",
+      "audioPath": "recordings/marisol-v1/marisol/opening-recall-accepted.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/opening-recall-accepted.provenance.json",
+      "alignmentPath": "alignment/opening-recall-accepted.json"
+    },
+    {
+      "id": "opening-recall-retry-fallback",
+      "group": "openings",
+      "text": "Choose a move from the opening lines you are studying.",
+      "audioPath": "recordings/marisol-v1/marisol/opening-recall-retry-fallback.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/opening-recall-retry-fallback.provenance.json",
+      "alignmentPath": "alignment/opening-recall-retry-fallback.json"
+    },
+    {
+      "id": "opening-recall-cold-multiple",
+      "group": "openings",
+      "text": "This position appears in more than one of your chosen opening lines, and each of them offers a valid move.",
+      "audioPath": "recordings/marisol-v1/marisol/opening-recall-cold-multiple.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/opening-recall-cold-multiple.provenance.json",
+      "alignmentPath": "alignment/opening-recall-cold-multiple.json"
+    },
+    {
+      "id": "opening-recall-cold-single",
+      "group": "openings",
+      "text": "Recall the move that comes next in your study material.",
+      "audioPath": "recordings/marisol-v1/marisol/opening-recall-cold-single.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/opening-recall-cold-single.provenance.json",
+      "alignmentPath": "alignment/opening-recall-cold-single.json"
+    },
+    {
+      "id": "opening-recall-rejected",
+      "group": "openings",
+      "text": "That move does not appear in your chosen opening lines. Try again.",
+      "audioPath": "recordings/marisol-v1/marisol/opening-recall-rejected.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/opening-recall-rejected.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected.json"
+    },
+    {
+      "id": "opening-recall-rejected-changed",
+      "group": "openings",
+      "text": "That is outside your chosen lines; try again. The study was edited, so review dates are unaffected by this saved attempt.",
+      "audioPath": "recordings/marisol-v1/marisol/opening-recall-rejected-changed.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/opening-recall-rejected-changed.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected-changed.json"
+    },
+    {
+      "id": "opening-recall-rejected-retired",
+      "group": "openings",
+      "text": "That is outside your chosen lines; try again. The position is retired, so its review dates do not change.",
+      "audioPath": "recordings/marisol-v1/marisol/opening-recall-rejected-retired.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/opening-recall-rejected-retired.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected-retired.json"
+    },
+    {
+      "id": "opening-preview-active",
+      "group": "openings",
+      "text": "Any move from this line is accepted under Mixed Due. Dedicated practice wants this specific line and no other.",
+      "audioPath": "recordings/marisol-v1/marisol/opening-preview-active.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/opening-preview-active.provenance.json",
+      "alignmentPath": "alignment/opening-preview-active.json"
+    },
+    {
+      "id": "opening-preview-inactive",
+      "group": "openings",
+      "text": "Due recalls will ask for the moves of your chosen side. Where several active studies share a position, there is one card for it.",
+      "audioPath": "recordings/marisol-v1/marisol/opening-preview-inactive.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/opening-preview-inactive.provenance.json",
+      "alignmentPath": "alignment/opening-preview-inactive.json"
+    },
+    {
+      "id": "puzzle-error",
+      "group": "puzzles",
+      "text": "Another move needs the saved session reloaded first.",
+      "audioPath": "recordings/marisol-v1/marisol/puzzle-error.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/puzzle-error.provenance.json",
+      "alignmentPath": "alignment/puzzle-error.json"
+    },
+    {
+      "id": "puzzle-playback",
+      "group": "puzzles",
+      "text": "The verified line is now being played out on the board.",
+      "audioPath": "recordings/marisol-v1/marisol/puzzle-playback.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/puzzle-playback.provenance.json",
+      "alignmentPath": "alignment/puzzle-playback.json"
+    },
+    {
+      "id": "puzzle-revealed",
+      "group": "puzzles",
+      "text": "The record lists this attempt as revealed. The solution is still below.",
+      "audioPath": "recordings/marisol-v1/marisol/puzzle-revealed.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/puzzle-revealed.provenance.json",
+      "alignmentPath": "alignment/puzzle-revealed.json"
+    },
+    {
+      "id": "puzzle-solved-after-retry",
+      "group": "puzzles",
+      "text": "Solved, after an earlier miss. The record keeps that miss as well.",
+      "audioPath": "recordings/marisol-v1/marisol/puzzle-solved-after-retry.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/puzzle-solved-after-retry.provenance.json",
+      "alignmentPath": "alignment/puzzle-solved-after-retry.json"
+    },
+    {
+      "id": "puzzle-solved-clean",
+      "group": "puzzles",
+      "text": "Solved, and no wrong move along the way.",
+      "audioPath": "recordings/marisol-v1/marisol/puzzle-solved-clean.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/puzzle-solved-clean.provenance.json",
+      "alignmentPath": "alignment/puzzle-solved-clean.json"
+    },
+    {
+      "id": "puzzle-rejected",
+      "group": "puzzles",
+      "text": "This puzzle asks for a different move. Moves already played correctly are still saved.",
+      "audioPath": "recordings/marisol-v1/marisol/puzzle-rejected.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/puzzle-rejected.provenance.json",
+      "alignmentPath": "alignment/puzzle-rejected.json"
+    },
+    {
+      "id": "puzzle-next-move",
+      "group": "puzzles",
+      "text": "Correct. The puzzle continues with the next move.",
+      "audioPath": "recordings/marisol-v1/marisol/puzzle-next-move.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/puzzle-next-move.provenance.json",
+      "alignmentPath": "alignment/puzzle-next-move.json"
+    },
+    {
+      "id": "puzzle-cold",
+      "group": "puzzles",
+      "text": "Observe the position carefully, and move once the line is clear.",
+      "audioPath": "recordings/marisol-v1/marisol/puzzle-cold.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/puzzle-cold.provenance.json",
+      "alignmentPath": "alignment/puzzle-cold.json"
+    },
+    {
+      "id": "game-unavailable",
+      "group": "operational",
+      "text": "There is not enough engine analysis to explain this position, so no explanation is given.",
+      "audioPath": "recordings/marisol-v1/marisol/game-unavailable.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/game-unavailable.provenance.json",
+      "alignmentPath": "alignment/game-unavailable.json"
+    },
+    {
+      "id": "game-review-paused",
+      "group": "operational",
+      "text": "Review paused. It continues below, or a move can be tried on the board.",
+      "audioPath": "recordings/marisol-v1/marisol/game-review-paused.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/game-review-paused.provenance.json",
+      "alignmentPath": "alignment/game-review-paused.json"
+    },
+    {
+      "id": "game-browse-instructions",
+      "group": "operational",
+      "text": "Pick any move to revisit, or play one of your own on the board.",
+      "audioPath": "recordings/marisol-v1/marisol/game-browse-instructions.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/game-browse-instructions.provenance.json",
+      "alignmentPath": "alignment/game-browse-instructions.json"
+    },
+    {
+      "id": "book-opening-entry-1",
+      "group": "game_review",
+      "text": "With this move, the game has entered a recognized opening.",
+      "audioPath": "recordings/marisol-v1/marisol/book-opening-entry-1.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/book-opening-entry-1.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-1.json"
+    },
+    {
+      "id": "book-opening-entry-2",
+      "group": "game_review",
+      "text": "The game stays on mapped ground; a known opening already has this move on file.",
+      "audioPath": "recordings/marisol-v1/marisol/book-opening-entry-2.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/book-opening-entry-2.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-2.json"
+    },
+    {
+      "id": "book-opening-entry-3",
+      "group": "game_review",
+      "text": "There is an entry for this move in the opening book.",
+      "audioPath": "recordings/marisol-v1/marisol/book-opening-entry-3.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/book-opening-entry-3.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-3.json"
+    },
+    {
+      "id": "book-opening-follow-1",
+      "group": "game_review",
+      "text": "Still no departure from the book.",
+      "audioPath": "recordings/marisol-v1/marisol/book-opening-follow-1.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/book-opening-follow-1.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-1.json"
+    },
+    {
+      "id": "book-opening-follow-2",
+      "group": "game_review",
+      "text": "This one is in the book too.",
+      "audioPath": "recordings/marisol-v1/marisol/book-opening-follow-2.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/book-opening-follow-2.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-2.json"
+    },
+    {
+      "id": "book-opening-follow-3",
+      "group": "game_review",
+      "text": "Even the reply sticks to the book.",
+      "audioPath": "recordings/marisol-v1/marisol/book-opening-follow-3.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/book-opening-follow-3.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-3.json"
+    },
+    {
+      "id": "book-opening-follow-4",
+      "group": "game_review",
+      "text": "The book line carries on unchanged.",
+      "audioPath": "recordings/marisol-v1/marisol/book-opening-follow-4.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/book-opening-follow-4.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-4.json"
+    },
+    {
+      "id": "book-opening-follow-5",
+      "group": "game_review",
+      "text": "One more move that the book contains.",
+      "audioPath": "recordings/marisol-v1/marisol/book-opening-follow-5.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/book-opening-follow-5.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-5.json"
+    },
+    {
+      "id": "book-opening-follow-6",
+      "group": "game_review",
+      "text": "Nothing has left the book yet.",
+      "audioPath": "recordings/marisol-v1/marisol/book-opening-follow-6.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/book-opening-follow-6.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-6.json"
+    },
+    {
+      "id": "book-opening-follow-7",
+      "group": "game_review",
+      "text": "Once more, a book move.",
+      "audioPath": "recordings/marisol-v1/marisol/book-opening-follow-7.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/book-opening-follow-7.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-7.json"
+    },
+    {
+      "id": "book-opening-follow-8",
+      "group": "game_review",
+      "text": "Still the book. That places the game; it says nothing about the move's quality.",
+      "audioPath": "recordings/marisol-v1/marisol/book-opening-follow-8.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/book-opening-follow-8.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-8.json"
+    },
+    {
+      "id": "game-review-opened",
+      "group": "operational",
+      "text": "The game begins here. Move ahead when ready, and note what each move changes.",
+      "audioPath": "recordings/marisol-v1/marisol/game-review-opened.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/game-review-opened.provenance.json",
+      "alignmentPath": "alignment/game-review-opened.json"
+    },
+    {
+      "id": "lesson-wrong-move",
+      "group": "lessons",
+      "text": "That move differs from the one this chapter expects. Compare the position again and choose once more.",
+      "audioPath": "recordings/marisol-v1/marisol/lesson-wrong-move.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/lesson-wrong-move.provenance.json",
+      "alignmentPath": "alignment/lesson-wrong-move.json"
+    },
+    {
+      "id": "lesson-correct-move",
+      "group": "lessons",
+      "text": "That agrees with the chapter's intended move. The next step builds on it.",
+      "audioPath": "recordings/marisol-v1/marisol/lesson-correct-move.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/lesson-correct-move.provenance.json",
+      "alignmentPath": "alignment/lesson-correct-move.json"
+    },
+    {
+      "id": "lesson-move-revealed",
+      "group": "lessons",
+      "text": "The intended move is now shown on the board. Note what it changes before continuing.",
+      "audioPath": "recordings/marisol-v1/marisol/lesson-move-revealed.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/lesson-move-revealed.provenance.json",
+      "alignmentPath": "alignment/lesson-move-revealed.json"
+    },
+    {
+      "id": "lesson-guided-playback",
+      "group": "lessons",
+      "text": "Now the moves advance automatically. Track what each one alters in the position.",
+      "audioPath": "recordings/marisol-v1/marisol/lesson-guided-playback.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/lesson-guided-playback.provenance.json",
+      "alignmentPath": "alignment/lesson-guided-playback.json"
+    },
+    {
+      "id": "lesson-rehearsal-prompt",
+      "group": "lessons",
+      "text": "Recall time: reproduce the move your preparation recorded for this position.",
+      "audioPath": "recordings/marisol-v1/marisol/lesson-rehearsal-prompt.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/lesson-rehearsal-prompt.provenance.json",
+      "alignmentPath": "alignment/lesson-rehearsal-prompt.json"
+    },
+    {
+      "id": "lesson-branch-entered",
+      "group": "lessons",
+      "text": "This branch departs from the main sequence. Notice exactly where the two diverge.",
+      "audioPath": "recordings/marisol-v1/marisol/lesson-branch-entered.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/lesson-branch-entered.provenance.json",
+      "alignmentPath": "alignment/lesson-branch-entered.json"
+    },
+    {
+      "id": "lesson-chapter-complete",
+      "group": "lessons",
+      "text": "Chapter complete, with your progress recorded.",
+      "audioPath": "recordings/marisol-v1/marisol/lesson-chapter-complete.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/lesson-chapter-complete.provenance.json",
+      "alignmentPath": "alignment/lesson-chapter-complete.json"
+    },
+    {
+      "id": "lesson-game-opened",
+      "group": "lessons",
+      "text": "The complete game is now available. Move through it freely and return to the chapter at any point.",
+      "audioPath": "recordings/marisol-v1/marisol/lesson-game-opened.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/lesson-game-opened.provenance.json",
+      "alignmentPath": "alignment/lesson-game-opened.json"
+    },
+    {
+      "id": "lesson-error",
+      "group": "lessons",
+      "text": "The lesson has to be reloaded before it can resume.",
+      "audioPath": "recordings/marisol-v1/marisol/lesson-error.opus",
+      "sidecarPath": "recordings/marisol-v1/marisol/lesson-error.provenance.json",
+      "alignmentPath": "alignment/lesson-error.json"
+    }
+  ]
+}

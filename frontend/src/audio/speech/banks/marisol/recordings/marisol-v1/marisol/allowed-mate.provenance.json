@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "allowed-mate",
+      "label": "Allowed mate",
+      "text": "Something decisive has shifted. From here a forced checkmate is in the other side's hands, and the reason lies in the moves before this one."
+    },
+    "takeId": null
+  },
+  "requestHash": "dba220f9441f2886e8305495c37c13cd3706fbbab2e78ad39c6710105d5594f0",
+  "recordedAt": "2026-10-03T06:01:43.836Z",
+  "sha256": "0ca2096b3abc6f1c6b04082ad3b8f3ecea6236d609315748b28da531026b0923",
+  "bytes": 28014,
+  "requestId": "1v3figIwDrJIFjvI58yu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2355638d047290b14fc12e3bf0b3bcdf8eb3514347c55a1f71ac6ff95ec53fae",
+    "bytes": 145911
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

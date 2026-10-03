@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "puzzle-revealed",
+      "label": "Puzzle revealed",
+      "text": "The record lists this attempt as revealed. The solution is still below."
+    },
+    "takeId": null
+  },
+  "requestHash": "ce3d10304702856d42157a2c5979668e193aa561a37f5b29e3ae48fd92d0de27",
+  "recordedAt": "2026-10-03T06:04:23.113Z",
+  "sha256": "43031e40c7de4d2fec4aecee86615a40d43cd4aa9c99177def510fe1747493fe",
+  "bytes": 15713,
+  "requestId": "hUOUNY8HnVnV5C6Y4tSS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bfed02e4cb07c094c628b6b0d8c182509c3e5ea6653f7096ffd561d1af44d161",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

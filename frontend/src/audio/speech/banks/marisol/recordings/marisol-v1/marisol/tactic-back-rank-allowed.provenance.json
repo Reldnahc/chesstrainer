@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-back-rank-allowed",
+      "label": "Tactic back rank allowed",
+      "text": "After this move the king has no square off its back rank, and a mate along that rank is available to the other side."
+    },
+    "takeId": null
+  },
+  "requestHash": "df3d5a0568091de131dbb5dfde79a6962a99cc6680fd8d29043fbc6a87280031",
+  "recordedAt": "2026-10-03T06:00:32.282Z",
+  "sha256": "2a73bf1b912a8fbad0a2a4814942c3d2388283d83307bbdec346c342ccc6e4cf",
+  "bytes": 23094,
+  "requestId": "O6R8gJBT4UosMdl8uJVb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c8c70c95b50ffa7a4cffefc46577f01960fa42db534449d1e88b0f6350ed09a0",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

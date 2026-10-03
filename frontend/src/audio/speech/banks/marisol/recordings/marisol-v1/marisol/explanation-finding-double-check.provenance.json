@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "explanation-finding-double-check",
+      "label": "Explanation finding double check",
+      "text": "Double check. With two pieces giving check, only a king move is possible."
+    },
+    "takeId": null
+  },
+  "requestHash": "d3ef7288a20e0051577ba1a926eff18fe15d3dd175ef2e6a150d9a76684d9b29",
+  "recordedAt": "2026-10-03T06:03:28.481Z",
+  "sha256": "4f43bf030629b587307451da48c97ad6be196df7bc9da96fb4d0ec1467c89a43",
+  "bytes": 16344,
+  "requestId": "gMcLFh0WGMM4z52lBNuU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5b830f2799727512838d3257c16afe43547b4c096215047c81ba324c790cf14d",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

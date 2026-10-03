@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary",
+      "label": "Explanation frame capture move ordinary",
+      "text": "A capture. There is one piece fewer on the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "891cfc1a7ef8565aea1d47ca7fc592aa65ecaca3205d38f76b319f8d4d87e5f6",
+  "recordedAt": "2026-10-03T06:02:59.153Z",
+  "sha256": "2d2e2aa2b6db533aa0945ea11006d003c1460a1910fd6fd0f7a6ce2f5784d374",
+  "bytes": 11685,
+  "requestId": "1lQOh4kTQMcxLQZ5vzSY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1f3ff7358cf56a77b8930be9267745e34906e4ef9182e26f6af4a4716b31b8de",
+    "bytes": 59812
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-pin-allowed",
+      "label": "Tactic pin allowed",
+      "text": "The piece in front of the king has become pinnable. Once the pin arrives, leaving that line stops being legal."
+    },
+    "takeId": null
+  },
+  "requestHash": "684eaaff446a8d869a2cc4ed6ae0eb951772a9629f0ab7c82fcecdf9ab0f04ce",
+  "recordedAt": "2026-10-03T06:00:16.237Z",
+  "sha256": "9d12e462f6ee13431c7f015e92cdaa23e296f7908c69049d1caad5199216a75a",
+  "bytes": 22254,
+  "requestId": "75n4Bj51V1VcwZuMUI1H",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6cb92754991e80b6a53e9d131ad25e23de012921e1ae2ff5466d7daab386e50c",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

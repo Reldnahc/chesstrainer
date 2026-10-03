@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed",
+      "label": "Tactic skewer allowed",
+      "text": "After this move, two pieces are lined up so the other side can skewer them. The front one would have to step away, leaving the rear one exposed."
+    },
+    "takeId": null
+  },
+  "requestHash": "8e93366119afa77d270ad68b78dd4e3b688c1d58fa5b20c1d694c1ea3aff54f3",
+  "recordedAt": "2026-10-03T06:00:22.090Z",
+  "sha256": "49875f5efae639fabbf2f042aca030555c3f3af79f9c097e4a981686ffaac1c8",
+  "bytes": 28456,
+  "requestId": "jrKtHcaN4BoAKtu5scAo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d265e282702676aed48c5bede059de3eae2900f5e6ed29d7f2f212a6cb0e28e8",
+    "bytes": 147165
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

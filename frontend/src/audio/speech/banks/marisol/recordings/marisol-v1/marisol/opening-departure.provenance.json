@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "opening-departure",
+      "label": "Opening departure",
+      "text": "The game moves outside the known opening at this point. From here, the position is unfamiliar."
+    },
+    "takeId": null
+  },
+  "requestHash": "c1bc8a50f428ca824e28d35c96768d221c5ec31eb8e542f0d317d9058a524147",
+  "recordedAt": "2026-10-03T06:02:05.898Z",
+  "sha256": "2eb0c6383b39e79e0ecc2b2264a97bf27fc73731d30e7653d7ce8dc6f04015a8",
+  "bytes": 19799,
+  "requestId": "MBfvMwA3YkB5YjAWcePX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d6e1f8e41015acf328cb705d55af93d0c805cf280591895dd7950148c0d3e598",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "positional-passer-advance-actual",
+      "label": "Positional passer advance actual",
+      "text": "The passed pawn stands a square further on than before."
+    },
+    "takeId": null
+  },
+  "requestHash": "5ac86afb8c28584cc024462af5c10237826b8780f2b8995e9188cedbd8fe9a3e",
+  "recordedAt": "2026-10-03T06:01:19.136Z",
+  "sha256": "2c77d50ec1defb357d15daca3667c2a863041fd00c83ce410d3aef808a761102",
+  "bytes": 12264,
+  "requestId": "A0FrTuBJWXoXAGnALTtK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "40a8ca37f55733ee9d75ed7339bcb9c5cbd53a88da4077154aaa0f31fb5bfec7",
+    "bytes": 59812
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

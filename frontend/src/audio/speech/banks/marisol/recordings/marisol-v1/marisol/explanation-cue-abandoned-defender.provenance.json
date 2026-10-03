@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "explanation-cue-abandoned-defender",
+      "label": "Explanation cue abandoned defender",
+      "text": "Before a defender moves, note which pieces rely on it."
+    },
+    "takeId": null
+  },
+  "requestHash": "ac716bc8b461677f38fcc7efcdfd1cc6c5513d7422c1d3b0edeec06b6cb7232d",
+  "recordedAt": "2026-10-03T06:03:54.104Z",
+  "sha256": "f973923984cbbadb13f6e1e9109451692ed67504f98e2f8e490ef7af8b4305e9",
+  "bytes": 13121,
+  "requestId": "mxlO9CxeKj4CuXcJZsp2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "de64348b1798a200805bb84ebc7b470263363aa75446812a4d312dd1d658b6f8",
+    "bytes": 66499
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-capture",
+      "label": "Explanation finding discovered capture",
+      "text": "The blocking piece steps off the line; the piece behind it then captures along the opening it left."
+    },
+    "takeId": null
+  },
+  "requestHash": "d0e62492594a1c8ba3d438e571cfe559ae08dc879a7fe102c7abb2591bb67af2",
+  "recordedAt": "2026-10-03T06:03:25.593Z",
+  "sha256": "f4c19438913b831201c3e75f13444287a3b2fb099e3091cb1bd0af26289c6b17",
+  "bytes": 19659,
+  "requestId": "jxBB0LNJKVW22PXmirho",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1fa4b940172c724b1626a7db816fe1d8d63967f8ab9bf016491f1fad50ae845b",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "explanation-cue-fork",
+      "label": "Explanation cue fork",
+      "text": "Among the forcing moves, notice whether one piece could land on two valuable targets."
+    },
+    "takeId": null
+  },
+  "requestHash": "45f1e2494ca0ff0f48acc1206496c567031f7f989bf720e0d86c521c6a282baa",
+  "recordedAt": "2026-10-03T06:03:41.847Z",
+  "sha256": "2ab4dbbc06b1eafd446def756e8396ea6fc8f96c8be5e6aad798360b8557f686",
+  "bytes": 18281,
+  "requestId": "gerl0HzUFN2BN5GonBGr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d73920eb40f5fe33d70f452ccc9c512adf2245e37e8c396077047a831cefc3a1",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

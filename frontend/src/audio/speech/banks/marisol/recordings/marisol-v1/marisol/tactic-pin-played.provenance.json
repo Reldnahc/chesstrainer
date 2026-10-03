@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-pin-played",
+      "label": "Tactic pin played",
+      "text": "A piece now stands on the line between its king and an attacker. Stepping off that line is no longer a legal option for it."
+    },
+    "takeId": null
+  },
+  "requestHash": "c39441413f70a8a49f629a0f44ba12c87d7fa83fd966b363f793a0a13d90468b",
+  "recordedAt": "2026-10-03T06:00:14.447Z",
+  "sha256": "67fa4658def9a528bb4e3c98fcb05c17d89703a7c5cbadca81dc8e6fc435e635",
+  "bytes": 25078,
+  "requestId": "ntdRkJUI5HyEQUIxdZ8X",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "770aa550fa6a443265cef235813e04772fc32d26d4778d4267ba6614853e2323",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

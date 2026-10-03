@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "explanation-note-material-scope",
+      "label": "Explanation note material scope",
+      "text": "Within the line shown, material is counted from that line's own first position. The written explanation gives the values used for each piece."
+    },
+    "takeId": null
+  },
+  "requestHash": "408828826e28dcaa35eece8562586e6362a5dc11040f09789b57b417417faf56",
+  "recordedAt": "2026-10-03T06:04:01.434Z",
+  "sha256": "562c826d6b9f7218bb9186116f3899829bcb0c22e122c3fe661dd58b2d53f7d8",
+  "bytes": 29448,
+  "requestId": "LDCV87WnNzlFqWb2adLL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "944e160b7d93417299e6b2ecd293085fd3abe4a06d3b6eee2468197253d8e783",
+    "bytes": 152181
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

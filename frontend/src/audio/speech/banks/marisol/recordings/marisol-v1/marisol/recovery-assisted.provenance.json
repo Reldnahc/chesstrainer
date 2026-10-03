@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "recovery-assisted",
+      "label": "Recovery assisted",
+      "text": "The earlier error has stopped being decisive, and the game is playable once more. The other side's mistakes played a part in that."
+    },
+    "takeId": null
+  },
+  "requestHash": "d0ee7f040d893715dab7cc216dbdf5441d39b93b0d74be37af436f23a3e937ad",
+  "recordedAt": "2026-10-03T06:02:09.731Z",
+  "sha256": "6bc2259f38fdf04309e054b7e3be4f8c073a736b3227f0689c20a42d745b48ef",
+  "bytes": 25108,
+  "requestId": "pBwX9i2RZzTrcPGuydKQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "470f5bea098de82e9f840967da736341751bb61fae3eab3b39b07e95b4ecd245",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

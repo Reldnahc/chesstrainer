@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "srs-summary-material-gain",
+      "label": "Srs summary material gain",
+      "text": "Set the material at the end of the saved line beside the material at its start: the side that played this move has gained."
+    },
+    "takeId": null
+  },
+  "requestHash": "30ecc433e92c52693a9f3964dcf98358c4ac25f99d33c313c57d75e63dcd6c49",
+  "recordedAt": "2026-10-03T06:02:35.520Z",
+  "sha256": "c4031aac147652cb8eeeac571b2178f172dfd6b13ca1c5223897f0de4633cf3b",
+  "bytes": 24519,
+  "requestId": "A9UBQCOmoSEvB8Tcwewz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dbf379372f7fa1aa6320cca0d05700bd49da3ddf206c095165d41ed002025417",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "srs-summary-curated-accepted",
+      "label": "Srs summary curated accepted",
+      "text": "It appears among the saved answers, which are the standard in this exercise."
+    },
+    "takeId": null
+  },
+  "requestHash": "d5aaa6ce46158c59287b34cc4274cc47742b5c0697ce66a338f07c627de8f90d",
+  "recordedAt": "2026-10-03T06:02:42.451Z",
+  "sha256": "9c9218f228e4f108a80f6403a2c61f72fc9b0c91ec8a480e4d03027a73fd4db2",
+  "bytes": 14958,
+  "requestId": "74bEDPqA2g69qke0QjiI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5a6bca5ad7fde1f05f7d4059ecf7fa0eca1c916cf2924f06aaf8514c758b3532",
+    "bytes": 74022
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

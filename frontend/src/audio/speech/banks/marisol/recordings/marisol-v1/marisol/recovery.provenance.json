@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "recovery",
+      "label": "Recovery",
+      "text": "After the earlier error, the position has become playable again. That is the change worth recording."
+    },
+    "takeId": null
+  },
+  "requestHash": "377d9cc771396b01f12f4b311276bb6bb59941c2fabbd11c9dc430efa4cef371",
+  "recordedAt": "2026-10-03T06:02:07.499Z",
+  "sha256": "20b168154d88ae7ccca1393a22509c548ef862ecdf18b14c29559bcc1b828e13",
+  "bytes": 20154,
+  "requestId": "gt9EaMant84ihkHdVAQ5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7526e63a5e26edeeb2db643e0526e71a6e1136321642ef5d37211f5603a14592",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

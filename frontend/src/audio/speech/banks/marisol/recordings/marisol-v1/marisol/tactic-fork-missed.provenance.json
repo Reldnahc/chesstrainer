@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-fork-missed",
+      "label": "Tactic fork missed",
+      "text": "The stronger move would have set one piece against several targets. After this move, that arrangement never appears."
+    },
+    "takeId": null
+  },
+  "requestHash": "7a2b92646e59c813fed04bda5f5762e1286ff70de8880ed3174cb7991b75e6bd",
+  "recordedAt": "2026-10-03T06:00:12.322Z",
+  "sha256": "7a8996aaf8259543350ca3371f1d100627454d33915a14d55da0bb0af7f56add",
+  "bytes": 23731,
+  "requestId": "7AQBOcIBxIJ41AcS1Fzh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "93fbcf7b7f8807163b08e98b28d53ac876026ed7e3afb03fd833757a62f1173e",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

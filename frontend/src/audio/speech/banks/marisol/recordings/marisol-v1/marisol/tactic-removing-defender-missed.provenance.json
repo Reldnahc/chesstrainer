@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed",
+      "label": "Tactic removing defender missed",
+      "text": "The stronger move would have captured a defender and stripped cover from what it guarded. That defender is still standing."
+    },
+    "takeId": null
+  },
+  "requestHash": "c2031e4da2ba45c0be17fba585bdd76a6518301b99e72635ec1f7ba6f42493c7",
+  "recordedAt": "2026-10-03T06:00:29.130Z",
+  "sha256": "be9473690c25bb95c47fdd187faabc2af5abae5d36d3b8f8e3fd242ae4f15618",
+  "bytes": 22678,
+  "requestId": "kG22r0sKQZ3S87G9JdXW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5b80a7e5809199ef25e8071e70c4b306d29ab1b99a7ea43d5d998200b09b395d",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

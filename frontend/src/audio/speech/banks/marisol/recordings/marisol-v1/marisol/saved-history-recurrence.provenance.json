@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "saved-history-recurrence",
+      "label": "Saved history recurrence",
+      "text": "This issue is not limited to this game; other saved games contain it as well. The positions share a common thread."
+    },
+    "takeId": null
+  },
+  "requestHash": "6fb184380e6bcfce6b800c12449a260f13383e6af9fea30c8cc9d1fc5b6b4189",
+  "recordedAt": "2026-10-03T06:02:22.162Z",
+  "sha256": "a06140fbec7abec539d0abee82487790eb2fbc21b894190c75488c2018cdf56b",
+  "bytes": 23067,
+  "requestId": "VwOBCAsskiJwCgYFARIw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5c9b33b3f4f0c7c5b2df5bda22dc7133c0a6ecd56433a1ba3e1189ee04a1447d",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

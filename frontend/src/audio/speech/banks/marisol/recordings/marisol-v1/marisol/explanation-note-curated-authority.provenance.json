@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "explanation-note-curated-authority",
+      "label": "Explanation note curated authority",
+      "text": "Here the saved answers are the measure. Outside them, a legal move may still be sound."
+    },
+    "takeId": null
+  },
+  "requestHash": "e4215f80b025a13ded56678ec6300e957352033b94da65668d7cc1e5c5a79c3f",
+  "recordedAt": "2026-10-03T06:03:58.214Z",
+  "sha256": "3b4eba72662c591bcf8d185b3aa62c08a6699c87c36aef3523c0703135974064",
+  "bytes": 20111,
+  "requestId": "uzkMG8T73ZO6tvHSNMpq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c9afcb3ed126220d0b0643c706e07fad795e37d39f5576525e63b42e9ecba902",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "srs-summary-mate-for-mover",
+      "label": "Srs summary mate for mover",
+      "text": "According to the saved engine analysis, a forced checkmate is now in the hands of the side that played this move."
+    },
+    "takeId": null
+  },
+  "requestHash": "85a03ba7b30cea73ef7037e57512f5933b8d8920c2c9ed78e171f1164207b182",
+  "recordedAt": "2026-10-03T06:02:32.083Z",
+  "sha256": "eab884492dd63077a94e5837b0448807b7e9976e222c7fad537cf11df9bf23b9",
+  "bytes": 21566,
+  "requestId": "PXTy7JspSYk5ennE53xX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "28de91c75ec30e82e50e5c71f80ccc60cfe3cda327dea26ae2f4a6fa01ebc759",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

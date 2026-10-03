@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "positional-development-alternative",
+      "label": "Positional development alternative",
+      "text": "With the alternative, a minor piece would have been developed. Here that piece is still at home."
+    },
+    "takeId": null
+  },
+  "requestHash": "3e5fa0090d36ad3b803f6d7d03a42367edd8d8178cd8857126737d7167a26cf7",
+  "recordedAt": "2026-10-03T06:01:07.934Z",
+  "sha256": "c68d92355c406af22a0de389b7dec3d16e03cc4676572cf40a038231401e53b0",
+  "bytes": 19148,
+  "requestId": "O03eMXZJtBTnCQlAB56K",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0a14465d1e4f12a9823330d50d70a81c3401f621a42c3f82c53e2fd9ae55bef9",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

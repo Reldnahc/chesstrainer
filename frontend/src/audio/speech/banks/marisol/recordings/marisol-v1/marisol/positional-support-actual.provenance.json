@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "positional-support-actual",
+      "label": "Positional support actual",
+      "text": "Before this move, a piece had no defender. Now it has one."
+    },
+    "takeId": null
+  },
+  "requestHash": "29ff486bba3931daf2da82ff6dbec82a5505ec2fb992ed761a9fadf721358961",
+  "recordedAt": "2026-10-03T06:01:25.005Z",
+  "sha256": "c3c7f563367ca7fb45dedc236ce10afbd47103a5be9d7a0a6c7262fb930081c3",
+  "bytes": 15093,
+  "requestId": "JvFePi0VYcBF16RgBeyC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8549b27e23ed67510fc82bcadafb381732ac7687df8c6b7514c73d005511c08f",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-missed",
+      "label": "Tactic undefended capture missed",
+      "text": "With the stronger move, an enemy piece without protection could have been taken. It is still standing."
+    },
+    "takeId": null
+  },
+  "requestHash": "b2db5a4beab82f0eee67c4d9aa06cfb7dad5b947006f065c534cbf908ef6f7d5",
+  "recordedAt": "2026-10-03T06:00:57.633Z",
+  "sha256": "9fa4de12d91d465b40d6d0d3cb8396c05b865bea0221c7a2765f43056f160f2c",
+  "bytes": 20467,
+  "requestId": "ubMWMgUtW0US93tWLhUn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d74a2b052e77ff5f5d9efbd90959c53c9d5c8486a7752271d173b47c2d9f5e1c",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

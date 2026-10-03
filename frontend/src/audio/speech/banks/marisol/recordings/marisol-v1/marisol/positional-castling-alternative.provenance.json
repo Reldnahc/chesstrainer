@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "positional-castling-alternative",
+      "label": "Positional castling alternative",
+      "text": "Castling was available, moving king and rook together in a single turn."
+    },
+    "takeId": null
+  },
+  "requestHash": "2b0ce1dd9ded05687c8b90594a71b851838a9641b6b978f4c2215c23a66255e8",
+  "recordedAt": "2026-10-03T06:01:35.130Z",
+  "sha256": "f517cff63a579f785746290d19c08f500e3522e60a7a0b242b6e09759c3822f2",
+  "bytes": 15352,
+  "requestId": "DuKHrN4sVYT2EA7WyU3E",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1d25ccd4425c6902b124af12d0079340b9dc29790538756beaf903b6372a072f",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

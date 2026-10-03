@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-deflection-played",
+      "label": "Tactic deflection played",
+      "text": "The defender has been drawn away from its job, and what it was covering is uncovered now."
+    },
+    "takeId": null
+  },
+  "requestHash": "10b49ad2e935d919983342b98a79f2847cecbbe77e3b251e9a913b510fb4ebfd",
+  "recordedAt": "2026-10-03T06:00:51.684Z",
+  "sha256": "5f60ac5b8f6f79b9d4e43e6e7864ae1bffca1e19a01d62400c02621186f5d6ed",
+  "bytes": 18213,
+  "requestId": "HN0zmWdhdB1khgNLXR7m",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2b9db3eda21bea68102b38e3cb7ec1cd9cb4c59be5362068e3b94620327f9b03",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "game-unavailable",
+      "label": "Game unavailable",
+      "text": "There is not enough engine analysis to explain this position, so no explanation is given."
+    },
+    "takeId": null
+  },
+  "requestHash": "69483ca57eb29b2373f7ebd9cdb2e70edc5cbe82e187ec18cd874a26e966dd2a",
+  "recordedAt": "2026-10-03T06:04:30.878Z",
+  "sha256": "c56373155528b62454b1898a24aaaa8ac54527de2b30d54073afe8e4fe512aa0",
+  "bytes": 19094,
+  "requestId": "3f6vH2tU3sXsyq1RtAAU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b520dfdfaccae037624ed1d54c7eb9342badd27d491f96ec192fdeeb7e6962ba",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-skewer-played",
+      "label": "Tactic skewer played",
+      "text": "The front piece on the line is under attack now. When it steps away, what was standing behind it becomes the target."
+    },
+    "takeId": null
+  },
+  "requestHash": "9d04765734648be0da845441059f77b60067b988e60a38f685a4b185f341a0a4",
+  "recordedAt": "2026-10-03T06:00:19.831Z",
+  "sha256": "8d81fb5ae1e55afac7a8089fba150068f468202510904bf33734b4fa131e3128",
+  "bytes": 22688,
+  "requestId": "zCjkFUVB7905ON3L5qCS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "27d1d81e2ab27f724ce057866ccaccddbc19f4439ad2abb904e7440e38df3e4e",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}
