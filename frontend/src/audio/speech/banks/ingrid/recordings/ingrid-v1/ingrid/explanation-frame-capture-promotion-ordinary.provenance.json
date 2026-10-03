@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-ordinary",
+      "label": "Explanation frame capture promotion ordinary",
+      "text": "The pawn captures its way to the far end and promotes there."
+    },
+    "takeId": null
+  },
+  "requestHash": "0908d0f2cbe11e672d1c7c87d22b68fcf05ebd59bf30629a6512ca20c8980483",
+  "recordedAt": "2026-10-03T05:48:03.605Z",
+  "sha256": "62a4270bb39df8c4349795f21b9ccaae5803712df9e4d97ead0f65d083b6dc53",
+  "bytes": 12768,
+  "requestId": "1c0LeLOQ2mVPFaLlkGAL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5a295387515bfc573472a3100cd27d37cea1f9ec016ed52ad2bbe9f8982124ae",
+    "bytes": 62319
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "positional-development-alternative",
+      "label": "Positional development alternative",
+      "text": "With another move, a minor piece would have been out and working. Here it's still at home."
+    },
+    "takeId": null
+  },
+  "requestHash": "86018c10a9f19767a9be1d0017f60fd5ee9f3cca670efa20ac4dbb6e13aa8b87",
+  "recordedAt": "2026-10-03T05:45:57.685Z",
+  "sha256": "6e4d264ce780bc99be6a46981d39abb1a428582c296c489d05d54329cbad6c62",
+  "bytes": 19061,
+  "requestId": "bV94FZ64A18o6iWLpzSF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d2089af5a12c47db9a34da7dd0fede37d5db6b3476358b0ecdc6a116fe4867e2",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

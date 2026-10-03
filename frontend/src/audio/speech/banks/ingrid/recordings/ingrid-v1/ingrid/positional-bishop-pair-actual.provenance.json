@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "positional-bishop-pair-actual",
+      "label": "Positional bishop pair actual",
+      "text": "After this capture the bishop pair is broken, so that side has a single bishop covering one square color."
+    },
+    "takeId": null
+  },
+  "requestHash": "ff93d903c511bf3fa6bdf83fa55a5191741d54e5a085920c42d6fda880d8c206",
+  "recordedAt": "2026-10-03T05:46:29.981Z",
+  "sha256": "fed79fdad0c3bd8a0914c451f61e25fa0d14cee6a25c726a2e3c72b16ffda4fa",
+  "bytes": 23174,
+  "requestId": "NIPc0QtM6xpGjiKurX7r",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "88cd29a7f8c00aad9511e369a858154e0a662e7825e5e295491944e40fded4f9",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

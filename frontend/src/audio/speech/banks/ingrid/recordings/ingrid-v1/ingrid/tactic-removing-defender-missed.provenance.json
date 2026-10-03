@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed",
+      "label": "Tactic removing defender missed",
+      "text": "The stronger move took out a defender and left the piece behind it unprotected. It's a useful idea to keep handy."
+    },
+    "takeId": null
+  },
+  "requestHash": "47ea4103d7e2af6f39080c9cd9962d95e37fe79ae929beb1b90b1fb056fb2263",
+  "recordedAt": "2026-10-03T05:45:13.089Z",
+  "sha256": "704e60ecedf685ce31be7e4809520648bd150aff38a7e884db8e30d44b662db2",
+  "bytes": 24312,
+  "requestId": "NEm7TC1U9fwhje4BHIuc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c91a334e52b3614fbb95c8142db6112ca90a565c21efb16d894cf5cc516c4b86",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

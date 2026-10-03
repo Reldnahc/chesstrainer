@@ -1,0 +1,1583 @@
+{
+  "schemaVersion": 1,
+  "provider": "elevenlabs",
+  "coachId": "woman-blonde",
+  "voiceId": "ingrid",
+  "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+  "modelId": "eleven_v4",
+  "outputFormat": "mp3_44100_128",
+  "settings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75,
+    "speed": 0.95
+  },
+  "scope": "non-lesson",
+  "silentIds": [
+    "game-thinking",
+    "explanation-loading-saved",
+    "dialogue-no-renderable-claim",
+    "practice-checking"
+  ],
+  "recordings": [
+    {
+      "id": "tactic-fork-played",
+      "group": "game_review",
+      "text": "Nice and simple, really: one piece settles on a square that reaches several targets, and a single reply is unlikely to look after all of them.",
+      "audioPath": "recordings/ingrid-v1/ingrid/tactic-fork-played.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/tactic-fork-played.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-played.json"
+    },
+    {
+      "id": "tactic-fork-allowed",
+      "group": "game_review",
+      "text": "Here's the plain fact about this move: one of the other side's pieces now has a square where it can fork several targets. Find that piece and the square, and the pattern is clear.",
+      "audioPath": "recordings/ingrid-v1/ingrid/tactic-fork-allowed.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/tactic-fork-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-allowed.json"
+    },
+    {
+      "id": "tactic-fork-missed",
+      "group": "game_review",
+      "text": "The stronger move had a fork tucked inside it, one piece reaching for several targets together. Worth setting it up afterward and playing it through calmly.",
+      "audioPath": "recordings/ingrid-v1/ingrid/tactic-fork-missed.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/tactic-fork-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-missed.json"
+    },
+    {
+      "id": "tactic-pin-played",
+      "group": "game_review",
+      "text": "The pinned piece is stuck in front of its own king now, and a sturdy pin it is. If it stepped off the line, its own king would be in check.",
+      "audioPath": "recordings/ingrid-v1/ingrid/tactic-pin-played.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/tactic-pin-played.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-played.json"
+    },
+    {
+      "id": "tactic-pin-allowed",
+      "group": "game_review",
+      "text": "The plain issue is a pin: after this move, a piece standing in front of its king can be pinned there and won't be allowed to step aside.",
+      "audioPath": "recordings/ingrid-v1/ingrid/tactic-pin-allowed.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/tactic-pin-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-allowed.json"
+    },
+    {
+      "id": "tactic-pin-missed",
+      "group": "game_review",
+      "text": "The stronger move would have frozen an enemy piece in front of its king. This one lets that piece wander freely, and that's the whole difference.",
+      "audioPath": "recordings/ingrid-v1/ingrid/tactic-pin-missed.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/tactic-pin-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-missed.json"
+    },
+    {
+      "id": "tactic-skewer-played",
+      "group": "game_review",
+      "text": "A neat skewer. The front piece has to step out of the way, and then whatever was hiding behind it can be collected.",
+      "audioPath": "recordings/ingrid-v1/ingrid/tactic-skewer-played.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/tactic-skewer-played.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-played.json"
+    },
+    {
+      "id": "tactic-skewer-allowed",
+      "group": "game_review",
+      "text": "Simply put: two pieces end up on one line where the other side can skewer them, front one forced aside, back one left to be picked up.",
+      "audioPath": "recordings/ingrid-v1/ingrid/tactic-skewer-allowed.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/tactic-skewer-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-allowed.json"
+    },
+    {
+      "id": "tactic-skewer-missed",
+      "group": "game_review",
+      "text": "The stronger move had a skewer to offer: lean on the front piece, collect the one behind. A good pattern to keep handy.",
+      "audioPath": "recordings/ingrid-v1/ingrid/tactic-skewer-missed.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/tactic-skewer-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-missed.json"
+    },
+    {
+      "id": "tactic-removing-defender-played",
+      "group": "game_review",
+      "text": "The defender is captured, and whatever it was looking after is left on its own. Straightforward and effective.",
+      "audioPath": "recordings/ingrid-v1/ingrid/tactic-removing-defender-played.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/tactic-removing-defender-played.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-played.json"
+    },
+    {
+      "id": "tactic-removing-defender-allowed",
+      "group": "game_review",
+      "text": "Here's the plain risk: one defender could be captured now, and the piece it protects would be left without that help.",
+      "audioPath": "recordings/ingrid-v1/ingrid/tactic-removing-defender-allowed.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/tactic-removing-defender-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-allowed.json"
+    },
+    {
+      "id": "tactic-removing-defender-missed",
+      "group": "game_review",
+      "text": "The stronger move took out a defender and left the piece behind it unprotected. It's a useful idea to keep handy.",
+      "audioPath": "recordings/ingrid-v1/ingrid/tactic-removing-defender-missed.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/tactic-removing-defender-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-missed.json"
+    },
+    {
+      "id": "tactic-back-rank-played",
+      "group": "game_review",
+      "text": "The weak spot is the back rank, plain and simple. The king's own pieces are sitting where it would want to escape, so that last rank is open to attack.",
+      "audioPath": "recordings/ingrid-v1/ingrid/tactic-back-rank-played.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/tactic-back-rank-played.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-played.json"
+    },
+    {
+      "id": "tactic-back-rank-allowed",
+      "group": "game_review",
+      "text": "The point to see is the back rank: after this move the king has no way off it, and the other side can mate along that rank.",
+      "audioPath": "recordings/ingrid-v1/ingrid/tactic-back-rank-allowed.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/tactic-back-rank-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-allowed.json"
+    },
+    {
+      "id": "tactic-back-rank-missed",
+      "group": "game_review",
+      "text": "The enemy king was stuck on its back rank behind its own pieces, and a mate was there. Worth replaying slowly to see how it would have gone.",
+      "audioPath": "recordings/ingrid-v1/ingrid/tactic-back-rank-missed.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/tactic-back-rank-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-missed.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-played",
+      "group": "game_review",
+      "text": "The pawn takes another step toward promotion. Count what's left in the race; the defense has fewer moves to stop it now.",
+      "audioPath": "recordings/ingrid-v1/ingrid/tactic-promotion-awareness-played.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/tactic-promotion-awareness-played.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-played.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-allowed",
+      "group": "game_review",
+      "text": "The plain fact is that an enemy pawn now has a clearer road to promotion. Every step it takes from here will want an answer.",
+      "audioPath": "recordings/ingrid-v1/ingrid/tactic-promotion-awareness-allowed.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/tactic-promotion-awareness-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-allowed.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-missed",
+      "group": "game_review",
+      "text": "The stronger move kept a pawn rolling toward promotion. Here it stays put, and the race looks different because of that.",
+      "audioPath": "recordings/ingrid-v1/ingrid/tactic-promotion-awareness-missed.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/tactic-promotion-awareness-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-missed.json"
+    },
+    {
+      "id": "tactic-discovered-attack-played",
+      "group": "game_review",
+      "text": "The piece in front moves aside, and suddenly the one behind it is attacking down the line. Tidy little idea.",
+      "audioPath": "recordings/ingrid-v1/ingrid/tactic-discovered-attack-played.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/tactic-discovered-attack-played.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-played.json"
+    },
+    {
+      "id": "tactic-discovered-attack-allowed",
+      "group": "game_review",
+      "text": "Something to settle and look at: one enemy piece is hiding another, and when the front one moves, the back one attacks along the line.",
+      "audioPath": "recordings/ingrid-v1/ingrid/tactic-discovered-attack-allowed.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/tactic-discovered-attack-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-allowed.json"
+    },
+    {
+      "id": "tactic-discovered-attack-missed",
+      "group": "game_review",
+      "text": "Tucked into the stronger move was a discovered attack, one piece stepping aside so the piece behind could strike. That line stayed closed here.",
+      "audioPath": "recordings/ingrid-v1/ingrid/tactic-discovered-attack-missed.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/tactic-discovered-attack-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-missed.json"
+    },
+    {
+      "id": "tactic-double-attack-played",
+      "group": "game_review",
+      "text": "One move, two threats, nice and simple. A single reply rarely manages both.",
+      "audioPath": "recordings/ingrid-v1/ingrid/tactic-double-attack-played.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/tactic-double-attack-played.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-played.json"
+    },
+    {
+      "id": "tactic-double-attack-allowed",
+      "group": "game_review",
+      "text": "The plain problem: after this move, the other side has a single move that makes two threats at once.",
+      "audioPath": "recordings/ingrid-v1/ingrid/tactic-double-attack-allowed.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/tactic-double-attack-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-allowed.json"
+    },
+    {
+      "id": "tactic-double-attack-missed",
+      "group": "game_review",
+      "text": "Two threats would have come from the stronger move together. This one doesn't make that pair, and that's the gap.",
+      "audioPath": "recordings/ingrid-v1/ingrid/tactic-double-attack-missed.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/tactic-double-attack-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-missed.json"
+    },
+    {
+      "id": "tactic-deflection-played",
+      "group": "game_review",
+      "text": "The defender is tempted away from its post, and what it was covering is left open. Neat and practical.",
+      "audioPath": "recordings/ingrid-v1/ingrid/tactic-deflection-played.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/tactic-deflection-played.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-played.json"
+    },
+    {
+      "id": "tactic-deflection-allowed",
+      "group": "game_review",
+      "text": "The simple risk here is a deflection: one defender can be pulled off the piece or square it's covering.",
+      "audioPath": "recordings/ingrid-v1/ingrid/tactic-deflection-allowed.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/tactic-deflection-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-allowed.json"
+    },
+    {
+      "id": "tactic-deflection-missed",
+      "group": "game_review",
+      "text": "The stronger move pulled a defender away from its job. Set it up afterward and see what falls apart once that defender leaves.",
+      "audioPath": "recordings/ingrid-v1/ingrid/tactic-deflection-missed.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/tactic-deflection-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-missed.json"
+    },
+    {
+      "id": "tactic-undefended-capture-played",
+      "group": "game_review",
+      "text": "That piece was sitting there unguarded, so it's taken without any cost. Checking for loose pieces like that is a good habit.",
+      "audioPath": "recordings/ingrid-v1/ingrid/tactic-undefended-capture-played.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/tactic-undefended-capture-played.provenance.json",
+      "alignmentPath": "alignment/tactic-undefended-capture-played.json"
+    },
+    {
+      "id": "tactic-undefended-capture-missed",
+      "group": "game_review",
+      "text": "An unguarded enemy piece was there to collect with the stronger move. A quick scan for loose pieces before a quiet move catches these.",
+      "audioPath": "recordings/ingrid-v1/ingrid/tactic-undefended-capture-missed.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/tactic-undefended-capture-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-undefended-capture-missed.json"
+    },
+    {
+      "id": "tactic-hanging-piece-allowed",
+      "group": "game_review",
+      "text": "The plain issue here: one piece is left with nothing guarding it, and the other side can simply pick it up.",
+      "audioPath": "recordings/ingrid-v1/ingrid/tactic-hanging-piece-allowed.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/tactic-hanging-piece-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-hanging-piece-allowed.json"
+    },
+    {
+      "id": "cause-abandoned-defender",
+      "group": "game_review",
+      "text": "The simple problem is that this piece was the only real guard of another one. Once it moves away, that other piece can be captured.",
+      "audioPath": "recordings/ingrid-v1/ingrid/cause-abandoned-defender.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/cause-abandoned-defender.provenance.json",
+      "alignmentPath": "alignment/cause-abandoned-defender.json"
+    },
+    {
+      "id": "cause-opponent-threat-recognition",
+      "group": "game_review",
+      "text": "A threat came with the opponent's last move, and this reply doesn't deal with it. That leaves a piece open to capture.",
+      "audioPath": "recordings/ingrid-v1/ingrid/cause-opponent-threat-recognition.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/cause-opponent-threat-recognition.provenance.json",
+      "alignmentPath": "alignment/cause-opponent-threat-recognition.json"
+    },
+    {
+      "id": "cause-avoiding-bad-trades",
+      "group": "game_review",
+      "text": "Play the trade out one more move. The recapture wins back more than was taken, so the exchange ends up costing material.",
+      "audioPath": "recordings/ingrid-v1/ingrid/cause-avoiding-bad-trades.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/cause-avoiding-bad-trades.provenance.json",
+      "alignmentPath": "alignment/cause-avoiding-bad-trades.json"
+    },
+    {
+      "id": "positional-development-actual",
+      "group": "game_review",
+      "text": "One more minor piece is out of its starting square and part of the game now. Steady, sensible development.",
+      "audioPath": "recordings/ingrid-v1/ingrid/positional-development-actual.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/positional-development-actual.provenance.json",
+      "alignmentPath": "alignment/positional-development-actual.json"
+    },
+    {
+      "id": "positional-development-alternative",
+      "group": "game_review",
+      "text": "With another move, a minor piece would have been out and working. Here it's still at home.",
+      "audioPath": "recordings/ingrid-v1/ingrid/positional-development-alternative.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/positional-development-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-development-alternative.json"
+    },
+    {
+      "id": "positional-rook-open-actual",
+      "group": "game_review",
+      "text": "The rook settles onto an open file, with no pawns of either color in its path.",
+      "audioPath": "recordings/ingrid-v1/ingrid/positional-rook-open-actual.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/positional-rook-open-actual.provenance.json",
+      "alignmentPath": "alignment/positional-rook-open-actual.json"
+    },
+    {
+      "id": "positional-rook-open-alternative",
+      "group": "game_review",
+      "text": "Another move would have given a rook a pawnless file, top to bottom.",
+      "audioPath": "recordings/ingrid-v1/ingrid/positional-rook-open-alternative.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/positional-rook-open-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-rook-open-alternative.json"
+    },
+    {
+      "id": "positional-rook-semi-open-actual",
+      "group": "game_review",
+      "text": "The rook is on a semi-open file now, with no pawns of its own on it and an enemy pawn or two further up.",
+      "audioPath": "recordings/ingrid-v1/ingrid/positional-rook-semi-open-actual.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/positional-rook-semi-open-actual.provenance.json",
+      "alignmentPath": "alignment/positional-rook-semi-open-actual.json"
+    },
+    {
+      "id": "positional-rook-semi-open-alternative",
+      "group": "game_review",
+      "text": "Another move would have handed a rook a semi-open file, free of its own pawns with enemy pawns up ahead.",
+      "audioPath": "recordings/ingrid-v1/ingrid/positional-rook-semi-open-alternative.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/positional-rook-semi-open-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-rook-semi-open-alternative.json"
+    },
+    {
+      "id": "positional-passed-actual",
+      "group": "game_review",
+      "text": "That pawn has become a passed pawn. With no enemy pawn in front of it on its file or the ones next door, there's no pawn that can stop it.",
+      "audioPath": "recordings/ingrid-v1/ingrid/positional-passed-actual.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/positional-passed-actual.provenance.json",
+      "alignmentPath": "alignment/positional-passed-actual.json"
+    },
+    {
+      "id": "positional-passed-alternative",
+      "group": "game_review",
+      "text": "With another move, a pawn would have become passed, with nothing of the enemy's to stop it on its file or either side.",
+      "audioPath": "recordings/ingrid-v1/ingrid/positional-passed-alternative.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/positional-passed-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-passed-alternative.json"
+    },
+    {
+      "id": "positional-passer-advance-actual",
+      "group": "game_review",
+      "text": "The passed pawn rolls one square further. Count how many are left, and keep an eye on who can still stop it.",
+      "audioPath": "recordings/ingrid-v1/ingrid/positional-passer-advance-actual.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/positional-passer-advance-actual.provenance.json",
+      "alignmentPath": "alignment/positional-passer-advance-actual.json"
+    },
+    {
+      "id": "positional-passer-advance-alternative",
+      "group": "game_review",
+      "text": "With a different move the passed pawn would have kept rolling; this one leaves it waiting on the same square.",
+      "audioPath": "recordings/ingrid-v1/ingrid/positional-passer-advance-alternative.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/positional-passer-advance-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-passer-advance-alternative.json"
+    },
+    {
+      "id": "positional-isolated-actual",
+      "group": "game_review",
+      "text": "A pawn is left on its own here, with no pawn of the same color on the files next door.",
+      "audioPath": "recordings/ingrid-v1/ingrid/positional-isolated-actual.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/positional-isolated-actual.provenance.json",
+      "alignmentPath": "alignment/positional-isolated-actual.json"
+    },
+    {
+      "id": "positional-isolated-alternative",
+      "group": "game_review",
+      "text": "With another move, a pawn would have been left by itself, with no friendly pawn on the files next door.",
+      "audioPath": "recordings/ingrid-v1/ingrid/positional-isolated-alternative.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/positional-isolated-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-isolated-alternative.json"
+    },
+    {
+      "id": "positional-support-actual",
+      "group": "game_review",
+      "text": "A piece that had nobody guarding it picks up a defender. Small, but it settles things.",
+      "audioPath": "recordings/ingrid-v1/ingrid/positional-support-actual.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/positional-support-actual.provenance.json",
+      "alignmentPath": "alignment/positional-support-actual.json"
+    },
+    {
+      "id": "positional-support-alternative",
+      "group": "game_review",
+      "text": "Another move would have given a guard to a piece that has none right now.",
+      "audioPath": "recordings/ingrid-v1/ingrid/positional-support-alternative.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/positional-support-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-support-alternative.json"
+    },
+    {
+      "id": "positional-unsupported-actual",
+      "group": "game_review",
+      "text": "With this move, one piece is left with no defender at all. Worth noticing, though that alone doesn't mean it's going to be lost.",
+      "audioPath": "recordings/ingrid-v1/ingrid/positional-unsupported-actual.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/positional-unsupported-actual.provenance.json",
+      "alignmentPath": "alignment/positional-unsupported-actual.json"
+    },
+    {
+      "id": "positional-unsupported-alternative",
+      "group": "game_review",
+      "text": "With another move, a piece would have ended up without any defender, though on its own that wouldn't have meant it was lost.",
+      "audioPath": "recordings/ingrid-v1/ingrid/positional-unsupported-alternative.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/positional-unsupported-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-unsupported-alternative.json"
+    },
+    {
+      "id": "positional-king-flight-actual",
+      "group": "game_review",
+      "text": "The king picks up one more legal square to step to. A bit of breathing space is always worth having.",
+      "audioPath": "recordings/ingrid-v1/ingrid/positional-king-flight-actual.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/positional-king-flight-actual.provenance.json",
+      "alignmentPath": "alignment/positional-king-flight-actual.json"
+    },
+    {
+      "id": "positional-king-flight-alternative",
+      "group": "game_review",
+      "text": "With a different move, the king would have had an extra square to step to.",
+      "audioPath": "recordings/ingrid-v1/ingrid/positional-king-flight-alternative.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/positional-king-flight-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-king-flight-alternative.json"
+    },
+    {
+      "id": "positional-castling-actual",
+      "group": "game_review",
+      "text": "Castling: the king moves two squares over, and the rook hops across to sit beside it.",
+      "audioPath": "recordings/ingrid-v1/ingrid/positional-castling-actual.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/positional-castling-actual.provenance.json",
+      "alignmentPath": "alignment/positional-castling-actual.json"
+    },
+    {
+      "id": "positional-castling-alternative",
+      "group": "game_review",
+      "text": "Castling was available here, with king and rook moving in the same turn.",
+      "audioPath": "recordings/ingrid-v1/ingrid/positional-castling-alternative.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/positional-castling-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-castling-alternative.json"
+    },
+    {
+      "id": "positional-bishop-pair-actual",
+      "group": "game_review",
+      "text": "After this capture the bishop pair is broken, so that side has a single bishop covering one square color.",
+      "audioPath": "recordings/ingrid-v1/ingrid/positional-bishop-pair-actual.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/positional-bishop-pair-actual.provenance.json",
+      "alignmentPath": "alignment/positional-bishop-pair-actual.json"
+    },
+    {
+      "id": "positional-bishop-pair-alternative",
+      "group": "game_review",
+      "text": "One of the alternatives takes a bishop and leaves the other side with only one, so the pair would be gone.",
+      "audioPath": "recordings/ingrid-v1/ingrid/positional-bishop-pair-alternative.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/positional-bishop-pair-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-bishop-pair-alternative.json"
+    },
+    {
+      "id": "positional-doubled-actual",
+      "group": "game_review",
+      "text": "Doubled pawns: one pawn now sits right behind another of the same color on a single file.",
+      "audioPath": "recordings/ingrid-v1/ingrid/positional-doubled-actual.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/positional-doubled-actual.provenance.json",
+      "alignmentPath": "alignment/positional-doubled-actual.json"
+    },
+    {
+      "id": "positional-doubled-alternative",
+      "group": "game_review",
+      "text": "Another move would have left two pawns doubled up on one file.",
+      "audioPath": "recordings/ingrid-v1/ingrid/positional-doubled-alternative.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/positional-doubled-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-doubled-alternative.json"
+    },
+    {
+      "id": "allowed-mate",
+      "group": "game_review",
+      "text": "This one decides a lot: the other side now has a forced checkmate in hand. The useful thing is to trace the attack back to where the defense gave way.",
+      "audioPath": "recordings/ingrid-v1/ingrid/allowed-mate.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/allowed-mate.provenance.json",
+      "alignmentPath": "alignment/allowed-mate.json"
+    },
+    {
+      "id": "missed-mate",
+      "group": "game_review",
+      "text": "A forced checkmate was on offer, and this move goes a different way. Setting up that mating line afterward is time well spent.",
+      "audioPath": "recordings/ingrid-v1/ingrid/missed-mate.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/missed-mate.provenance.json",
+      "alignmentPath": "alignment/missed-mate.json"
+    },
+    {
+      "id": "sound-sacrifice",
+      "group": "game_review",
+      "text": "A sacrifice, and a sound one. Take the material or don't, the checked line still shows the idea holding up.",
+      "audioPath": "recordings/ingrid-v1/ingrid/sound-sacrifice.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/sound-sacrifice.provenance.json",
+      "alignmentPath": "alignment/sound-sacrifice.json"
+    },
+    {
+      "id": "only-playable-move",
+      "group": "game_review",
+      "text": "Everything else examined was losing, so this was the one move that kept the game playable. Not much room to spare.",
+      "audioPath": "recordings/ingrid-v1/ingrid/only-playable-move.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/only-playable-move.provenance.json",
+      "alignmentPath": "alignment/only-playable-move.json"
+    },
+    {
+      "id": "only-advantage-resource",
+      "group": "game_review",
+      "text": "Among the examined moves, only this one held on to the advantage, and the rest were losing.",
+      "audioPath": "recordings/ingrid-v1/ingrid/only-advantage-resource.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/only-advantage-resource.provenance.json",
+      "alignmentPath": "alignment/only-advantage-resource.json"
+    },
+    {
+      "id": "immediate-capture",
+      "group": "game_review",
+      "text": "First thing to look at: the other side has a capture ready on its very next move. Deal with that reply first.",
+      "audioPath": "recordings/ingrid-v1/ingrid/immediate-capture.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/immediate-capture.provenance.json",
+      "alignmentPath": "alignment/immediate-capture.json"
+    },
+    {
+      "id": "reply-check",
+      "group": "game_review",
+      "text": "The strongest reply gives check, so the king has to be looked after before anything else.",
+      "audioPath": "recordings/ingrid-v1/ingrid/reply-check.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/reply-check.provenance.json",
+      "alignmentPath": "alignment/reply-check.json"
+    },
+    {
+      "id": "stronger-alternative",
+      "group": "game_review",
+      "text": "The engine has its own favorite here, a different move. Put the two side by side against the strongest reply and the difference shows.",
+      "audioPath": "recordings/ingrid-v1/ingrid/stronger-alternative.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/stronger-alternative.provenance.json",
+      "alignmentPath": "alignment/stronger-alternative.json"
+    },
+    {
+      "id": "evaluation-loss",
+      "group": "game_review",
+      "text": "This gives up some value compared with the engine's top move. Play out the reply, and the slip in value shows itself.",
+      "audioPath": "recordings/ingrid-v1/ingrid/evaluation-loss.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/evaluation-loss.provenance.json",
+      "alignmentPath": "alignment/evaluation-loss.json"
+    },
+    {
+      "id": "best-supported-choice",
+      "group": "game_review",
+      "text": "A strong, steady move. Next to the engine's choices, hardly anything is given up.",
+      "audioPath": "recordings/ingrid-v1/ingrid/best-supported-choice.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/best-supported-choice.provenance.json",
+      "alignmentPath": "alignment/best-supported-choice.json"
+    },
+    {
+      "id": "good-choice",
+      "group": "game_review",
+      "text": "A sensible move. The engine likes another one slightly more, though most of the position's value is still in place.",
+      "audioPath": "recordings/ingrid-v1/ingrid/good-choice.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/good-choice.provenance.json",
+      "alignmentPath": "alignment/good-choice.json"
+    },
+    {
+      "id": "clock-low",
+      "group": "game_review",
+      "text": "This move went in with the clock nearly empty.",
+      "audioPath": "recordings/ingrid-v1/ingrid/clock-low.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/clock-low.provenance.json",
+      "alignmentPath": "alignment/clock-low.json"
+    },
+    {
+      "id": "clock-fast",
+      "group": "game_review",
+      "text": "A quick move, and plenty of time was still left.",
+      "audioPath": "recordings/ingrid-v1/ingrid/clock-fast.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/clock-fast.provenance.json",
+      "alignmentPath": "alignment/clock-fast.json"
+    },
+    {
+      "id": "clock-long",
+      "group": "game_review",
+      "text": "A good long think went into this move.",
+      "audioPath": "recordings/ingrid-v1/ingrid/clock-long.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/clock-long.provenance.json",
+      "alignmentPath": "alignment/clock-long.json"
+    },
+    {
+      "id": "recognized-opening",
+      "group": "game_review",
+      "text": "Recognized opening theory has room for this move.",
+      "audioPath": "recordings/ingrid-v1/ingrid/recognized-opening.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/recognized-opening.provenance.json",
+      "alignmentPath": "alignment/recognized-opening.json"
+    },
+    {
+      "id": "opening-departure",
+      "group": "game_review",
+      "text": "The game leaves the known opening here, so from now on it's fresh territory.",
+      "audioPath": "recordings/ingrid-v1/ingrid/opening-departure.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/opening-departure.provenance.json",
+      "alignmentPath": "alignment/opening-departure.json"
+    },
+    {
+      "id": "recovery",
+      "group": "game_review",
+      "text": "After the earlier error, the game has settled back into something playable. That's exactly how to respond to a setback; keep that steadiness going.",
+      "audioPath": "recordings/ingrid-v1/ingrid/recovery.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/recovery.provenance.json",
+      "alignmentPath": "alignment/recovery.json"
+    },
+    {
+      "id": "recovery-assisted",
+      "group": "game_review",
+      "text": "After the earlier error, things are playable again, helped along by the other side's mistakes. Good to take the chance when it comes.",
+      "audioPath": "recordings/ingrid-v1/ingrid/recovery-assisted.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/recovery-assisted.provenance.json",
+      "alignmentPath": "alignment/recovery-assisted.json"
+    },
+    {
+      "id": "chance-taken",
+      "group": "game_review",
+      "text": "Something useful was left lying around after the opponent's last move, and this move gathers it up. Good, practical chess.",
+      "audioPath": "recordings/ingrid-v1/ingrid/chance-taken.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/chance-taken.provenance.json",
+      "alignmentPath": "alignment/chance-taken.json"
+    },
+    {
+      "id": "chance-missed",
+      "group": "game_review",
+      "text": "The opponent's last move left something on the table, and this reply leaves it there. A better answer existed; worth a calm look afterward.",
+      "audioPath": "recordings/ingrid-v1/ingrid/chance-missed.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/chance-missed.provenance.json",
+      "alignmentPath": "alignment/chance-missed.json"
+    },
+    {
+      "id": "repeated-issue",
+      "group": "game_review",
+      "text": "This issue has popped up once before in this game. Lay the two moments next to each other and the pattern gets easier to spot.",
+      "audioPath": "recordings/ingrid-v1/ingrid/repeated-issue.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/repeated-issue.provenance.json",
+      "alignmentPath": "alignment/repeated-issue.json"
+    },
+    {
+      "id": "support-restored",
+      "group": "game_review",
+      "text": "A piece that stood unguarded earlier has protection again. Good to see that tidied up.",
+      "audioPath": "recordings/ingrid-v1/ingrid/support-restored.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/support-restored.provenance.json",
+      "alignmentPath": "alignment/support-restored.json"
+    },
+    {
+      "id": "gradual-erosion",
+      "group": "game_review",
+      "text": "Small concessions have been adding up, and here's another. None of them is dramatic alone, but together they've worn things thin.",
+      "audioPath": "recordings/ingrid-v1/ingrid/gradual-erosion.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/gradual-erosion.provenance.json",
+      "alignmentPath": "alignment/gradual-erosion.json"
+    },
+    {
+      "id": "advantage-converted",
+      "group": "game_review",
+      "text": "The advantage stayed in hand from that point all the way to the recorded win. Nicely carried through.",
+      "audioPath": "recordings/ingrid-v1/ingrid/advantage-converted.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/advantage-converted.provenance.json",
+      "alignmentPath": "alignment/advantage-converted.json"
+    },
+    {
+      "id": "saved-history-recurrence",
+      "group": "game_review",
+      "text": "This same issue appears in some of your other saved games as well. Looking at them together could make it much easier to fix.",
+      "audioPath": "recordings/ingrid-v1/ingrid/saved-history-recurrence.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/saved-history-recurrence.provenance.json",
+      "alignmentPath": "alignment/saved-history-recurrence.json"
+    },
+    {
+      "id": "mate-finished",
+      "group": "game_review",
+      "text": "Checkmate. No legal moves remain for the king, so that's the end of the game.",
+      "audioPath": "recordings/ingrid-v1/ingrid/mate-finished.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/mate-finished.provenance.json",
+      "alignmentPath": "alignment/mate-finished.json"
+    },
+    {
+      "id": "mate-defense-ended",
+      "group": "game_review",
+      "text": "Checkmate; there's no escape square left for the defending king. Hard way to finish, but the moves just before it are where the useful lesson sits.",
+      "audioPath": "recordings/ingrid-v1/ingrid/mate-defense-ended.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/mate-defense-ended.provenance.json",
+      "alignmentPath": "alignment/mate-defense-ended.json"
+    },
+    {
+      "id": "draw",
+      "group": "game_review",
+      "text": "A draw. The result's settled, and there's still plenty in the game worth a calm look.",
+      "audioPath": "recordings/ingrid-v1/ingrid/draw.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/draw.provenance.json",
+      "alignmentPath": "alignment/draw.json"
+    },
+    {
+      "id": "srs-cold",
+      "group": "srs_explanations",
+      "text": "Settle in, look the position over, and pick your move when you're ready.",
+      "audioPath": "recordings/ingrid-v1/ingrid/srs-cold.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/srs-cold.provenance.json",
+      "alignmentPath": "alignment/srs-cold.json"
+    },
+    {
+      "id": "srs-retry",
+      "group": "srs_explanations",
+      "text": "Not quite. Take another calm look; the idea hasn't gone anywhere.",
+      "audioPath": "recordings/ingrid-v1/ingrid/srs-retry.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/srs-retry.provenance.json",
+      "alignmentPath": "alignment/srs-retry.json"
+    },
+    {
+      "id": "srs-practice-error",
+      "group": "srs_explanations",
+      "text": "The attempt didn't register a result. Play that same move one more time.",
+      "audioPath": "recordings/ingrid-v1/ingrid/srs-practice-error.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/srs-practice-error.provenance.json",
+      "alignmentPath": "alignment/srs-practice-error.json"
+    },
+    {
+      "id": "srs-summary-mate-for-mover",
+      "group": "srs_explanations",
+      "text": "The side that played this move has a forced mate, according to the saved engine analysis.",
+      "audioPath": "recordings/ingrid-v1/ingrid/srs-summary-mate-for-mover.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/srs-summary-mate-for-mover.provenance.json",
+      "alignmentPath": "alignment/srs-summary-mate-for-mover.json"
+    },
+    {
+      "id": "srs-summary-mate-against-mover",
+      "group": "srs_explanations",
+      "text": "The saved engine analysis finds that this move gives the other side a forced mate.",
+      "audioPath": "recordings/ingrid-v1/ingrid/srs-summary-mate-against-mover.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/srs-summary-mate-against-mover.provenance.json",
+      "alignmentPath": "alignment/srs-summary-mate-against-mover.json"
+    },
+    {
+      "id": "srs-summary-material-gain",
+      "group": "srs_explanations",
+      "text": "Once the saved line is played out, the side that made this move has come out ahead in material.",
+      "audioPath": "recordings/ingrid-v1/ingrid/srs-summary-material-gain.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/srs-summary-material-gain.provenance.json",
+      "alignmentPath": "alignment/srs-summary-material-gain.json"
+    },
+    {
+      "id": "srs-summary-material-loss",
+      "group": "srs_explanations",
+      "text": "Once the saved line is played out, the side that made this move has come out behind in material.",
+      "audioPath": "recordings/ingrid-v1/ingrid/srs-summary-material-loss.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/srs-summary-material-loss.provenance.json",
+      "alignmentPath": "alignment/srs-summary-material-loss.json"
+    },
+    {
+      "id": "srs-summary-engine-accepted",
+      "group": "srs_explanations",
+      "text": "The exercise is fine with this move, even though the moves shown don't make the tactical reason obvious, and it's better not to invent one.",
+      "audioPath": "recordings/ingrid-v1/ingrid/srs-summary-engine-accepted.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/srs-summary-engine-accepted.provenance.json",
+      "alignmentPath": "alignment/srs-summary-engine-accepted.json"
+    },
+    {
+      "id": "srs-summary-engine-rejected",
+      "group": "srs_explanations",
+      "text": "The exercise isn't taking this one, and nothing in the moves shown makes the tactical reason plain. A fresh, unhurried look is the next step.",
+      "audioPath": "recordings/ingrid-v1/ingrid/srs-summary-engine-rejected.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/srs-summary-engine-rejected.provenance.json",
+      "alignmentPath": "alignment/srs-summary-engine-rejected.json"
+    },
+    {
+      "id": "srs-summary-curated-accepted",
+      "group": "srs_explanations",
+      "text": "It lines up with one of the saved answers, which is what this exercise goes by.",
+      "audioPath": "recordings/ingrid-v1/ingrid/srs-summary-curated-accepted.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/srs-summary-curated-accepted.provenance.json",
+      "alignmentPath": "alignment/srs-summary-curated-accepted.json"
+    },
+    {
+      "id": "srs-summary-curated-rejected",
+      "group": "srs_explanations",
+      "text": "This one isn't on the saved list for the exercise, though a different legal move can still be honest, sensible chess.",
+      "audioPath": "recordings/ingrid-v1/ingrid/srs-summary-curated-rejected.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/srs-summary-curated-rejected.provenance.json",
+      "alignmentPath": "alignment/srs-summary-curated-rejected.json"
+    },
+    {
+      "id": "srs-fallback-study",
+      "group": "srs_explanations",
+      "text": "Sit with the move and its reason for a moment, and then carry on with the next position.",
+      "audioPath": "recordings/ingrid-v1/ingrid/srs-fallback-study.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/srs-fallback-study.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-study.json"
+    },
+    {
+      "id": "srs-fallback-good",
+      "group": "srs_explanations",
+      "text": "Nicely chosen. The reason behind it is what you'll carry into other positions.",
+      "audioPath": "recordings/ingrid-v1/ingrid/srs-fallback-good.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/srs-fallback-good.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-good.json"
+    },
+    {
+      "id": "srs-fallback-focus-saved",
+      "group": "srs_explanations",
+      "text": "All saved, and nothing about the review schedule has moved.",
+      "audioPath": "recordings/ingrid-v1/ingrid/srs-fallback-focus-saved.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/srs-fallback-focus-saved.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-focus-saved.json"
+    },
+    {
+      "id": "srs-fallback-relearning",
+      "group": "srs_explanations",
+      "text": "Solved. This recall keeps its relearning label a little longer, and that's no problem.",
+      "audioPath": "recordings/ingrid-v1/ingrid/srs-fallback-relearning.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/srs-fallback-relearning.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-relearning.json"
+    },
+    {
+      "id": "explanation-frame-original",
+      "group": "srs_explanations",
+      "text": "Here's the position as it stood before any of these moves.",
+      "audioPath": "recordings/ingrid-v1/ingrid/explanation-frame-original.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/explanation-frame-original.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-original.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-ordinary",
+      "group": "srs_explanations",
+      "text": "A move is made. Take a relaxed look at what's different.",
+      "audioPath": "recordings/ingrid-v1/ingrid/explanation-frame-quiet-move-ordinary.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/explanation-frame-quiet-move-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-check",
+      "group": "srs_explanations",
+      "text": "Check, so the king comes first.",
+      "audioPath": "recordings/ingrid-v1/ingrid/explanation-frame-quiet-move-check.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/explanation-frame-quiet-move-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-check.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-escape",
+      "group": "srs_explanations",
+      "text": "That gets the king clear of the check.",
+      "audioPath": "recordings/ingrid-v1/ingrid/explanation-frame-quiet-move-escape.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/explanation-frame-quiet-move-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-escape.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-ordinary",
+      "group": "srs_explanations",
+      "text": "The pawn reaches the far end and is swapped for a new piece.",
+      "audioPath": "recordings/ingrid-v1/ingrid/explanation-frame-quiet-promotion-ordinary.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/explanation-frame-quiet-promotion-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-check",
+      "group": "srs_explanations",
+      "text": "Promotion, and the brand-new piece checks the king straight away.",
+      "audioPath": "recordings/ingrid-v1/ingrid/explanation-frame-quiet-promotion-check.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/explanation-frame-quiet-promotion-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-check.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-mate",
+      "group": "srs_explanations",
+      "text": "Promotion, and the game ends in checkmate.",
+      "audioPath": "recordings/ingrid-v1/ingrid/explanation-frame-quiet-promotion-mate.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/explanation-frame-quiet-promotion-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-mate.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-escape",
+      "group": "srs_explanations",
+      "text": "Promotion, which also brings its own king out of check.",
+      "audioPath": "recordings/ingrid-v1/ingrid/explanation-frame-quiet-promotion-escape.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/explanation-frame-quiet-promotion-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-escape.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-ordinary",
+      "group": "srs_explanations",
+      "text": "A capture takes a piece off the board.",
+      "audioPath": "recordings/ingrid-v1/ingrid/explanation-frame-capture-move-ordinary.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/explanation-frame-capture-move-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-check",
+      "group": "srs_explanations",
+      "text": "This capture comes with a check attached.",
+      "audioPath": "recordings/ingrid-v1/ingrid/explanation-frame-capture-move-check.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/explanation-frame-capture-move-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-check.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-mate",
+      "group": "srs_explanations",
+      "text": "One capture, and the game finishes in checkmate.",
+      "audioPath": "recordings/ingrid-v1/ingrid/explanation-frame-capture-move-mate.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/explanation-frame-capture-move-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-mate.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-escape",
+      "group": "srs_explanations",
+      "text": "Capturing here is also the way out of check.",
+      "audioPath": "recordings/ingrid-v1/ingrid/explanation-frame-capture-move-escape.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/explanation-frame-capture-move-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-escape.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-ordinary",
+      "group": "srs_explanations",
+      "text": "The pawn captures its way to the far end and promotes there.",
+      "audioPath": "recordings/ingrid-v1/ingrid/explanation-frame-capture-promotion-ordinary.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/explanation-frame-capture-promotion-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-check",
+      "group": "srs_explanations",
+      "text": "A capture, a promotion, and then check from the new piece.",
+      "audioPath": "recordings/ingrid-v1/ingrid/explanation-frame-capture-promotion-check.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/explanation-frame-capture-promotion-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-check.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-mate",
+      "group": "srs_explanations",
+      "text": "A pawn capture that promotes and mates in the same move.",
+      "audioPath": "recordings/ingrid-v1/ingrid/explanation-frame-capture-promotion-mate.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/explanation-frame-capture-promotion-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-mate.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-escape",
+      "group": "srs_explanations",
+      "text": "Capturing and promoting gets its own king out of check, all in one go.",
+      "audioPath": "recordings/ingrid-v1/ingrid/explanation-frame-capture-promotion-escape.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/explanation-frame-capture-promotion-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-escape.json"
+    },
+    {
+      "id": "explanation-frame-castle-check",
+      "group": "srs_explanations",
+      "text": "Castling, and check comes along with it.",
+      "audioPath": "recordings/ingrid-v1/ingrid/explanation-frame-castle-check.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/explanation-frame-castle-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-castle-check.json"
+    },
+    {
+      "id": "explanation-frame-castle-mate",
+      "group": "srs_explanations",
+      "text": "Castling, and the game ends in checkmate.",
+      "audioPath": "recordings/ingrid-v1/ingrid/explanation-frame-castle-mate.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/explanation-frame-castle-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-castle-mate.json"
+    },
+    {
+      "id": "explanation-finding-fork-collected",
+      "group": "srs_explanations",
+      "text": "Watch how the fork pays off: one piece threatens several targets, then picks one of them up. In this example the material ends up ahead overall too.",
+      "audioPath": "recordings/ingrid-v1/ingrid/explanation-finding-fork-collected.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/explanation-finding-fork-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-fork-collected.json"
+    },
+    {
+      "id": "explanation-finding-pin-prevents-capture",
+      "group": "srs_explanations",
+      "text": "Because this piece is pinned to its king, the marked capture isn't allowed; moving would leave the king exposed.",
+      "audioPath": "recordings/ingrid-v1/ingrid/explanation-finding-pin-prevents-capture.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/explanation-finding-pin-prevents-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-prevents-capture.json"
+    },
+    {
+      "id": "explanation-finding-pin-restricts-escape",
+      "group": "srs_explanations",
+      "text": "Since the attacked piece is pinned to its king, running away isn't an option; whatever it does must leave the king shielded.",
+      "audioPath": "recordings/ingrid-v1/ingrid/explanation-finding-pin-restricts-escape.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/explanation-finding-pin-restricts-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-restricts-escape.json"
+    },
+    {
+      "id": "explanation-finding-pin-defenders-no-recapture",
+      "group": "srs_explanations",
+      "text": "Nobody recaptures because every defender is pinned to its king. That's the reason the capture is safe, and the line shown finishes with more material.",
+      "audioPath": "recordings/ingrid-v1/ingrid/explanation-finding-pin-defenders-no-recapture.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/explanation-finding-pin-defenders-no-recapture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-defenders-no-recapture.json"
+    },
+    {
+      "id": "explanation-finding-pin-collected",
+      "group": "srs_explanations",
+      "text": "Stay with that pinned piece: since its king stands behind it, it can't leave the line, and before the sequence finishes it gets captured.",
+      "audioPath": "recordings/ingrid-v1/ingrid/explanation-finding-pin-collected.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/explanation-finding-pin-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-collected.json"
+    },
+    {
+      "id": "explanation-finding-skewer-collected",
+      "group": "srs_explanations",
+      "text": "Once the front piece slides off the line, whatever it was shielding gets taken.",
+      "audioPath": "recordings/ingrid-v1/ingrid/explanation-finding-skewer-collected.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/explanation-finding-skewer-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-skewer-collected.json"
+    },
+    {
+      "id": "explanation-finding-king-skewer-collected",
+      "group": "srs_explanations",
+      "text": "Check forces the king aside, and the same attacking piece then collects what stood behind it on the line.",
+      "audioPath": "recordings/ingrid-v1/ingrid/explanation-finding-king-skewer-collected.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/explanation-finding-king-skewer-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-king-skewer-collected.json"
+    },
+    {
+      "id": "explanation-finding-sole-defender-captured",
+      "group": "srs_explanations",
+      "text": "Take the lone defender first, and the piece it protected is next in line.",
+      "audioPath": "recordings/ingrid-v1/ingrid/explanation-finding-sole-defender-captured.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/explanation-finding-sole-defender-captured.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-sole-defender-captured.json"
+    },
+    {
+      "id": "explanation-finding-deflection-collected",
+      "group": "srs_explanations",
+      "text": "The defender is tempted off its post, and the piece it was looking after gets captured.",
+      "audioPath": "recordings/ingrid-v1/ingrid/explanation-finding-deflection-collected.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/explanation-finding-deflection-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-deflection-collected.json"
+    },
+    {
+      "id": "explanation-finding-discovered-capture",
+      "group": "srs_explanations",
+      "text": "When the blocker moves out of the way, the piece behind it captures along the opened line.",
+      "audioPath": "recordings/ingrid-v1/ingrid/explanation-finding-discovered-capture.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/explanation-finding-discovered-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-discovered-capture.json"
+    },
+    {
+      "id": "explanation-finding-discovered-check",
+      "group": "srs_explanations",
+      "text": "One piece steps aside, and the line it leaves open gives check.",
+      "audioPath": "recordings/ingrid-v1/ingrid/explanation-finding-discovered-check.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/explanation-finding-discovered-check.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-discovered-check.json"
+    },
+    {
+      "id": "explanation-finding-double-check",
+      "group": "srs_explanations",
+      "text": "Double check: two pieces check together, and only moving the king can deal with it.",
+      "audioPath": "recordings/ingrid-v1/ingrid/explanation-finding-double-check.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/explanation-finding-double-check.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-double-check.json"
+    },
+    {
+      "id": "explanation-finding-double-attack-collected",
+      "group": "srs_explanations",
+      "text": "One target is threatened by the moving piece, another by the line it opened, and it's the piece behind that collects.",
+      "audioPath": "recordings/ingrid-v1/ingrid/explanation-finding-double-attack-collected.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/explanation-finding-double-attack-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-double-attack-collected.json"
+    },
+    {
+      "id": "explanation-finding-promotion-material-retained",
+      "group": "srs_explanations",
+      "text": "Promotion, and that side also finishes this example ahead on material.",
+      "audioPath": "recordings/ingrid-v1/ingrid/explanation-finding-promotion-material-retained.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/explanation-finding-promotion-material-retained.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-promotion-material-retained.json"
+    },
+    {
+      "id": "explanation-finding-undefended-capture-gain",
+      "group": "srs_explanations",
+      "text": "A piece nobody was guarding comes off, and the side that took it finishes this example ahead on material.",
+      "audioPath": "recordings/ingrid-v1/ingrid/explanation-finding-undefended-capture-gain.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/explanation-finding-undefended-capture-gain.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-undefended-capture-gain.json"
+    },
+    {
+      "id": "explanation-finding-relative-pin-released",
+      "group": "srs_explanations",
+      "text": "A relative pin had been holding the attacking piece back, and the opponent's previous move released it. Then it takes a target that had stayed where it was, in the line shown.",
+      "audioPath": "recordings/ingrid-v1/ingrid/explanation-finding-relative-pin-released.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/explanation-finding-relative-pin-released.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-relative-pin-released.json"
+    },
+    {
+      "id": "game-explanation-legal-reply",
+      "group": "srs_explanations",
+      "text": "The marked reply is one the other side may legally play. Set it up on the board and see what it changes.",
+      "audioPath": "recordings/ingrid-v1/ingrid/game-explanation-legal-reply.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/game-explanation-legal-reply.provenance.json",
+      "alignmentPath": "alignment/game-explanation-legal-reply.json"
+    },
+    {
+      "id": "explanation-cue-hanging-piece",
+      "group": "srs_explanations",
+      "text": "Before you settle on a move, make sure nothing of yours can be taken without a decent answer.",
+      "audioPath": "recordings/ingrid-v1/ingrid/explanation-cue-hanging-piece.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/explanation-cue-hanging-piece.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-hanging-piece.json"
+    },
+    {
+      "id": "explanation-cue-missed-tactical-capture",
+      "group": "srs_explanations",
+      "text": "Before a quiet move, it pays to check whether any enemy piece has been left unguarded.",
+      "audioPath": "recordings/ingrid-v1/ingrid/explanation-cue-missed-tactical-capture.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/explanation-cue-missed-tactical-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-missed-tactical-capture.json"
+    },
+    {
+      "id": "explanation-cue-fork",
+      "group": "srs_explanations",
+      "text": "Among the forcing moves, keep an eye out for a single piece that can land on two valuable targets.",
+      "audioPath": "recordings/ingrid-v1/ingrid/explanation-cue-fork.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/explanation-cue-fork.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-fork.json"
+    },
+    {
+      "id": "explanation-cue-pin",
+      "group": "srs_explanations",
+      "text": "Before a pinned piece moves, check what it's shielding, the king or something of more value.",
+      "audioPath": "recordings/ingrid-v1/ingrid/explanation-cue-pin.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/explanation-cue-pin.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-pin.json"
+    },
+    {
+      "id": "explanation-cue-skewer",
+      "group": "srs_explanations",
+      "text": "Spare a glance for what's behind the first target; a more valuable piece could be lined up there.",
+      "audioPath": "recordings/ingrid-v1/ingrid/explanation-cue-skewer.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/explanation-cue-skewer.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-skewer.json"
+    },
+    {
+      "id": "explanation-cue-removing-defender",
+      "group": "srs_explanations",
+      "text": "Before you swap off a defender, take stock of what it's protecting.",
+      "audioPath": "recordings/ingrid-v1/ingrid/explanation-cue-removing-defender.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/explanation-cue-removing-defender.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-removing-defender.json"
+    },
+    {
+      "id": "explanation-cue-discovered-attack",
+      "group": "srs_explanations",
+      "text": "If a piece steps away from a line, have a look at what that line reaches afterward.",
+      "audioPath": "recordings/ingrid-v1/ingrid/explanation-cue-discovered-attack.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/explanation-cue-discovered-attack.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-discovered-attack.json"
+    },
+    {
+      "id": "explanation-cue-double-attack",
+      "group": "srs_explanations",
+      "text": "Keep an eye out for single moves that make two threats, checks and newly opened lines included.",
+      "audioPath": "recordings/ingrid-v1/ingrid/explanation-cue-double-attack.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/explanation-cue-double-attack.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-double-attack.json"
+    },
+    {
+      "id": "explanation-cue-back-rank",
+      "group": "srs_explanations",
+      "text": "If a back-rank defender is about to wander off, first make sure the king still has an escape square.",
+      "audioPath": "recordings/ingrid-v1/ingrid/explanation-cue-back-rank.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/explanation-cue-back-rank.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-back-rank.json"
+    },
+    {
+      "id": "explanation-cue-promotion-awareness",
+      "group": "srs_explanations",
+      "text": "Count the squares a pawn has left to promotion, and notice which of its moves will need an answer.",
+      "audioPath": "recordings/ingrid-v1/ingrid/explanation-cue-promotion-awareness.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/explanation-cue-promotion-awareness.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-promotion-awareness.json"
+    },
+    {
+      "id": "explanation-cue-abandoned-defender",
+      "group": "srs_explanations",
+      "text": "Before a defender moves, notice who else is leaning on it.",
+      "audioPath": "recordings/ingrid-v1/ingrid/explanation-cue-abandoned-defender.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/explanation-cue-abandoned-defender.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-abandoned-defender.json"
+    },
+    {
+      "id": "explanation-cue-avoiding-bad-trades",
+      "group": "srs_explanations",
+      "text": "Before capturing, think about what you win and what the recapture would take back, and compare the two.",
+      "audioPath": "recordings/ingrid-v1/ingrid/explanation-cue-avoiding-bad-trades.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/explanation-cue-avoiding-bad-trades.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-avoiding-bad-trades.json"
+    },
+    {
+      "id": "explanation-cue-deflection",
+      "group": "srs_explanations",
+      "text": "Check whether a forcing exchange might draw a defender away from a second job it's doing.",
+      "audioPath": "recordings/ingrid-v1/ingrid/explanation-cue-deflection.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/explanation-cue-deflection.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-deflection.json"
+    },
+    {
+      "id": "explanation-note-curated-authority",
+      "group": "srs_explanations",
+      "text": "In this exercise the saved answers are what counts, though a legal move outside them may still be sensible chess.",
+      "audioPath": "recordings/ingrid-v1/ingrid/explanation-note-curated-authority.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/explanation-note-curated-authority.provenance.json",
+      "alignmentPath": "alignment/explanation-note-curated-authority.json"
+    },
+    {
+      "id": "explanation-note-strong-replies",
+      "group": "srs_explanations",
+      "text": "The line shows strong replies, which aren't the only replies there are.",
+      "audioPath": "recordings/ingrid-v1/ingrid/explanation-note-strong-replies.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/explanation-note-strong-replies.provenance.json",
+      "alignmentPath": "alignment/explanation-note-strong-replies.json"
+    },
+    {
+      "id": "explanation-note-material-scope",
+      "group": "srs_explanations",
+      "text": "Material is tallied within the line shown, from where that line begins. Piece values sit in the written explanation.",
+      "audioPath": "recordings/ingrid-v1/ingrid/explanation-note-material-scope.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/explanation-note-material-scope.provenance.json",
+      "alignmentPath": "alignment/explanation-note-material-scope.json"
+    },
+    {
+      "id": "explanation-note-no-simple-reason",
+      "group": "srs_explanations",
+      "text": "Nothing in the saved line gives a simple tactical reason, and inventing a positional one wouldn't help. Play it through at your own pace and compare the replies.",
+      "audioPath": "recordings/ingrid-v1/ingrid/explanation-note-no-simple-reason.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/explanation-note-no-simple-reason.provenance.json",
+      "alignmentPath": "alignment/explanation-note-no-simple-reason.json"
+    },
+    {
+      "id": "explanation-note-saved-policy",
+      "group": "srs_explanations",
+      "text": "The answer policy stored with the exercise shapes this explanation; the setting itself is in the written notes.",
+      "audioPath": "recordings/ingrid-v1/ingrid/explanation-note-saved-policy.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/explanation-note-saved-policy.provenance.json",
+      "alignmentPath": "alignment/explanation-note-saved-policy.json"
+    },
+    {
+      "id": "opening-recall-revealed",
+      "group": "openings",
+      "text": "Here's the opening line in full, one move after another.",
+      "audioPath": "recordings/ingrid-v1/ingrid/opening-recall-revealed.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/opening-recall-revealed.provenance.json",
+      "alignmentPath": "alignment/opening-recall-revealed.json"
+    },
+    {
+      "id": "opening-recall-accepted",
+      "group": "openings",
+      "text": "That's right; your study material has that move.",
+      "audioPath": "recordings/ingrid-v1/ingrid/opening-recall-accepted.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/opening-recall-accepted.provenance.json",
+      "alignmentPath": "alignment/opening-recall-accepted.json"
+    },
+    {
+      "id": "opening-recall-retry-fallback",
+      "group": "openings",
+      "text": "Choose any move from the opening lines in your study.",
+      "audioPath": "recordings/ingrid-v1/ingrid/opening-recall-retry-fallback.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/opening-recall-retry-fallback.provenance.json",
+      "alignmentPath": "alignment/opening-recall-retry-fallback.json"
+    },
+    {
+      "id": "opening-recall-cold-multiple",
+      "group": "openings",
+      "text": "Several of your chosen opening lines reach this spot, so there's more than one valid move to pick from.",
+      "audioPath": "recordings/ingrid-v1/ingrid/opening-recall-cold-multiple.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/opening-recall-cold-multiple.provenance.json",
+      "alignmentPath": "alignment/opening-recall-cold-multiple.json"
+    },
+    {
+      "id": "opening-recall-cold-single",
+      "group": "openings",
+      "text": "Bring back the next move from your study material.",
+      "audioPath": "recordings/ingrid-v1/ingrid/opening-recall-cold-single.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/opening-recall-cold-single.provenance.json",
+      "alignmentPath": "alignment/opening-recall-cold-single.json"
+    },
+    {
+      "id": "opening-recall-rejected",
+      "group": "openings",
+      "text": "Your chosen opening lines go a different way here. Have another go, no rush.",
+      "audioPath": "recordings/ingrid-v1/ingrid/opening-recall-rejected.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/opening-recall-rejected.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected.json"
+    },
+    {
+      "id": "opening-recall-rejected-changed",
+      "group": "openings",
+      "text": "That isn't in your chosen lines, so have another go. With the study edited, review dates won't shift because of this saved attempt.",
+      "audioPath": "recordings/ingrid-v1/ingrid/opening-recall-rejected-changed.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/opening-recall-rejected-changed.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected-changed.json"
+    },
+    {
+      "id": "opening-recall-rejected-retired",
+      "group": "openings",
+      "text": "That isn't in your chosen lines, so have another go. The position is retired, so nothing changes in its review dates.",
+      "audioPath": "recordings/ingrid-v1/ingrid/opening-recall-rejected-retired.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/opening-recall-rejected-retired.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected-retired.json"
+    },
+    {
+      "id": "opening-preview-active",
+      "group": "openings",
+      "text": "Mixed Due counts any move from this line, while dedicated practice wants this particular one.",
+      "audioPath": "recordings/ingrid-v1/ingrid/opening-preview-active.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/opening-preview-active.provenance.json",
+      "alignmentPath": "alignment/opening-preview-active.json"
+    },
+    {
+      "id": "opening-preview-inactive",
+      "group": "openings",
+      "text": "Due recalls will want the moves for whichever side you picked. If several active studies share a position, it gets a single card.",
+      "audioPath": "recordings/ingrid-v1/ingrid/opening-preview-inactive.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/opening-preview-inactive.provenance.json",
+      "alignmentPath": "alignment/opening-preview-inactive.json"
+    },
+    {
+      "id": "puzzle-error",
+      "group": "puzzles",
+      "text": "A reload of the saved session is needed before the next move.",
+      "audioPath": "recordings/ingrid-v1/ingrid/puzzle-error.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/puzzle-error.provenance.json",
+      "alignmentPath": "alignment/puzzle-error.json"
+    },
+    {
+      "id": "puzzle-playback",
+      "group": "puzzles",
+      "text": "The verified line is about to play through on the board.",
+      "audioPath": "recordings/ingrid-v1/ingrid/puzzle-playback.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/puzzle-playback.provenance.json",
+      "alignmentPath": "alignment/puzzle-playback.json"
+    },
+    {
+      "id": "puzzle-revealed",
+      "group": "puzzles",
+      "text": "This attempt goes down as revealed. The solution stays below for whenever you're ready.",
+      "audioPath": "recordings/ingrid-v1/ingrid/puzzle-revealed.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/puzzle-revealed.provenance.json",
+      "alignmentPath": "alignment/puzzle-revealed.json"
+    },
+    {
+      "id": "puzzle-solved-after-retry",
+      "group": "puzzles",
+      "text": "Solved on another try. The record keeps the earlier miss as well, which is perfectly fine.",
+      "audioPath": "recordings/ingrid-v1/ingrid/puzzle-solved-after-retry.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/puzzle-solved-after-retry.provenance.json",
+      "alignmentPath": "alignment/puzzle-solved-after-retry.json"
+    },
+    {
+      "id": "puzzle-solved-clean",
+      "group": "puzzles",
+      "text": "Not a single slip from start to finish. Lovely, steady work.",
+      "audioPath": "recordings/ingrid-v1/ingrid/puzzle-solved-clean.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/puzzle-solved-clean.provenance.json",
+      "alignmentPath": "alignment/puzzle-solved-clean.json"
+    },
+    {
+      "id": "puzzle-rejected",
+      "group": "puzzles",
+      "text": "This puzzle is after a different move, but the correct moves you already made are still saved.",
+      "audioPath": "recordings/ingrid-v1/ingrid/puzzle-rejected.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/puzzle-rejected.provenance.json",
+      "alignmentPath": "alignment/puzzle-rejected.json"
+    },
+    {
+      "id": "puzzle-next-move",
+      "group": "puzzles",
+      "text": "That's right. On you go to the puzzle's next move.",
+      "audioPath": "recordings/ingrid-v1/ingrid/puzzle-next-move.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/puzzle-next-move.provenance.json",
+      "alignmentPath": "alignment/puzzle-next-move.json"
+    },
+    {
+      "id": "puzzle-cold",
+      "group": "puzzles",
+      "text": "No rush. Calculate it through, and play the move once the line is clear.",
+      "audioPath": "recordings/ingrid-v1/ingrid/puzzle-cold.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/puzzle-cold.provenance.json",
+      "alignmentPath": "alignment/puzzle-cold.json"
+    },
+    {
+      "id": "game-unavailable",
+      "group": "operational",
+      "text": "There's not enough engine analysis here to explain the position, and guessing wouldn't help.",
+      "audioPath": "recordings/ingrid-v1/ingrid/game-unavailable.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/game-unavailable.provenance.json",
+      "alignmentPath": "alignment/game-unavailable.json"
+    },
+    {
+      "id": "game-review-paused",
+      "group": "operational",
+      "text": "The review is taking a pause. Pick up where you left off below, or test something on the board.",
+      "audioPath": "recordings/ingrid-v1/ingrid/game-review-paused.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/game-review-paused.provenance.json",
+      "alignmentPath": "alignment/game-review-paused.json"
+    },
+    {
+      "id": "game-browse-instructions",
+      "group": "operational",
+      "text": "Choose a move to look back at, or experiment with your own move on the board.",
+      "audioPath": "recordings/ingrid-v1/ingrid/game-browse-instructions.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/game-browse-instructions.provenance.json",
+      "alignmentPath": "alignment/game-browse-instructions.json"
+    },
+    {
+      "id": "book-opening-entry-1",
+      "group": "game_review",
+      "text": "With this, the game settles into a recognized opening.",
+      "audioPath": "recordings/ingrid-v1/ingrid/book-opening-entry-1.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/book-opening-entry-1.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-1.json"
+    },
+    {
+      "id": "book-opening-entry-2",
+      "group": "game_review",
+      "text": "Comfortable book territory, and familiar to a known opening.",
+      "audioPath": "recordings/ingrid-v1/ingrid/book-opening-entry-2.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/book-opening-entry-2.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-2.json"
+    },
+    {
+      "id": "book-opening-entry-3",
+      "group": "game_review",
+      "text": "There's a place for this move in the opening book.",
+      "audioPath": "recordings/ingrid-v1/ingrid/book-opening-entry-3.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/book-opening-entry-3.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-3.json"
+    },
+    {
+      "id": "book-opening-follow-1",
+      "group": "game_review",
+      "text": "The game is still following the book.",
+      "audioPath": "recordings/ingrid-v1/ingrid/book-opening-follow-1.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/book-opening-follow-1.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-1.json"
+    },
+    {
+      "id": "book-opening-follow-2",
+      "group": "game_review",
+      "text": "The book is familiar with this one too.",
+      "audioPath": "recordings/ingrid-v1/ingrid/book-opening-follow-2.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/book-opening-follow-2.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-2.json"
+    },
+    {
+      "id": "book-opening-follow-3",
+      "group": "game_review",
+      "text": "Even the reply follows the book.",
+      "audioPath": "recordings/ingrid-v1/ingrid/book-opening-follow-3.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/book-opening-follow-3.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-3.json"
+    },
+    {
+      "id": "book-opening-follow-4",
+      "group": "game_review",
+      "text": "More of the same book line.",
+      "audioPath": "recordings/ingrid-v1/ingrid/book-opening-follow-4.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/book-opening-follow-4.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-4.json"
+    },
+    {
+      "id": "book-opening-follow-5",
+      "group": "game_review",
+      "text": "One more move the book is familiar with.",
+      "audioPath": "recordings/ingrid-v1/ingrid/book-opening-follow-5.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/book-opening-follow-5.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-5.json"
+    },
+    {
+      "id": "book-opening-follow-6",
+      "group": "game_review",
+      "text": "Still on book ground.",
+      "audioPath": "recordings/ingrid-v1/ingrid/book-opening-follow-6.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/book-opening-follow-6.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-6.json"
+    },
+    {
+      "id": "book-opening-follow-7",
+      "group": "game_review",
+      "text": "The book again, nice and familiar.",
+      "audioPath": "recordings/ingrid-v1/ingrid/book-opening-follow-7.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/book-opening-follow-7.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-7.json"
+    },
+    {
+      "id": "book-opening-follow-8",
+      "group": "game_review",
+      "text": "More book. That tells us where the game is, but it doesn't grade the move.",
+      "audioPath": "recordings/ingrid-v1/ingrid/book-opening-follow-8.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/book-opening-follow-8.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-8.json"
+    },
+    {
+      "id": "game-review-opened",
+      "group": "operational",
+      "text": "No pressure here. We'll take this game at an easy pace and see what each part has to teach.",
+      "audioPath": "recordings/ingrid-v1/ingrid/game-review-opened.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/game-review-opened.provenance.json",
+      "alignmentPath": "alignment/game-review-opened.json"
+    },
+    {
+      "id": "lesson-wrong-move",
+      "group": "lessons",
+      "text": "That isn't the move this chapter has in mind, but that's fine. Have a relaxed think and pick again.",
+      "audioPath": "recordings/ingrid-v1/ingrid/lesson-wrong-move.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/lesson-wrong-move.provenance.json",
+      "alignmentPath": "alignment/lesson-wrong-move.json"
+    },
+    {
+      "id": "lesson-correct-move",
+      "group": "lessons",
+      "text": "Yes, that's exactly what this chapter was teaching. Easy does it from here.",
+      "audioPath": "recordings/ingrid-v1/ingrid/lesson-correct-move.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/lesson-correct-move.provenance.json",
+      "alignmentPath": "alignment/lesson-correct-move.json"
+    },
+    {
+      "id": "lesson-move-revealed",
+      "group": "lessons",
+      "text": "There's the answer this chapter was after, laid out on the board. Take it in, no hurry, then carry on.",
+      "audioPath": "recordings/ingrid-v1/ingrid/lesson-move-revealed.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/lesson-move-revealed.provenance.json",
+      "alignmentPath": "alignment/lesson-move-revealed.json"
+    },
+    {
+      "id": "lesson-guided-playback",
+      "group": "lessons",
+      "text": "Sit back for a moment while these moves play through on their own.",
+      "audioPath": "recordings/ingrid-v1/ingrid/lesson-guided-playback.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/lesson-guided-playback.provenance.json",
+      "alignmentPath": "alignment/lesson-guided-playback.json"
+    },
+    {
+      "id": "lesson-rehearsal-prompt",
+      "group": "lessons",
+      "text": "Your turn now. Bring back what you studied for this spot, in your own time.",
+      "audioPath": "recordings/ingrid-v1/ingrid/lesson-rehearsal-prompt.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/lesson-rehearsal-prompt.provenance.json",
+      "alignmentPath": "alignment/lesson-rehearsal-prompt.json"
+    },
+    {
+      "id": "lesson-branch-entered",
+      "group": "lessons",
+      "text": "We've wandered off the main road onto a different idea for a while. The main road will be waiting for us after.",
+      "audioPath": "recordings/ingrid-v1/ingrid/lesson-branch-entered.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/lesson-branch-entered.provenance.json",
+      "alignmentPath": "alignment/lesson-branch-entered.json"
+    },
+    {
+      "id": "lesson-chapter-complete",
+      "group": "lessons",
+      "text": "That's this chapter behind you, and everything you did is kept. Steady work, start to finish.",
+      "audioPath": "recordings/ingrid-v1/ingrid/lesson-chapter-complete.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/lesson-chapter-complete.provenance.json",
+      "alignmentPath": "alignment/lesson-chapter-complete.json"
+    },
+    {
+      "id": "lesson-game-opened",
+      "group": "lessons",
+      "text": "The complete game is there to browse. Wander through it as you like, and go back to the chapter whenever suits you.",
+      "audioPath": "recordings/ingrid-v1/ingrid/lesson-game-opened.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/lesson-game-opened.provenance.json",
+      "alignmentPath": "alignment/lesson-game-opened.json"
+    },
+    {
+      "id": "lesson-error",
+      "group": "lessons",
+      "text": "Something slipped, so the lesson wants reloading. Once that's done, you can carry on from the same place.",
+      "audioPath": "recordings/ingrid-v1/ingrid/lesson-error.opus",
+      "sidecarPath": "recordings/ingrid-v1/ingrid/lesson-error.provenance.json",
+      "alignmentPath": "alignment/lesson-error.json"
+    }
+  ]
+}

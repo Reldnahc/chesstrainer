@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "tactic-double-attack-missed",
+      "label": "Tactic double attack missed",
+      "text": "Two threats would have come from the stronger move together. This one doesn't make that pair, and that's the gap."
+    },
+    "takeId": null
+  },
+  "requestHash": "2417da4821c16e3ca1d6415af3288af6ce8f851ba014a71735642ab2dd716d11",
+  "recordedAt": "2026-10-03T05:45:36.815Z",
+  "sha256": "62538790068b6b1bbcf5217a68fcf42075052ed99b85f3f98b29ccc082c499b0",
+  "bytes": 21484,
+  "requestId": "VdoJFE3SGz8IHRamfShb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "354de87b8262557028f115b52e5d13678003965b509868f649e107488ffaeded",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

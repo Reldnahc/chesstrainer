@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "draw",
+      "label": "Draw",
+      "text": "A draw. The result's settled, and there's still plenty in the game worth a calm look."
+    },
+    "takeId": null
+  },
+  "requestHash": "1b5487be7989c6e2e572e35114e9e0d2bf518d9ad3568791745bda9113658c91",
+  "recordedAt": "2026-10-03T05:47:25.422Z",
+  "sha256": "3010d7e804320b5d9e2e45ed11dbfb210bc4e6517979c00ebd1ac69f4b09078b",
+  "bytes": 18334,
+  "requestId": "L9BWDNlGCiLV1zkokTYj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "26678edf2546644bb55276f240e8a817c3dfcb531f50f602a93abdc0c9af351a",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

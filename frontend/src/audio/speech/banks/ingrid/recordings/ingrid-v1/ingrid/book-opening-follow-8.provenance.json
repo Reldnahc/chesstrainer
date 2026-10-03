@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "book-opening-follow-8",
+      "label": "Book opening follow 8",
+      "text": "More book. That tells us where the game is, but it doesn't grade the move."
+    },
+    "takeId": null
+  },
+  "requestHash": "d863e906465f432cbd891bcace621e8b3eef8898e56edadda83884258499e058",
+  "recordedAt": "2026-10-03T05:49:53.134Z",
+  "sha256": "02a556e01e46255b6aa6348fed3055e055efdefa96ed8351c52feff20cc70e80",
+  "bytes": 16271,
+  "requestId": "KFaRQGdte4uTwbjgtmXy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "09edb8b72690c17026830687005486435c04a371097c464940225624fe6f7767",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

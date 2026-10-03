@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "puzzle-solved-clean",
+      "label": "Puzzle solved clean",
+      "text": "Not a single slip from start to finish. Lovely, steady work."
+    },
+    "takeId": null
+  },
+  "requestHash": "dba7fd9476dbda9da069577715d336c97675f8f45e21ef7b7f7662935bdde04a",
+  "recordedAt": "2026-10-03T05:49:33.064Z",
+  "sha256": "1262161d843e01e87ab32656417bca7d856931ba485a2efb1ed779b8aee226e0",
+  "bytes": 16902,
+  "requestId": "2hCVrWQVZlssPmrCaX4I",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ccf0b2692c2be849577fc6b495ee4ea5887dfbd90bef46cc4d12d2a8ce85a1b0",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

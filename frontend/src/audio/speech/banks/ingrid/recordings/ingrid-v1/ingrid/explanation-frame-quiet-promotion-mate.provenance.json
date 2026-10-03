@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-promotion-mate",
+      "label": "Explanation frame quiet promotion mate",
+      "text": "Promotion, and the game ends in checkmate."
+    },
+    "takeId": null
+  },
+  "requestHash": "b52cba9e42146ff4ab9d9c4a7033ba84c393b1cf6147c08e6344a4e9c1828d7f",
+  "recordedAt": "2026-10-03T05:47:57.565Z",
+  "sha256": "5b561128833d0b6686714d04cb63fd6b72e5efd5b15e4bcc96243fc9a525dba6",
+  "bytes": 11566,
+  "requestId": "181uN0BB7QxPxnyMcRWS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "79e19cca44a742080e53698c496fec099aff380e7725c904c89e63e40df8d0e7",
+    "bytes": 58558
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

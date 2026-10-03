@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "positional-isolated-alternative",
+      "label": "Positional isolated alternative",
+      "text": "With another move, a pawn would have been left by itself, with no friendly pawn on the files next door."
+    },
+    "takeId": null
+  },
+  "requestHash": "571be6424e253c8a6dd9014f2a25cbc28336701a6bb3ce8f6ce5257664fa2c62",
+  "recordedAt": "2026-10-03T05:46:15.332Z",
+  "sha256": "4803c250a84a0d80c410b23ec15ead4b40bcddfcaff60cf74a47e70c92357b6e",
+  "bytes": 20238,
+  "requestId": "tUO3g4vyK9hbicQq56je",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cc58cd1b645785bfbd9292e1ee094d690b40ad8c915d71d088616fba1dccc1a2",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

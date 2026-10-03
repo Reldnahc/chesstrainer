@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "immediate-capture",
+      "label": "Immediate capture",
+      "text": "First thing to look at: the other side has a capture ready on its very next move. Deal with that reply first."
+    },
+    "takeId": null
+  },
+  "requestHash": "1d3254406fd03053e87cb020c5216e0558bb74b53277a5b520af4a51fc1f7b98",
+  "recordedAt": "2026-10-03T05:46:46.522Z",
+  "sha256": "9c6868bf32b042d6541513f24b560a7e94798e998b051befa39b2d177f6a45c5",
+  "bytes": 24898,
+  "requestId": "f6MIpcFNHd7wlgKj5Gpb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ab003a64b99067e60b89ac969109a84b4f7f9de03f6fab7fe1dfcae5140616b7",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "repeated-issue",
+      "label": "Repeated issue",
+      "text": "This issue has popped up once before in this game. Lay the two moments next to each other and the pattern gets easier to spot."
+    },
+    "takeId": null
+  },
+  "requestHash": "a74dc99c6ad91b0edf990269a8729d2750a85c85ccc9630399f7a4498b4516ba",
+  "recordedAt": "2026-10-03T05:47:12.090Z",
+  "sha256": "0d98b8804dd40460a3fb0d4f1289c118bd6bc8d622681d6ff0bec88d381bec78",
+  "bytes": 25132,
+  "requestId": "RrbgeJ1v7464m2qdwP2z",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a6c86a0a08cf36ba2c025f77e35f7a9c141307fba09cf2e801f158a4149f7fd3",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "positional-unsupported-actual",
+      "label": "Positional unsupported actual",
+      "text": "With this move, one piece is left with no defender at all. Worth noticing, though that alone doesn't mean it's going to be lost."
+    },
+    "takeId": null
+  },
+  "requestHash": "3cccde6e6eab7a57547e1a74dfd5d5d40b2a8d56630ec6bb2eb360dbd8b70a57",
+  "recordedAt": "2026-10-03T05:46:20.350Z",
+  "sha256": "5130b5bd6d62c5168ee050e5ba457c82998d810d45f8acdbfb2f7fda21d1e2d0",
+  "bytes": 28295,
+  "requestId": "7iTot8XTNKSYedYVIc6z",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3f1b9087a14ada39677a3d1ff9a65824a8902b84678254daeeb73501397ce29b",
+    "bytes": 142986
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

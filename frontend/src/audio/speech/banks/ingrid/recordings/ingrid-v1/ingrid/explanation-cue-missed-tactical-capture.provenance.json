@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "explanation-cue-missed-tactical-capture",
+      "label": "Explanation cue missed tactical capture",
+      "text": "Before a quiet move, it pays to check whether any enemy piece has been left unguarded."
+    },
+    "takeId": null
+  },
+  "requestHash": "1aeb8d8fc2f218758213d893cc1059637e7c87b0723cb1fa40bb3977aaf30e2f",
+  "recordedAt": "2026-10-03T05:48:43.939Z",
+  "sha256": "de95c43f7990a12123cc80fd1112f4c860d7a0dade0554471d71cd18592edbfb",
+  "bytes": 19706,
+  "requestId": "j3BPo0DahFVTWqSbMv8w",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4bb54f009130810e2e54c5c22f346c3d86d9797c2cc50f05cc3d22eb92129551",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

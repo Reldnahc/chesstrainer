@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "only-advantage-resource",
+      "label": "Only advantage resource",
+      "text": "Among the examined moves, only this one held on to the advantage, and the rest were losing."
+    },
+    "takeId": null
+  },
+  "requestHash": "a423c8f0541dee9893d4b69dc986681151e8f8f74e8528d62f94589b6da4b821",
+  "recordedAt": "2026-10-03T05:46:44.709Z",
+  "sha256": "637c5b85a2d54c9ecd8092199805659ffdf57c9d0bbd05cc85e210fdd3187b2b",
+  "bytes": 20657,
+  "requestId": "xPfMaIGveFEpztYKnkC2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f5148cf48ebfe7a6f4973d8bbe87a274121ec43c948c4a7dd9b7c6294ec89eb5",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

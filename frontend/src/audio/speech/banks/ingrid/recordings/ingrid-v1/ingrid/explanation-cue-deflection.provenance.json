@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "explanation-cue-deflection",
+      "label": "Explanation cue deflection",
+      "text": "Check whether a forcing exchange might draw a defender away from a second job it's doing."
+    },
+    "takeId": null
+  },
+  "requestHash": "6619d86317a5229f7a4ba3d41b5116bee35129fdc833060022be10acac5ba752",
+  "recordedAt": "2026-10-03T05:49:00.933Z",
+  "sha256": "f6a31621e14e41ae32866b8e33d0ff635a0e089229e6900bdea8dc3a8b572aa8",
+  "bytes": 17941,
+  "requestId": "YlOfHz0tsk018ZxFikd8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7802b1158c5f13777334822b5995827f08cf6e66c3cd863ff8a02fdd95db635e",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

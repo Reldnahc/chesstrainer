@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "game-browse-instructions",
+      "label": "Game browse instructions",
+      "text": "Choose a move to look back at, or experiment with your own move on the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "80a0bfe27470cf13c856ed8dd974a9624c7540876a236376262ab86c141408e6",
+  "recordedAt": "2026-10-03T05:49:41.650Z",
+  "sha256": "5c47293260d14201127d746981cc0deb138bfc06d7beeb8952589b1a535a7236",
+  "bytes": 16195,
+  "requestId": "gj0wny7TOiP1z70k30ng",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ef34007a0b6d40b0a640b59501268af59c8bd63428986bf9f44ee9dbd4909390",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

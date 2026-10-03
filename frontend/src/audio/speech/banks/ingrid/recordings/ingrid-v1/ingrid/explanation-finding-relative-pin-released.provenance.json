@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released",
+      "label": "Explanation finding relative pin released",
+      "text": "A relative pin had been holding the attacking piece back, and the opponent's previous move released it. Then it takes a target that had stayed where it was, in the line shown."
+    },
+    "takeId": null
+  },
+  "requestHash": "92680b8ddbb07e91970601ac1664d797e2f3dec4a46deb8184a309f917c0c144",
+  "recordedAt": "2026-10-03T05:48:38.690Z",
+  "sha256": "08c14969e411a96af3bdf622498cd381421a79b85a94c2c6f65851d474211082",
+  "bytes": 35243,
+  "requestId": "12wUQNxERvvcri72VGkX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0803f8259cc1e960f10b2b7595081c5314113535d9e9dd59a253be3a2dba404f",
+    "bytes": 178930
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

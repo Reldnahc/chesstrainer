@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "book-opening-entry-2",
+      "label": "Book opening entry 2",
+      "text": "Comfortable book territory, and familiar to a known opening."
+    },
+    "takeId": null
+  },
+  "requestHash": "151122718f9117fe9d4c8dbd06913fed71b2fc877ceebe1c1741355c03e8b704",
+  "recordedAt": "2026-10-03T05:49:44.019Z",
+  "sha256": "6963c22bde61d0cd1f3f511e06d34758da74dfb8030fb9b089b0f3eb8ec6ff55",
+  "bytes": 14018,
+  "requestId": "qaHMZFRHbke5DnL8xeaj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a1789fc5323ac929e9cae47b08cff9b75e3bf6d47228145e86fc02cc616c86b4",
+    "bytes": 69007
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

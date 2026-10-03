@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "positional-king-flight-alternative",
+      "label": "Positional king flight alternative",
+      "text": "With a different move, the king would have had an extra square to step to."
+    },
+    "takeId": null
+  },
+  "requestHash": "9fcc91d85ad673b9885c61409ff392ae62d29480e572781b880f3f81e597a846",
+  "recordedAt": "2026-10-03T05:46:25.461Z",
+  "sha256": "c5abbcfdbad041854a4e09bdbc4da3e61e436960866cd6767aecb0e57550e099",
+  "bytes": 14975,
+  "requestId": "gFBxntRY9qp2cvnnR1oN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5014cda5e53594600b642823d5dbb4073536453a951adf8b0fe9123dae590ad0",
+    "bytes": 74022
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "cause-abandoned-defender",
+      "label": "Cause abandoned defender",
+      "text": "The simple problem is that this piece was the only real guard of another one. Once it moves away, that other piece can be captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "e86e4d7d465001e77ca232991f6b6efaf97b151c0d462f9f8857b199e10ef75e",
+  "recordedAt": "2026-10-03T05:45:50.825Z",
+  "sha256": "ea2943ba7b56de137202f0c29e13dd6dbe42ea638e3519df9c0a9f68f2c88485",
+  "bytes": 26164,
+  "requestId": "djhfblanWchbQ5uJMrSr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9e6c2e02d7ab8a5290f28adaa8fe5f4bd84cf314ecce5841751cab888c465810",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

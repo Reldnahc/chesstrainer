@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-move-escape",
+      "label": "Explanation frame quiet move escape",
+      "text": "That gets the king clear of the check."
+    },
+    "takeId": null
+  },
+  "requestHash": "766af79418d0a98c461b371b40ef1577a2677723ffb75f1a560fd87bf10114d5",
+  "recordedAt": "2026-10-03T05:47:54.074Z",
+  "sha256": "fb92009096fe2f96a5b19d21578b24e24df04ad7f71cc06ab14909c657667b55",
+  "bytes": 8348,
+  "requestId": "fzvGZDZYeqgc8WEGRRBg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "261827ba764ef2b9eceedc5932392625dca8439ddef2b832eb6ddc55c026be79",
+    "bytes": 39332
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "cause-avoiding-bad-trades",
+      "label": "Cause avoiding bad trades",
+      "text": "Play the trade out one more move. The recapture wins back more than was taken, so the exchange ends up costing material."
+    },
+    "takeId": null
+  },
+  "requestHash": "5ef876b65524ad9b02a43e4f9e9a855ad98916894c80df23318e63dc0f6b42b6",
+  "recordedAt": "2026-10-03T05:45:54.581Z",
+  "sha256": "13f4c75ffbbfb7e2defbbb3db5920267cd8e9803e0b2901d31a0383f2413dd92",
+  "bytes": 26022,
+  "requestId": "88N28URFVb2FMEZrQwho",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6bda1db1e39a9bba8dc10c3021fd15ecd0fbb638d0d451a4d87a1a5c3199dbd9",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

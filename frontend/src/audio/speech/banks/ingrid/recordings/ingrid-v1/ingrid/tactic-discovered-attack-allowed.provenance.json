@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed",
+      "label": "Tactic discovered attack allowed",
+      "text": "Something to settle and look at: one enemy piece is hiding another, and when the front one moves, the back one attacks along the line."
+    },
+    "takeId": null
+  },
+  "requestHash": "d0c1d5f3f0e53ed9f31d088fe99c0a2c70607e0cf128346a0312a1c32c760d9a",
+  "recordedAt": "2026-10-03T05:45:29.326Z",
+  "sha256": "7cfb9790ef85b26dd2b4bfa7e5e634b90bfd1480428def1ea0eacbfa899ba21f",
+  "bytes": 27909,
+  "requestId": "ZLlYqRnBewuKLKLw6Msm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d7a4740c168d05650cad11d9ac85a3ec7985479172d4dfe8583b275eaf8fd91f",
+    "bytes": 142986
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

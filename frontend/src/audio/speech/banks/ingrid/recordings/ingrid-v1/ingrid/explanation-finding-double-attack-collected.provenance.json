@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "explanation-finding-double-attack-collected",
+      "label": "Explanation finding double attack collected",
+      "text": "One target is threatened by the moving piece, another by the line it opened, and it's the piece behind that collects."
+    },
+    "takeId": null
+  },
+  "requestHash": "b721b81dcd08d048e8ec47630aef1128e06cfa56dcf0b3023b57d4e0fedf4b04",
+  "recordedAt": "2026-10-03T05:48:32.928Z",
+  "sha256": "cddde069208a662c45f4350be7d46a9fc20026e35adea0b0f78084d9d7caebb3",
+  "bytes": 25216,
+  "requestId": "5BAYp4rHwmfB6bHM8tFP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "aeec4249d9abb35605475dcac9cad4904e4023996375869f45b2a54c5fab9937",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

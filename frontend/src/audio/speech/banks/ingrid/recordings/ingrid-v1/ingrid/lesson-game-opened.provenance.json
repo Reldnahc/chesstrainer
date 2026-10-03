@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "lesson-game-opened",
+      "label": "Lesson game opened",
+      "text": "The complete game is there to browse. Wander through it as you like, and go back to the chapter whenever suits you."
+    },
+    "takeId": null
+  },
+  "requestHash": "31d8c47e4c39849ebe77a5c288d60981e38ad4bbc4bcc7a49a5a5ad229ad6ee7",
+  "recordedAt": "2026-10-03T05:50:07.788Z",
+  "sha256": "5989d5050678447ab9d764eacd5e89630dd12afbeec202df64fbe694cf664e05",
+  "bytes": 21279,
+  "requestId": "s4fTyawBSB6vKDPir0jk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7de6faff715d2fe6c4a7c4ddf39a2aa18d86fd55a9b6e51ded30b93ea2d84605",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

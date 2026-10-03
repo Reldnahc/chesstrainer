@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "puzzle-playback",
+      "label": "Puzzle playback",
+      "text": "The verified line is about to play through on the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "cb9cd6994346b8ec348cb7291a3fd9633a9552582687584df37922579e1eeab7",
+  "recordedAt": "2026-10-03T05:49:28.586Z",
+  "sha256": "102b8097a990ba9f9ebb92f0687b8650b6132802301c24dacb5d107dafc12ca9",
+  "bytes": 11368,
+  "requestId": "Xm4lS4kbmGWeQaYePnXB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "be8c06e123c097de7ad28aa10e4e0730a94b35960631289437f2d94b24638dce",
+    "bytes": 54796
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

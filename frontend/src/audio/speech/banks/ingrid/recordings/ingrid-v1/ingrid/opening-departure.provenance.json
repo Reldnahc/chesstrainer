@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "opening-departure",
+      "label": "Opening departure",
+      "text": "The game leaves the known opening here, so from now on it's fresh territory."
+    },
+    "takeId": null
+  },
+  "requestHash": "714749042546a28bc03a440d116b84a60f0bac395209f08b6bcfca7d83f70692",
+  "recordedAt": "2026-10-03T05:47:01.324Z",
+  "sha256": "45438108dbe6ee1d2e83718fa646ee9cccdc23e02e012af2a52a19fc5f630657",
+  "bytes": 16958,
+  "requestId": "YZaw2iQuwEXP82szYmw0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8dc529d93cc0d906469d51ea75ec4b7050ac63b5402421e276ab66851bd16b9f",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

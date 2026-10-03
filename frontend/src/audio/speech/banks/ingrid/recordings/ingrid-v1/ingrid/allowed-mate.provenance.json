@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "allowed-mate",
+      "label": "Allowed mate",
+      "text": "This one decides a lot: the other side now has a forced checkmate in hand. The useful thing is to trace the attack back to where the defense gave way."
+    },
+    "takeId": null
+  },
+  "requestHash": "8dcfe317de9247893b40eaf3089f1b1f42ca034d90afeb864df650ce27900c72",
+  "recordedAt": "2026-10-03T05:46:36.807Z",
+  "sha256": "d226d4f246d7c385b67cd80e496443a24148172339b6c342cdb45ebc7fc39a9c",
+  "bytes": 31744,
+  "requestId": "SJkOppfuIApcMeFC5vi7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c100d3caf66360800f9d3b56d9d96df0145cd342fe0381bd7e6cceb3dff91f2f",
+    "bytes": 160958
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

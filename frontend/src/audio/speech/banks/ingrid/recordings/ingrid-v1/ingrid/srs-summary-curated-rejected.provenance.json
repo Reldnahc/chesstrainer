@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "srs-summary-curated-rejected",
+      "label": "Srs summary curated rejected",
+      "text": "This one isn't on the saved list for the exercise, though a different legal move can still be honest, sensible chess."
+    },
+    "takeId": null
+  },
+  "requestHash": "a615b89e8eb2e57f5153aaaaedfabb22557d3008eafb2a6cca91bd3504f8ab59",
+  "recordedAt": "2026-10-03T05:47:43.468Z",
+  "sha256": "353f3d4563118eb1f1aec8f529044dbdcf8766ebcef05bb6ed4e5db2f23b60e9",
+  "bytes": 24533,
+  "requestId": "3DFNTCTRPgmqX24giQfR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "75285ea4032ac6019a4d5f911335d4b8f14591aa48024b8ef8eba13ad6a712c2",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

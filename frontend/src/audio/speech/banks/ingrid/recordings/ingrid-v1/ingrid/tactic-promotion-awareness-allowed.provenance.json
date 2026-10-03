@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "tactic-promotion-awareness-allowed",
+      "label": "Tactic promotion awareness allowed",
+      "text": "The plain fact is that an enemy pawn now has a clearer road to promotion. Every step it takes from here will want an answer."
+    },
+    "takeId": null
+  },
+  "requestHash": "8e94bc49ece4a257d78177f2eab58a90c1bccc81091d97758ef5cabed6f98e09",
+  "recordedAt": "2026-10-03T05:45:23.163Z",
+  "sha256": "653c4de12be3dbabba87e2b50c15d701e725bfcd5fcec136aa20051cc468fff1",
+  "bytes": 26942,
+  "requestId": "mFGMYOJuc1hGZWH2mv0e",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6886b8370d1f9b6ded4c65e239ffd16c8e3e0c9177ad3b3a10bf4a0052d88aa0",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

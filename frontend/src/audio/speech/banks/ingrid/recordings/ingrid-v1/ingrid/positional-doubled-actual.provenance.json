@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "positional-doubled-actual",
+      "label": "Positional doubled actual",
+      "text": "Doubled pawns: one pawn now sits right behind another of the same color on a single file."
+    },
+    "takeId": null
+  },
+  "requestHash": "87ad2880ae7dfcc8f09ad27718805cea6dd931ac5475a108a33bc73269c4408e",
+  "recordedAt": "2026-10-03T05:46:33.385Z",
+  "sha256": "5a5c2ebf2f879174205656bcc0a258915176b20c5443bc277d520f8261d81d53",
+  "bytes": 21968,
+  "requestId": "RLanZT75E2NTRTZRIHrF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "70dd1c0b709e47bfb8f1cec1de499725b66aad1b0131a284265a46e674909c50",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

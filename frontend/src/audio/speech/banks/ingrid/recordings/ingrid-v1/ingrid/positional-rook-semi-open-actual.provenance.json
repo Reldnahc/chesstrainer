@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "positional-rook-semi-open-actual",
+      "label": "Positional rook semi open actual",
+      "text": "The rook is on a semi-open file now, with no pawns of its own on it and an enemy pawn or two further up."
+    },
+    "takeId": null
+  },
+  "requestHash": "2e11c8e31114821d0d45eb6c8d9254010c4c670b20561bb69c44eb92ae2013d0",
+  "recordedAt": "2026-10-03T05:46:02.315Z",
+  "sha256": "0869289a018f70b1d2b697c47152891e5af71c49996366a56e4ba329741303be",
+  "bytes": 22920,
+  "requestId": "dHuST34Tk21aafVHT7M5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "82d3ea96a66d245596822e803a9d3b56c50e3e1375923c8a50918efa8b7c64d0",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

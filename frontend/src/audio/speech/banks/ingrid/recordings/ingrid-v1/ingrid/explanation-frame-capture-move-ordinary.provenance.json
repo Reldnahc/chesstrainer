@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary",
+      "label": "Explanation frame capture move ordinary",
+      "text": "A capture takes a piece off the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "4f2e71ae8ec6cda778b49b972d2a3df19f7f7a4cff1b74ba978ff65f06626a4a",
+  "recordedAt": "2026-10-03T05:47:59.461Z",
+  "sha256": "49ea1dc856a1292f4d73af6d2f7812cf461f737494796cbd816e251305299a9f",
+  "bytes": 9326,
+  "requestId": "jMZmhQ7FVscxt8mGtV5c",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bfa90b662d6c159179ea9c7c67d1828bf9fb2042aa0a8f66ff488c24c4ebbf54",
+    "bytes": 44765
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

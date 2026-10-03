@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-promotion-check",
+      "label": "Explanation frame quiet promotion check",
+      "text": "Promotion, and the brand-new piece checks the king straight away."
+    },
+    "takeId": null
+  },
+  "requestHash": "3bc8cfd0769675d03a7fcd28428953f02c5e2d3fa8537d4fe11f55002c53dda3",
+  "recordedAt": "2026-10-03T05:47:56.544Z",
+  "sha256": "5e5241c65fb4055e54f51eac8ef42570dc5dc1b60865ea114064385594f39cf0",
+  "bytes": 14017,
+  "requestId": "S0DiH1MDoc96am6Hj5AA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ab3dffc2334093622647354eddbdba19d5c93d9fa657d05c086dec851825cf8e",
+    "bytes": 70261
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

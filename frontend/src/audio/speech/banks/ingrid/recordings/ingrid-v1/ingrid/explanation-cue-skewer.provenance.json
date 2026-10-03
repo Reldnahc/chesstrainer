@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "explanation-cue-skewer",
+      "label": "Explanation cue skewer",
+      "text": "Spare a glance for what's behind the first target; a more valuable piece could be lined up there."
+    },
+    "takeId": null
+  },
+  "requestHash": "d2c2bfc65c810bfedefa964694566603edfbd3a11a2776a04e9af76fdb0b0f64",
+  "recordedAt": "2026-10-03T05:48:48.454Z",
+  "sha256": "e2405bfac9664f6d89afa2af655d6906f14c31d9e7cb325c6bb8529122dafaea",
+  "bytes": 18499,
+  "requestId": "kgNtcSlhhpSw7EE44jEC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "511218e681e25b0d6a33cea2e6683c01949e8811dfde1ed9fbb16555b9203df6",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

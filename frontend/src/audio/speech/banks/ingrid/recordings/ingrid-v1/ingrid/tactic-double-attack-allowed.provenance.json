@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "tactic-double-attack-allowed",
+      "label": "Tactic double attack allowed",
+      "text": "The plain problem: after this move, the other side has a single move that makes two threats at once."
+    },
+    "takeId": null
+  },
+  "requestHash": "ad48225425919f81e826dfec3b73090ccccddb692fe92997227841155580efdf",
+  "recordedAt": "2026-10-03T05:45:35.175Z",
+  "sha256": "bdd8ba5316628273a1b442c1fb1f771731ed38abb3d38a76593f8b071e32a131",
+  "bytes": 22640,
+  "requestId": "x7VNSsRWA7yFDNQL2FTR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "31c660b1efd2d17fb428eb5d540879f48d2f7eb91767696151fcded15217b958",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

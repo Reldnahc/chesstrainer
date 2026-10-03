@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "tactic-pin-missed",
+      "label": "Tactic pin missed",
+      "text": "The stronger move would have frozen an enemy piece in front of its king. This one lets that piece wander freely, and that's the whole difference."
+    },
+    "takeId": null
+  },
+  "requestHash": "0ebe2432c447a54bb2b61fa7569d392d6fecb17c8461ee2f3045b7f1961985a6",
+  "recordedAt": "2026-10-03T05:45:01.665Z",
+  "sha256": "67ed818b499ae73bed46f5fe2a473e67836efe661e33210e3e60991bb6ba61c2",
+  "bytes": 29088,
+  "requestId": "RR4WBgiW1KzhQSPYlUTd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a4a1a9e0bc10d62412e78ab850e5368bcb301310500b0eb537e893cc6eefbe6e",
+    "bytes": 148419
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

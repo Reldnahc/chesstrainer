@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-move-check",
+      "label": "Explanation frame quiet move check",
+      "text": "Check, so the king comes first."
+    },
+    "takeId": null
+  },
+  "requestHash": "1e92ed0af851b231ffe7f1f75b09f55021f9d03677e93142160c2831c6db8dcd",
+  "recordedAt": "2026-10-03T05:47:53.152Z",
+  "sha256": "df13d3b681cd9e8bafc00220765b830a929f7ba5c3412fa7e8d766102a7a3e2a",
+  "bytes": 9489,
+  "requestId": "5iDRmh3hsLAWunu0bTaW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "580b854de878fe5671b9b7e4ed3adaaa8d48ba9d45ec192f5bc08898d928efd1",
+    "bytes": 47273
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

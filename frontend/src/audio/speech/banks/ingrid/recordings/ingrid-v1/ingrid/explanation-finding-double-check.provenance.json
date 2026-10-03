@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "explanation-finding-double-check",
+      "label": "Explanation finding double check",
+      "text": "Double check: two pieces check together, and only moving the king can deal with it."
+    },
+    "takeId": null
+  },
+  "requestHash": "448eb45ee9b72c81a531e7c8e513068ca2834c28cb2e213fa4cf74f0a225bc19",
+  "recordedAt": "2026-10-03T05:48:30.911Z",
+  "sha256": "3f4f5df475592775400b0c93b60c5c0ed554020a697e6795fd4e5e8580b383d4",
+  "bytes": 19502,
+  "requestId": "6IH1Wz14qdfXMqPALrbU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "709110a33450a49033e32b0cbc1c6f5def6749d4a081ce0eb7d15feeb2627c7f",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

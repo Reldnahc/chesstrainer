@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "saved-history-recurrence",
+      "label": "Saved history recurrence",
+      "text": "This same issue appears in some of your other saved games as well. Looking at them together could make it much easier to fix."
+    },
+    "takeId": null
+  },
+  "requestHash": "3068671156b13bc02cae9feee2c1fe7a44c77101e29dc8f747e29a91fadd2376",
+  "recordedAt": "2026-10-03T05:47:20.230Z",
+  "sha256": "76f4e130509ffc40f5aacee102fda88a25c0c05c8993cd3769f98d9d24f9f592",
+  "bytes": 23991,
+  "requestId": "h8mooZjh1hZjXJJx0TK5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bf77af859647fde84dd0536eee0decf700c350261facfb5ae1cac3da1cc2c99d",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

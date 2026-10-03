@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "opening-preview-active",
+      "label": "Opening preview active",
+      "text": "Mixed Due counts any move from this line, while dedicated practice wants this particular one."
+    },
+    "takeId": null
+  },
+  "requestHash": "8d21d8e09ea88714fb5cf191bd4067d2310d2f86718728329d008f407f3a5b32",
+  "recordedAt": "2026-10-03T05:49:24.093Z",
+  "sha256": "0dc517a78f4496a7f9a5c7c480ab067bb9451bd9ba76cb0388972affabc1f409",
+  "bytes": 21440,
+  "requestId": "nPj4s4tnuI2kWqExRKYM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ce695ca98270aabac9f72095d3e4b8f7cf1bdedfe3c2fbe030cb06a69063aeb8",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

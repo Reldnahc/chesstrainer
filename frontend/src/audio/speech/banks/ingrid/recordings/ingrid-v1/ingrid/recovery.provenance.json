@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "recovery",
+      "label": "Recovery",
+      "text": "After the earlier error, the game has settled back into something playable. That's exactly how to respond to a setback; keep that steadiness going."
+    },
+    "takeId": null
+  },
+  "requestHash": "06ee27dc8bef89dc829d25ac5bd5056979a35c860adc275d1a1f5bdcd95209fb",
+  "recordedAt": "2026-10-03T05:47:03.597Z",
+  "sha256": "d6b71bca182d605f4deec6db8db115e6b3cb628069dfe291264c62ba9e3fd851",
+  "bytes": 30022,
+  "requestId": "yBsjFYBWthTtNoHuXbmZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2ea0031575252c363ee35f42422ba389048f17b8a12630d39e4e844976cbb4cd",
+    "bytes": 152181
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

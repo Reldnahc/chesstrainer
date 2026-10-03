@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "recovery-assisted",
+      "label": "Recovery assisted",
+      "text": "After the earlier error, things are playable again, helped along by the other side's mistakes. Good to take the chance when it comes."
+    },
+    "takeId": null
+  },
+  "requestHash": "0ec8fc1fa18c55f91f28c2cda8fbd9ea61f32e5d3566c46b45987814a8dc936d",
+  "recordedAt": "2026-10-03T05:47:05.671Z",
+  "sha256": "849638bbee2f96d3eaabb2ae2dbac09c6f6b178ad056dc8d098d7cd2a3ad71ec",
+  "bytes": 25374,
+  "requestId": "Rry0AxJ3pCpImdHvM3dn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "94ba9d953961afedc5dd4bd9680e3b6fbda56eedddaeb19cad84a22504beabb1",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

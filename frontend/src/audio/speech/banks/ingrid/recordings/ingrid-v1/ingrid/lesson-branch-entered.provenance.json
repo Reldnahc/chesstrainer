@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "lesson-branch-entered",
+      "label": "Lesson branch entered",
+      "text": "We've wandered off the main road onto a different idea for a while. The main road will be waiting for us after."
+    },
+    "takeId": null
+  },
+  "requestHash": "4d82ea8b02ff84f7a56b7756c9c12c3ae18b61fc00483a56804b71209b8f74cc",
+  "recordedAt": "2026-10-03T05:50:04.273Z",
+  "sha256": "fc2962858115cb9b3c1d6f9a623a763993942f9cc66af31d504e6e37b82cb076",
+  "bytes": 20963,
+  "requestId": "i1erLGOztpQcp7ljRPVR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "db5aa3c3d2ec4453f5510b684859484ae47198b46a3483e97977f806ce87e956",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

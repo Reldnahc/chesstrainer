@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "tactic-back-rank-missed",
+      "label": "Tactic back rank missed",
+      "text": "The enemy king was stuck on its back rank behind its own pieces, and a mate was there. Worth replaying slowly to see how it would have gone."
+    },
+    "takeId": null
+  },
+  "requestHash": "deaaed99930ffdda1986b0e1701e8005c2ac70654bbc5fdc91d12eae94cec81b",
+  "recordedAt": "2026-10-03T05:45:19.344Z",
+  "sha256": "df2ae76593f441d56e70c8a6532f2e33b7be50f969b5aeee623a0003f393e162",
+  "bytes": 28873,
+  "requestId": "GlWVDjbhpPxqajLM36Dz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4af92b6ca502b84a1886e8513db88fa7dcb015e00b8471860b23cb2806a43854",
+    "bytes": 145911
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

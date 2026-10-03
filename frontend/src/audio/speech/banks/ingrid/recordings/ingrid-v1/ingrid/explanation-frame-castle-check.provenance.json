@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "explanation-frame-castle-check",
+      "label": "Explanation frame castle check",
+      "text": "Castling, and check comes along with it."
+    },
+    "takeId": null
+  },
+  "requestHash": "31f3db85a9cf0e536a8696ee3220777b21aee53ff604767ec40c1d38710072f5",
+  "recordedAt": "2026-10-03T05:48:08.106Z",
+  "sha256": "cb530350ea7dbdbad8407860dfd014ee9d6dbedb06812d328760aaf1b385117e",
+  "bytes": 9882,
+  "requestId": "dI7XJCHGtKaJzvL4B63O",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fbda927508e362acab0be10b39033eb97430fe68e6a6055b29c1211b8e904459",
+    "bytes": 48527
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

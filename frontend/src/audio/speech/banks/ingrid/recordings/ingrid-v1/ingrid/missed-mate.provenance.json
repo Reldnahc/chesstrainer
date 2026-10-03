@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "missed-mate",
+      "label": "Missed mate",
+      "text": "A forced checkmate was on offer, and this move goes a different way. Setting up that mating line afterward is time well spent."
+    },
+    "takeId": null
+  },
+  "requestHash": "192788de5f3c5b1fca836d2267140b31958d150ad13f2e69e9557af5ce8c5e8e",
+  "recordedAt": "2026-10-03T05:46:38.834Z",
+  "sha256": "8aebf4eb2df2632c35c0e8c4717c36dbddf4c6ba9276f9f81f1f84153c2289cf",
+  "bytes": 27020,
+  "requestId": "8etDENB0abUkrj1N9pdf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "088a5d1c773ed6bf708f51d01453404e963f18e5975881fe8720c7661e59c27e",
+    "bytes": 136716
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "lesson-error",
+      "label": "Lesson error",
+      "text": "Something slipped, so the lesson wants reloading. Once that's done, you can carry on from the same place."
+    },
+    "takeId": null
+  },
+  "requestHash": "027eea59bee2223de1f4c51fa14694eb587b86209e744b42c43157e799c485e3",
+  "recordedAt": "2026-10-03T05:50:09.722Z",
+  "sha256": "10c722f3d10eebfb6293bcebdf00bf06c5e0034b97b90a4823e32120871c5525",
+  "bytes": 22612,
+  "requestId": "yOqp0CqmPSNoWazDa4WP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2169594032b7d33c23a87d298858617681955a332cf1c61f23d4ae025e7c2dca",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

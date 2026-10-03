@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "opening-preview-inactive",
+      "label": "Opening preview inactive",
+      "text": "Due recalls will want the moves for whichever side you picked. If several active studies share a position, it gets a single card."
+    },
+    "takeId": null
+  },
+  "requestHash": "79e72e0bd929cf9e766ee724ee32981c19dfb1e196618d3db500e1078ce4a291",
+  "recordedAt": "2026-10-03T05:49:26.468Z",
+  "sha256": "78e840c0de031a20c2abbf40445cbc574777eb065dfdea39cdcdbf48c67526bb",
+  "bytes": 25800,
+  "requestId": "1RSxRG1SiCPedLuW5YQC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b7e860718deeb16de55dc1f3606f77156efb7807773303f7e0815e066b142327",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

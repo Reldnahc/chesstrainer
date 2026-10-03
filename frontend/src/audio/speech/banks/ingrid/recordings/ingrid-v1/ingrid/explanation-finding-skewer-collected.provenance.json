@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected",
+      "label": "Explanation finding skewer collected",
+      "text": "Once the front piece slides off the line, whatever it was shielding gets taken."
+    },
+    "takeId": null
+  },
+  "requestHash": "f395c8859261b76924f33206fd9f93e193caf04d853f393ae148e7aec2bf5ba4",
+  "recordedAt": "2026-10-03T05:48:22.071Z",
+  "sha256": "ce34a4c6b68d8e8450c06a2ef1d0efb98b0e98dfc0f33ea1348c71d772ccff45",
+  "bytes": 16294,
+  "requestId": "cydDBvkvMFXwvbg3i8zS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b12817e226a0f6a23af3954caa41556be6cd046909c86b47a25d8d4944d61341",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

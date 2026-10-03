@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "explanation-cue-promotion-awareness",
+      "label": "Explanation cue promotion awareness",
+      "text": "Count the squares a pawn has left to promotion, and notice which of its moves will need an answer."
+    },
+    "takeId": null
+  },
+  "requestHash": "b30cb72681fb1fe84b786a0c54ad663ad0941096f01642f244d223efb93d66d4",
+  "recordedAt": "2026-10-03T05:48:56.500Z",
+  "sha256": "43e53d4472af17ae78d47e7e674c25baa65cc8421a59fe2bb79170aed69d26fc",
+  "bytes": 19134,
+  "requestId": "1uCqBjK8z80YlqObQdGM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "86f1001315697245d45213564e5b02b5362b3bd3a03783eccd576b5d9b554147",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

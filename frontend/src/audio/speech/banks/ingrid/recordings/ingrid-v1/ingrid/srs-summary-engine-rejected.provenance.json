@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "srs-summary-engine-rejected",
+      "label": "Srs summary engine rejected",
+      "text": "The exercise isn't taking this one, and nothing in the moves shown makes the tactical reason plain. A fresh, unhurried look is the next step."
+    },
+    "takeId": null
+  },
+  "requestHash": "14bfbe4abc72aaacc51eb8afce84fc72a59f12c24f92452e81f21ee7294124ac",
+  "recordedAt": "2026-10-03T05:47:39.928Z",
+  "sha256": "45c795ea14fe045c40439ffa5bb647c4c5f614a726f3a364f25653c439c07f97",
+  "bytes": 30531,
+  "requestId": "5yr7RpRiVOmCNqQyS6RE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bbaf4a63fb3b46f7b5064804c09f3cb0705f1a1e1e793c8879e0b9731889d1c4",
+    "bytes": 154688
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

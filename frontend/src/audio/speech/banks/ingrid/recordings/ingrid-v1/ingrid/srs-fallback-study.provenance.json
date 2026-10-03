@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "srs-fallback-study",
+      "label": "Srs fallback study",
+      "text": "Sit with the move and its reason for a moment, and then carry on with the next position."
+    },
+    "takeId": null
+  },
+  "requestHash": "9a42d4c298f1624299c63611fc33ebfe6b620430517997c787f7e5ed0d50d742",
+  "recordedAt": "2026-10-03T05:47:45.272Z",
+  "sha256": "3d0723ee96c203d0fcfad6e76d959405a1d0f79264377fce6dc3fa2fb51029eb",
+  "bytes": 18211,
+  "requestId": "lN4i6N6Zy4VeY7nGu1Uq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "66bfb11f00902c033619cef2bede60a893e9e7344abf8fe629f68a50a16fd71b",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

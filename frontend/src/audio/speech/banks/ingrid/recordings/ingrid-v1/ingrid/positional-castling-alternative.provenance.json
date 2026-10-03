@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "positional-castling-alternative",
+      "label": "Positional castling alternative",
+      "text": "Castling was available here, with king and rook moving in the same turn."
+    },
+    "takeId": null
+  },
+  "requestHash": "67d340eb8e1983bfb1d656c03d32a35fc353e5c8d5e5444cee6d57898579b296",
+  "recordedAt": "2026-10-03T05:46:28.288Z",
+  "sha256": "c443fdf8e11bf6100413b31fc526eb68fb7ae89ed513c561cbe5697385c59bbc",
+  "bytes": 16039,
+  "requestId": "eVDkwUgixSnL4rvrqNj8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b53f61e4c1cb8b6869fc3a0debe12f78e66b0d5d93b7b1cad31c82e0edcbb2b6",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}
