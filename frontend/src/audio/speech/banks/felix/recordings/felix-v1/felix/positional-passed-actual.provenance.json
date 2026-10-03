@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "positional-passed-actual",
+      "label": "Positional passed actual",
+      "text": "That pawn is passed; no enemy pawn stands in front of it on its file or either neighbor. Worth watching."
+    },
+    "takeId": null
+  },
+  "requestHash": "7d69eba33dc933b1a4b29dda76c0560ce5b580083810fbccda52dc6debd9bdff",
+  "recordedAt": "2026-10-03T05:31:49.245Z",
+  "sha256": "da194e979327ccb7d1017d5dcff1e3f6c9b78d5b5c403ceb6573421a6d2dc4ac",
+  "bytes": 23966,
+  "requestId": "c05XTHFMApWPdknXolYi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "15e0ff63aeb38a683826b6a45df3fdca3eff7eca3d7a413512a072ae28b4e75f",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

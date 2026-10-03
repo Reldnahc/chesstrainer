@@ -1,0 +1,587 @@
+{
+  "schemaVersion": 1,
+  "scriptId": "explanation-frame-castle-mate",
+  "voiceId": "felix",
+  "metadata": {
+    "duration": 5.04
+  },
+  "mouthCues": [
+    {"start":0.0,"end":0.13,"value":"B"},
+    {"start":0.13,"end":0.29,"value":"C"},
+    {"start":0.29,"end":0.38,"value":"B"},
+    {"start":0.38,"end":0.49,"value":"H"},
+    {"start":0.49,"end":0.79,"value":"B"},
+    {"start":0.79,"end":0.89,"value":"H"},
+    {"start":0.89,"end":0.96,"value":"B"},
+    {"start":0.96,"end":1.01,"value":"G"},
+    {"start":1.01,"end":1.11,"value":"E"},
+    {"start":1.11,"end":1.23,"value":"B"},
+    {"start":1.23,"end":1.41,"value":"A"},
+    {"start":1.41,"end":1.46,"value":"C"},
+    {"start":1.46,"end":1.77,"value":"B"},
+    {"start":1.77,"end":2.13,"value":"X"},
+    {"start":2.13,"end":2.29,"value":"B"},
+    {"start":2.29,"end":2.41,"value":"C"},
+    {"start":2.41,"end":2.46,"value":"B"},
+    {"start":2.46,"end":2.51,"value":"C"},
+    {"start":2.51,"end":2.55,"value":"A"},
+    {"start":2.55,"end":3.17,"value":"B"},
+    {"start":3.17,"end":3.25,"value":"C"},
+    {"start":3.25,"end":3.57,"value":"B"},
+    {"start":3.57,"end":3.71,"value":"E"},
+    {"start":3.71,"end":3.85,"value":"F"},
+    {"start":3.85,"end":3.93,"value":"H"},
+    {"start":3.93,"end":4.14,"value":"B"},
+    {"start":4.14,"end":4.17,"value":"C"},
+    {"start":4.17,"end":4.28,"value":"H"},
+    {"start":4.28,"end":4.36,"value":"A"},
+    {"start":4.36,"end":4.66,"value":"F"},
+    {"start":4.66,"end":4.81,"value":"G"},
+    {"start":4.81,"end":5.04,"value":"X"}
+  ],
+  "provenance": {
+    "sourceScriptId": "explanation-frame-castle-mate",
+    "manualTimingEdits": false,
+    "recording": {
+      "path": "frontend/src/audio/speech/banks/felix/recordings/felix-v1/felix/explanation-frame-castle-mate.opus",
+      "sha256": "1329fd921c3343685d71c5f8d8242c6611d6e69ee4d29bb34af4dc90e3474222",
+      "bytes": 16860
+    },
+    "script": {
+      "planPath": "frontend/src/audio/speech/banks/felix/manifest.json",
+      "text": "Castling delivers mate; the enemy king has no legal move.",
+      "sha256": "3045a2c35fb8fc868b16a16d41a86ef7e4d46e8c10cb3d506ea55dac1e64d58c"
+    },
+    "tool": {
+      "name": "PocketSphinx",
+      "version": "5.1.1",
+      "api": [
+        "Decoder.set_align_text",
+        "Decoder.set_alignment",
+        "Decoder.get_alignment"
+      ],
+      "documentation": "https://pocketsphinx.readthedocs.io/en/latest/pocketsphinx.html#pocketsphinx.Decoder.set_alignment",
+      "modelFilesSha256": {
+        "en-us/cmudict-en-us.dict": "20b5c293e1f311fb375fe067e500ec5636f4fc7af5594967263696def9b23bfe",
+        "en-us/en-us/feat.params": "c982c5f75e2a30c34d2c9ef1f6b129a5a00e67e3e927565076b58664cc2404c9",
+        "en-us/en-us/mdef": "2360f9a86889c1cfee8bd618a0269387911e5fb2920a594f506b18b8c79683b0",
+        "en-us/en-us/means": "832019e32cac12eb318964f96f469034acb12d0348eeddc3831831a100cb4dd4",
+        "en-us/en-us/noisedict": "7295b07df2c204c4f87c6782b6be1a3859d7006d4e3864181c955d6dab105a33",
+        "en-us/en-us/sendump": "8c9564c0d5bef69ca9d9bf1014abe162f071644cf02cf1fa8a483c3dc165a7a8",
+        "en-us/en-us/transition_matrices": "c1f7f28ea43177be734be1f88bd7f1b9a853d0e660f8599c67c6eaeca8bb539a",
+        "en-us/en-us/variances": "b00d696f85e96834fc10f8e5f06428d8c4db6bffdbe5845b6f69bf6efbc48fa5"
+      },
+      "configuration": {
+        "pip": 1,
+        "hmm": "$MODEL/en-us/en-us",
+        "wip": 0.65,
+        "silprob": 0.005,
+        "remove_noise": true,
+        "mixwfloor": 1e-07,
+        "varnorm": false,
+        "beam": 1e-48,
+        "lpbeam": 1e-40,
+        "varfloor": 0.0001,
+        "pl_pbeam": 1e-10,
+        "round_filters": true,
+        "fwdflatsfwin": 25,
+        "kws_threshold": 1e-30,
+        "fdict": "$MODEL/en-us/en-us/noisedict",
+        "maxhmmpf": 30000,
+        "kws_plp": 0.1,
+        "min_endfr": 0,
+        "nfilt": 25,
+        "ncep": 13,
+        "fwdflatefwid": 4,
+        "frate": 100,
+        "ascale": 20,
+        "lifter": 22,
+        "bestpath": false,
+        "tmatfloor": 0.0001,
+        "feat": "1s_c_d_dd",
+        "lowerf": 130,
+        "maxwpf": -1,
+        "pl_beam": 1e-10,
+        "alpha": 0.97,
+        "mmap": true,
+        "nwpen": 1,
+        "fwdtree": true,
+        "fwdflat": true,
+        "smoothspec": false,
+        "mdef": "$MODEL/en-us/en-us/mdef",
+        "samprate": 16000,
+        "allphone_ci": true,
+        "cmninit": "40,3,-1",
+        "upperf": 6800,
+        "transform": "dct",
+        "mean": "$MODEL/en-us/en-us/means",
+        "pl_weight": 3,
+        "sendump": "$MODEL/en-us/en-us/sendump",
+        "fwdflatbeam": 1e-64,
+        "tmat": "$MODEL/en-us/en-us/transition_matrices",
+        "fsgusealtpron": true,
+        "loglevel": "ERROR",
+        "dict": "$MODEL/en-us/cmudict-en-us.dict",
+        "dither": false,
+        "aw": 1,
+        "dictcase": false,
+        "var": "$MODEL/en-us/en-us/variances",
+        "pl_window": 5,
+        "latsize": 5000,
+        "agc": "none",
+        "ldadim": 0,
+        "lw": 6.5,
+        "topn_beam": "0",
+        "uw": 1,
+        "fwdflatlw": 8.5,
+        "ceplen": 13,
+        "backtrace": false,
+        "bestpathlw": 9.5,
+        "logspec": false,
+        "nfft": 0,
+        "verbose": false,
+        "pl_pip": 1,
+        "topn": 4,
+        "fwdflatwbeam": 7e-29,
+        "compallsen": false,
+        "cmn": "batch",
+        "fillprob": 1e-08,
+        "warp_type": "inverse_linear",
+        "unit_area": true,
+        "agcthresh": 2,
+        "fsgusefiller": true,
+        "seed": 0,
+        "featparams": "$MODEL/en-us/en-us/feat.params",
+        "ds": 1,
+        "lponlybeam": 7e-29,
+        "input_endian": "little",
+        "remove_dc": false,
+        "svspec": "0-12/13-25/26-38",
+        "kws_delay": 10,
+        "wlen": 0.025625,
+        "pbeam": 1e-48,
+        "doublebw": false,
+        "logbase": 1.0001,
+        "wbeam": 7e-29
+      },
+      "configurationSha256": "4cc690802d0d8774029df0c0d0e0a370dab93bb8a4bbe9f7a711e8a9c2d027c5"
+    },
+    "conversion": {
+      "decoder": "SoundFile",
+      "decoderVersion": "0.13.1",
+      "libsndfileVersion": "1.2.2",
+      "numpyVersion": "2.2.6",
+      "inputChannels": 1,
+      "channels": 1,
+      "sampleRate": 48000,
+      "sampleWidthBytes": 2,
+      "frames": 241920,
+      "durationSeconds": 5.04,
+      "method": "float64 SoundFile decode; arithmetic channel mean; round(clip(sample,-1,1)*32767) to little-endian PCM16 WAV",
+      "trimmed": false,
+      "resampled": false,
+      "wavSha256": "f9bab994b4134f54346cb7c76c9c6a62bb0dbb44881eb687305496cd46660c8f"
+    },
+    "resampling": {
+      "method": "Python 3.12 audioop.ratecv PCM16 mono, weightA=1, weightB=0",
+      "sourceSampleRate": 48000,
+      "sampleRate": 16000,
+      "sampleWidthBytes": 2,
+      "channels": 1,
+      "frames": 80640,
+      "durationSeconds": 5.04,
+      "trimmed": false,
+      "pcmSha256": "ee0885d661dd660b9a14d6e02b913586ab736aa9c6afb431257097acadcca918"
+    },
+    "alignment": {
+      "frameRate": 100,
+      "normalizedTranscript": "castling delivers mate the enemy king has no legal move",
+      "words": [
+        {
+          "word": "castling",
+          "startFrame": 0,
+          "durationFrames": 68,
+          "phones": [
+            {
+              "phone": "K",
+              "startFrame": 0,
+              "durationFrames": 13
+            },
+            {
+              "phone": "AE",
+              "startFrame": 13,
+              "durationFrames": 16
+            },
+            {
+              "phone": "S",
+              "startFrame": 29,
+              "durationFrames": 9
+            },
+            {
+              "phone": "L",
+              "startFrame": 38,
+              "durationFrames": 11
+            },
+            {
+              "phone": "IH",
+              "startFrame": 49,
+              "durationFrames": 6
+            },
+            {
+              "phone": "NG",
+              "startFrame": 55,
+              "durationFrames": 13
+            }
+          ]
+        },
+        {
+          "word": "delivers",
+          "startFrame": 68,
+          "durationFrames": 55,
+          "phones": [
+            {
+              "phone": "D",
+              "startFrame": 68,
+              "durationFrames": 5
+            },
+            {
+              "phone": "IH",
+              "startFrame": 73,
+              "durationFrames": 6
+            },
+            {
+              "phone": "L",
+              "startFrame": 79,
+              "durationFrames": 10
+            },
+            {
+              "phone": "IH",
+              "startFrame": 89,
+              "durationFrames": 7
+            },
+            {
+              "phone": "V",
+              "startFrame": 96,
+              "durationFrames": 5
+            },
+            {
+              "phone": "ER",
+              "startFrame": 101,
+              "durationFrames": 10
+            },
+            {
+              "phone": "Z",
+              "startFrame": 111,
+              "durationFrames": 12
+            }
+          ]
+        },
+        {
+          "word": "mate",
+          "startFrame": 123,
+          "durationFrames": 54,
+          "phones": [
+            {
+              "phone": "M",
+              "startFrame": 123,
+              "durationFrames": 18
+            },
+            {
+              "phone": "EY",
+              "startFrame": 141,
+              "durationFrames": 10
+            },
+            {
+              "phone": "T",
+              "startFrame": 151,
+              "durationFrames": 26
+            }
+          ]
+        },
+        {
+          "word": "<sil>",
+          "startFrame": 177,
+          "durationFrames": 36,
+          "phones": [
+            {
+              "phone": "SIL",
+              "startFrame": 177,
+              "durationFrames": 36
+            }
+          ]
+        },
+        {
+          "word": "the(2)",
+          "startFrame": 213,
+          "durationFrames": 16,
+          "phones": [
+            {
+              "phone": "DH",
+              "startFrame": 213,
+              "durationFrames": 5
+            },
+            {
+              "phone": "IY",
+              "startFrame": 218,
+              "durationFrames": 11
+            }
+          ]
+        },
+        {
+          "word": "enemy",
+          "startFrame": 229,
+          "durationFrames": 38,
+          "phones": [
+            {
+              "phone": "EH",
+              "startFrame": 229,
+              "durationFrames": 12
+            },
+            {
+              "phone": "N",
+              "startFrame": 241,
+              "durationFrames": 5
+            },
+            {
+              "phone": "AH",
+              "startFrame": 246,
+              "durationFrames": 5
+            },
+            {
+              "phone": "M",
+              "startFrame": 251,
+              "durationFrames": 4
+            },
+            {
+              "phone": "IY",
+              "startFrame": 255,
+              "durationFrames": 12
+            }
+          ]
+        },
+        {
+          "word": "king",
+          "startFrame": 267,
+          "durationFrames": 39,
+          "phones": [
+            {
+              "phone": "K",
+              "startFrame": 267,
+              "durationFrames": 12
+            },
+            {
+              "phone": "IH",
+              "startFrame": 279,
+              "durationFrames": 11
+            },
+            {
+              "phone": "NG",
+              "startFrame": 290,
+              "durationFrames": 16
+            }
+          ]
+        },
+        {
+          "word": "has",
+          "startFrame": 306,
+          "durationFrames": 33,
+          "phones": [
+            {
+              "phone": "HH",
+              "startFrame": 306,
+              "durationFrames": 11
+            },
+            {
+              "phone": "AE",
+              "startFrame": 317,
+              "durationFrames": 8
+            },
+            {
+              "phone": "Z",
+              "startFrame": 325,
+              "durationFrames": 14
+            }
+          ]
+        },
+        {
+          "word": "no",
+          "startFrame": 339,
+          "durationFrames": 46,
+          "phones": [
+            {
+              "phone": "N",
+              "startFrame": 339,
+              "durationFrames": 18
+            },
+            {
+              "phone": "OW",
+              "startFrame": 357,
+              "durationFrames": 28
+            }
+          ]
+        },
+        {
+          "word": "legal",
+          "startFrame": 385,
+          "durationFrames": 43,
+          "phones": [
+            {
+              "phone": "L",
+              "startFrame": 385,
+              "durationFrames": 8
+            },
+            {
+              "phone": "IY",
+              "startFrame": 393,
+              "durationFrames": 13
+            },
+            {
+              "phone": "G",
+              "startFrame": 406,
+              "durationFrames": 8
+            },
+            {
+              "phone": "AH",
+              "startFrame": 414,
+              "durationFrames": 3
+            },
+            {
+              "phone": "L",
+              "startFrame": 417,
+              "durationFrames": 11
+            }
+          ]
+        },
+        {
+          "word": "move",
+          "startFrame": 428,
+          "durationFrames": 53,
+          "phones": [
+            {
+              "phone": "M",
+              "startFrame": 428,
+              "durationFrames": 8
+            },
+            {
+              "phone": "UW",
+              "startFrame": 436,
+              "durationFrames": 30
+            },
+            {
+              "phone": "V",
+              "startFrame": 466,
+              "durationFrames": 15
+            }
+          ]
+        },
+        {
+          "word": "<sil>",
+          "startFrame": 481,
+          "durationFrames": 22,
+          "phones": [
+            {
+              "phone": "SIL",
+              "startFrame": 481,
+              "durationFrames": 22
+            }
+          ]
+        }
+      ]
+    },
+    "alignmentSha256": "e60993bf6186d485cbe477fe347409c576a1bc7c9fc2c7add5de282e7fca53d7",
+    "mapping": {
+      "revision": "arpabet-mouth-v1",
+      "phoneShapes": {
+        "B": "A",
+        "P": "A",
+        "M": "A",
+        "CH": "B",
+        "D": "B",
+        "DH": "B",
+        "G": "B",
+        "HH": "B",
+        "IH": "B",
+        "IY": "B",
+        "JH": "B",
+        "K": "B",
+        "N": "B",
+        "NG": "B",
+        "S": "B",
+        "SH": "B",
+        "T": "B",
+        "TH": "B",
+        "Y": "B",
+        "Z": "B",
+        "ZH": "B",
+        "AE": "C",
+        "AH": "C",
+        "EH": "C",
+        "AA": "D",
+        "AO": "E",
+        "ER": "E",
+        "R": "E",
+        "UH": "E",
+        "W": "F",
+        "UW": "F",
+        "F": "G",
+        "V": "G",
+        "L": "H",
+        "SIL": "X"
+      },
+      "diphthongs": {
+        "AY": [
+          "D",
+          "B"
+        ],
+        "AW": [
+          "D",
+          "F"
+        ],
+        "EY": [
+          "C",
+          "B"
+        ],
+        "OW": [
+          "E",
+          "F"
+        ],
+        "OY": [
+          "E",
+          "B"
+        ]
+      },
+      "minimumDiphthongPartFrames": 4,
+      "diphthongSplit": "midpoint in integer frames; short phones keep the first shape",
+      "adjacentEqualShapes": "coalesce",
+      "uncoveredFinalFrames": "rest; at most two analysis frames",
+      "perClipOverrides": false
+    },
+    "cueSha256": "73c712b0f52c3a98580dc3b49dffac6021ef9b9c7d97e7a0a512123277cc3a89",
+    "pronunciationExtensions": {
+      "revision": "regular-english-morphology-v5",
+      "source": "pinned PocketSphinx CMU dictionary",
+      "derivations": [
+        {
+          "word": "castling",
+          "rule": "progressive-ing",
+          "base": "castle",
+          "basePhones": [
+            "K",
+            "AE",
+            "S",
+            "AH",
+            "L"
+          ],
+          "phones": [
+            "K",
+            "AE",
+            "S",
+            "L",
+            "IH",
+            "NG"
+          ]
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed",
+      "label": "Tactic removing defender allowed",
+      "text": "One of the defenders can now be captured. Whatever it guards may lose its protection along with it."
+    },
+    "takeId": null
+  },
+  "requestHash": "70e068deb49b4baf9fc141eed2bbe2a53fb05f84c19425469d0229e5ccbbaaba",
+  "recordedAt": "2026-10-03T05:31:00.229Z",
+  "sha256": "c14dd75d6fc88aa3933a58be98cc28e8b2b312752eb0d521e84799602dcd398d",
+  "bytes": 20229,
+  "requestId": "e3CvoeGPmaEeBX7ISZfU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6ca9c670ae802efc92452b172a2b2f3495c319b1667abfa86d53d7566e923744",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

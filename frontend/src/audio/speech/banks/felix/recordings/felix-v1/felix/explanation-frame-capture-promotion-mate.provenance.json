@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-mate",
+      "label": "Explanation frame capture promotion mate",
+      "text": "Capturing onto the last rank, the pawn promotes, and that is mate."
+    },
+    "takeId": null
+  },
+  "requestHash": "0cc4640d69f92d8cb80c5688e313715437409c4187514f097e0ef50dbd3625a5",
+  "recordedAt": "2026-10-03T05:33:34.897Z",
+  "sha256": "25e890a5707ed3fefdc18e488a2aea541e08cb3ac4033793fc65f154352aaf7b",
+  "bytes": 17391,
+  "requestId": "gbwnd4RO1aZ5gTYvPsOb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e2e607e6af7e6de6c457898a0c33a39794c252d527b92bb007af929c4bf8c792",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

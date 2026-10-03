@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "explanation-finding-king-skewer-collected",
+      "label": "Explanation finding king skewer collected",
+      "text": "Check moves the king off the line by force. The same attacker then helps itself to the piece that stood behind."
+    },
+    "takeId": null
+  },
+  "requestHash": "215b52583055cfc88d82231e16bef310959ea7fa9182afb06a792268e7a3d2ff",
+  "recordedAt": "2026-10-03T05:33:51.601Z",
+  "sha256": "29e415d84c2e46081bf9874649772804b02929c602d50e449b5b7bd4af440178",
+  "bytes": 23391,
+  "requestId": "ytT47C7feub5Fy3lZ4Ok",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1cee944215d3f6628214dae699a3dcc270376d44220aac1271d38d64363bb096",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

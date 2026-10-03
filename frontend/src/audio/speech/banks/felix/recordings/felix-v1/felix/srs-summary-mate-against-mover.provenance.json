@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "srs-summary-mate-against-mover",
+      "label": "Srs summary mate against mover",
+      "text": "After this move, the saved engine analysis has a forced checkmate. For the other side."
+    },
+    "takeId": null
+  },
+  "requestHash": "08110f4fab255a067f8ca4ef5031962c78061c849c419d9169437c923e310ef9",
+  "recordedAt": "2026-10-03T05:33:03.595Z",
+  "sha256": "4523de8266536fbb0601aea6eb28d4924745d003ce87c885b27bcd710c351734",
+  "bytes": 19488,
+  "requestId": "EE5PCbpGzuVSU2y5UNeH",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d5a6c9af8ed2dbd4b3b934788ff60afd0ace6f7b712f7c327d18429f46dba312",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

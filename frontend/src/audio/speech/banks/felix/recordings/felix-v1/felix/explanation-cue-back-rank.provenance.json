@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "explanation-cue-back-rank",
+      "label": "Explanation cue back rank",
+      "text": "Before a back-rank defender moves, know where the king can escape."
+    },
+    "takeId": null
+  },
+  "requestHash": "38fef273936e18369fa165641f3ca8dd50a0cca771c882bafa8b72c5e2f5842c",
+  "recordedAt": "2026-10-03T05:34:20.018Z",
+  "sha256": "cb9ce4f2456fab144e847648cece027f868f519751b6e6c2c6fda04a1f97fe31",
+  "bytes": 15186,
+  "requestId": "sisKCaQxLfPvqU0qy5sj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "12d67b24288fd074d3534bcfb0e7fdb5f8b6b6a397af475f66456f631ada4bce",
+    "bytes": 75276
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

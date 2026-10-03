@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "positional-passer-advance-alternative",
+      "label": "Positional passer advance alternative",
+      "text": "The alternative pushed the passed pawn forward, nearer the last rank."
+    },
+    "takeId": null
+  },
+  "requestHash": "654106f96407b48561e016d0f4812a8f38bdb774465c08790db96f4ac45c4ac5",
+  "recordedAt": "2026-10-03T05:31:53.686Z",
+  "sha256": "0832a613c7c834ca8b0e9471402be427cd8cb4d20bc0fe0bb294c358bcf4552a",
+  "bytes": 15410,
+  "requestId": "UleO97jyv5Z0SizKjUiq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cabe966c56a947df3a40bedd84427c1564dd4f2410c0242a8bf3e6f2bf47bc50",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "positional-rook-semi-open-alternative",
+      "label": "Positional rook semi open alternative",
+      "text": "A semi-open file was available to a rook with another move: its own pawns gone from the file, an enemy pawn still there."
+    },
+    "takeId": null
+  },
+  "requestHash": "2417813607af65515ab5ade296292226bb60a1b9cb0879d828f9c389450fc52b",
+  "recordedAt": "2026-10-03T05:31:47.529Z",
+  "sha256": "868d5c3f979f07ef5da6a183df1e76285942db3e8de0d63bdad3ff9143c3a1a4",
+  "bytes": 27022,
+  "requestId": "z3BG5qi4hYxzWIGzd9ao",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6b9d7b6ca24d36293f436d1065e7f017c62bbd076577df5db501c26ffc423b02",
+    "bytes": 136716
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

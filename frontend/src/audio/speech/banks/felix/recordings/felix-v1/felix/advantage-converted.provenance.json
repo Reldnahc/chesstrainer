@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "advantage-converted",
+      "label": "Advantage converted",
+      "text": "The advantage stayed in hand right up to the recorded win. Converted, without handing any of it back."
+    },
+    "takeId": null
+  },
+  "requestHash": "e50a99b3fcec71b71466f885ba8c615bd34240c01b9deb44fd9bbb8bf9c912c1",
+  "recordedAt": "2026-10-03T05:32:50.719Z",
+  "sha256": "800213be94d5e7c090a2603e392f20e58c0d8a778290930cbb22a85bc5142260",
+  "bytes": 22140,
+  "requestId": "aTm0mox53BxgVdMF5v0H",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3d3b90e59fb33647496dc155014378e22cc3324eebcb4eddd67843980975cfdc",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

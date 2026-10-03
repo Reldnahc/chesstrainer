@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "explanation-cue-pin",
+      "label": "Explanation cue pin",
+      "text": "A pinned piece is guarding whatever sits behind it. Check that price before it moves."
+    },
+    "takeId": null
+  },
+  "requestHash": "b7d6162ba0717e038c3a619921ed81dca6b50739bdf193f2d3d36830854feb03",
+  "recordedAt": "2026-10-03T05:34:12.797Z",
+  "sha256": "ec348e818db335d6e2ffcd26668a5731d36fea0cdfbd156b737361a45eb347d5",
+  "bytes": 18480,
+  "requestId": "MKJcuG4RyzuPkLKuhZOW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9be01287851e08525d7de4f02c11595a17369d952b7d858f7ceb46fecfd194f0",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

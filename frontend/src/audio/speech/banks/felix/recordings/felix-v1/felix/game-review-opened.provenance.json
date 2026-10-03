@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "game-review-opened",
+      "label": "Game review opened",
+      "text": "Your game. From the top. Proceed when ready."
+    },
+    "takeId": null
+  },
+  "requestHash": "7f21eb510884fa2eb97f6f51b47644a50a4633e8a1a5b5c4a30900fbc20b5b18",
+  "recordedAt": "2026-10-03T05:35:14.825Z",
+  "sha256": "cfb8ded4f03cb3049efaf27cf8500b560045ff5352ab4280d99885bb0e8dcf60",
+  "bytes": 11988,
+  "requestId": "b4ZFcFmUYWMrNCKWGEdg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0580dfd1b7c0b89d06aec4f410e10d59a79af88e0ee26a1830178b3639dcf139",
+    "bytes": 62319
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "book-opening-entry-3",
+      "label": "Book opening entry 3",
+      "text": "Theory has seen this move before; it belongs to a recognized opening."
+    },
+    "takeId": null
+  },
+  "requestHash": "00532a542706139f19c2a04322ed3282241e3f4f9737600b9cd27de0ea963c24",
+  "recordedAt": "2026-10-03T05:35:07.060Z",
+  "sha256": "cd22572c46672568119b505f499e434d1740d6df95312b43320491ee10a7aa2b",
+  "bytes": 15523,
+  "requestId": "RIkEAYUaZiNKY5Stcyoi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3bc93a66dd51401999cc82b8ea634a82c6dd4118f98894318ed5bf76c47084d1",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

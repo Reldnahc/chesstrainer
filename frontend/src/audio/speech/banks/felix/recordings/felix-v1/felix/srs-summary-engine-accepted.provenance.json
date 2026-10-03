@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "srs-summary-engine-accepted",
+      "label": "Srs summary engine accepted",
+      "text": "This exercise accepts the move. No clear tactical reason shows in the moves given, so none is claimed."
+    },
+    "takeId": null
+  },
+  "requestHash": "56420c40a40375bf4a566b2c6deed54406b6af21d0017bb180062975bf67663b",
+  "recordedAt": "2026-10-03T05:33:08.937Z",
+  "sha256": "2a1b69898ac1b3e87903f1e92dc60ef241c256260480c10aa5cd538e43349dc9",
+  "bytes": 24154,
+  "requestId": "vHdtuUVwr5LtJNFz5my5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "52521c7cbd9ea4fc662a8aa0481552cda9db117c30ccd35dbbd0c7b18a566b43",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

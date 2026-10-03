@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "only-playable-move",
+      "label": "Only playable move",
+      "text": "Every other searched move was losing. This one kept the game playable. No room for anything else."
+    },
+    "takeId": null
+  },
+  "requestHash": "d67238c74280b94285f53ced5fbb742c06c90d79fee9cd8720df51a52bf9ce8a",
+  "recordedAt": "2026-10-03T05:32:21.282Z",
+  "sha256": "4a1edf0b184bbb86b7bf0494f43273ce045961b7823baef9cd12394f374e9401",
+  "bytes": 22014,
+  "requestId": "9OgG0tsmqYz042YAoE3F",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1a5ca2bc0eb9a13c7e5b4a30d3d2876f246eb5e248aacfc2e07d2c9cebcc517f",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

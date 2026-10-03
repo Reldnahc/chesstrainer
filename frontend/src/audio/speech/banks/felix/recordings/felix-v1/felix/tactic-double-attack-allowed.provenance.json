@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "tactic-double-attack-allowed",
+      "label": "Tactic double attack allowed",
+      "text": "The other side can make two threats with a single move now. A double attack, and both will need answering."
+    },
+    "takeId": null
+  },
+  "requestHash": "bc6d1e856a962ce733d06d1c9f16409caa79ca291fae931700055cfab545e6f6",
+  "recordedAt": "2026-10-03T05:31:21.977Z",
+  "sha256": "a46482b00e014d807a0d93fea98b4ed1346826abb120dfec17899625326f0c3b",
+  "bytes": 22619,
+  "requestId": "4esb4j7PsBa51iOkL9gw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "30f5ee2f647001e01cb019c13aa3862780e2687f1e5c89703799397da8b18abf",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

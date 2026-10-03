@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "tactic-promotion-awareness-played",
+      "label": "Tactic promotion awareness played",
+      "text": "This pawn is running for the last rank, where it turns into a new piece. Promotion is the threat."
+    },
+    "takeId": null
+  },
+  "requestHash": "066115e5d8a0ec722fcda7f5e10a56cff9ddefb21c8e28210968a27fd3b176b2",
+  "recordedAt": "2026-10-03T05:31:08.960Z",
+  "sha256": "0367cc72693442912e4f875e1567b708f795aeabeadc5a7c9128cab04741750c",
+  "bytes": 22385,
+  "requestId": "A4zTOijh1gnMqvagE76Y",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5d6a64018afb81b1dc1fb3f609ffd1ce805e3fac19ecf49cd6847d53ae47b727",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

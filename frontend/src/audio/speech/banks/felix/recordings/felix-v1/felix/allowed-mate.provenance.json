@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "allowed-mate",
+      "label": "Allowed mate",
+      "text": "Forced checkmate is now available to the other side. The defense around the king has run out. Follow the mating line from here."
+    },
+    "takeId": null
+  },
+  "requestHash": "64c68e162209fb9e06de31ec9eaf95fd26c00de265be04db002cb214b70a5624",
+  "recordedAt": "2026-10-03T05:32:15.825Z",
+  "sha256": "5a9af126e326b9d477d37c4b23ab32264c5ef019f42e5d4b5c550026bd53b3f9",
+  "bytes": 26586,
+  "requestId": "idfW5PdTKIXWcDgKSQW7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "26db9918f3fbe42d8a50df8217e026f3464a4979645764400d64b3f6f5f81abb",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

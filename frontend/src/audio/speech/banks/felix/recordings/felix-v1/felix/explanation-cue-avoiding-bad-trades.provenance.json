@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "explanation-cue-avoiding-bad-trades",
+      "label": "Explanation cue avoiding bad trades",
+      "text": "First, the value the capture wins. Then, the value the recapture takes back. The difference is the price."
+    },
+    "takeId": null
+  },
+  "requestHash": "52153ecffd0c41c94bcbd8e9775a51c2086b6991e253278e8e4e00fbdd7e1de6",
+  "recordedAt": "2026-10-03T05:34:24.730Z",
+  "sha256": "349143dbb93e2e1604d22961e51d887e273ced70bf9c23b7c16ed21b85da2735",
+  "bytes": 25599,
+  "requestId": "oFxShnk3bpr4ncetribH",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1a20ddad181a7b9b045b443b760151fffd1b364d95c3ced5ddf03d940b3c9320",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

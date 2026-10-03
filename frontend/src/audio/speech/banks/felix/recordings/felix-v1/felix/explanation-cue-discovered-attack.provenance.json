@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "explanation-cue-discovered-attack",
+      "label": "Explanation cue discovered attack",
+      "text": "When a blocking piece moves, follow every line it uncovers."
+    },
+    "takeId": null
+  },
+  "requestHash": "c51cb2fef7e36bd29f80ac81252e97f7cdbf04ccad7ffaee14d8dbd7deebcc3e",
+  "recordedAt": "2026-10-03T05:34:17.262Z",
+  "sha256": "6ac174072ea249e57e59f85fb9ed63b04f284dc9bf6274616f05fc1475e46319",
+  "bytes": 14264,
+  "requestId": "rubKE1pwfAB30fcR6NJ2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8f35e2b48b85dae048036361810dfb944fd136429f67cbf4efe8a14b6f7f69a4",
+    "bytes": 70261
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

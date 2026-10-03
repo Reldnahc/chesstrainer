@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-capture",
+      "label": "Explanation finding discovered capture",
+      "text": "The blocker moves. Another piece captures down the line it opened."
+    },
+    "takeId": null
+  },
+  "requestHash": "f0a68eeaef9daf6188990c36facb7dbb942969d48016e1c55170086aa2951e75",
+  "recordedAt": "2026-10-03T05:33:55.710Z",
+  "sha256": "b1c71b0ba6bdd23a7091b5a27024ca3c8fe51aa8b361bf4b0d9ab0c553af374b",
+  "bytes": 14952,
+  "requestId": "x7wrfsJo6mbnMzS76bBw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "483c326bf9ce88e00cda24de996e5c76c106a6f8e56391f19a6dd82db46626ab",
+    "bytes": 72768
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "srs-summary-curated-rejected",
+      "label": "Srs summary curated rejected",
+      "text": "This move matches no saved answer. That makes it wrong for the exercise, not necessarily bad chess."
+    },
+    "takeId": null
+  },
+  "requestHash": "bd1940ed54bbfba2feace1a75b3114679ea2e4a3d174c3f9acaa77d1cdc1a794",
+  "recordedAt": "2026-10-03T05:33:13.757Z",
+  "sha256": "0762044296099e0792159c4016ea00c563f100fc912c168f3198e9a36492ae39",
+  "bytes": 23570,
+  "requestId": "lLWAikuzod7Neoe3Zs1v",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "086ac7cbca6dc027fffb492bec5df72111b9426013fe9cd61d09382486897a0c",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

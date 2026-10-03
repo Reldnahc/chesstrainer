@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "opening-recall-rejected-changed",
+      "label": "Opening recall rejected changed",
+      "text": "Not in the selected opening lines; try another. This saved attempt leaves the changed study's review schedule alone."
+    },
+    "takeId": null
+  },
+  "requestHash": "d446e323212b085e0357b260f424fc3a6119817a8030a2c2f1304bef067c1351",
+  "recordedAt": "2026-10-03T05:34:43.200Z",
+  "sha256": "9273efabf54b70a7fe5c0a624e38092fcee53ba6106efc067bc8fa4340890700",
+  "bytes": 25376,
+  "requestId": "UbvdrsLAJguWYAMIfNUd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "632ddc0f1d8a11e2f0ae950b537c94b2f5e8df3ed51ae1e804ad235f95a9c073",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

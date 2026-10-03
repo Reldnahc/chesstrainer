@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "clock-long",
+      "label": "Clock long",
+      "text": "A long think, and the clock paid for it."
+    },
+    "takeId": null
+  },
+  "requestHash": "d35ccaba5ca4f14b85727d6af7036adc7f0e3af5eb0105a07c7e12196723e398",
+  "recordedAt": "2026-10-03T05:32:34.994Z",
+  "sha256": "96f9805c463cc03f4be0b0bffecacf3869c88837a9b3a31499d5fa27c154ac1b",
+  "bytes": 11346,
+  "requestId": "Qhngk6HJGlLeSQlp8gU4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3a24cb537d11ec53656bbb5a5b6384d0377a54dd6a8b97dddc518c23070a9b59",
+    "bytes": 54796
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

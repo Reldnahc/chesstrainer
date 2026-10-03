@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "book-opening-entry-2",
+      "label": "Book opening entry 2",
+      "text": "The opening line is a known one, and this move is part of it."
+    },
+    "takeId": null
+  },
+  "requestHash": "42b4f7807029f38ffb4efb6ce2627cc12d9be5ea5f40a28bd8df68e3efb6bd78",
+  "recordedAt": "2026-10-03T05:35:05.817Z",
+  "sha256": "878fed2e232444dd0a97d248d108f64bdc073e62cbb48a2c90cbd9b33e95f511",
+  "bytes": 13492,
+  "requestId": "6nYbiCz0o5o9xaXSJnbe",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "94f7eb06cfc4f16c3b95d363cfa8f5d8354755490f27aaac3840902e25d36fea",
+    "bytes": 66499
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

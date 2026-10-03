@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "positional-support-actual",
+      "label": "Positional support actual",
+      "text": "That piece was on its own. Not anymore; it has a guard."
+    },
+    "takeId": null
+  },
+  "requestHash": "7da80e000486eedeb149129621f91277d1dbe13a8b6a65d8dba5d328306bf450",
+  "recordedAt": "2026-10-03T05:31:57.810Z",
+  "sha256": "8f9221321a3988bb651c908a690a92beb068ca0b75f7ebff97c1fc50da0b24ec",
+  "bytes": 13789,
+  "requestId": "JiNsL5ehp1pLNu3EvSO6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1cf64394c0945f5cd6cb98b2eade57b0765f36642655e63a806cf032eb407878",
+    "bytes": 70261
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

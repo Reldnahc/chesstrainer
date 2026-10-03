@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "book-opening-follow-8",
+      "label": "Book opening follow 8",
+      "text": "Theory still. A name, not a verdict."
+    },
+    "takeId": null
+  },
+  "requestHash": "a6e6c7035e8dcf2ed5a822e6d9f608dac6f6ea4d9d9a0c92e6fcd2e930229ff7",
+  "recordedAt": "2026-10-03T05:35:13.771Z",
+  "sha256": "35cab88f8d0053daf408e275e81f5f6156271fe077159f0b1adf0e943a5c7094",
+  "bytes": 11045,
+  "requestId": "qqUQcjEuCDYuC8VvVa6B",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e648be6c4c59c9f497c605a0a4fd2c8caf902ba15fb7ac80286816701e36a3f6",
+    "bytes": 56050
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

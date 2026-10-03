@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "opening-recall-cold-multiple",
+      "label": "Opening recall cold multiple",
+      "text": "Several moves from the selected opening lines count here. One will do."
+    },
+    "takeId": null
+  },
+  "requestHash": "784b4499a024c7d4af5343d144865ea1dda2e77907fe803602e1325a3db13410",
+  "recordedAt": "2026-10-03T05:34:38.816Z",
+  "sha256": "2b1303a41abd655701984558b4ac2a85d94c4dd9e91998df8bfee6ea0d74b47b",
+  "bytes": 15582,
+  "requestId": "PUqD59i0nYTiBMNm5xX0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "238b0de8e6cbf1d408225e5650449ad8fa33d96b0864bffb160c263993234f47",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "tactic-pin-allowed",
+      "label": "Tactic pin allowed",
+      "text": "Now the other side has a pin against the king to work with. A pinned piece holds its line or the king is exposed."
+    },
+    "takeId": null
+  },
+  "requestHash": "87478c154e872260d07b3118ea796aa41d438aecf907219dc18bf209dafb2a9a",
+  "recordedAt": "2026-10-03T05:30:49.213Z",
+  "sha256": "83c6700fe23a79a7d163944e6c39c0db2f429fcdab77b229827d1fba2a171a91",
+  "bytes": 25891,
+  "requestId": "xsKetqZJkMSrdzse7Co0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cbb6442720cf123355b79af26ece90e432b37314bc74783f1960d22ad796efc0",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

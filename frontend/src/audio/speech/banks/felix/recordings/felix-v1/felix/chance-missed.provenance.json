@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "chance-missed",
+      "label": "Chance missed",
+      "text": "The opponent's last move put something on the table. This move leaves it there."
+    },
+    "takeId": null
+  },
+  "requestHash": "3d6b57c347f54084d24329365f6e8e7272f7fe1f945e9c18025a1d6d9871cbae",
+  "recordedAt": "2026-10-03T05:32:43.998Z",
+  "sha256": "56023d29745aa659b31a914f5a7047b869eb9093dedbc917502335e9bcd99f11",
+  "bytes": 16978,
+  "requestId": "xaiR2Eml38lLWny9pckD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a9dbbf27604eb6692f3ca27f877d1f692886dc6a9f868905cce3258e9f950ab5",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

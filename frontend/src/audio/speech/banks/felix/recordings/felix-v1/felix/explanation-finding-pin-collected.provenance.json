@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected",
+      "label": "Explanation finding pin collected",
+      "text": "Stepping off its line would expose the king, so the pinned piece stays put. It does not survive these moves."
+    },
+    "takeId": null
+  },
+  "requestHash": "77c514886ddaba06dc61a00fafeb0fbfd426d407118091768395a1509ec2ce2b",
+  "recordedAt": "2026-10-03T05:33:48.282Z",
+  "sha256": "db0efaa22dd3314d1267d2eb79e951debcf507552573732e638a4c1050d5b326",
+  "bytes": 23586,
+  "requestId": "aE3I5c7WoC4tKNhZVeWX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8c1ced51652594888d2efc65ea0fd64b718fad83de583c0114274b8cd0a0a012",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

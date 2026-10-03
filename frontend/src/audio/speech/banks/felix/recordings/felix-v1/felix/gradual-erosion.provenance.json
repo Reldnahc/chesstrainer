@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "gradual-erosion",
+      "label": "Gradual erosion",
+      "text": "No single disaster. Small concessions, one after another, and this is another one. They add up."
+    },
+    "takeId": null
+  },
+  "requestHash": "d7380c892fca7e855bf290cb10febb6ccd684a59fd80887573dcf913d0d289db",
+  "recordedAt": "2026-10-03T05:32:48.709Z",
+  "sha256": "19fbe7267fa9070a5195e79855546efeedd7b2263ec71853f9c8a1ffee686953",
+  "bytes": 25401,
+  "requestId": "MExMAqqNdqJ8yDdw1kgw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1922b9e25e32d0384bf25a03d93ada8761ff9419d8cea2e9b978deba73d68446",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "tactic-promotion-awareness-missed",
+      "label": "Tactic promotion awareness missed",
+      "text": "A stronger move cleared a pawn's way to promotion. This move keeps that road closed."
+    },
+    "takeId": null
+  },
+  "requestHash": "40b25d42a42e6d9a8bb4375d5fcf56c8482975aaea6f47f5a922903696b96024",
+  "recordedAt": "2026-10-03T05:31:12.385Z",
+  "sha256": "1ac603bb0882e0a44e907c13efbce0fb98a20c41c620ce01fdcb82fc03f0ea16",
+  "bytes": 19644,
+  "requestId": "zuFDjefdzvWpba0tlDfg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e9495f6a0004cb9b313a5d83391c312ff3d8ba94a84ed02b7668426363c20253",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

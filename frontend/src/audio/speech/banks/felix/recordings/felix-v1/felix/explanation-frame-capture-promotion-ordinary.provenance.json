@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-ordinary",
+      "label": "Explanation frame capture promotion ordinary",
+      "text": "The pawn takes on the last rank and becomes a new piece."
+    },
+    "takeId": null
+  },
+  "requestHash": "5a9b5168971e661f5a9c37e7f6313650aa887b25d0ef594432a48a54297b13dc",
+  "recordedAt": "2026-10-03T05:33:31.993Z",
+  "sha256": "67b187feca0bb8491bfc7dd1cbf8ffd6b8cb8c389b75470af9e10fb15dfe7490",
+  "bytes": 12800,
+  "requestId": "AeE5g4bQG5QidAcGlrsx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9ba25b173227a82719b160818738dce91a87f5a3351173dcf64090ec4d922a3a",
+    "bytes": 63991
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

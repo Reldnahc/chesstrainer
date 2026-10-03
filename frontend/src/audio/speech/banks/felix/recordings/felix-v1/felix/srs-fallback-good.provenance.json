@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "srs-fallback-good",
+      "label": "Srs fallback good",
+      "text": "That move is good. Keep the reason attached to it."
+    },
+    "takeId": null
+  },
+  "requestHash": "14f275a58dc5b311d0a8f34eee4f5cd0ff6496194c5885fbbaa592d5cb318e39",
+  "recordedAt": "2026-10-03T05:33:15.955Z",
+  "sha256": "45a418315c65309c0336fd31d4b1cb2e51c216d70b17bf14c296d95b84cd61ae",
+  "bytes": 12200,
+  "requestId": "E0rFku6HNgrSazdpm2RM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b4dfd69878d185ba47ae0b3aa079a08d2a72ca3952b3640803060f4d42cc40be",
+    "bytes": 58558
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

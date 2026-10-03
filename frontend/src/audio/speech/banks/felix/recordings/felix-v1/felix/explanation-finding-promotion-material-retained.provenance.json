@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "explanation-finding-promotion-material-retained",
+      "label": "Explanation finding promotion material retained",
+      "text": "The pawn promotes, and that side finishes this example with a net material gain."
+    },
+    "takeId": null
+  },
+  "requestHash": "a544ff379ed5233095d236cb2804a0fbb87de2acd87b6d49337b83f882bb624b",
+  "recordedAt": "2026-10-03T05:34:01.650Z",
+  "sha256": "5aa84333544a92de5acae8108ac32f86a436d53b9240d89d9544086eb1bf344e",
+  "bytes": 18311,
+  "requestId": "1WA30j0AFXEHx4J9rGfU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "52fbf6c39d0461011f94980859c3e2a0cb90e8c029241d9fada882960b8abedc",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

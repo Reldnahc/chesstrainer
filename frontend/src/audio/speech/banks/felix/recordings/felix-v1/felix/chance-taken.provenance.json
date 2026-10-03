@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "chance-taken",
+      "label": "Chance taken",
+      "text": "The opponent's last move opened a gap. This move cashes it in. As it should."
+    },
+    "takeId": null
+  },
+  "requestHash": "0472780eab97b960d168fac26322b24cc5640a66ab509c2b5ffb40c93af17d3b",
+  "recordedAt": "2026-10-03T05:32:42.605Z",
+  "sha256": "d2c2d743ff325d6440696e80e969e9a3188ba1c5deac26dd1b20a3ae01e7a2cc",
+  "bytes": 19216,
+  "requestId": "VpiEAdFNKlQNCISEL00q",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7a2d07c2e31df7a37cc176261d96f1f7ad4ddae6742f7ee655f5764e61a5e307",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

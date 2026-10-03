@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "positional-isolated-alternative",
+      "label": "Positional isolated alternative",
+      "text": "Another move would have left an isolated pawn, without a friendly pawn on either file beside it."
+    },
+    "takeId": null
+  },
+  "requestHash": "2a3716dd9e52c92e7a7f7ef0a1cc48462f970585e3fd2af29f15fc8e825db479",
+  "recordedAt": "2026-10-03T05:31:56.670Z",
+  "sha256": "f97577dcbacfbc2fa5a1b7ed65e173ab12175a1c512de6adc759f81b16d3925b",
+  "bytes": 20284,
+  "requestId": "xeeaOLGd0p4Uz4ulfDa2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f39193524e2bc5f35ad7a0a98e93f0a912bf412874bcd2322b01ba49cc58888e",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

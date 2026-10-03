@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "mate-defense-ended",
+      "label": "Mate defense ended",
+      "text": "It ends in checkmate, the king without a legal move. The lesson sits earlier, in the defense."
+    },
+    "takeId": null
+  },
+  "requestHash": "260873c46d9a3b8c7b1b2ee8367db22cd7dd4ed792adfa53327ffb21d4c17e9f",
+  "recordedAt": "2026-10-03T05:32:55.631Z",
+  "sha256": "9a188e54414148b59efbf794e1bbdf2e6852ca06ef7dce6e23e671bc4b90b808",
+  "bytes": 23748,
+  "requestId": "7jnauzzDHv2ADMi9Ckmm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "88e19d60dfc275573d6dee19ec04e643362f36e9ecc998de43eb1247c97c4114",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

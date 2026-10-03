@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "tactic-fork-played",
+      "label": "Tactic fork played",
+      "text": "Fork. One piece is now hitting several targets at once, and the other side has some sorting out to do."
+    },
+    "takeId": null
+  },
+  "requestHash": "66d8357eea3ad31c29d70342c3da54a0d1dac54cae33ed3ad2be8b3a900c02e9",
+  "recordedAt": "2026-10-03T05:30:41.633Z",
+  "sha256": "9b81f13001377764f705eee3aea4bbbb0a60c06438c18515bde148f0aa4a5134",
+  "bytes": 22437,
+  "requestId": "HQ7wwyAocNWKkfRmD5OR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2b50204bf1e8c506f9827385c08af463901b867e1f8edf102cf705f8b683d9a2",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

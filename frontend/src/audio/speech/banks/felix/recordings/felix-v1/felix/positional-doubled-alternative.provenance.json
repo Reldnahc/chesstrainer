@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "positional-doubled-alternative",
+      "label": "Positional doubled alternative",
+      "text": "Another move would have left doubled pawns, two of one color stacked on a single file."
+    },
+    "takeId": null
+  },
+  "requestHash": "4122d20de59299c5c23f95ed523316213d75999e180ae41811eaf04ed63fa14a",
+  "recordedAt": "2026-10-03T05:32:13.911Z",
+  "sha256": "5fcf0926f04301c56763e681346f820638e58dd7c6b4f50ec5403bd8fa1164e6",
+  "bytes": 19012,
+  "requestId": "cq0ISegXdtwW9US7bfWq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7320b83068d5504ab178f10bb14c4962c6defd8206f2242de13d77450ea97cfb",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

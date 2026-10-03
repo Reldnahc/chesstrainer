@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "explanation-note-no-simple-reason",
+      "label": "Explanation note no simple reason",
+      "text": "The saved line has no simple tactical reason to offer. Play through it and weigh each reply. No positional story is assumed."
+    },
+    "takeId": null
+  },
+  "requestHash": "bd9166a1923ae5dfd8d41a733be86ac970e28163324cf11c2fe08104dec8ed1a",
+  "recordedAt": "2026-10-03T05:34:32.731Z",
+  "sha256": "8eee399af2b9ff91b39480210529a545842e78847b64dc41da953ab3a621182d",
+  "bytes": 29038,
+  "requestId": "D3e3ZLp45iszvMqqVJ8O",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "83b52a981c552491c3ad8fe94cd1dc15f684ccd74176672e80ca8af90b33acd3",
+    "bytes": 148419
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

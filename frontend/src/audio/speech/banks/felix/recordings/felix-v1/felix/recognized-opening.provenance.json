@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "recognized-opening",
+      "label": "Recognized opening",
+      "text": "Theory knows this line. Known territory, for now."
+    },
+    "takeId": null
+  },
+  "requestHash": "8d2f422e79005aaf5aad724e1e9d72cac166c23333b3b303f4462ce7e2de760b",
+  "recordedAt": "2026-10-03T05:32:36.087Z",
+  "sha256": "b746975d50dc0b1443f6ece10f342b316f794f9d26c0bf35a8764b476b4cce9a",
+  "bytes": 13621,
+  "requestId": "dTY0VbMibiNobXfRyUtC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "82aab827293dedeb7ebb58123cb5b0d7a9710fb75bd8dad8906dcdb2503cdb75",
+    "bytes": 70261
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}
