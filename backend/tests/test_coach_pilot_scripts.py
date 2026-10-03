@@ -36,10 +36,11 @@ def test_active_scripts_avoid_ambiguous_separate_pronunciation():
 
 def test_pilot_scripts_match_the_registered_recordings_without_losing_base_meanings():
     revision = read("bank/revisions/walter-language-v1-manifest.json")["recordings"]
-    # The historical revision keeps the retired Maia rows; every other base
-    # meaning, including the sole-content Maia readings, must survive.
-    original = {row["id"]: row for row in revision if row["id"] not in RETIRED_MAIA}
-    assert len(original) == len(revision) - len(RETIRED_MAIA)
+    # The historical revision keeps the retired Maia and clock rows; every other
+    # base meaning, including the sole-content Maia readings, must survive.
+    retired = RETIRED_MAIA | {"clock-low", "clock-fast", "clock-long"}
+    original = {row["id"]: row for row in revision if row["id"] not in retired}
+    assert len(original) == len(revision) - len(retired)
     base_rivet = {row["id"]: row for row in read("banks/rivet/scripts.json")["records"]}
     additions = read("banks/pilot-additions.json")["recordings"]
     extras = {row["id"]: row for row in additions}

@@ -50,6 +50,7 @@ On 2026-10-02 all 253 Maia meanings (7 standalone readings and 246 combinations)
 were removed, taking the catalogue from 448 to 195 meanings. On 2026-10-03 five
 standalone readings returned with their reviewed texts (natural best, natural
 strong, unusual but strong, hard find, hard defense found), for 200 meanings.
+Later that day the three clock observations were retired, leaving 197.
 They cover a sound learner move with no other supported fact; a natural mistake
 or missed hard defense always comes with a stronger alternative, so those two stay
 retired. Beside an objective fact a Maia sentence adds nothing to speech: the

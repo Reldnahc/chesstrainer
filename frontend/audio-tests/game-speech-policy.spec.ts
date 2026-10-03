@@ -22,7 +22,7 @@ const observedFamilies = [
   "cause-abandoned-defender", "cause-opponent-threat-recognition", "cause-avoiding-bad-trades",
   "tactic-fork-played", "tactic-pin-played", "tactic-fork-allowed", "tactic-skewer-allowed", "tactic-fork-missed",
   "sound-sacrifice", "only-playable-move", "only-advantage-resource",
-  "positional-rook-open-actual", "positional-rook-semi-open-actual", "clock-low", "clock-fast", "clock-long",
+  "positional-rook-open-actual", "positional-rook-semi-open-actual",
   "positional-bishop-pair-actual", "positional-passer-advance-actual", "positional-king-flight-actual",
   "recovery", "recovery-assisted", "chance-taken", "chance-missed", "support-restored", "advantage-converted",
 ];

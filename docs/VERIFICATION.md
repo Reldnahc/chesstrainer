@@ -4,6 +4,23 @@ The repeatable procedure is in [TESTING.md](TESTING.md). This file retains the
 latest complete verification and subsequent focused checks. Earlier dated passes
 remain in Git history with their original scope, results and limitations.
 
+## Clock lines dropped — October 3, 2026
+
+Owner decision: coaches no longer comment on the clock. An investigation of 100
+imported 10-minute games found the lines landed on the wrong moves (fast moves
+were the most accurate; low-clock moves were almost absent). `clock-low`,
+`clock-fast` and `clock-long` were removed from `meanings.json` (200 to **197**),
+the character and neutral templates, `gameIntent`, `gameSelection`, every coach's
+`scripts.json`, the Walter inventories and all 30 recorded banks (90 clips with
+provenance and alignment). The unused `time_trouble` dialogue purpose went with
+them. The backend `clock_observation` event and clock facts are unchanged.
+Historical revision and plan files keep their rows.
+
+Checks: `prepare_coach_voice_bank.py --check`; `test_coach_voice_bank.py`,
+`test_coach_bank_scripts.py`, `test_coach_pilot_scripts.py`,
+`test_walter_language_revision.py` and `test_speech_alignment.py`; `tsc --noEmit`
+for the app and browser tests. Not run: the Playwright speech-policy spec.
+
 ## Remaining 25 cast voice banks — October 3, 2026
 
 Recorded and registered banks for the 25 coaches without one, so all 30 coaches

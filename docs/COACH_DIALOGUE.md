@@ -18,7 +18,8 @@ continuation authority; it does not borrow the original game's mistake to grade
 the learner's new move. A cold card ignores even a stray future preview frame.
 
 The neutral renderer favors concrete mate/tactical consequences, critical defenses
-and recoveries, then supported positional, human, clock and history observations.
+and recoveries, then supported positional, human and history observations. Clock observations
+are not spoken or shown (owner decision, 2026-10-03).
 The neutral bubble targets two whole claims within 290 characters; each character
 declares its own claim/character budget (Walter 320, Rivet 270, both two claims).
 The first supported fact and long legacy verified explanations retain their
