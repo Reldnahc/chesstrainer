@@ -54,6 +54,9 @@ def test_regular_suffixes_retain_dictionary_base_and_record_the_generic_rule(
         ("reloading", {"reload": "R IY L OW D"}, "reload", "progressive-ing", "R IY L OW D IH NG"),
         ("coding", {"code": "K OW D", "cod": "K AA D"}, "code", "progressive-ing", "K OW D IH NG"),
         ("castling", {"castle": "K AE S AH L"}, "castle", "progressive-ing", "K AE S L IH NG"),
+        ("snipped", {"snip": "S N IH P"}, "snip", "past-ed", "S N IH P T"),
+        ("tidied", {"tidy": "T AY D IY"}, "tidy", "past-ied", "T AY D IY D"),
+        ("steadiest", {"steady": "S T EH D IY"}, "steady", "superlative-iest", "S T EH D IY AH S T"),
     ],
 )
 def test_regular_past_and_progressive_restore_silent_e_before_bare_stems(
@@ -63,6 +66,32 @@ def test_regular_past_and_progressive_restore_silent_e_before_bare_stems(
 
     assert (result["base"], result["rule"], result["phones"]) == (base, rule, phones.split())
     pronunciation.validate(pronunciation.evidence([result]), f"a {word} matters")
+
+
+def test_compounds_join_two_dictionary_parts_preferring_the_balanced_split():
+    dictionary = {"trap": "T R AE P", "door": "D AO R", "tra": "T R AA", "pdoor": "B AE D"}
+    result = pronunciation.pronunciation("trapdoor", dictionary.get)
+
+    assert result == {
+        "word": "trapdoor",
+        "rule": "compound",
+        "base": "trap door",
+        "basePhones": ["T", "R", "AE", "P", "D", "AO", "R"],
+        "partPhones": [["T", "R", "AE", "P"], ["D", "AO", "R"]],
+        "phones": ["T", "R", "AE", "P", "D", "AO", "R"],
+    }
+    pronunciation.validate(pronunciation.evidence([result]), "a trapdoor opens")
+    assert pronunciation.pronunciation("trapdoor", {"trap": "T R AE P"}.get) is None
+
+
+def test_reviewed_lexicon_covers_only_listed_interjections():
+    result = pronunciation.pronunciation("psst", lambda _base: None)
+
+    assert (result["rule"], result["phones"]) == ("lexicon", ["P", "S", "T"])
+    pronunciation.validate(pronunciation.evidence([result]), "psst look")
+    tampered = {**result, "phones": ["P", "S"], "basePhones": ["P", "S"]}
+    with pytest.raises(ValueError, match="does not match"):
+        pronunciation.validate(pronunciation.evidence([tampered]), "psst look")
 
 
 def test_earlier_revision_evidence_stays_valid_but_cannot_claim_newer_rules():

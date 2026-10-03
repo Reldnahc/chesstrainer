@@ -2,17 +2,20 @@
 
 This is an authoring fallback, not a general grapheme-to-phoneme model. Every
 derived word records the dictionary base and rule; unsupported words still fail.
+Two-word compounds join dictionary parts, and a small reviewed lexicon covers
+interjections no rule can derive.
 """
 
 import re
 from collections.abc import Callable
 
-REVISION = "regular-english-morphology-v4"
+REVISION = "regular-english-morphology-v5"
 V1_RULES = frozenset(
     ("possessive", "plural-or-third-person", "negative-un", "able", "adjectival-al")
 )
 V2_RULES = V1_RULES | {"past-ed", "progressive-ing"}
 V3_RULES = V2_RULES | {"ability", "less", "agent-ier"}
+V4_RULES = V3_RULES | {"plural-ies"}
 # Archives keep the revision they were generated with. Each revision only appends
 # rules (v3 also tries a silent-e base for -able first), so a word an older
 # revision derived still derives identically; older evidence may use only its rules.
@@ -20,14 +23,29 @@ REVISIONS = {
     "regular-english-morphology-v1": V1_RULES,
     "regular-english-morphology-v2": V2_RULES,
     "regular-english-morphology-v3": V3_RULES,
+    "regular-english-morphology-v4": V4_RULES,
     REVISION: None,
 }
 SIBILANTS = frozenset(("S", "Z", "SH", "ZH", "CH", "JH"))
 VOICELESS = frozenset(("P", "T", "K", "F", "TH"))
+# Reviewed CMU-style pronunciations for interjections and coinages in authored
+# scripts that no dictionary base or regular rule can produce.
+LEXICON = {
+    "eek": ("IY", "K"),
+    "hidey": ("HH", "AY", "D", "IY"),
+    "oof": ("UW", "F"),
+    "oopsie": ("UW", "P", "S", "IY"),
+    "peekaboo": ("P", "IY", "K", "AH", "B", "UW"),
+    "psst": ("P", "S", "T"),
+    "wheee": ("W", "IY"),
+    "wonky": ("W", "AA", "NG", "K", "IY"),
+}
 
 
 def candidates(word: str) -> list[tuple[str, str]]:
     values = []
+    if word in LEXICON:
+        values.append(("lexicon", word))
     if word.endswith("'s"):
         values.append(("possessive", word[:-2]))
     if word.endswith("s") and not word.endswith("ss"):
@@ -52,11 +70,34 @@ def candidates(word: str) -> list[tuple[str, str]]:
         values.extend((("past-ed", word[:-1]), ("past-ed", word[:-2])))
     if word.endswith("ing") and len(word) > 5:
         values.extend((("progressive-ing", word[:-3] + "e"), ("progressive-ing", word[:-3])))
+    # A doubled final consonant is dropped: "snipped" is "snip".
+    if word.endswith("ed") and len(word) > 5 and word[-3] == word[-4]:
+        values.append(("past-ed", word[:-3]))
+    if word.endswith("ied") and len(word) > 4:
+        values.append(("past-ied", word[:-3] + "y"))
+    if word.endswith("iest") and len(word) > 5:
+        values.append(("superlative-iest", word[:-4] + "y"))
+    # Two-word compounds, most balanced split first: "trapdoor" is "trap door".
+    splits = sorted(range(3, len(word) - 2), key=lambda i: (-min(i, len(word) - i), i))
+    values.extend(("compound", f"{word[:i]} {word[i:]}") for i in splits)
     return values
 
 
 def pronunciation(word: str, lookup: Callable[[str], str | None]) -> dict | None:
     for rule, base in candidates(word):
+        if rule == "lexicon":
+            phones = list(LEXICON[word])
+            return {"word": word, "rule": rule, "base": base, "basePhones": phones, "phones": phones}
+        if rule == "compound":
+            parts = [lookup(part) for part in base.split()]
+            if not all(parts):
+                continue
+            part_phones = [part.split() for part in parts]
+            if any(re.fullmatch(r"[A-Z]+", phone) is None for part in part_phones for phone in part):
+                raise ValueError("Invalid source dictionary pronunciation")
+            phones = [phone for part in part_phones for phone in part]
+            return {"word": word, "rule": rule, "base": base, "basePhones": phones,
+                    "partPhones": part_phones, "phones": phones}
         value = lookup(base)
         if not value:
             continue
@@ -82,6 +123,10 @@ def pronunciation(word: str, lookup: Callable[[str], str | None]) -> dict | None
             result = [*phones, "L", "AH", "S"]
         elif rule == "plural-ies":
             result = [*phones, "Z"]
+        elif rule == "past-ied":
+            result = [*phones, "D"]
+        elif rule == "superlative-iest":
+            result = [*phones, "AH", "S", "T"]
         elif rule == "agent-ier":
             result = [*phones, "ER"]
         elif rule == "past-ed":
@@ -143,8 +188,14 @@ def validate(value: dict, transcript: str) -> None:
         allowed = REVISIONS[value["revision"]]
         if allowed is not None and entry.get("rule") not in allowed:
             raise ValueError("Automatic pronunciation rule is newer than its revision")
+        known = {base: phones}
+        if isinstance(entry.get("partPhones"), list):
+            known.update(zip(base.split(), entry["partPhones"], strict=False))
         expected = pronunciation(
-            word, lambda candidate: " ".join(phones) if candidate == base else None
+            word,
+            lambda candidate: " ".join(known[candidate])
+            if candidate in known and isinstance(known[candidate], list)
+            else None,
         )
         if entry != expected:
             raise ValueError("Automatic pronunciation does not match its generic rule")
