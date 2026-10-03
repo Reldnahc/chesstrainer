@@ -51,7 +51,6 @@ test("every registered coach can be chosen and restored in a real game", async (
     for (const coachId of castIds) {
       const radio = page.locator(`input[name="coach"][value="${coachId}"]`);
       await expect(radio).toBeVisible();
-      // This controlled radio changes only after the preference save completes.
       await radio.click();
       await expect(radio).toBeChecked();
       await expect(page.getByLabel("Coach motion", { exact: true })).toBeEnabled();

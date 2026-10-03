@@ -138,6 +138,45 @@ test("game navigation and SRS attempts drive the real shared coach", async ({
   });
 });
 
+test("choosing a coach saves only the coach and leaves coach motion alone", async ({ page }) => {
+  await page.request.put("/api/preferences/coach", {
+    data: { coach_id: "classic", motion: "still" },
+  });
+  const writes: string[] = [];
+  let release = () => {};
+  const held = new Promise<void>(resolve => { release = resolve; });
+  await page.route("**/api/preferences/coach", async (route) => {
+    if (route.request().method() === "GET") return route.continue();
+    writes.push(`${route.request().method()} ${route.request().postData()}`);
+    await held;
+    return route.continue();
+  });
+  try {
+    await page.goto("/settings?section=coach");
+    const motion = page.getByLabel("Coach motion", { exact: true });
+    const scout = page.getByRole("radio", { name: "Scout", exact: true });
+    await expect(motion).toBeEnabled();
+    await scout.click();
+    // While the save is held, the new choice is already selected and nothing else changes.
+    await expect(scout).toBeChecked();
+    await expect(page.locator(".coach-preference-status")).toHaveText("Saving…");
+    await expect(page.locator(".coach-options")).toBeEnabled();
+    await expect(motion).toBeEnabled();
+    await expect(page.locator(".coach-motion-preference-status")).toHaveAttribute("data-state", "idle");
+    release();
+    await expect(page.locator(".coach-preference-status")).toHaveText("Saved");
+    expect(writes).toEqual([`PATCH ${JSON.stringify({ coach_id: "dog-collie" })}`]);
+    expect(await (await page.request.get("/api/preferences/coach")).json()).toEqual({
+      coach_id: "dog-collie",
+      motion: "still",
+    });
+  } finally {
+    await page.request.put("/api/preferences/coach", {
+      data: { coach_id: "classic", motion: "natural" },
+    });
+  }
+});
+
 test("preference failures keep the last saved choice and allow recovery", async ({
   page,
 }) => {
@@ -179,6 +218,7 @@ test("preference failures keep the last saved choice and allow recovery", async 
     const cat = page.getByRole("radio", { name: "Juniper", exact: true });
     await cat.click();
     await expect(status).toContainText("Preference was not saved");
+    await expect(motionStatus).not.toContainText("Preference was not saved");
     await expect(cat).not.toBeChecked();
     await expect(motion).toHaveValue("natural");
     expect(

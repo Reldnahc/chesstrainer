@@ -1,20 +1,20 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
-export type SavedPreferences<T> = {
+export type SavedPreferences<T, W = T> = {
   preferences: T;
   ready: boolean;
   saving: boolean;
   error: string;
   retry: () => void;
-  save: (value: T) => Promise<boolean>;
+  save: (value: W) => Promise<boolean>;
 };
 
 /** Mount inside AccountGate so pending responses cannot cross account changes. */
-export function useSavedPreferences<T extends object>({defaults, load, write}: {
+export function useSavedPreferences<T extends object, W = T>({defaults, load, write}: {
   defaults: T;
   load: (signal: AbortSignal) => Promise<Partial<T>>;
-  write: (value: T) => Promise<Partial<T>>;
-}): SavedPreferences<T> {
+  write: (value: W) => Promise<Partial<T>>;
+}): SavedPreferences<T, W> {
   const [preferences, setPreferences] = useState(defaults);
   const [ready, setReady] = useState(false);
   const [saving, setSaving] = useState(false);
@@ -43,7 +43,7 @@ export function useSavedPreferences<T extends object>({defaults, load, write}: {
       controller.abort();
     };
   }, [revision, defaults, load]);
-  const save = useCallback(async (value: T) => {
+  const save = useCallback(async (value: W) => {
     if (writing.current) return false;
     const version = generation.current;
     writing.current = true;

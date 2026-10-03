@@ -843,6 +843,73 @@
         "title": "CoachPreferences",
         "type": "object"
       },
+      "CoachPreferencesChange": {
+        "additionalProperties": false,
+        "description": "Fields left out keep their saved value, so each control saves only itself.",
+        "properties": {
+          "coach_id": {
+            "anyOf": [
+              {
+                "enum": [
+                  "classic",
+                  "man-host",
+                  "man-expert",
+                  "man-partner",
+                  "woman-captain",
+                  "woman-analyst",
+                  "woman-spark",
+                  "woman-blonde",
+                  "cat-tuxedo",
+                  "cat-black",
+                  "dog-gentle",
+                  "dog-corgi",
+                  "dog-collie",
+                  "human-boy",
+                  "human-girl",
+                  "dog-puppy",
+                  "cat-kitten",
+                  "alien",
+                  "unicorn",
+                  "gorilla",
+                  "robot",
+                  "wizard",
+                  "slime",
+                  "dragon",
+                  "ghost",
+                  "raccoon",
+                  "frog",
+                  "capybara",
+                  "mushroom",
+                  "living-pawn"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Coach Id"
+          },
+          "motion": {
+            "anyOf": [
+              {
+                "enum": [
+                  "system",
+                  "natural",
+                  "still"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Motion"
+          }
+        },
+        "title": "CoachPreferencesChange",
+        "type": "object"
+      },
       "ColdPosition": {
         "additionalProperties": false,
         "properties": {
@@ -9267,6 +9334,42 @@
           }
         },
         "summary": "Get Coach Preferences"
+      },
+      "patch": {
+        "operationId": "patch_coach_preferences_api_preferences_coach_patch",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CoachPreferencesChange"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CoachPreferences"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Patch Coach Preferences"
       },
       "put": {
         "operationId": "put_coach_preferences_api_preferences_coach_put",

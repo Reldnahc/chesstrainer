@@ -1,26 +1,26 @@
 import PreferenceStatus from "./PreferenceStatus";
 import { useState } from "react";
-import { useCoachPreferences } from "./coach/CoachProvider";
+import { useCoachPreference } from "./coach/CoachProvider";
 import { useMotionPreferences } from "./MotionProvider";
 import MotionSelect from "./MotionSelect";
 import SettingsSection from "./SettingsSection";
 import { useReducedMotion } from "./useReducedMotion";
 
 function CoachMotionSetting() {
-  const {preferences, ready, saving, error, save, retry} = useCoachPreferences();
+  const {value, ready, saving, error, save, retry} = useCoachPreference("motion");
   const reduced = useReducedMotion();
   const [saved, setSaved] = useState(false);
   return <div className="motion-preference">
     <MotionSelect id="coach-motion" label="Coach motion" describedBy="motion-settings-help"
-      value={preferences.motion} disabled={!ready || saving}
+      value={value} disabled={!ready || saving}
       onChange={async motion => {
         setSaved(false);
-        setSaved(await save({...preferences, motion}));
+        setSaved(await save(motion));
       }} />
     <PreferenceStatus className="coach-motion-preference-status"
       ready={ready} saving={saving} error={error} saved={saved}
       retry={retry} retryLabel="Reload coach motion preferences"
-      idleText={preferences.motion === "system" && reduced ? "Still · device setting" : undefined} />
+      idleText={value === "system" && reduced ? "Still · device setting" : undefined} />
   </div>;
 }
 

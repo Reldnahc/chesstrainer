@@ -220,7 +220,7 @@ test("promotion and coach changes use the shared player without losing saved pro
     exact: true,
   });
   const savedPreference = page.waitForResponse(response =>
-    response.url().endsWith("/api/preferences/coach") && response.request().method() === "PUT");
+    response.url().endsWith("/api/preferences/coach") && response.request().method() === "PATCH");
   await selected.click();
   expect((await savedPreference).ok()).toBe(true);
   await expect(selected).toBeChecked();

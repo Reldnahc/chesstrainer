@@ -144,7 +144,7 @@ test("changing the opening coach preserves the exact cold recall across browser 
     await page.getByRole("navigation", { name: "Settings sections" }).getByRole("link", { name: "Coach & animations", exact: true }).click();
     const radio = page.locator(`input[name="coach"][value="${selected}"]`);
     await Promise.all([
-      page.waitForResponse(response => response.request().method() === "PUT" && response.url().endsWith("/api/preferences/coach"))
+      page.waitForResponse(response => response.request().method() === "PATCH" && response.url().endsWith("/api/preferences/coach"))
         .then(async response => { expect(response.ok()).toBe(true); expect((await response.json()).coach_id).toBe(selected); }),
       radio.click(),
     ]);

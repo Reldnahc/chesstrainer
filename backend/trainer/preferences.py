@@ -9,6 +9,7 @@ from trainer.contracts.preferences import (
     CoachId,
     CoachMotion,
     CoachPreferences,
+    CoachPreferencesChange,
     MotionPreference,
     MotionPreferences,
 )
@@ -38,6 +39,15 @@ def coach_preferences(db):
 def save_coach_preferences(db, value: CoachPreferences):
     _save_preferences(db, coach_id=value.coach_id, coach_motion=value.motion)
     return value
+
+
+def change_coach_preferences(db, change: CoachPreferencesChange):
+    values = change.model_dump(exclude_none=True)
+    if "motion" in values:
+        values["coach_motion"] = values.pop("motion")
+    if values:
+        _save_preferences(db, **values)
+    return coach_preferences(db)
 
 
 def motion_preferences(db):
