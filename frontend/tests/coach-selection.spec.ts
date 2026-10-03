@@ -87,6 +87,22 @@ test("every registered coach can be chosen and restored in a real game", async (
   }
 });
 
+test("the heading describes the chosen coach", async ({page}) => {
+  const preferences = "/api/preferences/coach";
+  await page.request.put(preferences, {data: {coach_id: "classic", motion: "still"}});
+  try {
+    await page.goto("/settings?section=coach");
+    const heading = page.locator("#coach-settings .settings-section-heading p");
+    await expect(heading).toHaveText("Walter: A warm veteran who connects this move to the game's turning points.");
+    await page.locator('input[name="coach"][value="robot"]').click();
+    await expect(heading).toHaveText("Rivet: Issue, cause, result. Literal, structured delivery with no invented precision.");
+    await expect(page.getByRole("radio", {name: "Rivet", exact: true}))
+      .toHaveAccessibleDescription("Issue, cause, result. Literal, structured delivery with no invented precision.");
+  } finally {
+    await page.request.put(preferences, {data: {coach_id: "classic", motion: "natural"}});
+  }
+});
+
 test("the compact picker shows six by five cards on desktop and fits narrow phones", async ({page}, info) => {
   await page.setViewportSize({width: 1200, height: 900});
   await page.goto("/settings?section=coach");

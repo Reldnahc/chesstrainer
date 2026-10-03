@@ -370,6 +370,14 @@ document without a prior gesture stays silent, and the first navigation replaces
 the greeting with that move's own line. The greeting is the mainline start's own
 line, so returning there shows and speaks it again like any other position. While
 the greeting is the active line, the bubble shows its text. It is written and recorded for all 30 coaches.
+Choosing a coach in **Settings → Your coach** plays that coach's
+`coach-introduction` clip once the choice is saved, through the same scoped
+speech control (any voice mode except Off, honouring mute and volume), with the
+selected portrait's mouth following it. Loading or reloading Settings never plays
+it, and a newer choice cancels the previous one. No coach has this clip yet: the
+meaning is not in `meanings.json` or any bank, so the picker stays silent until a
+coach's introduction is written, approved and recorded (adding the meaning to the
+catalogue and every authored `scripts.json` at the same time).
 Opening the Maia insight popover neither plays nor consumes the main coach's
 pending automatic opportunity. Late Maia
 evidence can update visible text (and so the bubble's objective recording) without
