@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "opening-recall-accepted",
+      "label": "Opening recall accepted",
+      "text": "Yup! That move is right there in the lines you picked."
+    },
+    "takeId": null
+  },
+  "requestHash": "753c17b1935c4f851a2550a021ab428e89fa8a4b9ba8652497b3bd82b503bf08",
+  "recordedAt": "2026-10-03T05:19:09.075Z",
+  "sha256": "5e9484519afcee10f59049fb19c3a59c6b033767572e4054b1a77e287a523d0f",
+  "bytes": 11401,
+  "requestId": "qBTWiQKBPLqRNDsANgU1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0dc6307a9d2ca2d1cb50013e50fbaa7b21894f7ebb3d36797ae37e1762a730f2",
+    "bytes": 56050
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

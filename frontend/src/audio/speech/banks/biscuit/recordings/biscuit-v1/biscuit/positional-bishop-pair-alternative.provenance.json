@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "positional-bishop-pair-alternative",
+      "label": "Positional bishop pair alternative",
+      "text": "Another move would have swiped a bishop, and the other side's bishop buddies would be split apart."
+    },
+    "takeId": null
+  },
+  "requestHash": "44f45988f979c0a703142ac9ed08abf74526c7158101a03c2cc5355cb4bb9d0a",
+  "recordedAt": "2026-10-03T05:16:26.857Z",
+  "sha256": "5b00a7bfb390b2769399c9d820f259f94ea0a8937b1af3af96d202fe3064a3db",
+  "bytes": 18039,
+  "requestId": "eM0EWwbIE8EwsbIvxCmt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6a5be59dbd401e8262573ddf8ad408f6201133d653047778548c7a41fa92384f",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

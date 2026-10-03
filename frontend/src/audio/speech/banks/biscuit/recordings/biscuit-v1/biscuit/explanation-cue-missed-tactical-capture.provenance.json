@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "explanation-cue-missed-tactical-capture",
+      "label": "Explanation cue missed tactical capture",
+      "text": "Before a quiet move, sniff around for any enemy piece left with no guard."
+    },
+    "takeId": null
+  },
+  "requestHash": "08cc2133f28adb441c2fbf1ce0011326185c4302851f5cb981ea8c7088e594ac",
+  "recordedAt": "2026-10-03T05:18:41.569Z",
+  "sha256": "dd76cb49db16ccb759a05ef21b2c2a65d4db9dbd63309a6344481c35889c341d",
+  "bytes": 17151,
+  "requestId": "Hq6XocBAROec4Ger8WIg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6383394f3048affa252a280073a73f31ed79a80198295119ae07f9ca1f822271",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

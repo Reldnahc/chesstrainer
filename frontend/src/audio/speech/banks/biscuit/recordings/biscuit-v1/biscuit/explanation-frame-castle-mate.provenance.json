@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "explanation-frame-castle-mate",
+      "label": "Explanation frame castle mate",
+      "text": "Castling, then boom: checkmate! The other king is completely stuck."
+    },
+    "takeId": null
+  },
+  "requestHash": "823278cd840aa320cdccc4b945a5b9e93df9c24087eb9507a74dd18613b5537d",
+  "recordedAt": "2026-10-03T05:18:07.594Z",
+  "sha256": "af47f63016e5456e436fa47a7ec6c6a0e8e6dce7bbf73e9d080b2259bde8c174",
+  "bytes": 17607,
+  "requestId": "uJ2JdC2j3fKLbrYiR5nu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "118b6ab1f2ebd5406857a83a5b9f8cedff28a03009796266cf502892e92611f7",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

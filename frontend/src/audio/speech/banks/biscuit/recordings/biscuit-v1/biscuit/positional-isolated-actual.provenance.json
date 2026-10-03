@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "positional-isolated-actual",
+      "label": "Positional isolated actual",
+      "text": "Hmm, this pawn has no pawn friends on the files beside it. That makes it an isolated pawn."
+    },
+    "takeId": null
+  },
+  "requestHash": "2ee24dda0ca854d8d60d92e7116b97ee8afd552d2b80c7ae1ac1097945cedb93",
+  "recordedAt": "2026-10-03T05:16:09.802Z",
+  "sha256": "e2e187a093a09042cdb498b0bd10b4f8ae98d0980c8bac5616a72a2bb97945e0",
+  "bytes": 21538,
+  "requestId": "6J8qtHWBEv0XklMmqDje",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "00b86f19f7b31428d6390e897bf0de7413295d7e500682c75a06ce631633b83a",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

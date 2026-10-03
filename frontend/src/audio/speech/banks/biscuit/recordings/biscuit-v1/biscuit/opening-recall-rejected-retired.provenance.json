@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "opening-recall-rejected-retired",
+      "label": "Opening recall rejected retired",
+      "text": "Hmm, the opening lines you picked don't include that move. One more try, you've got this! This position is retired, so no new review dates get set for it."
+    },
+    "takeId": null
+  },
+  "requestHash": "2b9416a9d2f1f60bef147eb0d235b384474cb7b221b1d19cbefab9978b5f8055",
+  "recordedAt": "2026-10-03T05:19:19.423Z",
+  "sha256": "7094a7faac1af869aa2b3e8dfde4fa6f33691724f4c8843b70134246a43461d5",
+  "bytes": 34208,
+  "requestId": "Hd0aDIBXvrDYqQNB57M5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cf3d10a5ed8ae26043a3a1b0a9054540a0f450879b1c14883a4d22bc96309fbf",
+    "bytes": 173915
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

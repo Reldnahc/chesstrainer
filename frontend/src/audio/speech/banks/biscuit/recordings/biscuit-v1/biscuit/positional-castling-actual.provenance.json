@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "positional-castling-actual",
+      "label": "Positional castling actual",
+      "text": "The king castles, and in hops the rook to keep it company. King and rook, both on the move together, wheee!"
+    },
+    "takeId": null
+  },
+  "requestHash": "f45ae97bd8cd09afef1c6b9b88cee19022c3f7319af1230c9a58188e45d4ef0d",
+  "recordedAt": "2026-10-03T05:16:22.437Z",
+  "sha256": "49aae8ac914dfc40ea231d4c881e5b3b78cb6c7d60d589bfa0f013897f5728a7",
+  "bytes": 24963,
+  "requestId": "xx3pe8mQfE3Y5s7prYqV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8f15483937d9b894645f6c8ff6d1444dca9c7ff4ad051544735421c01603e0e1",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

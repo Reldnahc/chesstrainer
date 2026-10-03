@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "positional-rook-semi-open-actual",
+      "label": "Positional rook semi open actual",
+      "text": "Zoom, look where the rook landed: a semi-open file! Its own pawns are nowhere on it, while one or more enemy pawns are still hanging around."
+    },
+    "takeId": null
+  },
+  "requestHash": "38dda3244cd704226d4077b6e2b3727dddfb007c7ded113f09a263be1c6acc44",
+  "recordedAt": "2026-10-03T05:15:58.375Z",
+  "sha256": "038b9dbae56851463b84f96e8cf3ae4b1aa5a87064f3c38e7e5923c9e409acec",
+  "bytes": 31247,
+  "requestId": "Z4N2CbRDXQaMxAm4jhwE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a834c8baa5cfd36f5d1cf5c2b82c72cb7c08f70aa77f80249f901c8568dca433",
+    "bytes": 159704
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

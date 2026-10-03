@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "clock-long",
+      "label": "Clock long",
+      "text": "The clock ticked a long while on this one, and that's worth noticing."
+    },
+    "takeId": null
+  },
+  "requestHash": "fd96cc282bb12cec152438d862de9a70ed4a0ea2e98ec9f687d4205181606c3c",
+  "recordedAt": "2026-10-03T05:16:55.143Z",
+  "sha256": "bfb517b2dec7003ad74f1988c72d48f60714e000566a06eb5e4e60aa664e11d1",
+  "bytes": 14889,
+  "requestId": "zMNKkYPoocX7963Rg9mD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b34e2ee15c6639608c63cd84b045972a0281201a169f8e0e1b116d173c34f70f",
+    "bytes": 72768
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

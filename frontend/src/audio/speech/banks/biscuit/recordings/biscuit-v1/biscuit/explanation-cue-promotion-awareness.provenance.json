@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "explanation-cue-promotion-awareness",
+      "label": "Explanation cue promotion awareness",
+      "text": "Pawn race tip: count the steps it needs to promote, then look hard at every pawn push that forces things."
+    },
+    "takeId": null
+  },
+  "requestHash": "34e2dba9635900462b09fb6a2dca49b61964dd84007f12d31752872e462bdba0",
+  "recordedAt": "2026-10-03T05:18:53.717Z",
+  "sha256": "717585ed612d97183a53ee29a3cfc083072ce0bde29b011dd12dd6cec33d81d9",
+  "bytes": 23308,
+  "requestId": "ypHxYap84K1HNJSMg7z5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a3952d5c8fa85924613abd072ffd2327a139cc95c59d6082b0af94e1da53bf71",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

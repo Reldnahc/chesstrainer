@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "reply-check",
+      "label": "Reply check",
+      "text": "The other side's best answer comes with check! First things first: the king needs taking care of."
+    },
+    "takeId": null
+  },
+  "requestHash": "bc9b2424798d179fde9a48663e058cb17403494a1e6cad009bbe7e5c02f7244e",
+  "recordedAt": "2026-10-03T05:16:43.807Z",
+  "sha256": "31bc58c3b3f6f87c538e821ef344a99b60f88c6734bd8994ad9345c1e02c6e26",
+  "bytes": 21175,
+  "requestId": "jiB7jcEwontR74kv8zxa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3ac5e84206270c2c45ef72e46f7d53680190e5ed2ee1fb4930ed178e5e1175ff",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

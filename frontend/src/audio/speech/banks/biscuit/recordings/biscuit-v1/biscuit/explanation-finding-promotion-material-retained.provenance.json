@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "explanation-finding-promotion-material-retained",
+      "label": "Explanation finding promotion material retained",
+      "text": "The pawn promotes, and in this example the material count tips that side's way."
+    },
+    "takeId": null
+  },
+  "requestHash": "aa1e10286749ae0824d01b9bf0ef43703936ad3656fc150273b02d8c2066b616",
+  "recordedAt": "2026-10-03T05:18:32.910Z",
+  "sha256": "463e6344424b2a48aafd219e5b7d09dfb621aabb2146d905e8f1b45039043020",
+  "bytes": 18150,
+  "requestId": "8uTQ3aA36x0msZHt4fsB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "aa624d3a42ff8e2cd81dd0605e772668e4699241a315cbd70a59dc0768c838d9",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

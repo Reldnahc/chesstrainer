@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-move-check",
+      "label": "Explanation frame quiet move check",
+      "text": "Check, check! Before anything else, the king needs looking after."
+    },
+    "takeId": null
+  },
+  "requestHash": "b061bf62a43dfe3721492ed73acf4f4c1c34902aa2f5823b6800d013440415bd",
+  "recordedAt": "2026-10-03T05:17:46.302Z",
+  "sha256": "c83d2be83c347a9b647ff1d4560afab1c4e6576410ad41b83bf31e412f036a52",
+  "bytes": 14483,
+  "requestId": "4PEkSOaTSPRLQqjPO8pT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1bda8c8a0ce1ff913d883fb438adb0338ef52a8023c8e2a4578aa1992f14611b",
+    "bytes": 72768
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

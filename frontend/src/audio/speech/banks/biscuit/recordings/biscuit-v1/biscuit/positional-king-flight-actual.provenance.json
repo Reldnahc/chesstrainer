@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "positional-king-flight-actual",
+      "label": "Positional king flight actual",
+      "text": "The king gets a brand-new spot it's legally allowed to step on. More wiggle room!"
+    },
+    "takeId": null
+  },
+  "requestHash": "aa102f2aea08048302db302d73c85e178aac4bd96009a6cebb3ab5b60173494f",
+  "recordedAt": "2026-10-03T05:16:19.392Z",
+  "sha256": "97c1058ee344687ff5856f34402e1b5b1ae8c51e846caaa13fa5b7e721772365",
+  "bytes": 17373,
+  "requestId": "I171q5i4ypvjqZhVXcnu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7fd9724bd03e582f3be61c8b2c31d76138b19424a234de859ba2e344f6f142b4",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

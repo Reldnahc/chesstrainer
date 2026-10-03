@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "book-opening-follow-5",
+      "label": "Book opening follow 5",
+      "text": "Still following the opening map!"
+    },
+    "takeId": null
+  },
+  "requestHash": "173a7249fbd553e826cfc147270837ac3edbaeea9068a56b837c4926ca872a58",
+  "recordedAt": "2026-10-03T05:19:46.200Z",
+  "sha256": "2e628700c1327a64b1ce5f2d6632d1c6d2452ac91ac94b8a6357ffcc0b889d9e",
+  "bytes": 7958,
+  "requestId": "mL4fPFfU20vIBXnXsUio",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a71bf6cc58ae0e3ba0d62f78ebcbe1f5cd9a6313a5d16257604c4c0c3df22ef4",
+    "bytes": 38078
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

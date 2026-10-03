@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "recovery-assisted",
+      "label": "Recovery assisted",
+      "text": "That earlier setback didn't stop you: playable again! The other side's errors gave you a hand, and you were ready to grab it."
+    },
+    "takeId": null
+  },
+  "requestHash": "5d06a0aa92014409c1bd531631e4d6080c020ec0e89d6a0928980958bed1c138",
+  "recordedAt": "2026-10-03T05:17:02.237Z",
+  "sha256": "ad4554adae8d9dc9d14c4638c07fa765e8b208377a5c67e8b12b43555117cde0",
+  "bytes": 26471,
+  "requestId": "J81d5EbuC58qDN8dO1A9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9cff9f78967ada19d74925824f1dba01345e5b329e4f7304f17052496cfd34c2",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

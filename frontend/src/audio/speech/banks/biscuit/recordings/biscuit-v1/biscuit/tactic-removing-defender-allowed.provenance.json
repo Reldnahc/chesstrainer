@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed",
+      "label": "Tactic removing defender allowed",
+      "text": "Ooh, a defender is up for capture now. Lose it, and whatever it was protecting is left without a guard."
+    },
+    "takeId": null
+  },
+  "requestHash": "59da6eb2ffbace02b75c52889c7c7590a826ed031105f11360c1d673e7eb9e81",
+  "recordedAt": "2026-10-03T05:15:03.449Z",
+  "sha256": "c37dea11b3cfed8b6419ae51f05ce479bf823bdc73b348688752706a095ebc16",
+  "bytes": 21834,
+  "requestId": "0HEemzhj6416OK3RkNfC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2ef7f7b971078c2b71b75699cf7e57c9f95f97c1f14802d5b998e1d4cef99195",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

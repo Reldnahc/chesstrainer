@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "tactic-promotion-awareness-allowed",
+      "label": "Tactic promotion awareness allowed",
+      "text": "Whoa, zoom zoom: a pawn on their side has a clear run at the last rank. Promotion could be coming for the other side."
+    },
+    "takeId": null
+  },
+  "requestHash": "aef3a143bedf1cf1c113f968e13693e9499f2e0c58145b20da117d331c8f6dfc",
+  "recordedAt": "2026-10-03T05:15:15.285Z",
+  "sha256": "2c55516f1abf5f02f3c6187556bd9edab3040dfc9fefbe75c139e215a5e1ee04",
+  "bytes": 26069,
+  "requestId": "R3ml6jg6YGhhFlXq3N8Q",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c083d2619ff07cdcae287848967ca448e967b78d667007f0e4319f8cc350eeb2",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

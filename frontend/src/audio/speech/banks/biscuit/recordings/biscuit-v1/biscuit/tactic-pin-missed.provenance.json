@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "tactic-pin-missed",
+      "label": "Tactic pin missed",
+      "text": "Hey, peek at this! Another move had a pin waiting, and that piece would have been frozen right in front of its king. This move goes a different way."
+    },
+    "takeId": null
+  },
+  "requestHash": "401c9457e8c48c01e61dbba37199c63fbea5c3b1a6eeb375772d9e3418985d20",
+  "recordedAt": "2026-10-03T05:14:53.490Z",
+  "sha256": "059f9c45385f982c88cbdbbdbedc6b67c583d350467959017fcdd0fcd393f313",
+  "bytes": 29659,
+  "requestId": "6m5stqyHQtbXkx9Lzrvt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "02f06f67782c9bbe6e9431f029074a50024a2d1456f6fadb4dd74658475bf39a",
+    "bytes": 152181
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

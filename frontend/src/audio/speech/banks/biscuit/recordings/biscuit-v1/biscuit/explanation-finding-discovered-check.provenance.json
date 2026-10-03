@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check",
+      "label": "Explanation finding discovered check",
+      "text": "Hop! One piece scoots aside, and surprise, the piece behind it says check. Boom!"
+    },
+    "takeId": null
+  },
+  "requestHash": "e4bd9900335e799488c62ecd7ca7e20cd1c87066bd688b68bd7d71491ed1f421",
+  "recordedAt": "2026-10-03T05:18:27.830Z",
+  "sha256": "1c8728fa421164d3225e678b1abfe418600f3c2752ef06e48bc8bb97b5a86ac5",
+  "bytes": 21648,
+  "requestId": "RZayvLfOzqVKzqaxQUlu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b08c50eebb97445194058a1232ee23d78563b524dc5c787d7ced6dd4d3438784",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

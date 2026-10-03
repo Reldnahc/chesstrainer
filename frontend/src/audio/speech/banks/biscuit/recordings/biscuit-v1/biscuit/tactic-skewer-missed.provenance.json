@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "tactic-skewer-missed",
+      "label": "Tactic skewer missed",
+      "text": "Whoa, a hidden line! A different move set up a skewer: shoo the big piece in front out of the way, and its buddy in back would have been the one to fall."
+    },
+    "takeId": null
+  },
+  "requestHash": "b85c9b8c75f70994211add0ef56d225d969cfd2b205257bd5ebfc1571936c52b",
+  "recordedAt": "2026-10-03T05:15:00.023Z",
+  "sha256": "1f44f411b812608a14ccc05aee47a05e73697dc655ca83c4728be3fcce94c2fe",
+  "bytes": 31318,
+  "requestId": "Rp7AZIDWgB4yyw51KIjC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6dcebc7457741816ac50023ab52134d8afd969128d83f8d279870c1276e0ea76",
+    "bytes": 160958
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

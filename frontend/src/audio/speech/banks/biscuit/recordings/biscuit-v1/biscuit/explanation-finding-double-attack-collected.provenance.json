@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "explanation-finding-double-attack-collected",
+      "label": "Explanation finding double attack collected",
+      "text": "Double trouble: the moving piece makes one attack, a hidden piece makes the other, and that second one wins its target."
+    },
+    "takeId": null
+  },
+  "requestHash": "dc575bec17467654d44d00259c304c881cb58819b7eb3b47ccb17ed5e2dbfd56",
+  "recordedAt": "2026-10-03T05:18:31.562Z",
+  "sha256": "06546357f311d66417b8f51cd528219bb43c7bdfd9b2518da1b8370b6eb20fa5",
+  "bytes": 24610,
+  "requestId": "ySc4rqiTqzCHB8Dse84z",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ee40bf7d011315ed25fe559740a16b8aea4fc4c41ff270ccb75661f732e55bf8",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

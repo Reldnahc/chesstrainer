@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "explanation-finding-pin-prevents-capture",
+      "label": "Explanation finding pin prevents capture",
+      "text": "Nope, no capture for that piece. Its king sits behind it on that line, so it's stuck in a pin."
+    },
+    "takeId": null
+  },
+  "requestHash": "eed9fb587f9d964fb79659a874f57ca78ef62fb6035ece282f6a10d1c418ffb1",
+  "recordedAt": "2026-10-03T05:18:11.417Z",
+  "sha256": "8938a33f8c6788cca0be99cad54a1f7cc103d14d5f8ab54c2dab357072245ac9",
+  "bytes": 21782,
+  "requestId": "J0uUdeQO8IxBl0F2arq0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ada3a297d7174f1dfc4303425aac74e78c7087bfbe885d8174813bbc03818464",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

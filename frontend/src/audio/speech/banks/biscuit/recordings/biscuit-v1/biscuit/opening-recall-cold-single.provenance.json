@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "opening-recall-cold-single",
+      "label": "Opening recall cold single",
+      "text": "Your study lines have just one move for this spot. Remember which?"
+    },
+    "takeId": null
+  },
+  "requestHash": "ff18542887d8a698ab735104ec608c502395166756ea6aa8f0ab31b3d1d4c081",
+  "recordedAt": "2026-10-03T05:19:12.685Z",
+  "sha256": "501947ffcf3380a9731250f150548c430884fb0a96183aac67185f780510e0c9",
+  "bytes": 14434,
+  "requestId": "p9Mi9gCfVwFdE2hPkLVn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fffd036b01537d7cc59120e28ffe066c1b576d19fa87df8a9916dbead74c7aba",
+    "bytes": 72768
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

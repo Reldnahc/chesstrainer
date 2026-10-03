@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "srs-summary-material-gain",
+      "label": "Srs summary material gain",
+      "text": "Count the pieces when the saved line is over: the side that made this move comes out with more material than at the start."
+    },
+    "takeId": null
+  },
+  "requestHash": "63858466bab9f424e3b7b0dfaa716a6af443e0d5b0b17b641bb4104b7cf43caf",
+  "recordedAt": "2026-10-03T05:17:29.168Z",
+  "sha256": "4da79b33ba76b799414159a00c19fe609e574c16d04921bc15922391cacacd7d",
+  "bytes": 23553,
+  "requestId": "aaMSxDtZYGFNjH4JcUXg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "903ad038a0db1c4b9ae639f9d06f82cc1eefa5c113c26d4ab7e9fe98f1d647ab",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

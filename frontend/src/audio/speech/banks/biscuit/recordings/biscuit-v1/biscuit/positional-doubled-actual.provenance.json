@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "positional-doubled-actual",
+      "label": "Positional doubled actual",
+      "text": "Stack attack: two same-colored pawns now sit on a single file. That's a doubled pair!"
+    },
+    "takeId": null
+  },
+  "requestHash": "fd955e7b879d39d5463a52d37a9146b005f13a5853cdf36aea08077377b47e87",
+  "recordedAt": "2026-10-03T05:16:28.446Z",
+  "sha256": "6f941a834fd3a4957f0caca35a80de81b6a9f4b2ed0be2e445d9dc4bfd60667f",
+  "bytes": 20762,
+  "requestId": "DWOWg00ouGIonksPHbID",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e518e45502fe0882847854b83a51e08039713bef17ec8368949952aa0dbd4f06",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

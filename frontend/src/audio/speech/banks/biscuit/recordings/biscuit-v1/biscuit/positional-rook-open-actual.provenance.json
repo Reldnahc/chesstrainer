@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "positional-rook-open-actual",
+      "label": "Positional rook open actual",
+      "text": "Zoom zoom! The rook gets a file with no pawns at all, not one of either color."
+    },
+    "takeId": null
+  },
+  "requestHash": "ca915298a3bda36f57da72ca8891135d4e868c898f8cbdce470c45b5b861e289",
+  "recordedAt": "2026-10-03T05:15:54.760Z",
+  "sha256": "d2b32d5739d84d0e5de1958d1c20fa398216a71533827276ecefc9d8514e9ecb",
+  "bytes": 19910,
+  "requestId": "DruO0MHKkjwxV9BPlnqk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "afc8c004dca84c99c8d03cd0e9ad11e384db4df51b867552b0520ecbe8ddace0",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

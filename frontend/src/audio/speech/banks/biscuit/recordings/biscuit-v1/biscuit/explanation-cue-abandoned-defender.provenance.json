@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "explanation-cue-abandoned-defender",
+      "label": "Explanation cue abandoned defender",
+      "text": "Before a defender moves, list everything it's guarding, because that's what it would leave behind."
+    },
+    "takeId": null
+  },
+  "requestHash": "b28be227a8e3f8383fee7fecbd9c7939fed229908b7aaf0ab2c1f7940e33b037",
+  "recordedAt": "2026-10-03T05:18:55.363Z",
+  "sha256": "6f6ae3e60395e0e48fe8184f27381461f8061cad97ed750ee8e4e49ccc5d8ea2",
+  "bytes": 19188,
+  "requestId": "uAWzlw3E5re8Hv5QaG94",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "69c69a0f7bde80a44b9e5a9a8371cca9e1bb90d98d7e73b441a69e58885f32c0",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

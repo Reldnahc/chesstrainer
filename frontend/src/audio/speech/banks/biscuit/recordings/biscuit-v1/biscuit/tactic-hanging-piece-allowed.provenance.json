@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "tactic-hanging-piece-allowed",
+      "label": "Tactic hanging piece allowed",
+      "text": "Whoa, nobody's guarding that piece anymore, and nothing stops the other side from gobbling it up."
+    },
+    "takeId": null
+  },
+  "requestHash": "b21fd771b00cefd166ca8a41bc609b8c2d1df7f2e8843257d14e154e61962832",
+  "recordedAt": "2026-10-03T05:15:42.066Z",
+  "sha256": "c7d00d0aab6c3852049c3283ebfd81fe4e99b37de70f5338879049eabcdffa47",
+  "bytes": 20435,
+  "requestId": "FmaieSwj0fHKVFRY0cxo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "117a0eee7d4855183897e7b34391c03c777d4fdc7c194ba8b810e57d89275ea8",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,1583 @@
+{
+  "schemaVersion": 1,
+  "provider": "elevenlabs",
+  "coachId": "dog-puppy",
+  "voiceId": "biscuit",
+  "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+  "modelId": "eleven_v4",
+  "outputFormat": "mp3_44100_128",
+  "settings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75,
+    "speed": 0.95
+  },
+  "scope": "non-lesson",
+  "silentIds": [
+    "game-thinking",
+    "explanation-loading-saved",
+    "dialogue-no-renderable-claim",
+    "practice-checking"
+  ],
+  "recordings": [
+    {
+      "id": "tactic-fork-played",
+      "group": "game_review",
+      "text": "Whoa, fork time! One piece is threatening a whole bunch of targets in the very same move, and that's so much fun to see.",
+      "audioPath": "recordings/biscuit-v1/biscuit/tactic-fork-played.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/tactic-fork-played.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-played.json"
+    },
+    {
+      "id": "tactic-fork-allowed",
+      "group": "game_review",
+      "text": "Whoa, a fork just opened up for the other side: a single piece of theirs could bounce at a bunch of targets in one go. Little lesson: count which squares hit two things at once.",
+      "audioPath": "recordings/biscuit-v1/biscuit/tactic-fork-allowed.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/tactic-fork-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-allowed.json"
+    },
+    {
+      "id": "tactic-fork-missed",
+      "group": "game_review",
+      "text": "Ooh, look! Hiding in a different move was a fork, one piece bouncing at a whole bunch of targets. That fork zips by this time.",
+      "audioPath": "recordings/biscuit-v1/biscuit/tactic-fork-missed.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/tactic-fork-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-missed.json"
+    },
+    {
+      "id": "tactic-pin-played",
+      "group": "game_review",
+      "text": "Wow, a piece is stuck to its king! It can't budge from where it stands, because moving would leave its king wide open.",
+      "audioPath": "recordings/biscuit-v1/biscuit/tactic-pin-played.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/tactic-pin-played.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-played.json"
+    },
+    {
+      "id": "tactic-pin-allowed",
+      "group": "game_review",
+      "text": "Ooh, check this out! The other side's next move could freeze a piece in place, pinned in front of its own king.",
+      "audioPath": "recordings/biscuit-v1/biscuit/tactic-pin-allowed.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/tactic-pin-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-allowed.json"
+    },
+    {
+      "id": "tactic-pin-missed",
+      "group": "game_review",
+      "text": "Hey, peek at this! Another move had a pin waiting, and that piece would have been frozen right in front of its king. This move goes a different way.",
+      "audioPath": "recordings/biscuit-v1/biscuit/tactic-pin-missed.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/tactic-pin-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-missed.json"
+    },
+    {
+      "id": "tactic-skewer-played",
+      "group": "game_review",
+      "text": "Whoa, look, a skewer! The front piece is under attack, and when it scoots away, the piece behind it gets hit on the same line.",
+      "audioPath": "recordings/biscuit-v1/biscuit/tactic-skewer-played.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/tactic-skewer-played.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-played.json"
+    },
+    {
+      "id": "tactic-skewer-allowed",
+      "group": "game_review",
+      "text": "Whoa, two pieces are lined up like ducks, ready for the other side to skewer. If the front one hops away, the back one could get hit.",
+      "audioPath": "recordings/biscuit-v1/biscuit/tactic-skewer-allowed.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/tactic-skewer-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-allowed.json"
+    },
+    {
+      "id": "tactic-skewer-missed",
+      "group": "game_review",
+      "text": "Whoa, a hidden line! A different move set up a skewer: shoo the big piece in front out of the way, and its buddy in back would have been the one to fall.",
+      "audioPath": "recordings/biscuit-v1/biscuit/tactic-skewer-missed.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/tactic-skewer-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-missed.json"
+    },
+    {
+      "id": "tactic-removing-defender-played",
+      "group": "game_review",
+      "text": "Wow, watch this! First the defender gets captured, and now the piece it was protecting has nobody looking after it.",
+      "audioPath": "recordings/biscuit-v1/biscuit/tactic-removing-defender-played.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/tactic-removing-defender-played.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-played.json"
+    },
+    {
+      "id": "tactic-removing-defender-allowed",
+      "group": "game_review",
+      "text": "Ooh, a defender is up for capture now. Lose it, and whatever it was protecting is left without a guard.",
+      "audioPath": "recordings/biscuit-v1/biscuit/tactic-removing-defender-allowed.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/tactic-removing-defender-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-allowed.json"
+    },
+    {
+      "id": "tactic-removing-defender-missed",
+      "group": "game_review",
+      "text": "Ooh, tricky stuff! With another move, a defender would have been knocked out, its job left undone. This move skips that trick.",
+      "audioPath": "recordings/biscuit-v1/biscuit/tactic-removing-defender-missed.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/tactic-removing-defender-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-missed.json"
+    },
+    {
+      "id": "tactic-back-rank-played",
+      "group": "game_review",
+      "text": "Whoa, back-rank alert! The king is walled in by its own team, and this move zeroes in right there.",
+      "audioPath": "recordings/biscuit-v1/biscuit/tactic-back-rank-played.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/tactic-back-rank-played.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-played.json"
+    },
+    {
+      "id": "tactic-back-rank-allowed",
+      "group": "game_review",
+      "text": "Ooh, look: that king is stuck behind a wall of its own guys. Now the other side could sneak in a back-rank mate.",
+      "audioPath": "recordings/biscuit-v1/biscuit/tactic-back-rank-allowed.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/tactic-back-rank-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-allowed.json"
+    },
+    {
+      "id": "tactic-back-rank-missed",
+      "group": "game_review",
+      "text": "Ooh, check this out! Another move had a back-rank mate ready, against a king hemmed in by its own team. This move went a different way.",
+      "audioPath": "recordings/biscuit-v1/biscuit/tactic-back-rank-missed.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/tactic-back-rank-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-missed.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-played",
+      "group": "game_review",
+      "text": "Whoa, look at that pawn run! Zooming up the board, and once it lands on the last rank, it turns into a whole new piece.",
+      "audioPath": "recordings/biscuit-v1/biscuit/tactic-promotion-awareness-played.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/tactic-promotion-awareness-played.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-played.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-allowed",
+      "group": "game_review",
+      "text": "Whoa, zoom zoom: a pawn on their side has a clear run at the last rank. Promotion could be coming for the other side.",
+      "audioPath": "recordings/biscuit-v1/biscuit/tactic-promotion-awareness-allowed.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/tactic-promotion-awareness-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-allowed.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-missed",
+      "group": "game_review",
+      "text": "Look over here! A stronger move would have rolled out the red carpet for a pawn heading to promotion. This move keeps that little pawn parked.",
+      "audioPath": "recordings/biscuit-v1/biscuit/tactic-promotion-awareness-missed.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/tactic-promotion-awareness-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-missed.json"
+    },
+    {
+      "id": "tactic-discovered-attack-played",
+      "group": "game_review",
+      "text": "Whoa, tricky! One piece hops out of the way, and boom, the hidden piece springs into action. That's what a discovered attack looks like!",
+      "audioPath": "recordings/biscuit-v1/biscuit/tactic-discovered-attack-played.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/tactic-discovered-attack-played.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-played.json"
+    },
+    {
+      "id": "tactic-discovered-attack-allowed",
+      "group": "game_review",
+      "text": "Whoa, a piece of theirs is parked in front of another. If it hops aside, the one behind gets to attack. Keep an eye out for that hidden pounce!",
+      "audioPath": "recordings/biscuit-v1/biscuit/tactic-discovered-attack-allowed.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/tactic-discovered-attack-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-allowed.json"
+    },
+    {
+      "id": "tactic-discovered-attack-missed",
+      "group": "game_review",
+      "text": "Hey, look closer! A different move had a discovered attack, one piece hopping aside so the one behind could pounce. That trick never gets sprung here.",
+      "audioPath": "recordings/biscuit-v1/biscuit/tactic-discovered-attack-missed.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/tactic-discovered-attack-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-missed.json"
+    },
+    {
+      "id": "tactic-double-attack-played",
+      "group": "game_review",
+      "text": "Woo, double trouble! One move, and out come two threats, and both of them want an answer.",
+      "audioPath": "recordings/biscuit-v1/biscuit/tactic-double-attack-played.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/tactic-double-attack-played.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-played.json"
+    },
+    {
+      "id": "tactic-double-attack-allowed",
+      "group": "game_review",
+      "text": "Whoa, the other side has a double attack available now: one reply, and a pair of threats pops up. Answering both is the hard part.",
+      "audioPath": "recordings/biscuit-v1/biscuit/tactic-double-attack-allowed.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/tactic-double-attack-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-allowed.json"
+    },
+    {
+      "id": "tactic-double-attack-missed",
+      "group": "game_review",
+      "text": "Ooh, look! A stronger move had a double attack, a pair of threats landing together. That chance zips by in this game.",
+      "audioPath": "recordings/biscuit-v1/biscuit/tactic-double-attack-missed.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/tactic-double-attack-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-missed.json"
+    },
+    {
+      "id": "tactic-deflection-played",
+      "group": "game_review",
+      "text": "Ooh, watch the defender! It gets tugged off its job, and the spot it was covering is wide open now. Deflection, spotted!",
+      "audioPath": "recordings/biscuit-v1/biscuit/tactic-deflection-played.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/tactic-deflection-played.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-played.json"
+    },
+    {
+      "id": "tactic-deflection-allowed",
+      "group": "game_review",
+      "text": "Whoa, that defender is working hard, and the other side can tug it off its job. A deflection like that leaves its spot uncovered.",
+      "audioPath": "recordings/biscuit-v1/biscuit/tactic-deflection-allowed.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/tactic-deflection-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-allowed.json"
+    },
+    {
+      "id": "tactic-deflection-missed",
+      "group": "game_review",
+      "text": "Hmm, a crafty idea! Another move could have yanked a defender off duty and left its post empty. That deflection waits for another day.",
+      "audioPath": "recordings/biscuit-v1/biscuit/tactic-deflection-missed.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/tactic-deflection-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-missed.json"
+    },
+    {
+      "id": "tactic-undefended-capture-played",
+      "group": "game_review",
+      "text": "Ooh, wide open! Nobody was looking after that piece, so it gets gobbled up, free and clear.",
+      "audioPath": "recordings/biscuit-v1/biscuit/tactic-undefended-capture-played.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/tactic-undefended-capture-played.provenance.json",
+      "alignmentPath": "alignment/tactic-undefended-capture-played.json"
+    },
+    {
+      "id": "tactic-undefended-capture-missed",
+      "group": "game_review",
+      "text": "Hey, look closer! Another move could have gobbled up a piece with no guard at all. That snack zips by here. Easy habit: look for anything unguarded before every move.",
+      "audioPath": "recordings/biscuit-v1/biscuit/tactic-undefended-capture-missed.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/tactic-undefended-capture-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-undefended-capture-missed.json"
+    },
+    {
+      "id": "tactic-hanging-piece-allowed",
+      "group": "game_review",
+      "text": "Whoa, nobody's guarding that piece anymore, and nothing stops the other side from gobbling it up.",
+      "audioPath": "recordings/biscuit-v1/biscuit/tactic-hanging-piece-allowed.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/tactic-hanging-piece-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-hanging-piece-allowed.json"
+    },
+    {
+      "id": "cause-abandoned-defender",
+      "group": "game_review",
+      "text": "Ah, found the problem! That piece only had one real defender, and this move sends it away, so the other side can capture. Quick tip: whenever a defender wanders off, count up everything it used to protect.",
+      "audioPath": "recordings/biscuit-v1/biscuit/cause-abandoned-defender.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/cause-abandoned-defender.provenance.json",
+      "alignmentPath": "alignment/cause-abandoned-defender.json"
+    },
+    {
+      "id": "cause-opponent-threat-recognition",
+      "group": "game_review",
+      "text": "Ah, look closely! Something got threatened by the opponent's last move, and that threat is still sitting there after this one, so a piece can be captured. Little lesson: start by asking what their last move threatens.",
+      "audioPath": "recordings/biscuit-v1/biscuit/cause-opponent-threat-recognition.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/cause-opponent-threat-recognition.provenance.json",
+      "alignmentPath": "alignment/cause-opponent-threat-recognition.json"
+    },
+    {
+      "id": "cause-avoiding-bad-trades",
+      "group": "game_review",
+      "text": "Hmm, that first capture sure looks yummy, but then the other side recaptures, and what it grabs back is worth more. Easy habit: tally the whole swap, every grab from both sides.",
+      "audioPath": "recordings/biscuit-v1/biscuit/cause-avoiding-bad-trades.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/cause-avoiding-bad-trades.provenance.json",
+      "alignmentPath": "alignment/cause-avoiding-bad-trades.json"
+    },
+    {
+      "id": "positional-development-actual",
+      "group": "game_review",
+      "text": "Hi there, minor piece! It leaves its starting spot and joins in.",
+      "audioPath": "recordings/biscuit-v1/biscuit/positional-development-actual.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/positional-development-actual.provenance.json",
+      "alignmentPath": "alignment/positional-development-actual.json"
+    },
+    {
+      "id": "positional-development-alternative",
+      "group": "game_review",
+      "text": "Another move would have gotten a sleepy minor piece off the back row and into the action.",
+      "audioPath": "recordings/biscuit-v1/biscuit/positional-development-alternative.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/positional-development-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-development-alternative.json"
+    },
+    {
+      "id": "positional-rook-open-actual",
+      "group": "game_review",
+      "text": "Zoom zoom! The rook gets a file with no pawns at all, not one of either color.",
+      "audioPath": "recordings/biscuit-v1/biscuit/positional-rook-open-actual.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/positional-rook-open-actual.provenance.json",
+      "alignmentPath": "alignment/positional-rook-open-actual.json"
+    },
+    {
+      "id": "positional-rook-open-alternative",
+      "group": "game_review",
+      "text": "With a different move, a rook could have zoomed onto a file with no pawns anywhere on it.",
+      "audioPath": "recordings/biscuit-v1/biscuit/positional-rook-open-alternative.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/positional-rook-open-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-rook-open-alternative.json"
+    },
+    {
+      "id": "positional-rook-semi-open-actual",
+      "group": "game_review",
+      "text": "Zoom, look where the rook landed: a semi-open file! Its own pawns are nowhere on it, while one or more enemy pawns are still hanging around.",
+      "audioPath": "recordings/biscuit-v1/biscuit/positional-rook-semi-open-actual.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/positional-rook-semi-open-actual.provenance.json",
+      "alignmentPath": "alignment/positional-rook-semi-open-actual.json"
+    },
+    {
+      "id": "positional-rook-semi-open-alternative",
+      "group": "game_review",
+      "text": "Ooh, a semi-open file was there for a rook with another move, empty of its own pawns while an enemy pawn still sits on it.",
+      "audioPath": "recordings/biscuit-v1/biscuit/positional-rook-semi-open-alternative.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/positional-rook-semi-open-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-rook-semi-open-alternative.json"
+    },
+    {
+      "id": "positional-passed-actual",
+      "group": "game_review",
+      "text": "Whoa, look at that pawn go free! Not one enemy pawn stands in its path, on its file or on either file next door.",
+      "audioPath": "recordings/biscuit-v1/biscuit/positional-passed-actual.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/positional-passed-actual.provenance.json",
+      "alignmentPath": "alignment/positional-passed-actual.json"
+    },
+    {
+      "id": "positional-passed-alternative",
+      "group": "game_review",
+      "text": "A different move would have freed up a passed pawn, with nothing from the enemy pawns standing in its way, there or on the files next door.",
+      "audioPath": "recordings/biscuit-v1/biscuit/positional-passed-alternative.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/positional-passed-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-passed-alternative.json"
+    },
+    {
+      "id": "positional-passer-advance-actual",
+      "group": "game_review",
+      "text": "Hop, hop! That passed pawn is inching toward the far end of the board.",
+      "audioPath": "recordings/biscuit-v1/biscuit/positional-passer-advance-actual.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/positional-passer-advance-actual.provenance.json",
+      "alignmentPath": "alignment/positional-passer-advance-actual.json"
+    },
+    {
+      "id": "positional-passer-advance-alternative",
+      "group": "game_review",
+      "text": "With another move, the passed pawn would have marched closer to promotion.",
+      "audioPath": "recordings/biscuit-v1/biscuit/positional-passer-advance-alternative.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/positional-passer-advance-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-passer-advance-alternative.json"
+    },
+    {
+      "id": "positional-isolated-actual",
+      "group": "game_review",
+      "text": "Hmm, this pawn has no pawn friends on the files beside it. That makes it an isolated pawn.",
+      "audioPath": "recordings/biscuit-v1/biscuit/positional-isolated-actual.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/positional-isolated-actual.provenance.json",
+      "alignmentPath": "alignment/positional-isolated-actual.json"
+    },
+    {
+      "id": "positional-isolated-alternative",
+      "group": "game_review",
+      "text": "With a different move, a pawn would have ended up isolated, all alone without pawn buddies on the neighboring files.",
+      "audioPath": "recordings/biscuit-v1/biscuit/positional-isolated-alternative.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/positional-isolated-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-isolated-alternative.json"
+    },
+    {
+      "id": "positional-support-actual",
+      "group": "game_review",
+      "text": "Look at that, the piece finally has a defender! It's not out there by itself anymore.",
+      "audioPath": "recordings/biscuit-v1/biscuit/positional-support-actual.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/positional-support-actual.provenance.json",
+      "alignmentPath": "alignment/positional-support-actual.json"
+    },
+    {
+      "id": "positional-support-alternative",
+      "group": "game_review",
+      "text": "Another move would have sent a defender over to an unguarded piece.",
+      "audioPath": "recordings/biscuit-v1/biscuit/positional-support-alternative.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/positional-support-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-support-alternative.json"
+    },
+    {
+      "id": "positional-unsupported-actual",
+      "group": "game_review",
+      "text": "Hmm, this piece is standing out there unguarded now. Good to notice, even though unguarded doesn't mean it can be won.",
+      "audioPath": "recordings/biscuit-v1/biscuit/positional-unsupported-actual.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/positional-unsupported-actual.provenance.json",
+      "alignmentPath": "alignment/positional-unsupported-actual.json"
+    },
+    {
+      "id": "positional-unsupported-alternative",
+      "group": "game_review",
+      "text": "Another move would have left a piece with nothing guarding it, and that alone doesn't mean it could be won.",
+      "audioPath": "recordings/biscuit-v1/biscuit/positional-unsupported-alternative.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/positional-unsupported-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-unsupported-alternative.json"
+    },
+    {
+      "id": "positional-king-flight-actual",
+      "group": "game_review",
+      "text": "The king gets a brand-new spot it's legally allowed to step on. More wiggle room!",
+      "audioPath": "recordings/biscuit-v1/biscuit/positional-king-flight-actual.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/positional-king-flight-actual.provenance.json",
+      "alignmentPath": "alignment/positional-king-flight-actual.json"
+    },
+    {
+      "id": "positional-king-flight-alternative",
+      "group": "game_review",
+      "text": "With a different move, the king would have had one more legal spot to scoot to.",
+      "audioPath": "recordings/biscuit-v1/biscuit/positional-king-flight-alternative.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/positional-king-flight-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-king-flight-alternative.json"
+    },
+    {
+      "id": "positional-castling-actual",
+      "group": "game_review",
+      "text": "The king castles, and in hops the rook to keep it company. King and rook, both on the move together, wheee!",
+      "audioPath": "recordings/biscuit-v1/biscuit/positional-castling-actual.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/positional-castling-actual.provenance.json",
+      "alignmentPath": "alignment/positional-castling-actual.json"
+    },
+    {
+      "id": "positional-castling-alternative",
+      "group": "game_review",
+      "text": "Another choice was castling, so king and rook both move in a single turn.",
+      "audioPath": "recordings/biscuit-v1/biscuit/positional-castling-alternative.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/positional-castling-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-castling-alternative.json"
+    },
+    {
+      "id": "positional-bishop-pair-actual",
+      "group": "game_review",
+      "text": "This capture breaks up a bishop pair, and now one side's bishops can only walk on one color.",
+      "audioPath": "recordings/biscuit-v1/biscuit/positional-bishop-pair-actual.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/positional-bishop-pair-actual.provenance.json",
+      "alignmentPath": "alignment/positional-bishop-pair-actual.json"
+    },
+    {
+      "id": "positional-bishop-pair-alternative",
+      "group": "game_review",
+      "text": "Another move would have swiped a bishop, and the other side's bishop buddies would be split apart.",
+      "audioPath": "recordings/biscuit-v1/biscuit/positional-bishop-pair-alternative.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/positional-bishop-pair-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-bishop-pair-alternative.json"
+    },
+    {
+      "id": "positional-doubled-actual",
+      "group": "game_review",
+      "text": "Stack attack: two same-colored pawns now sit on a single file. That's a doubled pair!",
+      "audioPath": "recordings/biscuit-v1/biscuit/positional-doubled-actual.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/positional-doubled-actual.provenance.json",
+      "alignmentPath": "alignment/positional-doubled-actual.json"
+    },
+    {
+      "id": "positional-doubled-alternative",
+      "group": "game_review",
+      "text": "With another move, two same-colored pawns would have stacked up on one file.",
+      "audioPath": "recordings/biscuit-v1/biscuit/positional-doubled-alternative.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/positional-doubled-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-doubled-alternative.json"
+    },
+    {
+      "id": "allowed-mate",
+      "group": "game_review",
+      "text": "Whoa, this is a biggie: a forced mate is now waiting for the other side. Let's follow the attack move by move and find where the defense ran out.",
+      "audioPath": "recordings/biscuit-v1/biscuit/allowed-mate.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/allowed-mate.provenance.json",
+      "alignmentPath": "alignment/allowed-mate.json"
+    },
+    {
+      "id": "missed-mate",
+      "group": "game_review",
+      "text": "Whoa, check this out! A forced checkmate was ready and waiting, and this move wanders off elsewhere. That finish is worth finding on the board.",
+      "audioPath": "recordings/biscuit-v1/biscuit/missed-mate.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/missed-mate.provenance.json",
+      "alignmentPath": "alignment/missed-mate.json"
+    },
+    {
+      "id": "sound-sacrifice",
+      "group": "game_review",
+      "text": "Wow, what an offer! The other side is allowed to take the material, but in the line we checked, the idea survives the capture.",
+      "audioPath": "recordings/biscuit-v1/biscuit/sound-sacrifice.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/sound-sacrifice.provenance.json",
+      "alignmentPath": "alignment/sound-sacrifice.json"
+    },
+    {
+      "id": "only-playable-move",
+      "group": "game_review",
+      "text": "Whoa, a lifeline! Out of the moves we checked, all the rest were losing; this one move alone keeps things playable.",
+      "audioPath": "recordings/biscuit-v1/biscuit/only-playable-move.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/only-playable-move.provenance.json",
+      "alignmentPath": "alignment/only-playable-move.json"
+    },
+    {
+      "id": "only-advantage-resource",
+      "group": "game_review",
+      "text": "Whoa, how about that! Among all the moves we checked, the others were losing, and just this one kept the edge alive.",
+      "audioPath": "recordings/biscuit-v1/biscuit/only-advantage-resource.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/only-advantage-resource.provenance.json",
+      "alignmentPath": "alignment/only-advantage-resource.json"
+    },
+    {
+      "id": "immediate-capture",
+      "group": "game_review",
+      "text": "Hmm, let's peek at their reply. Something can be snapped up by the other side right now.",
+      "audioPath": "recordings/biscuit-v1/biscuit/immediate-capture.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/immediate-capture.provenance.json",
+      "alignmentPath": "alignment/immediate-capture.json"
+    },
+    {
+      "id": "reply-check",
+      "group": "game_review",
+      "text": "The other side's best answer comes with check! First things first: the king needs taking care of.",
+      "audioPath": "recordings/biscuit-v1/biscuit/reply-check.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/reply-check.provenance.json",
+      "alignmentPath": "alignment/reply-check.json"
+    },
+    {
+      "id": "stronger-alternative",
+      "group": "game_review",
+      "text": "The engine's heart is set on another move here. Let's set it up on the board, side by side with this one, and watch the replies!",
+      "audioPath": "recordings/biscuit-v1/biscuit/stronger-alternative.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/stronger-alternative.provenance.json",
+      "alignmentPath": "alignment/stronger-alternative.json"
+    },
+    {
+      "id": "evaluation-loss",
+      "group": "game_review",
+      "text": "Hmm, a little leak: the engine's best would have kept a bit more value. The reply explains what slipped.",
+      "audioPath": "recordings/biscuit-v1/biscuit/evaluation-loss.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/evaluation-loss.provenance.json",
+      "alignmentPath": "alignment/evaluation-loss.json"
+    },
+    {
+      "id": "best-supported-choice",
+      "group": "game_review",
+      "text": "Whoa, strong move alert! The engine barely finds anything better.",
+      "audioPath": "recordings/biscuit-v1/biscuit/best-supported-choice.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/best-supported-choice.provenance.json",
+      "alignmentPath": "alignment/best-supported-choice.json"
+    },
+    {
+      "id": "good-choice",
+      "group": "game_review",
+      "text": "Ooh, solid! The engine has a slight favorite elsewhere, yet nearly all the value is still there.",
+      "audioPath": "recordings/biscuit-v1/biscuit/good-choice.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/good-choice.provenance.json",
+      "alignmentPath": "alignment/good-choice.json"
+    },
+    {
+      "id": "clock-low",
+      "group": "game_review",
+      "text": "Whew, hardly any time was left before this move. That's good to keep in mind.",
+      "audioPath": "recordings/biscuit-v1/biscuit/clock-low.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/clock-low.provenance.json",
+      "alignmentPath": "alignment/clock-low.json"
+    },
+    {
+      "id": "clock-fast",
+      "group": "game_review",
+      "text": "Zoom, a speedy move, and the clock still has plenty in the tank!",
+      "audioPath": "recordings/biscuit-v1/biscuit/clock-fast.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/clock-fast.provenance.json",
+      "alignmentPath": "alignment/clock-fast.json"
+    },
+    {
+      "id": "clock-long",
+      "group": "game_review",
+      "text": "The clock ticked a long while on this one, and that's worth noticing.",
+      "audioPath": "recordings/biscuit-v1/biscuit/clock-long.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/clock-long.provenance.json",
+      "alignmentPath": "alignment/clock-long.json"
+    },
+    {
+      "id": "recognized-opening",
+      "group": "game_review",
+      "text": "Ooh, a famous opening has this very move in it. We've got a map for now!",
+      "audioPath": "recordings/biscuit-v1/biscuit/recognized-opening.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/recognized-opening.provenance.json",
+      "alignmentPath": "alignment/recognized-opening.json"
+    },
+    {
+      "id": "opening-departure",
+      "group": "game_review",
+      "text": "So long, opening book! From here on, it's brand-new territory.",
+      "audioPath": "recordings/biscuit-v1/biscuit/opening-departure.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/opening-departure.provenance.json",
+      "alignmentPath": "alignment/opening-departure.json"
+    },
+    {
+      "id": "recovery",
+      "group": "game_review",
+      "text": "Hey, you bounced back, teammate! That earlier setback is in the rearview now, and this move gets the game playable again. That's real fighting spirit!",
+      "audioPath": "recordings/biscuit-v1/biscuit/recovery.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/recovery.provenance.json",
+      "alignmentPath": "alignment/recovery.json"
+    },
+    {
+      "id": "recovery-assisted",
+      "group": "game_review",
+      "text": "That earlier setback didn't stop you: playable again! The other side's errors gave you a hand, and you were ready to grab it.",
+      "audioPath": "recordings/biscuit-v1/biscuit/recovery-assisted.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/recovery-assisted.provenance.json",
+      "alignmentPath": "alignment/recovery-assisted.json"
+    },
+    {
+      "id": "chance-taken",
+      "group": "game_review",
+      "text": "Yippee! The opponent's last move left a chance, and you snapped it up right away.",
+      "audioPath": "recordings/biscuit-v1/biscuit/chance-taken.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/chance-taken.provenance.json",
+      "alignmentPath": "alignment/chance-taken.json"
+    },
+    {
+      "id": "chance-missed",
+      "group": "game_review",
+      "text": "Oopsie, a missed chance! A goodie was sitting there after the opponent's last move, and this move sniffs right past it. Let's rewind a move and spot it.",
+      "audioPath": "recordings/biscuit-v1/biscuit/chance-missed.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/chance-missed.provenance.json",
+      "alignmentPath": "alignment/chance-missed.json"
+    },
+    {
+      "id": "repeated-issue",
+      "group": "game_review",
+      "text": "Hey, we've met this one before! A slip like this already happened earlier in this game. Let's study those moments as a group.",
+      "audioPath": "recordings/biscuit-v1/biscuit/repeated-issue.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/repeated-issue.provenance.json",
+      "alignmentPath": "alignment/repeated-issue.json"
+    },
+    {
+      "id": "support-restored",
+      "group": "game_review",
+      "text": "Hooray, a defender is back on duty for that piece that was all alone earlier!",
+      "audioPath": "recordings/biscuit-v1/biscuit/support-restored.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/support-restored.provenance.json",
+      "alignmentPath": "alignment/support-restored.json"
+    },
+    {
+      "id": "gradual-erosion",
+      "group": "game_review",
+      "text": "No single big mistake here, just a pile of little concessions adding up, and this is another one. Let's walk back through that whole stretch together.",
+      "audioPath": "recordings/biscuit-v1/biscuit/gradual-erosion.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/gradual-erosion.provenance.json",
+      "alignmentPath": "alignment/gradual-erosion.json"
+    },
+    {
+      "id": "advantage-converted",
+      "group": "game_review",
+      "text": "That edge stuck with you all the way to the win! Great teamwork from start to finish.",
+      "audioPath": "recordings/biscuit-v1/biscuit/advantage-converted.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/advantage-converted.provenance.json",
+      "alignmentPath": "alignment/advantage-converted.json"
+    },
+    {
+      "id": "saved-history-recurrence",
+      "group": "game_review",
+      "text": "Hey, this same trouble is hiding in your other saved games too! Let's study them together and practice it.",
+      "audioPath": "recordings/biscuit-v1/biscuit/saved-history-recurrence.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/saved-history-recurrence.provenance.json",
+      "alignmentPath": "alignment/saved-history-recurrence.json"
+    },
+    {
+      "id": "mate-finished",
+      "group": "game_review",
+      "text": "Checkmate! The king is trapped, and you won it!",
+      "audioPath": "recordings/biscuit-v1/biscuit/mate-finished.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/mate-finished.provenance.json",
+      "alignmentPath": "alignment/mate-finished.json"
+    },
+    {
+      "id": "mate-defense-ended",
+      "group": "game_review",
+      "text": "Checkmate. The king got cornered with zero legal moves. That one stings; let's rewind together and hunt for where the defense could hold.",
+      "audioPath": "recordings/biscuit-v1/biscuit/mate-defense-ended.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/mate-defense-ended.provenance.json",
+      "alignmentPath": "alignment/mate-defense-ended.json"
+    },
+    {
+      "id": "draw",
+      "group": "game_review",
+      "text": "Draw game! Nobody wins this time, but there's still good stuff to learn from the earlier moves.",
+      "audioPath": "recordings/biscuit-v1/biscuit/draw.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/draw.provenance.json",
+      "alignmentPath": "alignment/draw.json"
+    },
+    {
+      "id": "srs-cold",
+      "group": "srs_explanations",
+      "text": "Ready, set, look! Check out the position, and pick a move whenever you like.",
+      "audioPath": "recordings/biscuit-v1/biscuit/srs-cold.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/srs-cold.provenance.json",
+      "alignmentPath": "alignment/srs-cold.json"
+    },
+    {
+      "id": "srs-retry",
+      "group": "srs_explanations",
+      "text": "Not that one, and that's okay! Have another peek and try something else.",
+      "audioPath": "recordings/biscuit-v1/biscuit/srs-retry.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/srs-retry.provenance.json",
+      "alignmentPath": "alignment/srs-retry.json"
+    },
+    {
+      "id": "srs-practice-error",
+      "group": "srs_explanations",
+      "text": "Hmm, that attempt didn't bring anything back. Let's try that move one more time!",
+      "audioPath": "recordings/biscuit-v1/biscuit/srs-practice-error.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/srs-practice-error.provenance.json",
+      "alignmentPath": "alignment/srs-practice-error.json"
+    },
+    {
+      "id": "srs-summary-mate-for-mover",
+      "group": "srs_explanations",
+      "text": "Woo! Forced checkmate turns up in the saved engine analysis, and the side that just moved is the one delivering it!",
+      "audioPath": "recordings/biscuit-v1/biscuit/srs-summary-mate-for-mover.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/srs-summary-mate-for-mover.provenance.json",
+      "alignmentPath": "alignment/srs-summary-mate-for-mover.json"
+    },
+    {
+      "id": "srs-summary-mate-against-mover",
+      "group": "srs_explanations",
+      "text": "Eek, the saved engine analysis has bad news for whoever just moved: a mating attack is coming from the other side, and it can't be stopped.",
+      "audioPath": "recordings/biscuit-v1/biscuit/srs-summary-mate-against-mover.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/srs-summary-mate-against-mover.provenance.json",
+      "alignmentPath": "alignment/srs-summary-mate-against-mover.json"
+    },
+    {
+      "id": "srs-summary-material-gain",
+      "group": "srs_explanations",
+      "text": "Count the pieces when the saved line is over: the side that made this move comes out with more material than at the start.",
+      "audioPath": "recordings/biscuit-v1/biscuit/srs-summary-material-gain.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/srs-summary-material-gain.provenance.json",
+      "alignmentPath": "alignment/srs-summary-material-gain.json"
+    },
+    {
+      "id": "srs-summary-material-loss",
+      "group": "srs_explanations",
+      "text": "Count the pieces when the saved line is over: the side that made this move comes out with less material than at the start.",
+      "audioPath": "recordings/biscuit-v1/biscuit/srs-summary-material-loss.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/srs-summary-material-loss.provenance.json",
+      "alignmentPath": "alignment/srs-summary-material-loss.json"
+    },
+    {
+      "id": "srs-summary-engine-accepted",
+      "group": "srs_explanations",
+      "text": "Accepted, yay! Thumbs up from the exercise. Nothing in the moves shown spells out a clear tactical reason, so we won't invent one.",
+      "audioPath": "recordings/biscuit-v1/biscuit/srs-summary-engine-accepted.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/srs-summary-engine-accepted.provenance.json",
+      "alignmentPath": "alignment/srs-summary-engine-accepted.json"
+    },
+    {
+      "id": "srs-summary-engine-rejected",
+      "group": "srs_explanations",
+      "text": "Not this one for the exercise, sorry! And the moves shown keep their tactical reason a mystery.",
+      "audioPath": "recordings/biscuit-v1/biscuit/srs-summary-engine-rejected.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/srs-summary-engine-rejected.provenance.json",
+      "alignmentPath": "alignment/srs-summary-engine-rejected.json"
+    },
+    {
+      "id": "srs-summary-curated-accepted",
+      "group": "srs_explanations",
+      "text": "Ding! That move is on the saved answer list. For this exercise, nothing else gets the checkmark.",
+      "audioPath": "recordings/biscuit-v1/biscuit/srs-summary-curated-accepted.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/srs-summary-curated-accepted.provenance.json",
+      "alignmentPath": "alignment/srs-summary-curated-accepted.json"
+    },
+    {
+      "id": "srs-summary-curated-rejected",
+      "group": "srs_explanations",
+      "text": "That move isn't on the saved answer list. It might be perfectly fine chess; this exercise is looking for a different answer.",
+      "audioPath": "recordings/biscuit-v1/biscuit/srs-summary-curated-rejected.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/srs-summary-curated-rejected.provenance.json",
+      "alignmentPath": "alignment/srs-summary-curated-rejected.json"
+    },
+    {
+      "id": "srs-fallback-study",
+      "group": "srs_explanations",
+      "text": "Give the move a good look, and then let's bounce along to the next position.",
+      "audioPath": "recordings/biscuit-v1/biscuit/srs-fallback-study.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/srs-fallback-study.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-study.json"
+    },
+    {
+      "id": "srs-fallback-good",
+      "group": "srs_explanations",
+      "text": "Good one! Keep the why tucked away for next time.",
+      "audioPath": "recordings/biscuit-v1/biscuit/srs-fallback-good.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/srs-fallback-good.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-good.json"
+    },
+    {
+      "id": "srs-fallback-focus-saved",
+      "group": "srs_explanations",
+      "text": "Saved and done! Your review dates are exactly the same.",
+      "audioPath": "recordings/biscuit-v1/biscuit/srs-fallback-focus-saved.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/srs-fallback-focus-saved.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-focus-saved.json"
+    },
+    {
+      "id": "srs-fallback-relearning",
+      "group": "srs_explanations",
+      "text": "Woo, solved! Relearning is still on the list for this one, though.",
+      "audioPath": "recordings/biscuit-v1/biscuit/srs-fallback-relearning.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/srs-fallback-relearning.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-relearning.json"
+    },
+    {
+      "id": "explanation-frame-original",
+      "group": "srs_explanations",
+      "text": "Okay, here's our starting spot, before any of these moves happen.",
+      "audioPath": "recordings/biscuit-v1/biscuit/explanation-frame-original.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/explanation-frame-original.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-original.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-ordinary",
+      "group": "srs_explanations",
+      "text": "Onward! Let's peek at the board now.",
+      "audioPath": "recordings/biscuit-v1/biscuit/explanation-frame-quiet-move-ordinary.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/explanation-frame-quiet-move-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-check",
+      "group": "srs_explanations",
+      "text": "Check, check! Before anything else, the king needs looking after.",
+      "audioPath": "recordings/biscuit-v1/biscuit/explanation-frame-quiet-move-check.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/explanation-frame-quiet-move-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-check.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-escape",
+      "group": "srs_explanations",
+      "text": "Out of check the king goes, safe and sound. Hop, hop!",
+      "audioPath": "recordings/biscuit-v1/biscuit/explanation-frame-quiet-move-escape.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/explanation-frame-quiet-move-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-escape.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-ordinary",
+      "group": "srs_explanations",
+      "text": "All the way up the board goes the pawn, and on the last rank it turns into a brand-new piece. Woo!",
+      "audioPath": "recordings/biscuit-v1/biscuit/explanation-frame-quiet-promotion-ordinary.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/explanation-frame-quiet-promotion-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-check",
+      "group": "srs_explanations",
+      "text": "Last rank reached, new piece made, and check given too!",
+      "audioPath": "recordings/biscuit-v1/biscuit/explanation-frame-quiet-promotion-check.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/explanation-frame-quiet-promotion-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-check.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-mate",
+      "group": "srs_explanations",
+      "text": "Ta-da, a brand-new piece on the last rank, and it's checkmate! Game over for that king.",
+      "audioPath": "recordings/biscuit-v1/biscuit/explanation-frame-quiet-promotion-mate.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/explanation-frame-quiet-promotion-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-mate.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-escape",
+      "group": "srs_explanations",
+      "text": "Busy little pawn! Last rank reached, shiny new piece made, and its king escapes check at the very same time.",
+      "audioPath": "recordings/biscuit-v1/biscuit/explanation-frame-quiet-promotion-escape.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/explanation-frame-quiet-promotion-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-escape.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-ordinary",
+      "group": "srs_explanations",
+      "text": "Gobble! Off the board goes a piece.",
+      "audioPath": "recordings/biscuit-v1/biscuit/explanation-frame-capture-move-ordinary.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/explanation-frame-capture-move-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-check",
+      "group": "srs_explanations",
+      "text": "Gobble, with check on top!",
+      "audioPath": "recordings/biscuit-v1/biscuit/explanation-frame-capture-move-check.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/explanation-frame-capture-move-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-check.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-mate",
+      "group": "srs_explanations",
+      "text": "Gobble, checkmate! The king is out of places to go.",
+      "audioPath": "recordings/biscuit-v1/biscuit/explanation-frame-capture-move-mate.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/explanation-frame-capture-move-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-mate.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-escape",
+      "group": "srs_explanations",
+      "text": "Gobble and escape: something gets captured, and the king gets out of check!",
+      "audioPath": "recordings/biscuit-v1/biscuit/explanation-frame-capture-move-escape.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/explanation-frame-capture-move-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-escape.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-ordinary",
+      "group": "srs_explanations",
+      "text": "Chomp, then promote! A capture on the last rank, and up pops a brand-new piece.",
+      "audioPath": "recordings/biscuit-v1/biscuit/explanation-frame-capture-promotion-ordinary.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/explanation-frame-capture-promotion-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-check",
+      "group": "srs_explanations",
+      "text": "One little pawn does a triple trick: it grabs a piece, becomes a new one, and gives check, wow!",
+      "audioPath": "recordings/biscuit-v1/biscuit/explanation-frame-capture-promotion-check.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/explanation-frame-capture-promotion-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-check.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-mate",
+      "group": "srs_explanations",
+      "text": "Chomp on the last rank, promote, and that's mate! The king is out of places to go.",
+      "audioPath": "recordings/biscuit-v1/biscuit/explanation-frame-capture-promotion-mate.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/explanation-frame-capture-promotion-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-mate.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-escape",
+      "group": "srs_explanations",
+      "text": "The pawn captures on the last rank and promotes, and its own king is rescued from check at the same moment.",
+      "audioPath": "recordings/biscuit-v1/biscuit/explanation-frame-capture-promotion-escape.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/explanation-frame-capture-promotion-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-escape.json"
+    },
+    {
+      "id": "explanation-frame-castle-check",
+      "group": "srs_explanations",
+      "text": "Castling, and surprise: that rook says check! How fun!",
+      "audioPath": "recordings/biscuit-v1/biscuit/explanation-frame-castle-check.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/explanation-frame-castle-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-castle-check.json"
+    },
+    {
+      "id": "explanation-frame-castle-mate",
+      "group": "srs_explanations",
+      "text": "Castling, then boom: checkmate! The other king is completely stuck.",
+      "audioPath": "recordings/biscuit-v1/biscuit/explanation-frame-castle-mate.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/explanation-frame-castle-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-castle-mate.json"
+    },
+    {
+      "id": "explanation-finding-fork-collected",
+      "group": "srs_explanations",
+      "text": "A single piece aims at several targets together, and then it gobbles one up. In this example, the fork wins material overall!",
+      "audioPath": "recordings/biscuit-v1/biscuit/explanation-finding-fork-collected.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/explanation-finding-fork-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-fork-collected.json"
+    },
+    {
+      "id": "explanation-finding-pin-prevents-capture",
+      "group": "srs_explanations",
+      "text": "Nope, no capture for that piece. Its king sits behind it on that line, so it's stuck in a pin.",
+      "audioPath": "recordings/biscuit-v1/biscuit/explanation-finding-pin-prevents-capture.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/explanation-finding-pin-prevents-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-prevents-capture.json"
+    },
+    {
+      "id": "explanation-finding-pin-restricts-escape",
+      "group": "srs_explanations",
+      "text": "Scooting away isn't allowed for that attacked piece: its own king is lined up behind it. Its king has to stay shielded no matter what.",
+      "audioPath": "recordings/biscuit-v1/biscuit/explanation-finding-pin-restricts-escape.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/explanation-finding-pin-restricts-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-restricts-escape.json"
+    },
+    {
+      "id": "explanation-finding-pin-defenders-no-recapture",
+      "group": "srs_explanations",
+      "text": "Capturing back is off the table for the defenders, since each one is pinned to its king. In the line shown, that side comes out with extra material.",
+      "audioPath": "recordings/biscuit-v1/biscuit/explanation-finding-pin-defenders-no-recapture.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/explanation-finding-pin-defenders-no-recapture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-defenders-no-recapture.json"
+    },
+    {
+      "id": "explanation-finding-pin-collected",
+      "group": "srs_explanations",
+      "text": "The pinned piece has to stay on that line, or its king would be left open. A few moves later, it's captured anyway.",
+      "audioPath": "recordings/biscuit-v1/biscuit/explanation-finding-pin-collected.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/explanation-finding-pin-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-collected.json"
+    },
+    {
+      "id": "explanation-finding-skewer-collected",
+      "group": "srs_explanations",
+      "text": "The front piece scoots off the line, and its buddy in back gets captured on that very line.",
+      "audioPath": "recordings/biscuit-v1/biscuit/explanation-finding-skewer-collected.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/explanation-finding-skewer-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-skewer-collected.json"
+    },
+    {
+      "id": "explanation-finding-king-skewer-collected",
+      "group": "srs_explanations",
+      "text": "The king is checked and has to step out of the way, and then the same attacker grabs whatever was hiding behind.",
+      "audioPath": "recordings/biscuit-v1/biscuit/explanation-finding-king-skewer-collected.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/explanation-finding-king-skewer-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-king-skewer-collected.json"
+    },
+    {
+      "id": "explanation-finding-sole-defender-captured",
+      "group": "srs_explanations",
+      "text": "Poof, the only guard disappears first. Then, later on in these moves, what it was guarding gets captured too.",
+      "audioPath": "recordings/biscuit-v1/biscuit/explanation-finding-sole-defender-captured.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/explanation-finding-sole-defender-captured.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-sole-defender-captured.json"
+    },
+    {
+      "id": "explanation-finding-deflection-collected",
+      "group": "srs_explanations",
+      "text": "Off goes the defender, lured away, and then whatever it was protecting gets captured.",
+      "audioPath": "recordings/biscuit-v1/biscuit/explanation-finding-deflection-collected.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/explanation-finding-deflection-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-deflection-collected.json"
+    },
+    {
+      "id": "explanation-finding-discovered-capture",
+      "group": "srs_explanations",
+      "text": "A blocker hops out of the way, which clears a lane for a different piece to make a capture.",
+      "audioPath": "recordings/biscuit-v1/biscuit/explanation-finding-discovered-capture.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/explanation-finding-discovered-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-discovered-capture.json"
+    },
+    {
+      "id": "explanation-finding-discovered-check",
+      "group": "srs_explanations",
+      "text": "Hop! One piece scoots aside, and surprise, the piece behind it says check. Boom!",
+      "audioPath": "recordings/biscuit-v1/biscuit/explanation-finding-discovered-check.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/explanation-finding-discovered-check.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-discovered-check.json"
+    },
+    {
+      "id": "explanation-finding-double-check",
+      "group": "srs_explanations",
+      "text": "Whoa, check times two! Two pieces are attacking the king together, so the king itself has to move.",
+      "audioPath": "recordings/biscuit-v1/biscuit/explanation-finding-double-check.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/explanation-finding-double-check.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-double-check.json"
+    },
+    {
+      "id": "explanation-finding-double-attack-collected",
+      "group": "srs_explanations",
+      "text": "Double trouble: the moving piece makes one attack, a hidden piece makes the other, and that second one wins its target.",
+      "audioPath": "recordings/biscuit-v1/biscuit/explanation-finding-double-attack-collected.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/explanation-finding-double-attack-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-double-attack-collected.json"
+    },
+    {
+      "id": "explanation-finding-promotion-material-retained",
+      "group": "srs_explanations",
+      "text": "The pawn promotes, and in this example the material count tips that side's way.",
+      "audioPath": "recordings/biscuit-v1/biscuit/explanation-finding-promotion-material-retained.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/explanation-finding-promotion-material-retained.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-promotion-material-retained.json"
+    },
+    {
+      "id": "explanation-finding-undefended-capture-gain",
+      "group": "srs_explanations",
+      "text": "That piece had no guard, so it gets captured, and the side that took it comes out ahead in material in this example.",
+      "audioPath": "recordings/biscuit-v1/biscuit/explanation-finding-undefended-capture-gain.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/explanation-finding-undefended-capture-gain.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-undefended-capture-gain.json"
+    },
+    {
+      "id": "explanation-finding-relative-pin-released",
+      "group": "srs_explanations",
+      "text": "Thanks to the opponent's previous move, the attacking piece is out of a relative pin. Nobody came to the target's rescue, so the line shown ends with it captured.",
+      "audioPath": "recordings/biscuit-v1/biscuit/explanation-finding-relative-pin-released.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/explanation-finding-relative-pin-released.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-relative-pin-released.json"
+    },
+    {
+      "id": "game-explanation-legal-reply",
+      "group": "srs_explanations",
+      "text": "The other side gets to try the marked reply, no rule against it. Let's play it on the board and find out what it does!",
+      "audioPath": "recordings/biscuit-v1/biscuit/game-explanation-legal-reply.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/game-explanation-legal-reply.provenance.json",
+      "alignmentPath": "alignment/game-explanation-legal-reply.json"
+    },
+    {
+      "id": "explanation-cue-hanging-piece",
+      "group": "srs_explanations",
+      "text": "Before moving, scan for any of your pieces that could be taken with no good recapture waiting.",
+      "audioPath": "recordings/biscuit-v1/biscuit/explanation-cue-hanging-piece.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/explanation-cue-hanging-piece.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-hanging-piece.json"
+    },
+    {
+      "id": "explanation-cue-missed-tactical-capture",
+      "group": "srs_explanations",
+      "text": "Before a quiet move, sniff around for any enemy piece left with no guard.",
+      "audioPath": "recordings/biscuit-v1/biscuit/explanation-cue-missed-tactical-capture.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/explanation-cue-missed-tactical-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-missed-tactical-capture.json"
+    },
+    {
+      "id": "explanation-cue-fork",
+      "group": "srs_explanations",
+      "text": "Hunt for forcing moves that let a single piece threaten two juicy targets.",
+      "audioPath": "recordings/biscuit-v1/biscuit/explanation-cue-fork.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/explanation-cue-fork.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-fork.json"
+    },
+    {
+      "id": "explanation-cue-pin",
+      "group": "srs_explanations",
+      "text": "Before a pinned piece moves, take a peek at what's lined up back there: the king, or a bigger prize than the pinned piece.",
+      "audioPath": "recordings/biscuit-v1/biscuit/explanation-cue-pin.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/explanation-cue-pin.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-pin.json"
+    },
+    {
+      "id": "explanation-cue-skewer",
+      "group": "srs_explanations",
+      "text": "Watch for attacks that zip through the first target and hit something more valuable hiding behind it.",
+      "audioPath": "recordings/biscuit-v1/biscuit/explanation-cue-skewer.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/explanation-cue-skewer.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-skewer.json"
+    },
+    {
+      "id": "explanation-cue-removing-defender",
+      "group": "srs_explanations",
+      "text": "Before you trade off a defender, make a little list of its current guard duties.",
+      "audioPath": "recordings/biscuit-v1/biscuit/explanation-cue-removing-defender.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/explanation-cue-removing-defender.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-removing-defender.json"
+    },
+    {
+      "id": "explanation-cue-discovered-attack",
+      "group": "srs_explanations",
+      "text": "When a blocking piece moves, sniff along every lane it leaves wide open.",
+      "audioPath": "recordings/biscuit-v1/biscuit/explanation-cue-discovered-attack.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/explanation-cue-discovered-attack.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-discovered-attack.json"
+    },
+    {
+      "id": "explanation-cue-double-attack",
+      "group": "srs_explanations",
+      "text": "Hunt for one move that packs two threats inside. Checks and lines that just opened up count as threats too!",
+      "audioPath": "recordings/biscuit-v1/biscuit/explanation-cue-double-attack.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/explanation-cue-double-attack.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-double-attack.json"
+    },
+    {
+      "id": "explanation-cue-back-rank",
+      "group": "srs_explanations",
+      "text": "Before a back-rank defender moves, double-check that the king has somewhere to run.",
+      "audioPath": "recordings/biscuit-v1/biscuit/explanation-cue-back-rank.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/explanation-cue-back-rank.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-back-rank.json"
+    },
+    {
+      "id": "explanation-cue-promotion-awareness",
+      "group": "srs_explanations",
+      "text": "Pawn race tip: count the steps it needs to promote, then look hard at every pawn push that forces things.",
+      "audioPath": "recordings/biscuit-v1/biscuit/explanation-cue-promotion-awareness.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/explanation-cue-promotion-awareness.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-promotion-awareness.json"
+    },
+    {
+      "id": "explanation-cue-abandoned-defender",
+      "group": "srs_explanations",
+      "text": "Before a defender moves, list everything it's guarding, because that's what it would leave behind.",
+      "audioPath": "recordings/biscuit-v1/biscuit/explanation-cue-abandoned-defender.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/explanation-cue-abandoned-defender.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-abandoned-defender.json"
+    },
+    {
+      "id": "explanation-cue-avoiding-bad-trades",
+      "group": "srs_explanations",
+      "text": "Add up the whole swap: everything that gets grabbed, then whatever the recapture takes back.",
+      "audioPath": "recordings/biscuit-v1/biscuit/explanation-cue-avoiding-bad-trades.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/explanation-cue-avoiding-bad-trades.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-avoiding-bad-trades.json"
+    },
+    {
+      "id": "explanation-cue-deflection",
+      "group": "srs_explanations",
+      "text": "See if a forcing trade could lure a defender away from some other job it's doing.",
+      "audioPath": "recordings/biscuit-v1/biscuit/explanation-cue-deflection.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/explanation-cue-deflection.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-deflection.json"
+    },
+    {
+      "id": "explanation-note-curated-authority",
+      "group": "srs_explanations",
+      "text": "Saved answers are the only ones this exercise accepts. Lots of other legal moves can be lovely chess, too!",
+      "audioPath": "recordings/biscuit-v1/biscuit/explanation-note-curated-authority.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/explanation-note-curated-authority.provenance.json",
+      "alignmentPath": "alignment/explanation-note-curated-authority.json"
+    },
+    {
+      "id": "explanation-note-strong-replies",
+      "group": "srs_explanations",
+      "text": "Every reply in this line is a strong one. Some of those replies had other options, though.",
+      "audioPath": "recordings/biscuit-v1/biscuit/explanation-note-strong-replies.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/explanation-note-strong-replies.provenance.json",
+      "alignmentPath": "alignment/explanation-note-strong-replies.json"
+    },
+    {
+      "id": "explanation-note-material-scope",
+      "group": "srs_explanations",
+      "text": "Material changes are counted only along the line shown, starting at its first move. How much each piece is worth is in the written explanation.",
+      "audioPath": "recordings/biscuit-v1/biscuit/explanation-note-material-scope.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/explanation-note-material-scope.provenance.json",
+      "alignmentPath": "alignment/explanation-note-material-scope.json"
+    },
+    {
+      "id": "explanation-note-no-simple-reason",
+      "group": "srs_explanations",
+      "text": "Nothing in the saved line spells out a simple tactical reason. Let's step along it and see how each reply does; we're not guessing at a positional story, either.",
+      "audioPath": "recordings/biscuit-v1/biscuit/explanation-note-no-simple-reason.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/explanation-note-no-simple-reason.provenance.json",
+      "alignmentPath": "alignment/explanation-note-no-simple-reason.json"
+    },
+    {
+      "id": "explanation-note-saved-policy",
+      "group": "srs_explanations",
+      "text": "This explanation sticks to the exercise's saved answer policy, and the written notes name the setting.",
+      "audioPath": "recordings/biscuit-v1/biscuit/explanation-note-saved-policy.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/explanation-note-saved-policy.provenance.json",
+      "alignmentPath": "alignment/explanation-note-saved-policy.json"
+    },
+    {
+      "id": "opening-recall-revealed",
+      "group": "openings",
+      "text": "Here it is: your study line, laid out from start to finish!",
+      "audioPath": "recordings/biscuit-v1/biscuit/opening-recall-revealed.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/opening-recall-revealed.provenance.json",
+      "alignmentPath": "alignment/opening-recall-revealed.json"
+    },
+    {
+      "id": "opening-recall-accepted",
+      "group": "openings",
+      "text": "Yup! That move is right there in the lines you picked.",
+      "audioPath": "recordings/biscuit-v1/biscuit/opening-recall-accepted.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/opening-recall-accepted.provenance.json",
+      "alignmentPath": "alignment/opening-recall-accepted.json"
+    },
+    {
+      "id": "opening-recall-retry-fallback",
+      "group": "openings",
+      "text": "Have another go with a move from your opening lines!",
+      "audioPath": "recordings/biscuit-v1/biscuit/opening-recall-retry-fallback.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/opening-recall-retry-fallback.provenance.json",
+      "alignmentPath": "alignment/opening-recall-retry-fallback.json"
+    },
+    {
+      "id": "opening-recall-cold-multiple",
+      "group": "openings",
+      "text": "There's more than one right answer here in the opening lines you picked. Go with whichever one you remember!",
+      "audioPath": "recordings/biscuit-v1/biscuit/opening-recall-cold-multiple.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/opening-recall-cold-multiple.provenance.json",
+      "alignmentPath": "alignment/opening-recall-cold-multiple.json"
+    },
+    {
+      "id": "opening-recall-cold-single",
+      "group": "openings",
+      "text": "Your study lines have just one move for this spot. Remember which?",
+      "audioPath": "recordings/biscuit-v1/biscuit/opening-recall-cold-single.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/opening-recall-cold-single.provenance.json",
+      "alignmentPath": "alignment/opening-recall-cold-single.json"
+    },
+    {
+      "id": "opening-recall-rejected",
+      "group": "openings",
+      "text": "Hmm, the lines you picked don't have that move. One more try, you've got this!",
+      "audioPath": "recordings/biscuit-v1/biscuit/opening-recall-rejected.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/opening-recall-rejected.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected.json"
+    },
+    {
+      "id": "opening-recall-rejected-changed",
+      "group": "openings",
+      "text": "Hmm, the opening lines you picked don't include that move. One more try, you've got this! Don't worry, the changed study's review dates stay exactly as they were.",
+      "audioPath": "recordings/biscuit-v1/biscuit/opening-recall-rejected-changed.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/opening-recall-rejected-changed.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected-changed.json"
+    },
+    {
+      "id": "opening-recall-rejected-retired",
+      "group": "openings",
+      "text": "Hmm, the opening lines you picked don't include that move. One more try, you've got this! This position is retired, so no new review dates get set for it.",
+      "audioPath": "recordings/biscuit-v1/biscuit/opening-recall-rejected-retired.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/opening-recall-rejected-retired.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected-retired.json"
+    },
+    {
+      "id": "opening-preview-active",
+      "group": "openings",
+      "text": "Mixed Due will happily take this line's moves, while dedicated practice is all about this line.",
+      "audioPath": "recordings/biscuit-v1/biscuit/opening-preview-active.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/opening-preview-active.provenance.json",
+      "alignmentPath": "alignment/opening-preview-active.json"
+    },
+    {
+      "id": "opening-preview-inactive",
+      "group": "openings",
+      "text": "Scheduled recalls only quiz you on moves from your chosen side. If active studies meet at the same position, they use just one card.",
+      "audioPath": "recordings/biscuit-v1/biscuit/opening-preview-inactive.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/opening-preview-inactive.provenance.json",
+      "alignmentPath": "alignment/opening-preview-inactive.json"
+    },
+    {
+      "id": "puzzle-error",
+      "group": "puzzles",
+      "text": "Hang on, the saved session needs a quick reload, and then it's your move!",
+      "audioPath": "recordings/biscuit-v1/biscuit/puzzle-error.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/puzzle-error.provenance.json",
+      "alignmentPath": "alignment/puzzle-error.json"
+    },
+    {
+      "id": "puzzle-playback",
+      "group": "puzzles",
+      "text": "Sit back and watch the verified line on the board!",
+      "audioPath": "recordings/biscuit-v1/biscuit/puzzle-playback.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/puzzle-playback.provenance.json",
+      "alignmentPath": "alignment/puzzle-playback.json"
+    },
+    {
+      "id": "puzzle-revealed",
+      "group": "puzzles",
+      "text": "This attempt is in the books, marked revealed. The solution is waiting right below, ready to play through again.",
+      "audioPath": "recordings/biscuit-v1/biscuit/puzzle-revealed.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/puzzle-revealed.provenance.json",
+      "alignmentPath": "alignment/puzzle-revealed.json"
+    },
+    {
+      "id": "puzzle-solved-after-retry",
+      "group": "puzzles",
+      "text": "Got it on a later try! Your miss and your finish are both on the record.",
+      "audioPath": "recordings/biscuit-v1/biscuit/puzzle-solved-after-retry.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/puzzle-solved-after-retry.provenance.json",
+      "alignmentPath": "alignment/puzzle-solved-after-retry.json"
+    },
+    {
+      "id": "puzzle-solved-clean",
+      "group": "puzzles",
+      "text": "The whole puzzle, solved without a single slip! Woo!",
+      "audioPath": "recordings/biscuit-v1/biscuit/puzzle-solved-clean.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/puzzle-solved-clean.provenance.json",
+      "alignmentPath": "alignment/puzzle-solved-clean.json"
+    },
+    {
+      "id": "puzzle-rejected",
+      "group": "puzzles",
+      "text": "Not quite the solution, but all your right moves so far are saved!",
+      "audioPath": "recordings/biscuit-v1/biscuit/puzzle-rejected.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/puzzle-rejected.provenance.json",
+      "alignmentPath": "alignment/puzzle-rejected.json"
+    },
+    {
+      "id": "puzzle-next-move",
+      "group": "puzzles",
+      "text": "Yes, exactly! Keep going, next move!",
+      "audioPath": "recordings/biscuit-v1/biscuit/puzzle-next-move.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/puzzle-next-move.provenance.json",
+      "alignmentPath": "alignment/puzzle-next-move.json"
+    },
+    {
+      "id": "puzzle-cold",
+      "group": "puzzles",
+      "text": "Take it easy, teammate. Solve it in your head, then play your move!",
+      "audioPath": "recordings/biscuit-v1/biscuit/puzzle-cold.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/puzzle-cold.provenance.json",
+      "alignmentPath": "alignment/puzzle-cold.json"
+    },
+    {
+      "id": "game-unavailable",
+      "group": "operational",
+      "text": "The engine didn't give me enough to explain this position, but you can still explore the board!",
+      "audioPath": "recordings/biscuit-v1/biscuit/game-unavailable.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/game-unavailable.provenance.json",
+      "alignmentPath": "alignment/game-unavailable.json"
+    },
+    {
+      "id": "game-review-paused",
+      "group": "operational",
+      "text": "We're taking a little review break. Resume it below, or nudge a piece around and have fun exploring!",
+      "audioPath": "recordings/biscuit-v1/biscuit/game-review-paused.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/game-review-paused.provenance.json",
+      "alignmentPath": "alignment/game-review-paused.json"
+    },
+    {
+      "id": "game-browse-instructions",
+      "group": "operational",
+      "text": "Tap a move to look at it, or slide a piece somewhere new and see what happens!",
+      "audioPath": "recordings/biscuit-v1/biscuit/game-browse-instructions.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/game-browse-instructions.provenance.json",
+      "alignmentPath": "alignment/game-browse-instructions.json"
+    },
+    {
+      "id": "book-opening-entry-1",
+      "group": "game_review",
+      "text": "Ooh, a book move, I know this opening!",
+      "audioPath": "recordings/biscuit-v1/biscuit/book-opening-entry-1.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/book-opening-entry-1.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-1.json"
+    },
+    {
+      "id": "book-opening-entry-2",
+      "group": "game_review",
+      "text": "Ooh, I recognize this opening line!",
+      "audioPath": "recordings/biscuit-v1/biscuit/book-opening-entry-2.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/book-opening-entry-2.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-2.json"
+    },
+    {
+      "id": "book-opening-entry-3",
+      "group": "game_review",
+      "text": "Ooh, this one's a known opening move.",
+      "audioPath": "recordings/biscuit-v1/biscuit/book-opening-entry-3.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/book-opening-entry-3.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-3.json"
+    },
+    {
+      "id": "book-opening-follow-1",
+      "group": "game_review",
+      "text": "Book move, still!",
+      "audioPath": "recordings/biscuit-v1/biscuit/book-opening-follow-1.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/book-opening-follow-1.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-1.json"
+    },
+    {
+      "id": "book-opening-follow-2",
+      "group": "game_review",
+      "text": "Bookworm alert, page after page, and here's another book move!",
+      "audioPath": "recordings/biscuit-v1/biscuit/book-opening-follow-2.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/book-opening-follow-2.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-2.json"
+    },
+    {
+      "id": "book-opening-follow-3",
+      "group": "game_review",
+      "text": "The book has an answer ready for the reply too.",
+      "audioPath": "recordings/biscuit-v1/biscuit/book-opening-follow-3.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/book-opening-follow-3.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-3.json"
+    },
+    {
+      "id": "book-opening-follow-4",
+      "group": "game_review",
+      "text": "Book road, still going!",
+      "audioPath": "recordings/biscuit-v1/biscuit/book-opening-follow-4.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/book-opening-follow-4.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-4.json"
+    },
+    {
+      "id": "book-opening-follow-5",
+      "group": "game_review",
+      "text": "Still following the opening map!",
+      "audioPath": "recordings/biscuit-v1/biscuit/book-opening-follow-5.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/book-opening-follow-5.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-5.json"
+    },
+    {
+      "id": "book-opening-follow-6",
+      "group": "game_review",
+      "text": "Another page, another book move!",
+      "audioPath": "recordings/biscuit-v1/biscuit/book-opening-follow-6.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/book-opening-follow-6.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-6.json"
+    },
+    {
+      "id": "book-opening-follow-7",
+      "group": "game_review",
+      "text": "Still more book pages to turn!",
+      "audioPath": "recordings/biscuit-v1/biscuit/book-opening-follow-7.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/book-opening-follow-7.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-7.json"
+    },
+    {
+      "id": "book-opening-follow-8",
+      "group": "game_review",
+      "text": "Still in book land! Think of it as a dot on the map, not a grade for the move.",
+      "audioPath": "recordings/biscuit-v1/biscuit/book-opening-follow-8.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/book-opening-follow-8.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-8.json"
+    },
+    {
+      "id": "game-review-opened",
+      "group": "operational",
+      "text": "Yay, a game to look at together! Let's dive right in!",
+      "audioPath": "recordings/biscuit-v1/biscuit/game-review-opened.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/game-review-opened.provenance.json",
+      "alignmentPath": "alignment/game-review-opened.json"
+    },
+    {
+      "id": "lesson-wrong-move",
+      "group": "lessons",
+      "text": "Ooh, legal, but the lesson's sniffing for a different move. Try again!",
+      "audioPath": "recordings/biscuit-v1/biscuit/lesson-wrong-move.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/lesson-wrong-move.provenance.json",
+      "alignmentPath": "alignment/lesson-wrong-move.json"
+    },
+    {
+      "id": "lesson-correct-move",
+      "group": "lessons",
+      "text": "Yes yes yes! Nailed it!",
+      "audioPath": "recordings/biscuit-v1/biscuit/lesson-correct-move.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/lesson-correct-move.provenance.json",
+      "alignmentPath": "alignment/lesson-correct-move.json"
+    },
+    {
+      "id": "lesson-move-revealed",
+      "group": "lessons",
+      "text": "There it is, the move the lesson wanted! Let's remember that one!",
+      "audioPath": "recordings/biscuit-v1/biscuit/lesson-move-revealed.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/lesson-move-revealed.provenance.json",
+      "alignmentPath": "alignment/lesson-move-revealed.json"
+    },
+    {
+      "id": "lesson-guided-playback",
+      "group": "lessons",
+      "text": "Paws off for a sec, teammate! The line's starting!",
+      "audioPath": "recordings/biscuit-v1/biscuit/lesson-guided-playback.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/lesson-guided-playback.provenance.json",
+      "alignmentPath": "alignment/lesson-guided-playback.json"
+    },
+    {
+      "id": "lesson-rehearsal-prompt",
+      "group": "lessons",
+      "text": "Your turn! Play it just like we practiced!",
+      "audioPath": "recordings/biscuit-v1/biscuit/lesson-rehearsal-prompt.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/lesson-rehearsal-prompt.provenance.json",
+      "alignmentPath": "alignment/lesson-rehearsal-prompt.json"
+    },
+    {
+      "id": "lesson-branch-entered",
+      "group": "lessons",
+      "text": "Ooh, a little detour! Explore it, then bound back to the lesson!",
+      "audioPath": "recordings/biscuit-v1/biscuit/lesson-branch-entered.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/lesson-branch-entered.provenance.json",
+      "alignmentPath": "alignment/lesson-branch-entered.json"
+    },
+    {
+      "id": "lesson-chapter-complete",
+      "group": "lessons",
+      "text": "We finished the chapter! Every bit is kept! Woo!",
+      "audioPath": "recordings/biscuit-v1/biscuit/lesson-chapter-complete.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/lesson-chapter-complete.provenance.json",
+      "alignmentPath": "alignment/lesson-chapter-complete.json"
+    },
+    {
+      "id": "lesson-game-opened",
+      "group": "lessons",
+      "text": "The whole game is ready to explore! Paw through it as much as you like!",
+      "audioPath": "recordings/biscuit-v1/biscuit/lesson-game-opened.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/lesson-game-opened.provenance.json",
+      "alignmentPath": "alignment/lesson-game-opened.json"
+    },
+    {
+      "id": "lesson-error",
+      "group": "lessons",
+      "text": "Whoops, the lesson needs a quick reload, then we can play again!",
+      "audioPath": "recordings/biscuit-v1/biscuit/lesson-error.opus",
+      "sidecarPath": "recordings/biscuit-v1/biscuit/lesson-error.provenance.json",
+      "alignmentPath": "alignment/lesson-error.json"
+    }
+  ]
+}

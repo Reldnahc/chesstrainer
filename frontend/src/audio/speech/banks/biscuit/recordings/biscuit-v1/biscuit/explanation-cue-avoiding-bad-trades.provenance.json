@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "explanation-cue-avoiding-bad-trades",
+      "label": "Explanation cue avoiding bad trades",
+      "text": "Add up the whole swap: everything that gets grabbed, then whatever the recapture takes back."
+    },
+    "takeId": null
+  },
+  "requestHash": "d69600c5946e97a6ca11a07c4bdb7d951138140a77dde2944d91da7893c2deb9",
+  "recordedAt": "2026-10-03T05:18:56.707Z",
+  "sha256": "cf15186a64195b12827de3341f0f4645060f193805c899c5d4490698d97a5e5e",
+  "bytes": 18503,
+  "requestId": "E8t1m8EXJNY3Qzr8KlUJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "46c4e435aa20e8eb1ca121869d577bc76d9402d81bb30baab85500ead71d4216",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

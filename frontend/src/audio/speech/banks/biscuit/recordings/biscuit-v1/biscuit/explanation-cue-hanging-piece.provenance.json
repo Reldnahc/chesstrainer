@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "explanation-cue-hanging-piece",
+      "label": "Explanation cue hanging piece",
+      "text": "Before moving, scan for any of your pieces that could be taken with no good recapture waiting."
+    },
+    "takeId": null
+  },
+  "requestHash": "0d28bc51cf20d09093419fec2b0f66dd445f2e1f16b4e782fc0bc2e1bc77832d",
+  "recordedAt": "2026-10-03T05:18:40.223Z",
+  "sha256": "c48f5869a4106264df1319bb556396b60ee8b990b25e78f338e85a0b56fdc638",
+  "bytes": 19406,
+  "requestId": "SaFBzSZmfB8WFTnY2kbN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "381e9192b2da03c6906d84da7b25be31e5f83abdb2c5d9ca5f4e6e652f93ee40",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

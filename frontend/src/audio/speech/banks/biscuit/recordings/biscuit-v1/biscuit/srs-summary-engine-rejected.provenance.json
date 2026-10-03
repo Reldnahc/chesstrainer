@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "srs-summary-engine-rejected",
+      "label": "Srs summary engine rejected",
+      "text": "Not this one for the exercise, sorry! And the moves shown keep their tactical reason a mystery."
+    },
+    "takeId": null
+  },
+  "requestHash": "b69a0b3507f8e79497b60f22cc4482bbd17e2967f8c1797a7d8c894d06b1ff00",
+  "recordedAt": "2026-10-03T05:17:34.612Z",
+  "sha256": "0f50c918c45f0150067bfb938307433b5f8d373ad9a9ff29b6d1fb5a34a04e81",
+  "bytes": 21188,
+  "requestId": "lawpBZb3Ah6jCSAcKviQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4cf0ad71067d7933217971fddd8986cfcb2f0f0f1a0dcef481df69fe557d0a49",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

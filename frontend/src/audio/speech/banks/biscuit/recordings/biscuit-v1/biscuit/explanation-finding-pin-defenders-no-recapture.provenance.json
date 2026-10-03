@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "explanation-finding-pin-defenders-no-recapture",
+      "label": "Explanation finding pin defenders no recapture",
+      "text": "Capturing back is off the table for the defenders, since each one is pinned to its king. In the line shown, that side comes out with extra material."
+    },
+    "takeId": null
+  },
+  "requestHash": "9dc098e887e4107a135afcee2f1231f27b757a35307a853d145e0f62e5c0d9fc",
+  "recordedAt": "2026-10-03T05:18:15.786Z",
+  "sha256": "bacfe93fe3f50225be3eafebf58803e6af1add77580990d7f568de50352c8e1e",
+  "bytes": 30070,
+  "requestId": "h9EXmunFh1wlKAjDjffA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "25bb3a2fa427c506e693a523656f35df6fc67a99ff30e1c39a0d71a87fadbf20",
+    "bytes": 153435
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

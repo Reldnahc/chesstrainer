@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "advantage-converted",
+      "label": "Advantage converted",
+      "text": "That edge stuck with you all the way to the win! Great teamwork from start to finish."
+    },
+    "takeId": null
+  },
+  "requestHash": "daf286018308ccd86392ef565e73a236015f56c899c567c53b4d636cdbadd09c",
+  "recordedAt": "2026-10-03T05:17:13.348Z",
+  "sha256": "b1d2b1e5ec9388179f17e2b618e38af9fe0af7a52952bd0ffebc52f583c6f305",
+  "bytes": 18429,
+  "requestId": "ZLv2ALm4dX08jiXd5ZsL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7e0a0f0c9295a2805d1194457652b83b9f4450aea4dd3fe5c34e681d9419db53",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

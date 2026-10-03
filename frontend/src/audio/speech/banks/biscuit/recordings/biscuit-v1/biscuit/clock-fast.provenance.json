@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "clock-fast",
+      "label": "Clock fast",
+      "text": "Zoom, a speedy move, and the clock still has plenty in the tank!"
+    },
+    "takeId": null
+  },
+  "requestHash": "e10832c22632ad70a1bd797be7b63b3b43f0e3a3c0fc1461d0d6181a97568452",
+  "recordedAt": "2026-10-03T05:16:53.869Z",
+  "sha256": "9a3c7cf0b36f12730d6d9ac0a9d832cad1f2d9c61cff4512e83ea96206655088",
+  "bytes": 15478,
+  "requestId": "JH4eYfOdoZ8piAQcv04z",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "18ee063a4ac5c92685184bd9089f34d2d4d4a681996a1003b57b5d3bf3e853b5",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

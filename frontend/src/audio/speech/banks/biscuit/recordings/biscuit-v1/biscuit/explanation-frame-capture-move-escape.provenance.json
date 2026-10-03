@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-escape",
+      "label": "Explanation frame capture move escape",
+      "text": "Gobble and escape: something gets captured, and the king gets out of check!"
+    },
+    "takeId": null
+  },
+  "requestHash": "0bdb81475b4eb87890f83898ffd6719b254baf536254874ea80b45ec6e0ef5f5",
+  "recordedAt": "2026-10-03T05:17:58.518Z",
+  "sha256": "77136891c4ad24b16bc4a31bf31acddf7bbf8785fced4f8d5a3b4d928cb7e975",
+  "bytes": 17175,
+  "requestId": "4cL2dH5BZ7RtZ9Un4CbP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "32aeac39ec31db3b1d6f021b8948331b827724cf04d58af424a6b94240560831",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "explanation-frame-castle-check",
+      "label": "Explanation frame castle check",
+      "text": "Castling, and surprise: that rook says check! How fun!"
+    },
+    "takeId": null
+  },
+  "requestHash": "26fca3f1abfc34a51533a2a44a1a85e21cd16f8af9497d7f417e32447c4044f1",
+  "recordedAt": "2026-10-03T05:18:06.234Z",
+  "sha256": "e95f91c4e3d30c8fd1b8a45ac3da055acc14967cdbc5165e3a097047f5970e2b",
+  "bytes": 16740,
+  "requestId": "ziXE4Ln7WsIjIuHJ84g1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f4202436c9605d36b9b59accb6c8ea27a255f025e7151e7e7d2ba4f947dc64ad",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

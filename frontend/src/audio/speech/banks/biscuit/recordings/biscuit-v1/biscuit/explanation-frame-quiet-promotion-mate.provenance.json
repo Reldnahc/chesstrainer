@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-promotion-mate",
+      "label": "Explanation frame quiet promotion mate",
+      "text": "Ta-da, a brand-new piece on the last rank, and it's checkmate! Game over for that king."
+    },
+    "takeId": null
+  },
+  "requestHash": "d65c92c96cbf28c3f9603769caddab9d47f540087ae1c915175a3a8ee2643090",
+  "recordedAt": "2026-10-03T05:17:52.402Z",
+  "sha256": "02b81fa2ec6c93050e54f91a1bc86bdceb9ae56662864a594a58f0b983667da6",
+  "bytes": 22533,
+  "requestId": "sBWoYO2EfOAXS8BiYDhr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ebc6941270e5517a60e058060e46baca2e79cd71c26c06b57b7052c2e3a440fb",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

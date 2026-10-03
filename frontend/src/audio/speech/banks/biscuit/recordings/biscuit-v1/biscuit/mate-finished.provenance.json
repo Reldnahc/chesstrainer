@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "mate-finished",
+      "label": "Mate finished",
+      "text": "Checkmate! The king is trapped, and you won it!"
+    },
+    "takeId": null
+  },
+  "requestHash": "47dced0ac0c6fe4ee8a8a332bc7b47b6e0a5e7091753ba7909ac5788628aa0ed",
+  "recordedAt": "2026-10-03T05:17:15.944Z",
+  "sha256": "5001f2103ff1e95817ada81639809afa10c6f56ac081e804a587e91b39fc4c35",
+  "bytes": 12330,
+  "requestId": "hYsOvmQcA0UJHhmX4nik",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9412da067c5fb38ca6d1b0032459f1ffb97c9f1911727fd8325538d51329816c",
+    "bytes": 61066
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

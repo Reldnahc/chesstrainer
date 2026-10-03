@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "game-review-opened",
+      "label": "Game review opened",
+      "text": "Yay, a game to look at together! Let's dive right in!"
+    },
+    "takeId": null
+  },
+  "requestHash": "6172d5a8f5895a78f86204a7040e3a78c35d5222d1c32f9c2a46ee187d9f542b",
+  "recordedAt": "2026-10-03T05:19:50.902Z",
+  "sha256": "363aeb139facd544464de97562a7cebd189ec340d71e30795581a7dec26ad36b",
+  "bytes": 13842,
+  "requestId": "EA8b5Bb3LbjQWE1B08p3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "64e55bbc2e780f9fd45e2a59594d2817c3f885f088e00b156fbca48d0136f968",
+    "bytes": 67753
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

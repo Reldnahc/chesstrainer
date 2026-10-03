@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "srs-summary-mate-against-mover",
+      "label": "Srs summary mate against mover",
+      "text": "Eek, the saved engine analysis has bad news for whoever just moved: a mating attack is coming from the other side, and it can't be stopped."
+    },
+    "takeId": null
+  },
+  "requestHash": "68feff84871952ccf9807fad72c4cad2cbab74d1c4a4dc2363a64fb5f1bce87f",
+  "recordedAt": "2026-10-03T05:17:27.344Z",
+  "sha256": "968f36f04d5c883a332fa50e1888d48536ee8b5a4909406e1e0e52a8011638a0",
+  "bytes": 28519,
+  "requestId": "ivIqa4ZXubfAgcFVwQTK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cc0eac2335536ae7439a8f7da3902c65fe17e3d1c72f492d8f7c27ea88edc111",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

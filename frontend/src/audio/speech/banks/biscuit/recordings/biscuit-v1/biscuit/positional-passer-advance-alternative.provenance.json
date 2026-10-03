@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "positional-passer-advance-alternative",
+      "label": "Positional passer advance alternative",
+      "text": "With another move, the passed pawn would have marched closer to promotion."
+    },
+    "takeId": null
+  },
+  "requestHash": "cdb0ae29d76bb94a81d085030f6e19659d79840c250e752969f08e8a6cc53dc4",
+  "recordedAt": "2026-10-03T05:16:08.062Z",
+  "sha256": "77bd78c504602ca1516e428968683fc8a242910eeef809d9e39fc0c174ec32ac",
+  "bytes": 14823,
+  "requestId": "aGZmrsdZrL4E3bHoKKki",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d637bce31f04ac2bdf6d6c3600f5eeb8b152ae8961c4404a824d75058d8b4670",
+    "bytes": 72768
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

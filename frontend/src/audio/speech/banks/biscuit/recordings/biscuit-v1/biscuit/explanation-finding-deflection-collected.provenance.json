@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected",
+      "label": "Explanation finding deflection collected",
+      "text": "Off goes the defender, lured away, and then whatever it was protecting gets captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "fc148196c559c01ed00bfd0f2295f6c3badeaebe607e88e762f3e7a42adc2725",
+  "recordedAt": "2026-10-03T05:18:24.743Z",
+  "sha256": "d5bff413ee5b9a2fd4dcbbee1b270559b82df13a440e0936b0db8eb7d269f9d3",
+  "bytes": 18910,
+  "requestId": "JpOVi3RYim5c7RCJQXFv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d4fe26a2f0815a10e1aa25d9e9e33829793392a9ac41736af557757903ddd8f7",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

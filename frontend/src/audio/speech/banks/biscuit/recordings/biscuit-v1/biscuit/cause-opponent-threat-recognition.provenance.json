@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "cause-opponent-threat-recognition",
+      "label": "Cause opponent threat recognition",
+      "text": "Ah, look closely! Something got threatened by the opponent's last move, and that threat is still sitting there after this one, so a piece can be captured. Little lesson: start by asking what their last move threatens."
+    },
+    "takeId": null
+  },
+  "requestHash": "591902009b7fc408763e52a363eacdbf333046b27de10832773bec23e8367485",
+  "recordedAt": "2026-10-03T05:15:47.819Z",
+  "sha256": "f061660e01f2081162f90358ca01a7c2098510edfaa0af3838aad76f77044273",
+  "bytes": 44236,
+  "requestId": "XiGWGScNy9OlQGAYV05z",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3042f79a48c64cdf888354f0343fce275f76f3a41d5ece0d92d88e917b0ae744",
+    "bytes": 232847
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

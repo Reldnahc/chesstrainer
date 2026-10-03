@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "positional-passed-actual",
+      "label": "Positional passed actual",
+      "text": "Whoa, look at that pawn go free! Not one enemy pawn stands in its path, on its file or on either file next door."
+    },
+    "takeId": null
+  },
+  "requestHash": "73a930c37b9d979031c01229b70dabcd1c23831113b5b038aa963d37d6e26f09",
+  "recordedAt": "2026-10-03T05:16:02.709Z",
+  "sha256": "5ee4273856aa57f064718e1f01be7b71013c3db84b0bd21c4df11877c99e6c77",
+  "bytes": 28560,
+  "requestId": "IlKsV9pUw93NnGSF2P9H",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4439dde2b2b4d51110f717bc279a15c0e05eca0c36384d202be34f0197577df1",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

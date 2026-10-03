@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed",
+      "label": "Tactic deflection allowed",
+      "text": "Whoa, that defender is working hard, and the other side can tug it off its job. A deflection like that leaves its spot uncovered."
+    },
+    "takeId": null
+  },
+  "requestHash": "772a5f6b230b0309637e59d5e853d6cf341d15ad536898a46e50bd423c7a35a6",
+  "recordedAt": "2026-10-03T05:15:33.953Z",
+  "sha256": "0a48e5aea317a53149fc3776d7c6decea868c98bee340005a63abf17862b508c",
+  "bytes": 28567,
+  "requestId": "1tR4t6jnlWHVPfpz3bJD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cdd9b851426256d895eb8d4254599cb1864b6ca723270ee24447580bc57a810c",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

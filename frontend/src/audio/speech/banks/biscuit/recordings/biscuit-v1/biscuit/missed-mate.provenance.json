@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "missed-mate",
+      "label": "Missed mate",
+      "text": "Whoa, check this out! A forced checkmate was ready and waiting, and this move wanders off elsewhere. That finish is worth finding on the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "4b6f776df2b6a93144719d8f8e583806a9b2a075d6665b23a0e4f3f55b913fa0",
+  "recordedAt": "2026-10-03T05:16:34.143Z",
+  "sha256": "45e057a55578356e62c74a32fdf35f1b803f0cfcebb489dd178fcb62f985064b",
+  "bytes": 31054,
+  "requestId": "uM4YU2VwxJvbXyQHk23k",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "987e0590555f31369d6bd2bb4ce1b6ced7b5f8083ac548ece82260f53259499b",
+    "bytes": 160958
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

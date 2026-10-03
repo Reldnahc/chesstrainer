@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-promotion-escape",
+      "label": "Explanation frame quiet promotion escape",
+      "text": "Busy little pawn! Last rank reached, shiny new piece made, and its king escapes check at the very same time."
+    },
+    "takeId": null
+  },
+  "requestHash": "f37167807a6367ef8f5c48ffb1e743cb7c8f200c3ca3f0055251c17b0601890f",
+  "recordedAt": "2026-10-03T05:17:54.191Z",
+  "sha256": "3db4a8164b29266f16f6bcaf4ba88df078be6576719b88f6922641b8c2dbfce7",
+  "bytes": 26287,
+  "requestId": "QJBoMnw81Jskk1JDLJ7w",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6d4daa203e48136aa18c0a5f50bc8e038f57d9b5ade27ea64f37df90c4768a0e",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

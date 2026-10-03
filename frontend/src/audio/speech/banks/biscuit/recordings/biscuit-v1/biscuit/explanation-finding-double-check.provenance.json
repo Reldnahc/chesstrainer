@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "explanation-finding-double-check",
+      "label": "Explanation finding double check",
+      "text": "Whoa, check times two! Two pieces are attacking the king together, so the king itself has to move."
+    },
+    "takeId": null
+  },
+  "requestHash": "4656b03d428e9205f84bc7a540f4b8be1b0acc0df21c9bdf37a81efdac4e0cc1",
+  "recordedAt": "2026-10-03T05:18:29.601Z",
+  "sha256": "af589b66f4b88078908468e93826ebe68d32dd751b206d6f59be3aed2987eb77",
+  "bytes": 23531,
+  "requestId": "rw1YJaOAVEE8IIFcAdVm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3a730c738ee266d4298c3f96268669a76f1bba1c10a1cbd03a42eb25507e14eb",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "explanation-cue-deflection",
+      "label": "Explanation cue deflection",
+      "text": "See if a forcing trade could lure a defender away from some other job it's doing."
+    },
+    "takeId": null
+  },
+  "requestHash": "b516056e2bd7b75836483bef6fa30eda7a8d6984fcc9f8892cca393f5ea97efe",
+  "recordedAt": "2026-10-03T05:18:57.990Z",
+  "sha256": "6d9b8ad087160b90624ccd2fa9cfe296b22b6ceaf3687521c76df7721ba02353",
+  "bytes": 16432,
+  "requestId": "OKxNAGnrPvfZfUheo2K6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "711aebe31bec2a2dc8be9b8494e171e25693ab1b45b19fa5edb6cabefb7c8a95",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

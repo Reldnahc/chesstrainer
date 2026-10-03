@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "tactic-double-attack-missed",
+      "label": "Tactic double attack missed",
+      "text": "Ooh, look! A stronger move had a double attack, a pair of threats landing together. That chance zips by in this game."
+    },
+    "takeId": null
+  },
+  "requestHash": "6272de20f51e6a300a379d2347d527fe98e06d633335464668cfc61e0efe8481",
+  "recordedAt": "2026-10-03T05:15:30.022Z",
+  "sha256": "826b2d78554f9a942d10fa8eb80e520d7d0c5e324473c3b1e629a72c4289a16a",
+  "bytes": 27508,
+  "requestId": "ImQtxlvgRrcBk0dIhIGI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1c3f8298676ad870ead8471504cda69f53cf32e3914ef411d75a7c5e813c64de",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

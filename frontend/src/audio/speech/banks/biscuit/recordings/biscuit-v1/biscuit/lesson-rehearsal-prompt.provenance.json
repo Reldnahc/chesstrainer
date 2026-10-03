@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "lesson-rehearsal-prompt",
+      "label": "Lesson rehearsal prompt",
+      "text": "Your turn! Play it just like we practiced!"
+    },
+    "takeId": null
+  },
+  "requestHash": "1b1ad906d0f17fa03b312c8da646703a81b547b555ab1a35f1be56ad6469a228",
+  "recordedAt": "2026-10-03T05:19:56.649Z",
+  "sha256": "862c3a34babe999f6621856e8a51a9599b8364409115ed7a46abcd55a5fdda32",
+  "bytes": 10259,
+  "requestId": "HxUprB6OHD6hDrjO0gDp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "095fd1fe192405b3b9d3415d7d94a20915bfeef060c1fb46a26f6b9bf34b55fb",
+    "bytes": 51035
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

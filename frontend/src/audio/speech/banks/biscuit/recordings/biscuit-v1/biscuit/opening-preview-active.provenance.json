@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "opening-preview-active",
+      "label": "Opening preview active",
+      "text": "Mixed Due will happily take this line's moves, while dedicated practice is all about this line."
+    },
+    "takeId": null
+  },
+  "requestHash": "4a57b897a00d2f74c1b5273496a13af855b2a022b1c72bdfdec85189559f3140",
+  "recordedAt": "2026-10-03T05:19:20.996Z",
+  "sha256": "0e5d334ea4a377aeca5fb7460dce4a40fbb1889388f320f0178397a515e86b20",
+  "bytes": 20462,
+  "requestId": "9uoAXSiqqyOD4i4Lx5Ot",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b964c077c5cdc07657c5a332c48b64d39d9a7324daf39ab9a536eb79be20003a",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "srs-fallback-good",
+      "label": "Srs fallback good",
+      "text": "Good one! Keep the why tucked away for next time."
+    },
+    "takeId": null
+  },
+  "requestHash": "b0077e6af0b40d39693474e851f5910a525963ca177a2bb2f553368ba8a6262e",
+  "recordedAt": "2026-10-03T05:17:40.325Z",
+  "sha256": "ebcbe26c2e5f2b94de494bd1b0b03ffbba924eca0d41be77556f85762e5dc627",
+  "bytes": 11754,
+  "requestId": "4i3d4xt5ZUIIdqlgYVgO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2b56ebb811c4c3305e12b8ac1088dcf48219e2c92df3a5334e616cde26b730cc",
+    "bytes": 57304
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

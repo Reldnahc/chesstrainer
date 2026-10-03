@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "puzzle-revealed",
+      "label": "Puzzle revealed",
+      "text": "This attempt is in the books, marked revealed. The solution is waiting right below, ready to play through again."
+    },
+    "takeId": null
+  },
+  "requestHash": "b07d0f8906e98af3bb0b6c3222505e7207eb9fc12797ee8ee94a110bde1c4556",
+  "recordedAt": "2026-10-03T05:19:27.109Z",
+  "sha256": "9a9c5073b77c6e6d0bf52073554d94cb40ff82daf86df36c8b92757c81c22fff",
+  "bytes": 24055,
+  "requestId": "mi6oqCgldsvpV7fKUvAf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "86ddfb2d78df07a8faec5a4fc0bb6d44992c6a49da08742fe4dc14454341b37e",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

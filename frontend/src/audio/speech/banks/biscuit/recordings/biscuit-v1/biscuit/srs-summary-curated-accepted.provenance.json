@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "srs-summary-curated-accepted",
+      "label": "Srs summary curated accepted",
+      "text": "Ding! That move is on the saved answer list. For this exercise, nothing else gets the checkmark."
+    },
+    "takeId": null
+  },
+  "requestHash": "b87e59642272ef5c7c9a6e9c95e9d4a84991b0908393ec274a5b911f175ded19",
+  "recordedAt": "2026-10-03T05:17:36.265Z",
+  "sha256": "3d9c6e8ab99f008c2128fb30d8cbf06ba6fcd1bba5c1bd91633f10478471dfb5",
+  "bytes": 21811,
+  "requestId": "qPp1qF328FuwSGb9DO2p",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5d3cb46a18be6e2607ade8c009fa4e68dc6980e29ef150e9487330e37649b2be",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "tactic-pin-played",
+      "label": "Tactic pin played",
+      "text": "Wow, a piece is stuck to its king! It can't budge from where it stands, because moving would leave its king wide open."
+    },
+    "takeId": null
+  },
+  "requestHash": "53af8b959a98f018792d3fafd09b36c526e1b1ab32b588a62a54e6122bc2708f",
+  "recordedAt": "2026-10-03T05:14:49.521Z",
+  "sha256": "d58ad320486d65ce29f7a9c7e42683a6112b11a4e345484d2e64af85da1bf445",
+  "bytes": 26266,
+  "requestId": "tQB231n78muOWdpACbgl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5eb187e580d34637b80e23402c90727fe33e11a5be45d1abcb0ad093bb03861f",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}
