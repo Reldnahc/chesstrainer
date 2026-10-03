@@ -186,8 +186,12 @@ def test_solved_puzzles_counts_each_installed_puzzle_once(settings):
     def begin(client, key, request_id):
         response = client.post(
             "/api/puzzle-sessions",
-            json={"provider_id": "test-fixtures", "key": key, "version": "test-v1",
-                  "request_id": request_id},
+            json={
+                "provider_id": "test-fixtures",
+                "key": key,
+                "version": "test-v1",
+                "request_id": request_id,
+            },
         )
         assert response.status_code == 200, response.text
         return response.json()
