@@ -1,6 +1,6 @@
 # Data model
 
-SQLAlchemy 2 mapped models use SQLite WAL, foreign keys and a 30-second busy timeout. Alembic owns schema changes, starting at frozen revision 475ea36d42d5 and currently ending at 55de0b7b8ff2. Runtime does not use metadata.create_all. Transactions persist small independent units of work.
+SQLAlchemy 2 mapped models use SQLite WAL, foreign keys and a 30-second busy timeout. Alembic owns schema changes, starting at frozen revision 475ea36d42d5 and currently ending at c7e2a9f4b1d3. Runtime does not use metadata.create_all. Transactions persist small independent units of work.
 
 ## Current and archival relationships
 
@@ -19,11 +19,12 @@ SQLAlchemy 2 mapped models use SQLite WAL, foreign keys and a 30-second busy tim
 | srs_states | One serialized library card per exercise, due/review/lapse fields, eligibility and persistent retirement |
 | review_sessions, exercise_attempts, reviews | Raw sessions/attempts and one scheduler event per ordinary recall; focused and archived lesson attempts are separate |
 | puzzle_sessions, puzzle_attempts | Private immutable puzzle snapshots, revisioned solve progress and idempotent practice commands; independent of Review/FSRS |
+| game_puzzles, game_puzzle_searches | Account-owned puzzles mined from the learner's games, each with its engine evidence or abstention reason, and one search record per game and generator version |
 | courses, course_units, unit_evidence, course_revisions, lessons, lesson_items | Archived course snapshots, source evidence, ordered items and historical progress; no active generation/progression |
 | teaching_runs | Archived model teaching audits; existing records can be inspected/rejected but new teaching is unavailable |
 | repertoires | Archived curated PGNs; import/list/practice product routes are disabled |
 
-There are 36 application tables plus alembic_version. IDs are UUID hex strings except stable skill IDs and the reserved local account. UTC timestamps returned naive by SQLite are normalized at domain boundaries. Core relationships are queryable; JSON holds immutable engine/facts/classification payloads, policy snapshots, historical course snapshots and FSRS serialization.
+There are 38 application tables plus alembic_version. IDs are UUID hex strings except stable skill IDs and the reserved local account. UTC timestamps returned naive by SQLite are normalized at domain boundaries. Core relationships are queryable; JSON holds immutable engine/facts/classification payloads, policy snapshots, historical course snapshots and FSRS serialization.
 
 `human_analyses` stores account-owned provider-neutral requests and complete policy
 facts, unique by owner and versioned cache key. `game_review_moves.human_analysis_id`
@@ -46,6 +47,17 @@ Backups contain a consistent SQLite snapshot, format manifest and safe settings.
 Repertoire archival is a read-time source filter, not deletion or retirement. Lesson release changed eligibility only. Classification-only jobs update audit/evidence projections without creating exercises or changing schedules. The interface refactor adds no migration or schema change. [VERIFICATION.md](VERIFICATION.md) records current copy-preservation checks.
 
 ## Migration history
+
+### Puzzles from your games: c7e2a9f4b1d3
+
+Adds account-owned `game_puzzles` (source game and ply, optional decision,
+generator version, legal-play position key, kind, status, abstention reason,
+definition snapshot and engine evidence) and `game_puzzle_searches` (one row per
+game and generator version with candidate and kept counts), plus
+`analysis_jobs.puzzles_found` with a server default of zero so older job rows
+need no rebuild. Existing puzzle sessions, reviews, FSRS state and evidence are
+untouched; the migration was applied to a copy of a live database with every
+row count unchanged and a clean foreign-key check.
 
 ### Opening study: 7c249ef302d6
 

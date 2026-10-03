@@ -8,6 +8,8 @@ from trainer.contracts.common import Color, Contract, LegalMove
 
 PuzzleSource = Literal["generic", "games"]
 PuzzleMode = Literal["new", "retry"]
+# Checkmate puzzles carry the mate theme in both the Lichess packs and generated lines.
+PuzzleGoal = Literal["mate", "material"]
 
 
 class PuzzleQuery(Contract):
@@ -17,6 +19,7 @@ class PuzzleQuery(Contract):
     min_rating: int | None = Field(default=None, ge=0, le=4000)
     max_rating: int | None = Field(default=None, ge=0, le=4000)
     theme: str | None = Field(default=None, min_length=1, max_length=50, pattern="^[A-Za-z0-9_]+$")
+    goal: PuzzleGoal | None = None
     mode: PuzzleMode = "new"
 
 
@@ -113,6 +116,20 @@ class PuzzleStats(Contract):
     revealed: int
 
 
+class PuzzleGeneration(Contract):
+    """Where the account's own-game puzzles stand; counts, never a mastery claim."""
+
+    automatic: bool
+    analyzed_games: int
+    searched_games: int
+    unsearched_games: int
+    puzzles: int
+    candidates: int
+    kept: int
+    last_searched_at: str | None
+    job_status: Literal["queued", "running"] | None
+
+
 class PuzzleLibrary(Contract):
     available: int
     sources: list[PuzzleProviderInfo]
@@ -121,3 +138,4 @@ class PuzzleLibrary(Contract):
     solved_puzzles: int
     resume: list[PuzzleResume]
     stats: PuzzleStats
+    generation: PuzzleGeneration

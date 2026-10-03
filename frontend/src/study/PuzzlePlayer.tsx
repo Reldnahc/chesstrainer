@@ -15,7 +15,7 @@ import Notice from "../Notice";
 import SourceLine from "../SourceLine";
 import type { CoachExpression } from "../coach/model";
 import { navigate, puzzleSessionPath, studyPaths } from "../navigation";
-import { createPuzzleStarter, loadPuzzleSelection, puzzleThemeLabel } from "./puzzleApi";
+import { createPuzzleStarter, gameReviewPath, loadPuzzleSelection, puzzleThemeLabel } from "./puzzleApi";
 import { usePuzzleSession } from "./usePuzzleSession";
 import { useCoachSpeech } from "../audio/speech/useCoachSpeech";
 import { puzzleRecording } from "../audio/speech/practiceSelection";
@@ -87,7 +87,7 @@ export default function PuzzlePlayer({ sessionId }: { sessionId: string }) {
     ? frame.before_fen.split(" ")[1] === (session.orientation === "white" ? "w" : "b") ? "Your move" : "Opponent reply"
     : "Solution start";
   return <ReviewWorkspace
-    heading={<div className="puzzle-player-heading"><h1>Puzzle practice</h1><span className="muted">{complete ? session.status === "revealed" ? "Revealed" : "Solved" : "In progress"}</span></div>}
+    heading={<div className="puzzle-player-heading"><h1>Puzzle practice</h1><span className="muted">{session.source === "games" ? "From your games · " : ""}{complete ? session.status === "revealed" ? "Revealed" : "Solved" : "In progress"}</span></div>}
     boardLabel="Puzzle position"
     aboveBoard={<div className="review-position-status"><TurnIndicator color={session.orientation}>{playing ? playbackTurn : complete ? "Solution review" : `${session.orientation === "white" ? "White" : "Black"} to move`}</TurnIndicator><span>{session.history.length} MOVES PLAYED</span></div>}
     belowBoard={<div className="review-board-hint">{playing ? "The saved position will be ready after playback." : complete ? "Select a solution move to inspect it." : "Select a piece to see legal moves. Tap a destination or drag."}</div>}
@@ -109,9 +109,15 @@ export default function PuzzlePlayer({ sessionId }: { sessionId: string }) {
         startSelected={displayedFen === session.completion.solution[0]?.before_fen}
         onStart={state.inspectStart} onSelect={index => state.inspect(session.completion!.solution[index])} />
       {session.completion.rating != null && <p className="small">Puzzle rating: {session.completion.rating}</p>}
-      <SourceLine className="puzzle-provenance" text={`Puzzle practice · ${session.source === "games" ? "From your games" : "Collection puzzle"}`} />
-      <SourceLine className="puzzle-provenance" text={session.completion.provenance.attribution}
-        url={session.completion.provenance.url} linkLabel="Source" />
+      {session.source === "games" && session.completion.provenance.game_id ? <>
+        {/* The source game stays hidden until completion; the line played here used the engine's defence, not the game's. */}
+        <SourceLine className="puzzle-provenance" text={`From your games · ${session.completion.provenance.attribution}`} />
+        <div className="button-row"><ActionLink variant="secondary" size="compact" href={gameReviewPath(session.completion.provenance.game_id, session.completion.provenance.source_ply)}>Open your move in the game review <ArrowRight size={16} /></ActionLink></div>
+      </> : <>
+        <SourceLine className="puzzle-provenance" text={`Puzzle practice · ${session.source === "games" ? "From your games" : "Collection puzzle"}`} />
+        <SourceLine className="puzzle-provenance" text={session.completion.provenance.attribution}
+          url={session.completion.provenance.url} linkLabel="Source" />
+      </>}
     </section>}
   </ReviewWorkspace>;
 }

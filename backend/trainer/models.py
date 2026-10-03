@@ -107,6 +107,7 @@ class AnalysisJob(Owned, Base):
     deep_completed: Mapped[int] = mapped_column(default=0)
     mistakes_identified: Mapped[int] = mapped_column(default=0)
     classifications_completed: Mapped[int] = mapped_column(default=0)
+    puzzles_found: Mapped[int] = mapped_column(default=0, server_default="0")
     cancel_requested: Mapped[bool] = mapped_column(default=False)
     error: Mapped[str | None] = mapped_column(Text)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
@@ -520,6 +521,39 @@ class PuzzleAttempt(Owned, Base):
     grade: Mapped[str]
     elapsed_ms: Mapped[int]
     response: Mapped[dict] = mapped_column(JSON)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+
+
+class GamePuzzleSearch(Owned, Base):
+    """One generator pass over a game, recorded even when nothing qualified."""
+
+    __tablename__ = "game_puzzle_searches"
+    __table_args__ = (UniqueConstraint("user_id", "game_id", "generator_version"),)
+    id: Mapped[str] = mapped_column(primary_key=True, default=uid)
+    game_id: Mapped[str] = mapped_column(ForeignKey("games.id"), index=True)
+    generator_version: Mapped[str]
+    engine_version: Mapped[str]
+    candidates: Mapped[int] = mapped_column(default=0)
+    kept: Mapped[int] = mapped_column(default=0)
+    searched_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+
+
+class GamePuzzle(Owned, Base):
+    """A verified line mined from one of the account's games, or why it was set aside."""
+
+    __tablename__ = "game_puzzles"
+    __table_args__ = (UniqueConstraint("user_id", "game_id", "ply", "generator_version"),)
+    id: Mapped[str] = mapped_column(primary_key=True, default=uid)
+    game_id: Mapped[str] = mapped_column(ForeignKey("games.id"), index=True)
+    ply: Mapped[int]
+    decision_id: Mapped[str | None] = mapped_column(ForeignKey("decisions.id"))
+    generator_version: Mapped[str]
+    position_key: Mapped[str] = mapped_column(index=True)
+    kind: Mapped[str]
+    status: Mapped[str] = mapped_column(index=True)
+    reason: Mapped[str | None]
+    definition: Mapped[dict | None] = mapped_column(JSON)
+    evidence: Mapped[dict] = mapped_column(JSON)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
 
 

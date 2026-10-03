@@ -4075,6 +4075,11 @@
               }
             ]
           },
+          "puzzles_found": {
+            "default": 0,
+            "title": "Puzzles Found",
+            "type": "integer"
+          },
           "status": {
             "title": "Status",
             "type": "string"
@@ -6477,6 +6482,79 @@
         "title": "PuzzleFrame",
         "type": "object"
       },
+      "PuzzleGeneration": {
+        "additionalProperties": false,
+        "description": "Where the account's own-game puzzles stand; counts, never a mastery claim.",
+        "properties": {
+          "analyzed_games": {
+            "title": "Analyzed Games",
+            "type": "integer"
+          },
+          "automatic": {
+            "title": "Automatic",
+            "type": "boolean"
+          },
+          "candidates": {
+            "title": "Candidates",
+            "type": "integer"
+          },
+          "job_status": {
+            "anyOf": [
+              {
+                "enum": [
+                  "queued",
+                  "running"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Job Status"
+          },
+          "kept": {
+            "title": "Kept",
+            "type": "integer"
+          },
+          "last_searched_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Searched At"
+          },
+          "puzzles": {
+            "title": "Puzzles",
+            "type": "integer"
+          },
+          "searched_games": {
+            "title": "Searched Games",
+            "type": "integer"
+          },
+          "unsearched_games": {
+            "title": "Unsearched Games",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "automatic",
+          "analyzed_games",
+          "searched_games",
+          "unsearched_games",
+          "puzzles",
+          "candidates",
+          "kept",
+          "last_searched_at",
+          "job_status"
+        ],
+        "title": "PuzzleGeneration",
+        "type": "object"
+      },
       "PuzzleKey": {
         "additionalProperties": false,
         "properties": {
@@ -6513,6 +6591,9 @@
           "available": {
             "title": "Available",
             "type": "integer"
+          },
+          "generation": {
+            "$ref": "#/components/schemas/PuzzleGeneration"
           },
           "resume": {
             "items": {
@@ -6554,7 +6635,8 @@
           "retry_available",
           "solved_puzzles",
           "resume",
-          "stats"
+          "stats",
+          "generation"
         ],
         "title": "PuzzleLibrary",
         "type": "object"
@@ -8868,6 +8950,26 @@
             "title": "Provider Timeout Seconds",
             "type": "number"
           },
+          "puzzle_generation": {
+            "title": "Puzzle Generation",
+            "type": "boolean"
+          },
+          "puzzle_generation_depth": {
+            "title": "Puzzle Generation Depth",
+            "type": "integer"
+          },
+          "puzzle_generation_games": {
+            "title": "Puzzle Generation Games",
+            "type": "integer"
+          },
+          "puzzle_generation_max_plies": {
+            "title": "Puzzle Generation Max Plies",
+            "type": "integer"
+          },
+          "puzzle_generation_time": {
+            "title": "Puzzle Generation Time",
+            "type": "number"
+          },
           "puzzle_pack_path": {
             "anyOf": [
               {
@@ -9036,6 +9138,11 @@
           "provider_max_scan_games",
           "puzzle_starter_pack",
           "puzzle_pack_path",
+          "puzzle_generation",
+          "puzzle_generation_depth",
+          "puzzle_generation_time",
+          "puzzle_generation_max_plies",
+          "puzzle_generation_games",
           "lan_token_configured",
           "coverage",
           "classification_provider",
@@ -11081,6 +11188,25 @@
         "summary": "Library"
       }
     },
+    "/api/puzzles/generate": {
+      "post": {
+        "description": "Queue one bounded search of analyzed games not yet mined for puzzles.",
+        "operationId": "generate_api_puzzles_generate_post",
+        "responses": {
+          "202": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/JobCreated"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Generate"
+      }
+    },
     "/api/puzzles/next": {
       "get": {
         "operationId": "next_puzzle_api_puzzles_next_get",
@@ -11158,6 +11284,26 @@
                 }
               ],
               "title": "Theme"
+            }
+          },
+          {
+            "in": "query",
+            "name": "goal",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "enum": [
+                    "mate",
+                    "material"
+                  ],
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Goal"
             }
           },
           {

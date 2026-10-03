@@ -291,3 +291,35 @@ test("leaving during a pending move cannot apply late feedback to another Study 
     await page.unroute(pattern);
   }
 });
+
+test("puzzles from your games hide the source game until the solve and link back to the review", async ({ page }, info) => {
+  const puzzle = await fixture(page, `games-${info.project.name}`);
+  await page.goto(puzzle.path);
+  await expect(page.getByRole("heading", { name: "Find the continuation." })).toBeVisible();
+  await expect(page.getByText("From your games · In progress")).toBeVisible();
+  await expect(page.getByText("fixture-opponent")).toHaveCount(0);
+  await move(page, "c3d5");
+  await expect(page.getByRole("heading", { name: "Keep going." })).toBeVisible();
+  await expect(piece(page, "d7", "bK")).toBeVisible();
+  await move(page, "d5b6");
+  await expect(page.getByRole("heading", { name: "Puzzle solved." })).toBeVisible();
+  await expect(page.getByText("From your games · Your game as White vs fixture-opponent")).toBeVisible();
+  await expect(page.getByRole("link", { name: "Open your move in the game review" })).toHaveAttribute("href", "/games/fixture-game?ply=27");
+  await page.screenshot({ path: `test-results/study-puzzle-games-solved-${info.project.name}.png`, fullPage: true });
+  // The library's own-games tab explains the search and offers the backfill job.
+  await page.route("**/api/puzzles", route => route.fulfill({ json: {
+    available: 1,
+    sources: [{ id: "browser-game-fixtures", name: "From your games", source: "games", count: 1, attribution: "Built from your imported games", url: null, rating_min: null, rating_max: null }],
+    themes: [{ id: "fork", count: 1 }], retry_available: 0, solved_puzzles: 1, resume: [],
+    stats: { solved: 1, clean: 1, failed_then_solved: 0, revealed: 0 },
+    generation: { automatic: true, analyzed_games: 12, searched_games: 9, unsearched_games: 3, puzzles: 1, candidates: 20, kept: 1, last_searched_at: "2026-10-03 14:00:00", job_status: null },
+  } }));
+  await page.goto("/study/puzzles/games");
+  await expect(page.getByRole("link", { name: "From your games (1)" })).toHaveAttribute("aria-current", "page");
+  await expect(page.getByText("1 puzzle comes from 9 of your 12 analyzed games")).toBeVisible();
+  await expect(page.getByRole("button", { name: "Search 3 unsearched games" })).toBeEnabled();
+  await expect(page.getByRole("group", { name: "Goal" })).toBeVisible();
+  await expect(page.getByRole("group", { name: "Difficulty" })).toHaveCount(0);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await page.screenshot({ path: `test-results/study-puzzle-games-${info.project.name}.png`, fullPage: true });
+});

@@ -10,6 +10,7 @@ from trainer.enrichment import enrich_decision, plan_probes
 from trainer.exercises import exercise_from_decision
 from trainer.imports import learner_decisions
 from trainer.models import AnalysisJob, Decision, Game
+from trainer.puzzles.generation import EngineSearch, generate_for_game
 from trainer.work_pool import GameCompletion, WorkPool
 
 
@@ -121,12 +122,54 @@ class JobPipeline:
                             db, self.engine, self.settings, game, ply, board, move
                         )
                         self.process_decision(db, decision, completion)
+                    if self.settings.puzzle_generation:
+                        # The game's decisions are committed; mine them while the
+                        # engine is warm. Classification runs independently.
+                        self.mine(db, game)
             success = True
         except Exception:
             self.failed.set()
             raise
         finally:
             completion.finish(success)
+
+    def mine(self, db, game):
+        result = generate_for_game(
+            db,
+            EngineSearch(self.engine(), self.settings),
+            self.settings,
+            game,
+            cancelled=self.cancelled,
+            write_lock=self.runner.import_lock,
+        )
+        if result is not None:
+            self.bump(puzzles_found=result["kept"])
+        return result
+
+    def generate(self, game_id):
+        try:
+            if self.cancelled():
+                return
+            with self.sessions() as db:
+                result = self.mine(db, db.get(Game, game_id))
+            if result is not None:
+                self.bump(games_processed=1)
+        except Exception:
+            self.failed.set()
+            raise
+
+    def run_generation(self, game_ids):
+        try:
+            for game_id in game_ids:
+                if not self.games.submit(self.generate, game_id):
+                    break
+        finally:
+            self.games.close()
+            self.classifications.close()
+            for engine in self.engines:
+                engine.close()
+        if self.games.errors:
+            raise self.games.errors[0]
 
     def run(self, game_ids, classification_only=False):
         try:

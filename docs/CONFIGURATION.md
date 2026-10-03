@@ -52,6 +52,10 @@ status is returned.
 | CHESSCOM_MAX_RESPONSE_BYTES | 25000000 decompressed bytes per response |
 | PUZZLE_STARTER_PACK | true; serves the bundled CC0 Lichess starter pack |
 | PUZZLE_PACK_PATH | unset; directory holding a Lichess-layout puzzles CSV and its hash-pinned manifest, verified at startup |
+| PUZZLE_GENERATION | true; mine each analyzed game for puzzles at the end of its analysis job |
+| PUZZLE_GENERATION_DEPTH / PUZZLE_GENERATION_TIME | 18 / 4 seconds per search (depth 1..40, time greater than 0 and at most 30) |
+| PUZZLE_GENERATION_MAX_PLIES | 13 (3..25) solution plies before a line is cut |
+| PUZZLE_GENERATION_GAMES | 40 (1..500) unsearched games per backfill job queued from the Puzzles page |
 | PROVIDER_TIMEOUT_SECONDS | 20 seconds per Lichess network read |
 | PROVIDER_MAX_RESPONSE_BYTES | 25000000 decompressed bytes per Lichess export |
 | PROVIDER_MAX_SCAN_GAMES | 10000 records per Lichess export; narrow date range when reached |

@@ -110,6 +110,17 @@ def test_disabled_starter_pack_leaves_an_honest_empty_library(settings):
             "solved_puzzles": 0,
             "resume": [],
             "stats": {"solved": 0, "clean": 0, "failed_then_solved": 0, "revealed": 0},
+            "generation": {
+                "automatic": True,
+                "analyzed_games": 0,
+                "searched_games": 0,
+                "unsearched_games": 0,
+                "puzzles": 0,
+                "candidates": 0,
+                "kept": 0,
+                "last_searched_at": None,
+                "job_status": None,
+            },
         }
         assert client.get("/api/puzzles/next").json() is None
         assert client.get("/api/puzzles/next?source=games").json() is None

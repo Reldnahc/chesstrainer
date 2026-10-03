@@ -238,12 +238,14 @@ export function ImportJob({
           : job.kind === "game_review" ? "Full-game review"
             : job.kind === "enrichment" ? "Deeper classification evidence"
               : job.kind === "teaching" ? "Archived lesson summaries"
-                : job.kind === "classification" ? "Skill classification" : "Game analysis";
+                : job.kind === "puzzle_generation" ? "Puzzles from your games"
+                  : job.kind === "classification" ? "Skill classification" : "Game analysis";
   const summary = source ? `${source.games_imported} imported · ${source.duplicates} duplicates`
     : fetchOnly ? `${job.games_processed} games fetched`
       : job.kind === "game_review" ? `${job.positions_triaged} moves reviewed`
         : job.kind === "enrichment" ? `${job.positions_triaged} / ${job.probe_total || 0} positions processed`
-          : `${job.games_processed} / ${job.games_total} games · ${job.positions_triaged} decisions`;
+          : job.kind === "puzzle_generation" ? `${job.games_processed} / ${job.games_total} games searched · ${job.puzzles_found} puzzles`
+            : `${job.games_processed} / ${job.games_total} games · ${job.positions_triaged} decisions${job.puzzles_found ? ` · ${job.puzzles_found} puzzles` : ""}`;
   const badge = <span className={`badge ${job.status}`}>{job.status}</span>;
   const contents = <>
       {source && (

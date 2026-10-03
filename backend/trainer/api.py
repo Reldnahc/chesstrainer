@@ -142,7 +142,9 @@ def create_app(
     app.include_router(insights.create_router())
     app.include_router(review.create_router(settings=settings, scheduler=scheduler))
     app.state.puzzle_providers = PuzzleProviders(puzzle_providers)
-    app.include_router(puzzles.create_router(providers=app.state.puzzle_providers))
+    app.include_router(
+        puzzles.create_router(providers=app.state.puzzle_providers, settings=settings)
+    )
     app.include_router(study_lessons.create_router(providers=courses))
     app.include_router(opening_studies.create_router(providers=courses, scheduler=scheduler))
     app.include_router(classification.create_router(settings=settings, classifier=classifier))

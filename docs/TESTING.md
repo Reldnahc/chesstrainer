@@ -27,8 +27,10 @@ Study lesson coverage: `test_study_lessons.py` checks authored content and sessi
 boundaries; `test_lesson_journey.py` traverses a connected six-step-type chapter
 through HTTP/restart persistence. `study-lessons.spec.ts` runs that journey and
 resume/alternate-path checks on desktop and mobile. Run `study-puzzles.spec.ts`
-alongside it when changing the shared display-only playback helper. Test fixture
-providers are injected only by the test application, never production flags.
+alongside it when changing the shared display-only playback helper; its last case
+drives a games-source fixture through the cold heading, the solved provenance
+link and the From your games tab. Test fixture providers are injected only by
+the test application, never production flags.
 
 `study-start-retry.spec.ts` drops responses after real session creation commits
 and verifies same-session retries for chapters, opening rehearsals and puzzles
@@ -144,6 +146,12 @@ hash-pinned pack loading that rejects a changed file, bad row, duplicate or wron
 count, the bundled starter pack's validity and rating weighting, the installed
 pack setting's startup verification, and selection: unseen first, difficulty and
 theme filters, retry mode and recent-repeat avoidance.
+`test_puzzle_generation.py` covers the own-game generator with scripted searches:
+unique-move and best-defence line building, every abstention reason, candidate
+selection from saved scores, once-per-game persistence with duplicate positions,
+the account-bound provider and library counts, the analysis-job stage and the
+backfill job through a fake engine, two-account privacy over HTTP, and one
+`stockfish`-marked line built by the native engine.
 `test_puzzles.py` exercises the production puzzle routes with injected local
 definitions: legal multi-step replay, fail/retry/reveal, durable snapshots,
 duplicate/stale commands, account isolation and unchanged Review/FSRS/weakness

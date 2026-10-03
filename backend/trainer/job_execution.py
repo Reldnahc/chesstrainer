@@ -10,6 +10,7 @@ from trainer.game_providers.base import ImportCancelled, ProviderError, Provider
 from trainer.game_providers.ingest import fetch_import
 from trainer.models import AnalysisJob, Game, GameReview, ImportGame, ProviderImport
 from trainer.pipeline import JobPipeline
+from trainer.puzzles import generation
 
 log = logging.getLogger(__name__)
 
@@ -88,6 +89,10 @@ class JobExecution:
                 kind = job.kind
                 if kind == "classification":
                     game_ids = db.scalars(select(Game.id)).all()
+                elif kind == generation.JOB_KIND:
+                    game_ids = generation.unsearched_games(
+                        db, self.settings.puzzle_generation_games
+                    )
                 else:
                     game_ids = db.scalars(
                         select(ImportGame.game_id).where(
@@ -99,6 +104,8 @@ class JobExecution:
             self.pipeline = JobPipeline(self, job_id, engine)
             if kind == "enrichment":
                 self.pipeline.run_enrichment()
+            elif kind == generation.JOB_KIND:
+                self.pipeline.run_generation(game_ids)
             else:
                 self.pipeline.run(game_ids, classification_only=kind == "classification")
             with self.course_lock, self.sessions() as db:

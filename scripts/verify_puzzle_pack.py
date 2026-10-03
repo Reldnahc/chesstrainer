@@ -36,9 +36,17 @@ from pathlib import Path
 
 import chess
 import chess.engine
+from trainer.puzzles.verification import (
+    MARGIN_CP,
+    MATE_SCORE,
+    PAYOFF_CP,
+    TOLERANCE_CP,
+    describe,
+    is_mate,
+    rival_verdict,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
-MATE_SCORE = 100_000
 VERIFIER_VERSION = "solution-uniqueness-v1"
 
 
@@ -59,18 +67,6 @@ def find_stockfish(explicit: str | None) -> str:
 
 def pov_score(info, turn: chess.Color) -> int:
     return info["score"].pov(turn).score(mate_score=MATE_SCORE)
-
-
-def is_mate(score: int) -> bool:
-    return abs(score) >= MATE_SCORE - 1000
-
-
-def describe(score: int) -> str:
-    if score >= MATE_SCORE - 1000:
-        return f"#{MATE_SCORE - score}"
-    if score <= -MATE_SCORE + 1000:
-        return f"#-{MATE_SCORE + score}"
-    return f"{score:+d}"
 
 
 class Verifier:
@@ -195,19 +191,18 @@ class Verifier:
                 "san": board.san(chess.Move.from_uci(alt_uci)),
                 "score": describe(alt_score),
             }
-            both_mate = is_mate(solution_score) and solution_score > 0 and is_mate(alt_score)
-            if both_mate and alt_score > 0:
-                if alt_score >= solution_score:
-                    failures.append(
-                        f"ply {index}: {result['alternative']['san']} also mates in "
-                        f"{MATE_SCORE - alt_score}"
-                    )
-                else:
-                    warnings.append(
-                        f"ply {index}: {result['alternative']['san']} mates more slowly "
-                        f"({describe(alt_score)})"
-                    )
-            elif solution_score - alt_score < self.margin:
+            verdict = rival_verdict(solution_score, alt_score, margin=self.margin)
+            if verdict == "equal_mate":
+                failures.append(
+                    f"ply {index}: {result['alternative']['san']} also mates in "
+                    f"{MATE_SCORE - alt_score}"
+                )
+            elif verdict == "slower_mate":
+                warnings.append(
+                    f"ply {index}: {result['alternative']['san']} mates more slowly "
+                    f"({describe(alt_score)})"
+                )
+            elif verdict == "close":
                 failures.append(
                     f"ply {index}: {result['alternative']['san']} scores {describe(alt_score)}, "
                     f"within {self.margin} of the solution's {describe(solution_score)}"
@@ -334,9 +329,9 @@ def main():
     parser.add_argument("--threads", type=int, default=4, help="Threads per engine")
     parser.add_argument("--hash", type=int, default=256, help="Hash MB per engine")
     parser.add_argument("--workers", type=int, default=4, help="Parallel engines")
-    parser.add_argument("--tolerance-cp", type=int, default=50)
-    parser.add_argument("--margin-cp", type=int, default=100)
-    parser.add_argument("--payoff-cp", type=int, default=150)
+    parser.add_argument("--tolerance-cp", type=int, default=TOLERANCE_CP)
+    parser.add_argument("--margin-cp", type=int, default=MARGIN_CP)
+    parser.add_argument("--payoff-cp", type=int, default=PAYOFF_CP)
     parser.add_argument("--limit", type=int, help="Verify only the first N puzzles")
     parser.add_argument("--resume", action="store_true", help="Keep results already in --output")
     parser.add_argument(

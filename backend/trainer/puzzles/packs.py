@@ -188,8 +188,13 @@ def starter_pack() -> PackProvider:
     return PackProvider(files(STARTER_PACKAGE))
 
 
-def production_providers(settings) -> tuple[PackProvider, ...]:
-    """Local packs only. A configured installed pack is verified at startup."""
+def production_providers(settings) -> tuple:
+    """Local packs plus the account's own-game puzzles; nothing is fetched at runtime.
+
+    A configured installed pack is verified at startup.
+    """
+    from trainer.puzzles.game_provider import GamePuzzleProvider
+
     providers = []
     if settings.puzzle_starter_pack:
         providers.append(starter_pack())
@@ -197,4 +202,5 @@ def production_providers(settings) -> tuple[PackProvider, ...]:
         installed = PackProvider(settings.puzzle_pack_path)
         installed.load()
         providers.append(installed)
+    providers.append(GamePuzzleProvider())
     return tuple(providers)
