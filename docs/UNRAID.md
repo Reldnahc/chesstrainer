@@ -64,6 +64,27 @@ Restart after switching modes. Clearing Public origin opens only the reserved lo
 workspace, not named accounts; it does not merge their games. See [Accounts](ACCOUNTS.md)
 for transferring existing local history and account recovery.
 
+## Optional GPU for Maia
+
+Maia runs on the CPU by default and the image downloads nothing extra. To run it
+on an NVIDIA GPU instead:
+
+1. Install the **Nvidia Driver** plugin from Community Applications, reboot if it
+   asks, and copy your GPU's UUID (`GPU-...`) from its settings page.
+2. Edit the container. In Advanced View add `--runtime=nvidia` to the end of
+   **Extra Parameters**.
+3. Set **Human model device** to `cuda` and **NVIDIA visible devices** to the UUID
+   (or `all`). Leave **NVIDIA driver capabilities** at `compute,utility`.
+4. Apply. The first start downloads CUDA PyTorch 2.8.0 (about 3 GB, 6.4 GB on disk)
+   into `App data/runtime/torch-2.8.0-cu128` before the app starts, so allow a few
+   minutes; the log shows `Maia GPU: downloading CUDA PyTorch`. Later starts and
+   image updates reuse it.
+
+Set **Human model device** back to `cpu` to stop using the GPU; delete
+`App data/runtime` to reclaim the space. The model file itself
+(`python -m trainer.human_models.setup`) is the same for CPU and GPU. Switching
+devices recomputes saved human-move evidence the next time each game is reviewed.
+
 ## Settings and troubleshooting
 
 The [Docker settings reference](DOCKER.md#settings) explains each variable, defaults
@@ -77,6 +98,7 @@ and CPU/memory budgets. Defaults do not automatically scale with CPU pinning.
 | WebUI opens the wrong address | Use `http://[IP]:[PORT:8000]` for local mode or your actual HTTPS origin for accounts. |
 | Database cannot be written | Verify the `/data` mount and UID 99/GID 100 write permissions. Privileged mode is unnecessary. |
 | Proxy returns 502 | Check container health and the upstream host port. A proxy container's loopback is not the Unraid host. |
+| Human insights unavailable with `cuda` | Confirm `--runtime=nvidia` in Extra Parameters, the GPU UUID in NVIDIA visible devices, and that the first-start download finished in the log. Set the device back to `cpu` to rule out the GPU. |
 
 ## Updates and backups
 
