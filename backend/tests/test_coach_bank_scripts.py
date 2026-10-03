@@ -99,8 +99,6 @@ def test_authored_scripts_cover_the_catalogue_exactly(coach, voice):
     assert [row["id"] for row in rows] == [row["id"] for row in catalogue]
     for row, meaning in zip(rows, catalogue, strict=True):
         assert row["group"] == meaning["group"]
-        assert row.get("primary") == meaning.get("primary")
-        assert row.get("secondary") == meaning.get("secondary")
 
 
 @pytest.mark.parametrize(("coach", "voice"), AUTHORED)
@@ -117,9 +115,7 @@ def test_authored_scripts_are_complete_distinct_spoken_text(coach, voice):
         assert not re.search(r"\b(?:in|this|the) continuation\b", text, flags=re.IGNORECASE), row[
             "id"
         ]
-        if not row["id"].startswith("book-opening-") and not row.get("primary", "").startswith(
-            "book-opening-"
-        ):
+        if not row["id"].startswith("book-opening-"):
             assert "continuation" not in text.lower(), row["id"]
         assert not any(marker in text for marker in ("{", "}", "TODO", "TBD")), row["id"]
         # Recordings serve many positions; squares and move numbers stay in the bubble.

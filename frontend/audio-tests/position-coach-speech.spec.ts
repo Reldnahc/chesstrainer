@@ -4,7 +4,6 @@ import {defaultAudioPreferences} from "../src/audio/model";
 import type {Game} from "../src/gameReview/types";
 import {viteFsPath} from "../studio-tests/helpers/viteFsPath";
 import {semanticFixtures} from "../tests/semantic-fixtures";
-import catalogue from "../src/audio/speech/meanings.json" with {type: "json"};
 import {openAudioFixturePage} from "./fixtures/openAudioFixture";
 import type {FakeSpeechAudio} from "./fixtures/fakeSpeechAudio";
 import type {PositionCoachSpeechHarness, PositionCoachSpeechSelection, PositionCoachSpeechState} from "./fixtures/positionCoachSpeechRuntime";
@@ -17,12 +16,8 @@ const region = (page: Page) => page.getByRole("region", {name: "Chess coach", ex
 const chip = (page: Page) => region(page).getByRole("button", {name: "Maia: Natural mistake", exact: true});
 const bubble = (page: Page) => region(page).getByLabel("Coach explanation", {exact: true}).locator("[data-utterance]");
 
-function combinedRecordingId(): string {
-  const meaning = catalogue.meanings.find(item => "primary" in item && "secondary" in item
-    && item.primary === BASE && item.secondary === "human-natural-error");
-  expect(meaning, "the authored cause + Maia meaning must be registered").toBeDefined();
-  return meaning!.id;
-}
+// Coaches never speak a Maia reading: speech is the bubble's objective line(s) only.
+const objectiveOnly = new RegExp(`^${BASE}(?:[+](?!human-|combo-|combined-)[a-z0-9-]+)?$`);
 
 function withoutHuman(game: Game): Game {
   const current = structuredClone(game), report = current.frames[1].report!;
@@ -101,8 +96,7 @@ async function mount(page: Page, coachId: "classic" | "robot", game: Game) {
 }
 
 for (const coachId of ["classic", "robot"] as const) {
-  test(`${coachId}: a visible Maia chip joins the real PositionCoach response as one whole recording`, async ({page}) => {
-    const combined = combinedRecordingId();
+  test(`${coachId}: a visible Maia chip leaves the real PositionCoach response objective only`, async ({page}) => {
     const fixture = await mount(page, coachId, enrichedGame);
     const initial = await state(page);
     expect(initial.intentCodes).toContain("human_natural_error");
@@ -114,23 +108,24 @@ for (const coachId of ["classic", "robot"] as const) {
 
     await update(page, {speechEventId: "position-coach:arrival"});
     await tick(page, 250);
-    await expect.poll(() => state(page).then(value => [value.observedCoach, value.observed])).toEqual([coachId, combined]);
+    await expect.poll(() => state(page).then(value => value.observed ?? "")).toMatch(objectiveOnly);
+    const parts = (await state(page)).observed!.split("+");
+    expect((await state(page)).observedCoach).toBe(coachId);
     await tick(page, 1000);
     expect(await counts(page)).toEqual({starts: 1, stops: 0});
-    expect(fixture.assets).toHaveLength(1);
-    expect(fixture.assets[0]).toBe(await recordingUrl(page, coachId, combined));
+    expect(fixture.assets.sort()).toEqual((await Promise.all(parts.map(id => recordingUrl(page, coachId, id)))).sort());
     expect(fixture.writes).toEqual([]);
   });
 
-  test(`${coachId}: late Maia preserves the current objective recording and explicit replay uses the combined response`, async ({page}) => {
-    const combined = combinedRecordingId();
+  test(`${coachId}: late Maia preserves the current objective recording and explicit replay stays objective`, async ({page}) => {
     const fixture = await mount(page, coachId, withoutHuman(enrichedGame));
     await expect(chip(page)).toHaveCount(0);
     await update(page, {speechEventId: "position-coach:before-human"});
     await tick(page, 250);
     // The plain bubble's recorded sentences play back to back as one playback.
-    await expect.poll(() => state(page).then(value => value.observed ?? "")).toMatch(new RegExp(`^${BASE}([+]|$)`));
-    const plain = (await state(page)).observed!, parts = plain.split("+");
+    await expect.poll(() => state(page).then(value => value.observed ?? "")).toMatch(objectiveOnly);
+    const plain = (await state(page)).observed!;
+    const urls = await Promise.all(plain.split("+").map(id => recordingUrl(page, coachId, id)));
     expect((await state(page)).observedCoach).toBe(coachId);
     expect(await counts(page)).toEqual({starts: 1, stops: 0});
 
@@ -142,17 +137,19 @@ for (const coachId of ["classic", "robot"] as const) {
     await tick(page, 1000);
     expect(await counts(page)).toEqual({starts: 1, stops: 0});
     expect((await state(page)).observed).toBe(plain);
-    expect(fixture.assets).toHaveLength(parts.length);
 
     await page.evaluate(() => (window as unknown as HarnessWindow).fakeSpeechAudio.finish());
     await expect.poll(() => state(page).then(value => value.observed)).toBe(null);
     await region(page).getByRole("button", {name: "Listen to coach", exact: true}).click();
-    await expect.poll(() => state(page).then(value => [value.observedCoach, value.observed])).toEqual([coachId, combined]);
+    // Replay speaks the enriched bubble's own objective sentences, never the Maia reading.
+    await expect.poll(() => state(page).then(value => value.observed ?? "")).toMatch(objectiveOnly);
+    const replay = (await state(page)).observed!;
+    expect((await state(page)).observedCoach).toBe(coachId);
+    urls.push(...await Promise.all(replay.split("+").map(id => recordingUrl(page, coachId, id))));
     await tick(page, 500);
     expect((await counts(page)).starts).toBe(2);
-    expect(fixture.assets).toHaveLength(parts.length + 1);
+    expect(fixture.assets.every(url => urls.includes(url))).toBe(true);
     expect(fixture.assets[0]).toBe(await recordingUrl(page, coachId, BASE));
-    expect(fixture.assets.at(-1)).toBe(await recordingUrl(page, coachId, combined));
     expect(fixture.writes).toEqual([]);
   });
 }

@@ -5,8 +5,8 @@ import DialogueText from "../dialogue/DialogueText";
 import {IconButton} from "../Button";
 import type {Report} from "./types";
 
-// The popover is silent: the move's single coach playback in the bubble already
-// voices the Maia reading (see selectGameSpeech).
+// The badge and popover are written only: coaches never speak a Maia reading
+// (see selectGameSpeech).
 export default function HumanInsight({presentation, report}: {
   presentation: HumanInsightPresentation;
   report: Report;

@@ -125,7 +125,7 @@ test("terminal checkmate comes from the current board result, never an expressio
   expect(selectWalterGameRecording({...current, game: {...current.game, result: "1-0"}})).toBe("cause-abandoned-defender");
 });
 
-test("human insight requires the exact current learner evidence and explicit insight surface", () => {
+test("a Maia claim never selects a recording, even with exact current learner evidence", () => {
   let tested = 0;
   for (const game of Object.values(humans)) {
     const report = game.frames[1].report!;
@@ -134,12 +134,12 @@ test("human insight requires the exact current learner evidence and explicit ins
     if (!item) continue;
     const intent = makeIntent(`${current.intent.id}:human`, current.intent.purpose, current.intent.mode,
       current.intent.expression, [item], current.intent.decisions, current.intent.subject);
-    const human = {...current, intent, utterance: renderDialogue(intent, walter), surface: "human-insight" as const};
-    expect(selectWalterGameRecording(human)).toMatch(/^human-/);
-    expect(selectWalterGameRecording({...human, game: {...human.game, orientation: human.game.orientation === "white" ? "black" : "white"}})).toBeNull();
-    const stale = structuredClone(human);
-    stale.report!.practical!.human_evidence_id = "older-search";
-    expect(selectWalterGameRecording(stale)).toBeNull();
+    const human = {...current, intent, utterance: renderDialogue(intent, walter)};
+    expect(human.utterance.renderedClaims!.map(claim => claim.code)).toEqual([item.code]);
+    expect(selectWalterGameRecording(human)).toBeNull();
+    current.utterance.renderedClaims!.forEach((claim, claimIndex) => {
+      if (claim.code === item.code) expect(selectWalterGameRecording({...current, claimIndex})).toBeNull();
+    });
     tested++;
   }
   expect(tested).toBeGreaterThan(0);
@@ -149,7 +149,6 @@ test("explicit secondary selection cannot narrate hidden claims or context inher
   const current = context(causal[0].report);
   expect(selectWalterGameRecording({...current, claimIndex: 99})).toBeNull();
   expect(selectWalterGameRecording({...current, claimIndex: -1})).toBeNull();
-  expect(selectWalterGameRecording({...current, surface: "human-insight"})).toBeNull();
   const recovery = claim("recovery", {earlier: "1. e4", help: ""}, 88,
     current.intent.claims[0].evidence, ["old-recovery"]);
   const intent = makeIntent("old-game-context", "recovery", "variation", "recovered", [recovery]);
@@ -271,7 +270,6 @@ test("finite no-report status recordings are manual-only and never authorize leg
     const expected = state === "unavailable" ? "game-unavailable" : state === "paused" ? "game-review-paused" : "game-browse-instructions";
     expect(selectWalterGameRecording(current)).toBe(expected);
     expect(selectWalterGameRecording({...current, pending: true})).toBeNull();
-    expect(selectWalterGameRecording({...current, surface: "human-insight"})).toBeNull();
     expect(selectWalterGameRecording({...current, report: base.report})).toBeNull();
     const altered = structuredClone(current);
     altered.utterance.renderedClaims![0].slots.detail = "Unstructured text is not a fixed status.";
@@ -289,7 +287,6 @@ test("Show why speaks a legal reply only when the producer marks the entire curr
   expect(selectWalterGameRecording(current)).toBe("game-explanation-legal-reply");
   expect(selectWalterGameRecording({...current, error: true})).toBeNull();
   expect(selectWalterGameRecording({...current, pending: true})).toBeNull();
-  expect(selectWalterGameRecording({...current, surface: "human-insight"})).toBeNull();
   expect(selectWalterGameRecording({...current, frame: {...frame, legal_moves: []}})).toBeNull();
   for (const change of ["legacy", "reply", "fen"] as const) {
     const changed = structuredClone(current);

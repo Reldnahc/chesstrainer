@@ -86,10 +86,9 @@ export default function PositionCoach({
   const speechContext = {game, report, frame, ply, variation, pending: speechPending,
     error: !!errorAtPosition || (!report && game.job?.status === "failed")};
   const selection = {...speechContext, intent: displayedIntent, utterance};
-  const speech = selectGameSpeech(selection, explaining ? undefined : insight);
+  // The Maia insight is shown beside the bubble but never voiced.
+  const speech = selectGameSpeech(selection);
   const {primaryId} = speech;
-  // Late Maia must not cut off the bubble's own line that is already playing.
-  const plainId = explaining ? null : selectGameSpeech(selection).recordingId;
   const selected = coachRecording(utterance.coachId, speech.recordingId) ? speech.recordingId : primaryId;
   // The greeting is the start's own line, whether the review just opened or the
   // learner returned there, so the bubble's no-report prose does not gate it.
@@ -107,7 +106,7 @@ export default function PositionCoach({
   const preferencesReady = !!useOptionalCoachPreferences()?.ready && !!useOptionalAudioPreferences()?.ready;
   const voice = useCoachSpeech({scopeKey: `game:${positionKey}`, recordingId, utterance: opener ? undefined : utterance,
     automaticEventId: speechOpening && (!preferencesReady || reviewStarting) ? null : speechEventId, ready: !speechPending,
-    manualRecordingIds: [primaryId, plainId].filter((id): id is string => !!id)});
+    manualRecordingIds: [primaryId, explaining ? null : speech.recordingId].filter((id): id is string => !!id)});
   return (
     <ReviewCoach
       reaction={{...reaction, state: utterance.expression}}

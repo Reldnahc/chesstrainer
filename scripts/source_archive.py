@@ -50,7 +50,6 @@ SERVED_CONTRASTS = frozenset(
         "recovery",
         "positional-unsupported-actual",
         "only-playable-move",
-        "human-unusual-strong",
     )
 )
 

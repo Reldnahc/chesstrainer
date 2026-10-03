@@ -15,14 +15,14 @@ import "../../coach-presentation.css";
 import "../../disclosure.css";
 import "./voice-audition.css";
 
-export type RecordingMeaning = {id: string; label: string; group: string; primary?: string; secondary?: string};
+export type RecordingMeaning = {id: string; label: string; group: string};
 export type RecordedCoachCatalog = {
   coaches: readonly string[];
   meanings: readonly RecordingMeaning[];
   recording: (coachId: string, id: string) => {id: string; text: string; url: string} | undefined;
   loadTrack: (coachId: string, id: string) => Promise<SpeechMouthTrack | undefined>;
 };
-type Collection = "opening" | "combined" | "all";
+type Collection = "opening" | "all";
 
 /** Compare the same supported meaning in complete, already recorded coach banks. */
 export default function RecordedCoachComparison({player, catalog}: {player: StudioPlayer; catalog: RecordedCoachCatalog}) {
@@ -33,8 +33,7 @@ export default function RecordedCoachComparison({player, catalog}: {player: Stud
   const [motion, setMotion] = useState<MotionPreference>("system");
   const coaches = catalog.coaches.map(getCoach);
   const coach = coaches.find(item => item.id === coachId) ?? coaches[0];
-  const meanings = catalog.meanings.filter(meaning => collection === "all" ||
-    (collection === "opening" ? meaning.id.startsWith("book-opening-") : !!meaning.primary && !!meaning.secondary));
+  const meanings = catalog.meanings.filter(meaning => collection === "all" || meaning.id.startsWith("book-opening-"));
   const meaning = meanings.find(item => item.id === meaningId) ?? meanings[0];
   const recording = coach && meaning ? catalog.recording(coach.id, meaning.id) : undefined;
   const clipKey = `${coach?.id ?? ""}:${meaning?.id ?? ""}:${recording?.url ?? ""}`;
@@ -79,7 +78,7 @@ export default function RecordedCoachComparison({player, catalog}: {player: Stud
     <div className="voice-audition-layout">
       <div className="voice-audition-controls voice-audition-fields">
         <ChoiceGroup label="Recording collection" value={collection}
-          options={[{value: "opening", label: "Opening run"}, {value: "combined", label: "With Maia"}, {value: "all", label: "All lines"}]}
+          options={[{value: "opening", label: "Opening run"}, {value: "all", label: "All lines"}]}
           onChange={next => {if (next !== collection) {player.stop(); setCollection(next);}}} />
         {meaning && <label>Spoken meaning<select value={meaning.id} onChange={event => {player.stop(); setMeaningId(event.target.value);}}>
           {categories.map(category => <optgroup key={category} label={category}>
@@ -89,7 +88,6 @@ export default function RecordedCoachComparison({player, catalog}: {player: Stud
         <ChoiceGroup label="Recorded coach" value={coach.id} options={coaches.map(item => ({value: item.id, label: item.name}))}
           onChange={next => {if (next !== coach.id) {player.stop(); setCoachId(next);}}} />
         <MotionSelect id={`${id}-motion`} label="Comparison motion" value={motion} onChange={setMotion} />
-        {meaning?.primary && meaning.secondary && <p className="voice-audition-note">One continuous recording: the move explanation and human-play context together.</p>}
         {meaning && <details className="disclosure voice-audition-texts">
           <summary>Compare the wording</summary>
           <dl>{coaches.map(item => <div key={item.id}><dt>{item.name}</dt>

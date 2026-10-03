@@ -9,7 +9,6 @@ import {storyteller} from "../src/dialogue/characters/storyteller";
 import {robot} from "../src/dialogue/characters/robot";
 import {gameReaction} from "../src/coach/reactions";
 import {selectGameRecording, selectGameSpeech, type GameSpeechContext} from "../src/audio/speech/gameSelection";
-import catalogue from "../src/audio/speech/meanings.json" with {type: "json"};
 
 const root = path.resolve("..");
 const python = process.env.TEST_PYTHON || path.join(root, process.platform === "win32" ? ".venv/Scripts/python.exe" : ".venv/bin/python");
@@ -19,25 +18,17 @@ function loadGames(filename: string): Record<string, Game> {
 }
 const games = {...loadGames("review_speech_policy_fixtures.py"), ...loadGames("review_speech_relationship_fixtures.py")};
 const coaches = [{id: "classic", personality: storyteller}, {id: "robot", personality: robot}];
-const pairs = new Map(catalogue.meanings.flatMap(item => "primary" in item && "secondary" in item
-  ? [[`${item.primary}:${item.secondary}`, item.id] as const] : []));
-const strong = ["human-hard-find", "human-unusual-strong", "human-natural-best", "human-natural-strong"];
-const poor = ["human-natural-error", "human-hard-defense-missed"];
-const resources = ["human-hard-find", "human-hard-defense-found", "human-natural-best"];
-const observedFamilies: Record<string, string[]> = {
-  "evaluation-loss": poor, "allowed-mate": poor, "missed-mate": poor,
-  "immediate-capture": poor, "recognized-opening": [...strong, "human-hard-defense-found"],
-  "cause-abandoned-defender": poor, "cause-opponent-threat-recognition": poor, "cause-avoiding-bad-trades": poor,
-  "tactic-fork-played": strong, "tactic-pin-played": strong,
-  "tactic-fork-allowed": poor, "tactic-skewer-allowed": poor, "tactic-fork-missed": poor,
-  "sound-sacrifice": strong,
-  "only-playable-move": resources, "only-advantage-resource": resources,
-  "positional-rook-open-actual": strong, "positional-rook-semi-open-actual": strong,
-  "clock-low": strong, "clock-fast": strong, "clock-long": strong,
-  "positional-bishop-pair-actual": strong, "positional-passer-advance-actual": strong, "positional-king-flight-actual": strong,
-  "recovery": strong, "recovery-assisted": strong, "chance-taken": strong, "chance-missed": poor,
-  "support-restored": strong, "advantage-converted": strong,
-};
+// Objective explanations that the policy profiles reach while a Maia reading
+// is also available. Each speaks its own objective line; Maia is never voiced.
+const observedFamilies = [
+  "evaluation-loss", "allowed-mate", "missed-mate", "immediate-capture", "recognized-opening",
+  "cause-abandoned-defender", "cause-opponent-threat-recognition", "cause-avoiding-bad-trades",
+  "tactic-fork-played", "tactic-pin-played", "tactic-fork-allowed", "tactic-skewer-allowed", "tactic-fork-missed",
+  "sound-sacrifice", "only-playable-move", "only-advantage-resource",
+  "positional-rook-open-actual", "positional-rook-semi-open-actual", "clock-low", "clock-fast", "clock-long",
+  "positional-bishop-pair-actual", "positional-passer-advance-actual", "positional-king-flight-actual",
+  "recovery", "recovery-assisted", "chance-taken", "chance-missed", "support-restored", "advantage-converted",
+];
 
 function presentation(name: string, coach = coaches[0], game = structuredClone(games[name])) {
   const ply = game.frames.length - 1, frame = game.frames[ply], report = frame.report!;
@@ -51,102 +42,80 @@ function presentation(name: string, coach = coaches[0], game = structuredClone(g
 }
 
 for (const coach of coaches) {
-  test(`${coach.id}: coherent policy profiles select all seven insights and complete family combinations`, () => {
-    const observed = new Map<string, Set<string>>(), humanStates = new Set<string>();
+  test(`${coach.id}: coherent policy profiles show all seven insights and never voice one`, () => {
+    const observed = new Set<string>(), shown = new Set<string>();
     let humanFirst = 0, badgeOnly = 0;
     for (const name of Object.keys(games)) {
       const {context, insight} = presentation(name, coach);
-      const humanId = selectGameRecording({...context, ...insight, surface: "human-insight"});
-      if (humanId) humanStates.add(humanId);
-      const index = context.utterance.renderedClaims!.findIndex(item => !humanInsightLabels[item.code]);
-      const objectiveId = index < 0 ? null : selectGameRecording({...context, claimIndex: index});
-      if (!objectiveId || !humanId) continue;
-      const expected = pairs.get(`${objectiveId}:${humanId}`);
-      expect(expected, `${name}: ${objectiveId}/${humanId} needs its complete authored recording`).toBeDefined();
-      expect(selectGameSpeech(context, insight).recordingId, name).toBe(expected);
-      observed.set(objectiveId, new Set([...(observed.get(objectiveId) ?? []), humanId]));
-      if (index > 0) humanFirst++;
-      if (!context.utterance.renderedClaims!.some(item => humanInsightLabels[item.code])) badgeOnly++;
+      for (const item of insight.utterance.renderedClaims ?? []) shown.add(item.code);
+      const claims = context.utterance.renderedClaims!;
+      const objective = claims.map((item, claimIndex) => {
+        const id = selectGameRecording({...context, claimIndex});
+        if (humanInsightLabels[item.code]) expect(id, `${name}: Maia claim ${item.code}`).toBeNull();
+        return id;
+      }).filter((id): id is string => !!id);
+      const speech = selectGameSpeech(context);
+      const parts = speech.recordingId?.split("+") ?? [];
+      expect(parts.every(id => objective.includes(id)), `${name}: ${speech.recordingId}`).toBe(true);
+      expect(parts.some(id => /^(?:human-|combo-|combined-)/.test(id))).toBe(false);
+      const lead = claims.findIndex(item => !humanInsightLabels[item.code]);
+      expect(speech.primaryId, name).toBe(lead < 0 ? null : selectGameRecording({...context, claimIndex: lead}));
+      if (!insight.intent.claims.length || !speech.primaryId) continue;
+      observed.add(speech.primaryId);
+      if (lead > 0) humanFirst++;
+      if (!claims.some(item => humanInsightLabels[item.code])) badgeOnly++;
     }
-    for (const [objective, humans] of Object.entries(observedFamilies))
-      expect([...(observed.get(objective) ?? [])].sort(), objective).toEqual([...humans].sort());
-    expect([...humanStates].sort()).toEqual([...poor, ...strong, "human-hard-defense-found"].sort());
+    expect([...observed]).toEqual(expect.arrayContaining(observedFamilies));
+    expect([...shown].sort()).toEqual(Object.keys(humanInsightLabels).sort());
     expect(humanFirst).toBeGreaterThan(0);
     expect(badgeOnly).toBeGreaterThan(0);
   });
 
-  test(`${coach.id}: the selected defense insight supersedes the coexisting natural-error claim`, () => {
-    const {context, insight} = presentation("cause-abandoned_defender-white-narrow-preferred-unusual", coach);
-    expect(context.intent.claims.map(item => item.code)).toEqual(expect.arrayContaining(["human_natural_error", "difficult_defense"]));
-    expect(insight.intent.claims.map(item => item.code)).toEqual(["difficult_defense"]);
-    expect(selectGameSpeech(context, insight).recordingId).toBe(pairs.get("cause-abandoned-defender:human-hard-defense-missed"));
-  });
-
-  test(`${coach.id}: a back-rank mating witness keeps the higher mate explanation`, () => {
-    for (const role of ["allowed", "missed"]) for (const [profile, human] of [
-      ["preferred", "human-natural-error"], ["preferred-unusual", "human-hard-defense-missed"],
-    ]) {
-      const {context, insight} = presentation(`back-rank-${role}-narrow-${profile}`, coach);
-      expect(context.report!.intelligence!.events).toEqual(expect.arrayContaining([
-        expect.objectContaining({kind: "tactic", facts: expect.objectContaining({motif: "back_rank", role})}),
-      ]));
-      expect(selectGameRecording(context)).toBe(`${role}-mate`);
-      expect(selectGameSpeech(context, insight).recordingId).toBe(pairs.get(`${role}-mate:${human}`));
-      expect(pairs.has(`tactic-back-rank-${role}:${human}`)).toBe(false);
-    }
-  });
-
-  // Without a combined line the bubble's recorded sentences play back to back.
+  // The bubble's recorded objective sentences play back to back; Maia adds nothing.
   const plain = (context: GameSpeechContext) => {
     const first = selectGameRecording(context), second = selectGameRecording({...context, claimIndex: 1});
     return first && second ? `${first}+${second}` : first;
   };
 
-  test(`${coach.id}: stale, wrong-coach, or altered insight cannot authorize a composite`, () => {
-    const {context, insight} = presentation("cause-abandoned_defender-white-preferred", coach);
-    const fallback = plain(context);
-    const stale = presentation("cause-avoiding_bad_trades-white-preferred", coach).insight;
-    const wrongCoach = {...insight, utterance: {...insight.utterance, coachId: coach.id === "classic" ? "robot" : "classic"}};
-    const altered = structuredClone(insight);
-    altered.utterance.renderedClaims![0].evidence[0].id = "other-policy";
-    for (const invalid of [stale, wrongCoach, altered])
-      expect(selectGameSpeech(context, invalid).recordingId).toBe(fallback);
-    expect(selectGameSpeech(context).recordingId).toBe(fallback);
+  test(`${coach.id}: the selected defense insight is shown while the objective line speaks alone`, () => {
+    const {context, insight} = presentation("cause-abandoned_defender-white-narrow-preferred-unusual", coach);
+    expect(context.intent.claims.map(item => item.code)).toEqual(expect.arrayContaining(["human_natural_error", "difficult_defense"]));
+    expect(insight.intent.claims.map(item => item.code)).toEqual(["difficult_defense"]);
+    expect(selectGameSpeech(context).primaryId).toBe("cause-abandoned-defender");
+    expect(selectGameSpeech(context).recordingId).toBe(plain(context));
   });
 
-  test(`${coach.id}: late unavailable policy removes the chip without changing the objective fallback`, () => {
-    const {context, insight} = presentation("cause-abandoned_defender-white-preferred", coach);
+  test(`${coach.id}: a back-rank mating witness keeps the higher mate explanation`, () => {
+    for (const role of ["allowed", "missed"]) for (const profile of ["preferred", "preferred-unusual"]) {
+      const {context} = presentation(`back-rank-${role}-narrow-${profile}`, coach);
+      expect(context.report!.intelligence!.events).toEqual(expect.arrayContaining([
+        expect.objectContaining({kind: "tactic", facts: expect.objectContaining({motif: "back_rank", role})}),
+      ]));
+      expect(selectGameRecording(context)).toBe(`${role}-mate`);
+      expect(selectGameSpeech(context).recordingId).toBe(plain(context));
+    }
+  });
+
+  test(`${coach.id}: late unavailable policy removes the chip without changing the objective speech`, () => {
+    const {context} = presentation("cause-abandoned_defender-white-preferred", coach);
     const fallback = plain(context);
     context.report!.human!.status = "unavailable";
-    expect(selectGameSpeech(context, insight).recordingId).toBe(fallback);
+    expect(selectGameSpeech(context).recordingId).toBe(fallback);
     const current = presentation("cause-abandoned_defender-white-preferred", coach, context.game);
     expect(current.insight.intent.claims).toEqual([]);
-    expect(selectGameSpeech(current.context, current.insight).recordingId).toBe(fallback);
+    expect(selectGameSpeech(current.context).recordingId).toBe(fallback);
   });
 
-  test(`${coach.id}: opponent and variation contexts cannot borrow another visible Maia insight`, () => {
+  test(`${coach.id}: opponent and variation contexts keep their own objective speech`, () => {
     const original = presentation("cause-abandoned_defender-white-preferred", coach);
     const game = structuredClone(original.context.game);
     game.orientation = "black";
     const opponent = presentation("cause-abandoned_defender-white-preferred", coach, game);
     expect(opponent.insight.intent.claims).toEqual([]);
-    expect(selectGameSpeech(opponent.context, original.insight).recordingId).toBe(plain(opponent.context));
+    expect(selectGameSpeech(opponent.context).recordingId).toBe(plain(opponent.context));
     const parent = original.context;
     const intent = gameIntent({...parent, key: "branch", variation: true, expression: parent.intent.expression});
     const branch = {...parent, variation: true, intent, utterance: renderDialogue(intent, coach)};
-    expect(selectGameSpeech(branch, original.insight).recordingId).toBe(plain(branch));
+    expect(selectGameSpeech(branch).recordingId).toBe(plain(branch));
   });
 }
-
-test("every combined meaning is a unique bounded identifier of an objective plus one supported human insight", () => {
-  const ids = new Set<string>(), tuples = new Set<string>();
-  for (const item of catalogue.meanings) {
-    if (!("primary" in item) || !("secondary" in item) || !item.primary || !item.secondary) continue;
-    expect(item.id.length).toBeLessThanOrEqual(64);
-    expect(ids.has(item.id)).toBe(false);
-    expect(tuples.has(`${item.primary}:${item.secondary}`)).toBe(false);
-    expect(item.primary.startsWith("human-")).toBe(false);
-    expect([...poor, ...strong, "human-hard-defense-found"]).toContain(item.secondary);
-    ids.add(item.id); tuples.add(`${item.primary}:${item.secondary}`);
-  }
-});

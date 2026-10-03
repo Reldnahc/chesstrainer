@@ -54,13 +54,10 @@ test("the silent filters preserve a meaning across coaches and fit a narrow phon
   await expect(message(page)).toHaveText("Rivet: Develop a piece.");
   await collection(page, "All lines").click();
   await expect(meaning(page)).toHaveValue(follow);
-  await expect(meaning(page).locator("option")).toHaveCount(6);
-  await meaning(page).selectOption("fork-with-maia");
-  await collection(page, "With Maia").click();
-  await expect(meaning(page).locator("option")).toHaveText(["A fork with Maia"]);
-  await expect(meaning(page)).toHaveValue("fork-with-maia");
-  await collection(page, "All lines").click();
-  await expect(meaning(page)).toHaveValue("fork-with-maia");
+  await expect(meaning(page).locator("option")).toHaveCount(5);
+  await expect(collection(page, "With Maia")).toHaveCount(0);
+  await meaning(page).selectOption("fork");
+  await expect(meaning(page)).toHaveValue("fork");
   await expect(play(page)).toBeEnabled();
   await expect(panel(page).getByRole("button", {name: /Choose this voice|Keep looking|Clear choice/})).toHaveCount(0);
   expect((await state(page)).starts).toBe(0);
@@ -126,15 +123,15 @@ for (const playback of ["playing", "loading"] as const) for (const change of ["c
   });
 }
 
-test("a combined meaning plays one whole recording and changing collection cancels it", async ({page}) => {
+test("a meaning plays one whole recording and changing collection cancels it", async ({page}) => {
   const {audio} = await mount(page);
-  await collection(page, "With Maia").click();
-  await expect(meaning(page)).toHaveValue("fork-with-maia");
-  await expect(message(page)).toHaveText("Walter: A fork with Maia.");
+  await collection(page, "All lines").click();
+  await meaning(page).selectOption("fork");
+  await expect(message(page)).toHaveText("Walter: A fork.");
   await play(page).click();
   await expect(panel(page)).toHaveAttribute("data-playback", "playing");
   expect((await state(page)).starts).toBe(1);
-  expect(audio).toEqual(["/__recorded-comparison-fixture/classic/fork-with-maia.opus"]);
+  expect(audio).toEqual(["/__recorded-comparison-fixture/classic/fork.opus"]);
   await page.evaluate(() => (window as unknown as HarnessWindow).comparisonHarness.audio.finish());
   await page.clock.runFor(11_000);
   expect((await state(page)).starts).toBe(1);

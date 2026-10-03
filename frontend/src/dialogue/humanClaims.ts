@@ -1,7 +1,7 @@
 import type {Report} from "../gameReview/types";
 import {claim, makeIntent, type Claim, type CoachUtterance, type DialogueIntent, type EvidenceRef} from "./model";
 
-/** One prepared insight supplies the visible badge, its explanation and speech. */
+/** One prepared insight supplies the visible badge and its explanation; it is never voiced. */
 export type HumanInsightPresentation = {intent: DialogueIntent; utterance: CoachUtterance};
 
 export const humanInsightLabels: Readonly<Record<string, string>> = {
