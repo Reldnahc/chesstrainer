@@ -206,8 +206,22 @@ still retain every browser suite. Audio-only changes do not select the coach
 artwork matrix. The shared studio player selects both studios;
 the production audio engine also retains application and intelligence consumers.
 
-The application and coach studio suites each run in four isolated jobs
-(desktop/mobile, two file shards each). Accounts, intelligence and audio each have
+The application suite runs in eight isolated jobs (desktop/mobile, four shards each)
+and the coach studio in six (three shards each); `SHARDS` in `scripts/ci_plan.py`
+sets the counts. Each config reads its shard from `TEST_SHARD`
+(`frontend/playwright.shared.ts`). The fully parallel studio suites let Playwright
+split tests evenly. The application suite keeps whole files together and assigns
+them to shards greedily by recorded duration from `frontend/tests/durations.json`;
+an unrecorded file is weighted by its test count, so stale entries cost balance,
+never coverage. Refresh the record after adding or reshaping heavy specs:
+
+```sh
+cd frontend
+PLAYWRIGHT_JSON_OUTPUT_FILE=report.json npx playwright test --project desktop --reporter=json,line
+node scripts/test-durations.mjs report.json
+```
+
+Accounts, intelligence and audio each have
 separate desktop and mobile jobs. The studio suites (coach, intelligence, audio)
 test independent pages on stateless dev servers and run fully parallel: 2 workers
 on CI, 6 locally. On CI their per-test timeout is 60 s, because whole-family
@@ -255,9 +269,12 @@ history, API failures or an unresolvable baseline run full correctness. The
 baseline lookup alone has read access to Actions history. Manually running
 `build-and-push` defaults to full verification; `full=false` uses that verified
 release baseline. The release workflow skips the separate PR Docker-install job,
-then builds and smoke-tests the image in a job alongside correctness. Only after
-correctness passes does the publish job rebuild it from that warm cache, smoke-test
-it again and push it under its commit and `latest` tags. The release baseline job
+then builds the image in a job alongside correctness, pushes it to GHCR by digest
+only (no tag, so nothing can pull it by name) and smoke-tests that exact digest.
+Only after correctness passes does the publish job tag the smoke-tested digest as
+the commit and `latest`, a registry operation that moves no layers and takes seconds
+instead of a second build and smoke test. A failed release leaves an untagged
+candidate in the package, which GHCR lists under its versions. The release baseline job
 runs the same change selector, so releases that ship nothing new (tests, studios,
 documentation) skip both image jobs and keep the current image. Releases are
 serialized so concurrent builds do not race the `latest` update. Python/npm
@@ -283,8 +300,8 @@ python -m pytest backend/tests/test_ci_plan.py backend/tests/test_ci_release_bas
 
 The exhaustive browser-matrix collection check should continue to cover every
 test/project exactly once when shard settings change. Use Playwright `--list
---reporter=json` with and without each matrix entry's `--project` and `--shard`
-arguments to compare IDs; collection is not a substitute for executing tests.
+--reporter=json` with and without each matrix entry's `--project` argument and
+`TEST_SHARD` value to compare IDs; collection is not a substitute for executing tests.
 
 ### Local commands
 
@@ -456,7 +473,9 @@ intentionally invalid calls, and strictly typechecks all application, coach-stud
 intelligence-lab and audio-studio browser tests and their Playwright configs. The
 browser-test project includes Node 24 declarations for its runner and fixture helpers; fixtures
 must satisfy the same generated API contracts as the application. Both frontend
-checks run as part of `npm run build`;
+checks run as part of `npm run build`, which `frontend/scripts/build.mjs` runs side by
+side with the style-boundary and symbol checks and the Vite build itself (the build
+waits only for the API contract check and the public-source archive);
 backend contract tests and the export check run in correctness CI. Browser tests
 exercise the typed client's real JSON/multipart requests, authentication and errors.
 
