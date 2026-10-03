@@ -37,6 +37,10 @@ const banks = new Map(registry.banks.flatMap(entry => {
 }));
 const loadedTracks = new Map<string, Record<string, SpeechMouthTrack>>();
 
+/** Played when a coach is chosen in Settings. No bank records it yet; until a
+ * coach's clip exists the picker stays silent for that coach. */
+export const COACH_INTRODUCTION = 'coach-introduction';
+
 export function hasCoachVoice(coachId: string): boolean { return banks.has(coachId); }
 
 /** Unknown coaches or meanings stay silent; a different character is never a fallback. */
