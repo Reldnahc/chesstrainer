@@ -222,6 +222,10 @@ def mouth_cues(alignment: dict, text: str, duration: float) -> list[dict]:
     return cues
 
 
+# Weak forms the aligner may fall back to when a voice contracts the written word.
+REDUCED_FORMS = {"have": ("AH", "V")}
+
+
 def validate_evidence(provenance: dict, text: str, duration: float, cues: list[dict]) -> None:
     validate_tool(provenance["tool"])
     if provenance["mapping"] != mapping_provenance():
@@ -240,6 +244,17 @@ def validate_evidence(provenance: dict, text: str, duration: float, cues: list[d
                 and [phone["phone"] for phone in word["phones"]] != extensions[name]
             ):
                 raise ValueError("Aligned phones differ from the automatic pronunciation")
+    reduced = provenance.get("reducedForms", {})
+    if any(
+        word not in REDUCED_FORMS or tuple(phones) != REDUCED_FORMS[word]
+        or word not in normalize_text(text).split()
+        for word, phones in reduced.items()
+    ):
+        raise ValueError("Unknown reduced pronunciation form")
+    for word in alignment["words"]:
+        name = re.sub(r"\([1-9][0-9]*\)$", "", word["word"])
+        if word["word"] == f"{name}(2)" and name in REDUCED_FORMS and name not in reduced:
+            raise ValueError("Reduced pronunciation used without its evidence")
     if provenance["alignmentSha256"] != object_digest(alignment):
         raise ValueError("Forced word/phone alignment fingerprint changed")
     if mouth_cues(alignment, text, duration) != cues:
@@ -311,11 +326,19 @@ def run_worker(wav_path: Path, text_path: Path, deps: Path) -> dict:
         warnings.simplefilter("ignore", DeprecationWarning)
         import audioop
     pcm, _ = audioop.ratecv(pcm, 2, 1, rate, SAMPLE_RATE, None)
-    decoder.set_align_text(normalized)
-    decoder.start_utt()
-    decoder.process_raw(pcm, full_utt=True)
-    decoder.end_utt()
-    decoder.set_alignment()
+    reduced = {}
+    try:
+        align_words(decoder, normalized, pcm)
+    except RuntimeError:
+        # Voices often contract "would have" to "would've". Retry once with the
+        # reduced form as an alternate and record it, never a per-clip exception.
+        usable = {word: phones for word, phones in REDUCED_FORMS.items() if word in normalized.split()}
+        if not usable:
+            raise
+        for word, phones in usable.items():
+            decoder.add_word(f"{word}(2)", " ".join(phones))
+        align_words(decoder, normalized, pcm)
+        reduced = usable
     decoder.start_utt()
     decoder.process_raw(pcm, full_utt=True)
     decoder.end_utt()
@@ -351,7 +374,17 @@ def run_worker(wav_path: Path, text_path: Path, deps: Path) -> dict:
     }
     if derivations:
         result["pronunciationExtensions"] = speech_pronunciation.evidence(derivations)
+    if reduced:
+        result["reducedForms"] = {word: list(phones) for word, phones in reduced.items()}
     return result
+
+
+def align_words(decoder, normalized: str, pcm: bytes) -> None:
+    decoder.set_align_text(normalized)
+    decoder.start_utt()
+    decoder.process_raw(pcm, full_utt=True)
+    decoder.end_utt()
+    decoder.set_alignment()
 
 
 def main() -> None:

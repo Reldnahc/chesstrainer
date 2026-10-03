@@ -371,6 +371,8 @@ def generate_forced_source(
     }
     if "pronunciationExtensions" in native:
         track["provenance"]["pronunciationExtensions"] = native["pronunciationExtensions"]
+    if "reducedForms" in native:
+        track["provenance"]["reducedForms"] = native["reducedForms"]
     check_source_track(track, source)
     return track
 
