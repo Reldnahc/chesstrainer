@@ -1,7 +1,10 @@
 """Game library, resumable whole-game review and legal variation analysis."""
 
+import io
 from datetime import timezone
 
+import chess
+import chess.pgn
 from fastapi import APIRouter, HTTPException, Query
 from pydantic import BaseModel, Field
 from sqlalchemy import func, select
@@ -96,23 +99,28 @@ def create_router(*, settings, engine_factory):
             completed_ids = [game.id for game, status in rows if status == "completed"]
             saved = load_accuracy_scores(db, completed_ids)
             items = []
+            backfilled = False
             for game, status in rows:
-                parsed = parsed_game(game)
-                plies = sum(1 for _ in parsed.mainline_moves())
-                time_control = parsed.headers.get("TimeControl")
+                # Headers are enough for the library; replaying moves is the slow part.
+                headers = chess.pgn.read_headers(io.StringIO(game.pgn)) or chess.pgn.Headers()
+                if game.move_count is None:
+                    game.move_count = sum(1 for _ in parsed_game(game).mainline_moves())
+                    backfilled = True
+                plies = game.move_count
+                time_control = headers.get("TimeControl")
                 items.append(
                     {
                         "id": game.id,
                         "white": game.white,
                         "black": game.black,
-                        "white_rating": pgn_rating(parsed, True),
-                        "black_rating": pgn_rating(parsed, False),
+                        "white_rating": pgn_rating(headers, True),
+                        "black_rating": pgn_rating(headers, False),
                         "learner_color": "white" if game.learner_color else "black",
                         "played_on": game.played_on,
                         "played_at": game.played_at.replace(tzinfo=timezone.utc).isoformat()
                         if game.played_at
                         else None,
-                        "result": parsed.headers.get("Result", "*"),
+                        "result": headers.get("Result", "*"),
                         "time_control": time_control,
                         "time_control_label": time_control_label(time_control),
                         "move_count": (plies + 1) // 2,
@@ -120,12 +128,19 @@ def create_router(*, settings, engine_factory):
                         "accuracy": review_accuracy(
                             saved[game.id],
                             total=plies,
-                            starting_board=parsed.board(),
+                            starting_board=chess.Board(headers["FEN"])
+                            if "FEN" in headers
+                            else chess.Board(),
                             completed=status == "completed",
                         ),
                     }
                 )
-            return {"items": items, "total": db.scalar(select(func.count()).select_from(Game))}
+            total = db.scalar(select(func.count()).select_from(Game))
+            if backfilled:
+                # Rows imported before move counts were saved: one short write per page.
+                with workspace.mutation_lock:
+                    db.commit()
+            return {"items": items, "total": total}
 
     @router.get(
         "/api/games/{game_id}", response_model=GameDetail, response_model_exclude_unset=True

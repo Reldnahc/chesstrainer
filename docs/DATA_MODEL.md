@@ -7,7 +7,7 @@ SQLAlchemy 2 mapped models use SQLite WAL, foreign keys and a 30-second busy tim
 | Tables | Role |
 |---|---|
 | users, auth_sessions, user_preferences | Account credentials/session digests, recent-game sync and persisted coach/motion preferences |
-| game_imports, import_games, games | Original uploads, provenance links, normalized games, learner side and unique fingerprints |
+| game_imports, import_games, games | Original uploads, provenance links, normalized games, learner side, saved mainline move counts and unique fingerprints |
 | analysis_jobs | Lifecycle, import/kind, progress, cancellation and sanitized errors |
 | chesscom_imports, chesscom_archives | Query/filter settings, download diagnostics and per-job archive checkpoints |
 | engine_analyses | Compatible durable cache, engine/configuration, FEN and validated candidate/PV payloads |

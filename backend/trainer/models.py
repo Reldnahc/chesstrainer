@@ -78,6 +78,9 @@ class Game(Owned, Base):
     pgn: Mapped[str] = mapped_column(Text)
     played_on: Mapped[str | None]
     played_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    # Mainline half-moves, saved at import so the library never replays PGNs. Older
+    # rows are filled in the first time they are listed.
+    move_count: Mapped[int | None]
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
 
 

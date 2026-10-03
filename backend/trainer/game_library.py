@@ -6,9 +6,13 @@ import chess.pgn
 
 
 def pgn_rating(parsed, color):
-    """The actual moving player's recorded rating; an absent value is not zero."""
+    """The actual moving player's recorded rating; an absent value is not zero.
+
+    Accepts a parsed game or its headers alone.
+    """
+    headers = getattr(parsed, "headers", parsed)
     try:
-        value = int(parsed.headers.get("WhiteElo" if color else "BlackElo", ""))
+        value = int(headers.get("WhiteElo" if color else "BlackElo", ""))
         return value if 0 < value <= 4000 else None
     except (ValueError, TypeError):
         return None
