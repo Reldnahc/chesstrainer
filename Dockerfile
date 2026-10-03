@@ -17,10 +17,20 @@ RUN apt-get update && apt-get install -y --no-install-recommends stockfish \
     && mkdir /data && chown 1000:1000 /data
 WORKDIR /app
 COPY requirements.lock requirements-human-cpu.lock ./
-# Keep the large CPU runtime layer reusable when application code or writing changes.
-RUN pip install --no-cache-dir --no-deps torch==2.8.0+cpu --index-url https://download.pytorch.org/whl/cpu \
+# MAIA_RUNTIME=cpu (default) keeps the image small and runs anywhere. Build with
+# --build-arg MAIA_RUNTIME=cuda for a CUDA 12.8 Torch, then run with a GPU and
+# HUMAN_MODEL_DEVICE=cuda. The same human lock applies minus its CPU Torch pin.
+ARG MAIA_RUNTIME=cpu
+# Keep the large Torch layer reusable when application code or writing changes.
+RUN if [ "$MAIA_RUNTIME" = "cuda" ]; then \
+        grep -v '^torch==' requirements-human-cpu.lock > requirements-human.lock \
+        && pip install --no-cache-dir torch==2.8.0 --index-url https://download.pytorch.org/whl/cu128; \
+    elif [ "$MAIA_RUNTIME" = "cpu" ]; then \
+        cp requirements-human-cpu.lock requirements-human.lock \
+        && pip install --no-cache-dir --no-deps torch==2.8.0+cpu --index-url https://download.pytorch.org/whl/cpu; \
+    else echo "MAIA_RUNTIME must be cpu or cuda" >&2; exit 1; fi \
     && pip install --no-cache-dir --constraint requirements.lock \
-       --requirement requirements-human-cpu.lock
+       --requirement requirements-human.lock
 COPY pyproject.toml alembic.ini LICENSE NOTICE.md README.md ./
 COPY backend ./backend
 COPY migrations ./migrations
@@ -28,7 +38,7 @@ COPY scripts ./scripts
 COPY docs ./docs
 COPY --from=frontend /app/frontend/dist ./frontend/dist
 RUN pip install --no-cache-dir --constraint requirements.lock \
-       --constraint requirements-human-cpu.lock --editable '.[human]'
+       --constraint requirements-human.lock --editable '.[human]'
 USER 1000:1000
 EXPOSE 8000
 VOLUME ["/data"]

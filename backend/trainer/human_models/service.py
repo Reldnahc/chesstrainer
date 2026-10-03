@@ -4,6 +4,7 @@ import threading
 from time import monotonic
 
 from sqlalchemy import select
+from sqlalchemy.exc import IntegrityError
 
 from trainer.cancellation import throttled
 from trainer.chess_core import digest
@@ -55,6 +56,56 @@ class HumanModels:
             != (pgn_rating(parsed, not actor) or fallback)
         )
 
+    def cache_key(self, request):
+        return digest(
+            {"request": request.model_dump(mode="json"), "configuration": self.configuration_key}
+        )
+
+    def prefetch(self, sessions, parsed, boards, fallback, cancelled=lambda: False):
+        """Score a game's uncached positions in batches; evidence() then reads the cache.
+
+        Failures are left to the per-move path, which records them as usual.
+        """
+        predict_many = getattr(self.provider, "predict_many", None)
+        if predict_many is None or not self.settings.human_model_enabled:
+            return
+        if not self.can_attempt():
+            return
+        pending = {}
+        for board in boards:
+            if board.is_game_over() or board.uci_variant != "chess":
+                continue
+            request = request_for(parsed, board, fallback)
+            pending.setdefault(self.cache_key(request), request)
+        with sessions() as db:
+            saved = set(
+                db.scalars(
+                    select(HumanAnalysis.cache_key).where(HumanAnalysis.cache_key.in_(pending))
+                )
+            )
+        missing = [(key, request) for key, request in pending.items() if key not in saved]
+        if not missing:
+            return
+        try:
+            policies = predict_many([request for _, request in missing], cancelled)
+        except (HumanUnavailable, ValueError, OSError):
+            return
+        self._failed = False
+        with sessions() as db:
+            for (key, request), policy in zip(missing, policies, strict=True):
+                db.add(
+                    HumanAnalysis(
+                        cache_key=key,
+                        request=request.model_dump(mode="json"),
+                        policy=policy.model_dump(mode="json"),
+                    )
+                )
+            try:
+                db.commit()
+            except IntegrityError:
+                # Another job saved some of these first; per-move reads find them.
+                db.rollback()
+
     def evidence(self, sessions, parsed, board, played, best, fallback, cancelled=lambda: False):
         request = request_for(parsed, board, fallback)
         base = dict(
@@ -69,9 +120,7 @@ class HumanModels:
             return HumanEvidence(status="not_applicable", **base).model_dump(mode="json")
         if not self.settings.human_model_enabled:
             return HumanEvidence(status="disabled", **base).model_dump(mode="json")
-        key = digest(
-            {"request": request.model_dump(mode="json"), "configuration": self.configuration_key}
-        )
+        key = self.cache_key(request)
         owner = sessions.kw["info"]["user_id"]
         lock = self._locks[int(digest([owner, key])[:4], 16) % len(self._locks)]
         deadline = monotonic() + self.settings.human_model_timeout

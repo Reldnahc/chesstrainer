@@ -27,8 +27,14 @@ def main():
             send({"error": "request_too_large"})
             return 1
         try:
-            request = HumanRequest.model_validate_json(raw)
-            send({"policy": model.predict(request).model_dump(mode="json")})
+            payload = json.loads(raw)
+            if isinstance(payload, dict) and "batch" in payload:
+                requests = [HumanRequest.model_validate(item) for item in payload["batch"]]
+                policies = model.predict_many(requests)
+                send({"policies": [policy.model_dump(mode="json") for policy in policies]})
+            else:
+                request = HumanRequest.model_validate(payload)
+                send({"policy": model.predict(request).model_dump(mode="json")})
         except Exception:
             send({"error": "prediction_failed"})
             return 1
