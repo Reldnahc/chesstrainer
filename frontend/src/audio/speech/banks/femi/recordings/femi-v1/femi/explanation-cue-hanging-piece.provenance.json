@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "explanation-cue-hanging-piece",
+      "label": "Explanation cue hanging piece",
+      "text": "Before moving, check whether anything of yours can be taken without a useful recapture."
+    },
+    "takeId": null
+  },
+  "requestHash": "17a0f7534e96ed2a9e2fa9dcfc83a42d545f5da00429a46e16ac9faad7b0ab4f",
+  "recordedAt": "2026-10-03T05:39:00.195Z",
+  "sha256": "d3fc685242c2c8e1405407d43616c84056b28a2be222dc04a53a8740271f16a2",
+  "bytes": 19637,
+  "requestId": "sgWceLN3mVj2eyx12lv6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "76d3510158b60aa845fdc4779090aec1fa7fdde2d3296b0ab5be37f0fe0027e5",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "explanation-cue-skewer",
+      "label": "Explanation cue skewer",
+      "text": "When you attack along a line, check what's standing behind the first target."
+    },
+    "takeId": null
+  },
+  "requestHash": "a1a12b895d3299249bacefdda17120eecfe79f821166e42bced5d5416c1f5915",
+  "recordedAt": "2026-10-03T05:39:05.799Z",
+  "sha256": "b077903a501bc7c7eec2050031d2ec52216a4a6a2c060cbdb7349b3aafbed172",
+  "bytes": 15786,
+  "requestId": "OCASTYeNYxsdBh2tqnZ2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c8f04b43cbb769b97de0b27512ba83871901771849acf9dd3289e2f4d92861d4",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

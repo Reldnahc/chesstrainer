@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "book-opening-entry-3",
+      "label": "Book opening entry 3",
+      "text": "That's a recognized line, straight out of opening prep."
+    },
+    "takeId": null
+  },
+  "requestHash": "f818324a3959adf2e01b9981757316eab47ebc465079782f5f1b2a8f1c984875",
+  "recordedAt": "2026-10-03T05:39:57.712Z",
+  "sha256": "87464158a39c9b25a075c4f85061e10ba82517356b02a747ea4d7d0c66c7ce32",
+  "bytes": 12154,
+  "requestId": "SMp4Vb5BclXTwL8XWrSB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9afcd2b4186d9a3c52a950013b72d30b75ce2a09411a8d5246f6d95d356251e5",
+    "bytes": 59812
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

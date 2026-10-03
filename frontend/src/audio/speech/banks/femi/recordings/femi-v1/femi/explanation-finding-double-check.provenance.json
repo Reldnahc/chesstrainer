@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "explanation-finding-double-check",
+      "label": "Explanation finding double check",
+      "text": "Double check here; with two checkers, the only answer is to move the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "8c8d5e3b6464c08f6e1b29f3713eeefa9284e53121bed2848bdf0526d9171349",
+  "recordedAt": "2026-10-03T05:38:50.552Z",
+  "sha256": "bf5add05d4e22a449aadb8d882cbfb091562cffc795a22fec30c6ab5667c73d1",
+  "bytes": 17327,
+  "requestId": "QHqWoWzmd1X7eEsukqQe",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3dd6cf25bf0ef985fd9e319bc8c97fafd9cec2aa55b6568143a32f8bfb51e56b",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

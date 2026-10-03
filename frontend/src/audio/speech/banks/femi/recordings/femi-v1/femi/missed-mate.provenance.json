@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "missed-mate",
+      "label": "Missed mate",
+      "text": "A forced mate was sitting there, and this move doesn't see it through. Rewind a move and hunt for the finish."
+    },
+    "takeId": null
+  },
+  "requestHash": "abd371be09108395ed966cb354cd38181976d1efe37aa52aaac5e29d005cb36e",
+  "recordedAt": "2026-10-03T05:37:05.620Z",
+  "sha256": "b17431ee6486e56faf7bf5b84c2df5a99bd8aa06bdfdd9e41184e4d50b08182c",
+  "bytes": 22489,
+  "requestId": "yoLS8Rn4WC73ojTq7FFd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c26a4ccbd0f4ac890f0efaacc9f7c6eae621be279dd69e2db2ab77fddc934432",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

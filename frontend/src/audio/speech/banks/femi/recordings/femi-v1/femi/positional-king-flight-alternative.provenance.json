@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "positional-king-flight-alternative",
+      "label": "Positional king flight alternative",
+      "text": "Another move would have handed the king an extra escape route; this one doesn't."
+    },
+    "takeId": null
+  },
+  "requestHash": "4c9622ed3b297ece8c3bbfbbc3a68763b99affddcf9db2cd66c44cc469771686",
+  "recordedAt": "2026-10-03T05:36:54.535Z",
+  "sha256": "2d817554f2839afb77d297ffeb2038bc31d4c36997a9c302bb84218f641c80ca",
+  "bytes": 16826,
+  "requestId": "c78HWHMAqkiirfKDntVI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9d847afe873f341d488d643ac461cf7c4fecb6eea1f043bba5ac8acdd1403089",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

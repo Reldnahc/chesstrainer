@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "explanation-cue-missed-tactical-capture",
+      "label": "Explanation cue missed tactical capture",
+      "text": "Before you play something quiet, have a look for loose enemy pieces."
+    },
+    "takeId": null
+  },
+  "requestHash": "ae1a933a1d7adc2d074e633e1b76839341deb34328ce70a656612e2ff697fd0b",
+  "recordedAt": "2026-10-03T05:39:01.398Z",
+  "sha256": "e69cca302acc2f217d8b5ff4d5a58f332ab68f13795c880961220db34f7078ac",
+  "bytes": 15036,
+  "requestId": "XpRbRRnWg8n4GFMwuv7F",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1ce338ba3afb6f11dd85b37295d584931b3739d93a224daa7d70f9bd31deb00c",
+    "bytes": 75276
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

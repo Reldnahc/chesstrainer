@@ -1,0 +1,1583 @@
+{
+  "schemaVersion": 1,
+  "provider": "elevenlabs",
+  "coachId": "man-host",
+  "voiceId": "femi",
+  "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+  "modelId": "eleven_v4",
+  "outputFormat": "mp3_44100_128",
+  "settings": {
+    "stability": 0.5,
+    "similarity_boost": 0.75,
+    "speed": 0.95
+  },
+  "scope": "non-lesson",
+  "silentIds": [
+    "game-thinking",
+    "explanation-loading-saved",
+    "dialogue-no-renderable-claim",
+    "practice-checking"
+  ],
+  "recordings": [
+    {
+      "id": "tactic-fork-played",
+      "group": "game_review",
+      "text": "It's a fork: the piece that just moved now hits several targets in one go, so count them on the board.",
+      "audioPath": "recordings/femi-v1/femi/tactic-fork-played.opus",
+      "sidecarPath": "recordings/femi-v1/femi/tactic-fork-played.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-played.json"
+    },
+    {
+      "id": "tactic-fork-allowed",
+      "group": "game_review",
+      "text": "Hold that thought: the other side has a fork coming, one of their pieces lined up against a whole group of targets. Job one is locating that piece.",
+      "audioPath": "recordings/femi-v1/femi/tactic-fork-allowed.opus",
+      "sidecarPath": "recordings/femi-v1/femi/tactic-fork-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-allowed.json"
+    },
+    {
+      "id": "tactic-fork-missed",
+      "group": "game_review",
+      "text": "Another move had a fork tucked into it, a single piece eyeing a whole group of targets. The game took another road.",
+      "audioPath": "recordings/femi-v1/femi/tactic-fork-missed.opus",
+      "sidecarPath": "recordings/femi-v1/femi/tactic-fork-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-fork-missed.json"
+    },
+    {
+      "id": "tactic-pin-played",
+      "group": "game_review",
+      "text": "Yeah, see the pin? The front piece is frozen, since stepping off that line would put its own king in the firing line.",
+      "audioPath": "recordings/femi-v1/femi/tactic-pin-played.opus",
+      "sidecarPath": "recordings/femi-v1/femi/tactic-pin-played.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-played.json"
+    },
+    {
+      "id": "tactic-pin-allowed",
+      "group": "game_review",
+      "text": "Easy does it. The other side gets a pin against the king here, and the stuck piece has to stay put or its king is exposed.",
+      "audioPath": "recordings/femi-v1/femi/tactic-pin-allowed.opus",
+      "sidecarPath": "recordings/femi-v1/femi/tactic-pin-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-allowed.json"
+    },
+    {
+      "id": "tactic-pin-missed",
+      "group": "game_review",
+      "text": "Put the stronger move next to this one and there's a pin to the king in it. The pinned piece would have been stuck, since leaving the line exposes the king.",
+      "audioPath": "recordings/femi-v1/femi/tactic-pin-missed.opus",
+      "sidecarPath": "recordings/femi-v1/femi/tactic-pin-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-pin-missed.json"
+    },
+    {
+      "id": "tactic-skewer-played",
+      "group": "game_review",
+      "text": "Textbook skewer. Hit the front piece first, and when it gets out of the way, the piece behind it is hanging in the open.",
+      "audioPath": "recordings/femi-v1/femi/tactic-skewer-played.opus",
+      "sidecarPath": "recordings/femi-v1/femi/tactic-skewer-played.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-played.json"
+    },
+    {
+      "id": "tactic-skewer-allowed",
+      "group": "game_review",
+      "text": "Here's what it allows: the other side now has a skewer lined up, a line attack through one piece onto another. Shift the front piece, and the rear one is wide open.",
+      "audioPath": "recordings/femi-v1/femi/tactic-skewer-allowed.opus",
+      "sidecarPath": "recordings/femi-v1/femi/tactic-skewer-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-allowed.json"
+    },
+    {
+      "id": "tactic-skewer-missed",
+      "group": "game_review",
+      "text": "Put the stronger move next to this one and a skewer shows up. Force the front piece to move, and the piece standing behind it can be captured. Worth setting that up on the board.",
+      "audioPath": "recordings/femi-v1/femi/tactic-skewer-missed.opus",
+      "sidecarPath": "recordings/femi-v1/femi/tactic-skewer-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-skewer-missed.json"
+    },
+    {
+      "id": "tactic-removing-defender-played",
+      "group": "game_review",
+      "text": "That's the clever bit: the defender is captured, and nobody takes over its job. Whatever it covered is unprotected now.",
+      "audioPath": "recordings/femi-v1/femi/tactic-removing-defender-played.opus",
+      "sidecarPath": "recordings/femi-v1/femi/tactic-removing-defender-played.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-played.json"
+    },
+    {
+      "id": "tactic-removing-defender-allowed",
+      "group": "game_review",
+      "text": "Look closely: a defender is now up for capture by the other side. If it goes, whatever it covers could lose its protection, so check that defender's duties first.",
+      "audioPath": "recordings/femi-v1/femi/tactic-removing-defender-allowed.opus",
+      "sidecarPath": "recordings/femi-v1/femi/tactic-removing-defender-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-allowed.json"
+    },
+    {
+      "id": "tactic-removing-defender-missed",
+      "group": "game_review",
+      "text": "A stronger move would have removed a defender, leaving whatever it guarded uncovered. Not on this move, though.",
+      "audioPath": "recordings/femi-v1/femi/tactic-removing-defender-missed.opus",
+      "sidecarPath": "recordings/femi-v1/femi/tactic-removing-defender-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-removing-defender-missed.json"
+    },
+    {
+      "id": "tactic-back-rank-played",
+      "group": "game_review",
+      "text": "Back-rank mate idea. The king's own pieces are sitting right where it would need to run.",
+      "audioPath": "recordings/femi-v1/femi/tactic-back-rank-played.opus",
+      "sidecarPath": "recordings/femi-v1/femi/tactic-back-rank-played.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-played.json"
+    },
+    {
+      "id": "tactic-back-rank-allowed",
+      "group": "game_review",
+      "text": "The back rank is the issue here. The other side now has a mating route along it, because the king's own pieces fence it in.",
+      "audioPath": "recordings/femi-v1/femi/tactic-back-rank-allowed.opus",
+      "sidecarPath": "recordings/femi-v1/femi/tactic-back-rank-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-allowed.json"
+    },
+    {
+      "id": "tactic-back-rank-missed",
+      "group": "game_review",
+      "text": "The back rank was there to exploit, with the king's own pieces blocking its exits. This move lets the mate idea drift past.",
+      "audioPath": "recordings/femi-v1/femi/tactic-back-rank-missed.opus",
+      "sidecarPath": "recordings/femi-v1/femi/tactic-back-rank-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-back-rank-missed.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-played",
+      "group": "game_review",
+      "text": "It's a promotion story: a pawn going all the way up to turn into a new piece. Follow its path move by move.",
+      "audioPath": "recordings/femi-v1/femi/tactic-promotion-awareness-played.opus",
+      "sidecarPath": "recordings/femi-v1/femi/tactic-promotion-awareness-played.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-played.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-allowed",
+      "group": "game_review",
+      "text": "That pawn is worth watching. The other side now has a real shot at promotion, so trace its path to the last rank.",
+      "audioPath": "recordings/femi-v1/femi/tactic-promotion-awareness-allowed.opus",
+      "sidecarPath": "recordings/femi-v1/femi/tactic-promotion-awareness-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-allowed.json"
+    },
+    {
+      "id": "tactic-promotion-awareness-missed",
+      "group": "game_review",
+      "text": "The stronger move had a promotion run in it. Here that pawn doesn't budge.",
+      "audioPath": "recordings/femi-v1/femi/tactic-promotion-awareness-missed.opus",
+      "sidecarPath": "recordings/femi-v1/femi/tactic-promotion-awareness-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-promotion-awareness-missed.json"
+    },
+    {
+      "id": "tactic-discovered-attack-played",
+      "group": "game_review",
+      "text": "Discovered attack, then. The front piece clears the path, and suddenly the back piece has a clear line to hit.",
+      "audioPath": "recordings/femi-v1/femi/tactic-discovered-attack-played.opus",
+      "sidecarPath": "recordings/femi-v1/femi/tactic-discovered-attack-played.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-played.json"
+    },
+    {
+      "id": "tactic-discovered-attack-allowed",
+      "group": "game_review",
+      "text": "Hold that thought: the other side has a discovered attack to play now. Watch for one of their pieces moving off a line to reveal the attacker behind it.",
+      "audioPath": "recordings/femi-v1/femi/tactic-discovered-attack-allowed.opus",
+      "sidecarPath": "recordings/femi-v1/femi/tactic-discovered-attack-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-allowed.json"
+    },
+    {
+      "id": "tactic-discovered-attack-missed",
+      "group": "game_review",
+      "text": "With another move, the discovered attack was on, a front piece moving off and unmasking the one behind. The game went elsewhere.",
+      "audioPath": "recordings/femi-v1/femi/tactic-discovered-attack-missed.opus",
+      "sidecarPath": "recordings/femi-v1/femi/tactic-discovered-attack-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-discovered-attack-missed.json"
+    },
+    {
+      "id": "tactic-double-attack-played",
+      "group": "game_review",
+      "text": "Double attack, and that's tough to meet. A single move brings two threats, and each one needs handling.",
+      "audioPath": "recordings/femi-v1/femi/tactic-double-attack-played.opus",
+      "sidecarPath": "recordings/femi-v1/femi/tactic-double-attack-played.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-played.json"
+    },
+    {
+      "id": "tactic-double-attack-allowed",
+      "group": "game_review",
+      "text": "It allows a double attack for the other side, one move carrying a pair of threats. Spot both before choosing an answer.",
+      "audioPath": "recordings/femi-v1/femi/tactic-double-attack-allowed.opus",
+      "sidecarPath": "recordings/femi-v1/femi/tactic-double-attack-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-allowed.json"
+    },
+    {
+      "id": "tactic-double-attack-missed",
+      "group": "game_review",
+      "text": "Two threats in one go were on offer with a stronger move. Not with this one.",
+      "audioPath": "recordings/femi-v1/femi/tactic-double-attack-missed.opus",
+      "sidecarPath": "recordings/femi-v1/femi/tactic-double-attack-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-double-attack-missed.json"
+    },
+    {
+      "id": "tactic-deflection-played",
+      "group": "game_review",
+      "text": "Classic deflection. The defender gets pulled elsewhere, and the piece it had been looking after is now loose.",
+      "audioPath": "recordings/femi-v1/femi/tactic-deflection-played.opus",
+      "sidecarPath": "recordings/femi-v1/femi/tactic-deflection-played.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-played.json"
+    },
+    {
+      "id": "tactic-deflection-allowed",
+      "group": "game_review",
+      "text": "This lets the other side pull a defender away from its job with a deflection, and whatever it was guarding might end up exposed.",
+      "audioPath": "recordings/femi-v1/femi/tactic-deflection-allowed.opus",
+      "sidecarPath": "recordings/femi-v1/femi/tactic-deflection-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-allowed.json"
+    },
+    {
+      "id": "tactic-deflection-missed",
+      "group": "game_review",
+      "text": "With another move, a defender could have been coaxed away from what it was guarding. Here, that deflection never comes.",
+      "audioPath": "recordings/femi-v1/femi/tactic-deflection-missed.opus",
+      "sidecarPath": "recordings/femi-v1/femi/tactic-deflection-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-deflection-missed.json"
+    },
+    {
+      "id": "tactic-undefended-capture-played",
+      "group": "game_review",
+      "text": "Simple stuff: a loose piece, and this move collects it for free.",
+      "audioPath": "recordings/femi-v1/femi/tactic-undefended-capture-played.opus",
+      "sidecarPath": "recordings/femi-v1/femi/tactic-undefended-capture-played.provenance.json",
+      "alignmentPath": "alignment/tactic-undefended-capture-played.json"
+    },
+    {
+      "id": "tactic-undefended-capture-missed",
+      "group": "game_review",
+      "text": "An undefended piece was there to take with another move, and this move leaves it alone. Always worth a quick scan for those.",
+      "audioPath": "recordings/femi-v1/femi/tactic-undefended-capture-missed.opus",
+      "sidecarPath": "recordings/femi-v1/femi/tactic-undefended-capture-missed.provenance.json",
+      "alignmentPath": "alignment/tactic-undefended-capture-missed.json"
+    },
+    {
+      "id": "tactic-hanging-piece-allowed",
+      "group": "game_review",
+      "text": "Hold that thought. Something's hanging: an unprotected piece, and the other side gets first go at it.",
+      "audioPath": "recordings/femi-v1/femi/tactic-hanging-piece-allowed.opus",
+      "sidecarPath": "recordings/femi-v1/femi/tactic-hanging-piece-allowed.provenance.json",
+      "alignmentPath": "alignment/tactic-hanging-piece-allowed.json"
+    },
+    {
+      "id": "cause-abandoned-defender",
+      "group": "game_review",
+      "text": "This is the moment that matters. The only real guard of a piece wanders off, and the other side can pick up what's left behind.",
+      "audioPath": "recordings/femi-v1/femi/cause-abandoned-defender.opus",
+      "sidecarPath": "recordings/femi-v1/femi/cause-abandoned-defender.provenance.json",
+      "alignmentPath": "alignment/cause-abandoned-defender.json"
+    },
+    {
+      "id": "cause-opponent-threat-recognition",
+      "group": "game_review",
+      "text": "Look at the opponent's last move: it made a threat, and this move leaves it unanswered. That puts a piece up for capture.",
+      "audioPath": "recordings/femi-v1/femi/cause-opponent-threat-recognition.opus",
+      "sidecarPath": "recordings/femi-v1/femi/cause-opponent-threat-recognition.provenance.json",
+      "alignmentPath": "alignment/cause-opponent-threat-recognition.json"
+    },
+    {
+      "id": "cause-avoiding-bad-trades",
+      "group": "game_review",
+      "text": "Don't stop counting at the first capture. The recapture here takes something worth more, so the exchange comes out badly.",
+      "audioPath": "recordings/femi-v1/femi/cause-avoiding-bad-trades.opus",
+      "sidecarPath": "recordings/femi-v1/femi/cause-avoiding-bad-trades.provenance.json",
+      "alignmentPath": "alignment/cause-avoiding-bad-trades.json"
+    },
+    {
+      "id": "positional-development-actual",
+      "group": "game_review",
+      "text": "Knight or bishop off the back rank and into the game. Simple, useful development.",
+      "audioPath": "recordings/femi-v1/femi/positional-development-actual.opus",
+      "sidecarPath": "recordings/femi-v1/femi/positional-development-actual.provenance.json",
+      "alignmentPath": "alignment/positional-development-actual.json"
+    },
+    {
+      "id": "positional-development-alternative",
+      "group": "game_review",
+      "text": "Another move would have got a knight or bishop into the game.",
+      "audioPath": "recordings/femi-v1/femi/positional-development-alternative.opus",
+      "sidecarPath": "recordings/femi-v1/femi/positional-development-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-development-alternative.json"
+    },
+    {
+      "id": "positional-rook-open-actual",
+      "group": "game_review",
+      "text": "Open file for the rook now, not a pawn anywhere along it.",
+      "audioPath": "recordings/femi-v1/femi/positional-rook-open-actual.opus",
+      "sidecarPath": "recordings/femi-v1/femi/positional-rook-open-actual.provenance.json",
+      "alignmentPath": "alignment/positional-rook-open-actual.json"
+    },
+    {
+      "id": "positional-rook-open-alternative",
+      "group": "game_review",
+      "text": "Another move would have put a rook on a fully open file, without a single pawn on it.",
+      "audioPath": "recordings/femi-v1/femi/positional-rook-open-alternative.opus",
+      "sidecarPath": "recordings/femi-v1/femi/positional-rook-open-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-rook-open-alternative.json"
+    },
+    {
+      "id": "positional-rook-semi-open-actual",
+      "group": "game_review",
+      "text": "Every pawn on that rook's file belongs to the enemy, which is what semi-open means.",
+      "audioPath": "recordings/femi-v1/femi/positional-rook-semi-open-actual.opus",
+      "sidecarPath": "recordings/femi-v1/femi/positional-rook-semi-open-actual.provenance.json",
+      "alignmentPath": "alignment/positional-rook-semi-open-actual.json"
+    },
+    {
+      "id": "positional-rook-semi-open-alternative",
+      "group": "game_review",
+      "text": "With another move, a semi-open file was there for a rook, enemy pawns only.",
+      "audioPath": "recordings/femi-v1/femi/positional-rook-semi-open-alternative.opus",
+      "sidecarPath": "recordings/femi-v1/femi/positional-rook-semi-open-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-rook-semi-open-alternative.json"
+    },
+    {
+      "id": "positional-passed-actual",
+      "group": "game_review",
+      "text": "A passer has appeared. Looking up the board, there's no enemy pawn in front of it on its own file or the adjacent ones.",
+      "audioPath": "recordings/femi-v1/femi/positional-passed-actual.opus",
+      "sidecarPath": "recordings/femi-v1/femi/positional-passed-actual.provenance.json",
+      "alignmentPath": "alignment/positional-passed-actual.json"
+    },
+    {
+      "id": "positional-passed-alternative",
+      "group": "game_review",
+      "text": "Another move would have produced a passer, with no enemy pawn blocking it or covering its path from next door.",
+      "audioPath": "recordings/femi-v1/femi/positional-passed-alternative.opus",
+      "sidecarPath": "recordings/femi-v1/femi/positional-passed-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-passed-alternative.json"
+    },
+    {
+      "id": "positional-passer-advance-actual",
+      "group": "game_review",
+      "text": "The passer gets nudged forward again. It's getting closer.",
+      "audioPath": "recordings/femi-v1/femi/positional-passer-advance-actual.opus",
+      "sidecarPath": "recordings/femi-v1/femi/positional-passer-advance-actual.provenance.json",
+      "alignmentPath": "alignment/positional-passer-advance-actual.json"
+    },
+    {
+      "id": "positional-passer-advance-alternative",
+      "group": "game_review",
+      "text": "A different move would have got the passer rolling again.",
+      "audioPath": "recordings/femi-v1/femi/positional-passer-advance-alternative.opus",
+      "sidecarPath": "recordings/femi-v1/femi/positional-passer-advance-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-passer-advance-alternative.json"
+    },
+    {
+      "id": "positional-isolated-actual",
+      "group": "game_review",
+      "text": "A pawn is left isolated by this, no friend on its left or right.",
+      "audioPath": "recordings/femi-v1/femi/positional-isolated-actual.opus",
+      "sidecarPath": "recordings/femi-v1/femi/positional-isolated-actual.provenance.json",
+      "alignmentPath": "alignment/positional-isolated-actual.json"
+    },
+    {
+      "id": "positional-isolated-alternative",
+      "group": "game_review",
+      "text": "Under a different move, one pawn would have ended up isolated, leaving it with no friendly pawns next door.",
+      "audioPath": "recordings/femi-v1/femi/positional-isolated-alternative.opus",
+      "sidecarPath": "recordings/femi-v1/femi/positional-isolated-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-isolated-alternative.json"
+    },
+    {
+      "id": "positional-support-actual",
+      "group": "game_review",
+      "text": "Somebody now guards the piece that was sitting loose. That tidies up a weak spot.",
+      "audioPath": "recordings/femi-v1/femi/positional-support-actual.opus",
+      "sidecarPath": "recordings/femi-v1/femi/positional-support-actual.provenance.json",
+      "alignmentPath": "alignment/positional-support-actual.json"
+    },
+    {
+      "id": "positional-support-alternative",
+      "group": "game_review",
+      "text": "Another move would have covered a piece that was sitting loose.",
+      "audioPath": "recordings/femi-v1/femi/positional-support-alternative.opus",
+      "sidecarPath": "recordings/femi-v1/femi/positional-support-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-support-alternative.json"
+    },
+    {
+      "id": "positional-unsupported-actual",
+      "group": "game_review",
+      "text": "Worth noting: one piece is unguarded after this. That by itself doesn't make it winnable.",
+      "audioPath": "recordings/femi-v1/femi/positional-unsupported-actual.opus",
+      "sidecarPath": "recordings/femi-v1/femi/positional-unsupported-actual.provenance.json",
+      "alignmentPath": "alignment/positional-unsupported-actual.json"
+    },
+    {
+      "id": "positional-unsupported-alternative",
+      "group": "game_review",
+      "text": "Another move would have left a piece without a guard, which alone wouldn't make it winnable.",
+      "audioPath": "recordings/femi-v1/femi/positional-unsupported-alternative.opus",
+      "sidecarPath": "recordings/femi-v1/femi/positional-unsupported-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-unsupported-alternative.json"
+    },
+    {
+      "id": "positional-king-flight-actual",
+      "group": "game_review",
+      "text": "The king has picked up a legal square that wasn't available before. Handy to have an exit.",
+      "audioPath": "recordings/femi-v1/femi/positional-king-flight-actual.opus",
+      "sidecarPath": "recordings/femi-v1/femi/positional-king-flight-actual.provenance.json",
+      "alignmentPath": "alignment/positional-king-flight-actual.json"
+    },
+    {
+      "id": "positional-king-flight-alternative",
+      "group": "game_review",
+      "text": "Another move would have handed the king an extra escape route; this one doesn't.",
+      "audioPath": "recordings/femi-v1/femi/positional-king-flight-alternative.opus",
+      "sidecarPath": "recordings/femi-v1/femi/positional-king-flight-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-king-flight-alternative.json"
+    },
+    {
+      "id": "positional-castling-actual",
+      "group": "game_review",
+      "text": "A castling move: king and rook both shift in one go.",
+      "audioPath": "recordings/femi-v1/femi/positional-castling-actual.opus",
+      "sidecarPath": "recordings/femi-v1/femi/positional-castling-actual.provenance.json",
+      "alignmentPath": "alignment/positional-castling-actual.json"
+    },
+    {
+      "id": "positional-castling-alternative",
+      "group": "game_review",
+      "text": "Castling was on the table as the other option, king and rook moving together.",
+      "audioPath": "recordings/femi-v1/femi/positional-castling-alternative.opus",
+      "sidecarPath": "recordings/femi-v1/femi/positional-castling-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-castling-alternative.json"
+    },
+    {
+      "id": "positional-bishop-pair-actual",
+      "group": "game_review",
+      "text": "With this capture the bishop pair is gone, and that side is down to bishops on one color.",
+      "audioPath": "recordings/femi-v1/femi/positional-bishop-pair-actual.opus",
+      "sidecarPath": "recordings/femi-v1/femi/positional-bishop-pair-actual.provenance.json",
+      "alignmentPath": "alignment/positional-bishop-pair-actual.json"
+    },
+    {
+      "id": "positional-bishop-pair-alternative",
+      "group": "game_review",
+      "text": "With another move, a bishop capture would have cost the other side its pair.",
+      "audioPath": "recordings/femi-v1/femi/positional-bishop-pair-alternative.opus",
+      "sidecarPath": "recordings/femi-v1/femi/positional-bishop-pair-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-bishop-pair-alternative.json"
+    },
+    {
+      "id": "positional-doubled-actual",
+      "group": "game_review",
+      "text": "Now two pawns of one side share a file: doubled.",
+      "audioPath": "recordings/femi-v1/femi/positional-doubled-actual.opus",
+      "sidecarPath": "recordings/femi-v1/femi/positional-doubled-actual.provenance.json",
+      "alignmentPath": "alignment/positional-doubled-actual.json"
+    },
+    {
+      "id": "positional-doubled-alternative",
+      "group": "game_review",
+      "text": "A different move would have left a file with two pawns of one color on it.",
+      "audioPath": "recordings/femi-v1/femi/positional-doubled-alternative.opus",
+      "sidecarPath": "recordings/femi-v1/femi/positional-doubled-alternative.provenance.json",
+      "alignmentPath": "alignment/positional-doubled-alternative.json"
+    },
+    {
+      "id": "allowed-mate",
+      "group": "game_review",
+      "text": "Ah, this is the one to stop on. After this, checkmate can be forced, so let's look at how the attack gets through.",
+      "audioPath": "recordings/femi-v1/femi/allowed-mate.opus",
+      "sidecarPath": "recordings/femi-v1/femi/allowed-mate.provenance.json",
+      "alignmentPath": "alignment/allowed-mate.json"
+    },
+    {
+      "id": "missed-mate",
+      "group": "game_review",
+      "text": "A forced mate was sitting there, and this move doesn't see it through. Rewind a move and hunt for the finish.",
+      "audioPath": "recordings/femi-v1/femi/missed-mate.opus",
+      "sidecarPath": "recordings/femi-v1/femi/missed-mate.provenance.json",
+      "alignmentPath": "alignment/missed-mate.json"
+    },
+    {
+      "id": "sound-sacrifice",
+      "group": "game_review",
+      "text": "A sacrifice, and it checks out. Even with the material grabbed, the line we checked backs the idea.",
+      "audioPath": "recordings/femi-v1/femi/sound-sacrifice.opus",
+      "sidecarPath": "recordings/femi-v1/femi/sound-sacrifice.provenance.json",
+      "alignmentPath": "alignment/sound-sacrifice.json"
+    },
+    {
+      "id": "only-playable-move",
+      "group": "game_review",
+      "text": "That's a defense worth keeping. Every alternative we checked went under; only this one stayed playable.",
+      "audioPath": "recordings/femi-v1/femi/only-playable-move.opus",
+      "sidecarPath": "recordings/femi-v1/femi/only-playable-move.provenance.json",
+      "alignmentPath": "alignment/only-playable-move.json"
+    },
+    {
+      "id": "only-advantage-resource",
+      "group": "game_review",
+      "text": "Keeping the advantage came down to this move; every alternative we tried let it go and lost. Big moment.",
+      "audioPath": "recordings/femi-v1/femi/only-advantage-resource.opus",
+      "sidecarPath": "recordings/femi-v1/femi/only-advantage-resource.provenance.json",
+      "alignmentPath": "alignment/only-advantage-resource.json"
+    },
+    {
+      "id": "immediate-capture",
+      "group": "game_review",
+      "text": "Hold that thought: the very next move can be a capture for the other side. Put that reply on the board first.",
+      "audioPath": "recordings/femi-v1/femi/immediate-capture.opus",
+      "sidecarPath": "recordings/femi-v1/femi/immediate-capture.provenance.json",
+      "alignmentPath": "alignment/immediate-capture.json"
+    },
+    {
+      "id": "reply-check",
+      "group": "game_review",
+      "text": "Their best answer comes with check, so the king has to be dealt with before anything else.",
+      "audioPath": "recordings/femi-v1/femi/reply-check.opus",
+      "sidecarPath": "recordings/femi-v1/femi/reply-check.provenance.json",
+      "alignmentPath": "alignment/reply-check.json"
+    },
+    {
+      "id": "stronger-alternative",
+      "group": "game_review",
+      "text": "The engine would rather play something else here. Line the two moves up and see how the replies differ.",
+      "audioPath": "recordings/femi-v1/femi/stronger-alternative.opus",
+      "sidecarPath": "recordings/femi-v1/femi/stronger-alternative.provenance.json",
+      "alignmentPath": "alignment/stronger-alternative.json"
+    },
+    {
+      "id": "evaluation-loss",
+      "group": "game_review",
+      "text": "This one gives something away compared with the engine's best. Put the reply on the board and watch what shifts.",
+      "audioPath": "recordings/femi-v1/femi/evaluation-loss.opus",
+      "sidecarPath": "recordings/femi-v1/femi/evaluation-loss.provenance.json",
+      "alignmentPath": "alignment/evaluation-loss.json"
+    },
+    {
+      "id": "best-supported-choice",
+      "group": "game_review",
+      "text": "That's strong. The engine looked at its options, and this move keeps nearly all the value.",
+      "audioPath": "recordings/femi-v1/femi/best-supported-choice.opus",
+      "sidecarPath": "recordings/femi-v1/femi/best-supported-choice.provenance.json",
+      "alignmentPath": "alignment/best-supported-choice.json"
+    },
+    {
+      "id": "good-choice",
+      "group": "game_review",
+      "text": "Perfectly sound. The engine would pick something else first, but most of the position's value survives this one.",
+      "audioPath": "recordings/femi-v1/femi/good-choice.opus",
+      "sidecarPath": "recordings/femi-v1/femi/good-choice.provenance.json",
+      "alignmentPath": "alignment/good-choice.json"
+    },
+    {
+      "id": "clock-low",
+      "group": "game_review",
+      "text": "Worth knowing: this one was played with the flag close to falling.",
+      "audioPath": "recordings/femi-v1/femi/clock-low.opus",
+      "sidecarPath": "recordings/femi-v1/femi/clock-low.provenance.json",
+      "alignmentPath": "alignment/clock-low.json"
+    },
+    {
+      "id": "clock-fast",
+      "group": "game_review",
+      "text": "That went down quickly, and the clock still had plenty in it.",
+      "audioPath": "recordings/femi-v1/femi/clock-fast.opus",
+      "sidecarPath": "recordings/femi-v1/femi/clock-fast.provenance.json",
+      "alignmentPath": "alignment/clock-fast.json"
+    },
+    {
+      "id": "clock-long",
+      "group": "game_review",
+      "text": "This one cost a big slice of the clock.",
+      "audioPath": "recordings/femi-v1/femi/clock-long.opus",
+      "sidecarPath": "recordings/femi-v1/femi/clock-long.provenance.json",
+      "alignmentPath": "alignment/clock-long.json"
+    },
+    {
+      "id": "recognized-opening",
+      "group": "game_review",
+      "text": "That's established opening theory, nothing more to read into it yet.",
+      "audioPath": "recordings/femi-v1/femi/recognized-opening.opus",
+      "sidecarPath": "recordings/femi-v1/femi/recognized-opening.provenance.json",
+      "alignmentPath": "alignment/recognized-opening.json"
+    },
+    {
+      "id": "opening-departure",
+      "group": "game_review",
+      "text": "And that's the end of prep. New ground from here.",
+      "audioPath": "recordings/femi-v1/femi/opening-departure.opus",
+      "sidecarPath": "recordings/femi-v1/femi/opening-departure.provenance.json",
+      "alignmentPath": "alignment/opening-departure.json"
+    },
+    {
+      "id": "recovery",
+      "group": "game_review",
+      "text": "Okay, we've got a game again. After that earlier setback, there's a playable position to work with again.",
+      "audioPath": "recordings/femi-v1/femi/recovery.opus",
+      "sidecarPath": "recordings/femi-v1/femi/recovery.provenance.json",
+      "alignmentPath": "alignment/recovery.json"
+    },
+    {
+      "id": "recovery-assisted",
+      "group": "game_review",
+      "text": "The game's playable again after that setback, with the other side's errors doing some of the work.",
+      "audioPath": "recordings/femi-v1/femi/recovery-assisted.opus",
+      "sidecarPath": "recordings/femi-v1/femi/recovery-assisted.provenance.json",
+      "alignmentPath": "alignment/recovery-assisted.json"
+    },
+    {
+      "id": "chance-taken",
+      "group": "game_review",
+      "text": "There's the chance from the opponent's last move, and this takes it. Exactly the right reply to it.",
+      "audioPath": "recordings/femi-v1/femi/chance-taken.opus",
+      "sidecarPath": "recordings/femi-v1/femi/chance-taken.provenance.json",
+      "alignmentPath": "alignment/chance-taken.json"
+    },
+    {
+      "id": "chance-missed",
+      "group": "game_review",
+      "text": "There was something to take from the opponent's last move, and this one leaves it lying there. Let's compare a better reply.",
+      "audioPath": "recordings/femi-v1/femi/chance-missed.opus",
+      "sidecarPath": "recordings/femi-v1/femi/chance-missed.provenance.json",
+      "alignmentPath": "alignment/chance-missed.json"
+    },
+    {
+      "id": "repeated-issue",
+      "group": "game_review",
+      "text": "Same issue, second showing in this game. Put those moments next to each other and look for what links them.",
+      "audioPath": "recordings/femi-v1/femi/repeated-issue.opus",
+      "sidecarPath": "recordings/femi-v1/femi/repeated-issue.provenance.json",
+      "alignmentPath": "alignment/repeated-issue.json"
+    },
+    {
+      "id": "support-restored",
+      "group": "game_review",
+      "text": "Remember the loose piece from a few moves back? Somebody's guarding it now, and that's the change worth comparing.",
+      "audioPath": "recordings/femi-v1/femi/support-restored.opus",
+      "sidecarPath": "recordings/femi-v1/femi/support-restored.provenance.json",
+      "alignmentPath": "alignment/support-restored.json"
+    },
+    {
+      "id": "gradual-erosion",
+      "group": "game_review",
+      "text": "Here's another small concession. None of them sank the position alone, but together they've cost a lot. Look at the stretch as a whole.",
+      "audioPath": "recordings/femi-v1/femi/gradual-erosion.opus",
+      "sidecarPath": "recordings/femi-v1/femi/gradual-erosion.provenance.json",
+      "alignmentPath": "alignment/gradual-erosion.json"
+    },
+    {
+      "id": "advantage-converted",
+      "group": "game_review",
+      "text": "From there to the win, the advantage stayed put. That stretch is worth replaying.",
+      "audioPath": "recordings/femi-v1/femi/advantage-converted.opus",
+      "sidecarPath": "recordings/femi-v1/femi/advantage-converted.provenance.json",
+      "alignmentPath": "alignment/advantage-converted.json"
+    },
+    {
+      "id": "saved-history-recurrence",
+      "group": "game_review",
+      "text": "The same issue keeps popping up across your saved games. They'd make a good set to study together.",
+      "audioPath": "recordings/femi-v1/femi/saved-history-recurrence.opus",
+      "sidecarPath": "recordings/femi-v1/femi/saved-history-recurrence.provenance.json",
+      "alignmentPath": "alignment/saved-history-recurrence.json"
+    },
+    {
+      "id": "mate-finished",
+      "group": "game_review",
+      "text": "And that's mate. Game over at the board.",
+      "audioPath": "recordings/femi-v1/femi/mate-finished.opus",
+      "sidecarPath": "recordings/femi-v1/femi/mate-finished.provenance.json",
+      "alignmentPath": "alignment/mate-finished.json"
+    },
+    {
+      "id": "mate-defense-ended",
+      "group": "game_review",
+      "text": "That's checkmate; the king is done for. Let's reset a little earlier and look at the defense together.",
+      "audioPath": "recordings/femi-v1/femi/mate-defense-ended.opus",
+      "sidecarPath": "recordings/femi-v1/femi/mate-defense-ended.provenance.json",
+      "alignmentPath": "alignment/mate-defense-ended.json"
+    },
+    {
+      "id": "draw",
+      "group": "game_review",
+      "text": "Half a point each. The result's settled, but the earlier chances are still worth comparing.",
+      "audioPath": "recordings/femi-v1/femi/draw.opus",
+      "sidecarPath": "recordings/femi-v1/femi/draw.provenance.json",
+      "alignmentPath": "alignment/draw.json"
+    },
+    {
+      "id": "srs-cold",
+      "group": "srs_explanations",
+      "text": "Your turn. Take stock of the position, then pick something.",
+      "audioPath": "recordings/femi-v1/femi/srs-cold.opus",
+      "sidecarPath": "recordings/femi-v1/femi/srs-cold.provenance.json",
+      "alignmentPath": "alignment/srs-cold.json"
+    },
+    {
+      "id": "srs-retry",
+      "group": "srs_explanations",
+      "text": "Not that, no. Back to the board for a second think.",
+      "audioPath": "recordings/femi-v1/femi/srs-retry.opus",
+      "sidecarPath": "recordings/femi-v1/femi/srs-retry.provenance.json",
+      "alignmentPath": "alignment/srs-retry.json"
+    },
+    {
+      "id": "srs-practice-error",
+      "group": "srs_explanations",
+      "text": "Hmm, that attempt didn't register on my end. Give the board the same move again.",
+      "audioPath": "recordings/femi-v1/femi/srs-practice-error.opus",
+      "sidecarPath": "recordings/femi-v1/femi/srs-practice-error.provenance.json",
+      "alignmentPath": "alignment/srs-practice-error.json"
+    },
+    {
+      "id": "srs-summary-mate-for-mover",
+      "group": "srs_explanations",
+      "text": "Going by the saved engine analysis, there's a forced checkmate for the side that just moved.",
+      "audioPath": "recordings/femi-v1/femi/srs-summary-mate-for-mover.opus",
+      "sidecarPath": "recordings/femi-v1/femi/srs-summary-mate-for-mover.provenance.json",
+      "alignmentPath": "alignment/srs-summary-mate-for-mover.json"
+    },
+    {
+      "id": "srs-summary-mate-against-mover",
+      "group": "srs_explanations",
+      "text": "Once this move is on the board, the saved engine analysis has the other side mating by force.",
+      "audioPath": "recordings/femi-v1/femi/srs-summary-mate-against-mover.opus",
+      "sidecarPath": "recordings/femi-v1/femi/srs-summary-mate-against-mover.provenance.json",
+      "alignmentPath": "alignment/srs-summary-mate-against-mover.json"
+    },
+    {
+      "id": "srs-summary-material-gain",
+      "group": "srs_explanations",
+      "text": "Tally the material before and after the saved line, and the side that made this move is up on the deal.",
+      "audioPath": "recordings/femi-v1/femi/srs-summary-material-gain.opus",
+      "sidecarPath": "recordings/femi-v1/femi/srs-summary-material-gain.provenance.json",
+      "alignmentPath": "alignment/srs-summary-material-gain.json"
+    },
+    {
+      "id": "srs-summary-material-loss",
+      "group": "srs_explanations",
+      "text": "Tally the material before and after the saved line, and the side that made this move is down on the deal.",
+      "audioPath": "recordings/femi-v1/femi/srs-summary-material-loss.opus",
+      "sidecarPath": "recordings/femi-v1/femi/srs-summary-material-loss.provenance.json",
+      "alignmentPath": "alignment/srs-summary-material-loss.json"
+    },
+    {
+      "id": "srs-summary-engine-accepted",
+      "group": "srs_explanations",
+      "text": "The exercise counts that one as fine. There isn't a tactical reason I can point to in those moves, so I'm not inventing one.",
+      "audioPath": "recordings/femi-v1/femi/srs-summary-engine-accepted.opus",
+      "sidecarPath": "recordings/femi-v1/femi/srs-summary-engine-accepted.provenance.json",
+      "alignmentPath": "alignment/srs-summary-engine-accepted.json"
+    },
+    {
+      "id": "srs-summary-engine-rejected",
+      "group": "srs_explanations",
+      "text": "This exercise doesn't accept that one, and there's no clear tactical reason in the moves shown. The position deserves a second look.",
+      "audioPath": "recordings/femi-v1/femi/srs-summary-engine-rejected.opus",
+      "sidecarPath": "recordings/femi-v1/femi/srs-summary-engine-rejected.provenance.json",
+      "alignmentPath": "alignment/srs-summary-engine-rejected.json"
+    },
+    {
+      "id": "srs-summary-curated-accepted",
+      "group": "srs_explanations",
+      "text": "Yep, the exercise saved exactly that as an answer. This one goes by its saved list.",
+      "audioPath": "recordings/femi-v1/femi/srs-summary-curated-accepted.opus",
+      "sidecarPath": "recordings/femi-v1/femi/srs-summary-curated-accepted.provenance.json",
+      "alignmentPath": "alignment/srs-summary-curated-accepted.json"
+    },
+    {
+      "id": "srs-summary-curated-rejected",
+      "group": "srs_explanations",
+      "text": "Not on the list this exercise keeps. Plenty of other legal moves are fine chess, mind you.",
+      "audioPath": "recordings/femi-v1/femi/srs-summary-curated-rejected.opus",
+      "sidecarPath": "recordings/femi-v1/femi/srs-summary-curated-rejected.provenance.json",
+      "alignmentPath": "alignment/srs-summary-curated-rejected.json"
+    },
+    {
+      "id": "srs-fallback-study",
+      "group": "srs_explanations",
+      "text": "Sit with the move for a moment, then we'll move along to the next position.",
+      "audioPath": "recordings/femi-v1/femi/srs-fallback-study.opus",
+      "sidecarPath": "recordings/femi-v1/femi/srs-fallback-study.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-study.json"
+    },
+    {
+      "id": "srs-fallback-good",
+      "group": "srs_explanations",
+      "text": "Good stuff. Hang on to the why behind it.",
+      "audioPath": "recordings/femi-v1/femi/srs-fallback-good.opus",
+      "sidecarPath": "recordings/femi-v1/femi/srs-fallback-good.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-good.json"
+    },
+    {
+      "id": "srs-fallback-focus-saved",
+      "group": "srs_explanations",
+      "text": "Saved your practice. The review dates don't budge.",
+      "audioPath": "recordings/femi-v1/femi/srs-fallback-focus-saved.opus",
+      "sidecarPath": "recordings/femi-v1/femi/srs-fallback-focus-saved.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-focus-saved.json"
+    },
+    {
+      "id": "srs-fallback-relearning",
+      "group": "srs_explanations",
+      "text": "You solved it, though it stays marked for relearning.",
+      "audioPath": "recordings/femi-v1/femi/srs-fallback-relearning.opus",
+      "sidecarPath": "recordings/femi-v1/femi/srs-fallback-relearning.provenance.json",
+      "alignmentPath": "alignment/srs-fallback-relearning.json"
+    },
+    {
+      "id": "explanation-frame-original",
+      "group": "srs_explanations",
+      "text": "Starting position first, before any of the moves in question.",
+      "audioPath": "recordings/femi-v1/femi/explanation-frame-original.opus",
+      "sidecarPath": "recordings/femi-v1/femi/explanation-frame-original.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-original.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-ordinary",
+      "group": "srs_explanations",
+      "text": "And the next move arrives. Let's see what it shifts.",
+      "audioPath": "recordings/femi-v1/femi/explanation-frame-quiet-move-ordinary.opus",
+      "sidecarPath": "recordings/femi-v1/femi/explanation-frame-quiet-move-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-check",
+      "group": "srs_explanations",
+      "text": "Check from this move, which the king must deal with before anything else.",
+      "audioPath": "recordings/femi-v1/femi/explanation-frame-quiet-move-check.opus",
+      "sidecarPath": "recordings/femi-v1/femi/explanation-frame-quiet-move-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-check.json"
+    },
+    {
+      "id": "explanation-frame-quiet-move-escape",
+      "group": "srs_explanations",
+      "text": "Check is over with this move.",
+      "audioPath": "recordings/femi-v1/femi/explanation-frame-quiet-move-escape.opus",
+      "sidecarPath": "recordings/femi-v1/femi/explanation-frame-quiet-move-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-move-escape.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-ordinary",
+      "group": "srs_explanations",
+      "text": "All the way to the far side, and the pawn swaps itself for a new piece.",
+      "audioPath": "recordings/femi-v1/femi/explanation-frame-quiet-promotion-ordinary.opus",
+      "sidecarPath": "recordings/femi-v1/femi/explanation-frame-quiet-promotion-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-check",
+      "group": "srs_explanations",
+      "text": "The pawn promotes, and its replacement arrives giving check.",
+      "audioPath": "recordings/femi-v1/femi/explanation-frame-quiet-promotion-check.opus",
+      "sidecarPath": "recordings/femi-v1/femi/explanation-frame-quiet-promotion-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-check.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-mate",
+      "group": "srs_explanations",
+      "text": "Promotion and mate in one: the new piece leaves the king without a legal escape.",
+      "audioPath": "recordings/femi-v1/femi/explanation-frame-quiet-promotion-mate.opus",
+      "sidecarPath": "recordings/femi-v1/femi/explanation-frame-quiet-promotion-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-mate.json"
+    },
+    {
+      "id": "explanation-frame-quiet-promotion-escape",
+      "group": "srs_explanations",
+      "text": "The pawn hits the last rank and promotes, and as a bonus its king is no longer in check.",
+      "audioPath": "recordings/femi-v1/femi/explanation-frame-quiet-promotion-escape.opus",
+      "sidecarPath": "recordings/femi-v1/femi/explanation-frame-quiet-promotion-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-quiet-promotion-escape.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-ordinary",
+      "group": "srs_explanations",
+      "text": "A capture, plain and simple, this time.",
+      "audioPath": "recordings/femi-v1/femi/explanation-frame-capture-move-ordinary.opus",
+      "sidecarPath": "recordings/femi-v1/femi/explanation-frame-capture-move-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-check",
+      "group": "srs_explanations",
+      "text": "It takes something, and the king is in check too.",
+      "audioPath": "recordings/femi-v1/femi/explanation-frame-capture-move-check.opus",
+      "sidecarPath": "recordings/femi-v1/femi/explanation-frame-capture-move-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-check.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-mate",
+      "group": "srs_explanations",
+      "text": "It captures, and it's mate on top of that, with the king out of legal moves.",
+      "audioPath": "recordings/femi-v1/femi/explanation-frame-capture-move-mate.opus",
+      "sidecarPath": "recordings/femi-v1/femi/explanation-frame-capture-move-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-mate.json"
+    },
+    {
+      "id": "explanation-frame-capture-move-escape",
+      "group": "srs_explanations",
+      "text": "The capture doubles as the way out of check.",
+      "audioPath": "recordings/femi-v1/femi/explanation-frame-capture-move-escape.opus",
+      "sidecarPath": "recordings/femi-v1/femi/explanation-frame-capture-move-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-move-escape.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-ordinary",
+      "group": "srs_explanations",
+      "text": "The pawn promotes by capturing onto the last rank.",
+      "audioPath": "recordings/femi-v1/femi/explanation-frame-capture-promotion-ordinary.opus",
+      "sidecarPath": "recordings/femi-v1/femi/explanation-frame-capture-promotion-ordinary.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-ordinary.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-check",
+      "group": "srs_explanations",
+      "text": "Capture, promote, check: the pawn does all three on the last rank.",
+      "audioPath": "recordings/femi-v1/femi/explanation-frame-capture-promotion-check.opus",
+      "sidecarPath": "recordings/femi-v1/femi/explanation-frame-capture-promotion-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-check.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-mate",
+      "group": "srs_explanations",
+      "text": "Capture on the last rank, promotion, and mate, all in one. There's no legal escape.",
+      "audioPath": "recordings/femi-v1/femi/explanation-frame-capture-promotion-mate.opus",
+      "sidecarPath": "recordings/femi-v1/femi/explanation-frame-capture-promotion-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-mate.json"
+    },
+    {
+      "id": "explanation-frame-capture-promotion-escape",
+      "group": "srs_explanations",
+      "text": "It captures its way onto the last rank, promotes, and lifts the check on its own king.",
+      "audioPath": "recordings/femi-v1/femi/explanation-frame-capture-promotion-escape.opus",
+      "sidecarPath": "recordings/femi-v1/femi/explanation-frame-capture-promotion-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-capture-promotion-escape.json"
+    },
+    {
+      "id": "explanation-frame-castle-check",
+      "group": "srs_explanations",
+      "text": "Castling, and the rook's first job on its new square is giving check.",
+      "audioPath": "recordings/femi-v1/femi/explanation-frame-castle-check.opus",
+      "sidecarPath": "recordings/femi-v1/femi/explanation-frame-castle-check.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-castle-check.json"
+    },
+    {
+      "id": "explanation-frame-castle-mate",
+      "group": "srs_explanations",
+      "text": "Castling delivers mate, believe it or not. The other king is boxed in, every square covered or blocked.",
+      "audioPath": "recordings/femi-v1/femi/explanation-frame-castle-mate.opus",
+      "sidecarPath": "recordings/femi-v1/femi/explanation-frame-castle-mate.provenance.json",
+      "alignmentPath": "alignment/explanation-frame-castle-mate.json"
+    },
+    {
+      "id": "explanation-finding-fork-collected",
+      "group": "srs_explanations",
+      "text": "A single piece forks several targets and later wins one. That side has the extra material by the close of the example.",
+      "audioPath": "recordings/femi-v1/femi/explanation-finding-fork-collected.opus",
+      "sidecarPath": "recordings/femi-v1/femi/explanation-finding-fork-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-fork-collected.json"
+    },
+    {
+      "id": "explanation-finding-pin-prevents-capture",
+      "group": "srs_explanations",
+      "text": "That piece is barred from capturing: it's pinned, and moving would leave its own king in check.",
+      "audioPath": "recordings/femi-v1/femi/explanation-finding-pin-prevents-capture.opus",
+      "sidecarPath": "recordings/femi-v1/femi/explanation-finding-pin-prevents-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-prevents-capture.json"
+    },
+    {
+      "id": "explanation-finding-pin-restricts-escape",
+      "group": "srs_explanations",
+      "text": "The attacked piece can't simply flee; it's pinned, and its king needs the cover. Every option it has must keep that shield in place.",
+      "audioPath": "recordings/femi-v1/femi/explanation-finding-pin-restricts-escape.opus",
+      "sidecarPath": "recordings/femi-v1/femi/explanation-finding-pin-restricts-escape.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-restricts-escape.json"
+    },
+    {
+      "id": "explanation-finding-pin-defenders-no-recapture",
+      "group": "srs_explanations",
+      "text": "Pins on every defender rule out any recapture. The capture is safe, and material comes out on top by the end of the line shown.",
+      "audioPath": "recordings/femi-v1/femi/explanation-finding-pin-defenders-no-recapture.opus",
+      "sidecarPath": "recordings/femi-v1/femi/explanation-finding-pin-defenders-no-recapture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-defenders-no-recapture.json"
+    },
+    {
+      "id": "explanation-finding-pin-collected",
+      "group": "srs_explanations",
+      "text": "Keep that pinned piece in view. Any step off the line would bare its king, so it sits there and gets taken before the line is done.",
+      "audioPath": "recordings/femi-v1/femi/explanation-finding-pin-collected.opus",
+      "sidecarPath": "recordings/femi-v1/femi/explanation-finding-pin-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-pin-collected.json"
+    },
+    {
+      "id": "explanation-finding-skewer-collected",
+      "group": "srs_explanations",
+      "text": "As soon as the front piece steps off, the one it was screening gets taken on that line.",
+      "audioPath": "recordings/femi-v1/femi/explanation-finding-skewer-collected.opus",
+      "sidecarPath": "recordings/femi-v1/femi/explanation-finding-skewer-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-skewer-collected.json"
+    },
+    {
+      "id": "explanation-finding-king-skewer-collected",
+      "group": "srs_explanations",
+      "text": "The check drives the king off the line, after which that attacker helps itself to whatever was behind.",
+      "audioPath": "recordings/femi-v1/femi/explanation-finding-king-skewer-collected.opus",
+      "sidecarPath": "recordings/femi-v1/femi/explanation-finding-king-skewer-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-king-skewer-collected.json"
+    },
+    {
+      "id": "explanation-finding-sole-defender-captured",
+      "group": "srs_explanations",
+      "text": "The lone defender gets taken first, and the piece it protected follows it off the board.",
+      "audioPath": "recordings/femi-v1/femi/explanation-finding-sole-defender-captured.opus",
+      "sidecarPath": "recordings/femi-v1/femi/explanation-finding-sole-defender-captured.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-sole-defender-captured.json"
+    },
+    {
+      "id": "explanation-finding-deflection-collected",
+      "group": "srs_explanations",
+      "text": "The defender is coaxed away, and whatever it was covering gets taken.",
+      "audioPath": "recordings/femi-v1/femi/explanation-finding-deflection-collected.opus",
+      "sidecarPath": "recordings/femi-v1/femi/explanation-finding-deflection-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-deflection-collected.json"
+    },
+    {
+      "id": "explanation-finding-discovered-capture",
+      "group": "srs_explanations",
+      "text": "The blocker steps away, the line opens, and the piece that was hidden behind it does the capturing.",
+      "audioPath": "recordings/femi-v1/femi/explanation-finding-discovered-capture.opus",
+      "sidecarPath": "recordings/femi-v1/femi/explanation-finding-discovered-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-discovered-capture.json"
+    },
+    {
+      "id": "explanation-finding-discovered-check",
+      "group": "srs_explanations",
+      "text": "The front piece clears off, and the piece it was masking checks the king.",
+      "audioPath": "recordings/femi-v1/femi/explanation-finding-discovered-check.opus",
+      "sidecarPath": "recordings/femi-v1/femi/explanation-finding-discovered-check.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-discovered-check.json"
+    },
+    {
+      "id": "explanation-finding-double-check",
+      "group": "srs_explanations",
+      "text": "Double check here; with two checkers, the only answer is to move the king.",
+      "audioPath": "recordings/femi-v1/femi/explanation-finding-double-check.opus",
+      "sidecarPath": "recordings/femi-v1/femi/explanation-finding-double-check.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-double-check.json"
+    },
+    {
+      "id": "explanation-finding-double-attack-collected",
+      "group": "srs_explanations",
+      "text": "The moving piece attacks one thing and unmasks another attacker, and it's that second one doing the capturing.",
+      "audioPath": "recordings/femi-v1/femi/explanation-finding-double-attack-collected.opus",
+      "sidecarPath": "recordings/femi-v1/femi/explanation-finding-double-attack-collected.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-double-attack-collected.json"
+    },
+    {
+      "id": "explanation-finding-promotion-material-retained",
+      "group": "srs_explanations",
+      "text": "The pawn promotes, and that side is still up material when the example ends.",
+      "audioPath": "recordings/femi-v1/femi/explanation-finding-promotion-material-retained.opus",
+      "sidecarPath": "recordings/femi-v1/femi/explanation-finding-promotion-material-retained.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-promotion-material-retained.json"
+    },
+    {
+      "id": "explanation-finding-undefended-capture-gain",
+      "group": "srs_explanations",
+      "text": "An undefended piece gets taken, and the example finishes with the capturing side ahead on material.",
+      "audioPath": "recordings/femi-v1/femi/explanation-finding-undefended-capture-gain.opus",
+      "sidecarPath": "recordings/femi-v1/femi/explanation-finding-undefended-capture-gain.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-undefended-capture-gain.json"
+    },
+    {
+      "id": "explanation-finding-relative-pin-released",
+      "group": "srs_explanations",
+      "text": "Notice that the opponent's last move took the relative pin off the attacking piece. Nothing moves the target to safety, and the line shown wins it.",
+      "audioPath": "recordings/femi-v1/femi/explanation-finding-relative-pin-released.opus",
+      "sidecarPath": "recordings/femi-v1/femi/explanation-finding-relative-pin-released.provenance.json",
+      "alignmentPath": "alignment/explanation-finding-relative-pin-released.json"
+    },
+    {
+      "id": "game-explanation-legal-reply",
+      "group": "srs_explanations",
+      "text": "The other side has the marked reply at its disposal. Put it on the board and follow it through.",
+      "audioPath": "recordings/femi-v1/femi/game-explanation-legal-reply.opus",
+      "sidecarPath": "recordings/femi-v1/femi/game-explanation-legal-reply.provenance.json",
+      "alignmentPath": "alignment/game-explanation-legal-reply.json"
+    },
+    {
+      "id": "explanation-cue-hanging-piece",
+      "group": "srs_explanations",
+      "text": "Before moving, check whether anything of yours can be taken without a useful recapture.",
+      "audioPath": "recordings/femi-v1/femi/explanation-cue-hanging-piece.opus",
+      "sidecarPath": "recordings/femi-v1/femi/explanation-cue-hanging-piece.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-hanging-piece.json"
+    },
+    {
+      "id": "explanation-cue-missed-tactical-capture",
+      "group": "srs_explanations",
+      "text": "Before you play something quiet, have a look for loose enemy pieces.",
+      "audioPath": "recordings/femi-v1/femi/explanation-cue-missed-tactical-capture.opus",
+      "sidecarPath": "recordings/femi-v1/femi/explanation-cue-missed-tactical-capture.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-missed-tactical-capture.json"
+    },
+    {
+      "id": "explanation-cue-fork",
+      "group": "srs_explanations",
+      "text": "Scan the checks, captures and threats for one that hits two valuable targets.",
+      "audioPath": "recordings/femi-v1/femi/explanation-cue-fork.opus",
+      "sidecarPath": "recordings/femi-v1/femi/explanation-cue-fork.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-fork.json"
+    },
+    {
+      "id": "explanation-cue-pin",
+      "group": "srs_explanations",
+      "text": "If a pinned piece wants to move, first see what it's screening, since a king or a heavier piece may be sitting there.",
+      "audioPath": "recordings/femi-v1/femi/explanation-cue-pin.opus",
+      "sidecarPath": "recordings/femi-v1/femi/explanation-cue-pin.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-pin.json"
+    },
+    {
+      "id": "explanation-cue-skewer",
+      "group": "srs_explanations",
+      "text": "When you attack along a line, check what's standing behind the first target.",
+      "audioPath": "recordings/femi-v1/femi/explanation-cue-skewer.opus",
+      "sidecarPath": "recordings/femi-v1/femi/explanation-cue-skewer.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-skewer.json"
+    },
+    {
+      "id": "explanation-cue-removing-defender",
+      "group": "srs_explanations",
+      "text": "Before you trade a defender off, work out what it's guarding at the moment.",
+      "audioPath": "recordings/femi-v1/femi/explanation-cue-removing-defender.opus",
+      "sidecarPath": "recordings/femi-v1/femi/explanation-cue-removing-defender.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-removing-defender.json"
+    },
+    {
+      "id": "explanation-cue-discovered-attack",
+      "group": "srs_explanations",
+      "text": "If a blocking piece moves off a line, check what it unmasks.",
+      "audioPath": "recordings/femi-v1/femi/explanation-cue-discovered-attack.opus",
+      "sidecarPath": "recordings/femi-v1/femi/explanation-cue-discovered-attack.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-discovered-attack.json"
+    },
+    {
+      "id": "explanation-cue-double-attack",
+      "group": "srs_explanations",
+      "text": "Any move with two threats deserves a look, and remember a check or a freshly opened line counts as one.",
+      "audioPath": "recordings/femi-v1/femi/explanation-cue-double-attack.opus",
+      "sidecarPath": "recordings/femi-v1/femi/explanation-cue-double-attack.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-double-attack.json"
+    },
+    {
+      "id": "explanation-cue-back-rank",
+      "group": "srs_explanations",
+      "text": "If a back-rank defender is going to move, be sure the king still has somewhere to run.",
+      "audioPath": "recordings/femi-v1/femi/explanation-cue-back-rank.opus",
+      "sidecarPath": "recordings/femi-v1/femi/explanation-cue-back-rank.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-back-rank.json"
+    },
+    {
+      "id": "explanation-cue-promotion-awareness",
+      "group": "srs_explanations",
+      "text": "Count how far the pawn has to go, and check the pawn moves that force a reply.",
+      "audioPath": "recordings/femi-v1/femi/explanation-cue-promotion-awareness.opus",
+      "sidecarPath": "recordings/femi-v1/femi/explanation-cue-promotion-awareness.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-promotion-awareness.json"
+    },
+    {
+      "id": "explanation-cue-abandoned-defender",
+      "group": "srs_explanations",
+      "text": "When a defender is about to move, list what it was guarding first.",
+      "audioPath": "recordings/femi-v1/femi/explanation-cue-abandoned-defender.opus",
+      "sidecarPath": "recordings/femi-v1/femi/explanation-cue-abandoned-defender.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-abandoned-defender.json"
+    },
+    {
+      "id": "explanation-cue-avoiding-bad-trades",
+      "group": "srs_explanations",
+      "text": "Count what you capture and what comes back in the recapture.",
+      "audioPath": "recordings/femi-v1/femi/explanation-cue-avoiding-bad-trades.opus",
+      "sidecarPath": "recordings/femi-v1/femi/explanation-cue-avoiding-bad-trades.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-avoiding-bad-trades.json"
+    },
+    {
+      "id": "explanation-cue-deflection",
+      "group": "srs_explanations",
+      "text": "Look for a forcing exchange that could tempt a defender away from its post.",
+      "audioPath": "recordings/femi-v1/femi/explanation-cue-deflection.opus",
+      "sidecarPath": "recordings/femi-v1/femi/explanation-cue-deflection.provenance.json",
+      "alignmentPath": "alignment/explanation-cue-deflection.json"
+    },
+    {
+      "id": "explanation-note-curated-authority",
+      "group": "srs_explanations",
+      "text": "In this one, the saved answers rule. A different legal move might be perfectly fine chess all the same.",
+      "audioPath": "recordings/femi-v1/femi/explanation-note-curated-authority.opus",
+      "sidecarPath": "recordings/femi-v1/femi/explanation-note-curated-authority.provenance.json",
+      "alignmentPath": "alignment/explanation-note-curated-authority.json"
+    },
+    {
+      "id": "explanation-note-strong-replies",
+      "group": "srs_explanations",
+      "text": "Treat this as one possible path against good defense. Plenty of those replies have alternatives.",
+      "audioPath": "recordings/femi-v1/femi/explanation-note-strong-replies.opus",
+      "sidecarPath": "recordings/femi-v1/femi/explanation-note-strong-replies.provenance.json",
+      "alignmentPath": "alignment/explanation-note-strong-replies.json"
+    },
+    {
+      "id": "explanation-note-material-scope",
+      "group": "srs_explanations",
+      "text": "Whatever material swings you see belong to the line shown alone, starting from its opening position. For the values I gave each piece, the written explanation spells them out.",
+      "audioPath": "recordings/femi-v1/femi/explanation-note-material-scope.opus",
+      "sidecarPath": "recordings/femi-v1/femi/explanation-note-material-scope.provenance.json",
+      "alignmentPath": "alignment/explanation-note-material-scope.json"
+    },
+    {
+      "id": "explanation-note-no-simple-reason",
+      "group": "srs_explanations",
+      "text": "I can't pull a simple tactical reason from the saved line, and I'm not going to invent a positional one. Play it out move by move and weigh the replies.",
+      "audioPath": "recordings/femi-v1/femi/explanation-note-no-simple-reason.opus",
+      "sidecarPath": "recordings/femi-v1/femi/explanation-note-no-simple-reason.provenance.json",
+      "alignmentPath": "alignment/explanation-note-no-simple-reason.json"
+    },
+    {
+      "id": "explanation-note-saved-policy",
+      "group": "srs_explanations",
+      "text": "The answer policy on file for this exercise is what this explanation goes by. Which setting that is, the written notes tell you.",
+      "audioPath": "recordings/femi-v1/femi/explanation-note-saved-policy.opus",
+      "sidecarPath": "recordings/femi-v1/femi/explanation-note-saved-policy.provenance.json",
+      "alignmentPath": "alignment/explanation-note-saved-policy.json"
+    },
+    {
+      "id": "opening-recall-revealed",
+      "group": "openings",
+      "text": "This is the line you're studying, from the first move on.",
+      "audioPath": "recordings/femi-v1/femi/opening-recall-revealed.opus",
+      "sidecarPath": "recordings/femi-v1/femi/opening-recall-revealed.provenance.json",
+      "alignmentPath": "alignment/opening-recall-revealed.json"
+    },
+    {
+      "id": "opening-recall-accepted",
+      "group": "openings",
+      "text": "Yep, that one's right out of what you're studying.",
+      "audioPath": "recordings/femi-v1/femi/opening-recall-accepted.opus",
+      "sidecarPath": "recordings/femi-v1/femi/opening-recall-accepted.provenance.json",
+      "alignmentPath": "alignment/opening-recall-accepted.json"
+    },
+    {
+      "id": "opening-recall-retry-fallback",
+      "group": "openings",
+      "text": "Go on, a move from the lines you're working on.",
+      "audioPath": "recordings/femi-v1/femi/opening-recall-retry-fallback.opus",
+      "sidecarPath": "recordings/femi-v1/femi/opening-recall-retry-fallback.provenance.json",
+      "alignmentPath": "alignment/opening-recall-retry-fallback.json"
+    },
+    {
+      "id": "opening-recall-cold-multiple",
+      "group": "openings",
+      "text": "Whatever you play, keep it inside your selected opening lines.",
+      "audioPath": "recordings/femi-v1/femi/opening-recall-cold-multiple.opus",
+      "sidecarPath": "recordings/femi-v1/femi/opening-recall-cold-multiple.provenance.json",
+      "alignmentPath": "alignment/opening-recall-cold-multiple.json"
+    },
+    {
+      "id": "opening-recall-cold-single",
+      "group": "openings",
+      "text": "Dig into your study material for a move.",
+      "audioPath": "recordings/femi-v1/femi/opening-recall-cold-single.opus",
+      "sidecarPath": "recordings/femi-v1/femi/opening-recall-cold-single.provenance.json",
+      "alignmentPath": "alignment/opening-recall-cold-single.json"
+    },
+    {
+      "id": "opening-recall-rejected",
+      "group": "openings",
+      "text": "Not one of the moves in your study lines. Pick again.",
+      "audioPath": "recordings/femi-v1/femi/opening-recall-rejected.opus",
+      "sidecarPath": "recordings/femi-v1/femi/opening-recall-rejected.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected.json"
+    },
+    {
+      "id": "opening-recall-rejected-changed",
+      "group": "openings",
+      "text": "Outside your selected lines, that one; have another pick. You've edited the study, so this try leaves its review dates alone.",
+      "audioPath": "recordings/femi-v1/femi/opening-recall-rejected-changed.opus",
+      "sidecarPath": "recordings/femi-v1/femi/opening-recall-rejected-changed.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected-changed.json"
+    },
+    {
+      "id": "opening-recall-rejected-retired",
+      "group": "openings",
+      "text": "Outside your selected lines, that one; have another pick. With this position retired, no review dates change.",
+      "audioPath": "recordings/femi-v1/femi/opening-recall-rejected-retired.opus",
+      "sidecarPath": "recordings/femi-v1/femi/opening-recall-rejected-retired.provenance.json",
+      "alignmentPath": "alignment/opening-recall-rejected-retired.json"
+    },
+    {
+      "id": "opening-preview-active",
+      "group": "openings",
+      "text": "Mixed Due is happy with any move in this line; dedicated practice zooms in on just this line.",
+      "audioPath": "recordings/femi-v1/femi/opening-preview-active.opus",
+      "sidecarPath": "recordings/femi-v1/femi/opening-preview-active.provenance.json",
+      "alignmentPath": "alignment/opening-preview-active.json"
+    },
+    {
+      "id": "opening-preview-inactive",
+      "group": "openings",
+      "text": "Scheduled recalls want the moves of the side you picked, and a position that appears in several of your active studies gets just one card.",
+      "audioPath": "recordings/femi-v1/femi/opening-preview-inactive.opus",
+      "sidecarPath": "recordings/femi-v1/femi/opening-preview-inactive.provenance.json",
+      "alignmentPath": "alignment/opening-preview-inactive.json"
+    },
+    {
+      "id": "puzzle-error",
+      "group": "puzzles",
+      "text": "Something went wrong with the saved session; reload it, then play on.",
+      "audioPath": "recordings/femi-v1/femi/puzzle-error.opus",
+      "sidecarPath": "recordings/femi-v1/femi/puzzle-error.provenance.json",
+      "alignmentPath": "alignment/puzzle-error.json"
+    },
+    {
+      "id": "puzzle-playback",
+      "group": "puzzles",
+      "text": "The verified line, playing itself out.",
+      "audioPath": "recordings/femi-v1/femi/puzzle-playback.opus",
+      "sidecarPath": "recordings/femi-v1/femi/puzzle-playback.provenance.json",
+      "alignmentPath": "alignment/puzzle-playback.json"
+    },
+    {
+      "id": "puzzle-revealed",
+      "group": "puzzles",
+      "text": "Saved as revealed, and the solution's there below to replay.",
+      "audioPath": "recordings/femi-v1/femi/puzzle-revealed.opus",
+      "sidecarPath": "recordings/femi-v1/femi/puzzle-revealed.provenance.json",
+      "alignmentPath": "alignment/puzzle-revealed.json"
+    },
+    {
+      "id": "puzzle-solved-after-retry",
+      "group": "puzzles",
+      "text": "Second try, and you got the whole solution. Both the miss and the final solve are logged.",
+      "audioPath": "recordings/femi-v1/femi/puzzle-solved-after-retry.opus",
+      "sidecarPath": "recordings/femi-v1/femi/puzzle-solved-after-retry.provenance.json",
+      "alignmentPath": "alignment/puzzle-solved-after-retry.json"
+    },
+    {
+      "id": "puzzle-solved-clean",
+      "group": "puzzles",
+      "text": "Start to finish, solved without a slip. Clean as anything.",
+      "audioPath": "recordings/femi-v1/femi/puzzle-solved-clean.opus",
+      "sidecarPath": "recordings/femi-v1/femi/puzzle-solved-clean.provenance.json",
+      "alignmentPath": "alignment/puzzle-solved-clean.json"
+    },
+    {
+      "id": "puzzle-rejected",
+      "group": "puzzles",
+      "text": "Not the solution, sorry. What you had right up to here is kept on record.",
+      "audioPath": "recordings/femi-v1/femi/puzzle-rejected.opus",
+      "sidecarPath": "recordings/femi-v1/femi/puzzle-rejected.provenance.json",
+      "alignmentPath": "alignment/puzzle-rejected.json"
+    },
+    {
+      "id": "puzzle-next-move",
+      "group": "puzzles",
+      "text": "Yep, that's it. Now, what comes next?",
+      "audioPath": "recordings/femi-v1/femi/puzzle-next-move.opus",
+      "sidecarPath": "recordings/femi-v1/femi/puzzle-next-move.provenance.json",
+      "alignmentPath": "alignment/puzzle-next-move.json"
+    },
+    {
+      "id": "puzzle-cold",
+      "group": "puzzles",
+      "text": "No rush; get the whole line clear in your head first.",
+      "audioPath": "recordings/femi-v1/femi/puzzle-cold.opus",
+      "sidecarPath": "recordings/femi-v1/femi/puzzle-cold.provenance.json",
+      "alignmentPath": "alignment/puzzle-cold.json"
+    },
+    {
+      "id": "game-unavailable",
+      "group": "operational",
+      "text": "The engine hasn't handed over the material I'd need to talk this one through, so I won't guess.",
+      "audioPath": "recordings/femi-v1/femi/game-unavailable.opus",
+      "sidecarPath": "recordings/femi-v1/femi/game-unavailable.provenance.json",
+      "alignmentPath": "alignment/game-unavailable.json"
+    },
+    {
+      "id": "game-review-paused",
+      "group": "operational",
+      "text": "Review parked for the moment. Resume from below, or push some pieces around and explore.",
+      "audioPath": "recordings/femi-v1/femi/game-review-paused.opus",
+      "sidecarPath": "recordings/femi-v1/femi/game-review-paused.provenance.json",
+      "alignmentPath": "alignment/game-review-paused.json"
+    },
+    {
+      "id": "game-browse-instructions",
+      "group": "operational",
+      "text": "Pick a move to look at, or push a piece somewhere to test an idea.",
+      "audioPath": "recordings/femi-v1/femi/game-browse-instructions.opus",
+      "sidecarPath": "recordings/femi-v1/femi/game-browse-instructions.provenance.json",
+      "alignmentPath": "alignment/game-browse-instructions.json"
+    },
+    {
+      "id": "book-opening-entry-1",
+      "group": "game_review",
+      "text": "Standard prep so far; this is well-known opening material.",
+      "audioPath": "recordings/femi-v1/femi/book-opening-entry-1.opus",
+      "sidecarPath": "recordings/femi-v1/femi/book-opening-entry-1.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-1.json"
+    },
+    {
+      "id": "book-opening-entry-2",
+      "group": "game_review",
+      "text": "Known opening stuff: this move's part of an established line.",
+      "audioPath": "recordings/femi-v1/femi/book-opening-entry-2.opus",
+      "sidecarPath": "recordings/femi-v1/femi/book-opening-entry-2.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-2.json"
+    },
+    {
+      "id": "book-opening-entry-3",
+      "group": "game_review",
+      "text": "That's a recognized line, straight out of opening prep.",
+      "audioPath": "recordings/femi-v1/femi/book-opening-entry-3.opus",
+      "sidecarPath": "recordings/femi-v1/femi/book-opening-entry-3.provenance.json",
+      "alignmentPath": "alignment/book-opening-entry-3.json"
+    },
+    {
+      "id": "book-opening-follow-1",
+      "group": "game_review",
+      "text": "We're still in prep.",
+      "audioPath": "recordings/femi-v1/femi/book-opening-follow-1.opus",
+      "sidecarPath": "recordings/femi-v1/femi/book-opening-follow-1.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-1.json"
+    },
+    {
+      "id": "book-opening-follow-2",
+      "group": "game_review",
+      "text": "More opening prep.",
+      "audioPath": "recordings/femi-v1/femi/book-opening-follow-2.opus",
+      "sidecarPath": "recordings/femi-v1/femi/book-opening-follow-2.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-2.json"
+    },
+    {
+      "id": "book-opening-follow-3",
+      "group": "game_review",
+      "text": "The answer's straight from prep as well.",
+      "audioPath": "recordings/femi-v1/femi/book-opening-follow-3.opus",
+      "sidecarPath": "recordings/femi-v1/femi/book-opening-follow-3.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-3.json"
+    },
+    {
+      "id": "book-opening-follow-4",
+      "group": "game_review",
+      "text": "The prep keeps rolling.",
+      "audioPath": "recordings/femi-v1/femi/book-opening-follow-4.opus",
+      "sidecarPath": "recordings/femi-v1/femi/book-opening-follow-4.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-4.json"
+    },
+    {
+      "id": "book-opening-follow-5",
+      "group": "game_review",
+      "text": "No surprises yet, still the standard moves.",
+      "audioPath": "recordings/femi-v1/femi/book-opening-follow-5.opus",
+      "sidecarPath": "recordings/femi-v1/femi/book-opening-follow-5.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-5.json"
+    },
+    {
+      "id": "book-opening-follow-6",
+      "group": "game_review",
+      "text": "Prep still covers this one.",
+      "audioPath": "recordings/femi-v1/femi/book-opening-follow-6.opus",
+      "sidecarPath": "recordings/femi-v1/femi/book-opening-follow-6.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-6.json"
+    },
+    {
+      "id": "book-opening-follow-7",
+      "group": "game_review",
+      "text": "Still following the main line of the opening.",
+      "audioPath": "recordings/femi-v1/femi/book-opening-follow-7.opus",
+      "sidecarPath": "recordings/femi-v1/femi/book-opening-follow-7.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-7.json"
+    },
+    {
+      "id": "book-opening-follow-8",
+      "group": "game_review",
+      "text": "Main line, still. That's a location on the map, not a mark for the move.",
+      "audioPath": "recordings/femi-v1/femi/book-opening-follow-8.opus",
+      "sidecarPath": "recordings/femi-v1/femi/book-opening-follow-8.provenance.json",
+      "alignmentPath": "alignment/book-opening-follow-8.json"
+    },
+    {
+      "id": "game-review-opened",
+      "group": "operational",
+      "text": "Right, let's go through this one like we're sitting across the table after the game. Your call when to start.",
+      "audioPath": "recordings/femi-v1/femi/game-review-opened.opus",
+      "sidecarPath": "recordings/femi-v1/femi/game-review-opened.provenance.json",
+      "alignmentPath": "alignment/game-review-opened.json"
+    },
+    {
+      "id": "lesson-wrong-move",
+      "group": "lessons",
+      "text": "Legal, but that's not the prep we're going over. What else does the prep say here?",
+      "audioPath": "recordings/femi-v1/femi/lesson-wrong-move.opus",
+      "sidecarPath": "recordings/femi-v1/femi/lesson-wrong-move.provenance.json",
+      "alignmentPath": "alignment/lesson-wrong-move.json"
+    },
+    {
+      "id": "lesson-correct-move",
+      "group": "lessons",
+      "text": "That's the main-line move. Nice, carry on.",
+      "audioPath": "recordings/femi-v1/femi/lesson-correct-move.opus",
+      "sidecarPath": "recordings/femi-v1/femi/lesson-correct-move.provenance.json",
+      "alignmentPath": "alignment/lesson-correct-move.json"
+    },
+    {
+      "id": "lesson-move-revealed",
+      "group": "lessons",
+      "text": "There's the move the lesson had prepped. Have a good look at it.",
+      "audioPath": "recordings/femi-v1/femi/lesson-move-revealed.opus",
+      "sidecarPath": "recordings/femi-v1/femi/lesson-move-revealed.provenance.json",
+      "alignmentPath": "alignment/lesson-move-revealed.json"
+    },
+    {
+      "id": "lesson-guided-playback",
+      "group": "lessons",
+      "text": "Watch this bit play out over the board.",
+      "audioPath": "recordings/femi-v1/femi/lesson-guided-playback.opus",
+      "sidecarPath": "recordings/femi-v1/femi/lesson-guided-playback.provenance.json",
+      "alignmentPath": "alignment/lesson-guided-playback.json"
+    },
+    {
+      "id": "lesson-rehearsal-prompt",
+      "group": "lessons",
+      "text": "Right, let's see your prep. No notes this time.",
+      "audioPath": "recordings/femi-v1/femi/lesson-rehearsal-prompt.opus",
+      "sidecarPath": "recordings/femi-v1/femi/lesson-rehearsal-prompt.provenance.json",
+      "alignmentPath": "alignment/lesson-rehearsal-prompt.json"
+    },
+    {
+      "id": "lesson-branch-entered",
+      "group": "lessons",
+      "text": "Side line time. Have a dig around, then we'll pick the main line back up.",
+      "audioPath": "recordings/femi-v1/femi/lesson-branch-entered.opus",
+      "sidecarPath": "recordings/femi-v1/femi/lesson-branch-entered.provenance.json",
+      "alignmentPath": "alignment/lesson-branch-entered.json"
+    },
+    {
+      "id": "lesson-chapter-complete",
+      "group": "lessons",
+      "text": "Chapter's done, progress and all.",
+      "audioPath": "recordings/femi-v1/femi/lesson-chapter-complete.opus",
+      "sidecarPath": "recordings/femi-v1/femi/lesson-chapter-complete.provenance.json",
+      "alignmentPath": "alignment/lesson-chapter-complete.json"
+    },
+    {
+      "id": "lesson-game-opened",
+      "group": "lessons",
+      "text": "The whole game's up on the board now. Step through it.",
+      "audioPath": "recordings/femi-v1/femi/lesson-game-opened.opus",
+      "sidecarPath": "recordings/femi-v1/femi/lesson-game-opened.provenance.json",
+      "alignmentPath": "alignment/lesson-game-opened.json"
+    },
+    {
+      "id": "lesson-error",
+      "group": "lessons",
+      "text": "Hold that thought; hit reload before we go on.",
+      "audioPath": "recordings/femi-v1/femi/lesson-error.opus",
+      "sidecarPath": "recordings/femi-v1/femi/lesson-error.provenance.json",
+      "alignmentPath": "alignment/lesson-error.json"
+    }
+  ]
+}

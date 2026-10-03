@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "explanation-frame-castle-check",
+      "label": "Explanation frame castle check",
+      "text": "Castling, and the rook's first job on its new square is giving check."
+    },
+    "takeId": null
+  },
+  "requestHash": "4d833a3d051de44d25749bd44606e2eeb40ed1dbd7db379fcd8bf7d1cc48a729",
+  "recordedAt": "2026-10-03T05:38:28.794Z",
+  "sha256": "212caa2fd8700447a41398142d00df9e1204b723633234dde5e94165ae6cbfa7",
+  "bytes": 15337,
+  "requestId": "q3BuZ0smJt3SG5rjvkY1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d9fe45da6e5d32f399dd5d444a58355ea4ef8a244673292899ddfd502db79447",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

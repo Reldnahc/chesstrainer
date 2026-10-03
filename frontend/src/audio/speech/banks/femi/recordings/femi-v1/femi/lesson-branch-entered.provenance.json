@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "lesson-branch-entered",
+      "label": "Lesson branch entered",
+      "text": "Side line time. Have a dig around, then we'll pick the main line back up."
+    },
+    "takeId": null
+  },
+  "requestHash": "6346674b23a38976ae48ec9fbd57f2a663f67d6c2e5757ccd3f8e36141eec079",
+  "recordedAt": "2026-10-03T05:40:13.573Z",
+  "sha256": "c356e1ef9333ae8e0407f44014083d698b4e1ff3a426de7067d814e7882b7689",
+  "bytes": 15686,
+  "requestId": "G4nDrWRr1Vtgn24QKXam",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2d28e75eb1599b32073f0892fef527e6d453b344d575dee47b52eede613e7d56",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

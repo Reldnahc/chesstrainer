@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "tactic-deflection-missed",
+      "label": "Tactic deflection missed",
+      "text": "With another move, a defender could have been coaxed away from what it was guarding. Here, that deflection never comes."
+    },
+    "takeId": null
+  },
+  "requestHash": "4321082c2e38391011d3ee1b9ff4668515a914cbd2d416ff8d4dab477cc319db",
+  "recordedAt": "2026-10-03T05:36:17.383Z",
+  "sha256": "18f1496f09d7d5468a357a76d19cf5a322cb9e215a84477062dbee7598b8aa11",
+  "bytes": 24827,
+  "requestId": "35KSQZ0vO35MJHseQ7xt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "786c790bac5b72aa71a77cfe32944d587d9ff28c49cae066b9c7d2c5470f40cc",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

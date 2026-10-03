@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "opening-recall-rejected-changed",
+      "label": "Opening recall rejected changed",
+      "text": "Outside your selected lines, that one; have another pick. You've edited the study, so this try leaves its review dates alone."
+    },
+    "takeId": null
+  },
+  "requestHash": "b36c88b364d05b3f096fd572365b2e0d23f0bdfe8b5a391b7c42c4cb57d962ac",
+  "recordedAt": "2026-10-03T05:39:34.275Z",
+  "sha256": "1261d2c44f4149ac78de9470f7cf7a59ac6f91cccb513ece3780017ab8930890",
+  "bytes": 28363,
+  "requestId": "fznKUJiPQ0qgtKdsB5kM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "962d50e90dd832ebc963f6bdfca13abaeab82e611c07d08fd5c9cef34a35aa21",
+    "bytes": 147165
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

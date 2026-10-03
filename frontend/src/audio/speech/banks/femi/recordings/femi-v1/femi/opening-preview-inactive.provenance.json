@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "opening-preview-inactive",
+      "label": "Opening preview inactive",
+      "text": "Scheduled recalls want the moves of the side you picked, and a position that appears in several of your active studies gets just one card."
+    },
+    "takeId": null
+  },
+  "requestHash": "a1617f9dca6d2b8011f72fa94df345e19d0d9e0a0bc7396b717b9936ecfe00b6",
+  "recordedAt": "2026-10-03T05:39:40.259Z",
+  "sha256": "a4a625a82b9d511e988efdef091b2663eda2dffcda27b005238251d6e7196da3",
+  "bytes": 26792,
+  "requestId": "A9jXF0zXrtP4XGPRzfKA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c0725b6a1a15cb673b30984c9ae7f487f7dcd6a40feece7a9f1fdb109fedd9cd",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

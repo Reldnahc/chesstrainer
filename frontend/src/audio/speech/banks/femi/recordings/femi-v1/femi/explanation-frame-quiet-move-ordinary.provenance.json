@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-move-ordinary",
+      "label": "Explanation frame quiet move ordinary",
+      "text": "And the next move arrives. Let's see what it shifts."
+    },
+    "takeId": null
+  },
+  "requestHash": "7c00a636ffe00e60658bf66234a0f49a80cba99f7df64e6668e3abf9fdf138d2",
+  "recordedAt": "2026-10-03T05:38:10.003Z",
+  "sha256": "e028fd7bc1a0b47494368f42b36b2a343d3f0396024c0608b8a3270d77d3c723",
+  "bytes": 11196,
+  "requestId": "jihc8QXyQ4H23vU0PTeb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "01e95ff085591c21ffc0c4e795bec143738e59688558a458fe9dd4270d6fdb45",
+    "bytes": 56050
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

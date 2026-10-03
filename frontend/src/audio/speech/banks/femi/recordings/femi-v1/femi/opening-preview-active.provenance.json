@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "opening-preview-active",
+      "label": "Opening preview active",
+      "text": "Mixed Due is happy with any move in this line; dedicated practice zooms in on just this line."
+    },
+    "takeId": null
+  },
+  "requestHash": "31a507335cab51c2f1fd814144dff22b791511ff40983cb2f3f385243f607a78",
+  "recordedAt": "2026-10-03T05:39:38.194Z",
+  "sha256": "2ba51c85dde9d62485090bc095667290d03a570db9eefd15d5b0007208e1f7bd",
+  "bytes": 22675,
+  "requestId": "K9UjwXEKe6gfxgCJtSEi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "10127cfa8feda1b4d8c03f5a940a21dc136ef747c2815e9496b78c16e7ab5dfd",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

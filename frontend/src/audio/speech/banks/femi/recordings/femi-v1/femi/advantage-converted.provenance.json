@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "advantage-converted",
+      "label": "Advantage converted",
+      "text": "From there to the win, the advantage stayed put. That stretch is worth replaying."
+    },
+    "takeId": null
+  },
+  "requestHash": "8af34fee0273139b0d94043a72dd5bda59b5bf58bb70b6971699bf0498f97b10",
+  "recordedAt": "2026-10-03T05:37:39.760Z",
+  "sha256": "94dacae0637130bbdc9b89637a8e037676b6074d2ddac32a82ed9bf3fb907cdd",
+  "bytes": 18889,
+  "requestId": "WY4PoezN3I4Di9L0inN9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "99f7f282830e12ecfd86962b772971ff838babb98ccbb052e24d42c741ddec5f",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

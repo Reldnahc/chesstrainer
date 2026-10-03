@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "tactic-promotion-awareness-played",
+      "label": "Tactic promotion awareness played",
+      "text": "It's a promotion story: a pawn going all the way up to turn into a new piece. Follow its path move by move."
+    },
+    "takeId": null
+  },
+  "requestHash": "5546923c672065208f7c31cd8238264759b3b7091b962c9a2e3b861c8b002636",
+  "recordedAt": "2026-10-03T05:35:56.477Z",
+  "sha256": "0b3e40ebf5e89170bc54635a50052a9de2f3fad82a61db2ebb84c3414d4c85c3",
+  "bytes": 25958,
+  "requestId": "Poa3CNG2NBoEMOn4mPo7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "360127b83316c95823cc71859322f6f188674ad757f5ad800268a0fdb14d2d62",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

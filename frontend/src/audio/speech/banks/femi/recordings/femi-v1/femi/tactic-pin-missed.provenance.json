@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "tactic-pin-missed",
+      "label": "Tactic pin missed",
+      "text": "Put the stronger move next to this one and there's a pin to the king in it. The pinned piece would have been stuck, since leaving the line exposes the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "bd5beb1c8fa20774ededa2c4faf8ea3bd33565df7b759303f2795eb2936a014d",
+  "recordedAt": "2026-10-03T05:35:35.668Z",
+  "sha256": "d6f4473db5f751a348de0be901ea65233249e9fff5ad7c43a647003dd070529a",
+  "bytes": 30107,
+  "requestId": "ANT0NKSKQjVMNMliRL0T",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b78144360dbff6caccf31f8e8dc2192a7cfa0f7c7a45c1956f9ac70a1197fe0e",
+    "bytes": 153435
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

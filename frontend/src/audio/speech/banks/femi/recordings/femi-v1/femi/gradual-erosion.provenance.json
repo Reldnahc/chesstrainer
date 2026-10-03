@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "gradual-erosion",
+      "label": "Gradual erosion",
+      "text": "Here's another small concession. None of them sank the position alone, but together they've cost a lot. Look at the stretch as a whole."
+    },
+    "takeId": null
+  },
+  "requestHash": "f56aef9709c690c066b1693ecf556b150f796e8764209e927a7af647fec66611",
+  "recordedAt": "2026-10-03T05:37:37.921Z",
+  "sha256": "1e0cc8b9ab1549580f8b8ad17638d743e9b235729fe8b2207892a1fc5d17033c",
+  "bytes": 28169,
+  "requestId": "w3hHR3fXIS5ms50n6N8U",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "74f0124911d68c4b770483c1da8d61ba226e92c879c0afd60ba608569c182dcc",
+    "bytes": 148419
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

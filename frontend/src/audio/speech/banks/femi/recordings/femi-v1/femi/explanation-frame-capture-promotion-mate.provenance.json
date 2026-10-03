@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-mate",
+      "label": "Explanation frame capture promotion mate",
+      "text": "Capture on the last rank, promotion, and mate, all in one. There's no legal escape."
+    },
+    "takeId": null
+  },
+  "requestHash": "10cd5a4f69d1a622f593e9842c4994dca9bfd054aa1a01778763e8940c7abb1a",
+  "recordedAt": "2026-10-03T05:38:26.185Z",
+  "sha256": "7cb76d7f7be441ad1c852eda9ccda85e104d11997215747395b3338ca3cc1924",
+  "bytes": 21616,
+  "requestId": "mMZwALq6lPSJIzJHHlBP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8e81ee8df462cf3ee6d70884638fcf7e8d6e021c16c16fe0724caf3e68a14fbd",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

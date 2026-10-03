@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "sound-sacrifice",
+      "label": "Sound sacrifice",
+      "text": "A sacrifice, and it checks out. Even with the material grabbed, the line we checked backs the idea."
+    },
+    "takeId": null
+  },
+  "requestHash": "d9222e423d115d2110e5e05d93192ee18c77729e1d83de79c40f82f3bfb626b0",
+  "recordedAt": "2026-10-03T05:37:07.140Z",
+  "sha256": "da9572c59fccc76b4d96f952255bf6663119eb6eb014f14f99baf62518bd0d19",
+  "bytes": 21825,
+  "requestId": "gdpQ5LCz6EvS8RgqyfZp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "14b25acd247fbc988af72d51746bc9a3f57adb9ce9c54e6cdd5fa1c32d8fe1dc",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

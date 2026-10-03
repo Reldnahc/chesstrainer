@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured",
+      "label": "Explanation finding sole defender captured",
+      "text": "The lone defender gets taken first, and the piece it protected follows it off the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "4a018535366a0c32be543de0a984336bb99a437b2ff5974a0797351f8c6234a1",
+  "recordedAt": "2026-10-03T05:38:44.931Z",
+  "sha256": "70876e294447717a811ef5259560e3487d9d571c7aad4a579a8edc8a8220545e",
+  "bytes": 18014,
+  "requestId": "psnxnNa4O5yX89aLZU9e",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9931f3b2dadc5c0048e9af16f278d25418dfabcd43565f9bea0ca31b124194ae",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

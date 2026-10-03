@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "positional-doubled-alternative",
+      "label": "Positional doubled alternative",
+      "text": "A different move would have left a file with two pawns of one color on it."
+    },
+    "takeId": null
+  },
+  "requestHash": "9881134c8665ed84c1406fcb55a2958456cd6c2e8aab23c61146812d4a3c2b89",
+  "recordedAt": "2026-10-03T05:37:02.122Z",
+  "sha256": "ac84b963ecc8ba3b679c96bbf9fee434d1dea3513166f3ef66bda4a9c5811e7e",
+  "bytes": 15095,
+  "requestId": "zR4vLw2qdJHbP144lMXi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7f2cd9b93e946b947a5a4eb462c8b94ca90bde569cd134743d31f328cc36d3ad",
+    "bytes": 72768
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

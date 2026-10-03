@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "tactic-hanging-piece-allowed",
+      "label": "Tactic hanging piece allowed",
+      "text": "Hold that thought. Something's hanging: an unprotected piece, and the other side gets first go at it."
+    },
+    "takeId": null
+  },
+  "requestHash": "96d7c8aa6879ecc83d9f23483f702e3b48d6c1915160dc2cd63de99a9e1651e7",
+  "recordedAt": "2026-10-03T05:36:22.320Z",
+  "sha256": "798eae71d055e8038b9b0257d8a7f8a87a9803c321190f3b8ca6ded52a71a2c4",
+  "bytes": 22279,
+  "requestId": "LKOSwzOX7VGgEyTGuVXe",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c3831dc095da608e2622f329e7d26d4c80ef0f7b374c6c86b1ffea516372811f",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

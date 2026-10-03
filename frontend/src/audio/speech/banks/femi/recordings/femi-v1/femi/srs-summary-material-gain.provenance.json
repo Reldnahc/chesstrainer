@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "srs-summary-material-gain",
+      "label": "Srs summary material gain",
+      "text": "Tally the material before and after the saved line, and the side that made this move is up on the deal."
+    },
+    "takeId": null
+  },
+  "requestHash": "21ba4d25dded4db89c9c61190ba606aaf1605a1cf7a2fe63b09d3fcfbb0c9734",
+  "recordedAt": "2026-10-03T05:37:54.369Z",
+  "sha256": "2348c94e0194d90c6c494dc5f1e5d0fb99681c322332012cc8562a17b5fde5b9",
+  "bytes": 21265,
+  "requestId": "B2qMa5BTg077Dphofype",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4dbd6fffca9e044ac5c1dec5608bad597a60b4ac38214b81151193c204d72eed",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

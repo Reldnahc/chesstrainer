@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "tactic-fork-played",
+      "label": "Tactic fork played",
+      "text": "It's a fork: the piece that just moved now hits several targets in one go, so count them on the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "3d3695a0f87a72d7db16777e926fb330cb1b0b392363563a11f2313bde701f14",
+  "recordedAt": "2026-10-03T05:35:25.653Z",
+  "sha256": "48f6305b1e3e5939444afe17d7e0e30b0deca9d9cc1ce222c1ce80c4071f5601",
+  "bytes": 22940,
+  "requestId": "w6x5Sxw5WJ2qWZJBXtfL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "922f57deb397a5efd6c79287d94095d8f280d7c5d0c7c84fee486d9b896e8c2c",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

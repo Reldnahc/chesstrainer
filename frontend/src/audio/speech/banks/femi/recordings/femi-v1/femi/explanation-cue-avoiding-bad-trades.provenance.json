@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "explanation-cue-avoiding-bad-trades",
+      "label": "Explanation cue avoiding bad trades",
+      "text": "Count what you capture and what comes back in the recapture."
+    },
+    "takeId": null
+  },
+  "requestHash": "ce7f796eb2c99868b4ca77599454e2ad13b0d1336413297b768f5c84abd1b5cd",
+  "recordedAt": "2026-10-03T05:39:15.484Z",
+  "sha256": "26e95ab733667389b0751e1e75a257153d0dbf173bbe03b74355a99a7eb9906b",
+  "bytes": 13296,
+  "requestId": "8gE5IauDO9jBg1rAUIw6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "95c03227eede4f755a1cb997739db8218c8ef4027b4fdc3349c313ddda8669b5",
+    "bytes": 65245
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

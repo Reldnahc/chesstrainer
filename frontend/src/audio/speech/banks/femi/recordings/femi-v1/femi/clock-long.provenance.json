@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "clock-long",
+      "label": "Clock long",
+      "text": "This one cost a big slice of the clock."
+    },
+    "takeId": null
+  },
+  "requestHash": "99ac9f306a13502c70f172fd4af02832e0ab9bc31bd6bb771371450fcd56bb73",
+  "recordedAt": "2026-10-03T05:37:23.901Z",
+  "sha256": "b648b5c92ee1078d021e2efc7c7421e1af5c1dbe4724eddc719e213a2bcf379f",
+  "bytes": 9782,
+  "requestId": "TYsa2GE6AGomXmOaZ1Mf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dd54f13838f443c12c01593a01d2a34534e81e909d1d8d4625eefc31c082b1d7",
+    "bytes": 47273
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

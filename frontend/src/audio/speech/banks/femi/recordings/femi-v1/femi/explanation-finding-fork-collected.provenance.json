@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "explanation-finding-fork-collected",
+      "label": "Explanation finding fork collected",
+      "text": "A single piece forks several targets and later wins one. That side has the extra material by the close of the example."
+    },
+    "takeId": null
+  },
+  "requestHash": "7bcc4efe8965ec043190ce85e8bcbfd2460ba0e9c8c845236585504251c8a54c",
+  "recordedAt": "2026-10-03T05:38:32.448Z",
+  "sha256": "d5d1d0a870c6edf20ef6a5812837658e5a0296ac76e9febc09b4279e7ee1716b",
+  "bytes": 26207,
+  "requestId": "y5NjSvLAbGgnmirFDIsO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f7e30036488b0803d1459dc9e02dbc4804ad79c23e4fd2b49ee9461613c0cf6b",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

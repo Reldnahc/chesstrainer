@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected",
+      "label": "Explanation finding deflection collected",
+      "text": "The defender is coaxed away, and whatever it was covering gets taken."
+    },
+    "takeId": null
+  },
+  "requestHash": "a7b4d6a9d349b85d8ccc6f57c445dc2045c1e405178d653a26849151dcb7b4b8",
+  "recordedAt": "2026-10-03T05:38:46.072Z",
+  "sha256": "6c6f5215fc5ddbcd8da7ab39a1c5d291a8690c0cb39bbe3ccccecde2a5ee6f56",
+  "bytes": 15525,
+  "requestId": "1hXjw3rQ1ClMjMRYGm16",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8056ee65fe5b6efb8e9541040917f0efc967a3da2a9f6cb21586e8b9f434e924",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

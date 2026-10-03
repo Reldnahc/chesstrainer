@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-promotion-ordinary",
+      "label": "Explanation frame quiet promotion ordinary",
+      "text": "All the way to the far side, and the pawn swaps itself for a new piece."
+    },
+    "takeId": null
+  },
+  "requestHash": "2646fdbb8d8f48b14e1f564a266bbf9c3e9237b3d1ba402214bf16f7b1731311",
+  "recordedAt": "2026-10-03T05:38:13.595Z",
+  "sha256": "e6e724f1b8c256c36f81a805593dca2e625312ee3a74c0353137e98b92cab6ef",
+  "bytes": 16716,
+  "requestId": "3zykG2DjTjD8pHZM0Lyt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d61501725df0fde3f81b0b0fcad7103c234bf273d225704946b8b2ba196b1dd1",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

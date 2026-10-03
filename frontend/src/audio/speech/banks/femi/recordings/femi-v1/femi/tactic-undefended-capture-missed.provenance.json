@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-missed",
+      "label": "Tactic undefended capture missed",
+      "text": "An undefended piece was there to take with another move, and this move leaves it alone. Always worth a quick scan for those."
+    },
+    "takeId": null
+  },
+  "requestHash": "813309ab7187be2f0617793bb1ca096e5c1e7d71d747049e7d672828bd6735b9",
+  "recordedAt": "2026-10-03T05:36:20.551Z",
+  "sha256": "bfae17cbd757d2765a904e0165127650ed9e21a465e9526aff533602b987dd6d",
+  "bytes": 25460,
+  "requestId": "0XgNNjCN4PEONHuUSO64",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4140c9b99079d9434be0d31b70cb4aa9a992cd96620cf3862eb595e5c0f01b0d",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

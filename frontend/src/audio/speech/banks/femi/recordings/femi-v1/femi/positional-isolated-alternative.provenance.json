@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "positional-isolated-alternative",
+      "label": "Positional isolated alternative",
+      "text": "Under a different move, one pawn would have ended up isolated, leaving it with no friendly pawns next door."
+    },
+    "takeId": null
+  },
+  "requestHash": "7d4497d84f341a6f4b9fc3f54639ba412956a23f38126ff8eb3fafb698523dae",
+  "recordedAt": "2026-10-03T05:36:46.104Z",
+  "sha256": "f7bab773b84341b1d92cb756ed680da7751c3e14955a8ff2646a534f8013f1ce",
+  "bytes": 22830,
+  "requestId": "mtqIURhJv49oOc9Xdnt2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f2837c6abfa310c4730109baacfe09d842e80a230cf294910cd82311e1997342",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

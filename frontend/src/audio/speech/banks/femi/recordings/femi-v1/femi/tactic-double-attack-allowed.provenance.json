@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "tactic-double-attack-allowed",
+      "label": "Tactic double attack allowed",
+      "text": "It allows a double attack for the other side, one move carrying a pair of threats. Spot both before choosing an answer."
+    },
+    "takeId": null
+  },
+  "requestHash": "b7dcecebd3464176ec43764177b2d686a823daa3f9674c9d4a93a63581554a31",
+  "recordedAt": "2026-10-03T05:36:10.170Z",
+  "sha256": "77461e44c068d37fdeb74fbfd99ffd1cf4c52a15f653371738588e1e6b701dad",
+  "bytes": 25914,
+  "requestId": "qOSpQT7DSZzsn0ZALA8e",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "de74fd91cce04282b6a284bbc334ae5c994889ba522ce20b3e50db0fb55d1e02",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

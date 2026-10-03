@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "srs-retry",
+      "label": "Srs retry",
+      "text": "Not that, no. Back to the board for a second think."
+    },
+    "takeId": null
+  },
+  "requestHash": "61db8e0bf4cf63d113ab6031763d729870fba303d7d2a6bef5b9b5d70941236e",
+  "recordedAt": "2026-10-03T05:37:47.978Z",
+  "sha256": "93e70c2afb8fd49e2f3b31ee5179d8c09784c30b7e349adc125cfca522ed04e6",
+  "bytes": 13440,
+  "requestId": "fpCR8bKhGrTZADPKTFEL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5380db40fe16db34eafa3a3742a9d7c8f0d94d26b28d0bcf41f790797fa9da83",
+    "bytes": 67753
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

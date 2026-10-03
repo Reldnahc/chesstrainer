@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "puzzle-solved-after-retry",
+      "label": "Puzzle solved after retry",
+      "text": "Second try, and you got the whole solution. Both the miss and the final solve are logged."
+    },
+    "takeId": null
+  },
+  "requestHash": "3df8c915aa08c3d945e22ccdcc0db59d866b462fdb49671d93bed74903d28616",
+  "recordedAt": "2026-10-03T05:39:45.067Z",
+  "sha256": "7f644440d57b080dfbb4dcd03f0fc13ea2a9e4f5d738bb3738c0997d033600ea",
+  "bytes": 20368,
+  "requestId": "vXYQzSuEqYEylG9bizRj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "188fa7b52e84075eaa616a5e4cfdea281d39c0a8fb5a3dea207f9d696c4691cf",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

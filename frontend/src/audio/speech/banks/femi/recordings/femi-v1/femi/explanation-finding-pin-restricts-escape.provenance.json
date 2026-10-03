@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape",
+      "label": "Explanation finding pin restricts escape",
+      "text": "The attacked piece can't simply flee; it's pinned, and its king needs the cover. Every option it has must keep that shield in place."
+    },
+    "takeId": null
+  },
+  "requestHash": "40fa83d755a12f5f2e78804a78193b668a83d6125f2901d307dcdc0321bf54a7",
+  "recordedAt": "2026-10-03T05:38:36.291Z",
+  "sha256": "6fc30015d64c766519778bffb7c3da2c2427a8b8c6eb25a25ab6722eb6dac8f5",
+  "bytes": 30138,
+  "requestId": "V0pk8UEoKLaM17BFjw7H",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ea874af0663753a07b08f1cbef078bc92dcc786f6e36b7ad564d75e1ef279c9c",
+    "bytes": 154688
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

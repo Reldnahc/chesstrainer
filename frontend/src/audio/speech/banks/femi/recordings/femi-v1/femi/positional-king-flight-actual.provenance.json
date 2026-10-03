@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "positional-king-flight-actual",
+      "label": "Positional king flight actual",
+      "text": "The king has picked up a legal square that wasn't available before. Handy to have an exit."
+    },
+    "takeId": null
+  },
+  "requestHash": "c588a8fefce93953b248c42991d6347681059a9c1e95dc30cbc91f45e5b068af",
+  "recordedAt": "2026-10-03T05:36:53.109Z",
+  "sha256": "0e5b8e21151347c199606109f5df2a537821e5fe8a984c4ec83ea9e930e287b0",
+  "bytes": 18200,
+  "requestId": "uopyCHGOYnOBFjuHYUcQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "07ea1cac5048deb0a3c15dbd58f887a0b20e60dd553d706748bbfcda2bee7ad7",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "tactic-back-rank-allowed",
+      "label": "Tactic back rank allowed",
+      "text": "The back rank is the issue here. The other side now has a mating route along it, because the king's own pieces fence it in."
+    },
+    "takeId": null
+  },
+  "requestHash": "a94c144312f9ef68c95d9a235dd73615417653ad0720eeedd81ca16561b3563a",
+  "recordedAt": "2026-10-03T05:35:52.591Z",
+  "sha256": "8819053a8cab0a75017a83302a0feb3642b6188f6b6036babeb9577de7d32bff",
+  "bytes": 25679,
+  "requestId": "OVFigc6wFoEpYXUrJg3B",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f61b379f9a42ad3c06dbc3f8938e007912e2bc70d0c16aa7ea37658052700226",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

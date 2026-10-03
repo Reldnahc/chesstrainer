@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "chance-missed",
+      "label": "Chance missed",
+      "text": "There was something to take from the opponent's last move, and this one leaves it lying there. Let's compare a better reply."
+    },
+    "takeId": null
+  },
+  "requestHash": "6c3736b658d0049a209b77bdd8ee1b89080b0d3e97b021b21e23daceffe36176",
+  "recordedAt": "2026-10-03T05:37:32.482Z",
+  "sha256": "6a6953794e18ff8d35dfa5bed4a0bad4fdb86831fe37a33a8b0295116df0f469",
+  "bytes": 24112,
+  "requestId": "DXceDlxcI2jhCYCXQmzq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6ff58b84cc98676ab2a5a9f540216fceb93de3c1b07722570a7473f36c19de6e",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

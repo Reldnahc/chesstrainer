@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "positional-passed-alternative",
+      "label": "Positional passed alternative",
+      "text": "Another move would have produced a passer, with no enemy pawn blocking it or covering its path from next door."
+    },
+    "takeId": null
+  },
+  "requestHash": "842f7e12db7989f0d79765e70ebe7e0aee1ed4e8a65c8afba094d9e4ff6ceefa",
+  "recordedAt": "2026-10-03T05:36:41.125Z",
+  "sha256": "5f6b773eb20af11025523a45e3f56f496fd17a5ccab1b4be54452b83508204f2",
+  "bytes": 22583,
+  "requestId": "GZQK0Sa3KOMk4ALGsS6W",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5d8de718b9b6af7a650dcd5980e24a2f46bf764cf919150bf40f188d80620646",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

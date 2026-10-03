@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "explanation-frame-quiet-move-escape",
+      "label": "Explanation frame quiet move escape",
+      "text": "Check is over with this move."
+    },
+    "takeId": null
+  },
+  "requestHash": "8f9c620020baf0c750684794f8df634f26f82b9fc922542a4d1afc89c095d040",
+  "recordedAt": "2026-10-03T05:38:12.129Z",
+  "sha256": "b011b062a82d0a7801848d354ab8e64b0fbf8dd5728c56103f1a0216035a3b30",
+  "bytes": 7366,
+  "requestId": "HDcIz00vNPvuXodmc9j5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f1ca1ab935e30c4284c1c1596219467b53da0413dc0a515dbde2e870aec3da1f",
+    "bytes": 34316
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

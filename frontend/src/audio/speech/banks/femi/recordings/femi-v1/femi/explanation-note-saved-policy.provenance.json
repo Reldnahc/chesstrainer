@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "explanation-note-saved-policy",
+      "label": "Explanation note saved policy",
+      "text": "The answer policy on file for this exercise is what this explanation goes by. Which setting that is, the written notes tell you."
+    },
+    "takeId": null
+  },
+  "requestHash": "cd4a8ebb2c82ee72e26933e15dec03899e0e2070b0aa617ca147b208148797ea",
+  "recordedAt": "2026-10-03T05:39:26.241Z",
+  "sha256": "2754a76c127abb06030b0c33f7f7142b304ab18f5dcb0e3f7346e6b20f05d3a7",
+  "bytes": 27211,
+  "requestId": "6TWMSwTNDqtBWOgx5OC1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "608b17a56abc4f3d41655abc57d3b27880b71974a2d77a1a24da59bb683218fa",
+    "bytes": 139224
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

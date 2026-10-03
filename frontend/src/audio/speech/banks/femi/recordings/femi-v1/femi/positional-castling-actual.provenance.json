@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "positional-castling-actual",
+      "label": "Positional castling actual",
+      "text": "A castling move: king and rook both shift in one go."
+    },
+    "takeId": null
+  },
+  "requestHash": "aa42f171e672d426cb3a6ae879b308ae796d71ea138cdf7d030f6dc37238e618",
+  "recordedAt": "2026-10-03T05:36:55.813Z",
+  "sha256": "a9780caf881a0fee70919706219b1af1340ec340781ee4b9bb21f1541b60203d",
+  "bytes": 14960,
+  "requestId": "4LMFBKIdT54Rbf7HNbOI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9c15a287ebdb2d2c5ed85c652b69b27f2e80496073109578b3ed1b6db38fc70c",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

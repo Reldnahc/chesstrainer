@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "explanation-cue-abandoned-defender",
+      "label": "Explanation cue abandoned defender",
+      "text": "When a defender is about to move, list what it was guarding first."
+    },
+    "takeId": null
+  },
+  "requestHash": "d2f20708ecff435ffcc206371ed46ba2578f00d2333a3b1479748cd658d30e79",
+  "recordedAt": "2026-10-03T05:39:14.465Z",
+  "sha256": "c405421f181a55462debe4714c9a17a71f1eb8a3855124f27f50fd3838d646d6",
+  "bytes": 14683,
+  "requestId": "bjQ7EW2aC8qX63EGuXDD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "69bbb0ae90a1be804a337a40c4de8155ca677391d4013451c23a46c7ee9ab5a5",
+    "bytes": 72768
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

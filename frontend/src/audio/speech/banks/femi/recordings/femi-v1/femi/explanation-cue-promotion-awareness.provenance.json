@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "explanation-cue-promotion-awareness",
+      "label": "Explanation cue promotion awareness",
+      "text": "Count how far the pawn has to go, and check the pawn moves that force a reply."
+    },
+    "takeId": null
+  },
+  "requestHash": "69c72c5d8c3852388ab4e97e9b8554d58b0d6702b8522961ee92dd545cc3e287",
+  "recordedAt": "2026-10-03T05:39:13.293Z",
+  "sha256": "ac77a74f3b45f5d44e72033934f345ce794ed05b32202e1be02f57ce9428e00a",
+  "bytes": 17144,
+  "requestId": "bxPhEMxSg6Op7L7MWi9N",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "27657be35ffb1afe8509d38ef09875d3a77994b899739cd0fe3d57b2b1e03a3a",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

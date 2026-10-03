@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "positional-support-actual",
+      "label": "Positional support actual",
+      "text": "Somebody now guards the piece that was sitting loose. That tidies up a weak spot."
+    },
+    "takeId": null
+  },
+  "requestHash": "d8a1b8e6f06ffb33986f0d31b628301cfea912da748969010e9c4e819891f4cf",
+  "recordedAt": "2026-10-03T05:36:47.575Z",
+  "sha256": "fdbd85a716bc4c50b9f89cbb67bc406161f2c5ab67cba78e9c13e6c0f9b96a61",
+  "bytes": 18226,
+  "requestId": "WERpXWgki4exxXmuOhcN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bd3e99c00b03a56b78d88b8133b9943fce9ded9e78ac8757c9e81e14a2fecc02",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

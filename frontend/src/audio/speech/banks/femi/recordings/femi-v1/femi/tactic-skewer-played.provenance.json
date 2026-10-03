@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "tactic-skewer-played",
+      "label": "Tactic skewer played",
+      "text": "Textbook skewer. Hit the front piece first, and when it gets out of the way, the piece behind it is hanging in the open."
+    },
+    "takeId": null
+  },
+  "requestHash": "da6994eef7decd5573caa6beab5b1bfe84ecc3e5685c7cb8fd95ce6711d5261d",
+  "recordedAt": "2026-10-03T05:35:37.669Z",
+  "sha256": "2190751b25badbc220616886637990f8968948b7062682acdfd676afee8f6997",
+  "bytes": 25436,
+  "requestId": "sq2zL6etrOwSk9bZFLAe",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cf92a6f183c4c236b1f5b738a2af997c3e98f1860d2ab74eda2b24ed5cfeb6a8",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

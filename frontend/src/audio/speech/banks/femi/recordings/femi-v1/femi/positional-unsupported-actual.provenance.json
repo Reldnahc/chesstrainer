@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "positional-unsupported-actual",
+      "label": "Positional unsupported actual",
+      "text": "Worth noting: one piece is unguarded after this. That by itself doesn't make it winnable."
+    },
+    "takeId": null
+  },
+  "requestHash": "dd56376f0447b6cf1c360f7eae59770bc9cfb1438e299e9080008913dcfd5561",
+  "recordedAt": "2026-10-03T05:36:50.168Z",
+  "sha256": "d5844d79a614c49328b5fa54b777ea4e9dd1096b020e18d998f8a4a3e4099642",
+  "bytes": 21189,
+  "requestId": "LGIra0MyTIfbMCGRO919",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0108416952b298976d102c2c736559582e7dbc4a3bf2df7e608bdc7d29110d0d",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

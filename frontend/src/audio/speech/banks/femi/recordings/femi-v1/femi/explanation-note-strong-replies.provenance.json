@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "explanation-note-strong-replies",
+      "label": "Explanation note strong replies",
+      "text": "Treat this as one possible path against good defense. Plenty of those replies have alternatives."
+    },
+    "takeId": null
+  },
+  "requestHash": "46585e68aeaff14ef8b02ce79e82a9dfd40510f696d959a9b5997abd76049342",
+  "recordedAt": "2026-10-03T05:39:19.949Z",
+  "sha256": "05e46e5150fd8eb367a1dc7e6e122254f2c521013992a809fd3f1e6c0abb4d84",
+  "bytes": 20717,
+  "requestId": "8ai8PHx6RuK1jQS1EmQE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d292394166af6b4ddd1783a728368c7017cb190f731476d93e08ea3b3a2010e4",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

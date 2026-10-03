@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "srs-summary-mate-for-mover",
+      "label": "Srs summary mate for mover",
+      "text": "Going by the saved engine analysis, there's a forced checkmate for the side that just moved."
+    },
+    "takeId": null
+  },
+  "requestHash": "7d91dc11636bff39ef9057d79de82c82f63d0307041b828d3a2a319ab1e8d659",
+  "recordedAt": "2026-10-03T05:37:51.082Z",
+  "sha256": "b0a1da6e146e7d1f24b212c3c225a61b8459cc429ebcdf4997637002a65f84a6",
+  "bytes": 18682,
+  "requestId": "KukqiUV3YPaxkWjx3Fhn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "abdfafa01bc84393ba75e7c2ad2bbea05a7c68f9b88ed01ba560854336f7fd8c",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

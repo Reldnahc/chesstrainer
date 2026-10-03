@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "opening-recall-cold-multiple",
+      "label": "Opening recall cold multiple",
+      "text": "Whatever you play, keep it inside your selected opening lines."
+    },
+    "takeId": null
+  },
+  "requestHash": "175e1dc7ae4edb42dc0be46a1c58253d8b30491ab42a3c07511b6b8b19594c6b",
+  "recordedAt": "2026-10-03T05:39:30.394Z",
+  "sha256": "0fb2a215e70963f04043b6f6f79b820a18e25c3ef5cd82efccc2bbba0e7fdaf9",
+  "bytes": 14030,
+  "requestId": "Bc4BGOR7GoDU1jnblJdd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b43b5c9d7be99780a403eac0448eadbdc437d891605bef556e62dd34b1c7e9e1",
+    "bytes": 70261
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

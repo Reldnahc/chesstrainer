@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "lesson-wrong-move",
+      "label": "Lesson wrong move",
+      "text": "Legal, but that's not the prep we're going over. What else does the prep say here?"
+    },
+    "takeId": null
+  },
+  "requestHash": "180b193ae6b90d03cef9b3f5d1935f9c021135cfc0d1c1382bfadc5a74319c03",
+  "recordedAt": "2026-10-03T05:40:08.309Z",
+  "sha256": "9d5ea0a4996db6139ea63bc4a7434937b903a334069856f8347114c389475400",
+  "bytes": 16817,
+  "requestId": "f5CIxtAolbrDTQ4spmI2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "86778c3eeeefa09089c2fda0f4b6fdeb3041bdb6489e1ad3bd1509850b37f7ba",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

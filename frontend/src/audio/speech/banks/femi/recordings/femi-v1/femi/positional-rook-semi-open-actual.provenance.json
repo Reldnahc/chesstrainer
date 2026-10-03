@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "positional-rook-semi-open-actual",
+      "label": "Positional rook semi open actual",
+      "text": "Every pawn on that rook's file belongs to the enemy, which is what semi-open means."
+    },
+    "takeId": null
+  },
+  "requestHash": "f22a43e21cb53058c3aa225aa6ce34fb26ba65e2591c2ac5f05c4cffe7536bd5",
+  "recordedAt": "2026-10-03T05:36:35.316Z",
+  "sha256": "eccefdb56e1456ec24a2aa6d13d4b8bde536af512b03e8f6f24aa6e67a7d73dc",
+  "bytes": 18308,
+  "requestId": "hT8Kl5Jr5fCDtrNOixv8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d36f31ceb3478632899cc26463bf262103c596c9d5322d6896dbf03ced81c38d",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

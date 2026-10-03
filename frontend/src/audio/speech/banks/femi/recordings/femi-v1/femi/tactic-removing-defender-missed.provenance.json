@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed",
+      "label": "Tactic removing defender missed",
+      "text": "A stronger move would have removed a defender, leaving whatever it guarded uncovered. Not on this move, though."
+    },
+    "takeId": null
+  },
+  "requestHash": "7759e0c880a198e9ff111386db9bfe7b235f6c9c1962eb78fe87070d2837a8ee",
+  "recordedAt": "2026-10-03T05:35:48.788Z",
+  "sha256": "02049f30e1a54f7746fd2ff4d73951ea1800eca97f5bb96170a4887874689ee1",
+  "bytes": 23575,
+  "requestId": "MLITBEl4AeeLZUsEXS5S",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a8f4a2a9a08bdaefa9fb5958ace20ae81515c2d207a058457f2ec526390ed3df",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

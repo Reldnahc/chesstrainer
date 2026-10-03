@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "mate-finished",
+      "label": "Mate finished",
+      "text": "And that's mate. Game over at the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "caa8bd64d930dc4ecd50b869b057f1be3f3ed892bac604ec3604e9cb8fdedadf",
+  "recordedAt": "2026-10-03T05:37:42.441Z",
+  "sha256": "84792a23405544fc01c9f842290aaac13634a4b4793b2f152d3c430148076de2",
+  "bytes": 11050,
+  "requestId": "vOgdZ4j2V25fwTtcO2Br",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fe45aac7f21a1ab125c7baa61db894614c015bdc09cd472688ddc5b6b9baa322",
+    "bytes": 53542
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "positional-rook-open-actual",
+      "label": "Positional rook open actual",
+      "text": "Open file for the rook now, not a pawn anywhere along it."
+    },
+    "takeId": null
+  },
+  "requestHash": "c24ac6eab3e42954e50f6bc79e5b7ec0e26c514b7b4bfd9c0549153f83304729",
+  "recordedAt": "2026-10-03T05:36:32.414Z",
+  "sha256": "01662dc078d3174de5f8f5464a600e39b8c583d4bca9efab01b9b89cc84d5afa",
+  "bytes": 13803,
+  "requestId": "qL0Ef2kHsH0q5mIu73ts",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "378c3deb2a2bc82a406e537a8aeedee05596b9e405b9d7bf689e84fe7224299b",
+    "bytes": 69007
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

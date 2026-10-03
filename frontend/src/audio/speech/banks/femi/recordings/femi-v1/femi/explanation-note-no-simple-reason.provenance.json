@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "explanation-note-no-simple-reason",
+      "label": "Explanation note no simple reason",
+      "text": "I can't pull a simple tactical reason from the saved line, and I'm not going to invent a positional one. Play it out move by move and weigh the replies."
+    },
+    "takeId": null
+  },
+  "requestHash": "eba6f0f623a2f01b409e57aa9d9a2b14b7d74cb1599a3b0c736e63e4c797850c",
+  "recordedAt": "2026-10-03T05:39:24.179Z",
+  "sha256": "bd8c62cabd34ecee60f39521837f76a36ea4449a8f277acba8dd74d6385ee72e",
+  "bytes": 30103,
+  "requestId": "fv4H84U2Z1no87282LWd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a1e35751b863a6ca1af5547704dc544601b9daf76a37dc7cfbb78b2e31a96562",
+    "bytes": 153435
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

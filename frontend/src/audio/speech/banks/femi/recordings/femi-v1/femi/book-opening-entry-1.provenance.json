@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "book-opening-entry-1",
+      "label": "Book opening entry 1",
+      "text": "Standard prep so far; this is well-known opening material."
+    },
+    "takeId": null
+  },
+  "requestHash": "0fa21aee0b64261710d8e2e61d021087aef4d6c26652b8b67b4cd66ce7a8b64b",
+  "recordedAt": "2026-10-03T05:39:55.551Z",
+  "sha256": "81047cf5136b4f85563db6820d8e6591515b9797c02734affd47b40618ae7903",
+  "bytes": 13897,
+  "requestId": "CSF2aLgVxdJ3gMCGC5d3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ead73de21899e58bbc99ccffde921af0c11dc4f523794c0a4e3bacacc9bd4b16",
+    "bytes": 70261
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}
