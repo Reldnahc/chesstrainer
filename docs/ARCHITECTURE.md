@@ -87,7 +87,7 @@ lock, while other accounts have independent locks.
 | srsReview/useReviewSession.ts | Cold/focused queues, grading, reveal and completion accounting; ignores responses after session disposal |
 | srsReview/useReviewPlayback.ts | Counter-reply timer, explanation frames, stable panel height and focus restoration |
 | GameReview.tsx / gameReview/GameWorkspace.tsx | Game library and composition of the existing shared board, coach and workspace |
-| GameInsights.tsx | Games → Insights panels over `/api/insights`; shared section navigation, choices, statistics and load states |
+| GameInsights.tsx | Insights → Overview panels over `/api/insights`; shared section navigation, choices, statistics and load states |
 | ReviewCoach.tsx | Common portrait with optional caption, speech bubble, action row and optional context line; both review modes and explanation playback share button geometry |
 | gameReview/useGameReviewSession.ts | Original game, automatic review start, incremental polling, pause/resume and progress ownership |
 | gameReview/useGameExploration.ts | Variation history, legal-position requests, board navigation and return-to-game behavior |
@@ -150,7 +150,7 @@ sharing cancellation ownership. `audio_voice` persists Off, On request or
 Automatic alongside existing preferences. Unsupported coaches, missing legacy
 facts and lessons remain silent; written feedback remains authoritative.
 
-Home, Study (including Openings/Puzzles), Games, Weaknesses and Settings use `PageTitle`:
+Home, Study (including Openings/Puzzles), Games, Insights and Settings use `PageTitle`:
 a required eyebrow above the title on desktop, hidden on phones, with optional
 page actions and no subtitle. Compact board-workspace headings remain separate.
 
@@ -206,7 +206,7 @@ the `interface_motion` column in that same row. Both providers share the saved
 preference lifecycle and reset when the account boundary unmounts. The root CSS
 motion attribute is also removed on unmount; login screens use the device default.
 
-Navigation is Home, Study, Games, Weaknesses, Settings. A small History API router
+Navigation is Home, Study, Games, Insights, Settings. A small History API router
 renders `/` (Home), `/study`, its Due/openings/puzzles subpages and saved session/source
 links, `/games`, `/games/:id`, `/weaknesses` and `/settings`. Screen/game links
 push history entries; `popstate` restores the destination. Old `/review` and root exercise/focus/session
@@ -233,7 +233,7 @@ local to each preference control.
 Games keeps only a compact Update games control using the same sync component and
 polling behavior; without a connection it links to Settings. Sync still fetches
 games without starting engine analysis.
-Weaknesses opens directly with its title and supported pattern/outcome lists;
+Insights opens on its Overview; its pattern/outcome sections (formerly Weaknesses) show the supported lists directly;
 introductory copy and the classification-coverage summary are not shown there.
 
 The coach studio is a separate development process (`npm run dev:coach`, port

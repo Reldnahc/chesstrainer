@@ -1,7 +1,7 @@
 import {expect, test, type Page} from '@playwright/test';
 import type {Evidence, Schema} from '../src/api';
 
-const categories = (page: Page) => page.getByRole('navigation', {name: 'Weakness categories'});
+const categories = (page: Page) => page.getByRole('navigation', {name: 'Insight sections'});
 const card = (page: Page, title: string) => page.getByRole('article', {name: title, exact: true});
 
 function skill(overrides: Partial<Schema['SkillPriority']>): Schema['SkillPriority'] {
@@ -45,16 +45,16 @@ test('category destinations support history and reload while reusing the loaded 
   page.on('request', request => { if (request.isNavigationRequest()) documents.push(request.url()); });
   await page.goto('/weaknesses');
   const navigation = categories(page);
-  await expect(navigation.getByRole('link')).toHaveText(['Tactical patterns', 'Material & mate']);
+  await expect(navigation.getByRole('link')).toHaveText(['Overview', 'Tactical patterns', 'Material & mate']);
   const patterns = navigation.getByRole('link', {name: 'Tactical patterns', exact: true});
   const outcomes = navigation.getByRole('link', {name: 'Material & mate', exact: true});
-  await expect(patterns).toHaveAttribute('href', '/weaknesses');
-  await expect(outcomes).toHaveAttribute('href', '/weaknesses?category=outcomes');
+  await expect(patterns).toHaveAttribute('href', '/insights?section=patterns');
+  await expect(outcomes).toHaveAttribute('href', '/insights?section=outcomes');
   await expect(patterns).toHaveAttribute('aria-current', 'page');
   await expect(page.getByRole('heading', {name: 'Pinned defender', exact: true})).toBeVisible();
   await expect(page.getByRole('heading', {name: 'Material loss', exact: true})).toHaveCount(0);
   await outcomes.click();
-  await expect(page).toHaveURL('/weaknesses?category=outcomes');
+  await expect(page).toHaveURL('/insights?section=outcomes');
   await expect(outcomes).toHaveAttribute('aria-current', 'page');
   await expect(page.getByRole('heading', {name: 'Material loss', exact: true})).toBeVisible();
   await expect(page.getByRole('heading', {name: 'Pinned defender', exact: true})).toHaveCount(0);
@@ -115,7 +115,7 @@ test('skill evidence, targeted practice and disabled positions remain usable on 
   await page.keyboard.press('Escape');
   await expect(dialog).toHaveCount(0);
   await expect(example).toBeFocused();
-  await expect(page).toHaveURL('/weaknesses');
+  await expect(page).toHaveURL('/insights?section=patterns');
   await categories(page).getByRole('link', {name: 'Material & mate', exact: true}).click();
   await expect(card(page, 'Material loss').getByRole('link', {name: 'Practice 2 positions', exact: true}))
     .toHaveAttribute('href', '/study/due?focus=material_loss');
@@ -209,4 +209,20 @@ test('leaving Weaknesses ignores a late failed response', async ({page}) => {
     release();
     await page.unrouteAll({behavior: 'wait'});
   }
+});
+
+test('Insights opens on the overview and keeps the old insight and weakness links working', async ({page}) => {
+  await page.route('**/api/weaknesses', route => route.fulfill({json: weaknesses()}));
+  await page.goto('/games/insights');
+  await expect(page).toHaveURL('/insights');
+  await expect(page.locator('main h1')).toHaveText('Insights');
+  await expect(categories(page).getByRole('link', {name: 'Overview', exact: true})).toHaveAttribute('aria-current', 'page');
+  await expect(page.getByRole('group', {name: 'Period'})).toBeVisible();
+  await expect(page.getByRole('heading', {name: 'Pinned defender', exact: true})).toHaveCount(0);
+  await page.goto('/weaknesses?category=outcomes');
+  await expect(page).toHaveURL('/insights?section=outcomes');
+  await expect(page.getByRole('heading', {name: 'Material loss', exact: true})).toBeVisible();
+  await categories(page).getByRole('link', {name: 'Overview', exact: true}).click();
+  await expect(page).toHaveURL('/insights');
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });

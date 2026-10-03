@@ -9,7 +9,7 @@ import { LoadingState, UnavailableState } from "./LoadState";
 import PageTitle from "./PageTitle";
 import ResumeLink from "./ResumeLink";
 import StatList from "./StatList";
-import { lessonCoursePath, lessonSessionPath, pagePaths, studyPaths } from "./navigation";
+import { insightsPaths, lessonCoursePath, lessonSessionPath, pagePaths, studyPaths } from "./navigation";
 import "./home.css";
 
 const loadDue = (signal: AbortSignal) => read(api.GET("/api/review/count", { signal }));
@@ -102,7 +102,7 @@ export default function HomeScreen() {
 
       <section className="panel home-focus" aria-labelledby="home-focus-title">
         <div className="home-section-heading"><h2 id="home-focus-title"><Flag size={20} aria-hidden="true" />Practice focus</h2>
-          <ActionLink variant="quiet" size="compact" href={pagePaths.Weaknesses}>All weaknesses<ArrowRight size={16} aria-hidden="true" /></ActionLink>
+          <ActionLink variant="quiet" size="compact" href={insightsPaths.patterns}>All weaknesses<ArrowRight size={16} aria-hidden="true" /></ActionLink>
         </div>
         <HomeResult query={weaknesses} label="practice priorities">{data => {
           // Server ordering retains evidence confidence and priority. Patterns can

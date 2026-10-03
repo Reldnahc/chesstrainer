@@ -2,6 +2,14 @@
 
 Read older entries as historical decisions. Current product scope is in PRODUCT.md and FEATURE_STATUS.md; later removals supersede earlier descriptions of lessons, Repertoire and model connectivity.
 
+## 2026-10-03: Insights replaces Weaknesses
+
+The owner asked for library-wide insights to live with weaknesses rather than
+Games, and for the Weaknesses screen to be renamed Insights. The fifth screen is
+now Insights, opening on an Overview; tactical patterns and material/mate
+outcomes are its other sections, unchanged in behavior. Old `/weaknesses` URLs
+redirect. The overview describes saved evidence and shows no mastery score.
+
 ## 2026-09-12: Adaptive evidence and offline assistant assessment
 
 Improve local classification by following unfinished tactical continuations forward and testing specific defensive alternatives. A longer root search alone leaves the fixed-endpoint bottleneck intact. New searches must preserve history, use the compatible persistent engine cache, remain bounded/cancellable, and link separately from exercise grading evidence.

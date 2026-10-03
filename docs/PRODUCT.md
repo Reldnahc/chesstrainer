@@ -15,7 +15,7 @@ these hints before an attempt or reveal.
 
 Import PGNs or completed public Chess.com games, analyze the learner's decisions locally, save verified evidence, and turn meaningful mistakes into review positions. Versioned local rules classify supported consequences and tactical mechanisms. A position can remain unclassified and still be useful in Review.
 
-The five screens are **Home, Study, Games, Weaknesses and Settings**, in that order on desktop and mobile.
+The five screens are **Home, Study, Games, Insights and Settings**, in that order on desktop and mobile.
 All screens share the compact navigation header, including the Games library and
 game-review workspace. Desktop uses the same 56px navigation row throughout;
 phones retain the compact navigation with full-size touch targets; it scrolls
@@ -28,10 +28,6 @@ a browser-history stop for each move.
 
 - **Home** is the default landing page at `/`: the authoritative due count and a study action, four latest saved games, up to two resumable lessons (or an available course), active opening-line count and up to three supported tactical practice priorities. Priorities retain backend evidence ordering and mark early evidence. Each area loads and retries independently. Home starts no sessions, imports or analysis; its links open the existing pages. It never previews cold recall answers or boards.
 - **Games** browses imported games, runs resumable analysis of both colors, and shows Lichess accuracy for each player, move-quality labels, a timeline and an illustrated tactical coach. Accuracy uses saved evaluations with no Elo adjustment or extra engine searches. The board accepts variations at any point, with undo, saved in-session branches and a return to the original game. Coach evidence and variation analysis never count as scheduled recalls. See [Game review](GAME_REVIEW.md) for scoring rules and limits.
-  **Games → Insights** summarizes patterns across saved games: when and how they
-  are won or lost, records and ratings, openings, conversion and escapes, game
-  shapes, accuracy by move and phase, play after a loss, clock pressure and
-  endgames. It is read-only and starts no analysis; see [Insights](INSIGHTS.md).
   The progress panel closes after baseline analysis. Targeted deeper checks
   continue in the background and update the review as results arrive. Interrupted
   or failed work retains recovery controls.
@@ -40,7 +36,7 @@ a browser-history stop for each move.
 - **Opening recall in Due** shows the selected opening context and asks for a studied move. Overlapping active lines share a card and union their answers. These are repertoire decisions, not engine grades: a different legal move is outside the selected study. Attempts pin their answers; an outdated attempt can finish without changing the current schedule. Pausing a study preserves its history, and dedicated line practice remains separate from FSRS.
 - **Study → Puzzles** uses separate multi-move practice sessions. The server saves accepted moves and opponent replies together; reload restores that committed position. A wrong move keeps the same decision available and permanently marks that solve as non-clean. Reveal ends the solve. Themes, solutions and attribution remain hidden until completion. A bundled, hash-pinned CC0 Lichess starter pack of 972 puzzles, each solution verified unique and winning by Stockfish, supplies production content; `PUZZLE_PACK_PATH` adds a larger installed pack and `PUZZLE_STARTER_PACK=false` leaves an honest empty library. Difficulty bands, a theme filter and a Retry mode choose among unseen puzzles without any rating or mastery claim. Test fixtures are injected only into the test application. Puzzle practice never updates FSRS, ordinary recalls or weaknesses.
 - **Study → Openings** hosts authored lessons with explanations, demonstrations, guided decisions, optional branches, annotated source-game playback and independent rehearsal. Progress belongs to the account and a pinned content revision. Back, branch return and reload preserve chess context; lesson completion records activity rather than mastery. Three included courses teach a quiet White Italian repertoire, Black’s Italian responses and the King’s Gambit for White. Chapter boundaries follow distinct learning goals and the opening's demands, with sourced historical examples and concrete practice of the resulting plans. Their designated lines enter Due only through explicit enrollment.
-- **Weaknesses** separates material/mate outcomes from tactical patterns, shows supporting decisions and practice cues, and starts focused batches of up to 12 distinct positions. Focused attempts are stored separately and never change FSRS.
+- **Insights** opens on an **Overview** of patterns across saved games: when and how they are won or lost, records and ratings, openings, conversion and escapes, game shapes, accuracy by move and phase, play after a loss, clock pressure and endgames. It is read-only and starts no analysis; see [Insights](INSIGHTS.md). Its **Tactical patterns** and **Material & mate** sections are the former Weaknesses screen: it separates material/mate outcomes from tactical patterns, shows supporting decisions and practice cues, and starts focused batches of up to 12 distinct positions. Focused attempts are stored separately and never change FSRS.
 - **Import games in Settings** supports multi-game PGNs, explicit learner matching and filtered Chess.com username imports. Only new games enter new analysis jobs; cancellation/retry preserves completed work.
   Source selection sits above equally sized form and activity panels. Their
   headings and edges align on desktop; activity entries share one panel with

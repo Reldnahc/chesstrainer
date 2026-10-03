@@ -57,7 +57,7 @@ test('every screen has a bookmarkable link and clicking the active page adds no 
   await expect(page).toHaveURL('/settings');
   await expect(page.getByRole('navigation', {name: 'Settings sections'}).getByRole('link', {name: 'Games & imports', exact: true})).toHaveAttribute('aria-current', 'page');
   await expect(page.getByRole('navigation').getByRole('link', {name: 'Import', exact: true})).toHaveCount(0);
-  for (const name of ['Home', 'Study', 'Games', 'Weaknesses', 'Settings']) {
+  for (const name of ['Home', 'Study', 'Games', 'Insights', 'Settings']) {
     const path = name === 'Home' ? '/' : `/${name.toLowerCase()}`;
     const response = await page.goto(path);
     expect(response?.ok()).toBe(true);

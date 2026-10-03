@@ -7,19 +7,15 @@ import ActionLink from "./ActionLink";
 import Pagination from "./Pagination";
 import Notice from "./Notice";
 import EmptyState from "./EmptyState";
-import { gamesInsightsPath, gamesPath, pagePaths } from "./navigation";
-import SectionNavigation from "./SectionNavigation";
-import GameInsights from "./GameInsights";
+import { gamesPath, pagePaths } from "./navigation";
 import GameWorkspace from "./gameReview/GameWorkspace";
 
 export default function GamesScreen({
   page,
-  section = "library",
   selected,
   initialPly,
 }: {
   page: number;
-  section?: "library" | "insights";
   selected: string | null;
   initialPly: number;
 }) {
@@ -30,7 +26,7 @@ export default function GamesScreen({
   const [error, setError] = useState(""),
     [loading, setLoading] = useState(true);
   useEffect(() => {
-    if (selected || section === "insights") return;
+    if (selected) return;
     let active = true;
     setLoading(true);
     setError("");
@@ -50,7 +46,7 @@ export default function GamesScreen({
     return () => {
       active = false;
     };
-  }, [offset, selected, section, revision]);
+  }, [offset, selected, revision]);
   if (selected)
     return (
       <GameWorkspace
@@ -68,11 +64,6 @@ export default function GamesScreen({
       >
         <GameSync compact onChanged={() => setRevision((value) => value + 1)} />
       </PageTitle>
-      <SectionNavigation label="Games sections" current={section} items={[
-        { id: "library", label: "Library", href: gamesPath() },
-        { id: "insights", label: "Insights", href: gamesInsightsPath },
-      ]} />
-      {section === "insights" ? <GameInsights key={revision} /> : <>
       {error && (
         <Notice announcement="alert" tone="error">
           {error}
@@ -103,7 +94,6 @@ export default function GamesScreen({
           previousHref={offset > 0 ? gamesPath(page - 1) : undefined}
           nextHref={offset + 30 < total ? gamesPath(page + 1) : undefined} />
       )}
-      </>}
     </>
   );
 }

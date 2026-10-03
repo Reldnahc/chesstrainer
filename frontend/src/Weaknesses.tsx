@@ -8,7 +8,8 @@ import EmptyState from "./EmptyState";
 import { LoadingState, UnavailableState } from "./LoadState";
 import Button from "./Button";
 import ActionLink from "./ActionLink";
-import { studyPaths, type WeaknessCategory } from "./navigation";
+import { insightsPaths, studyPaths, type InsightsSection } from "./navigation";
+import GameInsights from "./GameInsights";
 
 function WeaknessCard({ skill, onEvidence }: {
   skill: Schema["SkillPriority"];
@@ -46,34 +47,39 @@ function WeaknessCard({ skill, onEvidence }: {
   </article>;
 }
 
-export default function WeaknessScreen({ onEvidence, category }: {
+export default function InsightsScreen({ onEvidence, category }: {
   onEvidence: (id: string) => void;
-  category: WeaknessCategory;
+  category: InsightsSection;
 }) {
   const [data, setData] = useState<Schema["Weaknesses"] | null>(null);
   const [error, setError] = useState(false);
   const [attempt, setAttempt] = useState(0);
+  const overview = category === "overview";
+  // Weakness evidence loads on first visit to a weakness section and is reused after.
+  const wanted = !overview || data !== null || error;
   useEffect(() => {
+    if (!wanted) return;
     const controller = new AbortController();
     setError(false);
     read(api.GET("/api/weaknesses", { signal: controller.signal }))
       .then(value => { if (!controller.signal.aborted) setData(value); })
       .catch(() => { if (!controller.signal.aborted) setError(true); });
     return () => controller.abort();
-  }, [attempt]);
+  }, [attempt, wanted]);
   const kind = category === "patterns" ? "mechanism" : "outcome";
   const skills = data?.skills.filter(skill => skill.kind === kind) ?? [];
   const title = category === "patterns" ? "Tactical patterns" : "Material & mate outcomes";
   const countLabel = category === "patterns" ? "pattern" : "outcome";
 
   return <>
-    <PageTitle eyebrow="YOUR TRAINING FOCUS" title="Weaknesses" />
-    <SectionNavigation label="Weakness categories" current={category} items={[
-      { id: "patterns", label: "Tactical patterns", href: "/weaknesses" },
-      { id: "outcomes", label: "Material & mate", href: "/weaknesses?category=outcomes" },
+    <PageTitle eyebrow="WHAT YOUR GAMES SAY" title="Insights" />
+    <SectionNavigation label="Insight sections" current={category} items={[
+      { id: "overview", label: "Overview", href: insightsPaths.overview },
+      { id: "patterns", label: "Tactical patterns", href: insightsPaths.patterns },
+      { id: "outcomes", label: "Material & mate", href: insightsPaths.outcomes },
     ]} />
     <div className="weakness-content">
-      {error ? <UnavailableState presentation="panel" actions={<Button variant="secondary" onClick={() => setAttempt(value => value + 1)}>Try again</Button>}>
+      {overview ? <GameInsights /> : error ? <UnavailableState presentation="panel" actions={<Button variant="secondary" onClick={() => setAttempt(value => value + 1)}>Try again</Button>}>
         Couldn’t load your weaknesses. Please try again.
       </UnavailableState> : !data ? <LoadingState presentation="panel">Loading your evidence…</LoadingState>
         : !data.skills.length ? <EmptyState title="No supported weaknesses yet." icon={<Flag />} actions={

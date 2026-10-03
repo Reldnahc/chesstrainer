@@ -532,7 +532,7 @@ Synthetic legal positions and fabricated engine scores test detector and API con
 
 ## Browser coverage
 
-Desktop and phone-emulated Chromium cover all **five** navigation destinations (Home, Study, Games, Weaknesses, Settings), Study subpages, local fonts/favicon, horizontal overflow, compact mobile navigation, date filters, account settings, obsolete unit links and evidence dialog focus.
+Desktop and phone-emulated Chromium cover all **five** navigation destinations (Home, Study, Games, Insights, Settings), Study subpages, local fonts/favicon, horizontal overflow, compact mobile navigation, date filters, account settings, obsolete unit links and evidence dialog focus.
 
 Review journeys cover taps, drag/drop, legal dots/capture rings, promotion, failure/counter preview, Try again, Reveal move, solve/reload and saved scheduling. The phone-only test checks 390x700, 375x600 and 360x640 layouts; its desktop instance is intentionally skipped.
 

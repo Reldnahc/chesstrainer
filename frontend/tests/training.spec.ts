@@ -16,7 +16,7 @@ test('redesigned screens fit the viewport and load local fonts and favicon', asy
   const response = await page.request.get(icon!);
   expect(response.headers()['content-type']).toContain('image/svg+xml');
   expect(await response.text()).toContain('<svg');
-  for (const tab of ['Home', 'Study', 'Games', 'Weaknesses', 'Settings']) {
+  for (const tab of ['Home', 'Study', 'Games', 'Insights', 'Settings']) {
     await page.getByRole('link', {name: tab, exact: true}).click();
     await expect(page.getByRole('link', {name: tab, exact: true})).toHaveAttribute('aria-current', 'page');
     await expect(page.locator('main h1')).toBeVisible();
@@ -210,7 +210,7 @@ test('removed lesson links return to Study without starting a lesson', async ({p
   await page.goto('/?unit=archived-unit');
   await expect(page).toHaveURL('/study');
   await expect(page.locator('main h1')).toBeVisible();
-  await expect(page.getByRole('navigation', {name: 'Main navigation'}).getByRole('link')).toHaveText(['Home', 'Study', 'Games', 'Weaknesses', 'Settings']);
+  await expect(page.getByRole('navigation', {name: 'Main navigation'}).getByRole('link')).toHaveText(['Home', 'Study', 'Games', 'Insights', 'Settings']);
   await expect(page.getByRole('button', {name: 'Course', exact: true})).toHaveCount(0);
   expect(new URL(page.url()).searchParams.has('unit')).toBe(false);
   expect(requests).toEqual([]);
@@ -499,8 +499,8 @@ test('local classification settings and evidence work without model connectivity
   const config = await (await page.request.get('/api/settings')).json();
   expect(config.classification_provider).toBe('local_rules');
   expect(config.openai_model).toBeUndefined();
-  await page.getByRole('link', {name:'Weaknesses', exact:true}).click();
-  await page.getByRole('navigation', {name: 'Weakness categories'}).getByRole('link', {name: 'Material & mate', exact: true}).click();
+  await page.getByRole('link', {name:'Insights', exact:true}).click();
+  await page.getByRole('navigation', {name: 'Insight sections'}).getByRole('link', {name: 'Material & mate', exact: true}).click();
   const weakness = page.locator('.weakness').filter({has: page.getByRole('heading', {name:'Allowed mate', exact:true})});
   await weakness.getByText(/Browse supporting positions/).click();
   await weakness.getByRole('button', {name:'Example 1', exact:true}).click();
@@ -522,7 +522,7 @@ test('local classification settings and evidence work without model connectivity
 test('compact workspace keeps navigation reachable and settings focused on user actions', async ({page}, testInfo) => {
   await page.goto('/');
   if (testInfo.project.name === 'mobile') await page.setViewportSize({width: 390, height: 700});
-  for (const tab of ['Weaknesses', 'Settings']) {
+  for (const tab of ['Insights', 'Settings']) {
     await page.getByRole('navigation', {name: 'Main navigation'}).getByRole('link', {name: tab, exact: true}).click();
     await expect(page.locator('main h1')).toHaveText(tab);
     expect(await page.evaluate(() => window.scrollY)).toBe(0);
@@ -655,7 +655,8 @@ test('playback shows a repeated summary and move annotation only once', async ({
 test('focused practice highlights a verified pattern without scheduling a recall', async ({page}, testInfo) => {
   const fixture = await (await page.request.post(`/__test/classified-fixture/focus-${testInfo.project.name}`)).json();
   await page.goto('/');
-  await page.getByRole('navigation').getByRole('link', {name: 'Weaknesses', exact: true}).click();
+  await page.getByRole('navigation').getByRole('link', {name: 'Insights', exact: true}).click();
+  await page.getByRole('navigation', {name: 'Insight sections'}).getByRole('link', {name: 'Tactical patterns', exact: true}).click();
   await expect(page.getByRole('region', {name: 'Tactical patterns', exact: true})).toBeVisible();
   const weakness = page.locator('.weakness').filter({has: page.getByRole('heading', {name: 'Missed tactical capture', exact: true})});
   const before = (await (await page.request.get('/api/stats')).json()).reviews;
@@ -690,7 +691,7 @@ test('focused practice highlights a verified pattern without scheduling a recall
   await expect(page.getByText('FOCUSED PRACTICE', {exact: true})).toBeAttached();
   await expect(page.getByRole('link', {name: 'Return to mixed review', exact: true})).toBeVisible();
   await page.goBack();
-  await expect(page).toHaveURL('/weaknesses');
+  await expect(page).toHaveURL('/insights?section=patterns');
   await expect(weakness).toBeVisible();
   expect(fixture.exercise_id).toBeTruthy();
 });

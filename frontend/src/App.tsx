@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useLayoutEffect, useState } from "react";
 import {
   BookOpen,
-  Flag,
+  ChartColumn,
   Focus,
   House,
   LockKeyhole,
@@ -13,7 +13,7 @@ import { api, read, type Health } from "./api";
 import ReviewScreen from "./Review";
 import GamesScreen from "./GameReview";
 import SettingsScreen from "./Settings";
-import WeaknessScreen from "./Weaknesses";
+import InsightsScreen from "./Weaknesses";
 import HomeScreen from "./Home";
 import EvidenceDialog from "./EvidenceDialog";
 import { pagePaths, useRoute } from "./navigation";
@@ -34,7 +34,7 @@ const tabs = [
   ["Home", House],
   ["Study", Focus],
   ["Games", BookOpen],
-  ["Weaknesses", Flag],
+  ["Insights", ChartColumn],
   ["Settings", Settings2],
 ] as const;
 export default function App() {
@@ -190,15 +190,14 @@ export default function App() {
               <GamesScreen
                 key={route.href}
                 page={route.page}
-                section={route.gamesSection}
                 selected={route.gameId}
                 initialPly={route.ply}
               />
             )}
-            {tab === "Weaknesses" && (
-              <WeaknessScreen
+            {tab === "Insights" && (
+              <InsightsScreen
                 onEvidence={setEvidenceId}
-                category={route.weaknessCategory}
+                category={route.insightsSection}
               />
             )}
             {tab === "Settings" && (
