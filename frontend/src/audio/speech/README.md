@@ -124,6 +124,10 @@ Offline verification:
 node scripts/record_coach_speech.mjs --plan frontend/src/audio/speech/walter-contrasts-plan.json --output frontend/src/audio/speech/recordings/walter-contrasts-v1
 ```
 
+This historical plan includes the retired Maia contrast `human-unusual-strong`, so the
+recorder now refuses it as a whole (coaches no longer speak Maia lines). Its recorded
+contrasts stay verified by the bank checks; new plans must contain no Maia readings.
+
 The [whole-app recording inventory](#whole-app-dialogue-inventory) records the
 completed non-lesson scope and the deliberately silent exclusions.
 
@@ -183,7 +187,7 @@ $env:ELEVENLABS_API_KEY = [Environment]::GetEnvironmentVariable("ELEVENLABS_API_
 
 ```sh
 # Safe by default: inspect the plan and verified existing files without requests.
-node scripts/record_coach_speech.mjs --plan frontend/src/audio/speech/walter-contrasts-plan.json --output frontend/src/audio/speech/recordings/walter-contrasts-v1
+node scripts/record_coach_speech.mjs --plan PLAN.json --output DIR
 ```
 
 An identical valid recording is reused. A changed request or mismatched file is
