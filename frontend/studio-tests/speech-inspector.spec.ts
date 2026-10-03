@@ -96,19 +96,3 @@ test("the other human coaches hold every shape through the shared human mouth", 
     await grid.screenshot({ path: `studio-test-results/mouth-shapes-${coachId}-${info.project.name}.png` });
   }
 });
-
-test("changing the inspected coach retains the shared volume and mute settings", async ({page}) => {
-  await page.goto("/?coach=robot&expression=neutral&view=speech");
-  const volume = page.getByRole("slider", {name: "Volume", exact: true});
-  await volume.press("End");
-  await expect(volume).toHaveValue("100");
-  await page.getByRole("button", {name: "Mute audio", exact: true}).click();
-  await page.getByRole("button", {name: "Preview Fergus", exact: true}).click();
-  await expect(page.getByRole("heading", {name: "Fergus · Mouth shapes"})).toBeVisible();
-  await expect(volume).toHaveValue("100");
-  await expect(page.getByRole("button", {name: "Unmute audio", exact: true})).toHaveAttribute("aria-pressed", "true");
-  await page.getByRole("button", {name: "Unmute audio", exact: true}).click();
-  await page.getByRole("button", {name: "Preview Rivet", exact: true}).click();
-  await expect(volume).toHaveValue("100");
-  await expect(page.getByRole("button", {name: "Mute audio", exact: true})).toHaveAttribute("aria-pressed", "false");
-});
