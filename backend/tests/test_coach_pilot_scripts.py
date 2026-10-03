@@ -5,6 +5,16 @@ import re
 from pathlib import Path
 
 SPEECH = Path(__file__).resolve().parents[2] / "frontend/src/audio/speech"
+# The Maia readings a coach speaks when one is a ply's whole content. The other
+# two only occur beside a stronger alternative and stay retired.
+SOLE_MAIA = {
+    "human-natural-best",
+    "human-natural-strong",
+    "human-unusual-strong",
+    "human-hard-find",
+    "human-hard-defense-found",
+}
+RETIRED_MAIA = {"human-natural-error", "human-hard-defense-missed"}
 
 
 def read(path):
@@ -26,10 +36,10 @@ def test_active_scripts_avoid_ambiguous_separate_pronunciation():
 
 def test_pilot_scripts_match_the_registered_recordings_without_losing_base_meanings():
     revision = read("bank/revisions/walter-language-v1-manifest.json")["recordings"]
-    # Coaches no longer speak Maia (human-move model) readings. The historical
-    # revision keeps those rows; every other base meaning must survive.
-    original = {row["id"]: row for row in revision if not row["id"].startswith("human-")}
-    assert len(original) == len(revision) - 7
+    # The historical revision keeps the retired Maia rows; every other base
+    # meaning, including the sole-content Maia readings, must survive.
+    original = {row["id"]: row for row in revision if row["id"] not in RETIRED_MAIA}
+    assert len(original) == len(revision) - len(RETIRED_MAIA)
     base_rivet = {row["id"]: row for row in read("banks/rivet/scripts.json")["records"]}
     additions = read("banks/pilot-additions.json")["recordings"]
     extras = {row["id"]: row for row in additions}
@@ -62,16 +72,18 @@ def test_pilot_scripts_match_the_registered_recordings_without_losing_base_meani
         assert "primary" not in row and "secondary" not in row
 
 
-def test_no_maia_reading_is_a_spoken_meaning():
-    # Maia stays visible (badge, popup, written sentence) but is never voiced.
+def test_only_sole_content_maia_readings_are_spoken_meanings():
+    # Maia stays visible (badge, popup, written sentence). It is voiced only when
+    # it is a ply's whole content, never beside or combined with another fact.
     maia = re.compile(r"^(?:human-|combo-|combined-)")
     catalogue = read("meanings.json")["meanings"]
-    assert not [row["id"] for row in catalogue if maia.match(row["id"])]
+    assert {row["id"] for row in catalogue if maia.match(row["id"])} == SOLE_MAIA
     assert not [row for row in catalogue if "primary" in row or "secondary" in row]
     assert not (SPEECH / "banks/maia-combinations.json").exists()
     for bank in read("banks/registry.json")["banks"]:
         manifest = read(bank["manifestPath"])
-        assert not [row["id"] for row in manifest["recordings"] if maia.match(row["id"])]
+        assert {row["id"] for row in manifest["recordings"] if maia.match(row["id"])} <= SOLE_MAIA
     for scripts in sorted(SPEECH.glob("banks/*/scripts.json")):
         rows = json.loads(scripts.read_text(encoding="utf-8"))["records"]
-        assert not [row["id"] for row in rows if maia.match(row["id"])], scripts.parent.name
+        spoken = {row["id"] for row in rows if maia.match(row["id"])}
+        assert spoken == SOLE_MAIA, scripts.parent.name

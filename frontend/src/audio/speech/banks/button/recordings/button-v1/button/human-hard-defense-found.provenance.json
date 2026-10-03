@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "human-hard-defense-found",
+      "label": "Human hard defense found",
+      "text": "You found the one move holding everything up. It kept the position playable, and the human-move model and alternatives suggest it was a hard one to find."
+    },
+    "takeId": null
+  },
+  "requestHash": "196dcf718bf07d81ba051918670e74f6fa64e6ee73c54cb53bc7604680c67cf2",
+  "recordedAt": "2026-10-02T02:42:27.907Z",
+  "sha256": "0e6ba3c0ea0f6e931e0f1cb4a4d5fcd720eb6fa3368359b9722cf1e43e865cd0",
+  "bytes": 30626,
+  "requestId": "6IfexEsrhENt5PK8Nl2B",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7d3120968a4ce6c35663a7601a21c5a6ca88f753bd9d23e5eda7e0fe5d42d1e1",
+    "bytes": 155942
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

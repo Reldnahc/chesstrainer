@@ -86,8 +86,8 @@ domain shift, missing ratings/history and incomplete policy retain uncertainty;
 estimates are never presented as measured player success rates. Provider naming
 falls back generically rather than calling a future provider Maia.
 
-The badge, popup and any Maia sentence in the written utterance are written only:
-coaches never speak a Maia reading (owner decision, 2026-10-02). Because the
+The badge and popup are written only. A coach speaks a Maia reading only when it
+is the ply's whole content (owner decisions, 2026-10-02 and 2026-10-03). Because the
 bubble now shows the coach's spoken line whenever one exists (see
 [Bubble text is the spoken line](#bubble-text-is-the-spoken-line)), the written
 Maia sentence usually leaves the bubble; the popup always renders it through
@@ -270,11 +270,13 @@ upgrade a possible resource to a forced result, or turn a human-model estimate
 into chess truth. Lesson teaching text stays written; only the nine generic
 lesson prompts are voiced.
 
-Human-model (Maia) claims never select a recording. `selectGameSpeech` skips a
-Maia sentence in the bubble: the objective line plays alone (with a following
-objective sentence joined back to back as usual), and a bubble whose only claim
-is Maia stays silent. The Maia badge supplies nothing to speech, and
-`meanings.json` has no `human-*` or objective/Maia combination meanings. Late Maia
+Human-model (Maia) claims select a recording only when they are the ply's whole
+content: a sound learner move with no other supported fact, where Maia evidence
+replaces the generic best/good line. `selectGameSpeech` then plays that reading's
+`human-*` clip (`soleMaiaIds`). Beside an objective fact it skips the Maia
+sentence: the objective line plays alone (with a following objective sentence
+joined back to back as usual). The Maia badge supplies nothing to speech, and
+`meanings.json` has no objective/Maia combination meanings. Late Maia
 evidence can update text, and so the bubble's objective recording for the next
 explicit playback, but does not authorize a second automatic spoken response for
 the same move.
@@ -294,7 +296,7 @@ text shows instead.
 - **Game review:** the move bubble shows the spoken line for the same recording
   ID used for playback (a recorded coach's exact clip, including the greeting) or,
   for a line written but not yet recorded, the coach's script line for that meaning. No meaning
-  (pending, no report, legacy prose, a Maia-only bubble) keeps the written text.
+  (pending, no report, legacy prose, Maia shown beside an unshown fact) keeps the written text.
   Show why keeps the written detailed explanation. While the spoken line shows,
   a moves line beneath it carries the concrete facts from report/position data
   only: the opening name (`report.opening`), `<Side>’s strongest reply: <SAN>` (the engine's reply, never a claim about the move actually played) for a

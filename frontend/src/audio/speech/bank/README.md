@@ -41,7 +41,7 @@ audio and mouth timing. Its archived v1 manifest and compact tracks live in
 `revisions/`; full original alignments are under `revisions/walter-language-v1-alignment`.
 Superseded bank MP3s and provenance moved to `../recordings/walter-language-v1`;
 the three superseded original contrasts retain their historical locations, as does the
-retired Maia contrast `human-unusual-strong`, which no longer ships.
+Maia contrast `human-unusual-strong`, which ships again as Walter's sole-content reading.
 These archives preserve source hashes and exact generation history. They are
 excluded from the production media imports. Earlier recording plans and script
 inventories describe the original audit, not the active revision; do not overwrite
@@ -64,9 +64,15 @@ sentence are unchanged. The 253 Maia meanings (the seven standalone `human-*`
 readings and all 246 objective/Maia combinations, including the pilot's fourteen)
 were removed from `../meanings.json`, every `scripts.json`, `pilot-additions.json`
 and the five recorded banks, together with their clips, provenance and alignments;
-`maia-combinations.json` was deleted. Git history keeps them. The catalogue now
-has **195 meanings**: 174 of the original 181, eleven opening variants, the
-game-review opener and nine lesson prompts.
+`maia-combinations.json` was deleted. Git history keeps them.
+
+**Sole-content Maia readings return (owner decision, 2026-10-03).** A coach
+speaks a Maia reading when it is the ply's whole content. Five standalone
+`human-*` meanings came back with their reviewed texts, and the five recorded
+banks' original clips, provenance, alignments and tracks were restored unchanged
+(their voice settings had not changed). The catalogue now has **200 meanings**:
+179 of the original 181, eleven opening variants, the game-review opener and nine
+lesson prompts.
 
 Rivet's [wording revision](../banks/rivet/revisions/wording-v2.json) reviewed all
 257 additions, replaced 197 complete recordings and retained 60 additions plus

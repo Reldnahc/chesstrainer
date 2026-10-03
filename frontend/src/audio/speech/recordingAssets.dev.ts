@@ -7,6 +7,7 @@ const files = import.meta.glob<string>([
   './recordings/walter-contrasts-v1/walter/recovery.opus',
   './recordings/walter-contrasts-v1/walter/positional-unsupported-actual.opus',
   './recordings/walter-contrasts-v1/walter/only-playable-move.opus',
+  './recordings/walter-contrasts-v1/walter/human-unusual-strong.opus',
 ], { query: '?url', import: 'default' });
 
 export const recordingAssets: Record<string, string> = Object.fromEntries(

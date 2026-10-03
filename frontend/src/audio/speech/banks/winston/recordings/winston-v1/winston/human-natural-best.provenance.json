@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "human-natural-best",
+      "label": "Human natural best",
+      "text": "A likely move for the human-move model, and the engine's best too. They're of one mind here."
+    },
+    "takeId": null
+  },
+  "requestHash": "52c92ba81d5f46fefd1477a89086a209e08abe8274f408c0d3b4d2565e4e3de6",
+  "recordedAt": "2026-10-02T02:28:45.379Z",
+  "sha256": "d1549482cb5f759edbd06a69b280863f8cb05354cd1b8394ded3e23b8ef6d6e4",
+  "bytes": 18414,
+  "requestId": "AnqbJoy45hv90DTXEPjf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0f7a2b3b415ecc1cb8109b444a4d9a57da2216fd2f8723756cb52667daf8d613",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -5,8 +5,8 @@ import DialogueText from "../dialogue/DialogueText";
 import {IconButton} from "../Button";
 import type {Report} from "./types";
 
-// The badge and popover are written only: coaches never speak a Maia reading
-// (see selectGameSpeech).
+// The badge and popover are written only. The bubble speaks a Maia reading
+// only when it is the ply's sole content (see selectGameSpeech).
 export default function HumanInsight({presentation, report}: {
   presentation: HumanInsightPresentation;
   report: Report;

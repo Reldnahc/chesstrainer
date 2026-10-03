@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "human-hard-find",
+      "label": "Human hard find",
+      "text": "Not an easy one to spot. The human-move model and the alternatives suggest this was a hard move to find. A nice shape to remember."
+    },
+    "takeId": null
+  },
+  "requestHash": "1a7d072c9989d1e73509bb1beda9db7d388a7eefff1602d7c97f59186653c1a4",
+  "recordedAt": "2026-10-02T02:42:25.874Z",
+  "sha256": "5371069ab592faea7479cb7837d9411df669267cad5dccdbbbfbe395f7c8dc91",
+  "bytes": 28803,
+  "requestId": "UskulEqarH3cC0gD27XR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ef284d09fd1a126d96e807d808dbe43353e10467740c8522a5b07a1a763b2e8f",
+    "bytes": 148419
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}
