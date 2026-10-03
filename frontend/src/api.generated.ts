@@ -3953,8 +3953,6 @@ export interface components {
             acceptance_mode: "best_only" | "engine_tolerance" | "practical" | "custom";
             /** Accounts Enabled */
             accounts_enabled: boolean;
-            /** Analysis Recent Games */
-            analysis_recent_games: number;
             /** Chesscom Max Response Bytes */
             chesscom_max_response_bytes: number;
             /** Chesscom Timeout Seconds */
@@ -4076,8 +4074,6 @@ export interface components {
             stockfish_workers: number;
             /** Sync Away Days */
             sync_away_days: number;
-            /** Sync Full Seconds */
-            sync_full_seconds: number;
             /** Sync Games */
             sync_games: number;
             /** Sync Interval Seconds */

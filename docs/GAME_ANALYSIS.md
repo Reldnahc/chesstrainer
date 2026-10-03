@@ -12,10 +12,11 @@ moves ([ANALYSIS_PIPELINE.md](ANALYSIS_PIPELINE.md)). Insights reads the review;
 Weaknesses and practice read the training decisions. A training failure marks
 the job failed, and retrying it reuses the cached review searches.
 
-`trainer.game_analysis.queue_library` runs after every sync, provider import and
-PGN upload. It gives the newest `ANALYSIS_RECENT_GAMES` (100) saved games (by play time) the fresh level and
-every other game without a job the backfill level. Queuing never lowers a queued
-job's level and never restarts a completed, failed or cancelled job.
+`trainer.game_analysis.queue_imported` runs after every sync, provider import and
+PGN upload. Games a poller sync brought in get the fresh level; games from a
+manual provider import or PGN upload, and any other saved game without a job, get
+the backfill level. Queuing never lowers a queued job's level and never restarts a
+completed, failed or cancelled job.
 
 ## Priority
 
@@ -24,8 +25,8 @@ job's level and never restarts a completed, failed or cancelled job.
 | Level | Value | Source |
 | --- | --- | --- |
 | Requested | 0 | The learner chose **Start game review**; also every non-game job. |
-| Fresh | 10 | One of the 100 most recently played games. |
-| Backfill | 20 | Any older game, typically from **Import older games** or a PGN upload. |
+| Fresh | 10 | Found by the poller. |
+| Backfill | 20 | **Import older games**, a PGN upload, or a saved game that never had a job. |
 
 Within a level, the most recently played game runs first. One analysis job runs
 per account at a time, so a requested game waits at most for the job already
@@ -38,8 +39,7 @@ The job runner's `sync-poller` thread runs a round every `SYNC_INTERVAL_SECONDS`
 interval is followed by the next immediately, so rounds never overlap. A round first asks each provider which saved
 connections changed, then queues a sync only for those. A sync reads the
 `SYNC_GAMES` (10) newest completed games of all time controls, regardless of month, and imports the
-ones not yet saved. Every connection also gets a full sync at least every
-`SYNC_FULL_SECONDS` (600 seconds), in case a change marker misses something.
+ones not yet saved.
 
 | Provider | Change check | Why it is safe every minute |
 | --- | --- | --- |

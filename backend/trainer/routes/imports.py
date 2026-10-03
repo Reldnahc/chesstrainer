@@ -10,7 +10,7 @@ from starlette.concurrency import run_in_threadpool
 from trainer.chesscom import ChessComRequest
 from trainer.contracts.common import JobStarted
 from trainer.contracts.jobs import PgnImportResult
-from trainer.game_analysis import queue_library
+from trainer.game_analysis import BACKFILL, queue_imported
 from trainer.game_providers import get_provider
 from trainer.game_providers.base import ProviderImportRequest
 from trainer.imports import import_games
@@ -54,7 +54,7 @@ def create_router(*, settings) -> APIRouter:
                     queue_analysis=False,
                 )
                 if result["imported"]:
-                    queue_library(db, settings)
+                    queue_imported(db, result["import_id"], BACKFILL)
                     db.commit()
                 return result
 

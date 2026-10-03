@@ -11,7 +11,7 @@ from sqlalchemy.orm import Session
 from trainer import presence
 from trainer.api import create_app
 from trainer.chesscom import ChessComClient
-from trainer.game_analysis import BACKFILL, FRESH, REQUESTED, queue_games, queue_library
+from trainer.game_analysis import BACKFILL, FRESH, REQUESTED, queue_games, queue_imported
 from trainer.game_providers.lichess import LichessClient
 from trainer.game_sync import poll
 from trainer.imports import import_games
@@ -23,6 +23,7 @@ from trainer.models import (
     Game,
     GameReview,
     GameReviewMove,
+    ImportGame,
     ProviderConnection,
     User,
 )
@@ -55,20 +56,21 @@ def claim_order(app):
     return order
 
 
-def test_newest_games_are_fresh_and_run_before_backfill_newest_first(settings):
-    settings.analysis_recent_games = 2
+def test_polled_games_run_before_imported_backfill_newest_first(settings):
     app = create_app(settings, workers=False)
     with TestClient(app):
         games = seed_games(app, 4)
         with app.state.sessions() as db:
-            assert queue_library(db, settings) == 4
+            # The poller found the two newest; the rest came from an older import.
+            assert queue_games(db, games[2:], FRESH) == 2
+            assert queue_imported(db, db.scalar(select(ImportGame.import_id)), BACKFILL) == 2
             db.commit()
             levels = {
                 review.game_id: db.get(AnalysisJob, review.job_id).priority
                 for review in db.scalars(select(GameReview))
             }
             # Queuing again creates nothing new.
-            assert queue_library(db, settings) == 0
+            assert queue_imported(db, db.scalar(select(ImportGame.import_id)), BACKFILL) == 0
         assert levels == {games[3]: FRESH, games[2]: FRESH, games[1]: BACKFILL, games[0]: BACKFILL}
         assert claim_order(app) == list(reversed(games))
 
@@ -142,8 +144,13 @@ def test_poller_syncs_only_connections_whose_provider_reports_a_change(settings,
         poll(runner, ["local"])
         assert FakeClient.calls == [] and syncs(app) == {}
         connect(app, ("chesscom", "learner"), ("lichess", "learner2"))
-        # First round: nothing synced yet, so the periodic full sync is due for both.
+        # A new connection has no saved marker, so the providers report a change.
+        FakeClient.answers = {
+            "learner": (True, {"etag": "same"}),
+            "learner2": (True, {"etag": "same"}),
+        }
         poll(runner, ["local"])
+        FakeClient.answers = {}
         assert syncs(app) == {
             ("chesscom", "learner"): ("queued", 10, 0),
             ("lichess", "learner2"): ("queued", 10, 0),
@@ -209,7 +216,7 @@ def test_game_analysis_runs_review_and_training_in_one_job(settings, stockfish_p
                 None,
                 queue_analysis=False,
             )
-            queue_library(db, settings)
+            queue_imported(db, db.scalar(select(ImportGame.import_id)), FRESH)
             db.commit()
         job = app.state.runner.claim()
         app.state.runner.run_job(job)

@@ -117,7 +117,6 @@ def poll(runner, owners):
 def detect(runner, provider, users):
     if time.monotonic() < runner.provider_retry_at.get(provider, 0):
         return {}
-    now = time.time()
     states = {name: owned[0][1] for name, owned in users.items()}
     with runner.provider_lock:
         client = runner.provider_factories[provider](runner.settings)
@@ -128,14 +127,7 @@ def detect(runner, provider, users):
             raise
         finally:
             client.close()
-    changes = {}
-    for name, (changed, state) in results.items():
-        # A periodic full sync catches anything a change marker can miss.
-        full = runner.settings.sync_full_seconds
-        due = bool(full) and now - states[name].get("synced_at", 0) >= full
-        state = dict(state, synced_at=now if changed or due else states[name].get("synced_at", 0))
-        changes[name] = (changed or due, state)
-    return changes
+    return results
 
 
 def record(runner, owner, provider, state, changed):

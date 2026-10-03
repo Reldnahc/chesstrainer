@@ -5,7 +5,7 @@ import time
 
 from sqlalchemy import select
 
-from trainer.game_analysis import queue_library
+from trainer.game_analysis import BACKFILL, FRESH, queue_imported
 from trainer.game_providers.base import ImportCancelled, ProviderError, ProviderRateLimited
 from trainer.game_providers.ingest import fetch_import
 from trainer.models import AnalysisJob, Game, GameReview, ImportGame, ProviderImport
@@ -77,8 +77,10 @@ class JobExecution:
                         self.finish_cancel(job_id)
                     else:
                         with self.import_lock, self.sessions() as db:
-                            db.get(AnalysisJob, job_id).status = "completed"
-                            queue_library(db, self.settings)
+                            job = db.get(AnalysisJob, job_id)
+                            job.status = "completed"
+                            # Poller finds are fresh; manual imports of older games backfill.
+                            queue_imported(db, job.import_id, FRESH if kind == "sync" else BACKFILL)
                             db.commit()
                     return
             with self.sessions() as db:

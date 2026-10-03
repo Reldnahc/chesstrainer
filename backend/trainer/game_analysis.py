@@ -2,10 +2,10 @@
 
 from sqlalchemy import select
 
-from trainer.models import AnalysisJob, Game, GameReview
+from trainer.models import AnalysisJob, Game, GameReview, ImportGame
 
-# Lower runs sooner. A game the learner opens beats the poller's fresh games,
-# which beat older games brought in by a manual import.
+# Lower runs sooner. A game the learner opens beats games the poller found,
+# which beat older games brought in by a manual or PGN import.
 REQUESTED, FRESH, BACKFILL = 0, 10, 20
 DEFAULT_RATING = 1000
 
@@ -32,21 +32,20 @@ def queue_games(db, game_ids, priority):
     return created
 
 
-def recent_game_ids(db, limit):
-    return db.scalars(
-        select(Game.id).order_by(Game.played_at.desc().nulls_last(), Game.id).limit(limit)
-    ).all()
-
-
-def unanalyzed_game_ids(db):
-    return db.scalars(
+def unanalyzed_game_ids(db, import_id=None):
+    query = (
         select(Game.id)
         .outerjoin(GameReview, GameReview.game_id == Game.id)
         .where(GameReview.game_id.is_(None))
-    ).all()
+    )
+    if import_id is not None:
+        query = query.join(ImportGame, ImportGame.game_id == Game.id).where(
+            ImportGame.import_id == import_id
+        )
+    return db.scalars(query).all()
 
 
-def queue_library(db, settings):
-    """Fresh priority for the newest games, backfill for everything else."""
-    created = queue_games(db, recent_game_ids(db, settings.analysis_recent_games), FRESH)
+def queue_imported(db, import_id, priority):
+    """Queue an import's unanalyzed games, then any other saved game as backfill."""
+    created = queue_games(db, unanalyzed_game_ids(db, import_id), priority)
     return created + queue_games(db, unanalyzed_game_ids(db), BACKFILL)

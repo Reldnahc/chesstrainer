@@ -122,7 +122,7 @@ Chess.com's published API is cached; a check does not guarantee immediate
 availability after a game.
 
 Manual imports fetch older games; there is no analysis choice. Their games join
-the same queue behind the newest 100. Opening a game and choosing **Start game
+the same queue behind games the poller found. Opening a game and choosing **Start game
 review** moves its job to the front. **Find training mistakes** still queues
 training alone for one game. Interactive exploration still analyzes the position
 you visit. The HTTP import APIs ignore the former `analyze` field.

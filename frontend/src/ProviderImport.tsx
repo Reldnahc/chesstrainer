@@ -193,7 +193,7 @@ export function ProviderImportForm({
         <p className="small">
           Newest unsaved games first within your filters. Saved games do not use
           up the limit or get analyzed again. Every imported game is analyzed in
-          the background, after your 100 most recent games. Includes rated and unrated
+          the background, after your new games. Includes rated and unrated
           standard chess; recently finished games may take time to appear.
         </p>
         <p className="small">
