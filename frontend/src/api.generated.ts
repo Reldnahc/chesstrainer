@@ -824,6 +824,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/puzzles/generate": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Generate
+         * @description Queue one bounded search of analyzed games not yet mined for puzzles.
+         */
+        post: operations["generate_api_puzzles_generate_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/puzzles/next": {
         parameters: {
             query?: never;
@@ -2474,6 +2494,11 @@ export interface components {
             /** Probe Total */
             probe_total: number | null;
             provider_import?: components["schemas"]["ChessComImportProgress"] | null;
+            /**
+             * Puzzles Found
+             * @default 0
+             */
+            puzzles_found: number;
             /** Status */
             status: string;
             /** User Id */
@@ -3266,6 +3291,30 @@ export interface components {
             /** Uci */
             uci: string;
         };
+        /**
+         * PuzzleGeneration
+         * @description Where the account's own-game puzzles stand; counts, never a mastery claim.
+         */
+        PuzzleGeneration: {
+            /** Analyzed Games */
+            analyzed_games: number;
+            /** Automatic */
+            automatic: boolean;
+            /** Candidates */
+            candidates: number;
+            /** Job Status */
+            job_status: ("queued" | "running") | null;
+            /** Kept */
+            kept: number;
+            /** Last Searched At */
+            last_searched_at: string | null;
+            /** Puzzles */
+            puzzles: number;
+            /** Searched Games */
+            searched_games: number;
+            /** Unsearched Games */
+            unsearched_games: number;
+        };
         /** PuzzleKey */
         PuzzleKey: {
             /** Key */
@@ -3279,6 +3328,7 @@ export interface components {
         PuzzleLibrary: {
             /** Available */
             available: number;
+            generation: components["schemas"]["PuzzleGeneration"];
             /** Resume */
             resume: components["schemas"]["PuzzleResume"][];
             /** Retry Available */
@@ -4044,6 +4094,16 @@ export interface components {
             provider_max_scan_games: number;
             /** Provider Timeout Seconds */
             provider_timeout_seconds: number;
+            /** Puzzle Generation */
+            puzzle_generation: boolean;
+            /** Puzzle Generation Depth */
+            puzzle_generation_depth: number;
+            /** Puzzle Generation Games */
+            puzzle_generation_games: number;
+            /** Puzzle Generation Max Plies */
+            puzzle_generation_max_plies: number;
+            /** Puzzle Generation Time */
+            puzzle_generation_time: number;
             /** Puzzle Pack Path */
             puzzle_pack_path: string | null;
             /** Puzzle Starter Pack */
@@ -5715,6 +5775,26 @@ export interface operations {
             };
         };
     };
+    generate_api_puzzles_generate_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            202: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["JobCreated"];
+                };
+            };
+        };
+    };
     next_puzzle_api_puzzles_next_get: {
         parameters: {
             query?: {
@@ -5722,6 +5802,7 @@ export interface operations {
                 min_rating?: number | null;
                 max_rating?: number | null;
                 theme?: string | null;
+                goal?: ("mate" | "material") | null;
                 mode?: "new" | "retry";
             };
             header?: never;

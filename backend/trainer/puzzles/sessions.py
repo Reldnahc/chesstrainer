@@ -17,6 +17,7 @@ from trainer.contracts.puzzles import (
 )
 from trainer.models import PuzzleAttempt, PuzzleSession, now
 from trainer.puzzles.definitions import PuzzleDefinition
+from trainer.puzzles.generation import generation_status
 
 
 def require_session(db, session_id):
@@ -102,6 +103,8 @@ def _matches(definition, query):
         return False
     if query.theme is not None and query.theme not in definition.themes:
         return False
+    if query.goal is not None and ("mate" in definition.themes) != (query.goal == "mate"):
+        return False
     if query.min_rating is not None or query.max_rating is not None:
         if definition.rating is None:
             return False
@@ -112,7 +115,7 @@ def _matches(definition, query):
     return True
 
 
-def library(db, providers):
+def library(db, providers, settings=None):
     sources, themes = {}, {}
     latest, _ = _history(db)
     # Installed puzzles with any solved attempt, including after a mistake.
@@ -199,6 +202,9 @@ def library(db, providers):
             "failed_then_solved": failed,
             "revealed": counts.get(("revealed", False), 0) + counts.get(("revealed", True), 0),
         },
+        "generation": generation_status(
+            db, automatic=bool(settings is not None and settings.puzzle_generation)
+        ),
     }
 
 

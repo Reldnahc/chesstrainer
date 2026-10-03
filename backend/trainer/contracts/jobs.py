@@ -62,6 +62,7 @@ class Job(Contract):
     deep_completed: int
     mistakes_identified: int
     classifications_completed: int
+    puzzles_found: int = 0
     cancel_requested: bool
     error: str | None
     created_at: datetime

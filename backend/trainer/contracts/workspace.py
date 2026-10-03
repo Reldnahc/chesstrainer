@@ -87,6 +87,11 @@ class WorkspaceSettings(EngineHealth):
     provider_max_scan_games: int
     puzzle_starter_pack: bool
     puzzle_pack_path: str | None
+    puzzle_generation: bool
+    puzzle_generation_depth: int
+    puzzle_generation_time: float
+    puzzle_generation_max_plies: int
+    puzzle_generation_games: int
     lan_token_configured: bool
     coverage: Coverage
     classification_provider: str
