@@ -65,7 +65,26 @@ class Job(Contract):
     cancel_requested: bool
     error: str | None
     created_at: datetime
+    priority: int = 0
     probe_total: int | None
     activity: JobActivity | None
     chesscom: ChessComImportProgress | None
     provider_import: ChessComImportProgress | None = None
+
+
+class AnalysisQueueGame(Contract):
+    id: str
+    white: str
+    black: str
+    played_at: datetime | None
+
+
+class AnalysisQueue(Contract):
+    """Per-game analysis: one job per saved game, run one at a time per account."""
+
+    running: AnalysisQueueGame | None
+    requested: int
+    fresh: int
+    backfill: int
+    completed: int
+    failed: int

@@ -262,15 +262,12 @@ test('editing, polling and switching an open source preserve the shell without r
     await expect(draft).toBeEnabled();
     const value = source === 'pgn' ? '[White "Draft"]\n\n1. d4 d5 *' : 'Unfinished_Draft';
     await draft.fill(value);
-    const analyze = form.getByRole('checkbox', {name: 'Also analyze these games for training', exact: true});
-    await analyze.check();
     await draft.focus();
     state.jobs = [job(2)];
     await expect(page.locator('.job-history summary')).toContainText('2 / 2 games · 4 decisions');
     expect(await original!.evaluate(element => element === document.querySelector('.import-form form'))).toBe(true);
     await expect(draft).toHaveValue(value);
     await expect(draft).toBeFocused();
-    await expect(analyze).toBeChecked();
     expect(await layoutTrace(page)).toMatchObject({starts: 1, ends: 1});
     const other = source === 'pgn' ? 'chesscom' : 'pgn';
     await openImport(page, other);
@@ -308,7 +305,6 @@ test('reversing a collapse preserves the draft and focus, while source and motio
     await expect(draft).toBeEnabled();
     const value = source === 'pgn' ? '[White "Retained"]\n\n1. e4 e5 *' : 'Retained_Draft';
     await draft.fill(value);
-    await form.getByRole('checkbox', {name: 'Also analyze these games for training', exact: true}).check();
     await page.getByRole('button', {name: 'Close import form', exact: true}).click();
     await pausedLayout(page, 2);
     await seekLayout(page, 0.5);
@@ -320,7 +316,6 @@ test('reversing a collapse preserves the draft and focus, while source and motio
     await expect(wrapper).not.toHaveAttribute('data-closing');
     await expect(wrapper).toBeFocused();
     await expect(draft).toHaveValue(value);
-    await expect(form.getByRole('checkbox', {name: 'Also analyze these games for training', exact: true})).toBeChecked();
     expect(await original!.evaluate(element => element === document.querySelector('.import-form form'))).toBe(true);
     expect((await layoutTrace(page)).states[1]).toBe('idle');
 

@@ -84,7 +84,7 @@ export default function Onboarding({ onComplete }: { onComplete: (user: Schema["
             <li>Enter the player name used in the game, or select your side, then import. Open it from <strong>Games</strong> to review.</li>
           </ol>
         </>}
-        <p className="small">Importing saves your games without engine analysis. Review a game when you’re ready, or enable training analysis during import.</p>
+        <p className="small">Fieldwork checks for new games every minute and analyzes each one in the background, newest first.</p>
         <div className="onboarding-actions">
           <Button variant="primary" disabled={busy} onClick={() => finish(true)}>{busy ? "Finishing…" : "Open imports"}</Button>
           <Button disabled={busy} onClick={() => finish(false)}>Finish for now</Button>

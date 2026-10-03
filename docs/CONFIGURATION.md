@@ -16,7 +16,11 @@ status is returned.
 | SERVER_HOST / SERVER_PORT | 127.0.0.1 / 8000 |
 | DATABASE_PATH | data/trainer.sqlite3 |
 | STOCKFISH_PATH | stockfish |
-| STOCKFISH_THREADS / STOCKFISH_HASH_MB / STOCKFISH_WORKERS | 1 / 64 MB / 1; workers 1..4 |
+| STOCKFISH_THREADS / STOCKFISH_HASH_MB / STOCKFISH_WORKERS | 1 / 64 MB / 1; workers 1..16 (reviews also cap at ENGINE_SLOTS) |
+| SYNC_INTERVAL_SECONDS | 60; seconds from the start of one server polling round (change checks, then syncs for changed connections) to the next, 0 disables polling. A longer round starts the next one immediately. |
+| SYNC_GAMES | 10 (1..1000); newest games a sync reads once a provider reports a change |
+| SYNC_LICHESS_BATCH | 300 (1..300); Lichess players per change-check request |
+| SYNC_AWAY_DAYS | 7 (1..365); days without a visit before polling pauses and a welcome back is shown |
 | HUMAN_MODEL_ENABLED | true; inference only when explicitly installed/cached |
 | HUMAN_MODEL_PATH | data/models/maia3-79m.pt; /data/models/maia3-79m.pt in Docker |
 | HUMAN_MODEL_DEVICE | cpu; optional administrator-provided cuda runtime |
@@ -63,7 +67,7 @@ Full-game reviews use STOCKFISH_WORKERS for parallel moves within the selected
 game, and then for parallel refinement questions, capped by ENGINE_SLOTS. Results are saved in move order so comparisons with
 the preceding move remain correct. Account mode additionally enforces the shared
 host-wide engine pool. The default of one worker remains serial; hosts with spare
-CPU capacity can increase it to 2–4 without lowering the review's search limits.
+CPU capacity can increase it (up to 16, with ENGINE_SLOTS raised to match) without lowering the review's search limits.
 
 Missing Stockfish produces an actionable status without preventing UI startup. New analysis and unlisted engine answers need the executable. Existing stored answers and saved-evidence classification remain usable.
 

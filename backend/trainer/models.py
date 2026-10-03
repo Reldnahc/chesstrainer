@@ -33,6 +33,9 @@ class User(Base):
     chesscom_username: Mapped[str] = mapped_column(default="")
     onboarding_completed: Mapped[bool] = mapped_column(default=False, server_default="0")
     created: Mapped[float]
+    # Polling pauses after a week without requests; see trainer.presence.
+    last_seen_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    away_since: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
 
 
 class AuthSession(Base):
@@ -107,6 +110,8 @@ class AnalysisJob(Owned, Base):
     cancel_requested: Mapped[bool] = mapped_column(default=False)
     error: Mapped[str | None] = mapped_column(Text)
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), default=now)
+    # Lower runs sooner; see trainer.game_analysis for the per-game levels.
+    priority: Mapped[int] = mapped_column(default=0, server_default="0")
 
 
 class ProviderImport(Owned, Base):
@@ -148,6 +153,8 @@ class ProviderConnection(Owned, Base):
     user_id: Mapped[str] = mapped_column(ForeignKey("users.id"), primary_key=True)
     provider: Mapped[str] = mapped_column(primary_key=True)
     username: Mapped[str]
+    # Provider change markers (archive ETag, game-count signature) for cheap polls.
+    poll_state: Mapped[dict] = mapped_column(JSON, default=dict, server_default="{}")
 
 
 class EngineAnalysis(Base):

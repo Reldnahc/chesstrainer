@@ -54,6 +54,7 @@ Whole-game review and training analysis are separately requested from the game.
 | puzzles/ / routes/puzzles.py | Versioned provider definitions, hash-pinned local Lichess-layout packs (bundled starter pack plus optional installed pack), preference-aware selection, private session snapshots and atomic multi-move practice; no engine, network or scheduler dependency |
 | routes/games.py | Game library, saved both-color reports, review jobs and history-preserving variation analysis |
 | routes/insights.py, game_insights.py | Read-only library insights recomputed from saved PGNs and completed reviews; see [Insights](INSIGHTS.md) |
+| game_analysis.py, game_sync.py | One analysis job per saved game with requested/fresh/backfill priority, and the server-side connection poller; see [Automatic game analysis](GAME_ANALYSIS.md) |
 | routes/classification.py | Saved classification/enrichment jobs, weaknesses, evidence and classification audits |
 | routes/compatibility.py | Course/lesson/repertoire tombstones, historical teaching audits and retained manual exercise creation |
 | contracts/ | Explicit HTTP response schemas grouped by endpoint domain; reused chess evidence types retain their original owners |

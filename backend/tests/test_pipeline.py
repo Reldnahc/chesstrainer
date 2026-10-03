@@ -73,7 +73,7 @@ def test_real_engine_vertical_slice_and_persistence(settings, sessions, stockfis
             game = db.scalar(select(Game))
             meaningful = []
             for ply, board, move in learner_decisions(game):
-                decision = analyze_decision(db, engine, settings, game, ply, board, move)
+                decision = analyze_decision(db, lambda: engine, settings, game, ply, board, move)
                 if decision.meaningful:
                     meaningful.append(decision)
                     assert classify_decision(db, decision, LocalClassifier(settings), settings)

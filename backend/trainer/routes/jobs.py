@@ -4,9 +4,10 @@ from fastapi import APIRouter, HTTPException
 from sqlalchemy import func, select
 
 from trainer.contracts.common import JobStatus
-from trainer.contracts.jobs import Job
+from trainer.contracts.jobs import AnalysisQueue, Job
+from trainer.game_analysis import BACKFILL, FRESH, REQUESTED
 from trainer.game_providers import get_provider
-from trainer.models import AnalysisJob, ClassificationTask, ProviderImport
+from trainer.models import AnalysisJob, ClassificationTask, Game, GameReview, ProviderImport
 from trainer.workspaces import CurrentWorkspace
 
 
@@ -16,8 +17,12 @@ def create_router(*, runner) -> APIRouter:
     @router.get("/api/jobs", response_model=list[Job], response_model_exclude_unset=True)
     def jobs(workspace: CurrentWorkspace):
         with workspace.sessions() as db:
+            # Per-game analysis has its own summary below; it would crowd out imports here.
             rows = db.scalars(
-                select(AnalysisJob).order_by(AnalysisJob.created_at.desc()).limit(50)
+                select(AnalysisJob)
+                .where(AnalysisJob.kind != "game_review")
+                .order_by(AnalysisJob.created_at.desc())
+                .limit(50)
             ).all()
             sources = {
                 source.job_id: source
@@ -54,6 +59,47 @@ def create_router(*, runner) -> APIRouter:
                 }
                 for row in rows
             ]
+
+    @router.get("/api/analysis/queue", response_model=AnalysisQueue)
+    def analysis_queue(workspace: CurrentWorkspace):
+        with workspace.sessions() as db:
+            counts = {
+                (status, priority): count
+                for status, priority, count in db.execute(
+                    select(AnalysisJob.status, AnalysisJob.priority, func.count())
+                    .where(AnalysisJob.kind == "game_review")
+                    .group_by(AnalysisJob.status, AnalysisJob.priority)
+                )
+            }
+            running = db.scalar(
+                select(Game)
+                .join(GameReview, GameReview.game_id == Game.id)
+                .join(AnalysisJob, AnalysisJob.id == GameReview.job_id)
+                .where(AnalysisJob.status == "running")
+            )
+
+            def total(status, level=None):
+                return sum(
+                    count
+                    for (state, priority), count in counts.items()
+                    if state == status and (level is None or priority == level)
+                )
+
+            return {
+                "running": {
+                    "id": running.id,
+                    "white": running.white,
+                    "black": running.black,
+                    "played_at": running.played_at,
+                }
+                if running
+                else None,
+                "requested": total("queued", REQUESTED),
+                "fresh": total("queued", FRESH),
+                "backfill": total("queued", BACKFILL),
+                "completed": total("completed"),
+                "failed": total("failed"),
+            }
 
     @router.post(
         "/api/jobs/{job_id}/cancel", response_model=JobStatus, response_model_exclude_unset=True

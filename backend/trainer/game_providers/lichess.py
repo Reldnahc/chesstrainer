@@ -32,6 +32,43 @@ class LichessClient:
     def close(self):
         self.client.close()
 
+    def changed(self, usernames, states):
+        """One request per SYNC_LICHESS_BATCH players (300 by default): compare game counts and total play time.
+
+        Lichess asks for one request at a time; its users endpoint takes many
+        ids, so a whole polling round costs a single call for most hosts.
+        Returns {username: (changed, new_state)}.
+        """
+        results = {}
+        names = list(usernames)
+        batch = self.settings.sync_lichess_batch
+        for start in range(0, len(names), batch):
+            chunk = names[start : start + batch]
+            response = self.client.post(
+                "https://lichess.org/api/users",
+                content=",".join(chunk),
+                headers={"Content-Type": "text/plain", "Accept": "application/json"},
+            )
+            if response.status_code == 429:
+                raise ProviderRateLimited(
+                    "Lichess is rate limiting requests. Wait at least a minute."
+                )
+            if response.status_code != 200:
+                raise ProviderError(f"Lichess returned HTTP {response.status_code}. Retry later.")
+            found = {
+                user.get("id", "").casefold(): signature(user)
+                for user in response.json()
+                if isinstance(user, dict)
+            }
+            for name in chunk:
+                current = found.get(name.casefold())
+                previous = (states.get(name) or {}).get("signature")
+                results[name] = (
+                    current is not None and current != previous,
+                    {"signature": current},
+                )
+        return results
+
     def batches(self, request, anchor, cancelled, completed=frozenset()):
         if not re.fullmatch(r"[a-z0-9_-]{1,50}", request.username):
             raise ProviderError("Invalid Lichess username.")
@@ -197,3 +234,14 @@ class LichessClient:
             raise ProviderError(
                 "Lichess returned an invalid game record. Retry later; saved games are retained."
             ) from exc
+
+
+def signature(user):
+    """Changes whenever a game finishes: per-speed counts plus total play time."""
+    perfs = user.get("perfs") or {}
+    counts = {
+        name: perf.get("games")
+        for name, perf in sorted(perfs.items())
+        if isinstance(perf, dict) and "games" in perf
+    }
+    return {"games": counts, "play_time": (user.get("playTime") or {}).get("total")}

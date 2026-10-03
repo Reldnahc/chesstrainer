@@ -14,6 +14,7 @@ from trainer.game_providers.base import (
     ProviderBatch,
     ProviderError,
     ProviderImportRequest,
+    ProviderRateLimited,
 )
 
 BASE_URL = "https://api.chess.com/pub/player/"
@@ -38,6 +39,36 @@ class ChessComClient:
 
     def close(self):
         self.client.close()
+
+    def changed(self, usernames, states):
+        """Poll each player's current-month archive with its saved ETag.
+
+        Chess.com has no multi-player endpoint, but serial requests are never
+        rate limited and an unchanged archive answers 304 with no body.
+        Returns {username: (changed, new_state)}.
+        """
+        month = datetime.now(timezone.utc).strftime("%Y/%m")
+        results = {}
+        for name in usernames:
+            state = states.get(name) or {}
+            url = f"https://api.chess.com/pub/player/{name}/games/{month}"
+            headers = {}
+            if state.get("url") == url and state.get("etag"):
+                headers["If-None-Match"] = state["etag"]
+            response = self.client.get(url, headers=headers)
+            if response.status_code == 429:
+                raise ProviderRateLimited("Chess.com is rate limiting requests.")
+            if response.status_code == 304:
+                results[name] = (False, state)
+            elif response.status_code == 200:
+                etag = response.headers.get("ETag")
+                results[name] = (state.get("etag") != etag or not etag, {"url": url, "etag": etag})
+            elif response.status_code in {404, 410}:
+                # No games yet this month: nothing new to fetch.
+                results[name] = (False, {"url": url, "etag": None})
+            else:
+                raise ChessComError(f"Chess.com returned HTTP {response.status_code}. Retry later.")
+        return results
 
     @staticmethod
     def check_cancel(cancelled):

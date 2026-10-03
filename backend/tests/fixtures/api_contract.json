@@ -72,6 +72,89 @@
         "title": "AccountProfile",
         "type": "object"
       },
+      "AnalysisQueue": {
+        "additionalProperties": false,
+        "description": "Per-game analysis: one job per saved game, run one at a time per account.",
+        "properties": {
+          "backfill": {
+            "title": "Backfill",
+            "type": "integer"
+          },
+          "completed": {
+            "title": "Completed",
+            "type": "integer"
+          },
+          "failed": {
+            "title": "Failed",
+            "type": "integer"
+          },
+          "fresh": {
+            "title": "Fresh",
+            "type": "integer"
+          },
+          "requested": {
+            "title": "Requested",
+            "type": "integer"
+          },
+          "running": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AnalysisQueueGame"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "running",
+          "requested",
+          "fresh",
+          "backfill",
+          "completed",
+          "failed"
+        ],
+        "title": "AnalysisQueue",
+        "type": "object"
+      },
+      "AnalysisQueueGame": {
+        "additionalProperties": false,
+        "properties": {
+          "black": {
+            "title": "Black",
+            "type": "string"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "played_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Played At"
+          },
+          "white": {
+            "title": "White",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "white",
+          "black",
+          "played_at"
+        ],
+        "title": "AnalysisQueueGame",
+        "type": "object"
+      },
       "ApiError": {
         "additionalProperties": false,
         "properties": {
@@ -217,11 +300,6 @@
       },
       "Body_upload_pgn_api_imports_post": {
         "properties": {
-          "analyze": {
-            "default": true,
-            "title": "Analyze",
-            "type": "boolean"
-          },
           "file": {
             "contentMediaType": "application/octet-stream",
             "title": "File",
@@ -466,11 +544,6 @@
       },
       "ChessComRequest": {
         "properties": {
-          "analyze": {
-            "default": true,
-            "title": "Analyze",
-            "type": "boolean"
-          },
           "end_date": {
             "anyOf": [
               {
@@ -3976,6 +4049,11 @@
             "title": "Positions Triaged",
             "type": "integer"
           },
+          "priority": {
+            "default": 0,
+            "title": "Priority",
+            "type": "integer"
+          },
           "probe_total": {
             "anyOf": [
               {
@@ -6190,11 +6268,6 @@
       },
       "ProviderImportRequest": {
         "properties": {
-          "analyze": {
-            "default": true,
-            "title": "Analyze",
-            "type": "boolean"
-          },
           "end_date": {
             "anyOf": [
               {
@@ -8528,6 +8601,29 @@
         "title": "Weaknesses",
         "type": "object"
       },
+      "WelcomeBack": {
+        "additionalProperties": false,
+        "description": "Set when the learner returns after a week away; polling paused meanwhile.",
+        "properties": {
+          "away_since": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Away Since"
+          }
+        },
+        "required": [
+          "away_since"
+        ],
+        "title": "WelcomeBack",
+        "type": "object"
+      },
       "WorkerActivity": {
         "additionalProperties": false,
         "properties": {
@@ -8835,6 +8931,22 @@
             "title": "Stockfish Workers",
             "type": "integer"
           },
+          "sync_away_days": {
+            "title": "Sync Away Days",
+            "type": "integer"
+          },
+          "sync_games": {
+            "title": "Sync Games",
+            "type": "integer"
+          },
+          "sync_interval_seconds": {
+            "title": "Sync Interval Seconds",
+            "type": "integer"
+          },
+          "sync_lichess_batch": {
+            "title": "Sync Lichess Batch",
+            "type": "integer"
+          },
           "target_rating": {
             "title": "Target Rating",
             "type": "integer"
@@ -8886,6 +8998,10 @@
           "stockfish_threads",
           "stockfish_hash_mb",
           "stockfish_workers",
+          "sync_interval_seconds",
+          "sync_games",
+          "sync_lichess_batch",
+          "sync_away_days",
           "triage_depth",
           "triage_time",
           "triage_nodes",
@@ -8940,6 +9056,24 @@
   },
   "openapi": "3.1.0",
   "paths": {
+    "/api/analysis/queue": {
+      "get": {
+        "operationId": "analysis_queue_api_analysis_queue_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AnalysisQueue"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Analysis Queue"
+      }
+    },
     "/api/auth/login": {
       "post": {
         "operationId": "login_api_auth_login_post",
@@ -11752,6 +11886,42 @@
           }
         },
         "summary": "Weaknesses"
+      }
+    },
+    "/api/welcome-back": {
+      "get": {
+        "operationId": "get_welcome_back_api_welcome_back_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WelcomeBack"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Get Welcome Back"
+      }
+    },
+    "/api/welcome-back/dismiss": {
+      "post": {
+        "operationId": "post_welcome_back_api_welcome_back_dismiss_post",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WelcomeBack"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Post Welcome Back"
       }
     }
   }

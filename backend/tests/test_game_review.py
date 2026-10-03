@@ -9,7 +9,7 @@ from trainer.api import create_app
 from trainer.chess_core import Score
 from trainer.game_review import analyze_move, classify
 from trainer.imports import import_games
-from trainer.models import AnalysisJob, Decision, Exercise, Game, GameReviewMove, Review
+from trainer.models import AnalysisJob, Decision, Game, GameReviewMove, Review
 
 
 def quality(best=0, actual=0, **changes):
@@ -159,7 +159,7 @@ def test_library_variations_special_moves_and_missing_engine(settings):
 
 @pytest.mark.stockfish
 @pytest.mark.parametrize("workers", [1, 3])
-def test_full_game_native_analysis_resume_restart_and_training_isolation(
+def test_full_game_native_analysis_resume_restart_and_training_decisions(
     settings, stockfish_path, monkeypatch, workers
 ):
     settings.stockfish_path = stockfish_path
@@ -234,8 +234,9 @@ def test_full_game_native_analysis_resume_restart_and_training_isolation(
         assert client.get(f"/api/games/{game}").json()["accuracy"] == detail["accuracy"]
         assert client.get(f"/api/games/{game}").json()["context"] == detail["context"]
         with app.state.sessions() as db:
-            for model in (Decision, Exercise, Review):
-                assert db.scalar(select(func.count()).select_from(model)) == 0
+            # The same job adds training decisions for the learner's moves; no recall yet.
+            assert db.scalar(select(func.count()).select_from(Decision)) == 2
+            assert db.scalar(select(func.count()).select_from(Review)) == 0
             assert db.scalar(select(func.count()).select_from(GameReviewMove)) == 4
         app.state.runner.run_job(job)  # Completed reports are reused, not duplicated.
         assert client.get(f"/api/games/{game}").json()["job"]["completed"] == 4
@@ -413,6 +414,8 @@ def test_parallel_review_preserves_order_history_and_engine_budget(settings, mon
 
     monkeypatch.setattr("trainer.game_review.analyze_move", analyze)
     app.state.runner.engine_factory = Engine
+    # These fakes only answer review searches; training has its own coverage.
+    monkeypatch.setattr("trainer.job_execution.JobExecution.train", lambda *_args: None)
     with TestClient(app) as client:
         game = seed(app)
         job_id = client.post(f"/api/games/{game}/review", json={}).json()["job_id"]
@@ -461,6 +464,8 @@ def test_parallel_review_failure_keeps_committed_work_and_closes_engines(setting
 
     monkeypatch.setattr("trainer.game_review.analyze_move", analyze)
     app.state.runner.engine_factory = Engine
+    # These fakes only answer review searches; training has its own coverage.
+    monkeypatch.setattr("trainer.job_execution.JobExecution.train", lambda *_args: None)
     with TestClient(app) as client:
         game = seed(app)
         job_id = client.post(f"/api/games/{game}/review", json={}).json()["job_id"]

@@ -6,10 +6,11 @@ from sqlalchemy import func, select
 from test_accounts import ORIGIN, signup
 from trainer.api import create_app
 from trainer.chesscom import ChessComClient
+from trainer.game_analysis import FRESH, REQUESTED
 from trainer.models import AnalysisJob, ChessComImport, EngineAnalysis, Game, ImportBatch
 
 
-def test_sync_fetches_recent_games_without_engine_and_preserves_explicit_analysis(settings):
+def test_sync_fetches_recent_games_and_queues_fresh_analysis_without_running_engine(settings):
     settings.accounts_enabled = True
     settings.public_origin = "http://testserver"
     settings.session_secure = False
@@ -68,19 +69,25 @@ def test_sync_fetches_recent_games_without_engine_and_preserves_explicit_analysi
         app.state.runner.run_job(job["job_id"])
         result = client.get("/api/games").json()
         assert result["total"] == 2
-        assert all(item["status"] == "not_started" for item in result["items"])
+        # Every fetched game queues one analysis job; fetching itself never searches.
+        assert all(item["status"] == "queued" for item in result["items"])
         with sessions() as db:
             assert db.scalar(select(func.count()).select_from(EngineAnalysis)) == 0
+            queued = db.scalars(select(AnalysisJob).where(AnalysisJob.kind == "game_review")).all()
+            assert len(queued) == 2 and {job.priority for job in queued} == {FRESH}
             assert db.scalar(select(ImportBatch)).original_pgn == ""
             assert '[Round "0"]' in db.get(Game, result["items"][0]["id"]).pgn
             db.get(AnalysisJob, job["job_id"]).created_at = current - timedelta(minutes=2)
             db.commit()
         client.post("/api/sync", headers=headers)
+        with sessions() as db:
+            db.get(ChessComImport, job["job_id"]).max_games = 2
+            db.commit()
         app.state.runner.run_job(job["job_id"])
         assert client.get("/api/games").json()["total"] == 2  # No creeping backfill of old games.
         assert len(calls) == 4
         with sessions() as db:
-            assert db.scalar(select(func.count()).select_from(AnalysisJob)) == 1
+            assert db.scalar(select(func.count()).select_from(AnalysisJob)) == 3
         # A game fetched earlier remains eligible for explicit training analysis.
         selected = result["items"][0]["id"]
         training = client.post(f"/api/games/{selected}/train", headers=headers)
@@ -89,13 +96,13 @@ def test_sync_fetches_recent_games_without_engine_and_preserves_explicit_analysi
         assert (
             client.post(f"/api/games/{selected}/train", headers=headers).json() == training.json()
         )
-        assert (
-            client.post(f"/api/games/{selected}/review", json={}, headers=headers).status_code
-            == 200
-        )
+        review = client.post(f"/api/games/{selected}/review", json={}, headers=headers)
+        assert review.status_code == 200
+        with sessions() as db:
+            assert db.get(AnalysisJob, review.json()["job_id"]).priority == REQUESTED
 
 
-def test_fetch_only_upload_and_chesscom_requests(settings):
+def test_uploads_and_imports_fetch_then_queue_backfill_analysis(settings):
     with TestClient(create_app(settings, workers=False)) as client:
         response = client.post(
             "/api/imports",
@@ -104,14 +111,15 @@ def test_fetch_only_upload_and_chesscom_requests(settings):
         )
         assert response.status_code == 200
         assert response.json()["job_id"] is None
+        # The old analyze flag is ignored: imports fetch, then every game is analyzed.
         fetched = client.post(
             "/api/imports/chesscom", json={"username": "learner", "analyze": False}
         )
         analyzed = client.post(
             "/api/imports/chesscom", json={"username": "learner", "analyze": True}
         )
-        assert fetched.json()["job_id"] != analyzed.json()["job_id"]
-        assert {job["kind"] for job in client.get("/api/jobs").json()} == {
-            "chesscom",
-            "chesscom_fetch",
-        }
+        assert fetched.json()["job_id"] == analyzed.json()["job_id"]
+        jobs = client.get("/api/jobs").json()
+        assert [job["kind"] for job in jobs] == ["chesscom_fetch"]
+        # Uploads and manual imports are older-game backfill, behind polled games.
+        assert client.get("/api/analysis/queue").json()["backfill"] == 1

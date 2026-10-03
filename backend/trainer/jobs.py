@@ -2,12 +2,15 @@
 
 import logging
 import threading
+import time
 
 from trainer.chesscom import ChessComClient
 from trainer.engine import Stockfish
+from trainer.game_sync import poll as poll_connections
 from trainer.job_execution import JobExecution
 from trainer.job_queue import JobQueue
-from trainer.models import AnalysisJob
+from trainer.models import AnalysisJob, User
+from trainer.presence import active_cutoff
 from trainer.workspaces import Workspaces
 
 log = logging.getLogger(__name__)
@@ -69,6 +72,10 @@ class JobRunner:
             )
             thread.start()
             self.threads.append(thread)
+        if self.settings.sync_interval_seconds:
+            thread = threading.Thread(target=self.poll, name="sync-poller", daemon=True)
+            thread.start()
+            self.threads.append(thread)
 
     def stop(self):
         self.stop_event.set()
@@ -86,6 +93,19 @@ class JobRunner:
                     log.exception("job_coordinator_error", extra={"job_id": claimed[0]})
             else:
                 self.stop_event.wait(0.5)
+
+    def poll(self):
+        interval = self.settings.sync_interval_seconds
+        while not self.stop_event.is_set():
+            started = time.monotonic()
+            with self.queue.sessions() as db:
+                # A week without requests pauses polling until the learner returns.
+                owners = db.scalars(
+                    self.queue.owners().where(User.last_seen_at >= active_cutoff(self.settings))
+                ).all()
+            poll_connections(self, owners)
+            # Rounds never overlap: a slow round is followed by the next at once.
+            self.stop_event.wait(max(0, interval - (time.monotonic() - started)))
 
     def run_job(self, job_id, engine=None):
         # Explicit synchronous entry point used by offline tools and tests.

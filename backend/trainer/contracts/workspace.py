@@ -49,6 +49,10 @@ class WorkspaceSettings(EngineHealth):
     stockfish_threads: int
     stockfish_hash_mb: int
     stockfish_workers: int
+    sync_interval_seconds: int
+    sync_games: int
+    sync_lichess_batch: int
+    sync_away_days: int
     triage_depth: int
     triage_time: float
     triage_nodes: int | None

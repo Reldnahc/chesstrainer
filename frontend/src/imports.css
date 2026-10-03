@@ -29,8 +29,6 @@
 .import-form .form-panel { min-width: 0; gap: 18px; }
 .import-form-actions { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 16px; border-top: 1px solid var(--line); }
 .import-form-actions > button { flex-shrink: 0; }
-.import-form .import-analysis-option { flex-direction: row; align-items: center; gap: 10px; min-height: 36px; }
-.import-analysis-option input { flex: 0 0 18px; width: 18px; height: 18px; min-height: 18px; margin: 0; padding: 0; accent-color: var(--accent); }
 .import-options { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; gap: 16px; }
 .import-options > label { min-width: 0; }
 .import-options input, .import-options select { width: 100%; min-width: 0; }
@@ -68,7 +66,6 @@
   .import-form-body { margin-top: 16px; padding-top: 16px; gap: 12px; }
   .import-form .form-panel { gap: 14px; }
   .import-form-actions { align-items: stretch; flex-direction: column; gap: 12px; padding-top: 12px; }
-  .import-form .import-analysis-option { min-height: 44px; }
   .import-options { grid-template-columns: minmax(0, 1fr); gap: 14px; }
   .workspace-page .upload-zone { min-height: 108px; gap: 6px !important; padding: 10px; }
   .workspace-page .job { margin-bottom: 0; }

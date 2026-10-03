@@ -23,7 +23,6 @@ class ImportCancelled(RuntimeError):
 
 
 class ProviderImportRequest(BaseModel):
-    analyze: bool = Field(default=True, exclude=True)
     username: str = Field(min_length=1, max_length=50, pattern=r"^[a-zA-Z0-9_-]+$")
     time_class: str = "rapid"
     months: int = Field(default=3, ge=0, le=120)

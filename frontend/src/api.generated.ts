@@ -1,5 +1,22 @@
 // Generated from the backend OpenAPI contract. Run npm run api:generate.
 export interface paths {
+    "/api/analysis/queue": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Analysis Queue */
+        get: operations["analysis_queue_api_analysis_queue_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/auth/login": {
         parameters: {
             query?: never;
@@ -1131,6 +1148,40 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/welcome-back": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Welcome Back */
+        get: operations["get_welcome_back_api_welcome_back_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/welcome-back/dismiss": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Post Welcome Back */
+        post: operations["post_welcome_back_api_welcome_back_dismiss_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
@@ -1160,6 +1211,34 @@ export interface components {
         /** AccountProfile */
         AccountProfile: {
             user: components["schemas"]["Account"];
+        };
+        /**
+         * AnalysisQueue
+         * @description Per-game analysis: one job per saved game, run one at a time per account.
+         */
+        AnalysisQueue: {
+            /** Backfill */
+            backfill: number;
+            /** Completed */
+            completed: number;
+            /** Failed */
+            failed: number;
+            /** Fresh */
+            fresh: number;
+            /** Requested */
+            requested: number;
+            running: components["schemas"]["AnalysisQueueGame"] | null;
+        };
+        /** AnalysisQueueGame */
+        AnalysisQueueGame: {
+            /** Black */
+            black: string;
+            /** Id */
+            id: string;
+            /** Played At */
+            played_at: string | null;
+            /** White */
+            white: string;
         };
         /** ApiError */
         ApiError: {
@@ -1226,11 +1305,6 @@ export interface components {
         };
         /** Body_upload_pgn_api_imports_post */
         Body_upload_pgn_api_imports_post: {
-            /**
-             * Analyze
-             * @default true
-             */
-            analyze: boolean;
             /** File */
             file: Blob;
             /**
@@ -1325,11 +1399,6 @@ export interface components {
         };
         /** ChessComRequest */
         ChessComRequest: {
-            /**
-             * Analyze
-             * @default true
-             */
-            analyze: boolean;
             /** End Date */
             end_date?: string | null;
             /**
@@ -2397,6 +2466,11 @@ export interface components {
             mistakes_identified: number;
             /** Positions Triaged */
             positions_triaged: number;
+            /**
+             * Priority
+             * @default 0
+             */
+            priority: number;
             /** Probe Total */
             probe_total: number | null;
             provider_import?: components["schemas"]["ChessComImportProgress"] | null;
@@ -3121,11 +3195,6 @@ export interface components {
         };
         /** ProviderImportRequest */
         ProviderImportRequest: {
-            /**
-             * Analyze
-             * @default true
-             */
-            analyze: boolean;
             /** End Date */
             end_date?: string | null;
             /**
@@ -3860,6 +3929,14 @@ export interface components {
             /** Unclassified */
             unclassified: number;
         };
+        /**
+         * WelcomeBack
+         * @description Set when the learner returns after a week away; polling paused meanwhile.
+         */
+        WelcomeBack: {
+            /** Away Since */
+            away_since: string | null;
+        };
         /** WorkerActivity */
         WorkerActivity: {
             /** Active */
@@ -3995,6 +4072,14 @@ export interface components {
             stockfish_threads: number;
             /** Stockfish Workers */
             stockfish_workers: number;
+            /** Sync Away Days */
+            sync_away_days: number;
+            /** Sync Games */
+            sync_games: number;
+            /** Sync Interval Seconds */
+            sync_interval_seconds: number;
+            /** Sync Lichess Batch */
+            sync_lichess_batch: number;
             /** Target Rating */
             target_rating: number;
             /** Tolerance Cp */
@@ -4015,6 +4100,26 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
+    analysis_queue_api_analysis_queue_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AnalysisQueue"];
+                };
+            };
+        };
+    };
     login_api_auth_login_post: {
         parameters: {
             query?: never;
@@ -6170,6 +6275,46 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Weaknesses"];
+                };
+            };
+        };
+    };
+    get_welcome_back_api_welcome_back_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["WelcomeBack"];
+                };
+            };
+        };
+    };
+    post_welcome_back_api_welcome_back_dismiss_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["WelcomeBack"];
                 };
             };
         };

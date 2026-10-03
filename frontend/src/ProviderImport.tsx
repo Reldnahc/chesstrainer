@@ -2,7 +2,7 @@ import Button from "./Button";
 import { useEffect, useRef, useState } from "react";
 import { api, read, type Job, type Schema } from "./api";
 import ProviderUsernameField from "./ProviderUsernameField";
-import { ImportAnalysisOption, ImportSubmitButton } from "./ImportControls";
+import { ImportSubmitButton } from "./ImportControls";
 import Notice from "./Notice";
 
 
@@ -33,7 +33,6 @@ export function ProviderImportForm({
       .finally(() => { if (active) setLoadingUsername(false); });
     return () => { active = false; };
   }, [provider.id, rememberedUsername, fail]);
-  const [analyze, setAnalyze] = useState(false);
   const [timeClass, setTimeClass] =
     useState(provider.time_classes.includes("rapid") ? "rapid" : provider.time_classes[0]);
   const [months, setMonths] = useState(3);
@@ -59,7 +58,6 @@ export function ProviderImportForm({
           body: {
             username: username.trim(),
             time_class: timeClass,
-            analyze,
             months,
             max_games: maxGames,
             start_date: startDate || null,
@@ -69,7 +67,7 @@ export function ProviderImportForm({
       );
       if (!mounted.current) return;
       setMessage(
-        `Import queued for ${username.trim()}. ${analyze ? "Fetching and training analysis continue in the background." : "Games will appear in Games without engine analysis."}`,
+        `Import queued for ${username.trim()}. Older games are analyzed after your recent ones.`,
       );
       onQueued();
     } catch (e) {
@@ -182,8 +180,7 @@ export function ProviderImportForm({
         )}
       </details>
       <div className="import-form-actions">
-        <ImportAnalysisOption analyze={analyze} onChange={setAnalyze} />
-        <ImportSubmitButton analyze={analyze} busy={busy} busyLabel="Queuing import…"
+        <ImportSubmitButton busy={busy} busyLabel="Queuing import…"
           disabled={loadingUsername || !username.trim()} />
       </div>
       {message && (
@@ -195,7 +192,8 @@ export function ProviderImportForm({
         <summary>How imports work</summary>
         <p className="small">
           Newest unsaved games first within your filters. Saved games do not use
-          up the limit or get analyzed again. Includes rated and unrated
+          up the limit or get analyzed again. Every imported game is analyzed in
+          the background, after your new games. Includes rated and unrated
           standard chess; recently finished games may take time to appear.
         </p>
         <p className="small">

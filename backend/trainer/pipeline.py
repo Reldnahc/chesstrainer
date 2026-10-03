@@ -14,8 +14,10 @@ from trainer.work_pool import GameCompletion, WorkPool
 
 
 class JobPipeline:
-    def __init__(self, runner, job_id, engine_override=None):
+    def __init__(self, runner, job_id, engine_override=None, *, counters=True):
         self.runner, self.job_id = runner, job_id
+        # A game review job reuses this pipeline; its counters describe the review.
+        self.counters = counters
         self.sessions, self.settings = runner.sessions, runner.settings
         self.engine_override = engine_override
         self.local = threading.local()
@@ -34,6 +36,8 @@ class JobPipeline:
 
     def bump(self, **increments):
         # SQL increments and a short shared write lock prevent lost progress updates.
+        if not self.counters:
+            return
         with self.runner.import_lock, self.sessions() as db:
             db.execute(
                 update(AnalysisJob)
@@ -114,7 +118,7 @@ class JobPipeline:
                         if self.cancelled():
                             return
                         decision = analyze_decision(
-                            db, self.engine(), self.settings, game, ply, board, move
+                            db, self.engine, self.settings, game, ply, board, move
                         )
                         self.process_decision(db, decision, completion)
             success = True
