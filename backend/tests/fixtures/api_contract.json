@@ -72,6 +72,26 @@
         "title": "AccountProfile",
         "type": "object"
       },
+      "ActivePlay": {
+        "additionalProperties": false,
+        "properties": {
+          "game": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlayState"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "game"
+        ],
+        "title": "ActivePlay",
+        "type": "object"
+      },
       "AnalysisQueue": {
         "additionalProperties": false,
         "description": "Per-game analysis: one job per saved game, run one at a time per account.",
@@ -6119,6 +6139,410 @@
         "title": "PhaseRate",
         "type": "object"
       },
+      "PlayMoveRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "ply": {
+            "maximum": 1024.0,
+            "minimum": 0.0,
+            "title": "Ply",
+            "type": "integer"
+          },
+          "uci": {
+            "maxLength": 5,
+            "minLength": 4,
+            "title": "Uci",
+            "type": "string"
+          }
+        },
+        "required": [
+          "ply",
+          "uci"
+        ],
+        "title": "PlayMoveRequest",
+        "type": "object"
+      },
+      "PlayProfile": {
+        "additionalProperties": false,
+        "properties": {
+          "computed_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Computed At"
+          },
+          "default_rating": {
+            "title": "Default Rating",
+            "type": "integer"
+          },
+          "fitted_rating": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fitted Rating"
+          },
+          "games": {
+            "title": "Games",
+            "type": "integer"
+          },
+          "platform": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Platform"
+          },
+          "platform_rating": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Platform Rating"
+          },
+          "positions": {
+            "title": "Positions",
+            "type": "integer"
+          },
+          "status": {
+            "enum": [
+              "ready",
+              "computing",
+              "unavailable",
+              "no_games",
+              "disabled"
+            ],
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "fitted_rating",
+          "platform_rating",
+          "platform",
+          "positions",
+          "games",
+          "computed_at",
+          "default_rating"
+        ],
+        "title": "PlayProfile",
+        "type": "object"
+      },
+      "PlayReply": {
+        "additionalProperties": false,
+        "properties": {
+          "ply": {
+            "title": "Ply",
+            "type": "integer"
+          },
+          "san": {
+            "title": "San",
+            "type": "string"
+          },
+          "source": {
+            "enum": [
+              "human",
+              "engine",
+              "fallback"
+            ],
+            "title": "Source",
+            "type": "string"
+          },
+          "think_ms": {
+            "maximum": 10000.0,
+            "minimum": 0.0,
+            "title": "Think Ms",
+            "type": "integer"
+          },
+          "uci": {
+            "title": "Uci",
+            "type": "string"
+          }
+        },
+        "required": [
+          "ply",
+          "san",
+          "uci",
+          "think_ms",
+          "source"
+        ],
+        "title": "PlayReply",
+        "type": "object"
+      },
+      "PlayRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "coach_id": {
+            "enum": [
+              "classic",
+              "man-host",
+              "man-expert",
+              "man-partner",
+              "woman-captain",
+              "woman-analyst",
+              "woman-spark",
+              "woman-blonde",
+              "cat-tuxedo",
+              "cat-black",
+              "dog-gentle",
+              "dog-corgi",
+              "dog-collie",
+              "human-boy",
+              "human-girl",
+              "dog-puppy",
+              "cat-kitten",
+              "alien",
+              "unicorn",
+              "gorilla",
+              "robot",
+              "wizard",
+              "slime",
+              "dragon",
+              "ghost",
+              "raccoon",
+              "frog",
+              "capybara",
+              "mushroom",
+              "living-pawn"
+            ],
+            "title": "Coach Id",
+            "type": "string"
+          },
+          "coach_name": {
+            "maxLength": 40,
+            "minLength": 1,
+            "title": "Coach Name",
+            "type": "string"
+          },
+          "color": {
+            "default": "random",
+            "enum": [
+              "white",
+              "black",
+              "random"
+            ],
+            "title": "Color",
+            "type": "string"
+          },
+          "commentary": {
+            "default": "live",
+            "enum": [
+              "live",
+              "request",
+              "after"
+            ],
+            "title": "Commentary",
+            "type": "string"
+          },
+          "opponent": {
+            "default": "human",
+            "enum": [
+              "human",
+              "engine"
+            ],
+            "title": "Opponent",
+            "type": "string"
+          },
+          "rating": {
+            "maximum": 2600.0,
+            "minimum": 600.0,
+            "title": "Rating",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "coach_id",
+          "coach_name",
+          "rating"
+        ],
+        "title": "PlayRequest",
+        "type": "object"
+      },
+      "PlayState": {
+        "additionalProperties": false,
+        "properties": {
+          "black": {
+            "title": "Black",
+            "type": "string"
+          },
+          "black_rating": {
+            "title": "Black Rating",
+            "type": "integer"
+          },
+          "coach_id": {
+            "title": "Coach Id",
+            "type": "string"
+          },
+          "coach_name": {
+            "title": "Coach Name",
+            "type": "string"
+          },
+          "commentary": {
+            "enum": [
+              "live",
+              "request",
+              "after"
+            ],
+            "title": "Commentary",
+            "type": "string"
+          },
+          "draw_declined": {
+            "title": "Draw Declined",
+            "type": "boolean"
+          },
+          "frames": {
+            "items": {
+              "$ref": "#/components/schemas/GameFrame"
+            },
+            "title": "Frames",
+            "type": "array"
+          },
+          "id": {
+            "title": "Id",
+            "type": "string"
+          },
+          "learner_color": {
+            "enum": [
+              "white",
+              "black"
+            ],
+            "title": "Learner Color",
+            "type": "string"
+          },
+          "learner_rating": {
+            "title": "Learner Rating",
+            "type": "integer"
+          },
+          "opponent": {
+            "enum": [
+              "human",
+              "engine"
+            ],
+            "title": "Opponent",
+            "type": "string"
+          },
+          "rating": {
+            "title": "Rating",
+            "type": "integer"
+          },
+          "reply": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PlayReply"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "result": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Result"
+          },
+          "saved_game_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Saved Game Id"
+          },
+          "status": {
+            "enum": [
+              "active",
+              "finished"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "termination": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Termination"
+          },
+          "white": {
+            "title": "White",
+            "type": "string"
+          },
+          "white_rating": {
+            "title": "White Rating",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "id",
+          "coach_id",
+          "coach_name",
+          "white",
+          "black",
+          "learner_color",
+          "opponent",
+          "rating",
+          "learner_rating",
+          "white_rating",
+          "black_rating",
+          "commentary",
+          "status",
+          "result",
+          "termination",
+          "saved_game_id",
+          "reply",
+          "draw_declined",
+          "frames"
+        ],
+        "title": "PlayState",
+        "type": "object"
+      },
+      "PlyRequest": {
+        "additionalProperties": false,
+        "properties": {
+          "ply": {
+            "maximum": 1024.0,
+            "minimum": 1.0,
+            "title": "Ply",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "ply"
+        ],
+        "title": "PlyRequest",
+        "type": "object"
+      },
       "PracticalAssessment": {
         "additionalProperties": false,
         "properties": {
@@ -10627,6 +11051,313 @@
           }
         },
         "summary": "Course Line"
+      }
+    },
+    "/api/play": {
+      "post": {
+        "operationId": "start_game_api_play_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlayRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayState"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Start Game"
+      }
+    },
+    "/api/play/active": {
+      "get": {
+        "operationId": "active_game_api_play_active_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ActivePlay"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Active Game"
+      }
+    },
+    "/api/play/profile": {
+      "get": {
+        "operationId": "level_profile_api_play_profile_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayProfile"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Level Profile"
+      }
+    },
+    "/api/play/profile/refresh": {
+      "post": {
+        "operationId": "refresh_level_profile_api_play_profile_refresh_post",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayProfile"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Refresh Level Profile"
+      }
+    },
+    "/api/play/{play_id}": {
+      "get": {
+        "operationId": "game_state_api_play__play_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "play_id",
+            "required": true,
+            "schema": {
+              "title": "Play Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayState"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Game State"
+      }
+    },
+    "/api/play/{play_id}/analyze": {
+      "post": {
+        "operationId": "analyze_play_move_api_play__play_id__analyze_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "play_id",
+            "required": true,
+            "schema": {
+              "title": "Play Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlyRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GameAnalysis"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Analyze Play Move"
+      }
+    },
+    "/api/play/{play_id}/draw": {
+      "post": {
+        "operationId": "offer_draw_api_play__play_id__draw_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "play_id",
+            "required": true,
+            "schema": {
+              "title": "Play Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayState"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Offer Draw"
+      }
+    },
+    "/api/play/{play_id}/move": {
+      "post": {
+        "operationId": "play_move_api_play__play_id__move_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "play_id",
+            "required": true,
+            "schema": {
+              "title": "Play Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PlayMoveRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayState"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Play Move"
+      }
+    },
+    "/api/play/{play_id}/resign": {
+      "post": {
+        "operationId": "resign_api_play__play_id__resign_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "play_id",
+            "required": true,
+            "schema": {
+              "title": "Play Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayState"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Resign"
       }
     },
     "/api/practice/queue": {

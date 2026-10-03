@@ -50,7 +50,8 @@ export function PlayerRow({
 }: {
   name: string;
   color: "white" | "black";
-  accuracy: Accuracy | null;
+  /** Omit for a game in progress, which has no accuracy to reserve space for. */
+  accuracy?: Accuracy | null;
   complete: boolean;
   status: string;
 }) {
@@ -60,11 +61,13 @@ export function PlayerRow({
         <strong className="game-player-name" title={name}>
           {name}
         </strong>
-        <AccuracyReadout
-          color={color}
-          accuracy={accuracy}
-          complete={complete}
-        />
+        {accuracy !== undefined && (
+          <AccuracyReadout
+            color={color}
+            accuracy={accuracy}
+            complete={complete}
+          />
+        )}
       </div>
       <span className="game-player-status" title={status}>
         {status}
