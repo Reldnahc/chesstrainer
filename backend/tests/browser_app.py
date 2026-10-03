@@ -5,7 +5,7 @@ import re
 from datetime import datetime, timezone
 
 import httpx
-from puzzle_fixtures import BrowserPuzzleProvider
+from puzzle_fixtures import BrowserGamePuzzleProvider, BrowserPuzzleProvider
 from study_lesson_fixtures import BrowserLessonProvider
 from trainer.api import create_app as production_app
 from trainer.chesscom import ChessComClient
@@ -81,11 +81,12 @@ def create_app():
         return LichessClient(settings, transport=httpx.MockTransport(handler))
 
     puzzle_provider = BrowserPuzzleProvider()
+    game_puzzle_provider = BrowserGamePuzzleProvider()
     lesson_provider = BrowserLessonProvider()
     app = production_app(
         chesscom_factory=factory,
         provider_factories={"lichess": lichess_factory},
-        puzzle_providers=(puzzle_provider,),
+        puzzle_providers=(puzzle_provider, game_puzzle_provider),
         lesson_providers=(*bundled_providers(), lesson_provider),
     )
 
@@ -121,13 +122,14 @@ def create_app():
         from trainer.puzzles.providers import PuzzleProviders
         from trainer.puzzles.sessions import start_session
 
+        provider = game_puzzle_provider if key.startswith("games-") else puzzle_provider
         with workspace.mutation_lock, workspace.sessions() as db:
-            definition = puzzle_provider.install(workspace.user_id, key)
+            definition = provider.install(workspace.user_id, key)
             session = start_session(
                 db,
-                PuzzleProviders((puzzle_provider,)),
+                PuzzleProviders((provider,)),
                 PuzzleStart(
-                    provider_id=puzzle_provider.id,
+                    provider_id=provider.id,
                     key=key,
                     version=definition.version,
                     request_id=f"fixture-{key}",

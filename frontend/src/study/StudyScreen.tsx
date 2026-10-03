@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowRight, BookOpen, Clock3, Puzzle, RotateCcw } from "lucide-react";
+import { ArrowRight, BookOpen, Clock3, Puzzle, RotateCcw, Search } from "lucide-react";
 import { api, read, type Schema } from "../api";
 import ResumeLink from "../ResumeLink";
 import ActionLink from "../ActionLink";
@@ -12,7 +12,7 @@ import SectionNavigation from "../SectionNavigation";
 import ChoiceGroup from "../ChoiceGroup";
 import SourceLine from "../SourceLine";
 import { navigate, puzzleSessionPath, studyPaths, type StudyMode } from "../navigation";
-import { PUZZLE_BANDS, createPuzzleStarter, loadPuzzleSelection, puzzleThemeLabel, savePuzzleSelection, type PuzzleMode, type PuzzleSelection } from "./puzzleApi";
+import { PUZZLE_BANDS, PUZZLE_GOALS, createPuzzleStarter, loadPuzzleSelection, puzzleThemeLabel, savePuzzleSelection, type PuzzleMode, type PuzzleSelection } from "./puzzleApi";
 import LessonLibrary from "./LessonLibrary";
 import OpeningCatalogue from "./OpeningCatalogue";
 import OpeningStudies from "./OpeningStudies";
@@ -34,15 +34,18 @@ export default function StudyScreen({ mode, source, courseId, courseRevision, op
   const [busy, setBusy] = useState<PuzzleMode | null>(null);
   const [selection, setSelection] = useState<PuzzleSelection>(loadPuzzleSelection);
   const [startNextPuzzle] = useState(createPuzzleStarter);
+  const [generating, setGenerating] = useState(false);
+  const [notice, setNotice] = useState("");
   const beginRequest = useRef<AbortController | null>(null);
+  const loadPuzzles = (signal: AbortSignal) => read(api.GET("/api/puzzles", { signal }))
+    .then(result => { if (!signal.aborted) setPuzzles(result); })
+    .catch(e => { if (!signal.aborted) setError(e.message); });
   useEffect(() => {
     const controller = new AbortController();
     read(api.GET("/api/review/count", { signal: controller.signal }))
       .then(result => { if (!controller.signal.aborted) setDue(result.due); })
       .catch(e => { if (!controller.signal.aborted) setError(e.message); });
-    read(api.GET("/api/puzzles", { signal: controller.signal }))
-      .then(result => { if (!controller.signal.aborted) setPuzzles(result); })
-      .catch(e => { if (!controller.signal.aborted) setError(e.message); });
+    void loadPuzzles(controller.signal);
     if (mode === "home") read(api.GET("/api/opening-studies", { signal: controller.signal }))
       .then(result => { if (!controller.signal.aborted) setOpenings(result); })
       .catch(e => { if (!controller.signal.aborted) setError(e.message); });
@@ -79,8 +82,21 @@ export default function StudyScreen({ mode, source, courseId, courseRevision, op
       if (!controller.signal.aborted) { setBusy(null); beginRequest.current = null; }
     }
   }
+  async function generate() {
+    if (generating) return;
+    setGenerating(true);
+    setError("");
+    try {
+      await read(api.POST("/api/puzzles/generate"));
+      await loadPuzzles(new AbortController().signal);
+      setNotice("Searching your games for puzzles. Progress is listed under Import & analysis activity in Settings; new puzzles appear here when the search finishes.");
+    } catch (e) { setError((e as Error).message); }
+    finally { setGenerating(false); }
+  }
   const unsolved = puzzles ? Math.max(0, puzzles.available - puzzles.solved_puzzles) : null;
   const available = source ? puzzles?.sources.filter(item => item.source === source).reduce((sum, item) => sum + item.count, 0) : puzzles?.available;
+  const generation = puzzles?.generation ?? null;
+  const gamesCount = generation?.puzzles ?? 0;
   return <>
     <PageTitle eyebrow="YOUR NEXT MOVE" title={mode === "home" ? "Study" : mode === "openings" ? "Openings" : "Puzzles"} />
     <div className="study-page">
@@ -102,7 +118,7 @@ export default function StudyScreen({ mode, source, courseId, courseRevision, op
       <section className="panel study-option">
         <Puzzle aria-hidden="true" size={22} /><h2>Puzzles</h2>
         <p>{!puzzles ? "Calculation practice from installed collections." : puzzles.available
-          ? `${puzzles.solved_puzzles} ${puzzles.solved_puzzles === 1 ? "puzzle" : "puzzles"} solved.` : "No puzzle collections are installed yet."}</p>
+          ? `${puzzles.solved_puzzles} ${puzzles.solved_puzzles === 1 ? "puzzle" : "puzzles"} solved.${gamesCount ? ` ${gamesCount} from your own games.` : ""}` : "No puzzle collections are installed yet."}</p>
         <p className="study-count">{unsolved ?? "—"} <span>{unsolved === 1 ? "Unsolved puzzle" : "Unsolved puzzles"}</span></p>
         <ActionLink variant="secondary" href={studyPaths.puzzles}>{puzzles?.resume.length ? "Continue puzzles" : "Open puzzles"} <ArrowRight size={16} /></ActionLink>
       </section>
@@ -117,16 +133,43 @@ export default function StudyScreen({ mode, source, courseId, courseRevision, op
         : openingSection === "studies" ? <OpeningStudies /> : <LessonLibrary courseId={courseId} revision={courseRevision} />}
     </>}
     {mode === "puzzles" && <>
+      <SectionNavigation label="Puzzle sources" current={source ?? "all"} items={[
+        { id: "all", label: "All puzzles", href: studyPaths.puzzles },
+        { id: "generic", label: "Collection", href: `${studyPaths.puzzles}/generic` },
+        { id: "games", label: gamesCount ? `From your games (${gamesCount})` : "From your games", href: `${studyPaths.puzzles}/games` },
+      ]} />
+      {notice && <Notice announcement="status">{notice}</Notice>}
       {!!puzzles?.resume.length && <section className="panel"><h2>Continue practicing</h2><div className="study-resume-list">{puzzles.resume.map(session => <ResumeLink href={puzzleSessionPath(session.id)} key={session.id} description={session.failed ? "Continue after a retry" : "Your position is saved"}>Unfinished puzzle</ResumeLink>)}</div></section>}
+      {source === "games" && generation && <section className="panel puzzle-games">
+        <h2>Puzzles mined from your games</h2>
+        {generation.puzzles > 0 ? <>
+          <p>{generation.puzzles} {generation.puzzles === 1 ? "puzzle comes" : "puzzles come"} from {generation.searched_games} of your {generation.analyzed_games} analyzed games. Each one is a moment where you had a single clear winning line, checked by Stockfish and played from your side.</p>
+          <p className="small muted">Last search {generation.last_searched_at?.slice(0, 10)}: {generation.candidates} candidate positions checked, {generation.kept} kept, {generation.candidates - generation.kept} set aside as ambiguous or one-move.{generation.automatic ? " Newly analyzed games are searched when their analysis finishes." : ""}</p>
+        </> : generation.analyzed_games === 0
+          ? <p>No analyzed games yet. Import games with analysis, or open a game and choose Find training mistakes, then search them here.</p>
+          : generation.searched_games === 0
+            ? <p>Your {generation.analyzed_games} analyzed {generation.analyzed_games === 1 ? "game has" : "games have"} not been searched yet. A search keeps only moments with a single clear winning line of two or more moves, checked by Stockfish.</p>
+            : <p>No puzzles yet from the {generation.searched_games} analyzed {generation.searched_games === 1 ? "game" : "games"} searched so far: {generation.candidates} candidate {generation.candidates === 1 ? "position" : "positions"} checked, none with a single clear winning line of two or more moves.</p>}
+        <div className="button-row">
+          <Button variant="secondary" disabled={generating || !!generation.job_status || generation.unsearched_games === 0} onClick={generate}><Search size={16} />
+            {generation.job_status ? "Searching your games…" : generating ? "Queuing…" : generation.unsearched_games
+              ? `Search ${generation.unsearched_games} unsearched ${generation.unsearched_games === 1 ? "game" : "games"}` : "All analyzed games searched"}</Button>
+        </div>
+      </section>}
       {available && puzzles ? <section className="panel puzzle-start">
         <Puzzle size={28} aria-hidden="true" />
-        <h2>Calculate the continuation.</h2>
-        <p>Play through the puzzle on the board. Puzzle practice is separate from your scheduled recalls.</p>
+        <h2>{source === "games" ? "Find what you missed." : "Calculate the continuation."}</h2>
+        <p>{source === "games"
+          ? "Each puzzle starts at a moment from one of your games. The game, your opponent and the move you actually played stay hidden until you finish."
+          : "Play through the puzzle on the board. Puzzle practice is separate from your scheduled recalls."}</p>
         <div className="puzzle-filters">
-          <div className="puzzle-filter">
+          {source === "games" ? <div className="puzzle-filter">
+            <span aria-hidden="true">Goal</span>
+            <ChoiceGroup label="Goal" options={PUZZLE_GOALS} value={selection.goal} onChange={goal => select({ goal })} />
+          </div> : <div className="puzzle-filter">
             <span aria-hidden="true">Difficulty</span>
             <ChoiceGroup label="Difficulty" options={PUZZLE_BANDS} value={selection.band} onChange={band => select({ band })} />
-          </div>
+          </div>}
           <label className="puzzle-filter">
             <span>Theme</span>
             <select value={selection.theme} onChange={event => select({ theme: event.target.value })}>
@@ -141,7 +184,7 @@ export default function StudyScreen({ mode, source, courseId, courseRevision, op
         </div>
         {puzzles.sources.filter(item => !source || item.source === source).map(item => <SourceLine key={item.id} className="puzzle-pack-source"
           text={`${item.name} · ${item.count} puzzles`} license={item.attribution} url={item.url} linkLabel="Source" />)}
-      </section> : <EmptyState title="No puzzles available yet." icon={<Puzzle />} actions={<ActionLink variant="secondary" href={studyPaths.due}>Go to Due</ActionLink>}>
+      </section> : source === "games" ? null : <EmptyState title="No puzzles available yet." icon={<Puzzle />} actions={<ActionLink variant="secondary" href={studyPaths.due}>Go to Due</ActionLink>}>
         There are no installed puzzle collections for this source. Your scheduled recalls are still available in Due.
       </EmptyState>}
       {puzzles && Object.values(puzzles.stats).some(value => value > 0) && <section className="panel"><h2>Your puzzle practice</h2><StatList items={[
