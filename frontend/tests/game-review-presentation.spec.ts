@@ -36,7 +36,10 @@ test('completed reviews stay move-by-move without a game story or critical-momen
   // The bubble shows Walter's spoken line; the moves line keeps the real reply visible.
   const spoken = page.locator('.coach-message [data-utterance]');
   await expect(spoken).toHaveAttribute('data-spoken', /^allowed-mate(?:\+[a-z0-9-]+)?$/);
-  await expect(spoken).toHaveText(walter((await spoken.getAttribute('data-spoken'))!));
+  // The visible line; the moves are announced after it in a screen-reader-only span.
+  const line = walter((await spoken.getAttribute('data-spoken'))!);
+  await expect.poll(() => spoken.evaluate(element => element.firstChild?.textContent)).toBe(line);
+  await expect(spoken.locator('.sr-only')).toHaveText(/strongest reply: Qh4#, forced mate\.$/);
   const moves = page.locator('.coach-moves-line');
   await expect(moves).toHaveText('Black’s strongest reply: Qh4#, forced mate');
   await expect(moves.locator('strong')).toHaveText('Qh4#');

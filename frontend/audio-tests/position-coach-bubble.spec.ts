@@ -16,6 +16,8 @@ const games = semanticFixtures<Record<string, Game>>("review_speech_combination_
 const region = (page: Page) => page.getByRole("region", {name: "Chess coach", exact: true});
 const bubble = (page: Page) => region(page).getByLabel("Coach explanation", {exact: true}).locator("[data-utterance]");
 const movesLine = (page: Page) => region(page).locator(".coach-moves-line");
+// The visible line, without the moves announced alongside it for screen readers.
+const shown = (page: Page) => bubble(page).evaluate(element => element.firstChild?.textContent);
 const line = (rows: {id: string; text: string}[], id: string) =>
   id.split("+").map(part => rows.find(row => row.id === part)!.text).join(" ");
 
@@ -39,7 +41,7 @@ test("a recorded coach's bubble shows its recorded line, and Maia's popup keeps 
   const current = await state(page);
   await expect(bubble(page)).toHaveAttribute("data-spoken", /^cause-abandoned-defender(?:\+[a-z0-9-]+)?$/);
   const spoken = (await bubble(page).getAttribute("data-spoken"))!;
-  await expect(bubble(page)).toHaveText(line(arjun.recordings, spoken));
+  await expect.poll(() => shown(page)).toBe(line(arjun.recordings, spoken));
   // Selection still validates the written utterance; only the displayed text changes.
   await expect(bubble(page)).toHaveAttribute("data-utterance", current.utteranceId);
   expect(current.utteranceText).not.toBe(line(arjun.recordings, spoken));
@@ -58,7 +60,8 @@ test("a text-only coach's bubble shows its script line for the same meaning, wit
   await mount(page, "dog-gentle", games["allowed-mate-natural"], {voice: "off"});
   // The book claim's recognition joins the mate line as the coach's second sentence.
   await expect(bubble(page)).toHaveAttribute("data-spoken", /^allowed-mate(?:\+[a-z0-9-]+)?$/);
-  await expect(bubble(page)).toHaveText(line(alfie.records, (await bubble(page).getAttribute("data-spoken"))!));
+  const spoken = (await bubble(page).getAttribute("data-spoken"))!;
+  await expect.poll(() => shown(page)).toBe(line(alfie.records, spoken));
   await expect(region(page).getByRole("button", {name: /^Listen/})).toHaveCount(0);
   // The mate claim proves the qualifier; the opening has no name, so no opening appears.
   await expect(movesLine(page)).toHaveText("Black’s strongest reply: Qh4#, forced mate");
@@ -118,6 +121,10 @@ test("the moves line names the engine's strongest reply, never the move actually
   await expect(movesLine(page)).not.toHaveAttribute("aria-live", /polite|assertive/);
   await expect(region(page).locator(".coach-moves-line[aria-live], .coach-moves-line [aria-live]")).toHaveCount(0);
   await expect(region(page).locator(".coach-message [aria-live=polite]")).toHaveCount(1);
+  // Screen reader users hear the concrete reply once, inside that announcement.
+  await expect(movesLine(page)).toHaveAttribute("aria-hidden", "true");
+  await expect(region(page).locator(".coach-message [aria-live=polite] .sr-only"))
+    .toHaveText(" Black’s strongest reply: Qh4#, forced mate.");
 });
 
 test("the bubble grows to show a joined spoken line and its footer without inner scrolling, up to its cap", async ({page}) => {

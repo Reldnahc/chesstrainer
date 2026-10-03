@@ -16,7 +16,7 @@ import {selectGameOpener, selectGameSpeech} from "../audio/speech/gameSelection"
 import {useCoachSpeech} from "../audio/speech/useCoachSpeech";
 import {coachRecording, hasCoachVoice} from "../audio/speech/voiceBank";
 import {useSpokenText} from "../audio/speech/spokenText";
-import CoachMovesLine, {movesLineFacts} from "./CoachMovesLine";
+import CoachMovesLine, {movesLineFacts, movesLineText} from "./CoachMovesLine";
 import {useOptionalAudioPreferences} from "../audio/AudioProvider";
 import {useOptionalCoachPreferences} from "../coach/CoachProvider";
 
@@ -184,7 +184,7 @@ export default function PositionCoach({
       detail={moves && <CoachMovesLine facts={moves} />}
       insight={report && <HumanInsight key={`${dialogueKey}:${report.practical?.input_digest}`} presentation={insight} report={report} />}
     >
-      <DialogueText utterance={displayed} recordingId={spokenSource} />
+      <DialogueText utterance={displayed} recordingId={spokenSource} announcedDetail={moves && movesLineText(moves)} />
       {errorAtPosition && <Notice announcement="alert" tone="error" appearance="inline">{errorAtPosition}</Notice>}
     </ReviewCoach>
   );
