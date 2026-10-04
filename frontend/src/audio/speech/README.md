@@ -315,6 +315,15 @@ Opening an untouched game review in-app at its start speaks the coach's fact-fre
 greeting once and shows it in the bubble; the first navigation replaces it,
 returning to the start shows and speaks it again, and restored later moves stay
 silent.
+A game-review move whose whole line is its grade's generic reading (the
+evaluation loss and stronger alternative for an inaccuracy, mistake, miss or
+blunder; the best or good choice for a brilliant, great, best or good move)
+speaks one of four `grade-<grade>-<n>` takes instead (`gradeTake` in
+[gameSelection.ts](gameSelection.ts)). A capture, check, tactic, mate, opening or
+relationship keeps its own clip. Each mainline move counts the earlier moves with
+the same grade, so neighbouring same-grade moves never share a take and replaying
+a move repeats its take; the game seeds where the cycle starts. A coach without a
+take recorded keeps the generic reading.
 `game-review-opened` and the nine lesson prompts are recorded for Walter, Rivet,
 Winston and Button, so each registered bank holds all 195 catalogue meanings.
 These 40 takes used **2,262 input characters / 273 provider credits**, with every
