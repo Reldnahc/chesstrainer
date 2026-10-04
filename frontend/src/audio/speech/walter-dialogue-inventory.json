@@ -1452,9 +1452,9 @@
         "side",
         "files"
       ],
-      "conditions": "facts.before and facts.after differ; facts.after is a nonempty file array; facts.side and slots.side agree.",
+      "conditions": "facts.added (files the move newly doubled) is a nonempty file array; facts.side and slots.side agree.",
       "notes": [
-        "Do not say creates doubled pawns: the event can reduce doubled files while leaving another doubled file.",
+        "Breaking up one doubled pair while another file stays doubled produces no claim.",
         "Removal of the last doubled file produces no rendered claim.",
         "No automatic weakness or evaluation claim."
       ],
@@ -1480,9 +1480,9 @@
         "side",
         "files"
       ],
-      "conditions": "facts.before and facts.after differ; facts.after is a nonempty file array; facts.side and slots.side agree.",
+      "conditions": "facts.added (files the move newly doubled) is a nonempty file array; facts.side and slots.side agree.",
       "notes": [
-        "Do not say creates doubled pawns: the event can reduce doubled files while leaving another doubled file.",
+        "Breaking up one doubled pair while another file stays doubled produces no claim.",
         "Removal of the last doubled file produces no rendered claim.",
         "No automatic weakness or evaluation claim."
       ],
