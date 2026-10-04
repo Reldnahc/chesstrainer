@@ -245,6 +245,14 @@ fact. Opening metadata is excluded from the legacy wording seed for the other
 voices and never enters cold practice dialogue. No new opening recognition,
 engine work, automatic speech event or learning inference is performed here.
 
+A poor move's immediate-capture claim needs a real loss: when the reply only
+recaptures what the move took, or the mover's next move in the line
+(`immediate_recapture`) takes the material straight back, it is an even trade
+and the claim is omitted. A tactic whose witness starts on this move outranks
+one of the same role that only appears later in the line. The spoken lead is the
+first non-Maia rendered claim with a recording, so a leading claim without a
+clip passes the lead on instead of silencing the move.
+
 ## Written facts and recorded summaries
 
 Written and spoken dialogue share supported semantic meanings, not a generated

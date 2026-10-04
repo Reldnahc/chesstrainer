@@ -2845,6 +2845,16 @@
               }
             ]
           },
+          "immediate_recapture": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Frame"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "immediate_reply": {
             "anyOf": [
               {
@@ -3158,6 +3168,16 @@
             "anyOf": [
               {
                 "$ref": "#/components/schemas/HumanEvidence"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "immediate_recapture": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Frame"
               },
               {
                 "type": "null"

@@ -283,6 +283,7 @@ def public_report(report, rating, *, context=None):
     practical = assess_difficulty(report)
     return report | {
         "immediate_reply": frames[2] if len(frames) > 2 else None,
+        "immediate_recapture": frames[3] if len(frames) > 3 and frames[3]["capture"] else None,
         "practical": practical.model_dump(mode="json"),
         "intelligence": describe_move(report, practical, context).model_dump(mode="json"),
         "label": label,

@@ -58,8 +58,11 @@ export function tacticalClaim(event: Event, move: string, best: string, opponent
     const capture = witness.find(frame => frame.capture && frame.san);
     if (capture) detail = `The line includes ${capture.san}, capturing a ${capture.capture}.`;
   }
+  // A tactic that starts on this move outranks one that only appears later in
+  // the same line, so the bubble leads with the idea the move itself offers.
+  const later = !Array.isArray(f.plies) || f.plies[0] !== (role === "allowed" ? 2 : 1) ? 0.5 : 0;
   const result = claim(`tactic_${role}`, {move, best, opponent, motif: words(f.motif), detail},
-    role === "allowed" ? 94 : role === "missed" ? 91 : 83, event.evidence, [event.id]);
+    (role === "allowed" ? 94 : role === "missed" ? 91 : 83) - later, event.evidence, [event.id]);
   if (event.actor !== "white" && event.actor !== "black") return result;
   const witness = Array.isArray(f.witness) ? f.witness.map(object) : [];
   const expectedPly = role === "allowed" ? 2 : 1;

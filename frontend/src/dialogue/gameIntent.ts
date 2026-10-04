@@ -108,8 +108,12 @@ export function gameIntent({game, report, frame, ply, key, expression, explainin
       claims.push(claim("history", {motif: words(item.skill_id), games: item.independent_games}, 67, item.evidence, item.decision_ids));
   }
   if (poor) {
-    const reply = report.immediate_reply;
-    if (reply?.capture) claims.push(claim("reply_capture", {opponent, reply: reply.san, piece: reply.capture, side}, 78, refs));
+    const reply = report.immediate_reply, recapture = report.immediate_recapture;
+    // A capture the mover takes straight back is an even trade, not a loss.
+    const evenTrade = !!reply?.capture && (reply.material_change >= 0 || (recapture?.material_change ?? -1) >= 0);
+    if (reply?.capture) {
+      if (!evenTrade) claims.push(claim("reply_capture", {opponent, reply: reply.san, piece: reply.capture, side}, 78, refs));
+    }
     // The allowed-mate claim above already names this exact immediate reply.
     // Repeating it as a lower-priority check adds no new explanation.
     else if (reply?.gives_check && !claims.some(c => c.code === "allowed_mate" && c.slots.reply))

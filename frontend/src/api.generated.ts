@@ -2304,6 +2304,7 @@ export interface components {
             /** Engine Version */
             engine_version: string;
             human?: components["schemas"]["HumanEvidence"] | null;
+            immediate_recapture?: components["schemas"]["Frame"] | null;
             immediate_reply?: components["schemas"]["Frame"] | null;
             intelligence?: components["schemas"]["MoveIntelligence"] | null;
             /**
@@ -2391,6 +2392,7 @@ export interface components {
             /** Engine Version */
             engine_version: string;
             human?: components["schemas"]["HumanEvidence"] | null;
+            immediate_recapture?: components["schemas"]["Frame"] | null;
             immediate_reply?: components["schemas"]["Frame"] | null;
             intelligence?: components["schemas"]["MoveIntelligence"] | null;
             /**

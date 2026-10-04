@@ -242,14 +242,20 @@ export function selectGameRecording(context: GameSpeechContext): string | null {
 }
 
 /** A move has exactly one coach clip. Maia sentences add nothing to it: the
- * first other sentence leads, and a bubble with only a Maia claim is silent.
+ * first other sentence with a recording leads, so a leading claim without a
+ * clip (a tactic that only appears later in the line) passes the lead on
+ * rather than silencing the move. A bubble with only a Maia claim is silent.
  * A following bubble sentence with its own recording joins the lead as one
  * back-to-back playback, never a separate clip. Display order and the sentence
  * limit are not evidence boundaries. */
 export function selectGameSpeech(context: GameSpeechContext) {
   const claims = context.utterance.renderedClaims ?? [];
-  const lead = claims.findIndex(item => !humanInsightLabels[item.code]);
-  const primaryId = lead < 0 ? null : selectGameRecording({...context, claimIndex: lead});
+  let lead = -1, primaryId: string | null = null;
+  for (let index = 0; index < claims.length && !primaryId; index++) {
+    if (humanInsightLabels[claims[index].code]) continue;
+    primaryId = selectGameRecording({...context, claimIndex: index});
+    if (primaryId || lead < 0) lead = index;
+  }
   let recordingId = primaryId, secondId: string | null = null;
   const second = claims[lead + 1];
   if (primaryId && second && !humanInsightLabels[second.code] && ["game", "variation"].includes(context.intent.mode)) {
