@@ -68,17 +68,11 @@ test("with voice off, a coach's bubble still shows its spoken line and offers no
   await expect(movesLine(page).locator("strong")).toHaveText("Qh4#");
 });
 
-test("a ply whose only content is a Maia reading shows and speaks that line", async ({page}) => {
-  await mount(page, "man-partner", games["human-without-objective"], {voice: "off"});
-  await expect(bubble(page)).toHaveAttribute("data-spoken", "human-unusual-strong");
-  await expect.poll(() => shown(page)).toBe(line(arjun.recordings, "human-unusual-strong"));
-});
-
 test("without a spoken meaning the bubble keeps its written text and shows no moves line", async ({page}) => {
-  // A saved report without semantics keeps its written compatibility text.
-  const game = structuredClone(games["human-without-objective"]);
-  game.frames[1].report!.intelligence = null;
-  await mount(page, "man-partner", game);
+  // A legacy report without review semantics has no spoken line.
+  const legacy = structuredClone(games["human-without-objective"]);
+  legacy.frames[1].report!.intelligence = null;
+  await mount(page, "man-partner", legacy);
   const current = await state(page);
   await expect(bubble(page)).toHaveText(current.utteranceText);
   await expect(bubble(page)).not.toHaveAttribute("data-spoken", /./);

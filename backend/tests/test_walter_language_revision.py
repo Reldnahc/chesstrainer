@@ -26,17 +26,11 @@ def test_walter_revision_preserves_meanings_and_the_locked_voice():
         item["id"]: item for item in read(BANK / "revisions/walter-pilot-v1.json")["recordings"]
     }
     assert len(changes) == len(revision["recordings"])
-    # Coaches voice a Maia (human-move) reading only when it is a ply's whole
-    # content. These two always sit beside a stronger alternative, so they are
+    # Coaches never voice a Maia (human-move) reading, so those recordings are
     # retired, as are the clock observations; every other original recording
     # must survive.
-    retired = {
-        "human-natural-error",
-        "human-hard-defense-missed",
-        "clock-low",
-        "clock-fast",
-        "clock-long",
-    }
+    retired = {key for key in before if key.startswith("human-")}
+    retired |= {"clock-low", "clock-fast", "clock-long"}
     assert retired <= before.keys() and not retired & after.keys()
     before = {key: item for key, item in before.items() if key not in retired}
     assert before.keys() <= after.keys()

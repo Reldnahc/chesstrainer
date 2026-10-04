@@ -393,20 +393,19 @@ fail. Focused authoring tests run with `python -m pytest
 backend/tests/test_coach_voice_bank.py -q`. Speech asset edits select these backend
 checks even when no Python source changes.
 
-A coach speaks a Maia (human-move model) reading only as a ply's whole content. `game-speech-policy.spec.ts`
+Coaches never speak or show a Maia (human-move model) reading. `game-speech-policy.spec.ts`
 projects legal positions, synthetic search/policy evidence and real game-context
 relationships through the production fact, dialogue and selection functions, and
-checks that a Maia claim beside an objective fact selects no recording while the
-objective line still speaks, including when the Maia sentence leads the bubble. These verify semantic
+checks that every Maia claim selects no recording while the objective line still
+speaks, including when the Maia sentence leads the bubble. These verify semantic
 reachability and attribution, not engine playing strength or model calibration.
 The companion `game-speech-opening-policy.spec.ts`,
 `game-speech-positional-policy.spec.ts` and `game-speech-tactical-policy.spec.ts`
 cover the same positions that show each Maia reading, without filtering or
 reordering the produced claims, including all eleven opening-sequence variants.
-`game-speech-maia-silence.spec.ts` asserts the catalogue has only the five
-sole-content Maia meanings, a Maia-flagged move speaks only its objective clip,
-each sole Maia reading speaks its own clip, and Maia beside an unshown or newly
-added fact stays silent.
+`game-speech-maia-silence.spec.ts` asserts the catalogue has no Maia meanings, the
+coach's line never carries a Maia reading while the popup still does, and a move
+whose only reading was Maia gets the plain best or good line.
 `position-coach-speech.spec.ts` and `coach-speech.spec.ts` observe actual playback,
 including delayed Maia results, the silent Maia popup and cancellation.
 

@@ -26,7 +26,7 @@ function presentation(fixture: Fixture, coach = coaches[0], game = structuredClo
     explaining: false, error: false, pending: false});
   const intent = gameIntent({key: game.id, game, frame, report, ply, expression: reaction.state});
   const context: GameSpeechContext = {game, frame, report, ply, intent, utterance: renderDialogue(intent, coach)};
-  const child = humanInsightIntent(intent);
+  const child = humanInsightIntent(gameIntent({key: game.id, game, frame, report, ply, expression: reaction.state, human: true}));
   return {context, insight: {intent: child, utterance: renderDialogue(child, coach)}};
 }
 
@@ -89,12 +89,9 @@ for (const coach of coaches) for (const fixture of fixtures)
       expect(human.played!.rank).not.toBe(human.engine_best!.rank);
     }
     if (fixture.secondary === "human-natural-strong") expect(report.actual.score).toEqual(report.best.score);
-    if (["human-hard-find", "human-unusual-strong"].includes(fixture.secondary)) {
-      // Human priority really leads the visible bubble; the objective is found
-      // in its second slot without deleting or reordering any produced claim.
-      expect(humanInsightLabels[rendered[0].code]).toBeTruthy();
-      expect(objectiveIndex).toBe(1);
-    }
+    // Maia never enters the coach's line, so the objective fact leads it.
+    expect(rendered.some(item => humanInsightLabels[item.code])).toBe(false);
+    expect(objectiveIndex).toBe(0);
     if (!rendered.some(item => humanInsightLabels[item.code])) {
       expect(selectGameSpeech(context).recordingId).toBe(selectGameRecording(context));
       expect(insight.utterance.renderedClaims).toHaveLength(1);

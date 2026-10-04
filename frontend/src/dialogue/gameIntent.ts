@@ -16,10 +16,13 @@ function moveLabel(game: Game, ply: number) {
   return frame ? `${frame.number}${frame.actor === "black" ? "..." : "."} ${frame.san}` : `Ply ${ply}`;
 }
 
+/** The coach's dialogue never carries a Maia (human-move model) reading; only
+ * the separate Maia tag and popup ask for it, with `human`. */
 export function gameIntent({game, report, frame, ply, key, expression, explaining = false,
-  variation = false, error = false, pending = false}: {
+  variation = false, error = false, pending = false, human = false}: {
   game: Game; report?: Report | null; frame?: Position | null; ply: number; key: string;
   expression: CoachExpression; explaining?: boolean; variation?: boolean; error?: boolean; pending?: boolean;
+  human?: boolean;
 }) {
   const mode = variation ? "variation" : "game";
   if (explaining && report?.board_cues)
@@ -80,7 +83,6 @@ export function gameIntent({game, report, frame, ply, key, expression, explainin
       [{source: "book", id: report.opening.version, field: "recognized_opening", ply}]), ...(opening ? {opening} : {})});
   }
   const practical = report.practical;
-  if (learnerMove) claims.push(...humanClaims(report, ply, mover ?? null));
   // The graph remains two-sided. Personal relationships require the saved
   // learner, a matching evidence generation and an actual learner move.
   if (!variation && node && learnerMove && node.actor === game.orientation) {
@@ -95,7 +97,10 @@ export function gameIntent({game, report, frame, ply, key, expression, explainin
       }
       if (relation.kind === "punishment") linked(f.outcome === "capitalized" ? "punishment" : "missed_punishment", {earlier, side}, 81);
       if (relation.kind === "repeated_motif" && ["allowed", "caused", "missed"].includes(String(f.role))) linked("repeated", {count: Number(f.occurrence), motif: words(f.motif)}, 74);
-      if (relation.kind === "support_restored") linked("support_restored", {earlier, piece: words(f.piece)}, 75);
+      // A restored defender matters only when this move's piece is under attack.
+      if (relation.kind === "support_restored" && report.intelligence?.events.some(event =>
+        event.id === relation.event_ids.at(-1) && event.facts.attacked === true))
+        linked("support_restored", {earlier, piece: words(f.piece)}, 75);
       if (relation.kind === "erosion") linked("erosion", {earlier}, 71);
       if (relation.kind === "advantage_run" && f.outcome === "converted") linked("conversion", {earlier, side}, 75);
     }
@@ -116,6 +121,7 @@ export function gameIntent({game, report, frame, ply, key, expression, explainin
     }
     claims.push(claim("alternative", {best, evaluation: scoreText(report.best.score)}, 42, refs));
   } else if (!claims.length) claims.push(claim(report.label === "Good" ? "good" : "best", {}, 40, refs));
+  if (human && learnerMove) claims.push(...humanClaims(report, ply, mover ?? null));
   if (!report.intelligence && learnerMove) return makeIntent(key, purpose, mode, expression,
     [claim("compatibility", {detail: report.coach || report.reason}, 50)], ["legacy_report_without_semantics"]);
   return makeIntent(`${key}:${report.intelligence?.input_digest ?? "legacy"}`, purpose, mode, expression, claims,

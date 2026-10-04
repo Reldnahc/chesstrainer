@@ -5,19 +5,19 @@ import {renderDialogue} from "../src/dialogue/neutral";
 import {storyteller} from "../src/dialogue/characters/storyteller";
 import {robot} from "../src/dialogue/characters/robot";
 import {gameReaction} from "../src/coach/reactions";
-import {selectGameRecording, selectGameSpeech, soleMaiaIds, type GameSpeechContext} from "../src/audio/speech/gameSelection";
+import {selectGameSpeech, type GameSpeechContext} from "../src/audio/speech/gameSelection";
 import {humanInsightIntent, humanInsightLabels} from "../src/dialogue/humanClaims";
 import {semanticFixtures} from "../tests/semantic-fixtures";
 import {humanGames} from "../tests/human-fixtures";
 import catalogue from "../src/audio/speech/meanings.json" with {type: "json"};
 
-// A coach speaks a Maia (human-move model) reading only when it is the ply's
-// whole content. Beside an objective fact it stays written: the badge, its
-// popup and the bubble sentence show it, and speech carries only the fact.
+// A coach never says or shows a Maia (human-move model) reading. Maia lives only
+// in the badge and its popup; the coach's line carries the objective facts, and
+// a sound move with nothing else to say gets the plain best or good line.
 const games = semanticFixtures<Record<string, Game>>("review_speech_combination_fixtures.py");
 const coaches = [{id: "classic", personality: storyteller}, {id: "robot", personality: robot}];
-// Positions whose bubble renders an objective fact followed by a Maia sentence.
-const objectiveThenMaia: [string, string][] = [
+// Positions with an objective fact and a Maia reading.
+const objectiveAndMaia: [string, string][] = [
   ["evaluation-natural", "evaluation-loss"],
   ["allowed-mate-natural", "allowed-mate"],
   ["missed-mate-natural", "missed-mate"],
@@ -44,152 +44,60 @@ function context(name: string, coach = coaches[0], game = structuredClone(games[
   return {game, frame, report, ply: 1, intent, utterance: renderDialogue(intent, coach)};
 }
 
-test("the speech catalogue has only the sole-content Maia meanings and no combinations", () => {
-  const ids = catalogue.meanings.map(item => item.id);
-  expect(ids.filter(id => /^(?:human-|combo-|combined-)/.test(id)).sort())
-    .toEqual(Object.values(soleMaiaIds).sort());
+/** The badge and popup's own intent, built exactly as PositionCoach builds it. */
+function insight(current: GameSpeechContext) {
+  const {game, frame, report} = current;
+  const reaction = gameReaction({key: "insight", frame, report, learner: game.orientation,
+    explaining: false, error: false, pending: false});
+  return humanInsightIntent(gameIntent({game, frame, report, ply: 1, key: "insight",
+    expression: reaction.state, human: true}));
+}
+
+const maia = (codes: {code: string}[]) => codes.filter(item => humanInsightLabels[item.code]);
+
+test("the speech catalogue has no Maia meanings or combinations", () => {
+  expect(catalogue.meanings.map(item => item.id).filter(id => /^(?:human-|combo-|combined-)/.test(id))).toEqual([]);
   expect(catalogue.meanings.filter(item => "primary" in item || "secondary" in item)).toEqual([]);
 });
 
 for (const coach of coaches) {
-  for (const [name, objectiveId] of objectiveThenMaia) test(`${coach.id}: ${name} speaks only the objective line`, () => {
+  for (const [name, objectiveId] of objectiveAndMaia) test(`${coach.id}: ${name} says only the objective line`, () => {
     const current = context(name, coach);
-    const rendered = current.utterance.renderedClaims!;
-    expect(rendered).toHaveLength(2);
-    expect(humanInsightLabels[rendered[0].code]).toBeUndefined();
-    // The Maia sentence is still written in the bubble; it adds nothing to speech.
-    expect(humanInsightLabels[rendered[1].code]).toBeTruthy();
-    expect(selectGameRecording({...current, claimIndex: 1})).toBeNull();
-    expect(selectGameSpeech(current)).toEqual({primaryId: objectiveId, recordingId: objectiveId});
-  });
-
-  test(`${coach.id}: a Maia sentence shown first still leaves only the objective line`, () => {
-    const current = context("evaluation-natural", coach);
-    const utterance = structuredClone(current.utterance);
-    utterance.renderedClaims!.reverse();
-    utterance.trace.variants.reverse();
-    expect(humanInsightLabels[utterance.renderedClaims![0].code]).toBeTruthy();
-    expect(selectGameSpeech({...current, utterance})).toEqual({primaryId: "evaluation-loss", recordingId: "evaluation-loss"});
-  });
-
-  for (const name of Object.keys(games).filter(name => name.startsWith("cause-")))
-    test(`${coach.id}: ${name} keeps its bubble speech while the Maia insight is shown`, () => {
-      const current = context(name, coach);
-      expect(current.intent.claims.some(item => humanInsightLabels[item.code])).toBe(true);
-      expect(current.utterance.renderedClaims!.some(item => humanInsightLabels[item.code])).toBe(false);
-      // The insight still renders its written reading beside the bubble.
-      const intent = humanInsightIntent(current.intent);
-      expect(renderDialogue(intent, coach).renderedClaims!.map(item => item.code)).toEqual(["human_natural_error"]);
-      const selected = selectGameSpeech(current);
-      // A position can support several causes. Use the one actually displayed.
-      expect(selected.primaryId).toBe(current.utterance.renderedClaims![0].code.replaceAll("_", "-"));
-      const second = selectGameRecording({...current, claimIndex: 1});
-      expect(selected.recordingId).toBe(second ? `${selected.primaryId}+${second}` : selected.primaryId);
-    });
-
-  test(`${coach.id}: one move offers the same clip with or without a Maia reading`, () => {
-    const name = "cause-abandoned_defender-white";
-    const plain = structuredClone(games[name]), report = plain.frames[1].report!;
-    report.human = null;
-    report.practical = null;
-    report.intelligence!.events = report.intelligence!.events.filter(event => event.kind !== "human_contrast");
-    const withoutMaia = context(name, coach, plain);
-    const withMaia = context(name, coach);
-    for (const current of [withoutMaia, withMaia]) {
-      expect(current.utterance.renderedClaims!.map(item => item.code)).toEqual(["cause_abandoned_defender", expect.any(String)]);
-      // A recorded second sentence joins the first as one back-to-back playback.
-      const second = selectGameRecording({...current, claimIndex: 1});
-      expect(selectGameSpeech(current)).toEqual({primaryId: "cause-abandoned-defender",
-        recordingId: second ? `cause-abandoned-defender+${second}` : "cause-abandoned-defender"});
-    }
-  });
-
-  test(`${coach.id}: a ply whose only content is a Maia reading speaks it`, () => {
-    const current = context("human-without-objective", coach);
-    expect(current.intent.claims.map(item => item.code)).toEqual(["human_rare"]);
-    expect(current.utterance.renderedClaims!.map(item => item.code)).toEqual(["human_rare"]);
-    expect(selectGameRecording(current)).toBe("human-unusual-strong");
-    expect(selectGameSpeech(current)).toEqual({primaryId: "human-unusual-strong", recordingId: "human-unusual-strong"});
+    expect(maia(current.intent.claims)).toEqual([]);
+    expect(maia(current.utterance.renderedClaims!)).toEqual([]);
+    expect(selectGameSpeech(current).primaryId).toBe(objectiveId);
+    // The reading is still there for the badge and its popup.
+    expect(maia(insight(current).claims)).toHaveLength(1);
   });
 
   for (const [kind, code] of [["hard_find", "human_challenging"], ["unusual_strong", "human_rare"],
     ["natural_best", "human_natural_best"], ["natural_strong", "human_natural_strong"]] as const)
-    test(`${coach.id}: a sole ${kind} reading speaks its own Maia line`, () => {
-      // These policy fixtures open 1.e4/1.d4; without the book line Maia is all they say.
+    test(`${coach.id}: a move whose only reading is ${kind} gets the plain line`, () => {
+      // These policy fixtures open 1.e4/1.d4; without the book line Maia is all they have.
       const game = structuredClone(humanGames[kind]);
       game.frames[1].report!.opening = null;
       const current = context(`human-${kind}`, coach, game);
-      expect(current.intent.claims.map(item => item.code)).toEqual([code]);
-      expect(selectGameSpeech(current)).toEqual({primaryId: soleMaiaIds[code], recordingId: soleMaiaIds[code]});
+      const codes = current.utterance.renderedClaims!.map(item => item.code);
+      expect(codes).toHaveLength(1);
+      expect(["best", "good"]).toContain(codes[0]);
+      expect(selectGameSpeech(current).primaryId).toBe(codes[0] === "best" ? "best-supported-choice" : "good-choice");
+      expect(insight(current).claims.map(item => item.code)).toEqual([code]);
     });
 
-  test(`${coach.id}: a sole hard defense found speaks its own Maia line`, () => {
-    const game = structuredClone(games["human-without-objective"]);
-    const report = game.frames[1].report!;
-    expect(report.actual.uci).toBe(report.best.uci);
-    report.practical!.interpretations = [...report.practical!.interpretations ?? [], "hard_to_find_defense"];
-    const current = context("human-defense-found", coach, game);
-    expect(current.intent.claims.map(item => item.code)).toEqual(["human_defense_found"]);
-    expect(selectGameSpeech(current)).toEqual({primaryId: "human-hard-defense-found", recordingId: "human-hard-defense-found"});
-  });
-
-  test(`${coach.id}: a Maia sentence shown alone beside an unshown fact stays silent`, () => {
-    // A one-sentence bubble can show a Maia reading that outranks an objective
-    // fact. The ply still has that fact to say, so Maia is not voiced.
+  test(`${coach.id}: the Maia popup selects no recording`, () => {
     const current = context("evaluation-natural", coach);
-    const utterance = structuredClone(current.utterance);
-    const index = utterance.renderedClaims!.findIndex(item => humanInsightLabels[item.code]);
-    utterance.renderedClaims = [utterance.renderedClaims![index]];
-    utterance.trace.variants = [utterance.trace.variants[index]];
-    expect(selectGameRecording({...current, utterance})).toBeNull();
-    expect(selectGameSpeech({...current, utterance})).toEqual({primaryId: null, recordingId: null});
-  });
-
-  test(`${coach.id}: a Maia-only snapshot whose refreshed ply gained a fact stays silent`, () => {
-    const current = context("human-without-objective", coach);
-    // The visible utterance predates a report that now also carries a sacrifice.
-    // (Clock notes no longer make claims, so they cannot stand in for a new fact.)
-    const report = current.report!, game = current.game;
-    const sacrifice: NonNullable<typeof report.intelligence>["events"][number] = {...report.intelligence!.events[0],
-      id: "late-sacrifice", kind: "sacrifice", actor: game.orientation, confidence: "board_fact", facts: {}};
-    report.intelligence!.events = [...report.intelligence!.events, sacrifice];
-    expect(selectGameSpeech(current)).toEqual({primaryId: null, recordingId: null});
-  });
-
-  test(`${coach.id}: the separate Maia insight selects no recording`, () => {
-    const current = context("evaluation-natural", coach);
-    const intent = humanInsightIntent(current.intent);
+    const intent = insight(current);
     const utterance = renderDialogue(intent, coach);
     expect(utterance.renderedClaims!.map(item => item.code)).toEqual(["human_natural_error"]);
     expect(selectGameSpeech({...current, intent, utterance})).toEqual({primaryId: null, recordingId: null});
   });
 
-  test(`${coach.id}: stale or mismatched policy keeps the objective recording`, () => {
-    const mutations: ((current: GameSpeechContext) => void)[] = [
-      current => {current.report!.practical!.human_evidence_id = "older-policy";},
-      current => {current.report!.human!.played!.uci = "a2a3";},
-      current => {current.report!.human!.engine_best!.uci = "a2a3";},
-      current => {current.report!.human!.mover = "black";},
-      current => {current.report!.human!.status = "unavailable";},
-    ];
-    for (const mutate of mutations) {
-      const current = context("evaluation-natural", coach);
-      mutate(current);
-      // Keep the previously visible utterance to simulate a stale UI snapshot.
-      expect(selectGameSpeech(current)).toEqual({primaryId: "evaluation-loss",
-        recordingId: "evaluation-loss"});
-      const fresh = context("evaluation-natural", coach, current.game);
-      expect(fresh.intent.claims.some(item => humanInsightLabels[item.code])).toBe(false);
-      expect(selectGameSpeech(fresh).recordingId).toBe("evaluation-loss+recognized-opening");
-    }
-  });
-
-  test(`${coach.id}: opponent review keeps the objective recording without learner human feedback`, () => {
+  test(`${coach.id}: opponent review has no Maia reading anywhere`, () => {
     const game = structuredClone(games["evaluation-natural"]);
     game.orientation = "black";
     const current = context("evaluation-natural", coach, game);
     expect(current.intent.subject).toBe("opponent");
-    expect(current.intent.claims.some(item => humanInsightLabels[item.code])).toBe(false);
+    expect(maia(insight(current).claims)).toEqual([]);
     expect(selectGameSpeech(current).recordingId).toBe("evaluation-loss+recognized-opening");
   });
 

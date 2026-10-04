@@ -28,8 +28,10 @@ export function positionalClaim(event: Event, move: string, best: string): Claim
     case "passed_pawn_advance": return make("passer_advance", {lead, square: words(f.after)});
     case "isolated_pawns": return strings(f.added).length
       ? make("isolated", {lead, side: words(f.side), squares: join(strings(f.added))}) : null;
-    case "piece_support": return make(strings(f.after).length ? "support" : "unsupported",
-      {lead, piece: words(f.piece), square: words(f.target)});
+    // Gaining or losing a defender only matters for a piece under attack; for
+    // any other piece it is trivia that crowds out the move's real story.
+    case "piece_support": return f.attacked === true ? make(strings(f.after).length ? "support" : "unsupported",
+      {lead, piece: words(f.piece), square: words(f.target)}) : null;
     case "king_flights": return make("flights", {lead, squares: join(strings(f.opened))});
     case "castling": return make("castle", {lead, square: words(f.after)});
     case "bishop_pair": return make("bishops", {lead, side: words(f.side)});

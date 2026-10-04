@@ -295,7 +295,6 @@ test("pre-cancelled generation and invalid command options never make requests",
 test("plans refuse retired Maia readings by ID or wording before any request", () => {
   for (const script of [
     { id: "human-natural-error", label: "Maia", text: "A natural move that turns out costly." },
-    { id: "human-hard-defense-missed", label: "Maia", text: "The human-move model says that defense was hard." },
     { id: "combo-recognized-opening-natural-best", label: "Combo", text: "A known opening, played naturally." },
     { id: "combined-allowed-mate-with-human-natural-error", label: "Combined", text: "This allows mate." },
     { id: "allowed-mate", label: "Wording", text: "The human-move model rates this natural." },
@@ -303,12 +302,6 @@ test("plans refuse retired Maia readings by ID or wording before any request", (
     { id: "allowed-mate", label: "Wording", text: "The human-model reading calls it natural." },
   ]) assert.throws(() => validatePlan({ ...plan(), scripts: [script] }), /retired Maia reading/);
   assert.equal(validatePlan(plan()).scripts.length, 1);
-});
-
-test("plans accept the five Maia readings a ply can have as its only content", () => {
-  const scripts = ["human-natural-best", "human-natural-strong", "human-unusual-strong", "human-hard-find",
-    "human-hard-defense-found"].map(id => ({ id, label: "Maia", text: "The human-move model and the engine agree here." }));
-  assert.deepEqual(validatePlan({ ...plan(), scripts }).scripts.map(script => script.id), scripts.map(script => script.id));
 });
 
 test("a plan with one Maia reading is refused whole, with no request or write", async t => {

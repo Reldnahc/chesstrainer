@@ -81,7 +81,13 @@ for (const game of games) {
       ["erosion", "erosion", {}], ["advantage_run", "conversion", {outcome: "converted"}],
     ] as const;
     for (const [kind, code, facts] of kinds) {
-      const modified: Game = {...game, context: {...game.context!, relationships: [{...recovery, kind, facts}]},
+      // A restored defender is spoken only for a piece under attack on this move.
+      const frames = kind !== "support_restored" ? game.frames : game.frames.map((frame, index) => index !== ply ? frame
+        : {...frame, report: {...frame.report!, intelligence: {...frame.report!.intelligence!, events: [
+          ...frame.report!.intelligence!.events, {id: "restored-support", kind: "positional", actor: learner, confidence: "board_fact",
+            importance: 50, evidence: recovery.evidence, facts: {feature: "piece_support", attacked: true}}]}}});
+      const event_ids = kind === "support_restored" ? [...recovery.event_ids, "restored-support"] : recovery.event_ids;
+      const modified: Game = {...game, frames, context: {...game.context!, relationships: [{...recovery, kind, facts, event_ids}]},
         history: {version: "cross-game-1", input_digest: "history", scope: "other_saved_games", recurrence_threshold: 2, limitations: [],
           weaknesses: [{skill_id: "abandoned_defender", title: "Abandoned defender", status: "supported", independent_games: 2,
             occurrences: 2, related_plies: [ply], evidence: recovery.evidence, decision_ids: ["other-decision"], game_ids: ["other-a", "other-b"]}]}};

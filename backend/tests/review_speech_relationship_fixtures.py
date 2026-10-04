@@ -54,7 +54,8 @@ def family_inputs(family):
         )
     if family == "support-restored":
         return (
-            "6k1/4p3/8/8/3N4/8/6K1/R5B1 w - - 0 1",
+            # The d8 rook attacks the knight, so its restored defender matters.
+            "3r2k1/4p3/8/8/3N4/8/6K1/R5B1 w - - 0 1",
             [
                 "g1h2",
                 "g8h8",

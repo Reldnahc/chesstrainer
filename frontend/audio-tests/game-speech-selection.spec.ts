@@ -130,7 +130,10 @@ test("a Maia claim never selects a recording, even with exact current learner ev
   for (const game of Object.values(humans)) {
     const report = game.frames[1].report!;
     const current = context(report, game.frames[1].fen);
-    const item = current.intent.claims.find(item => item.code.startsWith("human_") || item.code === "difficult_defense");
+    // The coach's own intent never carries Maia; only the badge's intent does.
+    expect(current.intent.claims.some(item => item.code.startsWith("human_") || item.code === "difficult_defense")).toBe(false);
+    const badge = gameIntent({...current, key: "test-current-position", expression: current.intent.expression, human: true});
+    const item = badge.claims.find(item => item.code.startsWith("human_") || item.code === "difficult_defense");
     if (!item) continue;
     const intent = makeIntent(`${current.intent.id}:human`, current.intent.purpose, current.intent.mode,
       current.intent.expression, [item], current.intent.decisions, current.intent.subject);
@@ -163,8 +166,11 @@ test("every tactical recording keeps its exact motif, actor and line role", () =
     const report = structuredClone(causal[0].report);
     if (role === "played") report.label = report.engine_label = "Best";
     const original = report.intelligence!.events.find(event => event.facts.role === "allowed")!;
+    // Played and missed witnesses start on the move itself; allowed ones on the reply.
+    const opening = role === "allowed" ? original.facts.witness
+      : [{ply: 1, san: report[role === "missed" ? "best" : "actual"].san, capture: null, gives_check: false}];
     const event = {...original, id: script.id, actor: role === "allowed" ? "black" as const : "white" as const,
-      facts: {...original.facts, motif, role},
+      facts: {...original.facts, motif, role, ...(role === "allowed" ? {} : {plies: [1], frame_ply: 1, witness: opening})},
       evidence: original.evidence.map(ref => ref.source === "stockfish"
         ? {...ref, field: `${role === "missed" ? "best" : "actual"}_line/findings/0`} : ref)};
     report.intelligence!.events = [event];
@@ -203,8 +209,8 @@ test("all positional speech branches validate their structured facts and keep al
     {code: "passed", name: "passed", facts: {feature: "passed_pawns", added: ["c5"]}},
     {code: "passer_advance", name: "passer-advance", facts: {feature: "passed_pawn_advance", before: "c5", after: "c6"}},
     {code: "isolated", name: "isolated", facts: {feature: "isolated_pawns", added: ["c5"]}},
-    {code: "support", name: "support", facts: {feature: "piece_support", before: [], after: ["c2"], piece: "rook", target: "a1"}},
-    {code: "unsupported", name: "unsupported", facts: {feature: "piece_support", before: ["c2"], after: [], piece: "rook", target: "a1"}},
+    {code: "support", name: "support", facts: {feature: "piece_support", before: [], after: ["c2"], piece: "rook", target: "a1", attacked: true}},
+    {code: "unsupported", name: "unsupported", facts: {feature: "piece_support", before: ["c2"], after: [], piece: "rook", target: "a1", attacked: true}},
     {code: "flights", name: "king-flight", facts: {feature: "king_flights", opened: ["g2"]}},
     {code: "castle", name: "castling", facts: {feature: "castling", before: "e1", after: "g1"}},
     {code: "bishops", name: "bishop-pair", facts: {feature: "bishop_pair", before: 2, after: 1, side: "black"}},

@@ -24,7 +24,7 @@ function presentation(game: Game, ply: number, coach = coaches[0]) {
     explaining: false, error: false, pending: false});
   const intent = gameIntent({game, frame, report, ply, key, expression: reaction.state});
   const context = {game, frame, report, ply, intent, utterance: renderDialogue(intent, coach)};
-  const child = humanInsightIntent(intent);
+  const child = humanInsightIntent(gameIntent({game, frame, report, ply, key, expression: reaction.state, human: true}));
   const insight = {intent: child, utterance: renderDialogue(child, coach)};
   return {context, insight};
 }
@@ -72,12 +72,11 @@ for (const coach of coaches) {
       expect(context.report.opening).toBeNull();
       expect(context.report.intelligence!.events.some(event => event.kind === "opening_departure")).toBe(true);
       const codes = context.utterance.renderedClaims!.map(item => item.code);
-      expect(humanInsightLabels[codes[0]]).toBeTruthy();
-      expect(codes[1]).toBe("departure");
-      expect(selectGameRecording(context)).toBeNull();
-      expect(selectGameRecording({...context, claimIndex: 1})).toBe("opening-departure");
+      // Maia stays in its badge; the departure leads the coach's line.
+      expect(codes[0]).toBe("departure");
+      expect(codes.some(code => humanInsightLabels[code])).toBe(false);
+      expect(selectGameRecording(context)).toBe("opening-departure");
       expect(insight.utterance.renderedClaims!.map(item => item.code)).toEqual([shownCodes[state]]);
-      // The Maia sentence leads the bubble but adds nothing to speech.
       expect(selectGameSpeech(context)).toEqual({primaryId: "opening-departure", recordingId: "opening-departure"});
       observed.add(state);
     }

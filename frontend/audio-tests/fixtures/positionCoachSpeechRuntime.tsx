@@ -54,7 +54,8 @@ export function mountPositionCoachSpeech(game: Game): PositionCoachSpeechHarness
     const intent = gameIntent({game: current, report, frame, ply: 1, variation: false,
       key: dialogueKey, expression: reaction.state, error, pending});
     const utterance = renderDialogue(intent, getCoach(coach.preferences.coach_id));
-    const humanIntent = humanInsightIntent(intent);
+    const humanIntent = humanInsightIntent(gameIntent({game: current, report, frame, ply: 1, variation: false,
+      key: dialogueKey, expression: reaction.state, error, pending, human: true}));
     const human = renderDialogue(humanIntent, getCoach(coach.preferences.coach_id));
     const state: PositionCoachSpeechState = {
       ready: audio.ready && coach.ready, coachId: coach.preferences.coach_id,

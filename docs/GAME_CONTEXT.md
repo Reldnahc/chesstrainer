@@ -17,7 +17,7 @@ Relations are deliberately narrower than an unrestricted chess story:
 | Repeated motif | Same responsible player, supported tactical motif and role on different reviewed plies. Duplicate detectors do not inflate the count; a best-line alternative is excluded. Counts are explicitly among observed reviewed plies. |
 | Advantage run | At least six contiguous reviewed plies stay at 200 cp or searched mate for one side. A completed review ending in that side's recorded win adds a conversion observation. This does not mean flawless play or a mathematically proved win. |
 | Erosion | At least three 30–149 cp concessions by one side in a nine-ply window, with at least 150 cp net deterioration. Opponent errors that restore the position defeat the net-deterioration claim. |
-| Support restored | A concrete surviving piece loses effective support and later regains it. Track its moves; captures, castling ambiguity, missing review or changed actor break the link. This says nothing about why an eventual tactic worked. |
+| Support restored | A concrete surviving piece loses effective support and later regains it. Track its moves; captures, castling ambiguity, missing review or changed actor break the link. This says nothing about why an eventual tactic worked. The coach mentions it only when the piece is attacked on the restoring move. |
 
 Contiguous score relationships stop at missing plies, invalid mainline contexts,
 or adjacent searches disagreeing by more than 100 cp / on mate outcome. We do not
