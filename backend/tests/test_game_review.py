@@ -7,7 +7,7 @@ from fastapi.testclient import TestClient
 from sqlalchemy import func, select
 from trainer.api import create_app
 from trainer.chess_core import Score
-from trainer.game_review import analyze_move, classify
+from trainer.game_review import analyze_move, classify, promote_stronger_played
 from trainer.imports import import_games
 from trainer.models import AnalysisJob, Decision, Game, GameReviewMove, Review
 
@@ -516,3 +516,20 @@ def test_pgn_rating_missing_or_invalid_does_not_borrow_opponent(value, expected)
     parsed.headers["BlackElo"] = "2100"
     assert pgn_rating(parsed, chess.WHITE) == expected
     assert pgn_rating(parsed, chess.BLACK) == 2100
+
+
+def test_a_missed_tactic_is_a_miss_only_at_mistake_size():
+    assert classify(quality(155, 100, opportunity_missed=True), 1000)[0] == "Inaccuracy"
+    assert classify(quality(200, 100, opportunity_missed=True), 1000)[0] == "Miss"
+
+
+def test_a_played_move_searched_above_the_reported_best_is_promoted():
+    report = quality(790, 896, loss_cp=0, opportunity_missed=True,
+                     best_line={"line": "best"}, actual_line={"line": "actual"})
+    promoted = promote_stronger_played(report)
+    assert promoted["best"] == report["actual"]
+    assert promoted["best_line"] == report["actual_line"]
+    assert promoted["opportunity_missed"] is False
+    assert classify(promoted, 1000)[0] == "Best"
+    # A tie keeps the reported best: Best still requires the top move.
+    assert promote_stronger_played(quality(790, 790)) == quality(790, 790)

@@ -80,7 +80,9 @@ def classify(report, rating):
         and score_order(actual) < score_order(best)
     ):
         return "Good", "This keeps a forced checkmate, but a faster mate was available."
-    missed = report["opportunity_missed"]
+    # A missed tactic is a Miss only when it costs as much as a Mistake;
+    # a smaller gap keeps the ordinary centipawn grade.
+    missed = report["opportunity_missed"] and cp >= 100
     if loss.mate_lost or missed:
         return "Miss", "A concrete tactical opportunity was available and went unused."
     if cp >= 100:
@@ -239,11 +241,30 @@ def analyze_move(engine, board, move, previous_score=None):
     }
 
 
+def promote_stronger_played(report):
+    """A played move outside the MultiPV gets its own restricted search. When
+    that search scores it above the reported best, it is the best move found,
+    so every displayed derivative (grade, best move, missed ideas) uses it."""
+    if report["actual"]["uci"] == report["best"]["uci"]:
+        return report
+    best = Score.model_validate(report["best"]["score"])
+    actual = Score.model_validate(report["actual"]["score"])
+    if score_order(actual) <= score_order(best):
+        return report
+    return report | {
+        "best": report["actual"],
+        "best_line": report["actual_line"],
+        "loss_cp": 0,
+        "opportunity_missed": False,
+    }
+
+
 def public_report(report, rating, *, context=None):
     # Apply current evidence admission to saved reports too. Keep engine facts
     # untouched in storage; all displayed derivatives share the corrected offer.
     if report.get("sacrifice") and not supported_sacrifice(report):
         report = report | {"sacrifice": None}
+    report = promote_stronger_played(report)
     label, reason = classify(report, rating)
     engine_label = label
     findings = report["actual_line"]["findings"]
