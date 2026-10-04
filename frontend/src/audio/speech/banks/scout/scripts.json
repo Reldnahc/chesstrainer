@@ -1133,6 +1133,1346 @@
       "id": "lesson-error",
       "group": "lessons",
       "text": "Lesson needs a restore. Reload it to continue."
+    },
+    {
+      "id": "tactic-fork-played-pawn",
+      "group": "game_review",
+      "text": "Fork in play. The pawn hits two targets in the same move, and a single answer might not save them both. Spot the pawn, then check both targets."
+    },
+    {
+      "id": "tactic-fork-played-knight",
+      "group": "game_review",
+      "text": "Fork in play. The knight hits several targets in the same move, and a single answer might not save them all. Spot the knight, then count its targets."
+    },
+    {
+      "id": "tactic-fork-played-bishop",
+      "group": "game_review",
+      "text": "Fork in play. The bishop hits several targets in the same move, and a single answer might not save them all. Spot the bishop, then count its targets."
+    },
+    {
+      "id": "tactic-fork-played-rook",
+      "group": "game_review",
+      "text": "Fork in play. The rook hits several targets in the same move, and a single answer might not save them all. Spot the rook, then count its targets."
+    },
+    {
+      "id": "tactic-fork-played-queen",
+      "group": "game_review",
+      "text": "Fork in play. The queen hits several targets in the same move, and a single answer might not save them all. Spot the queen, then count its targets."
+    },
+    {
+      "id": "tactic-fork-allowed-pawn",
+      "group": "game_review",
+      "text": "Fork spotted, and it's theirs. After this, a pawn of theirs can reach two targets in one go. Scan where their pieces can land before committing to a move."
+    },
+    {
+      "id": "tactic-fork-allowed-knight",
+      "group": "game_review",
+      "text": "Fork spotted, and it's theirs. After this, a knight of theirs can reach several targets in one go. Scan where their pieces can land before committing to a move."
+    },
+    {
+      "id": "tactic-fork-allowed-bishop",
+      "group": "game_review",
+      "text": "Fork spotted, and it's theirs. After this, a bishop of theirs can reach several targets in one go. Scan where their pieces can land before committing to a move."
+    },
+    {
+      "id": "tactic-fork-allowed-rook",
+      "group": "game_review",
+      "text": "Fork spotted, and it's theirs. After this, a rook of theirs can reach several targets in one go. Scan where their pieces can land before committing to a move."
+    },
+    {
+      "id": "tactic-fork-allowed-queen",
+      "group": "game_review",
+      "text": "Fork spotted, and it's theirs. After this, a queen of theirs can reach several targets in one go. Scan where their pieces can land before committing to a move."
+    },
+    {
+      "id": "tactic-fork-missed-pawn",
+      "group": "game_review",
+      "text": "Fork left on the table. A different move would have hit two targets with a pawn. Find that move and lock the pattern in."
+    },
+    {
+      "id": "tactic-fork-missed-knight",
+      "group": "game_review",
+      "text": "Fork left on the table. A different move would have hit several targets with a knight. Find that move and lock the pattern in."
+    },
+    {
+      "id": "tactic-fork-missed-bishop",
+      "group": "game_review",
+      "text": "Fork left on the table. A different move would have hit several targets with a bishop. Find that move and lock the pattern in."
+    },
+    {
+      "id": "tactic-fork-missed-rook",
+      "group": "game_review",
+      "text": "Fork left on the table. A different move would have hit several targets with a rook. Find that move and lock the pattern in."
+    },
+    {
+      "id": "tactic-fork-missed-queen",
+      "group": "game_review",
+      "text": "Fork left on the table. A different move would have hit several targets with a queen. Find that move and lock the pattern in."
+    },
+    {
+      "id": "tactic-pin-played-pawn",
+      "group": "game_review",
+      "text": "Pin locked. The pawn is held to its king now, and stepping off the line would expose the king. Mark it and watch what it can no longer do."
+    },
+    {
+      "id": "tactic-pin-played-knight",
+      "group": "game_review",
+      "text": "Pin locked. The knight is held to its king now, and stepping off the line would expose the king. Mark it and watch what it can no longer do."
+    },
+    {
+      "id": "tactic-pin-played-bishop",
+      "group": "game_review",
+      "text": "Pin locked. The bishop is held to its king now, and stepping off the line would expose the king. Mark it and watch what it can no longer do."
+    },
+    {
+      "id": "tactic-pin-played-rook",
+      "group": "game_review",
+      "text": "Pin locked. The rook is held to its king now, and stepping off the line would expose the king. Mark it and watch what it can no longer do."
+    },
+    {
+      "id": "tactic-pin-played-queen",
+      "group": "game_review",
+      "text": "Pin locked. The queen is held to its king now, and stepping off the line would expose the king. Mark it and watch what it can no longer do."
+    },
+    {
+      "id": "tactic-pin-allowed-pawn",
+      "group": "game_review",
+      "text": "Pin incoming. This move lets the other side tie a pawn to its own king, so it can't leave the line without exposing the king. Check every line to the king before moving."
+    },
+    {
+      "id": "tactic-pin-allowed-knight",
+      "group": "game_review",
+      "text": "Pin incoming. This move lets the other side tie a knight to its own king, so it can't leave the line without exposing the king. Check every line to the king before moving."
+    },
+    {
+      "id": "tactic-pin-allowed-bishop",
+      "group": "game_review",
+      "text": "Pin incoming. This move lets the other side tie a bishop to its own king, so it can't leave the line without exposing the king. Check every line to the king before moving."
+    },
+    {
+      "id": "tactic-pin-allowed-rook",
+      "group": "game_review",
+      "text": "Pin incoming. This move lets the other side tie a rook to its own king, so it can't leave the line without exposing the king. Check every line to the king before moving."
+    },
+    {
+      "id": "tactic-pin-allowed-queen",
+      "group": "game_review",
+      "text": "Pin incoming. This move lets the other side tie a queen to its own king, so it can't leave the line without exposing the king. Check every line to the king before moving."
+    },
+    {
+      "id": "tactic-pin-missed-pawn",
+      "group": "game_review",
+      "text": "Pin missed. Another move could have pinned a pawn in front of its king. Go back, find the line, and mark which pawn would have been stuck on that line."
+    },
+    {
+      "id": "tactic-pin-missed-knight",
+      "group": "game_review",
+      "text": "Pin missed. Another move could have frozen a knight in front of its king. Go back, find the line, and mark which knight would have been stuck."
+    },
+    {
+      "id": "tactic-pin-missed-bishop",
+      "group": "game_review",
+      "text": "Pin missed. Another move could have pinned a bishop in front of its king. Go back, find the line, and mark which bishop would have been stuck on that line."
+    },
+    {
+      "id": "tactic-pin-missed-rook",
+      "group": "game_review",
+      "text": "Pin missed. Another move could have pinned a rook in front of its king. Go back, find the line, and mark which rook would have been stuck on that line."
+    },
+    {
+      "id": "tactic-pin-missed-queen",
+      "group": "game_review",
+      "text": "Pin missed. Another move could have pinned a queen in front of its king. Go back, find the line, and mark which queen would have been stuck on that line."
+    },
+    {
+      "id": "tactic-skewer-played-knight",
+      "group": "game_review",
+      "text": "Skewer on the line. The knight in front takes the hit, and once it steps aside, the piece behind it is open. Read the line front to back."
+    },
+    {
+      "id": "tactic-skewer-played-bishop",
+      "group": "game_review",
+      "text": "Skewer on the line. The bishop in front takes the hit, and once it steps aside, the piece behind it is open. Read the line front to back."
+    },
+    {
+      "id": "tactic-skewer-played-rook",
+      "group": "game_review",
+      "text": "Skewer on the line. The rook in front takes the hit, and once it steps aside, the piece behind it is open. Read the line front to back."
+    },
+    {
+      "id": "tactic-skewer-played-queen",
+      "group": "game_review",
+      "text": "Skewer on the line. The queen in front takes the hit, and once it steps aside, the piece behind it is open. Read the line front to back."
+    },
+    {
+      "id": "tactic-skewer-played-king",
+      "group": "game_review",
+      "text": "Skewer on the line. The king takes the check, and once it steps aside, the piece behind it is open. Read the line front to back."
+    },
+    {
+      "id": "tactic-skewer-allowed-knight",
+      "group": "game_review",
+      "text": "Skewer alert. Two pieces share a line, and this move lets the other side aim down it. If the knight in front moves, the piece behind it can be hit. Watch shared lines."
+    },
+    {
+      "id": "tactic-skewer-allowed-bishop",
+      "group": "game_review",
+      "text": "Skewer alert. Two pieces share a line, and this move lets the other side aim down it. If the bishop in front moves, the piece behind it can be hit. Watch shared lines."
+    },
+    {
+      "id": "tactic-skewer-allowed-rook",
+      "group": "game_review",
+      "text": "Skewer alert. Two pieces share a line, and this move lets the other side aim down it. If the rook in front moves, the piece behind it can be hit. Watch shared lines."
+    },
+    {
+      "id": "tactic-skewer-allowed-queen",
+      "group": "game_review",
+      "text": "Skewer alert. Two pieces share a line, and this move lets the other side aim down it. If the queen in front moves, the piece behind it can be hit. Watch shared lines."
+    },
+    {
+      "id": "tactic-skewer-allowed-king",
+      "group": "game_review",
+      "text": "Skewer alert. The king shares a line with another piece, and this move lets the other side aim down it. Once the king is checked off the line, the piece behind can be hit. Watch shared lines."
+    },
+    {
+      "id": "tactic-skewer-missed-knight",
+      "group": "game_review",
+      "text": "Skewer missed. A different move lined up an attack through the knight in front to the piece behind it. Find that line and run the idea again."
+    },
+    {
+      "id": "tactic-skewer-missed-bishop",
+      "group": "game_review",
+      "text": "Skewer missed. A different move lined up an attack through the bishop in front to the piece behind it. Find that line and run the idea again."
+    },
+    {
+      "id": "tactic-skewer-missed-rook",
+      "group": "game_review",
+      "text": "Skewer missed. A different move lined up an attack through the rook in front to the piece behind it. Find that line and run the idea again."
+    },
+    {
+      "id": "tactic-skewer-missed-queen",
+      "group": "game_review",
+      "text": "Skewer missed. A different move lined up an attack through the queen in front to the piece behind it. Find that line and run the idea again."
+    },
+    {
+      "id": "tactic-skewer-missed-king",
+      "group": "game_review",
+      "text": "Skewer missed. A different move lined up a check on the king, with the piece behind it next in line. Find that line and run the idea again."
+    },
+    {
+      "id": "tactic-discovered-attack-played-pawn",
+      "group": "game_review",
+      "text": "Discovered attack. The pawn moves off the line and the piece behind it opens fire along the line. Watch the line that opens, not just the pawn that moved."
+    },
+    {
+      "id": "tactic-discovered-attack-played-knight",
+      "group": "game_review",
+      "text": "Discovered attack. The knight steps aside and the piece behind it opens fire along the line. Watch the line that opens, not just the knight that moved."
+    },
+    {
+      "id": "tactic-discovered-attack-played-bishop",
+      "group": "game_review",
+      "text": "Discovered attack. The bishop steps aside and the piece behind it opens fire along the line. Watch the line that opens, not just the bishop that moved."
+    },
+    {
+      "id": "tactic-discovered-attack-played-rook",
+      "group": "game_review",
+      "text": "Discovered attack. The rook steps aside and the piece behind it opens fire along the line. Watch the line that opens, not just the rook that moved."
+    },
+    {
+      "id": "tactic-discovered-attack-played-queen",
+      "group": "game_review",
+      "text": "Discovered attack. The queen steps aside and the piece behind it opens fire along the line. Watch the line that opens, not just the queen that moved."
+    },
+    {
+      "id": "tactic-discovered-attack-played-king",
+      "group": "game_review",
+      "text": "Discovered attack. The king steps aside and the piece behind it opens fire along the line. Watch the line that opens, not just the king that moved."
+    },
+    {
+      "id": "tactic-discovered-attack-allowed-pawn",
+      "group": "game_review",
+      "text": "Discovery threat. This move lets the other side shift their pawn and unmask an attack from the piece behind it. Scan their stacked pieces before moving."
+    },
+    {
+      "id": "tactic-discovered-attack-allowed-knight",
+      "group": "game_review",
+      "text": "Discovery threat. This move lets the other side shift their knight and unmask an attack from the piece behind it. Scan their stacked pieces before moving."
+    },
+    {
+      "id": "tactic-discovered-attack-allowed-bishop",
+      "group": "game_review",
+      "text": "Discovery threat. This move lets the other side shift their bishop and unmask an attack from the piece behind it. Scan their stacked pieces before moving."
+    },
+    {
+      "id": "tactic-discovered-attack-allowed-rook",
+      "group": "game_review",
+      "text": "Discovery threat. This move lets the other side shift their rook and unmask an attack from the piece behind it. Scan their stacked pieces before moving."
+    },
+    {
+      "id": "tactic-discovered-attack-allowed-queen",
+      "group": "game_review",
+      "text": "Discovery threat. This move lets the other side shift their queen and unmask an attack from the piece behind it. Scan their stacked pieces before moving."
+    },
+    {
+      "id": "tactic-discovered-attack-allowed-king",
+      "group": "game_review",
+      "text": "Discovery threat. This move lets the other side shift their king and unmask an attack from the piece behind it. Scan their stacked pieces before moving."
+    },
+    {
+      "id": "tactic-discovered-attack-missed-pawn",
+      "group": "game_review",
+      "text": "Discovery missed. Another move could have moved the pawn off the line to let the piece behind it attack. Find the stacked pair and run it again."
+    },
+    {
+      "id": "tactic-discovered-attack-missed-knight",
+      "group": "game_review",
+      "text": "Discovery missed. Another move could have stepped the knight aside to let the piece behind it attack. Find the stacked pair and run it again."
+    },
+    {
+      "id": "tactic-discovered-attack-missed-bishop",
+      "group": "game_review",
+      "text": "Discovery missed. Another move could have stepped the bishop aside to let the piece behind it attack. Find the stacked pair and run it again."
+    },
+    {
+      "id": "tactic-discovered-attack-missed-rook",
+      "group": "game_review",
+      "text": "Discovery missed. Another move could have stepped the rook aside to let the piece behind it attack. Find the stacked pair and run it again."
+    },
+    {
+      "id": "tactic-discovered-attack-missed-queen",
+      "group": "game_review",
+      "text": "Discovery missed. Another move could have stepped the queen aside to let the piece behind it attack. Find the stacked pair and run it again."
+    },
+    {
+      "id": "tactic-discovered-attack-missed-king",
+      "group": "game_review",
+      "text": "Discovery missed. Another move could have stepped the king aside to let the piece behind it attack. Find the stacked pair and run it again."
+    },
+    {
+      "id": "tactic-undefended-capture-played-knight",
+      "group": "game_review",
+      "text": "Loose knight, collected. Nothing was guarding it, so it comes off for free. First scan, every move: loose pieces."
+    },
+    {
+      "id": "tactic-undefended-capture-played-bishop",
+      "group": "game_review",
+      "text": "Loose bishop, collected. Nothing was guarding it, so it comes off for free. First scan, every move: loose pieces."
+    },
+    {
+      "id": "tactic-undefended-capture-played-rook",
+      "group": "game_review",
+      "text": "Loose rook, collected. Nothing was guarding it, so it comes off for free. First scan, every move: loose pieces."
+    },
+    {
+      "id": "tactic-undefended-capture-played-queen",
+      "group": "game_review",
+      "text": "Loose queen, collected. Nothing was guarding it, so it comes off for free. First scan, every move: loose pieces."
+    },
+    {
+      "id": "tactic-undefended-capture-missed-knight",
+      "group": "game_review",
+      "text": "Loose knight missed. It was there, free, for another move to grab. Free material comes first, every time."
+    },
+    {
+      "id": "tactic-undefended-capture-missed-bishop",
+      "group": "game_review",
+      "text": "Loose bishop missed. It was there, free, for another move to grab. Free material comes first, every time."
+    },
+    {
+      "id": "tactic-undefended-capture-missed-rook",
+      "group": "game_review",
+      "text": "Loose rook missed. It was there, free, for another move to grab. Free material comes first, every time."
+    },
+    {
+      "id": "tactic-undefended-capture-missed-queen",
+      "group": "game_review",
+      "text": "Loose queen missed. It was there, free, for another move to grab. Free material comes first, every time."
+    },
+    {
+      "id": "tactic-hanging-piece-allowed-knight",
+      "group": "game_review",
+      "text": "Hanging knight. This move leaves it with no guard, and the other side can take it. Every move, run the guard check on every piece."
+    },
+    {
+      "id": "tactic-hanging-piece-allowed-bishop",
+      "group": "game_review",
+      "text": "Hanging bishop. This move leaves it with no guard, and the other side can take it. Every move, run the guard check on every piece."
+    },
+    {
+      "id": "tactic-hanging-piece-allowed-rook",
+      "group": "game_review",
+      "text": "Hanging rook. This move leaves it with no guard, and the other side can take it. Every move, run the guard check on every piece."
+    },
+    {
+      "id": "tactic-hanging-piece-allowed-queen",
+      "group": "game_review",
+      "text": "Hanging queen. This move leaves it with no guard, and the other side can take it. Every move, run the guard check on every piece."
+    },
+    {
+      "id": "tactic-removing-defender-played-pawn",
+      "group": "game_review",
+      "text": "Defender down. This move captures a pawn that was guarding something, and that something may now be loose. Spot what it was covering."
+    },
+    {
+      "id": "tactic-removing-defender-played-knight",
+      "group": "game_review",
+      "text": "Defender down. This move captures a knight that was guarding something, and that something may now be loose. Spot what it was covering."
+    },
+    {
+      "id": "tactic-removing-defender-played-bishop",
+      "group": "game_review",
+      "text": "Defender down. This move captures a bishop that was guarding something, and that something may now be loose. Spot what it was covering."
+    },
+    {
+      "id": "tactic-removing-defender-played-rook",
+      "group": "game_review",
+      "text": "Defender down. This move captures a rook that was guarding something, and that something may now be loose. Spot what it was covering."
+    },
+    {
+      "id": "tactic-removing-defender-played-queen",
+      "group": "game_review",
+      "text": "Defender down. This move captures a queen that was guarding something, and that something may now be loose. Spot what it was covering."
+    },
+    {
+      "id": "tactic-removing-defender-allowed-pawn",
+      "group": "game_review",
+      "text": "Defender exposed. This move lets the other side capture a key defender, a pawn, and whatever it guarded could lose its cover. Know which defenders matter before every move."
+    },
+    {
+      "id": "tactic-removing-defender-allowed-knight",
+      "group": "game_review",
+      "text": "Defender exposed. This move lets the other side capture a key defender, a knight, and whatever it guarded could lose its cover. Know which defenders matter before every move."
+    },
+    {
+      "id": "tactic-removing-defender-allowed-bishop",
+      "group": "game_review",
+      "text": "Defender exposed. This move lets the other side capture a key defender, a bishop, and whatever it guarded could lose its cover. Know which defenders matter before every move."
+    },
+    {
+      "id": "tactic-removing-defender-allowed-rook",
+      "group": "game_review",
+      "text": "Defender exposed. This move lets the other side capture a key defender, a rook, and whatever it guarded could lose its cover. Know which defenders matter before every move."
+    },
+    {
+      "id": "tactic-removing-defender-allowed-queen",
+      "group": "game_review",
+      "text": "Defender exposed. This move lets the other side capture a key defender, a queen, and whatever it guarded could lose its cover. Know which defenders matter before every move."
+    },
+    {
+      "id": "tactic-removing-defender-missed-pawn",
+      "group": "game_review",
+      "text": "Defender left standing. Another move could have taken the defending pawn off the board and left its charge exposed. Hunt the defender first next time."
+    },
+    {
+      "id": "tactic-removing-defender-missed-knight",
+      "group": "game_review",
+      "text": "Defender left standing. Another move could have taken the defending knight off the board and left its charge exposed. Hunt the defender first next time."
+    },
+    {
+      "id": "tactic-removing-defender-missed-bishop",
+      "group": "game_review",
+      "text": "Defender left standing. Another move could have taken the defending bishop off the board and left its charge exposed. Hunt the defender first next time."
+    },
+    {
+      "id": "tactic-removing-defender-missed-rook",
+      "group": "game_review",
+      "text": "Defender left standing. Another move could have taken the defending rook off the board and left its charge exposed. Hunt the defender first next time."
+    },
+    {
+      "id": "tactic-removing-defender-missed-queen",
+      "group": "game_review",
+      "text": "Defender left standing. Another move could have taken the defending queen off the board and left its charge exposed. Hunt the defender first next time."
+    },
+    {
+      "id": "tactic-deflection-played-pawn",
+      "group": "game_review",
+      "text": "Deflection. The pawn on defense gets pulled off its post, and the thing it was covering opens up. Spot its job, then the move that broke it."
+    },
+    {
+      "id": "tactic-deflection-played-knight",
+      "group": "game_review",
+      "text": "Deflection. The knight on defense gets pulled off its post, and the thing it was covering opens up. Spot its job, then the move that broke it."
+    },
+    {
+      "id": "tactic-deflection-played-bishop",
+      "group": "game_review",
+      "text": "Deflection. The bishop on defense gets pulled off its post, and the thing it was covering opens up. Spot its job, then the move that broke it."
+    },
+    {
+      "id": "tactic-deflection-played-rook",
+      "group": "game_review",
+      "text": "Deflection. The rook on defense gets pulled off its post, and the thing it was covering opens up. Spot its job, then the move that broke it."
+    },
+    {
+      "id": "tactic-deflection-played-queen",
+      "group": "game_review",
+      "text": "Deflection. The queen on defense gets pulled off its post, and the thing it was covering opens up. Spot its job, then the move that broke it."
+    },
+    {
+      "id": "tactic-deflection-played-king",
+      "group": "game_review",
+      "text": "Deflection. The king on defense gets pulled off its post, and the thing it was covering opens up. Spot its job, then the move that broke it."
+    },
+    {
+      "id": "tactic-deflection-allowed-pawn",
+      "group": "game_review",
+      "text": "Deflection threat. After this move, the other side can drag the pawn off duty. Map every defender's job."
+    },
+    {
+      "id": "tactic-deflection-allowed-knight",
+      "group": "game_review",
+      "text": "Deflection threat. After this move, the other side can drag the knight off duty. Map every defender's job."
+    },
+    {
+      "id": "tactic-deflection-allowed-bishop",
+      "group": "game_review",
+      "text": "Deflection threat. After this move, the other side can drag the bishop off duty. Map every defender's job."
+    },
+    {
+      "id": "tactic-deflection-allowed-rook",
+      "group": "game_review",
+      "text": "Deflection threat. After this move, the other side can drag the rook off duty. Map every defender's job."
+    },
+    {
+      "id": "tactic-deflection-allowed-queen",
+      "group": "game_review",
+      "text": "Deflection threat. After this move, the other side can drag the queen off duty. Map every defender's job."
+    },
+    {
+      "id": "tactic-deflection-allowed-king",
+      "group": "game_review",
+      "text": "Deflection threat. After this move, the other side can drag the king off duty. Map every defender's job."
+    },
+    {
+      "id": "tactic-deflection-missed-pawn",
+      "group": "game_review",
+      "text": "Deflection missed. Another move could have pulled the pawn off its job and opened what it guarded. Find the overworked defender next time."
+    },
+    {
+      "id": "tactic-deflection-missed-knight",
+      "group": "game_review",
+      "text": "Deflection missed. Another move could have pulled the knight off its job and opened what it guarded. Find the overworked defender next time."
+    },
+    {
+      "id": "tactic-deflection-missed-bishop",
+      "group": "game_review",
+      "text": "Deflection missed. Another move could have pulled the bishop off its job and opened what it guarded. Find the overworked defender next time."
+    },
+    {
+      "id": "tactic-deflection-missed-rook",
+      "group": "game_review",
+      "text": "Deflection missed. Another move could have pulled the rook off its job and opened what it guarded. Find the overworked defender next time."
+    },
+    {
+      "id": "tactic-deflection-missed-queen",
+      "group": "game_review",
+      "text": "Deflection missed. Another move could have pulled the queen off its job and opened what it guarded. Find the overworked defender next time."
+    },
+    {
+      "id": "tactic-deflection-missed-king",
+      "group": "game_review",
+      "text": "Deflection missed. Another move could have pulled the king off its job and opened what it guarded. Find the overworked defender next time."
+    },
+    {
+      "id": "tactic-back-rank-played-rook",
+      "group": "game_review",
+      "text": "Back-rank pattern. The enemy king sits behind its own pieces with nowhere to step, and the rook goes straight at that weakness. Check the escape squares and confirm they're shut."
+    },
+    {
+      "id": "tactic-back-rank-played-queen",
+      "group": "game_review",
+      "text": "Back-rank pattern. The enemy king sits behind its own pieces with nowhere to step, and the queen goes straight at that weakness. Check the escape squares and confirm they're shut."
+    },
+    {
+      "id": "tactic-back-rank-allowed-rook",
+      "group": "game_review",
+      "text": "Back-rank pattern. The king is boxed in by its own pieces, and this move opens a route to a back-rank mate for the other side's rook. Make an escape square before it's needed."
+    },
+    {
+      "id": "tactic-back-rank-allowed-queen",
+      "group": "game_review",
+      "text": "Back-rank pattern. The king is boxed in by its own pieces, and this move opens a route to a back-rank mate for the other side's queen. Make an escape square before it's needed."
+    },
+    {
+      "id": "tactic-back-rank-missed-rook",
+      "group": "game_review",
+      "text": "Back-rank chance missed. The enemy king was hemmed in by its own pieces, and a back-rank mate idea was there for the rook. Scan the back rank whenever the king has no exit."
+    },
+    {
+      "id": "tactic-back-rank-missed-queen",
+      "group": "game_review",
+      "text": "Back-rank chance missed. The enemy king was hemmed in by its own pieces, and a back-rank mate idea was there for the queen. Scan the back rank whenever the king has no exit."
+    },
+    {
+      "id": "cause-abandoned-defender-knight",
+      "group": "game_review",
+      "text": "Guard pulled. This move takes away the only real defender of a knight, and now the other side can capture that knight. Know a defender's job before it leaves its post."
+    },
+    {
+      "id": "cause-abandoned-defender-bishop",
+      "group": "game_review",
+      "text": "Guard pulled. This move takes away the only real defender of a bishop, and now the other side can capture that bishop. Know a defender's job before it leaves its post."
+    },
+    {
+      "id": "cause-abandoned-defender-rook",
+      "group": "game_review",
+      "text": "Guard pulled. This move takes away the only real defender of a rook, and now the other side can capture that rook. Know a defender's job before it leaves its post."
+    },
+    {
+      "id": "cause-abandoned-defender-queen",
+      "group": "game_review",
+      "text": "Guard pulled. This move takes away the only real defender of a queen, and now the other side can capture that queen. Know a defender's job before it leaves its post."
+    },
+    {
+      "id": "cause-opponent-threat-recognition-knight",
+      "group": "game_review",
+      "text": "Threat ignored. The opponent's last move attacked a knight, and this move doesn't answer it, so that knight can be captured. After every opponent move, ask what it now attacks."
+    },
+    {
+      "id": "cause-opponent-threat-recognition-bishop",
+      "group": "game_review",
+      "text": "Threat ignored. The opponent's last move attacked a bishop, and this move doesn't answer it, so that bishop can be captured. After every opponent move, ask what it now attacks."
+    },
+    {
+      "id": "cause-opponent-threat-recognition-rook",
+      "group": "game_review",
+      "text": "Threat ignored. The opponent's last move attacked a rook, and this move doesn't answer it, so that rook can be captured. After every opponent move, ask what it now attacks."
+    },
+    {
+      "id": "cause-opponent-threat-recognition-queen",
+      "group": "game_review",
+      "text": "Threat ignored. The opponent's last move attacked a queen, and this move doesn't answer it, so that queen can be captured. After every opponent move, ask what it now attacks."
+    },
+    {
+      "id": "cause-avoiding-bad-trades-knight",
+      "group": "game_review",
+      "text": "Bad trade. The knight captures here, the recapture takes it, and it's worth more than what it took. Count the full exchange, every capture, before starting it."
+    },
+    {
+      "id": "cause-avoiding-bad-trades-bishop",
+      "group": "game_review",
+      "text": "Bad trade. The bishop captures here, the recapture takes it, and it's worth more than what it took. Count the full exchange, every capture, before starting it."
+    },
+    {
+      "id": "cause-avoiding-bad-trades-rook",
+      "group": "game_review",
+      "text": "Bad trade. The rook captures here, the recapture takes it, and it's worth more than what it took. Count the full exchange, every capture, before starting it."
+    },
+    {
+      "id": "cause-avoiding-bad-trades-queen",
+      "group": "game_review",
+      "text": "Bad trade. The queen captures here, the recapture takes it, and it's worth more than what it took. Count the full exchange, every capture, before starting it."
+    },
+    {
+      "id": "positional-development-actual-knight",
+      "group": "game_review",
+      "text": "Knight in play. It's off its starting post and in the fight. Mark its new post and what it now reaches."
+    },
+    {
+      "id": "positional-development-actual-bishop",
+      "group": "game_review",
+      "text": "Bishop in play. It's off its starting post and in the fight. Mark its new post and what it now reaches."
+    },
+    {
+      "id": "positional-development-alternative-knight",
+      "group": "game_review",
+      "text": "Development available. A knight could have entered play with a different move. Weigh it against the move played."
+    },
+    {
+      "id": "positional-development-alternative-bishop",
+      "group": "game_review",
+      "text": "Development available. A bishop could have entered play with a different move. Weigh it against the move played."
+    },
+    {
+      "id": "positional-support-actual-knight",
+      "group": "game_review",
+      "text": "Cover added. Guard assigned to a knight that had none. Check the connection and keep it."
+    },
+    {
+      "id": "positional-support-actual-bishop",
+      "group": "game_review",
+      "text": "Cover added. Guard assigned to a bishop that had none. Check the connection and keep it."
+    },
+    {
+      "id": "positional-support-actual-rook",
+      "group": "game_review",
+      "text": "Cover added. Guard assigned to a rook that had none. Check the connection and keep it."
+    },
+    {
+      "id": "positional-support-actual-queen",
+      "group": "game_review",
+      "text": "Cover added. Guard assigned to a queen that had none. Check the connection and keep it."
+    },
+    {
+      "id": "positional-support-alternative-knight",
+      "group": "game_review",
+      "text": "Cover available. A different move would have put a guard on a lone knight. Compare which pieces stay guarded each way."
+    },
+    {
+      "id": "positional-support-alternative-bishop",
+      "group": "game_review",
+      "text": "Cover available. A different move would have put a guard on a lone bishop. Compare which pieces stay guarded each way."
+    },
+    {
+      "id": "positional-support-alternative-rook",
+      "group": "game_review",
+      "text": "Cover available. A different move would have put a guard on a lone rook. Compare which pieces stay guarded each way."
+    },
+    {
+      "id": "positional-support-alternative-queen",
+      "group": "game_review",
+      "text": "Cover available. A different move would have put a guard on a lone queen. Compare which pieces stay guarded each way."
+    },
+    {
+      "id": "positional-unsupported-actual-knight",
+      "group": "game_review",
+      "text": "Unguarded knight. It is now standing guardless. That isn't a loss yet; test whether anything can actually reach it."
+    },
+    {
+      "id": "positional-unsupported-actual-bishop",
+      "group": "game_review",
+      "text": "Unguarded bishop. It is now standing guardless. That isn't a loss yet; test whether anything can actually reach it."
+    },
+    {
+      "id": "positional-unsupported-actual-rook",
+      "group": "game_review",
+      "text": "Unguarded rook. It is now standing guardless. That isn't a loss yet; test whether anything can actually reach it."
+    },
+    {
+      "id": "positional-unsupported-actual-queen",
+      "group": "game_review",
+      "text": "Unguarded queen. It is now standing guardless. That isn't a loss yet; test whether anything can actually reach it."
+    },
+    {
+      "id": "positional-unsupported-alternative-knight",
+      "group": "game_review",
+      "text": "Unguarded in the alternative. A different move would have stripped a knight of its guard. Undefended doesn't mean lost, so check what could reach it."
+    },
+    {
+      "id": "positional-unsupported-alternative-bishop",
+      "group": "game_review",
+      "text": "Unguarded in the alternative. A different move would have stripped a bishop of its guard. Undefended doesn't mean lost, so check what could reach it."
+    },
+    {
+      "id": "positional-unsupported-alternative-rook",
+      "group": "game_review",
+      "text": "Unguarded in the alternative. A different move would have stripped a rook of its guard. Undefended doesn't mean lost, so check what could reach it."
+    },
+    {
+      "id": "positional-unsupported-alternative-queen",
+      "group": "game_review",
+      "text": "Unguarded in the alternative. A different move would have stripped a queen of its guard. Undefended doesn't mean lost, so check what could reach it."
+    },
+    {
+      "id": "support-restored-knight",
+      "group": "game_review",
+      "text": "Cover restored. The knight that was hanging earlier has a guard again. Pinpoint the new guard."
+    },
+    {
+      "id": "support-restored-bishop",
+      "group": "game_review",
+      "text": "Cover restored. The bishop that was hanging earlier has a guard again. Pinpoint the new guard."
+    },
+    {
+      "id": "support-restored-rook",
+      "group": "game_review",
+      "text": "Cover restored. The rook that was hanging earlier has a guard again. Pinpoint the new guard."
+    },
+    {
+      "id": "support-restored-queen",
+      "group": "game_review",
+      "text": "Cover restored. The queen that was hanging earlier has a guard again. Pinpoint the new guard."
+    },
+    {
+      "id": "explanation-finding-fork-collected-pawn",
+      "group": "srs_explanations",
+      "text": "Fork cashed in. The pawn hits two targets, then takes one of them, and this example ends with a net material gain for that side."
+    },
+    {
+      "id": "explanation-finding-fork-collected-knight",
+      "group": "srs_explanations",
+      "text": "Fork cashed in. The knight hits several targets, then takes one of them, and this example ends with a net material gain for that side."
+    },
+    {
+      "id": "explanation-finding-fork-collected-bishop",
+      "group": "srs_explanations",
+      "text": "Fork cashed in. The bishop hits several targets, then takes one of them, and this example ends with a net material gain for that side."
+    },
+    {
+      "id": "explanation-finding-fork-collected-rook",
+      "group": "srs_explanations",
+      "text": "Fork cashed in. The rook hits several targets, then takes one of them, and this example ends with a net material gain for that side."
+    },
+    {
+      "id": "explanation-finding-fork-collected-queen",
+      "group": "srs_explanations",
+      "text": "Fork cashed in. The queen hits several targets, then takes one of them, and this example ends with a net material gain for that side."
+    },
+    {
+      "id": "explanation-finding-pin-prevents-capture-pawn",
+      "group": "srs_explanations",
+      "text": "Pinned, can't capture. That pawn is tied to its king, so the marked capture would expose the king and isn't legal."
+    },
+    {
+      "id": "explanation-finding-pin-prevents-capture-knight",
+      "group": "srs_explanations",
+      "text": "Pinned, can't capture. That knight is tied to its king, so the marked capture would expose the king and isn't legal."
+    },
+    {
+      "id": "explanation-finding-pin-prevents-capture-bishop",
+      "group": "srs_explanations",
+      "text": "Pinned, can't capture. That bishop is tied to its king, so the marked capture would expose the king and isn't legal."
+    },
+    {
+      "id": "explanation-finding-pin-prevents-capture-rook",
+      "group": "srs_explanations",
+      "text": "Pinned, can't capture. That rook is tied to its king, so the marked capture would expose the king and isn't legal."
+    },
+    {
+      "id": "explanation-finding-pin-prevents-capture-queen",
+      "group": "srs_explanations",
+      "text": "Pinned, can't capture. That queen is tied to its king, so the marked capture would expose the king and isn't legal."
+    },
+    {
+      "id": "explanation-finding-pin-restricts-escape-pawn",
+      "group": "srs_explanations",
+      "text": "Pinned, can't run. The attacked pawn is tied to its king, so it's limited to moves along the pin line."
+    },
+    {
+      "id": "explanation-finding-pin-restricts-escape-knight",
+      "group": "srs_explanations",
+      "text": "Pinned, can't run. The attacked knight is tied to its king, so it can't move at all."
+    },
+    {
+      "id": "explanation-finding-pin-restricts-escape-bishop",
+      "group": "srs_explanations",
+      "text": "Pinned, can't run. The attacked bishop is tied to its king, so it's limited to moves along the pin line."
+    },
+    {
+      "id": "explanation-finding-pin-restricts-escape-rook",
+      "group": "srs_explanations",
+      "text": "Pinned, can't run. The attacked rook is tied to its king, so it's limited to moves along the pin line."
+    },
+    {
+      "id": "explanation-finding-pin-restricts-escape-queen",
+      "group": "srs_explanations",
+      "text": "Pinned, can't run. The attacked queen is tied to its king, so it's limited to moves along the pin line."
+    },
+    {
+      "id": "explanation-finding-pin-collected-pawn",
+      "group": "srs_explanations",
+      "text": "Pinned pawn, collected. It can't leave the line without exposing its king, and as the moves play out, it's taken."
+    },
+    {
+      "id": "explanation-finding-pin-collected-knight",
+      "group": "srs_explanations",
+      "text": "Pinned knight, collected. It can't leave the line without exposing its king, and as the moves play out, it's taken."
+    },
+    {
+      "id": "explanation-finding-pin-collected-bishop",
+      "group": "srs_explanations",
+      "text": "Pinned bishop, collected. It can't leave the line without exposing its king, and as the moves play out, it's taken."
+    },
+    {
+      "id": "explanation-finding-pin-collected-rook",
+      "group": "srs_explanations",
+      "text": "Pinned rook, collected. It can't leave the line without exposing its king, and as the moves play out, it's taken."
+    },
+    {
+      "id": "explanation-finding-pin-collected-queen",
+      "group": "srs_explanations",
+      "text": "Pinned queen, collected. It can't leave the line without exposing its king, and as the moves play out, it's taken."
+    },
+    {
+      "id": "explanation-finding-sole-defender-captured-pawn",
+      "group": "srs_explanations",
+      "text": "Sole defender down. The pawn is captured first, and later in these moves the piece it was guarding goes too."
+    },
+    {
+      "id": "explanation-finding-sole-defender-captured-knight",
+      "group": "srs_explanations",
+      "text": "Sole defender down. The knight is captured first, and later in these moves the piece it was guarding goes too."
+    },
+    {
+      "id": "explanation-finding-sole-defender-captured-bishop",
+      "group": "srs_explanations",
+      "text": "Sole defender down. The bishop is captured first, and later in these moves the piece it was guarding goes too."
+    },
+    {
+      "id": "explanation-finding-sole-defender-captured-rook",
+      "group": "srs_explanations",
+      "text": "Sole defender down. The rook is captured first, and later in these moves the piece it was guarding goes too."
+    },
+    {
+      "id": "explanation-finding-sole-defender-captured-queen",
+      "group": "srs_explanations",
+      "text": "Sole defender down. The queen is captured first, and later in these moves the piece it was guarding goes too."
+    },
+    {
+      "id": "explanation-finding-deflection-collected-pawn",
+      "group": "srs_explanations",
+      "text": "Deflection cashed in. The defender is pulled off its job, and the pawn it was covering is captured."
+    },
+    {
+      "id": "explanation-finding-deflection-collected-knight",
+      "group": "srs_explanations",
+      "text": "Deflection cashed in. The defender is pulled off its job, and the knight it was covering is captured."
+    },
+    {
+      "id": "explanation-finding-deflection-collected-bishop",
+      "group": "srs_explanations",
+      "text": "Deflection cashed in. The defender is pulled off its job, and the bishop it was covering is captured."
+    },
+    {
+      "id": "explanation-finding-deflection-collected-rook",
+      "group": "srs_explanations",
+      "text": "Deflection cashed in. The defender is pulled off its job, and the rook it was covering is captured."
+    },
+    {
+      "id": "explanation-finding-deflection-collected-queen",
+      "group": "srs_explanations",
+      "text": "Deflection cashed in. The defender is pulled off its job, and the queen it was covering is captured."
+    },
+    {
+      "id": "explanation-finding-relative-pin-released-pawn",
+      "group": "srs_explanations",
+      "text": "Pin released. The opponent's previous move freed the attacking pawn from a relative pin, the target stayed put, and the line shown ends with it captured."
+    },
+    {
+      "id": "explanation-finding-relative-pin-released-knight",
+      "group": "srs_explanations",
+      "text": "Pin released. The opponent's previous move freed the attacking knight from a relative pin, the target stayed put, and the line shown ends with it captured."
+    },
+    {
+      "id": "explanation-finding-relative-pin-released-bishop",
+      "group": "srs_explanations",
+      "text": "Pin released. The opponent's previous move freed the attacking bishop from a relative pin, the target stayed put, and the line shown ends with it captured."
+    },
+    {
+      "id": "explanation-finding-relative-pin-released-rook",
+      "group": "srs_explanations",
+      "text": "Pin released. The opponent's previous move freed the attacking rook from a relative pin, the target stayed put, and the line shown ends with it captured."
+    },
+    {
+      "id": "explanation-finding-relative-pin-released-queen",
+      "group": "srs_explanations",
+      "text": "Pin released. The opponent's previous move freed the attacking queen from a relative pin, the target stayed put, and the line shown ends with it captured."
+    },
+    {
+      "id": "explanation-finding-skewer-collected-knight",
+      "group": "srs_explanations",
+      "text": "Skewer cashed in. The knight in front moves off the line, and the piece behind it is taken along that same line."
+    },
+    {
+      "id": "explanation-finding-skewer-collected-bishop",
+      "group": "srs_explanations",
+      "text": "Skewer cashed in. The bishop in front moves off the line, and the piece behind it is taken along that same line."
+    },
+    {
+      "id": "explanation-finding-skewer-collected-rook",
+      "group": "srs_explanations",
+      "text": "Skewer cashed in. The rook in front moves off the line, and the piece behind it is taken along that same line."
+    },
+    {
+      "id": "explanation-finding-skewer-collected-queen",
+      "group": "srs_explanations",
+      "text": "Skewer cashed in. The queen in front moves off the line, and the piece behind it is taken along that same line."
+    },
+    {
+      "id": "explanation-finding-skewer-collected-king",
+      "group": "srs_explanations",
+      "text": "Skewer cashed in. The king steps out of check and off the line, and the piece behind it is taken along that same line."
+    },
+    {
+      "id": "explanation-finding-king-skewer-collected-knight",
+      "group": "srs_explanations",
+      "text": "King skewer. The king, in check, steps aside, which exposes the knight behind it to the same attacker, and it falls."
+    },
+    {
+      "id": "explanation-finding-king-skewer-collected-bishop",
+      "group": "srs_explanations",
+      "text": "King skewer. The king, in check, steps aside, which exposes the bishop behind it to the same attacker, and it falls."
+    },
+    {
+      "id": "explanation-finding-king-skewer-collected-rook",
+      "group": "srs_explanations",
+      "text": "King skewer. The king, in check, steps aside, which exposes the rook behind it to the same attacker, and it falls."
+    },
+    {
+      "id": "explanation-finding-king-skewer-collected-queen",
+      "group": "srs_explanations",
+      "text": "King skewer. The king, in check, steps aside, which exposes the queen behind it to the same attacker, and it falls."
+    },
+    {
+      "id": "explanation-finding-undefended-capture-gain-knight",
+      "group": "srs_explanations",
+      "text": "Loose knight taken. Nothing protects it, so no recapture follows, and this example ends with that side ahead in material."
+    },
+    {
+      "id": "explanation-finding-undefended-capture-gain-bishop",
+      "group": "srs_explanations",
+      "text": "Loose bishop taken. Nothing protects it, so no recapture follows, and this example ends with that side ahead in material."
+    },
+    {
+      "id": "explanation-finding-undefended-capture-gain-rook",
+      "group": "srs_explanations",
+      "text": "Loose rook taken. Nothing protects it, so no recapture follows, and this example ends with that side ahead in material."
+    },
+    {
+      "id": "explanation-finding-undefended-capture-gain-queen",
+      "group": "srs_explanations",
+      "text": "Loose queen taken. Nothing protects it, so no recapture follows, and this example ends with that side ahead in material."
+    },
+    {
+      "id": "explanation-finding-discovered-capture-bishop",
+      "group": "srs_explanations",
+      "text": "Discovery cashed in. The blocking piece moves, the line opens, and the bishop behind makes the capture."
+    },
+    {
+      "id": "explanation-finding-discovered-capture-rook",
+      "group": "srs_explanations",
+      "text": "Discovery cashed in. The blocking piece moves, the line opens, and the rook behind makes the capture."
+    },
+    {
+      "id": "explanation-finding-discovered-capture-queen",
+      "group": "srs_explanations",
+      "text": "Discovery cashed in. The blocking piece moves, the line opens, and the queen behind makes the capture."
+    },
+    {
+      "id": "explanation-finding-discovered-check-bishop",
+      "group": "srs_explanations",
+      "text": "Discovered check. The front piece moves aside, and the bishop behind it checks the king."
+    },
+    {
+      "id": "explanation-finding-discovered-check-rook",
+      "group": "srs_explanations",
+      "text": "Discovered check. The front piece moves aside, and the rook behind it checks the king."
+    },
+    {
+      "id": "explanation-finding-discovered-check-queen",
+      "group": "srs_explanations",
+      "text": "Discovered check. The front piece moves aside, and the queen behind it checks the king."
+    },
+    {
+      "id": "explanation-finding-double-attack-collected-bishop",
+      "group": "srs_explanations",
+      "text": "Double attack cashed in. The moving piece makes one threat and unmasks a second from the bishop behind it, and that bishop makes the capture here."
+    },
+    {
+      "id": "explanation-finding-double-attack-collected-rook",
+      "group": "srs_explanations",
+      "text": "Double attack cashed in. The moving piece makes one threat and unmasks a second from the rook behind it, and that rook makes the capture here."
+    },
+    {
+      "id": "explanation-finding-double-attack-collected-queen",
+      "group": "srs_explanations",
+      "text": "Double attack cashed in. The moving piece makes one threat and unmasks a second from the queen behind it, and that queen makes the capture here."
+    },
+    {
+      "id": "explanation-finding-double-check-pawn-rook",
+      "group": "srs_explanations",
+      "text": "Double check. The pawn and the rook attack the king at once, so the only answer is a king move."
+    },
+    {
+      "id": "explanation-finding-double-check-pawn-queen",
+      "group": "srs_explanations",
+      "text": "Double check. The pawn and the queen attack the king at once, so the only answer is a king move."
+    },
+    {
+      "id": "explanation-finding-double-check-knight-bishop",
+      "group": "srs_explanations",
+      "text": "Double check. The knight and the bishop attack the king at once, so the only answer is a king move."
+    },
+    {
+      "id": "explanation-finding-double-check-knight-rook",
+      "group": "srs_explanations",
+      "text": "Double check. The knight and the rook attack the king at once, so the only answer is a king move."
+    },
+    {
+      "id": "explanation-finding-double-check-knight-queen",
+      "group": "srs_explanations",
+      "text": "Double check. The knight and the queen attack the king at once, so the only answer is a king move."
+    },
+    {
+      "id": "explanation-finding-double-check-bishop-rook",
+      "group": "srs_explanations",
+      "text": "Double check. The bishop and the rook attack the king at once, so the only answer is a king move."
+    },
+    {
+      "id": "explanation-finding-double-check-bishop-queen",
+      "group": "srs_explanations",
+      "text": "Double check. The bishop and the queen attack the king at once, so the only answer is a king move."
+    },
+    {
+      "id": "explanation-finding-double-check-rook-rook",
+      "group": "srs_explanations",
+      "text": "Double check. Both rooks attack the king at once, so the only answer is a king move."
+    },
+    {
+      "id": "explanation-finding-double-check-rook-queen",
+      "group": "srs_explanations",
+      "text": "Double check. The rook and the queen attack the king at once, so the only answer is a king move."
+    },
+    {
+      "id": "explanation-frame-capture-move-ordinary-pawn",
+      "group": "srs_explanations",
+      "text": "Capture. A pawn leaves the board for good."
+    },
+    {
+      "id": "explanation-frame-capture-move-ordinary-knight",
+      "group": "srs_explanations",
+      "text": "Capture. A knight leaves the board for good."
+    },
+    {
+      "id": "explanation-frame-capture-move-ordinary-bishop",
+      "group": "srs_explanations",
+      "text": "Capture. A bishop leaves the board for good."
+    },
+    {
+      "id": "explanation-frame-capture-move-ordinary-rook",
+      "group": "srs_explanations",
+      "text": "Capture. A rook leaves the board for good."
+    },
+    {
+      "id": "explanation-frame-capture-move-ordinary-queen",
+      "group": "srs_explanations",
+      "text": "Capture. A queen leaves the board for good."
+    },
+    {
+      "id": "explanation-frame-capture-move-check-pawn",
+      "group": "srs_explanations",
+      "text": "Capture with check. One move removes a pawn and attacks the king."
+    },
+    {
+      "id": "explanation-frame-capture-move-check-knight",
+      "group": "srs_explanations",
+      "text": "Capture with check. One move removes a knight and attacks the king."
+    },
+    {
+      "id": "explanation-frame-capture-move-check-bishop",
+      "group": "srs_explanations",
+      "text": "Capture with check. One move removes a bishop and attacks the king."
+    },
+    {
+      "id": "explanation-frame-capture-move-check-rook",
+      "group": "srs_explanations",
+      "text": "Capture with check. One move removes a rook and attacks the king."
+    },
+    {
+      "id": "explanation-frame-capture-move-check-queen",
+      "group": "srs_explanations",
+      "text": "Capture with check. One move removes a queen and attacks the king."
+    },
+    {
+      "id": "explanation-frame-capture-move-mate-pawn",
+      "group": "srs_explanations",
+      "text": "Capture and mate. One move removes a pawn and leaves the king with no legal escape."
+    },
+    {
+      "id": "explanation-frame-capture-move-mate-knight",
+      "group": "srs_explanations",
+      "text": "Capture and mate. One move removes a knight and leaves the king with no legal escape."
+    },
+    {
+      "id": "explanation-frame-capture-move-mate-bishop",
+      "group": "srs_explanations",
+      "text": "Capture and mate. One move removes a bishop and leaves the king with no legal escape."
+    },
+    {
+      "id": "explanation-frame-capture-move-mate-rook",
+      "group": "srs_explanations",
+      "text": "Capture and mate. One move removes a rook and leaves the king with no legal escape."
+    },
+    {
+      "id": "explanation-frame-capture-move-mate-queen",
+      "group": "srs_explanations",
+      "text": "Capture and mate. One move removes a queen and leaves the king with no legal escape."
+    },
+    {
+      "id": "explanation-frame-capture-move-escape-pawn",
+      "group": "srs_explanations",
+      "text": "Capture, out of check. Taking that pawn ends the check too."
+    },
+    {
+      "id": "explanation-frame-capture-move-escape-knight",
+      "group": "srs_explanations",
+      "text": "Capture, out of check. Taking that knight ends the check too."
+    },
+    {
+      "id": "explanation-frame-capture-move-escape-bishop",
+      "group": "srs_explanations",
+      "text": "Capture, out of check. Taking that bishop ends the check too."
+    },
+    {
+      "id": "explanation-frame-capture-move-escape-rook",
+      "group": "srs_explanations",
+      "text": "Capture, out of check. Taking that rook ends the check too."
+    },
+    {
+      "id": "explanation-frame-capture-move-escape-queen",
+      "group": "srs_explanations",
+      "text": "Capture, out of check. Taking that queen ends the check too."
+    },
+    {
+      "id": "explanation-frame-capture-promotion-ordinary-knight",
+      "group": "srs_explanations",
+      "text": "Capture and promotion. The pawn captures a knight on the last rank and turns into a new piece."
+    },
+    {
+      "id": "explanation-frame-capture-promotion-ordinary-bishop",
+      "group": "srs_explanations",
+      "text": "Capture and promotion. The pawn captures a bishop on the last rank and turns into a new piece."
+    },
+    {
+      "id": "explanation-frame-capture-promotion-ordinary-rook",
+      "group": "srs_explanations",
+      "text": "Capture and promotion. The pawn captures a rook on the last rank and turns into a new piece."
+    },
+    {
+      "id": "explanation-frame-capture-promotion-ordinary-queen",
+      "group": "srs_explanations",
+      "text": "Capture and promotion. The pawn captures a queen on the last rank and turns into a new piece."
+    },
+    {
+      "id": "explanation-frame-capture-promotion-check-knight",
+      "group": "srs_explanations",
+      "text": "Capture, promotion, check. The pawn takes a knight on the last rank, promotes, and the new piece attacks the king."
+    },
+    {
+      "id": "explanation-frame-capture-promotion-check-bishop",
+      "group": "srs_explanations",
+      "text": "Capture, promotion, check. The pawn takes a bishop on the last rank, promotes, and the new piece attacks the king."
+    },
+    {
+      "id": "explanation-frame-capture-promotion-check-rook",
+      "group": "srs_explanations",
+      "text": "Capture, promotion, check. The pawn takes a rook on the last rank, promotes, and the new piece attacks the king."
+    },
+    {
+      "id": "explanation-frame-capture-promotion-check-queen",
+      "group": "srs_explanations",
+      "text": "Capture, promotion, check. The pawn takes a queen on the last rank, promotes, and the new piece attacks the king."
+    },
+    {
+      "id": "explanation-frame-capture-promotion-mate-knight",
+      "group": "srs_explanations",
+      "text": "Capture, promotion, mate. The pawn takes a knight on the last rank, promotes, and the king has no legal way out."
+    },
+    {
+      "id": "explanation-frame-capture-promotion-mate-bishop",
+      "group": "srs_explanations",
+      "text": "Capture, promotion, mate. The pawn takes a bishop on the last rank, promotes, and the king has no legal way out."
+    },
+    {
+      "id": "explanation-frame-capture-promotion-mate-rook",
+      "group": "srs_explanations",
+      "text": "Capture, promotion, mate. The pawn takes a rook on the last rank, promotes, and the king has no legal way out."
+    },
+    {
+      "id": "explanation-frame-capture-promotion-mate-queen",
+      "group": "srs_explanations",
+      "text": "Capture, promotion, mate. The pawn takes a queen on the last rank, promotes, and the king has no legal way out."
+    },
+    {
+      "id": "explanation-frame-capture-promotion-escape-knight",
+      "group": "srs_explanations",
+      "text": "Capture, promotion, out of check. The pawn takes a knight on the last rank, promotes, and the capturing side's king is safe from the check."
+    },
+    {
+      "id": "explanation-frame-capture-promotion-escape-bishop",
+      "group": "srs_explanations",
+      "text": "Capture, promotion, out of check. The pawn takes a bishop on the last rank, promotes, and the capturing side's king is safe from the check."
+    },
+    {
+      "id": "explanation-frame-capture-promotion-escape-rook",
+      "group": "srs_explanations",
+      "text": "Capture, promotion, out of check. The pawn takes a rook on the last rank, promotes, and the capturing side's king is safe from the check."
+    },
+    {
+      "id": "explanation-frame-capture-promotion-escape-queen",
+      "group": "srs_explanations",
+      "text": "Capture, promotion, out of check. The pawn takes a queen on the last rank, promotes, and the capturing side's king is safe from the check."
+    },
+    {
+      "id": "grade-brilliant-1-knight",
+      "group": "game_review",
+      "text": "Knight sacrifice, and it reads correctly. Immediate cost, idea verified in the checked line."
+    },
+    {
+      "id": "grade-brilliant-1-bishop",
+      "group": "game_review",
+      "text": "Bishop sacrifice, and it reads correctly. Immediate cost, idea verified in the checked line."
+    },
+    {
+      "id": "grade-brilliant-1-rook",
+      "group": "game_review",
+      "text": "Rook sacrifice, and it reads correctly. Immediate cost, idea verified in the checked line."
+    },
+    {
+      "id": "grade-brilliant-1-queen",
+      "group": "game_review",
+      "text": "Queen sacrifice, and it reads correctly. Immediate cost, idea verified in the checked line."
+    },
+    {
+      "id": "grade-brilliant-2-knight",
+      "group": "game_review",
+      "text": "Brilliant. Knight on offer, capture tested, position still standing. Top grade, confirmed."
+    },
+    {
+      "id": "grade-brilliant-2-bishop",
+      "group": "game_review",
+      "text": "Brilliant. Bishop on offer, capture tested, position still standing. Top grade, confirmed."
+    },
+    {
+      "id": "grade-brilliant-2-rook",
+      "group": "game_review",
+      "text": "Brilliant. Rook on offer, capture tested, position still standing. Top grade, confirmed."
+    },
+    {
+      "id": "grade-brilliant-2-queen",
+      "group": "game_review",
+      "text": "Brilliant. Queen on offer, capture tested, position still standing. Top grade, confirmed."
+    },
+    {
+      "id": "grade-brilliant-3-knight",
+      "group": "game_review",
+      "text": "Pattern: sound knight sacrifice. Real material on offer, and the capture doesn't break it. File it."
+    },
+    {
+      "id": "grade-brilliant-3-bishop",
+      "group": "game_review",
+      "text": "Pattern: sound bishop sacrifice. Real material on offer, and the capture doesn't break it. File it."
+    },
+    {
+      "id": "grade-brilliant-3-rook",
+      "group": "game_review",
+      "text": "Pattern: sound rook sacrifice. Real material on offer, and the capture doesn't break it. File it."
+    },
+    {
+      "id": "grade-brilliant-3-queen",
+      "group": "game_review",
+      "text": "Pattern: sound queen sacrifice. Real material on offer, and the capture doesn't break it. File it."
+    },
+    {
+      "id": "grade-brilliant-4-knight",
+      "group": "game_review",
+      "text": "Offer made, offer holds. A knight paid up front, idea intact. Benchmark position."
+    },
+    {
+      "id": "grade-brilliant-4-bishop",
+      "group": "game_review",
+      "text": "Offer made, offer holds. A bishop paid up front, idea intact. Benchmark position."
+    },
+    {
+      "id": "grade-brilliant-4-rook",
+      "group": "game_review",
+      "text": "Offer made, offer holds. A rook paid up front, idea intact. Benchmark position."
+    },
+    {
+      "id": "grade-brilliant-4-queen",
+      "group": "game_review",
+      "text": "Offer made, offer holds. A queen paid up front, idea intact. Benchmark position."
     }
   ]
 }

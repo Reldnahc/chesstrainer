@@ -16,7 +16,7 @@ import HumanInsight from "./HumanInsight";
 import {selectGameOpener, selectGameSpeech} from "../audio/speech/gameSelection";
 import {useCoachSpeech} from "../audio/speech/useCoachSpeech";
 import {coachRecording, hasCoachVoice} from "../audio/speech/voiceBank";
-import {useSpokenText} from "../audio/speech/spokenText";
+import {spokenId as spokenMeaning, useSpokenText} from "../audio/speech/spokenText";
 import CoachMovesLine, {movesLineFacts, movesLineText} from "./CoachMovesLine";
 import {useOptionalAudioPreferences} from "../audio/AudioProvider";
 import {useOptionalCoachPreferences} from "../coach/CoachProvider";
@@ -98,7 +98,9 @@ export default function PositionCoach({
   // anyCoach: a coach without a recorded bank still shows its script's line.
   const selection = {...speechContext, intent: displayedIntent, utterance, anyCoach: true};
   // The Maia insight is shown beside the bubble but never voiced.
-  const speech = selectGameSpeech(selection);
+  // Each clip prefers its piece-named variant ("the pinned knight") when this
+  // coach has one, falling back to the generic line.
+  const {variants: speech} = selectGameSpeech(selection);
   const {primaryId, gradeId} = speech;
   const coachId = utterance.coachId, voiced = hasCoachVoice(coachId);
   // A grade take replaces the generic reading once this coach has one.
@@ -119,7 +121,8 @@ export default function PositionCoach({
   const spokenLine = useSpokenText(coachId, spokenId);
   // A script that lacks one sentence of a pair still speaks the lead.
   const spokenLead = useSpokenText(coachId, explaining || voiced || openerId ? null : primaryId);
-  const spoken = spokenLine ?? spokenLead, spokenSource = spokenLine ? spokenId : spokenLead ? primaryId : null;
+  const spoken = spokenLine ?? spokenLead;
+  const spokenSource = spokenMeaning(coachId, spokenLine ? spokenId : spokenLead ? primaryId : null);
   const displayed = !spoken ? utterance : openerId
     ? {...utterance, id: `${utterance.id}:greeting`, text: spoken, speechText: spoken}
     : {...utterance, text: spoken, speechText: spoken};

@@ -4,7 +4,7 @@ import type { SpeechMouthTrack } from '../../coach/speechMouth';
 import type { CoachUtterance } from '../../dialogue/model';
 import { useOptionalAudioPreferences, useCurrentSpeechPlayback, useScopedSpeech } from '../AudioProvider';
 import type { SpeechPlayback } from '../model';
-import { coachRecording, coachMouthTrack, loadedCoachMouthTrack, hasCoachVoice } from './voiceBank';
+import { coachRecording, coachMouthTrack, loadedCoachMouthTrack, hasCoachVoice, recordedId } from './voiceBank';
 import { SEQUENCE_GAP_SECONDS } from './sequence';
 import CoachSpeechButton from './CoachSpeechButton';
 
@@ -17,6 +17,8 @@ export type CoachSpeechPresentation = {
   consumeAutomatic: (eventId: string | null | undefined) => void;
   playing: boolean;
   activeRecordingId?: string;
+  /** Whether this recording (or, without one, any) is the one playing; alternatives resolve first. */
+  isPlaying: (recordingId?: string) => boolean;
   available: boolean;
   canPlay: (recordingId?: string) => boolean;
 };
@@ -39,14 +41,19 @@ function recordedUtterance(coachId: string, id: string, text: string, source?: C
     trace: { renderer: 'recorded-semantic-feedback-1', variants: [], decisions: [] } };
 }
 
+// A selection may list alternatives ("variant|generic"); playback names the one recorded.
+const concrete = (coachId: string, id: string | null | undefined) => id ? recordedId(coachId, id) ?? id : id;
+
 /** Callers supply supported meaning and fresh user-action identity, never prose matching. */
-export function useCoachSpeech({ scopeKey, recordingId, utterance, automaticEventId,
-  ready = true, manualRecordingIds = [], onManualRequest }: SpeechSelection): CoachSpeechPresentation {
+export function useCoachSpeech({ scopeKey, recordingId: requested, utterance, automaticEventId,
+  ready = true, manualRecordingIds: manual = [], onManualRequest }: SpeechSelection): CoachSpeechPresentation {
   const coach = useOptionalCoachPreferences();
   const audio = useOptionalAudioPreferences();
   const observedPlayback = useCurrentSpeechPlayback();
   const { play: submit, playback, cancel, unlock } = useScopedSpeech(`coach:${scopeKey}`);
   const coachId = coach?.preferences.coach_id ?? '';
+  const recordingId = concrete(coachId, requested);
+  const manualRecordingIds = manual.map(id => concrete(coachId, id));
   const eligible = !!(coach?.ready && hasCoachVoice(coachId) && audio?.ready
     && audio.preferences.enabled && audio.preferences.volume > 0 && audio.preferences.voice !== 'off'
     && !audio.muted && (!utterance || utterance.coachId === coachId));
@@ -102,7 +109,7 @@ export function useCoachSpeech({ scopeKey, recordingId, utterance, automaticEven
       pending.current = null;
     }
     const current = live.current;
-    const id = requestedId ?? current.recordingId;
+    const id = concrete(current.coachId, requestedId) ?? current.recordingId;
     if (!current.eligible || !current.ready || !id || !current.allowed.includes(id) || document.hidden) return;
     const recording = coachRecording(current.coachId, id);
     if (!recording) return;
@@ -160,8 +167,10 @@ export function useCoachSpeech({ scopeKey, recordingId, utterance, automaticEven
   const value: CoachSpeechPresentation = { speech: observedTrack ? observedPlayback ?? undefined : currentPlayback,
     speechTrack: observedTrack ?? active?.track,
     control: null, play, stop, consumeAutomatic, playing: !!currentPlayback, activeRecordingId: active?.id,
+    isPlaying: id => !!currentPlayback && (!id || active?.id === concrete(coachId, id)),
     available: eligible && ready && allowed.length > 0,
-    canPlay: id => eligible && ready && !!(id ?? recordingId) && allowed.includes((id ?? recordingId)!) };
+    canPlay: id => eligible && ready && !!(concrete(coachId, id) ?? recordingId)
+      && allowed.includes((concrete(coachId, id) ?? recordingId)!) };
   value.control = recordingId && coachRecording(coachId, recordingId) ? <CoachSpeechButton voice={value} /> : null;
   return value;
 }

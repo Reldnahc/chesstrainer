@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useOptionalCoachPreferences } from '../../coach/CoachProvider';
 import { coachRecording } from './voiceBank';
-import { SEQUENCE_SEPARATOR } from './sequence';
+import { ALTERNATIVE_SEPARATOR, SEQUENCE_SEPARATOR } from './sequence';
 
 /** The words a coach says for a meaning: its recorded line when the bank has
  * one, otherwise the line its script would speak. The bubble shows this text,
@@ -40,8 +40,21 @@ export function loadCoachScript(coachId: string): Promise<void> {
   return pending;
 }
 
-function partText(coachId: string, id: string): string | undefined {
-  return coachRecording(coachId, id)?.text ?? loadedScripts.get(coachId)?.get(id);
+// A recorded alternative wins, since that is what plays; otherwise the first scripted one.
+function partId(coachId: string, part: string): string | undefined {
+  const alternatives = part.split(ALTERNATIVE_SEPARATOR);
+  return alternatives.find(id => coachRecording(coachId, id)) ?? alternatives.find(id => loadedScripts.get(coachId)?.has(id));
+}
+function partText(coachId: string, part: string): string | undefined {
+  const id = partId(coachId, part);
+  return id ? coachRecording(coachId, id)?.text ?? loadedScripts.get(coachId)?.get(id) : undefined;
+}
+
+/** The meaning whose words {@link spokenText} shows, with any alternatives resolved. */
+export function spokenId(coachId: string | null | undefined, id: string | null | undefined): string | null {
+  if (!coachId || !id) return null;
+  const parts = id.split(SEQUENCE_SEPARATOR).map(part => partId(coachId, part));
+  return parts.every((part): part is string => !!part) ? parts.join(SEQUENCE_SEPARATOR) : id;
 }
 
 /** Synchronous lookup; a script that has not loaded yet reads as unknown (null). */

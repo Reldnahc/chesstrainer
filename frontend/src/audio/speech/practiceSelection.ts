@@ -1,4 +1,5 @@
 import type { ColdPosition, ExplanationFrame, Feedback, MoveExplanation, PatternFinding, Schema } from "../../api";
+import { capturedPieces, findingPieces, withPieceVariant } from "./pieceVariants";
 
 /** Only replay_line's explicit facts authorize a complete recorded frame description. */
 export function explanationFrameRecording(frame: ExplanationFrame | null | undefined, index?: number): string | null {
@@ -10,7 +11,8 @@ export function explanationFrameRecording(frame: ExplanationFrame | null | undef
     return ending === "ordinary" ? "positional-castling-actual" : `explanation-frame-castle-${ending}`;
   }
   if (!frame.capture && !frame.promotion && ending === "mate") return "mate-finished";
-  return `explanation-frame-${frame.capture ? "capture" : "quiet"}-${frame.promotion ? "promotion" : "move"}-${ending}`;
+  const id = `explanation-frame-${frame.capture ? "capture" : "quiet"}-${frame.promotion ? "promotion" : "move"}-${ending}`;
+  return withPieceVariant(id, capturedPieces(frame));
 }
 
 const summaryRecordings: Record<string, string | undefined> = {
@@ -74,8 +76,9 @@ function currentFinding(data: MoveExplanation, finding: PatternFinding | null | 
 }
 export function explanationFindingRecording(data: MoveExplanation, finding: PatternFinding | null | undefined, index: number): string | null {
   if (!currentFinding(data, finding, index) || !finding.mechanism) return null;
-  return findingAliases[finding.mechanism] ?? (findingMechanisms.has(finding.mechanism)
+  const id = findingAliases[finding.mechanism] ?? (findingMechanisms.has(finding.mechanism)
     ? `explanation-finding-${finding.mechanism.replaceAll("_", "-")}` : null);
+  return id && withPieceVariant(id, findingPieces(data, finding));
 }
 export function explanationCueRecording(data: MoveExplanation, finding: PatternFinding | null | undefined, index: number): string | null {
   if (!currentFinding(data, finding, index) || !finding.cue_key || finding.cue_key !== finding.skill_id || !cueKeys.has(finding.cue_key)) return null;

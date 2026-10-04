@@ -330,6 +330,1614 @@
       "group": "lessons",
       "walterText": "The lesson has slipped out of order. Let's set it right again.",
       "rivetText": "Lesson state error. Reload required."
+    },
+    {
+      "id": "tactic-fork-played-pawn",
+      "group": "game_review",
+      "walterText": "The idea here is a fork: one pawn attacking two targets at once.",
+      "rivetText": "Pattern: fork. Attacker: one pawn. Target count: two. Follow the shared attacker."
+    },
+    {
+      "id": "tactic-fork-played-knight",
+      "group": "game_review",
+      "walterText": "The idea here is a fork: one knight attacking several targets at once.",
+      "rivetText": "Pattern: fork. Attacker: one knight. Target count: several. Follow the shared attacker."
+    },
+    {
+      "id": "tactic-fork-played-bishop",
+      "group": "game_review",
+      "walterText": "The idea here is a fork: one bishop attacking several targets at once.",
+      "rivetText": "Pattern: fork. Attacker: one bishop. Target count: several. Follow the shared attacker."
+    },
+    {
+      "id": "tactic-fork-played-rook",
+      "group": "game_review",
+      "walterText": "The idea here is a fork: one rook attacking several targets at once.",
+      "rivetText": "Pattern: fork. Attacker: one rook. Target count: several. Follow the shared attacker."
+    },
+    {
+      "id": "tactic-fork-played-queen",
+      "group": "game_review",
+      "walterText": "The idea here is a fork: one queen attacking several targets at once.",
+      "rivetText": "Pattern: fork. Attacker: one queen. Target count: several. Follow the shared attacker."
+    },
+    {
+      "id": "tactic-fork-allowed-pawn",
+      "group": "game_review",
+      "walterText": "This gives the other side a chance to set up a fork, attacking two targets with the same pawn.",
+      "rivetText": "Issue: a pawn fork becomes available to the other side. Attacker count: one. Exposed targets: two."
+    },
+    {
+      "id": "tactic-fork-allowed-knight",
+      "group": "game_review",
+      "walterText": "This gives the other side a chance to set up a fork, attacking several targets with the same knight.",
+      "rivetText": "Issue: a knight fork becomes available to the other side. Attacker count: one. Exposed targets: multiple."
+    },
+    {
+      "id": "tactic-fork-allowed-bishop",
+      "group": "game_review",
+      "walterText": "This gives the other side a chance to set up a fork, attacking several targets with the same bishop.",
+      "rivetText": "Issue: a bishop fork becomes available to the other side. Attacker count: one. Exposed targets: multiple."
+    },
+    {
+      "id": "tactic-fork-allowed-rook",
+      "group": "game_review",
+      "walterText": "This gives the other side a chance to set up a fork, attacking several targets with the same rook.",
+      "rivetText": "Issue: a rook fork becomes available to the other side. Attacker count: one. Exposed targets: multiple."
+    },
+    {
+      "id": "tactic-fork-allowed-queen",
+      "group": "game_review",
+      "walterText": "This gives the other side a chance to set up a fork, attacking several targets with the same queen.",
+      "rivetText": "Issue: a queen fork becomes available to the other side. Attacker count: one. Exposed targets: multiple."
+    },
+    {
+      "id": "tactic-fork-missed-pawn",
+      "group": "game_review",
+      "walterText": "There was a chance to set up a pawn fork. This move misses that opportunity to attack two targets at once.",
+      "rivetText": "Missed resource: a fork. Another move offered a way to attack two targets with one pawn."
+    },
+    {
+      "id": "tactic-fork-missed-knight",
+      "group": "game_review",
+      "walterText": "There was a chance to set up a knight fork. This move misses that opportunity to attack several targets at once.",
+      "rivetText": "Missed resource: a fork. Another move offered a way to attack several targets with one knight."
+    },
+    {
+      "id": "tactic-fork-missed-bishop",
+      "group": "game_review",
+      "walterText": "There was a chance to set up a bishop fork. This move misses that opportunity to attack several targets at once.",
+      "rivetText": "Missed resource: a fork. Another move offered a way to attack several targets with one bishop."
+    },
+    {
+      "id": "tactic-fork-missed-rook",
+      "group": "game_review",
+      "walterText": "There was a chance to set up a rook fork. This move misses that opportunity to attack several targets at once.",
+      "rivetText": "Missed resource: a fork. Another move offered a way to attack several targets with one rook."
+    },
+    {
+      "id": "tactic-fork-missed-queen",
+      "group": "game_review",
+      "walterText": "There was a chance to set up a queen fork. This move misses that opportunity to attack several targets at once.",
+      "rivetText": "Missed resource: a fork. Another move offered a way to attack several targets with one queen."
+    },
+    {
+      "id": "tactic-pin-played-pawn",
+      "group": "game_review",
+      "walterText": "The key idea is a pin to the king. A pawn caught this way cannot leave the line and expose its king.",
+      "rivetText": "Mechanism detected: king pin. Pinned unit: pawn. Leaving the line would expose the king, so that movement is not legal."
+    },
+    {
+      "id": "tactic-pin-played-knight",
+      "group": "game_review",
+      "walterText": "The key idea is a pin to the king. A knight caught this way cannot leave the line and expose its king.",
+      "rivetText": "Mechanism detected: king pin. Pinned unit: knight. Leaving the line would expose the king, so that movement is not legal."
+    },
+    {
+      "id": "tactic-pin-played-bishop",
+      "group": "game_review",
+      "walterText": "The key idea is a pin to the king. A bishop caught this way cannot leave the line and expose its king.",
+      "rivetText": "Mechanism detected: king pin. Pinned unit: bishop. Leaving the line would expose the king, so that movement is not legal."
+    },
+    {
+      "id": "tactic-pin-played-rook",
+      "group": "game_review",
+      "walterText": "The key idea is a pin to the king. A rook caught this way cannot leave the line and expose its king.",
+      "rivetText": "Mechanism detected: king pin. Pinned unit: rook. Leaving the line would expose the king, so that movement is not legal."
+    },
+    {
+      "id": "tactic-pin-played-queen",
+      "group": "game_review",
+      "walterText": "The key idea is a pin to the king. A queen caught this way cannot leave the line and expose its king.",
+      "rivetText": "Mechanism detected: king pin. Pinned unit: queen. Leaving the line would expose the king, so that movement is not legal."
+    },
+    {
+      "id": "tactic-pin-allowed-pawn",
+      "group": "game_review",
+      "walterText": "This gives the other side a chance to use a pin to the king. A pinned pawn cannot leave that line and expose its king.",
+      "rivetText": "Alert: the other side gains access to a king pin. Constraint: a pinned pawn is held on that line by its king."
+    },
+    {
+      "id": "tactic-pin-allowed-knight",
+      "group": "game_review",
+      "walterText": "This gives the other side a chance to use a pin to the king. A pinned knight cannot leave that line and expose its king.",
+      "rivetText": "Alert: the other side gains access to a king pin. Constraint: a pinned knight is held on that line by its king."
+    },
+    {
+      "id": "tactic-pin-allowed-bishop",
+      "group": "game_review",
+      "walterText": "This gives the other side a chance to use a pin to the king. A pinned bishop cannot leave that line and expose its king.",
+      "rivetText": "Alert: the other side gains access to a king pin. Constraint: a pinned bishop is held on that line by its king."
+    },
+    {
+      "id": "tactic-pin-allowed-rook",
+      "group": "game_review",
+      "walterText": "This gives the other side a chance to use a pin to the king. A pinned rook cannot leave that line and expose its king.",
+      "rivetText": "Alert: the other side gains access to a king pin. Constraint: a pinned rook is held on that line by its king."
+    },
+    {
+      "id": "tactic-pin-allowed-queen",
+      "group": "game_review",
+      "walterText": "This gives the other side a chance to use a pin to the king. A pinned queen cannot leave that line and expose its king.",
+      "rivetText": "Alert: the other side gains access to a king pin. Constraint: a pinned queen is held on that line by its king."
+    },
+    {
+      "id": "tactic-pin-missed-pawn",
+      "group": "game_review",
+      "walterText": "Another move would have made use of a pin to the king. A pawn pinned this way cannot leave the line and expose its king.",
+      "rivetText": "Missed pattern: a pin to the king, available with an alternative. Constraint it would have set: pawn locked to its line."
+    },
+    {
+      "id": "tactic-pin-missed-knight",
+      "group": "game_review",
+      "walterText": "Another move would have made use of a pin to the king. A knight pinned this way cannot leave the line and expose its king.",
+      "rivetText": "Missed pattern: a pin to the king, available with an alternative. Constraint it would have set: knight locked to its line."
+    },
+    {
+      "id": "tactic-pin-missed-bishop",
+      "group": "game_review",
+      "walterText": "Another move would have made use of a pin to the king. A bishop pinned this way cannot leave the line and expose its king.",
+      "rivetText": "Missed pattern: a pin to the king, available with an alternative. Constraint it would have set: bishop locked to its line."
+    },
+    {
+      "id": "tactic-pin-missed-rook",
+      "group": "game_review",
+      "walterText": "Another move would have made use of a pin to the king. A rook pinned this way cannot leave the line and expose its king.",
+      "rivetText": "Missed pattern: a pin to the king, available with an alternative. Constraint it would have set: rook locked to its line."
+    },
+    {
+      "id": "tactic-pin-missed-queen",
+      "group": "game_review",
+      "walterText": "Another move would have made use of a pin to the king. A queen pinned this way cannot leave the line and expose its king.",
+      "rivetText": "Missed pattern: a pin to the king, available with an alternative. Constraint it would have set: queen locked to its line."
+    },
+    {
+      "id": "tactic-skewer-played-knight",
+      "group": "game_review",
+      "walterText": "A skewer is the idea here. When the knight in front moves, it exposes the piece behind it.",
+      "rivetText": "Pattern: skewer. Front unit: knight, displaced. Rear unit left open on that line."
+    },
+    {
+      "id": "tactic-skewer-played-bishop",
+      "group": "game_review",
+      "walterText": "A skewer is the idea here. When the bishop in front moves, it exposes the piece behind it.",
+      "rivetText": "Pattern: skewer. Front unit: bishop, displaced. Rear unit left open on that line."
+    },
+    {
+      "id": "tactic-skewer-played-rook",
+      "group": "game_review",
+      "walterText": "A skewer is the idea here. When the rook in front moves, it exposes the piece behind it.",
+      "rivetText": "Pattern: skewer. Front unit: rook, displaced. Rear unit left open on that line."
+    },
+    {
+      "id": "tactic-skewer-played-queen",
+      "group": "game_review",
+      "walterText": "A skewer is the idea here. When the queen in front moves, it exposes the piece behind it.",
+      "rivetText": "Pattern: skewer. Front unit: queen, displaced. Rear unit left open on that line."
+    },
+    {
+      "id": "tactic-skewer-played-king",
+      "group": "game_review",
+      "walterText": "A skewer is the idea here. The king is in check, and when it steps off the line, it exposes the piece behind it.",
+      "rivetText": "Pattern: skewer. Front unit: king, in check and forced off the line. Rear unit left open on that line."
+    },
+    {
+      "id": "tactic-skewer-allowed-knight",
+      "group": "game_review",
+      "walterText": "This opens the door to a skewer from the other side. Moving the knight in front could expose a piece behind it.",
+      "rivetText": "Alert: skewer geometry now available to the other side. Front unit: knight. It moves; rear unit becomes reachable."
+    },
+    {
+      "id": "tactic-skewer-allowed-bishop",
+      "group": "game_review",
+      "walterText": "This opens the door to a skewer from the other side. Moving the bishop in front could expose a piece behind it.",
+      "rivetText": "Alert: skewer geometry now available to the other side. Front unit: bishop. It moves; rear unit becomes reachable."
+    },
+    {
+      "id": "tactic-skewer-allowed-rook",
+      "group": "game_review",
+      "walterText": "This opens the door to a skewer from the other side. Moving the rook in front could expose a piece behind it.",
+      "rivetText": "Alert: skewer geometry now available to the other side. Front unit: rook. It moves; rear unit becomes reachable."
+    },
+    {
+      "id": "tactic-skewer-allowed-queen",
+      "group": "game_review",
+      "walterText": "This opens the door to a skewer from the other side. Moving the queen in front could expose a piece behind it.",
+      "rivetText": "Alert: skewer geometry now available to the other side. Front unit: queen. It moves; rear unit becomes reachable."
+    },
+    {
+      "id": "tactic-skewer-allowed-king",
+      "group": "game_review",
+      "walterText": "This opens the door to a skewer from the other side. The king would have to step out of check, which could expose a piece behind it.",
+      "rivetText": "Alert: skewer geometry now available to the other side. Front unit: king. Check forces it off the line; rear unit becomes reachable."
+    },
+    {
+      "id": "tactic-skewer-missed-knight",
+      "group": "game_review",
+      "walterText": "A stronger move offered a skewer. Moving the knight in front would then expose the piece behind it.",
+      "rivetText": "Missed pattern: skewer. A stronger move contained it. Front unit: knight, forced aside; rear unit exposed."
+    },
+    {
+      "id": "tactic-skewer-missed-bishop",
+      "group": "game_review",
+      "walterText": "A stronger move offered a skewer. Moving the bishop in front would then expose the piece behind it.",
+      "rivetText": "Missed pattern: skewer. A stronger move contained it. Front unit: bishop, forced aside; rear unit exposed."
+    },
+    {
+      "id": "tactic-skewer-missed-rook",
+      "group": "game_review",
+      "walterText": "A stronger move offered a skewer. Moving the rook in front would then expose the piece behind it.",
+      "rivetText": "Missed pattern: skewer. A stronger move contained it. Front unit: rook, forced aside; rear unit exposed."
+    },
+    {
+      "id": "tactic-skewer-missed-queen",
+      "group": "game_review",
+      "walterText": "A stronger move offered a skewer. Moving the queen in front would then expose the piece behind it.",
+      "rivetText": "Missed pattern: skewer. A stronger move contained it. Front unit: queen, forced aside; rear unit exposed."
+    },
+    {
+      "id": "tactic-skewer-missed-king",
+      "group": "game_review",
+      "walterText": "A stronger move offered a skewer. The king would have had to step out of check, exposing the piece behind it.",
+      "rivetText": "Missed pattern: skewer. A stronger move contained it. Front unit: king, checked off the line; rear unit exposed."
+    },
+    {
+      "id": "tactic-discovered-attack-played-pawn",
+      "group": "game_review",
+      "walterText": "The idea is to move the pawn out of the way and uncover an attack from another piece. Look at the line it opens.",
+      "rivetText": "The pawn moves out of the way, uncovering an attack from another piece. That is the discovered-attack pattern."
+    },
+    {
+      "id": "tactic-discovered-attack-played-knight",
+      "group": "game_review",
+      "walterText": "The idea is to move the knight out of the way and uncover an attack from another piece. Look at the line it opens.",
+      "rivetText": "The knight moves out of the way, uncovering an attack from another piece. That is the discovered-attack pattern."
+    },
+    {
+      "id": "tactic-discovered-attack-played-bishop",
+      "group": "game_review",
+      "walterText": "The idea is to move the bishop out of the way and uncover an attack from another piece. Look at the line it opens.",
+      "rivetText": "The bishop moves out of the way, uncovering an attack from another piece. That is the discovered-attack pattern."
+    },
+    {
+      "id": "tactic-discovered-attack-played-rook",
+      "group": "game_review",
+      "walterText": "The idea is to move the rook out of the way and uncover an attack from another piece. Look at the line it opens.",
+      "rivetText": "The rook moves out of the way, uncovering an attack from another piece. That is the discovered-attack pattern."
+    },
+    {
+      "id": "tactic-discovered-attack-played-queen",
+      "group": "game_review",
+      "walterText": "The idea is to move the queen out of the way and uncover an attack from another piece. Look at the line it opens.",
+      "rivetText": "The queen moves out of the way, uncovering an attack from another piece. That is the discovered-attack pattern."
+    },
+    {
+      "id": "tactic-discovered-attack-played-king",
+      "group": "game_review",
+      "walterText": "The idea is to move the king out of the way and uncover an attack from another piece. Look at the line it opens.",
+      "rivetText": "The king moves out of the way, uncovering an attack from another piece. That is the discovered-attack pattern."
+    },
+    {
+      "id": "tactic-discovered-attack-allowed-pawn",
+      "group": "game_review",
+      "walterText": "This opens the door to a discovered attack. The other side can move a pawn out of the way to uncover a threat from another piece.",
+      "rivetText": "Alert: discovered-attack geometry unlocked for the other side. Blocker: pawn. It clears the line; a hidden attacker activates."
+    },
+    {
+      "id": "tactic-discovered-attack-allowed-knight",
+      "group": "game_review",
+      "walterText": "This opens the door to a discovered attack. The other side can move a knight out of the way to uncover a threat from another piece.",
+      "rivetText": "Alert: discovered-attack geometry unlocked for the other side. Blocker: knight. It clears the line; a hidden attacker activates."
+    },
+    {
+      "id": "tactic-discovered-attack-allowed-bishop",
+      "group": "game_review",
+      "walterText": "This opens the door to a discovered attack. The other side can move a bishop out of the way to uncover a threat from another piece.",
+      "rivetText": "Alert: discovered-attack geometry unlocked for the other side. Blocker: bishop. It clears the line; a hidden attacker activates."
+    },
+    {
+      "id": "tactic-discovered-attack-allowed-rook",
+      "group": "game_review",
+      "walterText": "This opens the door to a discovered attack. The other side can move a rook out of the way to uncover a threat from another piece.",
+      "rivetText": "Alert: discovered-attack geometry unlocked for the other side. Blocker: rook. It clears the line; a hidden attacker activates."
+    },
+    {
+      "id": "tactic-discovered-attack-allowed-queen",
+      "group": "game_review",
+      "walterText": "This opens the door to a discovered attack. The other side can move a queen out of the way to uncover a threat from another piece.",
+      "rivetText": "Alert: discovered-attack geometry unlocked for the other side. Blocker: queen. It clears the line; a hidden attacker activates."
+    },
+    {
+      "id": "tactic-discovered-attack-allowed-king",
+      "group": "game_review",
+      "walterText": "This opens the door to a discovered attack. The other side can move the king out of the way to uncover a threat from another piece.",
+      "rivetText": "Alert: discovered-attack geometry unlocked for the other side. Blocker: king. It clears the line; a hidden attacker activates."
+    },
+    {
+      "id": "tactic-discovered-attack-missed-pawn",
+      "group": "game_review",
+      "walterText": "Another move offered a discovered attack. Moving the pawn out of the way would uncover a threat from another piece.",
+      "rivetText": "Missed pattern: a discovered attack, available with another move. Moving the blocking pawn would uncover a threat from a different piece."
+    },
+    {
+      "id": "tactic-discovered-attack-missed-knight",
+      "group": "game_review",
+      "walterText": "Another move offered a discovered attack. Moving the knight out of the way would uncover a threat from another piece.",
+      "rivetText": "Missed pattern: a discovered attack, available with another move. Moving the blocking knight would uncover a threat from a different piece."
+    },
+    {
+      "id": "tactic-discovered-attack-missed-bishop",
+      "group": "game_review",
+      "walterText": "Another move offered a discovered attack. Moving the bishop out of the way would uncover a threat from another piece.",
+      "rivetText": "Missed pattern: a discovered attack, available with another move. Moving the blocking bishop would uncover a threat from a different piece."
+    },
+    {
+      "id": "tactic-discovered-attack-missed-rook",
+      "group": "game_review",
+      "walterText": "Another move offered a discovered attack. Moving the rook out of the way would uncover a threat from another piece.",
+      "rivetText": "Missed pattern: a discovered attack, available with another move. Moving the blocking rook would uncover a threat from a different piece."
+    },
+    {
+      "id": "tactic-discovered-attack-missed-queen",
+      "group": "game_review",
+      "walterText": "Another move offered a discovered attack. Moving the queen out of the way would uncover a threat from another piece.",
+      "rivetText": "Missed pattern: a discovered attack, available with another move. Moving the blocking queen would uncover a threat from a different piece."
+    },
+    {
+      "id": "tactic-discovered-attack-missed-king",
+      "group": "game_review",
+      "walterText": "Another move offered a discovered attack. Moving the king out of the way would uncover a threat from another piece.",
+      "rivetText": "Missed pattern: a discovered attack, available with another move. Moving the blocking king would uncover a threat from a different piece."
+    },
+    {
+      "id": "tactic-undefended-capture-played-knight",
+      "group": "game_review",
+      "walterText": "Look for the chance to take an undefended knight. Loose pieces are worth checking before settling on a move.",
+      "rivetText": "Objective: take a knight with zero guards. Locate the loose target before evaluating the capture."
+    },
+    {
+      "id": "tactic-undefended-capture-played-bishop",
+      "group": "game_review",
+      "walterText": "Look for the chance to take an undefended bishop. Loose pieces are worth checking before settling on a move.",
+      "rivetText": "Objective: take a bishop with zero guards. Locate the loose target before evaluating the capture."
+    },
+    {
+      "id": "tactic-undefended-capture-played-rook",
+      "group": "game_review",
+      "walterText": "Look for the chance to take an undefended rook. Loose pieces are worth checking before settling on a move.",
+      "rivetText": "Objective: take a rook with zero guards. Locate the loose target before evaluating the capture."
+    },
+    {
+      "id": "tactic-undefended-capture-played-queen",
+      "group": "game_review",
+      "walterText": "Look for the chance to take an undefended queen. Loose pieces are worth checking before settling on a move.",
+      "rivetText": "Objective: take a queen with zero guards. Locate the loose target before evaluating the capture."
+    },
+    {
+      "id": "tactic-undefended-capture-missed-knight",
+      "group": "game_review",
+      "walterText": "Another move offered a chance to take an undefended knight. This move lets it pass; keep an eye on loose pieces.",
+      "rivetText": "An undefended capture was available in another line. This move misses the opportunity to take that loose knight."
+    },
+    {
+      "id": "tactic-undefended-capture-missed-bishop",
+      "group": "game_review",
+      "walterText": "Another move offered a chance to take an undefended bishop. This move lets it pass; keep an eye on loose pieces.",
+      "rivetText": "An undefended capture was available in another line. This move misses the opportunity to take that loose bishop."
+    },
+    {
+      "id": "tactic-undefended-capture-missed-rook",
+      "group": "game_review",
+      "walterText": "Another move offered a chance to take an undefended rook. This move lets it pass; keep an eye on loose pieces.",
+      "rivetText": "An undefended capture was available in another line. This move misses the opportunity to take that loose rook."
+    },
+    {
+      "id": "tactic-undefended-capture-missed-queen",
+      "group": "game_review",
+      "walterText": "Another move offered a chance to take an undefended queen. This move lets it pass; keep an eye on loose pieces.",
+      "rivetText": "An undefended capture was available in another line. This move misses the opportunity to take that loose queen."
+    },
+    {
+      "id": "tactic-hanging-piece-allowed-knight",
+      "group": "game_review",
+      "walterText": "This gives the other side a chance to take an undefended knight. Look for what could be left without protection.",
+      "rivetText": "Issue: an undefended knight is now capturable by the other side. Check what could be left without protection."
+    },
+    {
+      "id": "tactic-hanging-piece-allowed-bishop",
+      "group": "game_review",
+      "walterText": "This gives the other side a chance to take an undefended bishop. Look for what could be left without protection.",
+      "rivetText": "Issue: an undefended bishop is now capturable by the other side. Check what could be left without protection."
+    },
+    {
+      "id": "tactic-hanging-piece-allowed-rook",
+      "group": "game_review",
+      "walterText": "This gives the other side a chance to take an undefended rook. Look for what could be left without protection.",
+      "rivetText": "Issue: an undefended rook is now capturable by the other side. Check what could be left without protection."
+    },
+    {
+      "id": "tactic-hanging-piece-allowed-queen",
+      "group": "game_review",
+      "walterText": "This gives the other side a chance to take an undefended queen. Look for what could be left without protection.",
+      "rivetText": "Issue: an undefended queen is now capturable by the other side. Check what could be left without protection."
+    },
+    {
+      "id": "tactic-removing-defender-played-pawn",
+      "group": "game_review",
+      "walterText": "Watch what the defending pawn protects. Capturing it is the idea here, so notice what would lose its protection.",
+      "rivetText": "Objective: capture the defending pawn. Identify what it protects, then compare the position without it."
+    },
+    {
+      "id": "tactic-removing-defender-played-knight",
+      "group": "game_review",
+      "walterText": "Watch what the defending knight protects. Capturing it is the idea here, so notice what would lose its protection.",
+      "rivetText": "Objective: capture the defending knight. Identify what it protects, then compare the position without it."
+    },
+    {
+      "id": "tactic-removing-defender-played-bishop",
+      "group": "game_review",
+      "walterText": "Watch what the defending bishop protects. Capturing it is the idea here, so notice what would lose its protection.",
+      "rivetText": "Objective: capture the defending bishop. Identify what it protects, then compare the position without it."
+    },
+    {
+      "id": "tactic-removing-defender-played-rook",
+      "group": "game_review",
+      "walterText": "Watch what the defending rook protects. Capturing it is the idea here, so notice what would lose its protection.",
+      "rivetText": "Objective: capture the defending rook. Identify what it protects, then compare the position without it."
+    },
+    {
+      "id": "tactic-removing-defender-played-queen",
+      "group": "game_review",
+      "walterText": "Watch what the defending queen protects. Capturing it is the idea here, so notice what would lose its protection.",
+      "rivetText": "Objective: capture the defending queen. Identify what it protects, then compare the position without it."
+    },
+    {
+      "id": "tactic-removing-defender-allowed-pawn",
+      "group": "game_review",
+      "walterText": "This gives the other side a chance to capture a defending pawn. Look at what could be left without its protection.",
+      "rivetText": "Alert: a defending pawn has become a capture target for the other side. What it guards could then lose that protection."
+    },
+    {
+      "id": "tactic-removing-defender-allowed-knight",
+      "group": "game_review",
+      "walterText": "This gives the other side a chance to capture a defending knight. Look at what could be left without its protection.",
+      "rivetText": "Alert: a defending knight has become a capture target for the other side. What it guards could then lose that protection."
+    },
+    {
+      "id": "tactic-removing-defender-allowed-bishop",
+      "group": "game_review",
+      "walterText": "This gives the other side a chance to capture a defending bishop. Look at what could be left without its protection.",
+      "rivetText": "Alert: a defending bishop has become a capture target for the other side. What it guards could then lose that protection."
+    },
+    {
+      "id": "tactic-removing-defender-allowed-rook",
+      "group": "game_review",
+      "walterText": "This gives the other side a chance to capture a defending rook. Look at what could be left without its protection.",
+      "rivetText": "Alert: a defending rook has become a capture target for the other side. What it guards could then lose that protection."
+    },
+    {
+      "id": "tactic-removing-defender-allowed-queen",
+      "group": "game_review",
+      "walterText": "This gives the other side a chance to capture a defending queen. Look at what could be left without its protection.",
+      "rivetText": "Alert: a defending queen has become a capture target for the other side. What it guards could then lose that protection."
+    },
+    {
+      "id": "tactic-removing-defender-missed-pawn",
+      "group": "game_review",
+      "walterText": "Another move offered a way to capture a defending pawn, taking protection away from what it was guarding.",
+      "rivetText": "Missed resource: capturing a defending pawn. Another move offered a way to remove protection from what it guards."
+    },
+    {
+      "id": "tactic-removing-defender-missed-knight",
+      "group": "game_review",
+      "walterText": "Another move offered a way to capture a defending knight, taking protection away from what it was guarding.",
+      "rivetText": "Missed resource: capturing a defending knight. Another move offered a way to remove protection from what it guards."
+    },
+    {
+      "id": "tactic-removing-defender-missed-bishop",
+      "group": "game_review",
+      "walterText": "Another move offered a way to capture a defending bishop, taking protection away from what it was guarding.",
+      "rivetText": "Missed resource: capturing a defending bishop. Another move offered a way to remove protection from what it guards."
+    },
+    {
+      "id": "tactic-removing-defender-missed-rook",
+      "group": "game_review",
+      "walterText": "Another move offered a way to capture a defending rook, taking protection away from what it was guarding.",
+      "rivetText": "Missed resource: capturing a defending rook. Another move offered a way to remove protection from what it guards."
+    },
+    {
+      "id": "tactic-removing-defender-missed-queen",
+      "group": "game_review",
+      "walterText": "Another move offered a way to capture a defending queen, taking protection away from what it was guarding.",
+      "rivetText": "Missed resource: capturing a defending queen. Another move offered a way to remove protection from what it guards."
+    },
+    {
+      "id": "tactic-deflection-played-pawn",
+      "group": "game_review",
+      "walterText": "A deflection is the idea here: draw the defending pawn away from its job, then use the opening it leaves.",
+      "rivetText": "Pattern: deflection. Step one: draw the defending pawn off its task. Step two: use the gap."
+    },
+    {
+      "id": "tactic-deflection-played-knight",
+      "group": "game_review",
+      "walterText": "A deflection is the idea here: draw the defending knight away from its job, then use the opening it leaves.",
+      "rivetText": "Pattern: deflection. Step one: draw the defending knight off its task. Step two: use the gap."
+    },
+    {
+      "id": "tactic-deflection-played-bishop",
+      "group": "game_review",
+      "walterText": "A deflection is the idea here: draw the defending bishop away from its job, then use the opening it leaves.",
+      "rivetText": "Pattern: deflection. Step one: draw the defending bishop off its task. Step two: use the gap."
+    },
+    {
+      "id": "tactic-deflection-played-rook",
+      "group": "game_review",
+      "walterText": "A deflection is the idea here: draw the defending rook away from its job, then use the opening it leaves.",
+      "rivetText": "Pattern: deflection. Step one: draw the defending rook off its task. Step two: use the gap."
+    },
+    {
+      "id": "tactic-deflection-played-queen",
+      "group": "game_review",
+      "walterText": "A deflection is the idea here: draw the defending queen away from its job, then use the opening it leaves.",
+      "rivetText": "Pattern: deflection. Step one: draw the defending queen off its task. Step two: use the gap."
+    },
+    {
+      "id": "tactic-deflection-played-king",
+      "group": "game_review",
+      "walterText": "A deflection is the idea here: draw the defending king away from its job, then use the opening it leaves.",
+      "rivetText": "Pattern: deflection. Step one: draw the defending king off its task. Step two: use the gap."
+    },
+    {
+      "id": "tactic-deflection-allowed-pawn",
+      "group": "game_review",
+      "walterText": "This gives the other side a chance to draw the defending pawn away. That's a deflection: the pawn leaves something important behind.",
+      "rivetText": "Alert: defender diversion possible for the other side. Defender: pawn. Its original task could then go unattended."
+    },
+    {
+      "id": "tactic-deflection-allowed-knight",
+      "group": "game_review",
+      "walterText": "This gives the other side a chance to draw the defending knight away. That's a deflection: the knight leaves something important behind.",
+      "rivetText": "Alert: defender diversion possible for the other side. Defender: knight. Its original task could then go unattended."
+    },
+    {
+      "id": "tactic-deflection-allowed-bishop",
+      "group": "game_review",
+      "walterText": "This gives the other side a chance to draw the defending bishop away. That's a deflection: the bishop leaves something important behind.",
+      "rivetText": "Alert: defender diversion possible for the other side. Defender: bishop. Its original task could then go unattended."
+    },
+    {
+      "id": "tactic-deflection-allowed-rook",
+      "group": "game_review",
+      "walterText": "This gives the other side a chance to draw the defending rook away. That's a deflection: the rook leaves something important behind.",
+      "rivetText": "Alert: defender diversion possible for the other side. Defender: rook. Its original task could then go unattended."
+    },
+    {
+      "id": "tactic-deflection-allowed-queen",
+      "group": "game_review",
+      "walterText": "This gives the other side a chance to draw the defending queen away. That's a deflection: the queen leaves something important behind.",
+      "rivetText": "Alert: defender diversion possible for the other side. Defender: queen. Its original task could then go unattended."
+    },
+    {
+      "id": "tactic-deflection-allowed-king",
+      "group": "game_review",
+      "walterText": "This gives the other side a chance to draw the defending king away. That's a deflection: the king leaves something important behind.",
+      "rivetText": "Alert: defender diversion possible for the other side. Defender: king. Its original task could then go unattended."
+    },
+    {
+      "id": "tactic-deflection-missed-pawn",
+      "group": "game_review",
+      "walterText": "Another move could have drawn the defending pawn away from its job. That was the chance to use a deflection.",
+      "rivetText": "Missed pattern: deflection, available with another move. Defender: pawn. Task left undisturbed."
+    },
+    {
+      "id": "tactic-deflection-missed-knight",
+      "group": "game_review",
+      "walterText": "Another move could have drawn the defending knight away from its job. That was the chance to use a deflection.",
+      "rivetText": "Missed pattern: deflection, available with another move. Defender: knight. Task left undisturbed."
+    },
+    {
+      "id": "tactic-deflection-missed-bishop",
+      "group": "game_review",
+      "walterText": "Another move could have drawn the defending bishop away from its job. That was the chance to use a deflection.",
+      "rivetText": "Missed pattern: deflection, available with another move. Defender: bishop. Task left undisturbed."
+    },
+    {
+      "id": "tactic-deflection-missed-rook",
+      "group": "game_review",
+      "walterText": "Another move could have drawn the defending rook away from its job. That was the chance to use a deflection.",
+      "rivetText": "Missed pattern: deflection, available with another move. Defender: rook. Task left undisturbed."
+    },
+    {
+      "id": "tactic-deflection-missed-queen",
+      "group": "game_review",
+      "walterText": "Another move could have drawn the defending queen away from its job. That was the chance to use a deflection.",
+      "rivetText": "Missed pattern: deflection, available with another move. Defender: queen. Task left undisturbed."
+    },
+    {
+      "id": "tactic-deflection-missed-king",
+      "group": "game_review",
+      "walterText": "Another move could have drawn the defending king away from its job. That was the chance to use a deflection.",
+      "rivetText": "Missed pattern: deflection, available with another move. Defender: king. Task left undisturbed."
+    },
+    {
+      "id": "tactic-back-rank-played-rook",
+      "group": "game_review",
+      "walterText": "The pattern to notice is a back-rank mate by the rook, with the king boxed in by its own pieces.",
+      "rivetText": "The pattern is back-rank mate. Escape squares: occupied by the king's own pieces. Follow how the rook reaches it."
+    },
+    {
+      "id": "tactic-back-rank-played-queen",
+      "group": "game_review",
+      "walterText": "The pattern to notice is a back-rank mate by the queen, with the king boxed in by its own pieces.",
+      "rivetText": "The pattern is back-rank mate. Escape squares: occupied by the king's own pieces. Follow how the queen reaches it."
+    },
+    {
+      "id": "tactic-back-rank-allowed-rook",
+      "group": "game_review",
+      "walterText": "This gives the other side a route to a back-rank mate with a rook. The pattern traps the king behind its own pieces.",
+      "rivetText": "Alert: back-rank mate route open for the other side. Attacker: rook. Escape barrier: the king's own pieces."
+    },
+    {
+      "id": "tactic-back-rank-allowed-queen",
+      "group": "game_review",
+      "walterText": "This gives the other side a route to a back-rank mate with a queen. The pattern traps the king behind its own pieces.",
+      "rivetText": "Alert: back-rank mate route open for the other side. Attacker: queen. Escape barrier: the king's own pieces."
+    },
+    {
+      "id": "tactic-back-rank-missed-rook",
+      "group": "game_review",
+      "walterText": "There was a route to a back-rank mate with the rook. This move lets that chance slip away.",
+      "rivetText": "A route to back-rank mate with the rook was available. This move passes up that finishing pattern."
+    },
+    {
+      "id": "tactic-back-rank-missed-queen",
+      "group": "game_review",
+      "walterText": "There was a route to a back-rank mate with the queen. This move lets that chance slip away.",
+      "rivetText": "A route to back-rank mate with the queen was available. This move passes up that finishing pattern."
+    },
+    {
+      "id": "cause-abandoned-defender-knight",
+      "group": "game_review",
+      "walterText": "This move takes away the only effective defender of a knight. Now the other side can capture what was left behind.",
+      "rivetText": "Cause: the only effective defender moves away. Result: the other side can capture the knight it was guarding."
+    },
+    {
+      "id": "cause-abandoned-defender-bishop",
+      "group": "game_review",
+      "walterText": "This move takes away the only effective defender of a bishop. Now the other side can capture what was left behind.",
+      "rivetText": "Cause: the only effective defender moves away. Result: the other side can capture the bishop it was guarding."
+    },
+    {
+      "id": "cause-abandoned-defender-rook",
+      "group": "game_review",
+      "walterText": "This move takes away the only effective defender of a rook. Now the other side can capture what was left behind.",
+      "rivetText": "Cause: the only effective defender moves away. Result: the other side can capture the rook it was guarding."
+    },
+    {
+      "id": "cause-abandoned-defender-queen",
+      "group": "game_review",
+      "walterText": "This move takes away the only effective defender of a queen. Now the other side can capture what was left behind.",
+      "rivetText": "Cause: the only effective defender moves away. Result: the other side can capture the queen it was guarding."
+    },
+    {
+      "id": "cause-opponent-threat-recognition-knight",
+      "group": "game_review",
+      "walterText": "The warning was in the opponent's previous move. This leaves that threat unanswered, and a knight can now be captured.",
+      "rivetText": "The previous move supplied the warning. This move leaves that attack unanswered, so the threatened knight can be captured."
+    },
+    {
+      "id": "cause-opponent-threat-recognition-bishop",
+      "group": "game_review",
+      "walterText": "The warning was in the opponent's previous move. This leaves that threat unanswered, and a bishop can now be captured.",
+      "rivetText": "The previous move supplied the warning. This move leaves that attack unanswered, so the threatened bishop can be captured."
+    },
+    {
+      "id": "cause-opponent-threat-recognition-rook",
+      "group": "game_review",
+      "walterText": "The warning was in the opponent's previous move. This leaves that threat unanswered, and a rook can now be captured.",
+      "rivetText": "The previous move supplied the warning. This move leaves that attack unanswered, so the threatened rook can be captured."
+    },
+    {
+      "id": "cause-opponent-threat-recognition-queen",
+      "group": "game_review",
+      "walterText": "The warning was in the opponent's previous move. This leaves that threat unanswered, and a queen can now be captured.",
+      "rivetText": "The previous move supplied the warning. This move leaves that attack unanswered, so the threatened queen can be captured."
+    },
+    {
+      "id": "cause-avoiding-bad-trades-knight",
+      "group": "game_review",
+      "walterText": "This capture with the knight invites a recapture, and the knight is worth more than what it took. Count both sides of the exchange before judging the first capture.",
+      "rivetText": "The first capture is only part of the exchange. The recapture takes the capturing knight, worth more than what it took. Count both sides."
+    },
+    {
+      "id": "cause-avoiding-bad-trades-bishop",
+      "group": "game_review",
+      "walterText": "This capture with the bishop invites a recapture, and the bishop is worth more than what it took. Count both sides of the exchange before judging the first capture.",
+      "rivetText": "The first capture is only part of the exchange. The recapture takes the capturing bishop, worth more than what it took. Count both sides."
+    },
+    {
+      "id": "cause-avoiding-bad-trades-rook",
+      "group": "game_review",
+      "walterText": "This capture with the rook invites a recapture, and the rook is worth more than what it took. Count both sides of the exchange before judging the first capture.",
+      "rivetText": "The first capture is only part of the exchange. The recapture takes the capturing rook, worth more than what it took. Count both sides."
+    },
+    {
+      "id": "cause-avoiding-bad-trades-queen",
+      "group": "game_review",
+      "walterText": "This capture with the queen invites a recapture, and the queen is worth more than what it took. Count both sides of the exchange before judging the first capture.",
+      "rivetText": "The first capture is only part of the exchange. The recapture takes the capturing queen, worth more than what it took. Count both sides."
+    },
+    {
+      "id": "positional-development-actual-knight",
+      "group": "game_review",
+      "walterText": "This develops a knight from its original square. Notice its new place in the position.",
+      "rivetText": "A knight leaves its starting square and enters play. Development recorded."
+    },
+    {
+      "id": "positional-development-actual-bishop",
+      "group": "game_review",
+      "walterText": "This develops a bishop from its original square. Notice its new place in the position.",
+      "rivetText": "A bishop leaves its starting square and enters play. Development recorded."
+    },
+    {
+      "id": "positional-development-alternative-knight",
+      "group": "game_review",
+      "walterText": "Another move would have brought a knight into play from its starting square.",
+      "rivetText": "Alternative output: development of one knight off its home square."
+    },
+    {
+      "id": "positional-development-alternative-bishop",
+      "group": "game_review",
+      "walterText": "Another move would have brought a bishop into play from its starting square.",
+      "rivetText": "Alternative output: development of one bishop off its home square."
+    },
+    {
+      "id": "positional-support-actual-knight",
+      "group": "game_review",
+      "walterText": "This gives the knight support. A defender is now in place.",
+      "rivetText": "Support added. A knight that lacked a defender now has one."
+    },
+    {
+      "id": "positional-support-actual-bishop",
+      "group": "game_review",
+      "walterText": "This gives the bishop support. A defender is now in place.",
+      "rivetText": "Support added. A bishop that lacked a defender now has one."
+    },
+    {
+      "id": "positional-support-actual-rook",
+      "group": "game_review",
+      "walterText": "This gives the rook support. A defender is now in place.",
+      "rivetText": "Support added. A rook that lacked a defender now has one."
+    },
+    {
+      "id": "positional-support-actual-queen",
+      "group": "game_review",
+      "walterText": "This gives the queen support. A defender is now in place.",
+      "rivetText": "Support added. A queen that lacked a defender now has one."
+    },
+    {
+      "id": "positional-support-alternative-knight",
+      "group": "game_review",
+      "walterText": "Another move would have given the knight a defender. It would no longer be left on its own.",
+      "rivetText": "The alternative would add support to a knight that was undefended before the move."
+    },
+    {
+      "id": "positional-support-alternative-bishop",
+      "group": "game_review",
+      "walterText": "Another move would have given the bishop a defender. It would no longer be left on its own.",
+      "rivetText": "The alternative would add support to a bishop that was undefended before the move."
+    },
+    {
+      "id": "positional-support-alternative-rook",
+      "group": "game_review",
+      "walterText": "Another move would have given the rook a defender. It would no longer be left on its own.",
+      "rivetText": "The alternative would add support to a rook that was undefended before the move."
+    },
+    {
+      "id": "positional-support-alternative-queen",
+      "group": "game_review",
+      "walterText": "Another move would have given the queen a defender. It would no longer be left on its own.",
+      "rivetText": "The alternative would add support to a queen that was undefended before the move."
+    },
+    {
+      "id": "positional-unsupported-actual-knight",
+      "group": "game_review",
+      "walterText": "This leaves a knight undefended. That alone does not mean the knight can be won.",
+      "rivetText": "A knight is now undefended. That describes its support, not proof that it can be won."
+    },
+    {
+      "id": "positional-unsupported-actual-bishop",
+      "group": "game_review",
+      "walterText": "This leaves a bishop undefended. That alone does not mean the bishop can be won.",
+      "rivetText": "A bishop is now undefended. That describes its support, not proof that it can be won."
+    },
+    {
+      "id": "positional-unsupported-actual-rook",
+      "group": "game_review",
+      "walterText": "This leaves a rook undefended. That alone does not mean the rook can be won.",
+      "rivetText": "A rook is now undefended. That describes its support, not proof that it can be won."
+    },
+    {
+      "id": "positional-unsupported-actual-queen",
+      "group": "game_review",
+      "walterText": "This leaves a queen undefended. That alone does not mean the queen can be won.",
+      "rivetText": "A queen is now undefended. That describes its support, not proof that it can be won."
+    },
+    {
+      "id": "positional-unsupported-alternative-knight",
+      "group": "game_review",
+      "walterText": "Another move would have left a knight unguarded. That doesn't necessarily mean it could be won.",
+      "rivetText": "Alternative output: one undefended knight. That alone would not prove a winning capture."
+    },
+    {
+      "id": "positional-unsupported-alternative-bishop",
+      "group": "game_review",
+      "walterText": "Another move would have left a bishop unguarded. That doesn't necessarily mean it could be won.",
+      "rivetText": "Alternative output: one undefended bishop. That alone would not prove a winning capture."
+    },
+    {
+      "id": "positional-unsupported-alternative-rook",
+      "group": "game_review",
+      "walterText": "Another move would have left a rook unguarded. That doesn't necessarily mean it could be won.",
+      "rivetText": "Alternative output: one undefended rook. That alone would not prove a winning capture."
+    },
+    {
+      "id": "positional-unsupported-alternative-queen",
+      "group": "game_review",
+      "walterText": "Another move would have left a queen unguarded. That doesn't necessarily mean it could be won.",
+      "rivetText": "Alternative output: one undefended queen. That alone would not prove a winning capture."
+    },
+    {
+      "id": "support-restored-knight",
+      "group": "game_review",
+      "walterText": "The knight left unguarded earlier has support again. Compare the two positions to see how its protection changed.",
+      "rivetText": "Protection restored. Defender assigned to the previously unguarded knight."
+    },
+    {
+      "id": "support-restored-bishop",
+      "group": "game_review",
+      "walterText": "The bishop left unguarded earlier has support again. Compare the two positions to see how its protection changed.",
+      "rivetText": "Protection restored. Defender assigned to the previously unguarded bishop."
+    },
+    {
+      "id": "support-restored-rook",
+      "group": "game_review",
+      "walterText": "The rook left unguarded earlier has support again. Compare the two positions to see how its protection changed.",
+      "rivetText": "Protection restored. Defender assigned to the previously unguarded rook."
+    },
+    {
+      "id": "support-restored-queen",
+      "group": "game_review",
+      "walterText": "The queen left unguarded earlier has support again. Compare the two positions to see how its protection changed.",
+      "rivetText": "Protection restored. Defender assigned to the previously unguarded queen."
+    },
+    {
+      "id": "explanation-finding-fork-collected-pawn",
+      "group": "srs_explanations",
+      "walterText": "Watch the fork at work: the same pawn attacks two targets, then takes one. The example also shows a net material gain.",
+      "rivetText": "Fork sequence: one pawn, two targets, one captured. Net material balance in the example: positive."
+    },
+    {
+      "id": "explanation-finding-fork-collected-knight",
+      "group": "srs_explanations",
+      "walterText": "Watch the fork at work: the same knight attacks several targets, then takes one. The example also shows a net material gain.",
+      "rivetText": "Fork sequence: one knight, multiple targets, one captured. Net material balance in the example: positive."
+    },
+    {
+      "id": "explanation-finding-fork-collected-bishop",
+      "group": "srs_explanations",
+      "walterText": "Watch the fork at work: the same bishop attacks several targets, then takes one. The example also shows a net material gain.",
+      "rivetText": "Fork sequence: one bishop, multiple targets, one captured. Net material balance in the example: positive."
+    },
+    {
+      "id": "explanation-finding-fork-collected-rook",
+      "group": "srs_explanations",
+      "walterText": "Watch the fork at work: the same rook attacks several targets, then takes one. The example also shows a net material gain.",
+      "rivetText": "Fork sequence: one rook, multiple targets, one captured. Net material balance in the example: positive."
+    },
+    {
+      "id": "explanation-finding-fork-collected-queen",
+      "group": "srs_explanations",
+      "walterText": "Watch the fork at work: the same queen attacks several targets, then takes one. The example also shows a net material gain.",
+      "rivetText": "Fork sequence: one queen, multiple targets, one captured. Net material balance in the example: positive."
+    },
+    {
+      "id": "explanation-finding-pin-prevents-capture-pawn",
+      "group": "srs_explanations",
+      "walterText": "The pawn is pinned to its king and cannot capture the indicated target. Moving off the pin line would expose the king.",
+      "rivetText": "The indicated capture by the pawn is illegal because of the pin to the king. Line exit would leave the king in check."
+    },
+    {
+      "id": "explanation-finding-pin-prevents-capture-knight",
+      "group": "srs_explanations",
+      "walterText": "The knight is pinned to its king and cannot capture the indicated target. Moving off the pin line would expose the king.",
+      "rivetText": "The indicated capture by the knight is illegal because of the pin to the king. Line exit would leave the king in check."
+    },
+    {
+      "id": "explanation-finding-pin-prevents-capture-bishop",
+      "group": "srs_explanations",
+      "walterText": "The bishop is pinned to its king and cannot capture the indicated target. Moving off the pin line would expose the king.",
+      "rivetText": "The indicated capture by the bishop is illegal because of the pin to the king. Line exit would leave the king in check."
+    },
+    {
+      "id": "explanation-finding-pin-prevents-capture-rook",
+      "group": "srs_explanations",
+      "walterText": "The rook is pinned to its king and cannot capture the indicated target. Moving off the pin line would expose the king.",
+      "rivetText": "The indicated capture by the rook is illegal because of the pin to the king. Line exit would leave the king in check."
+    },
+    {
+      "id": "explanation-finding-pin-prevents-capture-queen",
+      "group": "srs_explanations",
+      "walterText": "The queen is pinned to its king and cannot capture the indicated target. Moving off the pin line would expose the king.",
+      "rivetText": "The indicated capture by the queen is illegal because of the pin to the king. Line exit would leave the king in check."
+    },
+    {
+      "id": "explanation-finding-pin-restricts-escape-pawn",
+      "group": "srs_explanations",
+      "walterText": "The attacked pawn is pinned to its king, restricting its escape. Check which moves keep the king protected.",
+      "rivetText": "Attacked unit: pawn. Status: king-pinned. Its escape is restricted to moves that do not expose the king."
+    },
+    {
+      "id": "explanation-finding-pin-restricts-escape-knight",
+      "group": "srs_explanations",
+      "walterText": "The attacked knight is pinned to its king, so it has no escape at all. Moving it would expose the king.",
+      "rivetText": "Attacked unit: knight. Status: king-pinned. Legal moves available to it: none. Escape not possible."
+    },
+    {
+      "id": "explanation-finding-pin-restricts-escape-bishop",
+      "group": "srs_explanations",
+      "walterText": "The attacked bishop is pinned to its king, restricting its escape. Check which moves keep the king protected.",
+      "rivetText": "Attacked unit: bishop. Status: king-pinned. Its escape is restricted to moves that do not expose the king."
+    },
+    {
+      "id": "explanation-finding-pin-restricts-escape-rook",
+      "group": "srs_explanations",
+      "walterText": "The attacked rook is pinned to its king, restricting its escape. Check which moves keep the king protected.",
+      "rivetText": "Attacked unit: rook. Status: king-pinned. Its escape is restricted to moves that do not expose the king."
+    },
+    {
+      "id": "explanation-finding-pin-restricts-escape-queen",
+      "group": "srs_explanations",
+      "walterText": "The attacked queen is pinned to its king, restricting its escape. Check which moves keep the king protected.",
+      "rivetText": "Attacked unit: queen. Status: king-pinned. Its escape is restricted to moves that do not expose the king."
+    },
+    {
+      "id": "explanation-finding-pin-collected-pawn",
+      "group": "srs_explanations",
+      "walterText": "Watch the pinned pawn here. It cannot leave the line without exposing its king, and it gets captured as these moves play out.",
+      "rivetText": "Pinned pawn status: locked to the line by its king. Follow the moves to see it captured."
+    },
+    {
+      "id": "explanation-finding-pin-collected-knight",
+      "group": "srs_explanations",
+      "walterText": "Watch the pinned knight here. It cannot leave the line without exposing its king, and it gets captured as these moves play out.",
+      "rivetText": "Pinned knight status: locked to the line by its king. Follow the moves to see it captured."
+    },
+    {
+      "id": "explanation-finding-pin-collected-bishop",
+      "group": "srs_explanations",
+      "walterText": "Watch the pinned bishop here. It cannot leave the line without exposing its king, and it gets captured as these moves play out.",
+      "rivetText": "Pinned bishop status: locked to the line by its king. Follow the moves to see it captured."
+    },
+    {
+      "id": "explanation-finding-pin-collected-rook",
+      "group": "srs_explanations",
+      "walterText": "Watch the pinned rook here. It cannot leave the line without exposing its king, and it gets captured as these moves play out.",
+      "rivetText": "Pinned rook status: locked to the line by its king. Follow the moves to see it captured."
+    },
+    {
+      "id": "explanation-finding-pin-collected-queen",
+      "group": "srs_explanations",
+      "walterText": "Watch the pinned queen here. It cannot leave the line without exposing its king, and it gets captured as these moves play out.",
+      "rivetText": "Pinned queen status: locked to the line by its king. Follow the moves to see it captured."
+    },
+    {
+      "id": "explanation-finding-sole-defender-captured-pawn",
+      "group": "srs_explanations",
+      "walterText": "Follow the captures: first the pawn that was the only defender, then the piece it was guarding. Notice what the first capture makes possible.",
+      "rivetText": "The only defender, a pawn, is captured. Later in the shown moves, the piece it guarded is captured as well."
+    },
+    {
+      "id": "explanation-finding-sole-defender-captured-knight",
+      "group": "srs_explanations",
+      "walterText": "Follow the captures: first the knight that was the only defender, then the piece it was guarding. Notice what the first capture makes possible.",
+      "rivetText": "The only defender, a knight, is captured. Later in the shown moves, the piece it guarded is captured as well."
+    },
+    {
+      "id": "explanation-finding-sole-defender-captured-bishop",
+      "group": "srs_explanations",
+      "walterText": "Follow the captures: first the bishop that was the only defender, then the piece it was guarding. Notice what the first capture makes possible.",
+      "rivetText": "The only defender, a bishop, is captured. Later in the shown moves, the piece it guarded is captured as well."
+    },
+    {
+      "id": "explanation-finding-sole-defender-captured-rook",
+      "group": "srs_explanations",
+      "walterText": "Follow the captures: first the rook that was the only defender, then the piece it was guarding. Notice what the first capture makes possible.",
+      "rivetText": "The only defender, a rook, is captured. Later in the shown moves, the piece it guarded is captured as well."
+    },
+    {
+      "id": "explanation-finding-sole-defender-captured-queen",
+      "group": "srs_explanations",
+      "walterText": "Follow the captures: first the queen that was the only defender, then the piece it was guarding. Notice what the first capture makes possible.",
+      "rivetText": "The only defender, a queen, is captured. Later in the shown moves, the piece it guarded is captured as well."
+    },
+    {
+      "id": "explanation-finding-deflection-collected-pawn",
+      "group": "srs_explanations",
+      "walterText": "Watch the defender move away from its job. The pawn it leaves behind is then captured.",
+      "rivetText": "The defender leaves its task. Guarded unit: pawn, captured next. Deflection demonstrated."
+    },
+    {
+      "id": "explanation-finding-deflection-collected-knight",
+      "group": "srs_explanations",
+      "walterText": "Watch the defender move away from its job. The knight it leaves behind is then captured.",
+      "rivetText": "The defender leaves its task. Guarded unit: knight, captured next. Deflection demonstrated."
+    },
+    {
+      "id": "explanation-finding-deflection-collected-bishop",
+      "group": "srs_explanations",
+      "walterText": "Watch the defender move away from its job. The bishop it leaves behind is then captured.",
+      "rivetText": "The defender leaves its task. Guarded unit: bishop, captured next. Deflection demonstrated."
+    },
+    {
+      "id": "explanation-finding-deflection-collected-rook",
+      "group": "srs_explanations",
+      "walterText": "Watch the defender move away from its job. The rook it leaves behind is then captured.",
+      "rivetText": "The defender leaves its task. Guarded unit: rook, captured next. Deflection demonstrated."
+    },
+    {
+      "id": "explanation-finding-deflection-collected-queen",
+      "group": "srs_explanations",
+      "walterText": "Watch the defender move away from its job. The queen it leaves behind is then captured.",
+      "rivetText": "The defender leaves its task. Guarded unit: queen, captured next. Deflection demonstrated."
+    },
+    {
+      "id": "explanation-finding-relative-pin-released-pawn",
+      "group": "srs_explanations",
+      "walterText": "The opponent's previous move broke a relative pin on the attacking pawn. The next move left the target there, and it is captured in the shown line.",
+      "rivetText": "The opponent's preceding move released the attacking pawn from a relative pin. The target stayed in place and is captured in the shown line."
+    },
+    {
+      "id": "explanation-finding-relative-pin-released-knight",
+      "group": "srs_explanations",
+      "walterText": "The opponent's previous move broke a relative pin on the attacking knight. The next move left the target there, and it is captured in the shown line.",
+      "rivetText": "The opponent's preceding move released the attacking knight from a relative pin. The target stayed in place and is captured in the shown line."
+    },
+    {
+      "id": "explanation-finding-relative-pin-released-bishop",
+      "group": "srs_explanations",
+      "walterText": "The opponent's previous move broke a relative pin on the attacking bishop. The next move left the target there, and it is captured in the shown line.",
+      "rivetText": "The opponent's preceding move released the attacking bishop from a relative pin. The target stayed in place and is captured in the shown line."
+    },
+    {
+      "id": "explanation-finding-relative-pin-released-rook",
+      "group": "srs_explanations",
+      "walterText": "The opponent's previous move broke a relative pin on the attacking rook. The next move left the target there, and it is captured in the shown line.",
+      "rivetText": "The opponent's preceding move released the attacking rook from a relative pin. The target stayed in place and is captured in the shown line."
+    },
+    {
+      "id": "explanation-finding-relative-pin-released-queen",
+      "group": "srs_explanations",
+      "walterText": "The opponent's previous move broke a relative pin on the attacking queen. The next move left the target there, and it is captured in the shown line.",
+      "rivetText": "The opponent's preceding move released the attacking queen from a relative pin. The target stayed in place and is captured in the shown line."
+    },
+    {
+      "id": "explanation-finding-skewer-collected-knight",
+      "group": "srs_explanations",
+      "walterText": "Watch the knight in front move aside. That opens the way for a capture of the piece behind it, along the same line.",
+      "rivetText": "Front unit: knight. It moves off the line; the piece behind it is then captured along that same line."
+    },
+    {
+      "id": "explanation-finding-skewer-collected-bishop",
+      "group": "srs_explanations",
+      "walterText": "Watch the bishop in front move aside. That opens the way for a capture of the piece behind it, along the same line.",
+      "rivetText": "Front unit: bishop. It moves off the line; the piece behind it is then captured along that same line."
+    },
+    {
+      "id": "explanation-finding-skewer-collected-rook",
+      "group": "srs_explanations",
+      "walterText": "Watch the rook in front move aside. That opens the way for a capture of the piece behind it, along the same line.",
+      "rivetText": "Front unit: rook. It moves off the line; the piece behind it is then captured along that same line."
+    },
+    {
+      "id": "explanation-finding-skewer-collected-queen",
+      "group": "srs_explanations",
+      "walterText": "Watch the queen in front move aside. That opens the way for a capture of the piece behind it, along the same line.",
+      "rivetText": "Front unit: queen. It moves off the line; the piece behind it is then captured along that same line."
+    },
+    {
+      "id": "explanation-finding-skewer-collected-king",
+      "group": "srs_explanations",
+      "walterText": "Watch the king step out of check and off the line. That opens the way for a capture of the piece behind it, along the same line.",
+      "rivetText": "The king, in check, moves off the line. The piece behind it is then captured along that same line."
+    },
+    {
+      "id": "explanation-finding-king-skewer-collected-knight",
+      "group": "srs_explanations",
+      "walterText": "In this example, the king steps out of check and off the line. The same attacker then takes the knight behind it.",
+      "rivetText": "The king leaves the line to escape check. Example result: the same attacker collects the knight behind it."
+    },
+    {
+      "id": "explanation-finding-king-skewer-collected-bishop",
+      "group": "srs_explanations",
+      "walterText": "In this example, the king steps out of check and off the line. The same attacker then takes the bishop behind it.",
+      "rivetText": "The king leaves the line to escape check. Example result: the same attacker collects the bishop behind it."
+    },
+    {
+      "id": "explanation-finding-king-skewer-collected-rook",
+      "group": "srs_explanations",
+      "walterText": "In this example, the king steps out of check and off the line. The same attacker then takes the rook behind it.",
+      "rivetText": "The king leaves the line to escape check. Example result: the same attacker collects the rook behind it."
+    },
+    {
+      "id": "explanation-finding-king-skewer-collected-queen",
+      "group": "srs_explanations",
+      "walterText": "In this example, the king steps out of check and off the line. The same attacker then takes the queen behind it.",
+      "rivetText": "The king leaves the line to escape check. Example result: the same attacker collects the queen behind it."
+    },
+    {
+      "id": "explanation-finding-undefended-capture-gain-knight",
+      "group": "srs_explanations",
+      "walterText": "Look at the undefended knight being captured. The example shows a net material gain for the capturing side.",
+      "rivetText": "The undefended knight is captured in this example. A net material gain for the capturing side is also established."
+    },
+    {
+      "id": "explanation-finding-undefended-capture-gain-bishop",
+      "group": "srs_explanations",
+      "walterText": "Look at the undefended bishop being captured. The example shows a net material gain for the capturing side.",
+      "rivetText": "The undefended bishop is captured in this example. A net material gain for the capturing side is also established."
+    },
+    {
+      "id": "explanation-finding-undefended-capture-gain-rook",
+      "group": "srs_explanations",
+      "walterText": "Look at the undefended rook being captured. The example shows a net material gain for the capturing side.",
+      "rivetText": "The undefended rook is captured in this example. A net material gain for the capturing side is also established."
+    },
+    {
+      "id": "explanation-finding-undefended-capture-gain-queen",
+      "group": "srs_explanations",
+      "walterText": "Look at the undefended queen being captured. The example shows a net material gain for the capturing side.",
+      "rivetText": "The undefended queen is captured in this example. A net material gain for the capturing side is also established."
+    },
+    {
+      "id": "explanation-finding-discovered-capture-bishop",
+      "group": "srs_explanations",
+      "walterText": "Moving the blocker opens an attack from the bishop behind it. Watch the bishop make the capture along the newly opened line.",
+      "rivetText": "The blocker moves, and the bishop behind it gains an open attack line. Capture executed along that line."
+    },
+    {
+      "id": "explanation-finding-discovered-capture-rook",
+      "group": "srs_explanations",
+      "walterText": "Moving the blocker opens an attack from the rook behind it. Watch the rook make the capture along the newly opened line.",
+      "rivetText": "The blocker moves, and the rook behind it gains an open attack line. Capture executed along that line."
+    },
+    {
+      "id": "explanation-finding-discovered-capture-queen",
+      "group": "srs_explanations",
+      "walterText": "Moving the blocker opens an attack from the queen behind it. Watch the queen make the capture along the newly opened line.",
+      "rivetText": "The blocker moves, and the queen behind it gains an open attack line. Capture executed along that line."
+    },
+    {
+      "id": "explanation-finding-discovered-check-bishop",
+      "group": "srs_explanations",
+      "walterText": "The moving piece gets out of the way and uncovers check from the bishop behind it.",
+      "rivetText": "The moving piece clears the line. The bishop behind it now gives check through the opening."
+    },
+    {
+      "id": "explanation-finding-discovered-check-rook",
+      "group": "srs_explanations",
+      "walterText": "The moving piece gets out of the way and uncovers check from the rook behind it.",
+      "rivetText": "The moving piece clears the line. The rook behind it now gives check through the opening."
+    },
+    {
+      "id": "explanation-finding-discovered-check-queen",
+      "group": "srs_explanations",
+      "walterText": "The moving piece gets out of the way and uncovers check from the queen behind it.",
+      "rivetText": "The moving piece clears the line. The queen behind it now gives check through the opening."
+    },
+    {
+      "id": "explanation-finding-double-attack-collected-bishop",
+      "group": "srs_explanations",
+      "walterText": "The first piece makes its attack and uncovers a second one from the bishop. That bishop captures its target in the example.",
+      "rivetText": "Attack vector one: the moved piece. Attack vector two: the bishop on the line it opened. Example outcome: target collected by the bishop."
+    },
+    {
+      "id": "explanation-finding-double-attack-collected-rook",
+      "group": "srs_explanations",
+      "walterText": "The first piece makes its attack and uncovers a second one from the rook. That rook captures its target in the example.",
+      "rivetText": "Attack vector one: the moved piece. Attack vector two: the rook on the line it opened. Example outcome: target collected by the rook."
+    },
+    {
+      "id": "explanation-finding-double-attack-collected-queen",
+      "group": "srs_explanations",
+      "walterText": "The first piece makes its attack and uncovers a second one from the queen. That queen captures its target in the example.",
+      "rivetText": "Attack vector one: the moved piece. Attack vector two: the queen on the line it opened. Example outcome: target collected by the queen."
+    },
+    {
+      "id": "explanation-finding-double-check-pawn-rook",
+      "group": "srs_explanations",
+      "walterText": "Watch for the double check: the pawn and the rook both give check at the same time.",
+      "rivetText": "Double check. The pawn and the rook attack the king at the same time."
+    },
+    {
+      "id": "explanation-finding-double-check-pawn-queen",
+      "group": "srs_explanations",
+      "walterText": "Watch for the double check: the pawn and the queen both give check at the same time.",
+      "rivetText": "Double check. The pawn and the queen attack the king at the same time."
+    },
+    {
+      "id": "explanation-finding-double-check-knight-bishop",
+      "group": "srs_explanations",
+      "walterText": "Watch for the double check: the knight and the bishop both give check at the same time.",
+      "rivetText": "Double check. The knight and the bishop attack the king at the same time."
+    },
+    {
+      "id": "explanation-finding-double-check-knight-rook",
+      "group": "srs_explanations",
+      "walterText": "Watch for the double check: the knight and the rook both give check at the same time.",
+      "rivetText": "Double check. The knight and the rook attack the king at the same time."
+    },
+    {
+      "id": "explanation-finding-double-check-knight-queen",
+      "group": "srs_explanations",
+      "walterText": "Watch for the double check: the knight and the queen both give check at the same time.",
+      "rivetText": "Double check. The knight and the queen attack the king at the same time."
+    },
+    {
+      "id": "explanation-finding-double-check-bishop-rook",
+      "group": "srs_explanations",
+      "walterText": "Watch for the double check: the bishop and the rook both give check at the same time.",
+      "rivetText": "Double check. The bishop and the rook attack the king at the same time."
+    },
+    {
+      "id": "explanation-finding-double-check-bishop-queen",
+      "group": "srs_explanations",
+      "walterText": "Watch for the double check: the bishop and the queen both give check at the same time.",
+      "rivetText": "Double check. The bishop and the queen attack the king at the same time."
+    },
+    {
+      "id": "explanation-finding-double-check-rook-rook",
+      "group": "srs_explanations",
+      "walterText": "Watch for the double check: both rooks give check at the same time.",
+      "rivetText": "Double check. Both rooks attack the king at the same time."
+    },
+    {
+      "id": "explanation-finding-double-check-rook-queen",
+      "group": "srs_explanations",
+      "walterText": "Watch for the double check: the rook and the queen both give check at the same time.",
+      "rivetText": "Double check. The rook and the queen attack the king at the same time."
+    },
+    {
+      "id": "explanation-frame-capture-move-ordinary-pawn",
+      "group": "srs_explanations",
+      "walterText": "This move captures a pawn.",
+      "rivetText": "A pawn is captured by this move."
+    },
+    {
+      "id": "explanation-frame-capture-move-ordinary-knight",
+      "group": "srs_explanations",
+      "walterText": "This move captures a knight.",
+      "rivetText": "A knight is captured by this move."
+    },
+    {
+      "id": "explanation-frame-capture-move-ordinary-bishop",
+      "group": "srs_explanations",
+      "walterText": "This move captures a bishop.",
+      "rivetText": "A bishop is captured by this move."
+    },
+    {
+      "id": "explanation-frame-capture-move-ordinary-rook",
+      "group": "srs_explanations",
+      "walterText": "This move captures a rook.",
+      "rivetText": "A rook is captured by this move."
+    },
+    {
+      "id": "explanation-frame-capture-move-ordinary-queen",
+      "group": "srs_explanations",
+      "walterText": "This move captures a queen.",
+      "rivetText": "A queen is captured by this move."
+    },
+    {
+      "id": "explanation-frame-capture-move-check-pawn",
+      "group": "srs_explanations",
+      "walterText": "This captures a pawn and gives check as well.",
+      "rivetText": "Capture completed: one pawn, with check. Both changes belong to this move."
+    },
+    {
+      "id": "explanation-frame-capture-move-check-knight",
+      "group": "srs_explanations",
+      "walterText": "This captures a knight and gives check as well.",
+      "rivetText": "Capture completed: one knight, with check. Both changes belong to this move."
+    },
+    {
+      "id": "explanation-frame-capture-move-check-bishop",
+      "group": "srs_explanations",
+      "walterText": "This captures a bishop and gives check as well.",
+      "rivetText": "Capture completed: one bishop, with check. Both changes belong to this move."
+    },
+    {
+      "id": "explanation-frame-capture-move-check-rook",
+      "group": "srs_explanations",
+      "walterText": "This captures a rook and gives check as well.",
+      "rivetText": "Capture completed: one rook, with check. Both changes belong to this move."
+    },
+    {
+      "id": "explanation-frame-capture-move-check-queen",
+      "group": "srs_explanations",
+      "walterText": "This captures a queen and gives check as well.",
+      "rivetText": "Capture completed: one queen, with check. Both changes belong to this move."
+    },
+    {
+      "id": "explanation-frame-capture-move-mate-pawn",
+      "group": "srs_explanations",
+      "walterText": "This captures a pawn and delivers checkmate. The king has no way to escape.",
+      "rivetText": "The capture of a pawn delivers checkmate. No legal escape remains for the king."
+    },
+    {
+      "id": "explanation-frame-capture-move-mate-knight",
+      "group": "srs_explanations",
+      "walterText": "This captures a knight and delivers checkmate. The king has no way to escape.",
+      "rivetText": "The capture of a knight delivers checkmate. No legal escape remains for the king."
+    },
+    {
+      "id": "explanation-frame-capture-move-mate-bishop",
+      "group": "srs_explanations",
+      "walterText": "This captures a bishop and delivers checkmate. The king has no way to escape.",
+      "rivetText": "The capture of a bishop delivers checkmate. No legal escape remains for the king."
+    },
+    {
+      "id": "explanation-frame-capture-move-mate-rook",
+      "group": "srs_explanations",
+      "walterText": "This captures a rook and delivers checkmate. The king has no way to escape.",
+      "rivetText": "The capture of a rook delivers checkmate. No legal escape remains for the king."
+    },
+    {
+      "id": "explanation-frame-capture-move-mate-queen",
+      "group": "srs_explanations",
+      "walterText": "This captures a queen and delivers checkmate. The king has no way to escape.",
+      "rivetText": "The capture of a queen delivers checkmate. No legal escape remains for the king."
+    },
+    {
+      "id": "explanation-frame-capture-move-escape-pawn",
+      "group": "srs_explanations",
+      "walterText": "This captures a pawn and gets the king out of check.",
+      "rivetText": "This capture of a pawn ends the check against the moving side's king."
+    },
+    {
+      "id": "explanation-frame-capture-move-escape-knight",
+      "group": "srs_explanations",
+      "walterText": "This captures a knight and gets the king out of check.",
+      "rivetText": "This capture of a knight ends the check against the moving side's king."
+    },
+    {
+      "id": "explanation-frame-capture-move-escape-bishop",
+      "group": "srs_explanations",
+      "walterText": "This captures a bishop and gets the king out of check.",
+      "rivetText": "This capture of a bishop ends the check against the moving side's king."
+    },
+    {
+      "id": "explanation-frame-capture-move-escape-rook",
+      "group": "srs_explanations",
+      "walterText": "This captures a rook and gets the king out of check.",
+      "rivetText": "This capture of a rook ends the check against the moving side's king."
+    },
+    {
+      "id": "explanation-frame-capture-move-escape-queen",
+      "group": "srs_explanations",
+      "walterText": "This captures a queen and gets the king out of check.",
+      "rivetText": "This capture of a queen ends the check against the moving side's king."
+    },
+    {
+      "id": "explanation-frame-capture-promotion-ordinary-knight",
+      "group": "srs_explanations",
+      "walterText": "The pawn captures a knight and promotes on the last rank.",
+      "rivetText": "Pawn capture executed at the last rank: one knight removed, followed by promotion. Both actions completed."
+    },
+    {
+      "id": "explanation-frame-capture-promotion-ordinary-bishop",
+      "group": "srs_explanations",
+      "walterText": "The pawn captures a bishop and promotes on the last rank.",
+      "rivetText": "Pawn capture executed at the last rank: one bishop removed, followed by promotion. Both actions completed."
+    },
+    {
+      "id": "explanation-frame-capture-promotion-ordinary-rook",
+      "group": "srs_explanations",
+      "walterText": "The pawn captures a rook and promotes on the last rank.",
+      "rivetText": "Pawn capture executed at the last rank: one rook removed, followed by promotion. Both actions completed."
+    },
+    {
+      "id": "explanation-frame-capture-promotion-ordinary-queen",
+      "group": "srs_explanations",
+      "walterText": "The pawn captures a queen and promotes on the last rank.",
+      "rivetText": "Pawn capture executed at the last rank: one queen removed, followed by promotion. Both actions completed."
+    },
+    {
+      "id": "explanation-frame-capture-promotion-check-knight",
+      "group": "srs_explanations",
+      "walterText": "The pawn captures a knight and promotes on the last rank. The move also gives check.",
+      "rivetText": "Pawn capture of a knight, then promotion on the last rank. Check is included in the same move."
+    },
+    {
+      "id": "explanation-frame-capture-promotion-check-bishop",
+      "group": "srs_explanations",
+      "walterText": "The pawn captures a bishop and promotes on the last rank. The move also gives check.",
+      "rivetText": "Pawn capture of a bishop, then promotion on the last rank. Check is included in the same move."
+    },
+    {
+      "id": "explanation-frame-capture-promotion-check-rook",
+      "group": "srs_explanations",
+      "walterText": "The pawn captures a rook and promotes on the last rank. The move also gives check.",
+      "rivetText": "Pawn capture of a rook, then promotion on the last rank. Check is included in the same move."
+    },
+    {
+      "id": "explanation-frame-capture-promotion-check-queen",
+      "group": "srs_explanations",
+      "walterText": "The pawn captures a queen and promotes on the last rank. The move also gives check.",
+      "rivetText": "Pawn capture of a queen, then promotion on the last rank. Check is included in the same move."
+    },
+    {
+      "id": "explanation-frame-capture-promotion-mate-knight",
+      "group": "srs_explanations",
+      "walterText": "The pawn captures a knight and promotes on the last rank. This is checkmate; the king has no legal escape.",
+      "rivetText": "Capture of a knight, promotion, checkmate. The king has no legal escape from the resulting position."
+    },
+    {
+      "id": "explanation-frame-capture-promotion-mate-bishop",
+      "group": "srs_explanations",
+      "walterText": "The pawn captures a bishop and promotes on the last rank. This is checkmate; the king has no legal escape.",
+      "rivetText": "Capture of a bishop, promotion, checkmate. The king has no legal escape from the resulting position."
+    },
+    {
+      "id": "explanation-frame-capture-promotion-mate-rook",
+      "group": "srs_explanations",
+      "walterText": "The pawn captures a rook and promotes on the last rank. This is checkmate; the king has no legal escape.",
+      "rivetText": "Capture of a rook, promotion, checkmate. The king has no legal escape from the resulting position."
+    },
+    {
+      "id": "explanation-frame-capture-promotion-mate-queen",
+      "group": "srs_explanations",
+      "walterText": "The pawn captures a queen and promotes on the last rank. This is checkmate; the king has no legal escape.",
+      "rivetText": "Capture of a queen, promotion, checkmate. The king has no legal escape from the resulting position."
+    },
+    {
+      "id": "explanation-frame-capture-promotion-escape-knight",
+      "group": "srs_explanations",
+      "walterText": "The pawn captures a knight and promotes on the last rank. It gets the king out of check.",
+      "rivetText": "The pawn captures a knight and promotes. That move also ends the check against the capturing side's king."
+    },
+    {
+      "id": "explanation-frame-capture-promotion-escape-bishop",
+      "group": "srs_explanations",
+      "walterText": "The pawn captures a bishop and promotes on the last rank. It gets the king out of check.",
+      "rivetText": "The pawn captures a bishop and promotes. That move also ends the check against the capturing side's king."
+    },
+    {
+      "id": "explanation-frame-capture-promotion-escape-rook",
+      "group": "srs_explanations",
+      "walterText": "The pawn captures a rook and promotes on the last rank. It gets the king out of check.",
+      "rivetText": "The pawn captures a rook and promotes. That move also ends the check against the capturing side's king."
+    },
+    {
+      "id": "explanation-frame-capture-promotion-escape-queen",
+      "group": "srs_explanations",
+      "walterText": "The pawn captures a queen and promotes on the last rank. It gets the king out of check.",
+      "rivetText": "The pawn captures a queen and promotes. That move also ends the check against the capturing side's king."
+    },
+    {
+      "id": "grade-brilliant-1-knight",
+      "group": "game_review",
+      "walterText": "A knight offered at a real cost, and it holds when taken. It's the kind of move a game is remembered for.",
+      "rivetText": "Classification: brilliant. A knight was put up for capture, and the checked line holds after it is taken."
+    },
+    {
+      "id": "grade-brilliant-1-bishop",
+      "group": "game_review",
+      "walterText": "A bishop offered at a real cost, and it holds when taken. It's the kind of move a game is remembered for.",
+      "rivetText": "Classification: brilliant. A bishop was put up for capture, and the checked line holds after it is taken."
+    },
+    {
+      "id": "grade-brilliant-1-rook",
+      "group": "game_review",
+      "walterText": "A rook offered at a real cost, and it holds when taken. It's the kind of move a game is remembered for.",
+      "rivetText": "Classification: brilliant. A rook was put up for capture, and the checked line holds after it is taken."
+    },
+    {
+      "id": "grade-brilliant-1-queen",
+      "group": "game_review",
+      "walterText": "A queen offered at a real cost, and it holds when taken. It's the kind of move a game is remembered for.",
+      "rivetText": "Classification: brilliant. A queen was put up for capture, and the checked line holds after it is taken."
+    },
+    {
+      "id": "grade-brilliant-2-knight",
+      "group": "game_review",
+      "walterText": "A real knight sacrifice, and the idea is sound. I've seen many offers like this, and far fewer that hold.",
+      "rivetText": "Input: one knight, offered. Output in the checked line: a sound position. Unusual exchange rate."
+    },
+    {
+      "id": "grade-brilliant-2-bishop",
+      "group": "game_review",
+      "walterText": "A real bishop sacrifice, and the idea is sound. I've seen many offers like this, and far fewer that hold.",
+      "rivetText": "Input: one bishop, offered. Output in the checked line: a sound position. Unusual exchange rate."
+    },
+    {
+      "id": "grade-brilliant-2-rook",
+      "group": "game_review",
+      "walterText": "A real rook sacrifice, and the idea is sound. I've seen many offers like this, and far fewer that hold.",
+      "rivetText": "Input: one rook, offered. Output in the checked line: a sound position. Unusual exchange rate."
+    },
+    {
+      "id": "grade-brilliant-2-queen",
+      "group": "game_review",
+      "walterText": "A real queen sacrifice, and the idea is sound. I've seen many offers like this, and far fewer that hold.",
+      "rivetText": "Input: one queen, offered. Output in the checked line: a sound position. Unusual exchange rate."
+    },
+    {
+      "id": "grade-brilliant-3-knight",
+      "group": "game_review",
+      "walterText": "Knight sacrifices like this are where a game can change character. This one stays sound after the capture.",
+      "rivetText": "Brilliant. A knight given away, and the checked line still holds. Accounting error: not found."
+    },
+    {
+      "id": "grade-brilliant-3-bishop",
+      "group": "game_review",
+      "walterText": "Bishop sacrifices like this are where a game can change character. This one stays sound after the capture.",
+      "rivetText": "Brilliant. A bishop given away, and the checked line still holds. Accounting error: not found."
+    },
+    {
+      "id": "grade-brilliant-3-rook",
+      "group": "game_review",
+      "walterText": "Rook sacrifices like this are where a game can change character. This one stays sound after the capture.",
+      "rivetText": "Brilliant. A rook given away, and the checked line still holds. Accounting error: not found."
+    },
+    {
+      "id": "grade-brilliant-3-queen",
+      "group": "game_review",
+      "walterText": "Queen sacrifices like this are where a game can change character. This one stays sound after the capture.",
+      "rivetText": "Brilliant. A queen given away, and the checked line still holds. Accounting error: not found."
+    },
+    {
+      "id": "grade-brilliant-4-knight",
+      "group": "game_review",
+      "walterText": "Brilliant. A sound knight sacrifice, and a position worth coming back to after the game.",
+      "rivetText": "Anomaly detected: knight surrendered, soundness retained. Grade: brilliant."
+    },
+    {
+      "id": "grade-brilliant-4-bishop",
+      "group": "game_review",
+      "walterText": "Brilliant. A sound bishop sacrifice, and a position worth coming back to after the game.",
+      "rivetText": "Anomaly detected: bishop surrendered, soundness retained. Grade: brilliant."
+    },
+    {
+      "id": "grade-brilliant-4-rook",
+      "group": "game_review",
+      "walterText": "Brilliant. A sound rook sacrifice, and a position worth coming back to after the game.",
+      "rivetText": "Anomaly detected: rook surrendered, soundness retained. Grade: brilliant."
+    },
+    {
+      "id": "grade-brilliant-4-queen",
+      "group": "game_review",
+      "walterText": "Brilliant. A sound queen sacrifice, and a position worth coming back to after the game.",
+      "rivetText": "Anomaly detected: queen surrendered, soundness retained. Grade: brilliant."
     }
   ]
 }
