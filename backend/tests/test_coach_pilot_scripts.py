@@ -40,12 +40,9 @@ def test_pilot_scripts_match_the_registered_recordings_without_losing_base_meani
     assert not original.keys() & extras.keys()
     catalogue = {row["id"]: row for row in read("meanings.json")["meanings"]}
     variants = {key for key, row in catalogue.items() if "variantOf" in row}
-    # Every meaning has authored Walter and Rivet text, recorded or not; piece
-    # variants are written per base meaning, each set whole or absent.
-    assert catalogue.keys() - variants <= original.keys() | extras.keys()
-    for base in {row["variantOf"] for row in catalogue.values() if "variantOf" in row}:
-        ids = {key for key in variants if catalogue[key]["variantOf"] == base}
-        assert ids <= extras.keys() or not ids & extras.keys(), base
+    # Every meaning, piece variants included, has authored Walter and Rivet text,
+    # recorded or not.
+    assert catalogue.keys() <= original.keys() | extras.keys()
     for coach, path, text_field in [
         ("classic", "bank/manifest.json", "walterText"),
         ("robot", "banks/rivet/manifest.json", "rivetText"),

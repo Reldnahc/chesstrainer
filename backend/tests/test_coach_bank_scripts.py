@@ -139,16 +139,10 @@ def test_authored_scripts_cover_the_catalogue_exactly(coach, voice):
     assert scripts["coachId"] == coach and scripts["voiceId"] == voice
     catalogue = read("meanings.json")["meanings"]
     rows = scripts["records"]
-    # Piece variants follow the base catalogue, each base's set whole or absent.
-    written = {row["id"] for row in rows}
-    expected = [
-        row for row in catalogue if "variantOf" not in row or row["id"] in written
-    ]
-    assert [row["id"] for row in rows] == [row["id"] for row in expected]
-    for row, meaning in zip(rows, expected, strict=True):
+    # Every coach writes every piece variant, in catalogue order.
+    assert [row["id"] for row in rows] == [row["id"] for row in catalogue]
+    for row, meaning in zip(rows, catalogue, strict=True):
         assert row["group"] == meaning["group"]
-    for ids in piece_variants().values():
-        assert written >= set(ids) or not written & set(ids)
 
 
 @pytest.mark.parametrize(("coach", "voice"), AUTHORED)

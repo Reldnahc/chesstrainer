@@ -340,7 +340,13 @@ or roles holding different pieces, names nothing. Selection then offers
 `<variant>|<base>`: playback, mouth timing and the bubble use the first
 alternative the coach has recorded (or, without a bank, scripted), so the
 generic clip stays the fallback and a coach with no variant recorded is
-unchanged.
+unchanged. All 30 coaches have every variant written (Walter's and Rivet's in
+`banks/pilot-additions.json`, the others in their `scripts.json`) and reviewed;
+none is recorded yet. The written lines keep to piece facts the generic lines
+could blur: a pawn forks two pieces, a pawn never steps aside, only a knight
+hops, a pinned knight has no legal move while a pinned pawn, bishop, rook or
+queen can still move along the pin line, and a back-rank allowed or missed line
+names an idea, not a mate.
 `game-review-opened` and the nine lesson prompts are recorded for Walter, Rivet,
 Winston and Button, so each registered bank holds all 195 catalogue meanings.
 These 40 takes used **2,262 input characters / 273 provider credits**, with every
