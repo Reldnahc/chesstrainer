@@ -17,6 +17,8 @@ export type CoachSpeechPresentation = {
   consumeAutomatic: (eventId: string | null | undefined) => void;
   playing: boolean;
   activeRecordingId?: string;
+  /** Whether this recording (or, without one, any) is the one playing; alternatives resolve first. */
+  isPlaying: (recordingId?: string) => boolean;
   available: boolean;
   canPlay: (recordingId?: string) => boolean;
 };
@@ -165,6 +167,7 @@ export function useCoachSpeech({ scopeKey, recordingId: requested, utterance, au
   const value: CoachSpeechPresentation = { speech: observedTrack ? observedPlayback ?? undefined : currentPlayback,
     speechTrack: observedTrack ?? active?.track,
     control: null, play, stop, consumeAutomatic, playing: !!currentPlayback, activeRecordingId: active?.id,
+    isPlaying: id => !!currentPlayback && (!id || active?.id === concrete(coachId, id)),
     available: eligible && ready && allowed.length > 0,
     canPlay: id => eligible && ready && !!(concrete(coachId, id) ?? recordingId)
       && allowed.includes((concrete(coachId, id) ?? recordingId)!) };

@@ -338,6 +338,16 @@ test("secondary-only recordings have no empty primary control and reject unrelat
   await speaking(page, SECOND);
 });
 
+test("a manual control for a not-yet-recorded piece variant plays its generic clip and offers Stop", async ({page}) => {
+  const variant = `${SECOND}-knight|${SECOND}`;
+  await mount(page, {selection: {recordingId: null, manualRecordingIds: [variant]}});
+  await controls(page).getByRole("button", {name: `Listen to ${variant}`, exact: true}).click();
+  await speaking(page, SECOND);
+  await controls(page).getByRole("button", {name: "Stop coach voice", exact: true}).click();
+  await expect.poll(() => state(page).then(value => value.observed)).toBe(null);
+  expect(await starts(page)).toBe(1);
+});
+
 test("late human enrichment keeps a still-supported recording without replaying or cutting it off", async ({page}) => {
   await mount(page);
   await page.getByRole("button", {name: "Unlock audio", exact: true}).click();
