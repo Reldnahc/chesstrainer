@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "game-start",
+      "label": "Game start",
+      "text": "Oh, this is a big day! For once, a pawn's in charge of a whole side. My pieces had better pull their weight, and yours too!"
+    },
+    "takeId": null
+  },
+  "requestHash": "45071161a3e4644d0d5f6bd01b8ac7a51dee01eb67faa71725d665d619041e5a",
+  "recordedAt": "2026-10-04T00:52:39.934Z",
+  "sha256": "2b72c8b2eca9fed3a3149a7bd1910f72422ccc6fc8c87019d832a3798460eab2",
+  "bytes": 27013,
+  "requestId": "iFdSQWui4i8eMycnIldZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7c39faf4073147b1b1a546a597b15de8f396cafc1613f3d27f96bb591695a2bd",
+    "bytes": 139224
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

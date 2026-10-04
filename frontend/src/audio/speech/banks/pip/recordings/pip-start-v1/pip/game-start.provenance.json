@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "game-start",
+      "label": "Game start",
+      "text": "Now then, a game of our own! One tip to bring along: after each of my moves, ask what I'm up to. Grand, off we go."
+    },
+    "takeId": null
+  },
+  "requestHash": "b3b93350c2d7a12a99f23d89bc37881f579f2c71b0ec640c8e7c3f179f61243d",
+  "recordedAt": "2026-10-04T00:52:41.824Z",
+  "sha256": "b97577e82d0253e67e8f5bf1dea5b1686675b80b57e0592cce9efdad6fa1138b",
+  "bytes": 28167,
+  "requestId": "l88Qo3d0AiwTgDzHgO7T",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "285b4886d8d59c70059459b5e6b1c0c9a01f85dffe30ff27613ea96316d10ae6",
+    "bytes": 147165
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

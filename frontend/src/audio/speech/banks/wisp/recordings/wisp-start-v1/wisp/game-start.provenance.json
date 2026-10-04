@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "game-start",
+      "label": "Game start",
+      "text": "Hush. When a piece moves, it can leave a weakness behind it. Danger often starts there, for both of us."
+    },
+    "takeId": null
+  },
+  "requestHash": "acbb180aa67ef853211347a785386a4b04aa0c2f397af2230e661b249029dbd3",
+  "recordedAt": "2026-10-04T00:52:44.248Z",
+  "sha256": "866c6dd000989b0201fc922c571069f11f7105ddc6975c7a0d0afe83da6bc994",
+  "bytes": 23996,
+  "requestId": "rwqneHMs9x5cedHKy97S",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "aa0be37b237dfc30adb8e03bd542c73b81f7dc0e80a38c028f94dd3f09ea9e36",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

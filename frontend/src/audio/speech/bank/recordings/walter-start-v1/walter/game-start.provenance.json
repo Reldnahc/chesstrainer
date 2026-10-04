@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "game-start",
+      "label": "Game start",
+      "text": "Here we are, you and I. The first few choices tend to set the course for everything that follows, so give yours some care."
+    },
+    "takeId": null
+  },
+  "requestHash": "d290df5a432754a9fe94913c667b1b2b90d410337e16705e9275f5875dad0005",
+  "recordedAt": "2026-10-04T00:52:32.017Z",
+  "sha256": "f005879bc001180b42b7525812165f86f4cc35c9ddfe9aa6bf419a12a2c8bcd6",
+  "bytes": 25882,
+  "requestId": "7spwThI2XtFecOXZ6p2O",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b4c4ccd7f49a66bc69cf5c2d07ed2e3c806e4ed927bcc1875ce661edc8283bd0",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

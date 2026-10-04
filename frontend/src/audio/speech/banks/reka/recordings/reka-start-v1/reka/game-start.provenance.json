@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "game-start",
+      "label": "Game start",
+      "text": "Game on! I love a real scrap over the board. Here's hoping for some spicy tactics, from either side!"
+    },
+    "takeId": null
+  },
+  "requestHash": "ab48e5ba270f5954a96491079dd7e39a5a3e08fe1a9a61939cea6eb6fb9a0555",
+  "recordedAt": "2026-10-04T00:52:41.583Z",
+  "sha256": "2116d67e41f3a9c926be5b9a3c564e981402cc95fc87db847cfa035419a2b9d5",
+  "bytes": 22710,
+  "requestId": "xPd4uDboRdJ774QyMnny",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0cf05a0ac75ff7810a3867463fcbbe133aceee359f24ee590cb97a3f16e6140e",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

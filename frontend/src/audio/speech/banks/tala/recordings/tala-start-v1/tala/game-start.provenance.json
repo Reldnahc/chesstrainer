@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "game-start",
+      "label": "Game start",
+      "text": "First clue: every corner rook starts the game with no defender. I love details like that. Spot the next one before I do."
+    },
+    "takeId": null
+  },
+  "requestHash": "679305aa2635d427c39cb8d153cb8dcf579e28cd71251f96b756217812910848",
+  "recordedAt": "2026-10-04T00:52:42.356Z",
+  "sha256": "432afa2db1ffdb84e097d0b754817113c7ae65d17479395183595408e6f41efe",
+  "bytes": 27349,
+  "requestId": "4M9jaJLGIm3n1wJcz4t7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a0fa6b345e4796e399bc35123bb2e57abe3290d3a6eed3e7377540f89649d19b",
+    "bytes": 142986
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

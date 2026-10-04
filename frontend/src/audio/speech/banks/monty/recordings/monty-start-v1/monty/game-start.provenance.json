@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "game-start",
+      "label": "Game start",
+      "text": "Simple point: the center matters early, so claim your share of it. I want my share too."
+    },
+    "takeId": null
+  },
+  "requestHash": "bc4b968e4d12cca12adb27e9c8e61b36f40eb7a839524f3dbaef6d6812bbc232",
+  "recordedAt": "2026-10-04T00:52:21.714Z",
+  "sha256": "99d4c7e3d2cda6d0041166f5fecd45b93b95863b711e77f32a90003431bf6454",
+  "bytes": 19839,
+  "requestId": "HBk99QNM7LHkFEDEP6HC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "020c827429dea810abe19c23105b6687d3b57cd167c3e0b38b191a54e51242ed",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "game-start",
+      "label": "Game start",
+      "text": "All the pieces are huddled together right now, every one still close to home. I wonder where the two of us will send them."
+    },
+    "takeId": null
+  },
+  "requestHash": "bf55a3c713a0588cb4c0419501e7c669cfeab500c64322c1e8069f5b7ab7502d",
+  "recordedAt": "2026-10-04T00:52:32.042Z",
+  "sha256": "95532f6c64a0da7415fa7775c5febf75e06450e4925e13e67b20f59683586302",
+  "bytes": 24581,
+  "requestId": "GjxLGecaaXpCDU26kuFO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "af85db20b9f70835d317be671dda3d55c579f82fdb7eb994677f2506b9378dc7",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

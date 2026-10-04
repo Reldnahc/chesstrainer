@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "game-start",
+      "label": "Game start",
+      "text": "No coasting in this game. Give each of your moves a clear purpose, and hold yourself to a high standard right to the end."
+    },
+    "takeId": null
+  },
+  "requestHash": "d46d9969565dd84a24cce1206a40eab9ca903e4477a8c3c2c6b588668afb3dc3",
+  "recordedAt": "2026-10-04T00:52:43.956Z",
+  "sha256": "96112782d2d6a68ebeecfb370ee0700e64d08125b8181813d51bc6e690f71082",
+  "bytes": 24213,
+  "requestId": "p1I3A0OvwWAvZgwRhWCW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4a9674dbf26aca8c6003925e3cabdd90d4c38e34128a4ca81bc770653126567d",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

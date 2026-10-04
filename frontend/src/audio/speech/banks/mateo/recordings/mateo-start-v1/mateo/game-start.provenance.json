@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "game-start",
+      "label": "Game start",
+      "text": "Okay, okay, we're playing! I'm kind of nervous and super excited at the same time. If I spot a trick, I'm going for it, so watch out!"
+    },
+    "takeId": null
+  },
+  "requestHash": "fbd76aa1eb33211144b2b53674160779da2fe45d14c9b28646ffc71d73243510",
+  "recordedAt": "2026-10-04T00:52:39.279Z",
+  "sha256": "05857e934286d55936f1db2b4af72a24b530f4eb8c7e7c6d2aceb5cb04943bd1",
+  "bytes": 30168,
+  "requestId": "Yc8Zp9UXuX6lekju4XZv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d5c00ff4ee4057c020157ac77c768b9c69c8987bb74aa2add45ca75e6c264ba7",
+    "bytes": 150927
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}
