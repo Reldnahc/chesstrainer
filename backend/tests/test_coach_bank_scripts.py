@@ -113,11 +113,7 @@ def test_registered_bank_records_exactly_the_authored_scripts(coach, voice):
     recorded = {row["id"] for row in manifest["recordings"]}
     # Generic lesson prompts may be authored before they are recorded; they stay
     # silent until their clip is added.
-    assert all(
-        row["group"] == "lessons"
-        for row in scripts
-        if row["id"] not in recorded
-    )
+    assert all(row["group"] == "lessons" for row in scripts if row["id"] not in recorded)
     assert [(row["id"], row["group"], row["text"]) for row in manifest["recordings"]] == [
         (row["id"], row["group"], row["text"]) for row in scripts if row["id"] in recorded
     ]

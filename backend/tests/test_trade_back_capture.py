@@ -1,5 +1,4 @@
 import chess
-
 from trainer.verified_patterns import detect_patterns
 
 
