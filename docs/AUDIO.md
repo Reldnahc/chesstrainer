@@ -172,11 +172,10 @@ Unsupported or freeform text remains written. The bubble shows what the coach
 says: the selected coach's spoken line (its recording, or its script for a
 line written but not yet recorded) replaces the written sentence whenever one exists, with voice on
 or off, and game review adds a moves line for the concrete reply and opening; see
-[Bubble text is the spoken line](COACH_DIALOGUE.md#bubble-text-is-the-spoken-line). A coach speaks a Maia
-(human-move model) reading only when it is the ply's whole content: five
-`human-*` meanings (natural best, natural strong, unusual but strong, hard find,
-hard defense found) cover that case. Beside any objective fact Maia stays written
-in its badge and popup (owner decisions, 2026-10-02 and 2026-10-03).
+[Bubble text is the spoken line](COACH_DIALOGUE.md#bubble-text-is-the-spoken-line). Coaches never speak or show a Maia
+(human-move model) reading: Maia lives only in the badge and its popup with the
+written Maia sentence, and no Maia recording exists or is selected (owner
+decisions, 2026-10-02 and 2026-10-04).
 Lessons voice only nine generic
 prompts (wrong, correct, revealed, follow the line, play your studied move,
 alternative, chapter complete, full game and error), one per lesson command; course
@@ -287,9 +286,8 @@ artwork, animation and dialogue workflow.
   the opponent; an unplayed alternative is hypothetical; a searched mating route
   is not an already completed checkmate. Human-model estimates must never become
   engine evaluation, population percentages or promises of survival.
-- Do not write new Maia lines. The five sole-content `human-*` meanings reuse the
-  texts reviewed before the 2026-10-02 removal; no bank records a Maia reading
-  combined with another meaning.
+- Do not write Maia lines. Human-move model readings stay written in the Maia
+  popup; no bank records them alone or combined with another meaning.
 - Scripts are on-screen text as well as speech: the bubble shows a coach's
   recorded line, or its `scripts.json` line when it has no recording, so a script
   must read well in the bubble at phone width.
@@ -313,11 +311,10 @@ separates artifact checks, semantic coverage and human listening review.
 ### Meaning and selection
 
 Game dialogue owns recording selection, preserving rendered claims' exact
-identities. The selector validates their supporting facts, actor and scope. A Maia
-(human-model) claim selects a recording only when every claim of the refreshed
-ply is Maia. Otherwise a Maia sentence adds nothing to speech: the first other
-rendered sentence leads, even when the Maia sentence is shown before it, and a
-one-sentence bubble that shows only Maia beside an unshown fact stays silent. Unrendered objective claims are never
+identities. The selector validates their supporting facts, actor and scope. The coach's
+dialogue never carries a Maia (human-model) claim: `gameIntent` adds Maia readings
+only for the badge and popup (`human: true`), so a sound move with nothing else to
+say gets the plain best or good line. Unrendered objective claims are never
 searched for a convenient recording.
 
 An unavailable lead recording never silently promotes a lower-priority claim.
@@ -338,7 +335,7 @@ repeats. Neither recognition nor repetition establishes objective move quality.
 The bank includes secondary meanings, but explanation findings and note
 disclosures do not automatically speak. Their explicit listening actions use the
 currently visible supported selection. The Maia insight popover has no voice
-control; a Maia reading is spoken only as a ply's sole content. Practice
+control, and no Maia reading is ever spoken. Practice
 producers provide structured summary, move-frame and finding facts; selectors do
 not parse English or infer tactics from ratings or facial expressions.
 
@@ -355,7 +352,7 @@ is recast as an objective Best move.
 bus, with priority/interruptibility and quieter effects while narration plays.
 The shared `useCoachSpeech` adapter submits only the current supported recording.
 A game-review move has exactly one coach playback and one Listen/Stop control.
-A Maia sentence beside an objective fact is never voiced. When both bubble sentences are
+When both bubble sentences are
 objective and have recordings, the two existing clips are
 joined into one buffer with a 250 ms gap (`audio/speech/sequence.ts`), and the
 second clip's mouth timing is offset by the first clip plus the gap. Stop ends

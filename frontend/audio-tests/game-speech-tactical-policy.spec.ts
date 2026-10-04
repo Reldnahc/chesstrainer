@@ -27,7 +27,7 @@ for (const coach of [{id: "classic", personality: storyteller}, {id: "robot", pe
         explaining: false, pending: false, error: false});
       const intent = gameIntent({key, game, frame, report, ply, expression: reaction.state});
       const context = {game, frame, report, ply, intent, utterance: renderDialogue(intent, coach)};
-      const child = humanInsightIntent(intent);
+      const child = humanInsightIntent(gameIntent({key, game, frame, report, ply, expression: reaction.state, human: true}));
       const insight = {intent: child, utterance: renderDialogue(child, coach)};
       const claimIndex = context.utterance.renderedClaims!.findIndex(claim => !humanInsightLabels[claim.code]);
       expect(claimIndex).toBeGreaterThanOrEqual(0);

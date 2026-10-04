@@ -88,7 +88,8 @@ export default function PositionCoach({
   const intent = gameIntent(input);
   const displayedIntent = explaining ? gameIntent({...input, explaining}) : intent;
   const utterance = useDialogue(displayedIntent);
-  const insightIntent = humanInsightIntent(intent);
+  // Maia readings belong to the tag and popup only, never the coach's line.
+  const insightIntent = humanInsightIntent(gameIntent({...input, human: true}));
   const insight = {intent: insightIntent, utterance: useDialogue(insightIntent)};
   // A background game review and the presence of a mover are not loading
   // states for this position. Only its own unresolved navigation blocks voice.
@@ -96,7 +97,7 @@ export default function PositionCoach({
     error: !!errorAtPosition || (!report && game.job?.status === "failed")};
   // anyCoach: a coach without a recorded bank still shows its script's line.
   const selection = {...speechContext, intent: displayedIntent, utterance, anyCoach: true};
-  // A Maia reading is voiced only when it is all this ply has to say.
+  // The Maia insight is shown beside the bubble but never voiced.
   const speech = selectGameSpeech(selection);
   const {primaryId} = speech;
   const coachId = utterance.coachId, voiced = hasCoachVoice(coachId);

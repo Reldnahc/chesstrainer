@@ -43,18 +43,14 @@ selector were removed from the tree on 2026-10-03; Git history retains them.
 same meaning, including the eleven opening variants. These are whole recordings,
 never runtime sentence splicing.
 
-**A coach speaks a Maia reading only when it is the ply's whole content (owner
-decisions, 2026-10-02 and 2026-10-03).** The Maia badge and its popup (which holds
-the written Maia sentence; the bubble shows the spoken line instead) are unchanged.
-On 2026-10-02 all 253 Maia meanings (7 standalone readings and 246 combinations)
-were removed, taking the catalogue from 448 to 195 meanings. On 2026-10-03 five
-standalone readings returned with their reviewed texts (natural best, natural
-strong, unusual but strong, hard find, hard defense found), for 200 meanings.
-Later that day the three clock observations were retired, leaving 197.
-They cover a sound learner move with no other supported fact; a natural mistake
-or missed hard defense always comes with a stronger alternative, so those two stay
-retired. Beside an objective fact a Maia sentence adds nothing to speech: the
-objective line plays alone.
+**A coach never speaks or shows a Maia reading (owner decisions, 2026-10-02 and
+2026-10-04).** Maia lives only in the badge and its popup, which holds the written
+Maia sentence. On 2026-10-02 all 253 Maia meanings (7 standalone readings and 246
+combinations) were removed from speech. On 2026-10-03 five standalone readings
+briefly returned for plies where Maia was the only content, and the clock
+observations were retired. On 2026-10-04 those five readings were retired again and
+Maia left the coach's dialogue entirely: a sound move with nothing else to say
+gets the plain best or good line, and the bubble never carries a Maia sentence.
 Later Maia data may update the bubble, but does not start a second automatic
 response for the same navigation action. Opening Maia's popup is silent.
 
