@@ -7,9 +7,10 @@ type DueReview = { exercise_id: string; new: boolean };
  * imports and reviews keep running in the background and can make work due.
  */
 export async function settledDueReviews(page: Page): Promise<DueReview[]> {
+  // Game reviews count too: a review also trains on its game and can add a due card.
   await expect.poll(async () => {
-    const jobs = await (await page.request.get("/api/jobs")).json() as { status: string }[];
-    return jobs.filter(job => job.status === "queued" || job.status === "running").length;
+    const jobs = await (await page.request.post("/__test/active-jobs")).json() as { active: number };
+    return jobs.active;
   }, { timeout: 60_000 }).toBe(0);
   return (await page.request.get("/api/review/queue")).json();
 }

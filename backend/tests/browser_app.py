@@ -90,6 +90,22 @@ def create_app():
         lesson_providers=(*bundled_providers(), lesson_provider),
     )
 
+    # POST, like the other fixtures: the SPA fallback owns every unmatched GET.
+    @app.post("/__test/active-jobs")
+    def active_jobs(workspace: CurrentWorkspace):
+        """Every queued or running job, including per-game reviews that /api/jobs omits."""
+        from sqlalchemy import func, select
+        from trainer.models import AnalysisJob
+
+        with workspace.sessions() as db:
+            return {
+                "active": db.scalar(
+                    select(func.count())
+                    .select_from(AnalysisJob)
+                    .where(AnalysisJob.status.in_(("queued", "running")))
+                )
+            }
+
     @app.post("/__test/lesson-fixture/{key}")
     def lesson_fixture(workspace: CurrentWorkspace, key: str):
         from trainer.contracts.study_lessons import LessonStart
