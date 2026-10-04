@@ -96,6 +96,12 @@ function tacticalRecording(item: Claim, event: Event, mover: "white" | "black", 
   if (!["played", "allowed", "missed"].includes(String(role)) || item.code !== `tactic_${role}`
     || event.actor !== (role === "allowed" ? opposite(mover) : mover)
     || (role === "missed" && report.actual.uci === report.best.uci)) return null;
+  // Every tactic recording says this move (or the reply it allows) is the
+  // motif. A witness that starts later in the line, such as a fork three moves
+  // after a double check, is only a possibility from here, never this move's tactic.
+  const opening = object(f.witness[0]), expectedPly = role === "allowed" ? 2 : 1;
+  if (f.plies[0] !== expectedPly || opening.ply !== expectedPly
+    || (role !== "allowed" && opening.san !== report[role === "missed" ? "best" : "actual"].san)) return null;
   if (tacticalMotifs.has(motif)) return `tactic-${motif.replaceAll("_", "-")}-${role}`;
   if (motif === "missed_tactical_capture" && role !== "allowed") return `tactic-undefended-capture-${role}`;
   if (motif === "hanging_piece" && role === "allowed") return "tactic-hanging-piece-allowed";

@@ -1,9 +1,12 @@
 import {expect, test, type Page} from "@playwright/test";
 import {humanGames} from "./human-fixtures";
-import type {Game} from "../src/gameReview/types";
+import type {Game, Report} from "../src/gameReview/types";
+import {gameIntent} from "../src/dialogue/gameIntent";
+import {renderDialogue} from "../src/dialogue/neutral";
+import {storyteller} from "../src/dialogue/characters/storyteller";
 
 import {captureSpeech, speechActivity} from "./helpers/speech";
-import {selectGameOpener} from "../src/audio/speech/gameSelection";
+import {selectGameOpener, selectGameRecording} from "../src/audio/speech/gameSelection";
 import walterBank from "../src/audio/speech/bank/manifest.json" with {type: "json"};
 import pilotAdditions from "../src/audio/speech/banks/pilot-additions.json" with {type: "json"};
 
@@ -123,6 +126,51 @@ test("a game against the coach greets with its own line only before the first mo
   expect(selectGameOpener({ply: 0, frame, live: "new"})).toBe("game-start");
   expect(selectGameOpener({ply: 0, frame, live: "underway"})).toBeNull();
   expect(selectGameOpener({ply: 0, frame, live: "new", error: true})).toBeNull();
+});
+
+// The review line of a double check that a queen fork follows three moves
+// later (backend output for 30...Nc2+ in the position below,
+// the same shape as the reviewed 30...Nf5+ that was voiced as a fork).
+function doubleCheckThenFork(forkPlies: number[]) {
+  const fen = "rnbk1b2/pp4pp/1q1p4/3p4/3n4/2P1K1PP/PP6/3R4 b - - 0 30";
+  const sans = ["Nc2+", "Kf3", "Qe3+", "Kg2", "Qe2+", "Kh1", "Qxd1+"];
+  const score = {kind: "mate" as const, value: -7, mate_given: false};
+  const actual = {uci: "d4c2", san: "Nc2+", score, depth: 20, pv: ["d4c2"]};
+  const tactic = (id: string, index: number, motif: string, plies: number[]) => ({
+    id, kind: "tactic" as const, actor: "black" as const, confidence: "line_witness" as const, importance: 65,
+    facts: {role: "played", motif, plies, frame_ply: plies[0], verification: "verified_line",
+      witness: plies.map(ply => ({ply, san: sans[ply - 1], capture: null, gives_check: true})),
+      roles: {}, pieces: {}, squares: []},
+    evidence: [{source: "stockfish" as const, id: "played", field: `actual_line/findings/${index}`},
+      {source: "rule" as const, id: `rule-${motif}`, field: "verified_witness"}],
+  });
+  const report: Report = {label: "Best", engine_label: "Best", actual, best: actual, reason: "", coach: "",
+    white_score: score, depth: 20, engine_version: "fixture", opening: null, board_cues: null,
+    intelligence: {version: "move-events-4", input_digest: "double-check", ply: 1, clock: null, limitations: [],
+      events: [tactic("double-check", 0, "double_attack", [1]), tactic("later-fork", 1, "fork", forkPlies)]}};
+  const start = {fen, turn: "black" as const, uci: null, san: "Start", actor: null, number: 30,
+    legal_moves: [], result: null, termination: null, report: null};
+  const frame = {fen: "after-Nc2+", turn: "white" as const, uci: "d4c2", san: "Nc2+", actor: "black" as const,
+    number: 30, legal_moves: [], result: null, termination: null, report};
+  const game = {...humanGames.unusual_strong, id: "double-check-fork", orientation: "black" as const,
+    frames: [start, frame], context: null} as unknown as Game;
+  const intent = gameIntent({game, ply: 1, frame, report, key: "double-check", expression: "best"});
+  const select = (code: string) => {
+    const claim = intent.claims.find(item => item.code === "tactic_played" && item.sourceIds[0] === code)!;
+    expect(claim).toBeTruthy();
+    // Speak each witness as the move's whole line; the selector re-derives the full intent.
+    const single = {...intent, claims: [claim]};
+    const utterance = renderDialogue(single, {id: "classic", personality: storyteller});
+    return selectGameRecording({game, ply: 1, frame, report, intent: single, utterance, anyCoach: true});
+  };
+  return {doubleCheck: select("double-check"), fork: select("later-fork")};
+}
+
+test("a fork later in the line is not voiced as the move's own fork", () => {
+  // The double check itself is the move's tactic; the queen fork three moves on is not.
+  expect(doubleCheckThenFork([5, 7])).toEqual({doubleCheck: "tactic-double-attack-played", fork: null});
+  // A fork the move itself makes, collected later, still is.
+  expect(doubleCheckThenFork([1, 3]).fork).toBe("tactic-fork-played");
 });
 
 test("a fresh review greets, the first move replaces it and returning to the start greets again", async ({page}) => {
