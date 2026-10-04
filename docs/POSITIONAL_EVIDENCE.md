@@ -20,7 +20,7 @@ Supported observations:
 | Isolated pawns | No own pawn on either adjacent file, regardless of rank. No assertion that the pawn is weak or lost. |
 | Doubled files | Two or more same-color pawns on a file. No automatic good/bad judgment. |
 | Rook files | Own pawn absent means semi-open; all pawns absent means open. No guarantee of entry squares or control. |
-| Piece support | Existing pin-aware effective-defender geometry gains/loses all support for a surviving non-pawn, non-king piece. An undefended piece is not necessarily capturable or lost. |
+| Piece support | Existing pin-aware effective-defender geometry gains/loses all support for a surviving non-pawn, non-king piece. An undefended piece is not necessarily capturable or lost. The coach mentions it only when the piece is attacked after the move (`attacked`); otherwise it is trivia (owner decision, 2026-10-04). |
 | Bishop pair | Loss of one of exactly two opposite-square-color bishops. Two same-color promoted bishops do not count. No claim that the exchange was unfavorable. |
 
 The current rules deliberately omit bad bishops, backward pawns, outposts, space

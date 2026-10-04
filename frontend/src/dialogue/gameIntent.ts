@@ -97,7 +97,10 @@ export function gameIntent({game, report, frame, ply, key, expression, explainin
       }
       if (relation.kind === "punishment") linked(f.outcome === "capitalized" ? "punishment" : "missed_punishment", {earlier, side}, 81);
       if (relation.kind === "repeated_motif" && ["allowed", "caused", "missed"].includes(String(f.role))) linked("repeated", {count: Number(f.occurrence), motif: words(f.motif)}, 74);
-      if (relation.kind === "support_restored") linked("support_restored", {earlier, piece: words(f.piece)}, 75);
+      // A restored defender matters only when this move's piece is under attack.
+      if (relation.kind === "support_restored" && report.intelligence?.events.some(event =>
+        event.id === relation.event_ids.at(-1) && event.facts.attacked === true))
+        linked("support_restored", {earlier, piece: words(f.piece)}, 75);
       if (relation.kind === "erosion") linked("erosion", {earlier}, 71);
       if (relation.kind === "advantage_run" && f.outcome === "converted") linked("conversion", {earlier, side}, 75);
     }

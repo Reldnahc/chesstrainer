@@ -21,8 +21,9 @@ CASES = {
     "doubled": ("7k/1p1p4/2p5/8/8/2p5/1PPP4/K5R1 w - - 0 1", "b2c3", "g1g2"),
     "isolated": ("7k/8/4p3/3p4/2P5/8/1P6/K5R1 w - - 0 1", "c4d5", "g1g2"),
     "passed": ("7k/8/3p4/4P3/8/8/8/K5R1 w - - 0 1", "e5d6", "g1g2"),
-    "support": ("7k/p7/8/8/8/3N4/P7/4K3 w - - 0 1", "e1d2", "e1f1"),
-    "unsupported": ("7k/p7/8/8/8/3N4/P2K4/8 w - - 0 1", "d2e1", "d2c1"),
+    # The d8 rook attacks the knight: a defender line needs a piece under attack.
+    "support": ("3r3k/p7/8/8/8/3N4/P7/4K3 w - - 0 1", "e1d2", "e1f1"),
+    "unsupported": ("3r3k/p7/8/8/8/3N4/P2K4/8 w - - 0 1", "d2e1", "d2c1"),
     "castling": ("r3k2r/p6p/8/8/8/8/P6P/R3K2R w KQkq - 0 1", "e1g1", "e1c1"),
 }
 STATES = {
