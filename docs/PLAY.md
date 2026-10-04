@@ -136,19 +136,26 @@ local engine, or a pooled process in account mode).
 
 ## Spoken meanings the game still needs
 
-Chandler owns all coach writing and recording. The game plays today with the
-existing 195 meanings, which cover every graded move, Book lines, clock
-observations, checkmate and automatic draws. These moments have no catalogue
-entry yet, so they currently show plain page text or stay silent:
+Chandler owns all coach writing and recording. The game plays with the existing
+meanings, which cover every graded move, Book lines, checkmate and automatic draws.
+
+A new game opens with `game-start`, an operational meaning with one line per
+coach written for a game against that coach that has not begun. It plays once,
+before the first move, for either color (when the learner has Black the bot's
+first move waits for it like any other reply); returning to the start of a game
+already under way stays quiet, and the review greeting `game-review-opened` is no
+longer used in Play. Until a coach's clip is recorded, the bubble shows its
+script line.
+
+These moments have no catalogue entry yet, so they currently show plain page text
+or stay silent:
 
 | Proposed meaning | When it would play | Notes |
 |---|---|---|
-| `game-start` | Once, when a game against the coach begins | The existing opener is review wording ("let's walk through this game") |
 | `game-resigned-learner` | The learner resigns | Learner-perspective result line |
 | `game-review-ready` | The finished game's review opens | Bridges playing and looking back |
-| `game-start-black` (optional) | The bot moves first because the learner has Black | Could share `game-start` |
 
-That is three or four recordings per coach. Plain-clip rules apply (no squares,
+That is two recordings per coach. Plain-clip rules apply (no squares,
 digits or owner words on clips that can play on either side). Until they are
 recorded, the page shows the result in a notice and the coach keeps the last
 graded move's line.

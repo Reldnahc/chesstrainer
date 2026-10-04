@@ -176,6 +176,7 @@ export default function PlayGame({ id }: { id: string }) {
           onExplain={() => (session.analysisError ? session.retryAnalysis() : session.toggleExplanation())}
           onReturnToGame={() => session.navigate(latest)}
           onVoicePlaying={session.onVoicePlaying}
+          live={latest === 0 ? "new" : "underway"}
         />
         <ReviewMoves
           game={game}

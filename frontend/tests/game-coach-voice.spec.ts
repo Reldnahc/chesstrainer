@@ -118,6 +118,13 @@ test("only the mainline start selects the fact-free opener", () => {
   ]) expect(selectGameOpener(context)).toBeNull();
 });
 
+test("a game against the coach greets with its own line only before the first move", () => {
+  const frame = humanGames.unusual_strong.frames[0];
+  expect(selectGameOpener({ply: 0, frame, live: "new"})).toBe("game-start");
+  expect(selectGameOpener({ply: 0, frame, live: "underway"})).toBeNull();
+  expect(selectGameOpener({ply: 0, frame, live: "new", error: true})).toBeNull();
+});
+
 test("a fresh review greets, the first move replaces it and returning to the start greets again", async ({page}) => {
   test.skip(!walterOpener, "Walter's game-review opener is written but not yet recorded.");
   const game = humanGames.unusual_strong;
