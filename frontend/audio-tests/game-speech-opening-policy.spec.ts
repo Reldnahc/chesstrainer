@@ -11,6 +11,7 @@ import {selectGameRecording, selectGameSpeech} from "../src/audio/speech/gameSel
 import {semanticFixtures} from "../tests/semantic-fixtures";
 
 const games = semanticFixtures<Record<string, Game>>("review_speech_opening_fixtures.py");
+const departure = {primaryId: "opening-departure", recordingId: "opening-departure"};
 const states = ["hard-find", "unusual-strong", "natural-best", "natural-strong", "hard-defense-found"];
 const coaches = [{id: "classic", personality: storyteller}, {id: "robot", personality: robot}];
 // The Maia reading each fixture state shows in its badge; none is ever voiced.
@@ -77,7 +78,7 @@ for (const coach of coaches) {
       expect(codes.some(code => humanInsightLabels[code])).toBe(false);
       expect(selectGameRecording(context)).toBe("opening-departure");
       expect(insight.utterance.renderedClaims!.map(item => item.code)).toEqual([shownCodes[state]]);
-      expect(selectGameSpeech(context)).toEqual({primaryId: "opening-departure", recordingId: "opening-departure"});
+      expect(selectGameSpeech(context)).toEqual({...departure, variants: departure});
       observed.add(state);
     }
     expect(observed.size).toBe(4);

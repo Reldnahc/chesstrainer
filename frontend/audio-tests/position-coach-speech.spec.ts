@@ -12,12 +12,14 @@ type HarnessWindow = Window & {positionCoachSpeech: PositionCoachSpeechHarness; 
 const games = semanticFixtures<Record<string, Game>>("review_speech_combination_fixtures.py");
 const enrichedGame = games["cause-abandoned_defender-white"];
 const BASE = "cause-abandoned-defender";
+// The lead clip names the defender when the coach recorded its piece variant.
+const LEAD = `${BASE}(?:-(?:knight|bishop|rook|queen))?`;
 const region = (page: Page) => page.getByRole("region", {name: "Chess coach", exact: true});
 const chip = (page: Page) => region(page).getByRole("button", {name: "Maia: Natural mistake", exact: true});
 const bubble = (page: Page) => region(page).getByLabel("Coach explanation", {exact: true}).locator("[data-utterance]");
 
 // Coaches never speak a Maia reading: speech is the bubble's objective line(s) only.
-const objectiveOnly = new RegExp(`^${BASE}(?:[+](?!human-|combo-|combined-)[a-z0-9-]+)?$`);
+const objectiveOnly = new RegExp(`^${LEAD}(?:[+](?!human-|combo-|combined-)[a-z0-9-]+)?$`);
 
 function withoutHuman(game: Game): Game {
   const current = structuredClone(game), report = current.frames[1].report!;
@@ -150,7 +152,7 @@ for (const coachId of ["classic", "robot"] as const) {
     await tick(page, 500);
     expect((await counts(page)).starts).toBe(2);
     expect(fixture.assets.every(url => urls.includes(url))).toBe(true);
-    expect(fixture.assets[0]).toBe(await recordingUrl(page, coachId, BASE));
+    expect(fixture.assets[0]).toBe(await recordingUrl(page, coachId, plain.split("+")[0]));
     expect(fixture.writes).toEqual([]);
   });
 }
@@ -171,7 +173,7 @@ test("classic: two recorded sentences play back to back as one playback behind o
   const listen = region(page).getByRole("button", {name: /^Listen/});
   await expect(listen).toHaveCount(1);
   await listen.click();
-  await expect.poll(() => state(page).then(value => value.observed)).toMatch(/^cause-abandoned-defender\+/);
+  await expect.poll(() => state(page).then(value => value.observed)).toMatch(new RegExp(`^${LEAD}[+]`));
   const [first, second] = (await state(page)).observed!.split("+");
   await tick(page, 500);
   expect(await counts(page)).toEqual({starts: 1, stops: 0});

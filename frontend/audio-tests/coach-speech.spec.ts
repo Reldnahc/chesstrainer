@@ -339,7 +339,7 @@ test("secondary-only recordings have no empty primary control and reject unrelat
 });
 
 test("a manual control for a not-yet-recorded piece variant plays its generic clip and offers Stop", async ({page}) => {
-  const variant = `${SECOND}-knight|${SECOND}`;
+  const variant = `${SECOND}-king|${SECOND}`;
   await mount(page, {selection: {recordingId: null, manualRecordingIds: [variant]}});
   await controls(page).getByRole("button", {name: `Listen to ${variant}`, exact: true}).click();
   await speaking(page, SECOND);

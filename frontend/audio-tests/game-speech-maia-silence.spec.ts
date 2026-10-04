@@ -54,6 +54,7 @@ function insight(current: GameSpeechContext) {
 }
 
 const maia = (codes: {code: string}[]) => codes.filter(item => humanInsightLabels[item.code]);
+const silent = {primaryId: null, recordingId: null, variants: {primaryId: null, recordingId: null}};
 
 test("the speech catalogue has no Maia meanings or combinations", () => {
   expect(catalogue.meanings.map(item => item.id).filter(id => /^(?:human-|combo-|combined-)/.test(id))).toEqual([]);
@@ -89,7 +90,7 @@ for (const coach of coaches) {
     const intent = insight(current);
     const utterance = renderDialogue(intent, coach);
     expect(utterance.renderedClaims!.map(item => item.code)).toEqual(["human_natural_error"]);
-    expect(selectGameSpeech({...current, intent, utterance})).toEqual({primaryId: null, recordingId: null});
+    expect(selectGameSpeech({...current, intent, utterance})).toEqual(silent);
   });
 
   test(`${coach.id}: opponent review has no Maia reading anywhere`, () => {
@@ -106,7 +107,7 @@ for (const coach of coaches) {
     for (const blocked of [{...current, pending: true}, {...current, error: true},
       {...current, frame: {...current.frame!, fen: games["fork-hard_find"].frames[1].fen}},
       {...current, utterance: {...current.utterance, intentId: "previous-position"}}]) {
-      expect(selectGameSpeech(blocked)).toEqual({primaryId: null, recordingId: null});
+      expect(selectGameSpeech(blocked)).toEqual(silent);
     }
   });
 }

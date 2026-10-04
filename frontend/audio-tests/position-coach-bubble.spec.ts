@@ -39,7 +39,7 @@ async function mount(page: Page, coachId: string, game: Game, audio: Partial<Aud
 test("a recorded coach's bubble shows its recorded line, and Maia's popup keeps the written sentence", async ({page}) => {
   await mount(page, "man-partner", games["cause-abandoned_defender-white"]);
   const current = await state(page);
-  await expect(bubble(page)).toHaveAttribute("data-spoken", /^cause-abandoned-defender(?:\+[a-z0-9-]+)?$/);
+  await expect(bubble(page)).toHaveAttribute("data-spoken", /^cause-abandoned-defender(?:-(?:knight|bishop|rook|queen))?(?:\+[a-z0-9-]+)?$/);
   const spoken = (await bubble(page).getAttribute("data-spoken"))!;
   await expect.poll(() => shown(page)).toBe(line(arjun.recordings, spoken));
   // Selection still validates the written utterance; only the displayed text changes.

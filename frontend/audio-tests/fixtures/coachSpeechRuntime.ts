@@ -69,7 +69,8 @@ export function mountCoachSpeech(initial: Partial<Selection> = {}, game?: Game):
     consumeAutomatic = voice.consumeAutomatic;
     const frame = game?.frames[1];
     const intent = game && gameIntent({game, report: frame!.report, frame, ply: 1,
-      key: "human-fixture", expression: "good"});
+      key: "human-fixture", expression: "good", human: true});
+    // Like PositionCoach, only the Maia tag's own intent asks for the reading.
     const insightIntent = humanInsightIntent(intent ?? makeIntent("no-insight", "neutral", "game", "neutral", []));
     const insight = {intent: insightIntent, utterance: useDialogue(insightIntent)};
     return React.createElement(React.Fragment, null,
