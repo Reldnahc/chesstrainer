@@ -42,6 +42,7 @@ export default function PositionCoach({
   speechEventId,
   speechOpening = false,
   onVoicePlaying,
+  live,
 }: {
   game: Game;
   report?: Report | null;
@@ -64,6 +65,8 @@ export default function PositionCoach({
   speechOpening?: boolean;
   /** A live game waits for the coach's line to finish before the bot answers. */
   onVoicePlaying?: (playing: boolean) => void;
+  /** A game against the coach: "new" before its first move, then "underway". */
+  live?: "new" | "underway";
 }) {
   const reaction = gameReaction({
     key: positionKey,
@@ -100,7 +103,7 @@ export default function PositionCoach({
   const selected = coachRecording(coachId, speech.recordingId) ? speech.recordingId : primaryId;
   // The greeting is the start's own line, whether the review just opened or the
   // learner returned there, so the bubble's no-report prose does not gate it.
-  const openerId = selectGameOpener({ply, variation, report, frame,
+  const openerId = selectGameOpener({ply, variation, report, frame, live,
     error: !!errorAtPosition || game.job?.status === "failed"});
   const opener = openerId && coachRecording(coachId, openerId) ? openerId : null;
   const recordingId = opener ?? selected;

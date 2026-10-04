@@ -381,6 +381,12 @@ and reviewed: `coach-introduction` is an operational meaning in `meanings.json`,
 with each authored voice's text in its `scripts.json` and Walter's and Rivet's in
 `banks/pilot-additions.json`. All 30 are recorded under each bank's
 `recordings/<voice>-intro-v1/`, and the bank tests require the clip.
+A game against the coach on the Play page greets with `game-start` instead of
+the review's `game-review-opened`: once, before the first move, never on a return
+to the start of a game already under way. All 30 lines are written and reviewed
+(operational, in each `scripts.json` and Walter's and Rivet's in
+`banks/pilot-additions.json`); the bank tests allow it unrecorded until each clip
+is added.
 Opening the Maia insight popover neither plays nor consumes the main coach's
 pending automatic opportunity. Late Maia
 evidence can update visible text (and so the bubble's objective recording) without

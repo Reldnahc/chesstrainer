@@ -170,10 +170,11 @@ and intentional silence before counting clips. Maia readings are spoken only as 
 whole content, so the catalogue keeps five `human-*` meanings and no objective/Maia
 combinations (the other 248 Maia meanings were retired on 2026-10-02), and the
 three per-move clock observations were retired on 2026-10-03. The catalogue has
-197 meanings: 176 original meanings, 11 varied opening meanings, the game-review
-opener and nine lesson prompts. Walter, Rivet, Winston, Button and Arjun have all
-197 recorded; the other 25 banks have 192 until their five sole-content
-Maia lines are recorded. That is today's measured coverage, not a required
+199 meanings: 176 original meanings, 11 varied opening meanings, the game-review
+opener, the picker introduction, the Play greeting (`game-start`) and nine lesson
+prompts. Walter, Rivet, Winston, Button and Arjun have 198 recorded; the other 25
+banks have 193 until their five sole-content Maia lines are recorded, and no bank
+has recorded `game-start` yet. That is today's measured coverage, not a required
 count to copy into every future test or a budget ceiling.
 
 Use `banks/pilot-additions.json`, Rivet's `banks/rivet/scripts.json` and a

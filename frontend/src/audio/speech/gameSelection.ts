@@ -162,12 +162,15 @@ function legalReplyRecording(item: Claim, {frame, report}: WalterGameSpeechConte
 }
 
 /** The mainline start's greeting. It carries no game facts, so it never stands
- * in for a move, a variation, an error or a result. */
-export function selectGameOpener({ply, variation = false, report, frame, error}: {
+ * in for a move, a variation, an error or a result. A live game against the
+ * coach greets with its own line, once, before any move has been played;
+ * returning to the start of a game already under way stays quiet. */
+export function selectGameOpener({ply, variation = false, report, frame, error, live}: {
   ply: number; variation?: boolean; report?: Report | null; frame?: Position | null; error?: boolean;
+  live?: "new" | "underway";
 }): string | null {
-  return ply === 0 && !variation && !report && !error && !!frame && !frame.termination
-    ? "game-review-opened" : null;
+  if (ply !== 0 || variation || report || error || !frame || frame.termination) return null;
+  return live === "underway" ? null : live === "new" ? "game-start" : "game-review-opened";
 }
 
 /** Facts select whole recordings; prose, portrait expression and grade never select audio.
