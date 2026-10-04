@@ -31,6 +31,8 @@ from trainer.puzzles.generation import (
     build_line,
     classify_scores,
     generate_for_game,
+    line_themes,
+    replay,
     root_board,
     unsearched_games,
 )
@@ -244,6 +246,72 @@ def test_build_line_keeps_unique_moves_and_the_best_defence():
 )
 def test_build_line_abstains_with_a_reason(fen, answers, reason):
     assert build_line(Scripted(answers), chess.Board(fen), max_plies=13) == (None, reason)
+
+
+BACK_RANK_FEN = "3r3k/6pp/8/8/8/8/R7/R5K1 w - - 0 1"
+BACK_RANK = {
+    key(BACK_RANK_FEN): [("a2a8", mate(2)), ("g1f1", 0)],
+    key(BACK_RANK_FEN, "a2a8"): [("d8a8", -mate(1))],
+    key(BACK_RANK_FEN, "a2a8", "d8a8"): [("a1a8", mate(1)), ("g1f1", -500)],
+}
+# A learner's game (session b11d17d3): Black has a forced mate, but the 13-ply cap
+# ends the line on Qc2+ with mate still eight moves away.
+CAPPED_MATE_FEN = "2b1kbnr/pp4pp/1q1p4/3p4/3P4/PP3P2/2n1K1PP/5R2 b k - 0 18"
+CAPPED_MATE_LINE = (
+    ("c2d4", 16, 1431),
+    ("e2e1", None, None),
+    ("d4c2", 13, mate(17)),
+    ("e1d1", None, None),
+    ("b6d4", 12, 1326),
+    ("d1c2", None, None),
+    ("c8f5", 5, 1237),
+    ("c2c1", None, None),
+    ("d4c3", 4, mate(6)),
+    ("c1d1", None, None),
+    ("c3b3", 15, mate(17)),
+    ("d1e2", None, None),
+    ("b3c2", 9, mate(14)),
+)
+
+
+def capped_mate_answers():
+    answers, played = {}, []
+    for uci, mate_in, rival in CAPPED_MATE_LINE:
+        board = key(CAPPED_MATE_FEN, *played)
+        if mate_in is None:
+            answers[board] = [(uci, -MATE_SCORE + 10)]
+        else:
+            rival_move = next(
+                move.uci() for move in replay_board(played).legal_moves if move.uci() != uci
+            )
+            answers[board] = [(uci, mate(mate_in)), (rival_move, rival)]
+        played.append(uci)
+    answers[key(CAPPED_MATE_FEN, *played)] = [("e2e1", -mate(8))]
+    return answers
+
+
+def replay_board(moves):
+    board = chess.Board(CAPPED_MATE_FEN)
+    for uci in moves:
+        board.push_uci(uci)
+    return board
+
+
+def test_mate_themes_need_a_line_that_ends_in_checkmate():
+    root = chess.Board(BACK_RANK_FEN)
+    built, _ = build_line(Scripted(BACK_RANK), root, max_plies=13)
+    assert built.stop == "mate"
+    themes = line_themes(replay(root, built.solution), built, "back-rank")
+    assert {"mate", "mateIn2"} <= set(themes)
+
+    root = chess.Board(CAPPED_MATE_FEN)
+    built, reason = build_line(Scripted(capped_mate_answers()), root, max_plies=13)
+    assert reason is None and built.stop == "cap" and built.payoff == mate(8)
+    boards = replay(root, built.solution)
+    assert not boards[-1].is_checkmate()
+    themes = line_themes(boards, built, "capped")
+    assert "mate" not in themes and not any(theme.startswith("mateIn") for theme in themes)
+    assert "crushing" in themes
 
 
 def test_saved_scores_select_missed_mates_and_wins_only():

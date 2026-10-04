@@ -297,9 +297,10 @@ def line_themes(boards, built: Built, label: str) -> tuple[str, ...]:
     except ValueError:
         pass  # A line the tagger cannot frame still verified; labels are not a gate.
     decisions = len(built.decisions)
-    if is_mate(built.payoff):
+    # A mate score the line stops short of is a crushing win, not a mate puzzle.
+    if boards[-1].is_checkmate():
         themes.add("mate")
-        if built.stop == "mate" and decisions <= 5:
+        if decisions <= 5:
             themes.add(f"mateIn{decisions}")
     else:
         themes.add("crushing" if built.payoff > 600 else "advantage")

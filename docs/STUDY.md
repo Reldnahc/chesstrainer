@@ -115,8 +115,10 @@ one-move tactic, an ambiguous root or a thin payoff abstains, and a position
 already serving a ready puzzle for the account abstains as a duplicate.
 
 Kept lines become `source="games"` definitions keyed `game_id:ply`, with the
-vendored Lichess tagger's motifs plus Lichess-style goal (`mate` and `mateInN`,
-or `advantage`/`crushing`), length and phase themes, no rating, and provenance
+vendored Lichess tagger's motifs plus Lichess-style goal (`mate` and `mateInN`
+only when the kept line ends in checkmate, otherwise `advantage`/`crushing`, so a
+forced mate cut short by the cap or an ambiguous move is a crushing win), length
+and phase themes, no rating, and provenance
 naming the matchup, date, move number and the move actually played. Each row in
 `game_puzzles` records its status, abstention reason, root and verification
 analysis IDs, engine, depth and thresholds; `game_puzzle_searches` records one
