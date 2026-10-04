@@ -7,6 +7,7 @@ from sqlalchemy import select
 from trainer.accounts import COOKIE
 from trainer.api import create_app
 from trainer.chess_core import position_key
+from trainer.config import Settings
 from trainer.contracts.puzzles import PuzzleQuery
 from trainer.engine import Stockfish
 from trainer.imports import import_games
@@ -254,8 +255,8 @@ BACK_RANK = {
     key(BACK_RANK_FEN, "a2a8"): [("d8a8", -mate(1))],
     key(BACK_RANK_FEN, "a2a8", "d8a8"): [("a1a8", mate(1)), ("g1f1", -500)],
 }
-# A learner's game (session b11d17d3): Black has a forced mate, but the 13-ply cap
-# ends the line on Qc2+ with mate still eight moves away.
+# A learner's game (session b11d17d3): Black has a forced mate in 16. The old 13-ply
+# cap ended the line on Qc2+, seven Black moves in and still labeled mate.
 CAPPED_MATE_FEN = "2b1kbnr/pp4pp/1q1p4/3p4/3P4/PP3P2/2n1K1PP/5R2 b k - 0 18"
 CAPPED_MATE_LINE = (
     ("c2d4", 16, 1431),
@@ -305,8 +306,10 @@ def test_mate_themes_need_a_line_that_ends_in_checkmate():
     assert {"mate", "mateIn2"} <= set(themes)
 
     root = chess.Board(CAPPED_MATE_FEN)
-    built, reason = build_line(Scripted(capped_mate_answers()), root, max_plies=13)
-    assert reason is None and built.stop == "cap" and built.payoff == mate(8)
+    max_plies = Settings.model_fields["puzzle_generation_max_plies"].default
+    built, reason = build_line(Scripted(capped_mate_answers()), root, max_plies=max_plies)
+    assert reason is None and built.stop == "cap" and built.payoff == mate(10)
+    assert len(built.solution) == 9 and len(built.decisions) == 5
     boards = replay(root, built.solution)
     assert not boards[-1].is_checkmate()
     themes = line_themes(boards, built, "capped")

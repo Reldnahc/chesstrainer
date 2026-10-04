@@ -1,9 +1,10 @@
-"""Stop labeling own-game puzzles as mate when their line stops short of checkmate.
+"""Bring games-v1 own-game puzzles in line with the mate label and the five-move cap.
 
 games-v1 tagged any line with a mate-scored payoff as ``mate``, including lines
 cut by the length cap or an ambiguous move. Those are crushing wins; ready rows
-and the sessions that snapshot them are relabeled in place, so nothing is mined
-again.
+and the sessions that snapshot them are relabeled in place. Ready lines longer
+than the new nine-ply cap stop being served: they become abstentions with reason
+``too_long`` and keep their definition and evidence.
 """
 
 import chess
@@ -14,6 +15,9 @@ revision = "0dc741d4af1f"
 down_revision = "a1c3e5f7b9d1"
 branch_labels = None
 depends_on = None
+
+MAX_PLIES = 9
+READY = "status = 'ready' AND generator_version = 'games-v1'"
 
 
 def _relabeled(definition):
@@ -40,9 +44,30 @@ def _relabel(table, column, condition):
             db.execute(rows.update().where(rows.c.id == row_id).values({column: relabeled}))
 
 
+def _retire_long_lines():
+    db = op.get_bind()
+    puzzles = sa.table(
+        "game_puzzles",
+        sa.column("id", sa.String()),
+        sa.column("status", sa.String()),
+        sa.column("reason", sa.String()),
+        sa.column("definition", sa.JSON()),
+    )
+    for row_id, definition in db.execute(
+        sa.select(puzzles.c.id, puzzles.c.definition).where(sa.text(READY))
+    ):
+        if len(definition["solution"]) > MAX_PLIES:
+            db.execute(
+                puzzles.update()
+                .where(puzzles.c.id == row_id)
+                .values(status="abstained", reason="too_long")
+            )
+
+
 def upgrade():
-    _relabel("game_puzzles", "definition", "status = 'ready' AND generator_version = 'games-v1'")
+    _relabel("game_puzzles", "definition", READY)
     _relabel("puzzle_sessions", "snapshot", "puzzle_source = 'games'")
+    _retire_long_lines()
 
 
 def downgrade():

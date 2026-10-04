@@ -97,7 +97,7 @@ class Settings(BaseSettings):
     puzzle_generation: bool = True
     puzzle_generation_depth: int = Field(default=18, ge=1, le=40)
     puzzle_generation_time: float = Field(default=4.0, gt=0, le=30)
-    puzzle_generation_max_plies: int = Field(default=13, ge=3, le=25)
+    puzzle_generation_max_plies: int = Field(default=9, ge=3, le=9)
     puzzle_generation_games: int = Field(default=40, ge=1, le=500)
 
     def for_runtime(self):

@@ -108,7 +108,8 @@ unique by the pack verifier's margins in `puzzles/verification.py`: at least
 100 cp better than the second line, or a mate with no equal or faster rival mate.
 The opponent then plays the engine's best defence, not the move played in the
 game. The line continues until the next learner move is no longer unique, the
-position is mate, or `PUZZLE_GENERATION_MAX_PLIES` is reached, and is cut after
+position is mate, or `PUZZLE_GENERATION_MAX_PLIES` (9, so at most five learner
+moves) is reached, and is cut after
 the last learner move. It needs at least two learner decisions and must end in
 mate or at least +150 cp with the opponent to move. A forced first move, a
 one-move tactic, an ambiguous root or a thin payoff abstains, and a position
