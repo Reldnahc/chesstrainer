@@ -195,6 +195,43 @@ error). They frame the learner's own action in the coach's voice and must work f
 any course: no opening names, moves, step content, hints or claims about why a
 move is right. Do not expand the bank into course narration.
 
+### Dialogue writing and review rules
+
+These rules apply to every coach line written or reviewed, and are the rule
+source for writers and reviewers.
+
+- **Coach writing:** never write coach dialogue unless the owner explicitly asks
+  for that specific set. Never change a recorded line.
+- **Staying in character** is extremely important, with Rivet the most distinct.
+  Every set goes through independent reviews.
+- **Review loop until clean.** A coach is ready only when nothing is open: every
+  review ends with a complete fix list, optional polish included, or "ready for
+  recording". Never record without the owner's word.
+- **One ply = one playback.** No combined recordings.
+- **Refrain owners:** "saw it coming" Waffles; "the engine marks it strong"
+  Winston; "read/reads" Scout; lessons: "That's the lesson's move." Waffles;
+  "Play the move you studied." Wisp. Other coaches do not use them.
+- **Allowed overlap (owner rulings, not findings):** "two threats from one move"
+  and its variants may be shared by any coach; Monty's "Simple point:", "Big
+  picture:" and "Simple problem:" openers are exempt from the lead-in cap; Winston's
+  recorded "suggests it was hard" lines stay.
+- **Owner-word rule:** plain clips (`tactic-*`, `cause-*`, `positional-*`,
+  allowed/missed mate, sound sacrifice, `only-*`, opening/Book, immediate capture,
+  reply check, stronger alternative, evaluation loss, best/good choice) are
+  selected without checking whose move it was (`selectGameRecording` in
+  `gameSelection.ts`), so they can play on the opponent's move: no "you/your/our"
+  ownership there, and side-neutral emotion. Learner-only clips (`human-*`,
+  `recovery*`, `chance-*`, repeated issue, support restored, gradual erosion,
+  advantage converted, saved-history recurrence) and lines always addressed to the
+  learner may use them. Re-verify the gating if that selector changes.
+- **Facts:** no fork overclaims; pins can be several squares back; passed pawns
+  can be blocked; mate ideas aren't mates; "in the searched line"; no engine
+  rank/margin; open file = pawnless; semi-open = at least one enemy pawn;
+  population claims credited to the human-move model. A line claims only what is
+  true every time it can play.
+- **Numbers and settings:** don't invent config knobs or numbers the owner did not
+  ask for.
+
 ## 5. Approve the voice and record bounded batches
 
 Casting is complete: every cast coach's approved voice is recorded in
