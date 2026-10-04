@@ -15,18 +15,12 @@ import PlayGame from "./PlayGame";
 
 type Profile = Schema["PlayProfile"];
 type Opponent = Schema["PlayRequest"]["opponent"];
-type Commentary = Schema["PlayRequest"]["commentary"];
 type Color = Schema["PlayRequest"]["color"];
 
 // Measured ranges: Maia's rating dial scales play up to about 2500; Stockfish's
 // own limiter cannot imitate anyone weaker than a strong club player.
 const HUMAN = { min: 600, max: 2500, step: 50 } as const;
 const ENGINE = { min: 1800, max: 2600, step: 50 } as const;
-const COMMENTARY: readonly { value: Commentary; label: string }[] = [
-  { value: "live", label: "Live" },
-  { value: "request", label: "On request" },
-  { value: "after", label: "After the game" },
-];
 const COLORS: readonly { value: Color; label: string }[] = [
   { value: "random", label: "Random" },
   { value: "white", label: "White" },
@@ -55,7 +49,6 @@ function PlaySetup() {
   const [opponent, setOpponent] = useState<Opponent>("human");
   const [rating, setRating] = useState(1200);
   const [color, setColor] = useState<Color>("random");
-  const [commentary, setCommentary] = useState<Commentary>("live");
   const [error, setError] = useState("");
   const [starting, setStarting] = useState(false);
   useEffect(() => {
@@ -96,7 +89,7 @@ function PlaySetup() {
     try {
       const game = await read(
         api.POST("/api/play", {
-          body: { coach_id: coach.id, coach_name: coach.name, color, opponent, rating: chosen, commentary },
+          body: { coach_id: coach.id, coach_name: coach.name, color, opponent, rating: chosen },
         }),
       );
       navigate(playGamePath(game.id));
@@ -160,17 +153,9 @@ function PlaySetup() {
             <span>Your color</span>
             <ChoiceGroup label="Your color" options={COLORS} value={color} onChange={setColor} />
           </div>
-          <div className="play-field">
-            <span>{coach.name} talks</span>
-            <ChoiceGroup label="Commentary" options={COMMENTARY} value={commentary} onChange={setCommentary} />
-            <p className="small muted">
-              {commentary === "live"
-                ? "Every move is graded as you play, with the evaluation and the coach's reaction, like a review of a game in progress."
-                : commentary === "request"
-                  ? `${coach.name} stays quiet until you ask about the current move.`
-                  : "Nothing is shown during the game. The full review opens when it ends."}
-            </p>
-          </div>
+          <p className="small muted">
+            {coach.name} comments on every move as you play, with the evaluation and the graph, like a review of a game in progress. {coach.name} answers after having its say.
+          </p>
           <div className="button-row">
             <Button variant="primary" onClick={start} disabled={starting}>
               {starting ? "Starting…" : `Play ${coach.name}`}

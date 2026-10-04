@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import MoveBadge from "../MoveBadge";
 import ReviewCoach from "../ReviewCoach";
 import Button from "../Button";
@@ -40,6 +41,7 @@ export default function PositionCoach({
   speechPending = false,
   speechEventId,
   speechOpening = false,
+  onVoicePlaying,
 }: {
   game: Game;
   report?: Report | null;
@@ -60,6 +62,8 @@ export default function PositionCoach({
   speechPending?: boolean;
   speechEventId?: string;
   speechOpening?: boolean;
+  /** A live game waits for the coach's line to finish before the bot answers. */
+  onVoicePlaying?: (playing: boolean) => void;
 }) {
   const reaction = gameReaction({
     key: positionKey,
@@ -121,6 +125,9 @@ export default function PositionCoach({
   const voice = useCoachSpeech({scopeKey: `game:${positionKey}`, recordingId, utterance: opener ? undefined : utterance,
     automaticEventId: speechOpening && (!preferencesReady || reviewStarting) ? null : speechEventId, ready: !speechPending,
     manualRecordingIds: [primaryId, explaining ? null : speech.recordingId].filter((id): id is string => !!id)});
+  useEffect(() => {
+    onVoicePlaying?.(voice.playing);
+  }, [voice.playing, onVoicePlaying]);
   return (
     <ReviewCoach
       reaction={{...reaction, state: utterance.expression}}

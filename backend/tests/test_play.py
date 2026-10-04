@@ -73,34 +73,34 @@ def test_a_game_against_the_bot_is_played_commented_and_saved(settings, stockfis
             "/api/play",
             json={"coach_id": "dragon", "coach_name": "Ember", "color": "white", "rating": 1000},
         ).json()
-        assert started["status"] == "active" and started["commentary"] == "live"
+        assert started["status"] == "active"
         assert started["white"] == "You" and started["black"] == "Ember (bot)"
         assert started["reply"] is None and len(started["frames"]) == 1
         stale = client.post(f"/api/play/{started['id']}/move", json={"ply": 3, "uci": "e2e4"})
         assert stale.status_code == 409
-        after = client.post(
+        moved = client.post(
             f"/api/play/{started['id']}/move", json={"ply": 0, "uci": "e2e4"}
         ).json()
+        # The learner's move is saved and returned before any engine or model work.
+        assert moved["reply"] is None and len(moved["frames"]) == 2 and not provider.calls
+        after = client.post(f"/api/play/{started['id']}/reply").json()
         assert after["reply"]["ply"] == 2 and after["reply"]["source"] == "human"
-        assert after["reply"]["think_ms"] == 320
         assert len(after["frames"]) == 3 and after["frames"][1]["uci"] == "e2e4"
         assert provider.calls and provider.calls[-1].conditioning.self_rating == 1000
+        # Asking again after the bot has moved repeats that move instead of playing another.
+        repeated = client.post(f"/api/play/{started['id']}/reply").json()
+        assert repeated["reply"] == after["reply"] and len(repeated["frames"]) == 3
         assert client.get("/api/play/active").json()["game"]["id"] == started["id"]
         analysis = client.post(f"/api/play/{started['id']}/analyze", json={"ply": 1}).json()
         assert analysis["report"]["label"] in {"Book", "Best", "Good", "Great"}
         assert analysis["report"]["human"]["status"] == "available"
         again = client.get(f"/api/play/{started['id']}").json()
         assert again["frames"][1]["report"]["label"] == analysis["report"]["label"]
-        offered = client.post(f"/api/play/{started['id']}/draw").json()
-        # The fixture policy is uniform, so the bot's reply may already be losing.
-        if offered["status"] == "active":
-            assert offered["draw_declined"] is True
-            finished = client.post(f"/api/play/{started['id']}/resign").json()
-            assert finished["result"] == "0-1" and finished["termination"] == "resignation"
-        else:
-            finished = offered
-            assert finished["result"] == "1/2-1/2" and finished["termination"] == "agreement"
+        assert client.post(f"/api/play/{started['id']}/draw").status_code in {404, 405}
+        finished = client.post(f"/api/play/{started['id']}/resign").json()
+        assert finished["result"] == "0-1" and finished["termination"] == "resignation"
         assert finished["status"] == "finished" and finished["saved_game_id"]
+        assert client.post(f"/api/play/{started['id']}/reply").json()["reply"] is None
         library = client.get(f"/api/games/{finished['saved_game_id']}").json()
         assert library["orientation"] == "white" and library["black"] == "Ember (bot)"
         assert [f["uci"] for f in library["frames"][1:]] == [f["uci"] for f in after["frames"][1:]]
@@ -125,7 +125,9 @@ def test_the_bot_moves_first_as_white_and_an_abandoned_game_is_not_saved(setting
             "/api/play",
             json={"coach_id": "classic", "coach_name": "Walter", "color": "black", "rating": 1400},
         ).json()
-        assert first["reply"]["ply"] == 1 and first["frames"][1]["actor"] == "white"
+        assert first["reply"] is None and len(first["frames"]) == 1
+        opened = client.post(f"/api/play/{first['id']}/reply").json()
+        assert opened["reply"]["ply"] == 1 and opened["frames"][1]["actor"] == "white"
         second = client.post(
             "/api/play",
             json={"coach_id": "classic", "coach_name": "Walter", "color": "black", "rating": 1400},

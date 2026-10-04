@@ -2,6 +2,7 @@
 
 import random
 
+import chess
 from fastapi import APIRouter, HTTPException
 from sqlalchemy import select
 
@@ -22,8 +23,6 @@ from trainer.play.sessions import (
     analyze_ply,
     board_for,
     board_outcome,
-    bot_accepts_draw,
-    bot_resigns,
     bot_to_move,
     choose_reply,
     finish,
@@ -67,11 +66,8 @@ def create_router(*, settings, fits: LevelFits | None = None) -> APIRouter:
                 raise HTTPException(503, str(exc)) from exc
 
     def apply_reply(db, play, choice, name):
-        """The bot answers, and the game ends here when the board or the bot says so."""
+        """The bot answers, and the game ends here when the board says so. It never resigns."""
         if choice is None or play.status != "active":
-            return None
-        if bot_resigns(play, choice):
-            finish(db, play, "1-0" if learner_is_white(play) else "0-1", "resignation", name)
             return None
         play.moves = [*play.moves, choice.uci]
         board = board_for(play)
@@ -82,20 +78,21 @@ def create_router(*, settings, fits: LevelFits | None = None) -> APIRouter:
             "ply": len(play.moves),
             "san": choice.san,
             "uci": choice.uci,
-            "think_ms": choice.think_ms,
             "source": choice.source,
         }
 
-    def answer(workspace, play_id, name):
-        """Reply to the learner's committed move, then return the saved state."""
-        with workspace.sessions() as db:
-            play = require_play(db, play_id)
-        choice = compute_reply(workspace, play)
-        with workspace.sessions() as db:
-            play = require_play(db, play_id)
-            reply = apply_reply(db, play, choice, name)
-            db.commit()
-            return state(play, name, reply)
+    def last_reply(play):
+        """A repeated reply request after the bot has moved returns that same move."""
+        if not play.moves:
+            return None
+        board = board_for(play, len(play.moves) - 1)
+        move = chess.Move.from_uci(play.moves[-1])
+        return {
+            "ply": len(play.moves),
+            "san": board.san(move),
+            "uci": move.uci(),
+            "source": "human",
+        }
 
     @router.get("/api/play/profile", response_model=PlayProfile)
     def level_profile(workspace: CurrentWorkspace):
@@ -130,14 +127,13 @@ def create_router(*, settings, fits: LevelFits | None = None) -> APIRouter:
                     opponent_kind=data.opponent,
                     opponent_rating=data.rating,
                     learner_rating=profile["default_rating"],
-                    commentary=data.commentary,
+                    commentary="live",
                     moves=[],
                     reports={},
                 )
                 db.add(play)
                 db.commit()
-                play_id = play.id
-            return answer(workspace, play_id, name)
+                return state(play, name)
 
     @router.get("/api/play/{play_id}", response_model=PlayState, response_model_exclude_unset=True)
     def game_state(workspace: CurrentWorkspace, play_id: str):
@@ -165,17 +161,35 @@ def create_router(*, settings, fits: LevelFits | None = None) -> APIRouter:
                 except ValueError as exc:
                     raise HTTPException(422, str(exc)) from exc
                 play.moves = [*play.moves, move.uci()]
-                play.draw_declined = False
                 board.push(move)
                 outcome = board_outcome(board)
                 if outcome:
                     finish(db, play, *result_for(outcome), name)
-                # The learner's move is saved before any engine work, so a slow or
-                # failed reply never loses it.
+                # The learner's move is saved and shown before any engine work; the
+                # client asks for the reply separately, so the board never waits.
                 db.commit()
-                if outcome:
-                    return state(play, name)
-            return answer(workspace, play_id, name)
+                return state(play, name)
+
+    @router.post(
+        "/api/play/{play_id}/reply", response_model=PlayState, response_model_exclude_unset=True
+    )
+    def bot_reply(workspace: CurrentWorkspace, play_id: str):
+        with workspace.mutation_lock:
+            with workspace.sessions() as db:
+                play = require_play(db, play_id)
+                name = learner_name(db, workspace)
+                if not bot_to_move(play, board_for(play)):
+                    return state(play, name, last_reply(play) if play.status == "active" else None)
+            choice = compute_reply(workspace, play)
+            with workspace.sessions() as db:
+                play = require_play(db, play_id)
+                reply = (
+                    apply_reply(db, play, choice, name)
+                    if bot_to_move(play, board_for(play))
+                    else last_reply(play)
+                )
+                db.commit()
+                return state(play, name, reply)
 
     @router.post(
         "/api/play/{play_id}/analyze",
@@ -219,28 +233,6 @@ def create_router(*, settings, fits: LevelFits | None = None) -> APIRouter:
             if play.status != "active":
                 raise HTTPException(409, "This game has finished.")
             finish(db, play, "0-1" if learner_is_white(play) else "1-0", "resignation", name)
-            db.commit()
-            return state(play, name)
-
-    @router.post(
-        "/api/play/{play_id}/draw", response_model=PlayState, response_model_exclude_unset=True
-    )
-    def offer_draw(workspace: CurrentWorkspace, play_id: str):
-        with workspace.mutation_lock, workspace.sessions() as db:
-            play = require_play(db, play_id)
-            name = learner_name(db, workspace)
-            if play.status != "active":
-                raise HTTPException(409, "This game has finished.")
-            board = board_for(play)
-            with workspace.variation_lock:
-                try:
-                    accepted = bot_accepts_draw(workspace.engine, play, board)
-                except EngineUnavailable as exc:
-                    raise HTTPException(503, str(exc)) from exc
-            if accepted:
-                finish(db, play, "1/2-1/2", "agreement", name)
-            else:
-                play.draw_declined = True
             db.commit()
             return state(play, name)
 

@@ -6266,12 +6266,6 @@
             "title": "Source",
             "type": "string"
           },
-          "think_ms": {
-            "maximum": 10000.0,
-            "minimum": 0.0,
-            "title": "Think Ms",
-            "type": "integer"
-          },
           "uci": {
             "title": "Uci",
             "type": "string"
@@ -6281,7 +6275,6 @@
           "ply",
           "san",
           "uci",
-          "think_ms",
           "source"
         ],
         "title": "PlayReply",
@@ -6342,16 +6335,6 @@
             "title": "Color",
             "type": "string"
           },
-          "commentary": {
-            "default": "live",
-            "enum": [
-              "live",
-              "request",
-              "after"
-            ],
-            "title": "Commentary",
-            "type": "string"
-          },
           "opponent": {
             "default": "human",
             "enum": [
@@ -6394,19 +6377,6 @@
           "coach_name": {
             "title": "Coach Name",
             "type": "string"
-          },
-          "commentary": {
-            "enum": [
-              "live",
-              "request",
-              "after"
-            ],
-            "title": "Commentary",
-            "type": "string"
-          },
-          "draw_declined": {
-            "title": "Draw Declined",
-            "type": "boolean"
           },
           "frames": {
             "items": {
@@ -6515,13 +6485,11 @@
           "learner_rating",
           "white_rating",
           "black_rating",
-          "commentary",
           "status",
           "result",
           "termination",
           "saved_game_id",
           "reply",
-          "draw_declined",
           "frames"
         ],
         "title": "PlayState",
@@ -11233,45 +11201,6 @@
         "summary": "Analyze Play Move"
       }
     },
-    "/api/play/{play_id}/draw": {
-      "post": {
-        "operationId": "offer_draw_api_play__play_id__draw_post",
-        "parameters": [
-          {
-            "in": "path",
-            "name": "play_id",
-            "required": true,
-            "schema": {
-              "title": "Play Id",
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PlayState"
-                }
-              }
-            },
-            "description": "Successful Response"
-          },
-          "422": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/HTTPValidationError"
-                }
-              }
-            },
-            "description": "Validation Error"
-          }
-        },
-        "summary": "Offer Draw"
-      }
-    },
     "/api/play/{play_id}/move": {
       "post": {
         "operationId": "play_move_api_play__play_id__move_post",
@@ -11319,6 +11248,45 @@
           }
         },
         "summary": "Play Move"
+      }
+    },
+    "/api/play/{play_id}/reply": {
+      "post": {
+        "operationId": "bot_reply_api_play__play_id__reply_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "play_id",
+            "required": true,
+            "schema": {
+              "title": "Play Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PlayState"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Bot Reply"
       }
     },
     "/api/play/{play_id}/resign": {
