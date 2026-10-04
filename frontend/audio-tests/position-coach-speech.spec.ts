@@ -99,7 +99,8 @@ for (const coachId of ["classic", "robot"] as const) {
   test(`${coachId}: a visible Maia chip leaves the real PositionCoach response objective only`, async ({page}) => {
     const fixture = await mount(page, coachId, enrichedGame);
     const initial = await state(page);
-    expect(initial.intentCodes).toContain("human_natural_error");
+    // Maia reaches only the chip; the coach's own intent never carries it.
+    expect(initial.intentCodes.some(code => code.startsWith("human_"))).toBe(false);
     expect(initial.renderedCodes).toContain("cause_abandoned_defender");
     expect(initial.renderedCodes.some(code => code.startsWith("human_"))).toBe(false);
     await expect(chip(page)).toBeVisible();

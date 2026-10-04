@@ -69,8 +69,10 @@ test("with voice off, a coach's bubble still shows its spoken line and offers no
 });
 
 test("without a spoken meaning the bubble keeps its written text and shows no moves line", async ({page}) => {
-  // A bubble whose only claim is a Maia reading has no spoken line.
-  await mount(page, "man-partner", games["human-without-objective"]);
+  // A legacy report without review semantics has no spoken line.
+  const legacy = structuredClone(games["human-without-objective"]);
+  legacy.frames[1].report!.intelligence = null;
+  await mount(page, "man-partner", legacy);
   const current = await state(page);
   await expect(bubble(page)).toHaveText(current.utteranceText);
   await expect(bubble(page)).not.toHaveAttribute("data-spoken", /./);
