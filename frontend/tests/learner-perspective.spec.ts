@@ -82,7 +82,7 @@ for (const game of games) {
     ] as const;
     for (const [kind, code, facts] of kinds) {
       // A restored defender is spoken only for a piece under attack on this move.
-      const frames = kind !== "support_restored" ? game.frames : game.frames.map((frame, index) => index !== ply ? frame
+      const frames: Game["frames"] = kind !== "support_restored" ? game.frames : game.frames.map((frame, index) => index !== ply ? frame
         : {...frame, report: {...frame.report!, intelligence: {...frame.report!.intelligence!, events: [
           ...frame.report!.intelligence!.events, {id: "restored-support", kind: "positional", actor: learner, confidence: "board_fact",
             importance: 50, evidence: recovery.evidence, facts: {feature: "piece_support", attacked: true}}]}}});
