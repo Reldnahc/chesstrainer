@@ -533,8 +533,10 @@ test('compact workspace keeps navigation reachable and settings focused on user 
     if (testInfo.project.name === 'mobile') {
       expect((await page.locator('header').boundingBox())!.height).toBeLessThanOrEqual(60);
       await expect(page.locator('main h1')).toHaveCSS('font-size', '22px');
+      // The phone header scrolls away with a long page (docs/PRODUCT.md) and is back at the top.
       await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
-      expect((await page.getByRole('navigation', {name: 'Main navigation'}).boundingBox())!.y).toBeGreaterThanOrEqual(0);
+      await page.evaluate(() => window.scrollTo(0, 0));
+      await expect(page.getByRole('navigation', {name: 'Main navigation'})).toBeInViewport();
     }
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   }
