@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-fork-played-pawn",
+      "label": "Tactic fork played pawn",
+      "text": "Interesting move: a pawn lands where it touches two targets, and the reply can't comfortably cover them both. Worth replaying to see how it got there."
+    },
+    "takeId": null
+  },
+  "requestHash": "66b18e49834307752ec186e6099aed0f947200dce6829b0eeceb39a206f5cb57",
+  "recordedAt": "2026-10-04T07:32:02.920Z",
+  "sha256": "be530cd311e3dbe7a4f8f6a9caf353253c6eba6eaeabed3e6654cae73b73eaa8",
+  "bytes": 29093,
+  "requestId": "yorWDitXfwxtQaD4rWMd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d66f8e15c77f28c6f9c7b7cc51018f6d6381ff2c9cf8298037c7c71f17e68d22",
+    "bytes": 149673
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

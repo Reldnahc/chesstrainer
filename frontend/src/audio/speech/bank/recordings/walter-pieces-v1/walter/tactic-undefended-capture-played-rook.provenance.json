@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-rook",
+      "label": "Tactic undefended capture played rook",
+      "text": "Look for the chance to take an undefended rook. Loose pieces are worth checking before settling on a move."
+    },
+    "takeId": null
+  },
+  "requestHash": "78e80744cfbd4e5366d564baf0921937e496664c8f5bf0d034ec433486a1d505",
+  "recordedAt": "2026-10-04T07:25:37.664Z",
+  "sha256": "5b157f130b8b6219aeac3dbfa98e697a5a79ee11d12ae8956784b1677d914f57",
+  "bytes": 20209,
+  "requestId": "omFxIPUvuCff5IMkCUPd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "59ffccde8b047cf02e596e3b5baa2d57203b9c1877914c75ea07b00d262262d4",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

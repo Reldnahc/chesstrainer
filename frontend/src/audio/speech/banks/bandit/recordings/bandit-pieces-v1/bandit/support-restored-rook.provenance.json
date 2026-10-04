@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "support-restored-rook",
+      "label": "Support restored rook",
+      "text": "The rook that got left loose earlier finally has a defender again. One less loose piece on the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "6e463fdf1bd20082872119112451d1b9014c4c0c12f18408ab69ae4e5c5040b9",
+  "recordedAt": "2026-10-04T07:37:10.656Z",
+  "sha256": "8766acb7c52b569f52592e2bfd8a6261809f50446520f04552dd0613038cd8e1",
+  "bytes": 20473,
+  "requestId": "GLEOtq6Pxoe8pp9SjTVb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "698965789decbd783ed46be272882933f1cf10c955bbc14c71132a6510822cf8",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

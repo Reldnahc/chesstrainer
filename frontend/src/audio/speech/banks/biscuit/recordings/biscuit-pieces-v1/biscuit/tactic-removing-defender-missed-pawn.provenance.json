@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed-pawn",
+      "label": "Tactic removing defender missed pawn",
+      "text": "Ooh, tricky stuff! With another move, a defending pawn would have been knocked out, its job left undone. This move skips that trick."
+    },
+    "takeId": null
+  },
+  "requestHash": "9a853e836f20f860c005c48354094bab099fc7df7d5ee7013a72b5eb33fcae13",
+  "recordedAt": "2026-10-04T07:38:19.933Z",
+  "sha256": "a5a11b1680cec0e7c8aa41d26545975cd97279aa8527c93d11ee80c59064e768",
+  "bytes": 30816,
+  "requestId": "3lSci9diea8fVzrhvp04",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e017b3450b9acc3759e183c1ff6c704e0d65a750491a75635ca03eb8e2c14def",
+    "bytes": 157196
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

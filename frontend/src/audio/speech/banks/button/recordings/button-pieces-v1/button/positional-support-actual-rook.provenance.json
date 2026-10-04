@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "positional-support-actual-rook",
+      "label": "Positional support actual rook",
+      "text": "A small connection forms. A rook that had no defender now has one."
+    },
+    "takeId": null
+  },
+  "requestHash": "2dfb06ffd251e88c9142e3bfb6fe7359ccd526c1874d6010559ee26300d5b860",
+  "recordedAt": "2026-10-04T07:31:31.129Z",
+  "sha256": "2bdc5336d8f0f1ed15770e198d274f1f6b0ea6e1315645453cdcd261340518b3",
+  "bytes": 16626,
+  "requestId": "rk5JKNMxTSx41owTXcpx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a40f785bf1b1b8bca21b8c4a5ac4ecfd0a5eee863db76828c8cc88b6e1725fb9",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-rook",
+      "label": "Explanation finding pin collected rook",
+      "text": "The pinned rook can't step off its line without exposing the king. As the moves play out, it's captured on that line."
+    },
+    "takeId": null
+  },
+  "requestHash": "a9541440243c3e262897496335150aae3e2d2a7a0b352ae86197ec9ce3962720",
+  "recordedAt": "2026-10-04T07:35:17.006Z",
+  "sha256": "3aad953119f88bac2fa6b25bbd17cce609ebb9566612741f4f30e04dd6477dad",
+  "bytes": 23027,
+  "requestId": "rozN3zGAoRJtASjSJd0d",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "743e55bba23c6bfd3915df69638db82563ee9c94ab7705abf91b5bfb14f9a17b",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

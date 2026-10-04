@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-ordinary-queen",
+      "label": "Explanation frame capture promotion ordinary queen",
+      "text": "A pawn takes a queen on the last rank, followed by promotion."
+    },
+    "takeId": null
+  },
+  "requestHash": "a1c360ce72eb1838da3cc8e7f0ee6dcb9fdb96e9485e578460ab6975d2fef18e",
+  "recordedAt": "2026-10-04T07:33:53.977Z",
+  "sha256": "1f75a9b27608eb0dea916e0760bca9669a5e0e3bb47c63ddaf1608b8fbcfea06",
+  "bytes": 13582,
+  "requestId": "cyAhbJAxZFlCRpazcNI7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "665d298c9a427ddb5d5f92767d0846784f94e75c4090e57b1568d281f41b0edb",
+    "bytes": 66499
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

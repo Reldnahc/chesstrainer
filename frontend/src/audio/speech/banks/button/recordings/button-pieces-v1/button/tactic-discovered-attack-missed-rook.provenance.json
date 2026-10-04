@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed-rook",
+      "label": "Tactic discovered attack missed rook",
+      "text": "Another move had a discovered attack in it. Moving the rook off the line would have uncovered a threat from the piece behind."
+    },
+    "takeId": null
+  },
+  "requestHash": "9d92053170a50e6bbbeeeaf9179b14bcfd4964ff43c2a945c95019c29e4029d9",
+  "recordedAt": "2026-10-04T07:30:29.431Z",
+  "sha256": "a22692b7be217ba5e4570a3118e43736fd4f5ed8eeab5ebd19591de5be37855f",
+  "bytes": 22810,
+  "requestId": "27h1fP8Mk8L18Rr2tqiK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "93f2b8f5cd24484297f42089abf8619a696e68276c10a67bb5a2f624630029db",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary-pawn",
+      "label": "Explanation frame capture move ordinary pawn",
+      "text": "A pawn is captured and leaves the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "e7e5f8c3e99036b60886034640af30e609b0e4246114bc1c2545771ebf3ebdff",
+  "recordedAt": "2026-10-04T07:33:55.259Z",
+  "sha256": "dc1563587f060caa82d910616da2b28f8ccde083146689915361670a2703f677",
+  "bytes": 9292,
+  "requestId": "oQmnGuh0Yjt6MY09w5TO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2efe25f4bff6164286fff3f4752dcc2aab434abaeef3a31149cdb5a29ebaaaa3",
+    "bytes": 44765
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

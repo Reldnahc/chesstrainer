@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "positional-support-actual-rook",
+      "label": "Positional support actual rook",
+      "text": "Support added. A rook that lacked a defender now has one."
+    },
+    "takeId": null
+  },
+  "requestHash": "6cca0eb7af6915f53ada82761614ca56d69ab3f27129de9b6048cf8a4dd4d708",
+  "recordedAt": "2026-10-04T07:27:58.012Z",
+  "sha256": "7e58eb8b35308ec5f39156a6623f2a726027a9887ed021ab8be228ac489ed303",
+  "bytes": 14028,
+  "requestId": "QyyrXQFds0VFXEZmnwlM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "60f437eddd4c43ee4ecc000172ffb5b4d916608e3a429f2700af59c579d026ac",
+    "bytes": 71515
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

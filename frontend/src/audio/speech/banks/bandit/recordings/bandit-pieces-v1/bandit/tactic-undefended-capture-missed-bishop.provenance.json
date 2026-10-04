@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-missed-bishop",
+      "label": "Tactic undefended capture missed bishop",
+      "text": "An undefended bishop was there for another move to take, and this one walks right past it. Loose pieces first, clever ideas second."
+    },
+    "takeId": null
+  },
+  "requestHash": "324525fedcc7ed944b09df27a73d79bcda7823ccfca393d0faa5d40d01effa2a",
+  "recordedAt": "2026-10-04T07:36:31.725Z",
+  "sha256": "c390b1183f893ce3771ad5cfdbc16bc0f3566a6ec30cbf010b903e43b9103401",
+  "bytes": 27689,
+  "requestId": "lMdMDJGr5BdMctywiNrv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "94171646f7da1bef4309cf4b20bde9777047d260bbd5a41126a11ca5171fe967",
+    "bytes": 142986
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

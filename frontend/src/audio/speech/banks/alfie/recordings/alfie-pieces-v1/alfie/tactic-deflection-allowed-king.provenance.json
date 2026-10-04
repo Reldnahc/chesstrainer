@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-king",
+      "label": "Tactic deflection allowed king",
+      "text": "A defender with an important job can be lured away from it. That's exactly the deflection this move allows the other side, aimed at the king. Ask what the king is covering now, and what could pull it off."
+    },
+    "takeId": null
+  },
+  "requestHash": "39a8c27169fb1cc801d2c307d709a74636e715ea7018e91cd3f7a98f68dfc3c1",
+  "recordedAt": "2026-10-04T07:34:52.169Z",
+  "sha256": "cf667485d02e65bbb6d94d51acc4d901badea8e147e90827cd05b557719367f6",
+  "bytes": 37671,
+  "requestId": "hsYYb4A9mZ1IOAuPvUdA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0e177f7874aaa1d43c7ff58bfb01ab5e37e0786eca74c56a0628315a4a4d0b5a",
+    "bytes": 191887
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

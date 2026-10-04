@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-pawn",
+      "label": "Explanation finding sole defender captured pawn",
+      "text": "The defending pawn falls first, and it was the only one. Then, later in these moves, the piece it guarded falls too. Remove the guard, then take the prize."
+    },
+    "takeId": null
+  },
+  "requestHash": "25130b87dfcbeb20b021844023195f4f4adf7baa70d84e734423891fa6a7dbca",
+  "recordedAt": "2026-10-04T07:42:47.193Z",
+  "sha256": "e5363952146ee6c8c3cecdb7664536b62b683dd1361885713122c90a342bc058",
+  "bytes": 33958,
+  "requestId": "DPrJjKYflyEhqg4SeWPm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "908c27e83f7375b44d10e2f08d79d553c05f8d415bd713a09b6b9c229c19bf7d",
+    "bytes": 176422
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-knight",
+      "label": "Explanation finding pin collected knight",
+      "text": "Keep an eye on the pinned knight. It's stuck on the line, since leaving would expose its king, and as these moves play out it gets captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "0f07be5240b2a4a0b93aa5f78746f18751a2ea708c295667eccb4a92ca4ae925",
+  "recordedAt": "2026-10-04T07:31:27.877Z",
+  "sha256": "3e9bfbae520dd77613fc45a9d64ef9ec5c353ab8ec12ca3d2d7bc452a8e45d8a",
+  "bytes": 28253,
+  "requestId": "dpZRTK6pnoydN0n69bnm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "25ef7606fd7f520c3055b4891a0636f6ac17c3fef9a9aa46db993f58f67d62b0",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

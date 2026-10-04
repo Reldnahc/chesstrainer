@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-rook",
+      "label": "Tactic deflection missed rook",
+      "text": "The other candidate would have drawn the defending rook away from its duty. Try it on the board and see what falls apart behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "915930b801ef1b6891f3ec7d100101209b8d42597a479ed84c3150cc7e4e479d",
+  "recordedAt": "2026-10-04T07:33:00.813Z",
+  "sha256": "291dad7b088f1aa28176e9cb01ff7a3bec4d9c5714666ce6a265b21e25d5da8e",
+  "bytes": 24784,
+  "requestId": "qYjpWFXwiUVb77EirE98",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2b1c134131851a4292b2d8232501bd91cddc8b882450de8d066db44243ecdb2f",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

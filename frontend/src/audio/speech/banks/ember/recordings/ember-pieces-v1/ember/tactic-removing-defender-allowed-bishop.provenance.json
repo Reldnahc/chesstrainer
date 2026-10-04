@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-bishop",
+      "label": "Tactic removing defender allowed bishop",
+      "text": "A defending bishop is now within the other side's reach. If it falls, the pieces it guards lose their cover. Know which pieces depend on it."
+    },
+    "takeId": null
+  },
+  "requestHash": "e70a745b5be273fdcf6ccb53ed9294c9f9474ea1607c43a3bfa9587792d7c388",
+  "recordedAt": "2026-10-04T07:41:59.953Z",
+  "sha256": "cab0ba4fbdc7052e15403c26a28ee69b9d76c7f562046e1f7bccd924b6248396",
+  "bytes": 29019,
+  "requestId": "n357Of6D4D1QMkiUZXhW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "64b307c1b40b368b7db24f0bae1593c200adfeb1a181dee6239f657985da3e33",
+    "bytes": 148419
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

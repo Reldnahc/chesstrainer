@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-king",
+      "label": "Tactic discovered attack played king",
+      "text": "The king in front clears out, and the piece behind it gets a free shot. A discovered attack: two pieces working, one move paid."
+    },
+    "takeId": null
+  },
+  "requestHash": "f660d84d7b9fc447835ae432afa9d37c34cf903f09ead71ec1b602cb443395dc",
+  "recordedAt": "2026-10-04T07:36:32.869Z",
+  "sha256": "6b9477141971e55faba794f1269f0e7699511a6f92878a4be7ff3b3efe6ec0d8",
+  "bytes": 27693,
+  "requestId": "Nxufrzk2lnFXi3Cw32Lf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "04fbd71fb773deee091390c1aea7aeb172bac423ff7c7abfb79c6a7992d8c030",
+    "bytes": 142986
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

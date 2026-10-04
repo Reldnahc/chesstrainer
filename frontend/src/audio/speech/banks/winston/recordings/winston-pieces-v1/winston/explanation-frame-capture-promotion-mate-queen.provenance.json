@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-mate-queen",
+      "label": "Explanation frame capture promotion mate queen",
+      "text": "The pawn takes a queen on the last rank and promotes, and that's checkmate, with no legal square left for the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "404ec4613cdb633c55b14ba52e9eafcb17c1a6673ed90cde77d01a878fc4c421",
+  "recordedAt": "2026-10-04T07:30:15.638Z",
+  "sha256": "385d3b3f8199469f1298043e0fe9bb62c5c2dbec6e0935f51bab1ae94c417142",
+  "bytes": 22049,
+  "requestId": "aKhI79grKU6vUYeIT99W",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0044463a61974ffa9230d00c7f3b67c01ebcadea7a8990e8f7a7d428caafb73a",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

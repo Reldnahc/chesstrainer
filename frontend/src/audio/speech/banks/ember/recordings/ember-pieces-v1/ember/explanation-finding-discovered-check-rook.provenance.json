@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check-rook",
+      "label": "Explanation finding discovered check rook",
+      "text": "Check comes from behind: the front piece moves, and the hidden rook strikes the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "38f2fd3f935889d91b1044f5434a352c3e59c74741a07509843c8cdec03bf82b",
+  "recordedAt": "2026-10-04T07:42:52.604Z",
+  "sha256": "644583e89a0ba3b1c67f229487dc303f25b0d8dc7cf7a88d4969c3106d7a8597",
+  "bytes": 17106,
+  "requestId": "xjuNyPBCIhZiQC8iXanp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e01c1fec5419cfe8e1b4bc2bd30c57125c75b29a8f3a379c52dae38e9afc0cc8",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

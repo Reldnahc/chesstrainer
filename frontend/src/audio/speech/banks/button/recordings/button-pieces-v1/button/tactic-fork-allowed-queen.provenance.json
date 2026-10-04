@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-fork-allowed-queen",
+      "label": "Tactic fork allowed queen",
+      "text": "Hm. A queen of theirs may soon have several errands to run. The other side gets a chance at a fork, that queen attacking several targets at once."
+    },
+    "takeId": null
+  },
+  "requestHash": "12bb8144522690a94e2fbbdb037e2edab17436a9c0933f8eeff6b59bdfd49687",
+  "recordedAt": "2026-10-04T07:30:38.363Z",
+  "sha256": "ae58e8e3c7a55104aef2bf5036b95408389e74d51912daf668192082e168abdb",
+  "bytes": 31140,
+  "requestId": "QYXoFfyhMcNGCU10vdOR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9d8af71b39cf7403392e0372e3213272436bd2f1b339a4451fe2c514791da146",
+    "bytes": 160958
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-escape-pawn",
+      "label": "Explanation frame capture move escape pawn",
+      "text": "This capture of a pawn also gets the king out of check."
+    },
+    "takeId": null
+  },
+  "requestHash": "086d7e441b6dfe5146d76207baa8f0c295dcec670ad5f510a4e8b8b03b4598d2",
+  "recordedAt": "2026-10-04T07:32:01.144Z",
+  "sha256": "f006c97bcf088aaae20fd3c10fe0e5247f8eebd3852f176f2aade4d8dd5a923e",
+  "bytes": 11882,
+  "requestId": "7isNzwUDgMp9veM9n6aZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0ed9280ba95bac3e3c382e72a36927d11b4d6af14e5eb147c4e03f09e2aea099",
+    "bytes": 57304
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

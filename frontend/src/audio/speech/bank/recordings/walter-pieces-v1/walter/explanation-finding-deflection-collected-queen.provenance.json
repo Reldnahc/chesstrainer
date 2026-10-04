@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-queen",
+      "label": "Explanation finding deflection collected queen",
+      "text": "Watch the defender move away from its job. The queen it leaves behind is then captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "a3f2d57617bf34c813b2e54152417b9ba560a1512c2578e97bce95f7a68c76ca",
+  "recordedAt": "2026-10-04T07:26:41.996Z",
+  "sha256": "20de85b8f701c4bdaba932ae1fa2378d488037dfc58121eb39893aa5894f1042",
+  "bytes": 18554,
+  "requestId": "1HyT2pEsjmjDm0C6bLJg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5be060d73fdb98dc422cb7244b4c091104fbc129eade6816569effa0627a195a",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

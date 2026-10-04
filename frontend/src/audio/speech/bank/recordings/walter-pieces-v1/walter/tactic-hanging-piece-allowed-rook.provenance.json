@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-hanging-piece-allowed-rook",
+      "label": "Tactic hanging piece allowed rook",
+      "text": "This gives the other side a chance to take an undefended rook. Look for what could be left without protection."
+    },
+    "takeId": null
+  },
+  "requestHash": "2524d077702a790b74ab24e4711d7096c125a0af48686f4e83fad96d1f482d87",
+  "recordedAt": "2026-10-04T07:25:52.545Z",
+  "sha256": "28e472090101d37d99c8439daa26c08450caf3350bee260832a2d3be8d755ec4",
+  "bytes": 21017,
+  "requestId": "JDp7skiZHINUc4jm4CCY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fcfda81deb4cd6377708cb5f1e13c4bf30fe31c99ba9e3d5b943984a95a214b9",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

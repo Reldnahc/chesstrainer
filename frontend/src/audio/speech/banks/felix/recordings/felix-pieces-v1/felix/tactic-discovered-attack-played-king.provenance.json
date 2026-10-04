@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-king",
+      "label": "Tactic discovered attack played king",
+      "text": "The king clears the line, and the piece it was screening gets to attack. Discovered attack, textbook."
+    },
+    "takeId": null
+  },
+  "requestHash": "4db4e21a8ce7edd976df0202b6ebd23e16b9897ecd85cf79c4c8565d5ae4a23f",
+  "recordedAt": "2026-10-04T07:43:38.198Z",
+  "sha256": "dd8b9fcc08064614d3134feb7f4a70f6555fff4761894ba6d39d3a142e50dd41",
+  "bytes": 20696,
+  "requestId": "gGOEXVhlK1YUJSrnf9i6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5db53ab4a559f0bad1730ca2938bcc28791ea2152d7f05a3d9dfbbc0062de702",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

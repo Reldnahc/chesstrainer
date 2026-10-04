@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed-queen",
+      "label": "Tactic discovered attack allowed queen",
+      "text": "Behind a queen on the other side, an attack is waiting to be released. Once that queen steps aside, the piece behind it is free to strike."
+    },
+    "takeId": null
+  },
+  "requestHash": "4ea904e1461b384e1f4594e7327b1521591416222687b58b04470c44d932215b",
+  "recordedAt": "2026-10-04T07:40:24.455Z",
+  "sha256": "66ad28d143f5a14ba60e7c3a1d0435b6cc639229f2631e5f34d44f7935604d29",
+  "bytes": 30220,
+  "requestId": "haxAlgogmvAOVkVV9j8z",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "21f2eec0eb09b1e57375ed93148a91d91bc6d0f3f68a8e6961f3daafa9312e10",
+    "bytes": 153435
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

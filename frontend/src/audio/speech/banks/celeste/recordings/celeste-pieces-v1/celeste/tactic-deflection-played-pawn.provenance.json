@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "tactic-deflection-played-pawn",
+      "label": "Tactic deflection played pawn",
+      "text": "Such a lovely deflection, luring the defending pawn from its duty so the connection it held falls apart."
+    },
+    "takeId": null
+  },
+  "requestHash": "b2feac916c619a0694eb6313e2caf9115ce69e381a72f9effab7812966e4a4c1",
+  "recordedAt": "2026-10-04T07:40:26.398Z",
+  "sha256": "d3b1b7cb7243a149ef2c4cd7de081727e3794d6b3acd800f6c145b09efe9f206",
+  "bytes": 23255,
+  "requestId": "BagfGqpWmbuWKzKpU0Lm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "56a409660b4b05f3352f14ab3de119749ce90e39111ad8f4b3207a6f7e6b0095",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-bishop",
+      "label": "Tactic discovered attack played bishop",
+      "text": "The bishop moves out of the way, uncovering an attack from another piece. That is the discovered-attack pattern."
+    },
+    "takeId": null
+  },
+  "requestHash": "91dbdb89babbcdf0d448db06a5ee6f7fcc74b55f686997e6e1e2ffa7a10dbd8b",
+  "recordedAt": "2026-10-04T07:27:18.933Z",
+  "sha256": "67e6ebe5c0f280e504823d2eae6193ad616fb3d0da5a1a4f1c5ba58820c7db5a",
+  "bytes": 22225,
+  "requestId": "QVrHKaGg53AmiW33svTs",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "030df8e3538ede575b332e5dc0e6fc451460e77d87a3b710ae8e00d0dfaa5b12",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

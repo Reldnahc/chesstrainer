@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary-pawn",
+      "label": "Explanation frame capture move ordinary pawn",
+      "text": "This move captures a pawn."
+    },
+    "takeId": null
+  },
+  "requestHash": "c6f8cafa18376e45fbf2162b6d08dff3301f22ebd160eb9dcd9cd9a9f79172c7",
+  "recordedAt": "2026-10-04T07:27:02.999Z",
+  "sha256": "7633913f3b383df7ce585d9a3bb08ad1b3ae93347b684c1627612e2e505d5d72",
+  "bytes": 7121,
+  "requestId": "EbETlyWyVro4984iQCBC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f96afcf404162b8c35ba2303e986b7c1198bdc2ef0849c812d46f2bbc6cdf9a9",
+    "bytes": 33062
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

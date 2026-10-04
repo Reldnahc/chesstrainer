@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check-bishop",
+      "label": "Explanation finding discovered check bishop",
+      "text": "The front piece clears off, and the bishop it was masking checks the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "1eb27d06546cdd20e2a8a243eac43dd8de44bcff85c61fbf4212ed36d088dd04",
+  "recordedAt": "2026-10-04T07:46:09.581Z",
+  "sha256": "b5bb8b06fa6f26c0cfcc0dd732c9588092796d3e70d0228c7f4283e63eddb7c9",
+  "bytes": 15456,
+  "requestId": "3p314Jg7eyMDfmp1cLiD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6f886d0f660455c55e9761055efd0a1e9d463b73514ab874f763d7ea9c544eef",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

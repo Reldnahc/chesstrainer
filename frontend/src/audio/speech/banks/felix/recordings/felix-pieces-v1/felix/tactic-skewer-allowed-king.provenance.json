@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed-king",
+      "label": "Tactic skewer allowed king",
+      "text": "A skewer is now on offer to the other side. Once the king is checked off the line, whatever stands behind it may be exposed."
+    },
+    "takeId": null
+  },
+  "requestHash": "8928a45adce000bb3a22e2cf7ea8bcf46e8b579c13c37a2996ce45f4171e6397",
+  "recordedAt": "2026-10-04T07:43:58.972Z",
+  "sha256": "481cc09443917f080af484a07a41b2aabbc2d681aa4361f4594afa694b74f32b",
+  "bytes": 27746,
+  "requestId": "MTWNyOVVyg3DMfxfr7mx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cdf40efd768e5e52251d5cc3d8fba418d48e994d5db5c77c4c275a5e42d6fca8",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

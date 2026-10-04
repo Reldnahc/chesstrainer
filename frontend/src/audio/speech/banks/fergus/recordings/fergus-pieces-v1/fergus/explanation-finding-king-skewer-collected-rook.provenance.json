@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "explanation-finding-king-skewer-collected-rook",
+      "label": "Explanation finding king skewer collected rook",
+      "text": "The king, being in check, steps off the line, and the same attacker takes the rook behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "777df34e1a8844346620c9f0d5ab15b437f942a481cb9f05458dfb7dd4e072be",
+  "recordedAt": "2026-10-04T07:47:48.357Z",
+  "sha256": "0720844e0b18c348e3a6b15c30ea525621923fd3946179d51cf655612d452913",
+  "bytes": 20321,
+  "requestId": "MQr0HHVnGutjx2MRqwOR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4f60005f239788dee940a79a83ecc309648d7b13d343875211a52b6cf0fc15d8",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

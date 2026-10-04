@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "tactic-skewer-played-queen",
+      "label": "Tactic skewer played queen",
+      "text": "Now that's a skewer! Go after the queen in front, and once it gets out of the way, the piece behind it is open for business. The prize is usually whatever sits in the back."
+    },
+    "takeId": null
+  },
+  "requestHash": "c249280c4b3a5648dbbd5045edfeb95310a7e0e54408e6c80fbd8eed87706a85",
+  "recordedAt": "2026-10-04T07:36:40.406Z",
+  "sha256": "203dfc69af8da144e938607d982ddf6a37b8768242b7a47487080af522a4636f",
+  "bytes": 34408,
+  "requestId": "gp3GEgTddmlIUydNrzWQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b65488b46017bedd50b65c30ce24a7da6f655ae968f6143f1e5545311792632f",
+    "bytes": 176422
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

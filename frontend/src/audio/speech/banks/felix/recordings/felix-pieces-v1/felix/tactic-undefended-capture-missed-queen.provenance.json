@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-missed-queen",
+      "label": "Tactic undefended capture missed queen",
+      "text": "An undefended queen was available to another move. This one leaves it standing. Loose pieces get billed."
+    },
+    "takeId": null
+  },
+  "requestHash": "4babde9ec68f81fd7aa9a7ed12361101b686eb12a5e8e36b1f60020766c26d74",
+  "recordedAt": "2026-10-04T07:43:42.376Z",
+  "sha256": "91ed1fd293d3f534f82fc9c9526ab7e90844ca57f9c6a1f7f056d5200404a244",
+  "bytes": 23912,
+  "requestId": "z5jXSbxY3FmwzELBPRfg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "246659b36b806474c0f3307d1650078748074d77417a5739044ba6a719507d9a",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

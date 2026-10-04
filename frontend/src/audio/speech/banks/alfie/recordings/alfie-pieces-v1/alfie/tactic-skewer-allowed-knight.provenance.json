@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed-knight",
+      "label": "Tactic skewer allowed knight",
+      "text": "When two pieces share a line, an attack on the first can reach the second. The other side now has a skewer: if the knight in front gives way, the piece behind it could come under attack. Shared lines like that are worth checking before each move."
+    },
+    "takeId": null
+  },
+  "requestHash": "717ceb5a849f9da8ead1bbb91fc220fa41d56a3d2eaf1e3df3f4a9ac8604abeb",
+  "recordedAt": "2026-10-04T07:34:43.487Z",
+  "sha256": "c3f6845ef90c234904ce69c9b4d0bd2b7d15dce995fb0c5b9dc74b87b4721bb3",
+  "bytes": 44868,
+  "requestId": "mx0LmdU5AFwZUTJg4oRW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8f3317c3f9abeda6d93838bd383021f58f11ff1e8e0f806373474b0f9320a70c",
+    "bytes": 232847
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

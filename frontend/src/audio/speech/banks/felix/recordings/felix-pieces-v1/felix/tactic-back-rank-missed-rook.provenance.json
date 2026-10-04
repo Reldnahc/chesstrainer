@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "tactic-back-rank-missed-rook",
+      "label": "Tactic back rank missed rook",
+      "text": "Another move had a back-rank mate idea for the rook, against the king stuck behind its own pieces. This move strolls on by."
+    },
+    "takeId": null
+  },
+  "requestHash": "12c006fac922a26eb9f812914d93e622bbdf06fa4e28126ffa9027b32e2ca5f5",
+  "recordedAt": "2026-10-04T07:44:18.802Z",
+  "sha256": "53031c7770fb817215a267df9dfbf7c0132be7a32f5f358f58bfa532e56fde65",
+  "bytes": 28054,
+  "requestId": "bkv3SulMtipo1sD9fDED",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b1116505de603ff0f4a14feffd44c7f3ad4c643acc3c7725db23c38e485e52a6",
+    "bytes": 141732
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-back-rank-missed-rook",
+      "label": "Tactic back rank missed rook",
+      "text": "There was a route to a back-rank mate with the rook. This move lets that chance slip away."
+    },
+    "takeId": null
+  },
+  "requestHash": "eb72cb49268a7d7acfa7b6f62d80ed1ea2006042ea7bb04b946c900658a956a6",
+  "recordedAt": "2026-10-04T07:26:25.951Z",
+  "sha256": "287f580f66b71b1ad6c10316bd382109434472870d24caf62a0cbe6e4adbe40b",
+  "bytes": 17606,
+  "requestId": "KfaDU74GTCbY9l2h300r",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c9a7b963eaa496dd9ee097275ee4bb3e6c4a6332e5a196c94e856cdd06c5b0f2",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

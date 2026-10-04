@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-rook",
+      "label": "Tactic deflection allowed rook",
+      "text": "The defending rook can be drawn away now. Look at what it holds together, because that is what would come apart."
+    },
+    "takeId": null
+  },
+  "requestHash": "0cf55fba1135c0cb3491d9c484309fae98607525d805cf9160a55c00d25c0966",
+  "recordedAt": "2026-10-04T07:40:42.606Z",
+  "sha256": "d89fb529e7de13a192e126804717788e93e2a2bc5ce9b59dc5a50d5735bd6758",
+  "bytes": 22601,
+  "requestId": "NKtsTq4LbvIl6ZIIxNTd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8d5f73fda20f766f3f5c1eebf25f85979bb74563fe9ed488728a85ff82169733",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-rook",
+      "label": "Tactic discovered attack played rook",
+      "text": "Sometimes the most important piece in a move is the one that doesn't move. Here a rook steps out of the way and uncovers an attack from the piece behind it. So look at the line it opens, not just the square it lands on."
+    },
+    "takeId": null
+  },
+  "requestHash": "c82b651491c89a64b6003bf9be3ff0fea10186ab534a871d2d3d94358242bcbd",
+  "recordedAt": "2026-10-04T07:34:25.057Z",
+  "sha256": "290e9857fbc903755131d2bb30d923f98f5b4dc5cf2407acf876b115cdd0c6f4",
+  "bytes": 42941,
+  "requestId": "ibLup0xMWx56Zo1aryS4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0d6dbecd6cfbdb4c36224ee142ee59a4d10a3308fba7a84327a49d3aa2bc7ed5",
+    "bytes": 219890
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

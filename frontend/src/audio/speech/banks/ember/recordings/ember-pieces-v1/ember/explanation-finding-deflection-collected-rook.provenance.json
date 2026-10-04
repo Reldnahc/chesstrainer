@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-rook",
+      "label": "Explanation finding deflection collected rook",
+      "text": "The defender is dragged off its duty, and the rook it had to guard goes next."
+    },
+    "takeId": null
+  },
+  "requestHash": "2c73bf257afed8a1668036da3a397722337d55fd5f1ec10a9f89d118c37e34e8",
+  "recordedAt": "2026-10-04T07:43:02.672Z",
+  "sha256": "5d4a1defc00cdd5021fa1ea154512a2114915f24c130418027aa165cb8f41d36",
+  "bytes": 15729,
+  "requestId": "u5b5EaohnCXEQCL00pUD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6bd6fe38fb4a5e87974d76295c7376c27a3c8aff6b48b5e574fa68d4da0d6e59",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

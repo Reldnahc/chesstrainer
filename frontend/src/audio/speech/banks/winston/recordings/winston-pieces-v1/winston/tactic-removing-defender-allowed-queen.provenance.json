@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-queen",
+      "label": "Tactic removing defender allowed queen",
+      "text": "That leaves a defending queen open to capture, and what it guards could be left without protection. Start with what that queen's covering now."
+    },
+    "takeId": null
+  },
+  "requestHash": "397bdcc1102a1974b621af3564112a913eb10ec7c647703de32d775d87cf99f0",
+  "recordedAt": "2026-10-04T07:29:02.824Z",
+  "sha256": "5a769d84ddfa7dad9f2eb737b006d5e39eb5d4f95094f00da249a7a0ed9f6e84",
+  "bytes": 25861,
+  "requestId": "rFeET3s7iUvT5yX3idbN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "561daa0c084241018a48776cbf81ef59441390a25ef4ff7778fdc13ae3ace1db",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-queen",
+      "label": "Explanation finding deflection collected queen",
+      "text": "The defender's pulled off what it was guarding, and that queen is then captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "30b85aa151283118d53c9556cf4081440535a083c2749d9241e264f920f7abbf",
+  "recordedAt": "2026-10-04T07:30:02.304Z",
+  "sha256": "0d409cd3d3b9600647094796a1bfc3835dd0380c6771c6997c8827715e25e7df",
+  "bytes": 14950,
+  "requestId": "Xfl1X1ONgJIeU50yPyEN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ef48d23287b21287516e1aa8c9d85c0ea47a1ec328f05d6331971e319cc174a2",
+    "bytes": 74022
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed-bishop",
+      "label": "Tactic discovered attack missed bishop",
+      "text": "Another move had a discovered attack in it. Moving the bishop off the line would have uncovered a threat from the piece behind."
+    },
+    "takeId": null
+  },
+  "requestHash": "0ecda296b8993865c3d033c5a63b6744b2e83cddbaccbc08ff661fedc0fbb3f4",
+  "recordedAt": "2026-10-04T07:31:12.429Z",
+  "sha256": "3bf935be1f736b3fd2d292a6e8c244b4729b0d1e1f8b8714cbbd6ffe7df6ece3",
+  "bytes": 23443,
+  "requestId": "wDIyrBfibz328CrqgbLR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "52a7fbe8c99105d80841667a7fa27a4e8684052449afd18b51a9db4a40b80968",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

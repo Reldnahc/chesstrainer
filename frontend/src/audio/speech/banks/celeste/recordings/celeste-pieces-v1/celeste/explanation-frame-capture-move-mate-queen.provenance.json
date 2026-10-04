@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate-queen",
+      "label": "Explanation frame capture move mate queen",
+      "text": "A queen is captured, and the game is over: checkmate, with no square left for the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "9fbae3ba2f0f4f64fb08795ccf475b92f87035b76fde7c309cd9b3b6c63c2e49",
+  "recordedAt": "2026-10-04T07:41:23.928Z",
+  "sha256": "3401362c71ed7b9a761ad94ea87ee54c1db14a278d7a2560c0124a40f11892de",
+  "bytes": 21107,
+  "requestId": "LHvzLS2qtVe9BSalFjFR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ca9e4f57a5c3f22380afb4c5e679f14d662b8ad7e2aa2c01b57da467c7aa4059",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

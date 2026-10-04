@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "explanation-finding-pin-prevents-capture-knight",
+      "label": "Explanation finding pin prevents capture knight",
+      "text": "That knight is not allowed to make the capture: it is pinned, and leaving the line would leave its own king in check, which is illegal."
+    },
+    "takeId": null
+  },
+  "requestHash": "a4cb48b8bfc12628733770cf7563adba26356ef710a29b0bf948fd70f02d4912",
+  "recordedAt": "2026-10-04T07:44:27.160Z",
+  "sha256": "dc73bb8ce5f9bb8dc59534805ca9c7aa6c759fff5c6d9e730f155370d2792ef9",
+  "bytes": 26119,
+  "requestId": "VoAjvrJozcvxQMbssjDt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "24bc6ea791ad5bdf4251afd103c91bbec044416518ad6b17a9edf21d1030121d",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

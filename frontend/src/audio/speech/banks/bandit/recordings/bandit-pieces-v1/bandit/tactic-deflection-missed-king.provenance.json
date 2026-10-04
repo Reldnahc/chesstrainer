@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-king",
+      "label": "Tactic deflection missed king",
+      "text": "Another move had a way to lure the king off its defensive job. That deflection goes unused, and the king keeps its job."
+    },
+    "takeId": null
+  },
+  "requestHash": "05fb28d15293aba18fcf436db9947c403da45b53fcf899ddd8de7988b6fde158",
+  "recordedAt": "2026-10-04T07:36:54.931Z",
+  "sha256": "bf7d743fcdf2835c8b235cdb896a72eaa8fbeab841985ba5524622331f26a9a4",
+  "bytes": 26238,
+  "requestId": "E83PCDoXar36bR3Pkoeq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "74a11904b5ab72be2d4a4635e3f069db4ea24c641c92a57530252bfe6508951e",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

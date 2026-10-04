@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed-knight",
+      "label": "Tactic skewer allowed knight",
+      "text": "Well, there's a skewer in it for the other side: if the knight in front has to move, whatever stands behind it could be exposed. Mind what's sitting behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "7e7862c05c89ae86b8490ffb5444df829d95bb807195f0ea94c09655e2a42e53",
+  "recordedAt": "2026-10-04T07:29:09.528Z",
+  "sha256": "c80223c02226365f3d5680005bd90c07c2cfc66c213df779779b2dc7a2d266f7",
+  "bytes": 29737,
+  "requestId": "RClKLBOCkFCyz4tKxM8s",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3b02e4b00fb6841d6ead24b854fb50ccd6f91dec72edd241bebec4123d663374",
+    "bytes": 154688
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed-rook",
+      "label": "Tactic skewer allowed rook",
+      "text": "This leaves a rook and the piece behind it on one line for the other side to skewer. Once the rook shifts, whatever stands behind it may be laid open."
+    },
+    "takeId": null
+  },
+  "requestHash": "465e526ce28dafe96530c0f5dc67ad2e4d5839bb6852bb18d59e191e840ceaea",
+  "recordedAt": "2026-10-04T07:42:08.573Z",
+  "sha256": "f8783d172ce57bab99a86830b0ac2e7ae5eca24b2716c9b9909f0cc847bed66b",
+  "bytes": 30077,
+  "requestId": "UKrxoLSDustDJRhgKtdF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8c0374c8a54b0ec0b99d18323d52c5c20394622d1fb9168bfba23f1fd65f7931",
+    "bytes": 152181
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "tactic-skewer-played-king",
+      "label": "Tactic skewer played king",
+      "text": "A skewer, clean and straight along the line. The king in front is checked and must yield, and what it was sheltering is left in the open."
+    },
+    "takeId": null
+  },
+  "requestHash": "ce5907e9c397f94fdf39ee065f83ce23073528fe7d84a4a8fc6dc3eea2eb524d",
+  "recordedAt": "2026-10-04T07:40:17.775Z",
+  "sha256": "21ee4ecebd9f98a6680c96c21ae1af38742023b4829c183e89715239aac333be",
+  "bytes": 29643,
+  "requestId": "XZunK4MCUMSoW1mVDENz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2740d88e48e5e88543c82232ef549a66e20d4eb5bee1e9aaf9703b5c3d9c4941",
+    "bytes": 149673
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "tactic-pin-missed-queen",
+      "label": "Tactic pin missed queen",
+      "text": "A queen could have been pinned to its king by a different move. Pinned that way, it couldn't have left its line without exposing the king, and that restriction would have been the point. Instead, no pin happens in the game."
+    },
+    "takeId": null
+  },
+  "requestHash": "b052c4f62028126e95b7f5504e292d13112b3bd31e22e48a5cf332b8e17f8a87",
+  "recordedAt": "2026-10-04T07:34:23.584Z",
+  "sha256": "f9d94d61fb7773a67bf7210febff3ca79f5bccb63102feddcd16a92055cef089",
+  "bytes": 40319,
+  "requestId": "zqXF5RfqbBNXcg86PJnK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "359017db127022f3c46d83e2312f94307a19b801aaef0174cc18875efca06966",
+    "bytes": 207351
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

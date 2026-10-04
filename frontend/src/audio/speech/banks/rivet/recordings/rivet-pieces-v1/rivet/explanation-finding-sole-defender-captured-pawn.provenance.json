@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-pawn",
+      "label": "Explanation finding sole defender captured pawn",
+      "text": "The only defender, a pawn, is captured. Later in the shown moves, the piece it guarded is captured as well."
+    },
+    "takeId": null
+  },
+  "requestHash": "ec8d5607a855a12c8c29d52e57058c4d0157b7d8ad6cf94f776ba571f7099ccd",
+  "recordedAt": "2026-10-04T07:28:03.818Z",
+  "sha256": "d90bc4b09002252250bf45599cf205f8af672559f640bc5b5abeba357780e984",
+  "bytes": 23314,
+  "requestId": "8wgLAc4uKjo2flB0CH7L",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2b83ac541707fbd260688d25b5a5c662f943ae0958f997b7420a9c5a2a0a7c8b",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

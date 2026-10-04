@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-skewer-played-queen",
+      "label": "Tactic skewer played queen",
+      "text": "Two pieces on one line, a queen standing in front of the other. That's a skewer: once the queen steps aside, the piece behind it is exposed."
+    },
+    "takeId": null
+  },
+  "requestHash": "cd82c39d89acd9109f3a6027180cf15a98835a92fe6e9ba528b8f3cb0de7e69c",
+  "recordedAt": "2026-10-04T07:30:50.051Z",
+  "sha256": "848e6d1248ab566fb08b7e400a54620825d7a6b496d91f0b95c203493b45b17b",
+  "bytes": 31814,
+  "requestId": "nR2QVvdon1RaRipJkO51",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "72c6f053723428cc6f3d89dd91dd29ce7c91e4cba826371a70bfa50aad94fe32",
+    "bytes": 166391
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

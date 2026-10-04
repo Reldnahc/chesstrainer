@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-bishop",
+      "label": "Tactic discovered attack played bishop",
+      "text": "The bishop in front clears out, and the piece behind it gets a free shot. A discovered attack: two pieces working, one move paid."
+    },
+    "takeId": null
+  },
+  "requestHash": "ef90cc7901b3de3d8ca81bd7b29ce6c5d1c3eb97961870d266f7c3c50f67abf7",
+  "recordedAt": "2026-10-04T07:36:26.972Z",
+  "sha256": "44d390f5fb32629dbf7e7e27cb1c014382e3715473c38397a64fdb4fdfcbde50",
+  "bytes": 28154,
+  "requestId": "9Rgz9u61Ty4K5GKD26J3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8202e7fadb813de15822cbfc741c447fe7c70344f1898d0d5e648ab28389b3d0",
+    "bytes": 145911
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

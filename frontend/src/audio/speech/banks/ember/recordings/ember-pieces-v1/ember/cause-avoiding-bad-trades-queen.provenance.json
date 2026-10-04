@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "cause-avoiding-bad-trades-queen",
+      "label": "Cause avoiding bad trades queen",
+      "text": "This trade loses value. The queen captures, but the recapture takes the queen, worth more than what it won. Never stop counting an exchange halfway."
+    },
+    "takeId": null
+  },
+  "requestHash": "6a3ba73b7cd20a1ece4365c713bee6b7f0936ff0a694f638ff27999509a4a0e7",
+  "recordedAt": "2026-10-04T07:42:28.270Z",
+  "sha256": "0af16a4ae487b314c502bbfa133a78bb1052d4550014a3b09866a074593a865d",
+  "bytes": 32134,
+  "requestId": "1fRMKK23ET0CqS6QGQoy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "30e66d1130525a99c50a872dc30888c619473ade9905b5f736b5e0d7ea78ffa9",
+    "bytes": 164719
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "explanation-finding-double-attack-collected-queen",
+      "label": "Explanation finding double attack collected queen",
+      "text": "The moving piece attacks once and unmasks a second attack. Here the queen behind it collects its target."
+    },
+    "takeId": null
+  },
+  "requestHash": "fb19492a993f6692add4ba32655e2ed55a45dbc955c2f96a2fe07e31471c4695",
+  "recordedAt": "2026-10-04T07:44:38.675Z",
+  "sha256": "66bd64b391e5d1319b618df6f5f55a348362f08e19219ede331207d7b592993e",
+  "bytes": 24719,
+  "requestId": "aBVk28nYQ9Exh1J1dN2E",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "db2e9f07395c522461070bef0d1d612580421364aa320a59ed357c7eab9dc909",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

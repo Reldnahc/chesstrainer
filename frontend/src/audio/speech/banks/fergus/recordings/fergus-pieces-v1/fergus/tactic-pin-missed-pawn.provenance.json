@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "tactic-pin-missed-pawn",
+      "label": "Tactic pin missed pawn",
+      "text": "Pinning a pawn to its king was on offer elsewhere; this move went another direction."
+    },
+    "takeId": null
+  },
+  "requestHash": "96f25010ca5746710651c561b70c26aaff6bc06c0900f03dc24de67bd87790fd",
+  "recordedAt": "2026-10-04T07:46:43.879Z",
+  "sha256": "3ec00d9776d2a08c2ea3a20a5053297e08dfcde9e7e0e969b1008a1411064346",
+  "bytes": 17948,
+  "requestId": "ryrqbT5VG8II4r34hN0p",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "14a5ca9c7631f39be7a2d5d4f5f260f8e384ce3cb51bad2fd5da4e82e708b454",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

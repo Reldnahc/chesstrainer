@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "explanation-finding-double-attack-collected-rook",
+      "label": "Explanation finding double attack collected rook",
+      "text": "One move, two attackers: the moving piece strikes, and the line it vacates lets the rook strike too. Here, the rook takes its target."
+    },
+    "takeId": null
+  },
+  "requestHash": "350b1da589ac9e5dfe56c24366590e8a4d1642c37a6965abd276d5edf8238b5d",
+  "recordedAt": "2026-10-04T07:42:58.487Z",
+  "sha256": "5bd6229c460b9d4af5b7238eb94c03d3e07fe94d0096309ed74c0a32986a569a",
+  "bytes": 29116,
+  "requestId": "xtrDfxHdd8wQmC6vyzM7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e0ecfed1ef065b40f068a11b2510f5de547b7397fcda8cdf65352733b93b97a7",
+    "bytes": 149673
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

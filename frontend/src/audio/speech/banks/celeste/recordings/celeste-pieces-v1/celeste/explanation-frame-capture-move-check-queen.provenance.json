@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-check-queen",
+      "label": "Explanation frame capture move check queen",
+      "text": "A queen is captured with check woven in, two effects in one move."
+    },
+    "takeId": null
+  },
+  "requestHash": "cc72ea0b399bf9033cf20c2840f39b6efb8d7452701fbf872ca313ed550a9f57",
+  "recordedAt": "2026-10-04T07:41:15.395Z",
+  "sha256": "9d67ded2f87f8b37057b49f6eecfe0084e3fda761daf57b9e3cb5eb83c67d229",
+  "bytes": 16000,
+  "requestId": "Y4w4iC0gMrhsdrw3yXeC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f0d6ab56a6ef6449dcaf430e65c971dd4bab1ef94fb23ccfb27bc4dd99ec4e77",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

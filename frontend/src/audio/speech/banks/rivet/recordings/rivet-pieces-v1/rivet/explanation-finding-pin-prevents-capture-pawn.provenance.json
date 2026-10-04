@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "explanation-finding-pin-prevents-capture-pawn",
+      "label": "Explanation finding pin prevents capture pawn",
+      "text": "The indicated capture by the pawn is illegal because of the pin to the king. Line exit would leave the king in check."
+    },
+    "takeId": null
+  },
+  "requestHash": "897bb0d00075ff20cae007d6ff7596acb331ef5e18798d97ec5c1566c46fa74d",
+  "recordedAt": "2026-10-04T07:28:09.411Z",
+  "sha256": "06fbc586bdc373b949e46666da20f407e5054005e80c51c0d67ca3d39db49c6b",
+  "bytes": 24279,
+  "requestId": "6tWuZCzUbX88VVhwXfso",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5098fde3892bccfb6335cbc1edbdd15c279d94ee7ab1998fe66aa96c11834fe5",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

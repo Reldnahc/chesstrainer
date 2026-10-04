@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-queen",
+      "label": "Tactic undefended capture played queen",
+      "text": "A queen standing all alone, unprotected. The idea is simply to take it, so check for loose pieces before anything else."
+    },
+    "takeId": null
+  },
+  "requestHash": "fdc1e937792f6cb1390706cf3dad76254a701f3548ef649c935fcf0c2eb3bc80",
+  "recordedAt": "2026-10-04T07:30:41.085Z",
+  "sha256": "4cd824efc9840bf8d3422d7b621d24dba59b649fc9505d9c327c974a5b1f3cf0",
+  "bytes": 27850,
+  "requestId": "1sgTCqUULvKncGmMOrXK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "44b879f1529f56d858c3f2d26791388848e0f9236b8ce5b0dbbac39df0569442",
+    "bytes": 145911
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

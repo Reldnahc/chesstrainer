@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "tactic-fork-missed-pawn",
+      "label": "Tactic fork missed pawn",
+      "text": "Missed resource: a fork. Another move offered a way to attack two targets with one pawn."
+    },
+    "takeId": null
+  },
+  "requestHash": "acd562f51bd2044221aef52e6d7ef3452b16f58da8744d14149a7ab8be47c168",
+  "recordedAt": "2026-10-04T07:27:08.206Z",
+  "sha256": "f5af85f1b1b70bf2515d56e5e44e085d17ed4acc34c70c13c832262682b3d83f",
+  "bytes": 20498,
+  "requestId": "sRpuifY1kjZnLTzYNKbx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4739991c5556f2282e050a2c05697ceb9aaa58889d540526995da7fbd219ee58",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "tactic-hanging-piece-allowed-knight",
+      "label": "Tactic hanging piece allowed knight",
+      "text": "A piece without a defender can be taken for nothing. This move leaves a knight in that state, and the other side can capture it. The habit that prevents this is simple: before each move, check what's unguarded."
+    },
+    "takeId": null
+  },
+  "requestHash": "d56703865b67b00504349f6bfffc4029e34b4edb2fa90b3e685f98c3a5ce728f",
+  "recordedAt": "2026-10-04T07:34:32.609Z",
+  "sha256": "d191b7cc451f11a57d1dc1f6434f9cc0ab87171eee72923ecbfd38132213ec1b",
+  "bytes": 39565,
+  "requestId": "1tYgSLnJHZxzm6TsVbJE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6b2c297564c82388b89ccb390258ff1b56af30871f9e1bb9d78c6feae60753ae",
+    "bytes": 205679
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

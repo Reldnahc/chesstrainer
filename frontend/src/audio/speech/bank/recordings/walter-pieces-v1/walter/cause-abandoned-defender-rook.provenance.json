@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "cause-abandoned-defender-rook",
+      "label": "Cause abandoned defender rook",
+      "text": "This move takes away the only effective defender of a rook. Now the other side can capture what was left behind."
+    },
+    "takeId": null
+  },
+  "requestHash": "9f7936fda82708f7b051b460877bf1740463326d2b3fec4365977d733675d350",
+  "recordedAt": "2026-10-04T07:26:32.899Z",
+  "sha256": "f4da4b1df42e1dc8ee50423d701de714e497197ee2e0b7ef45a70eb0eac1f14b",
+  "bytes": 22089,
+  "requestId": "8AqCAMiyASehAFkBkY0a",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b4bfa2b2797fb7d738cc40b9cade08cc55b9497eaf3438838188098ac1d1198d",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

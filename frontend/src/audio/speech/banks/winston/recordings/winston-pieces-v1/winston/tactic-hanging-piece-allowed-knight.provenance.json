@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "tactic-hanging-piece-allowed-knight",
+      "label": "Tactic hanging piece allowed knight",
+      "text": "Well, there it is: a knight with no guard, and the other side can take it. Find that knight first."
+    },
+    "takeId": null
+  },
+  "requestHash": "83c3a9dd2be28a1aad5041cddd81ad7597c5d4e2c614e9f7913b114cc953a373",
+  "recordedAt": "2026-10-04T07:29:04.852Z",
+  "sha256": "fd6a3590ab41905edd6a334aaf4a6ab39d5295262e41585349425e5906ca5cb2",
+  "bytes": 20686,
+  "requestId": "aAtUmj83ONFUcqZWzmdl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fcfa0aa0e8d36554b76de57a599e332b20ddbd87fa7f5467510e601eeec5a65c",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed-queen",
+      "label": "Tactic removing defender missed queen",
+      "text": "Another move offered a way to capture a defending queen, taking protection away from what it was guarding."
+    },
+    "takeId": null
+  },
+  "requestHash": "35c78f90a4d31ef7afb0144bfcd8c14e8413686ed27c315df16200f529b6d325",
+  "recordedAt": "2026-10-04T07:25:44.368Z",
+  "sha256": "045507dd348939c9dd7f6f1f587b46e99f38dcfed69f229a20324d23f0858eaa",
+  "bytes": 20355,
+  "requestId": "GUp97idoqkH3j5k7K5CI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "664c2ba4cfde6a4a2d71ea040d9c7a409689dcd7fdfe76ba64ecb6ca2d5ffca9",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

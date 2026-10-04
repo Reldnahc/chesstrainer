@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "explanation-finding-pin-prevents-capture-knight",
+      "label": "Explanation finding pin prevents capture knight",
+      "text": "Pinned to its king, this knight can't make the marked capture; leaving its line would expose the king behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "e7ec1d0cff05331779af3e8eee2a7cc783a58e0bec2022d578ef4daa24c81a83",
+  "recordedAt": "2026-10-04T07:41:09.559Z",
+  "sha256": "97f99fc50919e19d2efd80a6c20b5d2f08d49aa4566ef276db1b9dd57d726a20",
+  "bytes": 22990,
+  "requestId": "030daAqSdnTuHzTHxZAM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "11064a1ea973268601fca0275ff88d08b538867673dd73eabf8604235e097b7d",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

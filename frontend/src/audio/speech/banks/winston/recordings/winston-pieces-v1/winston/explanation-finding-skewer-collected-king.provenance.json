@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-king",
+      "label": "Explanation finding skewer collected king",
+      "text": "Keep your eye on the king. When the check drives it off the line, what was standing behind it gets captured along that same line."
+    },
+    "takeId": null
+  },
+  "requestHash": "0121d3b7a3cd950ab722e18d4d74e2a0e7d8a3f1e6116b18fb5c7075e69cf9a4",
+  "recordedAt": "2026-10-04T07:29:57.813Z",
+  "sha256": "96c0ff2770bea84003ea2f1dac9ad4cd38a4aa7ff282c4d8599c49375d2d32b6",
+  "bytes": 23237,
+  "requestId": "NKxJxkgSKF49GtfwN5gV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a95ef3de696ffcfa9ed9bb5408bd5637d0a7ac9222e0ad1e760001d223c46178",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

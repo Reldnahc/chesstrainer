@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "positional-support-actual-knight",
+      "label": "Positional support actual knight",
+      "text": "A lone knight now has a guard. Protected pieces are hard targets."
+    },
+    "takeId": null
+  },
+  "requestHash": "384b18edb7fb9d1a128efa17a741bba31e340fba1a523095f138886285c9d0f2",
+  "recordedAt": "2026-10-04T07:42:34.830Z",
+  "sha256": "1b66c04c9c63a0155c8a4b8cac0369630a6985eea99120064c7d7a89c245a337",
+  "bytes": 16188,
+  "requestId": "p6vFZ3aikhLFAX3NUFJb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5179827dba65ea9fee509225393f188fb29ab53e7a08bed6667ceaccd01e41ea",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-knight",
+      "label": "Tactic removing defender allowed knight",
+      "text": "One question to keep asking: which pieces are defenders, and what happens if they're captured? After this move, a defending knight can be taken."
+    },
+    "takeId": null
+  },
+  "requestHash": "47058f04ea17e5fffe1305da5179fa0e80efb89184ce44b0b86e9794ed51a0ca",
+  "recordedAt": "2026-10-04T07:32:34.190Z",
+  "sha256": "dc8be698e880d458431c1b2b626966d5a721617b5b5c3eb0ecab87be87beda0b",
+  "bytes": 29311,
+  "requestId": "8LyUra5fzWXNm3QimDIn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "75ef8a2d5208a3617a50fe4a9006314a8843be3345a45ac24fd5ce0895ac6a82",
+    "bytes": 153435
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

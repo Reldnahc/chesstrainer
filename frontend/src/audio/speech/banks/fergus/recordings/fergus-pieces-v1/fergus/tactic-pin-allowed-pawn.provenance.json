@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "tactic-pin-allowed-pawn",
+      "label": "Tactic pin allowed pawn",
+      "text": "This lets the other side pin a pawn to its own king, which puts that pawn on a short leash."
+    },
+    "takeId": null
+  },
+  "requestHash": "7264d8997f350c6a98c75af9639902db3d6906f1315d37ad952baa6827e89d4e",
+  "recordedAt": "2026-10-04T07:46:35.396Z",
+  "sha256": "5110d66d95645fd065077761c4610753862866ef89ace6e1deae2b5c6e6890d7",
+  "bytes": 19548,
+  "requestId": "HT8AX1blDSUgqMNnE68C",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "89a06e4cdd2238f32b2434587307bd5f6fdc7ee8a1adf0d18cea7ccdb2527912",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

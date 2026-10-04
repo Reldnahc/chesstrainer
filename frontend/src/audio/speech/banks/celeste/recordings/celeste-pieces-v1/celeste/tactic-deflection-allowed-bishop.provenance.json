@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-bishop",
+      "label": "Tactic deflection allowed bishop",
+      "text": "The defending bishop can be drawn away now. Look at what it holds together, because that is what would come apart."
+    },
+    "takeId": null
+  },
+  "requestHash": "b3d1c05e94969c583157c1870ca5fc30a140c808c6f2f8eb76e7867df3da05b0",
+  "recordedAt": "2026-10-04T07:40:40.855Z",
+  "sha256": "9be76408c4f2c05f185ceb4b5035b254b3d48d8b171b1d5e90439c787359f7dc",
+  "bytes": 22731,
+  "requestId": "yQnpiKjL0KWpb4KXzl7A",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5cfc7e0d83ebeaeb4ece591515f6ead266ed1b42c142560e4644e352ade74b77",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

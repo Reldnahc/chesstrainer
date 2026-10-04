@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-skewer-played-bishop",
+      "label": "Tactic skewer played bishop",
+      "text": "Two pieces on one line, a bishop standing in front of the other. That's a skewer: once the bishop steps aside, the piece behind it is exposed."
+    },
+    "takeId": null
+  },
+  "requestHash": "ddae37c026c6a74dd6419f3a1328ead1ebb3cd31e080e00c72543e75540c8ff4",
+  "recordedAt": "2026-10-04T07:30:45.577Z",
+  "sha256": "09caae70bb0008f87b0742828a31c9a28f735e31f7142c4f4d95d668beb4ce90",
+  "bytes": 31638,
+  "requestId": "goQ8j9l2v5n6j1aycqt9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5e8bbfe0cbc67b7051fd908fcdf8ff9ca50e4bdd50b63fab98b8f52b166b0007",
+    "bytes": 164719
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "positional-support-alternative-knight",
+      "label": "Positional support alternative knight",
+      "text": "Another move would've given the knight a defender, so it wasn't left loose."
+    },
+    "takeId": null
+  },
+  "requestHash": "b33918b91201a8be646c66f0aedef0a75102a3374855de0f5e5fa3ad3bd86cfd",
+  "recordedAt": "2026-10-04T07:37:21.814Z",
+  "sha256": "bdb716ce15a527198452eddd64c94b3f8b68fad00150504e52656c2318a161f9",
+  "bytes": 14988,
+  "requestId": "yCTTz32JOIFcejVe24Tn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1286b6e1ce38bf55662e5903c2dcfe579cbfe776011d4488661903a4bcf1ba4c",
+    "bytes": 72768
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

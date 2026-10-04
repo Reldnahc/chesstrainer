@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-hanging-piece-allowed-rook",
+      "label": "Tactic hanging piece allowed rook",
+      "text": "Which defender used to cover that rook? After this move nothing protects it, so it's free for the other side to collect."
+    },
+    "takeId": null
+  },
+  "requestHash": "8c5d38f643f6ef8993eb24ba87a3859ae36faa6473368cdaa1aaee9be1e913ca",
+  "recordedAt": "2026-10-04T07:32:41.170Z",
+  "sha256": "7e2a7f7c4ed1415f636458923068afb0787e9961fe3bec53bbfa810148a3e4b2",
+  "bytes": 23331,
+  "requestId": "aChEBbi6c6FRLi9avhzw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cb98551b4ac9fa8b331d8eeabcf0d6c8f85d97a75759bfdc41a5a1bbd9bb8a5b",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

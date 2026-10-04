@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-rook",
+      "label": "Positional unsupported actual rook",
+      "text": "After this move, a rook has nobody defending it. Keep watching that weakness; on its own, it doesn't mean the rook can be won."
+    },
+    "takeId": null
+  },
+  "requestHash": "7bf24f7598505cd5305d0606535a0e442b14084a7282148f4ba093c0f139179e",
+  "recordedAt": "2026-10-04T07:32:55.033Z",
+  "sha256": "db55a840d2762d664f33cdb1989154a7d0d0c36554180e4e8531cb7cad5d9174",
+  "bytes": 26205,
+  "requestId": "9MJyJFv0faTUS6bBZCTW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b82d65f10bcf33804f99ff77c083183f249765c7ab514771389d628048b24745",
+    "bytes": 136716
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

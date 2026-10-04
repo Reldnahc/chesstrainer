@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-ordinary-bishop",
+      "label": "Explanation frame capture promotion ordinary bishop",
+      "text": "Capturing a bishop on its way onto the last rank, the pawn promotes. A bishop taken and a new piece gained."
+    },
+    "takeId": null
+  },
+  "requestHash": "22ee6e93cefc1465ca236ef9977ffdd574095b55afb1cf151927ad7869fb6a7e",
+  "recordedAt": "2026-10-04T07:37:53.704Z",
+  "sha256": "f215010afa7ec66a73588148a0710a5a1e7c5ec9c7ffa285c524d6c5791efb22",
+  "bytes": 24394,
+  "requestId": "nSNJKrtc694C3oeO2PNC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "31a055230020759046addf35221d71a99f9e5a40486a58c68c7039b3386eab05",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "grade-brilliant-3-rook",
+      "label": "Grade brilliant 3 rook",
+      "text": "Brilliant. A rook truly surrendered, and capturing it leaves the spell unbroken."
+    },
+    "takeId": null
+  },
+  "requestHash": "64d74fde3fcb13ff2c95825aa512aef360a06a1c68e45bcc179f857f1659ae36",
+  "recordedAt": "2026-10-04T07:41:20.387Z",
+  "sha256": "9cf4bb71dc9341db286378809531eae872031a241cc454e7219906b19f50abb3",
+  "bytes": 20133,
+  "requestId": "4oITjiDeMpqT7ZwjY38f",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cd628b2073d26723c548f841d7111d9a5297010a545663d5b2689f5c0469c5e6",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-missed-rook",
+      "label": "Tactic undefended capture missed rook",
+      "text": "An undefended rook was available to another move. This one leaves it standing. Loose pieces get billed."
+    },
+    "takeId": null
+  },
+  "requestHash": "ec0b3e7ffa98d51ce7300a1390397f293e571966e7172e6999c4a80252bd2680",
+  "recordedAt": "2026-10-04T07:43:40.676Z",
+  "sha256": "cd910f53d0d425b9b416a5f2cfa13393caf37a71fb977c34313aa8f91d1dca14",
+  "bytes": 24006,
+  "requestId": "yZy6Kx3hUp3Pu1IRCUOj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a6a851bff3adee39f12742c31ab9e8f3f4c27c22833762b94ffaff2336921fbe",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

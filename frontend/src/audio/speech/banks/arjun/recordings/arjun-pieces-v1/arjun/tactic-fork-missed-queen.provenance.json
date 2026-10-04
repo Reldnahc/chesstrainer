@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-fork-missed-queen",
+      "label": "Tactic fork missed queen",
+      "text": "Set the other candidate beside this one, and a fork appears in it, a lone queen aimed at several targets. This move takes the game down a different road."
+    },
+    "takeId": null
+  },
+  "requestHash": "129c492bc4717fc666e6adb94fa28b790b6447825161e8a9b435f23543e827ee",
+  "recordedAt": "2026-10-04T07:32:35.864Z",
+  "sha256": "1f118677e026171fa67c8ce5e7f26f6b5600e089959af2ef8cf73596b3c83e84",
+  "bytes": 32636,
+  "requestId": "BKKzRZ4ic8OwAUIZGdZy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "df3ee6ba49817d0638f69027c00af9af8e267ba698be9a8869295c528d058d2a",
+    "bytes": 168899
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

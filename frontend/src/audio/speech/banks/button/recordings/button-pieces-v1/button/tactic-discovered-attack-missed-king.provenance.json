@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed-king",
+      "label": "Tactic discovered attack missed king",
+      "text": "Another move had a discovered attack in it. Moving the king off the line would have uncovered a threat from the piece behind."
+    },
+    "takeId": null
+  },
+  "requestHash": "1de8b64ec87d4cfb8331332f6eb68912cba27b247c9cdd431611bdc2462dfdfd",
+  "recordedAt": "2026-10-04T07:30:33.043Z",
+  "sha256": "97fb80a2c7f3d7ff1130bf44b1d3b007d614f4e7494489b9b477345d31b0de44",
+  "bytes": 23221,
+  "requestId": "isssGKBYvMy6CvHxEwAK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cb697c3931f1d43f14412ecfa1eb6187292beb5abf2a64f8476384950b691bda",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

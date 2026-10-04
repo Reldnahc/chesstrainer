@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-bishop",
+      "label": "Explanation finding relative pin released bishop",
+      "text": "With its previous move, the opponent released a relative pin on the attacking bishop. The target never moved, and it is captured in the line shown."
+    },
+    "takeId": null
+  },
+  "requestHash": "c090ebf8c32b372edd5a3c33059b4b92b2a64f139d683340a27f7794addbf10b",
+  "recordedAt": "2026-10-04T07:42:44.001Z",
+  "sha256": "691fd81f68c090a283904a7928344606279c5f968012625ab85d78d2c193bbad",
+  "bytes": 28605,
+  "requestId": "iFmWLdlFm87Jd4dqnCjT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "419b2a8abd4f42e94520b9e8f78fd49749d2fcaddb375872bf8d2851c31b515d",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

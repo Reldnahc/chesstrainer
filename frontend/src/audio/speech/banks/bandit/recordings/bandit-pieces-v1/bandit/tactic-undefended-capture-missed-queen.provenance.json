@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-missed-queen",
+      "label": "Tactic undefended capture missed queen",
+      "text": "An undefended queen was there for another move to take, and this one walks right past it. Loose pieces first, clever ideas second."
+    },
+    "takeId": null
+  },
+  "requestHash": "04ecef58830b66085b69cc0da6f5bdea05e7072cc994917d2a25ddad1814e48e",
+  "recordedAt": "2026-10-04T07:36:36.195Z",
+  "sha256": "016b25a986ddc6ec7618f0520d20e0b1a31f97074ffaf6eca94e4e82b4fdf701",
+  "bytes": 27951,
+  "requestId": "SFAMJhEWQussXJuWq2s5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ee8d0b2ab193103c2fa4d590f9ee3689b4164c0c3b822ecd416594c0513c71b6",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

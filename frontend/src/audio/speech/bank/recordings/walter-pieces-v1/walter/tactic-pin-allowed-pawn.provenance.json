@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-pin-allowed-pawn",
+      "label": "Tactic pin allowed pawn",
+      "text": "This gives the other side a chance to use a pin to the king. A pinned pawn cannot leave that line and expose its king."
+    },
+    "takeId": null
+  },
+  "requestHash": "6c7504769c8719c61a2a3a2ebd37ba51bad6bd86f54dfd48da78c07aaaacd61f",
+  "recordedAt": "2026-10-04T07:25:29.543Z",
+  "sha256": "af9b57cd47d9c2a90ed38907dc4a1e32d663fcdd61daa8b14e255e907a370fdc",
+  "bytes": 24424,
+  "requestId": "EOSPSoNmUonCx0cnN1H4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d669d2191046d2e9f906449dd2a6d53107bf32574fb9d9abadaa6eec2f8f4ac2",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

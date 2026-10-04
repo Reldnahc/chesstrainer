@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "cause-abandoned-defender-knight",
+      "label": "Cause abandoned defender knight",
+      "text": "This move takes away the only effective defender of a knight. Now the other side can capture what was left behind."
+    },
+    "takeId": null
+  },
+  "requestHash": "fdc4ba93e9b6293516decfef6d5e428395d45d4127baa757d114f284ba7a4732",
+  "recordedAt": "2026-10-04T07:26:29.329Z",
+  "sha256": "3c8419f3e914399ae3416606cb22d958713cfa4916d6db8f382e229626403be3",
+  "bytes": 22744,
+  "requestId": "40kNTxem3p0ztKMk0G8Z",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4947d890d9e2c612088b73001895472a8e63a49a2dfb5aab05bc6b787a6b48c9",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

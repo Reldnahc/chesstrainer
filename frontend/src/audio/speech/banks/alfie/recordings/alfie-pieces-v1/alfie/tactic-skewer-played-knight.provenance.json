@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "tactic-skewer-played-knight",
+      "label": "Tactic skewer played knight",
+      "text": "Think of a skewer as a line attack seen from front to back. The knight in front is attacked first, and if it steps aside, the piece behind it is exposed on the same line. Notice how the order of the pieces on that line does the work."
+    },
+    "takeId": null
+  },
+  "requestHash": "2c21462f6ae62609bc3d057a5574b2d05b7a5af7e0781b565c65bfec79c00205",
+  "recordedAt": "2026-10-04T07:34:27.157Z",
+  "sha256": "705d8ac6b81d577d77a97fcda3102b91915f4ca9ac7ee06e8c966b4cfb856a04",
+  "bytes": 45966,
+  "requestId": "xfuc3rY2az8qjyR346cj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "04aa46cd5fa926b98f4c994d2120fd4c34a06656c04e036d2697bf3a0e671187",
+    "bytes": 237862
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

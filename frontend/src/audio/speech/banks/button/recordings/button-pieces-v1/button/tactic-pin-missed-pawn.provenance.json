@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-pin-missed-pawn",
+      "label": "Tactic pin missed pawn",
+      "text": "Another move would have pinned a pawn to its king. Caught like that, it couldn't leave the line without exposing the king behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "21fb4afea5bc4ca0f48531eccc4e3641d53c75d761c13a48a765d5c13351d753",
+  "recordedAt": "2026-10-04T07:30:33.127Z",
+  "sha256": "244139c8cd9ad1c7f61085299ae660f0bd5d229e1083d62e991091556de24599",
+  "bytes": 24604,
+  "requestId": "H4MMX8J7SqWJHHZcZGDk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fa97e3392bec39ad15414ba94d9b33bc0ddfb0224e593c8858eb50df1108a9b7",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

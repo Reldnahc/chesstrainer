@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "tactic-deflection-played-knight",
+      "label": "Tactic deflection played knight",
+      "text": "Pattern: deflection. Step one: draw the defending knight off its task. Step two: use the gap."
+    },
+    "takeId": null
+  },
+  "requestHash": "21d4da7cb08063188c4f8aa405dad143dfeb83f68693af33c81f8f9ed3dd7eb3",
+  "recordedAt": "2026-10-04T07:27:41.416Z",
+  "sha256": "d8002d044a99758d09c9c8c10e5bf4c9265ec280acad8e7e052b319510e9f4da",
+  "bytes": 24076,
+  "requestId": "E8GbJAfq10ExciDaS4Gg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c7ff6b9698fde1a81183683dd599f7d751b82d3b87e24bddc7b285d18e7a28d0",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

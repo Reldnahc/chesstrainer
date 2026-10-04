@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check-queen",
+      "label": "Explanation finding discovered check queen",
+      "text": "One piece moves aside and uncovers check from the queen behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "334251415b767cf7371bf462beaeb9b4c315a22ede6c7b1b978fcaa33f9e928e",
+  "recordedAt": "2026-10-04T07:37:29.541Z",
+  "sha256": "7980d91b5c27d634132ef7f3c99dfe0b397020e53ea29c7198730993c93de272",
+  "bytes": 14316,
+  "requestId": "elVFHzCRvjH8OuMkmvq2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ff873b19bc0f6cb3d8dbb96466128161ee869e23e85c20507a9d870f9159d87e",
+    "bytes": 69007
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

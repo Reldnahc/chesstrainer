@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed-knight",
+      "label": "Tactic removing defender missed knight",
+      "text": "Another move would have removed a defending knight and stripped its charge of cover. Here that knight is left in place."
+    },
+    "takeId": null
+  },
+  "requestHash": "dcfb8defe966ac73e2297789f532e33cc3c3d2a547e49ea58c2a1e0f09d1906c",
+  "recordedAt": "2026-10-04T07:43:42.847Z",
+  "sha256": "9683a5aaf364b3a2c4c757c125319afc3e2ca6ffcb67ffd500aed5a29a644ab8",
+  "bytes": 24496,
+  "requestId": "C3YJ6Jq3xb8Bw9IOOTED",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b1b444a11d7157e82c2f29980a8e3c2793b36b5141f07a4a0763d946f09528ca",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

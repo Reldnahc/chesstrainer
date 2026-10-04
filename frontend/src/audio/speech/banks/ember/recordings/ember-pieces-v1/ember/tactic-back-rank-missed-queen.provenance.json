@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "tactic-back-rank-missed-queen",
+      "label": "Tactic back rank missed queen",
+      "text": "The king was sealed in by its own pieces, and a back-rank mate idea with the queen was ready. It goes unplayed. A chance like that should not be missed."
+    },
+    "takeId": null
+  },
+  "requestHash": "3b6be56e6c7f7d5c1de12ac8bbc1d5d32c7fa273324541ba4fa1be07a341e74a",
+  "recordedAt": "2026-10-04T07:42:35.491Z",
+  "sha256": "265daad51ebdfae8b83562702e62fd687274a0d093faaea6e34d2a73854a21c3",
+  "bytes": 32004,
+  "requestId": "NAe9MAhrQxhwvoI3tStS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "93780eb3badfa9c7401489cf6eb3f71487399e33086aac4330720bc47af64687",
+    "bytes": 163466
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

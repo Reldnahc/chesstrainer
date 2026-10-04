@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "explanation-finding-pin-prevents-capture-rook",
+      "label": "Explanation finding pin prevents capture rook",
+      "text": "The rook would like to capture, but it's pinned to its king. Stepping off that line would expose the king, so the capture isn't legal."
+    },
+    "takeId": null
+  },
+  "requestHash": "e0b8e7791143b48678a7baf1fb9cb96f771e6fc7fce54e612c09b848b6e642f1",
+  "recordedAt": "2026-10-04T07:31:49.319Z",
+  "sha256": "7495295425b493fe002e9e69752727c81301cfa78a0bb8fff80cfc9c6f4fe4c5",
+  "bytes": 26080,
+  "requestId": "4usrKwn2ncQzYDPBILx8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8356729eec1bea8474a0eb84165b72e65739f7e5ee56492e21b0a97f29f69dc2",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

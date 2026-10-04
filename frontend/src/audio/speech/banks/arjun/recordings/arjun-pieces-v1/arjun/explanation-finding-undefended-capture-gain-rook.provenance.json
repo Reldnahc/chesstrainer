@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-rook",
+      "label": "Explanation finding undefended capture gain rook",
+      "text": "The captured rook had no protection, and the side that took it ends this example ahead on material."
+    },
+    "takeId": null
+  },
+  "requestHash": "ab5cfdee64f28c2f857f1def5e5b990fba51d2772965b9355fbd031aeb590098",
+  "recordedAt": "2026-10-04T07:33:43.147Z",
+  "sha256": "ee239d8ab109f2759861466e7be71c762cc43dd4006feb003a37ba057aace405",
+  "bytes": 20452,
+  "requestId": "GezE3W3h1JJH2Yl4nBh3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0430b0a78a9e4a27cc85d89e971d0bab718ac0b136df138441d95fcf61e19f21",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

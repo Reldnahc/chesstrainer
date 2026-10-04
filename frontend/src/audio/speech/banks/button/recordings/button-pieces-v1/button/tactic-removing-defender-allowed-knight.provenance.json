@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-knight",
+      "label": "Tactic removing defender allowed knight",
+      "text": "What is that defending knight holding up? The other side now has a chance to capture it, and whatever it guards could be left without protection."
+    },
+    "takeId": null
+  },
+  "requestHash": "7592d776fc8a01639bbb9ce83ffcf47a1db324666cde46939fe9d2bd5ec831f4",
+  "recordedAt": "2026-10-04T07:30:41.590Z",
+  "sha256": "a2733dc97e58450620f4a73716f92ce381d3389dcfae95d1390f013b94e69202",
+  "bytes": 26579,
+  "requestId": "UNdCtHprn3MbWslQtbqt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c1bdb3350e2e1533e28824166a0e6f8860cc8f1a37c06d70bd9c5279f6b69711",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

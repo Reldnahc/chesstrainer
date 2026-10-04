@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played-bishop",
+      "label": "Tactic removing defender played bishop",
+      "text": "A defender only protects something while it stays on the board. This move captures a defending bishop, and whatever it was guarding may lose its protection. So the real target is what stood behind the defender."
+    },
+    "takeId": null
+  },
+  "requestHash": "aa3afcd46d85cdd9cf8c82b691d88179e26bbf82c39429259e94e42c273ef056",
+  "recordedAt": "2026-10-04T07:34:50.304Z",
+  "sha256": "93fe78cbb48a3d2c88895fe820395ad23790a600ef0a56ed2da6244aae614615",
+  "bytes": 39891,
+  "requestId": "vHcMr9edwcZAmyJ1PQOb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f1ad53b1055998ad401e90b0060cad3781336022ef71b05fb2072f8a3036c253",
+    "bytes": 203172
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

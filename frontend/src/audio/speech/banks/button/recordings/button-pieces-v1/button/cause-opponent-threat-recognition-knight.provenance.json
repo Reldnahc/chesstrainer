@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "cause-opponent-threat-recognition-knight",
+      "label": "Cause opponent threat recognition knight",
+      "text": "The opponent's last move was quietly pointing at something. This move doesn't answer that threat, so a knight can now be captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "2f83a70c8db7398bdd416837020affde6762c27575754cf7a845428626f34f8a",
+  "recordedAt": "2026-10-04T07:31:41.099Z",
+  "sha256": "bc89dce7ca287d1d8892007cc6d178fdc55b188f0e69fc590eadf09ac9082e61",
+  "bytes": 26689,
+  "requestId": "iD7xMjd3TMU2yhHgPFW9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "58cfd4ce09c5ce3f349b6ac8d2aae95c1bf147f656ef914eb7a02026a1244461",
+    "bytes": 136716
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

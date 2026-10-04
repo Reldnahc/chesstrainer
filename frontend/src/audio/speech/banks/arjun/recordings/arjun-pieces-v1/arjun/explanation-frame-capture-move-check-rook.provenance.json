@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-check-rook",
+      "label": "Explanation frame capture move check rook",
+      "text": "A rook is captured, and the move gives check."
+    },
+    "takeId": null
+  },
+  "requestHash": "fe7a9abb5ebfd218852ad4ffb3079678bee114aeed1fc79d61f62f10d5937261",
+  "recordedAt": "2026-10-04T07:33:35.949Z",
+  "sha256": "4e78f799575962e81e77054baa286e94f3b402ec4387c0dcbbfddee9723dca18",
+  "bytes": 10669,
+  "requestId": "qwG8YOkjRqFvxp7bh6v2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9d0262be1a2b113452ded50f3f987cea52769d2716f6f7b974a4c47e6560cae0",
+    "bytes": 52288
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-pin-played-queen",
+      "label": "Tactic pin played queen",
+      "text": "The key idea is a pin to the king. A queen caught this way cannot leave the line and expose its king."
+    },
+    "takeId": null
+  },
+  "requestHash": "3f726f8ad3a71f3c353099d1a21d3d65dcfb92c7c2534e8ca3215a9dec132f70",
+  "recordedAt": "2026-10-04T07:26:02.177Z",
+  "sha256": "f22dd7b0839c1f96b2660b26ae12c39a752af5fc7201333f1d2cbf7470b765f4",
+  "bytes": 22907,
+  "requestId": "WL67IvQp2WoUG3kp04pH",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f854afb7b8e8ca2fc9199dcdec320ac55d5032f40eb8b29ff0644c20c83f6762",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

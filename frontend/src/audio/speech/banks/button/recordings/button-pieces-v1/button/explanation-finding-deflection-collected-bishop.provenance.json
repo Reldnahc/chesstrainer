@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-bishop",
+      "label": "Explanation finding deflection collected bishop",
+      "text": "Off goes the defender, pulled away from what it was guarding, and the bishop it was looking after is captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "431e3f60c54c2d06e52846c5e7c19d8de11d1b02d2623a4252346fd08e50776f",
+  "recordedAt": "2026-10-04T07:31:50.538Z",
+  "sha256": "42c00873e4a26747f4391e384afdb413ff05b6fb1be2b6837d5f3ba7705a571b",
+  "bytes": 20220,
+  "requestId": "Gle9Kj1C60CufnUzWEmh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ed88d4b497c880b3dfb442d9ecce74b47fc4964c2b8399f7b64c6860ba5b740e",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

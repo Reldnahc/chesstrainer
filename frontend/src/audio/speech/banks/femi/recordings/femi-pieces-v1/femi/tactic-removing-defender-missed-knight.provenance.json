@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed-knight",
+      "label": "Tactic removing defender missed knight",
+      "text": "A stronger move would have removed a defending knight, leaving whatever it guarded uncovered. Not on this move, though."
+    },
+    "takeId": null
+  },
+  "requestHash": "89719adf3a36a472de5420e8fd7631bfaa63f33f8ee41ec1d0df42ac01b0afa3",
+  "recordedAt": "2026-10-04T07:45:22.106Z",
+  "sha256": "078d2ddac4b988607e532dc93d9b41b1b65336a04506007b463621e053ff18af",
+  "bytes": 24809,
+  "requestId": "l3U2De2nFfDlMeDeIobJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5e270682845750b14b14d45ef1d2ec525ad4bc81ed075d731bfdaf9fbba50255",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

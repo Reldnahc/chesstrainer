@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-bishop",
+      "label": "Explanation finding skewer collected bishop",
+      "text": "When the bishop in front moves off the line, the piece behind it is exposed, and it's captured along that same line."
+    },
+    "takeId": null
+  },
+  "requestHash": "d28e4d4e9905117ae4dd7891a11749551d3c371015d588a14f0b12655a69549e",
+  "recordedAt": "2026-10-04T07:35:22.719Z",
+  "sha256": "4b07e2920526659970d99b3545fe2ff36f9724492a0941504c440b8710295cf8",
+  "bytes": 23006,
+  "requestId": "w9M5SgSeTnwV5MIoNzAy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "84be59215b2809bc5c530b6f39b15e5a2b42774a9cbaba7ee121b65b75c9c41f",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

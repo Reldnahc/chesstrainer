@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "cause-avoiding-bad-trades-knight",
+      "label": "Cause avoiding bad trades knight",
+      "text": "This trade loses value. The knight captures, but the recapture takes the knight, worth more than what it won. Never stop counting an exchange halfway."
+    },
+    "takeId": null
+  },
+  "requestHash": "8492b8a7e99f792b0d6c2c84b9c785bfa01e28fd80b02acdfa027e76b5496c41",
+  "recordedAt": "2026-10-04T07:42:21.074Z",
+  "sha256": "7ac06f06cd37732475e37824e638f8b5050faf79fec147208a79c4fa634961ad",
+  "bytes": 31606,
+  "requestId": "qWUlkj3vAZPOxy4uhDic",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "29e70aa83a2ebba10967ad16439248426315c02c346826c2930b049dd1d9292a",
+    "bytes": 160958
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

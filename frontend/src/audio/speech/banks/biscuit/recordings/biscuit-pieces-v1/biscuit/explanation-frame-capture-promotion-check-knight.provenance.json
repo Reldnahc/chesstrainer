@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-check-knight",
+      "label": "Explanation frame capture promotion check knight",
+      "text": "One little pawn does a triple trick: it grabs a knight, becomes a new piece, and gives check, wow!"
+    },
+    "takeId": null
+  },
+  "requestHash": "ae720bbf9e064418db55c53c526c5ed64902bc589dbec84cf7de5818c92556f7",
+  "recordedAt": "2026-10-04T07:39:26.708Z",
+  "sha256": "c0e53ffe938e9e0e5559300f1f425ae14b0f7ef5e89050c6b20e288f2e297894",
+  "bytes": 23766,
+  "requestId": "5OYRPvvlNFTC0XKuqVHi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9a9b7d0890eb5ab4e12cd745795aa41e08a1551c26d0537f0c16e17d9ba4d7a8",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

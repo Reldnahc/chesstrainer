@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-ordinary-queen",
+      "label": "Explanation frame capture promotion ordinary queen",
+      "text": "Capturing a queen on its way onto the last rank, the pawn promotes. A queen taken and a new piece gained."
+    },
+    "takeId": null
+  },
+  "requestHash": "9b2c2bf13e1a3071d8b3b0a24ad96657047236a3f227ece97f65f05dfa87b115",
+  "recordedAt": "2026-10-04T07:37:57.492Z",
+  "sha256": "5359df070b21b87e0fda5bc88912a318be734e0f03d14c48e86f25b3e6240e6b",
+  "bytes": 24247,
+  "requestId": "R5LOpmUPr3PyIPct4pIG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6146d9b36c593638ee84c539aacecfd19c59f5c44fc4307399103af8152188bd",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

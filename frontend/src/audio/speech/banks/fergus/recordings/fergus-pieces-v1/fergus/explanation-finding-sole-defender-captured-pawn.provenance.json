@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-pawn",
+      "label": "Explanation finding sole defender captured pawn",
+      "text": "The lone defending pawn is taken first, and later the piece it guarded goes too."
+    },
+    "takeId": null
+  },
+  "requestHash": "fbd9f0b964ff277e1eadee144479e4dd7aab73c969acfdda825a6fc7706c4f22",
+  "recordedAt": "2026-10-04T07:47:32.301Z",
+  "sha256": "e5f304542b96b6e6f048d2beda5b879e7f7ebe0eded4dde77f8d8f700b936325",
+  "bytes": 18262,
+  "requestId": "RwQnQFOxD7Y2t48L5UIb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ee1c45483b9f0782b799413bba7dfd6671b640d02c3bcdab73bc3ca50a38cb2f",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

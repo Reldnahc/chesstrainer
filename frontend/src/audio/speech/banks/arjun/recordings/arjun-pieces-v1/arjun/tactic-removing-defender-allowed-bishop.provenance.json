@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-bishop",
+      "label": "Tactic removing defender allowed bishop",
+      "text": "One question to keep asking: which pieces are defenders, and what happens if they're captured? After this move, a defending bishop can be taken."
+    },
+    "takeId": null
+  },
+  "requestHash": "13b79b8157c43958f7ae26e7c1deb2ce5ff99ca592377522a4bd8a912f15425a",
+  "recordedAt": "2026-10-04T07:32:36.279Z",
+  "sha256": "a75d43a38b30d0ff5b48062db16afe1c8fd67a10946e2259c1451ef9b0ffbfad",
+  "bytes": 29535,
+  "requestId": "tfmZXnkVdEEdHJqa34oD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fea5af9e352322fbb5694e4aef1fadade699605ddecc020e4218d1297cc80a96",
+    "bytes": 154688
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

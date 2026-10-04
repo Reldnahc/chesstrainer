@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "grade-brilliant-4-rook",
+      "label": "Grade brilliant 4 rook",
+      "text": "Does the idea fall over once the rook is taken? It doesn't. A sound sacrifice, and a brilliant one."
+    },
+    "takeId": null
+  },
+  "requestHash": "cf40a6851474d56e40495bb008178a0da24ce64242a7462dbcc7b362dc202a87",
+  "recordedAt": "2026-10-04T07:32:07.170Z",
+  "sha256": "9354dfb04fbc4aaf14f70baf2cb9713aa7945a7a6618ad01ae2132e6def41902",
+  "bytes": 24060,
+  "requestId": "Qnv8bGjyXt2bSczFoiPC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "28974f8e9d849ef2dee39df3f3d954e6eb77d5370767556a63cc8e41d977aa52",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

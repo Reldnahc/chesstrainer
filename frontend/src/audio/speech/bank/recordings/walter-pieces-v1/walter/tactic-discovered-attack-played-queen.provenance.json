@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-queen",
+      "label": "Tactic discovered attack played queen",
+      "text": "The idea is to move the queen out of the way and uncover an attack from another piece. Look at the line it opens."
+    },
+    "takeId": null
+  },
+  "requestHash": "7ee1b89ae33b9f6056b4649f49cd14d8694a031c2494a5187331090059593a32",
+  "recordedAt": "2026-10-04T07:25:44.851Z",
+  "sha256": "28a61ffe6ed2df3ed08a683799d2cd631c00dfea7ebdebf40c1ecddb19542084",
+  "bytes": 22994,
+  "requestId": "RmpKcXsNzpn5qLO6u7S3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "05bf44e4d612053610d35f18058f13cca96e8825e201e0badcc91756c44a189b",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

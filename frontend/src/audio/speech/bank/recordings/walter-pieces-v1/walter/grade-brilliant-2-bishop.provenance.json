@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "grade-brilliant-2-bishop",
+      "label": "Grade brilliant 2 bishop",
+      "text": "A real bishop sacrifice, and the idea is sound. I've seen many offers like this, and far fewer that hold."
+    },
+    "takeId": null
+  },
+  "requestHash": "f39a09d51cb53e7b708167cf7577c4e8d9e04fba16f4752f800b4f9a8a406894",
+  "recordedAt": "2026-10-04T07:27:13.400Z",
+  "sha256": "6b6e81ce8c4c141ca61935b7cd4d319f9c84f5dd66725bb9cafaeb61bcc63271",
+  "bytes": 24859,
+  "requestId": "Kl8seSqeblv30Br4WNWQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f21e93e09637a33ecc773f76374c76726e7f986ee17394812305115448106646",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

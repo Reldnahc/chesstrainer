@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "tactic-skewer-missed-king",
+      "label": "Tactic skewer missed king",
+      "text": "Put the stronger move next to this one and a skewer shows up. Check the king off the line, and the piece standing behind it can be captured. Worth setting that up on the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "0e11bc374f0f0d5f563483c77656a29f7db86055fc3afee80f7a71722044f22f",
+  "recordedAt": "2026-10-04T07:45:12.307Z",
+  "sha256": "a225022c9b3cc3f8b10034cceee3676cccd8d20700d69df1eb44443f5e207c5c",
+  "bytes": 33261,
+  "requestId": "LfwRjdPh6VEJoCAc6sIL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fa7475959e3230970679af6d651dd77b4de0141023cf87400d36f6e7b0e39dea",
+    "bytes": 171407
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

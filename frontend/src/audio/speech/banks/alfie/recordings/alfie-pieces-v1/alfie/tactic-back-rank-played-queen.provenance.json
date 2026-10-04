@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "tactic-back-rank-played-queen",
+      "label": "Tactic back rank played queen",
+      "text": "A king behind its own pieces can find every escape square blocked by its own side. That's the back-rank mate idea for the queen in this move: the king is boxed in with no room to step out. Its own cover is what limits it."
+    },
+    "takeId": null
+  },
+  "requestHash": "b72cbbae402b244ae81316854c45f5df99fc413e997443a7617624ba679542f9",
+  "recordedAt": "2026-10-04T07:35:15.777Z",
+  "sha256": "ce578806aa8a2c9f811e25d0d4a7e6729662fd6efa15037064c131b6c95da0b4",
+  "bytes": 44106,
+  "requestId": "TvMSknPpfKEsI3sHZE9e",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2dc14127374b1456498860d85738be92a3a16429015e94437277edade5428817",
+    "bytes": 224906
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

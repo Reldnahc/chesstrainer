@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape-queen",
+      "label": "Explanation finding pin restricts escape queen",
+      "text": "The attacked queen is pinned to its king, so any move it makes must keep to the pin line."
+    },
+    "takeId": null
+  },
+  "requestHash": "30b439ede2c4ad8489c19605ebfa8dba500ffa61b160d97c161c2ecf0782f6fa",
+  "recordedAt": "2026-10-04T07:47:22.057Z",
+  "sha256": "f4d72d1060ad3e30b7c9a1a1614d07d8ad979fcb5ab36a9d46c8fb6072fad294",
+  "bytes": 20217,
+  "requestId": "xQOaSmL9oW3pwnu9DFTO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ec7227af3c2786142fe5d1777301f0766c9dfb2d925f23701a4a630ef590d56c",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

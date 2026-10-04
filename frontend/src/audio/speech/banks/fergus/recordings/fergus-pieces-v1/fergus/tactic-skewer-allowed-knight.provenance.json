@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed-knight",
+      "label": "Tactic skewer allowed knight",
+      "text": "Two pieces sit on one line, and this lets the other side skewer them through the knight in front, which is simple geometry."
+    },
+    "takeId": null
+  },
+  "requestHash": "52a0e82c9fcb03871a238a12b3fefa90943f7039c02391485fb54642219435f1",
+  "recordedAt": "2026-10-04T07:47:03.594Z",
+  "sha256": "4ff8ece14fc7fb0b5013f822f271b82fe09096bc529e076015b624fd4651956a",
+  "bytes": 24911,
+  "requestId": "2ietBDH0pKX9P9WS9dZO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "019da6b633901e25a9e09782fada8cf6cac98fa16666267373ab008baa091507",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

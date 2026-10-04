@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-bishop",
+      "label": "Explanation finding deflection collected bishop",
+      "text": "The defender is coaxed away, and the bishop it was covering gets taken."
+    },
+    "takeId": null
+  },
+  "requestHash": "cb0387861facb3b9c6cecf679ef6ad898d28b8c7384185b6c59c34b5690c4a4b",
+  "recordedAt": "2026-10-04T07:46:19.731Z",
+  "sha256": "2bef13d74e045bbea3856dbc6b66de1a69c1a6eef3d7a802d3894f7d58ac017d",
+  "bytes": 15050,
+  "requestId": "IgmhCp6EM8mOagutmJKO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b2b9fa71be13ec5c7135dab8244ea6ca794928b47c33ff997dd0eb1a3fcdf85d",
+    "bytes": 74022
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

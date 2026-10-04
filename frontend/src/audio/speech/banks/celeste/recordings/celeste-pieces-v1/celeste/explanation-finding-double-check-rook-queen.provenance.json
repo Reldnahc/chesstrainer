@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-rook-queen",
+      "label": "Explanation finding double check rook queen",
+      "text": "Double check, a rare and striking thing: the rook and the queen check the king together, and only the king itself can answer them."
+    },
+    "takeId": null
+  },
+  "requestHash": "a565c59e5b16d31932458a89a22bd8ff4ee6f2f370b3610341eebe394764ca17",
+  "recordedAt": "2026-10-04T07:41:32.355Z",
+  "sha256": "4f4daa78629ccd3defa615e205d7f579d42f374cb7c0b4f913c53c5ed8596717",
+  "bytes": 28515,
+  "requestId": "Phhv9b0llu5RE27534Mp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a0ceaca46f6264e3b94482e80d36d452d5cea9dbac944f27ba3af4821d4ad4ec",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

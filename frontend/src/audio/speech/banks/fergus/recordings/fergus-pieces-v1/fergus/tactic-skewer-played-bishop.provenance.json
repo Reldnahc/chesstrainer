@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "tactic-skewer-played-bishop",
+      "label": "Tactic skewer played bishop",
+      "text": "Skewer, then: the bishop in front is hit, and should it step away, the piece behind is exposed on the same line."
+    },
+    "takeId": null
+  },
+  "requestHash": "4bee8e7e7ddb754b05979826f766dd42cad45809d1ce8ab575281e78ee69e06e",
+  "recordedAt": "2026-10-04T07:46:55.114Z",
+  "sha256": "004d3f8f19c1db1edc9cba08a6996f9962feafe0e97c3f4162e3f1abd6dcf57f",
+  "bytes": 25175,
+  "requestId": "Qmw3h7SUCJy7h1sVG7P5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "58fba21f2ff19a43663b4e5401d44fe08f18655fb134c2d79b269585470fee16",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

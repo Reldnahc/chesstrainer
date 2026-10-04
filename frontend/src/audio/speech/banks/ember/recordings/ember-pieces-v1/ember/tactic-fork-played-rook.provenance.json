@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "tactic-fork-played-rook",
+      "label": "Tactic fork played rook",
+      "text": "A fork, and a clean one. A lone rook bears on several targets, and the defense must deal with every one of them."
+    },
+    "takeId": null
+  },
+  "requestHash": "0d909532b213bbcd4be597eb2fec2942e567148444ba1f7986fcaa2580555b79",
+  "recordedAt": "2026-10-04T07:41:30.063Z",
+  "sha256": "4e39d4d75021b11fea05e55f4cb5e22635a69588cb10de072a7690a260007825",
+  "bytes": 24355,
+  "requestId": "juBVuJ2a5JpLgEOdTZZp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5f0e5cc3307fac2b877d5f1a15e5cbd74c4e28d044cf9361e2c1b7f15f363cc3",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

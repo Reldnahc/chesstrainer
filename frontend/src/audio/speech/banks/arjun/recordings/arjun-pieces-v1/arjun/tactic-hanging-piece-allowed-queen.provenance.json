@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-hanging-piece-allowed-queen",
+      "label": "Tactic hanging piece allowed queen",
+      "text": "Which defender used to cover that queen? After this move nothing protects it, so it's free for the other side to collect."
+    },
+    "takeId": null
+  },
+  "requestHash": "545136f7a5a366cdc35e7ad19b764989c4abf1881759905e8703214931557e81",
+  "recordedAt": "2026-10-04T07:32:42.966Z",
+  "sha256": "91146172647c660b9eb99f810cde2bca7ecd03ff7dd1e0aeb2c95869811d9500",
+  "bytes": 23331,
+  "requestId": "sE9M6HofM5nDDCR8D509",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a7185b12c89cf1621c6019890c22a35a2487821bfba157ce75bc214b71b0b2c9",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

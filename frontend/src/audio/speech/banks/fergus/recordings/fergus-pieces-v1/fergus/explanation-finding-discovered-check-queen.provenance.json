@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check-queen",
+      "label": "Explanation finding discovered check queen",
+      "text": "The front piece steps aside, and check arrives from the queen it was blocking."
+    },
+    "takeId": null
+  },
+  "requestHash": "6ac0f520dd143fbbfe390a2d1988d447bb44791f54841d3241ace94187c37092",
+  "recordedAt": "2026-10-04T07:47:45.058Z",
+  "sha256": "8bee3d98c492adffd519e5ebf38d07185b7fd68d0df255ed209459c6105f17b7",
+  "bytes": 15026,
+  "requestId": "BtXAPLmgD7lBFevOraMw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "49a083ef39d8c3cf003d9d89e25fd4bcd9cf266ff57f9ef0eb3be6ec37d71bb0",
+    "bytes": 75276
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

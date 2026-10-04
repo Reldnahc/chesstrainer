@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-missed-bishop",
+      "label": "Tactic undefended capture missed bishop",
+      "text": "Another move could have taken an undefended bishop, and this move leaves it there. A quick scan for unguarded pieces is a sensible first step before anything more ambitious."
+    },
+    "takeId": null
+  },
+  "requestHash": "1a66f1a8767bd654563f0e6a61a41c7fd0738c746b30ef03dcab8c3d3270d3a6",
+  "recordedAt": "2026-10-04T07:34:24.261Z",
+  "sha256": "2452ac122179de7b5b63c955118690201176de5005fa398c6f94c5644eb6be32",
+  "bytes": 34086,
+  "requestId": "5Xd4BiDDTq3EdxTugLMW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6a4c67c6425afc279a23860ed0710dd2412f8b94913ab3a61bd79c073c2f5627",
+    "bytes": 172661
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

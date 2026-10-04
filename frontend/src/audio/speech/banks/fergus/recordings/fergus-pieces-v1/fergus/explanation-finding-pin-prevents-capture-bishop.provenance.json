@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "explanation-finding-pin-prevents-capture-bishop",
+      "label": "Explanation finding pin prevents capture bishop",
+      "text": "That bishop is pinned to its king, so the marked capture is not legal."
+    },
+    "takeId": null
+  },
+  "requestHash": "f0e68aca36f4077ee0acbfc465d27d16da8b1a2bbc75461936df93c6e26fa028",
+  "recordedAt": "2026-10-04T07:47:40.337Z",
+  "sha256": "b15be56ae180e4574cb87d65205f274172496922ef15f4046506e0f331c5f1b2",
+  "bytes": 16059,
+  "requestId": "2NLxZZ9Fo02EG6KQEqRP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "92266a2f808773fd627b411ca72b3ce1318fb94af7d0924451e3e6593d3f8bce",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

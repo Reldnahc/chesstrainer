@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-escape-rook",
+      "label": "Explanation frame capture move escape rook",
+      "text": "This captures a rook and gets the king out of check."
+    },
+    "takeId": null
+  },
+  "requestHash": "b1e405d022e992dd124b5f8794bec948695da5acb38ee88850ec16b00028a23d",
+  "recordedAt": "2026-10-04T07:26:56.747Z",
+  "sha256": "fb8a2a453ae7d1580c175424fde49c82eb9b8a63ab195daf0044e28577fe23b8",
+  "bytes": 10904,
+  "requestId": "HDBM3NtbLVIGE9g7EalK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7391b510049223f1ff9ca8ec5ab86b80452de5928852078638d4577fedb16cb3",
+    "bytes": 52288
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

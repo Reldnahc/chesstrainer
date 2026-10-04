@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "cause-avoiding-bad-trades-bishop",
+      "label": "Cause avoiding bad trades bishop",
+      "text": "Hmm, grabbing with the bishop sure looks yummy, but then the other side recaptures the bishop, and it's worth more than what it took. Easy habit: tally the whole swap, every grab from both sides."
+    },
+    "takeId": null
+  },
+  "requestHash": "12765ff80953cf1e475a68814f90ddd4402d25219d6eb5de31804083597e8669",
+  "recordedAt": "2026-10-04T07:38:51.921Z",
+  "sha256": "16595b6dea8c66bb09c5342849828a4c83e42fde3a3cc9516ec5b419ffb7b887",
+  "bytes": 42481,
+  "requestId": "F0XIknk2IjgYMCoTu5Y7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "97db2ce2dfff1198263beb45bfb7e5dbecb3f65e1c74234c1e6c84d4a8e9ee0b",
+    "bytes": 222398
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

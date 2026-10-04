@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "tactic-hanging-piece-allowed-bishop",
+      "label": "Tactic hanging piece allowed bishop",
+      "text": "Well, there it is: a bishop with no guard, and the other side can take it. Find that bishop first."
+    },
+    "takeId": null
+  },
+  "requestHash": "303d90c85048b2f4f073d5e67c3c2dc71c4337c36f4061644ff7d58d7f7aa34e",
+  "recordedAt": "2026-10-04T07:29:06.683Z",
+  "sha256": "b915eaa095e18f3dc0275c1a4d9d4eb1a4c66784a31470c9f9fb7c64e44c84ca",
+  "bytes": 20939,
+  "requestId": "ROCWLXlHNaJhxbfLretK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e12dc82924d69cabe63415b00c72330d768c1707d617f5024798b5836c0b367b",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

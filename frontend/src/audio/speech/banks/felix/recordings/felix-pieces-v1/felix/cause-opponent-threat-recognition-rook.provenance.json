@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "cause-opponent-threat-recognition-rook",
+      "label": "Cause opponent threat recognition rook",
+      "text": "A rook is now open to capture. The opponent's last move made a threat, and this move lets it stand."
+    },
+    "takeId": null
+  },
+  "requestHash": "ed466e7f463fe0ff8dd1545943b14baf7d3b60baa376bcddd40ec745d61316ff",
+  "recordedAt": "2026-10-04T07:43:59.205Z",
+  "sha256": "a24ccc84f25394020cb6f9cd2edab638240eb653deb55cf721cec12a6ba78f4b",
+  "bytes": 23201,
+  "requestId": "OO2rWJ1NrKjHDOxKEqmM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dac934982d044d44c0ef9ac08a7bfe2f26fafdfd8a81c6220abd7d3216e59e41",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

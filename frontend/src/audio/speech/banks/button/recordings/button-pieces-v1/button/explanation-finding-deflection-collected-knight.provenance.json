@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-knight",
+      "label": "Explanation finding deflection collected knight",
+      "text": "Off goes the defender, pulled away from what it was guarding, and the knight it was looking after is captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "0e0d1fd286e468553590fa1c144b3b1ded16881eacc20019f9ec3dcb4d79e949",
+  "recordedAt": "2026-10-04T07:31:48.967Z",
+  "sha256": "b563c0b12a461eac9ea80de29a03502a3f6d19b5cc2489b3851d6afb18ee75f2",
+  "bytes": 20634,
+  "requestId": "FMm2dqNEiW70EgiOenGa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "68c4bca1ca5cef562066152807e08557a1e715f1e9c275946895038c4b0a6942",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

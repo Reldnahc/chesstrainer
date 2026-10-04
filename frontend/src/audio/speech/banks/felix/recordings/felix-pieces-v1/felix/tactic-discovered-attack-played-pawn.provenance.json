@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-pawn",
+      "label": "Tactic discovered attack played pawn",
+      "text": "The pawn clears the line, and the piece it was screening gets to attack. Discovered attack, textbook."
+    },
+    "takeId": null
+  },
+  "requestHash": "1fc1673686034770ee4c04eb81f50bb4630f8328053344bab863eaf19571bc17",
+  "recordedAt": "2026-10-04T07:43:29.640Z",
+  "sha256": "9005f0b1a2a7c32a41e30849f7077e17a931dba3ce02eda941075f64437cabf8",
+  "bytes": 21475,
+  "requestId": "dOmIoASOp1akZvjgQpyN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "66e0c6d5aba60f99b817b7191790ea77ef45c2f1896ccf837a1d6a93b5f1fe77",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-fork-allowed-knight",
+      "label": "Tactic fork allowed knight",
+      "text": "This gives the other side a chance to set up a fork, attacking several targets with the same knight."
+    },
+    "takeId": null
+  },
+  "requestHash": "e2876cfd2583802d85a3a835d751359819ef2f41c32a6ff9e722454636907ece",
+  "recordedAt": "2026-10-04T07:25:38.171Z",
+  "sha256": "b7afa3941e4f50ebd869140cb05d21ed15ab252be55427d5668f9abad817f2c9",
+  "bytes": 18776,
+  "requestId": "SDABJj7wEKgIzOA4qv2G",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b9e5a55a6f7d24029c01f172be664a13c992bb10d1f1fafe8e254741c3e6cabd",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "tactic-skewer-missed-rook",
+      "label": "Tactic skewer missed rook",
+      "text": "The stronger move was a skewer. The attack would have gone through the rook in front to the piece behind it. That chance is wasted here."
+    },
+    "takeId": null
+  },
+  "requestHash": "cd54c0d12e755e1045f9f68e5fc34e7c64c652c7f3b18cffc142aabc4a2f62e9",
+  "recordedAt": "2026-10-04T07:41:43.129Z",
+  "sha256": "77d85a55bc686d59920885a453c40086f7ac80fee3637ce6cb424ee7d8d707ca",
+  "bytes": 25877,
+  "requestId": "PeIZGOZiSAily6NlPPta",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f6c6e046723505852910f50e677edeb31ef05341cf5de79e9af507f6812ddde0",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

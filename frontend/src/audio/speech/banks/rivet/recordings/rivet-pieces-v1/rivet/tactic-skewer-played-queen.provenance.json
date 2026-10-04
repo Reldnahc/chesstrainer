@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "tactic-skewer-played-queen",
+      "label": "Tactic skewer played queen",
+      "text": "Pattern: skewer. Front unit: queen, displaced. Rear unit left open on that line."
+    },
+    "takeId": null
+  },
+  "requestHash": "63a73fd05b29abfa47192fda85555a3dd0b72c44b6f70e596d9cbc11a7458de3",
+  "recordedAt": "2026-10-04T07:27:24.234Z",
+  "sha256": "0682a521d2a6103f71c0317830e21abff7d39353ef606b7cb71c66374fe7774e",
+  "bytes": 21806,
+  "requestId": "qO8KexuTmtrHpSUdBhEK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "19ed283c12eced2567a1347bbc5b337dd5edcc6a9b50b9c35e28a08d1d84cbf2",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

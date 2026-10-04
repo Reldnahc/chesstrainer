@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "grade-brilliant-4-queen",
+      "label": "Grade brilliant 4 queen",
+      "text": "Brilliant. A sound queen sacrifice, and a position worth coming back to after the game."
+    },
+    "takeId": null
+  },
+  "requestHash": "52b4bbbd518a346fd3011bf6435f3a33530ac0dd83e3cd8eb2acb90c2c7a9b4e",
+  "recordedAt": "2026-10-04T07:26:55.585Z",
+  "sha256": "c1d106bef711e2485d6e44ced1bbc87375a7e2f4f67375bc8eca05e1784736a7",
+  "bytes": 19389,
+  "requestId": "ITnWNIWdyGYKTfcFGovl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e8bf88c87ea8195a3661adc2777a1772fbd3717b07c91e1f8566b77229538b3e",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

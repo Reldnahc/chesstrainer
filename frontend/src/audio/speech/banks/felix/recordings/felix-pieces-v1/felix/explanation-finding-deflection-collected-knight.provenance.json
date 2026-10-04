@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-knight",
+      "label": "Explanation finding deflection collected knight",
+      "text": "The defender is pulled off its job, and the knight it left is taken."
+    },
+    "takeId": null
+  },
+  "requestHash": "7d38d260cb6987db6ba7e3ed1675ff9d71f17e58d36adb53c9e4f1b9db791ff0",
+  "recordedAt": "2026-10-04T07:44:31.433Z",
+  "sha256": "3f47e2a807e596d52668bab27b257ce5d21aa1d9c2a359775ed3ab09a1edeb6e",
+  "bytes": 15585,
+  "requestId": "yqHqhUauGKMawObC17rf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8064b6b2b731fbed035b436aa3279a1c472061e0e16e095448527dfbc5fa5708",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

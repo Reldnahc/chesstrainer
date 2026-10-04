@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-hanging-piece-allowed-knight",
+      "label": "Tactic hanging piece allowed knight",
+      "text": "This gives the other side a chance to take an undefended knight. Look for what could be left without protection."
+    },
+    "takeId": null
+  },
+  "requestHash": "be27d95e69e5c7442453a2209bdf1f82af09e5d48607a7affd183dcf23b9f76f",
+  "recordedAt": "2026-10-04T07:25:49.219Z",
+  "sha256": "24e0c350f3ed1e0160aca4fe13918a3a4fd45da046ccfb5a14ddda2754808f6b",
+  "bytes": 21283,
+  "requestId": "EFccGeLjdEY61PjTkSfL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1d54a09fe7195a2a38b720bb5370ead4baa1e7a03cc887da128c0c3e2f33b97b",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

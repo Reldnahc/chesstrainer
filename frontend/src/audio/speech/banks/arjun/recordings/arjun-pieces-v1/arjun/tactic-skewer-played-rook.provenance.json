@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-skewer-played-rook",
+      "label": "Tactic skewer played rook",
+      "text": "Here's the skewer idea in action. The rook in front is forced aside, and that exposes whatever stood behind it on the line."
+    },
+    "takeId": null
+  },
+  "requestHash": "b23dbebdc80cede8b214964bb12c0c41bc115a23511a7a1fe578920dd4346912",
+  "recordedAt": "2026-10-04T07:32:37.452Z",
+  "sha256": "7f7706aba4c482504e09d0d691b8dbe5dad732c4f3890b2d7139419a0940c989",
+  "bytes": 26043,
+  "requestId": "GrRSsIepR3IthQ1sn58Z",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d036e1cc1599ccced2459cf2ecee5c52ea37ca14a5fde205ce2f11076d10da8b",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

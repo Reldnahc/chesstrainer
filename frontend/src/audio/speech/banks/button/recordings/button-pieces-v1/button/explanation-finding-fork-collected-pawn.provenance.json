@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "explanation-finding-fork-collected-pawn",
+      "label": "Explanation finding fork collected pawn",
+      "text": "Follow the one pawn with two targets. It attacks them together, then takes one. In this example, that also comes out as a net material gain."
+    },
+    "takeId": null
+  },
+  "requestHash": "fb153ba39acbe97ba7f8eba27580cf78b05816967e963398f73c631050145bf8",
+  "recordedAt": "2026-10-04T07:31:30.309Z",
+  "sha256": "f1e875906b2f815d56cbdc01879aca90a0c32c7d7d41adddfb0d26d102f17b91",
+  "bytes": 30736,
+  "requestId": "9C94Yxlb55i4tFQtuTUv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a2509123a2a433ff8ab71b3fa09fcc50514270e64446ac8c3a639782d4de85e3",
+    "bytes": 158450
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

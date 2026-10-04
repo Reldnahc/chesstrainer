@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-check-rook",
+      "label": "Explanation frame capture move check rook",
+      "text": "This captures a rook and gives check as well."
+    },
+    "takeId": null
+  },
+  "requestHash": "d96b7edb3776242048c7bad2210c2d85262bb27f02390e64ef4991e5515d8808",
+  "recordedAt": "2026-10-04T07:26:44.250Z",
+  "sha256": "2e43728ea60219dd1cf1acae9937ceedd9b764fd69c4adebbe8ab98fc5d53403",
+  "bytes": 10246,
+  "requestId": "Ozf6c4IahtNB1D80ws9e",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "275f11b6231d8d24f0c0b05831023c4389d3736422493800cadb73c799d6b60e",
+    "bytes": 48527
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

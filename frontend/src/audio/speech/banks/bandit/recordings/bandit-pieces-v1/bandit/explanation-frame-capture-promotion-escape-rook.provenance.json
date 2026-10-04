@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-escape-rook",
+      "label": "Explanation frame capture promotion escape rook",
+      "text": "The pawn captures a rook and promotes on the last rank, and the king gets out of check in the same move."
+    },
+    "takeId": null
+  },
+  "requestHash": "3ea9b05cae90740c07e5815fca6de559d3156af73daaf1a2c6164e40dc760f0b",
+  "recordedAt": "2026-10-04T07:37:53.600Z",
+  "sha256": "4c90186feee9387adba6b8965217a41e20e408e6194c700aeecd355611a9745a",
+  "bytes": 21572,
+  "requestId": "wnkwBIRUIjt8A37bxCqn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7c4ff8a72d06c68cca9db41901c4e4e18f329c7d94b5ed36c21adf5b61983425",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-pawn",
+      "label": "Explanation finding pin collected pawn",
+      "text": "Follow the pinned pawn: the king behind it keeps it stuck on the line, and it gets captured before the sequence is done."
+    },
+    "takeId": null
+  },
+  "requestHash": "b1332d87908e8955b1220ee6c5b61f6fbd5347fc9240e4f4365784a6ce3f492a",
+  "recordedAt": "2026-10-04T07:33:04.508Z",
+  "sha256": "79678fa66e416b4d90ff3f3fc6bf2f4587143f74e4a6493b4a2ae4226d78c987",
+  "bytes": 23448,
+  "requestId": "nF0dzBugDrH4Aa4Gntfc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4916c93e60c560ace89ce0d339a7df4e96984dad6ae1b4f5c92bbcdfa1a395ee",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

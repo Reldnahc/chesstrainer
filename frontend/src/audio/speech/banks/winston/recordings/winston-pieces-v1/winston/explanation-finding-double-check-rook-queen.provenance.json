@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-rook-queen",
+      "label": "Explanation finding double check rook queen",
+      "text": "That's double check: the king's attacked by the rook and the queen at once."
+    },
+    "takeId": null
+  },
+  "requestHash": "5c56f504c6101693ab3c9fceb2e884b59a5586f5fe77b0be0ebeba77edd75ddf",
+  "recordedAt": "2026-10-04T07:30:22.752Z",
+  "sha256": "7b4bf98992076681cdd5b02d8765d7395a642a8437bc4d34f6a64f67eb346652",
+  "bytes": 15239,
+  "requestId": "wLKbkapUNeKlpcsPw5PP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4be5e6e387226c0fcf84d8f82df754ed0f6bfc18a4296473db0931935d6e72d3",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

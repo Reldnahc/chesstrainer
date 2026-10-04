@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-check-pawn",
+      "label": "Explanation frame capture move check pawn",
+      "text": "A pawn is captured, and the move gives check."
+    },
+    "takeId": null
+  },
+  "requestHash": "76101422e90711d5195e0d6596260a574cb5dea818f1efb85ffdbae33318705c",
+  "recordedAt": "2026-10-04T07:33:32.637Z",
+  "sha256": "d45e0b7e20e50f916f62a23d9533e3c6a78cfc34b16ec9c57d8c091b10b07fbc",
+  "bytes": 10636,
+  "requestId": "HXDALxJp0MZP6khtcI9N",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "221bba633928d55910d91dc1a7be0e5a2fd2f545fd1aabf4c1d8f55d5446fcee",
+    "bytes": 52288
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

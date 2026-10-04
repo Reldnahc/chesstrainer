@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "tactic-skewer-played-rook",
+      "label": "Tactic skewer played rook",
+      "text": "Think of a skewer as a line attack seen from front to back. The rook in front is attacked first, and if it steps aside, the piece behind it is exposed on the same line. Notice how the order of the pieces on that line does the work."
+    },
+    "takeId": null
+  },
+  "requestHash": "532b0138160f06eca3d04a1860c00d48acd893927b4c276c344fbd9ea6f6a70c",
+  "recordedAt": "2026-10-04T07:34:33.275Z",
+  "sha256": "61b1d563dec433e5a7117d60ff212d64a8b1f8c637ae1e49e5c632bb94b578cd",
+  "bytes": 46401,
+  "requestId": "9L2HjjvfMb8BTFNrlYLS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "35ebb2b1140fdb1c1e8291f1883e2acfc591c4cebcf06e8e27e69bf316083241",
+    "bytes": 239116
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

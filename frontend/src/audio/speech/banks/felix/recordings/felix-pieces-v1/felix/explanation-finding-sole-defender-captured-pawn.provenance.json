@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-pawn",
+      "label": "Explanation finding sole defender captured pawn",
+      "text": "Step one: the lone defender, a pawn, comes off. Later in these moves, whatever it guarded follows."
+    },
+    "takeId": null
+  },
+  "requestHash": "31ed701700a4a098a20a1463ccc51355b4b8057f15bbffa80fd92403666c8720",
+  "recordedAt": "2026-10-04T07:44:21.198Z",
+  "sha256": "4e804ef0c2c4061c877e0416affc2d10f979da70547184b6674efcf12df2f840",
+  "bytes": 25167,
+  "requestId": "LouF3s7UBmCtFrQXlL5P",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7e9a760c68e03d65a8430f8ba4565379eeb7ce4de0c7b721690830ff0a836b1a",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

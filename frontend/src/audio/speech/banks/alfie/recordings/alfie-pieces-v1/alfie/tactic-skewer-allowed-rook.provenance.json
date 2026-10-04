@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed-rook",
+      "label": "Tactic skewer allowed rook",
+      "text": "When two pieces share a line, an attack on the first can reach the second. The other side now has a skewer: if the rook in front gives way, the piece behind it could come under attack. Shared lines like that are worth checking before each move."
+    },
+    "takeId": null
+  },
+  "requestHash": "4525f819cd9ec595ca01a0e8749b629981af06ce484a9391368870ce99e8d769",
+  "recordedAt": "2026-10-04T07:34:49.924Z",
+  "sha256": "c861a970f2556d5b5d6eb4102d579549759f882917ea381dd7633879899193c1",
+  "bytes": 45839,
+  "requestId": "R4ElyRa9uPS7fc8YRWrj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "297b62c0546f2086937b4f8a5f813c55b21345a370eaf6f216f93d70e6f22a1f",
+    "bytes": 235355
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

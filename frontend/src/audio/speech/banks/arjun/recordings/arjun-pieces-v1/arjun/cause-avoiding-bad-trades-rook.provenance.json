@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "cause-avoiding-bad-trades-rook",
+      "label": "Cause avoiding bad trades rook",
+      "text": "Follow the exchange one move further. The recapture takes the rook, worth more than what it won, so the trade comes out behind."
+    },
+    "takeId": null
+  },
+  "requestHash": "df357ac074e0476173ce1984e8e02e5247f7755c9245da9ab4ac31f17436ac14",
+  "recordedAt": "2026-10-04T07:33:03.275Z",
+  "sha256": "af60ebee39a22c6b71ff666c206d3bf1802d212a5d30660a2295e7f4766a8018",
+  "bytes": 25713,
+  "requestId": "006QyRReoiG7vNqdbO7c",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9a05c30a95a0ab58515981930fdbb490c076f0c457dbe7e2fbbe8b636907c418",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

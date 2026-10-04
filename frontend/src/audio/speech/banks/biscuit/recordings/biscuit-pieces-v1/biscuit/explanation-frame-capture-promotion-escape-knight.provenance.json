@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-escape-knight",
+      "label": "Explanation frame capture promotion escape knight",
+      "text": "The pawn captures a knight on the last rank and promotes, and the king is rescued from check at the same moment."
+    },
+    "takeId": null
+  },
+  "requestHash": "a7792005fa3d2d1820c00f44962f15d273c6a0d02a45e970cfb1e4918b5bda69",
+  "recordedAt": "2026-10-04T07:39:42.637Z",
+  "sha256": "0326e8409cd8b07ded41a504a09c405bd33aacb5344c208df48ec8b65d6065ce",
+  "bytes": 22674,
+  "requestId": "H22rQnLq36AS0UOT0jA9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f5085fc11ce97dec9b6d83b05882ad1e3ebcac3368a9653202173f8cd015e78f",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

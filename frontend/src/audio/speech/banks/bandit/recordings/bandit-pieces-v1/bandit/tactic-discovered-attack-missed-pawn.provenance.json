@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed-pawn",
+      "label": "Tactic discovered attack missed pawn",
+      "text": "Another move had a discovered attack lined up: move the pawn off the line, and the piece behind it gets its shot. This move never puts it to work."
+    },
+    "takeId": null
+  },
+  "requestHash": "877717d39197f42a7bf63f86c9a70ee0df2794990899bd1c9450469338f7bc71",
+  "recordedAt": "2026-10-04T07:36:49.316Z",
+  "sha256": "beab437e9f52f8eea94cfd811b9110668d33256308bab82586915a69896b62b0",
+  "bytes": 29579,
+  "requestId": "dF56hnMnNQNckWSQ9f4I",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1b4ea47e9718ba6bdcac80bf0794d908c7b420f3ffbfce4c7e55e30c43fceaf1",
+    "bytes": 149673
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-bishop",
+      "label": "Explanation finding sole defender captured bishop",
+      "text": "The lone defender, a bishop, gets taken first, and the piece it protected follows it off the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "a84498b01ba0dd13f9928c1f4c0372ba3d4fe4b7d4112507031d9132e2435ee8",
+  "recordedAt": "2026-10-04T07:46:12.394Z",
+  "sha256": "53658c25fd13786d1a6de266cff28f893fdbd4fcb86ad6c944e5058e718a1068",
+  "bytes": 22753,
+  "requestId": "yYNgX0lpSMeIFheDcOmH",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f4e955abeeb3593eabab0b2b30834bd06644ede2980ec779fb715eba157c7c04",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

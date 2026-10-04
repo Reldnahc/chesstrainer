@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-king",
+      "label": "Tactic deflection allowed king",
+      "text": "This lets the other side pull the king away from its defensive job with a deflection, and whatever it was guarding might end up exposed."
+    },
+    "takeId": null
+  },
+  "requestHash": "dcb076ef6f529716846bee2666a57b07acdb5cee71cb7af96cb015c62b616e91",
+  "recordedAt": "2026-10-04T07:45:31.537Z",
+  "sha256": "a70c79018d13463b783b68bded5a4bcdb11f77a1a78e5460679ab5f089ec30bd",
+  "bytes": 27439,
+  "requestId": "ckvlqe6Li4POXYfexVLb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a3dd6c197e025a575f21f0b8ea253d697dcf90634065537600eededd2840f08b",
+    "bytes": 137970
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

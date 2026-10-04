@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "tactic-fork-allowed-bishop",
+      "label": "Tactic fork allowed bishop",
+      "text": "This hands the other side a fork, their bishop against several targets, which makes for a crowded position."
+    },
+    "takeId": null
+  },
+  "requestHash": "7ff0844311dc26bd6fdc657ebbe9b86a8b42c5267c69b3eaaaf12aa0919b36e2",
+  "recordedAt": "2026-10-04T07:46:39.947Z",
+  "sha256": "ef36a699101797492833fd1e1684af3716618e0e4b3e66c6739de723d1dfb0a5",
+  "bytes": 22260,
+  "requestId": "6BU09AMYvKbw0IaRvsac",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "27e95b16a3a29a1178e8e9567ab77b4da71244344188198ad0a6b532e0383a95",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

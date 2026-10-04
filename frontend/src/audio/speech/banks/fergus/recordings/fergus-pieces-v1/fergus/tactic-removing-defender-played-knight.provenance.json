@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played-knight",
+      "label": "Tactic removing defender played knight",
+      "text": "The defending knight comes off the board, so whatever it was guarding may now be loose."
+    },
+    "takeId": null
+  },
+  "requestHash": "4645e393c397ab06218c74ccc6a8b618141b35ac32ab0b95caee9bb93369ff4c",
+  "recordedAt": "2026-10-04T07:47:05.523Z",
+  "sha256": "328ec65ef583624261592e23d6b74f8a9e1129513b740eb2cc7bc3d204d069d3",
+  "bytes": 18009,
+  "requestId": "oPqUOUgkW1IYOYvnXyZa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "035ea38d4034e8f2d1e8bf2ebe476594630c4aa2b54e86d8cc9dcb3a0bd16fe4",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

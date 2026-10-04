@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-bishop",
+      "label": "Tactic deflection missed bishop",
+      "text": "Hmm, a crafty idea! Another move could have yanked the defending bishop off duty and left its post empty. That deflection waits for another day."
+    },
+    "takeId": null
+  },
+  "requestHash": "462617a4349f8f0e6ab50ae1a3d0bd7f16bcc8366e829c9088bac9bbc4a6bb10",
+  "recordedAt": "2026-10-04T07:38:45.966Z",
+  "sha256": "c49aecd8599aca19b0772d1e5719952716f6a1fd67a2f500809f81979c6ae1be",
+  "bytes": 31850,
+  "requestId": "hiX6YUQDIWtyFyRtUlQC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "04ae99a407c433e9ec1ce5c498f89fcb5a1ddcd85fe9b70a058414672075cf64",
+    "bytes": 164719
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

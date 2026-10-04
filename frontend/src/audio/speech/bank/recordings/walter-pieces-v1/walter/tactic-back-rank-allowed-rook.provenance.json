@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-back-rank-allowed-rook",
+      "label": "Tactic back rank allowed rook",
+      "text": "This gives the other side a route to a back-rank mate with a rook. The pattern traps the king behind its own pieces."
+    },
+    "takeId": null
+  },
+  "requestHash": "2d17974ead7009acf826fbff2912bfd540f91dad975940fb5a51e9426678d655",
+  "recordedAt": "2026-10-04T07:26:22.596Z",
+  "sha256": "19efdc6397d233e4af11183fc6d652701edccaf3ba4c4744c817beeba0952b4a",
+  "bytes": 22758,
+  "requestId": "vRdpdYhcvFbpTXxpRYGX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "10f125cc4dcb7ad11103f2b12ce42dd5d229dcdf6626092f330491ddb64d45a2",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

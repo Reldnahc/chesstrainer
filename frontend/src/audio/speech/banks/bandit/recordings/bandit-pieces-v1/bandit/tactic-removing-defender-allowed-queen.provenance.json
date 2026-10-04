@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-queen",
+      "label": "Tactic removing defender allowed queen",
+      "text": "This leaves a defending queen where it can be captured. If the other side takes it, whatever it guards could lose its protection, so see what that queen is holding up."
+    },
+    "takeId": null
+  },
+  "requestHash": "abc599859f35d11609d055c8f3ab8a0bf14a94ac2bc8050384cb6de8718c5932",
+  "recordedAt": "2026-10-04T07:36:40.523Z",
+  "sha256": "0640c5d3160e0780300dd75886f91d2c9ed15294ca4d6351f99972475f5eca31",
+  "bytes": 31479,
+  "requestId": "DotpZ7IWvV2rCveViw4R",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ca731be98fb26cafcd16b35025951f77f4b3600cd741d8842069ff2d638ffe6e",
+    "bytes": 160958
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

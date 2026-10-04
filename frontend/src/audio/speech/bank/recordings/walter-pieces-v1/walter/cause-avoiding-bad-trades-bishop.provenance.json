@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "cause-avoiding-bad-trades-bishop",
+      "label": "Cause avoiding bad trades bishop",
+      "text": "This capture with the bishop invites a recapture, and the bishop is worth more than what it took. Count both sides of the exchange before judging the first capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "fc72ed064d486021599c270817b40216f8bd431b7721a41b426df6469fc9599f",
+  "recordedAt": "2026-10-04T07:26:11.731Z",
+  "sha256": "8e5b7d3da807554c40bd6c5a493c08221e586b29f27fd7068d1b7629f9a4233f",
+  "bytes": 31179,
+  "requestId": "IQu6hSefxLhSS6kb4mz8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1808ba6522d4007c4759da21d5b1d970dc8a163f9ddb29890b378dd6f7f660da",
+    "bytes": 158450
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

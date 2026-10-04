@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-pawn",
+      "label": "Tactic deflection allowed pawn",
+      "text": "A defender with an important job can be lured away from it. That's exactly the deflection this move allows the other side, aimed at the defending pawn. Ask what that pawn is covering now, and what could pull it off."
+    },
+    "takeId": null
+  },
+  "requestHash": "5c77a616aba6595b274d10f5c170c74715ab7b4a3a51922255c6bebe9b1ac319",
+  "recordedAt": "2026-10-04T07:34:56.333Z",
+  "sha256": "4ffb71af0af0880ad583ac130b0e48f412630d6b5e1e13e503b727641b8b1f17",
+  "bytes": 39412,
+  "requestId": "kgX2TcrO0bdZ1f4GfNBs",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4ae6b16b8912b2c851b216effa33c23d753945db203d7cfe2afba73f233fedf7",
+    "bytes": 199410
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

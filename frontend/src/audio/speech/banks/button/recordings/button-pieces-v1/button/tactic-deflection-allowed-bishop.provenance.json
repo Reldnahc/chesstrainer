@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-bishop",
+      "label": "Tactic deflection allowed bishop",
+      "text": "How much rests on that one defending bishop? The other side has a chance to draw it away, a deflection, and whatever it guards could be left uncovered."
+    },
+    "takeId": null
+  },
+  "requestHash": "cc783ffa28e766e81ce2522c578d22ed58ef36781fb0322ab79ce3b28f10dc37",
+  "recordedAt": "2026-10-04T07:31:17.869Z",
+  "sha256": "873d385a6b2399c0aea668e5a63c80c36289292c5a8102194967964aa15b020c",
+  "bytes": 30335,
+  "requestId": "jBasiBZOu6q1Xyd01dpo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "44701119b2b1a6892d467a140c5e82cc8a855108f71a1b6003683cc9a3315787",
+    "bytes": 154688
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "support-restored-rook",
+      "label": "Support restored rook",
+      "text": "Previously unguarded, the rook now has cover again. Tidy."
+    },
+    "takeId": null
+  },
+  "requestHash": "df2a6b77a6415829391d58ce1fd3d86193cf1afca7b6583248a97dbfe99c3ca2",
+  "recordedAt": "2026-10-04T07:47:26.293Z",
+  "sha256": "fb9608fdedba60db9df45e8d24b1388b668b75d4bab850ac6abea5c67ad77a7f",
+  "bytes": 15204,
+  "requestId": "JNIItO3osJQrP5iH1XjZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d8f980d641d8c016ba510d8364e17e8171d07e0bef508e643ee1fadf8038275c",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

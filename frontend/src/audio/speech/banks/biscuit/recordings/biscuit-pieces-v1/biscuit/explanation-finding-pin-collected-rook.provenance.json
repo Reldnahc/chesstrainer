@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-rook",
+      "label": "Explanation finding pin collected rook",
+      "text": "The pinned rook has to stay on that line, or its king would be left open. A few moves later, it's captured anyway."
+    },
+    "takeId": null
+  },
+  "requestHash": "df5cf6fb215fb38e4e6b98bac35b322db1f457723fe6e4bdfa5fa1da4b87bda0",
+  "recordedAt": "2026-10-04T07:39:03.358Z",
+  "sha256": "d394188c230ed19b82f9955253cf47e13160ec6c4cee0113be7ccfcffcc11246",
+  "bytes": 24194,
+  "requestId": "L5J1JelKlkhxXN9yX78q",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0fb2039f17084f9973a16fd1484e22e3d4ce4c6a4e71d784aa2aa7bfe00f42dd",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

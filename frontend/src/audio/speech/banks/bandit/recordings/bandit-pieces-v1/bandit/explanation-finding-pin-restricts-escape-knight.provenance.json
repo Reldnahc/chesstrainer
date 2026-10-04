@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape-knight",
+      "label": "Explanation finding pin restricts escape knight",
+      "text": "The attacked knight can't just run, because it's pinned to its king. A pinned knight can't move at all, so it has no escape."
+    },
+    "takeId": null
+  },
+  "requestHash": "7c87f91b6884cf27e1de0dfd344c565f4eebf010feca493f161f2554826f5a1e",
+  "recordedAt": "2026-10-04T07:36:59.661Z",
+  "sha256": "532664e1dcf7ec8b9c085371f302773160f0a813463d7f8649a016634c8c1f5d",
+  "bytes": 26144,
+  "requestId": "y7KoWHXwgsI9fcO5Tdg4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bbcadd43c1e00af79c4ff5a290e1aa5ab7cfbc3a8d0423a340581c13f1ca6b4b",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

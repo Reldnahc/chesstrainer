@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "tactic-fork-missed-rook",
+      "label": "Tactic fork missed rook",
+      "text": "Another move had a fork tucked into it, the rook eyeing a whole group of targets. The game took another road."
+    },
+    "takeId": null
+  },
+  "requestHash": "5c4a4c1ab138e49f31d93f88e228488b1b449837cb48f718087b42ccd422bb8a",
+  "recordedAt": "2026-10-04T07:45:14.435Z",
+  "sha256": "19894097d8b4fb4e59167b302d899f19990509dc15c53e6cff2660142a6de290",
+  "bytes": 24370,
+  "requestId": "q8ahQy6y7Dambf9Mb3yn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e11b40ef9a95badf10cb210b49181d0a9da6820d99989edb829b1489e9eeb0c7",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

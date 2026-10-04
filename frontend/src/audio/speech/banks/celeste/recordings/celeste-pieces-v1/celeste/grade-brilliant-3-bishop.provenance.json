@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "grade-brilliant-3-bishop",
+      "label": "Grade brilliant 3 bishop",
+      "text": "Brilliant. A bishop truly surrendered, and capturing it leaves the spell unbroken."
+    },
+    "takeId": null
+  },
+  "requestHash": "505ac1a20ce1e2d70c98127e69f0dd802be022dafffb5fa36e4b7470e7471382",
+  "recordedAt": "2026-10-04T07:41:18.798Z",
+  "sha256": "dfdd08c1c300aea3eb65794b903d76ed823d78ff184c36c65a7e852ef1a8d04f",
+  "bytes": 20414,
+  "requestId": "e9xku35dcYn7TV0nA5Qh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9875963d643b9e5d851ce97314562de872ef6651f3b4bf8f9d7d05be435f65d3",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

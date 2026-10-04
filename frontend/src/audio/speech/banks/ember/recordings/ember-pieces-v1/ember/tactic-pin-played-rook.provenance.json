@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "tactic-pin-played-rook",
+      "label": "Tactic pin played rook",
+      "text": "That is a proper pin. The rook in front of its king cannot step off the line, because doing so would expose the king behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "1c3180f9d22c3826f3055e8fcd8e53df2b4646c6e964a641f1b11fb5ba55c090",
+  "recordedAt": "2026-10-04T07:42:02.510Z",
+  "sha256": "d73131c02252537b14040dfcaf499d5e00f6f3856d9cc6844d45d776e5024ec0",
+  "bytes": 26770,
+  "requestId": "InXMhn6nafQTWOPrAWEc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ea1680d823d79508a6bc87f8b49aaea613b11110e377355def59a84917c34679",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

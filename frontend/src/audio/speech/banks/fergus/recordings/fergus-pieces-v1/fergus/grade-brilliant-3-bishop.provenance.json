@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "grade-brilliant-3-bishop",
+      "label": "Grade brilliant 3 bishop",
+      "text": "Brilliant. Correct bishop sacrifice. Noted."
+    },
+    "takeId": null
+  },
+  "requestHash": "ba19492c5fd43223c5a36c104cbdedecebfa9a1e841c3c03201d51ba264e5286",
+  "recordedAt": "2026-10-04T07:47:48.372Z",
+  "sha256": "e3455518a626634d2f264619c35f5548b7ce89745d83fa37e166c4c0c12f10b2",
+  "bytes": 12653,
+  "requestId": "bWhs3efcCkkfVGImjD86",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "31b9e4e86b30a9acee7dacdcc9db144d440fe2abd48442a9a18e5d4031fb2281",
+    "bytes": 66499
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

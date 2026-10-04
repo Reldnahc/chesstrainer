@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "tactic-fork-allowed-rook",
+      "label": "Tactic fork allowed rook",
+      "text": "A costly lapse. A fork is handed over: one enemy rook will bear on several targets. Find the square where that rook lands."
+    },
+    "takeId": null
+  },
+  "requestHash": "e32ba5ebe6f1ebadfa275d52eb9bb0dc03ee31ad74181298238e2b5fbfb21dc9",
+  "recordedAt": "2026-10-04T07:41:41.037Z",
+  "sha256": "555b915d7495dfa08841777b59c8753b372cdb6f99a66dffeb1762e775cb0d8b",
+  "bytes": 27713,
+  "requestId": "d0U78Nr4vDjRUKYpDN1u",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e33650c256335902498af4f71f498c6b0b2ab2670c7558b7fdd4db9b4cfdc055",
+    "bytes": 145911
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

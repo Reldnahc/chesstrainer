@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-escape-pawn",
+      "label": "Explanation frame capture move escape pawn",
+      "text": "Capturing the pawn doubles as the way out of check."
+    },
+    "takeId": null
+  },
+  "requestHash": "213144cabd0c2a4984adcdac6b7a3fafb07fc1384bb401395ec473a7247e8c6b",
+  "recordedAt": "2026-10-04T07:46:24.225Z",
+  "sha256": "26f2d76a507e4df18fd411d20733b7007ccacce73f3dc8f753461d219a39d92e",
+  "bytes": 12221,
+  "requestId": "dcqexKCBQ4OwvFjPwPB0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dc7d133db5a14a6ab8674812a65e02615d25b7f532c8fa2253e01b24d0b6bfb3",
+    "bytes": 59812
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

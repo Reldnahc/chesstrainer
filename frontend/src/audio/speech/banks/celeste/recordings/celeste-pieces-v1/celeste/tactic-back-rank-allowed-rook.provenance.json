@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "tactic-back-rank-allowed-rook",
+      "label": "Tactic back rank allowed rook",
+      "text": "With this move, a back-rank mate idea for a rook opens up for the other side, the king walled in by the very pieces meant to shelter it."
+    },
+    "takeId": null
+  },
+  "requestHash": "f3f65bf2b2925019de15e8e5e59a69bf5a8b58d8a65e9406a8a007ff8792fbb9",
+  "recordedAt": "2026-10-04T07:40:42.131Z",
+  "sha256": "79bdacdc8c9cc1b24068d6ec525c717801067fded4144de5da93011958825824",
+  "bytes": 28814,
+  "requestId": "cZzyeeRyajTIrxBfDovT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "193a9ef138e756c619cd06d362dba34d492c5ab4c24eeb76cd01dab9bb63c1dd",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

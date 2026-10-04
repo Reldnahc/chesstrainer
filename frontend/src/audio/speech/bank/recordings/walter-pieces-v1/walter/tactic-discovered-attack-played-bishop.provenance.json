@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-bishop",
+      "label": "Tactic discovered attack played bishop",
+      "text": "The idea is to move the bishop out of the way and uncover an attack from another piece. Look at the line it opens."
+    },
+    "takeId": null
+  },
+  "requestHash": "4fac300500f664c6eea37a136587fdc9fcfd16ce4ba77c6aa050bd391233e109",
+  "recordedAt": "2026-10-04T07:25:41.229Z",
+  "sha256": "60e1666ddcad5cb4b7acbbb4a7db34fcd491c32521838059e5fd111158c65e46",
+  "bytes": 22875,
+  "requestId": "iZpO7pst9zomFgvMolIk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7c5cd7e551e9152d88b645d99fbe26682ef4e84f288d68d97a18ef8544da0976",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-pawn",
+      "label": "Explanation finding relative pin released pawn",
+      "text": "The opponent's previous move freed the attacking pawn from a relative pin, the target stayed where it was, and it was captured in the line shown."
+    },
+    "takeId": null
+  },
+  "requestHash": "35091557e844b0cd7726cc5ce5e261ea28a4dc20d4deca698e8ce2666d9dc03c",
+  "recordedAt": "2026-10-04T07:47:27.246Z",
+  "sha256": "3a64ef219ed7df57e447736170be60edeeb9b3fbede274f36255ec1d345822fa",
+  "bytes": 28786,
+  "requestId": "gaPRfAW7394ESkiuvYyY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c58f148f0314bc55d083c7efec6791d3239ac7f8f6f34b64336cdbf256e0e52f",
+    "bytes": 148419
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

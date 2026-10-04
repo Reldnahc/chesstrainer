@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "tactic-fork-allowed-knight",
+      "label": "Tactic fork allowed knight",
+      "text": "This hands the other side a fork, their knight against several targets, which makes for a crowded position."
+    },
+    "takeId": null
+  },
+  "requestHash": "05fce7cb87deda0e990820362a72303c53fd70e5a5a165a5079e8df5c127936a",
+  "recordedAt": "2026-10-04T07:46:38.291Z",
+  "sha256": "205a8af10f7d7bae0782ee7dc79478cf1d12701298c9fe198af7e64eed919ba0",
+  "bytes": 21772,
+  "requestId": "hu72kjwKqnq55A3HnxmJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "681941d053a91ba60657ff354664a400234f229c074cd78e6b4b5ba0d091591b",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

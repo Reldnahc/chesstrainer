@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "grade-brilliant-2-knight",
+      "label": "Grade brilliant 2 knight",
+      "text": "Brilliant. Generosity with the knight, and a sound idea behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "01823492e6fc6ad22f13329bc5033749d0aa06314709fe3e9731b4a34e9e30f4",
+  "recordedAt": "2026-10-04T07:44:59.869Z",
+  "sha256": "c9e122206d31a6378f3b445d4a0bd013e79e126c89a5088e186ca3ff3280f839",
+  "bytes": 16407,
+  "requestId": "ijwKf22j23xkLifMEXnh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ca181f7b8d8324690a2d39747a5ff9a9a46c871c30d095dc83586e1c5aea9d3e",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

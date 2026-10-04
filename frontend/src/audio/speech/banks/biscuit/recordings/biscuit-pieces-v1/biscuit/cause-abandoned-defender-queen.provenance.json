@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "cause-abandoned-defender-queen",
+      "label": "Cause abandoned defender queen",
+      "text": "Ah, found the problem! That queen only had one real defender, and this move sends it away, so the other side can capture the queen. Quick tip: whenever a defender wanders off, count up everything it used to protect."
+    },
+    "takeId": null
+  },
+  "requestHash": "63e585a8bcf8f9323f3005c25375fbb879f642818660e31a0ba9b3d211377090",
+  "recordedAt": "2026-10-04T07:39:19.915Z",
+  "sha256": "278c75b7108c3703e0e4ca662512c32588f49a926ea32fc230de4f0d2a232ba1",
+  "bytes": 46001,
+  "requestId": "9qjo6F6krBEbENKXs2Ur",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0fcdde3a3d75b0f779097573b971882ea78afb50751314dca4c5ff1e9918e3ba",
+    "bytes": 239116
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "tactic-deflection-played-rook",
+      "label": "Tactic deflection played rook",
+      "text": "Classic deflection. The defending rook gets pulled elsewhere, and the piece it had been looking after is now loose."
+    },
+    "takeId": null
+  },
+  "requestHash": "d1aff374996bc2b0487b01679957bf9f39ab5e5512c539f61c49317266a47ae3",
+  "recordedAt": "2026-10-04T07:45:35.666Z",
+  "sha256": "6492beac0230726706aa401fd6e096eacff313c7eb2546fe4228b23ab639a667",
+  "bytes": 25064,
+  "requestId": "0eANLb28UWU8Nk2IGhq6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ae0870e20ee92e32a0dc2cf289e0c180b24ff808ae9b073cb22a86c6fc578b3c",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

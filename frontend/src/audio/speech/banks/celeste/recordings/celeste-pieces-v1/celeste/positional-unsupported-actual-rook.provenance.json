@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-rook",
+      "label": "Positional unsupported actual rook",
+      "text": "With this move, a rook loses its last defender. That's a broken connection worth noticing, though it doesn't mean the rook is lost."
+    },
+    "takeId": null
+  },
+  "requestHash": "49843f92d9bf56184ebb19f8de51275a48f451592fbd79598d9245a5abf46202",
+  "recordedAt": "2026-10-04T07:40:35.558Z",
+  "sha256": "9244fc140f23b46ff5e92a1d571d5526bcd646a1f79ca956c65b7add5eb33790",
+  "bytes": 27449,
+  "requestId": "NhHWuJz3HWCHkYBiDEVO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "02ae1bd0261c1325afd723638c5132e099db42fa0fcacc61f338a5ed2c4c8646",
+    "bytes": 137970
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "explanation-finding-pin-prevents-capture-knight",
+      "label": "Explanation finding pin prevents capture knight",
+      "text": "The knight is pinned to its king and cannot capture the indicated target. Moving off the pin line would expose the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "01b97fa08b81f68678264c08c1085675864bce87aab036f73503a881f6651bef",
+  "recordedAt": "2026-10-04T07:26:35.711Z",
+  "sha256": "2cc3892033e0e0b356f2588b6e498760a9e0257839aef6b5c54801a523c041e9",
+  "bytes": 23714,
+  "requestId": "Ri8vf1U9JtbyW8EoR3wX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dec562b4b66d53c04b58d109e50bb538b760676b0401265b1908d668177ba5b1",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "positional-support-actual-knight",
+      "label": "Positional support actual knight",
+      "text": "A knight that was standing unguarded has a defender now, which is fine."
+    },
+    "takeId": null
+  },
+  "requestHash": "6ba816ab31bf8a544648ab5411ed98e7484d991079a9978b0dea55b5e6d044ee",
+  "recordedAt": "2026-10-04T07:47:29.190Z",
+  "sha256": "28094c25579b381a03c16ca9511146d1c9ce775d18b6e2402ce27232b1f88a50",
+  "bytes": 15376,
+  "requestId": "9KuxFB4alyMDS2DJMZ4C",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0d798fa8cbb5f032409316b224377b36024a00854b85e1f1e2d0007aea9ad970",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

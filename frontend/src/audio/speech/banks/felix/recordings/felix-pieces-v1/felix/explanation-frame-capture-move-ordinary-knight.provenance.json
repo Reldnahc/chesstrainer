@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary-knight",
+      "label": "Explanation frame capture move ordinary knight",
+      "text": "Takes the knight. Nothing fancier."
+    },
+    "takeId": null
+  },
+  "requestHash": "0862f2d84e5827b3d14098823a31b43623ef27de0eb8b3cc5321ec924488bf8d",
+  "recordedAt": "2026-10-04T07:44:56.527Z",
+  "sha256": "2b824b656a1da5ff204409b51f94c7c17b1c2b63e2e51beb91941296627f5327",
+  "bytes": 8021,
+  "requestId": "j8zm4UyIeMntohTYhlxj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "817d9d86e165f29149139a74d430b8ae6035cdd562a33e392761fbf3dc5bf2dd",
+    "bytes": 39332
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

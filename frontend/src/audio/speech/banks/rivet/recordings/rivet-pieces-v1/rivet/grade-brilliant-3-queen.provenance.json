@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "grade-brilliant-3-queen",
+      "label": "Grade brilliant 3 queen",
+      "text": "Brilliant. A queen given away, and the checked line still holds. Accounting error: not found."
+    },
+    "takeId": null
+  },
+  "requestHash": "d531e71ac55994800c125fc53499dae26e108a6643ec5d1e00fe29f725b55efa",
+  "recordedAt": "2026-10-04T07:28:28.360Z",
+  "sha256": "baca84fb41265f22ad64b7c64d6627ffbc37119b810ceccbaba2c434fd9a2a64",
+  "bytes": 21645,
+  "requestId": "O1uH5I1tjJ8MzYBIkEum",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0c2ded22ae7079e1c8eef88595053e55edef9ba9028f7400332d601627655ebe",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

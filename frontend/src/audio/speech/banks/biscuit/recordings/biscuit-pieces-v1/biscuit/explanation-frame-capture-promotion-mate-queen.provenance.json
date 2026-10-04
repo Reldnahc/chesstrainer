@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-mate-queen",
+      "label": "Explanation frame capture promotion mate queen",
+      "text": "The pawn chomps a queen on the last rank, promotes, and that's mate! The king is out of places to go."
+    },
+    "takeId": null
+  },
+  "requestHash": "aa1424508e8b5952fa5254f67af792791175e9d054081b3b555e1116a5c7ffa5",
+  "recordedAt": "2026-10-04T07:39:40.741Z",
+  "sha256": "c739c9d75a6b615419207c637bb83cac68c0176e89c63ee9c57bb07c39d87091",
+  "bytes": 22611,
+  "requestId": "nbEelQGC3FT8M3jBFO9o",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "be952c8a70040c85bf656229a9eace26ababb2fb4af43c26399248416087cb1b",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

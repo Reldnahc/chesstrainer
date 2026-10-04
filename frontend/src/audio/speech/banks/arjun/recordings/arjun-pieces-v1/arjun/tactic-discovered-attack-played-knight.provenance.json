@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-knight",
+      "label": "Tactic discovered attack played knight",
+      "text": "Watch the line open up: the knight in front moves, and the piece standing behind it suddenly has a target."
+    },
+    "takeId": null
+  },
+  "requestHash": "fdc10a01dc2101da24bb494d2c24eef30c65c5645eee5e737110b381ec6b5320",
+  "recordedAt": "2026-10-04T07:32:26.039Z",
+  "sha256": "079c4124ec5f9a03f2ae0e490ed0ea7f9d1ba1d1faa9627eed24150f9525659a",
+  "bytes": 21677,
+  "requestId": "dLnqKldlVHOH12W9Y08H",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9a714233ca6afd1e8ca8503542f7a47cc278b15a35f7c67b4cb41ac1869175a5",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

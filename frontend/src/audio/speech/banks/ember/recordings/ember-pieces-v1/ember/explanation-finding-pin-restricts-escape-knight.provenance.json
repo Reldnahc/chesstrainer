@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape-knight",
+      "label": "Explanation finding pin restricts escape knight",
+      "text": "The knight under attack is pinned in front of its king. It cannot move at all, and that leaves it no escape."
+    },
+    "takeId": null
+  },
+  "requestHash": "e991045d4ab039e937c87cf9bef0dd682bb03bc5e43e3be750ff1dbbb821848b",
+  "recordedAt": "2026-10-04T07:42:27.581Z",
+  "sha256": "707ea65327f270111bbf8b7e0816d406637856151adc6e57edf26852a6e452aa",
+  "bytes": 21948,
+  "requestId": "a8QlfhL5HzHFMikaCvQr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "185ec812173e4211616d649eb0849149b31e062f32aaad8475d9ebb062f3dd04",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

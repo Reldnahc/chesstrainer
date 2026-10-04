@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate-bishop",
+      "label": "Explanation frame capture move mate bishop",
+      "text": "Taking the bishop is also checkmate, with no legal escape."
+    },
+    "takeId": null
+  },
+  "requestHash": "ea53951add8a9d1a97e9c8ed3309d2589e92e5003420dd7b1807f5967da1f2ee",
+  "recordedAt": "2026-10-04T07:47:53.137Z",
+  "sha256": "43fa3273b6d113a3f7eebd256460072eb3318c82e0f1d30eff595fb5019dfe07",
+  "bytes": 14520,
+  "requestId": "GxVYmJx5NIqEhhVeVJWB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fee6a1f4ebc48ece586602508d51d1c25b85975d6e4ab4d516651d15427e6007",
+    "bytes": 71515
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

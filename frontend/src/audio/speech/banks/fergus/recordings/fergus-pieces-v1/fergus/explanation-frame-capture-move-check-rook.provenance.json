@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-check-rook",
+      "label": "Explanation frame capture move check rook",
+      "text": "Taking the rook also gives check, two things at once."
+    },
+    "takeId": null
+  },
+  "requestHash": "146ca953c0b135b8f2d8546fc2a582f851798f38f692c5d874cae8b2960c43ac",
+  "recordedAt": "2026-10-04T07:47:48.301Z",
+  "sha256": "1f6059ac8bd8f3c6b0728ec6ee6f27f1b71e74aeebf909447b0e7fcf14ed2101",
+  "bytes": 13654,
+  "requestId": "FXyTmYoK4sUgD1fDeSFd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e9cec832e2c316db72d1a777357130bc73abedcdcca67fe86dce83edcf762253",
+    "bytes": 70261
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

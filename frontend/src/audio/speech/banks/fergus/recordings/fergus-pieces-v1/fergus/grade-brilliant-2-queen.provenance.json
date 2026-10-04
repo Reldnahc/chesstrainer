@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "grade-brilliant-2-queen",
+      "label": "Grade brilliant 2 queen",
+      "text": "The queen can be taken here. It holds up anyway."
+    },
+    "takeId": null
+  },
+  "requestHash": "9550af70ec8d540eb4689398f23de53b0e08a9516c2d93fe8c93ea5c528f0d26",
+  "recordedAt": "2026-10-04T07:48:13.043Z",
+  "sha256": "48c711572af3e757a336cb2164b38baae26d4c75f1c7335967ab158e97d5f2fc",
+  "bytes": 11329,
+  "requestId": "R0gtYsQAYknghqoZJyMK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "da7495d0997031e817bfed69d30842236b72d3d376423ea2225bc6f21fbdccdb",
+    "bytes": 57304
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

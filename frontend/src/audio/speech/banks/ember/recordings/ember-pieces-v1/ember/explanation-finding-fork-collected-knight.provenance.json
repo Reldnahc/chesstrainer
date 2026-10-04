@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "explanation-finding-fork-collected-knight",
+      "label": "Explanation finding fork collected knight",
+      "text": "This is a fork that pays. One knight attacks several targets, then takes one, and this example ends with a net material gain."
+    },
+    "takeId": null
+  },
+  "requestHash": "1b6c6c4f1d5f8fa6bd44143343f56ec6a0289668b0327923119ecb286576a3eb",
+  "recordedAt": "2026-10-04T07:42:37.521Z",
+  "sha256": "5e67067352392f404414250219aefd98a928dc8043a5644058b7260ccae942f3",
+  "bytes": 28997,
+  "requestId": "L5nu9hLt8YK912l03VOd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c63c263c40365d1aa82251e3fa22d687faabb83e43c878bff7dd6e18aae1dfe9",
+    "bytes": 147165
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

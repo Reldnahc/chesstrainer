@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-escape-rook",
+      "label": "Explanation frame capture move escape rook",
+      "text": "Capturing the rook doubles as the way out of check."
+    },
+    "takeId": null
+  },
+  "requestHash": "5f60dffe5d8e21b959157b4b8ba4f4b4912b1eb43c987f6aed09ab3cdfaf040a",
+  "recordedAt": "2026-10-04T07:46:27.642Z",
+  "sha256": "29e2c02ccea4ca787edc838375c9a49877d025336c6aa6fc40d4d1dd18b36983",
+  "bytes": 12599,
+  "requestId": "BaWkdlEkfmnZNs8TIVtW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5bbb80634dd9dc83ce473c882ec38eabed856bb7f61b86428b2badf055397968",
+    "bytes": 61066
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

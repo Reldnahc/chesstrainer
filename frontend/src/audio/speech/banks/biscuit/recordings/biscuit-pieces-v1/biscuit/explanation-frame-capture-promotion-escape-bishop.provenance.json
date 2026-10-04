@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-escape-bishop",
+      "label": "Explanation frame capture promotion escape bishop",
+      "text": "The pawn captures a bishop on the last rank and promotes, and the king is rescued from check at the same moment."
+    },
+    "takeId": null
+  },
+  "requestHash": "a9bd3f3dbdaaedc06327c8a32154aef9ed52b54ae523636ab767ba699576f586",
+  "recordedAt": "2026-10-04T07:39:44.464Z",
+  "sha256": "f76c405b3f5847bc9a57f1efe2c46e83d86c4616d38526e347f576b5d467dd50",
+  "bytes": 22430,
+  "requestId": "r9VbahNUGnJaArHl7ANM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "555381366ef371c7d852a64aa563e614fb380287bffa399ea7f810575ecd84a7",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "cause-avoiding-bad-trades-knight",
+      "label": "Cause avoiding bad trades knight",
+      "text": "Hmm, grabbing with the knight sure looks yummy, but then the other side recaptures the knight, and it's worth more than what it took. Easy habit: tally the whole swap, every grab from both sides."
+    },
+    "takeId": null
+  },
+  "requestHash": "1ec877ac9d01e479cecbc869229c7960537ea0b7e896bc11be4aa425da40b06b",
+  "recordedAt": "2026-10-04T07:38:48.635Z",
+  "sha256": "92b78252784d6b44556e64c814dc781e140e83a192035318e9efefa8c8d1832d",
+  "bytes": 43004,
+  "requestId": "cNFi4lXBSQs6WVnA2Vue",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d25be73c0f0008563fc1e9c734192ba14b71e1ba58075bea4e0297d78bbffdda",
+    "bytes": 227831
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-check-queen",
+      "label": "Explanation frame capture promotion check queen",
+      "text": "One little pawn does a triple trick: it grabs a queen, becomes a new piece, and gives check, wow!"
+    },
+    "takeId": null
+  },
+  "requestHash": "8c156364ca5a2a75fe4d75f53876b47972e2f8ccb3f20c8922e1f6cfcd9aad05",
+  "recordedAt": "2026-10-04T07:39:32.840Z",
+  "sha256": "05dd20213eaf06aebdbd882cc7f30423786b6592ed9bd31fdcf8badca2a75f2c",
+  "bytes": 24909,
+  "requestId": "RtQPdKV9BwyMzWBpEDi5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a608f50ca47fa5ebb5ea38f7ba3644ce6e32cf827040b18c18325466b9de5898",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

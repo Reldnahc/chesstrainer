@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-pawn-queen",
+      "label": "Explanation finding double check pawn queen",
+      "text": "This is double check: the pawn and the queen check the king at once, so only a king move can answer it."
+    },
+    "takeId": null
+  },
+  "requestHash": "3ee12fe10cd5b2bde203ab0a6996368d4a12bb201bebd7913bc869b62a06711b",
+  "recordedAt": "2026-10-04T07:35:55.591Z",
+  "sha256": "c698c86003723c8a8b093ed47d5d2c1e7edb7e31a00b7054c789a3c294e9a911",
+  "bytes": 21189,
+  "requestId": "s3l9c7vFMKX5CtHaqTk4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5535cc364733f1018a135e139e000cdcb3988eb64b1f05be5fac5da29e600d5b",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-king",
+      "label": "Explanation finding skewer collected king",
+      "text": "Watch the king step out of check and off the line. That opens the way for a capture of the piece behind it, along the same line."
+    },
+    "takeId": null
+  },
+  "requestHash": "eb5b866b69015d4854c84ac933cb22ec8eed8b8e69ff9ae48b06b0a0895da166",
+  "recordedAt": "2026-10-04T07:26:27.927Z",
+  "sha256": "152d26fbb290ec587f87f51744a0b4fc98b577183a2bc86476f5cd1f827dbf73",
+  "bytes": 25074,
+  "requestId": "bJhHz02zefHojTXgJB1s",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ec310c867f4fdf7eb4f9b98570b761d1827f1f742e6992c927b0371e1f8386a6",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

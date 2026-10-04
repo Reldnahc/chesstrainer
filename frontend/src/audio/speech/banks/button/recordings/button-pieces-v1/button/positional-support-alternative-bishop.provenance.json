@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "positional-support-alternative-bishop",
+      "label": "Positional support alternative bishop",
+      "text": "Another move would have given a lonely bishop a defender, so it wasn't left standing on its own."
+    },
+    "takeId": null
+  },
+  "requestHash": "e1194a88410c59c3b4e78c447d18c78799e50ba2362737cb9cab52823e465fc7",
+  "recordedAt": "2026-10-04T07:31:35.763Z",
+  "sha256": "55c998d893fbb4714116e7d38a67cf7c017dd5c360a21bc18b9953ed817557ad",
+  "bytes": 18321,
+  "requestId": "9Vo1DAtssZGxLwIYGA6Q",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c4cdfdf10cb6d8aeb31776a2e2cc4301f3c1371cc5d320f345f9f7a3479c679a",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

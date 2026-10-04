@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-bishop",
+      "label": "Explanation finding sole defender captured bishop",
+      "text": "Capture the bishop first, since it's the only defender, and the piece it was protecting is next. One capture opens the way for the other."
+    },
+    "takeId": null
+  },
+  "requestHash": "19ba7194112336777bb41432cf315d7dd7b723329df1ba03aa99cadd9e95c82f",
+  "recordedAt": "2026-10-04T07:33:18.505Z",
+  "sha256": "746d9b94e0ca92b69f57f0be50c40e49933e50ffaf68baec37041e35557497c4",
+  "bytes": 26862,
+  "requestId": "S8JwrjGLC5h1hAO1IWct",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a5b863380c2fbeaf24aba863f917b7d3661f078f01da7c48780ae7cc03eaa3ab",
+    "bytes": 136716
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

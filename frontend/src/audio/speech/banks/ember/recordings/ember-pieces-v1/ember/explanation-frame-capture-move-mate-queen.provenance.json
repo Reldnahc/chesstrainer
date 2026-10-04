@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate-queen",
+      "label": "Explanation frame capture move mate queen",
+      "text": "A queen is captured, and it is checkmate. There is no way out for the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "1e8f6c58a66e39b3a6dce2c26628b159a0dfd03f171f30116671740f994ac117",
+  "recordedAt": "2026-10-04T07:43:05.260Z",
+  "sha256": "425bae7d4aafe48fcf3106e8d6eea28024805e6db2208b147317240f35083afe",
+  "bytes": 16994,
+  "requestId": "ooMjzKaPvCqmpycdNfbl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dc8dcfd9bd61d3b9078738114edf7298a9d2e1a9da90bc65a2cbf286f0b8deb4",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

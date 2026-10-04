@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played-queen",
+      "label": "Tactic removing defender played queen",
+      "text": "Watch what the defending queen protects. Capturing it is the idea here, so notice what would lose its protection."
+    },
+    "takeId": null
+  },
+  "requestHash": "e9264a5f81ea7d4b519cd8d8ead905b0c8c19a1d9e2c8a7523debfb68016ad1a",
+  "recordedAt": "2026-10-04T07:26:03.311Z",
+  "sha256": "5b205d9229cd0ca0bf3eeea83fe3be5dd6b2a84ea6251aa4a5dd16623500b722",
+  "bytes": 23258,
+  "requestId": "szFmapomKvuGqgk0rcg6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4f43451dec70c4e3d6bd951f46b95ea39066c37ba5a85ba0805d2b15069e3bab",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

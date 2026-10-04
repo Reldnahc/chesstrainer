@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-pawn",
+      "label": "Explanation finding pin collected pawn",
+      "text": "Watch that pinned pawn. It's stuck on the line in front of the king, and before these moves are over, it gets taken."
+    },
+    "takeId": null
+  },
+  "requestHash": "364e6fcc98b5b69864e41f0f0f1fffb183c037a6839dcfae955b83bc3f8e147d",
+  "recordedAt": "2026-10-04T07:37:08.257Z",
+  "sha256": "c4507f46feef64fcd42f94f4bbebef7402cd20e203913c5888bbeb92589660ac",
+  "bytes": 22269,
+  "requestId": "gCfyAKgb14Abig0aq1f5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8aeb8b9d8f572cc73b9a32e4491c88b00510239ec6a3b618014e8084a7be54e1",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

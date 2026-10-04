@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-knight",
+      "label": "Tactic undefended capture played knight",
+      "text": "Nothing was guarding that knight, so it was taken, and the knight is gone."
+    },
+    "takeId": null
+  },
+  "requestHash": "56540c26c76e455a2d3f6d5a6ffc498785bbf627b499a618ed60fad86a56d6c8",
+  "recordedAt": "2026-10-04T07:46:44.979Z",
+  "sha256": "807ad0d1f68d7462a75b5b76c7ca2e6c94017dd72ec8f9e9653497e3fa8e3815",
+  "bytes": 16044,
+  "requestId": "mYYxQeb2JfuJhbthcOUC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "97a9ce86b3bba515fda1338b8e05b1d18db9276fd1ab42f7da123b8132afabba",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

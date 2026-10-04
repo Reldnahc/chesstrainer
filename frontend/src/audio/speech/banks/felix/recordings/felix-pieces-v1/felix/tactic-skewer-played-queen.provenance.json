@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "tactic-skewer-played-queen",
+      "label": "Tactic skewer played queen",
+      "text": "Skewered. The queen in front is under attack, and once it moves aside, whatever stood behind it on that line is exposed."
+    },
+    "takeId": null
+  },
+  "requestHash": "0a348e1f714924504734c2392f6c3de17ce59904fc24acc78fe7ed17e0cbd83d",
+  "recordedAt": "2026-10-04T07:43:46.059Z",
+  "sha256": "89ce3087b3304179baf19d46c3111f3a97258abbb37eb0572577cfbaa2482b95",
+  "bytes": 27157,
+  "requestId": "dpCnWSSGWMnqaSJzAwuw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1f97424eb2a1f210f3faaf7901981b47eaa06fe96af145a68d0c0ed2cb22ebb4",
+    "bytes": 139224
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

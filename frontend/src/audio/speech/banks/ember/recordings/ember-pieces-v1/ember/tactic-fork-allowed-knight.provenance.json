@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "tactic-fork-allowed-knight",
+      "label": "Tactic fork allowed knight",
+      "text": "A costly lapse. A fork is handed over: one enemy knight will bear on several targets. Find the square where that knight lands."
+    },
+    "takeId": null
+  },
+  "requestHash": "7c5416699a209c33e34dc0448049a6516f6f78eefada9111d03afe37bac0e83e",
+  "recordedAt": "2026-10-04T07:41:36.559Z",
+  "sha256": "a64de7d835af7f46358512063abb4616bea43120295b0a1708f4afc473b9dcb3",
+  "bytes": 28818,
+  "requestId": "wtXuQ9ms1wN37quWk5lP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "71962d1d55848561f179b1ca7ef334ce974a0bee9e58334a48d510e03a59c899",
+    "bytes": 152181
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

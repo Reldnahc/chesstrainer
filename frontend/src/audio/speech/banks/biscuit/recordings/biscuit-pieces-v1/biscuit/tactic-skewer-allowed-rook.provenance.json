@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed-rook",
+      "label": "Tactic skewer allowed rook",
+      "text": "Whoa, two pieces are lined up like ducks, ready for the other side to skewer. If the rook in front scoots away, whatever stands behind it could get hit."
+    },
+    "takeId": null
+  },
+  "requestHash": "a86704a019246eab3c68533201d266673865a1d243f619e368c829158ef710a7",
+  "recordedAt": "2026-10-04T07:38:32.962Z",
+  "sha256": "7c37296fc349314badd5b1976fa70e8d4ffa5292c861ad067ae4adab77d0726b",
+  "bytes": 31593,
+  "requestId": "uUayTj093faboODqKLmr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4b6cd8c0f295030b75ae89b35719b798caedd10251d2fc8961a56cc6d16aca3c",
+    "bytes": 162212
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

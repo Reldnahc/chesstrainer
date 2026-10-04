@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-deflection-played-knight",
+      "label": "Tactic deflection played knight",
+      "text": "Some pieces are holding up more than they look. A deflection pulls the defending knight away, and what it was holding up is left in the open."
+    },
+    "takeId": null
+  },
+  "requestHash": "4a600a33f3b20277cc8950239e0e63370a512026290eeb70a404298c77df6475",
+  "recordedAt": "2026-10-04T07:31:01.519Z",
+  "sha256": "6ff575f7db7ed70a5b2ce34dca6c5a82eb44cd4c44209f32bcdcca8deab231ca",
+  "bytes": 26310,
+  "requestId": "dwoVT1MlClEq5IRxBG4W",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f3eac02de217f239c773ce5224da97014b20608b19af1c1973e49e5a685ad766",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

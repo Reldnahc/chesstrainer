@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "positional-development-actual-knight",
+      "label": "Positional development actual knight",
+      "text": "A piece on its starting square has few squares to work with. This move brings a knight off its original square and into play. Notice where it stands now and what it can reach."
+    },
+    "takeId": null
+  },
+  "requestHash": "99f63302286349e6c9da4cf6b5ab4ead5304aed30c1e08c49eda51db38c53091",
+  "recordedAt": "2026-10-04T07:35:21.822Z",
+  "sha256": "cab2c733c5872c2434e3061c39ebd6cd3f6368783c8c83f18240358b74278e67",
+  "bytes": 33266,
+  "requestId": "hIHddhUkang54TdR3BEd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ab9f75537423c50169bb38ade7cbd3793e7dd2ef8ed78fb0bec155c71cda3bb7",
+    "bytes": 167645
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed-rook",
+      "label": "Tactic removing defender missed rook",
+      "text": "Another move could have captured a defending rook. That would have pulled the protection out from under whatever it was guarding."
+    },
+    "takeId": null
+  },
+  "requestHash": "6d6f7c1f62caf5abe17c7b33990c8ba210f6d216d98272446540db5425fd919d",
+  "recordedAt": "2026-10-04T07:30:55.570Z",
+  "sha256": "17ab9fd091545717eb25ee0ce4649c40e9c0f6b663e2e0e9645ca1277b05042d",
+  "bytes": 22076,
+  "requestId": "TK3MIz0x2x6OULukczcR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a31b13c36e53df60dddca7759690beacca6d0b5536aa67778a72a6c4c7bebfb5",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

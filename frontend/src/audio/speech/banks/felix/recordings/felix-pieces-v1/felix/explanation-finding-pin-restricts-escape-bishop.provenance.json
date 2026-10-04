@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape-bishop",
+      "label": "Explanation finding pin restricts escape bishop",
+      "text": "The attacked bishop cannot simply run, because its king sits behind it on the line. Whatever it does, the king has to stay covered."
+    },
+    "takeId": null
+  },
+  "requestHash": "c41b7daac064ac2aec8dce7f51c05abaf235c8998d3bddfc1577973947fa2b53",
+  "recordedAt": "2026-10-04T07:44:05.807Z",
+  "sha256": "ec2b38220715c8a544c3eb8a6ba71047077c590a4c398ada181813007fc3c9ee",
+  "bytes": 28643,
+  "requestId": "alnNLevOpH3o6dGXbspU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "31ac877da31b9ba989a5e974d96830f4ca43ad362aaf4b52a2894b57b717dc46",
+    "bytes": 147165
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

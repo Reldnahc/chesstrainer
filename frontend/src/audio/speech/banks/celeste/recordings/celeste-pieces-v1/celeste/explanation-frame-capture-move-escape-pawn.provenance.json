@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-escape-pawn",
+      "label": "Explanation frame capture move escape pawn",
+      "text": "In one motion, a pawn is captured and the king is freed from check."
+    },
+    "takeId": null
+  },
+  "requestHash": "87873e3f8125f718cd7275c0ec1c2afcfe3d59a0d66f44ef5261def5f3d4e793",
+  "recordedAt": "2026-10-04T07:41:25.297Z",
+  "sha256": "6ebc7b10f2e8db8312ec78fb4076cc5ad1cf06a546abc870c2fa78140b238423",
+  "bytes": 15615,
+  "requestId": "aSHLNPvRJubYNP9ix47X",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f93341a2c35d2fbe7c35f099b04275d6bf76f5b470e272cfe6ca9944c7afb0e5",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

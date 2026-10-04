@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "tactic-pin-played-bishop",
+      "label": "Tactic pin played bishop",
+      "text": "Yeah, see the pin? The bishop in front can't leave that line, since stepping off it would put its own king in the firing line."
+    },
+    "takeId": null
+  },
+  "requestHash": "faf5c38e6ad0b83537e9fad53adfbd2dd4353f4cbf6788d14e2916b5741aa57b",
+  "recordedAt": "2026-10-04T07:45:22.786Z",
+  "sha256": "a6067332f8b5f3068fe57b396cfa8578eb8e1ac61c25c489dd636ec7e78ce2f0",
+  "bytes": 27314,
+  "requestId": "8xi1WZXNrjoexYhS9yCc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ccaa4db6525c50bb0358fb38d18e63b4e4b4d5d82ecaf11f8ba4d4470841eaba",
+    "bytes": 137970
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

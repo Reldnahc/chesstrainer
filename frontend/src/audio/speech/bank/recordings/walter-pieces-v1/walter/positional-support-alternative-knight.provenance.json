@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "positional-support-alternative-knight",
+      "label": "Positional support alternative knight",
+      "text": "Another move would have given the knight a defender. It would no longer be left on its own."
+    },
+    "takeId": null
+  },
+  "requestHash": "b49ef7610c75560a2dec6701f17445ee769f10b8ba18784632ab7ef3fdb7cba9",
+  "recordedAt": "2026-10-04T07:26:27.904Z",
+  "sha256": "c01e15728a24d93029d368a981c1878e414d70205d10e85775ac271a59461ae3",
+  "bytes": 16582,
+  "requestId": "PTb1CfGkx2yizULM8adW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "548a5831415dc4db72a32a44647db528a13ce05e541b308a1582c9372cc72cb9",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

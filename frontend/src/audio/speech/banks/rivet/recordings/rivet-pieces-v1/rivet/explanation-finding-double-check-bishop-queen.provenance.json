@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-bishop-queen",
+      "label": "Explanation finding double check bishop queen",
+      "text": "Double check. The bishop and the queen attack the king at the same time."
+    },
+    "takeId": null
+  },
+  "requestHash": "11b4186235edad3fff1b6bd07324608dec0c778d46e1f93a78c2fad8688a85b4",
+  "recordedAt": "2026-10-04T07:28:28.629Z",
+  "sha256": "84245bae5ce3ad3633f5af8e1a6924d8182b23cd2d767fbf9cc61c24981811d4",
+  "bytes": 16145,
+  "requestId": "GDgfMXELszquCQ4kfSZl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f4b0134a5826dc315b0914a6c391e4088d2065f5e639a611799ca17c61d14e4e",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "positional-development-actual-bishop",
+      "label": "Positional development actual bishop",
+      "text": "A bishop finally leaves its starting square to go looking for work. Pieces sitting at home don't grab anything."
+    },
+    "takeId": null
+  },
+  "requestHash": "75a091cea7b5df6013c6b96e824d4f37ce324109f45f20e3be29bbd04946e8f6",
+  "recordedAt": "2026-10-04T07:37:11.271Z",
+  "sha256": "3af49116c7a6c36f175d83605183343e75f5260954e36e1655249ce1ac56aac9",
+  "bytes": 22596,
+  "requestId": "KGQ6DG41C6qK7FhhlONA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "820bedec559fc51e63732369fb9a879321a1beaa35c8acc77245a2a6a60fb13d",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape-knight",
+      "label": "Explanation finding pin restricts escape knight",
+      "text": "The attacked knight is pinned to its king, and that leaves it nowhere to go. Moving it at all would expose its king."
+    },
+    "takeId": null
+  },
+  "requestHash": "b9b369b5f7029df6e87289ff3aa50f36d0c7f4f7db1f90ec8988ab18d6708d4d",
+  "recordedAt": "2026-10-04T07:29:29.129Z",
+  "sha256": "822b29bd0617183c5043b196606ef1fa369380d463d35f01934b38848f64ecd5",
+  "bytes": 23214,
+  "requestId": "d4ClThFED10TjJSs8ZGl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "885d81939d4d2bb117a8acc4551f38fa6bba853b604adb71a974ea93f5f6ca2e",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

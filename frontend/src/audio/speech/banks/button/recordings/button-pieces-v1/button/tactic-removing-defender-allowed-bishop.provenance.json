@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-bishop",
+      "label": "Tactic removing defender allowed bishop",
+      "text": "What is that defending bishop holding up? The other side now has a chance to capture it, and whatever it guards could be left without protection."
+    },
+    "takeId": null
+  },
+  "requestHash": "217ea900b181b1f3691518e75219b045b9299dc4fba2739b73f6f40fa0b600d4",
+  "recordedAt": "2026-10-04T07:30:43.859Z",
+  "sha256": "49e8b8045dea7267af36b5b63ff0365d7e910d51d4d5c115ff37de74710b8ee6",
+  "bytes": 26960,
+  "requestId": "1GSFkFF0XTGViVoFOgNc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a0964b8dd877047fe60ee2b4a466637d18a335f0d17360ea972646060cd49dd5",
+    "bytes": 136716
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

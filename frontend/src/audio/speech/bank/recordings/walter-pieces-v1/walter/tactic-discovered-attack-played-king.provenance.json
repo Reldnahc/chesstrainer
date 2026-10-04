@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-king",
+      "label": "Tactic discovered attack played king",
+      "text": "The idea is to move the king out of the way and uncover an attack from another piece. Look at the line it opens."
+    },
+    "takeId": null
+  },
+  "requestHash": "72790f4c47aaa06e190093a943612b700cfd489d3559d24c3dca96a97bb795c4",
+  "recordedAt": "2026-10-04T07:25:46.541Z",
+  "sha256": "47a83d2b42be2cf341fbb5e39d52ef91dc96facc14d5ef70651e82156d645cb5",
+  "bytes": 22688,
+  "requestId": "O9BhqbpVcXsDuZ9hToz3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d7380870febacef9c3b084174f2eade94d99555c3ca292be560cba055f96cc77",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

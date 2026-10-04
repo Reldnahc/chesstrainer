@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-bishop",
+      "label": "Explanation finding undefended capture gain bishop",
+      "text": "Look at the undefended bishop being captured. The example shows a net material gain for the capturing side."
+    },
+    "takeId": null
+  },
+  "requestHash": "cb20d882c03389fc4879ac65667e420e526c597dae12f218bf83a9d2fb7ccba7",
+  "recordedAt": "2026-10-04T07:26:39.033Z",
+  "sha256": "9c09fb6ec32a1afd52d582040a364aff23f20bf31261aa154e0c0c875588568c",
+  "bytes": 21298,
+  "requestId": "o9JW2Zbana1N2azNorVk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7fdf2b3b693b02aac8369ed48127e1e62bf5c83dacf077b2ce4487663f3ab527",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

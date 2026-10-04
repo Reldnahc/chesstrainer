@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "support-restored-knight",
+      "label": "Support restored knight",
+      "text": "The knight left hanging earlier is guarded once more. Keep it that way."
+    },
+    "takeId": null
+  },
+  "requestHash": "7f51c59dbfd2d479766334590f7e2f1ab67e3f2221f0dc15b46680bf1b6f368f",
+  "recordedAt": "2026-10-04T07:42:29.290Z",
+  "sha256": "41e845cdac2ef5a8529a4938db3fb28736103942dc76a1a317e3fccf6014bfa2",
+  "bytes": 14589,
+  "requestId": "z0tShDnDzKDDsgJz6HRu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bf3e02c1c14b14c265d8adae5429a6bb500394e31763277ca22d814cf01329ef",
+    "bytes": 71515
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

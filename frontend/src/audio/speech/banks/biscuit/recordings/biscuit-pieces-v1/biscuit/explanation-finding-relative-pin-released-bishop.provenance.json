@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-bishop",
+      "label": "Explanation finding relative pin released bishop",
+      "text": "Thanks to the opponent's previous move, the attacking bishop is out of a relative pin. Nobody came to the target's rescue, so the line shown ends with it captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "5820cee89099346155a15fe32465111f95aa1ee725b2e6475e50a28c60ed97ff",
+  "recordedAt": "2026-10-04T07:38:59.294Z",
+  "sha256": "d4fb074cfa7c8a29f11b3eb8f63018a08264c4421d8f47e2c14cc6229cdf3c4a",
+  "bytes": 33009,
+  "requestId": "CRTqPCsm5ZDUy1I4kwhC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "711008df78e35eaacad0c28bafc8e9783d4a8e4afce6df242bbe46d5487758db",
+    "bytes": 166391
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

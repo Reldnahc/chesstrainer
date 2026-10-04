@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "tactic-pin-missed-rook",
+      "label": "Tactic pin missed rook",
+      "text": "A different move could've pinned a rook to its king and held it fast on its line. That chance went by. Find the rook that would've been held there."
+    },
+    "takeId": null
+  },
+  "requestHash": "331603d208f2ffd0b1cba75ec7a7a3c844fa07687ef8dd66ea80900cf9b5e930",
+  "recordedAt": "2026-10-04T07:28:55.299Z",
+  "sha256": "21176e164e44a47a0b117ccf4c1729c11e0f89252779181ed14901ba6630dfc4",
+  "bytes": 26438,
+  "requestId": "I3HsF0u0Bi4YMCE67p8X",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dd261646891127660375d4d179da2faba98d9d4950e2acbf9c2fea775b6190dc",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

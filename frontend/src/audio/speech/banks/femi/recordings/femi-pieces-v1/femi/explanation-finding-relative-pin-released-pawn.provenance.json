@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-pawn",
+      "label": "Explanation finding relative pin released pawn",
+      "text": "Notice that the opponent's last move took the relative pin off the attacking pawn. Nothing moves the target to safety, and the line shown wins it."
+    },
+    "takeId": null
+  },
+  "requestHash": "0b8f5762a5da98c11eebb03bd4d8dea990902fd88bc006ee33646ab46d9a0135",
+  "recordedAt": "2026-10-04T07:45:50.616Z",
+  "sha256": "9373b4b296f7cb407c10fe75a2f46847ecb4b65f4570f0c52ab2f956f2d52ff6",
+  "bytes": 31535,
+  "requestId": "syEMFjYdsCPpVF2eTWRc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3b8cc128b33ebab70b952612dfdb207cc9d93258e881ca36dd0e04de189b893f",
+    "bytes": 160958
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

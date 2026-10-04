@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed-rook",
+      "label": "Tactic discovered attack missed rook",
+      "text": "Another move had a discovered attack lined up: shift the rook aside, and the piece behind it gets its shot. This move never puts it to work."
+    },
+    "takeId": null
+  },
+  "requestHash": "f8722f9f45826dc97ce53bc6ceb11f0ae81b6b8c472e4afedf721e8995303829",
+  "recordedAt": "2026-10-04T07:36:15.090Z",
+  "sha256": "a77fd8a69fb3b8d416c5ecc575a13308db17841a8777f2ebf0ff389244d283d2",
+  "bytes": 28606,
+  "requestId": "cltp3MUvXtxEiL1YaHHx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3036ee6047f6b09528ee2fa40687ed774a8c8ae21f907c6129f7195d6bd53dad",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

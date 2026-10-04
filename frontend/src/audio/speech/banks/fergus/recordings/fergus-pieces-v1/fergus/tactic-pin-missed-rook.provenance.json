@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "tactic-pin-missed-rook",
+      "label": "Tactic pin missed rook",
+      "text": "Pinning a rook to its king was on offer elsewhere; this move went another direction."
+    },
+    "takeId": null
+  },
+  "requestHash": "1fb62a8e80a62e0962b2b352414c865c1956d336df177da3bd3e7055734b2a3e",
+  "recordedAt": "2026-10-04T07:46:48.813Z",
+  "sha256": "207f9918dcc245f6b3fce632fc0e3d6680b1048130cb81918c9629af25965017",
+  "bytes": 17314,
+  "requestId": "tkYzZMvfDLpG1xEqFq8Y",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ff03e7b9131714af000e3371d1297a8475ebb2fb35c8ce8419a8861ab81a011f",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

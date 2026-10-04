@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "tactic-fork-played-pawn",
+      "label": "Tactic fork played pawn",
+      "text": "There's a fork in this one: a single pawn bearing down on two targets at once. Follow that pawn and see what it reaches."
+    },
+    "takeId": null
+  },
+  "requestHash": "ae094a0a56acab8dc1fc5b289b067d101de7f4fb14a3f32ae443d41b0934b32e",
+  "recordedAt": "2026-10-04T07:28:36.894Z",
+  "sha256": "43ed8e845883c3a84dca57b894671b8a6c25ae60e17403d34df78a6718e328f9",
+  "bytes": 23878,
+  "requestId": "OzQb2WiFF5pLqSXtPLhT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f3353065847dcfa7a6b4a03bcf0bdb13703a653d6cd47cba46ef09a532f1eb49",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

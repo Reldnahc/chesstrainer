@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-king",
+      "label": "Tactic deflection allowed king",
+      "text": "The king carries a vital defensive task, and the other side can now drag it away. That is a deflection, and the task would go uncovered."
+    },
+    "takeId": null
+  },
+  "requestHash": "72ebcd26791b8cfd2233020ea8012e280c56e0b4da82a42f6e89ff83cb2c55eb",
+  "recordedAt": "2026-10-04T07:42:09.426Z",
+  "sha256": "f0a954d2a3dc22f3f5fe508d77fe80295fc63fbb4ebcb3b2d8227f31836cbcd2",
+  "bytes": 28585,
+  "requestId": "BbUCySkviqLLfikyDB1i",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e52fa7bbc27918fbf4f7fd1328130c2f344236b7b31828d2621e00e454f2078b",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

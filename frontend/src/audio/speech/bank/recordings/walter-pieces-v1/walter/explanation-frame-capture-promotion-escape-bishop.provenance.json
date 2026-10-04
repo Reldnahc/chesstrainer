@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-escape-bishop",
+      "label": "Explanation frame capture promotion escape bishop",
+      "text": "The pawn captures a bishop and promotes on the last rank. It gets the king out of check."
+    },
+    "takeId": null
+  },
+  "requestHash": "a7f6ed63cdc167369bd3adea47a966f7d2335e88d5960c113eadd8c44b03504a",
+  "recordedAt": "2026-10-04T07:26:58.483Z",
+  "sha256": "2d9979672af828815042eb3ba8c036d9ed2098a24de4762252876952359b94a2",
+  "bytes": 17930,
+  "requestId": "1Ins5SYdDdKk87FLSgvL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a9ab7fbd06bb247a38bd937eb7b8ccfd6c57f211ed58139d4d0555a0111dd6e9",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

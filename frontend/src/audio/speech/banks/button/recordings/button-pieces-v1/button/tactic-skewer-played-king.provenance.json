@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-skewer-played-king",
+      "label": "Tactic skewer played king",
+      "text": "Two pieces on one line, the king standing in front. That's a skewer: once the king steps out of check, the piece behind it is exposed."
+    },
+    "takeId": null
+  },
+  "requestHash": "0b24f2d4b50c65bf8871acf442eab99f5790f81cf9040e628a1bcca937c72a1e",
+  "recordedAt": "2026-10-04T07:30:52.295Z",
+  "sha256": "7ce6d46282d32acd775b5bc6c8dff1288011ebec9e6ab7fdfb2794cb7f545f46",
+  "bytes": 29831,
+  "requestId": "gaCH3ql7xjPsr0Guc2zV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "edb10c6671ac3d05592c7f6d6ed854f491a5ce7b6e5c64321770ca26b4dca921",
+    "bytes": 157196
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

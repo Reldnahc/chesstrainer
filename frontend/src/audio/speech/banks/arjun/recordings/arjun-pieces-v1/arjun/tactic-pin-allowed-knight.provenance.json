@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-pin-allowed-knight",
+      "label": "Tactic pin allowed knight",
+      "text": "What happens to the knight in front of the king now? After this move, it can be pinned there, and a pinned knight can't legally step off that line."
+    },
+    "takeId": null
+  },
+  "requestHash": "ee9420ebd5a3aacdbc2a00c173548a4bfb7fcc4e0e10d3466bbfae3cb976e363",
+  "recordedAt": "2026-10-04T07:32:14.113Z",
+  "sha256": "7c6f125ae9cb9ef5e4598565f105da900e7760e3efd6396d3bd15e6f26f97bea",
+  "bytes": 28300,
+  "requestId": "Xz0Fx0hdhjz7HLxqEi8U",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "32acb11913bf13c3f65b8dfa68124a09fa0d15ad04b0667ed0f577d757fee4a3",
+    "bytes": 147165
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

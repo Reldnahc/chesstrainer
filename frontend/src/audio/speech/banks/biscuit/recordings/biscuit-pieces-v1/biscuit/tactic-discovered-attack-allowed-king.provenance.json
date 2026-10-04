@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed-king",
+      "label": "Tactic discovered attack allowed king",
+      "text": "Whoa, their king is parked in front of another piece. If it scoots aside, the piece behind it gets to attack. Keep an eye out for that hidden pounce!"
+    },
+    "takeId": null
+  },
+  "requestHash": "a78320a93759ef3a877b7a2a24ec19ab384bb405950eb3bc358f61efb12798c6",
+  "recordedAt": "2026-10-04T07:38:36.473Z",
+  "sha256": "0769506f89aed9d25386da7a9958c5917d138fca4908e075caf443189f44b459",
+  "bytes": 30094,
+  "requestId": "0VOxAODCyOWvLD0l7ZRP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "89b21ab8aea4a8910b2268f62ae71a2e8ed62baa1ebc3dfec1ec7a56f3affc98",
+    "bytes": 154688
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

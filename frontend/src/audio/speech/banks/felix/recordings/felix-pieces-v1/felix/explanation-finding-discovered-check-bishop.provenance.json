@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check-bishop",
+      "label": "Explanation finding discovered check bishop",
+      "text": "One piece moves aside, unmasking a check from the bishop it was hiding."
+    },
+    "takeId": null
+  },
+  "requestHash": "50d4b070eb59c2a2aad53de70fcdb5fcef2cb1c518807217198b338378c541a1",
+  "recordedAt": "2026-10-04T07:44:30.175Z",
+  "sha256": "1420d376244f67474071464a2375fa18e46d36e46a73f9f08ef5203534f1d0a2",
+  "bytes": 16099,
+  "requestId": "LqL5tm89XEiupUQwHD3L",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "18773f618830b9f1bcda420c5109e01ebad885327bee5b01a730315f40554eef",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

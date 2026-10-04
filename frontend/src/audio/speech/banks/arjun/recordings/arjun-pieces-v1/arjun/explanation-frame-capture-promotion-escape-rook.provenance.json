@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-escape-rook",
+      "label": "Explanation frame capture promotion escape rook",
+      "text": "Capturing a rook and promoting at once, the pawn also gets the king out of check."
+    },
+    "takeId": null
+  },
+  "requestHash": "52d850b97c03a1fc621e8945af1fb518d45e40f228b2c7263d0f32be92f5e5c4",
+  "recordedAt": "2026-10-04T07:33:49.249Z",
+  "sha256": "6fa7351521f6a472f9876f7993c58d9d25db708d1923b67da9e7f5c6c73324dc",
+  "bytes": 17276,
+  "requestId": "NehxSO7udLsBthIvcsuS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b0db9c07e9b87964e774106353a52ef1b8826b49e625f5db43de6fd4da6ddc52",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

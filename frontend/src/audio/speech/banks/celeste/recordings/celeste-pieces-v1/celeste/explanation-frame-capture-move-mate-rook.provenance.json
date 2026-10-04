@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate-rook",
+      "label": "Explanation frame capture move mate rook",
+      "text": "A rook is captured, and the game is over: checkmate, with no square left for the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "a2d6d138c3b66837ddacdd2416c046b0f1facdeb4f5b6aff28777e4e9793e64a",
+  "recordedAt": "2026-10-04T07:41:22.249Z",
+  "sha256": "a69d4d978a684c4e3b1f88f18dfc89f0de326cf2735dcbfb2dc9a07bab64c8b1",
+  "bytes": 20439,
+  "requestId": "wgxTKeZx2pB5RxR2WNyR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "752815f3dd2f9f16531ec8ae4228a200ee4e69820547ad450483616c7b377694",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

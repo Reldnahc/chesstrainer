@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-bishop",
+      "label": "Positional unsupported alternative bishop",
+      "text": "With another move, the bishop would have stood undefended. By itself, that would not have cost it."
+    },
+    "takeId": null
+  },
+  "requestHash": "dd40d201ae1c1cd5e25e8b7cbcb2837fdf9ff1ac2b68a418639f510a61830249",
+  "recordedAt": "2026-10-04T07:44:05.398Z",
+  "sha256": "c7a2bc94a1b87f55c20b838dd0c429144f435564c1ad45fd9e3d3822104a1501",
+  "bytes": 20637,
+  "requestId": "XG9jPBgsQZ0IKkDVDgJT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "54b46fbd56d2a186640e75dc543e2be666a59942e361b996b9e8b05405876477",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

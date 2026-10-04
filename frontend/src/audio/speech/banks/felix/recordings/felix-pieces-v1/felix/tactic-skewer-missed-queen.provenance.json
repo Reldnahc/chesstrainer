@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "tactic-skewer-missed-queen",
+      "label": "Tactic skewer missed queen",
+      "text": "Another move had a skewer ready: move the queen in front, and whatever stood behind it would have been exposed."
+    },
+    "takeId": null
+  },
+  "requestHash": "0bcddd40a5a5b70c0146ce53c37005037a108e6b43417c873cc6a92ccbd5b110",
+  "recordedAt": "2026-10-04T07:43:26.008Z",
+  "sha256": "69d7479334b48dda9f753250e12c1738f11eb98789cac927ed55b797a6a3cf60",
+  "bytes": 23108,
+  "requestId": "teJY2im6w1DY1toGUeyD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "82a72f9307c09ccbccb537405b2e5778c9ab4fb761076b205693127102444d5b",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

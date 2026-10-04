@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape-bishop",
+      "label": "Explanation finding pin restricts escape bishop",
+      "text": "The attacked bishop is pinned to its king, restricting its escape. Check which moves keep the king protected."
+    },
+    "takeId": null
+  },
+  "requestHash": "628421c9d7dd95a051d908871ea124606946af502f3d51c02182bac74f2956e1",
+  "recordedAt": "2026-10-04T07:26:09.889Z",
+  "sha256": "827cee1f539dd1b2eeee4655e298455b98d28dfb001e0a0def56e207d131e8f1",
+  "bytes": 21873,
+  "requestId": "uWd5ppeBde7t2lbDogNh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "afff82d9d609bf9713b9ee136d243f37cb53a04c89af1dc5d8eafa926fb05dbc",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-finding-double-attack-collected-rook",
+      "label": "Explanation finding double attack collected rook",
+      "text": "One target is hit by the moving piece, another by the line it opens. In this case, it's the rook behind that collects."
+    },
+    "takeId": null
+  },
+  "requestHash": "d7a2230d345e7e4e8905d0ceeca2efef25366789ad0997f127dbd7a189eb2b78",
+  "recordedAt": "2026-10-04T07:33:35.680Z",
+  "sha256": "3b84cb02a357400f2ef946ebe96d39c679d7c71362d4e0fed3dbae726c27d42f",
+  "bytes": 25290,
+  "requestId": "cE5cuEQNGs9US9AgIHIY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "21d77b27022a1a059d7aaab5e3838dd8e4aaffb3ecdc2dedf1dbf2eb993a60b2",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

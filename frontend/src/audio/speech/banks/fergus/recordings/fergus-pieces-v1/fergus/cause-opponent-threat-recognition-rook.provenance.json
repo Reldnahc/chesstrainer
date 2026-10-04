@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "cause-opponent-threat-recognition-rook",
+      "label": "Cause opponent threat recognition rook",
+      "text": "The previous move by the opponent made a threat, this move ignores it, and a rook can now be taken."
+    },
+    "takeId": null
+  },
+  "requestHash": "a9b3f438aaeb62436ff63b0078dd48dd5e2bacfb812e4b392d1ca10488c1a947",
+  "recordedAt": "2026-10-04T07:47:12.401Z",
+  "sha256": "35e31e58a68a1a94e6beaf2640f0d00638041386e68397478141ee1d227aaa88",
+  "bytes": 22706,
+  "requestId": "QEwEhbD5qb3WyLDTl5fF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5f13b66d8c1e212275aa296f49c94dd0eec3ff14d9eddafd0e0ba5d97345c678",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed-knight",
+      "label": "Tactic discovered attack missed knight",
+      "text": "Another move had a discovered attack lined up: shift the knight aside, and the piece behind it gets its shot. This move never puts it to work."
+    },
+    "takeId": null
+  },
+  "requestHash": "e64ebb05fd85ec0efed8513f399cd3ff11fdd6a272309acd6dc4693a3ad7a8d7",
+  "recordedAt": "2026-10-04T07:36:51.266Z",
+  "sha256": "adbb9ffd63f2a88d89ea1ca11894a5fcc2c4ab790ef53ebecf215f89e1636199",
+  "bytes": 28310,
+  "requestId": "DskKtmcFgOPiXu2smFWC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3234283b0358a108164d480228407588515ced6bd67580d7e4a11767ddaabf57",
+    "bytes": 142986
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

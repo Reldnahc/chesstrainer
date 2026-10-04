@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-pin-allowed-knight",
+      "label": "Tactic pin allowed knight",
+      "text": "A quiet line is forming. This lets the other side pin a knight to its king, and a pinned knight like that can't leave the line without exposing the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "c431dec92200f6650eeb51f4e86b9fa072cf10f5043af2c43a2ee99d74f53bb3",
+  "recordedAt": "2026-10-04T07:30:23.959Z",
+  "sha256": "5b037a9b05e299a1febfe519e2e30dd92865632fd10dc24acdee0836577b8f79",
+  "bytes": 30618,
+  "requestId": "WalYSWMsDEsPQbfwQlf0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cd4f3cfe30c4022625d1a8a60894c6be5f7e95af6b660cfaf75ae27a1ae27aae",
+    "bytes": 157196
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

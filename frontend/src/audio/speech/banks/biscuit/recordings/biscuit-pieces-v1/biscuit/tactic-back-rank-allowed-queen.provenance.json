@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "tactic-back-rank-allowed-queen",
+      "label": "Tactic back rank allowed queen",
+      "text": "Ooh, look: the king is stuck behind a wall of its own guys. Now the other side could try a sneaky back-rank mate idea with a queen."
+    },
+    "takeId": null
+  },
+  "requestHash": "d1520f60acd0375da336d3e30c869d018ab94f636520c66187b807734e576f5a",
+  "recordedAt": "2026-10-04T07:39:01.791Z",
+  "sha256": "f716a6a384fe79ae6ecaea1ef2995cf733fd64448ee19e24d7f98778e4284908",
+  "bytes": 29577,
+  "requestId": "d0wdJuuL0neLS3EhpvG2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "29f361638c93ae621506e792b95b03badb231fafc878ada9a3a803e4dad87672",
+    "bytes": 147165
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

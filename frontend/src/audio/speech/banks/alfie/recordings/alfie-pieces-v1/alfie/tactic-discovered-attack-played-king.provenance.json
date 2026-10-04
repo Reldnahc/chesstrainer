@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-king",
+      "label": "Tactic discovered attack played king",
+      "text": "Sometimes the most important piece in a move is the one that doesn't move. Here the king steps out of the way and uncovers an attack from the piece behind it. So look at the line it opens, not just the square it lands on."
+    },
+    "takeId": null
+  },
+  "requestHash": "6cadcc22eedffbd06982fe70cea31a64f205d37c9924a3bfc4695137b15acdd9",
+  "recordedAt": "2026-10-04T07:34:31.405Z",
+  "sha256": "470f1a4f6cd5d9db791e242a6fc534542258e242a581c909d4aedcee3604db33",
+  "bytes": 43620,
+  "requestId": "jvMRxfwfv8AVUweY3Awx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8498a47e46354b410af6e2d9a77149a30bbaec34d660b420d94e2240e1edfdde",
+    "bytes": 222398
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

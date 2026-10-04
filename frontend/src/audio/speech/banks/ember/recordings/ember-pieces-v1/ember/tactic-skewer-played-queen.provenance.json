@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "tactic-skewer-played-queen",
+      "label": "Tactic skewer played queen",
+      "text": "A skewer, well aimed. Hit the queen in front; once it gives way, the piece behind it is open to capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "42d9ad75a8b5ab6a9d5b30e62c6e35da8ab63a71362bc7e5fbc2aa05ede9cb07",
+  "recordedAt": "2026-10-04T07:41:59.418Z",
+  "sha256": "b2f9940d9b587009462618af20b3b9a67a0a7a18f24bc4983fe4340a9668915b",
+  "bytes": 23810,
+  "requestId": "G8TqDzvVRHdfLwpuMXeb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9b700fdd150336c319086c54a99c9e25061395854b5b90f75c0991a2cd47599c",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

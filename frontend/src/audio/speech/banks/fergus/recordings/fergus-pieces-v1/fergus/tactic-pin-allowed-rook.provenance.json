@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "tactic-pin-allowed-rook",
+      "label": "Tactic pin allowed rook",
+      "text": "This lets the other side pin a rook to its own king, which puts that rook on a short leash."
+    },
+    "takeId": null
+  },
+  "requestHash": "40128b2e6e6cd60cebfab035231826fbd60cade0601621fa6018083a7311ab2e",
+  "recordedAt": "2026-10-04T07:46:40.540Z",
+  "sha256": "b2b0e9cc389243fe62cd85c6d024d23b2acfa7aa227cc69e50b82062ad180373",
+  "bytes": 19621,
+  "requestId": "HObZxkRqBN5wN1eooa85",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c2515a2bb0395e43c2647cecf9175ad02281cd959a0c5b66f9ef09ec72b65653",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

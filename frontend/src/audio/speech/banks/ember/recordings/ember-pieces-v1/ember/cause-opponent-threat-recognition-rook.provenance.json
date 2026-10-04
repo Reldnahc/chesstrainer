@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "cause-opponent-threat-recognition-rook",
+      "label": "Cause opponent threat recognition rook",
+      "text": "The opponent's last move threatened a rook, and this move ignores it. Now the rook can simply be taken. Every move must answer the one before it."
+    },
+    "takeId": null
+  },
+  "requestHash": "3acddafe699cf277af42bcae9a7cb3ec8a9853286159b72a7ca3f6ded6dc1600",
+  "recordedAt": "2026-10-04T07:42:16.287Z",
+  "sha256": "175f9d43b071fcf7a0ddad68bc366b23ff5d850d357de2d3100211ae71fa86f5",
+  "bytes": 31079,
+  "requestId": "vBxbBk2TDC2GvZIlT8MU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "adafdc66e933691941563f9f31c226eb7c6958a0b5b96a0bfefe642f67af29e3",
+    "bytes": 160958
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "tactic-deflection-played-knight",
+      "label": "Tactic deflection played knight",
+      "text": "Deflection: the defending knight gets hauled away, and whatever it was covering now stands unguarded."
+    },
+    "takeId": null
+  },
+  "requestHash": "f8030e0857ee36ceeca60fd8a62a2865f2f8c37b514c71c4d0c6de92a87d6a97",
+  "recordedAt": "2026-10-04T07:43:52.237Z",
+  "sha256": "66cac3cbcf075bca0783353b0c60c0987568f87946ec4a51dfb952f122da2c0b",
+  "bytes": 22161,
+  "requestId": "rmNIQ9HLIlOA16FNZiWU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dd8b89c0f9437ed421e87aa982698e9f9a97c8535cc19c410f90332e8be7da5a",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

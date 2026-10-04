@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-knight",
+      "label": "Tactic deflection missed knight",
+      "text": "Another move would have pried the defending knight loose from its job. That chance at deflection goes begging."
+    },
+    "takeId": null
+  },
+  "requestHash": "6f3711a70ba5eb6a25602b810a59720a5a711b2052e51ebe58a55088b538458d",
+  "recordedAt": "2026-10-04T07:44:03.002Z",
+  "sha256": "b219782ec2ba71258a30aae586aa88448bcc7194b97df19f87dcc4fe405dcf97",
+  "bytes": 22722,
+  "requestId": "47NvCRhwVb53c371LPyO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c44c70f08cf217b6425db91cd205ce923e1e45bb4c33b4d77a0af81490aa079e",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "positional-support-actual-knight",
+      "label": "Positional support actual knight",
+      "text": "That knight was on its own. Not anymore; it has a guard."
+    },
+    "takeId": null
+  },
+  "requestHash": "60ac13933c039dd51ac0552bbe553934c9731eba8f2e3723b91d0ba43456f6ff",
+  "recordedAt": "2026-10-04T07:44:15.681Z",
+  "sha256": "7ee8182ee3061fb4a11b129aa4e0e025e2ad62c4b8eead920db5448aa6d842c4",
+  "bytes": 14555,
+  "requestId": "NjzmXB3bSay30j0JGgHn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d6cc84dcf74de9172587ad9b4c70396c963f8cf71e3692b51ae95da558fd8e72",
+    "bytes": 74022
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

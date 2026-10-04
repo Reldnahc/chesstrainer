@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary-rook",
+      "label": "Explanation frame capture move ordinary rook",
+      "text": "This move takes a rook."
+    },
+    "takeId": null
+  },
+  "requestHash": "e19aaab9feb6324eb43c71b61ef2bcc5627284550d13a443c4eb8061d8d2ecf3",
+  "recordedAt": "2026-10-04T07:30:25.749Z",
+  "sha256": "988e36e51c3f5d2c1bef7be772a73cce9782cad311d9252aa248fb114c7bc934",
+  "bytes": 6264,
+  "requestId": "uaamlinJ4nmZWyjAQXD3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fa219cf148fd041b4a25bcf6bb6bb0ac5fd210e5de695abe636bd7ad219d3602",
+    "bytes": 29301
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "support-restored-queen",
+      "label": "Support restored queen",
+      "text": "The queen left hanging earlier is guarded once more. Keep it that way."
+    },
+    "takeId": null
+  },
+  "requestHash": "7b7177bccee57c13547bfeba49de11b30a588c4d14d89eff61222faf79e398d5",
+  "recordedAt": "2026-10-04T07:42:33.217Z",
+  "sha256": "b153f6560ebb51d8ef644a9e32d303dd88b68c9ed0d4a001bcb9d6f271d3c762",
+  "bytes": 14858,
+  "requestId": "bs6ot8a8dbLEJXCH5TGl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4a0fd6899e4061c3714ddeffab27a8ff1e34d3f8d152b6b0d8b376c614a52699",
+    "bytes": 74022
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

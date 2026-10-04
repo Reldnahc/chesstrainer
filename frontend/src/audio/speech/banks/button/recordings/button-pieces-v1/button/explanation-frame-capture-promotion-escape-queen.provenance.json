@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-escape-queen",
+      "label": "Explanation frame capture promotion escape queen",
+      "text": "The pawn captures a queen to reach the last rank and promotes, and that gets the king out of check as well."
+    },
+    "takeId": null
+  },
+  "requestHash": "31ff2bd18266cf69656da1a50e1533aad5c3975c37a300b736d4539a0ff5e3c3",
+  "recordedAt": "2026-10-04T07:32:13.214Z",
+  "sha256": "658014f1d71e278afd5e0c907c30020b3b36dc61c41c7bb5c5497c9f318c4809",
+  "bytes": 20518,
+  "requestId": "wczBbNRIBLZVExlXs6XY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c8b2644a31b657b9a2e7823e24627b968010fab83a148b7a4124a1186b15e934",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

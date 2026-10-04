@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "cause-abandoned-defender-knight",
+      "label": "Cause abandoned defender knight",
+      "text": "Ah, found the problem! That knight only had one real defender, and this move sends it away, so the other side can capture the knight. Quick tip: whenever a defender wanders off, count up everything it used to protect."
+    },
+    "takeId": null
+  },
+  "requestHash": "88a4bea12c4d20959451d0afa27cc5195ea74d7d8ab00ef845292db6417e9fcd",
+  "recordedAt": "2026-10-04T07:39:10.051Z",
+  "sha256": "f55c6623c08387c777f0a5c333017aa26f9dda42e84a715c0ceaf3e2c2943508",
+  "bytes": 45550,
+  "requestId": "edvx8qoBgGBC7BK0PhYx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0c8200e27721cce77a2f99e28732f3c81cdb40d0c39773781d60488af6f3d266",
+    "bytes": 239116
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

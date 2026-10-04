@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "tactic-deflection-played-knight",
+      "label": "Tactic deflection played knight",
+      "text": "This is a deflection. The defending knight's pulled off its post, and what it was covering comes open. Find what it was guarding first, then the knight."
+    },
+    "takeId": null
+  },
+  "requestHash": "bdff7c18448965a55577ad64a1fa1b29cc4ef10b82e6244913a25c46476a7ece",
+  "recordedAt": "2026-10-04T07:29:19.109Z",
+  "sha256": "61f4719779e35343f24761b8ae9713fbca600a5926c3458f863493ad1f78f47e",
+  "bytes": 28130,
+  "requestId": "kBB5kaNef57sqNqu22at",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e7976cdb797480135084e4c6aa126c8d4b85c710f971ff1444d6a4a0f0c50b43",
+    "bytes": 147165
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

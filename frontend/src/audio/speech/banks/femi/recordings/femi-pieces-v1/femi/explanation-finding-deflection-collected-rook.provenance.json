@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-rook",
+      "label": "Explanation finding deflection collected rook",
+      "text": "The defender is coaxed away, and the rook it was covering gets taken."
+    },
+    "takeId": null
+  },
+  "requestHash": "cb8a57e1087974ec8b2d50b8471a33d2411552c01d384177d25a6f40e801a43b",
+  "recordedAt": "2026-10-04T07:46:21.052Z",
+  "sha256": "f8cca283bd53e5dc834f6476ac44b8f3b8f70f77e3174683077f6fb23c08aade",
+  "bytes": 15515,
+  "requestId": "yStzU8pWttdDvUYBrgTF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2a084171071e6d25f2c6c1ae45b108369c7fa5318e69a822694e9e7dcf4dfc15",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

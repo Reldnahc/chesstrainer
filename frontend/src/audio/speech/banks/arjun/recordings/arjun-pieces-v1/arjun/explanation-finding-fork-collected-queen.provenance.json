@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-finding-fork-collected-queen",
+      "label": "Explanation finding fork collected queen",
+      "text": "Here's the fork working: a single queen threatens several targets and then picks one of them off. In this example, there's a net material gain as well."
+    },
+    "takeId": null
+  },
+  "requestHash": "22507b744672e24180b1c23bb31d2d1b4b3170cafffe05774e1b5eba9e079442",
+  "recordedAt": "2026-10-04T07:33:24.347Z",
+  "sha256": "f2c93af752632730e52410309d7bad07fc468c217f0bc582b23750e582892b1e",
+  "bytes": 30164,
+  "requestId": "MJRGZ2ZdIxb07FCLLvGE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "85dcdbad1a676b8b713ce7bb145b075b0134d43346ab9f3f4717f4b9b850bbf4",
+    "bytes": 157196
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed-knight",
+      "label": "Tactic discovered attack missed knight",
+      "text": "One of the other candidates was a discovered attack: a knight moving aside so the piece behind it could attack. Here that line never opens. When two pieces of one side share a line, moving the front one is worth considering."
+    },
+    "takeId": null
+  },
+  "requestHash": "a7f0c6c73fcecb7617346f7ee30f647cf9cf775abf13809559b1027bca888dd3",
+  "recordedAt": "2026-10-04T07:34:56.867Z",
+  "sha256": "22ee21cec17f10f187ffc7dd3e686ff43738fe306ce8aa965e0b938ffc0db75e",
+  "bytes": 43839,
+  "requestId": "PFOUYgIu8m5mdgc0Z5J9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0d8690c35774becc5fcc9fd24b38ed1a6e311d29981d6bfccf51bc94f7c45e8b",
+    "bytes": 224906
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

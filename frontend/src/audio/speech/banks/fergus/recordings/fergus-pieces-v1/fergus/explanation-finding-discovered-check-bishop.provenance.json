@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check-bishop",
+      "label": "Explanation finding discovered check bishop",
+      "text": "The front piece steps aside, and check arrives from the bishop it was blocking."
+    },
+    "takeId": null
+  },
+  "requestHash": "6a6d1cb92bfc3a15881e6d9749611d4e83aadbfc92f11d0d6d7884ca8cd88dce",
+  "recordedAt": "2026-10-04T07:47:42.213Z",
+  "sha256": "f6e8846797ea6ab8b8f281cefa8a83886103e1a479687fbd3f51b47931554393",
+  "bytes": 15368,
+  "requestId": "dfHAfY2VTJoDQxoPP4oL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d1806da75c8aab751e0b1139840de265e13e0e9d691c883e5b6302b6f85f4bfd",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

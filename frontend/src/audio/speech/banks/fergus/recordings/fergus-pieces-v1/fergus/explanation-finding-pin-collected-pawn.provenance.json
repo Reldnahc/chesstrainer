@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-pawn",
+      "label": "Explanation finding pin collected pawn",
+      "text": "The pinned pawn cannot leave its line without exposing the king, and sooner or later it gets taken."
+    },
+    "takeId": null
+  },
+  "requestHash": "ec32a80d8ab8394931a98b45ad87bb9e52a7c88517d7fae34e4dd0beed0ba535",
+  "recordedAt": "2026-10-04T07:47:23.804Z",
+  "sha256": "47807e1e380f899cdfec21583af7a7b43a1a9bba23b8f48ca1b9ec22deb51eee",
+  "bytes": 21044,
+  "requestId": "39UcGg5lMEfaO7NpAieP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1bd045618d7b662659504cdac3bd46a79322ab37f6ab706a7343410f27a4258a",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

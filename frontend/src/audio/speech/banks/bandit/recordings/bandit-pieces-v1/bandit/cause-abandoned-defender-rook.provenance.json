@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "cause-abandoned-defender-rook",
+      "label": "Cause abandoned defender rook",
+      "text": "This move walks off with the only defender doing any work for the rook. Now the other side doesn't need a clever idea; they can just take the rook that got left behind."
+    },
+    "takeId": null
+  },
+  "requestHash": "5c5c39c00c127dc2f466757ed64a41eefd5b94494ef52a6de92ecdcb47873663",
+  "recordedAt": "2026-10-04T07:37:16.711Z",
+  "sha256": "28baddd3c3e913315dc857b3e36bad1c9cf6d44fd28871f42c74fe9d395b6805",
+  "bytes": 31941,
+  "requestId": "YzCtsJv4m89lSFLLYJlD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cc40e4fd94a0c466f5131b0dbc6dfbdbe282804f7d045d714b363ebda90bdbda",
+    "bytes": 162212
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

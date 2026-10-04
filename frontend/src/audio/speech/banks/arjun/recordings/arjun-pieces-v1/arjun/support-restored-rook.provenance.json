@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "support-restored-rook",
+      "label": "Support restored rook",
+      "text": "Earlier this rook lost its protection; now it's covered again. Compare the two positions and see what changed."
+    },
+    "takeId": null
+  },
+  "requestHash": "06c3e12932c68477e7b316197f1e8f076b9e257c245e5769e080f2e391482c8c",
+  "recordedAt": "2026-10-04T07:33:11.115Z",
+  "sha256": "1fb400847730b20faf5b2ffa06f9bdcb2b7e9c23e1f3f5c381a09d201806aee1",
+  "bytes": 23644,
+  "requestId": "pffiaUhcJKV8zMU5mkPx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "037709ed82ec775babc63467d1095501a4b8d7ab4c366b59d2f3cbc566ee988e",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

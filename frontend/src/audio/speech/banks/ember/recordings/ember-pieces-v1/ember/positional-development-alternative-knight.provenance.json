@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "positional-development-alternative-knight",
+      "label": "Positional development alternative knight",
+      "text": "A different move would have developed a knight off its home square."
+    },
+    "takeId": null
+  },
+  "requestHash": "c7c2f2cde5b474f99df1663f510be595918b9dcbbafb9f45f73ff1851e5c5a8e",
+  "recordedAt": "2026-10-04T07:42:32.501Z",
+  "sha256": "b8519b4281136dbe3453ba1e054acb8761b33e353837de705b21118f5e7a3c5a",
+  "bytes": 12243,
+  "requestId": "nS8RmgbTWbzcFdHxe1xb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "30c553eb654a8ba565fc9f1b2e4f327af8d271b9f3d8538145a81c1f81b0b434",
+    "bytes": 58558
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

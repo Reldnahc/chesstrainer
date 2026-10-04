@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-skewer-played-king",
+      "label": "Tactic skewer played king",
+      "text": "Here's the skewer idea in action. The king has to step out of check, and that exposes whatever stood behind it on the line."
+    },
+    "takeId": null
+  },
+  "requestHash": "44e0b5a300aed51a493a724870b0cb66dde8f434a059d78de803359699040b39",
+  "recordedAt": "2026-10-04T07:32:41.517Z",
+  "sha256": "11e873a6caf52ca62ee35d2d1f3d428e52ee697a48f6cb2afa11ddddf1d04aad",
+  "bytes": 25467,
+  "requestId": "aI0W1AZAz2SmepSQXAfD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cd0fbda3e371a5e1ca53a9585a90d7eb0dbe3b30636baf224d48db772831a724",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

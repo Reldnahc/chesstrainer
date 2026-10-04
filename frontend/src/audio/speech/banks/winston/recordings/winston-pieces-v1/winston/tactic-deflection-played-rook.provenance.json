@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "tactic-deflection-played-rook",
+      "label": "Tactic deflection played rook",
+      "text": "This is a deflection. The defending rook's pulled off its post, and what it was covering comes open. Find what it was guarding first, then the rook."
+    },
+    "takeId": null
+  },
+  "requestHash": "36e9f001c2e0cd9bce13fea147214fbdca25b4bb2ea540811b4b57053907a3c8",
+  "recordedAt": "2026-10-04T07:29:23.634Z",
+  "sha256": "54127a548a69e8c40e8292026fe4558e6b1cb9285fd614f9dc0d082869a266d4",
+  "bytes": 27605,
+  "requestId": "1FiKK6c1gQbFwf8OXzhi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1b3bccf60d2f6eba9ee3818d1d30b5542e9b0f52cdf0b9ba83ee456ff2ea4c57",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

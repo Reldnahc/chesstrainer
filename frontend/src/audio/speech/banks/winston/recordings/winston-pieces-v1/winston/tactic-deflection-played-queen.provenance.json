@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "tactic-deflection-played-queen",
+      "label": "Tactic deflection played queen",
+      "text": "This is a deflection. The defending queen's pulled off its post, and what it was covering comes open. Find what it was guarding first, then the queen."
+    },
+    "takeId": null
+  },
+  "requestHash": "c78901668910d503833bbb49864526642600b2504297aeb8d213ee2b68611b33",
+  "recordedAt": "2026-10-04T07:29:25.988Z",
+  "sha256": "c7e5cf7ced1485a189b7569b0ad8ef18762e32d6d6b44c07f4055f0004d8ad57",
+  "bytes": 28533,
+  "requestId": "Q8QfVRUELiV4D5wRwxSd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bfce84c7a07f8eec88526d9bb4a9e4a8b07a52c307af4a74d7464dc61615f917",
+    "bytes": 149673
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

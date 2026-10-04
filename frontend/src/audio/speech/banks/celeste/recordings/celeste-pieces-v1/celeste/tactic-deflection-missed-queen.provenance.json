@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-queen",
+      "label": "Tactic deflection missed queen",
+      "text": "Another move could have drawn the defending queen away from its duty and let its connection fall apart. That lovely deflection was never played."
+    },
+    "takeId": null
+  },
+  "requestHash": "05b1a9313c9fbbbb5719a7a28299bdfa05f0e9fc7657b27862e7e7497d10632f",
+  "recordedAt": "2026-10-04T07:40:33.445Z",
+  "sha256": "e92c684e8da1c8dd7bd3ebe953ecffdaf01b67a066c389d7d52e7632956c6f6d",
+  "bytes": 29831,
+  "requestId": "0dQ1ML8K7RFvQSCCRBPX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "29ed66d066eaf3bec4f70f2c23a2b88961ec96fbb3ee2e18166e8fd39ea3f255",
+    "bytes": 149673
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

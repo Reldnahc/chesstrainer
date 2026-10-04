@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played-knight",
+      "label": "Tactic removing defender played knight",
+      "text": "Watch what the defending knight protects. Capturing it is the idea here, so notice what would lose its protection."
+    },
+    "takeId": null
+  },
+  "requestHash": "f09b73ef91aac2caeea9228ccc991641f67584ed0e8347d5a1e32d262e137456",
+  "recordedAt": "2026-10-04T07:25:58.064Z",
+  "sha256": "a91ca079549c4aa33c7ce1cc558f0c003673765286ef4300552bffa7f7f9a97c",
+  "bytes": 23870,
+  "requestId": "VAeWCUD0uPJUJXso7nDd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "caca137980dc9ef77db0bd2e1362227da16d0dd024d545082f7b12ec85225d57",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

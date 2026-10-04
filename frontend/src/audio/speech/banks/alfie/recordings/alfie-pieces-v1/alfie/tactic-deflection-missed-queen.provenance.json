@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-queen",
+      "label": "Tactic deflection missed queen",
+      "text": "Another move could have drawn the defending queen away from what it was guarding, a deflection. This move doesn't. The idea to keep: a defender that's drawn away leaves its job undone."
+    },
+    "takeId": null
+  },
+  "requestHash": "51d46e8adb7ff5d5c3e7e4f0477348b01cf951add79195fcf5b3a69299248c0d",
+  "recordedAt": "2026-10-04T07:35:06.226Z",
+  "sha256": "f85d69df45bb4e5b691f656ed03693bbfe01aa58a2a93764cd5adf9acfa32025",
+  "bytes": 37444,
+  "requestId": "roPsWmU13zckYXXWtVRY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "617401aa420200282a64a84d38ab8885d95a9bf16e34faac18637fea925094e8",
+    "bytes": 194395
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

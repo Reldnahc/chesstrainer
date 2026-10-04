@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "explanation-finding-king-skewer-collected-bishop",
+      "label": "Explanation finding king skewer collected bishop",
+      "text": "The king leaves the line to escape check. Example result: the same attacker collects the bishop behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "c95801e3398d084298dcf0b8f6584ce6ea1bf25c9426bcb2a104f343693aab6b",
+  "recordedAt": "2026-10-04T07:28:20.685Z",
+  "sha256": "b8bbd7eb015534fe68e6fdfe10afde8c057787b1379c8f7bfc6ac83c3365341d",
+  "bytes": 21951,
+  "requestId": "8fMlFVNx1GZd9MuucjRp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0ad4d897126b034f7565001b9ec2d6d70736efd5cf1bafb9ce3dba12a5cded0a",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

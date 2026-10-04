@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "cause-avoiding-bad-trades-queen",
+      "label": "Cause avoiding bad trades queen",
+      "text": "The capture is tempting, but the exchange isn't finished. The recapture claims the queen, worth more than what it took, so the whole trade comes out behind."
+    },
+    "takeId": null
+  },
+  "requestHash": "85280759b083e080dc22437fb48ef2aed3b340abaec536d13428b3aab8fbfa29",
+  "recordedAt": "2026-10-04T07:40:43.172Z",
+  "sha256": "c4c24850f2dc29a21155fc7a62cec93eed59099b0d6ab8179c10c881de364d34",
+  "bytes": 32930,
+  "requestId": "v7VueO0I0u2xPnkXqBj7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2dcf3a62c23f9d2eb3b67565055cccc7b48c6dc82cb549aa4a31116770c2cf0e",
+    "bytes": 167645
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

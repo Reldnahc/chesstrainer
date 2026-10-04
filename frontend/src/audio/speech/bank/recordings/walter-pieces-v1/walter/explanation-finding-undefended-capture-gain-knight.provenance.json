@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-knight",
+      "label": "Explanation finding undefended capture gain knight",
+      "text": "Look at the undefended knight being captured. The example shows a net material gain for the capturing side."
+    },
+    "takeId": null
+  },
+  "requestHash": "8f79e4b1787cc71146cfbabf212bf8cce397a4835852e710fe0405b5e2876d31",
+  "recordedAt": "2026-10-04T07:26:37.375Z",
+  "sha256": "3bc1a61046b85e0166c47ca5e758089af0b5eed2687d165cafea5fa368afec04",
+  "bytes": 21626,
+  "requestId": "63sgwLD5rbIWs9osu2LT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b5bca1580ce0c0874fdebbee62ccd7fcca20554cbd7b86558d45b30b3283f7a5",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

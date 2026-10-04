@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-ordinary-rook",
+      "label": "Explanation frame capture promotion ordinary rook",
+      "text": "Chomp, then promote! A rook gets captured on the last rank, and up pops a brand-new piece."
+    },
+    "takeId": null
+  },
+  "requestHash": "aa44c744fef03568d8d4ce1d017fd3ecd94af2d8ab3ee8e47fd6b274861b0084",
+  "recordedAt": "2026-10-04T07:39:45.811Z",
+  "sha256": "accb90079c9ea9e36e470ff931d90391d258db00bf2c162b9d0c7c4b2087755b",
+  "bytes": 21668,
+  "requestId": "aUflDraWoQpUQECvNCx2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "829833e23d59a9050620b1ceeb6fd2986e67fe831a05a6a9cbb188df8dff1b6d",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

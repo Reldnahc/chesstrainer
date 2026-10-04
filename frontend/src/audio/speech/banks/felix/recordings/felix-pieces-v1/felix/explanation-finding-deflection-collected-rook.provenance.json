@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-rook",
+      "label": "Explanation finding deflection collected rook",
+      "text": "The defender is pulled off its job, and the rook it left is taken."
+    },
+    "takeId": null
+  },
+  "requestHash": "268cf9962fcef8858fe519f36fcacce06965cc3f77e079a8b6147133d1c9f728",
+  "recordedAt": "2026-10-04T07:44:34.096Z",
+  "sha256": "27414949bb7faecafa80d00b2d99e15c21745ff5d6b512300817065508fd8d60",
+  "bytes": 15367,
+  "requestId": "H8RE4XrtAnWljgT16PNI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "394e24d9d1e28564638bfd1fb00cf5b1b9eb497fff4eecc33e12a3d4df300e29",
+    "bytes": 75276
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "grade-brilliant-4-rook",
+      "label": "Grade brilliant 4 rook",
+      "text": "Ah, now there's a rook sacrifice that comes through the capture in good order. Worth a quiet replay."
+    },
+    "takeId": null
+  },
+  "requestHash": "1074b8ec791fcf9e6f1d2d06ba60a35bf39cecf878d3f865d9d0d373f74caad8",
+  "recordedAt": "2026-10-04T07:30:17.316Z",
+  "sha256": "7f526ec80b273d91f53507f74f76c10e3921cf87359527e886d3b4e5aeff4b9a",
+  "bytes": 20647,
+  "requestId": "v4QVC5BNU8xKcDDlhlu2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7698489431dfd3e3033484228fea71a407c3511bdca8a43a36b1418a8fcdc766",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

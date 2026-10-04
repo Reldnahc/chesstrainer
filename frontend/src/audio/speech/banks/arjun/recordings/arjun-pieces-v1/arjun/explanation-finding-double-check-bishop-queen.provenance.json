@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-bishop-queen",
+      "label": "Explanation finding double check bishop queen",
+      "text": "Double check: the bishop and the queen give check at the same time, and only a king move can answer it."
+    },
+    "takeId": null
+  },
+  "requestHash": "95bdd92611909374778d272efaaf59d1418d46074e7b79f70a18552e77d5a3a8",
+  "recordedAt": "2026-10-04T07:33:50.726Z",
+  "sha256": "cf1f6d17e5f46ebcdf260010107a8d4d8b4a38d117e17fa8b888f57fe222cb9a",
+  "bytes": 21348,
+  "requestId": "8hr0zVeBT13Df0bhg8sR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2d95301955af4d81522c134056562a402d8cd5380f57469eb29d9a3abad8cbb1",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

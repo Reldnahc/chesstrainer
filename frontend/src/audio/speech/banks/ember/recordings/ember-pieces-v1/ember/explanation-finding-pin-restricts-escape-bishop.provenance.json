@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape-bishop",
+      "label": "Explanation finding pin restricts escape bishop",
+      "text": "The bishop under attack is pinned in front of its king. Its escape is limited to moves that keep the king covered, and that narrows the defense."
+    },
+    "takeId": null
+  },
+  "requestHash": "f41dc9b800f5cf7607ad6e337bb697a222b6720bc163b9184724dc8ba9966907",
+  "recordedAt": "2026-10-04T07:42:29.874Z",
+  "sha256": "201b2a4523fe6376623f6f36df33508c697bcd6b0920ea8f7c2531271a696bc8",
+  "bytes": 28495,
+  "requestId": "CwdQJbKf6mBN6Hmkyh9L",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "afd0ee79cb375b5ddf7f3e35205feb2c88343a5c76f3fd5fbb0b229ad60181f2",
+    "bytes": 142986
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

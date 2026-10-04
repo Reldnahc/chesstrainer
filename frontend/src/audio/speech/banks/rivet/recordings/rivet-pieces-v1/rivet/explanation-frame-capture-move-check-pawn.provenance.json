@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-check-pawn",
+      "label": "Explanation frame capture move check pawn",
+      "text": "Capture completed: one pawn, with check. Both changes belong to this move."
+    },
+    "takeId": null
+  },
+  "requestHash": "081d4728c9c4f57e74150e83e007483b6379cbbb88535ebc400f68a2dcce69ec",
+  "recordedAt": "2026-10-04T07:28:10.925Z",
+  "sha256": "c4d762654a7943861e71b134c200b791a6c9d708196bedb82ab1cc9bfbd286eb",
+  "bytes": 17880,
+  "requestId": "NL4OBpFyI8NTOkOjsfHf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c1f824ee61a8f17638c547d456885eba23c08be4ee7c39f7ab3da4fbb856eda9",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

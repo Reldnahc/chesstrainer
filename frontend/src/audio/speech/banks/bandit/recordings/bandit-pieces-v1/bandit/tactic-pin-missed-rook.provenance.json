@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "tactic-pin-missed-rook",
+      "label": "Tactic pin missed rook",
+      "text": "There was a pin to the king waiting in another move. Their rook would've been stuck on that line, since stepping off it would expose the king. This move lets them off the hook."
+    },
+    "takeId": null
+  },
+  "requestHash": "c386580c701f8992f54fb8b69275307d85fb7cd78a325272c7f9928634c8a010",
+  "recordedAt": "2026-10-04T07:36:26.784Z",
+  "sha256": "b73afba6bb0eaff70639958b6c036cbb77c29579be7175ccf41733779bd43ebd",
+  "bytes": 31753,
+  "requestId": "H5XC0TEIeJHNpug5ZlGa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "700bfccdafdefb92451bc58ae2b3dd66d78260cee574cf54255e6c502b164d52",
+    "bytes": 160958
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

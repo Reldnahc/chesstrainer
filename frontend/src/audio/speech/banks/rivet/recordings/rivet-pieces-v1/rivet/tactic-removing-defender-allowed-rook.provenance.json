@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-rook",
+      "label": "Tactic removing defender allowed rook",
+      "text": "Alert: a defending rook has become a capture target for the other side. What it guards could then lose that protection."
+    },
+    "takeId": null
+  },
+  "requestHash": "e711060d84aeb9b244f6703b40af76d82c81a7a36db8ae94dfa0b4b2006bdfe4",
+  "recordedAt": "2026-10-04T07:27:25.952Z",
+  "sha256": "0cc4d77ef853026098e398ddd398a1423f2397217957c0da05342a8c7447f6e0",
+  "bytes": 24336,
+  "requestId": "m5nMzEdUzxHL4JjhHiXf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "132c27e15ee239f69d59f6344586731de4c3e2034927537126d6f8924341051f",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-missed-bishop",
+      "label": "Tactic undefended capture missed bishop",
+      "text": "There was a loose bishop to collect with another move, nothing guarding it. This move passes it by. Loose pieces are always worth a second look."
+    },
+    "takeId": null
+  },
+  "requestHash": "870ff058e25e2502b8909b84dfc7e81c43469028b9edad2436759ec1091fd280",
+  "recordedAt": "2026-10-04T07:30:45.596Z",
+  "sha256": "3b489952d8f07c8f92ae5451e96d246b463c15e7de0a57cf009e0e250353b6e9",
+  "bytes": 28683,
+  "requestId": "c74RrUyfxpDvX8QyZjX1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0993711207ad05beea7138b3f391d52d592a13a1505aa994927bf136f2e0ba21",
+    "bytes": 149673
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

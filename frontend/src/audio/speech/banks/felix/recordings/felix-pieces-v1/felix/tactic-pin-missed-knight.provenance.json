@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "tactic-pin-missed-knight",
+      "label": "Tactic pin missed knight",
+      "text": "A pin to the king was on offer in another move, tying a knight to its line. This move passes it up."
+    },
+    "takeId": null
+  },
+  "requestHash": "52f81c210c660fd891e56b9ce21a1b9e738535a84a203e3c03600ec827a2857c",
+  "recordedAt": "2026-10-04T07:43:32.477Z",
+  "sha256": "73b9669bb63c518ce55e8d2d7efa9439842518f0985c63386cd5a449056d783b",
+  "bytes": 22398,
+  "requestId": "FJ9jsWmfQLo3ccdlRDCG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8edd2134e7f173001310f54d1f5359b980a84978c34e8ccdf9c2b1ec9f768398",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

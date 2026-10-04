@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "explanation-finding-fork-collected-knight",
+      "label": "Explanation finding fork collected knight",
+      "text": "Fork sequence: one knight, multiple targets, one captured. Net material balance in the example: positive."
+    },
+    "takeId": null
+  },
+  "requestHash": "2fe8be550c6aeed1c91c24452aa2139758966d06638618681b336b84a647ee5a",
+  "recordedAt": "2026-10-04T07:28:01.900Z",
+  "sha256": "274f49e987292275acba4ddca074e225b94c77c5c551f8502f22d871509cb04a",
+  "bytes": 24995,
+  "requestId": "k18dA8PEbGaW1LMCtk0e",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d4f9b2e764fb4f8e8349226783c054fafeabc9373a8cced7bd9962123dca7dd6",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

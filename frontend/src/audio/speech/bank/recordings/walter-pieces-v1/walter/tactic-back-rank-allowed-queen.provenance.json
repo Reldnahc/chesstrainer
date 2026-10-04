@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-back-rank-allowed-queen",
+      "label": "Tactic back rank allowed queen",
+      "text": "This gives the other side a route to a back-rank mate with a queen. The pattern traps the king behind its own pieces."
+    },
+    "takeId": null
+  },
+  "requestHash": "3b675eea3df2a2e2f98875f3e776c346a115465b66391d3e5c1319d624c6d7b4",
+  "recordedAt": "2026-10-04T07:26:24.384Z",
+  "sha256": "0980c5f76181629e1f78d5f9d71327d3a731df0af449e05d8ff2d955945cecf1",
+  "bytes": 22858,
+  "requestId": "djBpsmi71uYjjmiP4qEY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "11a69eb56ef423bf8d38933b28e9544d98df3cd1fc7928b60f65c2ce5eb97bc3",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

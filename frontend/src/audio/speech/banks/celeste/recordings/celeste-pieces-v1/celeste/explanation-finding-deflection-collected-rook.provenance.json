@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-rook",
+      "label": "Explanation finding deflection collected rook",
+      "text": "Lured from its post, the defender leaves the rook behind, and that rook is captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "b752af1b49e244a48a65a6399c501ce3964706476a3b201b856d09071bb28912",
+  "recordedAt": "2026-10-04T07:41:13.074Z",
+  "sha256": "b6fc440dc5676676e843886451f8b5ee73b57c6b5524f1726611dcf57e8ebd53",
+  "bytes": 18886,
+  "requestId": "a2yNdFtDyxDflk41EjQy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a7cba07894ca8845cce6efe41f7f5915a8522c1e9d1ea0cabfdd5a15b856d17c",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

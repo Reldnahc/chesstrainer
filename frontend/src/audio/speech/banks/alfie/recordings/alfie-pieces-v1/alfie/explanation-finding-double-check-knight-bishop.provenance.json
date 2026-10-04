@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-knight-bishop",
+      "label": "Explanation finding double check knight bishop",
+      "text": "This is double check: the knight and the bishop check the king at once, so only a king move can answer it."
+    },
+    "takeId": null
+  },
+  "requestHash": "ebb96e0b23ea4727b9e40e89570021511b4b9841083658eecd39351948868285",
+  "recordedAt": "2026-10-04T07:35:57.497Z",
+  "sha256": "1297bba315d442e0ae543ea822bd7d67a821b0f3561a58c06eb5113a1224165d",
+  "bytes": 21579,
+  "requestId": "oPpCuFC6J0C6kevZIPnX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "83d94cc8bc58c7a8bd183d6bc9b1e902662eb0db9d7dd63574a124a39d7b2a95",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

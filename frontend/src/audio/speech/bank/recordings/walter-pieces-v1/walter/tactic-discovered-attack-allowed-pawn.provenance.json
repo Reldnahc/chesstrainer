@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed-pawn",
+      "label": "Tactic discovered attack allowed pawn",
+      "text": "This opens the door to a discovered attack. The other side can move a pawn out of the way to uncover a threat from another piece."
+    },
+    "takeId": null
+  },
+  "requestHash": "d53df4650fc3907f9d5e933bb9def7195fd0f8eef93c186cc1a6b7eee17a603c",
+  "recordedAt": "2026-10-04T07:25:48.578Z",
+  "sha256": "3d1bc1ec0f36c408dd44fee3061b846b2dd3c67ab9aa2876ba795d0c85169c34",
+  "bytes": 24976,
+  "requestId": "kmmF47DJcHXJufJbsU6O",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "05a75dca435aebf5e832064b861798da15cec14d3f1c46b97c92ba42cf96582b",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-bishop",
+      "label": "Explanation finding sole defender captured bishop",
+      "text": "The defending bishop falls first, and it was the only one. Then, later in these moves, the piece it guarded falls too. Remove the guard, then take the prize."
+    },
+    "takeId": null
+  },
+  "requestHash": "76ac862f2cd6d022a0ee38e91b9e9ceb16e17339747e5022540e59b29117fd12",
+  "recordedAt": "2026-10-04T07:42:52.298Z",
+  "sha256": "3ff574d5c2269c8934245de6b4bc6e00bd54fcc97fea330d2422c7fe54b6ebef",
+  "bytes": 34504,
+  "requestId": "u21Pf25lAuIMuduJtM32",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a92b07537576ba9a4af408f733a19f39c0649e0feb6fde3758e2dedf41d684d3",
+    "bytes": 178930
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

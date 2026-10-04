@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-knight",
+      "label": "Tactic undefended capture played knight",
+      "text": "That knight had no defender, and this move takes it. Loose pieces are the first thing I look for, every time."
+    },
+    "takeId": null
+  },
+  "requestHash": "74820998db156b04b25be93328b3d91c04fddc3a83267aeb2448766157f9b7b6",
+  "recordedAt": "2026-10-04T07:36:21.431Z",
+  "sha256": "7a22844c94e595c56f87fc98ab3e99f8db20a405f91468dc174e7b0a3efecba1",
+  "bytes": 23544,
+  "requestId": "3UCkGC9X05tm1JQxG7I6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "af2d4114e2d608eaca23c2d18604535b6cb84ece5136fe13dc0b69a173cc3753",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

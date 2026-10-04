@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-check-rook",
+      "label": "Explanation frame capture move check rook",
+      "text": "A rook is captured, and the same move gives check."
+    },
+    "takeId": null
+  },
+  "requestHash": "59fdb6d68ba7e646f51e911bff8ceea2445c0aa3af3badd677ea53bbadec610e",
+  "recordedAt": "2026-10-04T07:35:47.347Z",
+  "sha256": "d1bb7f1a43cdd86b9249c15583816771c91fc10ad802d9bcd7fb27643631d480",
+  "bytes": 11205,
+  "requestId": "LdJV67AoyiwPscrd7dLx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5045fbf3d7ca6a0a923b977e342a169cb1846f7934b99f6cd0fa11a047d7ab35",
+    "bytes": 54796
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

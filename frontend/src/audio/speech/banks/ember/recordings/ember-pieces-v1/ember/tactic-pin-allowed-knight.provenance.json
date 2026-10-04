@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "tactic-pin-allowed-knight",
+      "label": "Tactic pin allowed knight",
+      "text": "A real concession. Now the other side can pin a knight against its king and hold it to that line."
+    },
+    "takeId": null
+  },
+  "requestHash": "9c3df402a5ede1125dd5a6bc0d870cc559ac8f78c32f1e29b54b4472bb00ed98",
+  "recordedAt": "2026-10-04T07:41:32.935Z",
+  "sha256": "7925f986a3b4ed3c329079aa13f4b36eb508c6e3ce942fb92dcd8b089798b958",
+  "bytes": 21376,
+  "requestId": "krg1OCYOat21Xm5AaeMh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9104609644843fb88cbad80398d055510fcadda5865b6b564b83ea59d7252ecf",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed-pawn",
+      "label": "Tactic discovered attack allowed pawn",
+      "text": "Whoa, a pawn of theirs is parked in front of another piece. If it moves off that line, the piece behind it gets to attack. Keep an eye out for that hidden pounce!"
+    },
+    "takeId": null
+  },
+  "requestHash": "6865d575c838de38a0c8af0a3c3126f12629dd6b5a422eb49ab0dee7f9b2308c",
+  "recordedAt": "2026-10-04T07:38:23.697Z",
+  "sha256": "386125e7a60f2c05df28c8681850bc5bf503f89302dd8ccd78faa7a881a66bb9",
+  "bytes": 32472,
+  "requestId": "9HGKRe5S3HwBwXLWAuEb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9b9dc56c390c33dc87eea543bb1ea4ec12d25d350149251e26746cf8d6aa0ef2",
+    "bytes": 167645
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

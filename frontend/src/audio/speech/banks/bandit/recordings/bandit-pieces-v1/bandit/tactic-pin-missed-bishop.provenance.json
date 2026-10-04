@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "tactic-pin-missed-bishop",
+      "label": "Tactic pin missed bishop",
+      "text": "There was a pin to the king waiting in another move. Their bishop would've been stuck on that line, since stepping off it would expose the king. This move lets them off the hook."
+    },
+    "takeId": null
+  },
+  "requestHash": "bdac8eb8d7caf5ce7b4fc7cdf18c9ca86704355257191a8c787ed8e83507cff3",
+  "recordedAt": "2026-10-04T07:36:24.403Z",
+  "sha256": "ec3fcc96132b308b6b5909a62d439d0d02ae67769cb2f4d22a72393ee2133de3",
+  "bytes": 32310,
+  "requestId": "3BpPzwc9LumOebXvZlob",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "89a7c54f7975b7b4a575050749d5faf2c8bde635e63a486a959ca38b3a4aa150",
+    "bytes": 163466
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

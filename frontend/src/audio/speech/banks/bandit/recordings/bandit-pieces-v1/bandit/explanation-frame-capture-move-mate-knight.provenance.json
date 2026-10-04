@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate-knight",
+      "label": "Explanation frame capture move mate knight",
+      "text": "This takes a knight and delivers checkmate, leaving the king no legal escape."
+    },
+    "takeId": null
+  },
+  "requestHash": "46cfd2cea08ba3539d869d40c2f9ea83c69eda8ab3c8502c30e6439d75136185",
+  "recordedAt": "2026-10-04T07:37:38.918Z",
+  "sha256": "7fdb6c3f3055028e61f5b49fe57aa465731d17cc0c3f7a53c942106a8c78aab0",
+  "bytes": 16999,
+  "requestId": "RpmzgWxy5pMY8JIotpEb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "864d1332f7ab92ba8527b912ed741972bcb57f88acd6763e8b93249c0ae1eb12",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

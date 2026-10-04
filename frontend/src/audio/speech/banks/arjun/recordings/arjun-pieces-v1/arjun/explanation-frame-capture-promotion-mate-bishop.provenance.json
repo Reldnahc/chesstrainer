@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-mate-bishop",
+      "label": "Explanation frame capture promotion mate bishop",
+      "text": "A pawn capture of a bishop, a promotion, and checkmate, all in one move."
+    },
+    "takeId": null
+  },
+  "requestHash": "1bbc4eff104b8d3f5b8429b3e5a396a6a380440a89f7117352d111c0bde53b9e",
+  "recordedAt": "2026-10-04T07:33:41.103Z",
+  "sha256": "4ab517b3feebc6ba3d22ac3456789ce0cf1987fdba205db6b76c61f2e85f42a8",
+  "bytes": 17848,
+  "requestId": "X5BTHAaYO4pTefZHi8gp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3c5a46f2b4cac74690660440d79a1029be1de53afdad4c0784e2a4703cbb7990",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

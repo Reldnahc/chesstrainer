@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-knight",
+      "label": "Tactic removing defender allowed knight",
+      "text": "A defending knight can now be captured. Whatever it guards may lose its protection along with it."
+    },
+    "takeId": null
+  },
+  "requestHash": "383f7878f279f66b5707f0bd79ab1a2a156532c9846fb6132a57969e3f2689ec",
+  "recordedAt": "2026-10-04T07:43:33.891Z",
+  "sha256": "db39a1fc627d6cd9ae1a159420b64db0ce0a01bae388a52245b2d9219ae5e83b",
+  "bytes": 20807,
+  "requestId": "v1HjxM6MkeXy2bcCbxg8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "89286b1395552664bc98739f97eaad5abcf91eab856cd20b73f42e64c4fe57ef",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

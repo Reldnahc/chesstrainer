@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-fork-missed-queen",
+      "label": "Tactic fork missed queen",
+      "text": "There was a chance to set up a queen fork. This move misses that opportunity to attack several targets at once."
+    },
+    "takeId": null
+  },
+  "requestHash": "292ef75359cfd48e16b67a7954223ee54a8cb5885549aaacbd36a355d803618b",
+  "recordedAt": "2026-10-04T07:25:52.900Z",
+  "sha256": "ed2a1e22b751188b71986a4d0d6e9f6f49e1aaf992087533a1bd5e6956e4f015",
+  "bytes": 21734,
+  "requestId": "a7mZUdC0nrkMU1NMW9Ml",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f7d695b080b31a7605aa36cf2029de81e865f357af85e7c57b7451e830e7fe4d",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

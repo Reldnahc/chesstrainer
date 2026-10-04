@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "explanation-finding-double-attack-collected-bishop",
+      "label": "Explanation finding double attack collected bishop",
+      "text": "Double trouble: the moving piece makes one attack, a hidden bishop makes the other, and that bishop wins its target."
+    },
+    "takeId": null
+  },
+  "requestHash": "7fd7a4619582713312c04d737bcb3ddc6fada100f25f36ed28f6ed5a7b43b207",
+  "recordedAt": "2026-10-04T07:39:27.441Z",
+  "sha256": "e9401d123285840e90d4177ea2f9d47960e1f8bd00276bb510455349ede660ef",
+  "bytes": 25456,
+  "requestId": "T3lBfiNh6s0grxXPIzZu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "18f672c95a28d05a0828942cc097fc078e267f463f2f163a57a6312d2fdd3525",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

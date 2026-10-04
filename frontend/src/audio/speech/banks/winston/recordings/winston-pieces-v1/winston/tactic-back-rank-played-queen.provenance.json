@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "tactic-back-rank-played-queen",
+      "label": "Tactic back rank played queen",
+      "text": "The king's own pieces are closing off its escape, and that's the back-rank mate idea in this move, with the queen doing the work. Run along the back rank and see what's hemming it in."
+    },
+    "takeId": null
+  },
+  "requestHash": "4d1948060b3b2de8dec453f6a4b00fc32ca26898523ef6b8d714b1d217d63e36",
+  "recordedAt": "2026-10-04T07:29:40.472Z",
+  "sha256": "39a349509def2b8e7c992030578618b1232d002f72ea03928c9b1878b98f625c",
+  "bytes": 33785,
+  "requestId": "rPahRILXGDoItuvZKvLk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "feec04ca6043e55f8f3566fbf826c745650c20ff705d48e9ec69773a33ef2575",
+    "bytes": 173915
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "support-restored-bishop",
+      "label": "Support restored bishop",
+      "text": "Previously unguarded, the bishop now has cover again. Tidy."
+    },
+    "takeId": null
+  },
+  "requestHash": "ab0a72d2fcf5334f4fd1f2b0b4ed6e77ea6cc2e9ee95a4841431de0cabb8b822",
+  "recordedAt": "2026-10-04T07:47:24.918Z",
+  "sha256": "109979514cf0c1a46495f4e48fe24e44da9fd3d150caddf21e9efc0cebd3b892",
+  "bytes": 15518,
+  "requestId": "1RgitawVfARxvfZyrvFr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "29e542ff665f6840e01a69d68b8098cbb841ab1962fcb8bf97e80834c6533be9",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-rook",
+      "label": "Explanation finding relative pin released rook",
+      "text": "The attacking rook was held in a relative pin until the opponent's previous move released it. Nobody moved the target after that, and by the end of the line shown, it is gone."
+    },
+    "takeId": null
+  },
+  "requestHash": "99efce5607685568ce3ad578375a35428e5fda00aa7713ea53a96cc2a2c1e67b",
+  "recordedAt": "2026-10-04T07:44:17.567Z",
+  "sha256": "44b1c608e08bdc3252e0a81a3d9d41b72253fb10cda59e5053a047baaa0c8b7c",
+  "bytes": 35233,
+  "requestId": "oGpXsW5SOBkluKHsA82y",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "36e9def77b1fa7251728fa78a74cadd341a99e44b6fa1627a0f15d94ec162b19",
+    "bytes": 180184
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

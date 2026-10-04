@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-pawn",
+      "label": "Tactic discovered attack played pawn",
+      "text": "What an elegant release. The pawn moves off the line, and the piece behind it is free to attack along the opened line."
+    },
+    "takeId": null
+  },
+  "requestHash": "b8c430cfa2b56c628146c05c036f64ca24c8b89e636fd4b780a10185ee493868",
+  "recordedAt": "2026-10-04T07:40:03.081Z",
+  "sha256": "4306193e1a41219391791b91fe3abbd05ae75450ecdb684209223854ec0e7639",
+  "bytes": 25277,
+  "requestId": "HtYRjLNfrRtj5Ngi7J70",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3d9e2f8a3f81b42a8bb70fc7324d046830b773bf1b6e45980ca2fb1e5e0ef029",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-knight",
+      "label": "Explanation finding deflection collected knight",
+      "text": "Watch the defender move away from its job. The knight it leaves behind is then captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "8f4c88d8803c36517376109b0259244b5e91870bd9c47e6cdb71c382bdeb830c",
+  "recordedAt": "2026-10-04T07:26:37.194Z",
+  "sha256": "0aaddaf0d6ff31fe76fc70c4476b78e6539cc2f6d7b09600e983b335b85c0d73",
+  "bytes": 18567,
+  "requestId": "rYZLAQEPsqQAOAMvzbyU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d5647ee93021987ffdda593d2c3a9e02995001d74a83080a8592ccce50f58851",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

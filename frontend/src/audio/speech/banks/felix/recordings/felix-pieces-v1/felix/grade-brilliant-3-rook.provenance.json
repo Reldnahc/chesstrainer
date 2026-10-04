@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "grade-brilliant-3-rook",
+      "label": "Grade brilliant 3 rook",
+      "text": "Giving up the rook looks reckless. The checked line disagrees."
+    },
+    "takeId": null
+  },
+  "requestHash": "44d1d0c428bfa988dd2c9df9978d75842a522e385064f193a06c2831b23ea807",
+  "recordedAt": "2026-10-04T07:44:39.453Z",
+  "sha256": "c6242e7136c087e541a8f00cfd204b99441bf2d3b734967265da0f2c3db8aa37",
+  "bytes": 14813,
+  "requestId": "AZXsmdMU2dFGhIizFdDx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bd5e2859928396b7b341501f814d45c719bb699f98c1b9791d4486263e9842ed",
+    "bytes": 72768
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

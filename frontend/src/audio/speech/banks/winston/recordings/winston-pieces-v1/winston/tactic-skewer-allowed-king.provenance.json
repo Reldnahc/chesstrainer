@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed-king",
+      "label": "Tactic skewer allowed king",
+      "text": "Well, there's a skewer in it for the other side: once the king is checked off the line, whatever stands behind it could be exposed. Mind what's sitting behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "2a86a72e23037bf12a7ace283357deaf8ca30c6529cffed19357668c8170d661",
+  "recordedAt": "2026-10-04T07:29:18.609Z",
+  "sha256": "19f540666a1e2088c7102ef0028ea12bde6dda1775c9fb3483d3cb1fd445b14b",
+  "bytes": 29925,
+  "requestId": "Mo5VKQmQxgbQQKINEqLd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8dcc86d3ba6b3dad5dc1f3b5ceeb19bf39245d6ad7f50cc0fd5ad0a2bc6ae5bf",
+    "bytes": 155942
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

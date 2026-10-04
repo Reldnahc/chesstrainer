@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "grade-brilliant-1-knight",
+      "label": "Grade brilliant 1 knight",
+      "text": "A knight up for grabs, conditions attached. Brilliant."
+    },
+    "takeId": null
+  },
+  "requestHash": "2657c38911021cb8a05e7a973bf5ffbd6683119e20fd35afef64cc54f902d75c",
+  "recordedAt": "2026-10-04T07:44:54.898Z",
+  "sha256": "e956cae2ba107c363808eaa5db588b984bc387add3fff2ac44fc1d1af7b4efef",
+  "bytes": 13912,
+  "requestId": "ebFmupHrzvGJF8KgNCPX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "140005a318b1580605b032685313444f4a01bc2b9ab463022ae62078d2a90c55",
+    "bytes": 70261
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

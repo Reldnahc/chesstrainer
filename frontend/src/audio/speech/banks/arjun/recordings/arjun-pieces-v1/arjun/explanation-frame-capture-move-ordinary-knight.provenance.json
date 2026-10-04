@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary-knight",
+      "label": "Explanation frame capture move ordinary knight",
+      "text": "A knight is captured and leaves the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "d92fc3497c978cb1723d877b82b4543f561dff131448d747762b7aef427ab174",
+  "recordedAt": "2026-10-04T07:33:56.294Z",
+  "sha256": "605b53b80cb67bea3831f539434a13453a35ebd4827b63153cb59a4901c4378b",
+  "bytes": 9594,
+  "requestId": "Mof5NFid6Vt98Xx7C37b",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1fa115caa5e9fd3a33bacba164078053e41d6df65e296ecffc4dfaff693704f4",
+    "bytes": 46019
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

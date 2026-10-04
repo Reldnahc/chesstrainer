@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-queen",
+      "label": "Explanation finding undefended capture gain queen",
+      "text": "A queen nobody guarded comes off the board. The side that took it ends the example up material, net."
+    },
+    "takeId": null
+  },
+  "requestHash": "37c71a136b1d0f031a3c56563f7ff674f51e91edcbc3ae0a6f7285222f939b0a",
+  "recordedAt": "2026-10-04T07:44:43.046Z",
+  "sha256": "7099323a65ac1e43456b8fe7eb49fe38e3534859368f6c3bbc025e363643600c",
+  "bytes": 24014,
+  "requestId": "cRORBO918vCi7CHkZYPR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "13acd5666ed9471f7185631e6dc32f5d247d49754f6f4fef76fa8561cafd2516",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "grade-brilliant-3-rook",
+      "label": "Grade brilliant 3 rook",
+      "text": "Brilliant. A rook sacrifice that withstands the capture; I have no correction to make."
+    },
+    "takeId": null
+  },
+  "requestHash": "2937a8dda2670fbe75f5fbbd34e2dc3b4863a9a44dca5b60fa8213585d22bb24",
+  "recordedAt": "2026-10-04T07:43:09.661Z",
+  "sha256": "70dd251942f1fafc640f4e66b09168b234181acbac5479101f139bef937ffb4e",
+  "bytes": 19876,
+  "requestId": "MowXNJAeQQxbEh76obW2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "221b74ce75422469d4be9929196d2d5320bfb38e6f8be1108ef764b723205f40",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

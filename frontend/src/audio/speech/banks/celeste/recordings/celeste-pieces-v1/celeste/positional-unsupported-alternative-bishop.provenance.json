@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-bishop",
+      "label": "Positional unsupported alternative bishop",
+      "text": "With another move, a bishop would have lost its last defender, which on its own wouldn't mean it could be won."
+    },
+    "takeId": null
+  },
+  "requestHash": "56ac32b5aec8f4216ab31c8a4c26d2528272754aa52b10fac251b63a7a5323fc",
+  "recordedAt": "2026-10-04T07:40:41.777Z",
+  "sha256": "817384e8a0e1e42a16e2ee5332c14596472b17116b086c7d1b9bf3f7cc7697cd",
+  "bytes": 22527,
+  "requestId": "V51vC0cspf7Livz93CpH",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6a669634c1240b0a25718d21e09e7ddb87a7283ab877fdedddcaeed4786f7996",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

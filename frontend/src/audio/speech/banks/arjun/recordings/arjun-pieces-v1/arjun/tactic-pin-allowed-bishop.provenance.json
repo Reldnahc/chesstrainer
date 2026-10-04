@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-pin-allowed-bishop",
+      "label": "Tactic pin allowed bishop",
+      "text": "What happens to the bishop in front of the king now? After this move, it can be pinned there, and a pinned bishop can't legally step off that line."
+    },
+    "takeId": null
+  },
+  "requestHash": "87f1b49a454d6aebf15de3601d3fb1dbfac33dc6a7ca07d4c02073686bd00b16",
+  "recordedAt": "2026-10-04T07:32:16.431Z",
+  "sha256": "5f61ea3e61141ed0c42737926b4d81cd27ecce2c5b5798c23849dd18608d31f0",
+  "bytes": 28492,
+  "requestId": "cAMWPE7Oc5LzvgvxmKSx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "941bf3ab673767987cfb2800f09bfc500249611b919b32f3c70626b48db1d210",
+    "bytes": 148419
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

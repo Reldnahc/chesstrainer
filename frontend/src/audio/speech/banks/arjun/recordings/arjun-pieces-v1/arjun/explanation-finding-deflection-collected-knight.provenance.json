@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-knight",
+      "label": "Explanation finding deflection collected knight",
+      "text": "Once the defender is pulled off its post, the knight it was minding gets captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "daf72f4696fbc2345d33b3817baa9700481cb33471ec7c57d245e55051139dbc",
+  "recordedAt": "2026-10-04T07:33:25.828Z",
+  "sha256": "2cf7acd4ecb0451d20c518727c9d66bd4e857d59de50f4e7f2d756abe1d95c6b",
+  "bytes": 16433,
+  "requestId": "a7oPnpaelvuDWPjEzSu6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0c69f618c8c70fbc6629ffccadbdcf41cb5be0634769dfa331de2ab0af60ad87",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

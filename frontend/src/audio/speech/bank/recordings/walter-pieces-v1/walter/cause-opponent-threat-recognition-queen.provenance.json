@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "cause-opponent-threat-recognition-queen",
+      "label": "Cause opponent threat recognition queen",
+      "text": "The warning was in the opponent's previous move. This leaves that threat unanswered, and a queen can now be captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "c22e25f5d6eb596e71f618de25fc72cef0127f4479854dc35c659a9cc6060495",
+  "recordedAt": "2026-10-04T07:26:07.218Z",
+  "sha256": "d9e3563d27605e58ac07d067470b47a5e18a3bcba4351f474c2463c263367de1",
+  "bytes": 23035,
+  "requestId": "DQxUG8RS7TLbPQVQh0uq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2c445f08d3db2185ba3070701679386424fcc3ccb322422ecb0c3ceeaef0b0fd",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

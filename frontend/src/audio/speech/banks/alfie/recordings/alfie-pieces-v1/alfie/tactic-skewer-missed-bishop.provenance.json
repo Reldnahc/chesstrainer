@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "tactic-skewer-missed-bishop",
+      "label": "Tactic skewer missed bishop",
+      "text": "A different move offered a skewer, attacking a bishop with another piece standing behind it on the same line. If the bishop had moved off that line, the piece standing behind it would have been exposed to the attack. In the game, that line is never used."
+    },
+    "takeId": null
+  },
+  "requestHash": "357b9489719ee52e43a983c51ccb2f8d91c4aa56685c84f13911a45d8cb6f736",
+  "recordedAt": "2026-10-04T07:34:01.505Z",
+  "sha256": "2c392e48c7f784d6b55688488640129e43d259c987b77f722fa283b97ae5fcdf",
+  "bytes": 46900,
+  "requestId": "8v888izp13r4CwlosNEB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ad0bf07f8e9154841b9dfe831f9192b5428e08c95a9a8a35837e69f022275d88",
+    "bytes": 239116
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

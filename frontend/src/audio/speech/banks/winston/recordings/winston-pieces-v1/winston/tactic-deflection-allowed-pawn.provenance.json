@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-pawn",
+      "label": "Tactic deflection allowed pawn",
+      "text": "That gives the other side a deflection to use, drawing the defending pawn off what it guards. Have a look at what that pawn's covering right now."
+    },
+    "takeId": null
+  },
+  "requestHash": "1492aef9c610bb2af74bc5542cb0f356febd270657d50dbcb12f40c56f900b86",
+  "recordedAt": "2026-10-04T07:29:30.018Z",
+  "sha256": "8ca49fb04dc5da0f4e6a0dcdab620d0206d7e34f8268698332d8b6b1dcded3c9",
+  "bytes": 25326,
+  "requestId": "kd60Gsl559Ed1RmtIsBz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2cb14b2c1181760633812f5b2a3631c2e2148767c203f2f28ad06de33460a71e",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

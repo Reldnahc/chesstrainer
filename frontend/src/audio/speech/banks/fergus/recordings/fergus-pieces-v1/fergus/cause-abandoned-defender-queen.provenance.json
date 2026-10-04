@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "cause-abandoned-defender-queen",
+      "label": "Cause abandoned defender queen",
+      "text": "The queen had one real defender, that defender has left, and the queen can now be captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "497f95b9c2153b2dc3d89bf6bd78b5e61312cabefd7e46b5f39525329726ff4e",
+  "recordedAt": "2026-10-04T07:47:35.267Z",
+  "sha256": "c2107c5ebba91a7e3af6f685f7f730cb4add3d7d4e8f4fb5167c09da5ee790f3",
+  "bytes": 20956,
+  "requestId": "Rt74ByoVKIQKNA2pVD9V",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e19f8a513180ad286470474671173dca21637885431397fadd9b3e08a4a9c6b8",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

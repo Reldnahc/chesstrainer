@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-rook",
+      "label": "Explanation finding deflection collected rook",
+      "text": "The defender's pulled off what it was guarding, and that rook is then captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "8e69975b0226907685f208600e4be92c924d3c2f99c8a37e3a5202e5996bade2",
+  "recordedAt": "2026-10-04T07:30:01.073Z",
+  "sha256": "95a7496fad14e166df22d5d1494d9864c7b5f362638466df62b690ebd126ac1e",
+  "bytes": 15077,
+  "requestId": "4ydVvqS5WySlq71hy3bu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "69c3a51e7b7c54544410e00069d740c45d6a02f7073e7b0183439b659f55fefa",
+    "bytes": 75276
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

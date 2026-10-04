@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "explanation-finding-double-attack-collected-rook",
+      "label": "Explanation finding double attack collected rook",
+      "text": "The first piece attacks and clears the way for the rook behind it. It's the rook that collects in this example."
+    },
+    "takeId": null
+  },
+  "requestHash": "2147564498efe888ee18720f0cbbc4e5b6f351857a582845e935d6d18b45945a",
+  "recordedAt": "2026-10-04T07:37:33.134Z",
+  "sha256": "ba224ebe1c0de6ce53f8413526e45ab6a1a6c3782dc2d33d333699d815ab8b6e",
+  "bytes": 21215,
+  "requestId": "kjESce47Q6YIjZldZj92",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9c0479f621600de02f67dbe4e99fe383e4bf5bb4e60ba95d26170349ffc14ac6",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

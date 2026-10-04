@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary-bishop",
+      "label": "Explanation frame capture move ordinary bishop",
+      "text": "This move captures a bishop."
+    },
+    "takeId": null
+  },
+  "requestHash": "780da9b1ce5303bae24e7e6edbd055045d9ccca77507493aee085d029ef321f0",
+  "recordedAt": "2026-10-04T07:27:04.774Z",
+  "sha256": "0bd2f9289e2d08dcb7044f843d453aa908f7ab8a96f4c9d31f7315510fc54f97",
+  "bytes": 7339,
+  "requestId": "mtFFbOLHkn0xva3ZH2nm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5932a3019187fab917d68a728fdbbdf46a4cf787d4c0f8dba4d6f7a75bcd3b17",
+    "bytes": 34316
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

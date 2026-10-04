@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape-bishop",
+      "label": "Explanation finding pin restricts escape bishop",
+      "text": "The attacked bishop is pinned to its king, and that limits where it can go. It can only move in ways that keep its king shielded."
+    },
+    "takeId": null
+  },
+  "requestHash": "1c9cb7c158f93a96c841396b3eb729a6a35bdf92f24ebada0c26d3ae2c15c9c8",
+  "recordedAt": "2026-10-04T07:29:31.448Z",
+  "sha256": "0ee4631d4f8bc1635b34dcda6f503ffb9348562a1457f40bcca33ac17892ed2e",
+  "bytes": 24805,
+  "requestId": "QJ4KAikInqaZQgl3T0K5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ae21135bbe8ba71afbc5a97ec93f5d34c7046017dd58a012db320042bf795560",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

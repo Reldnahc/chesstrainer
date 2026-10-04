@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "cause-avoiding-bad-trades-queen",
+      "label": "Cause avoiding bad trades queen",
+      "text": "Hmm, grabbing with the queen sure looks yummy, but then the other side recaptures the queen, and it's worth more than what it took. Easy habit: tally the whole swap, every grab from both sides."
+    },
+    "takeId": null
+  },
+  "requestHash": "302142ddfd13d9afb966a377172764b5a47232bb6c9d56be00333fa9940398d0",
+  "recordedAt": "2026-10-04T07:38:57.780Z",
+  "sha256": "8eb78ac5ea0bf65461534cc81bc08014e9d0811779163e20c9cc7eee8dbf023b",
+  "bytes": 41716,
+  "requestId": "UMDKD9Nr3PGfktk2Ib3k",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8dfeb2b759d36d3dcc41332285f08ce69b88872b2afd309516baa9bbc07badfe",
+    "bytes": 219890
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

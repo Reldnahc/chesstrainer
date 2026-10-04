@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-rook",
+      "label": "Tactic deflection allowed rook",
+      "text": "The other side now has a way to lure the defending rook off its job. It's called a deflection, and whatever that rook was minding could end up wide open."
+    },
+    "takeId": null
+  },
+  "requestHash": "273e690b3b393c99bc2200ca057aec2bbe7f2d26548f3005d11d5bc5d65d4fb3",
+  "recordedAt": "2026-10-04T07:37:14.804Z",
+  "sha256": "7aa6686e0c4d838b381d670bed1fa316e9840f9eadcdac46b442784a3870f1bb",
+  "bytes": 31439,
+  "requestId": "1EBBbHK6x2KUJwZeibX8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "934adf2acb198e528fa578a93bc8f2f477ebc39ac73dc2b20c5a454bea996d45",
+    "bytes": 158450
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

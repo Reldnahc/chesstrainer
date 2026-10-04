@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "support-restored-bishop",
+      "label": "Support restored bishop",
+      "text": "The bishop left unprotected earlier is connected to its defenders again. Compare the positions to see how its support returned."
+    },
+    "takeId": null
+  },
+  "requestHash": "d33d71a19c45ce98fdbf624a15c81aa78673a59c0b228605746b081e96285b49",
+  "recordedAt": "2026-10-04T07:40:49.365Z",
+  "sha256": "795e7029bd03edf06b421c9d4607eb84a3ec7727670be7ac25253f0ff5e4ed62",
+  "bytes": 25620,
+  "requestId": "XaMDi3NdcWZY2ELivok2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "10a93a2302c57ebf6bcbf29593cf6a40f5d9a762f4e2f70b941dc3e73f0a6457",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

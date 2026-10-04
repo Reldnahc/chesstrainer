@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "explanation-finding-pin-prevents-capture-queen",
+      "label": "Explanation finding pin prevents capture queen",
+      "text": "That queen is barred from capturing: it's pinned, and the capture would take it off the line and leave its own king in check."
+    },
+    "takeId": null
+  },
+  "requestHash": "7251ce2d02b1367f10cc5ba981b9984fe584de5026e326e975a1508d5ef224f4",
+  "recordedAt": "2026-10-04T07:46:16.438Z",
+  "sha256": "8fec86e5ea240da3de10df23518460996922e6b628afb0c24e8b5e55e449a1ed",
+  "bytes": 25283,
+  "requestId": "i60LPvzFp7PYkrIajNtN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4376f060b54380dd2bd25933eac281be432f6cc151ede4b5aea9fe69153f4284",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

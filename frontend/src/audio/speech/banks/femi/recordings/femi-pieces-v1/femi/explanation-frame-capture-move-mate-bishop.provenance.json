@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate-bishop",
+      "label": "Explanation frame capture move mate bishop",
+      "text": "It captures the bishop, and it's mate on top of that, with the king out of legal moves."
+    },
+    "takeId": null
+  },
+  "requestHash": "61a71b25e9d92859609726322bf9522259035060521b2928633a0b649cd1f82d",
+  "recordedAt": "2026-10-04T07:46:19.971Z",
+  "sha256": "207fa3cde78a4ea3adba9be6f32fd3c5cc1eacfcb39dfb58390c269f90035c21",
+  "bytes": 19040,
+  "requestId": "7JL7qykgBWgTjkZus527",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "29321b057708580389c25443dee775e6cd9493e9f705fc458d6ec8befc30b9f4",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

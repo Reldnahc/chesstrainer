@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "tactic-hanging-piece-allowed-rook",
+      "label": "Tactic hanging piece allowed rook",
+      "text": "A rook is left without a guard, and the other side is free to take it, should it care to."
+    },
+    "takeId": null
+  },
+  "requestHash": "5061caab0c8df5f97cec442bac45469e0f9d7a42646970c9a7a0cbf511b439e2",
+  "recordedAt": "2026-10-04T07:47:00.510Z",
+  "sha256": "061751e36e67a474be0fe02d5cc0192b862f627dafa3a6ff08067bc7f1420fde",
+  "bytes": 18099,
+  "requestId": "O5mTHDoQNtHV7XMBd2jz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bd20bc14c21ead541415547ef8d337d5856229dabd7204be68052a141329f15f",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

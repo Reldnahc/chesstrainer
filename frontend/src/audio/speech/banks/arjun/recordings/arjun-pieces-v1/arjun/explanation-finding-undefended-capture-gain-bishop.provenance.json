@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-bishop",
+      "label": "Explanation finding undefended capture gain bishop",
+      "text": "The captured bishop had no protection, and the side that took it ends this example ahead on material."
+    },
+    "takeId": null
+  },
+  "requestHash": "0a93fed8c0c4ebb4d93e831625b30a0707bbd34148982f93789a932a819596e1",
+  "recordedAt": "2026-10-04T07:33:41.499Z",
+  "sha256": "190ff5e06fc0d37d403cc794c0b80344c8da5cc42ba58009c9c86479f7ac94a5",
+  "bytes": 20896,
+  "requestId": "iVid6J3wvKGCYbQJUAqz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "337364a575e7697f23e89c4673885e1f0f898964ade5e26ae22fe56ae2d2b28a",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

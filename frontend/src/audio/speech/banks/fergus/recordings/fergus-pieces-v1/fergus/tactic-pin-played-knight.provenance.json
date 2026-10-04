@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "tactic-pin-played-knight",
+      "label": "Tactic pin played knight",
+      "text": "A knight is pinned to its king now, so stepping off that line would expose the king, and it will stay put."
+    },
+    "takeId": null
+  },
+  "requestHash": "82fe9dfee4e1dc789f3e32176086e33a1af0169c5b0ac11494f04525d7d877a8",
+  "recordedAt": "2026-10-04T07:46:55.506Z",
+  "sha256": "1433b522076e9df75c7946eb56a88cb778acf3344ba915945cb1143ae8e89696",
+  "bytes": 22297,
+  "requestId": "8JcjAJJdjYbfJYngHn8s",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "15f26e148408374f7a74a1a126d3df96e1faf3b99e1894763b8f5168786a248e",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

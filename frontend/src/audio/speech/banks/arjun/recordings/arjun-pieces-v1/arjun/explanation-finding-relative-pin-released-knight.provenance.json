@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-knight",
+      "label": "Explanation finding relative pin released knight",
+      "text": "The attacking knight had been held by a relative pin, until the opponent's previous move let it go. Freed, it captures a target that stayed put, in the line shown."
+    },
+    "takeId": null
+  },
+  "requestHash": "fc0fbce1849e0508155d6dcf8184bc48de015978909df77f8271df4296afe3bd",
+  "recordedAt": "2026-10-04T07:33:15.592Z",
+  "sha256": "d5b8419dba47576a79bd74027c44c1e84eb41d877e9f1b1363bb71d0bc57e3c3",
+  "bytes": 32954,
+  "requestId": "dtXza58IRHkX0WHsPWfS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8ecbb4d695ea1fc3ac2792f6de3b7cff12f77b935154e75b149e135b810ef84b",
+    "bytes": 170153
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

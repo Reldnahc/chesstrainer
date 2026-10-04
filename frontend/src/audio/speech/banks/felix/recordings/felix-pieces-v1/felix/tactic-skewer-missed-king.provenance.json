@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "tactic-skewer-missed-king",
+      "label": "Tactic skewer missed king",
+      "text": "Another move had a skewer ready: check the king off the line, and whatever stood behind it would have been exposed."
+    },
+    "takeId": null
+  },
+  "requestHash": "a5deb739fa584be8fdfc26a679dd13ca96cbc4ffcacd6708c45497b8268030dd",
+  "recordedAt": "2026-10-04T07:43:27.927Z",
+  "sha256": "d0c2d0cdff65e0c8d9b904030790c2546a3d954ac3b4b3183a95e1f20810d1c4",
+  "bytes": 22210,
+  "requestId": "kf3WZV088No594NbPI7d",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d572b5a6b421c58e840cbc0b8a6d222c20b57f183995132e3b39d8ad369a271a",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

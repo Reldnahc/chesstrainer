@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "tactic-pin-played-queen",
+      "label": "Tactic pin played queen",
+      "text": "How elegantly placed. The pinned queen is bound to its king's line, and stepping off would leave the king open to attack."
+    },
+    "takeId": null
+  },
+  "requestHash": "c4485e4f774b3a8c347a832806ce2bae5fce586b69f1f4717a1441dd79e6142e",
+  "recordedAt": "2026-10-04T07:40:17.974Z",
+  "sha256": "e4de02a9563c8ea93598ba46662c3eff75c299efb3aa353d5b85a170f2c015e2",
+  "bytes": 26394,
+  "requestId": "ep83mYlcCFFVs8kSijFl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b9ef849b423dc54d71d7ba0a0e7120f8c07d96793fffefb9e453fca6d6dd3a4d",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

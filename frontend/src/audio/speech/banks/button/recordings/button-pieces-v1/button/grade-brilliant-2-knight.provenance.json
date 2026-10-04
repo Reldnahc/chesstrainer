@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "grade-brilliant-2-knight",
+      "label": "Grade brilliant 2 knight",
+      "text": "How odd, and how lovely. Pieces usually try to stay safe, and this knight is put up as a sound sacrifice."
+    },
+    "takeId": null
+  },
+  "requestHash": "698e13b0a2e04d523dfe8efe5050fcabf25945205c4b645a588c54eeca96e645",
+  "recordedAt": "2026-10-04T07:32:22.767Z",
+  "sha256": "793b1874fbfd750f14f618557c8774651fc257a554da41197d8c7f8af5fff8bd",
+  "bytes": 26669,
+  "requestId": "1X6BMCwHcyVmKb3shBua",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "38323b9e28c28becaaffff74f24b99e593b82d75f5d6d4530983ad9e27fda3bb",
+    "bytes": 139224
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

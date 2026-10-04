@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-rook",
+      "label": "Tactic deflection missed rook",
+      "text": "A different move could've drawn the defending rook off its post, and this move lets that deflection pass. Start with what the rook was covering."
+    },
+    "takeId": null
+  },
+  "requestHash": "86d9094229cb324f2bd1cad5cabdaa0753c471fb4cf5195312269ecf02171969",
+  "recordedAt": "2026-10-04T07:29:31.019Z",
+  "sha256": "7bb152cf1f66734d849d18303bbced5c011af32e94140ef4780f6e3652f30b48",
+  "bytes": 26995,
+  "requestId": "2xiOd851dwP6aXUoTusZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ebf28c3efd139d758e9d8fff150c25b6b8ec8964511c552b4a16c67a675e4a7e",
+    "bytes": 137970
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

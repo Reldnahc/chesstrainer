@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-knight",
+      "label": "Explanation finding sole defender captured knight",
+      "text": "The only defender, a knight, is captured. Later in the shown moves, the piece it guarded is captured as well."
+    },
+    "takeId": null
+  },
+  "requestHash": "56185b48a6545caf457bfcde8db0c6ed8e4dbf5c7aac82fff0fedba4b99dc29c",
+  "recordedAt": "2026-10-04T07:28:05.812Z",
+  "sha256": "9e1fe1d84b7689dc22bc7f629cced790a3ceee1de5dd825f875b7bd90af26412",
+  "bytes": 23234,
+  "requestId": "bcM26a0lVpTidM2SOSoc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "29eb0213a8bd2a86e4979ef4938895f3af126a54048e7303dcfd92678fc73d04",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

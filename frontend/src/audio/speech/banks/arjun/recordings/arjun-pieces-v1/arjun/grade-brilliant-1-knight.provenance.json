@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "grade-brilliant-1-knight",
+      "label": "Grade brilliant 1 knight",
+      "text": "A brilliant candidate. A knight offered, and the idea holds once it's taken."
+    },
+    "takeId": null
+  },
+  "requestHash": "01b4b87e0778476678077862d6f212bdfecdb6a6cca29e0686030ae21796d5db",
+  "recordedAt": "2026-10-04T07:33:52.364Z",
+  "sha256": "9f7ec6ccc6222eb4d4520dcb2d510bdce0c94656abd2a2c25eb1fe9e0c9709e2",
+  "bytes": 17543,
+  "requestId": "JynhlabE3LbTtAUYTsyN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7c65ac1f2fbd4acc837051896731c973dfa22770a6a1ebd3eda59642c0bb2f19",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

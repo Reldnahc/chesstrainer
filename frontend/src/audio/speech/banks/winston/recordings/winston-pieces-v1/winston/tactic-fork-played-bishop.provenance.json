@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "tactic-fork-played-bishop",
+      "label": "Tactic fork played bishop",
+      "text": "There's a fork in this one: a single bishop bearing down on several targets at once. Follow that bishop and see what it reaches."
+    },
+    "takeId": null
+  },
+  "requestHash": "e883eabad60fefdbc6e067129b00bd91464955542e1efb0ced36056560043b9b",
+  "recordedAt": "2026-10-04T07:28:41.102Z",
+  "sha256": "1e616fa5f883269013b2865f2ab4c2e0b98dfd5e9407cac48c376f8e56d5ef8b",
+  "bytes": 24739,
+  "requestId": "gXvmtY2o5RCYjzjBaRxh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "518b26aed0febac40061e280910c9e004042a2a9fd287a9e80672d1c46ab2ee7",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

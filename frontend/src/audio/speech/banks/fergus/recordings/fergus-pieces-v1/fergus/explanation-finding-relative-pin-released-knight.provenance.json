@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-knight",
+      "label": "Explanation finding relative pin released knight",
+      "text": "The opponent's previous move freed the attacking knight from a relative pin, the target stayed where it was, and it was captured in the line shown."
+    },
+    "takeId": null
+  },
+  "requestHash": "19aa7f33cc3e9e575d4b3dae2f42705df53f260d61e40319dcd9717d96642e93",
+  "recordedAt": "2026-10-04T07:47:29.339Z",
+  "sha256": "1cfc1a3f6a76972416e9a10107f5950a94b43d908fde202a591e7406328cfe70",
+  "bytes": 28704,
+  "requestId": "yaaLlg7luMQGZhAgR7fQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c6e13a87e1d4501f9888b95c22f3b667a15e4ffa95d5a78dd541c8b19a865bbe",
+    "bytes": 147165
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

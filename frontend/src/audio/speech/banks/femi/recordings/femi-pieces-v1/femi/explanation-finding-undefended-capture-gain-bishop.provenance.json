@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-bishop",
+      "label": "Explanation finding undefended capture gain bishop",
+      "text": "An undefended bishop gets taken, and the example finishes with the capturing side ahead on material."
+    },
+    "takeId": null
+  },
+  "requestHash": "a27c5bc8814bd15c89d81f464aeb874bbe7d897cddb5f52ee6c0d68dafabe892",
+  "recordedAt": "2026-10-04T07:46:18.668Z",
+  "sha256": "b5d82ebe061c3e8871aa94a4009530796b800dcdd399f6904ced50d3b8358469",
+  "bytes": 22178,
+  "requestId": "s3iwSjt12JNhWMrZW4z7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8e59e3e07f1cce942847e84f47c775fc58e5bf45f413d840b133610bfb33f0d1",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

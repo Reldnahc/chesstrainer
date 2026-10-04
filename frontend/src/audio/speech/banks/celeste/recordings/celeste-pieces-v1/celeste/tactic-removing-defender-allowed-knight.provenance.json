@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-knight",
+      "label": "Tactic removing defender allowed knight",
+      "text": "A defending knight is exposed to capture now. If it falls, the piece it protects loses that connection to safety."
+    },
+    "takeId": null
+  },
+  "requestHash": "de4b838ce7042a9c1ded36bef84de15f1671ce80d4487d52261fc6b9fb685a0f",
+  "recordedAt": "2026-10-04T07:40:07.566Z",
+  "sha256": "85c2855f6ac2f394c5ea70783fb8806f14533625430ab31eaf675d42c0f07121",
+  "bytes": 24530,
+  "requestId": "7civpQWPa7MkcnGfBe3d",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9078d084ff7e5d1b755330a27fbc69cf39462b7c1f693f4721c96f2e4acfd34c",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

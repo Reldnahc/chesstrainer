@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-missed-knight",
+      "label": "Tactic undefended capture missed knight",
+      "text": "A knight without protection was there to take with another move, and the chance was passed over. It pays to look for unprotected pieces first."
+    },
+    "takeId": null
+  },
+  "requestHash": "cfef5d2be7687805ddfde40ec762ea4929466d7c2fdb4add325bc019687afcc5",
+  "recordedAt": "2026-10-04T07:40:11.264Z",
+  "sha256": "b5eca090ec7aa6d823274f9190a73cf8f8ab367e2278ed76afca22372b4f80c9",
+  "bytes": 27431,
+  "requestId": "CI18ejubRLze9TsmF5ae",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d2cc9b92b012b7d6317ff618483576aa37912cdf474ad264db89ce493227c8b3",
+    "bytes": 137970
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

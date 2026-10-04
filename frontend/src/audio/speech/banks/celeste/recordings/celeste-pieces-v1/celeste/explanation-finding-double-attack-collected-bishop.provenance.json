@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "explanation-finding-double-attack-collected-bishop",
+      "label": "Explanation finding double attack collected bishop",
+      "text": "The moving piece threatens one target, and the line it reveals lets the bishop behind threaten another. Here it's the bishop that wins its prize."
+    },
+    "takeId": null
+  },
+  "requestHash": "93a8c027768dae084eb88cebb4908cc1a9083c3d92a0e8203e0649a1075d1291",
+  "recordedAt": "2026-10-04T07:41:08.755Z",
+  "sha256": "90717f5d4871f3d0d98c05c19f2190a7c495e60209373f8df917612c4b6d12e2",
+  "bytes": 30195,
+  "requestId": "4croJyBCFEm4YiRYbHQ7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f8c9f8527d63b8eff9d727cf9ae59377cfa76c5d7ca01377971f015d545db6da",
+    "bytes": 152181
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

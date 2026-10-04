@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate-queen",
+      "label": "Explanation frame capture move mate queen",
+      "text": "The capture of a queen delivers checkmate. No legal escape remains for the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "837a94cf836bddcd0629fdc8be2763e707bf6cdc04efdaf8054e0e33b8002860",
+  "recordedAt": "2026-10-04T07:28:23.994Z",
+  "sha256": "60694ba0469679296f6c0cf25cbd8e356683488a7efed2a8cda849ad628533f9",
+  "bytes": 17622,
+  "requestId": "DwjFbV9ZdZGbMVzdkiax",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1a38d4f160ec1e4acc2e384115674a23bfb849eada2237494b2a98a708d3bd09",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-fork-played-knight",
+      "label": "Tactic fork played knight",
+      "text": "Interesting move: a knight lands where it touches several targets, and the reply can't comfortably cover them all. Worth replaying to see how it got there."
+    },
+    "takeId": null
+  },
+  "requestHash": "98072efef88b83ae5ba28e35024ae5e0b466871850b25f5fa46045f78ccd8389",
+  "recordedAt": "2026-10-04T07:32:05.183Z",
+  "sha256": "4b25cf9b4bc8e68635027a4706bd5e0a3173463e71a0feb4acb7cf3365b27f7b",
+  "bytes": 29880,
+  "requestId": "E3BeE2Tc4OPacABrna1p",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e4fcfb99c2d87e124164e08a85f9704e3ee55b49ddc0e805d4bdbe7b7e7ead2e",
+    "bytes": 155942
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

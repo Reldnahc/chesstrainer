@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "cause-abandoned-defender-rook",
+      "label": "Cause abandoned defender rook",
+      "text": "Ah, found the problem! That rook only had one real defender, and this move sends it away, so the other side can capture the rook. Quick tip: whenever a defender wanders off, count up everything it used to protect."
+    },
+    "takeId": null
+  },
+  "requestHash": "abf8994e49bebd6e0d6ac4cdecff87d214bc990eb6e497ae269bf665a36ba3d1",
+  "recordedAt": "2026-10-04T07:39:16.621Z",
+  "sha256": "b71691c95d09fea1ba38f852b3af9e11a5928b4fefa189f7b24ca51b984ca839",
+  "bytes": 46311,
+  "requestId": "IT01LIpEKMOj5JptMCsD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "07ad5564678ffa7fb187f1c9f6f2374d9a3372fd2d28c9d031c7b169ac8d597e",
+    "bytes": 239116
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "tactic-skewer-missed-king",
+      "label": "Tactic skewer missed king",
+      "text": "Missed pattern: skewer. A stronger move contained it. Front unit: king, checked off the line; rear unit exposed."
+    },
+    "takeId": null
+  },
+  "requestHash": "be83281dafb74d7db860d6ad4019070851f29b25ed35c8cb7a706e0c48dbe034",
+  "recordedAt": "2026-10-04T07:27:13.686Z",
+  "sha256": "fae9d51994c4cc425530adf25deaf9bae84214cf6b1447570725e933d79d941d",
+  "bytes": 28527,
+  "requestId": "qj73OqZHjuq6sCjhFdzU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c6ed348092a6e95a849b5eb146d19e8d944728181b23ce8effe62bf12b8b9e01",
+    "bytes": 154688
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

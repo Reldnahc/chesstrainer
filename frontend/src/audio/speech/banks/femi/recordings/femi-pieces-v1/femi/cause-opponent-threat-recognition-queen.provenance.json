@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "cause-opponent-threat-recognition-queen",
+      "label": "Cause opponent threat recognition queen",
+      "text": "Look at the opponent's last move: it made a threat, and this move leaves it unanswered. That puts a queen up for capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "4ad33e8ee45a3da2713d0c7c7e0a27bc42f35aa9fc073536bf90a9cd854b91aa",
+  "recordedAt": "2026-10-04T07:45:38.694Z",
+  "sha256": "86d4534e1d292762c61d9a2dd052f73caf5cb497418a0652c9a1c1f0917997b5",
+  "bytes": 25746,
+  "requestId": "pDXl46gBIGd19NrMRyfE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6b2096c6fecc7901050026fe5ce609b8c2c32561d52d67380ded71ba6174c434",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

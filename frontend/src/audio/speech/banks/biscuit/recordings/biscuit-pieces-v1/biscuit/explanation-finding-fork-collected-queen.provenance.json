@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "explanation-finding-fork-collected-queen",
+      "label": "Explanation finding fork collected queen",
+      "text": "A single queen aims at several targets together, and then it gobbles one up. In this example, the fork wins material overall!"
+    },
+    "takeId": null
+  },
+  "requestHash": "07cbf4c498f2aae9512bb5df4176c4527d080ba7789e4e762ab5251d44f51231",
+  "recordedAt": "2026-10-04T07:39:09.061Z",
+  "sha256": "540778be5c307f7f39e630a77cfd9c0c9103c35bdaf4fbdbfa36f03d615f8598",
+  "bytes": 28300,
+  "requestId": "RMCSw3DiPjea8NsHLzCp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b101f21ddfdd9dfba9794c425984399a836b58af57f03f3f96d1a86af4d4630a",
+    "bytes": 142986
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

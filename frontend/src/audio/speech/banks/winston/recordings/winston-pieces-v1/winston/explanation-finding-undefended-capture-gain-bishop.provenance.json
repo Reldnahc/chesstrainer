@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-bishop",
+      "label": "Explanation finding undefended capture gain bishop",
+      "text": "An undefended bishop is captured, and the example shows a net material gain for the side that took it."
+    },
+    "takeId": null
+  },
+  "requestHash": "6df0be7917943990685820335e52490e0299a41e900f65d024a85b5786ed7af0",
+  "recordedAt": "2026-10-04T07:30:09.116Z",
+  "sha256": "fcf943dcf25f7ad6d97d39cde68c6b6beb1bb4df5abbdc329879fb48429d7e1b",
+  "bytes": 19556,
+  "requestId": "uD2SEY1tAseOUdU5CMnz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c1f60fc2299f6f795a10368c11c043c7b6d1ca1c211db8bd917bcc3d235f4e0a",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed-queen",
+      "label": "Tactic removing defender missed queen",
+      "text": "The stronger candidate removes a defending queen, and the piece it protected becomes vulnerable. Worth comparing the two moves side by side."
+    },
+    "takeId": null
+  },
+  "requestHash": "440ee5634d45e19a5d8936a50656702e0924ddeba0cb858d6d6fc39df43d29a4",
+  "recordedAt": "2026-10-04T07:32:51.602Z",
+  "sha256": "ab0c736cccf5e272dfc5656fee7314aba6ba015f5ff402d9006a42315b1fd91d",
+  "bytes": 27974,
+  "requestId": "2HaUOOb6Rl5EkthOZpji",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c43594552de767035d8eb69733764578155c4520123be97fec2e07c4cb349060",
+    "bytes": 142986
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

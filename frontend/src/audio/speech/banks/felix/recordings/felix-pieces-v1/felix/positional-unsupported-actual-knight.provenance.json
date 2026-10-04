@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-knight",
+      "label": "Positional unsupported actual knight",
+      "text": "This knight has no defender now. Undefended is a condition, not a verdict."
+    },
+    "takeId": null
+  },
+  "requestHash": "339484b291bb41e241bf4678147759744308f0aa6acb753b9db14c0462873a88",
+  "recordedAt": "2026-10-04T07:44:25.673Z",
+  "sha256": "4641e4f521710268aa8cc40acd3c6bcd7b85a764e03cc1cb63b47a5e7b7bc707",
+  "bytes": 19243,
+  "requestId": "sVEouZ3f49iuIev5Prfx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1af5dae7114bdf2f7ef3c4a66952eed8ee13c5ac9d7ec19964a461bf7b6331ee",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

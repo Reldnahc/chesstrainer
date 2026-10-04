@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "explanation-finding-king-skewer-collected-bishop",
+      "label": "Explanation finding king skewer collected bishop",
+      "text": "The king, being in check, steps off the line, and the same attacker takes the bishop behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "b044f772dd187c2444235cb47307d0e5bf7a0573267888c5f8b51e2fad387808",
+  "recordedAt": "2026-10-04T07:47:46.709Z",
+  "sha256": "615f53f07eb28fa0cf99eb833b555238ab974683efbaba43d6ad4d37a17362b9",
+  "bytes": 20561,
+  "requestId": "yGK2Q0zZTmRkSD2NvHFY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bb1021c8babccae2e84107cc4c65cc8e9f589cd94be34083c2fd61e5605e5c5f",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

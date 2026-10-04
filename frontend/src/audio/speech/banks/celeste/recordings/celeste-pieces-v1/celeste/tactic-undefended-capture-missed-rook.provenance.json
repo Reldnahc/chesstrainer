@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-missed-rook",
+      "label": "Tactic undefended capture missed rook",
+      "text": "A rook without protection was there to take with another move, and the chance was passed over. It pays to look for unprotected pieces first."
+    },
+    "takeId": null
+  },
+  "requestHash": "f0c69e92c853d15cfdba53d2e82d4e9f776dc28b3a11719f0fbd0c558ab02983",
+  "recordedAt": "2026-10-04T07:40:15.499Z",
+  "sha256": "c0d2f1d2217627c4bdda026909db21a7ff1f1a69b04e5f9980c7050b272a6a4c",
+  "bytes": 27626,
+  "requestId": "D3aTYLcMjXGCp7OsBcQK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bf12d3fdcad1979469bcdee348a21454957c2df3ae31e0db9abd6f852eb56ca6",
+    "bytes": 139224
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

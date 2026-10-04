@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-queen",
+      "label": "Explanation finding skewer collected queen",
+      "text": "As soon as the queen in front steps off, the piece it was screening gets taken on that line."
+    },
+    "takeId": null
+  },
+  "requestHash": "db88227d2771bb781d2ae7ca1ba2c36cb508e351aeae8011a4ab20157feb8e3e",
+  "recordedAt": "2026-10-04T07:46:06.384Z",
+  "sha256": "860be81759476d0b86676b493ec0f164834cb9d12ae0bc39e908b08fd42fb588",
+  "bytes": 18395,
+  "requestId": "cOODWyq9rdRBqHC2V7ov",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5754234c5a4a6e20fc41c3500872433f201e8f2a147091026c5ca58acd19e328",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-capture-rook",
+      "label": "Explanation finding discovered capture rook",
+      "text": "The blocking piece moves, opening a line for the rook behind it, and the rook makes the capture along it."
+    },
+    "takeId": null
+  },
+  "requestHash": "4e5c174bb16c7249176db6dc3820c1afdfa32e67cf9444ead8dd14adc816c73f",
+  "recordedAt": "2026-10-04T07:30:15.721Z",
+  "sha256": "91a67301c2315291429da3abbab472d499b994450e590d0b3e9d5badbe812f7b",
+  "bytes": 19947,
+  "requestId": "cYNSXqJsg82Zqj8C5Pkx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "44ddc661968b964b6ffed7eb6293cd2711bda59373b783ed56a9766f0b38f9e8",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "cause-avoiding-bad-trades-bishop",
+      "label": "Cause avoiding bad trades bishop",
+      "text": "Taking with the bishop looks fine until the recapture, and the bishop is worth more than what it took. An exchange is judged at the end, not the start."
+    },
+    "takeId": null
+  },
+  "requestHash": "aba0dd4dc8405d1b70db41bb4ea2832be22a80957a45e8d0969241d8353528c7",
+  "recordedAt": "2026-10-04T07:44:05.543Z",
+  "sha256": "395bd0143152f8c87f08845f1869c06e34f1113cffc31faf8cc88e32330724a4",
+  "bytes": 31087,
+  "requestId": "TnEsnnMR56LxXubIDOAs",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e076fc969fb18529722396f9b60caf139dfc44a283a2d7c5c476a5040ab22335",
+    "bytes": 158450
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

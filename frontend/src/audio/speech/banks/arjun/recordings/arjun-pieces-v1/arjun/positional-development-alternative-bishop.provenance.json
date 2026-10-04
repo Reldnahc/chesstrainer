@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "positional-development-alternative-bishop",
+      "label": "Positional development alternative bishop",
+      "text": "Another candidate develops a bishop off its starting square. Worth comparing the two setups."
+    },
+    "takeId": null
+  },
+  "requestHash": "526d7c8f274e360696a71268e6993ee16683c06ee36fdf18a9a59992c00ef196",
+  "recordedAt": "2026-10-04T07:33:11.622Z",
+  "sha256": "7a11528cb7fa9a8b66b5934bd0ee1185059af14396cc836f7b3b9196e280b996",
+  "bytes": 18361,
+  "requestId": "5QKzrNovaIErdWY2SKGI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "22af341ac827f3423e0f23f38d1a335fcd15782604d998b8ff514f5bd4bc3e0e",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

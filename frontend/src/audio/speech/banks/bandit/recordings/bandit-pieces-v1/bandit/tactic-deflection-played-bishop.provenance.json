@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "tactic-deflection-played-bishop",
+      "label": "Tactic deflection played bishop",
+      "text": "Lure the guarding bishop away from its post, and its old charge is free for the taking. Rude, but that's a deflection all right."
+    },
+    "takeId": null
+  },
+  "requestHash": "53d7bac035a548428eaa56e59a2ef6966370f5e5fa812dc0c44d0f5f1bd9835f",
+  "recordedAt": "2026-10-04T07:36:58.194Z",
+  "sha256": "07df7ba8fd43db062031ac5c9f8f5e88a45696e4e5d438ee0b95f80437068102",
+  "bytes": 25850,
+  "requestId": "lDE9kATadEzrP5IPhINg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c01c4dd612af9a7ef365ede5f8f82631314d077c59c823286e9ececc4c0f0098",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

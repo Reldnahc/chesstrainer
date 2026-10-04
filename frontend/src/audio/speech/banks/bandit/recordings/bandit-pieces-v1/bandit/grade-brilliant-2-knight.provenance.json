@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "grade-brilliant-2-knight",
+      "label": "Grade brilliant 2 knight",
+      "text": "A knight put up front, and the books still balance once it's taken. Brilliant."
+    },
+    "takeId": null
+  },
+  "requestHash": "1f97346a55c79e8884235d18a8a262565ce0fb082e7f1d745723265abda29f32",
+  "recordedAt": "2026-10-04T07:38:03.335Z",
+  "sha256": "329cc33ea9273bc939d6f9e43c13a1d0376fc1fe16f4c84ae10e95bf42db48e3",
+  "bytes": 17206,
+  "requestId": "vssQw8AXGWItuFLgSs3t",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "23efc95287d4e4e5b462043588279c7ab8d06a677ea01255f4ef79c3321ea8e2",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

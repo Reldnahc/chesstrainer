@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "grade-brilliant-3-bishop",
+      "label": "Grade brilliant 3 bishop",
+      "text": "A bishop left out on the street, and the checked line says it's no free lunch. Sound sacrifice."
+    },
+    "takeId": null
+  },
+  "requestHash": "88013ab22338ebcab86b95ca0aa581e8a16166d904e1e8f0772aa23c5b9c85e3",
+  "recordedAt": "2026-10-04T07:37:37.433Z",
+  "sha256": "7bba99555bfe7ba6298e46caa568405e3222cae6c511ff362b96378c1fd9d9c2",
+  "bytes": 21820,
+  "requestId": "bzGP2qdLETcLXBflqHTD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "661aed93fad255f4ec4c0a76ee12f7208f919f559047eb99f016c9b48bd7ebf0",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

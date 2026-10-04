@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-queen",
+      "label": "Explanation finding pin collected queen",
+      "text": "Watch the pinned queen here. It cannot leave the line without exposing its king, and it gets captured as these moves play out."
+    },
+    "takeId": null
+  },
+  "requestHash": "85f3f1ebbe611403f221fdf268b6d14af6399e1b55776ba6a739bb3686f078d1",
+  "recordedAt": "2026-10-04T07:26:23.201Z",
+  "sha256": "0f3246849e8ca3e17b4f5bb4140584d3b6fac74b2bbba0d8ae09c675c36b2289",
+  "bytes": 24367,
+  "requestId": "28zWT92gYmTnGruDNMDM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "73c72d8030bbf5d8a937c90a2bbd70f546671ecc6f106ddef5c1881a9042d6e7",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape-bishop",
+      "label": "Explanation finding pin restricts escape bishop",
+      "text": "The attacked bishop is pinned to its king, so its only legal moves are the ones that keep the king covered."
+    },
+    "takeId": null
+  },
+  "requestHash": "15bc4b18c8e16ecd7e8aeb04406c2a13eef37426ab44f74c097ccf089a7eca5d",
+  "recordedAt": "2026-10-04T07:32:58.916Z",
+  "sha256": "b5b79dca5ae008ed4f13a2f5bb1861e15efffbb453a684da4074e04c752ac79b",
+  "bytes": 20883,
+  "requestId": "8zj8IfwAQSRLOwK0CwIx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "880248a42769553605e0e5a011c233cdf881673097bce2914e2347d26b7f72bd",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

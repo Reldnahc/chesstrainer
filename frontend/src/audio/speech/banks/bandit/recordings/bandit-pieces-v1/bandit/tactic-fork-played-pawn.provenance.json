@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "tactic-fork-played-pawn",
+      "label": "Tactic fork played pawn",
+      "text": "One pawn, two targets, both hit at once. That's a fork, and it's my favorite kind of bargain."
+    },
+    "takeId": null
+  },
+  "requestHash": "e6afae84591d6d372c2f11abceb6c8c8600897065074d875bf4e1dd13af5b772",
+  "recordedAt": "2026-10-04T07:35:58.589Z",
+  "sha256": "51316a0822bb8554accbc619917a269cdc0c97ba57cd7a298e706d6fec647b4a",
+  "bytes": 22438,
+  "requestId": "cLDwOAzID0Q7xE38Y2aR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "724e06a7e155ef5bcf620899c8b351724d82deb71fe1e224bf4a6417c0ee47c1",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-pawn-queen",
+      "label": "Explanation finding double check pawn queen",
+      "text": "A double check. The king is attacked by the pawn and the queen at once, and nothing but a king move can meet it."
+    },
+    "takeId": null
+  },
+  "requestHash": "6da2c101f449a4c9e41bce1fb5eae86432c7cf0b8436f3ada9615161dec6242c",
+  "recordedAt": "2026-10-04T07:43:04.362Z",
+  "sha256": "bbc97edfb337d82967e9c685382a09b7f9ae532bfdbe417c5b3f91f78131964e",
+  "bytes": 22976,
+  "requestId": "GUHhf4vhX0KZ8PZMJbV7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0483df259b56a8ffed3e10836c4f733c1b052be0140fda5245e5e1fd10725af2",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

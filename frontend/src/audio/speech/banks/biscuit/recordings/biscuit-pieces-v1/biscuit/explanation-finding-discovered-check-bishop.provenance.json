@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check-bishop",
+      "label": "Explanation finding discovered check bishop",
+      "text": "Zoom! One piece scoots aside, and surprise, the bishop behind it says check. Boom!"
+    },
+    "takeId": null
+  },
+  "requestHash": "ccb2bd0850fbd1b5aefa7e7fc76ac425b82b887f6ed3af25aaa28a0802fb428a",
+  "recordedAt": "2026-10-04T07:39:21.899Z",
+  "sha256": "554b334c97b52cb02c3ac2a7bc44a035328dc4bf8474ff5c8efade415245018b",
+  "bytes": 22802,
+  "requestId": "aPAtCeHxfpNNkGtNtzJX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "25e72f4dd4f1265a2e4b477daae92002f25a777fe9389e3c9fd06f6b24322f5a",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

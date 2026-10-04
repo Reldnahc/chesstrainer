@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-knight-bishop",
+      "label": "Explanation finding double check knight bishop",
+      "text": "Double check, a rare and striking thing: the knight and the bishop check the king together, and only the king itself can answer them."
+    },
+    "takeId": null
+  },
+  "requestHash": "d5b7d3ce4df20de8ceddd231fe4a1bf73d49501a53531f2609a682eb49c691cf",
+  "recordedAt": "2026-10-04T07:41:19.803Z",
+  "sha256": "4bca0c7bbf503cdabae06673f1748b04120614c0d4b4304e8991e107a921e631",
+  "bytes": 28633,
+  "requestId": "k8wsdZvFPk5QNBKc1r46",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "541a6d01e35f57814177d535ceac60bb928d053dd279fab0778fc0168bf7a50a",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-queen",
+      "label": "Explanation finding skewer collected queen",
+      "text": "The queen in front scoots off the line, and its buddy in back gets captured on that very line."
+    },
+    "takeId": null
+  },
+  "requestHash": "0563cf5f85544c1cea2a3ad0f173246ff3fc5c1769315fff05f80d970d2af042",
+  "recordedAt": "2026-10-04T07:39:11.028Z",
+  "sha256": "90cd669052c71fa0c446f79353c2600453ebe960e918701457a84e6330a330e4",
+  "bytes": 20164,
+  "requestId": "DyHpGUtAiZVpNotIUewO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ce81cc533bf587ccc0fe8ded67d027a96418d66c294d1c1c0883460869e8e381",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

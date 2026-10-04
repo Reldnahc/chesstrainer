@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-bishop",
+      "label": "Tactic discovered attack played bishop",
+      "text": "A discovered attack, and a forceful one. Unmasked: the bishop in front moves, and the attacker behind it is free. Clear the line, and the hidden piece does the work."
+    },
+    "takeId": null
+  },
+  "requestHash": "0ac466e06b69447c12384e28b48e220fea365789dc8c4ac96a9e7a6f575f9c33",
+  "recordedAt": "2026-10-04T07:41:55.453Z",
+  "sha256": "e643f62d60320578910dce039ede75874608191edffa549b31c089552e9d0efd",
+  "bytes": 34943,
+  "requestId": "hV657yxz5R992sTMNg1X",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d56608f26623e9ba81409c4ff77a944006106b4fd7d7837f0d09d5c241ff4f22",
+    "bytes": 182692
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

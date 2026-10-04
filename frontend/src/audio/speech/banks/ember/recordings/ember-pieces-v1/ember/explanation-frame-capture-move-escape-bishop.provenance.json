@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-escape-bishop",
+      "label": "Explanation frame capture move escape bishop",
+      "text": "This move captures a bishop, and the capture takes the king out of check."
+    },
+    "takeId": null
+  },
+  "requestHash": "126d9648c86293716c5f30973783f6b974209ae68b61d50cb02b651a41229680",
+  "recordedAt": "2026-10-04T07:43:09.209Z",
+  "sha256": "eeb8d1a96566d82cfccf15671a196f141e58b0e7bb75dc008f653e573fca5314",
+  "bytes": 14907,
+  "requestId": "57X2yQKTk2PwwZh9Si7n",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "64ac5c837f65096dd1ff2a1a8d41fbbc6af212b4d66ea3d82215b73a20d344ff",
+    "bytes": 72768
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

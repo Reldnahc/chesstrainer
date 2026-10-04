@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-rook",
+      "label": "Explanation finding skewer collected rook",
+      "text": "Keep your eye on the rook in front. When it moves off the line, what was standing behind it gets captured along that same line."
+    },
+    "takeId": null
+  },
+  "requestHash": "0462ef128ede568166536021d4ab8e66a9828e6208740b81675a79d46160fcef",
+  "recordedAt": "2026-10-04T07:29:54.107Z",
+  "sha256": "3228ec1618e13169ea5ece4258e71f747240c990df38c09ec7cdb7222913452b",
+  "bytes": 23788,
+  "requestId": "3QbjgixeD8nV2ZUh8LwG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "64c11b7b4f55834f8419550e6a4ae0257fe8a540a8acbaddd0e79fe1760470ec",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

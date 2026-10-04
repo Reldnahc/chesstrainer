@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-capture-rook",
+      "label": "Explanation finding discovered capture rook",
+      "text": "The blocking piece moves, and a capture comes along the line it opened, made by the rook behind."
+    },
+    "takeId": null
+  },
+  "requestHash": "d3ea9f752c7c6077fc0861540b9b46235c31f009b19ebf7a6862bb7eace5962d",
+  "recordedAt": "2026-10-04T07:43:16.114Z",
+  "sha256": "63285f61397ccd9f3657d26f077624efedd0e01755c358832b2b42f62f6c409a",
+  "bytes": 19338,
+  "requestId": "speI9wLGrrIdJ0qJ6rNk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ba26a7fe2a6cdedcf73b1f3bc0b61444a3c8f59f3bfc8c01b59a5d532f719006",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

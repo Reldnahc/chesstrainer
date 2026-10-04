@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "grade-brilliant-2-knight",
+      "label": "Grade brilliant 2 knight",
+      "text": "Ooh, what a daring move! A knight goes on offer, and taking it doesn't knock this move over."
+    },
+    "takeId": null
+  },
+  "requestHash": "97fbe53b14c76df01dad4a3d923f2d96a4812eac59ddd04922c5bbcf16c64e27",
+  "recordedAt": "2026-10-04T07:39:57.545Z",
+  "sha256": "22482260c2ff7d68fbc1f76e0aa8f47a7ac386d13b031c7cb2596bd3b5f639a0",
+  "bytes": 22236,
+  "requestId": "5Ww35FV6s77t5z2bTDiF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0ce052668c561b463190ce28437e805f4c6109fae851f5ed74c515c13036a3fe",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

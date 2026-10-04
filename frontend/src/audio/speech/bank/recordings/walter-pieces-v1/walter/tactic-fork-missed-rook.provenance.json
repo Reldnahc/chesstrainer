@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-fork-missed-rook",
+      "label": "Tactic fork missed rook",
+      "text": "There was a chance to set up a rook fork. This move misses that opportunity to attack several targets at once."
+    },
+    "takeId": null
+  },
+  "requestHash": "09de0342d0f01c3b36dd779b0836e78019a1daed0d9010819aa365fed1656988",
+  "recordedAt": "2026-10-04T07:25:50.937Z",
+  "sha256": "c66241c18b9cdbea0b1a1b836fd2d7191a1f4d0bd66e7e224972c1a532cb67bc",
+  "bytes": 21805,
+  "requestId": "cjNlZU7OXHuvfrzOYAMI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3e16e1f109e4aa7d6e49174fa4c8b9dac505d6691f672216bbb131f1dd52f1e0",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

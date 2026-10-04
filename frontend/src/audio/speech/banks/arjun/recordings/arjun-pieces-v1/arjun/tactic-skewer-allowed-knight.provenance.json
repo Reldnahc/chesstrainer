@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed-knight",
+      "label": "Tactic skewer allowed knight",
+      "text": "Run the other side's best reply forward: a skewer appears, driving the knight in front away and leaving whatever stood behind it open."
+    },
+    "takeId": null
+  },
+  "requestHash": "592ffae894d25eadf8dc6d2fef8c2597066f66055577089917f98471ccd6b522",
+  "recordedAt": "2026-10-04T07:32:43.575Z",
+  "sha256": "b1aa3bf42e2ff2e9ae85e084a69cd57e1af2427f546e311c60984dccfb37b568",
+  "bytes": 28424,
+  "requestId": "YnuybrTjW2TDa3tSr01d",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e58d3ece2342a83b9e1065028236a6463de9307dc0865bd5a23f3d8a9c4bd439",
+    "bytes": 145911
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

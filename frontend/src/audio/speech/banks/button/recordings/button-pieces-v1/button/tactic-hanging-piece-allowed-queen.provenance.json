@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-hanging-piece-allowed-queen",
+      "label": "Tactic hanging piece allowed queen",
+      "text": "A queen is left with nobody looking after it. After this move, the other side can take it, since nothing defends it."
+    },
+    "takeId": null
+  },
+  "requestHash": "aa842867f11fcd51d42d7b61723e139cdda4228c60680c3bf5fce38ed7298b9d",
+  "recordedAt": "2026-10-04T07:30:58.387Z",
+  "sha256": "f1d5692d9f505a0d8a0efab2626c06c54322a39d0db0fb716ac273de11a39cad",
+  "bytes": 23928,
+  "requestId": "mjFWH8xQvHYCG9dzf5qG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d2979f04b033d03cd981db37bf07983ec534f9538c0b4c4b60b044892b3fac19",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

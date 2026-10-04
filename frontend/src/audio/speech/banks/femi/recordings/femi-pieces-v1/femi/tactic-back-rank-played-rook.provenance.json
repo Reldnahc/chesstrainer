@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "tactic-back-rank-played-rook",
+      "label": "Tactic back rank played rook",
+      "text": "Back-rank mate idea with the rook. The king's own pieces are sitting right where it would need to run."
+    },
+    "takeId": null
+  },
+  "requestHash": "b1ac0f965c2ab918bead26da790ef5ea478c6fa63d7f054810116176d7c2b394",
+  "recordedAt": "2026-10-04T07:45:45.336Z",
+  "sha256": "07eeb3aca000c233d9b70101053578d36624b8fe4e6e79cc22399a088fe738ff",
+  "bytes": 20996,
+  "requestId": "DsJ0VgeA9p5efQtWcbIB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1436f311a3010502bf96d7ddcabdea6ad41277b239403f41b152fe0e44976444",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

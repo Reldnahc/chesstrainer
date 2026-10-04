@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-rook",
+      "label": "Positional unsupported actual rook",
+      "text": "A rook is left undefended by this. That's worth knowing, though it doesn't mean the rook can actually be won."
+    },
+    "takeId": null
+  },
+  "requestHash": "19e6921e4dba4b7b0d0512eea417518adfc78f9ad7ea649bf5d592c0b7b15716",
+  "recordedAt": "2026-10-04T07:29:23.129Z",
+  "sha256": "4365e22431ee402ec70df53c2aa08c89cbc0fa73f062cdcc599d26753eccd9f2",
+  "bytes": 21706,
+  "requestId": "ZmR1rvak2B5CNDvhTn7D",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d8bb40693ec43c2e8fa0454663cc3d77562b310a69b8c5d8ab6b82f6723cbf6e",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "grade-brilliant-3-knight",
+      "label": "Grade brilliant 3 knight",
+      "text": "Brilliant. On a quick count it looks like a knight thrown away, but the checked line says it's sound."
+    },
+    "takeId": null
+  },
+  "requestHash": "64607269d99724a9880f3aa123feb51aa5e54293eccbd8f33d0b966fb37181c6",
+  "recordedAt": "2026-10-04T07:46:24.462Z",
+  "sha256": "dd7524f87584139c2d4c8d7eb1aee83fa59128a53dadffb3abcafa5dbafce511",
+  "bytes": 21927,
+  "requestId": "ad7GnmzetWrS529oecYU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1bd440f71d326685cd4219cb0ac7182190e0b07faec5e40a9f7f8db1900aec60",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

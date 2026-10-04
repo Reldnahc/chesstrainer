@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "tactic-back-rank-played-queen",
+      "label": "Tactic back rank played queen",
+      "text": "The back-rank idea, in clear outline, with the queen as its instrument. The king's own pieces form the wall that keeps it from escaping."
+    },
+    "takeId": null
+  },
+  "requestHash": "8691d5dfb6d630b2ae01f32411ff32f273b7f2994655732800e6b76bf3a64ac1",
+  "recordedAt": "2026-10-04T07:40:40.045Z",
+  "sha256": "da93b55e27b197d0ca2b85ce79a9c2347ce681f945791eb4df11e46f65507ee0",
+  "bytes": 29247,
+  "requestId": "ojo7RjbhHKm2aagJd8JB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "afd8f6c5cf950006624554e320f9729e82fa69d7c93f3b6686e956b3157b4a96",
+    "bytes": 147165
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

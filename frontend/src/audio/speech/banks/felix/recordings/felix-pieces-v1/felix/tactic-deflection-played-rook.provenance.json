@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "tactic-deflection-played-rook",
+      "label": "Tactic deflection played rook",
+      "text": "Deflection: the defending rook gets hauled away, and whatever it was covering now stands unguarded."
+    },
+    "takeId": null
+  },
+  "requestHash": "c08e343d6ce891b08450a560efe003993c8ae4fbabc3c670942ca08697d866a8",
+  "recordedAt": "2026-10-04T07:43:55.430Z",
+  "sha256": "c270d692132b196a228c4ff69433f0bb6c85c8fcbc8bb434b64f5deebb977701",
+  "bytes": 22808,
+  "requestId": "V99yosLSgrXUuvt5SVgc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "af34087489649be5af57318ad1018bbc865aa0aeacc98275f330b8494270ff3f",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

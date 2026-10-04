@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-bishop",
+      "label": "Explanation finding relative pin released bishop",
+      "text": "The attacking bishop had been held by a relative pin, until the opponent's previous move let it go. Freed, it captures a target that stayed put, in the line shown."
+    },
+    "takeId": null
+  },
+  "requestHash": "a9d434af396c84a36b9841cfd1762150c8e0985805c32b62014dc51413c4e3d6",
+  "recordedAt": "2026-10-04T07:33:18.074Z",
+  "sha256": "4ce74ad57bda266a4108f099a33aa8a045375b1b872d1ce94a1427050220a65b",
+  "bytes": 33142,
+  "requestId": "riH9gaolM7h5RbNOyfFd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3df199cf37e6e97772fbb90f9a6cad7924309797c3c952b53d1d84248f742577",
+    "bytes": 171407
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

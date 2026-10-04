@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-capture-rook",
+      "label": "Explanation finding discovered capture rook",
+      "text": "Moving the blocker opens an attack from the rook behind it. Watch the rook make the capture along the newly opened line."
+    },
+    "takeId": null
+  },
+  "requestHash": "f713bee066f470f2cb50f0e39fb5556be077d5be8d6956a1d94a27e628a63797",
+  "recordedAt": "2026-10-04T07:26:46.367Z",
+  "sha256": "365075efa1dd48ebe773b561e9bfef89776d99d31f8a0f5cda0e86b7b471e86a",
+  "bytes": 23454,
+  "requestId": "xb9NWyjBh210mYU2mw2M",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "86733cdd9c26deaff41affc42173a67d55055eabf1eb289f5dfc2fd17e4a4e7b",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

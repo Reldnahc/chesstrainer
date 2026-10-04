@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "grade-brilliant-3-bishop",
+      "label": "Grade brilliant 3 bishop",
+      "text": "Brilliant, that. If the bishop is taken, nothing breaks in the checked line. A good one to keep."
+    },
+    "takeId": null
+  },
+  "requestHash": "26955881b251409baef1661db9c8eedd16daedbeef91a08951fe5e34c0f8223c",
+  "recordedAt": "2026-10-04T07:30:08.733Z",
+  "sha256": "9746ce6edc9062833d8ca21d5d19ad61e263100a8945da16949a08ebb319f964",
+  "bytes": 19691,
+  "requestId": "VicipdkeuEWE0Q8Gz5BU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b628e9627303773c742358a6e390520ac7fd8acca77f6d2e9bf4b21885f1a9a5",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

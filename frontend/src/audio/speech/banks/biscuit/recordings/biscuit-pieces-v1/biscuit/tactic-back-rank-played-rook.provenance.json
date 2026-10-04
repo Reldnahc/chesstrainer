@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "tactic-back-rank-played-rook",
+      "label": "Tactic back rank played rook",
+      "text": "Whoa, back-rank alert! The king is walled in by its own team, and the rook zeroes in right there."
+    },
+    "takeId": null
+  },
+  "requestHash": "26381e6b76e4645389160e6855004b2833544925b5ccc725b133634c70b467e3",
+  "recordedAt": "2026-10-04T07:38:54.744Z",
+  "sha256": "9bfbf4218d7eb643ee45f0276c3c1700aa822fbd9430e200ffec438ed933c05e",
+  "bytes": 22461,
+  "requestId": "kAQQt2jwsZ4sQMbMDnG7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0291bd97dd2fa540b2c6e5cbb04e245d744ecdfc6c20cf77cfcfc95e996f38eb",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

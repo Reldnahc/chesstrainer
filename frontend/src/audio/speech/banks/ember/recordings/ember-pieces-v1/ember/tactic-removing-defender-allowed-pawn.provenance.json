@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-pawn",
+      "label": "Tactic removing defender allowed pawn",
+      "text": "A defending pawn is now within the other side's reach. If it falls, the pieces it guards lose their cover. Know which pieces depend on it."
+    },
+    "takeId": null
+  },
+  "requestHash": "69b48b0981dbf2d88cbc4e735e905abb38ce5b3c74d5bab6c3844046412f2390",
+  "recordedAt": "2026-10-04T07:41:55.920Z",
+  "sha256": "fa9aa4651921419bbb73d1290ec1578833c40ae5f6731064c5d3752eedad24b6",
+  "bytes": 28789,
+  "requestId": "5LWckrtptmWCXXQhiEz7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "03d05b9f6dc960e5fa9100f36995e2de861d6c313d10b8b83ba6bcb819a0c316",
+    "bytes": 148419
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

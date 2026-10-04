@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "tactic-pin-played-queen",
+      "label": "Tactic pin played queen",
+      "text": "A pinned piece is tied to whatever stands behind it. This move pins a queen to its king, so it can't step off that line without exposing the king. That restriction is what the move is built on."
+    },
+    "takeId": null
+  },
+  "requestHash": "1946cf0ea4fb9c601a5e860986a75be0ef5b87d62042993bf6009f48fc39faa2",
+  "recordedAt": "2026-10-04T07:34:45.967Z",
+  "sha256": "4dc0d7824488a092b7120995f7a73981d9f03e300a1a7d03ffdb429f5042f0ff",
+  "bytes": 36863,
+  "requestId": "7K0zr11QMucY51X2ckcY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2a61d0ac652db6a69c3d0a5f3909afbbf0bb06eefe8f4b6dc2ffb77f152bf096",
+    "bytes": 188125
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

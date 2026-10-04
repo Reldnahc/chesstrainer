@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "tactic-fork-played-pawn",
+      "label": "Tactic fork played pawn",
+      "text": "Fork. The pawn is now hitting two targets at once, and the other side has some sorting out to do."
+    },
+    "takeId": null
+  },
+  "requestHash": "00d0146fcc5897d63e2bdfd5cf1d499cded5a3e42fb6218456607f111115f55d",
+  "recordedAt": "2026-10-04T07:43:18.380Z",
+  "sha256": "4296e2c9bf73c16984d2cdf78854fdf2a5f630d5f11b77a3553231a8369497d5",
+  "bytes": 21457,
+  "requestId": "n8uCkOdHiN7doLhgmm5Q",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "51edd909cc4d91e843aebd7dd098cba19eb06ab4a1bf5d6a0f26fa87c9efd280",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

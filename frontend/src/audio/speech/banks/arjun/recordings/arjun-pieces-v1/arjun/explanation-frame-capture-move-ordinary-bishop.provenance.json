@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary-bishop",
+      "label": "Explanation frame capture move ordinary bishop",
+      "text": "A bishop is captured and leaves the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "853c366e861ea941e48ddecc046e95e2232ff5efb2b91cec90e9ec803573cf6b",
+  "recordedAt": "2026-10-04T07:33:57.323Z",
+  "sha256": "098dc35062da5f84286bace8b26c8455dad48f73adb2aa774a727f686aa43cfe",
+  "bytes": 9828,
+  "requestId": "a9MGBrkHpZ6LLTcDciC7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1728d08b7111a7e8c1b4a29593cfd336ac0408f6cc2cf52e8d20715fb45eafc0",
+    "bytes": 47273
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "positional-support-actual-knight",
+      "label": "Positional support actual knight",
+      "text": "This gives the knight support. A defender is now in place."
+    },
+    "takeId": null
+  },
+  "requestHash": "89fe202748ddeda2dd72bde3ccc489db48f23380ea99453b1b1a6f4098925941",
+  "recordedAt": "2026-10-04T07:26:22.846Z",
+  "sha256": "bfe2bfa9970d15c7fa1d8e7b73fe6d5bbab37a8951f1d684c7fa5db5e74e6ea2",
+  "bytes": 12996,
+  "requestId": "6QacAuYIADQlEkvqCrCI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5e54a599be551f17ed37662cc1d2cc4326f334e8b5c66170fb5edf490a60341f",
+    "bytes": 65245
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

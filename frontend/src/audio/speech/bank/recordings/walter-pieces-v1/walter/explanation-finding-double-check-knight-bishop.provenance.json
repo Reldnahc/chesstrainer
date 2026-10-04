@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-knight-bishop",
+      "label": "Explanation finding double check knight bishop",
+      "text": "Watch for the double check: the knight and the bishop both give check at the same time."
+    },
+    "takeId": null
+  },
+  "requestHash": "7d2b63c9d646e9bf1d0d9e3699f350f76a9a082562a8347c2845b284b7d6ff9f",
+  "recordedAt": "2026-10-04T07:26:52.781Z",
+  "sha256": "a35bb9253d3e600e2f9e961a5be36d25fafdb67bdf6e80eeb4b8e307d2bfd9cb",
+  "bytes": 16922,
+  "requestId": "vx4wCfg7VmMCcyd8qYM9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6307731de9edb46e4a4fb88710f305f95c6ffbd3a8b5a1e40455d90be7b1fdef",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

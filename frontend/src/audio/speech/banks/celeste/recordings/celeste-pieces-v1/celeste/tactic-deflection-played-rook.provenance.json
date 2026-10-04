@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "tactic-deflection-played-rook",
+      "label": "Tactic deflection played rook",
+      "text": "Such a lovely deflection, luring the defending rook from its duty so the connection it held falls apart."
+    },
+    "takeId": null
+  },
+  "requestHash": "521cd9f314134631d52c2155b66eb45ef3285b56f434faa3b171d5922c58a708",
+  "recordedAt": "2026-10-04T07:40:31.437Z",
+  "sha256": "801bdf223c832f0c4ce00e0a82a81b0bfaf621799ef74e51049ebd4399b11a8c",
+  "bytes": 22904,
+  "requestId": "1HsS1S3Tqp2YdF9QwIgO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ea960477613d69922e9ef4ab485a1285d9f3c6d4592f34b911eda6f1236ab3bc",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed-knight",
+      "label": "Tactic skewer allowed knight",
+      "text": "The other side gains a skewer here. When the knight in front is chased off its line, whatever it sheltered can be taken."
+    },
+    "takeId": null
+  },
+  "requestHash": "dd544c52ff124af2b268fb54df21327d3a3459593d6b1b3ae118c5687a334917",
+  "recordedAt": "2026-10-04T07:40:19.854Z",
+  "sha256": "6cae7c190711a36fb25f061590489f5e55cff44c6c4bb3d3cdeaa089c6345acd",
+  "bytes": 24515,
+  "requestId": "invEo0xeqWeoyCAF5cUp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5eb89b137f82034d130a7d26d4639b118e3e0cbb59a83221b00db472b4b7a05c",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

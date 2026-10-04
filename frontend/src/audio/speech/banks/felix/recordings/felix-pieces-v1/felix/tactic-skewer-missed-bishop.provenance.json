@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "tactic-skewer-missed-bishop",
+      "label": "Tactic skewer missed bishop",
+      "text": "Another move had a skewer ready: move the bishop in front, and whatever stood behind it would have been exposed."
+    },
+    "takeId": null
+  },
+  "requestHash": "3ef2eea2387e6d6df1286a73822afe6ae5059610f9ae7b7ce86f9e5f9c0d1daa",
+  "recordedAt": "2026-10-04T07:43:22.243Z",
+  "sha256": "ef13a3aca7ba86db1ce034de1e78292986310572ba58e3ffb9d6276a811631f9",
+  "bytes": 23022,
+  "requestId": "GqoCnN92qOWttKc3jrmI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0c50b123a22647aae6a2eab773671aee7f77c4a633d59ac8d362488ab6eead9b",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

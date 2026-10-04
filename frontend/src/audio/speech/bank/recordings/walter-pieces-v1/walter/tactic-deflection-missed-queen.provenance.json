@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-queen",
+      "label": "Tactic deflection missed queen",
+      "text": "Another move could have drawn the defending queen away from its job. That was the chance to use a deflection."
+    },
+    "takeId": null
+  },
+  "requestHash": "c0a9cade748cf1e0131e775b0dce7e7a971c92658633f7f32166ff5efdc473f2",
+  "recordedAt": "2026-10-04T07:26:15.576Z",
+  "sha256": "9e3cce68bbebdc231abddaf7fb9eb65fdb9c83f8a1960b1995bd58f6fd6076bd",
+  "bytes": 20662,
+  "requestId": "JCNf6VyURjGViXlPtAZh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b2c808f182a242200bf9aa2a3b2fcc10bc3b5663fd51f1ca7054c59674c9f8f2",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

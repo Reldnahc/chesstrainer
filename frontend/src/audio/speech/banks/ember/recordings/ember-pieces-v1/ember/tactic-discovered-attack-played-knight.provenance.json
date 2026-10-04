@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-knight",
+      "label": "Tactic discovered attack played knight",
+      "text": "A discovered attack, and a forceful one. Unmasked: the knight in front moves, and the attacker behind it is free. Clear the line, and the hidden piece does the work."
+    },
+    "takeId": null
+  },
+  "requestHash": "0d296a5eb96a83e420a9dbcdc707886981e8846a438d217681f21755c1e35d46",
+  "recordedAt": "2026-10-04T07:41:52.805Z",
+  "sha256": "d53f409486868d894d44bead741398f6c9cb9eb4fe33f61ec797731e7162b196",
+  "bytes": 35084,
+  "requestId": "MJE9lKBQZRfAr1XGi14X",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b00f46c78af458483a6aaabc2c230a006c61b22c8acf393d13c29e882d245b8b",
+    "bytes": 185199
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

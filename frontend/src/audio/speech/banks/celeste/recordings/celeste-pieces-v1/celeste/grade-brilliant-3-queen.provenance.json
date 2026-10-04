@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "grade-brilliant-3-queen",
+      "label": "Grade brilliant 3 queen",
+      "text": "Brilliant. A queen truly surrendered, and capturing it leaves the spell unbroken."
+    },
+    "takeId": null
+  },
+  "requestHash": "10e6787e2c2827553f71bcfcb0e0568747d08206f73f980c6bec610176756bb5",
+  "recordedAt": "2026-10-04T07:41:22.038Z",
+  "sha256": "5730fbea533d3759f30fee548436e7db9417a6907ca59c3b912e1a68ca4264bc",
+  "bytes": 20549,
+  "requestId": "YdjHdFHQvBCTw7NFkrHX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5ceb6aa4acc8ccde520e19ce85513c401bfff75bb891a4fc67ae04f080537057",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

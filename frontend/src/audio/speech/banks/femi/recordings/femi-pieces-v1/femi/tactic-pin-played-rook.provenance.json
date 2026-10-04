@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "tactic-pin-played-rook",
+      "label": "Tactic pin played rook",
+      "text": "Yeah, see the pin? The rook in front can't leave that line, since stepping off it would put its own king in the firing line."
+    },
+    "takeId": null
+  },
+  "requestHash": "f1d7c5520b26df97ac10963b68aa5ff55ed1151a6a48d84596f2c4c5f6400f4c",
+  "recordedAt": "2026-10-04T07:45:24.810Z",
+  "sha256": "cf0276a94e6ceb8ce707b6a4c0d00d440d478bea1f3b30e79441b559f1324c8e",
+  "bytes": 26490,
+  "requestId": "OrHwvD6HSdoVi8hgTV1m",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4978b0d994a515818e55c27d973a674c99aade8f0844d02cd07d9a06f2566a1f",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

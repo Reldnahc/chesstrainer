@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "cause-avoiding-bad-trades-queen",
+      "label": "Cause avoiding bad trades queen",
+      "text": "Don't stop counting at the first capture. The recapture here takes the queen, worth more than what it grabbed, so the exchange comes out badly."
+    },
+    "takeId": null
+  },
+  "requestHash": "c9cbe33962dbbdfc84d398e56e9741e7a0955e5362f73a4f72151769c1713585",
+  "recordedAt": "2026-10-04T07:45:47.149Z",
+  "sha256": "b3dda7c4b641111dacfcba5973b7a99b3cfb602ffe9cd13cb484e8d092a8a3c9",
+  "bytes": 29483,
+  "requestId": "PTVx2SOJu4Uzkbgp58QX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ffc6e57338865db96c8fcb45010282de186cf3a6cd23ec4a96e1d17a85b6160b",
+    "bytes": 150927
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

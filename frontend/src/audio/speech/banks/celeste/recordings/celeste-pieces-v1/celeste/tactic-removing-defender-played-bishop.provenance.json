@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played-bishop",
+      "label": "Tactic removing defender played bishop",
+      "text": "How neatly it unravels. The defending bishop is captured, and the connection it held is broken; whatever it protected now stands without cover."
+    },
+    "takeId": null
+  },
+  "requestHash": "571762779d87eed8b807ac5fde0ead1b8581ce1e4083dc4d14f9129f1ad2397f",
+  "recordedAt": "2026-10-04T07:40:31.132Z",
+  "sha256": "f533757b5cd748eb51b24935642b8ebf60f6de7730def9da29f82ac431704330",
+  "bytes": 32194,
+  "requestId": "Wvmo3M3kxCwujOkgrdnJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5a8890bdf32ef98de7b0a03b32ef9ae823a4ecdd32f5ab797e1e0afe33d170f7",
+    "bytes": 162212
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

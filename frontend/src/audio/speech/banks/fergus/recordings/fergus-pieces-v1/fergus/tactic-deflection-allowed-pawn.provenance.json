@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-pawn",
+      "label": "Tactic deflection allowed pawn",
+      "text": "This lets the other side lure a defending pawn away, and what it covers would be left uncovered."
+    },
+    "takeId": null
+  },
+  "requestHash": "842c53449da5792448bcad842548ae998c9fdc44a4e3df6fdadadaca1592171a",
+  "recordedAt": "2026-10-04T07:47:19.510Z",
+  "sha256": "69ca1bfe054f9aac9760af2af58fd720349b3fe925968472328287f1e35b14d7",
+  "bytes": 20357,
+  "requestId": "HHew34lnKYHM7lekds2y",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f4da31a0cb95d25e1e3fb899304505301f235f96f896b74e17efedcfbcd8694e",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

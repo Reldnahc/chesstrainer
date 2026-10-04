@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-check-queen",
+      "label": "Explanation frame capture move check queen",
+      "text": "Takes the queen, gives check. Efficient."
+    },
+    "takeId": null
+  },
+  "requestHash": "a963b487085e78a319b6370b9361874bf7e4f8cab68795acd4cc7767cf400d4e",
+  "recordedAt": "2026-10-04T07:44:38.734Z",
+  "sha256": "1ea7cdaba7344c48597baf382ca408a9e7522b0f83c514b9c991abebca210354",
+  "bytes": 10909,
+  "requestId": "9EKspydfaGbtX1b6K2H3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6b42e796b822c6eec13ce1c82d3c28639bd88e080495cf3eb47bd9cd4cb61b7c",
+    "bytes": 56050
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

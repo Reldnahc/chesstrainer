@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "tactic-back-rank-played-rook",
+      "label": "Tactic back rank played rook",
+      "text": "A king behind its own pieces can find every escape square blocked by its own side. That's the back-rank mate idea for the rook in this move: the king is boxed in with no room to step out. Its own cover is what limits it."
+    },
+    "takeId": null
+  },
+  "requestHash": "7e1523f6c6e1f02750c6980cc0ec0840eba1fdd2e18ab95324cd331d86f94f8e",
+  "recordedAt": "2026-10-04T07:35:12.897Z",
+  "sha256": "b636066653a4f7101bcd222f6b826816a31f886c3b4c1483ee8081aa866d83e2",
+  "bytes": 44328,
+  "requestId": "pQpMgX4DFEPW0y594BQu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "961582cc94da5a5499c78356b9d7b9d0b86ed4a4675f073921fa1d40da0ea3b6",
+    "bytes": 224906
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

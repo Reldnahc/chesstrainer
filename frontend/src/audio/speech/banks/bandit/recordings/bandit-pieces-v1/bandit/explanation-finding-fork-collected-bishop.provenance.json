@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "explanation-finding-fork-collected-bishop",
+      "label": "Explanation finding fork collected bishop",
+      "text": "One bishop hits several targets, then takes one of them. In this example, that side also ends up ahead on material."
+    },
+    "takeId": null
+  },
+  "requestHash": "bc74bcfa83c4f1a5124682efd2ad1299d71637e7dc549aeb2e440ffdb3adac6e",
+  "recordedAt": "2026-10-04T07:37:17.952Z",
+  "sha256": "60ff31409e214f95e360b0b3addf4ae15de14889a4b9f323c2cab3a779ee1952",
+  "bytes": 24311,
+  "requestId": "fpcemFXuPnMH0M1l5Y5Z",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a2fb846adb5bd0f9dfa476a077b8f7991159ce9d27951cfeb964d38a94dbac7c",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

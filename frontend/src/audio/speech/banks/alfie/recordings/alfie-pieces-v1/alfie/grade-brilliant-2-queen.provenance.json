@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "grade-brilliant-2-queen",
+      "label": "Grade brilliant 2 queen",
+      "text": "A brilliant move. Notice the order: the queen is given up at once, and the checked line shows it was affordable."
+    },
+    "takeId": null
+  },
+  "requestHash": "9cf6879409a8ec36fd3b6fc5c196e1cb236ea99ea1dfe6ed5c27213a2c3c7aac",
+  "recordedAt": "2026-10-04T07:36:27.626Z",
+  "sha256": "6ad6583d533a31e79051cdeb6e75fb2f1306622ac47e03e617418a7c5f67d145",
+  "bytes": 23330,
+  "requestId": "1L7FmB21AIGYcAEK3200",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "44b15cce3eebbf97463e578159d6ef724773dab94b1c5c10fe186696cacc6551",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

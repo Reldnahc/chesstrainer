@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "grade-brilliant-3-knight",
+      "label": "Grade brilliant 3 knight",
+      "text": "Giving up the knight looks reckless. The checked line disagrees."
+    },
+    "takeId": null
+  },
+  "requestHash": "a0e6df8d590d527479d1f913023403299863504f089def9569d2f9a24e28fa9d",
+  "recordedAt": "2026-10-04T07:44:36.934Z",
+  "sha256": "f2813c40f5bccab37130a27f7a8ebbfae872990167f627cb3b0e26be7f631759",
+  "bytes": 15089,
+  "requestId": "yg5pfkol8W0Yhcl4fvXJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "970bc8a3648806ee69dfab2e8c5b4565eebf77d99e32e1e5a678ba6193805fbe",
+    "bytes": 74022
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape-queen",
+      "label": "Explanation finding pin restricts escape queen",
+      "text": "Scooting away isn't allowed for that attacked queen: its own king is lined up behind it. Its king has to stay shielded no matter what."
+    },
+    "takeId": null
+  },
+  "requestHash": "9b78166a2ead35e20d5ba7d3d2193159c8d488a6e45447d404a3030269083821",
+  "recordedAt": "2026-10-04T07:38:55.256Z",
+  "sha256": "4b3b33a1500ce6dcda26ee7b30724ee86cc528a54380b6614b859b0c0592cfa5",
+  "bytes": 28729,
+  "requestId": "EPCVmTE3mP9DaaRKyBYB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "639098b43a81cfa18d46f5508a18d63ee19129750b10ee763c181c5658f35936",
+    "bytes": 145911
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

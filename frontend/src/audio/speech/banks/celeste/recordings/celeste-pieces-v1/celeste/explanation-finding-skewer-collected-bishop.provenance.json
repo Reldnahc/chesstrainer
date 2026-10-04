@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-bishop",
+      "label": "Explanation finding skewer collected bishop",
+      "text": "The bishop in front yields its place on the line, and the piece it was sheltering is captured there."
+    },
+    "takeId": null
+  },
+  "requestHash": "4a2ad6a758e6dc37801cdcc2e1e777fff727f4cab1c22ed679681088a5b48ed0",
+  "recordedAt": "2026-10-04T07:40:59.153Z",
+  "sha256": "a8fb91cffbd429a8c735372dbdc8d80594c16d8547a8a8e0d22c91a036bd7bd1",
+  "bytes": 19069,
+  "requestId": "lpuOXpIEeWXX6fvpwr3s",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3e8dfefc7c40dd0175be1d990529d146ee6fd933d5cfa2c3511310f83601c762",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

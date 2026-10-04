@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "tactic-back-rank-missed-queen",
+      "label": "Tactic back rank missed queen",
+      "text": "A route to back-rank mate with the queen was available. This move passes up that finishing pattern."
+    },
+    "takeId": null
+  },
+  "requestHash": "0760b432244c5ba28d715aa309c6a7a7a4b3634dd5658cc4f3817338ad320015",
+  "recordedAt": "2026-10-04T07:27:53.384Z",
+  "sha256": "671c44094224221824749d5cbed134d39e3dff988fb8aa2e7a5867adcdd9c657",
+  "bytes": 19499,
+  "requestId": "a4NQYuDkEhu9KduqYBA0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "df46885aadd5eab36b1f2933c3eedbd6e8b25dde778e110e09e72c89a3739a98",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

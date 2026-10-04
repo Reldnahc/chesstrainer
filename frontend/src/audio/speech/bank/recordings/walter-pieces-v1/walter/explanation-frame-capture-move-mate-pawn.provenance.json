@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate-pawn",
+      "label": "Explanation frame capture move mate pawn",
+      "text": "This captures a pawn and delivers checkmate. The king has no way to escape."
+    },
+    "takeId": null
+  },
+  "requestHash": "efd7471e9c7ea225ec418606a8231b9515b9de25a4789f4a0e3ec62b5b154162",
+  "recordedAt": "2026-10-04T07:26:46.614Z",
+  "sha256": "a78683d4664803772ea0d9159aa9fd0c06e82b877af8873ab5820d6c5af12a07",
+  "bytes": 17070,
+  "requestId": "rjvERlNWgsO1lE6ijlpx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f7068f00ee3c60b00c7d7985f350e02bb9b7e92f87750ff1f3bdcaa2c11ce1fd",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

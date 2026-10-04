@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-knight",
+      "label": "Positional unsupported alternative knight",
+      "text": "With another move, a knight would have lost its last defender, which on its own wouldn't mean it could be won."
+    },
+    "takeId": null
+  },
+  "requestHash": "8612c8a087da3b143d33df27b6f09ae2bb01f0cf828952fdcf0ff9369fcb37c8",
+  "recordedAt": "2026-10-04T07:40:39.701Z",
+  "sha256": "f238887446323aeac9195dbddf378f39cf4fd446fe6eb9722dc8f6df8bfe377e",
+  "bytes": 22748,
+  "requestId": "UD9GLxQvyelzatpNl2lr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "240b1cfba82c66a8e5a19f264f4386a58e3263ffed56368e8474a41fd2bfdbba",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

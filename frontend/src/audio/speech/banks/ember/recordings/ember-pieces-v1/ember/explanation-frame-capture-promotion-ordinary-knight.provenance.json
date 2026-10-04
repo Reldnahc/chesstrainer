@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-ordinary-knight",
+      "label": "Explanation frame capture promotion ordinary knight",
+      "text": "The pawn takes a knight as it steps onto the last rank, then promotes."
+    },
+    "takeId": null
+  },
+  "requestHash": "fa7f83b14fb87a67b99b3e59369a38c4e9ee76d1398694e73b03f24566c5cc1d",
+  "recordedAt": "2026-10-04T07:43:13.326Z",
+  "sha256": "cdabd15affee274a7a02241cf99ed2d4edfd2828cb17385c3ca5692dc08dab3b",
+  "bytes": 15451,
+  "requestId": "3Ld2ZVWY1UCaSgRiIYT0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ab8d62d7283631a6e5785ed0953d7964818368d432841db9ad8f69c4e83e6579",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

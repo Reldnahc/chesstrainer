@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed-king",
+      "label": "Tactic discovered attack missed king",
+      "text": "Missed pattern: a discovered attack, available with another move. Moving the blocking king would uncover a threat from a different piece."
+    },
+    "takeId": null
+  },
+  "requestHash": "4341558d1bb7d3632b6682cc1cf946106f1638873f402d961b59a86df71eb31e",
+  "recordedAt": "2026-10-04T07:27:12.785Z",
+  "sha256": "e84fa1f8751d4197f7526d634a72ea69be67edabad1662dec61d2bec941c171c",
+  "bytes": 26251,
+  "requestId": "HHmOlpVV7d4EEyH3WDJu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6917c4eae4d161ebda149ac009948bcd6cf4069a4ffca8d02f92dd4368793a8c",
+    "bytes": 136716
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

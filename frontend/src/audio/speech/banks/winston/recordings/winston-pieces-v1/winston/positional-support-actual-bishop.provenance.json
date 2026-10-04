@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "positional-support-actual-bishop",
+      "label": "Positional support actual bishop",
+      "text": "This gives the bishop a defender it didn't have before. It's no longer standing on its own."
+    },
+    "takeId": null
+  },
+  "requestHash": "b5b24c96a761eccac14595ed5c337b9f11935fa34cec29a2d06c0faf24b8bfac",
+  "recordedAt": "2026-10-04T07:29:44.781Z",
+  "sha256": "9575bfcbef5d3c1186a4d0b6ddf87d2ddd56ac25ab00c03b151f6b376d84bb2f",
+  "bytes": 17452,
+  "requestId": "fdoCbXOJtyLwofRsjUOt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5dcc9b76ab01141f9262cf344cbc2bcc38a79a63009365c70d81ea0099b2e24c",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

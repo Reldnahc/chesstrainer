@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate-rook",
+      "label": "Explanation frame capture move mate rook",
+      "text": "A capture that ends things. A rook is taken, and it's checkmate; the king is out of legal moves."
+    },
+    "takeId": null
+  },
+  "requestHash": "91cf8ec4a65982daf3879a4eba27ec52c61a21fec6ecfb47f98dc19ca3a296ca",
+  "recordedAt": "2026-10-04T07:31:58.164Z",
+  "sha256": "33fa0b579314faa78e0bfdf7ceb784bbe93078437f7cc8eac557745952d71235",
+  "bytes": 22441,
+  "requestId": "Y5KZqm2wlhYUYXOuiLq5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d80c7a6b1f587e683b320bf676c44de093986614f7565261d548b609df327d29",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

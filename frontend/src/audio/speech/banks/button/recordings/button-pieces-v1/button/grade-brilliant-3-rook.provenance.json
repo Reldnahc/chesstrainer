@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "grade-brilliant-3-rook",
+      "label": "Grade brilliant 3 rook",
+      "text": "Oh, I do like this. A rook given away soundly is rarer than a four-leaf clover."
+    },
+    "takeId": null
+  },
+  "requestHash": "f2976c901c284c35348d859b31f4e16f16e801b2edb6c1f748f83f004171a8df",
+  "recordedAt": "2026-10-04T07:31:59.121Z",
+  "sha256": "f1915fc74006e4d326a61c5d60f22460ab746fdf233a9f8b396a6745a9da75a7",
+  "bytes": 19652,
+  "requestId": "6pwxalsdhth4M2922pFx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "43a57bf81829386f217d55bb70799f4f94faa407d49230cb7c5e2a3d97addf2b",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

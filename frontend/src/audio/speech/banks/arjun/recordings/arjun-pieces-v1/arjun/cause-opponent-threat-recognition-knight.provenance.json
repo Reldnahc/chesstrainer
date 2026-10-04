@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "cause-opponent-threat-recognition-knight",
+      "label": "Cause opponent threat recognition knight",
+      "text": "What did the opponent's last move change? It created a threat, and this reply doesn't respond to it, so a knight is still open to capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "a2050e399fcc0526b872f30354b7d341a3a6d6e770a2c9a7f28201a49b56729b",
+  "recordedAt": "2026-10-04T07:33:29.473Z",
+  "sha256": "c874baf20c02cd7811a1b906f1c734d185a10d3bdad7a8e274b927e08ef747bc",
+  "bytes": 29770,
+  "requestId": "SmL1m3hQnyRTGdaUrNmx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "424da7ea1b431a43993579125906991615ab660b25ec2d8d2f258355bb332877",
+    "bytes": 154688
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

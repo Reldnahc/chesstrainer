@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "tactic-fork-allowed-queen",
+      "label": "Tactic fork allowed queen",
+      "text": "Here a connection comes undone. A queen on the other side can now fork several targets at once, so it's worth finding that queen first."
+    },
+    "takeId": null
+  },
+  "requestHash": "c1c03166e938d338da85f855f77e452f13d24da054e582f980962974f5dec8fe",
+  "recordedAt": "2026-10-04T07:39:54.121Z",
+  "sha256": "f68d206bd259580ee74d00fe593f24e6aa37decf510e489ed18e163b7fd25e4e",
+  "bytes": 29705,
+  "requestId": "2TvuXNYTxwDedCQds42u",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "533b2af3cc439306eb3d95d45fda7a3275bbb6582d2c5a522dde2a12dfb53925",
+    "bytes": 149673
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

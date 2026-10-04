@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "tactic-pin-missed-rook",
+      "label": "Tactic pin missed rook",
+      "text": "Put the stronger move next to this one and there's a pin to the king in it. The pinned rook would have been tied to that line, since leaving it exposes the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "d8a3acda441d08dfdd97c38cce87f8a7b35b77bd237b6fd729b6eedaf6a31e3b",
+  "recordedAt": "2026-10-04T07:45:07.282Z",
+  "sha256": "3b66c6391518ba929b2b252c2483f594ce3779360562e25742b5afd58b80626b",
+  "bytes": 31218,
+  "requestId": "hEzsGvioz2uEofXbf8EE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "03209df1d747bd8f0f5cfa83230cd79f06be74ebcf95dfb614bf2061fb8c55a4",
+    "bytes": 158450
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

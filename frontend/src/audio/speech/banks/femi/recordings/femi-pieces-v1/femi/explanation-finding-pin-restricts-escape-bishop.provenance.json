@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape-bishop",
+      "label": "Explanation finding pin restricts escape bishop",
+      "text": "The attacked bishop can't simply flee; it's pinned, and its king needs the cover. Every option it has must keep that shield in place."
+    },
+    "takeId": null
+  },
+  "requestHash": "547343287c79ea2d5c5cd8c0a625dd83a4608961012629f364d066102a94c817",
+  "recordedAt": "2026-10-04T07:45:50.734Z",
+  "sha256": "de9239780578626444fe180457f4b4bb24ed8673c74f6fd2510bd5fce43c8ea3",
+  "bytes": 29797,
+  "requestId": "ITZ1Ra7joy39jnzKHHXM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0b5874284bf990f9bf70f44875070c12f541084dc9449faa48971535513216af",
+    "bytes": 154688
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

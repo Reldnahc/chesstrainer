@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-pin-allowed-pawn",
+      "label": "Tactic pin allowed pawn",
+      "text": "What happens to the pawn in front of the king now? After this move, it can be pinned there, and a pinned pawn can't legally step off that line."
+    },
+    "takeId": null
+  },
+  "requestHash": "31cbce9f4378853c40203ae3a493c0bfa8ca99a3e57d7163186b4966b6a2cd07",
+  "recordedAt": "2026-10-04T07:32:11.709Z",
+  "sha256": "730e6a701dcba8fb0a741ab4463d0691bcd9005eefa216d7f6a2ceebb4b5bb32",
+  "bytes": 28409,
+  "requestId": "rmPoNiOLX1B79IT8esEV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fc23a2c19c1b79b6c107ccefc3a071879a33ced193c3f77abba88f5e0191a5a6",
+    "bytes": 148419
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

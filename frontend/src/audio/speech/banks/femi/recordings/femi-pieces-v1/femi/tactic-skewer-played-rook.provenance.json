@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "tactic-skewer-played-rook",
+      "label": "Tactic skewer played rook",
+      "text": "Textbook skewer. Hit the rook in front first, and when it gets out of the way, the piece behind it is hanging in the open."
+    },
+    "takeId": null
+  },
+  "requestHash": "e427966d99ef8a98a02ff97d26199f869dc3e02e114de930786022fd851899c9",
+  "recordedAt": "2026-10-04T07:45:16.564Z",
+  "sha256": "09e4287dbaf7e23e37b4c8a9af8021a8187982ae1e026a18572e4efc4e07bd19",
+  "bytes": 26448,
+  "requestId": "UwGEA2S80QtCpn6Q7vtY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c82bf7bf609d5c7199ceb88347e8d47be6e9e76884505f65f3f0c82b738405dc",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

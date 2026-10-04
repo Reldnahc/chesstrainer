@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-escape-knight",
+      "label": "Explanation frame capture promotion escape knight",
+      "text": "It captures the knight on the last rank, promotes, and lifts the check on its own king."
+    },
+    "takeId": null
+  },
+  "requestHash": "e2f9eb34460c2023886c7474e8c177f0c78ca495c3847c14c41a92a670bc86bc",
+  "recordedAt": "2026-10-04T07:46:31.902Z",
+  "sha256": "fd4c0dc002cf21b9a3de91f69028bf06240f7e2509d59f5351c341183a6dd120",
+  "bytes": 19228,
+  "requestId": "jxv4ekLa0V0x5vhTgcbM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4579ac38f8ca4f2466215cb82bd4b176b9c04cad55854568ab74ff846dce644b",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

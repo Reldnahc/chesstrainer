@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed-rook",
+      "label": "Tactic removing defender missed rook",
+      "text": "Another move could have captured a defending rook and broken its connection to the piece it guarded. That chance slipped quietly by."
+    },
+    "takeId": null
+  },
+  "requestHash": "5763e0f97930974d692e1b2bb6118d0d036ee90a001892652011743f6e29774a",
+  "recordedAt": "2026-10-04T07:40:22.158Z",
+  "sha256": "b55c42515c2a6f2b875ae09c15e0907d0efd6569712b21e8b6d87b61e5546243",
+  "bytes": 26658,
+  "requestId": "ytDGqyEGMBqYDzYFhM8X",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "50493c1dbd42401314ccdd060e5a9bb49fbf5c57c3f1d9dd5d5666862574ca65",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-queen",
+      "label": "Tactic deflection allowed queen",
+      "text": "This gives the other side a chance to draw the defending queen away. That's a deflection: the queen leaves something important behind."
+    },
+    "takeId": null
+  },
+  "requestHash": "a15f2f0811da09a092c4e12539bbcb0db9a29b51773ce6f11130ae0a73308560",
+  "recordedAt": "2026-10-04T07:26:04.614Z",
+  "sha256": "acd4fb1ab119d01085c1f3220d3b309d5edfea442977c769e044c5ebf5d62a26",
+  "bytes": 25149,
+  "requestId": "rbF9v2Gz8o4Ho0aqR0eP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d2e5c0a9c7ad71e3c51823c1577d95bfcdfb6c04e0fb18a07b2fb1f247a27326",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

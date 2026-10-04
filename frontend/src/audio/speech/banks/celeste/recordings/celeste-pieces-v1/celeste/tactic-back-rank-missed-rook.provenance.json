@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "tactic-back-rank-missed-rook",
+      "label": "Tactic back rank missed rook",
+      "text": "The king sat walled in by its own pieces, and a back-rank mate idea with the rook was there to find. That chance slipped away unplayed."
+    },
+    "takeId": null
+  },
+  "requestHash": "6bf8b83f1aa678f7df618b9818892722bdfe8aabc64a67b9a02f7d0e4cd40bd8",
+  "recordedAt": "2026-10-04T07:40:46.208Z",
+  "sha256": "3f4f6876addc0dff3f0868445d2b927700bd83b2d511ab69fe144398706ad517",
+  "bytes": 30507,
+  "requestId": "mNHIVn8hF3ZWMjxzNday",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5fdc9c0ad92f53ac8c443031f856216fb5f088efb3aafd7a01b1e8cc9cee66fc",
+    "bytes": 153435
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

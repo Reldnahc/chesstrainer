@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check-rook",
+      "label": "Explanation finding discovered check rook",
+      "text": "The moving piece gets out of the way and uncovers check from the rook behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "cfa3ff7e23c90f5b8b288915d766a48461b98aff5fb347b88c7eb9ac766c1db0",
+  "recordedAt": "2026-10-04T07:26:40.608Z",
+  "sha256": "0263257b47ee0e4983e6cdee8005fbed10724f6e23bec86e81c4ee4282b10c06",
+  "bytes": 15776,
+  "requestId": "VwHhTaGpN7bP310jNhdQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "90e2bb72db1b9a549a11433aa49795e3277718e5ac906e55efe6cc8581c56b5b",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

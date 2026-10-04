@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played-bishop",
+      "label": "Tactic removing defender played bishop",
+      "text": "Everything leans on something. Here the idea is to capture a defending bishop, so look at what it was holding up and what loses protection once it's gone."
+    },
+    "takeId": null
+  },
+  "requestHash": "58d9b15b36323cfa46d18d7fcb42ccd10a08908a474cb380ea8068c7db121f51",
+  "recordedAt": "2026-10-04T07:31:05.099Z",
+  "sha256": "5caadf1ab6ed8eacbe9a0501d3c35e92b3d47cc21e6927b49ff355e0e425c0d3",
+  "bytes": 30762,
+  "requestId": "g6vEDFX2p4nDSTDc4vlY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a59a498325f8b152c206af6f3cf6b9f651d7203df5f6e5d4b5a321866ffc7602",
+    "bytes": 158450
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

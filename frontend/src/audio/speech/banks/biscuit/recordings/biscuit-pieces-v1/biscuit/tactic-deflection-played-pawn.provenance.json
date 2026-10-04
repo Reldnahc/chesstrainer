@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "tactic-deflection-played-pawn",
+      "label": "Tactic deflection played pawn",
+      "text": "Ooh, watch the defending pawn! It gets tugged off its job, and the spot it was covering is wide open now. Deflection, spotted!"
+    },
+    "takeId": null
+  },
+  "requestHash": "209aeb77b0cb46974bdf18290f4ecfa4b857eb7427bf09877cf205e001662eee",
+  "recordedAt": "2026-10-04T07:38:31.619Z",
+  "sha256": "64ac669631d07ecc97a343fb5ca0f499a1f282a0b66cd034f5c77c279de4af15",
+  "bytes": 28324,
+  "requestId": "VRo9QxQwKSukhNWbjS8H",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5adf1e9fe0612ae10e6130d9f35dbc20b7193601216fbd3fb9257a2442767e13",
+    "bytes": 141732
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed-knight",
+      "label": "Tactic discovered attack allowed knight",
+      "text": "A knight of theirs stands in front of another piece, and this move lets the screen lift. When the knight steps aside, the piece behind is free to attack."
+    },
+    "takeId": null
+  },
+  "requestHash": "cd9d80c4345fc6d7f2bd35db170619553b64c39866225d97d8e122bbaddb30b4",
+  "recordedAt": "2026-10-04T07:42:07.941Z",
+  "sha256": "8180f73726baa56eae7eb1b92c63bf121b9aa951a1c7fe0eb25d0313bbe1041d",
+  "bytes": 29467,
+  "requestId": "ACC1NjYliD4wzemshKYK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1d4d5955a192634abb125380565c1c365264d3e80dcace019868fa4cc3a322b1",
+    "bytes": 148419
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-bishop",
+      "label": "Explanation finding relative pin released bishop",
+      "text": "A relative pin held the attacking bishop back, until the opponent's previous move loosened its hold. Once loosed, it captures a target that never moved, in the line shown."
+    },
+    "takeId": null
+  },
+  "requestHash": "b2b0e78bd04591dc14a32c261d7f96042388a750eb6cff1bba8364449d2caefe",
+  "recordedAt": "2026-10-04T07:40:50.495Z",
+  "sha256": "82a1a9aec327100024482a37c1a6efa962225ebea02319adea6cd4da7f56f55b",
+  "bytes": 36089,
+  "requestId": "OkfMO2coH8nieEIlC860",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2a9235abf44496c609dc9e5baa6d28a632446a51a112c5489931e8f62c3ee6d0",
+    "bytes": 181438
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

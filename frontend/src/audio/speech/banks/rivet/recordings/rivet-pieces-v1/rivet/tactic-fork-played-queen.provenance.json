@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "tactic-fork-played-queen",
+      "label": "Tactic fork played queen",
+      "text": "Pattern: fork. Attacker: one queen. Target count: several. Follow the shared attacker."
+    },
+    "takeId": null
+  },
+  "requestHash": "b9ad746f6c25036eb25a7b6ceecad4d4e05ba4c5a8123ff62e168eba7442d816",
+  "recordedAt": "2026-10-04T07:26:56.230Z",
+  "sha256": "0a5b02434a1c398d0e89a44bd9110a563f6f1b3e5b19113aa173ca52463bcf67",
+  "bytes": 22535,
+  "requestId": "gfTGkZbVhbL88b6SyviI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "db6fb494673015b5a57e080eff7b97137516e7769ca114209afdec8d0e16531f",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

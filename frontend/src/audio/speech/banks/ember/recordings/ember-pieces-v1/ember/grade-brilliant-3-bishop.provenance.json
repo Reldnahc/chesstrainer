@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "grade-brilliant-3-bishop",
+      "label": "Grade brilliant 3 bishop",
+      "text": "Brilliant. A bishop sacrifice that withstands the capture; I have no correction to make."
+    },
+    "takeId": null
+  },
+  "requestHash": "106623904bf1c0a77727362206dd79480a0cdc48c1421707ae26cd3b5f462b7c",
+  "recordedAt": "2026-10-04T07:43:07.889Z",
+  "sha256": "a0f859984c35144189992677453bbeb7924d95a259f40231fbdddd291a3b7790",
+  "bytes": 19540,
+  "requestId": "lV408TNawPEySuCKDFVU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3efe7fba2df6dd0a0876c797ef0c241bd0137540cffa2754783a5f28726b300e",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

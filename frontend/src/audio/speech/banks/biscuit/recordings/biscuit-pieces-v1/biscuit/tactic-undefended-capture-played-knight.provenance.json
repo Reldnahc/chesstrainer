@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-knight",
+      "label": "Tactic undefended capture played knight",
+      "text": "Ooh, wide open! Nobody was looking after that knight, so it gets gobbled up, free and clear."
+    },
+    "takeId": null
+  },
+  "requestHash": "25c063ed1db7204b868ae184d265001b8f926adcfc031490ded019ad7a78f261",
+  "recordedAt": "2026-10-04T07:38:07.429Z",
+  "sha256": "074a5798a61dfdb0e53b181a902b3ee32386ad5161ae3c07517991b6ebb1bf50",
+  "bytes": 22691,
+  "requestId": "xBFrxxLf79qL8Eidwic5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "19b4a77a660a8c126e0eb120fb85db35dfd19b6e659c70482d97509e6ec63193",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

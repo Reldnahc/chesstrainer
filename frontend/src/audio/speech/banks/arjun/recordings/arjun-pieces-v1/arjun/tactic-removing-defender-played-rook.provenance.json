@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played-rook",
+      "label": "Tactic removing defender played rook",
+      "text": "Follow the logic: take the defending rook first, and the piece it was looking after is suddenly on its own."
+    },
+    "takeId": null
+  },
+  "requestHash": "16f3677e49e233e9f423c77ae3dffab7fae64638919bca587545c643a9440320",
+  "recordedAt": "2026-10-04T07:32:50.356Z",
+  "sha256": "b2e0a00033a824df2e8907d2ce429d71468416e23e62175ee3b249b5de96c619",
+  "bytes": 20952,
+  "requestId": "Zm90zE1tMk7jBIZnLTM6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8c4eae732e7d12f0fc0a4aeb8e3766e0a2c0420a289b31d03b334b54e7bd972c",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

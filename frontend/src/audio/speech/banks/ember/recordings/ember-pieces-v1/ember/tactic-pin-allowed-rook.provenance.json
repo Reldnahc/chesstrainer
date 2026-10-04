@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "tactic-pin-allowed-rook",
+      "label": "Tactic pin allowed rook",
+      "text": "A real concession. Now the other side can pin a rook against its king and hold it to that line."
+    },
+    "takeId": null
+  },
+  "requestHash": "064e6c74aa07139cb859e46a488d36a520b1247a5dc29eae3c0e59ae7e0fb2ff",
+  "recordedAt": "2026-10-04T07:41:36.469Z",
+  "sha256": "a85a4487ac72467d6c8810bc5be1ab7a19ec36674026f465c6d1bb285823041b",
+  "bytes": 20400,
+  "requestId": "Xyvt65wJ9MrsGKMqp70k",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6d13d661f48f92818cc6d17b7005032173fab42b6977e9debae219920d774e37",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-capture-rook",
+      "label": "Explanation finding discovered capture rook",
+      "text": "Move the blocker, and the rook behind it captures along the line that just opened."
+    },
+    "takeId": null
+  },
+  "requestHash": "782e728dccf2ccd3bf449a90f607843da70d1442e32d16c2b97e0fb066aae903",
+  "recordedAt": "2026-10-04T07:33:48.145Z",
+  "sha256": "303911e81550ae9a4c6bdab556723e8e54e402e024a749b4e39f0ea4fef8a704",
+  "bytes": 16685,
+  "requestId": "gySApJX9MuZICYKmN93O",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "774cf8517e257510afc46d9c93ea8733a38f86d1c8ee6f06799a3977b6f0089b",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

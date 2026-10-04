@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate-rook",
+      "label": "Explanation frame capture move mate rook",
+      "text": "It captures the rook, and it's mate on top of that, with the king out of legal moves."
+    },
+    "takeId": null
+  },
+  "requestHash": "773ab219312a7e8d4ee0d55d3a856bcb31a7b76ebe5d680c5b4e7a5e6c8abfd3",
+  "recordedAt": "2026-10-04T07:46:21.603Z",
+  "sha256": "9bdd51c1801ec81147420b03afa68c78f2a9ed42b7549bdc042e8802f8d07dec",
+  "bytes": 18394,
+  "requestId": "19n1X8GACnMYJRoVEwSE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8eafe7e2c6f0428ae0a75f11ccfd349a3ddfdb190f11366b2d594e8c39bcf6ac",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

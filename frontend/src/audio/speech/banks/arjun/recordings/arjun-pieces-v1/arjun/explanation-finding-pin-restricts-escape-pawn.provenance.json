@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape-pawn",
+      "label": "Explanation finding pin restricts escape pawn",
+      "text": "The attacked pawn is pinned to its king, so its only legal moves are the ones that keep the king covered."
+    },
+    "takeId": null
+  },
+  "requestHash": "fb6a7c15c1b89aabd7895f170bc59963985971de3b13146ba2d2b905437336a9",
+  "recordedAt": "2026-10-04T07:32:54.843Z",
+  "sha256": "144b47e6037aa25e2dbc32f3ff7ca50fcd218301b67e75e5e8dc7369efc6ca37",
+  "bytes": 20624,
+  "requestId": "zua6bD8RE2coMuV8Xq5n",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "52e9ad391c0bf481acba58b5e6106bd7265dd47457b8746e06a647643bebc07d",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

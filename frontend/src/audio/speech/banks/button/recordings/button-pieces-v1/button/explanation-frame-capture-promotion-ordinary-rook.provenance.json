@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-ordinary-rook",
+      "label": "Explanation frame capture promotion ordinary rook",
+      "text": "The pawn captures a rook to reach the last rank and promotes."
+    },
+    "takeId": null
+  },
+  "requestHash": "9ea38c8d5de72b1295d78723fc50af2ee56f9b0c5d2e3192223ede3caa37b17f",
+  "recordedAt": "2026-10-04T07:32:09.574Z",
+  "sha256": "9c3c86c7a37ab4734df56efe94f56f4e89f6b21b75f921fc48148e111b0cf484",
+  "bytes": 13010,
+  "requestId": "C80tcH3lE6nFaTySeduB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "56d82e1bfd3bacd2adfd6708754ed314596d94cbc58d2825ba2b091147a83f1d",
+    "bytes": 63991
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

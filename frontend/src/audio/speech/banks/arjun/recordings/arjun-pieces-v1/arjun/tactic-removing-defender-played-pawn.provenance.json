@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played-pawn",
+      "label": "Tactic removing defender played pawn",
+      "text": "Follow the logic: take the defending pawn first, and the piece it was looking after is suddenly on its own."
+    },
+    "takeId": null
+  },
+  "requestHash": "8512204a5de84ae1c14d7caa09874137a56b943792cbe9c58d9fe422d4e38d8a",
+  "recordedAt": "2026-10-04T07:32:44.870Z",
+  "sha256": "9d9ad73e180f3393efe93311849f4a717887d2bc0526141d8e9b4bba5ccc1cad",
+  "bytes": 21160,
+  "requestId": "QXVSKgcR2HUvYRHQhINM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "44b3824be5ad0a26e7ec38f3ee0280d1a399a3d32232849638f59aa27c3e464a",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

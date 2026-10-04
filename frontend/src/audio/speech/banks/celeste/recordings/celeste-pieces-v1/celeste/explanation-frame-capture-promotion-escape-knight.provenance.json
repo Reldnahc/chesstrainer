@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-escape-knight",
+      "label": "Explanation frame capture promotion escape knight",
+      "text": "The pawn captures a knight on its final step and promotes, and the king is lifted out of check."
+    },
+    "takeId": null
+  },
+  "requestHash": "a5ace7d16b56fae76ccab8c0f9ddcbfba1271226eefdc543668d55c01d1ecb3d",
+  "recordedAt": "2026-10-04T07:41:31.569Z",
+  "sha256": "eeadd7e9472986092e7cccc15ca77bbe2180e68627388ea1e77e84ca1da12bf0",
+  "bytes": 20077,
+  "requestId": "TjWwGVF6lcq1BJ4Byd2c",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e271d7f4ac288a0dc6e91dd1ce5e4bf3a26ce73215a7c17eee783e41132b2b30",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-rook",
+      "label": "Tactic discovered attack played rook",
+      "text": "Whoa, tricky! The rook scoots out of the way, and boom, the hidden piece springs into action. That's what a discovered attack looks like!"
+    },
+    "takeId": null
+  },
+  "requestHash": "1453efbf40e0048376965132b49d7c7d591ef07f00f3fa9e83d5bb5cbb612ebc",
+  "recordedAt": "2026-10-04T07:38:16.392Z",
+  "sha256": "66fea7789d7df3c91b737f71cf2626812fd99bf90799ad06045a1001bdee06b5",
+  "bytes": 30235,
+  "requestId": "QQI32IbRiY6fr0elz06g",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dac8d03990141c0f912d93fff10c6a011edb190c1c4bd6877ca1247433e7755f",
+    "bytes": 150927
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

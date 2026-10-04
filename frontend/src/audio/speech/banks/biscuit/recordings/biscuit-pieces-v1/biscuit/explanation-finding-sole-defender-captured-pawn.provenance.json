@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-pawn",
+      "label": "Explanation finding sole defender captured pawn",
+      "text": "Poof, the pawn that was the only guard disappears first. Then, later on in these moves, what it was guarding gets captured too."
+    },
+    "takeId": null
+  },
+  "requestHash": "1b696cd313189a5aef808df8401148da09929cf8ba971432f6be46818bb2a11d",
+  "recordedAt": "2026-10-04T07:39:07.422Z",
+  "sha256": "99554725a012b23907649d71b81cc15b1bc0412471374e2e223b98fc0f89907f",
+  "bytes": 27461,
+  "requestId": "MxNQOkIt78D3UroHqUiy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e36eed49c3751c738ae192b2abf2fb435140de72f071668cbb24c46db8a73f70",
+    "bytes": 142986
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed-knight",
+      "label": "Tactic discovered attack allowed knight",
+      "text": "Hold that thought: the other side has a discovered attack to play now. Watch for their knight moving off a line to reveal the attacker behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "1af6a2d949e83f789a09edb4bde7034b64c33f67274ccf858d8fe2c007ba8eae",
+  "recordedAt": "2026-10-04T07:45:28.894Z",
+  "sha256": "9ac68ef089f46f3cc6fed04a6cc2d42510efc972a0b444013436c0784c5f7dbd",
+  "bytes": 28619,
+  "requestId": "TpJsMArDBK3cXETJ4pbP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "82c0420980390cbf9214033499a5748caa9b13f148613e4d7d6b46d94c71371b",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

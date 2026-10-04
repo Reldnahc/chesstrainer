@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-rook",
+      "label": "Positional unsupported alternative rook",
+      "text": "Another candidate would have taken away a rook's last defender, which by itself wouldn't settle whether it could be won."
+    },
+    "takeId": null
+  },
+  "requestHash": "dbf25c834130dd8013074be5947e739ab3c041ce9b2a3da7cdc6e8bf6d8bc3a6",
+  "recordedAt": "2026-10-04T07:33:03.361Z",
+  "sha256": "c2cacc4a0c5f6830f38ed31ccef58c7bb9336664a9218edfd2d43ea55612b231",
+  "bytes": 23457,
+  "requestId": "0s3Pm7iXxkXPO6T4DOxE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7049c32c577497d33b887a7c4005b7993f00ba20755fdeccfad639560a3e9456",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-pawn",
+      "label": "Tactic deflection missed pawn",
+      "text": "Another move could have drawn the defending pawn away from its job. That was the chance to use a deflection."
+    },
+    "takeId": null
+  },
+  "requestHash": "e0db234bbaef57923502dadb464e9f95d573ccf3586b34fba0e724c7123b5f17",
+  "recordedAt": "2026-10-04T07:26:08.412Z",
+  "sha256": "86e57a0c05a87f81b4446cefa5972ff8632071ed9c8d46649764362c128fc1ad",
+  "bytes": 20928,
+  "requestId": "WLxZqgn4wIwyV657UHRC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "96daa222b18631e5f2a71ddd4c2ab2d54613766a8191302f8f01a3ff4bcee167",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

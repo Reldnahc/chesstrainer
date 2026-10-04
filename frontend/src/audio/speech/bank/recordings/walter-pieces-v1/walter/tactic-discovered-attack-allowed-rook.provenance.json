@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed-rook",
+      "label": "Tactic discovered attack allowed rook",
+      "text": "This opens the door to a discovered attack. The other side can move a rook out of the way to uncover a threat from another piece."
+    },
+    "takeId": null
+  },
+  "requestHash": "4204ec7bbc6b6f5e13ed0c570b3df9badde7ff0c123ab73b72756c25f2947bee",
+  "recordedAt": "2026-10-04T07:25:55.014Z",
+  "sha256": "e2eefcbe46569a283681cfa34cf00dce5aafc1702580637c4bb67e4b62932ce6",
+  "bytes": 25216,
+  "requestId": "eIluXXYVTHVcRrus4OdJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1a391721c30ba5b8cb753f9b4cd95b2915b6c20c9d268f692b93513595543122",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

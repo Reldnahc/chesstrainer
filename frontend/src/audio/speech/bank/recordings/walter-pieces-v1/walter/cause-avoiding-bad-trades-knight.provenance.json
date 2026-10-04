@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "cause-avoiding-bad-trades-knight",
+      "label": "Cause avoiding bad trades knight",
+      "text": "This capture with the knight invites a recapture, and the knight is worth more than what it took. Count both sides of the exchange before judging the first capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "c581f4b36c3f22910cc40c772f4732a9e7eec9ca6d3830a5913faf6ec242694c",
+  "recordedAt": "2026-10-04T07:26:09.444Z",
+  "sha256": "453f638f4cffe510e52165e6487c86864e740011e384c1c8ce18ef3b4edf5a85",
+  "bytes": 30584,
+  "requestId": "7R6SBJXyXUKCYaLzwC74",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "84f166c8bd07269fd4f0cacddd40172aed5c9bda15d9609fc02c7bbb1606157c",
+    "bytes": 155942
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

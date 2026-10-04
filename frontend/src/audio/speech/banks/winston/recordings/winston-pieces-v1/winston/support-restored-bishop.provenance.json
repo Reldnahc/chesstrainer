@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "support-restored-bishop",
+      "label": "Support restored bishop",
+      "text": "That bishop, unguarded earlier, has a defender again. Find where the cover comes from."
+    },
+    "takeId": null
+  },
+  "requestHash": "6d98a42cddd7871d931cb3f16e1e11de22ed520cb8570368ab7f1bd96604386b",
+  "recordedAt": "2026-10-04T07:29:36.170Z",
+  "sha256": "e38cb930e7ff5842441847c10eeddc24de09786f0510b157dc5c7907a8b3e2b1",
+  "bytes": 18031,
+  "requestId": "ilBZNeOFH53On21PqiHv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f5065100f80fd30c504e982af5513e3332d9584a6fdd712b7b488731152783d6",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

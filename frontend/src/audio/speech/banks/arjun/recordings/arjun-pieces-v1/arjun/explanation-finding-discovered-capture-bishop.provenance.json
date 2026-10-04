@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-capture-bishop",
+      "label": "Explanation finding discovered capture bishop",
+      "text": "Move the blocker, and the bishop behind it captures along the line that just opened."
+    },
+    "takeId": null
+  },
+  "requestHash": "d47bb2d76da3c1e2e609150a5c8f133dd84b8bb5e19d361b7754cb808db0f3c1",
+  "recordedAt": "2026-10-04T07:33:46.571Z",
+  "sha256": "08fd1ae6112319e1a233a33fa1a512870b82436bad2b69e7b4ce04dd1341b238",
+  "bytes": 16911,
+  "requestId": "WoZecEobye44kJPTDgbO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "430970107cb84682f5399a290b22f8080e3b7a14368ee53fdcefcdd99d46e850",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

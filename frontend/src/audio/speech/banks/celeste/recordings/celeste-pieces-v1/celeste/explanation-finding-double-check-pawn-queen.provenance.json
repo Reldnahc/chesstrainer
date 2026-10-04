@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-pawn-queen",
+      "label": "Explanation finding double check pawn queen",
+      "text": "Double check, a rare and striking thing: the pawn and the queen check the king together, and only the king itself can answer them."
+    },
+    "takeId": null
+  },
+  "requestHash": "a7ad89f731a6a2166c9b550b08f3b218565eabb40e3923a10a7dc11f5638c549",
+  "recordedAt": "2026-10-04T07:41:17.660Z",
+  "sha256": "91f8166306c5f5a088d287e42852c5d99d49adb870680aab093c4b63c2e84709",
+  "bytes": 28510,
+  "requestId": "58lnMlF0OC0MwXjqSjOI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "af612f182559f9e9ed5d73d14516fa8d14baa232a30b8328cea02e951094b5d2",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

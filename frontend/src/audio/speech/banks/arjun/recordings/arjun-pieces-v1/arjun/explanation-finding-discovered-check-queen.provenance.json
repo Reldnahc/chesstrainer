@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check-queen",
+      "label": "Explanation finding discovered check queen",
+      "text": "When the piece in front steps off the line, the queen behind it gives check."
+    },
+    "takeId": null
+  },
+  "requestHash": "41ece5d134a9ea8245911d925e558df5363d986d78bcfc0ee0722cd93f187241",
+  "recordedAt": "2026-10-04T07:33:31.563Z",
+  "sha256": "30f4fbfbf779beb9fcb63b02baa6dbe781ee7af2bce4b36031f7f71fdcbf6e5b",
+  "bytes": 15307,
+  "requestId": "YhUbfegChjpAl8nWuGJJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d6ca4f6d9d88fa4afe62596be5b729055257fcba7d75a165225cac847059adf2",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

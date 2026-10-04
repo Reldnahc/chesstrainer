@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-rook-rook",
+      "label": "Explanation finding double check rook rook",
+      "text": "Two checks at once. Both rooks are attacking the king in the same moment."
+    },
+    "takeId": null
+  },
+  "requestHash": "a073babefee8d9998c0402b24c77c5c0d86bf461cf91c2b7530d546b5f7bf93f",
+  "recordedAt": "2026-10-04T07:32:08.224Z",
+  "sha256": "9318067b4fa6bac480739e1b3f28a06ba463baa8818d9492fe424ef45ced1ae4",
+  "bytes": 16142,
+  "requestId": "KrcBs8BE95gqLKczZhMs",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "aa87cf9686fa3bb099c87ab890ef06146ec6c5004dab974675482b627b7cc9d4",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

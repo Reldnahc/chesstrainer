@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-bishop",
+      "label": "Tactic deflection missed bishop",
+      "text": "Another move would have pried the defending bishop loose from its job. That chance at deflection goes begging."
+    },
+    "takeId": null
+  },
+  "requestHash": "6f847cfb8dd0521210fbb68c0592f608e127c1f844f2ab3f0ba5853b82603567",
+  "recordedAt": "2026-10-04T07:44:04.816Z",
+  "sha256": "c2f764613bac49c52a1d8eec5f6adfd6acbcc11b17d301ebb4d277fcf6c86ebe",
+  "bytes": 22702,
+  "requestId": "fpekyOlMZv0AL1O3hiWA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5ac7e5635f28694fd318bf51eab6eed872a180a6e132f504552e87c16ac435d3",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

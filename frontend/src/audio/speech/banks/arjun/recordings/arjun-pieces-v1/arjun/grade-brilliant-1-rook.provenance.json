@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "grade-brilliant-1-rook",
+      "label": "Grade brilliant 1 rook",
+      "text": "A brilliant candidate. A rook offered, and the idea holds once it's taken."
+    },
+    "takeId": null
+  },
+  "requestHash": "51cc8a66f5d9f3545b3121054f7355b75132ccbf59289f96455664951c00d527",
+  "recordedAt": "2026-10-04T07:33:55.449Z",
+  "sha256": "75d6d8cd57f12e5578ff714d39c38946df99c34492c8859245b02200ec2aa56f",
+  "bytes": 17467,
+  "requestId": "LaaXtjkIZRyM2JsQN2Lw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "544f910f4c4277e08bcf5017fdf753c8105a928b8bb617d76aa0756a5c7e7a98",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

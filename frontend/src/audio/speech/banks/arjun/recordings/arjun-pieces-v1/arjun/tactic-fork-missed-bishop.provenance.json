@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-fork-missed-bishop",
+      "label": "Tactic fork missed bishop",
+      "text": "Set the other candidate beside this one, and a fork appears in it, a lone bishop aimed at several targets. This move takes the game down a different road."
+    },
+    "takeId": null
+  },
+  "requestHash": "bf9150b7b01944d9ce97ac750f031db99ac2b2a07db0e1f5543e425d730423b8",
+  "recordedAt": "2026-10-04T07:32:30.538Z",
+  "sha256": "c786f489d8c0577f32800b51126ddcfc16d529d8ce21fbd69345af5b9004369f",
+  "bytes": 32277,
+  "requestId": "yOFpDCV5TRqFTcktWWQo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b797a1b773715774c129c06865cda2b885808c8526b764fd6a13c0eb1e0791fe",
+    "bytes": 166391
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

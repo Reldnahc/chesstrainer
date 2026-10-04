@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "grade-brilliant-3-queen",
+      "label": "Grade brilliant 3 queen",
+      "text": "Brilliant, that. If the queen is taken, nothing breaks in the checked line. A good one to keep."
+    },
+    "takeId": null
+  },
+  "requestHash": "eb684595a7d5a7037618d7385813fdb2e2a7a41d91f5c7da12e52f8cb443820d",
+  "recordedAt": "2026-10-04T07:30:12.126Z",
+  "sha256": "55940707650ec506ca0711c231a221150ddfd9597f3af46b0da03dbfe4e5f928",
+  "bytes": 19313,
+  "requestId": "YwY2RQzqwPOngGJSt5s5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ac3f363443f8b17a5e77a2c859f9a4ebdaa023724138f4c83bcfa4edcc675e55",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

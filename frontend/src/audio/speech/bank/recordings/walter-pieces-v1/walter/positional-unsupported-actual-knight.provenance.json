@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-knight",
+      "label": "Positional unsupported actual knight",
+      "text": "This leaves a knight undefended. That alone does not mean the knight can be won."
+    },
+    "takeId": null
+  },
+  "requestHash": "351b4a7ed986de6f471f33cf57aecc571f822bd40f29c7b30b7b832f00c092e8",
+  "recordedAt": "2026-10-04T07:26:34.162Z",
+  "sha256": "7628a8134df77d78dc24b4c0c100e5c6f6c11c0b6f5a92682fe4611c06128a6a",
+  "bytes": 17175,
+  "requestId": "xEOLL5vkuRqNJ5ReFNt5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9346f724cf6ad1ec9b1c39bed9e1f9f1ae942bb7d7b65370f7221908df4dabd2",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

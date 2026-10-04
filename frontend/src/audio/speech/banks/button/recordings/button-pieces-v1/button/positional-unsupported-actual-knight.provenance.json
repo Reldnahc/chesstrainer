@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-knight",
+      "label": "Positional unsupported actual knight",
+      "text": "What is this knight resting on now? Nothing at all. Undefended is worth noticing, though by itself it doesn't mean the knight can be won."
+    },
+    "takeId": null
+  },
+  "requestHash": "bf2515b62c1910df29678ff66d366a3a284ec2bd0b00ab6fe698fd6259de01d1",
+  "recordedAt": "2026-10-04T07:31:41.316Z",
+  "sha256": "0fce9130fe7d2266e5b95d8a374534db872b37a6abf6ea1a44ade0fdb7c04dfb",
+  "bytes": 29858,
+  "requestId": "nH0UyxzNcLEE3gIW93Ri",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0acaf25f7586116c99c48a24c4ae07a42b782cc8c979e7b5ee49f62c349d42c3",
+    "bytes": 157196
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

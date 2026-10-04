@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed-knight",
+      "label": "Tactic skewer allowed knight",
+      "text": "This opens the door to a skewer from the other side. Moving the knight in front could expose a piece behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "6d9a71b1ad6d223cb06af1bda45a53532d7edec324c9860b9b2b795dc3a5af6a",
+  "recordedAt": "2026-10-04T07:25:58.188Z",
+  "sha256": "5e28b0ec0f31370e81f2a350db34b08771467bc66bc166841e6b5d0a97f0c22b",
+  "bytes": 21704,
+  "requestId": "xWUqsbBuuZGgZyG2HEAa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2c2635f7568af4c688cdef6142ab903e468c7b3c478e8b26315d62d74347acd8",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

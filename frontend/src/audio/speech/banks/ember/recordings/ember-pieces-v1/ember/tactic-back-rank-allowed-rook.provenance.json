@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "tactic-back-rank-allowed-rook",
+      "label": "Tactic back rank allowed rook",
+      "text": "The back rank is weak, and this move lets the other side use it with a rook. The king's own pieces block its escape, and that is a route to mate."
+    },
+    "takeId": null
+  },
+  "requestHash": "b5a2c8d8b72e609da04079e93dff31e467db0aab53c92028a264de1e316e363e",
+  "recordedAt": "2026-10-04T07:42:28.588Z",
+  "sha256": "d2eecd6693600930ab1f46217483ec3208c150c2504b0d11fc233f51ee6b2614",
+  "bytes": 30360,
+  "requestId": "kg2Cad4x3m78ZjZy2VAK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "94ba1e6df8148fb51e599a1901875a10f37853d72c30f9318f3384524664a5e6",
+    "bytes": 154688
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

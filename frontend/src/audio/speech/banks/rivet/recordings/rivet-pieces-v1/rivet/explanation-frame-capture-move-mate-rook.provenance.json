@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate-rook",
+      "label": "Explanation frame capture move mate rook",
+      "text": "The capture of a rook delivers checkmate. No legal escape remains for the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "60bba68cc4dd508ae1f1d690705d1d2bed8846e4a1bf1c1dd67c774288726184",
+  "recordedAt": "2026-10-04T07:28:22.652Z",
+  "sha256": "863b4d20d0bd7780e6fef5bd3714cb200251c9bc7d6701e32974c06146ab566d",
+  "bytes": 17519,
+  "requestId": "k0SxGukuazmgir1tcu2h",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "270fea093a859563742d274e9e86937cfb5cf328a44a8c1f758cae21d183326f",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed-bishop",
+      "label": "Tactic removing defender missed bishop",
+      "text": "There was a defending bishop to capture with another move, and what it guarded would've lost that protection. The bishop keeps its post after this move."
+    },
+    "takeId": null
+  },
+  "requestHash": "db9845e41c13c73649ba9a4cb4c043630a8e4b1934448580b91cc133d79e4700",
+  "recordedAt": "2026-10-04T07:36:47.240Z",
+  "sha256": "ca1eb43023d2eb736a0a68466631ac9b5fcf0aac0fee19a4d0a9ea044171bd1f",
+  "bytes": 28669,
+  "requestId": "5E90zBN9otv2mAvA63Al",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d4e660beea53c223df6bc1cc40449799eaa6961154979238f6cb5081a74f8aa8",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

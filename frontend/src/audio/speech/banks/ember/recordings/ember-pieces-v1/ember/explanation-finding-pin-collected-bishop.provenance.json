@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-bishop",
+      "label": "Explanation finding pin collected bishop",
+      "text": "The pinned bishop is chained to its line by the king behind it. It is held there, and as these moves play out, it is captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "ef496dd27fd694639690dab91ec279c3c62152fc23b97b9f3b40337a70ffe87e",
+  "recordedAt": "2026-10-04T07:42:40.334Z",
+  "sha256": "92c22a774e9465eb6fde29adda2b91090c5dde2da535e38631b751a791557e7b",
+  "bytes": 24940,
+  "requestId": "N0rKfNG39zYaOdMm55ra",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d994c492b39d3381d4edef84ef14b155f291a57863824c2a8ac3c6a49c8af8a0",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-finding-fork-collected-bishop",
+      "label": "Explanation finding fork collected bishop",
+      "text": "Here's the fork working: a single bishop threatens several targets and then picks one of them off. In this example, there's a net material gain as well."
+    },
+    "takeId": null
+  },
+  "requestHash": "87ce7590a2f36b0e78944e71d97c865cdcf3dd058a45cce7d04756857c83c5cf",
+  "recordedAt": "2026-10-04T07:33:20.019Z",
+  "sha256": "e02440193db8e3e6197e9bfa064e090fa0631f934d2bbafc4e44cb1f22d8ce48",
+  "bytes": 29883,
+  "requestId": "Np3OyfF8fBZLZg8L77TC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6e7bcc5016f67c1b0a3eba83b2933810c7aae26d36536c35163d3b358b11d282",
+    "bytes": 154688
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

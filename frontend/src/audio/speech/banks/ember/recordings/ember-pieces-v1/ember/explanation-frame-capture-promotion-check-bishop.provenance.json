@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-check-bishop",
+      "label": "Explanation frame capture promotion check bishop",
+      "text": "The pawn captures a bishop, promotes on the last rank, and gives check, all in one move."
+    },
+    "takeId": null
+  },
+  "requestHash": "e569f4132ad21395bc3bc133a4e7404c9c3f6fce23fa5c8cebdde446355e59c6",
+  "recordedAt": "2026-10-04T07:42:58.416Z",
+  "sha256": "65d7bccb1bde82411843f367c3b8c7aa67ab947a4a049c4ee4702fc01850ed1b",
+  "bytes": 19651,
+  "requestId": "y4xFSH5Kk2m8lWk4kmkv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c67129a1c38d3c36662a45fb2f43aee8830ed7a1b6d7c45935a6f02b32aa7144",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed-pawn",
+      "label": "Tactic removing defender missed pawn",
+      "text": "A different move could've captured a defending pawn and left what it guarded unprotected. This one lets that pass. Start with what the pawn was guarding."
+    },
+    "takeId": null
+  },
+  "requestHash": "19900ea2300f77a9ed5e3538f84a675a010545b29fb2190ea30c9ec756dd5df1",
+  "recordedAt": "2026-10-04T07:29:05.035Z",
+  "sha256": "02d1e445b8eb9140ff7912f22ab3460dfc69bc594a39aadbcd1d04e3af63e3ff",
+  "bytes": 28401,
+  "requestId": "RobxDHNbVTJmfcIzirat",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "df08d49fb28f95fc341e186a93a432927ecb0b8aeb2daae46316cbbd0c712420",
+    "bytes": 147165
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

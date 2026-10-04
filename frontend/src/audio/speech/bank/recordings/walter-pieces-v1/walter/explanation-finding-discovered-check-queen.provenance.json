@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check-queen",
+      "label": "Explanation finding discovered check queen",
+      "text": "The moving piece gets out of the way and uncovers check from the queen behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "1e4a31d06abc094b359ce1bec74539a8de965a98970a2da91d8efd424f11b17c",
+  "recordedAt": "2026-10-04T07:26:42.185Z",
+  "sha256": "f74a6923173eaf726205c2fefd16b64fee5776220965aa2ef4cc7c0bd8199966",
+  "bytes": 15801,
+  "requestId": "D49A5IMekQ4deJrcMsf2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "033acc96d47c2fe1efa1c86f5c809c6c7aab5e19f31d38f9a462989fcaafcbac",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-knight",
+      "label": "Explanation finding pin collected knight",
+      "text": "The pinned knight has to stay on that line, or its king would be left open. A few moves later, it's captured anyway."
+    },
+    "takeId": null
+  },
+  "requestHash": "334cf4abb38bf8fa6558c5d6cf60d369d9a5cb9cbe85c33721458bceeb9424a1",
+  "recordedAt": "2026-10-04T07:38:59.173Z",
+  "sha256": "07ebc729a8d3bb4d853812ec81203474c4696e90ed9632a4e4838abd88e2901d",
+  "bytes": 23847,
+  "requestId": "gpHwO9RV25yhG3vaYGEp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "773ff6d191e1628d918124c67498fe6b5dccdeda4f6d738d81842b2dfa2248fd",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

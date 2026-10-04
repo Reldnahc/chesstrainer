@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed-pawn",
+      "label": "Tactic discovered attack missed pawn",
+      "text": "Another move had a discovered attack in it. Moving the pawn off the line would have uncovered a threat from the piece behind."
+    },
+    "takeId": null
+  },
+  "requestHash": "093e9d2b6c4dcabdc41d15a2cd38a86eb2b44678356f4511c523d39395875df4",
+  "recordedAt": "2026-10-04T07:31:08.523Z",
+  "sha256": "de38aa576e6594a372e47a4b1900427374042ca8914d6c452f884197a6ec10ec",
+  "bytes": 23224,
+  "requestId": "lEL1zeZrTpgQo9TKkkoF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e7a64c6164923d7ec8b01f9ff997c3626bee5d1658a59528d193a1e416804c27",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

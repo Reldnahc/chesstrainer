@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed-queen",
+      "label": "Tactic discovered attack missed queen",
+      "text": "The other candidate holds a discovered attack, a queen stepping off the line to release the piece behind. This move doesn't open that line."
+    },
+    "takeId": null
+  },
+  "requestHash": "0564a120c36d3945f22dcfc3e96ca5cc3c19ddc6202264b515d93486cf916772",
+  "recordedAt": "2026-10-04T07:32:17.882Z",
+  "sha256": "d91d05561cac68155654675cd784ee9d112fa710cbabe2715255fa38944c8d61",
+  "bytes": 27621,
+  "requestId": "oAQS4MQRrW3b7KUxqNW6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0e6df4c3b15e8e69aed109644e6f2e21178e1e0f4b0e981021d190cff93c4505",
+    "bytes": 141732
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

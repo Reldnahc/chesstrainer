@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-bishop",
+      "label": "Explanation finding sole defender captured bishop",
+      "text": "Step one: the lone defender, a bishop, comes off. Later in these moves, whatever it guarded follows."
+    },
+    "takeId": null
+  },
+  "requestHash": "c22c74a2a8b3eee26f4aa5dde805592e6525a55f6b7571196d9eb2027858411a",
+  "recordedAt": "2026-10-04T07:44:25.095Z",
+  "sha256": "3a8c19dc1b82bb6522c6614478c9299b64a90a158bbc3d7540ff92c3f42a23b0",
+  "bytes": 24843,
+  "requestId": "nkG9nHISl8DZO5v2WQGV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e9f50a91a958c9d6a3cc2740ba4f2c4fdced582b636bfa2e73817b92b01f37a5",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

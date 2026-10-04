@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape-queen",
+      "label": "Explanation finding pin restricts escape queen",
+      "text": "With its king behind it on the line, the attacked queen can only escape to squares that keep the king protected."
+    },
+    "takeId": null
+  },
+  "requestHash": "035795cd8fdac26a650d85bf7df2c8792d8d54475d84dbe57f0ab7941245513c",
+  "recordedAt": "2026-10-04T07:40:45.427Z",
+  "sha256": "5a6992020b9e7f3f76a32d367b1f77721ae263dacb61c908d565747f10f59c61",
+  "bytes": 21584,
+  "requestId": "dh8Cbs7c6oQRmCAlwmni",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bb9e63418daa8d10cf4d7836bd8b126fc01e428518c50aebb5215dcdf4541504",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

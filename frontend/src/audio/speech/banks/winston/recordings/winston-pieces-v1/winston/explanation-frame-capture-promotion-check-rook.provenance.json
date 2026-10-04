@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-check-rook",
+      "label": "Explanation frame capture promotion check rook",
+      "text": "The pawn takes a rook on the last rank, promotes, and gives check."
+    },
+    "takeId": null
+  },
+  "requestHash": "767b3563cf9005f229ecc48e01ea6e300281a0ffe36548d7768a7b161086b4d0",
+  "recordedAt": "2026-10-04T07:30:06.656Z",
+  "sha256": "fa47ba42f0c18161b1beb03657df4cb26777e29e151ee4ef72837ee79e05522a",
+  "bytes": 14006,
+  "requestId": "SDBGAa536k8nKMF5lPVy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6fc1fdcc8344963ad05db4ffc8b515e601a620345e565572c6f7794466cc2ac0",
+    "bytes": 70261
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

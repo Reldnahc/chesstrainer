@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played-bishop",
+      "label": "Tactic removing defender played bishop",
+      "text": "Watch what the defending bishop protects. Capturing it is the idea here, so notice what would lose its protection."
+    },
+    "takeId": null
+  },
+  "requestHash": "6dbdbecb185add2c8274c03f6ddaca8a5439b4cc94647cd605a6313c9519e622",
+  "recordedAt": "2026-10-04T07:25:59.910Z",
+  "sha256": "b88dfd64b9da665147a953fc49d73b9a97ff17e83e77b249280ca82f3273613e",
+  "bytes": 23467,
+  "requestId": "2YoFvyDqI8EXtvbiO5bO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "065de7020760fb9062a807acd51b8d6106cf177440bad77cbf3d752bb7aa6731",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

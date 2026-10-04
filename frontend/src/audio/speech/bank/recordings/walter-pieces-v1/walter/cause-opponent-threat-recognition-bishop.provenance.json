@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "cause-opponent-threat-recognition-bishop",
+      "label": "Cause opponent threat recognition bishop",
+      "text": "The warning was in the opponent's previous move. This leaves that threat unanswered, and a bishop can now be captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "500ecf802d71c7231af6fe14fd658c78e7d20b5361f5682c65f9cb48a0900c3c",
+  "recordedAt": "2026-10-04T07:26:38.851Z",
+  "sha256": "9ffbbf1832b99ddb5a7ce21d55b291e597a30ba2746de89d866613f7802776f9",
+  "bytes": 22844,
+  "requestId": "u71ey36sEzAzcobwOwZD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "894f67800965384a3368c94d4974b3861e948ea99f047586e3b580f5a12e9b44",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

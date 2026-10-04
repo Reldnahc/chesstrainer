@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "tactic-pin-missed-queen",
+      "label": "Tactic pin missed queen",
+      "text": "Pinning a queen to its king was on offer elsewhere; this move went another direction."
+    },
+    "takeId": null
+  },
+  "requestHash": "88b0fe57475f2f9d2db79f1f97ab040707d31e3876f0caa7f3501587ee72db58",
+  "recordedAt": "2026-10-04T07:46:50.486Z",
+  "sha256": "5f7b7258eed57a297cbdbbd9216f3cc5eb6bb675d92c3ccf0d1c689b64b5cf19",
+  "bytes": 17839,
+  "requestId": "2SVv2xJILZFMJsm3jYdu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "37c54578883fb4ad68910f48d370c739f17b1ceb4fbd63165228397e45213236",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

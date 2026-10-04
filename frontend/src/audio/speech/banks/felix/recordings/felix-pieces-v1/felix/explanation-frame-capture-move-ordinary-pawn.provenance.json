@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary-pawn",
+      "label": "Explanation frame capture move ordinary pawn",
+      "text": "Takes the pawn. Nothing fancier."
+    },
+    "takeId": null
+  },
+  "requestHash": "78cd1ffcc7d054650c49595b167c894319e31e2bea583def04cad590587a5a50",
+  "recordedAt": "2026-10-04T07:44:55.695Z",
+  "sha256": "3947159d58ee6aeca44a4387d4a370c720b4e1d9040c79e13fec5a54c40943dd",
+  "bytes": 8445,
+  "requestId": "5OsEH7EHfszAIfSjpPm4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "00cbb238f9142c806838129631a1e0aed53d66e82decfd95ff7bb3f5c5daa1a0",
+    "bytes": 41839
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

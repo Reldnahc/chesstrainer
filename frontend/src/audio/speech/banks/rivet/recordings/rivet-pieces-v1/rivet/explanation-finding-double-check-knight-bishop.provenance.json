@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-knight-bishop",
+      "label": "Explanation finding double check knight bishop",
+      "text": "Double check. The knight and the bishop attack the king at the same time."
+    },
+    "takeId": null
+  },
+  "requestHash": "aec976261c185a57f7a503dd3341d76674cfa8440dc563a43d69d3c37d2c6f4a",
+  "recordedAt": "2026-10-04T07:28:23.013Z",
+  "sha256": "d707a1f2e7d5a27681767ec35ab63503d88730e726f646309b6b99130bba003c",
+  "bytes": 15370,
+  "requestId": "uc0bzJOGD5uPc8AAyeeF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5b03e269b319c242fb2c5e09de82e58cd4aa0029abc3721ba8c05adb3bffcbce",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

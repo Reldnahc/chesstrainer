@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "tactic-pin-allowed-pawn",
+      "label": "Tactic pin allowed pawn",
+      "text": "Pieces lined up with their own king are always worth a second glance. This move lets the other side pin a pawn on one of those lines, and pinned to its king, it can't leave that line without exposing the king. It pays to check those lines before moving, not after."
+    },
+    "takeId": null
+  },
+  "requestHash": "bb7357cf3be9c12a7a7b8abf4f33607c1c8d16f667270d77f2b4ac42c5cfd5d1",
+  "recordedAt": "2026-10-04T07:33:52.675Z",
+  "sha256": "1ac4c50260be8cc2283404b9c12b7426133fc9ff4bde8926a5bc01f339fba465",
+  "bytes": 52021,
+  "requestId": "qIJrQ4URcZ0QLUKBF86L",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a873b9039c2a467a49849ccf6b5b09844ef99218c5706198f605bcbe370d088b",
+    "bytes": 265866
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

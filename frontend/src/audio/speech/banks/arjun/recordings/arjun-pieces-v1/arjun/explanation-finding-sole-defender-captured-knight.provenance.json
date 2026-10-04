@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-knight",
+      "label": "Explanation finding sole defender captured knight",
+      "text": "Capture the knight first, since it's the only defender, and the piece it was protecting is next. One capture opens the way for the other."
+    },
+    "takeId": null
+  },
+  "requestHash": "0427a80926812b4f824531f3af535c1c1ccc8eb70e3b0501e3533a925d1d4fcb",
+  "recordedAt": "2026-10-04T07:33:16.595Z",
+  "sha256": "03636b7474fb2e623ac5193edc8b6ff350ea6317aa038d24ecf47d1abb23aea8",
+  "bytes": 26628,
+  "requestId": "mUzbuqepS5e59FUN9Szp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ea2ac7f0e50360d4390ff83c09371bc0dd15a06e4f1d24b5cae56aff6e0e585b",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

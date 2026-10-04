@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-rook",
+      "label": "Explanation finding deflection collected rook",
+      "text": "Watch the defender move away from its job. The rook it leaves behind is then captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "69d905996e6460c048cd099211923b0e34bd4e410ada3a2e3b4db993dec6a273",
+  "recordedAt": "2026-10-04T07:26:40.602Z",
+  "sha256": "0c4cbc713d715f2fd386079440904e4ecc76957fa24befe7edfd5ec22a7b76b6",
+  "bytes": 18416,
+  "requestId": "VfkB9o0wJlpxhfCs9wAO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "92672bb324ae00af5fc0687b1c25c8da00339396fa0d247731086d2d043c081a",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

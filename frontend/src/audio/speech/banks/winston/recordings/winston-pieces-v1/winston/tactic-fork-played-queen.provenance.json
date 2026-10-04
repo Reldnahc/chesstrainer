@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "tactic-fork-played-queen",
+      "label": "Tactic fork played queen",
+      "text": "There's a fork in this one: a single queen bearing down on several targets at once. Follow that queen and see what it reaches."
+    },
+    "takeId": null
+  },
+  "requestHash": "b3ea574be7dd5ba60d77fa093fc78d899be1592fcf2da8d2657afead6c998e1a",
+  "recordedAt": "2026-10-04T07:28:45.368Z",
+  "sha256": "937ea971ad5d72d39ed09600d433942f8c6fcf595ef1b13bb3fcdf722b96042a",
+  "bytes": 24346,
+  "requestId": "fsjwGjqnbWkmtaHwGHuO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "db8ed8043233b1a03f33383afa2558d220a3c4e5e24cf443f7d7c5f2922b7eb4",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

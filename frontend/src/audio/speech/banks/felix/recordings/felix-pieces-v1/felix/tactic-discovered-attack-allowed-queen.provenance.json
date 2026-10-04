@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed-queen",
+      "label": "Tactic discovered attack allowed queen",
+      "text": "Their queen is standing in front of another piece. If it moves, the piece behind gets a clear line. A discovered attack, available to them."
+    },
+    "takeId": null
+  },
+  "requestHash": "1f26ad519788050f8c7fd48ee80486232a63ad4f00d4d286447be3bf6c875162",
+  "recordedAt": "2026-10-04T07:43:49.225Z",
+  "sha256": "4e15dc2ea0b510d1dfd5a490c18d2a80a36a8193daac7bf63926bc36a22faec7",
+  "bytes": 29596,
+  "requestId": "9ioo8WpbMa0zfmLgdrVt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ac8c196e813c0ed6b676debec383c336f5a53420e77280664f44b03e1e578402",
+    "bytes": 152181
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

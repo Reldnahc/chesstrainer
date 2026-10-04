@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-bishop",
+      "label": "Explanation finding sole defender captured bishop",
+      "text": "First the only defender, a bishop, is taken, and then the piece it was guarding. The first capture is what loosens the second."
+    },
+    "takeId": null
+  },
+  "requestHash": "4234a4cc06a76143fbf2b352ccf1d634cea197865938fc449c75dbd5bf779e44",
+  "recordedAt": "2026-10-04T07:31:41.402Z",
+  "sha256": "fa20f5d6394ff5974d0a0966d59b50307576ef308d2ab94911d6198cb0ddf3d7",
+  "bytes": 27269,
+  "requestId": "F80YZNsQhk3DxzhAc5GY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5f09a0512fc406037e82d73e698fd5f45130fea5c3f00c2e17e56e4ce7ba386b",
+    "bytes": 137970
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

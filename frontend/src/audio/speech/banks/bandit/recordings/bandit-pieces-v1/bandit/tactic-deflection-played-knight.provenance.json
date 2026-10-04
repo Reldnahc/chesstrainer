@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "tactic-deflection-played-knight",
+      "label": "Tactic deflection played knight",
+      "text": "Lure the guarding knight away from its post, and its old charge is free for the taking. Rude, but that's a deflection all right."
+    },
+    "takeId": null
+  },
+  "requestHash": "6dab970d36f73f056f69f2d03a8c075a0d29e0f59ef1a85048b43c6085c88f8f",
+  "recordedAt": "2026-10-04T07:36:56.012Z",
+  "sha256": "9c72036c8a7daef0713035e7c5c9e25ce81eb0e0ef5d5257fc7d1d8972f37f79",
+  "bytes": 25609,
+  "requestId": "IH2GBlXkSfgYG0hgQZBu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d98c5504df9f6d68c7ca698e7fc22bbe3896b690d3a03bc02e97f9f297a97dec",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-finding-double-attack-collected-rook",
+      "label": "Explanation finding double attack collected rook",
+      "text": "The moved piece makes one attack and uncovers a second. Here, it's the rook behind it that goes on to take its target."
+    },
+    "takeId": null
+  },
+  "requestHash": "42fbd6223706572d05efe0357dc58c4d027b3440503f858da8d05f7d5f3c7f7e",
+  "recordedAt": "2026-10-04T07:30:08.096Z",
+  "sha256": "4be5f86a1814ee06200742db0d99f248090e4c066651f6618c73cb15ff64e7c2",
+  "bytes": 23554,
+  "requestId": "0gD5XsGabYZp0DAe7WKq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "46218eeafeb3287e15db45a5160d9909f83ec039ec723f5d6f317cd60225900d",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed-queen",
+      "label": "Tactic removing defender missed queen",
+      "text": "Another move would have removed a defending queen and stripped its charge of cover. Here that queen is left in place."
+    },
+    "takeId": null
+  },
+  "requestHash": "c9cfc342297c445202e684cc424a0e0262b17e3b612672048a1b46f1feb9eacf",
+  "recordedAt": "2026-10-04T07:43:48.718Z",
+  "sha256": "91aff4e1eb7334a722a56475eea0b1342df40c256517691c8bd851a24243c9b0",
+  "bytes": 25584,
+  "requestId": "zl0Uh1EyvSauKQOcgWUP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "93b5441b37e3c315b62376dd072f0456f15a2fc95c3ee94d8a6bcd06c0d75ab9",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

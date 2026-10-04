@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-missed-queen",
+      "label": "Tactic undefended capture missed queen",
+      "text": "Another move offered a chance to take an undefended queen. This move lets it pass; keep an eye on loose pieces."
+    },
+    "takeId": null
+  },
+  "requestHash": "9f4c5416102399dbedcc3140b9fe5b3b027e2ee9f7e7831382bc484a541a923e",
+  "recordedAt": "2026-10-04T07:25:47.425Z",
+  "sha256": "67c4f65f6912ba53a445244c3c742c36da239beb7f1d22cdc7779351827b3450",
+  "bytes": 23105,
+  "requestId": "TLRTrfWu8dv3KR9qefpA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1f2868a6154c7a36e8b649ff01f69db38af2870b0514240f185260a09f18eaf8",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

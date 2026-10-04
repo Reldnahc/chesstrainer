@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-bishop",
+      "label": "Positional unsupported actual bishop",
+      "text": "This bishop has no defender now. Undefended is a condition, not a verdict."
+    },
+    "takeId": null
+  },
+  "requestHash": "b51ba3a237d00c01a4741f8bfc3eec711e67fb528653a5e459920178530555c8",
+  "recordedAt": "2026-10-04T07:44:27.041Z",
+  "sha256": "3491a32966daa3e2c42de028762234031b72e24709f6ed766f6756b8a1d14bae",
+  "bytes": 19809,
+  "requestId": "nfW8fsgwxDnsRoIojzB5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b0997f2fd866ffe265fe83e7fa21131a5ecb4fa570bd930ce9e966ab2a583e4c",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

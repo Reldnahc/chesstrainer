@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "tactic-pin-allowed-queen",
+      "label": "Tactic pin allowed queen",
+      "text": "That opens a pin for the other side. Once a queen is pinned to its king, it can't leave the line without exposing the king, so find that line first."
+    },
+    "takeId": null
+  },
+  "requestHash": "424e37048fe379514154747d12fba1acd1183b42875617d08f6804247f8f3f93",
+  "recordedAt": "2026-10-04T07:28:46.573Z",
+  "sha256": "2d12665a741934bea21d9bc46a937c21a873a7cd8af7ca41d373bae1b76eb47d",
+  "bytes": 28469,
+  "requestId": "8wJ1Ue1V2cYlegWygavr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1a045a6e2c8c86ac91e9f8d26884e308918a55da5e51f1b12cba2fdb7067f7eb",
+    "bytes": 147165
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

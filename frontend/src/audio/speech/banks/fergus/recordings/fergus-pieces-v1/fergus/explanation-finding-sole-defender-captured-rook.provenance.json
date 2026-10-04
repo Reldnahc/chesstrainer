@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-rook",
+      "label": "Explanation finding sole defender captured rook",
+      "text": "The lone defending rook is taken first, and later the piece it guarded goes too."
+    },
+    "takeId": null
+  },
+  "requestHash": "3ab06c588576fb3d267450e3f0418c6d34f18b440c7ee213dc7f12a9cc61b8ab",
+  "recordedAt": "2026-10-04T07:47:37.045Z",
+  "sha256": "a043cc51f4b148230037d6be1c5db83ccf7a30f4b11fed65812f6330d61d85c6",
+  "bytes": 18644,
+  "requestId": "LBpcrMjVsCVTPaJ7RI4I",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6877ec4314c4cd804e55689b61cd4f19564cbc7d74519c0d44f3d362a8dae6bd",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

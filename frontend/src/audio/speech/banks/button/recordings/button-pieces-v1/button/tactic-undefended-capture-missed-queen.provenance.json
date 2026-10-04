@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-missed-queen",
+      "label": "Tactic undefended capture missed queen",
+      "text": "There was a loose queen to collect with another move, nothing guarding it. This move passes it by. Loose pieces are always worth a second look."
+    },
+    "takeId": null
+  },
+  "requestHash": "7932515adf27b29d9c503f49d0e2f3da70e1ce5fbb28f11610a38c3941390bc2",
+  "recordedAt": "2026-10-04T07:30:50.250Z",
+  "sha256": "248b56c653f83f0db26a197b9072bafc3c78d39f10001ec8a51c7b69976bd02a",
+  "bytes": 28977,
+  "requestId": "PrTnaDlYIbK8uQQrUWz8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c15a17c2a925d5d72581b191ead043b30503cf91c7834b51d1b99d820f917a6f",
+    "bytes": 150927
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

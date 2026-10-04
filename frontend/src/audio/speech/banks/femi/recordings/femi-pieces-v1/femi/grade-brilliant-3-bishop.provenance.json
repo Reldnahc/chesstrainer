@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "grade-brilliant-3-bishop",
+      "label": "Grade brilliant 3 bishop",
+      "text": "Brilliant. On a quick count it looks like a bishop thrown away, but the checked line says it's sound."
+    },
+    "takeId": null
+  },
+  "requestHash": "0439f8020d05c47c3dbad5094116a0331b49842dc7ca0995e5ac8ec4ec302e16",
+  "recordedAt": "2026-10-04T07:46:26.232Z",
+  "sha256": "168500feedb11c5a494a1e04a47779458eccbd07ebd83b73f2a8546352eb9830",
+  "bytes": 21847,
+  "requestId": "ASKaoVeFGWDRzCpBNQST",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6fba55d05089ae2a8e2337fc35f490c0327a554a09c1c97bce03a540da776990",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

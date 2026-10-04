@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed-bishop",
+      "label": "Tactic discovered attack missed bishop",
+      "text": "Another move would have unmasked an attack by shifting the bishop in front. This move leaves the mask on."
+    },
+    "takeId": null
+  },
+  "requestHash": "7647fb6da906b68758c2fe004e63dd737acd2a3aeb1440816dbe5e09f9e385da",
+  "recordedAt": "2026-10-04T07:43:56.998Z",
+  "sha256": "ef49ed972abd5915cb65d5ab03a071d2d0f517b462e8721d26e0235a3141291d",
+  "bytes": 22623,
+  "requestId": "hGiSZik9KbTRfEL7MGAZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5331cc7011c63d263bbfc3ac4ede9fca32603800619c1291aacb07246c6e2ebd",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-pawn-queen",
+      "label": "Explanation finding double check pawn queen",
+      "text": "Double check here; the pawn and the queen both give check, so the only answer is to move the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "06b54ae0b86b1529486e8ee18000a7b3c56ad59e7a610547c2acd4036dc7140f",
+  "recordedAt": "2026-10-04T07:46:21.270Z",
+  "sha256": "c232653ab492377cb294cbc8903155188b4c490cdf1737b1e88a40bcfcec2870",
+  "bytes": 22198,
+  "requestId": "7G4fsq4HUfPtcAg9J9iz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ad061e83e6dd84cd13ac08759939f94da84f1956114714118df2865a2fe880d0",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

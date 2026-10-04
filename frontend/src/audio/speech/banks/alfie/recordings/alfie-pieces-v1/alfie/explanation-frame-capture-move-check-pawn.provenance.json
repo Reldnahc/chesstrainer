@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-check-pawn",
+      "label": "Explanation frame capture move check pawn",
+      "text": "A pawn is captured, and the same move gives check."
+    },
+    "takeId": null
+  },
+  "requestHash": "9d19321f98845218832fcece30f5c1895387cfbfcda945afd59b148386a3bd29",
+  "recordedAt": "2026-10-04T07:35:44.028Z",
+  "sha256": "cd68c0b081b78c3756e60ac3ebfa3cd37e8dc2b51b18af74ff838d3bdb81379d",
+  "bytes": 11711,
+  "requestId": "Nt2RQ80I8WVba96tqaqL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "acc96e40f9d4d708f6d3b154f28612a273273a25e563ee345207e7a06b65a765",
+    "bytes": 57304
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

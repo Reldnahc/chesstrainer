@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "positional-support-actual-queen",
+      "label": "Positional support actual queen",
+      "text": "Support added. A queen that lacked a defender now has one."
+    },
+    "takeId": null
+  },
+  "requestHash": "4496ca26b26702d0e025b9ec6c1b0bdcf01a8056a621b1a25098e24c92c9bc5a",
+  "recordedAt": "2026-10-04T07:27:59.266Z",
+  "sha256": "15fa97405ae2cf970aa6e81f732610d75891fde048dd3c0d671257403c24ccce",
+  "bytes": 14296,
+  "requestId": "D1uCPGxFuYpq7iAO9RKH",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ea31228ff2f7991af7f42dd179c6b0e0072dfe9288b1e545d9136009498a18cd",
+    "bytes": 72768
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

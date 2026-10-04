@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-bishop",
+      "label": "Tactic removing defender allowed bishop",
+      "text": "Ooh, a defending bishop is up for capture now. Lose it, and whatever it was protecting is left without a guard."
+    },
+    "takeId": null
+  },
+  "requestHash": "93afb61634ba2b4630bdadf24faa5db6e1c804fe2f828599f288421f9702e7ea",
+  "recordedAt": "2026-10-04T07:38:13.893Z",
+  "sha256": "407921716485156fbbc9bd2f105827cd540a6bad7b9a2a901a4ab46f99c5be82",
+  "bytes": 24312,
+  "requestId": "YxnTMu8r0Nm9RC4b5hmS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9359c15f2588faf91efaa9637dac599320f3eecd9e530b10696963dcb92a9b0d",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

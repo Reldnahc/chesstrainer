@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played-rook",
+      "label": "Tactic removing defender played rook",
+      "text": "Everything leans on something. Here the idea is to capture a defending rook, so look at what it was holding up and what loses protection once it's gone."
+    },
+    "takeId": null
+  },
+  "requestHash": "a7bd8627fb1a3cd3f3b81111efef822aaf3a5ffb9dea8e709040d95a8dc1a26a",
+  "recordedAt": "2026-10-04T07:31:07.664Z",
+  "sha256": "9e83f567f1ab77c0787e341c6bb4ecb0d48d32dacc14c737b8c6586be6f42e98",
+  "bytes": 31815,
+  "requestId": "WeDLRmo4JU14En3VNT0G",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1094639253135ee71f1db863788ac53ab22cfb5e38a7b4fc76734e89b3799f6a",
+    "bytes": 160958
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

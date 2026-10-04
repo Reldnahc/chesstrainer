@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-fork-allowed-queen",
+      "label": "Tactic fork allowed queen",
+      "text": "This gives the other side a chance to set up a fork, attacking several targets with the same queen."
+    },
+    "takeId": null
+  },
+  "requestHash": "f7d9db20040dd0a59e588052c738abe0a1e2874716f4a04cfccebb7b801a23f7",
+  "recordedAt": "2026-10-04T07:25:43.334Z",
+  "sha256": "1acd8f18c0d27f9a8448070ab8b493f635d8e80077aaf37aca92ef62ec4ae5e4",
+  "bytes": 18788,
+  "requestId": "6UYWfYMnpT8vj4BdUx5X",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8e623fd69f907d95c0de13a2bd09bd552f292c3b9632adb26bb8dcf300bac4d9",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

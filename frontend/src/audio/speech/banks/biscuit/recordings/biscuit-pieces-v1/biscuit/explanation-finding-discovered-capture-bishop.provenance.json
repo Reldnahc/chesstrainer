@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-capture-bishop",
+      "label": "Explanation finding discovered capture bishop",
+      "text": "A blocker scoots out of the way, which clears a lane for the bishop behind it to make a capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "71e504be67d577979a3788da3c8ab27f8b44eed8ac2fe0ddf2e2f2f714a1dacc",
+  "recordedAt": "2026-10-04T07:39:30.290Z",
+  "sha256": "f9795e281355b274fdc0f68951b6e38a73ce2bc6151331b33cb0e77937bd9cde",
+  "bytes": 17825,
+  "requestId": "2zayo3qZvKT07KlHEPqk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "aa7bde1a2e1c72ab14ffbae1701d1428638f0c32b6e9a283d455903ee9f61fb8",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

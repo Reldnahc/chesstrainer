@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-missed-queen",
+      "label": "Tactic undefended capture missed queen",
+      "text": "A queen without protection was there to take with another move, and the chance was passed over. It pays to look for unprotected pieces first."
+    },
+    "takeId": null
+  },
+  "requestHash": "571504e16693b0ad35c69d5d82d1e78dff3e92565ee1af1f5782aca73a4eb169",
+  "recordedAt": "2026-10-04T07:40:17.687Z",
+  "sha256": "88c6fae813ac9d60ae4c33fc735d48a0c7beb57eb26a4317968c7be76ed616e8",
+  "bytes": 27783,
+  "requestId": "gaMd0M018IyIcuPGWn0f",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "116338ce80a5461fecac40cc61c8e852d8314b95c22a710e9cfa143faee49fde",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

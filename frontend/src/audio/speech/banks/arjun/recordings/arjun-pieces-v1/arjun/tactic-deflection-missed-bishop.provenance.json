@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-bishop",
+      "label": "Tactic deflection missed bishop",
+      "text": "The other candidate would have drawn the defending bishop away from its duty. Try it on the board and see what falls apart behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "7df36b2e46b757836e8c8d5c91e5eebc42ada70ad91bf8f94e12fd06d35b1c04",
+  "recordedAt": "2026-10-04T07:32:58.673Z",
+  "sha256": "b44526b4faee0da9ff8946fcf3a713f8269630a181c2f5aca733fd8330b78294",
+  "bytes": 25406,
+  "requestId": "m9V14QTTwQtOZUBewrz4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5fcc8b194103f793f4a30c177bd715710f3568b5a2b263f1f38c36bc4750e20a",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

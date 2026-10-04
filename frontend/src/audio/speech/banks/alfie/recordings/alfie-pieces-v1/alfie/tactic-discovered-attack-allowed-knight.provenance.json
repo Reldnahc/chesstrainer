@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed-knight",
+      "label": "Tactic discovered attack allowed knight",
+      "text": "A knight that blocks another piece's line can uncover an attack just by moving. This move lets the other side do exactly that, a discovered attack from the piece behind. Check which lines their next move could open."
+    },
+    "takeId": null
+  },
+  "requestHash": "167465d77db520de937ba8a2b5a899e5d20b3790081e02c27e862114d006e9a5",
+  "recordedAt": "2026-10-04T07:34:37.504Z",
+  "sha256": "4cb9aac9aa9ed1636b0a28cd23564f6a397511cf28ec5ef91895c1a24d30418c",
+  "bytes": 41344,
+  "requestId": "1XudwWNJmlsIaTVVx53f",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d437f7873c2bb0122811464ebb94a8a4a4d3251c3ac55e39554a029d83287cb3",
+    "bytes": 211113
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

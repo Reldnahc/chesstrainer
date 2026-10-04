@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed-bishop",
+      "label": "Tactic skewer allowed bishop",
+      "text": "This leaves a bishop and the piece behind it on one line for the other side to skewer. Once the bishop shifts, whatever stands behind it may be laid open."
+    },
+    "takeId": null
+  },
+  "requestHash": "ca850bf7ae0835c79d5d89854363f0fedf8cca705e0cacbe4bdcf3f12fcf6e7c",
+  "recordedAt": "2026-10-04T07:42:06.176Z",
+  "sha256": "d77e338e80b941221e4afbf0a4754a8af79e8f9a2713cd154987d93b7006495e",
+  "bytes": 30871,
+  "requestId": "RyO1LzowPT9TL9Il2kmO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "755c51c842716b00b8f4b18f284c53338a38b7a006984c9d30dfcdbb8e982d51",
+    "bytes": 155942
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "cause-abandoned-defender-bishop",
+      "label": "Cause abandoned defender bishop",
+      "text": "Ah, found the problem! That bishop only had one real defender, and this move sends it away, so the other side can capture the bishop. Quick tip: whenever a defender wanders off, count up everything it used to protect."
+    },
+    "takeId": null
+  },
+  "requestHash": "9f02feb6214377aec292eeda8f78db7681b26782e7b70833fb2a7d10d2c2ec8d",
+  "recordedAt": "2026-10-04T07:39:13.280Z",
+  "sha256": "c9b30eae6435c7b400d29a836686507f0eddd7b972a972029261d7fb3a192b1c",
+  "bytes": 45738,
+  "requestId": "ILyAOCP48cZnFzzOujzW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f49a32d03b072d5092ccf57c8c555499bcfd8be33ebc22f85a254c172a543d6c",
+    "bytes": 240370
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

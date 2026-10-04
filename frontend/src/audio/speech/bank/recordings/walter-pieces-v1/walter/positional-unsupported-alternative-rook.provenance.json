@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-rook",
+      "label": "Positional unsupported alternative rook",
+      "text": "Another move would have left a rook unguarded. That doesn't necessarily mean it could be won."
+    },
+    "takeId": null
+  },
+  "requestHash": "00a4717346e2777d6ccf88edf99e6b39370119c8031c2e7aaed13e2e8c586403",
+  "recordedAt": "2026-10-04T07:26:12.409Z",
+  "sha256": "b907128bf05c859fc9174acebe6a677417fedebc876bc026100bda689c1fc2e5",
+  "bytes": 18264,
+  "requestId": "fN1B5y4DVODHEEgidIfG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b0424bcd476f476e2b633697c2b4cd9aa0da4b8b532267bd650b2394f11ecc19",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

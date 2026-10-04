@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-pawn-rook",
+      "label": "Explanation finding double check pawn rook",
+      "text": "Double check: the pawn and the rook give check at the same time, and only a king move can answer it."
+    },
+    "takeId": null
+  },
+  "requestHash": "41459cb61e716a1d46f6a3d35635d39760cc2045a25d5c093c43c5694745333c",
+  "recordedAt": "2026-10-04T07:33:39.799Z",
+  "sha256": "b0202c63df2497df34df1279bae5b0ffc20d0ac7efc3b0a4430ccc48fca6b732",
+  "bytes": 20734,
+  "requestId": "JAgymBQQFx3PCFBQehvb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ea6d624bfdc94b2b11ee594f65afdd1007840dc645d1196d0966e005860c192e",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

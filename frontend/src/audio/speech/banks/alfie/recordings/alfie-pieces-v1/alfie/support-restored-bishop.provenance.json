@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "support-restored-bishop",
+      "label": "Support restored bishop",
+      "text": "The unguarded bishop from earlier has a defender now. Comparing the two positions shows exactly where its protection came back from."
+    },
+    "takeId": null
+  },
+  "requestHash": "841c5402bb07a47c3ba6be0774d9b87f22eb3b6528979cde6527351fd5555083",
+  "recordedAt": "2026-10-04T07:35:15.740Z",
+  "sha256": "35e6a8f93729b0b8d7e58403b781ef9300523550dbc9f06c49787f3121c2969d",
+  "bytes": 25496,
+  "requestId": "UtXIpCUe0Pf7zcxhHOqJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "71a74224e96712739064f6e8962744db2fadcd65204534337709f3b03c1daa58",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed-knight",
+      "label": "Tactic removing defender missed knight",
+      "text": "The defending knight was the target, and another move could have captured it. Whatever it guarded would have lost its protection. Here the knight survives untouched, and that is a lost opportunity."
+    },
+    "takeId": null
+  },
+  "requestHash": "8d0422e9cdc3e1ecb12946679084b777735ddf8f1fdc6a44e355b0c82b79aceb",
+  "recordedAt": "2026-10-04T07:42:09.962Z",
+  "sha256": "bacc5f2a4ee892150dd583152d36a60e544955d0f7bc7e646cd8a6602fceecfa",
+  "bytes": 38264,
+  "requestId": "Lefnh12v5FrY6fG2o2U3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4c7d11b22331e4bad2e68c8a0e04bdf7711cc872b7a388f25c9906a97afe190b",
+    "bytes": 199410
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

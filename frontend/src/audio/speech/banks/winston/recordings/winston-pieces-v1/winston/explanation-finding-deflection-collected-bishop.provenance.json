@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-bishop",
+      "label": "Explanation finding deflection collected bishop",
+      "text": "The defender's pulled off what it was guarding, and that bishop is then captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "942780320f2286332d617f9deba493104493e0fa5c8d86d9ccef6540cc241dae",
+  "recordedAt": "2026-10-04T07:29:59.807Z",
+  "sha256": "108b4f9fcbffcd10475b7e10d714dc93a0b8f10f8102525941a49cc83343828a",
+  "bytes": 14928,
+  "requestId": "NRGyd4YNFyh1PdFrhn5P",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2bb01cb38c250f676f359bf0e231b3a86123ccf30b5e3bdd7e48c1724ed3f205",
+    "bytes": 74022
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

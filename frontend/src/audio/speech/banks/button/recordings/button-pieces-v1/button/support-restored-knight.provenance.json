@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "support-restored-knight",
+      "label": "Support restored knight",
+      "text": "Remember the knight that was left alone earlier? It has a defender again. Its protection has been mended."
+    },
+    "takeId": null
+  },
+  "requestHash": "a334b3920aadfdf17f2858f42249e0e2908c8611911c6e05ecd896754ccacabc",
+  "recordedAt": "2026-10-04T07:31:22.861Z",
+  "sha256": "e92e1d9bed44d363ced66c48dece2caa7513cae0dc0cda4a4530ef7f856fc80d",
+  "bytes": 20865,
+  "requestId": "GwzfS8a9fhOFzxtqlvme",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3c71f68c01562c4551c26e9376bab6c05eaf17712bfc47ea125c21219d49280d",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

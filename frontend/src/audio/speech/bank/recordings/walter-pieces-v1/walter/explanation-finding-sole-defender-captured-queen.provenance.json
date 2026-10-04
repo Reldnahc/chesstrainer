@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-queen",
+      "label": "Explanation finding sole defender captured queen",
+      "text": "Follow the captures: first the queen that was the only defender, then the piece it was guarding. Notice what the first capture makes possible."
+    },
+    "takeId": null
+  },
+  "requestHash": "7a87a137dfaba7482712de4cc89d8c3055b0cb8dddbbfa62f172163d7d1a7ecb",
+  "recordedAt": "2026-10-04T07:26:34.172Z",
+  "sha256": "e8b79c5561557aabc22d2cfaeb0f630dd86e46afbb965f6acd178081a57af6b8",
+  "bytes": 28227,
+  "requestId": "QnY4LkOrsqLyx6YI3raV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "845893bb26b51d9170e30c8c97cab5de6fb06358bd6aa025e6e52be6ef94064c",
+    "bytes": 147165
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

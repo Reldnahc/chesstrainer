@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "grade-brilliant-2-rook",
+      "label": "Grade brilliant 2 rook",
+      "text": "Brilliant. Generosity with the rook, and a sound idea behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "962562806c432786a32e5b75bb86a192b11b9d0c0055ad18bc1de08a24218a4b",
+  "recordedAt": "2026-10-04T07:45:02.715Z",
+  "sha256": "bf37bd58fe559127aaab920d5ad0109393923a62732306baa130cad7e589bb7c",
+  "bytes": 16286,
+  "requestId": "8LIxsjBMHCTeSIwb9JUb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9ef625b6f687a8caea068264c2dd96834f13ec37bd109f371d8eb7166e9bcce3",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

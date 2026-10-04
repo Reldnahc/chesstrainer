@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "explanation-finding-fork-collected-knight",
+      "label": "Explanation finding fork collected knight",
+      "text": "Watch the fork at work: the same knight attacks several targets, then takes one. The example also shows a net material gain."
+    },
+    "takeId": null
+  },
+  "requestHash": "abbaf1d55546b706053bbbfcfd86908d090cba6c88133744c3d5c8cfc86ff8ef",
+  "recordedAt": "2026-10-04T07:26:25.522Z",
+  "sha256": "b216cd0118a9bcf39bf314727f9f32a58e8b1407caa3df02b0356364dadcf96e",
+  "bytes": 26849,
+  "requestId": "nzC5naIUEoe4E0ENQuF4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b40bc8e4c25de67b44af3cf345318e45b7f2da02b32afa23a988dd11d1ac309c",
+    "bytes": 139224
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

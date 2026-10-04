@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "tactic-fork-missed-queen",
+      "label": "Tactic fork missed queen",
+      "text": "A fork was there to be taken, a lone queen bearing on several targets. That chance was left lying. Go back and find the square."
+    },
+    "takeId": null
+  },
+  "requestHash": "9aab70d8f8d2aa88e62b7913cfcf3fe738aa3c3e688a47ed25059334fbd9fe3a",
+  "recordedAt": "2026-10-04T07:41:53.832Z",
+  "sha256": "6671bd19103a4f3b083de63de0a83f18b2c7102ae7f06f2d329e1c65a37c32ed",
+  "bytes": 27948,
+  "requestId": "LgopBZZpJxdxQREcv8fl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e3ce340564d2341ac5d88610d59e742d0ce255d2e5cb21798334edee619f025d",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-rook",
+      "label": "Explanation finding relative pin released rook",
+      "text": "The opponent's previous move broke a relative pin on the attacking rook. The next move left the target there, and it is captured in the shown line."
+    },
+    "takeId": null
+  },
+  "requestHash": "3db97180b4f8c15c431a0da9a5f84569551d1745c1ac1fb94fad57aa95baf4a2",
+  "recordedAt": "2026-10-04T07:26:15.475Z",
+  "sha256": "22b102b84935eba13cc353c512e4c5f229b11cbcd4e4bc09e5a65e111e8ad2ed",
+  "bytes": 28654,
+  "requestId": "ou6TjtN0q5mM4kqoGWUE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d41eee84282a89af75b329b497eb4c66fd994990d12aa69d5934458b1d1426f7",
+    "bytes": 145911
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

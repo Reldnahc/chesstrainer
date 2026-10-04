@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-knight",
+      "label": "Positional unsupported actual knight",
+      "text": "Now a knight has no defender. That doesn't mean it can be won, but loose pieces are exactly where I'd look first."
+    },
+    "takeId": null
+  },
+  "requestHash": "458b5de43efe8b6b38224231dbddc83b0bd4ff47f8e8d4746c5f02642f17d80f",
+  "recordedAt": "2026-10-04T07:37:27.918Z",
+  "sha256": "f1b78c8e2164f454e8e526dccef74212b4e46a3b0897f13a730419140e6d3dbd",
+  "bytes": 23930,
+  "requestId": "xzStIC0cFjQAAWNT6Kvm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9ed098a05cac4e8be6eb1455e9a74ffba1142a1e6e8f6bde086092019361c84b",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

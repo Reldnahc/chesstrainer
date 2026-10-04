@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-mate-bishop",
+      "label": "Explanation frame capture promotion mate bishop",
+      "text": "The pawn captures a bishop and promotes on the last rank. This is checkmate; the king has no legal escape."
+    },
+    "takeId": null
+  },
+  "requestHash": "c1364d3d9c3794d11f95091b50a88d8d0d5ceb9fc9b6d68fa9a01a0a4ec8280a",
+  "recordedAt": "2026-10-04T07:26:51.930Z",
+  "sha256": "27eaa31683a256fa1ec92c1fac1964cd66c453c4a2ef68364985319317c5174b",
+  "bytes": 22900,
+  "requestId": "ey3Stal8TrRAMi5rkd9X",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "19b2881b6b329a76204f0d4d713edd0763c5ae76106c3f8aec3e78885ec36416",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

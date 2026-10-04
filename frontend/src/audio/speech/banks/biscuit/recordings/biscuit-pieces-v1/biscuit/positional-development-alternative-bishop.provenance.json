@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "positional-development-alternative-bishop",
+      "label": "Positional development alternative bishop",
+      "text": "Another move would have gotten a sleepy bishop off the back row and into the action."
+    },
+    "takeId": null
+  },
+  "requestHash": "2b118ddbc959a674429147cd2d809969c112677b64890197879937de207098a0",
+  "recordedAt": "2026-10-04T07:39:03.014Z",
+  "sha256": "f9d39874f7050b32d84fd9eac55a8d72f610d48a33eb747d168198829dcdec78",
+  "bytes": 16736,
+  "requestId": "XcreGIYiJj4lzUUmWhny",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5dbbfd87d3f5d5c9c60bc233fd0eb9ae2a4804e064704a041b9747fe7be848d7",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

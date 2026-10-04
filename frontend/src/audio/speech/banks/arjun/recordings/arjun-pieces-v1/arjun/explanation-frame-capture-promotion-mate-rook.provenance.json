@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-mate-rook",
+      "label": "Explanation frame capture promotion mate rook",
+      "text": "A pawn capture of a rook, a promotion, and checkmate, all in one move."
+    },
+    "takeId": null
+  },
+  "requestHash": "7f31a65abe4218313499e278ebd527f2c36be037fdb75bb8f14fa1937f5a5765",
+  "recordedAt": "2026-10-04T07:33:42.684Z",
+  "sha256": "d072a36deb6efee1643f6f94cd5374f12536673bcee988fd28c7a984fdf8737b",
+  "bytes": 17699,
+  "requestId": "WacUIUtlLwGn0rDojeVm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e166fc5a9ad98ddff15fdddf8700175167b930d50ddc82d56dc1de66dfb3feb5",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

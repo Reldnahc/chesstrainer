@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "positional-support-actual-rook",
+      "label": "Positional support actual rook",
+      "text": "A piece with a defender can't simply be taken for free. This move gives the rook support it didn't have, so a capture on that square could now be answered with a recapture."
+    },
+    "takeId": null
+  },
+  "requestHash": "4be00724488164402371f067118220adff4a8a6f5c452c486b6f8c23f8520294",
+  "recordedAt": "2026-10-04T07:35:38.301Z",
+  "sha256": "e24b58d8610be042db75444e3aba0faa585abf2ba1e1c52ff78ab18eaed72106",
+  "bytes": 31823,
+  "requestId": "pGg3TD4UJX7zNbfvSWzG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5f322e3cd5c848030c7f146edca603bfbf3a0595b56bb756fcade693d560c62c",
+    "bytes": 160958
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

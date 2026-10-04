@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-queen",
+      "label": "Tactic deflection allowed queen",
+      "text": "How much rests on that one defending queen? The other side has a chance to draw it away, a deflection, and whatever it guards could be left uncovered."
+    },
+    "takeId": null
+  },
+  "requestHash": "094cd2629effaebcc5f43b5afa8ff9c29544efb913827892c825012e41692224",
+  "recordedAt": "2026-10-04T07:31:02.606Z",
+  "sha256": "1bd019cded4d911ba1a54f82ebe3f22a8cd3c3c1e2d9a1e3ebd9cc5f185ccf01",
+  "bytes": 30868,
+  "requestId": "sGVFXp2FaHE84biSVjxN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fa3ffdaf95a6aab197f5b49fa5e433b4b8c7a594b8f4ef16275a3bfd845f0c1e",
+    "bytes": 157196
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

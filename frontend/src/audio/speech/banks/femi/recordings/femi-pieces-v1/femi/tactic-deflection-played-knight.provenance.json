@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "tactic-deflection-played-knight",
+      "label": "Tactic deflection played knight",
+      "text": "Classic deflection. The defending knight gets pulled elsewhere, and the piece it had been looking after is now loose."
+    },
+    "takeId": null
+  },
+  "requestHash": "63e483830c489498e75a2562d6b33473a7c15c58774153ee8e46cf815a84a91b",
+  "recordedAt": "2026-10-04T07:45:32.029Z",
+  "sha256": "8ebd33d3688e8436822fccf36a8b0413f086410cbe36161bf223dfefa5d8a311",
+  "bytes": 24580,
+  "requestId": "B5o8Up3looMFO8cNz8VA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "64bface4d95406051f56f77a18c13909f1d281a5fe88dde439a6cc318bc84a0a",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

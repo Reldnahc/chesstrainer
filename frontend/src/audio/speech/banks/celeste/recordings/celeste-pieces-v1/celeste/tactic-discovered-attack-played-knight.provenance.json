@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-knight",
+      "label": "Tactic discovered attack played knight",
+      "text": "What an elegant release. The knight steps aside, and the piece behind it is free to attack along the opened line."
+    },
+    "takeId": null
+  },
+  "requestHash": "74f5a24505c3ce0c708d42402aa4aa59bd28634b98eff84094bc0d71d1c21794",
+  "recordedAt": "2026-10-04T07:40:05.174Z",
+  "sha256": "d0a8b00717347d4872407e51c2397a809cb8073adb5717103961950ac7a7f32b",
+  "bytes": 24309,
+  "requestId": "gAV6O7FVfDDQzkkD5Xn7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9a8bae1bcc1ec67f2066f232b2ebffe8537a6a2f5995bbcf2d19dfd62ba26527",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

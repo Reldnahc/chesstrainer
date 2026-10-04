@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-finding-fork-collected-rook",
+      "label": "Explanation finding fork collected rook",
+      "text": "Here the fork does its work. One rook attacks several targets, then takes one of them, and this example also shows a net gain in material."
+    },
+    "takeId": null
+  },
+  "requestHash": "2d0180c62e74f05abb1ff5ad7fc60097d6027a71b2088fe50a9932a8b9b1a4bf",
+  "recordedAt": "2026-10-04T07:29:47.600Z",
+  "sha256": "1582bcf8626ddc0befd66a28f195cdba6ac410f422d2b565c2f9952024378fcc",
+  "bytes": 29341,
+  "requestId": "AzPGIgh3ychPDlUoLtXZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e45f1441ed3babb9f2223b3016b775d4f648c3f366f81fb187fd4f5c63414d8d",
+    "bytes": 152181
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

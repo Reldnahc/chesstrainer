@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "explanation-finding-king-skewer-collected-knight",
+      "label": "Explanation finding king skewer collected knight",
+      "text": "The check drives the king off the line, after which that attacker helps itself to the knight behind."
+    },
+    "takeId": null
+  },
+  "requestHash": "f632e4473d77cc756cce8e4beef51d6bcd3ad3a3fbed711b34cb07a665a7265e",
+  "recordedAt": "2026-10-04T07:46:09.887Z",
+  "sha256": "a69fe0b3695c6f36b82d091b3beded8fe1d43cb18f2870e2ac9a4039b65ef156",
+  "bytes": 21518,
+  "requestId": "CcotPAcPpR2FiYIUUqCg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "977dc9666a79a23b9a00fd24864d9f98acf53166c6316673fcf092c8f7da56a8",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

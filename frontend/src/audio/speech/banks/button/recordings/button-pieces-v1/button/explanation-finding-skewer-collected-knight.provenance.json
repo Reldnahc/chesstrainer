@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-knight",
+      "label": "Explanation finding skewer collected knight",
+      "text": "Once the knight in front steps off, the piece it was shielding is captured, right along that same line."
+    },
+    "takeId": null
+  },
+  "requestHash": "545253594b32ad874e65c005c64ec6d8e38dd5018a2566517123eb68ca55c88e",
+  "recordedAt": "2026-10-04T07:31:34.629Z",
+  "sha256": "de2b06c58e8234fe521c04cae408eb599c6d54042b71d7b36a6b035811915666",
+  "bytes": 20269,
+  "requestId": "XXteHBs7KmaWRoMlhrig",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5d0303aebfcb3b267c9df7c1ec4bee198e1194a6e33ebab7a2177511906b36ef",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

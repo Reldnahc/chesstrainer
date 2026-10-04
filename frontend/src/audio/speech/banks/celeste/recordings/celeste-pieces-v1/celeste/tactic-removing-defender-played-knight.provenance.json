@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played-knight",
+      "label": "Tactic removing defender played knight",
+      "text": "How neatly it unravels. The defending knight is captured, and the connection it held is broken; whatever it protected now stands without cover."
+    },
+    "takeId": null
+  },
+  "requestHash": "bdc7c826d14b635d2379ee4a089801d2c129b619edeb1424271c8e98c8d0899d",
+  "recordedAt": "2026-10-04T07:40:28.706Z",
+  "sha256": "cd47b1457ec64304c1a68d0ea634f55f0b9dfacb8d117dc2302514d76d00cae8",
+  "bytes": 31354,
+  "requestId": "ihHSy5qILmwkvWS9UKR2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e28ddab49627a88676fac92dc6bebcc4fb543b3fa6ae6f12f9a73c4ad3a66c85",
+    "bytes": 158450
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

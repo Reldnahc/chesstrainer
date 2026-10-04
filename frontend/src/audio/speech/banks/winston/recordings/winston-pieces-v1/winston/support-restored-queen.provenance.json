@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "support-restored-queen",
+      "label": "Support restored queen",
+      "text": "That queen, unguarded earlier, has a defender again. Find where the cover comes from."
+    },
+    "takeId": null
+  },
+  "requestHash": "19b39e9f98460435823cb182fb4c3be74d7f0de5bd4e6727ffe2b7e2eca8bda2",
+  "recordedAt": "2026-10-04T07:29:39.261Z",
+  "sha256": "4014601405af4ef9298e1289360b2e0c2f98d68d16a5d48b1a3c2cddbc56fabf",
+  "bytes": 17959,
+  "requestId": "feNWwND9wcoo8EQg6eVo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7b4d5a25027763a570ff31da182d10f716f861003e4943f244c0565cf751569a",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

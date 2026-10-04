@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "explanation-finding-king-skewer-collected-queen",
+      "label": "Explanation finding king skewer collected queen",
+      "text": "The king has to step out of check and off the line. Then the same attacker takes the queen that was behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "4a216636a2a06eeca6154377e0a83d41fd08f11ecf76fed8abef547a1557c29d",
+  "recordedAt": "2026-10-04T07:31:48.125Z",
+  "sha256": "ecf07acb3cc1b2554a34e6791278ce6f74b3c69a5e59eeab7eade8d06acd48f3",
+  "bytes": 21799,
+  "requestId": "65oKmsUIJS8WOMQDZXbf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fba6c274741a1373fcaa3bfab4ac18a3cd79d67a45f1446512d39879ebe39f8e",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

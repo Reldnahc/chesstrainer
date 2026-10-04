@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate-pawn",
+      "label": "Explanation frame capture move mate pawn",
+      "text": "Takes the pawn and mates. Every legal move the king had is gone."
+    },
+    "takeId": null
+  },
+  "requestHash": "cedbb2dc62ed98144f8fd9cfea8f49affdd04ee522be59e94d33e46cc0f97d35",
+  "recordedAt": "2026-10-04T07:44:40.241Z",
+  "sha256": "e58cb99d9c9b8ae54fa0729c2d2f7c514c561928ca0a48ea7defbc218c8daf6b",
+  "bytes": 17715,
+  "requestId": "edJ4o3lNG0DFHL2cFQyq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8ba909635f2e032268b942c4b1369ad4f802471af1791a5be2ff07569e710505",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-finding-king-skewer-collected-knight",
+      "label": "Explanation finding king skewer collected knight",
+      "text": "The king is checked off the line, and the same attacker then collects the knight that stood behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "9d7f5e5d88cf78ddd7e0967fbdd29e887294eb55cc77c3af9556f252c9d7fc04",
+  "recordedAt": "2026-10-04T07:33:33.233Z",
+  "sha256": "77a60075f9f9fc24ff65b4a87c434d82507be75a63e56ec4e0b1db3a27c1739e",
+  "bytes": 18014,
+  "requestId": "GOoqmUSfSEYgQJgrh0Fm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b49d55d300818b7cfa882637e37c67c9cf73f2dff1713317366072f2f3d3961b",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "explanation-finding-double-attack-collected-rook",
+      "label": "Explanation finding double attack collected rook",
+      "text": "The first piece attacks something and opens a line for the rook. In the example, the rook captures its target."
+    },
+    "takeId": null
+  },
+  "requestHash": "1ded5e2c98a69ef22a0fef76132a6a4b4ad6dbae8122dfc13d3d7d87a98b5ce1",
+  "recordedAt": "2026-10-04T07:31:53.243Z",
+  "sha256": "f7dae5c9fb836b0c9390d2cf07268a66127f8087be1f2bdf687276d9b3665a63",
+  "bytes": 23872,
+  "requestId": "WoHtu7aQllCRzxqoloSJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6a2795a2f892f9ec36f47ee6c00afd74d7175b30002869fcef775e70a72d462f",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate-knight",
+      "label": "Explanation frame capture move mate knight",
+      "text": "It captures the knight, and it's mate on top of that, with the king out of legal moves."
+    },
+    "takeId": null
+  },
+  "requestHash": "07b1fd431b87da3591aa23f0a95a5526d58a5eeef227e36bef91f42daba5b223",
+  "recordedAt": "2026-10-04T07:46:18.398Z",
+  "sha256": "e7d8e05c76fb6b0d23bc89e6ad9e754ac85e9b497ed5c5cba8d7b79e19a20b1e",
+  "bytes": 18504,
+  "requestId": "hWcAye8ZZJo65chFAvMA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dc6f99367f70ec8755b188492c85388d48d29c1345e4ac2dcc72748cda55b556",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

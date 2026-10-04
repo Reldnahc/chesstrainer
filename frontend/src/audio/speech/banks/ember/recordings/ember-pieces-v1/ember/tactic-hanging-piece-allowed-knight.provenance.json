@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "tactic-hanging-piece-allowed-knight",
+      "label": "Tactic hanging piece allowed knight",
+      "text": "A knight is left hanging, and the other side can take it for free. Every piece must be accounted for before a move is made."
+    },
+    "takeId": null
+  },
+  "requestHash": "2e42826fd9d0c7215b2bea4fd1412cf05887833e45d6ec7a22eeaad59b123bb1",
+  "recordedAt": "2026-10-04T07:42:01.588Z",
+  "sha256": "74e9775c4668974d2b23f4f66bbf45a9bd93e521e01847ec128884225329ec2d",
+  "bytes": 25139,
+  "requestId": "GdP7DQ3JothNrO2Ve6gk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "15ad00e4fac1b60069bf2c0eba1368552627ad33f59d476b6422f643ef80ab38",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

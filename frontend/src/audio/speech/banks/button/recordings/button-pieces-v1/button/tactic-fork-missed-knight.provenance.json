@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-fork-missed-knight",
+      "label": "Tactic fork missed knight",
+      "text": "Another move had a fork in it, a knight reaching several targets together. This move walks past it."
+    },
+    "takeId": null
+  },
+  "requestHash": "1348a92a333290e15080e69a7efc4e4a3d0cc779f08fff44023c52d92d80c5d0",
+  "recordedAt": "2026-10-04T07:30:42.103Z",
+  "sha256": "9c2aad7dbfcb750e87df713464566cecb2878b4974a33a97e6a25ffa00ffb17b",
+  "bytes": 22219,
+  "requestId": "eqFWE5d7OU44NixPxNtt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "914f9b925284cf677ce7c4ba70132b796fa321b411eae7f81409b1d81b6e2293",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

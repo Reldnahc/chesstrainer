@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "explanation-finding-king-skewer-collected-rook",
+      "label": "Explanation finding king skewer collected rook",
+      "text": "In this example, the king steps out of check and off the line. The same attacker then takes the rook behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "baf531dec432332b579adb8cd03bf0120512995df3bb1004912ca2214cfe9050",
+  "recordedAt": "2026-10-04T07:26:33.704Z",
+  "sha256": "f54a0c1f5078fbd0add5b2a79fa8410d972c800162e675b80d0f96a239a0c68b",
+  "bytes": 22726,
+  "requestId": "k0p4iV5GhSp10yPSfPGe",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "92e70bc3d4177927460fcecaf796b0adb270f210be7c17e15fb27eb1db7ba777",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

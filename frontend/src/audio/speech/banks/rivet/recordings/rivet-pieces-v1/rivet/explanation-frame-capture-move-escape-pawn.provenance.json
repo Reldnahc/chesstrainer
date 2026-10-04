@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-escape-pawn",
+      "label": "Explanation frame capture move escape pawn",
+      "text": "This capture of a pawn ends the check against the moving side's king."
+    },
+    "takeId": null
+  },
+  "requestHash": "ae890d55745bbf45b14151f71bec992f6c0463229a3291f92814c44c8864a501",
+  "recordedAt": "2026-10-04T07:28:25.259Z",
+  "sha256": "9eaab9d17a7188286bbfd1ee13bf8d273f7766f177e8b986828638a0c057c46f",
+  "bytes": 14303,
+  "requestId": "7MmYkIUScVEJRBZ2KCwi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "332e9c1f487751f2c98c3d1a140def4c5c29fab86a252612439a4986c9a67739",
+    "bytes": 69007
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

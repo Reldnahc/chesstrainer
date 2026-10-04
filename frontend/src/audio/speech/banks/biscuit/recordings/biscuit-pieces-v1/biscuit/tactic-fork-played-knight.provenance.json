@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "tactic-fork-played-knight",
+      "label": "Tactic fork played knight",
+      "text": "Whoa, fork time! One knight is threatening a whole bunch of targets in the very same move, and that's so much fun to see."
+    },
+    "takeId": null
+  },
+  "requestHash": "fb386aa52176a033d9cd5bfb3f468921124c508ab59b0beb04eabacdd97d1b7c",
+  "recordedAt": "2026-10-04T07:37:53.053Z",
+  "sha256": "e5764e9680b4f2eaeecdbb9656bce65ee652a2cd4e8e9baa2ee7179a5e6937b0",
+  "bytes": 28157,
+  "requestId": "aaMjNr681LFdqIDmE3dn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6114fb89bf123bda2cd536b9eae4849bc90f9979a55d251dcfb8f9c7546ec12c",
+    "bytes": 139224
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "tactic-fork-allowed-pawn",
+      "label": "Tactic fork allowed pawn",
+      "text": "This hands the other side a fork, their pawn against two targets, which makes for a crowded position."
+    },
+    "takeId": null
+  },
+  "requestHash": "8828fd01b64454ee4e0f0737bbbaf0045853b2cfe0cddbfb9fc111263cfbae0c",
+  "recordedAt": "2026-10-04T07:46:36.472Z",
+  "sha256": "0daf0ab0567471e460ec88ed4fb4743676efca5ed5004cc78a9b30e6153f4179",
+  "bytes": 21263,
+  "requestId": "RMMvRWnaxsg4GMZMyorz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "22ea6050e01eb02eaeac3a25873f683d67acea1d2ccafdf2a13ed2c4514a0f9e",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

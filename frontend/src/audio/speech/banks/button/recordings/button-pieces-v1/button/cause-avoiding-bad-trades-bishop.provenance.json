@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "cause-avoiding-bad-trades-bishop",
+      "label": "Cause avoiding bad trades bishop",
+      "text": "A capture is only the first half of a conversation. This one invites a recapture of the capturing bishop, worth more than what it took, so count both sides before taking."
+    },
+    "takeId": null
+  },
+  "requestHash": "3060537ad5d0667a197f267d5c28c0ca1d371f7ebd4fd9272fb1845ff7c0d3dc",
+  "recordedAt": "2026-10-04T07:31:15.612Z",
+  "sha256": "8f915991f97adcb367f9c9ef68506b1dac9f0522fd4b9a0e83adea258f39b5f8",
+  "bytes": 36010,
+  "requestId": "sjjIdARVbUuzrA9a94xG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e2a1575d9f367ae80d58006e587b76adbe7df4c1d163fc3abea4de2b446e8518",
+    "bytes": 183946
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

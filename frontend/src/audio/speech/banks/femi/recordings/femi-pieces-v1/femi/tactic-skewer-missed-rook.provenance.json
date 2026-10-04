@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "tactic-skewer-missed-rook",
+      "label": "Tactic skewer missed rook",
+      "text": "Put the stronger move next to this one and a skewer shows up. Force the rook in front to move, and the piece standing behind it can be captured. Worth setting that up on the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "81a6f5b788cff65889466de44b33b17f2c5cf9ce0d80ab5c475ce272129f28fc",
+  "recordedAt": "2026-10-04T07:45:07.231Z",
+  "sha256": "ecfc8984223f3aaed5bca93defbf376903807142063d02097f196d6e6db264e8",
+  "bytes": 33661,
+  "requestId": "6sKRZL2PjQYCph0EZOTV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "41cc5caa0a9868503f5d9bdc24145aff8076ebb13b359f993323ed8ce1a472e5",
+    "bytes": 173915
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-pawn",
+      "label": "Explanation finding pin collected pawn",
+      "text": "The pinned pawn is chained to its line by the king behind it. It is held there, and as these moves play out, it is captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "02bbace3bfbebd4effa59fc40cc08ac7e3af3c89567e21fd6e68e82f44cf710e",
+  "recordedAt": "2026-10-04T07:42:36.223Z",
+  "sha256": "2fea7ad4e4b702b616d951bc29e07247bd011e6b533d842711065a7b81e43ff4",
+  "bytes": 25090,
+  "requestId": "CCL5m2NMWfr3EqizoZgR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a569f8b3210b0d436224c29e499c45b09d530055c04745fd3f41c7e39d2d5dda",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

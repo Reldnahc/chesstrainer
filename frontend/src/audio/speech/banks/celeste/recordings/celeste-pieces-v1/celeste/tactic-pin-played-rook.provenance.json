@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "tactic-pin-played-rook",
+      "label": "Tactic pin played rook",
+      "text": "How elegantly placed. The pinned rook is bound to its king's line, and stepping off would leave the king open to attack."
+    },
+    "takeId": null
+  },
+  "requestHash": "9319bd28c9bac36dd74c0a16b39a934b03e9104ffcaad9434dee01cca8712083",
+  "recordedAt": "2026-10-04T07:40:15.653Z",
+  "sha256": "38757c16babece16cc1bd8d4b12766c510b445a46a8171374161bee39684251e",
+  "bytes": 26324,
+  "requestId": "Z3nAI5Xpc182bcx6Di8E",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0c1f208d1fe05a96e0e98e9b7a48a4678168f6e9a49d3d6ab519e0316a6ee315",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

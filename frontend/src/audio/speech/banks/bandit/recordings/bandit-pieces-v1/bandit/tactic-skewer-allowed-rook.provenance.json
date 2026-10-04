@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed-rook",
+      "label": "Tactic skewer allowed rook",
+      "text": "That lines up a skewer, and it's the other side's to use. Whatever's standing behind the rook in front could be left exposed once it moves."
+    },
+    "takeId": null
+  },
+  "requestHash": "f5fe4f9c557f2b28aac1a269edbb923fbdd72bff66b91aec2b830a116bbb925e",
+  "recordedAt": "2026-10-04T07:36:49.698Z",
+  "sha256": "f7c5f5aeb72d81927bdee742b0068b54e9d0af20b3f1f0e43cfd109a1f7f4424",
+  "bytes": 28241,
+  "requestId": "29e5id8viBKyekxWuBuH",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2c4f5d62a839c4641d61247d13fc10fe6c5f7ff73edf5d5f0b4199fa3c4c0325",
+    "bytes": 142986
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,645 @@
+{
+  "schemaVersion": 1,
+  "scriptId": "explanation-frame-capture-promotion-mate-knight",
+  "voiceId": "arjun",
+  "metadata": {
+    "duration": 5.52
+  },
+  "mouthCues": [
+    {"start":0.0,"end":0.13,"value":"C"},
+    {"start":0.13,"end":0.26,"value":"A"},
+    {"start":0.26,"end":0.42,"value":"E"},
+    {"start":0.42,"end":0.56,"value":"B"},
+    {"start":0.56,"end":0.68,"value":"C"},
+    {"start":0.68,"end":0.74,"value":"A"},
+    {"start":0.74,"end":0.81,"value":"B"},
+    {"start":0.81,"end":0.93,"value":"E"},
+    {"start":0.93,"end":0.97,"value":"C"},
+    {"start":0.97,"end":1.06,"value":"G"},
+    {"start":1.06,"end":1.12,"value":"C"},
+    {"start":1.12,"end":1.25,"value":"B"},
+    {"start":1.25,"end":1.34,"value":"D"},
+    {"start":1.34,"end":1.58,"value":"B"},
+    {"start":1.58,"end":1.78,"value":"X"},
+    {"start":1.78,"end":1.86,"value":"C"},
+    {"start":1.86,"end":1.94,"value":"A"},
+    {"start":1.94,"end":1.99,"value":"E"},
+    {"start":1.99,"end":2.03,"value":"C"},
+    {"start":2.03,"end":2.12,"value":"A"},
+    {"start":2.12,"end":2.17,"value":"E"},
+    {"start":2.17,"end":2.23,"value":"F"},
+    {"start":2.23,"end":2.34,"value":"B"},
+    {"start":2.34,"end":2.42,"value":"C"},
+    {"start":2.42,"end":2.59,"value":"B"},
+    {"start":2.59,"end":2.76,"value":"X"},
+    {"start":2.76,"end":2.91,"value":"C"},
+    {"start":2.91,"end":3.2,"value":"B"},
+    {"start":3.2,"end":3.28,"value":"C"},
+    {"start":3.28,"end":3.37,"value":"B"},
+    {"start":3.37,"end":3.46,"value":"A"},
+    {"start":3.46,"end":3.53,"value":"C"},
+    {"start":3.53,"end":3.73,"value":"B"},
+    {"start":3.73,"end":4.0,"value":"X"},
+    {"start":4.0,"end":4.17,"value":"E"},
+    {"start":4.17,"end":4.36,"value":"H"},
+    {"start":4.36,"end":4.68,"value":"B"},
+    {"start":4.68,"end":4.82,"value":"F"},
+    {"start":4.82,"end":4.86,"value":"C"},
+    {"start":4.86,"end":4.9,"value":"B"},
+    {"start":4.9,"end":5.01,"value":"A"},
+    {"start":5.01,"end":5.2,"value":"F"},
+    {"start":5.2,"end":5.38,"value":"G"},
+    {"start":5.38,"end":5.52,"value":"X"}
+  ],
+  "provenance": {
+    "sourceScriptId": "explanation-frame-capture-promotion-mate-knight",
+    "manualTimingEdits": false,
+    "recording": {
+      "path": "frontend/src/audio/speech/banks/arjun/recordings/arjun-pieces-v1/arjun/explanation-frame-capture-promotion-mate-knight.opus",
+      "sha256": "b96ed1d30b4c1565486b0c6d022fd1491f58453c80232713118d460160c6290f",
+      "bytes": 17699
+    },
+    "script": {
+      "planPath": "frontend/src/audio/speech/banks/arjun/manifest.json",
+      "text": "A pawn capture of a knight, a promotion, and checkmate, all in one move.",
+      "sha256": "1bc4eb12b7f8d0cdfcaf34fd56cf4c6c2978a56cb7c1163de684872c2d56f095"
+    },
+    "tool": {
+      "name": "PocketSphinx",
+      "version": "5.1.1",
+      "api": [
+        "Decoder.set_align_text",
+        "Decoder.set_alignment",
+        "Decoder.get_alignment"
+      ],
+      "documentation": "https://pocketsphinx.readthedocs.io/en/latest/pocketsphinx.html#pocketsphinx.Decoder.set_alignment",
+      "modelFilesSha256": {
+        "en-us/cmudict-en-us.dict": "20b5c293e1f311fb375fe067e500ec5636f4fc7af5594967263696def9b23bfe",
+        "en-us/en-us/feat.params": "c982c5f75e2a30c34d2c9ef1f6b129a5a00e67e3e927565076b58664cc2404c9",
+        "en-us/en-us/mdef": "2360f9a86889c1cfee8bd618a0269387911e5fb2920a594f506b18b8c79683b0",
+        "en-us/en-us/means": "832019e32cac12eb318964f96f469034acb12d0348eeddc3831831a100cb4dd4",
+        "en-us/en-us/noisedict": "7295b07df2c204c4f87c6782b6be1a3859d7006d4e3864181c955d6dab105a33",
+        "en-us/en-us/sendump": "8c9564c0d5bef69ca9d9bf1014abe162f071644cf02cf1fa8a483c3dc165a7a8",
+        "en-us/en-us/transition_matrices": "c1f7f28ea43177be734be1f88bd7f1b9a853d0e660f8599c67c6eaeca8bb539a",
+        "en-us/en-us/variances": "b00d696f85e96834fc10f8e5f06428d8c4db6bffdbe5845b6f69bf6efbc48fa5"
+      },
+      "configuration": {
+        "pip": 1,
+        "hmm": "$MODEL/en-us/en-us",
+        "wip": 0.65,
+        "silprob": 0.005,
+        "remove_noise": true,
+        "mixwfloor": 1e-07,
+        "varnorm": false,
+        "beam": 1e-48,
+        "lpbeam": 1e-40,
+        "varfloor": 0.0001,
+        "pl_pbeam": 1e-10,
+        "round_filters": true,
+        "fwdflatsfwin": 25,
+        "kws_threshold": 1e-30,
+        "fdict": "$MODEL/en-us/en-us/noisedict",
+        "maxhmmpf": 30000,
+        "kws_plp": 0.1,
+        "min_endfr": 0,
+        "nfilt": 25,
+        "ncep": 13,
+        "fwdflatefwid": 4,
+        "frate": 100,
+        "ascale": 20,
+        "lifter": 22,
+        "bestpath": false,
+        "tmatfloor": 0.0001,
+        "feat": "1s_c_d_dd",
+        "lowerf": 130,
+        "maxwpf": -1,
+        "pl_beam": 1e-10,
+        "alpha": 0.97,
+        "mmap": true,
+        "nwpen": 1,
+        "fwdtree": true,
+        "fwdflat": true,
+        "smoothspec": false,
+        "mdef": "$MODEL/en-us/en-us/mdef",
+        "samprate": 16000,
+        "allphone_ci": true,
+        "cmninit": "40,3,-1",
+        "upperf": 6800,
+        "transform": "dct",
+        "mean": "$MODEL/en-us/en-us/means",
+        "pl_weight": 3,
+        "sendump": "$MODEL/en-us/en-us/sendump",
+        "fwdflatbeam": 1e-64,
+        "tmat": "$MODEL/en-us/en-us/transition_matrices",
+        "fsgusealtpron": true,
+        "loglevel": "ERROR",
+        "dict": "$MODEL/en-us/cmudict-en-us.dict",
+        "dither": false,
+        "aw": 1,
+        "dictcase": false,
+        "var": "$MODEL/en-us/en-us/variances",
+        "pl_window": 5,
+        "latsize": 5000,
+        "agc": "none",
+        "ldadim": 0,
+        "lw": 6.5,
+        "topn_beam": "0",
+        "uw": 1,
+        "fwdflatlw": 8.5,
+        "ceplen": 13,
+        "backtrace": false,
+        "bestpathlw": 9.5,
+        "logspec": false,
+        "nfft": 0,
+        "verbose": false,
+        "pl_pip": 1,
+        "topn": 4,
+        "fwdflatwbeam": 7e-29,
+        "compallsen": false,
+        "cmn": "batch",
+        "fillprob": 1e-08,
+        "warp_type": "inverse_linear",
+        "unit_area": true,
+        "agcthresh": 2,
+        "fsgusefiller": true,
+        "seed": 0,
+        "featparams": "$MODEL/en-us/en-us/feat.params",
+        "ds": 1,
+        "lponlybeam": 7e-29,
+        "input_endian": "little",
+        "remove_dc": false,
+        "svspec": "0-12/13-25/26-38",
+        "kws_delay": 10,
+        "wlen": 0.025625,
+        "pbeam": 1e-48,
+        "doublebw": false,
+        "logbase": 1.0001,
+        "wbeam": 7e-29
+      },
+      "configurationSha256": "4cc690802d0d8774029df0c0d0e0a370dab93bb8a4bbe9f7a711e8a9c2d027c5"
+    },
+    "conversion": {
+      "decoder": "SoundFile",
+      "decoderVersion": "0.13.1",
+      "libsndfileVersion": "1.2.2",
+      "numpyVersion": "2.2.6",
+      "inputChannels": 1,
+      "channels": 1,
+      "sampleRate": 48000,
+      "sampleWidthBytes": 2,
+      "frames": 264960,
+      "durationSeconds": 5.52,
+      "method": "float64 SoundFile decode; arithmetic channel mean; round(clip(sample,-1,1)*32767) to little-endian PCM16 WAV",
+      "trimmed": false,
+      "resampled": false,
+      "wavSha256": "95a252bb76481e102e491d59e97e270a71d8685dc5ec4d5a6d32d86ffb9b45a1"
+    },
+    "resampling": {
+      "method": "Python 3.12 audioop.ratecv PCM16 mono, weightA=1, weightB=0",
+      "sourceSampleRate": 48000,
+      "sampleRate": 16000,
+      "sampleWidthBytes": 2,
+      "channels": 1,
+      "frames": 88320,
+      "durationSeconds": 5.52,
+      "trimmed": false,
+      "pcmSha256": "aa039636ceba48855db80fbc92e58c3f5b50700806c0c1afa8678592dee5cf90"
+    },
+    "alignment": {
+      "frameRate": 100,
+      "normalizedTranscript": "a pawn capture of a knight a promotion and checkmate all in one move",
+      "words": [
+        {
+          "word": "a",
+          "startFrame": 0,
+          "durationFrames": 13,
+          "phones": [
+            {
+              "phone": "AH",
+              "startFrame": 0,
+              "durationFrames": 13
+            }
+          ]
+        },
+        {
+          "word": "pawn",
+          "startFrame": 13,
+          "durationFrames": 38,
+          "phones": [
+            {
+              "phone": "P",
+              "startFrame": 13,
+              "durationFrames": 13
+            },
+            {
+              "phone": "AO",
+              "startFrame": 26,
+              "durationFrames": 16
+            },
+            {
+              "phone": "N",
+              "startFrame": 42,
+              "durationFrames": 9
+            }
+          ]
+        },
+        {
+          "word": "capture",
+          "startFrame": 51,
+          "durationFrames": 42,
+          "phones": [
+            {
+              "phone": "K",
+              "startFrame": 51,
+              "durationFrames": 5
+            },
+            {
+              "phone": "AE",
+              "startFrame": 56,
+              "durationFrames": 12
+            },
+            {
+              "phone": "P",
+              "startFrame": 68,
+              "durationFrames": 6
+            },
+            {
+              "phone": "CH",
+              "startFrame": 74,
+              "durationFrames": 7
+            },
+            {
+              "phone": "ER",
+              "startFrame": 81,
+              "durationFrames": 12
+            }
+          ]
+        },
+        {
+          "word": "of",
+          "startFrame": 93,
+          "durationFrames": 13,
+          "phones": [
+            {
+              "phone": "AH",
+              "startFrame": 93,
+              "durationFrames": 4
+            },
+            {
+              "phone": "V",
+              "startFrame": 97,
+              "durationFrames": 9
+            }
+          ]
+        },
+        {
+          "word": "a",
+          "startFrame": 106,
+          "durationFrames": 6,
+          "phones": [
+            {
+              "phone": "AH",
+              "startFrame": 106,
+              "durationFrames": 6
+            }
+          ]
+        },
+        {
+          "word": "knight",
+          "startFrame": 112,
+          "durationFrames": 46,
+          "phones": [
+            {
+              "phone": "N",
+              "startFrame": 112,
+              "durationFrames": 13
+            },
+            {
+              "phone": "AY",
+              "startFrame": 125,
+              "durationFrames": 18
+            },
+            {
+              "phone": "T",
+              "startFrame": 143,
+              "durationFrames": 15
+            }
+          ]
+        },
+        {
+          "word": "<sil>",
+          "startFrame": 158,
+          "durationFrames": 20,
+          "phones": [
+            {
+              "phone": "SIL",
+              "startFrame": 158,
+              "durationFrames": 20
+            }
+          ]
+        },
+        {
+          "word": "a",
+          "startFrame": 178,
+          "durationFrames": 8,
+          "phones": [
+            {
+              "phone": "AH",
+              "startFrame": 178,
+              "durationFrames": 8
+            }
+          ]
+        },
+        {
+          "word": "promotion",
+          "startFrame": 186,
+          "durationFrames": 73,
+          "phones": [
+            {
+              "phone": "P",
+              "startFrame": 186,
+              "durationFrames": 8
+            },
+            {
+              "phone": "R",
+              "startFrame": 194,
+              "durationFrames": 5
+            },
+            {
+              "phone": "AH",
+              "startFrame": 199,
+              "durationFrames": 4
+            },
+            {
+              "phone": "M",
+              "startFrame": 203,
+              "durationFrames": 9
+            },
+            {
+              "phone": "OW",
+              "startFrame": 212,
+              "durationFrames": 11
+            },
+            {
+              "phone": "SH",
+              "startFrame": 223,
+              "durationFrames": 11
+            },
+            {
+              "phone": "AH",
+              "startFrame": 234,
+              "durationFrames": 8
+            },
+            {
+              "phone": "N",
+              "startFrame": 242,
+              "durationFrames": 17
+            }
+          ]
+        },
+        {
+          "word": "<sil>",
+          "startFrame": 259,
+          "durationFrames": 17,
+          "phones": [
+            {
+              "phone": "SIL",
+              "startFrame": 259,
+              "durationFrames": 17
+            }
+          ]
+        },
+        {
+          "word": "and(2)",
+          "startFrame": 276,
+          "durationFrames": 27,
+          "phones": [
+            {
+              "phone": "AE",
+              "startFrame": 276,
+              "durationFrames": 15
+            },
+            {
+              "phone": "N",
+              "startFrame": 291,
+              "durationFrames": 9
+            },
+            {
+              "phone": "D",
+              "startFrame": 300,
+              "durationFrames": 3
+            }
+          ]
+        },
+        {
+          "word": "checkmate",
+          "startFrame": 303,
+          "durationFrames": 70,
+          "phones": [
+            {
+              "phone": "CH",
+              "startFrame": 303,
+              "durationFrames": 17
+            },
+            {
+              "phone": "EH",
+              "startFrame": 320,
+              "durationFrames": 8
+            },
+            {
+              "phone": "K",
+              "startFrame": 328,
+              "durationFrames": 9
+            },
+            {
+              "phone": "M",
+              "startFrame": 337,
+              "durationFrames": 9
+            },
+            {
+              "phone": "EY",
+              "startFrame": 346,
+              "durationFrames": 14
+            },
+            {
+              "phone": "T",
+              "startFrame": 360,
+              "durationFrames": 13
+            }
+          ]
+        },
+        {
+          "word": "<sil>",
+          "startFrame": 373,
+          "durationFrames": 27,
+          "phones": [
+            {
+              "phone": "SIL",
+              "startFrame": 373,
+              "durationFrames": 27
+            }
+          ]
+        },
+        {
+          "word": "all",
+          "startFrame": 400,
+          "durationFrames": 36,
+          "phones": [
+            {
+              "phone": "AO",
+              "startFrame": 400,
+              "durationFrames": 17
+            },
+            {
+              "phone": "L",
+              "startFrame": 417,
+              "durationFrames": 19
+            }
+          ]
+        },
+        {
+          "word": "in",
+          "startFrame": 436,
+          "durationFrames": 32,
+          "phones": [
+            {
+              "phone": "IH",
+              "startFrame": 436,
+              "durationFrames": 13
+            },
+            {
+              "phone": "N",
+              "startFrame": 449,
+              "durationFrames": 19
+            }
+          ]
+        },
+        {
+          "word": "one",
+          "startFrame": 468,
+          "durationFrames": 22,
+          "phones": [
+            {
+              "phone": "W",
+              "startFrame": 468,
+              "durationFrames": 14
+            },
+            {
+              "phone": "AH",
+              "startFrame": 482,
+              "durationFrames": 4
+            },
+            {
+              "phone": "N",
+              "startFrame": 486,
+              "durationFrames": 4
+            }
+          ]
+        },
+        {
+          "word": "move",
+          "startFrame": 490,
+          "durationFrames": 48,
+          "phones": [
+            {
+              "phone": "M",
+              "startFrame": 490,
+              "durationFrames": 11
+            },
+            {
+              "phone": "UW",
+              "startFrame": 501,
+              "durationFrames": 19
+            },
+            {
+              "phone": "V",
+              "startFrame": 520,
+              "durationFrames": 18
+            }
+          ]
+        },
+        {
+          "word": "<sil>",
+          "startFrame": 538,
+          "durationFrames": 13,
+          "phones": [
+            {
+              "phone": "SIL",
+              "startFrame": 538,
+              "durationFrames": 13
+            }
+          ]
+        }
+      ]
+    },
+    "alignmentSha256": "d16073075d7f5e8ac2c4db74848ac3f5ec2c0392e24125ceabf3fb1dc5eec9bf",
+    "mapping": {
+      "revision": "arpabet-mouth-v1",
+      "phoneShapes": {
+        "B": "A",
+        "P": "A",
+        "M": "A",
+        "CH": "B",
+        "D": "B",
+        "DH": "B",
+        "G": "B",
+        "HH": "B",
+        "IH": "B",
+        "IY": "B",
+        "JH": "B",
+        "K": "B",
+        "N": "B",
+        "NG": "B",
+        "S": "B",
+        "SH": "B",
+        "T": "B",
+        "TH": "B",
+        "Y": "B",
+        "Z": "B",
+        "ZH": "B",
+        "AE": "C",
+        "AH": "C",
+        "EH": "C",
+        "AA": "D",
+        "AO": "E",
+        "ER": "E",
+        "R": "E",
+        "UH": "E",
+        "W": "F",
+        "UW": "F",
+        "F": "G",
+        "V": "G",
+        "L": "H",
+        "SIL": "X"
+      },
+      "diphthongs": {
+        "AY": [
+          "D",
+          "B"
+        ],
+        "AW": [
+          "D",
+          "F"
+        ],
+        "EY": [
+          "C",
+          "B"
+        ],
+        "OW": [
+          "E",
+          "F"
+        ],
+        "OY": [
+          "E",
+          "B"
+        ]
+      },
+      "minimumDiphthongPartFrames": 4,
+      "diphthongSplit": "midpoint in integer frames; short phones keep the first shape",
+      "adjacentEqualShapes": "coalesce",
+      "uncoveredFinalFrames": "rest; at most two analysis frames",
+      "perClipOverrides": false
+    },
+    "cueSha256": "f4a7572c37837ae78639aa5a3d224ccea21a09c238d18945c0dff704051771d5"
+  }
+}

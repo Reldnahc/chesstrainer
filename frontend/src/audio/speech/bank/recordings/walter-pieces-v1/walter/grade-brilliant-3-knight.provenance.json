@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "grade-brilliant-3-knight",
+      "label": "Grade brilliant 3 knight",
+      "text": "Knight sacrifices like this are where a game can change character. This one stays sound after the capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "9adfb72a48c9d5c7c2b8d76fd129bf15fce8a3fe9b40e6c3adb64e3096be6cc8",
+  "recordedAt": "2026-10-04T07:26:44.063Z",
+  "sha256": "70dab04bd2e855485c30521becb2fec71e60164ae8156b0f8ff20d40c57d72f8",
+  "bytes": 22236,
+  "requestId": "kdIaF3yAeS05DRRqir2d",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "348e9f36a03933dfb24f59b304f8fb8ad3d7fa16e513c69d353bf98c87e04696",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

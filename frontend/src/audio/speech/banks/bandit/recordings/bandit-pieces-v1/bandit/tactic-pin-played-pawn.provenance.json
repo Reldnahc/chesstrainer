@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "tactic-pin-played-pawn",
+      "label": "Tactic pin played pawn",
+      "text": "Pinned to its own king. That pawn can't step off its line without exposing the king, so it's not leaving that line."
+    },
+    "takeId": null
+  },
+  "requestHash": "66cc168c02495bb7c48ec8bd761aa45e313ddd0fd91eddeb2cdec142d7ad88ab",
+  "recordedAt": "2026-10-04T07:36:29.178Z",
+  "sha256": "5c442c3397ae5cbeba88c584bec75dadcd9b4fdc876d4b84bd53c6f87194d6a0",
+  "bytes": 25745,
+  "requestId": "lWb9ycmfTEfgS72v7pKj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c291b8f635f7e8d524cf07bc40d7a6f3e319465c02a33b1b31b63102d9eb0db5",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

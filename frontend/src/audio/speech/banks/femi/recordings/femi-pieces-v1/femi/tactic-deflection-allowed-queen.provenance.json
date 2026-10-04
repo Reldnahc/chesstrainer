@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-queen",
+      "label": "Tactic deflection allowed queen",
+      "text": "This lets the other side pull a defending queen away from its job with a deflection, and whatever it was guarding might end up exposed."
+    },
+    "takeId": null
+  },
+  "requestHash": "21d9747c30fa515a435342f104c97852987211cf0a74277bd31bff2ea5d30d4e",
+  "recordedAt": "2026-10-04T07:45:29.459Z",
+  "sha256": "44022b82914c0f16c89a8172f6cfd9777cf65dd295c06287148062e60fcdb0ac",
+  "bytes": 28239,
+  "requestId": "m9cvwg1Y7jDxHaNorQ4S",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6058657b3075fc6296fe5431b56382595b218e260ad1417c0a61b7110c6590a6",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

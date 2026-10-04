@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "tactic-skewer-played-knight",
+      "label": "Tactic skewer played knight",
+      "text": "A skewer, clean and straight along the line. The knight in front must yield, and what it was sheltering is left in the open."
+    },
+    "takeId": null
+  },
+  "requestHash": "7365892e53f3e13d321141a636ff67692cd0378a8f5782a01788a293e7b46bf1",
+  "recordedAt": "2026-10-04T07:40:08.621Z",
+  "sha256": "575e136316a026dff4823266a526fa0a4145332a220bd74b74e0fbea2d12159c",
+  "bytes": 27998,
+  "requestId": "VMkBMU943GlTVR3wKMRd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "061e969c4a6eff75a74bc0ffdc950f2b8e64c10b53c7d9b268fb3edce8c1bc76",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-escape-rook",
+      "label": "Explanation frame capture move escape rook",
+      "text": "Takes the rook, and the check is escaped by the same move."
+    },
+    "takeId": null
+  },
+  "requestHash": "2d70140361fe39e62eaa5ff6d72d6a819734e015f6b2fad18973c44a04e2448e",
+  "recordedAt": "2026-10-04T07:44:51.634Z",
+  "sha256": "c70289459493aacca6d9fbcedc61006f266d94c087aed56495d93eacc862074c",
+  "bytes": 12943,
+  "requestId": "8O7tW7O4uI9G6FC4eCtQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "329a8ba320bcdc58fd86663d39ced20b2c685ee91993f0e7f1295b685596455e",
+    "bytes": 62319
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

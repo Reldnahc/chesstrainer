@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary-rook",
+      "label": "Explanation frame capture move ordinary rook",
+      "text": "A rook is captured and leaves the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "9213902bd9499df5410c50e63ffbcb4d62ce251a4d6ecd5277985ff98a8cea7a",
+  "recordedAt": "2026-10-04T07:33:58.320Z",
+  "sha256": "c41e02b39eaad899a77292819c5ec172a30501011903c65cac1ef40498ba7d7e",
+  "bytes": 9253,
+  "requestId": "F2RGvG9oCSbEuIDNcEg4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "960025ddd1bed1d56dcb3a3c605dde381ddf958ff3fe401c8d604729e4680c94",
+    "bytes": 44765
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

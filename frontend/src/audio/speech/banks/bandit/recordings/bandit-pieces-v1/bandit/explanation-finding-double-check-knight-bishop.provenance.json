@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-knight-bishop",
+      "label": "Explanation finding double check knight bishop",
+      "text": "Double check, with the knight and the bishop checking the king at the same time."
+    },
+    "takeId": null
+  },
+  "requestHash": "67b647d7079a6ab1706f3c6839ad11e3b2e60f6e197e2fb4dc6201e9728803f3",
+  "recordedAt": "2026-10-04T07:37:39.150Z",
+  "sha256": "159ab851f39de9787aab55664123ef8b3b52e88a16797aa42a7c424dbea5c69a",
+  "bytes": 16408,
+  "requestId": "PFI1GV7braroqe3mMmf4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2d396468f7905d8687d40b00c768468d9355edeb44dff537e690688330ee4479",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

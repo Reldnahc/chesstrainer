@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-rook",
+      "label": "Positional unsupported alternative rook",
+      "text": "With another move, the rook would have stood undefended. By itself, that would not have cost it."
+    },
+    "takeId": null
+  },
+  "requestHash": "f65d19c7f1b6884d0e48282eb462d7461ddb5399e6611c44c4a471e93655fa35",
+  "recordedAt": "2026-10-04T07:44:07.035Z",
+  "sha256": "503fe36087d960b4543380a2bd51a5163f27dc9cf7a666f226f6b8f5414a984a",
+  "bytes": 20733,
+  "requestId": "xqIOIeuQAIEkqqk1bwiD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "528cdf66b1a1fb0344358d961c70258376e43939d5a07f50999db69303e50578",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

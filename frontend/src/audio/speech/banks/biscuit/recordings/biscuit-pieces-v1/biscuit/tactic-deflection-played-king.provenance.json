@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "tactic-deflection-played-king",
+      "label": "Tactic deflection played king",
+      "text": "Ooh, watch the defending king! It gets tugged off its job, and the spot it was covering is wide open now. Deflection, spotted!"
+    },
+    "takeId": null
+  },
+  "requestHash": "a4981d7a2c1af660800a1036a5a3907b33f9c1fcb83aec078f5aa78519a0fc65",
+  "recordedAt": "2026-10-04T07:38:41.752Z",
+  "sha256": "b7ae3c4ffb8d90920793cacded5fe85aa3d94b8ac969be2576d4bcf14660eb7e",
+  "bytes": 29329,
+  "requestId": "Ojfq0DUPNG1bsuB30Pcm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5a3c70825154d120669c1fc98cc096544a2106495dac401bd18e62689e74ecdb",
+    "bytes": 145911
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

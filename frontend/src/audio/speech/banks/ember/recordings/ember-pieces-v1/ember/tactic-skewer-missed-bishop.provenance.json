@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "tactic-skewer-missed-bishop",
+      "label": "Tactic skewer missed bishop",
+      "text": "The stronger move was a skewer. The attack would have gone through the bishop in front to the piece behind it. That chance is wasted here."
+    },
+    "takeId": null
+  },
+  "requestHash": "c9572c2c1eefd8b357e062685775c6728b4fb931d9ae7de335b99c4c83c28f2d",
+  "recordedAt": "2026-10-04T07:41:41.075Z",
+  "sha256": "8fafec502178e2ad3741abdadcf62ee804ea112d8ae40998da10e88884bef577",
+  "bytes": 26613,
+  "requestId": "yNBa1JvSscQCtRAeHZ74",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "429d868c9d5cfb7507ee458b548842b12e51b1d17e77919d33a87d1b7ad67a7c",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

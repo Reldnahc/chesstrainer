@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-queen",
+      "label": "Tactic deflection missed queen",
+      "text": "Another move would have pried the defending queen loose from its job. That chance at deflection goes begging."
+    },
+    "takeId": null
+  },
+  "requestHash": "fabbe9f692cdc65edef5168ed22859937c14d624cc2c4c0d688f04ba04c92399",
+  "recordedAt": "2026-10-04T07:44:08.287Z",
+  "sha256": "b1c534060a0e8020b7da24a2856b0a6bea049c2fe7892a18a04abf0e899aa363",
+  "bytes": 22696,
+  "requestId": "g3wN2zn0BsldI5Kgnrvj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "49b32238c6ce87e65e10c014ca07f4d954856b1f9df2057b572eedc2b8773dd8",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

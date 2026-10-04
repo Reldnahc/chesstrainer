@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate-bishop",
+      "label": "Explanation frame capture move mate bishop",
+      "text": "The capture of a bishop delivers checkmate. No legal escape remains for the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "00f016b29120823ecb3e6f584c85d0990a4352e2a0621a7a342046b5262dca65",
+  "recordedAt": "2026-10-04T07:28:21.129Z",
+  "sha256": "971c4ce279668d8ef94ca1c9d593114bb794f7308b4f4aae4e01e989c9dd17f3",
+  "bytes": 17530,
+  "requestId": "X9r7K5rlew0XNq5OhnAH",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "185367a173e69239db10b3a559d1305e9c3bedf80708793bf3883c2ab3f3ad11",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

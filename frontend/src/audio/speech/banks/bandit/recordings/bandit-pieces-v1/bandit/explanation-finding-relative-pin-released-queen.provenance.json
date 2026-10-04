@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-queen",
+      "label": "Explanation finding relative pin released queen",
+      "text": "A relative pin was holding the attacking queen, and the opponent's last move let it go. The target was left right where it stood, and the line shown captures it."
+    },
+    "takeId": null
+  },
+  "requestHash": "ba0c19b08b5099ac2a8be375aef27b5dbd4dcb1ac791ff4885beeb839166307e",
+  "recordedAt": "2026-10-04T07:37:28.091Z",
+  "sha256": "a57f7435c0d6d879c97a07392e61aa65c79ada79c1c1d1ccc9efd50e5b40bb83",
+  "bytes": 32347,
+  "requestId": "2Tqf32CFbu87iQ9wwySn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "040c76d5e1b90a9a01545977ed56c0d2333a9d7afdbdc13d758b967530f16693",
+    "bytes": 162212
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "grade-brilliant-2-queen",
+      "label": "Grade brilliant 2 queen",
+      "text": "A real queen sacrifice, and the idea is sound. I've seen many offers like this, and far fewer that hold."
+    },
+    "takeId": null
+  },
+  "requestHash": "009fa448ad1ea6af13123d4883ce08acc9f9f4fe9ab9916591d51dafb204689c",
+  "recordedAt": "2026-10-04T07:27:17.802Z",
+  "sha256": "df1ea176e6eb634ae6116d0a509c62f7a151683d46cc3fb88e0af9afd667998d",
+  "bytes": 25183,
+  "requestId": "Bi3MCUB5XTFAZlW09h9r",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b97db51b864bb8a4a9e1c43ffe349d107122e2293e8ae3d565474cba30ecc6cd",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-pin-allowed-bishop",
+      "label": "Tactic pin allowed bishop",
+      "text": "This gives the other side a chance to use a pin to the king. A pinned bishop cannot leave that line and expose its king."
+    },
+    "takeId": null
+  },
+  "requestHash": "8e7abf6886b6ca029f0eaa47f5f21435ced4d60c11c6e56892206414a61054df",
+  "recordedAt": "2026-10-04T07:25:33.546Z",
+  "sha256": "db4ba760827d7608f885eff58f2c4273d6de643b9f998aa38c18e685eb5c9736",
+  "bytes": 24318,
+  "requestId": "6NRQV9su0B5T5ujJ6lRT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1cfc91932711f30855e0f614871428243eca7ea2ed38a6c4e392e0e6ae5c99bd",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

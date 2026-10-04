@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "positional-support-alternative-rook",
+      "label": "Positional support alternative rook",
+      "text": "A different move would have given a lone rook a defender, which is worth a comparison."
+    },
+    "takeId": null
+  },
+  "requestHash": "0e449537c86b953a801591f3fd3c1da81939a830eb306805993e7e729abf2f01",
+  "recordedAt": "2026-10-04T07:47:37.565Z",
+  "sha256": "d00f4087ec96d613c570a0e8e6a864bbf75145e1e8de5b4d202d5c523aed1bf0",
+  "bytes": 16551,
+  "requestId": "QZvhQ2Oz7IDurBAhpm1z",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b9aa68a320224997a2c6680c50fa9c3fc7245d3f1ce278a2fd2a7a09c7b5cdba",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

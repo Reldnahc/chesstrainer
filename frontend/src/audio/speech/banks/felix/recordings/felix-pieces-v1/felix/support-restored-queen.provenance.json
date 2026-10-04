@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "support-restored-queen",
+      "label": "Support restored queen",
+      "text": "The earlier unguarded queen has its guard back. Repaired."
+    },
+    "takeId": null
+  },
+  "requestHash": "3309e8930c863b6b85c092065e79ec59e28694618bbb206cc4196fa1f3d8425d",
+  "recordedAt": "2026-10-04T07:44:13.522Z",
+  "sha256": "5f2b9262fdc3db39f69e007687002624c4e025488e7af1e187a5de878022eb51",
+  "bytes": 14188,
+  "requestId": "cqu7a0yegN3gdDCTnJL9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "eed003f1618d5995de76cd812bec8914657636ae8defa2339c75b7db6bd518ff",
+    "bytes": 71515
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

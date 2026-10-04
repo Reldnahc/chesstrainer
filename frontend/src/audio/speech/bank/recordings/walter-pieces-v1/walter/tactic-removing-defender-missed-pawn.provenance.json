@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed-pawn",
+      "label": "Tactic removing defender missed pawn",
+      "text": "Another move offered a way to capture a defending pawn, taking protection away from what it was guarding."
+    },
+    "takeId": null
+  },
+  "requestHash": "f5b28139fd88854bbc31a32bd8d07fc6e52514c0d72e81eb4cedb884af4336e7",
+  "recordedAt": "2026-10-04T07:25:38.004Z",
+  "sha256": "715b11ed402fa83513397639fcf064d664ab0872095dd44fe86a348c202ff6ae",
+  "bytes": 19921,
+  "requestId": "EoOD6qU01OWpD3B8xn62",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "07a019a40286e1ce60cd2189b9b470432dca4ad8c111c83408c9a5586e51f9c0",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

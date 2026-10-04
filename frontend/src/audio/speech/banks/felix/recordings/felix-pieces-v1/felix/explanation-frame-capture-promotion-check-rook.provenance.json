@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-check-rook",
+      "label": "Explanation frame capture promotion check rook",
+      "text": "The pawn takes the rook on the last rank, promotes, and checks the king, all with a single move."
+    },
+    "takeId": null
+  },
+  "requestHash": "efc3f4885d0409bc0d4b72ed4d4b5609ca62c9ca41982edc9c75f798ff0994d0",
+  "recordedAt": "2026-10-04T07:44:39.134Z",
+  "sha256": "1f2a52c7e1fcc25bdce18e0252eb22f1c9134af9f18809ced72b8c78c0ff5713",
+  "bytes": 22062,
+  "requestId": "X9sfJqPgjhhvBI4lSKzc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "12b777fd19bbf3ebafe29d77961c5fee0234edae632a0d70970de2917a93b245",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

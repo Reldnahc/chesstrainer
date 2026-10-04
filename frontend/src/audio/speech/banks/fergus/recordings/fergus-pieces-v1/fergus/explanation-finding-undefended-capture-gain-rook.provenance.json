@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-rook",
+      "label": "Explanation finding undefended capture gain rook",
+      "text": "Nothing guards the rook, so it is taken with no recapture, and this example finishes ahead in material."
+    },
+    "takeId": null
+  },
+  "requestHash": "3523f46c9f49d65f47812f431aa8f58b44d9f6e2d4c12b2f45f6eff4b29d8d87",
+  "recordedAt": "2026-10-04T07:47:55.274Z",
+  "sha256": "72435b7ad51dff8a224d578a779cbba026f9a4dea2b5134b3609056b89a2d939",
+  "bytes": 22753,
+  "requestId": "ha1nuy7KoCEshXx2j75j",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1f3367e81b95204141836606af3eee8ff4aa9708fb0bd807efa2b14860509e42",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

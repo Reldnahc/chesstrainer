@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "tactic-hanging-piece-allowed-queen",
+      "label": "Tactic hanging piece allowed queen",
+      "text": "A piece without a defender can be taken for nothing. This move leaves a queen in that state, and the other side can capture it. The habit that prevents this is simple: before each move, check what's unguarded."
+    },
+    "takeId": null
+  },
+  "requestHash": "c729d27b7e6dbc4b4ab12b979bc851704f810af43957f65dacbebb1b4712ae6c",
+  "recordedAt": "2026-10-04T07:34:41.477Z",
+  "sha256": "0aeb1c3c1199f259e44e56d2900eb4965e3b02ad9a4cfb6a5a31bf8c68b1af70",
+  "bytes": 39735,
+  "requestId": "pK2RRdRn0x8XX4YvTDOD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c098ec71a61a9718f600b97c8f8e1245811ab792b617bcf0629f48b7e48a0f7b",
+    "bytes": 204426
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

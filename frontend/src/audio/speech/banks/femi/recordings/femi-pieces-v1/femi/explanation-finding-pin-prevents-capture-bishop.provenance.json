@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "explanation-finding-pin-prevents-capture-bishop",
+      "label": "Explanation finding pin prevents capture bishop",
+      "text": "That bishop is barred from capturing: it's pinned, and the capture would take it off the line and leave its own king in check."
+    },
+    "takeId": null
+  },
+  "requestHash": "b85ecda915683e5d1624e1548f738a951a380f630ffc9fb11920136f2ab2c69e",
+  "recordedAt": "2026-10-04T07:46:12.158Z",
+  "sha256": "2158df4b0c800d5bf740e282f3de30647791af813ff4ad27f0b8fbb69bd21c7c",
+  "bytes": 24619,
+  "requestId": "nxVrzyFBCC5lEXVK8Vdu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bcea86853fdc23385b0fab11f4fe706c6642f3b9499dbb664c0aa8cdb0ddd315",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

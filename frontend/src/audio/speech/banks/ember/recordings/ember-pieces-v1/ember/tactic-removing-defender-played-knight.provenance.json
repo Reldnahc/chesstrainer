@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played-knight",
+      "label": "Tactic removing defender played knight",
+      "text": "This is the right target. Take the defending knight, and everything it protected is left bare."
+    },
+    "takeId": null
+  },
+  "requestHash": "31d5dce89dbccfa9dd572cc94d63d0e4d5686fee3cac3ac696464066e53e02dd",
+  "recordedAt": "2026-10-04T07:42:11.818Z",
+  "sha256": "664fb3d9463bee6b67230d7bee9426dbaf799b30d87bb18aceab5a1b33046f09",
+  "bytes": 19284,
+  "requestId": "NLTHBC4J4l7PP7vo2fBr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "95d3738dafd4805f5e228c76d5f7d6162c7d5e9512257eca4b0d89eb64f84180",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

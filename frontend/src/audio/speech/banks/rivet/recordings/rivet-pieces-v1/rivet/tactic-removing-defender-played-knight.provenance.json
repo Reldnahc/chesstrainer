@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played-knight",
+      "label": "Tactic removing defender played knight",
+      "text": "Objective: capture the defending knight. Identify what it protects, then compare the position without it."
+    },
+    "takeId": null
+  },
+  "requestHash": "5c6e37c23c8c7b64c078de0e924a78b3992869b0bb1d3a126c3d273bb9c76332",
+  "recordedAt": "2026-10-04T07:27:37.363Z",
+  "sha256": "f2708f9cc8f753205b9f6d6059bc37a69a9bcb34db6fcf8f3eb6618076d58bc4",
+  "bytes": 22917,
+  "requestId": "Y0W8ePyQ9rKDRjDoa5GU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "abdccefe85864279970410bef74c0432ee1b39356656975263458694612bfbe4",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

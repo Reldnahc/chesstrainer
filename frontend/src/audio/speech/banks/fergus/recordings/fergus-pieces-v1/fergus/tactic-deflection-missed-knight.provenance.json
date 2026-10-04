@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-knight",
+      "label": "Tactic deflection missed knight",
+      "text": "Deflecting a defending knight was possible with a different move; here the knight stays exactly where it was."
+    },
+    "takeId": null
+  },
+  "requestHash": "e6b63556056e93a008f804919c14e5e925b4552e5af3c8e716b4f713daefdd1b",
+  "recordedAt": "2026-10-04T07:47:09.284Z",
+  "sha256": "77ffa07e590d54bbfecc0d4d19221e2303f8f62dfbb57e809dcfb5bd934eb95f",
+  "bytes": 23141,
+  "requestId": "anBeKsGU7oQfbINCcI8l",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "99d214a5e54b4d0c38133a661c0ac29c6b86aeb1282359b1f585d040665972e2",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

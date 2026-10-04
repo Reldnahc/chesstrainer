@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "cause-avoiding-bad-trades-bishop",
+      "label": "Cause avoiding bad trades bishop",
+      "text": "Follow the exchange one move further. The recapture takes the bishop, worth more than what it won, so the trade comes out behind."
+    },
+    "takeId": null
+  },
+  "requestHash": "245b45cf52389d5c105dead1b889defd936772d52ae049260a0fda411cd6a307",
+  "recordedAt": "2026-10-04T07:33:01.201Z",
+  "sha256": "c06699eb7a78b0a154cef82c8295dd87de27fb60b3c4cbf9f6adb0e86162faa3",
+  "bytes": 26001,
+  "requestId": "CpUdO9fZt0jf21qOY86H",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7fd140f76b823686e60bda1b3df09873bdddc18c06d456b12d3e5364029dca8b",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

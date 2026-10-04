@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "tactic-deflection-played-bishop",
+      "label": "Tactic deflection played bishop",
+      "text": "Deflection: the defending bishop gets hauled away, and whatever it was covering now stands unguarded."
+    },
+    "takeId": null
+  },
+  "requestHash": "6c19b7b0dde921d15ceda2837ec5a67a93daec6c5e5b92ef8e5dda2a78f37d90",
+  "recordedAt": "2026-10-04T07:43:53.919Z",
+  "sha256": "52d72f50cb233f71ded1dd6adfbd274dbb4667ff24e4becb47e48248425580da",
+  "bytes": 22950,
+  "requestId": "FxLEVs6BhFYtHSnWLsOa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fc7c39d02682dc87d0f19ba31a344108b3aa209da169c6fcec75d23a8dc78034",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

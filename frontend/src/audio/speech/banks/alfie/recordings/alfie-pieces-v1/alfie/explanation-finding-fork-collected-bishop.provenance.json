@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "explanation-finding-fork-collected-bishop",
+      "label": "Explanation finding fork collected bishop",
+      "text": "One bishop attacks several targets, and in this example it goes on to take one of them. The line also ends with a net gain in material for that side."
+    },
+    "takeId": null
+  },
+  "requestHash": "175db5bfe084cd1c958f52873a10e300b1ec15ad6aec9265c18d4056d6bf5488",
+  "recordedAt": "2026-10-04T07:35:26.341Z",
+  "sha256": "2814af6a14ce6ce05be6836e782a47bc31ae1e99bef78c06ef95c899837dc258",
+  "bytes": 29483,
+  "requestId": "rbDLV4PjfLiAegY7h5W6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "33831c111b539ed4a2a2fc96bfc425abaa05d174abd1497fcaa9ca1e10f3f1cf",
+    "bytes": 148419
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

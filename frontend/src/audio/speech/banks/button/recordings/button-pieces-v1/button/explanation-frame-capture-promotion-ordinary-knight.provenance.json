@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-ordinary-knight",
+      "label": "Explanation frame capture promotion ordinary knight",
+      "text": "The pawn captures a knight to reach the last rank and promotes."
+    },
+    "takeId": null
+  },
+  "requestHash": "cb0e284f2946369e122f6808753d6ca733b2a79dfa16ee298afa120c8446e748",
+  "recordedAt": "2026-10-04T07:32:07.119Z",
+  "sha256": "d413d93507419c5fbe68e94fc62a055038c7500a3c3c9a6e36aef54965c8a47d",
+  "bytes": 13435,
+  "requestId": "fEBOBr8fgRJOnFPHDrt3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "560d0d9a567e191aeb5458d2e432aa94f08f5d736430b5e2253b86c5c61ffd02",
+    "bytes": 66499
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

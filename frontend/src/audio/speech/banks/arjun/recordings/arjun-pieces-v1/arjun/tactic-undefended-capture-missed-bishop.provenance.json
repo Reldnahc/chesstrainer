@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-missed-bishop",
+      "label": "Tactic undefended capture missed bishop",
+      "text": "An unprotected bishop was available to capture with the other candidate. Before quiet moves, it's worth a quick sweep for loose pieces."
+    },
+    "takeId": null
+  },
+  "requestHash": "8db82c72603e12c85b2fd252670186a7c8cbc8c9b69860944c1931d506821d42",
+  "recordedAt": "2026-10-04T07:32:31.286Z",
+  "sha256": "00941deb5a78996a8c28128d81805303363adaef7587420fcf571676da0ed04b",
+  "bytes": 26664,
+  "requestId": "kpCWTtbgF9EKFssYRaY2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ed336dfe17f918c6f1079161637203700730b7b5b26f1e46d00bb20858f739e0",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

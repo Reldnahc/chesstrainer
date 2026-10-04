@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "grade-brilliant-4-knight",
+      "label": "Grade brilliant 4 knight",
+      "text": "Truly lovely. A knight is offered in the idea's name, and the idea proves worthy of it."
+    },
+    "takeId": null
+  },
+  "requestHash": "1412cf3519aa8df0ca3d4c69e1e984e26862e7e4981d3893e54b139eac5eca77",
+  "recordedAt": "2026-10-04T07:41:23.587Z",
+  "sha256": "31afc1a645b9ced827f7d2a36cabe8c6547562e0cdc15c1cb82fce811a69d390",
+  "bytes": 22121,
+  "requestId": "k79CEdWkijU3UEoXADA8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4fd6a4e5b2186c9330c8f3c047e02a6dcae5069f1f4f18e79be53dcd920cc2bd",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

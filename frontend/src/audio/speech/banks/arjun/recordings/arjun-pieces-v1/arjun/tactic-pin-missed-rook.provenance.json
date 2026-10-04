@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-pin-missed-rook",
+      "label": "Tactic pin missed rook",
+      "text": "Compare the stronger candidate: it pins an enemy rook to its king. With this move, that rook stays free to wander."
+    },
+    "takeId": null
+  },
+  "requestHash": "34078914619c5a46111e2c21d6ddd8c53640f727304808a3aee26e1333da9419",
+  "recordedAt": "2026-10-04T07:32:29.084Z",
+  "sha256": "301ea12a0a82ea6efe037b707503678304b3e8bf3f345eeb03db60f5e0305e86",
+  "bytes": 24220,
+  "requestId": "xM96FeYTA0oYP1Vz7YXS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f3a380e1da33fc4dc059ffcb8018a72f167190c537c66ef3b1d6992d4194095b",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "positional-support-actual-bishop",
+      "label": "Positional support actual bishop",
+      "text": "A lone bishop now has a guard. Protected pieces are hard targets."
+    },
+    "takeId": null
+  },
+  "requestHash": "08a6905cc3de1cf9a297a8c5da59e7096d3bd0831ebb8278e1f8fbf7848cccde",
+  "recordedAt": "2026-10-04T07:42:36.086Z",
+  "sha256": "44b1cb117a58aa69a23748aa0afb187193cd9999e639dee2db86fa0c419d327a",
+  "bytes": 16078,
+  "requestId": "64MrRz44Ew1RjhlhRzPo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6691fa926a3f2740e26dc5a0035067eff3cf87c118d011087d98f4af71e69a26",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

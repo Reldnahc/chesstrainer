@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-check-queen",
+      "label": "Explanation frame capture move check queen",
+      "text": "Gobble goes a queen, with check on top!"
+    },
+    "takeId": null
+  },
+  "requestHash": "72d1383cc3f97853c16fb50a054d90e00a3a2efc62e26ca668dc1a84501a60ac",
+  "recordedAt": "2026-10-04T07:39:24.838Z",
+  "sha256": "1464f6d82d4d7cb3aeaaab152c62668b1246d44868b34e32d785483c06fc0671",
+  "bytes": 10291,
+  "requestId": "yiGS2aG3wnaD940aFr78",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e40b28482421d04cb3d2620578dcbf0c55a2143204390e0e432c509c60b37a79",
+    "bytes": 48527
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-pawn",
+      "label": "Explanation finding relative pin released pawn",
+      "text": "Thanks to the opponent's previous move, the attacking pawn is out of a relative pin. Nobody came to the target's rescue, so the line shown ends with it captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "46ef94b033acb16ed7e239e4d6a1e32891cc252a8ff89f9741483e6a29e2024f",
+  "recordedAt": "2026-10-04T07:38:54.367Z",
+  "sha256": "2c7d3bc0d9420e990541827e9bf45a2aabdae8cefb7bac68695f92f325323d2b",
+  "bytes": 32314,
+  "requestId": "RCs5vcI51k54YoPb5pHN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "abe06aa35111a55ed76d998b6f9c23bf762e5b37527df6c328763b5f31f12246",
+    "bytes": 164719
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed-king",
+      "label": "Tactic skewer allowed king",
+      "text": "The other side gains a skewer here. When the king in front is checked off its line, whatever it sheltered can be taken."
+    },
+    "takeId": null
+  },
+  "requestHash": "9f9652f2140ceb541584edb12a273686564e1abf97d8169142ee9e20fe867ce9",
+  "recordedAt": "2026-10-04T07:40:27.994Z",
+  "sha256": "79f7357a12398913e848e6223583dcacb92819139559b1675bae54f2a818dab2",
+  "bytes": 24056,
+  "requestId": "ZQHgOcfjajz87HR2ml7l",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "88354da9054923044d46ffc060c0cfe61a9d2d3b1c41b5a18b744e7e08908d86",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

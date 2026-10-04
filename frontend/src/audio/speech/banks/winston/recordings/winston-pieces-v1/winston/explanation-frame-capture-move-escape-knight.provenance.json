@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-escape-knight",
+      "label": "Explanation frame capture move escape knight",
+      "text": "This takes a knight and gets the king out of check at the same time."
+    },
+    "takeId": null
+  },
+  "requestHash": "97f979a074e7f2ae7ff72822a4c1010cfc90346ddbbce3321946a69c231a5b26",
+  "recordedAt": "2026-10-04T07:30:17.809Z",
+  "sha256": "59687824abbe045d4f4b20208b4d4017a5632b9d2888e73fc8e3afd2462c602f",
+  "bytes": 13529,
+  "requestId": "dkVEvUKzkK6ersoIQguX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "93ee71a9bfaa46172674523b5ce72a4037122ce59a18f8f45d8061db42bfcf9b",
+    "bytes": 65245
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

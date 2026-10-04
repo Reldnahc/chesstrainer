@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-knight",
+      "label": "Explanation finding pin collected knight",
+      "text": "The pinned knight is chained to its line by the king behind it. It is held there, and as these moves play out, it is captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "e2c54c42f0f26d7f3d13059d5e93dfc60f7ea79df11d2a2e1f8c8e35dd1c77ae",
+  "recordedAt": "2026-10-04T07:42:38.417Z",
+  "sha256": "45c1c21bce06ab9a0bb70dd545654553321a261f712858ffa832c8b781f2d591",
+  "bytes": 25819,
+  "requestId": "s5op5hPeqfGwDlSVwk2q",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a899a862fa57ee195c2442bce983b91d11ab068334a0553e9626774f91c4d356",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

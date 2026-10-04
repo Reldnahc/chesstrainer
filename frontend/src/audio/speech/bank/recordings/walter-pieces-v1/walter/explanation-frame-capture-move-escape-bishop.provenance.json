@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-escape-bishop",
+      "label": "Explanation frame capture move escape bishop",
+      "text": "This captures a bishop and gets the king out of check."
+    },
+    "takeId": null
+  },
+  "requestHash": "0b4390b1422c5539091227af5de3440ff2fe7228e2e0fd9658f318a8b10da42c",
+  "recordedAt": "2026-10-04T07:26:55.604Z",
+  "sha256": "fc0d50cc98d5170b582f0e8b4e2d40baa97b487bca6a0e885fcaddd425924936",
+  "bytes": 11585,
+  "requestId": "hajdV1uGxqdf7IMzQv2C",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2c0a984891e10e3a1772021b4094aff6822c7efe2999d82bf393b20c51c828ee",
+    "bytes": 56050
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

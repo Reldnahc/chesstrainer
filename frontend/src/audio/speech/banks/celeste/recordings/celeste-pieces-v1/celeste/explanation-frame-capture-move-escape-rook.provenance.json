@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-escape-rook",
+      "label": "Explanation frame capture move escape rook",
+      "text": "In one motion, a rook is captured and the king is freed from check."
+    },
+    "takeId": null
+  },
+  "requestHash": "56ea57d4bd4c83cabdcce1f9125a07ecedd52ad1bf85481e0452aa8bf0f2f7cc",
+  "recordedAt": "2026-10-04T07:41:29.863Z",
+  "sha256": "00a0cd63fd2019bcf5f3dd3b47cf314fe82c6e58c1601b94b5eca55f2c35bc6d",
+  "bytes": 15290,
+  "requestId": "6r2M3zGFRP1A4IT2KqsU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "da4964eb486ea3788249aa354f059794599b5b9f61651a4faecbc3cedb80e6d3",
+    "bytes": 75276
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

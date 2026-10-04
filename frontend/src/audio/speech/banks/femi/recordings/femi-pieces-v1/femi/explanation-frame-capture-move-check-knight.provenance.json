@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-check-knight",
+      "label": "Explanation frame capture move check knight",
+      "text": "It takes the knight, and the king is in check too."
+    },
+    "takeId": null
+  },
+  "requestHash": "55cee71c0c193a6b455dc607a2814910f934689c821a996d0bc7615ea1aa89c2",
+  "recordedAt": "2026-10-04T07:46:12.109Z",
+  "sha256": "646b8b8a1fd9d9b512cba6fd0ed35fb7e94949ad7f8f8267172cfcdd0a2bc877",
+  "bytes": 11381,
+  "requestId": "BsspWCzAcSY2IaRTStgx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "10857237fc7db267cc45e90039f28fd52305c2887e6cdca19797f5cb53443fcb",
+    "bytes": 54796
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "tactic-pin-missed-rook",
+      "label": "Tactic pin missed rook",
+      "text": "A pin to the king was on offer in another move, tying a rook to its line. This move passes it up."
+    },
+    "takeId": null
+  },
+  "requestHash": "3d23c1df8b6e22d72d7a7b02a96350b101548c3f31f1da76ea01dd1ea3280064",
+  "recordedAt": "2026-10-04T07:43:36.196Z",
+  "sha256": "4476881a01fd2f9538e4ba5f24c9f804eef6279070727460c7bce8e790a8b07d",
+  "bytes": 22409,
+  "requestId": "6BmjPgLwmynFrZyBz9JA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "21a972ddf4f2658f275525393c8822f6fabb93486526882c48d418f6966d622d",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

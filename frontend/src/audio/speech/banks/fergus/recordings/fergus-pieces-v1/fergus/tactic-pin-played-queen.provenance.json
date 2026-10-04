@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "tactic-pin-played-queen",
+      "label": "Tactic pin played queen",
+      "text": "A queen is pinned to its king now, so stepping off that line would expose the king, and it will mostly keep to the line."
+    },
+    "takeId": null
+  },
+  "requestHash": "61708ed5577f55777f11c62bcc1b463116fd3607fde110624ba8caaaa1fae6d2",
+  "recordedAt": "2026-10-04T07:47:01.816Z",
+  "sha256": "63ec6d9125f567ee69951134497543fec7254bc8e78bbbbcf94689ad861a6ed3",
+  "bytes": 24626,
+  "requestId": "M0OrtxwOy8mNaodxbNi5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2ac0d13e15801942aa1b7a4f054eacf484da439343c1ed0e1888db8fd135bc77",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

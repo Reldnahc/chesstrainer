@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "support-restored-bishop",
+      "label": "Support restored bishop",
+      "text": "The bishop left hanging earlier is guarded once more. Keep it that way."
+    },
+    "takeId": null
+  },
+  "requestHash": "504aace10aeda16b38fd72496b937938be72d5c42c5949b8dd9f7bd47b84f230",
+  "recordedAt": "2026-10-04T07:42:30.614Z",
+  "sha256": "56781e0bbebafb996c0dc7cb2100adb443c127f5e1acaed8347c4f58da42d9e4",
+  "bytes": 14860,
+  "requestId": "tmDtdMU828wE2JQHnHn1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d8c414d9cb93f055d218c1fbb0f3d1a8fc92adccfdbfe51701b4c45105a03736",
+    "bytes": 72768
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

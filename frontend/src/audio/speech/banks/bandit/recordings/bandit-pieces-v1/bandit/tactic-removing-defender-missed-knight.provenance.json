@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed-knight",
+      "label": "Tactic removing defender missed knight",
+      "text": "There was a defending knight to capture with another move, and what it guarded would've lost that protection. The knight keeps its post after this move."
+    },
+    "takeId": null
+  },
+  "requestHash": "2222124b8d2796d3ec12c58ce7e4b0b6e1d0284bee6bb852c704e61f0eeffde3",
+  "recordedAt": "2026-10-04T07:36:45.077Z",
+  "sha256": "adda8cf4cb4a10c23805b7ed7c8c931ca026a0451105507ed6e4974574b2562e",
+  "bytes": 27855,
+  "requestId": "VmdaeNfwouGDBUcS70H4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b0c3a93ab77d7412413e3774168278ad20b0ec95ae066b5511fa5c49921c3e9e",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

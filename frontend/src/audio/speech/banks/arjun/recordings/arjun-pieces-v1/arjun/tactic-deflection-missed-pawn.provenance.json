@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-pawn",
+      "label": "Tactic deflection missed pawn",
+      "text": "The other candidate would have drawn the defending pawn away from its duty. Try it on the board and see what falls apart behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "d833a3cb112e802b24df49eeede5a0f09aa3e1e360a6719ae3f76a8c9cf80560",
+  "recordedAt": "2026-10-04T07:32:54.254Z",
+  "sha256": "f002f65aa287b7352ebdb1e48ca52adc8b2ad57d160d55f5e03c10f270ebc282",
+  "bytes": 25045,
+  "requestId": "w6ONwoyqNSyIKtgAvYr3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c42e552eb3ec9e0a66c1816b3df086a6eb060027cc43fed5f4cb0793b973dc49",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

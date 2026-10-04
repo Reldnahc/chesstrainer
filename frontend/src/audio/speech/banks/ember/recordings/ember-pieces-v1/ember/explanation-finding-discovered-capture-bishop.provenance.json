@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-capture-bishop",
+      "label": "Explanation finding discovered capture bishop",
+      "text": "The blocking piece moves, and a capture comes along the line it opened, made by the bishop behind."
+    },
+    "takeId": null
+  },
+  "requestHash": "6eacc9c3517112db83db4414a663daa1ee46ef0eb6e6431f6f270085762c4459",
+  "recordedAt": "2026-10-04T07:43:14.462Z",
+  "sha256": "f0bd8a5d6ad2d647ee9fc5fe12917967ea70702d8541a2a368f152ea2a4d88f6",
+  "bytes": 19811,
+  "requestId": "kZ5MObbLcnOLtE8HnTm6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7d0cb891d988cbf24dbdb8f2bde8b8e319928e66ce67b5f5aa628db30e836213",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

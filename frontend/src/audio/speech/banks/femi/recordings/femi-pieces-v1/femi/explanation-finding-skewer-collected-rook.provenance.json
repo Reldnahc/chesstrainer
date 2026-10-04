@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-rook",
+      "label": "Explanation finding skewer collected rook",
+      "text": "As soon as the rook in front steps off, the piece it was screening gets taken on that line."
+    },
+    "takeId": null
+  },
+  "requestHash": "991fc9ec36d578838ba10e2aea3294bf0eac696a6c3b28e0e73164dcb01d5e73",
+  "recordedAt": "2026-10-04T07:46:04.681Z",
+  "sha256": "e1ea648b8529236ff20660bb3e0fe5f84bd7179f54d4762a54b8cd203fbf06c1",
+  "bytes": 18341,
+  "requestId": "ufoDcm7Suf7MwG8p8AZf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "448fa2514609ff952e4c1417ae854eb479efd120e5071eac7085fc071d118682",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

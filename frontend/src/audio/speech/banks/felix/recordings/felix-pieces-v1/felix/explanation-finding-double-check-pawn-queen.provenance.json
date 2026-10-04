@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-pawn-queen",
+      "label": "Explanation finding double check pawn queen",
+      "text": "That is double check: the pawn and the queen both on the king, and only a king move answers that."
+    },
+    "takeId": null
+  },
+  "requestHash": "974d535cc87f2899a00c137bf8a1ae1ec204318ad450e2f0762d18c69210d835",
+  "recordedAt": "2026-10-04T07:44:42.074Z",
+  "sha256": "6dc82739b3b297df122b4e23a320054acabd11b410ef92ee927b329aaac53163",
+  "bytes": 22740,
+  "requestId": "0bWrVfhYTQBBk10s0YdD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c4ae8c92bbaadf66ad8584f8ad9099d17b4e1971c9c0f4a62091b3c9fec6bcc0",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

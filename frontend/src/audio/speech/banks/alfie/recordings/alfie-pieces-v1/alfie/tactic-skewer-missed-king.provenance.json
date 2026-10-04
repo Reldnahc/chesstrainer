@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "tactic-skewer-missed-king",
+      "label": "Tactic skewer missed king",
+      "text": "A different move offered a skewer, checking the king with another piece standing behind it on the same line. Once the king had stepped off that line, the piece standing behind it would have been exposed to the attack. In the game, that line is never used."
+    },
+    "takeId": null
+  },
+  "requestHash": "048a0566f2e37d0ce2bf9de5be6e95b70b6522ad421b9e207c68c0a18329f782",
+  "recordedAt": "2026-10-04T07:34:12.204Z",
+  "sha256": "a4e4cd93d619ce182a292d5e0175c16db9620620b37bf47b746e283dc9fb3f5c",
+  "bytes": 46345,
+  "requestId": "vSj8orseEiNhCd3nRCya",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1278d57aa6ab1121e2369738b2a3c90a3bcd6c125705d123fcd603287b5219b7",
+    "bytes": 236608
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

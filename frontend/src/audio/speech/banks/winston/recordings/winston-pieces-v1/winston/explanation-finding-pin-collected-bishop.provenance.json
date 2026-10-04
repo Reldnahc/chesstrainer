@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-bishop",
+      "label": "Explanation finding pin collected bishop",
+      "text": "Keep with the pinned bishop. Stepping off the line would expose its king, so it keeps to the line, and before these moves are done, it's captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "40778642435a8823844ee2d39f24393149958112b5e8d6d5be7c4aa0b0d44994",
+  "recordedAt": "2026-10-04T07:29:42.056Z",
+  "sha256": "f1485711587ed4fd992d6d45ba3a3c8988d8eff22d144e4975d7a4e38a945104",
+  "bytes": 27105,
+  "requestId": "J6Azr1sf1GVt9kapv6c4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fb6d868bc1d8ca9e43826ca04e7fe18d3ce9ee527b03e5a905361de651f1b54a",
+    "bytes": 141732
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

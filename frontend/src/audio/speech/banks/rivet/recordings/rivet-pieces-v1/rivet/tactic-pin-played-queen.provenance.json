@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "tactic-pin-played-queen",
+      "label": "Tactic pin played queen",
+      "text": "Mechanism detected: king pin. Pinned unit: queen. Leaving the line would expose the king, so that movement is not legal."
+    },
+    "takeId": null
+  },
+  "requestHash": "b3b09c8f65a2dd6b122f5c35dd3759a267e1494104d2d47dd1ce48f991b30562",
+  "recordedAt": "2026-10-04T07:27:26.122Z",
+  "sha256": "4dc64b603097d3656a97c9a0de4316d6394b900a81945d4ba352ba34b81233ef",
+  "bytes": 27680,
+  "requestId": "uNdGmMyNQY3YqlQpKXv2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3772c204a4c691e3c71f50d434d81051211673b5109f6d5b6a2629863a9bd4bb",
+    "bytes": 147165
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

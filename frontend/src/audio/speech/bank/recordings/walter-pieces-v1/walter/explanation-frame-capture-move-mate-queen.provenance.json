@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate-queen",
+      "label": "Explanation frame capture move mate queen",
+      "text": "This captures a queen and delivers checkmate. The king has no way to escape."
+    },
+    "takeId": null
+  },
+  "requestHash": "95cfaf441a65d4b8407eced2aa843688f669d9259c22b0ab6ecee2c03fa4f6f2",
+  "recordedAt": "2026-10-04T07:26:52.573Z",
+  "sha256": "9e05884f0eb8eff6c85fdd9cc0963ef20ffb6320dcbe7a8f2563d797fd1151b8",
+  "bytes": 17286,
+  "requestId": "ue7S30VchAkdvqaC2Ko8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ae8e6450d8582091e7742a0402085f8f482aba486ed42a514f6e71c3c0c1fdf5",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

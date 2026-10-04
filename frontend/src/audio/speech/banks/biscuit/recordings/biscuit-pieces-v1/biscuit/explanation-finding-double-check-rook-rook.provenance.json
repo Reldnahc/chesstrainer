@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-rook-rook",
+      "label": "Explanation finding double check rook rook",
+      "text": "Whoa, check times two! Both rooks are attacking the king together, so the king itself has to move."
+    },
+    "takeId": null
+  },
+  "requestHash": "1b296a5dca08c61c7d94c9aa99d7fb88414a97c91a96f0f29d569df6305ccc0f",
+  "recordedAt": "2026-10-04T07:39:48.569Z",
+  "sha256": "e55b724f353b563e6a622177adcf7ad9e65cc991dd78c398a8a3c93ded769fa8",
+  "bytes": 23166,
+  "requestId": "9MmoPYIlaQ9p2JNv6vHk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a1c5aee27224b8b8c1fdbd535d332b3a341b7a233f4f06ab26cba5ef7102835d",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

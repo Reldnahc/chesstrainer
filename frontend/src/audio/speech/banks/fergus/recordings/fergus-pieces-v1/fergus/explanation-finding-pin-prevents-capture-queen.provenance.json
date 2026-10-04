@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "explanation-finding-pin-prevents-capture-queen",
+      "label": "Explanation finding pin prevents capture queen",
+      "text": "That queen is pinned to its king, so the marked capture is not legal."
+    },
+    "takeId": null
+  },
+  "requestHash": "4cd5b5911894e6598057dd6985cc79d9ea565ab02318f19f54414d871ce361bc",
+  "recordedAt": "2026-10-04T07:47:43.171Z",
+  "sha256": "60bfb16d770bfb797e730e6c7fc63c59658e5a05811feaabd9b30dcac97c7a60",
+  "bytes": 16043,
+  "requestId": "gYifVbTwip3u6WZwvvg0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c38c0b3029494bfb99d104c7c9c9d5c92b35a8b4af65667061dbc4fce1d35c34",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "cause-abandoned-defender-bishop",
+      "label": "Cause abandoned defender bishop",
+      "text": "What was this piece guarding before it moved? It was the only real defender of a bishop, which is now open to capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "1e1efd076b88399348bfaec6f33e3ae0302ead7718ee6a473c38671aaaefff2c",
+  "recordedAt": "2026-10-04T07:33:22.966Z",
+  "sha256": "b70f90d19b7b9c67c4c5fb086ff75875dbfaee3b01cb5c177af3a99656e8086e",
+  "bytes": 24949,
+  "requestId": "A90xo6ylLQrcD6UBwef5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "749fc06d8883af650a1a94cf128d8fbae3d16208eab2b1417baaf0000889e07a",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

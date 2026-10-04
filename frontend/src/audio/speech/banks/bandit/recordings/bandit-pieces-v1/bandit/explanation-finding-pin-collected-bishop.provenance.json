@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-bishop",
+      "label": "Explanation finding pin collected bishop",
+      "text": "Watch that pinned bishop. It's stuck on the line in front of the king, and before these moves are over, it gets taken."
+    },
+    "takeId": null
+  },
+  "requestHash": "c32e068d2354abbfa75e06f7893c0572ef48584f105120c1479494287149dbb4",
+  "recordedAt": "2026-10-04T07:37:12.264Z",
+  "sha256": "962b12457c7091c9dfffcd4beab8526dfaed3bf8b40e9726783c0164d5e03041",
+  "bytes": 22720,
+  "requestId": "MhVPkSv7JV77KQHRFxSb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f72699d18482b44e6fb929a8f8ffd195aa8a7f7f9a7317754cdbf8f37ac14b4a",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

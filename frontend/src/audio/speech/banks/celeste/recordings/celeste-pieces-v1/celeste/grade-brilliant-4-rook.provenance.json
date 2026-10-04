@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "grade-brilliant-4-rook",
+      "label": "Grade brilliant 4 rook",
+      "text": "Truly lovely. A rook is offered in the idea's name, and the idea proves worthy of it."
+    },
+    "takeId": null
+  },
+  "requestHash": "bfd933e3883866ac99a961ea5d2a1b1ea7a45eb735cbc9bd08678889a7d28540",
+  "recordedAt": "2026-10-04T07:41:27.019Z",
+  "sha256": "2e4841b4c5670d6c961a3a046f10e3919cd2a5821bd9951cf30b53f87fcee493",
+  "bytes": 21187,
+  "requestId": "2Q56Fe3lgECwGUBbUQq5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f66c3fcc33a724272aff22c9567ba4a481dbe8fe7b4d94525751046acfeab1ed",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

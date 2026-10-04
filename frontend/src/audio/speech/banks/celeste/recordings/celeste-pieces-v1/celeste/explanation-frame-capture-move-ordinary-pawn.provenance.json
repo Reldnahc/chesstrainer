@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary-pawn",
+      "label": "Explanation frame capture move ordinary pawn",
+      "text": "A capture, and a pawn leaves the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "1689b01ec7801c1863a3726f6c19865ec6c08f33b699de551854c4d964e636a4",
+  "recordedAt": "2026-10-04T07:41:33.331Z",
+  "sha256": "151c67939d8d8b2b937b785693d3af391aad525a382c3150d218e64bc77c3d50",
+  "bytes": 10181,
+  "requestId": "tYXYp3eePxn83yaAOJgh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3f491a779b2c1c2f6ab4b093c7408037ceff4a0ebdecb124d5a48ad12304d0ce",
+    "bytes": 49781
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

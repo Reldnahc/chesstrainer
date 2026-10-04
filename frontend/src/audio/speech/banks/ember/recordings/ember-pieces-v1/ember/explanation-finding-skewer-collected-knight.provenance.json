@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-knight",
+      "label": "Explanation finding skewer collected knight",
+      "text": "The knight in front gives way, and the piece behind it falls along the same line. That is the skewer doing its work."
+    },
+    "takeId": null
+  },
+  "requestHash": "f3ae8399be2dbef0cac0d771075f99ecac0f949018154463cdcdafda79a6d57b",
+  "recordedAt": "2026-10-04T07:42:50.542Z",
+  "sha256": "2c551fa0b5590e099ad58b6f49c29afb399c2afe572966a6dabee265e2d896ee",
+  "bytes": 24121,
+  "requestId": "RKWWHAmVf9eMA3vI8hQW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "13e979e912da8b92ce680dc4495a5a6d274d55fb61303216dc57aba258b7d982",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

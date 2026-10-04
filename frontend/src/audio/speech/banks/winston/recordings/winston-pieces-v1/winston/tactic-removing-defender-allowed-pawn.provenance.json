@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-pawn",
+      "label": "Tactic removing defender allowed pawn",
+      "text": "That leaves a defending pawn open to capture, and what it guards could be left without protection. Start with what that pawn's covering now."
+    },
+    "takeId": null
+  },
+  "requestHash": "efe6acc66416fad2a27a991ebc2288967c5b7ee03a41f222beaaebfe22817403",
+  "recordedAt": "2026-10-04T07:28:54.782Z",
+  "sha256": "0a7eaa317c2f196ef0a03745373f39f882f8b85931872148830fd40751e7b975",
+  "bytes": 24803,
+  "requestId": "pVZe6huaEQkYDRCW6bFW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "43857623a48ac6ee22d17672cf9af6163a1d0b3d9b98299e4c71a4cf2902318c",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

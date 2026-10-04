@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-hanging-piece-allowed-bishop",
+      "label": "Tactic hanging piece allowed bishop",
+      "text": "Which defender used to cover that bishop? After this move nothing protects it, so it's free for the other side to collect."
+    },
+    "takeId": null
+  },
+  "requestHash": "3c56111e1dd12e40bf6066382bdc05999d9322c10613dcce01e287ceeb54fca1",
+  "recordedAt": "2026-10-04T07:32:39.192Z",
+  "sha256": "7d8eb5b97c3b918d3df62a288d5d1baa4a973d48f1d1e685d13d8ffa3ea1a553",
+  "bytes": 23834,
+  "requestId": "rkE1pbObMvet3dqugj11",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4def5c33bc9256b970ce4c28a7e228da140aaf6548a4f6168c1f5da8a1c3a66e",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

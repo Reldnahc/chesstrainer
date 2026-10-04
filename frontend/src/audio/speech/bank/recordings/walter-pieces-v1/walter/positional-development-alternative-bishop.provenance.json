@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "positional-development-alternative-bishop",
+      "label": "Positional development alternative bishop",
+      "text": "Another move would have brought a bishop into play from its starting square."
+    },
+    "takeId": null
+  },
+  "requestHash": "84e0ac2c0934a853fb7ec096225738083c72da380091bdc82d672380b1a344fc",
+  "recordedAt": "2026-10-04T07:26:21.658Z",
+  "sha256": "6e63b556830658805f0686cdd413bfe170987a7fde3e62322a6d9454ab2fde1d",
+  "bytes": 13573,
+  "requestId": "aQrGYThAoAzvL9on2Tkt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "09114202f8de7b211a8dba560472524d70c7d12213ab417e35269c30f537a9c5",
+    "bytes": 65245
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-queen",
+      "label": "Explanation finding skewer collected queen",
+      "text": "Front unit: queen. It moves off the line; the piece behind it is then captured along that same line."
+    },
+    "takeId": null
+  },
+  "requestHash": "a6e8eb82242249ee80e1c44b1de6a76c23a6094393adc4d69f32009c666aca37",
+  "recordedAt": "2026-10-04T07:28:15.606Z",
+  "sha256": "5f85cc426b8c844ed5d47c7fcaa7aa53065e09b9669b574ddd91b08abdf40194",
+  "bytes": 21625,
+  "requestId": "GtbqySAKHihDQ8jKopG4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "17d6c15129eefe4cafdf73a4d57e17ff66291bf81feaa2d470e621da8f14cf0a",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

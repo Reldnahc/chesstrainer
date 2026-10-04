@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape-knight",
+      "label": "Explanation finding pin restricts escape knight",
+      "text": "Because the attacked knight is pinned to its king, it can't move at all, so it has no escape."
+    },
+    "takeId": null
+  },
+  "requestHash": "ef40aaa72b7737f44cd1e2e9376dfc4cf6a205e7880f6a9ea03ed6027588575b",
+  "recordedAt": "2026-10-04T07:35:03.435Z",
+  "sha256": "7fc7d30a5b3db6d73105fd7f2c4555aca071719011421b7760994ebdbb04b4c7",
+  "bytes": 18612,
+  "requestId": "I8DxNTwoDVmPrzFztRTQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5cf7752553879e94f159a1dc4e1cd4fe5492dfc4bb7ca1a240146b9f874e81ca",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

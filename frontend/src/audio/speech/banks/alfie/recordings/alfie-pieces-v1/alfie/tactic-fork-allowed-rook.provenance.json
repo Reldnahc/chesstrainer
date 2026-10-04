@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "tactic-fork-allowed-rook",
+      "label": "Tactic fork allowed rook",
+      "text": "Before each move, it helps to ask which squares the opponent's pieces can reach next. This move gives them a fork: a single rook of theirs can then reach several targets together. Spotting that rook first is the habit to build."
+    },
+    "takeId": null
+  },
+  "requestHash": "fd6a4f1a99bb1a251d5374055f569e3394336ac8067f8d78552fef7f969ea5ee",
+  "recordedAt": "2026-10-04T07:34:14.702Z",
+  "sha256": "1fd9d15a6da3d5cb607074d47be684451a71e47459d6b5567de4f37c6df7f705",
+  "bytes": 43963,
+  "requestId": "80szs9srHeqw7jEmgsDQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "505fb6bdb0106552f85a83acd5d262d7ef92b33e81ee42d94231f53bac05fd05",
+    "bytes": 226159
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed-rook",
+      "label": "Tactic discovered attack missed rook",
+      "text": "Another move would have unmasked an attack by shifting the rook in front. This move leaves the mask on."
+    },
+    "takeId": null
+  },
+  "requestHash": "dcd4f546cef570cf7d38c26db0a106d53b64a29ce5dd707aa9576b5839e2ff09",
+  "recordedAt": "2026-10-04T07:43:24.588Z",
+  "sha256": "f53ff9196ecb5d9b9d0ddcac226eb99e1d485cae06d646c3b286fa3134727289",
+  "bytes": 22370,
+  "requestId": "B32JwFT6awpQSpxtfs7R",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "996adc3c74abdcdc45da2e72bd12d9f8fce9539f1273bbe0d375bd7ab52d12cc",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

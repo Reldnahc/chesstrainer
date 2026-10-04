@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "tactic-skewer-played-bishop",
+      "label": "Tactic skewer played bishop",
+      "text": "A skewer, clean and straight along the line. The bishop in front must yield, and what it was sheltering is left in the open."
+    },
+    "takeId": null
+  },
+  "requestHash": "89f8134a181ff7eb017902a4c29822d7731a6773bf8406af0c3e485ca6a36877",
+  "recordedAt": "2026-10-04T07:40:11.072Z",
+  "sha256": "39c6983fd3b0fbb104c9e1c330c73bbf946eb148597cb7e077453991bcfd0ff1",
+  "bytes": 27267,
+  "requestId": "hTEZ8FvqTLNeZ3JtVOZa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "81ef8ec05ee17777c1618f33c94432b30809ba5343a4995d64c07ecab66ac2c5",
+    "bytes": 136716
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

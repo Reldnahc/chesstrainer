@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-bishop",
+      "label": "Explanation finding skewer collected bishop",
+      "text": "The bishop in front moves out of the way, and that leaves the piece behind it to be captured on the same line."
+    },
+    "takeId": null
+  },
+  "requestHash": "ab5c4f38535fc789c8d59c48660d85b34ea2b8459fc1bf29424ae591f4575ff0",
+  "recordedAt": "2026-10-04T07:37:31.824Z",
+  "sha256": "c9d3eb6b563a8f5ba32a0dddfe2075b50549cfe5c2d22b62e3a8b9efc7722075",
+  "bytes": 20234,
+  "requestId": "jVjekmZzW1Z6bYi31y9Y",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "136692ecbb08f17ea4f18fc8c7edebfb909c35caebedb4e124a1757a2eabf0f7",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed-rook",
+      "label": "Tactic removing defender missed rook",
+      "text": "The stronger candidate removes a defending rook, and the piece it protected becomes vulnerable. Worth comparing the two moves side by side."
+    },
+    "takeId": null
+  },
+  "requestHash": "7255230d5cf076a109ad12c020eea489bed2932e543d534f24fc598f420098c4",
+  "recordedAt": "2026-10-04T07:32:49.749Z",
+  "sha256": "b6e04987db49b335690249fd57afa2b95cbe8e25206895175e56ae27d99dd072",
+  "bytes": 27738,
+  "requestId": "hhAZUk5v1VjEemXo7ANm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1e0540ec264a4633670122877c480f20208b749442ed2d1992b36b6091b3a46f",
+    "bytes": 141732
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

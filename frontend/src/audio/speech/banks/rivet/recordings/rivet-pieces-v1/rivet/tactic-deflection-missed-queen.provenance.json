@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-queen",
+      "label": "Tactic deflection missed queen",
+      "text": "Missed pattern: deflection, available with another move. Defender: queen. Task left undisturbed."
+    },
+    "takeId": null
+  },
+  "requestHash": "6eff5da4b0837e27a002e5c3bbbd1d3cf6a708e86a93e6b32de5fd76538cea03",
+  "recordedAt": "2026-10-04T07:27:40.203Z",
+  "sha256": "9919ba6c3108bed95a538c35cea23219a4ba373d7c59be49c86d5b26e53b0ea7",
+  "bytes": 23792,
+  "requestId": "KjrdF4jnSsdIgQHeJ1D6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "154969b07d08f0bf2481345cefce3e98a076367d3ad0752b3ca553692217e72a",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-back-rank-played-rook",
+      "label": "Tactic back rank played rook",
+      "text": "Here's the back-rank theme to test: the king's own pieces stand where its escape squares should be, and that last rank becomes the target for the rook."
+    },
+    "takeId": null
+  },
+  "requestHash": "82265227b03597627f5a60e9f00e60a772a4a27b534c2169fe912d6cb530bc69",
+  "recordedAt": "2026-10-04T07:33:07.275Z",
+  "sha256": "3a5e9318c5a5a7cf4f41e04ea47f4040587ac1b027502a2df7ad76d85ab2fa83",
+  "bytes": 28801,
+  "requestId": "o8b39KGezUTG4AA24GjD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "17033512368027181832b732a43294cc07a2753045a4942819e4b3daa8f57584",
+    "bytes": 147165
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

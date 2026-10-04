@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-skewer-played-knight",
+      "label": "Tactic skewer played knight",
+      "text": "A skewer is the idea here. When the knight in front moves, it exposes the piece behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "b8bf8ed4df75704bb70d780ad4d94ebb56d367bed621043b49898199b34a0d13",
+  "recordedAt": "2026-10-04T07:25:49.074Z",
+  "sha256": "84d8474dc940d6c5c124b37b714f9fff0af8a12c8ce579d0ca52aab5f1300b5e",
+  "bytes": 20039,
+  "requestId": "eCjazlCdxmHE3sLU4SeZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "29cd0ee08b32fcac358639f8522a3ef751de9ca4f1f8470a33845970b6092f27",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-bishop",
+      "label": "Explanation finding sole defender captured bishop",
+      "text": "The only defender, a bishop, is captured. Later in the shown moves, the piece it guarded is captured as well."
+    },
+    "takeId": null
+  },
+  "requestHash": "672a33d1d85adcfec3a4194e44aeeb3f2c2bcde7ffff1d3e9c385fae7f8b6ff7",
+  "recordedAt": "2026-10-04T07:28:07.616Z",
+  "sha256": "55f521015efc3a8e8af4cfb2f7dcb5623727ae277ea0278e5c8040da3f50aa77",
+  "bytes": 23315,
+  "requestId": "fdpjSwuIpYvUkxId32xU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "08a4a65a245cdba687096c5a26f49b706b848f0190afcc45c17fe2547a3bdb13",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

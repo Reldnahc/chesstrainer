@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "tactic-back-rank-played-rook",
+      "label": "Tactic back rank played rook",
+      "text": "Its own pieces have the king boxed in, and the rook collects on the back rank."
+    },
+    "takeId": null
+  },
+  "requestHash": "93e0a3205cc7445df0e2eb68f47e2781b9d06ce6c9d0253daaa577f24722a0a6",
+  "recordedAt": "2026-10-04T07:44:11.525Z",
+  "sha256": "663e3f35a4df9e9b06ef4085b275dd2f6c75d910ebf0d616559f6635cf6f0e2a",
+  "bytes": 17152,
+  "requestId": "ovr3kdQG3Z2mzvJZGxct",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8ca5caa33b9d707f659b5447230f0c12cf52df8c3331c3e69413d1ba2aac10c0",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

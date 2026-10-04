@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "cause-opponent-threat-recognition-bishop",
+      "label": "Cause opponent threat recognition bishop",
+      "text": "The opponent's last move threatened a bishop, and this move ignores it. Now the bishop can simply be taken. Every move must answer the one before it."
+    },
+    "takeId": null
+  },
+  "requestHash": "ef6e77413f31957e598e23ae5ec675ae2da9f07580917292327fba58cff8f9d7",
+  "recordedAt": "2026-10-04T07:42:50.133Z",
+  "sha256": "5797bea0ff9ac54c09fa7bdb0ee09c9311746091af9bccf6152e096f1dcaa350",
+  "bytes": 31473,
+  "requestId": "HMoi27bNwe0h8IpJ7RDw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7647c2cdbe60a9c4fef780add4207aa007c8d70a99431d83070b7c7d6bfe4025",
+    "bytes": 163466
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

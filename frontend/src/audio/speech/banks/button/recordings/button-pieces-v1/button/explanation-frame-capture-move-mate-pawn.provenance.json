@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate-pawn",
+      "label": "Explanation frame capture move mate pawn",
+      "text": "A capture that ends things. A pawn is taken, and it's checkmate; the king is out of legal moves."
+    },
+    "takeId": null
+  },
+  "requestHash": "2697d3f65284941bba4e99a4e5ce626662e6cc2d7f3f61ec0aceda26a4f47e70",
+  "recordedAt": "2026-10-04T07:31:52.748Z",
+  "sha256": "1625593b068a4a76cb0dc881ce67fdde1b33d0e1e979235a70562eac49f4224c",
+  "bytes": 22423,
+  "requestId": "PGMAgTR3JKxMucTtYIHl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dbd34c74f2fd0c420e7407a76cd5baa7a640c962b8c54b1318e28543f3eb3ff7",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

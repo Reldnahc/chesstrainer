@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-bishop",
+      "label": "Explanation finding undefended capture gain bishop",
+      "text": "Nobody was guarding that bishop, so it gets taken, and the example ends with the capturing side ahead on material."
+    },
+    "takeId": null
+  },
+  "requestHash": "016356f22ae38e4b7b4eb4f3455d67ba882272c96201cfd1d1441e335c45b1dc",
+  "recordedAt": "2026-10-04T07:37:47.725Z",
+  "sha256": "6bf6459d4c7c5e7e0a0cebfa497abe98a22f77fd420cf837d6e503dd10c45b82",
+  "bytes": 24938,
+  "requestId": "zuncRYsAW3ZN8Ra8hOTN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5f93a5abaabfc14bff18f59fb1fbce1eb01105c216362adbfa93e6484cc306b0",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

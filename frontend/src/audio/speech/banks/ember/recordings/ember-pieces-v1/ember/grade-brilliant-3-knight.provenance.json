@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "grade-brilliant-3-knight",
+      "label": "Grade brilliant 3 knight",
+      "text": "Brilliant. A knight sacrifice that withstands the capture; I have no correction to make."
+    },
+    "takeId": null
+  },
+  "requestHash": "542734bb12b00fed202d6a667ebd99b988c8463ab10eda6643d2b62c094de802",
+  "recordedAt": "2026-10-04T07:43:06.356Z",
+  "sha256": "10af7400dea17cfb5a2e91076af07eff044506bffc9f13b95fcc2a8e5bcb1798",
+  "bytes": 19569,
+  "requestId": "mhWczVqBDxUQt65VZh4s",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "04b774c25f4cd5ff81a6b56304a051020edb3b39fbac6c300567db173a53f6c5",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

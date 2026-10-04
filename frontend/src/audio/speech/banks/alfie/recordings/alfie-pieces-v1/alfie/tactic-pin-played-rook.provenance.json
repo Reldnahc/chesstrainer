@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "tactic-pin-played-rook",
+      "label": "Tactic pin played rook",
+      "text": "A pinned piece is tied to whatever stands behind it. This move pins a rook to its king, so it can't step off that line without exposing the king. That restriction is what the move is built on."
+    },
+    "takeId": null
+  },
+  "requestHash": "8ac7449b3c50957da1e603614e4b500028e1ecf8b8c3254087a859e661c1e2b9",
+  "recordedAt": "2026-10-04T07:34:43.210Z",
+  "sha256": "8c3e8731ceecdab936c12e10ea2737657bbadcaa5dc4446ff71c4dc6796e97c0",
+  "bytes": 37371,
+  "requestId": "qJNlkmN3jDbNYXkiMG3n",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2ec41b4bce6aeb746eaf5e23f947b13c845a222ee070b0d6c81faa12785b249b",
+    "bytes": 191887
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

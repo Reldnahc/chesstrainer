@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed-knight",
+      "label": "Tactic removing defender missed knight",
+      "text": "Another move could have captured a defending knight, and what it was guarding would have lost its protection. Instead, that knight stays on the board. A defender is often the right target, because taking it weakens something else."
+    },
+    "takeId": null
+  },
+  "requestHash": "deb94873be4e4d11c2e5e847311963f79605a4eadc68991ebf1314ba8c024e8a",
+  "recordedAt": "2026-10-04T07:34:25.648Z",
+  "sha256": "8c1a419daaaeb0570347305434c3a973c8837a8246ffceaaaa674f78428b9c55",
+  "bytes": 41883,
+  "requestId": "hzlA2ghJbcAe7aO9RRCR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "861818a52e1c5b942cfdd894039d429c460ec9c2f34a43acc859d4faf70f53c2",
+    "bytes": 214875
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

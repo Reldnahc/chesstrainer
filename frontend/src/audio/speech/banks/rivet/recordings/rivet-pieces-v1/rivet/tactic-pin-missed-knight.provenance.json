@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "tactic-pin-missed-knight",
+      "label": "Tactic pin missed knight",
+      "text": "Missed pattern: a pin to the king, available with an alternative. Constraint it would have set: knight locked to its line."
+    },
+    "takeId": null
+  },
+  "requestHash": "c7af34adeb86a643a5d1af591bf76ae7f824cc852463af6ea6bc1345c5f14340",
+  "recordedAt": "2026-10-04T07:27:10.542Z",
+  "sha256": "afe3b4c60c9075da2365dda1db86750cfde2d2615695cb487a6eea9d222ca34e",
+  "bytes": 24883,
+  "requestId": "L13jYprxJQJJkSurpipL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0ebfd27ff7ba16547d0700e13f8adab903192b729ae18e43add00b542514a012",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

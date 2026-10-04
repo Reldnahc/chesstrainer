@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "grade-brilliant-3-rook",
+      "label": "Grade brilliant 3 rook",
+      "text": "Counting material is usually the first step. This rook sacrifice is a reminder that it isn't the last one."
+    },
+    "takeId": null
+  },
+  "requestHash": "87193876fb7e266f196c9795f9b424438a53cd84520e5be7ac9eafc0ff4590ba",
+  "recordedAt": "2026-10-04T07:35:55.521Z",
+  "sha256": "0ee1fb9380f918bbd280924fceec7c0c126ad61f4b59c6b50c20ac4b5214ecd9",
+  "bytes": 22127,
+  "requestId": "cqTgUlDhQ0rXjXrNIHrw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b4145967fe3b71ee81b8d3ad7e218133593134c4d2d3199362a3c238b219c017",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-knight",
+      "label": "Explanation finding sole defender captured knight",
+      "text": "Down goes the knight, the only defender, and then whatever it was guarding goes too. Take the guard, and the rest is easy pickings."
+    },
+    "takeId": null
+  },
+  "requestHash": "e5b7c274a0fc39c7956fcd51946c7da8b980492a8317181d3de497ba27fa5920",
+  "recordedAt": "2026-10-04T07:37:20.544Z",
+  "sha256": "f33eba624837fb6d8d0c84e126be6f07d9efed3ce8979f3d5d4f0d7e0ed21513",
+  "bytes": 28525,
+  "requestId": "4kJsvZ5BrShUOPTCuRBK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "af9e1ca4241bfdecdca4394fe5e90107e0680ad7cc756bc0a86fe293dd183204",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

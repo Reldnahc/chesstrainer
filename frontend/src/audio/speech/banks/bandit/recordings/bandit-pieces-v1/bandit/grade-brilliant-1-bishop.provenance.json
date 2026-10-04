@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "grade-brilliant-1-bishop",
+      "label": "Grade brilliant 1 bishop",
+      "text": "Brilliant. The checked line has the receipts: the bishop sacrifice holds."
+    },
+    "takeId": null
+  },
+  "requestHash": "b7e044be6dce64e3e0f370be6ecfc0397d682f6c4d98a150e72b62fb3b1527ad",
+  "recordedAt": "2026-10-04T07:37:58.657Z",
+  "sha256": "d49e176f3d35a62669a7ae8a732ea1f7ba40bd7901fe36dd21ebad161a11d8ee",
+  "bytes": 17068,
+  "requestId": "QA6CAEA3aw30gPm9jVFi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0859d58f212fc351646c63b0d6c009fa9dd2722ddda7e1272d39772566a065e0",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

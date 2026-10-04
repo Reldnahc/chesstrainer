@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "grade-brilliant-2-knight",
+      "label": "Grade brilliant 2 knight",
+      "text": "Giving up a knight here? It's a bold candidate, and it turns out to be sound."
+    },
+    "takeId": null
+  },
+  "requestHash": "6ee57ec014cf2881b8b6d0940d2ca821b3e88a181464efcfb4309077ca2bc8d5",
+  "recordedAt": "2026-10-04T07:33:58.617Z",
+  "sha256": "7198a970662837944b2ec291725287beafb5b6b605a434cfa7b49032415f827f",
+  "bytes": 17093,
+  "requestId": "zC4VCsvxNGoX8UYxlfLU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "389a38e05c254a0b8861d1ce492fc8dfac21e5c2a6b8e045ae3221bdfca2c26e",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

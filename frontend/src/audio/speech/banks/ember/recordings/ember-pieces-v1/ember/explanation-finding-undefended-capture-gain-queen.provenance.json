@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-queen",
+      "label": "Explanation finding undefended capture gain queen",
+      "text": "The queen had no defender, and it is captured. In this example, the capture leaves that side ahead in material."
+    },
+    "takeId": null
+  },
+  "requestHash": "a29cc3a702c0f5e0700009b2a630a17c27afcba75a7ad4eefb4078e8067cf904",
+  "recordedAt": "2026-10-04T07:43:12.657Z",
+  "sha256": "623fe8c3c962d7fdec417f1755486525602b35bd71b060ccc438d6f173dd4e15",
+  "bytes": 24199,
+  "requestId": "YJCJ0fsqqnk6DQWyArmP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5988c8ba4afd3433abbbe265b6d048ab65c90256d6a184fc052354ace4c089ce",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

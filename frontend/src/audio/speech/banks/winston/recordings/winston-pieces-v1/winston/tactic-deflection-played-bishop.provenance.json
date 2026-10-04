@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "tactic-deflection-played-bishop",
+      "label": "Tactic deflection played bishop",
+      "text": "This is a deflection. The defending bishop's pulled off its post, and what it was covering comes open. Find what it was guarding first, then the bishop."
+    },
+    "takeId": null
+  },
+  "requestHash": "8dc22390d6745546e5be46ff67f1fc1503f4b6ad7a421cee90a8064661be3757",
+  "recordedAt": "2026-10-04T07:29:21.444Z",
+  "sha256": "5db37927088fdff84af01f518ca6291ec6579efd76d62290b7396f81b4feb8fd",
+  "bytes": 28757,
+  "requestId": "jRCs0kYbbJqcNQXdl7pa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4da521004b11ccae47b4dd8fc0bb637ee8cd76084ff4f2e645446d639afeda00",
+    "bytes": 149673
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

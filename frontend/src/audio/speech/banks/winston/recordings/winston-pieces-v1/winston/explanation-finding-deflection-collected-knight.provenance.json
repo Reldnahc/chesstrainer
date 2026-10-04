@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-knight",
+      "label": "Explanation finding deflection collected knight",
+      "text": "The defender's pulled off what it was guarding, and that knight is then captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "f0e0886da8a8b175c41deff8f4e7472ac037d3b26b9b4e83abeb00596260a223",
+  "recordedAt": "2026-10-04T07:29:58.396Z",
+  "sha256": "a6ebc94ae48497a422b99098a04949136db746ff61aeab4eb1e23923d0bbf6af",
+  "bytes": 14741,
+  "requestId": "HCnZcZesIZh5cY4L9N1Z",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "81d164b9e4fab86c396b922eb1d7a85be921de148843d11565cb00c9bdb0405d",
+    "bytes": 72768
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape-rook",
+      "label": "Explanation finding pin restricts escape rook",
+      "text": "The attacked rook cannot simply run, because its king sits behind it on the line. Whatever it does, the king has to stay covered."
+    },
+    "takeId": null
+  },
+  "requestHash": "c8d09e07fe6f5e074475c9a81d238aeeab3cbd62f301fca47007de98597c6058",
+  "recordedAt": "2026-10-04T07:44:07.946Z",
+  "sha256": "cdf8d4030650a638b225fad361a9296a89ac5596885ebd38ce52f9ad96f33798",
+  "bytes": 28111,
+  "requestId": "fx146trTRRLvH4kY3yvL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "48e12723846d43584d4a8b0db0b07fb95c2669efcdb0d99a4250962f44b7ab78",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

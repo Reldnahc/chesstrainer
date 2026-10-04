@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-capture-queen",
+      "label": "Explanation finding discovered capture queen",
+      "text": "The blocking piece moves, opening a line for the queen behind it, and the queen makes the capture along it."
+    },
+    "takeId": null
+  },
+  "requestHash": "5e9d71568de71d6763ca65ddf4a93ef7a50f2f03b82d162b06bae6ea05c634a5",
+  "recordedAt": "2026-10-04T07:30:00.292Z",
+  "sha256": "bbfeee1e15edb991295e9a83a50af00079cc7ae6efd9e269b8942f74491e2289",
+  "bytes": 19704,
+  "requestId": "zTkLn1vqQTfp3gXE6IDD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2f108d3b6f05cd5f9bbe91f15f84ad85f92fb06290138c1c7b8cb643aaca779d",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

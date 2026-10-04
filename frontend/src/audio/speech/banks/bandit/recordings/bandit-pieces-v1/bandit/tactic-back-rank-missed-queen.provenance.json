@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "tactic-back-rank-missed-queen",
+      "label": "Tactic back rank missed queen",
+      "text": "A back-rank mate idea with the queen was on the table, with the king walled in by its own pieces. This move never comes back for it."
+    },
+    "takeId": null
+  },
+  "requestHash": "a5c83e0e774f8e5e65a9ef176b23ecbed0de213009ced8bd25ac9bd09b08848c",
+  "recordedAt": "2026-10-04T07:37:08.780Z",
+  "sha256": "adfff9c8bae74ce2ae916d10578bf3a240529293679ebe9721ef81e67ac07340",
+  "bytes": 28035,
+  "requestId": "9aEymsVq5Waz4zwofOmc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "35bea9add5d861a786ac47731506aaa6ebf5cb1b95b9d462e0b91d716ba45882",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

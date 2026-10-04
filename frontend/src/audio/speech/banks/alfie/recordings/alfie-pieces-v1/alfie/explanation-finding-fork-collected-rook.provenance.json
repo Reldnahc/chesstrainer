@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "explanation-finding-fork-collected-rook",
+      "label": "Explanation finding fork collected rook",
+      "text": "One rook attacks several targets, and in this example it goes on to take one of them. The line also ends with a net gain in material for that side."
+    },
+    "takeId": null
+  },
+  "requestHash": "1391df2cc9f5077761b18c1d5528099b35fcf75fc53e086e0728c02029fac39f",
+  "recordedAt": "2026-10-04T07:35:28.610Z",
+  "sha256": "297f6171cbceaba50af4b07f1be467618e8277a08caca31cf1937367ea372659",
+  "bytes": 29194,
+  "requestId": "OaUD2Xwn41hEF4yLcEO9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1ff4a19cc1e397e6b3964f175debc19409bce8a128d8d7105936be8638528052",
+    "bytes": 147165
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

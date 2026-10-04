@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-queen",
+      "label": "Positional unsupported actual queen",
+      "text": "A queen is left undefended by this. That's worth knowing, though it doesn't mean the queen can actually be won."
+    },
+    "takeId": null
+  },
+  "requestHash": "71d0c15b9e11c4b3b13cfe24f2a4ddfae0c9e141bc8e80a629f1c419ba5fcef5",
+  "recordedAt": "2026-10-04T07:29:25.013Z",
+  "sha256": "624d5160c7275eaffd3233e8f5d7abb8355640767e3e2f8438e39a8971723d64",
+  "bytes": 21858,
+  "requestId": "OwWfFvORCckd16LCVKEb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "99c98c1617f2d5ecf7e255484aa905cdf46b0ae002b052d0d94f9b572739e844",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

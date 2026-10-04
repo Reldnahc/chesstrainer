@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-pawn",
+      "label": "Tactic deflection missed pawn",
+      "text": "Another move could have lured the defending pawn off its post. That deflection would have left what it guarded without cover."
+    },
+    "takeId": null
+  },
+  "requestHash": "1979a4cb99eff6487e7b4ffa2625e5906c82ec93e3b728fd02cbcf0caf72aa13",
+  "recordedAt": "2026-10-04T07:31:07.278Z",
+  "sha256": "937a3c692c2b06250a54e154528798d8b6d4b070d8271097f64f43a70078e0fd",
+  "bytes": 22987,
+  "requestId": "7kiPZa3yWCSWPleEOBSX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "abe182979de2d8827cb852566836994047132e32b06d0d953203371f7899917c",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

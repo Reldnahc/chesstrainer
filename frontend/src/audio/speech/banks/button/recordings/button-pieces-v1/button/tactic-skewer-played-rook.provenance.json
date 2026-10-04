@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-skewer-played-rook",
+      "label": "Tactic skewer played rook",
+      "text": "Two pieces on one line, a rook standing in front of the other. That's a skewer: once the rook steps aside, the piece behind it is exposed."
+    },
+    "takeId": null
+  },
+  "requestHash": "1a8a2e66e5667e54cf05bc2e41e1bfb77052e899a67f6e8fb9e047ad216541c2",
+  "recordedAt": "2026-10-04T07:30:47.820Z",
+  "sha256": "25a23d633d80f6e728f72117f8758f1a1a25b6090f3d13a8d929bb5471e01945",
+  "bytes": 30644,
+  "requestId": "f0SpaWmvYrXUQSKJHFtw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ed9326a75e7fb740452b51f31f45be323cb164f3a9285a0397df3c74823d79a6",
+    "bytes": 160958
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "explanation-finding-pin-prevents-capture-rook",
+      "label": "Explanation finding pin prevents capture rook",
+      "text": "That rook is barred from capturing: it's pinned, and the capture would take it off the line and leave its own king in check."
+    },
+    "takeId": null
+  },
+  "requestHash": "c336d83f052cd4655602c07827ccd142bd1031e386f5a6043e255a2829181388",
+  "recordedAt": "2026-10-04T07:46:14.228Z",
+  "sha256": "05b4503f16e37be55efc8bf968bc5b4cc8086c958a1b095574429d09397f5a57",
+  "bytes": 25937,
+  "requestId": "xOZyDwsqN9VpQHAIVWV8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d103ed210f97ac9a5e9e97defd106a5bb26b4e96ef05a3a7329ec237b7786840",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

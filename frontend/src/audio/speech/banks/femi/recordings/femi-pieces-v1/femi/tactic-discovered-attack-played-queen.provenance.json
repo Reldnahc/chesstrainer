@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-queen",
+      "label": "Tactic discovered attack played queen",
+      "text": "Discovered attack, then. The queen in front clears the path, and suddenly the back piece has a clear line to hit."
+    },
+    "takeId": null
+  },
+  "requestHash": "ecaec9d4ac641d02da02c97e78f839f1ba87f3aac72f4e7aacc695b4838a8c2e",
+  "recordedAt": "2026-10-04T07:45:22.425Z",
+  "sha256": "852485ceabf0c2de6b17a70adcad1054b3d9a4ae39c39640251bdcb9ac8f876e",
+  "bytes": 24509,
+  "requestId": "ctD2y0YelICJL2YhqnDE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "75212a40d8cc4750bd4ebc34fec8e3a76ae39bd065a6a4c605912ad84a6eb2b1",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed-knight",
+      "label": "Tactic removing defender missed knight",
+      "text": "Missed resource: capturing a defending knight. Another move offered a way to remove protection from what it guards."
+    },
+    "takeId": null
+  },
+  "requestHash": "ce77eb11e0e1ace15101581a13e93279916e353ce58edd098a0ba3212113dd62",
+  "recordedAt": "2026-10-04T07:27:31.305Z",
+  "sha256": "539c39144a49e62b2250420b993c193ccec470716e6db68f3fd367ca954f4575",
+  "bytes": 24099,
+  "requestId": "zMhFsWjEhH5Ft0l7dddx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "803aa87778924039e189fc9c85728f32f27ad13e9fe6c9241d2c6c884a82b954",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "positional-support-actual-bishop",
+      "label": "Positional support actual bishop",
+      "text": "This gives the bishop support. A defender is now in place."
+    },
+    "takeId": null
+  },
+  "requestHash": "27162d03459272b51ff4fccec0772ed48e5f90f5ad777bfc05660ff892acf16e",
+  "recordedAt": "2026-10-04T07:26:24.129Z",
+  "sha256": "5ad82243c9c536b17313c35514e7660ceaaa875af803cd5a84419d27e8753f02",
+  "bytes": 13238,
+  "requestId": "ZUmNnlvaXZhwZSuBUnhX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "94f07e4c652b32ca47c8e0873a139df92d2d32da3ab965c5e986e5632b9cedb7",
+    "bytes": 66499
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

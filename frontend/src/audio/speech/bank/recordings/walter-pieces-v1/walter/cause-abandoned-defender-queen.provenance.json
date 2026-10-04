@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "cause-abandoned-defender-queen",
+      "label": "Cause abandoned defender queen",
+      "text": "This move takes away the only effective defender of a queen. Now the other side can capture what was left behind."
+    },
+    "takeId": null
+  },
+  "requestHash": "5e4fe81d808ac99aafecdcf3512c45ce5665bf4350f7f9be6127a7a794d8c650",
+  "recordedAt": "2026-10-04T07:26:34.758Z",
+  "sha256": "1326e3b57744453e367248fcd20f0025dd565873dc18fef0c6a947443130da23",
+  "bytes": 22841,
+  "requestId": "nMNvZZyRobRhcLtSecvz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "92fe57a5b0ca336b7ebda897b0279f510cb62286b9669cca819b2e555e15903b",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-pin-played-rook",
+      "label": "Tactic pin played rook",
+      "text": "Notice the rook that can't step away. It's pinned to its king: leaving the line would expose the king, so it simply isn't allowed to move off it."
+    },
+    "takeId": null
+  },
+  "requestHash": "5ca499fcb3e054cf0c57a42f3ac52a05e169174d6baa59cd51d6f29d595aa7c5",
+  "recordedAt": "2026-10-04T07:30:57.539Z",
+  "sha256": "bc294de13895b26cb7f901ce9083ce2ed08f05a7ffc22367532add6478ce222e",
+  "bytes": 30249,
+  "requestId": "NipQ6bJxGOATLccD7Q6y",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9863eb60e1cf03cb2b751b23dbd9232d829711d27584abb3b99423416f33359c",
+    "bytes": 155942
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

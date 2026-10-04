@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-bishop-rook",
+      "label": "Explanation finding double check bishop rook",
+      "text": "Two checks at once. The bishop and the rook are attacking the king in the same moment."
+    },
+    "takeId": null
+  },
+  "requestHash": "ed2e040494560e6cf5348cc853f3e459707a536b47934a8a59004ee16e441eef",
+  "recordedAt": "2026-10-04T07:32:05.326Z",
+  "sha256": "7fb0db1f2eedcbb7030047356ad90c92f5de2399fc93217367a20821e0d1749b",
+  "bytes": 17951,
+  "requestId": "VAaXLWQ7oLrJk5AihQlE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f002027750bae298ccd464944aa2d92e0f253633024be4b01720ea386efb7f36",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

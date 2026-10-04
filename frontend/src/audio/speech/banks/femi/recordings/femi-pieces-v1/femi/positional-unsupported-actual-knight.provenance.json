@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-knight",
+      "label": "Positional unsupported actual knight",
+      "text": "Worth noting: the knight is unguarded after this. That by itself doesn't make it winnable."
+    },
+    "takeId": null
+  },
+  "requestHash": "b32aeab3532e45dbfa423c2458856b7bd3a0903def09e929d453f8637ff5738a",
+  "recordedAt": "2026-10-04T07:46:04.322Z",
+  "sha256": "a111386630ab2b47b8edff306b2a54f34d9fded6448abeb3da9ccff3cf00e89c",
+  "bytes": 20098,
+  "requestId": "O5Aclnqg3yVPBNKLBKOQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "de92ed3bce54fa6a2e64a28579e32ab21727d6f484175b8d7e4c40f145ab08c3",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

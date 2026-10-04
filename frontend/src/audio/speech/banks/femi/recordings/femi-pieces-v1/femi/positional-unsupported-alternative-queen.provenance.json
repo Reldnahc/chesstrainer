@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-queen",
+      "label": "Positional unsupported alternative queen",
+      "text": "Another move would have left a queen without a guard, which alone wouldn't make it winnable."
+    },
+    "takeId": null
+  },
+  "requestHash": "3c2043d8e6d9c823a39ad6a9737ca62762a2c39f6d57140f4809b286cc84ad14",
+  "recordedAt": "2026-10-04T07:45:48.279Z",
+  "sha256": "122a2d02e3894dceaaf62655c81412dd38560ec4400bb44089aad06454b3b34a",
+  "bytes": 18330,
+  "requestId": "6E8pJBwb2rXa8zUX318T",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "885c5ac5d31485af5128d6639bd7e8f8665c2dc726a54ea02b6c2348b014bce0",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

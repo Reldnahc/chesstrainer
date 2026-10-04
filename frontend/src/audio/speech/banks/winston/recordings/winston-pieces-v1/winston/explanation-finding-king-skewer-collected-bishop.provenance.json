@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-finding-king-skewer-collected-bishop",
+      "label": "Explanation finding king skewer collected bishop",
+      "text": "The king has to get out of check, so it steps off the line, and the same attacker then takes the bishop behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "390afe66dc31b8251a299b43003b3acbff58ccdf941279b704a1f0c21ac662ff",
+  "recordedAt": "2026-10-04T07:30:01.549Z",
+  "sha256": "f064bdb4dbac6815ee9def3347aa4687757939853e29d6d8c383d6a1cbfa8331",
+  "bytes": 21742,
+  "requestId": "Pibcot3lSj05bIZmTdPw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "971df6e57dd90c3493299e0784b0f07d3706f85e929903c5965f87024606b317",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

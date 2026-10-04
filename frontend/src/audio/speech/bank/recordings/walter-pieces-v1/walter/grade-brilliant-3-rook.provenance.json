@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "grade-brilliant-3-rook",
+      "label": "Grade brilliant 3 rook",
+      "text": "Rook sacrifices like this are where a game can change character. This one stays sound after the capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "c86d69f1f28b2ca208868c700fcdce56e3a5c7be7acf88b1772b8af029b434e8",
+  "recordedAt": "2026-10-04T07:26:47.689Z",
+  "sha256": "6234feaa9eca47c6160b74f2d893b4f95be7dd51270c25607d027541c6cf31ad",
+  "bytes": 21569,
+  "requestId": "cBlGKvqsKBQm3FtZ7Ub1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b529809f905d2e693eaa9f7a73614f81c5b62990c22349f66775b36b142f0cad",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

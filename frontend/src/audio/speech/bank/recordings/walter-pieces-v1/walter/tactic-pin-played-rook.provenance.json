@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-pin-played-rook",
+      "label": "Tactic pin played rook",
+      "text": "The key idea is a pin to the king. A rook caught this way cannot leave the line and expose its king."
+    },
+    "takeId": null
+  },
+  "requestHash": "b8fb0eeeb140cfd03e5e650cb88f0aeacae8be6891c8fd428146072465984fbd",
+  "recordedAt": "2026-10-04T07:26:00.326Z",
+  "sha256": "93c208aec213b523eb6f2ab3846bc6c48a589ece23db3dc45bc9274c1cf3565e",
+  "bytes": 22183,
+  "requestId": "BeJAfStJmQQR4Daru1HE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7c5f346d3ba4ba4f94023a049834e8d01dbc0ba599e1e9311af6114a17818dd6",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-pin-played-knight",
+      "label": "Tactic pin played knight",
+      "text": "Notice the knight that can't step away. It's pinned to its king: leaving the line would expose the king, so it simply isn't allowed to move off it."
+    },
+    "takeId": null
+  },
+  "requestHash": "25fc55313e0e1c05a6271b8dab92f9123bc3c03511e67fc24234f033afffc698",
+  "recordedAt": "2026-10-04T07:30:52.737Z",
+  "sha256": "246ef9b34bb8061330c3084b1e0267f3573d2295094fcc67ed8d0f9cde00ee70",
+  "bytes": 30228,
+  "requestId": "PnA0XdfaWyr5bxEa8z7b",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ea383e7d68c00d58bbb1bdee67dc6faa02c9b22b8f3f812826401b50964adf46",
+    "bytes": 155942
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

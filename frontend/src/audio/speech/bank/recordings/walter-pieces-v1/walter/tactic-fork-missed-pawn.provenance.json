@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-fork-missed-pawn",
+      "label": "Tactic fork missed pawn",
+      "text": "There was a chance to set up a pawn fork. This move misses that opportunity to attack two targets at once."
+    },
+    "takeId": null
+  },
+  "requestHash": "e667a235bc003f056148e5567fb2f87535503cc987d5279df023117b0c690fb4",
+  "recordedAt": "2026-10-04T07:25:45.052Z",
+  "sha256": "4e31f0197fce1cf680650ac044c11d30e3179f997b02883a505dd6acf788cd80",
+  "bytes": 21356,
+  "requestId": "jPoOC2rFi7sqeiT9l4RH",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3399a475146c73df940892f8f6529bc5c133a2a8d45ebaab2c56fd3e518ec8b6",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

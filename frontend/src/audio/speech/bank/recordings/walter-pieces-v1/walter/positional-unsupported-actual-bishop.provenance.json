@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-bishop",
+      "label": "Positional unsupported actual bishop",
+      "text": "This leaves a bishop undefended. That alone does not mean the bishop can be won."
+    },
+    "takeId": null
+  },
+  "requestHash": "51be025b82011bafc084782b1e578bd42bb293dd12134a01f2c77669d0abe50e",
+  "recordedAt": "2026-10-04T07:26:35.594Z",
+  "sha256": "625bb727cb71f5a07b76f4991d2736bb2179a720a83163efdd4351872a40fe19",
+  "bytes": 17590,
+  "requestId": "vvT6IBYMVH7m8BIhie2Z",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a3838971ea4cfe35c5045628920f4977b3055935780434a0d38d97edb096b830",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

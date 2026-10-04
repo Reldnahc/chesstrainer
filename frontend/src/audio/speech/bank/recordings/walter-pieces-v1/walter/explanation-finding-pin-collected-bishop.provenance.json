@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-bishop",
+      "label": "Explanation finding pin collected bishop",
+      "text": "Watch the pinned bishop here. It cannot leave the line without exposing its king, and it gets captured as these moves play out."
+    },
+    "takeId": null
+  },
+  "requestHash": "a60c789027a9e5e93c81d90097c8602d6a097b39207bc6843b60f398bdd438e9",
+  "recordedAt": "2026-10-04T07:26:19.367Z",
+  "sha256": "cec89acb6c921c5cc95f033d37a1102108491f0cbd079de44c3b263db5eb7b1a",
+  "bytes": 24122,
+  "requestId": "tIjuWlpWHEMMf0dYq9uG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7ae4500abada3fe669765f6f8e071871219f3653ec84accc7eb15557839c0902",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

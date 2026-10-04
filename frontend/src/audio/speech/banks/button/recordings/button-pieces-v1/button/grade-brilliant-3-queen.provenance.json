@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "grade-brilliant-3-queen",
+      "label": "Grade brilliant 3 queen",
+      "text": "Oh, I do like this. A queen given away soundly is rarer than a four-leaf clover."
+    },
+    "takeId": null
+  },
+  "requestHash": "6813af016f36f0ea9c8a28d75ebd0f1e35ae15d2e9533f3a6d09b039848e96c3",
+  "recordedAt": "2026-10-04T07:32:00.756Z",
+  "sha256": "3ec856de90a6b3d0cd13241e7d642daf51b7dafeb53f5339fd2b37063a15220a",
+  "bytes": 20454,
+  "requestId": "7v7bgdzXosr3dItN2dco",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ca2345c05114b8913e2998ed01ed9795297cc37362dccb53c4a28d31d022ded4",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

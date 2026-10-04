@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape-knight",
+      "label": "Explanation finding pin restricts escape knight",
+      "text": "The attacked knight can't flee at all; it's pinned, and with its king behind it, a pinned knight has no legal move."
+    },
+    "takeId": null
+  },
+  "requestHash": "424da2ddd24c482f4f92ca3bb0d71af784628806b442275571f012e96d4c573f",
+  "recordedAt": "2026-10-04T07:45:48.606Z",
+  "sha256": "ced4be7f38407ee4eebf3b569273d2892bf97e8044fe5e94810254194dc03898",
+  "bytes": 26745,
+  "requestId": "hBoc6IGTb1sC3pHSIecJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "25bb5dcd82fb934da256452b2d99d1ea16ef713bbe5c497a651f7d63c785bb57",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-knight",
+      "label": "Positional unsupported alternative knight",
+      "text": "With another move, the knight would have stood undefended. By itself, that would not have cost it."
+    },
+    "takeId": null
+  },
+  "requestHash": "9164f2b672ede118cb710bc13fb36a4bbef62f986a43bceac2ae0c872643a243",
+  "recordedAt": "2026-10-04T07:44:03.723Z",
+  "sha256": "0f5c234771b60fa023a8ab4819b17218f499204b0d6e4d1b675413467e02c460",
+  "bytes": 20529,
+  "requestId": "4crPmdm88qiMZV6EAsbG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d51e95086ea172e83e9c2aa7d9b821fd7a8cc73785d45a9f146231ba0e897f2f",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check-bishop",
+      "label": "Explanation finding discovered check bishop",
+      "text": "A piece steps aside, and the bishop on the line it opens delivers check."
+    },
+    "takeId": null
+  },
+  "requestHash": "fd7cedaf94a2371ccd45c6d5cf475ffb2893bffdd97bfe6e76edbea2f5de9c4f",
+  "recordedAt": "2026-10-04T07:41:03.751Z",
+  "sha256": "7b7d1f0bcba38b1f307913228015b1c851ea4a2d17866e60917bc5a244d9a8cd",
+  "bytes": 15997,
+  "requestId": "X14iOOHiHgiOaQREw5NL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d8a393c56c4fb4db9ef191dff568967259e84ee53c118f94c738039eb9041c68",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

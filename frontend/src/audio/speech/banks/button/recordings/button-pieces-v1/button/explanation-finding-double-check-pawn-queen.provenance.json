@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-pawn-queen",
+      "label": "Explanation finding double check pawn queen",
+      "text": "Two checks at once. The pawn and the queen are attacking the king in the same moment."
+    },
+    "takeId": null
+  },
+  "requestHash": "419f10fcf94f22d66e389e5bdda709e071c8d0831a30e4e6eaf129b32e934db5",
+  "recordedAt": "2026-10-04T07:31:58.615Z",
+  "sha256": "f50bfe456db6282536daabfaafae74f4f328d25f87a39b59bbde590aa2583547",
+  "bytes": 18035,
+  "requestId": "lj0PfGevVU8mKJxdLSOQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0958da4647b0256268c192b75edec66fd8c3dabfb876156f851c616e48018eee",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

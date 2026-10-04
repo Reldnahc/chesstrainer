@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-king",
+      "label": "Tactic deflection allowed king",
+      "text": "Alert: defender diversion possible for the other side. Defender: king. Its original task could then go unattended."
+    },
+    "takeId": null
+  },
+  "requestHash": "9e392440e4c8fa1952d0bdc3ad63d5068042879e949a8065cca2134b61f1c54e",
+  "recordedAt": "2026-10-04T07:27:30.682Z",
+  "sha256": "ef20dd0dfcaf2348d97075b26e2e4528cdc990ffbd84947123d009d1a6526661",
+  "bytes": 26864,
+  "requestId": "ponlUldiyNmtniVqXJt1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0cf65f43c7ec3e597ae2d931bb2e32dda6ae45caaac8f30ef2a973f87f7fd0bb",
+    "bytes": 137970
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-bishop",
+      "label": "Positional unsupported alternative bishop",
+      "text": "With another move, a bishop would've been left without a defender. On its own, that wouldn't prove the bishop could be won."
+    },
+    "takeId": null
+  },
+  "requestHash": "adc06d17f71a5b94cb21e24c807d9e422b353a16596c81bb441c9900384388b0",
+  "recordedAt": "2026-10-04T07:29:29.214Z",
+  "sha256": "a0e3abce5454fe35e262caa96329a5aedc3fac7e95904484e5620ac03ec00c48",
+  "bytes": 22615,
+  "requestId": "kBv4mwYXwqcptm1iiWGt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9d3e073cc3509c84008e6bbcbe0a7f13524ad351bb5779774dc4229ea12182ea",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "grade-brilliant-1-bishop",
+      "label": "Grade brilliant 1 bishop",
+      "text": "A brilliant candidate. A bishop offered, and the idea holds once it's taken."
+    },
+    "takeId": null
+  },
+  "requestHash": "96a0af9da6c97b33ec5f414773da2024bbeb9f54808186e7e91ac52c9166f818",
+  "recordedAt": "2026-10-04T07:33:53.908Z",
+  "sha256": "c3274ccffba7f1b8e5786fd1fb6b62588af9f5754f3d3d0bcaffe50297a5198c",
+  "bytes": 18033,
+  "requestId": "QTZTyIK9o5Y8X60cWdct",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3719a2f10671257267ca716b5493ad21a23a690023c0dec72ec7add830a8f7b2",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

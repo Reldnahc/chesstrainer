@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "positional-support-alternative-queen",
+      "label": "Positional support alternative queen",
+      "text": "A different move would have given a lone queen a defender, which is worth a comparison."
+    },
+    "takeId": null
+  },
+  "requestHash": "c73b6515ac0c20b3a8e98024e6261c7814fe235d15754f7e4324aa74a35aef63",
+  "recordedAt": "2026-10-04T07:47:39.004Z",
+  "sha256": "af05a3082843a2fe3af1863657c89056342b34c107609bf08a7e8347d18dd5be",
+  "bytes": 16812,
+  "requestId": "bjrjpuaNosh1xZO9k0xY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c72590dba4bd986680ceeec007428bc4f641360a754cee349ac2f22094fe9130",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

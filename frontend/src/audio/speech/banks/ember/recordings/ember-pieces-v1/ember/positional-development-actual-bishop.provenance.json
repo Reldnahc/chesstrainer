@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "positional-development-actual-bishop",
+      "label": "Positional development actual bishop",
+      "text": "Development: a bishop is out and in the fight. A piece left at home does no work."
+    },
+    "takeId": null
+  },
+  "requestHash": "633f55d2bc97f9b91f0424a7c39abfa6643d1414816bbbd103e483f8ff41fbce",
+  "recordedAt": "2026-10-04T07:42:31.320Z",
+  "sha256": "5624bee22ca08ff6b19cb71e9c6b6975101255f813358a8fca77e1a17775a5c2",
+  "bytes": 19360,
+  "requestId": "M4SyalaTX7JbD9dg2AnI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "41569d6710d932c994f87e653158a0977ecd5b5ad579c065116734b3a7a1cfdf",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

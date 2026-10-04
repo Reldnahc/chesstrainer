@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "cause-abandoned-defender-knight",
+      "label": "Cause abandoned defender knight",
+      "text": "This breaks one important connection. The knight's only real defender moves off, leaving it open to capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "cc378e5d5a5aff640e7beffb8cdc4183c88c81e9fa4aa22b685c92424bb7c9a0",
+  "recordedAt": "2026-10-04T07:40:50.339Z",
+  "sha256": "409d752ca792797df0928bb686c3e873d8c1a623dcd419e6419fbd685eb0eb58",
+  "bytes": 23983,
+  "requestId": "8aw1NA4D5oBoIB1Ee30n",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8963480e61f16dc7c2b68821ecbb3e05e1aa1d1ea05de262859f4796c5657032",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-check-knight",
+      "label": "Explanation frame capture move check knight",
+      "text": "A knight is captured, and the move gives check."
+    },
+    "takeId": null
+  },
+  "requestHash": "69013f7ff67ed4506418cfd193faa092002532b5aa7ea0bb1a7ee518f5caeacd",
+  "recordedAt": "2026-10-04T07:33:33.791Z",
+  "sha256": "a79bfbbe4989c2a3c9e5ae5536a814ae62892e32b5ba75608e6a40fcf3f44de1",
+  "bytes": 10704,
+  "requestId": "nZouNiVVuo2IjmDxKtJ1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0b999489c389b960123b0c96a4d454a60e9c3a76d68a90f04048af4f84ea2c70",
+    "bytes": 53542
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

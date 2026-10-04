@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary-bishop",
+      "label": "Explanation frame capture move ordinary bishop",
+      "text": "It takes the bishop, plain and simple, this time."
+    },
+    "takeId": null
+  },
+  "requestHash": "fd4fe23d11cc632dfdad09e0bcafb9640fef407ce26c2a6f4cc2d8205ec91cde",
+  "recordedAt": "2026-10-04T07:46:37.075Z",
+  "sha256": "d93da1bbb617ee0b7941a6f55631a1c2b8075e8370319736b76afe96ce9a1d49",
+  "bytes": 11644,
+  "requestId": "eh4DJtTY4wVD6Qy8RNIM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "699f4c1715d7ea9ded94fe33c71ebda6c513af02a635ea6e6be85ff9399462ee",
+    "bytes": 57304
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

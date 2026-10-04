@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-back-rank-allowed-rook",
+      "label": "Tactic back rank allowed rook",
+      "text": "Where could the king run if a rook arrived on its last rank? After this move, nowhere, and a back-rank mate idea opens up for the other side."
+    },
+    "takeId": null
+  },
+  "requestHash": "126a0fa8397d7bf333d5544ceafd2604e352e12c67f3d1f114b8230c4b4a62de",
+  "recordedAt": "2026-10-04T07:33:11.862Z",
+  "sha256": "a2a5b2657b0c7556f579a4c1b9f7344e9075881c66c4b5527a847d37cd355c47",
+  "bytes": 30585,
+  "requestId": "pm1eCZcSrd4mLqq8xTWC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2a7f621692e6d6d84b4d6fad33061b79821076eb70c9977014edf75cd4f1d743",
+    "bytes": 159704
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

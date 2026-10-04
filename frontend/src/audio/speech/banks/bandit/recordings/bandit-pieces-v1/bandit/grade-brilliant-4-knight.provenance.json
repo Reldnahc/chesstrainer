@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "grade-brilliant-4-knight",
+      "label": "Grade brilliant 4 knight",
+      "text": "Giving away a knight? Not my style, usually. But this sacrifice is sound, so I'll allow it."
+    },
+    "takeId": null
+  },
+  "requestHash": "a92b8d590e9f1bef545eb95c90da4895389889debadf52a2046aec29af80640d",
+  "recordedAt": "2026-10-04T07:37:42.832Z",
+  "sha256": "ee63f33169dae01415132ae0ccf7aa624046e9a9e8092d01cd974661fb32971b",
+  "bytes": 23258,
+  "requestId": "8eM6KkGTF0fq2NyrQB2P",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7c8cbb2f20f3a2f0c9801ca3030dd68a696c7f35e98796eab463a3bcb5e9e38f",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

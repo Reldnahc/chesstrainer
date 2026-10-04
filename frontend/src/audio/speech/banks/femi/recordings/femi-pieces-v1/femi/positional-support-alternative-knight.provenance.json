@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "positional-support-alternative-knight",
+      "label": "Positional support alternative knight",
+      "text": "Another move would have covered a knight that was sitting loose."
+    },
+    "takeId": null
+  },
+  "requestHash": "98e188f8bd86ae16cef77c3e2427318fd4a48c62497d4054622c19012fa27828",
+  "recordedAt": "2026-10-04T07:45:59.567Z",
+  "sha256": "2c2c2ede6ad21dcf81419a4812b824fa78cc18d84f6d08c38b0b5ad6c89c4cbe",
+  "bytes": 12337,
+  "requestId": "6ailvhbMTwKABkWBj1UQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8fee007fab5c4cfffb70fd347a5d199039ef6193835b8451c54079eba9daa156",
+    "bytes": 59812
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

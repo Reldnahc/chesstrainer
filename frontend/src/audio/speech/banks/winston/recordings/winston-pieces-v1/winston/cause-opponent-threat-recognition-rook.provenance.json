@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "cause-opponent-threat-recognition-rook",
+      "label": "Cause opponent threat recognition rook",
+      "text": "The warning came with the opponent's last move, and this lets it stand. A rook can be captured now; begin with what their last move attacked."
+    },
+    "takeId": null
+  },
+  "requestHash": "51e8f6d0a95e6e264258a8f9378dc96aeca6455125da92af6be2cf7ce75efecd",
+  "recordedAt": "2026-10-04T07:29:22.567Z",
+  "sha256": "9de6fb5526daae01edbd21b4b697eea60f8c6df4975c322457123d6b72e63d37",
+  "bytes": 27088,
+  "requestId": "vlnJuXQ8KRQLTktoOhLX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b98872c2ea8cee4c1b64ea1314f492adaf34fab0822013c4c6b94aafea79d695",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

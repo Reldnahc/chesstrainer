@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "tactic-back-rank-allowed-queen",
+      "label": "Tactic back rank allowed queen",
+      "text": "Out of this, the other side gets a crack at a back-rank mate with a queen. The king's stuck behind its own pieces, with no way out the back."
+    },
+    "takeId": null
+  },
+  "requestHash": "281c00569870dde67cbd544ff2f267e7baa84aff124c50f2293d6ff90c330940",
+  "recordedAt": "2026-10-04T07:37:04.638Z",
+  "sha256": "09ba2126bbff043b441aeb64fc79f275f1ca5ff6568c1cc105b8afba98c16c67",
+  "bytes": 28188,
+  "requestId": "7CdhZfDtq1OIqlWLZR5c",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2a88307bbc8477ef7aa7508966e2fb8b6221034c1c085456122cf68760ca8eaa",
+    "bytes": 141732
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

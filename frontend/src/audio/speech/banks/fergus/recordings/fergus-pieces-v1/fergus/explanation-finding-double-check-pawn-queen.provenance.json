@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-pawn-queen",
+      "label": "Explanation finding double check pawn queen",
+      "text": "This is double check, the pawn and the queen at once, so only a king move will do."
+    },
+    "takeId": null
+  },
+  "requestHash": "f5f4ef218b1b2b95441933ade5202596459c7ef9a3962836519418fc440b9991",
+  "recordedAt": "2026-10-04T07:47:53.068Z",
+  "sha256": "1961a8df8706c8938aca5d85027555b334598e113b69b9be838b1ee005542691",
+  "bytes": 19088,
+  "requestId": "eTRMaB87JKeA6lFdFZSr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f63d39ea37aa6b3da036d2375f7f4b0cb7cb98b0f3b795f508f85090f4835c2b",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

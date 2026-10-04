@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "cause-avoiding-bad-trades-rook",
+      "label": "Cause avoiding bad trades rook",
+      "text": "Hmm, grabbing with the rook sure looks yummy, but then the other side recaptures the rook, and it's worth more than what it took. Easy habit: tally the whole swap, every grab from both sides."
+    },
+    "takeId": null
+  },
+  "requestHash": "d348f4c0dac001842be4681bc3e1dead05bb0de76b0b9c3733cd9d84db4fd663",
+  "recordedAt": "2026-10-04T07:38:54.663Z",
+  "sha256": "9cebf7a48969d31fe10d7b858bce6168a79a9b2eed1cbf081e48c43ba6f72a9e",
+  "bytes": 42411,
+  "requestId": "MrQpOLhdDDJBw2omOLNn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a79f685e87aac206dd613cd3263d457b1dfa7a82b202b2949af288d06ea576d9",
+    "bytes": 219890
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

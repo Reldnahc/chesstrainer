@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "grade-brilliant-3-queen",
+      "label": "Grade brilliant 3 queen",
+      "text": "Brilliant. On a quick count it looks like a queen thrown away, but the checked line says it's sound."
+    },
+    "takeId": null
+  },
+  "requestHash": "6b80624f4ec65bb6eddf2f16ad06d02534f6d5374aa25d2d92f08b7b0494f500",
+  "recordedAt": "2026-10-04T07:46:29.547Z",
+  "sha256": "90b9c2df429f331e08226e83bb8d4a61d4d6dcfb2576537f4791f40f2fc73f08",
+  "bytes": 21738,
+  "requestId": "ZCC5yf9RQCeTBvuSUJh7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5c1d7c635b6a8823a27a0f95da83b1b00213a2fa6c5484819eea760bb8d85b5b",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

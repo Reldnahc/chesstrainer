@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary-pawn",
+      "label": "Explanation frame capture move ordinary pawn",
+      "text": "A pawn is captured by this move."
+    },
+    "takeId": null
+  },
+  "requestHash": "879a300db56f9ec0a40c7aead2fd1bc2afd36c8f0cd292e9e2b1cddb3ebe4ca7",
+  "recordedAt": "2026-10-04T07:28:31.967Z",
+  "sha256": "25615a86b5920f9f78d3c8415cce225edf5e57171d60c2b746bf28b93d787ef2",
+  "bytes": 8548,
+  "requestId": "TDoD0T5JBh1baBjhIjc7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "89d0a38d1a9a7f9e74124dcd731e07612b4b7cde6a18fd278723b21fef5d0ff1",
+    "bytes": 40586
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

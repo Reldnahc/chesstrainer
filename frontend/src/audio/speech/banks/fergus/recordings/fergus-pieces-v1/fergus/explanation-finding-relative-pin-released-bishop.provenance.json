@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-bishop",
+      "label": "Explanation finding relative pin released bishop",
+      "text": "The opponent's previous move freed the attacking bishop from a relative pin, the target stayed where it was, and it was captured in the line shown."
+    },
+    "takeId": null
+  },
+  "requestHash": "dbea7fbd695e5ff45bb58a72aca9defca73b3498c27cdfe472d56c0083c69744",
+  "recordedAt": "2026-10-04T07:47:31.607Z",
+  "sha256": "cfe56ce7f324784856261ce84b31243f3db81ca5af0e451a4ad008c5d3197964",
+  "bytes": 28469,
+  "requestId": "CgLLI7Zfi1NpT0HVKp2c",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "68591972428bd084610693c83b193385a28975bb2e546ebb1498e978a0ad72ac",
+    "bytes": 147165
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

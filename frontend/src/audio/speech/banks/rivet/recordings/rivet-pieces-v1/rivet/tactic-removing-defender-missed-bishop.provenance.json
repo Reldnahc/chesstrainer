@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed-bishop",
+      "label": "Tactic removing defender missed bishop",
+      "text": "Missed resource: capturing a defending bishop. Another move offered a way to remove protection from what it guards."
+    },
+    "takeId": null
+  },
+  "requestHash": "a5ae878b497bf4ed514d54533dada26219250b1bef88a321c00251ddf51db0d6",
+  "recordedAt": "2026-10-04T07:27:33.334Z",
+  "sha256": "0ef19215cc527fd88dbc3c3be6909e3bd851dd4535a601a9d7ce9b7dd98d7384",
+  "bytes": 24306,
+  "requestId": "9p4bd3KPHbVbWT7dE8tY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c1f91aca8ac00b24043519416ef932d37a592834e0ed067749bc15d8cca41fdf",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "tactic-pin-allowed-knight",
+      "label": "Tactic pin allowed knight",
+      "text": "This hands the other side a pin, a knight held against its king. Once held in line like that, it can't step off that line without exposing the king behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "3e053c8a7735cb4e18a5d0efa267b37a29b810a3efda4aa889c7fe9a1f03afc0",
+  "recordedAt": "2026-10-04T07:39:47.885Z",
+  "sha256": "47b5de2b99c8c635db3cef7d2de6c538c37852f45bbb82c48cab31fdaf5eb738",
+  "bytes": 33463,
+  "requestId": "FNwCTmA0piLTaXd0Y6Qx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "477a62760a792dabf36aac60dc4c1a596d7545df0c1af90ba5ef44a0806ccda7",
+    "bytes": 167645
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

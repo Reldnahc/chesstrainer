@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-pin-played-bishop",
+      "label": "Tactic pin played bishop",
+      "text": "The key idea is a pin to the king. A bishop caught this way cannot leave the line and expose its king."
+    },
+    "takeId": null
+  },
+  "requestHash": "ddd7ee9a61f2ba82ab907c8d47817d8d71b36c4728b4b38698daa1ee49e68aea",
+  "recordedAt": "2026-10-04T07:25:58.554Z",
+  "sha256": "4de381bb577f96ef96a3591805e5bb70fd73ce98e068dbfb8e9a4b1af64ace2e",
+  "bytes": 22662,
+  "requestId": "MOpXQkkIxqVLxu9PALyG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bcce179485cd061e92def4d52cb86398a432878cf8d7e5ade6ed327eab436ad0",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

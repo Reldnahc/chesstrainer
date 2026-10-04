@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-missed-bishop",
+      "label": "Tactic undefended capture missed bishop",
+      "text": "A bishop without protection was there to take with another move, and the chance was passed over. It pays to look for unprotected pieces first."
+    },
+    "takeId": null
+  },
+  "requestHash": "e1c003f02a8da5af14e278c7a3ebd5f4cbe253de67e471e260bb9f9cef6ea990",
+  "recordedAt": "2026-10-04T07:40:13.282Z",
+  "sha256": "9c1abc4543c0251d5134e06143fd9c4313178a0fa83ea5a6d7128c7012a281c1",
+  "bytes": 26985,
+  "requestId": "bpI9NTsoLHXfneqsbptq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2ee47b9009dada947ba58a2619e7fe0f35edf1b6dcde924e78f56f919aeb0b44",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

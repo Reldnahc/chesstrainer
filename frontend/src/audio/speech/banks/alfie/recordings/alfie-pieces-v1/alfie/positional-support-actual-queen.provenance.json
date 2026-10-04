@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "positional-support-actual-queen",
+      "label": "Positional support actual queen",
+      "text": "A piece with a defender can't simply be taken for free. This move gives the queen support it didn't have, so a capture on that square could now be answered with a recapture."
+    },
+    "takeId": null
+  },
+  "requestHash": "faf3377bd1906f475963da5ad5221d87aa7683ada9a188a4ac11ef78af8b90cf",
+  "recordedAt": "2026-10-04T07:35:41.129Z",
+  "sha256": "4d5e97481424695a6884148df74e7ac8e4518986365ab4b3e7518bad37c2e535",
+  "bytes": 32964,
+  "requestId": "15cf8kN6gAkn8VaTu5YJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "36135c5b6a83ec5fe98e08be60b0541251e2d8b30765635efeb3e707454b144d",
+    "bytes": 168899
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

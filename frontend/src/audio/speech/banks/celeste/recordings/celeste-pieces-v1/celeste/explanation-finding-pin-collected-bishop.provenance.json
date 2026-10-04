@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-bishop",
+      "label": "Explanation finding pin collected bishop",
+      "text": "Let your eye rest on the pinned bishop. Held to its line by the king it shields, it's captured before this sequence is done."
+    },
+    "takeId": null
+  },
+  "requestHash": "7e8714581e282db2dddce4653f1c52caf7d75dc9d566d6fcd8323741a1501123",
+  "recordedAt": "2026-10-04T07:40:51.600Z",
+  "sha256": "92671640f6ba1376de6b2a7626d765e1537f33df5f2200709c62122e7517b6fe",
+  "bytes": 25944,
+  "requestId": "bQ4twRNNglWnzSts3VMO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a780bac6a257c1e63ff8e664e02b902ba96e731100119a459baa3361e410717f",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

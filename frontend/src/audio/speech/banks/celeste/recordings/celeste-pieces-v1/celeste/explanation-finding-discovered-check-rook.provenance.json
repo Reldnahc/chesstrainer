@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check-rook",
+      "label": "Explanation finding discovered check rook",
+      "text": "A piece steps aside, and the rook on the line it opens delivers check."
+    },
+    "takeId": null
+  },
+  "requestHash": "2843f6879b9312c873f8cc6fe70e182ac5f07a8dacc90f85ca98490e06d093a6",
+  "recordedAt": "2026-10-04T07:41:05.024Z",
+  "sha256": "f6f3e965ba476b4681217c69a9ad392cd3a3b9ae3f6814680f6357517f07bb67",
+  "bytes": 15522,
+  "requestId": "ZwmL7oZ5PyzINS628fxe",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6ec72b6f977156890745241c69cbfa920d9046ef82a5f17dc2a58e4ac3b473b9",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

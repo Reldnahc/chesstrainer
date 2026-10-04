@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape-rook",
+      "label": "Explanation finding pin restricts escape rook",
+      "text": "Because the attacked rook is pinned to its king, it can only move along the pin line, if it can move at all."
+    },
+    "takeId": null
+  },
+  "requestHash": "35b780dd57aad1d4a0ce692ef3246b200ca0a9d3806c9d74b64bbd3f5cc40d91",
+  "recordedAt": "2026-10-04T07:35:07.267Z",
+  "sha256": "2ba156342a9b949cff2589c648f9d605faf1ea6077776bf587191433dbad4af8",
+  "bytes": 21252,
+  "requestId": "mCpcYKJiDVlFCRSUxqZz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0075dcaf3f0602e24fb887796c4868891e51d6b80abb251c8c1a63833b025350",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

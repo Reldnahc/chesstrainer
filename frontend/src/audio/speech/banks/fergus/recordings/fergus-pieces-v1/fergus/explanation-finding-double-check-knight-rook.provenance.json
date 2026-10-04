@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-knight-rook",
+      "label": "Explanation finding double check knight rook",
+      "text": "This is double check, the knight and the rook at once, so only a king move will do."
+    },
+    "takeId": null
+  },
+  "requestHash": "a392c547394a741438d2630177e79867dafc167f052d25223cac359eb58d5811",
+  "recordedAt": "2026-10-04T07:47:56.372Z",
+  "sha256": "7ca581f34e656ab6b14a8a472f0f7dabc9ee1213714b8e544102b11a20f88776",
+  "bytes": 18481,
+  "requestId": "uXbCXdidffSwElLbyKMY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "45e23486cdec2027c851b873fa800ea7281977103fd1c0ac6e6bcf67ea11d8e5",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

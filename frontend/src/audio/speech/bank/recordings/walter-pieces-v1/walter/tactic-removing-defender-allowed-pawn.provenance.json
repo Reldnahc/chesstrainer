@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-pawn",
+      "label": "Tactic removing defender allowed pawn",
+      "text": "This gives the other side a chance to capture a defending pawn. Look at what could be left without its protection."
+    },
+    "takeId": null
+  },
+  "requestHash": "a54daf1fd543fc91284904dd7f54835382491185451c80e2793e18be2cff8415",
+  "recordedAt": "2026-10-04T07:25:29.424Z",
+  "sha256": "137817caa01481e0e99b0c2ead10af0cb867b84cdec85ff28232bcee06f6da8f",
+  "bytes": 20619,
+  "requestId": "hdaaULwGc5BpuWCu8W0A",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8999b131567c138a23b086a5141fd223643aa94aac9c49a63856cac1e7c2834d",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

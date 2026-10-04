@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-queen",
+      "label": "Explanation finding undefended capture gain queen",
+      "text": "That queen had no guard, so it gets captured, and the side that took it comes out ahead in material in this example."
+    },
+    "takeId": null
+  },
+  "requestHash": "e12afeee71923cac4d33eff97184d9da1cd4d4f91cdd6a908da4d1a1feacea7b",
+  "recordedAt": "2026-10-04T07:39:28.507Z",
+  "sha256": "584bf96cf1991962bb7f4bc71a0ba447fcf4d2475e4014854baf63d250275e80",
+  "bytes": 22566,
+  "requestId": "vdUswyWwch09P2DCMsxG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "be37bca8646597d337e9d68ebb9bd727627bcbce02cd5e023b537612279a26a0",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

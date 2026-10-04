@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "positional-support-actual-queen",
+      "label": "Positional support actual queen",
+      "text": "A queen with no defender finally gets one. That's one less loose piece for somebody to grab."
+    },
+    "takeId": null
+  },
+  "requestHash": "ce2a75737d2dd0c70910db8bb5d164435059028b414bea3c9a18dbd9907e9717",
+  "recordedAt": "2026-10-04T07:37:20.554Z",
+  "sha256": "6ba5a7e4feec2d3d6b23d8c7ff6da3ce47338d0844c3e34443cd8209cf868ecd",
+  "bytes": 20117,
+  "requestId": "lsxgZkkZ4rF7OTibDr4T",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8f58485179719defaab8f35ea925ee7dd117c0ea65cbfb3d8e0c69c4a2cb4058",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

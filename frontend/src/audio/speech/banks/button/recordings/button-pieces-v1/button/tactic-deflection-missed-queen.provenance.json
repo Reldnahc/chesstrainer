@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-queen",
+      "label": "Tactic deflection missed queen",
+      "text": "Another move could have lured the defending queen off its post. That deflection would have left what it guarded without cover."
+    },
+    "takeId": null
+  },
+  "requestHash": "dc3f4939f1f6104c20d5a2f24ed97f92cd66c9cd4d3f7490d05db05a6f12eb65",
+  "recordedAt": "2026-10-04T07:31:14.812Z",
+  "sha256": "22fcf685529f81119f1c1286fd1939c000cf7a1a69fe3d941a72d7ef77aeb229",
+  "bytes": 23466,
+  "requestId": "PDIUOji7NphyuaIVWWhr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "75715814fbc52de421c942e1730576a291b4e54bfff69bd65e1767d7d0e6bba6",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

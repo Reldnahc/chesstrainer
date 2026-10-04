@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-pawn",
+      "label": "Tactic deflection missed pawn",
+      "text": "A stronger move could have dragged the defending pawn away from its post. That deflection was the better idea, and here it is wasted."
+    },
+    "takeId": null
+  },
+  "requestHash": "cbf4091ad07c02a142372ed76d5a11b5914b25b76c3be1060d8ab0697ceec011",
+  "recordedAt": "2026-10-04T07:42:11.698Z",
+  "sha256": "cf5fcb2f3ef6509d2de1206f1e142b1b52f96176534969294a77f1d46d1b64e3",
+  "bytes": 27145,
+  "requestId": "yDRxSKQpeGbS1zumnLsa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a9197b6eba953d7339d6108b5a0538c15e2e280b55a833e21c5b8f45880e94f4",
+    "bytes": 136716
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

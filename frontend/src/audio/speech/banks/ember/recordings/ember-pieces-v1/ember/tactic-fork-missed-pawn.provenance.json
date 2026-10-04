@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "tactic-fork-missed-pawn",
+      "label": "Tactic fork missed pawn",
+      "text": "A fork was there to be taken, a lone pawn bearing on two targets. That chance was left lying. Go back and find the square."
+    },
+    "takeId": null
+  },
+  "requestHash": "3e4b7c68815ee358086a6b378d801f5e255796cd7a11daa1ac1a12b33bf31df5",
+  "recordedAt": "2026-10-04T07:41:45.208Z",
+  "sha256": "ac9c8a437a023a32cd1d07f104e641804ab18583499bfc407fd2ef13d87c5a21",
+  "bytes": 27600,
+  "requestId": "0vfjAZxCalAvUC0joEJo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "896d82ac1acb95d39cd410ccd0ca0a63fa4e43c4be40310b8bdf06946c2b89b7",
+    "bytes": 139224
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

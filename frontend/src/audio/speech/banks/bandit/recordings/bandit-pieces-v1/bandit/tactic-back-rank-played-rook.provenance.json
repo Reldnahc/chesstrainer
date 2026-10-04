@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "tactic-back-rank-played-rook",
+      "label": "Tactic back rank played rook",
+      "text": "The back rank turns into a cage, and the rook is working it. The king's own pieces block its escape, so its bodyguards are what trap it. Ugly for the defender, and it works."
+    },
+    "takeId": null
+  },
+  "requestHash": "48c5c849ff9a4ad720ab329a67b7a250adc47d41d0e27b2414c5847640be4d1c",
+  "recordedAt": "2026-10-04T07:36:57.567Z",
+  "sha256": "672a218562b79b17541d4aa0cff2d87bd76a1f80b395cd077ce2c42089b1df4b",
+  "bytes": 37147,
+  "requestId": "f9MWRRgSiz6kry0lVpiW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a63ac2620af2a22abc336fe131d21f99429243ef132ce1facd0eb546104290fc",
+    "bytes": 191887
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

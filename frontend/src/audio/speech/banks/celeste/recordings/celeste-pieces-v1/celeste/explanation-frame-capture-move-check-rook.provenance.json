@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-check-rook",
+      "label": "Explanation frame capture move check rook",
+      "text": "A rook is captured with check woven in, two effects in one move."
+    },
+    "takeId": null
+  },
+  "requestHash": "4f96c6b315f91bc60ae960923e60ef89a2bb014e91246ce14eb2039e0c6ca930",
+  "recordedAt": "2026-10-04T07:41:14.070Z",
+  "sha256": "df6c9c8b5bc97a69f3481cea09df2fed5b0e835baa67af95f59b71df3914b1a1",
+  "bytes": 15562,
+  "requestId": "ib53fLx4jIggWR9VDjqw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "789ba57af31badddc94df651c47645d55fbedc4a29df31a1e03fa556d3c62ab6",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

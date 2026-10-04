@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-pawn",
+      "label": "Explanation finding deflection collected pawn",
+      "text": "Drawn away from what it was guarding, the defender leaves a pawn unprotected, and that pawn is then captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "18fdd5ca6b8c3236a52614443b7365720a2a42e9a041f30985f5d40cdfdecfd3",
+  "recordedAt": "2026-10-04T07:35:31.642Z",
+  "sha256": "6c9f92520f0697a3e5e9cebcc2f58c2d8f7cd2a13cdd3048133d7571fd67f080",
+  "bytes": 21896,
+  "requestId": "9DftDxJsKTHKH7j80EZq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4137c23610b503781231ff888ff3143afdcdd17971c52b282b3dc5c496d68e14",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

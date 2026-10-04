@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-knight",
+      "label": "Tactic deflection allowed knight",
+      "text": "The other side now has a way to lure the defending knight off its job. It's called a deflection, and whatever that knight was minding could end up wide open."
+    },
+    "takeId": null
+  },
+  "requestHash": "c3bb8cfb1c9d345825a0bc63043977946c76bd6c5657cbcf4a159a275d13c862",
+  "recordedAt": "2026-10-04T07:37:09.888Z",
+  "sha256": "a685875def192f7856dc47a8f9916c552de2a411605071018f190bcfefeaa21d",
+  "bytes": 31282,
+  "requestId": "krnJfn4usW1vgTqvxCez",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bf5e26b081addfd75825e868e4c946e04f370f1b9d0c97aa904390f065be47a3",
+    "bytes": 158450
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

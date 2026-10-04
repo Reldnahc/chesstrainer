@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-mate-bishop",
+      "label": "Explanation frame capture promotion mate bishop",
+      "text": "The pawn takes a bishop on the last rank and promotes, and that's checkmate, with no legal square left for the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "00ed0abd8dcbcdf77de2f11215d9202b9d18c5cea314c3c3b2f498fdd36a8aa4",
+  "recordedAt": "2026-10-04T07:30:11.747Z",
+  "sha256": "8a5b76a67cbebce78d2e5be7375d9c77beccc96f444d8579328b66d0eb503904",
+  "bytes": 22508,
+  "requestId": "EooTxxwSHm11FG9w8ctY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fd3526250ad812da70391f462b6c60334666c20ada61d16e5c58a7e3bebfbcf7",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed-rook",
+      "label": "Tactic removing defender missed rook",
+      "text": "Another move offered a way to capture a defending rook, taking protection away from what it was guarding."
+    },
+    "takeId": null
+  },
+  "requestHash": "d4b55d3433c5658d105fb56405f971c1612f982c62b9bba7b7fa45942854b2d5",
+  "recordedAt": "2026-10-04T07:25:42.738Z",
+  "sha256": "08f93bae685bfe10bbe91605ed02960eab07bb3040c8c5eed3c391bc89b6f4a1",
+  "bytes": 19605,
+  "requestId": "EaHj6K9UN3kJawwhG3Xl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6401d022b2890e3072ad30aa176d7b5d06f7d598c06159113ff08e10749966b9",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

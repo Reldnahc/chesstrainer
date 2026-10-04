@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-rook",
+      "label": "Explanation finding undefended capture gain rook",
+      "text": "An undefended rook is captured, and the example shows a net material gain for the side that took it."
+    },
+    "takeId": null
+  },
+  "requestHash": "0a55b87112aefaeb95b0f2ef0f835b2eca48eb59b4cb8884dc90289899bf1850",
+  "recordedAt": "2026-10-04T07:30:10.662Z",
+  "sha256": "1be09598d8e1a291e09c9adf2c75e5b77f516094ebbdf05886c7bac5bea46c40",
+  "bytes": 19011,
+  "requestId": "bn25kSDJr1XlTFAnDcmv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b80182670069cbbaa149f1cb730e9005a4efb8de82f47de13a48c4d44b318312",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

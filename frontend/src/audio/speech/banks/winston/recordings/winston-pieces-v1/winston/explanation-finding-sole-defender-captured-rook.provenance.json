@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-rook",
+      "label": "Explanation finding sole defender captured rook",
+      "text": "First the rook that was the only defender is captured. Later in these moves, the piece it was guarding is taken as well."
+    },
+    "takeId": null
+  },
+  "requestHash": "ae2629763703c03998b2caf57c189344ac17a7b01648f877db6b688a105307c6",
+  "recordedAt": "2026-10-04T07:29:53.696Z",
+  "sha256": "9248ab0195c6583c05841b644853b4cbe4fcd8d9db7a5da247c1aaabf3a4af56",
+  "bytes": 23535,
+  "requestId": "zaZnWIWHS9QcRGu4SF8f",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6e82207eba4214f070814fb2b58046b1935cc663f68cb974283fd6386943df7d",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-check-bishop",
+      "label": "Explanation frame capture move check bishop",
+      "text": "Capture completed: one bishop, with check. Both changes belong to this move."
+    },
+    "takeId": null
+  },
+  "requestHash": "5099ab3ec4bc5cd37b684d16d3aac8f348e5d267d7d794440e61e8351f244b05",
+  "recordedAt": "2026-10-04T07:28:13.776Z",
+  "sha256": "a9887f84adc903484519403624b64503af6c6d76894a7f6edc4e8f23f2b41cf8",
+  "bytes": 17971,
+  "requestId": "jzvKeSzZDCtsxlXME94S",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "91b3531cb63c8fb313ea8e689bb1d3f3345178902828f32eef320bad68dcc5d8",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

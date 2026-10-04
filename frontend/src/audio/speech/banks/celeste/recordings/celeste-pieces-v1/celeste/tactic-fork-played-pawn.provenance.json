@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "tactic-fork-played-pawn",
+      "label": "Tactic fork played pawn",
+      "text": "What a graceful idea. A single pawn reaches out to two targets in one motion, and one reply rarely saves them both."
+    },
+    "takeId": null
+  },
+  "requestHash": "28f1a01d34b844aec27e2ce774246c34b8a1a6b9a283cd64cf2a42e5c8a9a70b",
+  "recordedAt": "2026-10-04T07:39:34.467Z",
+  "sha256": "be5070f2b43ee882eeb219ecfdd643b240bb31759f1babd0759e43d33cd94c94",
+  "bytes": 28512,
+  "requestId": "1McdUyOKhtspIxz1oedY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c39ff9f07344430aba534e1073633bf741b12426da289ced55c2123a7166174e",
+    "bytes": 142986
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

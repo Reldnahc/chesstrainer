@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "tactic-pin-played-rook",
+      "label": "Tactic pin played rook",
+      "text": "Pinned to its own king. That rook can't step off its line without exposing the king, so it's not leaving that line."
+    },
+    "takeId": null
+  },
+  "requestHash": "e6a443257a7160ff4ef40d6b50ad73e47157827596a84b4fa0fa0de2e7ea06ec",
+  "recordedAt": "2026-10-04T07:36:35.394Z",
+  "sha256": "acf8df1679db251eb16cebf48ef2d7e96594eb19f6829cde3163b5df066fa0a0",
+  "bytes": 25115,
+  "requestId": "S8u0VG7WcKrIAQrNTz1f",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "111fa39232f9e18abb065223564885ea40e1d96b6d4ae2a7a30841489f471f45",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

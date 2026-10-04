@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-pawn",
+      "label": "Tactic discovered attack played pawn",
+      "text": "A discovered attack, and a forceful one. Unmasked: the pawn in front moves, and the attacker behind it is free. Clear the line, and the hidden piece does the work."
+    },
+    "takeId": null
+  },
+  "requestHash": "df7519523e482f843951821a4a5dada18c7b21b5523930484edfe17266b97dc0",
+  "recordedAt": "2026-10-04T07:41:50.121Z",
+  "sha256": "33fe522f05fca3f3e07c20aba8bcbc01e7762b59d2bb563e12535731097f42ab",
+  "bytes": 35095,
+  "requestId": "nTnhrIwYfQlUIyN7Y04k",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3e94c117d5cf24ed1f37b7dbf771257252e7a02d4d3129a042dd44b3d57749f0",
+    "bytes": 185199
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

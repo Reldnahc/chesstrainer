@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "tactic-pin-missed-knight",
+      "label": "Tactic pin missed knight",
+      "text": "A different move could've pinned a knight to its king and held it fast on its line. That chance went by. Find the knight that would've been held there."
+    },
+    "takeId": null
+  },
+  "requestHash": "d2bdf38be2b169b7aba3faf299805b5229b4fed1dc74ad8d21ab47c52624ed86",
+  "recordedAt": "2026-10-04T07:28:51.124Z",
+  "sha256": "f426b6999ab837d40d20eaeb32c37a5d2f7d8621d614fde26096f34904157732",
+  "bytes": 26582,
+  "requestId": "AdLJ1kFiahuD7JoBOyAV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "747695aba572f9179c611c620776b6c6661fb9f448724192197e6b104db6436a",
+    "bytes": 136716
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

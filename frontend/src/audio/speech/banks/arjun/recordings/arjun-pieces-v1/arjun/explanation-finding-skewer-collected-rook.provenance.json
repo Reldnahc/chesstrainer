@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-rook",
+      "label": "Explanation finding skewer collected rook",
+      "text": "When the rook in front steps out of the way, whatever it was shielding is captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "66f8d5c67379157bb49cca4c98c62281c37bd08b9824a2d9f6fc20e86a22b6fd",
+  "recordedAt": "2026-10-04T07:33:28.201Z",
+  "sha256": "457a03038488036551a7a0902e273f28ab7b70b41c08cbb5a6809f785373f6e9",
+  "bytes": 16198,
+  "requestId": "KIYvwxls8q7hzm77zyTB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "59a62ff24f3a28c264b70fee8db6b0cb68ec940b2cff0979adb96603bd878d03",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

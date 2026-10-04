@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "grade-brilliant-1-rook",
+      "label": "Grade brilliant 1 rook",
+      "text": "Material is a resource, and here a rook is invested soundly. That's what makes this move brilliant."
+    },
+    "takeId": null
+  },
+  "requestHash": "9856f0e0e7967d72f976a660f036c7c92a46d55325150358f9bb8ac5219fa2b2",
+  "recordedAt": "2026-10-04T07:36:17.885Z",
+  "sha256": "daba07db8a87349fc0fa8b271932ad7f2d9c30940f32103ca0058feb4db17416",
+  "bytes": 22672,
+  "requestId": "rFkPH4pGVOyc4ow673x9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f37abe08c1f1a24fbea63b79b3a5902051500e922560fd0fa4ccb7621386382d",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

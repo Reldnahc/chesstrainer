@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed-queen",
+      "label": "Tactic discovered attack missed queen",
+      "text": "Another move offered a discovered attack: move the queen out of the way and let the piece behind it do the attacking. This move goes without it. Find the queen that could've stepped aside."
+    },
+    "takeId": null
+  },
+  "requestHash": "712dc6fb0ebe4aa0ad57d74872ea4240eda80b8f7a54dd487fe958635c3fff69",
+  "recordedAt": "2026-10-04T07:28:43.350Z",
+  "sha256": "e01e7cd3364a547752e88613813bcafd283d1b001576f33bf72ebd480edfd010",
+  "bytes": 35156,
+  "requestId": "XfOP2YL1I5AOMSyQmW6Y",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8ef3d2ffbe8235c7d31812532e65ff2c8fdbc97ba49b6ef6ef9adaf9bb141452",
+    "bytes": 183946
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

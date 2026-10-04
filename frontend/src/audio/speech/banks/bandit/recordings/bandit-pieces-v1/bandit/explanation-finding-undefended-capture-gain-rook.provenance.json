@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-rook",
+      "label": "Explanation finding undefended capture gain rook",
+      "text": "Nobody was guarding that rook, so it gets taken, and the example ends with the capturing side ahead on material."
+    },
+    "takeId": null
+  },
+  "requestHash": "5fff08ede75b706ad0fce63246856fffcf49f7609a7fb2913fe464b9263f4f6d",
+  "recordedAt": "2026-10-04T07:37:49.578Z",
+  "sha256": "cf4c988de610d0b36e7ac75c8166166c7f262848cef86bee2dd2fd5fe1218107",
+  "bytes": 24565,
+  "requestId": "FyY6N6q0nBdDTy2kbtsc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a45814d08217f1d0bfdce7d567a5fdc9e162f61cd084226ee0e74b9df48f7156",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

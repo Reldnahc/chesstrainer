@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed-bishop",
+      "label": "Tactic removing defender missed bishop",
+      "text": "Taking out a defending bishop was possible with a different move; this one lets the bishop keep its job."
+    },
+    "takeId": null
+  },
+  "requestHash": "3ebb7b330316c786d16fec00882e6342865bff364e6aa1817a88f0d482f9b7bc",
+  "recordedAt": "2026-10-04T07:47:04.372Z",
+  "sha256": "84e74745661d204fb36d22fac674e79f1e63e19213f5512323c926e5890212bb",
+  "bytes": 21488,
+  "requestId": "95ZvtbfdqiFIJ3fHGHHB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "34c01742a64c695019799cccaea1b4c181fcfa779ecc5637f09761c236398c17",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "tactic-skewer-played-bishop",
+      "label": "Tactic skewer played bishop",
+      "text": "Now that's a skewer! Go after the bishop in front, and once it gets out of the way, the piece behind it is open for business. The prize is usually whatever sits in the back."
+    },
+    "takeId": null
+  },
+  "requestHash": "699fd87d3899e31984967d75ce797dd4f270b81c32495839d2c619556fb5224c",
+  "recordedAt": "2026-10-04T07:36:35.347Z",
+  "sha256": "9a0da580d60b47f253ab5c85bd5a563b03fcdba781eacf73428b2818bf9e05e0",
+  "bytes": 35345,
+  "requestId": "tTXrHJTgweX88WS5IHFu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9d1f2d69a19cee4cc7a7760780fb3709d02358c537918d422f573a1f0bd82f82",
+    "bytes": 181438
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

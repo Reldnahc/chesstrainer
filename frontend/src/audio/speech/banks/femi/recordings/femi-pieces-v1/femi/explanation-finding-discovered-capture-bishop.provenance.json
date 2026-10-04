@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-capture-bishop",
+      "label": "Explanation finding discovered capture bishop",
+      "text": "The blocker steps away, the line opens, and the bishop that was hidden behind it does the capturing."
+    },
+    "takeId": null
+  },
+  "requestHash": "8938cee6dbc1904231caa531cbd526bf79f32b15a55d58cb3ae6eef0e7122b4f",
+  "recordedAt": "2026-10-04T07:46:23.832Z",
+  "sha256": "9fa64816b6bb3b4d9f8d3913a066192e6f4115ba5c17583cab330b31050bc2b3",
+  "bytes": 20812,
+  "requestId": "5veGv2r0VGXRQmxAO69P",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "30c48c58edc064c3feb6d382f7c5d7414a0dcc55f0a8bbb451eb4cbc11d11e44",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

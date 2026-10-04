@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "explanation-finding-double-attack-collected-queen",
+      "label": "Explanation finding double attack collected queen",
+      "text": "The moving piece threatens one target, and the line it reveals lets the queen behind threaten another. Here it's the queen that wins its prize."
+    },
+    "takeId": null
+  },
+  "requestHash": "091e1f3791b28a7af2c647fa8a93df0749b76b17b3dd87d0fb8c57a465bc31ea",
+  "recordedAt": "2026-10-04T07:41:13.211Z",
+  "sha256": "cf1a5ddf22cf23005e100ff2f9bcf47906527cd9554ea399439277de6bedfc35",
+  "bytes": 30098,
+  "requestId": "U7DPbLBecDsEzjwW4cK3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9b0b3ede67d7b13f56ccdb04f0506a5dc845ba346a422254cd9c0a0dc7da541e",
+    "bytes": 150927
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

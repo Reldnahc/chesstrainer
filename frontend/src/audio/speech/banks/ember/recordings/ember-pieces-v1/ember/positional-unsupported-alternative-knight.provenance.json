@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-knight",
+      "label": "Positional unsupported alternative knight",
+      "text": "With a different move, a knight would have ended up undefended. Note the weakness, but do not call it a loss."
+    },
+    "takeId": null
+  },
+  "requestHash": "b87322ff623d533bf90aef117cc46fc130b7ee3ce8a11f9ca9f3b6b7ba0a8502",
+  "recordedAt": "2026-10-04T07:42:22.691Z",
+  "sha256": "5a35b2197e128c6c83a5d56814edee86d5bffe4b715281f8ce285d84880b9005",
+  "bytes": 22917,
+  "requestId": "1w6D2Y7yoHMrOXLtscKV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "37a797e3c9796ba972d61bcf259626b4e0e01f0d4c9d5f63d8301b74bb391ad4",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

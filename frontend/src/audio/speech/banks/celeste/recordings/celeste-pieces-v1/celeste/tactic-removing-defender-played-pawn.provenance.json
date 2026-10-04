@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played-pawn",
+      "label": "Tactic removing defender played pawn",
+      "text": "How neatly it unravels. The defending pawn is captured, and the connection it held is broken; whatever it protected now stands without cover."
+    },
+    "takeId": null
+  },
+  "requestHash": "b3d79053dd455f2565ba632da1199ea872a783719f546af894b74fc8b189907d",
+  "recordedAt": "2026-10-04T07:40:26.427Z",
+  "sha256": "67d40bc964a63e70cbddd603606dfcaed07170eba68f6c41bf429673283cf669",
+  "bytes": 31645,
+  "requestId": "V8yANoPqrNfwJyWA30SU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0e7ebde6d5ad02531a7d2fa71c86923cef41da06e2b5ca816a82c11282c7aa7b",
+    "bytes": 159704
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

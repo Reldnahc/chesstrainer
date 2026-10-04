@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-rook-queen",
+      "label": "Explanation finding double check rook queen",
+      "text": "Double check, with the rook and the queen checking the king at the same time."
+    },
+    "takeId": null
+  },
+  "requestHash": "c534c76452709c2a8b10bf7850c581ef8556c7ff9bb7aa1c6099cb7408b7a7d7",
+  "recordedAt": "2026-10-04T07:37:47.368Z",
+  "sha256": "c6a478bbd82a7bf17b0e303406bd9b266bf23f2698740851721d5d22cd10535a",
+  "bytes": 15376,
+  "requestId": "7OcwLMfNqf4KT6ZzGCfC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "955f3e30b2061a533936bffe5afefa2ac94d2070fc471c7b87577078a9886124",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

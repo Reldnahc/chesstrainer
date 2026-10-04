@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-bishop-queen",
+      "label": "Explanation finding double check bishop queen",
+      "text": "That's double check: the king's attacked by the bishop and the queen at once."
+    },
+    "takeId": null
+  },
+  "requestHash": "c73e22dcd1233c2df623f8c0e1129b20cece2a7e242394bb9d1bd5ba9f91ec7f",
+  "recordedAt": "2026-10-04T07:30:20.049Z",
+  "sha256": "4b181b3340b3035d49c34d0c036df8581a8a0ee24fffc9bcec347f6f303d5075",
+  "bytes": 15815,
+  "requestId": "dAfdGiwt2AIJGcuhVHHa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cf6639ebcbcea9620d2b9fef19ecc0f77442dfef07ad8b74a95f4705995ce535",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

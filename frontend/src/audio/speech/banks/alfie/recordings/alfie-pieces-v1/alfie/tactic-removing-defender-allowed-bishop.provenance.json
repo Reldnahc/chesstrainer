@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-bishop",
+      "label": "Tactic removing defender allowed bishop",
+      "text": "Every defender is also a target. This move lets the other side capture a defending bishop, and whatever it protects could then be left uncovered. Before moving, it's worth knowing which piece is holding things together."
+    },
+    "takeId": null
+  },
+  "requestHash": "559a833ffa7e783f3ab433590a8ccd8c0a16c833782d8ea27517b3a8dda2eed8",
+  "recordedAt": "2026-10-04T07:34:13.128Z",
+  "sha256": "42fb445e87da82ee82baa9eaa77edef3b54b07cfba1c8b5cf22b31b0d08b50d2",
+  "bytes": 41834,
+  "requestId": "BFz7KhseoMtZKVCXA77h",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a33f1d466ccf5dffe0659287509bb8531c0029284e9db2411d9a8edd0ec3fd18",
+    "bytes": 213621
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

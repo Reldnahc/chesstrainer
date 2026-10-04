@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "grade-brilliant-4-rook",
+      "label": "Grade brilliant 4 rook",
+      "text": "Brilliant. I'd love to explore what the rook buys here; the sacrifice is sound."
+    },
+    "takeId": null
+  },
+  "requestHash": "1b69f081a493c94cceaf863b661015e7a113b797f5f14c5447e3edde1d9d009f",
+  "recordedAt": "2026-10-04T07:33:46.855Z",
+  "sha256": "da17bd0517675f243a6ca5cd2df645998a79747cc05e81d86d2239de2d20b52e",
+  "bytes": 17278,
+  "requestId": "snouDLPdyBpJmP8lFW5h",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "18f30062e778dec963a01199cea0c4367286363e59d73fa55b0d55538016e08c",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

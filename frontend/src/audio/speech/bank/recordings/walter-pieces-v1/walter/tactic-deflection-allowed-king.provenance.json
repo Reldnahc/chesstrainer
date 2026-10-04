@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-king",
+      "label": "Tactic deflection allowed king",
+      "text": "This gives the other side a chance to draw the defending king away. That's a deflection: the king leaves something important behind."
+    },
+    "takeId": null
+  },
+  "requestHash": "c4044f182f138494828ae2f5c91a04cec1295efed0bf4ffaa9727be8a0e241e9",
+  "recordedAt": "2026-10-04T07:26:06.756Z",
+  "sha256": "f83d1930d6b456320ef3710df97c6515227c9d687bb826c51d2f41b8a37cff50",
+  "bytes": 24993,
+  "requestId": "v1lqFol5HDDO3Ru8MVvm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "75cb9afe0aa81455364d6f139b39b39929f316c923652bb433792dc25a5988ac",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

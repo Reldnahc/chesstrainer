@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-finding-double-attack-collected-bishop",
+      "label": "Explanation finding double attack collected bishop",
+      "text": "One target is hit by the moving piece, another by the line it opens. In this case, it's the bishop behind that collects."
+    },
+    "takeId": null
+  },
+  "requestHash": "76919e24519370b816c569bf7710d60bae862dbdabb648d2244d6b74a7695bf3",
+  "recordedAt": "2026-10-04T07:33:33.568Z",
+  "sha256": "3c31ae2bb2f7cc3fcb233edcf5deaeff7485fe9a50b047b71f9b646cafbb12e7",
+  "bytes": 25104,
+  "requestId": "oyK9dMjjLx0DkHzoW9nn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "57bf048e0654722fbbe992d31d34a30f5702d503035f660ae7d6b73899f74e30",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

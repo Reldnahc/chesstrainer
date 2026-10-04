@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-finding-double-attack-collected-bishop",
+      "label": "Explanation finding double attack collected bishop",
+      "text": "The moved piece makes one attack and uncovers a second. Here, it's the bishop behind it that goes on to take its target."
+    },
+    "takeId": null
+  },
+  "requestHash": "3f314bf512c106ebe4ee203dcb9cebd29d00a58ffb9b0434b791b7cd54cdeee3",
+  "recordedAt": "2026-10-04T07:30:06.242Z",
+  "sha256": "fef6c2bbc4b2afe591081a5fc97f57aeee0bd8f564ca0bffe59bb198a9332ed3",
+  "bytes": 23915,
+  "requestId": "PZJutVUencQ1YcJgN0Hc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c1f6b2f5c8c1db377a037edb383f3522ebab5dfcddd66e9bb7c65db1ae6c2974",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

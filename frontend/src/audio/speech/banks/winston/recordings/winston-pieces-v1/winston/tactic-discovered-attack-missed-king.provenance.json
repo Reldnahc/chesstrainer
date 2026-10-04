@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed-king",
+      "label": "Tactic discovered attack missed king",
+      "text": "Another move offered a discovered attack: move the king out of the way and let the piece behind it do the attacking. This move goes without it. Find where the king could've stepped aside."
+    },
+    "takeId": null
+  },
+  "requestHash": "e630fe0dfa9fc92bbd3d2b16b63c3563e9acc7a791fff1ee0ea5e141b6c8863e",
+  "recordedAt": "2026-10-04T07:28:45.901Z",
+  "sha256": "166330a0046e3ccb8872c54b6d5cf25428ce648915e81cf9f5f494a60a1d1076",
+  "bytes": 34691,
+  "requestId": "jmveE7XwQE26xSe4EZjK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4e7744484da92581dfe4668e8b7cdee02839b1ae8e0747a154bba3c7828cdc7c",
+    "bytes": 181438
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

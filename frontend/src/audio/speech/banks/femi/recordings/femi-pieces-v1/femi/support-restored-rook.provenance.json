@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "support-restored-rook",
+      "label": "Support restored rook",
+      "text": "Remember the loose rook from a few moves back? Somebody's guarding it now, and that's the change worth comparing."
+    },
+    "takeId": null
+  },
+  "requestHash": "9332949c37181e727c652877584f173d97fda048c3e8852e80832394935c711f",
+  "recordedAt": "2026-10-04T07:45:53.793Z",
+  "sha256": "46aec0787336a6ad35b19bebca6b91d00018050ffcea1538777bb435e831d0fe",
+  "bytes": 21574,
+  "requestId": "eFWSA3zXIetI4kxq0cTD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0e209a635ffad62f40711bcc8d72955f7685501d4fe7698638ef3050ce460d81",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

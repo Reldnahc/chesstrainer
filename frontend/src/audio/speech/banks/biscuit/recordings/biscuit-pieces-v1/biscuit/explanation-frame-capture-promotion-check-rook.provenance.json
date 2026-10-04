@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-check-rook",
+      "label": "Explanation frame capture promotion check rook",
+      "text": "One little pawn does a triple trick: it grabs a rook, becomes a new piece, and gives check, wow!"
+    },
+    "takeId": null
+  },
+  "requestHash": "e9b905249418458ecea286decf343311567aece9201b446e183c899efd60963e",
+  "recordedAt": "2026-10-04T07:39:30.775Z",
+  "sha256": "fb9c236b4cc0806a6984f3960173132e354ab7707dc97966f52faf0fb01ff32c",
+  "bytes": 24486,
+  "requestId": "RUdrlgHMlc8JmKVDZgZH",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "78fab2aef3d45f3bccfd6571f7ea6147eea566c8cfbf096b99985bb4455d8335",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

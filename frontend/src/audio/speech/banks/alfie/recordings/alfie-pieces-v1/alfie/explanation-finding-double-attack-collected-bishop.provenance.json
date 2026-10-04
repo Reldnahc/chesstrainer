@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "explanation-finding-double-attack-collected-bishop",
+      "label": "Explanation finding double attack collected bishop",
+      "text": "The moving piece makes one attack and uncovers a second from the bishop behind it. In this example, it's the bishop that captures."
+    },
+    "takeId": null
+  },
+  "requestHash": "cf325ab7f1d4b8afa2d82738e179fc57b8461e0a4e5c137cf1786d7adddd1bd1",
+  "recordedAt": "2026-10-04T07:35:47.697Z",
+  "sha256": "48840b5d37c0294a4c12c7fe70a23c9ff93c6f1d62f7cad2e94022861ce2e9ed",
+  "bytes": 25025,
+  "requestId": "rdxvNxfPje3jzyB4Gl6N",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2bc029c67600dfa10511d7a33ff44a9252d2bc23e01093b992909051e94bbdd9",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

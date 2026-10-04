@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-knight",
+      "label": "Explanation finding pin collected knight",
+      "text": "Keep that pinned knight in view. Any step off the line would bare its king, so it stays there and gets taken before the sequence is done."
+    },
+    "takeId": null
+  },
+  "requestHash": "8644917cd991b782e797fab63b2a999eeb559b87e3aabaf75ec9b4c8ac058b16",
+  "recordedAt": "2026-10-04T07:46:00.184Z",
+  "sha256": "8bb42e1d5b0bcd8204663e5a030202240fcf138e06ffd690cdaa2b57ee34315e",
+  "bytes": 28707,
+  "requestId": "Y1XnuODVGeC1Y1u9rm0n",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "204ec840a918a2e208c7b271daebc61d033bc9550ba3f8b5aeae9c273577f8d1",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

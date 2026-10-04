@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "tactic-pin-allowed-rook",
+      "label": "Tactic pin allowed rook",
+      "text": "Alert: the other side gains access to a king pin. Constraint: a pinned rook is held on that line by its king."
+    },
+    "takeId": null
+  },
+  "requestHash": "51ad014e16a5f12a5dba32714f7523585d8cf0548f1ba353819ff7ddb2056e26",
+  "recordedAt": "2026-10-04T07:27:03.993Z",
+  "sha256": "9b675a28f547d62b788398cc57a45f79e7134746a8421eeae95654238eef7b6f",
+  "bytes": 25164,
+  "requestId": "WqT5jW6IB02jTNkv4ATt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c711e445e48756b204ede6cb4b6268fa5f24b121fdb0cb812d0e010697ccca27",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

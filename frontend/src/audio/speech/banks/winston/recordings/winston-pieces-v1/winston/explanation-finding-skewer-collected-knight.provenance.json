@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-knight",
+      "label": "Explanation finding skewer collected knight",
+      "text": "Keep your eye on the knight in front. When it moves off the line, what was standing behind it gets captured along that same line."
+    },
+    "takeId": null
+  },
+  "requestHash": "8f2118a4f45901d583f3bae2d633e8a755ba4cbf4ab809810b26486f7ec858f2",
+  "recordedAt": "2026-10-04T07:29:50.156Z",
+  "sha256": "1352fccea5724f63f2d1b5b6b855ba5f9c3fe5c7ed8e72b0404944d82484ab66",
+  "bytes": 23365,
+  "requestId": "XT7DfDeee5kw7QettbSd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9cf1b37e1dc232391104dc58ebd92a7f23e96322f9eeba646e32ea396193682c",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

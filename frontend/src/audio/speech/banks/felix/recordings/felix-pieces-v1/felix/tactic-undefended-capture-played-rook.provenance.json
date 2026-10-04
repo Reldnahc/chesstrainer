@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-rook",
+      "label": "Tactic undefended capture played rook",
+      "text": "That rook has no guard at all. Take it. Nothing more complicated than that."
+    },
+    "takeId": null
+  },
+  "requestHash": "752103d09a33fa60115d767d9048ad18d0d77889b054138ebc8160394a789b4b",
+  "recordedAt": "2026-10-04T07:43:33.368Z",
+  "sha256": "3aadbe858254227f213de34290ab774d46273f556161006cb7cbaaa7fa940b90",
+  "bytes": 17050,
+  "requestId": "Nx8TDTdWANEaQambMEfd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c29937d078297ca481b0d98b7c3269b5bd8fcc63dac03f9d3ed24eabb2e05709",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

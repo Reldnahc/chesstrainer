@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-knight",
+      "label": "Explanation finding deflection collected knight",
+      "text": "Off goes the defender, lured away, and then the knight it was protecting gets captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "3f953e8f12f4053056d9199c3b0050aae0440ef354d8e638bb8e32055a008451",
+  "recordedAt": "2026-10-04T07:39:19.483Z",
+  "sha256": "024710035c9cdd86a4cec5f355bfeebc1004b5846ddad0ee23fadd649232a2dd",
+  "bytes": 19291,
+  "requestId": "PncaFzkpLWo9yuzPO2ov",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "540b46ac6666375e55362eb2bf10b3a772c9812ea254813e7d38dc460533624d",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

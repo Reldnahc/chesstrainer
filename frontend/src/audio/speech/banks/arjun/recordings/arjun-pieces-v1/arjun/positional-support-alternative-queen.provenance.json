@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "positional-support-alternative-queen",
+      "label": "Positional support alternative queen",
+      "text": "One alternative gives a defender to a queen that's currently unprotected."
+    },
+    "takeId": null
+  },
+  "requestHash": "9b0d26828811a31d1dac6eb0b3d98b478f2a2d6e8b41140bb6b4412145a681f7",
+  "recordedAt": "2026-10-04T07:33:21.423Z",
+  "sha256": "a029faeeec415805275adf9191fa74ce92544eb6045d0ddf77cf56cfaff8fcae",
+  "bytes": 15613,
+  "requestId": "n1IFVzJHtuUzUqp3Um99",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1434a97d09c62cad490e3810ec9589affcfdce626b0f21ea6008d8e90ef24a16",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

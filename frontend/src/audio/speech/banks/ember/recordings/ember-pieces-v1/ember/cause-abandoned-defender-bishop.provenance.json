@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "cause-abandoned-defender-bishop",
+      "label": "Cause abandoned defender bishop",
+      "text": "Careless with protection: the move strips the bishop of its only real defender. The bishop can now be captured. A defender's duty must be known before it moves."
+    },
+    "takeId": null
+  },
+  "requestHash": "637e6262af531dba162952ea1c33f6f33e2f72d2b34a0097ff13c5df2d0507a9",
+  "recordedAt": "2026-10-04T07:42:40.607Z",
+  "sha256": "f0c256ed159f05a923a006ef035b10383ebd4ac2106fcf77acdddc0a4c643b36",
+  "bytes": 33739,
+  "requestId": "LKt4VreO4Zd0wWMs4wJK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "edd5504960fa0dde1d2e7db466658e79c25455f6e00a7f814b6012586e91507c",
+    "bytes": 173915
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

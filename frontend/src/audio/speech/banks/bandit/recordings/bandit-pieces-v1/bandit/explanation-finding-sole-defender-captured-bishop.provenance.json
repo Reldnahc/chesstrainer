@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-bishop",
+      "label": "Explanation finding sole defender captured bishop",
+      "text": "Down goes the bishop, the only defender, and then whatever it was guarding goes too. Take the guard, and the rest is easy pickings."
+    },
+    "takeId": null
+  },
+  "requestHash": "7c8b75f68f70d6a67f6a685cb556a5f0fd3780f3ef77af15b0e469d1dcc09030",
+  "recordedAt": "2026-10-04T07:37:22.508Z",
+  "sha256": "443faa351b31f34e7dacc0ca14f65d2ddde871b96e4429773f8402603beff9de",
+  "bytes": 28766,
+  "requestId": "LRDgnsVx0qT5nNS8ZxZa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f28bdccf7f0dec85c400e7c338f9db3f7eb42cafbdb766772505243e1f2564cd",
+    "bytes": 147165
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

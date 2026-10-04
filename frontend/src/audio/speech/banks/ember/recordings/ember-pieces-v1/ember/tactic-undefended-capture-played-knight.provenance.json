@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-knight",
+      "label": "Tactic undefended capture played knight",
+      "text": "A knight stood without a guard, and the move takes it. A loose piece is an invitation; this move accepts it."
+    },
+    "takeId": null
+  },
+  "requestHash": "594754df7714d9566c5eb5893ef97add9ec0005e8037c02bc20f2416f05b02ad",
+  "recordedAt": "2026-10-04T07:41:45.638Z",
+  "sha256": "1df65689f50ea228d5e1ca3cc7a4c7c22ac73e7acdfca466aa750a2c8643271e",
+  "bytes": 23758,
+  "requestId": "Asv1spqCF34LRoEmuxx3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6e4f2d36b01925ec732437e41c5a16630a1459ab1c870dd0b57c11ab4e738565",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

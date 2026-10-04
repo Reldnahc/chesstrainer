@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-knight",
+      "label": "Explanation finding pin collected knight",
+      "text": "Keep with the pinned knight. Moving it would expose its king, so it can't move at all, and before these moves are done, it's captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "8d59583b332fe97f667cd7213bfbb705bbc83bd905d08015000262ecfa77a251",
+  "recordedAt": "2026-10-04T07:29:39.715Z",
+  "sha256": "551cb612929e017ca19791adfbbb4ec2df028af66a824cf8b8d1926cc4cd963c",
+  "bytes": 25072,
+  "requestId": "XiHMUqqZDtuymLlrLHAz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "52e4611670da9040378f4b6850c7c2a0942c5dab73af5534fffceb36ab296ffb",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

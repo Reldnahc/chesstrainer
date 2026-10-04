@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-pin-allowed-rook",
+      "label": "Tactic pin allowed rook",
+      "text": "This gives the other side a chance to use a pin to the king. A pinned rook cannot leave that line and expose its king."
+    },
+    "takeId": null
+  },
+  "requestHash": "158da84375444e4224c335be1a029a8eec8ea6ffd2ad95034c0ed95b83708ed9",
+  "recordedAt": "2026-10-04T07:25:35.348Z",
+  "sha256": "6e88511006816f98ca982e82f00c0b3ce12a4f5b2396afcb28864f22ff89d9fd",
+  "bytes": 23931,
+  "requestId": "tuOHRzuviWm5LdR8Lpte",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2eeb2986e9cbc66acc9c5cf94067e00f6ba6ec3a38cc75f7313f4dd8a7550fa1",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

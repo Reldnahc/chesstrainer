@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-capture-rook",
+      "label": "Explanation finding discovered capture rook",
+      "text": "The blocker steps away, the line opens, and the rook that was hidden behind it does the capturing."
+    },
+    "takeId": null
+  },
+  "requestHash": "31467f925faa4684bb51019a019e416815633c7ee6773c4ece8470f22051ba90",
+  "recordedAt": "2026-10-04T07:46:25.326Z",
+  "sha256": "1291dd4ccd059b2d89f1fe64de0b78875d7e51084c822f2fd870c2f6881f8026",
+  "bytes": 20600,
+  "requestId": "Ckjs1S5IRd1Pta4lNbug",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0c8486c395e05a6f74bbb01171f4ff89e42d0f60dc893f6c547d7158949394be",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

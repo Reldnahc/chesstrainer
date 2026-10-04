@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-knight",
+      "label": "Explanation finding pin collected knight",
+      "text": "The pinned knight cannot leave its line without exposing the king, and sooner or later it gets taken."
+    },
+    "takeId": null
+  },
+  "requestHash": "f68b96015573c9f3b9595c5b1ecf735d6852988290997b0b01c0790ddc4a5c05",
+  "recordedAt": "2026-10-04T07:47:25.403Z",
+  "sha256": "bc87399f88e57e4165abfdc5647c99cd91d7337a1d24460d80c0d664dcf22725",
+  "bytes": 21322,
+  "requestId": "Mdq2Y7zTptLVoNSuOji0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "20349cfdd51d00ff1e25f5eb4029d4da9c60bf0eab75cfeb55bf56db87a01546",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

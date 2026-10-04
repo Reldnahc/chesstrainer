@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "tactic-pin-allowed-knight",
+      "label": "Tactic pin allowed knight",
+      "text": "Pieces lined up with their own king are always worth a second glance. This move lets the other side pin a knight on one of those lines, and pinned to its king, it can't leave that line without exposing the king. It pays to check those lines before moving, not after."
+    },
+    "takeId": null
+  },
+  "requestHash": "0d01654e0addf07eae4eaf748852cf0f52b2a30bf3d686a1cf025ea7de2996d5",
+  "recordedAt": "2026-10-04T07:33:56.430Z",
+  "sha256": "c44bb94ca6312158b855ce9bbf4b919c813525496e2ab8efc9e1f6cd5a79d4a1",
+  "bytes": 50880,
+  "requestId": "jP4r1sHqVkoV0UUL6zT9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0d42e85e28ca73a3aa2979e74a36e9d7ebdfb4b08f5db7ab61ba913f7a80355a",
+    "bytes": 260850
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

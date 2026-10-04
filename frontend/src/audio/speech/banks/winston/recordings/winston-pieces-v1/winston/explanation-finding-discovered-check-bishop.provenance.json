@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check-bishop",
+      "label": "Explanation finding discovered check bishop",
+      "text": "The moving piece steps out of the way, and the bishop behind it gives check."
+    },
+    "takeId": null
+  },
+  "requestHash": "0d05ef4692993aebae7c07552497b9da9fd12b8e62b721a7196defb911794d37",
+  "recordedAt": "2026-10-04T07:30:01.609Z",
+  "sha256": "006d2d131b8f7de8657ba1e638d7f1aedc43bd3a5052362e6f3a3fdec89034a6",
+  "bytes": 14346,
+  "requestId": "txO6FhWQpuqS8DQu8X2L",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b3e5f2b225140eade52afe4aad65cad71c3f191b81b412daa0b761a54c02ae8e",
+    "bytes": 71515
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

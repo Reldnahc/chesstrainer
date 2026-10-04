@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-rook",
+      "label": "Explanation finding undefended capture gain rook",
+      "text": "That rook had no guard, so it gets captured, and the side that took it comes out ahead in material in this example."
+    },
+    "takeId": null
+  },
+  "requestHash": "50a2164151fb9b170d0f6f35f20eec9c03c96c466b6cc215aaa1fcf00935ef23",
+  "recordedAt": "2026-10-04T07:39:26.623Z",
+  "sha256": "a57af7d98647126caff3786c67afed86b29397a0bd0b231683616415ac2c9cf8",
+  "bytes": 23173,
+  "requestId": "nxfZXkFRfKS6mK1goBWw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "da3d4fb74b465859225d0e8223e552a5c4f19faec2a862a80e8154c3d09b30ba",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

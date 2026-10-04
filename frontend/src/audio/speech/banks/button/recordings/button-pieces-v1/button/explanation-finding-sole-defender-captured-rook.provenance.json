@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-rook",
+      "label": "Explanation finding sole defender captured rook",
+      "text": "First the only defender, a rook, is taken, and then the piece it was guarding. The first capture is what loosens the second."
+    },
+    "takeId": null
+  },
+  "requestHash": "c66c87f261f11d868722d4bf53768ca22a9d112562de7ad0c2aeafe95acf80b6",
+  "recordedAt": "2026-10-04T07:31:43.588Z",
+  "sha256": "c55f886d60d6263f07178fb90baa5eec0a05f11da6be633b32769a9ba2075ed2",
+  "bytes": 27280,
+  "requestId": "8qFuUwZ78Yw3udywQQou",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9624a115def75e197b20d1870022443acf0283517a87cdd042c37115dffa1335",
+    "bytes": 139224
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

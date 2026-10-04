@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-rook",
+      "label": "Tactic deflection missed rook",
+      "text": "A stronger move could have dragged the defending rook away from its post. That deflection was the better idea, and here it is wasted."
+    },
+    "takeId": null
+  },
+  "requestHash": "6480e79e05971d2e1b0ffe719063e779102a8467cb8bf2a48652904e303d51a3",
+  "recordedAt": "2026-10-04T07:42:17.925Z",
+  "sha256": "4bcb9aa30f17b67605f54c2df18943898227b34f79e10f94cd426c8e8e09a42c",
+  "bytes": 26815,
+  "requestId": "GcTZgzMi0ym4lwgX6jJZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5d0e9aaafe51206b42e3697ba0bc95c8f572ca1a2abe2308cbf34ef9b39bdb5e",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

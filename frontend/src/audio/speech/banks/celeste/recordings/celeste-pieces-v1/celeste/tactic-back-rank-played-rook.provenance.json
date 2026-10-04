@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "tactic-back-rank-played-rook",
+      "label": "Tactic back rank played rook",
+      "text": "The back-rank idea, in clear outline, with the rook as its instrument. The king's own pieces form the wall that keeps it from escaping."
+    },
+    "takeId": null
+  },
+  "requestHash": "4c81af9b1e7739e7dd040c0b0e7fce6cc5481b3f840e02436c74b23625b42111",
+  "recordedAt": "2026-10-04T07:40:38.053Z",
+  "sha256": "13e8536c40bb9d858a4f56fe3ecd49e0fe6c46a3a72492dfd265047c769bbfea",
+  "bytes": 28627,
+  "requestId": "5NHQjfWqXYx60plnP0AR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ff034ee2bf8717cd50a90f7e92284475d9685092fa46f8d62ac9a1b742cde4a4",
+    "bytes": 147165
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

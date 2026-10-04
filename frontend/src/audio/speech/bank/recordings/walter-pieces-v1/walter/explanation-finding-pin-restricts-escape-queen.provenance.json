@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape-queen",
+      "label": "Explanation finding pin restricts escape queen",
+      "text": "The attacked queen is pinned to its king, restricting its escape. Check which moves keep the king protected."
+    },
+    "takeId": null
+  },
+  "requestHash": "67d356887f03801e88dbaef619ebc5dcee15e0abbf2b1fd696c70aa669efe348",
+  "recordedAt": "2026-10-04T07:26:13.410Z",
+  "sha256": "acdddb159e8b1a440625460e5b4fa71993920e50446879d31f3b10fb194d8a2e",
+  "bytes": 22140,
+  "requestId": "rv9esotxo155wk5al5Rj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "97da0443f3f2e50a9c2731c14ce12c54c233c6e9481e7b2cf6fe9b39b76b6dfd",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

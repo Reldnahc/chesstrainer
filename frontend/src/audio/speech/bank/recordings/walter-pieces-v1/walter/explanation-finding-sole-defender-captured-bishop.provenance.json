@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-bishop",
+      "label": "Explanation finding sole defender captured bishop",
+      "text": "Follow the captures: first the bishop that was the only defender, then the piece it was guarding. Notice what the first capture makes possible."
+    },
+    "takeId": null
+  },
+  "requestHash": "758e6e1b961b2a1ecff3e1a961548e801c7443b53bd04c78817122be6f2d000e",
+  "recordedAt": "2026-10-04T07:26:29.682Z",
+  "sha256": "6c574598ff8cf1f80c168befbbe582a9aa77da5994ebaf28aadd9e70f51eb024",
+  "bytes": 29122,
+  "requestId": "g7CV0jCRwgFQepn7r1OE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e2e71c3d877e006e10f8fa099e3584730b6cf60427decf035decefd5e04cd67c",
+    "bytes": 152181
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

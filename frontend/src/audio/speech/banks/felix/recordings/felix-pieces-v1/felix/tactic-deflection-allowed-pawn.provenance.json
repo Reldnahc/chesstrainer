@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-pawn",
+      "label": "Tactic deflection allowed pawn",
+      "text": "The pawn is doing a vital defensive job. The other side can now drag it away from that job: a deflection, theirs to use."
+    },
+    "takeId": null
+  },
+  "requestHash": "08dee64706af49d4a263ccc57452817b8c647b69f7182c869132e4eb270395ff",
+  "recordedAt": "2026-10-04T07:44:00.889Z",
+  "sha256": "118cdcf6e34585b3d8f6b4192bf90c3160136a8d17b33d1ce2d7ce3b99886be5",
+  "bytes": 27171,
+  "requestId": "l9ycv0h9DaoMQR7kcgpW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "576a5f53486e4f03e26cf4980f972ef2c6a7bfae1f4d36ccf43cf5f0f22597bc",
+    "bytes": 139224
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

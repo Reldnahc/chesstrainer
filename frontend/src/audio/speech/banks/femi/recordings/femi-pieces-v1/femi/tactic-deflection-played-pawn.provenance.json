@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "tactic-deflection-played-pawn",
+      "label": "Tactic deflection played pawn",
+      "text": "Classic deflection. The defending pawn gets pulled elsewhere, and the piece it had been looking after is now loose."
+    },
+    "takeId": null
+  },
+  "requestHash": "25b064413adccdc21fb39e6186371d6568260d54388790c4ceabe3444cfd1067",
+  "recordedAt": "2026-10-04T07:45:30.095Z",
+  "sha256": "23d2a1a17b306494a7312fa6fbd49a7671aa2a64d81a5d0e2f1a0c21cad1abed",
+  "bytes": 24815,
+  "requestId": "MXCcX1Ymbtx5m30XXE1T",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "918c0146d4885936d0355d0f99f6f0e35353c97b6ed5118a8612db602390d0a1",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

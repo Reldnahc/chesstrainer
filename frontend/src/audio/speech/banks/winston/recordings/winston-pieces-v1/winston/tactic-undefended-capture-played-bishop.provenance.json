@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-bishop",
+      "label": "Tactic undefended capture played bishop",
+      "text": "A plain one, this: an undefended bishop can be taken. A loose piece is always worth checking for before anything more complicated."
+    },
+    "takeId": null
+  },
+  "requestHash": "2da05f9179b05405968f6002592ce06db8c6f33319969f983a2d67cedeb2d35a",
+  "recordedAt": "2026-10-04T07:28:50.400Z",
+  "sha256": "774ccf4b9c13b5871dc0089cb9b7f06c92603c9e633daee80352b3ff5000e090",
+  "bytes": 26604,
+  "requestId": "KXr7faALgMi5c829lMX1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c7bbb436ad4d7532b0570fab52d134bd6b4531f09c41863ed434067ec0312177",
+    "bytes": 139224
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

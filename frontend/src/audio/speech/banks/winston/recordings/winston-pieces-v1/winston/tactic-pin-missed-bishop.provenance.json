@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "tactic-pin-missed-bishop",
+      "label": "Tactic pin missed bishop",
+      "text": "A different move could've pinned a bishop to its king and held it fast on its line. That chance went by. Find the bishop that would've been held there."
+    },
+    "takeId": null
+  },
+  "requestHash": "c6f69298c9cc456eb9bbe4088363b5882087ddbf11fa422fee963fa9c63d87da",
+  "recordedAt": "2026-10-04T07:28:53.198Z",
+  "sha256": "3806950efd379fa1fdd2785242dc85dc45d9c64c685f9080ab7b0e69de9ec91a",
+  "bytes": 27343,
+  "requestId": "2eAvRk6smMyXSjjk6HC0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0cfe3ccbfcacc5e2c39c924e658874009262bd7e4162f94765b55e52ca87cce6",
+    "bytes": 141732
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

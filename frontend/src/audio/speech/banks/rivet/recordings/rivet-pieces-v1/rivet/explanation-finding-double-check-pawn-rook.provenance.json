@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-pawn-rook",
+      "label": "Explanation finding double check pawn rook",
+      "text": "Double check. The pawn and the rook attack the king at the same time."
+    },
+    "takeId": null
+  },
+  "requestHash": "38ec1b41df8faf0708e17fecf38712d06fc6e117d8e49a864c23debb722359de",
+  "recordedAt": "2026-10-04T07:28:20.341Z",
+  "sha256": "4c063b55d351e689e27c5dd64f33ee02df75a5641fe370a148c660f6d60587aa",
+  "bytes": 15552,
+  "requestId": "d8gR3gudmsnnBxVHLK0O",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8ce27f40d1bd3611aa37e3bbccd98ef2b732060d62b5c398b13f2c66ebe41a63",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

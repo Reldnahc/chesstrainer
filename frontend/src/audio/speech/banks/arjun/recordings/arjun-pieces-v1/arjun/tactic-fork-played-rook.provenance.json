@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-fork-played-rook",
+      "label": "Tactic fork played rook",
+      "text": "Interesting move: a rook lands where it touches several targets, and the reply can't comfortably cover them all. Worth replaying to see how it got there."
+    },
+    "takeId": null
+  },
+  "requestHash": "4b68cc03a02a9fad7940d29f5c1e6a785ee40265fe8f6d912011630c3601cbee",
+  "recordedAt": "2026-10-04T07:32:09.607Z",
+  "sha256": "6842d8ebb7cb6aeb15841538415781f428436c3ef2820668d18b88f4b88be7cc",
+  "bytes": 29513,
+  "requestId": "fHEANo9JjfzX1HtwBiKl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a1dacfaa5beb9efb02fd3376365d883e54927efabc5f4b5e1648e552f30d658d",
+    "bytes": 153435
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

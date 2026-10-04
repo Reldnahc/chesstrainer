@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "positional-development-alternative-knight",
+      "label": "Positional development alternative knight",
+      "text": "Another move would have got a knight into the game."
+    },
+    "takeId": null
+  },
+  "requestHash": "fd0e91461e908a16af1d622fb543b06bf0291805e7533a8ccaac8d9e40ee34f0",
+  "recordedAt": "2026-10-04T07:45:51.058Z",
+  "sha256": "d97a7bae2db65b3f0c6ff194641123f14970fa827c581356f064d3ca903c6198",
+  "bytes": 9862,
+  "requestId": "xgtfpoQ6PxZxisVEDN4y",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9224a6e96c76a7bdc434358c89a916d53f2b991b877df09301447f8b72263963",
+    "bytes": 47273
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

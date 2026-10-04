@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed-bishop",
+      "label": "Tactic discovered attack missed bishop",
+      "text": "With another move, the discovered attack was on, the bishop in front moving off and unmasking the piece behind. The game went elsewhere."
+    },
+    "takeId": null
+  },
+  "requestHash": "87da676a8af8989a3297f5d24f15bce615cf0f78ff658754b8a3ce6a4f4ebf34",
+  "recordedAt": "2026-10-04T07:45:43.753Z",
+  "sha256": "85ba47e03efe56dd14fafc6a9a88ac8c1dadb589b96142aefd55a8a3fcf3465e",
+  "bytes": 30017,
+  "requestId": "dU9PIQsGeeRxGMz8GSzF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0e897c9a1d00ef4c80ee1bcbb69508b5378b7f526367d88b86f39172e0e40e36",
+    "bytes": 153435
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

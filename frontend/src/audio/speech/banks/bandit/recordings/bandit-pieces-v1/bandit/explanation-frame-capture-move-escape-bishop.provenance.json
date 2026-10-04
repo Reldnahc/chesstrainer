@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-escape-bishop",
+      "label": "Explanation frame capture move escape bishop",
+      "text": "The king escapes check, and a bishop gets taken in the process."
+    },
+    "takeId": null
+  },
+  "requestHash": "6ccf9163ee70bb53302b3ee79766fc9ad8574c1376e8f3c8b70bd92f16bf483b",
+  "recordedAt": "2026-10-04T07:37:47.399Z",
+  "sha256": "56372ae0820b72581484faeb296e49a02067b473a72a22a7b1deaf0cb02a897c",
+  "bytes": 14206,
+  "requestId": "38kv0OTjgB99OqyiBcry",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ea690069b275dd64e9195195371823fa3060c42b095d53e00b646d52577ea3bb",
+    "bytes": 70261
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

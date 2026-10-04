@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-finding-pin-prevents-capture-queen",
+      "label": "Explanation finding pin prevents capture queen",
+      "text": "Why can't this queen make the marked capture? Its king stands behind it, and leaving the line would expose the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "f7c0d4d7837cae0772b10c77bbb4b5a492e877f232308a693a7beedb48696668",
+  "recordedAt": "2026-10-04T07:33:34.266Z",
+  "sha256": "a7f1ac7dd2f92610b71ee50911f0a24cbadc413aa099b0d1220ac8b8ddd68243",
+  "bytes": 23197,
+  "requestId": "PW0pa2mgAaEH4N8TelcC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b9b9b369454a8786336ee1a39efaa9cbfedf3d3ad27dad661b7e9ad7d7a95c8e",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

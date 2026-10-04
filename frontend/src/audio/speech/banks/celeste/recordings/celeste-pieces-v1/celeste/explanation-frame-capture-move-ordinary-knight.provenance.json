@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary-knight",
+      "label": "Explanation frame capture move ordinary knight",
+      "text": "A capture, and a knight leaves the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "57367f6f5eb9d197abf33cb9fe21189277ed556e6bde9d0b761f73b58b00f687",
+  "recordedAt": "2026-10-04T07:41:34.338Z",
+  "sha256": "6d1735232e02926ff4006f823e774a0b2afe61e6135882eb892d7886c71b946b",
+  "bytes": 10027,
+  "requestId": "gJUtWu820DoUZppQzxdJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cbd89e2890a3236a875b2435266bb6dd485c51c1b99c80e6b445b3aee92a91bf",
+    "bytes": 48527
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-skewer-played-king",
+      "label": "Tactic skewer played king",
+      "text": "A skewer is the idea here. The king is in check, and when it steps off the line, it exposes the piece behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "6ec63b7e3a4a324f7c41853aca360a5acd8bfa6feea045f641ad9a36180c4421",
+  "recordedAt": "2026-10-04T07:25:55.996Z",
+  "sha256": "8a7010e756da60658f387b8b47e65e0bc092e8d6448571892c9ffb1af15fbefb",
+  "bytes": 23676,
+  "requestId": "w8I2u4CCJDyQgvSznp5N",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cd3415f9c3bc1262e04f8decab5ebb3a3e5418393a6f13c68113c2c0c88d7949",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

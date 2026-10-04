@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played-knight",
+      "label": "Tactic removing defender played knight",
+      "text": "Follow the logic: take the defending knight first, and the piece it was looking after is suddenly on its own."
+    },
+    "takeId": null
+  },
+  "requestHash": "7efc5597b88fc4e3a8e5364bd93176ae39248f865c70a91acafbaa3335367869",
+  "recordedAt": "2026-10-04T07:32:46.697Z",
+  "sha256": "648c5d01078ff9f3a92d234f8b98c622731b26e324c2e7ffce012eb85c1db791",
+  "bytes": 21312,
+  "requestId": "5cayDed56RkI0TWCIgU7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a0c0992ed607e3d0ef5b9fdef764418bca3abf50b9b8c4b5440b18a657af352f",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

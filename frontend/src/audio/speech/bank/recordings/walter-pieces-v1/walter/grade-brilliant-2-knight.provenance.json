@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "grade-brilliant-2-knight",
+      "label": "Grade brilliant 2 knight",
+      "text": "A real knight sacrifice, and the idea is sound. I've seen many offers like this, and far fewer that hold."
+    },
+    "takeId": null
+  },
+  "requestHash": "9f6e30fb98f3ef5f423d0deebf6570dfbd46d1a531c050c5e7c96989eb19a7b2",
+  "recordedAt": "2026-10-04T07:27:11.518Z",
+  "sha256": "ed47bc6190416583a21a5906001382eb63ab996bb902a24c44ba313239fe0b76",
+  "bytes": 24471,
+  "requestId": "qHAjKaKthfiKt6IsIgP0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1e75f2c99d9a78ec33be894bf9f0d9503fc6701cccff4fbc4010121a6384a3c4",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

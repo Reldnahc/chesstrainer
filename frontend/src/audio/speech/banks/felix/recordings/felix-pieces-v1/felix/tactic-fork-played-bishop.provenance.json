@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "tactic-fork-played-bishop",
+      "label": "Tactic fork played bishop",
+      "text": "Fork. The bishop is now hitting several targets at once, and the other side has some sorting out to do."
+    },
+    "takeId": null
+  },
+  "requestHash": "e67e76f6ca811f51dc4ba0673702471f57331114824a29f66ef6211efd1f97dc",
+  "recordedAt": "2026-10-04T07:43:22.547Z",
+  "sha256": "085eaf261b6c73e15e4c74895f62ca53b60a58edad1a5b7ee30bfc4fe42861ba",
+  "bytes": 22404,
+  "requestId": "0zDBI2Qtn9LfFifdPo4v",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "66ecb5f269fdd4ed671f2d4eafd50fd992f1e22194029364d4b9aa63badbfebd",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

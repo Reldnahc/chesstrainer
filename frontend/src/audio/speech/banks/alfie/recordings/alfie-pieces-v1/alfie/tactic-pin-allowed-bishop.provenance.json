@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "tactic-pin-allowed-bishop",
+      "label": "Tactic pin allowed bishop",
+      "text": "Pieces lined up with their own king are always worth a second glance. This move lets the other side pin a bishop on one of those lines, and pinned to its king, it can't leave that line without exposing the king. It pays to check those lines before moving, not after."
+    },
+    "takeId": null
+  },
+  "requestHash": "f20b163f4e0e5064caf71028b89133bf5d1392457a0b33f70e39210c9bc46f7d",
+  "recordedAt": "2026-10-04T07:34:00.302Z",
+  "sha256": "3214e8a7fafb0b3a572d4d95c5dbd559c0d1ab1308283ef9a03bd1768a2ed1c5",
+  "bytes": 51666,
+  "requestId": "9xEsCy85LUfqslFrpWrO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a33d0899b5ba61edb9675512094c047c974959fc210f723b678280bdae4e543e",
+    "bytes": 265866
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

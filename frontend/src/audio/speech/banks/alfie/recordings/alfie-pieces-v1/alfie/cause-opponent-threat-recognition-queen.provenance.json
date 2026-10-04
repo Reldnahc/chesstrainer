@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "cause-opponent-threat-recognition-queen",
+      "label": "Cause opponent threat recognition queen",
+      "text": "Each opponent move can create a new threat, so it's worth asking what it changed. The opponent's previous move attacked a queen, and this move doesn't respond to that, so the queen can now be captured. Asking it after every opponent move is the habit to build."
+    },
+    "takeId": null
+  },
+  "requestHash": "c354947d0de8cbad24301f5894de090869d19b7ac92a7ce0e174653490ca45eb",
+  "recordedAt": "2026-10-04T07:35:04.278Z",
+  "sha256": "e3f2f84af495646cfca2b7ebd34f55ab704cdb9e5c6e2c714628b41676afe8eb",
+  "bytes": 48957,
+  "requestId": "ZUFues19W9q2vTmg06ca",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "28d06ed653afdb6734d1591b252565ac5c867c205a8c649dfcadb039befb334d",
+    "bytes": 252073
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

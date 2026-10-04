@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed-king",
+      "label": "Tactic discovered attack allowed king",
+      "text": "This opens the door to a discovered attack. The other side can move the king out of the way to uncover a threat from another piece."
+    },
+    "takeId": null
+  },
+  "requestHash": "777fbf5be17da499c92b98018baa6fd637deb1c9cdb4157724e1495128f2b7e8",
+  "recordedAt": "2026-10-04T07:25:58.732Z",
+  "sha256": "8a2dad72c4e01d0e4867a63545b1fa0faa501c6f81c7e3295746b68454ab0e31",
+  "bytes": 24975,
+  "requestId": "t3UQHgQRdr0RheGK8TgF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9526957bc300f6fb2a0f5243a0c04d3ff744aa52f46db08bed3f1131464e3bd7",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

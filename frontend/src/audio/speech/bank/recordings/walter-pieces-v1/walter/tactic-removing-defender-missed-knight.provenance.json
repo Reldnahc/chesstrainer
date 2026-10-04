@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed-knight",
+      "label": "Tactic removing defender missed knight",
+      "text": "Another move offered a way to capture a defending knight, taking protection away from what it was guarding."
+    },
+    "takeId": null
+  },
+  "requestHash": "3ccc71c62214bb5799222249e0e872959b8e4320f89da9c0b2ce9b314f7df217",
+  "recordedAt": "2026-10-04T07:25:39.674Z",
+  "sha256": "feec3d0aede921166a0b5b2b136d1c8e04f2268a66a869d2c2ad9e10a3068ab8",
+  "bytes": 19865,
+  "requestId": "yBhZ7U81GW8ewzdqkbwh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "81434e4a4a2920f9bdb811ecf842b383944219ab4b303c577515cd8ef26f240a",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

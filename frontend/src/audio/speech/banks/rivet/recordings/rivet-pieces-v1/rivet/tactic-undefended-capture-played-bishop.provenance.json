@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-bishop",
+      "label": "Tactic undefended capture played bishop",
+      "text": "Objective: take a bishop with zero guards. Locate the loose target before evaluating the capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "7b16eab48feb94521e3da1e549760d77c3317b9690f5d8ea6395597f8a435f41",
+  "recordedAt": "2026-10-04T07:27:15.968Z",
+  "sha256": "e2895b950658da6cbbb9720dd3df4c77ff6d302b64333a9b403c4d5493cdc520",
+  "bytes": 21715,
+  "requestId": "nYWWIXJG0xu9SdCqgVZT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "136e72fbacaf575e866aeb8f5fb70abad5bd4523001f84586eacf0c421281b27",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

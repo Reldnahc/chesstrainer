@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-knight-bishop",
+      "label": "Explanation finding double check knight bishop",
+      "text": "Whoa, check times two! The knight and the bishop are attacking the king together, so the king itself has to move."
+    },
+    "takeId": null
+  },
+  "requestHash": "0bd8b9d9dd9d2a66a458328e39817dd0903c76ca5d33221fd14a325b843a2cc2",
+  "recordedAt": "2026-10-04T07:39:38.150Z",
+  "sha256": "b27e7b3874f82c02da70865b4c09fada2f6ce58c487daa78d5414a507f20c30b",
+  "bytes": 25767,
+  "requestId": "9g2LEhdY1iWKCVbXI59G",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "187fd07ccea3b18eb933c8dd9dfb0b7bf30e76a4ab86a2b86d5818cdaae46361",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

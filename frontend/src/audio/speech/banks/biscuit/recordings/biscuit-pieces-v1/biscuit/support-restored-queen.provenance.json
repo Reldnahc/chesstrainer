@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "support-restored-queen",
+      "label": "Support restored queen",
+      "text": "Hooray, a defender is back on duty for that queen that was all alone earlier!"
+    },
+    "takeId": null
+  },
+  "requestHash": "4aa196709476efbbd9444a8e04ecf201441cd1329eab4a2976ed52930b08c967",
+  "recordedAt": "2026-10-04T07:38:58.166Z",
+  "sha256": "f6e0638a545be37fc7afb02af295269d0542a2711b026f78fdec44b2a2dd5177",
+  "bytes": 17564,
+  "requestId": "NIpxoK4QDn1E8my9aNTb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e3043beb40d1d495827417061b5baf434709d8b40749ba13ea646a01d5532fad",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

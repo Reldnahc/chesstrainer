@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-deflection-played-knight",
+      "label": "Tactic deflection played knight",
+      "text": "A deflection. The defending knight gets pulled toward a new job, and the duty it was doing is left undone."
+    },
+    "takeId": null
+  },
+  "requestHash": "a0f16b308cec61e446fbc8c7aabafd27d5efb29a8cddc447650ebee2a9ffaee1",
+  "recordedAt": "2026-10-04T07:32:55.345Z",
+  "sha256": "b6d5bcdafa4d731149ebe30608788e12ca60dd2cd3599f96547b7cd08f298cc8",
+  "bytes": 22867,
+  "requestId": "PCwtjudjziSF965Jp6yK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "67153800807cb0a2d5eaf17fd599f860b6a2851fd587d1e23cbe9025fb8fddd3",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-bishop",
+      "label": "Tactic undefended capture played bishop",
+      "text": "That bishop has no guard at all. Take it. Nothing more complicated than that."
+    },
+    "takeId": null
+  },
+  "requestHash": "ad23f360071a42bbb16c075a9eb56508c2761ae5694fbbd5963945a114090508",
+  "recordedAt": "2026-10-04T07:43:31.941Z",
+  "sha256": "4dd0820479b2cd12b7daeb5c14c1969bf6518362e693383c180b3e6dd1674f19",
+  "bytes": 17310,
+  "requestId": "kLRRLHiOhDqemXS62WsG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f14b78cf71f1affe698681c868470ce40d96d61267225d40b1170ca7bac1961e",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

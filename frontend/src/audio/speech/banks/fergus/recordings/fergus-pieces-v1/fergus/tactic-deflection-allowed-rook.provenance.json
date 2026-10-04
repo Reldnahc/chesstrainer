@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-rook",
+      "label": "Tactic deflection allowed rook",
+      "text": "This lets the other side lure a defending rook away, and what it covers would be left uncovered."
+    },
+    "takeId": null
+  },
+  "requestHash": "7beeaa0b1f086bd46f02ab8b3eb0996b0cd86fb325896882675251ccc26ac81d",
+  "recordedAt": "2026-10-04T07:47:24.727Z",
+  "sha256": "046711f8661e1bc3e6c83824c480d0c566ccbcd45af73d2bc3712962d3d601a9",
+  "bytes": 20472,
+  "requestId": "wtypoHyPBAcmsZ3CM78M",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e0e4d4b4ed24d636b7096857628ff010f621982887b506e402df90878e2e04df",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played-rook",
+      "label": "Tactic removing defender played rook",
+      "text": "Wow, watch this! First the defending rook gets captured, and now the piece it was protecting has nobody looking after it."
+    },
+    "takeId": null
+  },
+  "requestHash": "912292b6487c537611ef2a233c3f1aee1009cc0d11b280875a3f7ef0e1945655",
+  "recordedAt": "2026-10-04T07:38:38.617Z",
+  "sha256": "bc2cb2ef047bee4af241c8eba7955bff375545c07de77a5b6fb6ef9f7fcbe7a7",
+  "bytes": 26425,
+  "requestId": "SVUgARSL33AgczpvgZG0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1bcd9a238de84fa26cd82955c42e142773894f240e4ff5ea53c2d4098e0251ec",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

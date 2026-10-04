@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-check-bishop",
+      "label": "Explanation frame capture promotion check bishop",
+      "text": "The pawn takes the bishop, becomes a new piece, and gives check, in a single move."
+    },
+    "takeId": null
+  },
+  "requestHash": "563924dde85d3c43d463aba6209ef66d2d31e4402ae2d2b8a2f17ea66721e4b9",
+  "recordedAt": "2026-10-04T07:47:46.542Z",
+  "sha256": "3a994be34f17481fbe3572c8ba6dba6f36eb403f4cd16104b28f817550e8ddb8",
+  "bytes": 18960,
+  "requestId": "6GGNfFsDmnjGqDoqMcUK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6209075b5eb65b924b627fb38255be75bc89f1d5144081a44ba3e08a8c6d5d14",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

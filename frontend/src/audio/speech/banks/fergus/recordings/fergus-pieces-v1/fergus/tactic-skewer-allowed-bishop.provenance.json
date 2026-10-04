@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed-bishop",
+      "label": "Tactic skewer allowed bishop",
+      "text": "Two pieces sit on one line, and this lets the other side skewer them through the bishop in front, which is simple geometry."
+    },
+    "takeId": null
+  },
+  "requestHash": "3c86ca3f5d38d09c1735cd5658a56b1ca0b3da6112f96049f4a10042044479fc",
+  "recordedAt": "2026-10-04T07:47:05.655Z",
+  "sha256": "5236b74973ad08e055d90c7fe5057986aa39cc43c9c2fbd449e2b479053efc0f",
+  "bytes": 24462,
+  "requestId": "J1eeIhgXI8Uss3ofX4yq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "18d690cb499117c633c2417464d4bd597baef552c744f98d74430103b45a5bbd",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

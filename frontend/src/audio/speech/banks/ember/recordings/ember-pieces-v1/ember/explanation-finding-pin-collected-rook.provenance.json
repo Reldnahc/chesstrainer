@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-rook",
+      "label": "Explanation finding pin collected rook",
+      "text": "The pinned rook is chained to its line by the king behind it. It is held there, and as these moves play out, it is captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "761aee397465e56fd4e2e2ccf69065594f74b6e04e0197b7bc4512951f2236c0",
+  "recordedAt": "2026-10-04T07:42:42.558Z",
+  "sha256": "fad7d611f72285b3089f9f3347445e528492e32d5ff94f678ab6c3f591e0af12",
+  "bytes": 25124,
+  "requestId": "zDgQXWY3LHKSynHnL7nR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f03487ad7d9007947af126b654dce79a057f107715c4c0ae0a3515f66922b52c",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

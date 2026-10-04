@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-pin-played-bishop",
+      "label": "Tactic pin played bishop",
+      "text": "Pinned against its own king, that bishop is tied to the line. Ask what it would like to do next; leaving its line isn't one of its legal options."
+    },
+    "takeId": null
+  },
+  "requestHash": "c2da263efbb1b7b83fcd370d89e91010020c8442b53d6bde6bec1bddbcf092cf",
+  "recordedAt": "2026-10-04T07:32:43.180Z",
+  "sha256": "27861696c7788558d818b156d1cc056449b573739c862fd2f737da0b7bba0d5f",
+  "bytes": 29097,
+  "requestId": "uLUMIbIDGtK5yVNn1ojk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f133ac53218883019735c79817fc1ffffefbd2d5a01f84ca0124b5fdae308451",
+    "bytes": 150927
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

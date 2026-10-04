@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-skewer-played-knight",
+      "label": "Tactic skewer played knight",
+      "text": "Here's the skewer idea in action. The knight in front is forced aside, and that exposes whatever stood behind it on the line."
+    },
+    "takeId": null
+  },
+  "requestHash": "0b3059b4e7231c72afb1e1965d4329e2d9cde5af2edc462404f2b83c2c7a64bc",
+  "recordedAt": "2026-10-04T07:32:33.268Z",
+  "sha256": "2550432f9548c9b244b3f58f8ba303a18e832215892371e8a0b4a86599797608",
+  "bytes": 26228,
+  "requestId": "2UF9fUd69zpNYbDWuPkj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5174cb1b713b0e9df5f95372baba8bd77dfcdb61e9014fdc46f47374c61fee51",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

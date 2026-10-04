@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "tactic-fork-missed-knight",
+      "label": "Tactic fork missed knight",
+      "text": "Ooh, look! Hiding in a different move was a fork, one knight bouncing at a whole bunch of targets. That fork zips by this time."
+    },
+    "takeId": null
+  },
+  "requestHash": "9cdc485ea993760b6dc4d2bfda00d212613e03bb5890b3345f214e49a182268a",
+  "recordedAt": "2026-10-04T07:38:17.005Z",
+  "sha256": "212826e814c8dda36986da087c99834ff43aa44954534130d54d1a9ffd98e0ef",
+  "bytes": 29962,
+  "requestId": "gRbQR7MFR8tGX5zY70UU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2d51b6c15d056d80a60d57b8d647aef3359b4f61a91bbabccfa8f8640c01a26f",
+    "bytes": 153435
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

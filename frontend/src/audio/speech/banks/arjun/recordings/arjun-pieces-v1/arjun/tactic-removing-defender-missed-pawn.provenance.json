@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed-pawn",
+      "label": "Tactic removing defender missed pawn",
+      "text": "The stronger candidate removes a defending pawn, and the piece it protected becomes vulnerable. Worth comparing the two moves side by side."
+    },
+    "takeId": null
+  },
+  "requestHash": "3aa51d0d0b1caaceee51e048af434440719d7995abc8793e71f0e5a330e65f71",
+  "recordedAt": "2026-10-04T07:32:43.222Z",
+  "sha256": "2fcf805e4389943c6a03929575483c5546a95f5aeb6a2fd4abdf11aa1d446261",
+  "bytes": 27773,
+  "requestId": "nYygbEVXfejAA86I85W7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e7120079576b4d051d50a37840b9953dc69dfbc595b923f61be030211fded6ad",
+    "bytes": 141732
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

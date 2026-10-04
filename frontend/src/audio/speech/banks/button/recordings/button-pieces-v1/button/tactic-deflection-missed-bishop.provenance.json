@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-bishop",
+      "label": "Tactic deflection missed bishop",
+      "text": "Another move could have lured the defending bishop off its post. That deflection would have left what it guarded without cover."
+    },
+    "takeId": null
+  },
+  "requestHash": "b304ae8d45942b3e88b0097b4ff03ff7aea557526460125636a0a20fde1a72cf",
+  "recordedAt": "2026-10-04T07:31:11.280Z",
+  "sha256": "e210137cab0d4f7498199bce49f09dc74e2c3cf3a2aec658a7ed0195a09e1954",
+  "bytes": 23080,
+  "requestId": "spDksAqqzfwDHDZlUa6w",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8ffde2ad7ecaae11aac806c24e55af024ece78e83facb748092e932c4d34a7ea",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

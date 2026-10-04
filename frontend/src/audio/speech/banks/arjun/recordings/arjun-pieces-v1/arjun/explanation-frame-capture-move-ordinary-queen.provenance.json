@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary-queen",
+      "label": "Explanation frame capture move ordinary queen",
+      "text": "A queen is captured and leaves the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "f5b822e58c151249ed71c60db3f7236132f5e1e2b2ba5c6a711cffad315f3fe9",
+  "recordedAt": "2026-10-04T07:33:31.498Z",
+  "sha256": "2bbe44e38fa5b0a0f0e75c0d4590ef2b34758a0c5fb958c833ec1c91b404d221",
+  "bytes": 9732,
+  "requestId": "5qfWppPCtYPz7nXGnwEd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "973b5b9dfc7a990271433fcf2e52cfcb65c6802dfa742533a5754dcb353db50c",
+    "bytes": 47273
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

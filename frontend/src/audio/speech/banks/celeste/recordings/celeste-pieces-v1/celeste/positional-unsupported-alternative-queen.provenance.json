@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-queen",
+      "label": "Positional unsupported alternative queen",
+      "text": "With another move, a queen would have lost its last defender, which on its own wouldn't mean it could be won."
+    },
+    "takeId": null
+  },
+  "requestHash": "1b1848ba1551989c83cc62eb39aa2971e5b83f193aead3050c447778b413a0e2",
+  "recordedAt": "2026-10-04T07:40:45.487Z",
+  "sha256": "cbc47dff7ec2a33e0a6ef632fa8a3bbdb915a5b3e4e687a28de91d67e77c3ad7",
+  "bytes": 22684,
+  "requestId": "3GzwIq7Ndaq6yCFPftzX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d3d49873adeabd8b316bc68ddf5b22caf167c9fa8fb06e4a694a56984b32c02b",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

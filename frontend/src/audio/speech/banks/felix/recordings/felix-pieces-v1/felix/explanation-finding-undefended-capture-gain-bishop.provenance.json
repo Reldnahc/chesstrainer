@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-bishop",
+      "label": "Explanation finding undefended capture gain bishop",
+      "text": "A bishop nobody guarded comes off the board. The side that took it ends the example up material, net."
+    },
+    "takeId": null
+  },
+  "requestHash": "d0a6592e1ed749e835534ddea0acbad3af279e20290b11b57f1dc4c3dc50aca1",
+  "recordedAt": "2026-10-04T07:44:39.567Z",
+  "sha256": "dbe8cacb0d06b30508af5ceba99106171be665cb9c5ff9895f5d9a9fc1029245",
+  "bytes": 23885,
+  "requestId": "D2NdyXks9ZykaP9iNyEC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "45b3604f849947dafbec163ab9140ca08339c08a1f80bc524098d45c9313da7a",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

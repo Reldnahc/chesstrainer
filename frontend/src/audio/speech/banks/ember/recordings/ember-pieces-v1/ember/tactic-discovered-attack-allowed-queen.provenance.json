@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed-queen",
+      "label": "Tactic discovered attack allowed queen",
+      "text": "A queen of theirs stands in front of another piece, and this move lets the screen lift. When the queen steps aside, the piece behind is free to attack."
+    },
+    "takeId": null
+  },
+  "requestHash": "654ee9738a78826879427e3c35ae39e6490e8c66d80993a847581d5da18c45d9",
+  "recordedAt": "2026-10-04T07:42:14.523Z",
+  "sha256": "14cd7c06df54befcee1db108d98019f84814aef1a4386924d0c4e884d8785686",
+  "bytes": 30173,
+  "requestId": "FwMwdiRquFeaaagTlFzN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4a55000c62d46221cc65c3d052aed962ef1928549d70484a788351abc0ee2789",
+    "bytes": 153435
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

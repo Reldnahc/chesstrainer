@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-fork-played-rook",
+      "label": "Tactic fork played rook",
+      "text": "The idea here is a fork: one rook attacking several targets at once."
+    },
+    "takeId": null
+  },
+  "requestHash": "498c11a642931a47be7351aa581eccd0160869ad274b4eb039c6bd5191160886",
+  "recordedAt": "2026-10-04T07:25:33.406Z",
+  "sha256": "53c4f8558ce3f8ed3ab351b569d9c70de87653745ace2aaf0fcac33c21d086e0",
+  "bytes": 16589,
+  "requestId": "DtkGvds9XzZyXDI1pCXE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "32056978ac0a3efa29c9115cf251147ad1ad012e1ef6154f27617712d3bc6285",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

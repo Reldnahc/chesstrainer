@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check-rook",
+      "label": "Explanation finding discovered check rook",
+      "text": "When the piece in front steps off the line, the rook behind it gives check."
+    },
+    "takeId": null
+  },
+  "requestHash": "58b6190d9d033a4514da6518bdceec9bd338cc8f40cb570f33a3208210fb9182",
+  "recordedAt": "2026-10-04T07:33:30.187Z",
+  "sha256": "49518513ce38a4399da36f84cfdc4201169054f81516e15becb18b896ef7df5f",
+  "bytes": 15121,
+  "requestId": "hZrU5ohEePjlfbf6PTiw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0ba9b6bb1f44287bbdbb6049ccd1ec502e58fc35730ec124b1bb80e563b5fdd2",
+    "bytes": 75276
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

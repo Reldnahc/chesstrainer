@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-capture-bishop",
+      "label": "Explanation finding discovered capture bishop",
+      "text": "The blocking piece moves, opening a line for the bishop behind it, and the bishop makes the capture along it."
+    },
+    "takeId": null
+  },
+  "requestHash": "4e7d9004483b9e277fcb64d6440f2ca07bef886d74e52d301850c917cff0ef06",
+  "recordedAt": "2026-10-04T07:30:14.127Z",
+  "sha256": "e637d8e2556a31bdd73fea92e1e6fc808f303de7fe814c6e6bab6adb8bcfe75f",
+  "bytes": 20230,
+  "requestId": "JFQsJMoKzw0r54TCHLo6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "06683bf8b616497e7b32c7c9230a5113f746f59e05189fa5975e89b87687eedb",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

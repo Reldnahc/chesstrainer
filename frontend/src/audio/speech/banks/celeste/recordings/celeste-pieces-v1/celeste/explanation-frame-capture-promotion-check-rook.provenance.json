@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-check-rook",
+      "label": "Explanation frame capture promotion check rook",
+      "text": "The pawn captures a rook on its final step, promotes, and its new piece gives check."
+    },
+    "takeId": null
+  },
+  "requestHash": "08dbb01c11148814be7bbf522a44faf2d09f6c804f6c7100717462e10733ca53",
+  "recordedAt": "2026-10-04T07:41:20.203Z",
+  "sha256": "70edeb32067c11ccf6c37d118f61504bfc021403e21d74aaa50674f5c2fa0bbe",
+  "bytes": 18865,
+  "requestId": "GFipevZ18oqON8EVTefz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "140f91460e48039f3e7d78eee54f213646476bf96377ab03643ddc5e83158ad0",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

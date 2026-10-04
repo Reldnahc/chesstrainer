@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-bishop",
+      "label": "Explanation finding pin collected bishop",
+      "text": "The pinned bishop has to stay on that line, or its king would be left open. A few moves later, it's captured anyway."
+    },
+    "takeId": null
+  },
+  "requestHash": "d2c03292513cbd0d81631042e26ae451374aea8adc9dbc1a4f86835cb3107382",
+  "recordedAt": "2026-10-04T07:39:01.142Z",
+  "sha256": "f3489ed7442c3d15bafe2799ffd57858995b4cd12dfc2bf7806ef4f3f4578df2",
+  "bytes": 23920,
+  "requestId": "vPGPAnrxKvJCMZH865X3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1ca42b9a060c25a2dd9235afc0db0dfc9f2e38cb19a035d6a466b335aadd3ba5",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

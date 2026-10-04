@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed-bishop",
+      "label": "Tactic discovered attack allowed bishop",
+      "text": "Look for pieces lined up behind each other on the other side. After this move, a bishop of theirs can step off the line and release a discovered attack."
+    },
+    "takeId": null
+  },
+  "requestHash": "727f33db9ed37976a06923ca1a98af9577a4bfbf736cd98a5326081020f47b58",
+  "recordedAt": "2026-10-04T07:32:40.126Z",
+  "sha256": "b79dc6c1ed2a0ac08843129cb6e757adb7ecf501556531b0fd8e95f6bfdeb957",
+  "bytes": 28671,
+  "requestId": "NVjPHu7UIpyN7DjHQ4LO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "aa3b4c4bbf3703e7b2f7c8903ff0ab37f22bf730c57206873f78e9857065c586",
+    "bytes": 145911
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

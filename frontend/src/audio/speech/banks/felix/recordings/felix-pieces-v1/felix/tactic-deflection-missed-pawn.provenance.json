@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-pawn",
+      "label": "Tactic deflection missed pawn",
+      "text": "Another move would have pried the defending pawn loose from its job. That chance at deflection goes begging."
+    },
+    "takeId": null
+  },
+  "requestHash": "e498f669a30ee51254ee78ca432170f4a790c9b6b14af9fa115c902a7142dd94",
+  "recordedAt": "2026-10-04T07:44:01.157Z",
+  "sha256": "8cd257fcb56c82d3d12590524fb9a23940365df5ecc6b68af9ff6abc7c939883",
+  "bytes": 22596,
+  "requestId": "OE3jC2T2SIjrsS1MTdiR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7ddf5f7c97f4ec77b6d05c468845ae811cdad334071112daa6a23e5c28ee98bd",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

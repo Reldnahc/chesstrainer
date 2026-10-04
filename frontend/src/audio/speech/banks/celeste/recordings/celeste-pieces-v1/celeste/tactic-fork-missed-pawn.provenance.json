@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "tactic-fork-missed-pawn",
+      "label": "Tactic fork missed pawn",
+      "text": "A fork waited inside another move, a single pawn stretching toward two targets together. It's a pattern worth keeping in mind, though it went unplayed."
+    },
+    "takeId": null
+  },
+  "requestHash": "e8d207fd9026d23c91eff41b9f4d3fc0cd40d7d011f40d22f36676015c761ba6",
+  "recordedAt": "2026-10-04T07:39:56.608Z",
+  "sha256": "11a4bbc0d04b897a5f88c7f272d62be798a22b3fc4a30dc148b189636705d8dd",
+  "bytes": 31942,
+  "requestId": "7rkkZpqcJj0SvHjRx3iU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6e91a629595bf1a987566cbeee1d60e48ef6548097d2604396e3b33a287285a7",
+    "bytes": 160958
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

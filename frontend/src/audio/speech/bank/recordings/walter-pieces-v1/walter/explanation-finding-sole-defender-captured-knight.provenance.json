@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-knight",
+      "label": "Explanation finding sole defender captured knight",
+      "text": "Follow the captures: first the knight that was the only defender, then the piece it was guarding. Notice what the first capture makes possible."
+    },
+    "takeId": null
+  },
+  "requestHash": "aab92dc939b262a843b9563546b9b0f77456cb8e9f7d82b04e2c35d00067b4da",
+  "recordedAt": "2026-10-04T07:26:27.529Z",
+  "sha256": "e1711c903802ba641274c8b9644c2f3fb9ff53fee4d85852bcddc1172a24f0e5",
+  "bytes": 29555,
+  "requestId": "OtyD4tmg9rbXl1PjxpZx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "14bc8b576a3759f259f83d107314e4b80cf8634195dcb659c46d900557902ea8",
+    "bytes": 154688
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

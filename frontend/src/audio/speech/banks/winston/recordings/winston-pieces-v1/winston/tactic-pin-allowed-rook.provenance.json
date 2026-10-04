@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "tactic-pin-allowed-rook",
+      "label": "Tactic pin allowed rook",
+      "text": "That opens a pin for the other side. Once a rook is pinned to its king, it can't leave the line without exposing the king, so find that line first."
+    },
+    "takeId": null
+  },
+  "requestHash": "f6281ee7ad644cfe1db44e097a00c5fafe878f4a2061f611bfcec816cbc69eca",
+  "recordedAt": "2026-10-04T07:28:44.268Z",
+  "sha256": "abac9020c70e45cf7f78c6572a23702e7c0411d3987643011bdbedee47b8a06d",
+  "bytes": 28875,
+  "requestId": "xBluhBd8FOn7yDg2gYfv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "80e07fdc04779f993760774e3bfab53b9d33b1690a124d914d3b045ac35dc1ae",
+    "bytes": 149673
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

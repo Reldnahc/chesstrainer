@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-escape-rook",
+      "label": "Explanation frame capture promotion escape rook",
+      "text": "The pawn captures a rook and promotes on the last rank. It gets the king out of check."
+    },
+    "takeId": null
+  },
+  "requestHash": "fd4e62e9753d3cc86df471302b96792c9bd74f4f407f0aae2a80dbcffdceda3c",
+  "recordedAt": "2026-10-04T07:27:00.091Z",
+  "sha256": "205af52ce95f914b0058d120a8ed1f3d1301cdadb88b8eb4e9e8d20aa905438e",
+  "bytes": 17675,
+  "requestId": "gc2Y33h2VNjFFeanJ8Ci",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d334217a23ab743239221814e50ab9413bfc8aae6ce6eeaa3dd5aeeec3191d36",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

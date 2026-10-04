@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "explanation-finding-double-attack-collected-bishop",
+      "label": "Explanation finding double attack collected bishop",
+      "text": "The first piece makes its attack and uncovers a second one from the bishop. That bishop captures its target in the example."
+    },
+    "takeId": null
+  },
+  "requestHash": "06d85a52bb2036d5c993b0d0123db6f6846f560d66d1ed5c2be4508626a93ab8",
+  "recordedAt": "2026-10-04T07:26:44.071Z",
+  "sha256": "48623f3ef4abc55cd0bf030456e7da973136bb6d96747f87d870912db0de53ed",
+  "bytes": 23916,
+  "requestId": "j89Vs3tXTls8K2tGrl2u",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "74d93a3bf179d96e9a47e107285dc090a6540600f72e9323dc82d88d137c0d71",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

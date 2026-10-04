@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed-bishop",
+      "label": "Tactic skewer allowed bishop",
+      "text": "A skewer is now on offer to the other side. If the bishop in front moves off the line, whatever stands behind it may be exposed."
+    },
+    "takeId": null
+  },
+  "requestHash": "2f3edcbae97aad9c178f3d31165e7e2afc519fe707df0fd3c049888fef1ce933",
+  "recordedAt": "2026-10-04T07:43:52.167Z",
+  "sha256": "bbf658943db2bbdd4c609300e17120f899bc6b543df89a86690a8ad29f638155",
+  "bytes": 28408,
+  "requestId": "uEqx8zITI8rC5y08T7Pz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f3a4dc1a6ed55513c429f247ecc2a8a7b209e413cef99ace63975822a9c5b1fc",
+    "bytes": 142986
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

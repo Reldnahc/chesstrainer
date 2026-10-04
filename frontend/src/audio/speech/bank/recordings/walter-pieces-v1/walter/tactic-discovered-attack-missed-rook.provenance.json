@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed-rook",
+      "label": "Tactic discovered attack missed rook",
+      "text": "Another move offered a discovered attack. Moving the rook out of the way would uncover a threat from another piece."
+    },
+    "takeId": null
+  },
+  "requestHash": "a30d7a60b853224408cde7fa1d86270aacdb530dd03e730e8a141e6bd3164f49",
+  "recordedAt": "2026-10-04T07:25:29.366Z",
+  "sha256": "ec87a6c19289f52670526f3055a067779f58d6a2feb6c6d4524decb95ef40729",
+  "bytes": 22033,
+  "requestId": "TMqsf9qJBSCVEyjiaqrG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "df0892c7671aac87f4c43167333b977263d52a5ebcae2032bfe68885a35c8912",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

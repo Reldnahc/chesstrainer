@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-knight",
+      "label": "Explanation finding skewer collected knight",
+      "text": "Watch the knight in front move aside. That opens the way for a capture of the piece behind it, along the same line."
+    },
+    "takeId": null
+  },
+  "requestHash": "d176ba876a0da54d02622d24c57aae4c0e51cdbb3263be90684a1a1a7c773c62",
+  "recordedAt": "2026-10-04T07:26:19.679Z",
+  "sha256": "8f788a82fad85e8f868a4d006c507c96ea1c1fe8fbd45436c84beb27a67aee53",
+  "bytes": 22667,
+  "requestId": "EjG1NeV9u5Uxa2eWRKjo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "17d1f1f53c1723046d2c6b43b8f6f5895741c8c70d456b77fd8679dc9499ea24",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check-bishop",
+      "label": "Explanation finding discovered check bishop",
+      "text": "Check comes from behind: the front piece moves, and the hidden bishop strikes the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "785ce6885e60e740660155d6ab8fe593c5a96c022eb6135bf830a3cceec838e8",
+  "recordedAt": "2026-10-04T07:42:51.100Z",
+  "sha256": "7eeffc31845fb19d402c7792bc5462f56ecbb7792faa786daa851b708a6ab5e4",
+  "bytes": 17430,
+  "requestId": "HqcWoYRty7Tz7tbIHdyF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f2c6ba6dd29ca717052e6bc6f1754783a371b68b77142e968c2601c388d8ba29",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "grade-brilliant-4-queen",
+      "label": "Grade brilliant 4 queen",
+      "text": "Whoa, look at that! A real queen sacrifice, sound and checked and everything!"
+    },
+    "takeId": null
+  },
+  "requestHash": "3eaa0ca1241562347fb0408e939ea0b2b6f824a8cecab1b38dd4bbaa0d7245dc",
+  "recordedAt": "2026-10-04T07:39:41.679Z",
+  "sha256": "3ce4dab59d2af34baf6cb15c84139c4c9fdbedf1678c5b15315f5b107380c84d",
+  "bytes": 20310,
+  "requestId": "JFCuVdOin5O6VZ017k76",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8745ed852d830c28c4822c0e15c5ec64728c90a2ae0fc7b0ac8722678e7b7d38",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

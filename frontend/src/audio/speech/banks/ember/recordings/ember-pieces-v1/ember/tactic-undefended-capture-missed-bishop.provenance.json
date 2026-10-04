@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-missed-bishop",
+      "label": "Tactic undefended capture missed bishop",
+      "text": "The stronger move simply took an undefended bishop. Nothing guarded it. Loose pieces must be checked before every move."
+    },
+    "takeId": null
+  },
+  "requestHash": "3f97f7ae8e5e5212b5f333b71056b131a893d327c54b940ccedefa9a1cb5db70",
+  "recordedAt": "2026-10-04T07:41:55.406Z",
+  "sha256": "3a9216449db3a826361217bb231568af8f328e63067e285d74274c0041d141b1",
+  "bytes": 25423,
+  "requestId": "Iie0p3HsPIGeajbPXp5I",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "24ed7d907fdf4c0caad9ccd39b8adc0ddd36f700c3ecac729bea1b5ab90932d2",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

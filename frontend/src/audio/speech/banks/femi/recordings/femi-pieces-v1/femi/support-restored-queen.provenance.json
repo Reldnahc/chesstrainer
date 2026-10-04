@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "support-restored-queen",
+      "label": "Support restored queen",
+      "text": "Remember the loose queen from a few moves back? Somebody's guarding it now, and that's the change worth comparing."
+    },
+    "takeId": null
+  },
+  "requestHash": "7d9ec1b3da2aeba6adae2bcca5e92c40e36a4569ca2612b9dacd2a3b34c7b0a4",
+  "recordedAt": "2026-10-04T07:45:55.629Z",
+  "sha256": "369fcdc0f5f6300e93491f398ae73977af1f28bf46cfad0bada54810e849ef22",
+  "bytes": 22626,
+  "requestId": "cdaW5Z4UGVfeoje0ylwJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5be2d88a2374b18d459f6f2267c90d91ff27eea21eb2fa77eadba7316d17d9b8",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "grade-brilliant-1-rook",
+      "label": "Grade brilliant 1 rook",
+      "text": "Hm. A rook given at a real cost, and yet, strangely, the idea comes through whole."
+    },
+    "takeId": null
+  },
+  "requestHash": "17f00340095ba5d8bc93aecd4c8477db013bdcc6d8c47af9430dc28b0a9f1355",
+  "recordedAt": "2026-10-04T07:32:18.716Z",
+  "sha256": "7404c002f0e5e0ea7f161df888506652b0c0d33364236b7849b70e2faa50b3ef",
+  "bytes": 22318,
+  "requestId": "kTtk144STOLrdjbfVi2m",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "274ae417c0cae39e45643076184262aa5e5b441cfcd6a2ce828f3d60bd5e4fe3",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

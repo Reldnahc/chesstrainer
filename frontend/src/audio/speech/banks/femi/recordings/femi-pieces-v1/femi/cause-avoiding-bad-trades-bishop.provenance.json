@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "cause-avoiding-bad-trades-bishop",
+      "label": "Cause avoiding bad trades bishop",
+      "text": "Don't stop counting at the first capture. The recapture here takes the bishop, worth more than what it grabbed, so the exchange comes out badly."
+    },
+    "takeId": null
+  },
+  "requestHash": "f83a970116c6607d9dcf48f1ea10733c8078b7e232538ef19fdafc7c9d7825a7",
+  "recordedAt": "2026-10-04T07:45:42.804Z",
+  "sha256": "2c8c44ce9918a1b1186b831e2abc0d53d823b261baccf7336e24850037c5abab",
+  "bytes": 28849,
+  "requestId": "axsaovxImSvjkhcGZCUm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "838e774724dd51a59710cc0529735559457ca29df850d4b6a891796dd3acbce5",
+    "bytes": 147165
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

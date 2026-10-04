@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-rook",
+      "label": "Tactic undefended capture played rook",
+      "text": "Simple stuff: a loose rook, and this move collects it for free."
+    },
+    "takeId": null
+  },
+  "requestHash": "8b934ed357b3b9585a87d7752410fd6c5fd10b5d3a0f94f7d00f85a00f9bf333",
+  "recordedAt": "2026-10-04T07:45:09.598Z",
+  "sha256": "2dd81049736d51f6723db400f6479177e66fdf9945d771c4d6c1a2490c0aa981",
+  "bytes": 15154,
+  "requestId": "7k2C4WREQP0cczi2z2ov",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "caa571e94c0da0f3b3ccc70ab3f74b7bafde2a9c6068b3febc45dfb259de19d7",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

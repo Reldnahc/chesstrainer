@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "tactic-pin-played-pawn",
+      "label": "Tactic pin played pawn",
+      "text": "That is a proper pin. The pawn in front of its king cannot step off the line, because doing so would expose the king behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "300390f57f0802c8bddddb762e816bef4ac95157a5e96349f11114b6a8619c1e",
+  "recordedAt": "2026-10-04T07:41:56.004Z",
+  "sha256": "ac1165de4e8a5c2f2a9149c4466194b929c58e4bd599814efdcc75b524c0532b",
+  "bytes": 26709,
+  "requestId": "rj7LBrhaUQbNdPjhLab8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5ece21b64903b305172fb7e7d8e5f6443b3f927698f006dac8aa9938b4aaa856",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-knight",
+      "label": "Positional unsupported alternative knight",
+      "text": "Another move would have left a knight without a guard, which alone wouldn't make it winnable."
+    },
+    "takeId": null
+  },
+  "requestHash": "1c9bd7052a57c0d5990598738f37dcb75f6c166dd22018ec0e2e220207630e9c",
+  "recordedAt": "2026-10-04T07:45:43.357Z",
+  "sha256": "b93ae201dbff0f158cb01b20757df87eefa881f433b76826ea6d62053297d22f",
+  "bytes": 18445,
+  "requestId": "UpWwWWxbdGWQdj9az080",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b42268d6884ed5d7e51e6001d7b628a2bd4385ab5f5a605a7e91b4bfad868c20",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

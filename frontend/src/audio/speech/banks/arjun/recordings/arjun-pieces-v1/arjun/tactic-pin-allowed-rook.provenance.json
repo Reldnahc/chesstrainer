@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-pin-allowed-rook",
+      "label": "Tactic pin allowed rook",
+      "text": "What happens to the rook in front of the king now? After this move, it can be pinned there, and a pinned rook can't legally step off that line."
+    },
+    "takeId": null
+  },
+  "requestHash": "65ce460b9d2fc97006e6c165b6d29759752d7ce585f871605231e0ea82662a48",
+  "recordedAt": "2026-10-04T07:32:18.850Z",
+  "sha256": "3c8e2f6d66fb255f5c02e6191875ee6f182335bc99e22f789783c5e1634498de",
+  "bytes": 27577,
+  "requestId": "qlTfZZQooc85zveMm0XY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c5c4d4746cac8f59d295caac15912ba3d8719da9817cae60c3e3b12f976132e6",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

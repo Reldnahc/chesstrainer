@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-capture-queen",
+      "label": "Explanation finding discovered capture queen",
+      "text": "One piece moves out of the way, and that opens a line for the queen. The queen makes the capture along it."
+    },
+    "takeId": null
+  },
+  "requestHash": "0c1ac380574169f67a14b0b86655654808328b7b4bd655f8c9adc8e1c793798c",
+  "recordedAt": "2026-10-04T07:31:45.110Z",
+  "sha256": "364fc7c68321f4772c94aee4a01ef9c32ad48c0417d387eb901edb99108ee343",
+  "bytes": 21725,
+  "requestId": "SUt09h3pHpQa7Rhxmnqz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ad3a37aadd98db735ae759c223d58094ca49b9cbd9007a94d62dac0eb45d7664",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

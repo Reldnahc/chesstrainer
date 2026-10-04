@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-rook",
+      "label": "Tactic deflection missed rook",
+      "text": "There was a defending rook to lure away with another move. That deflection goes unused, and the rook keeps its job."
+    },
+    "takeId": null
+  },
+  "requestHash": "075e97756ad15476435e462abd2aec7d985f0d3a05b9d0c799b5004ad87c131a",
+  "recordedAt": "2026-10-04T07:36:50.766Z",
+  "sha256": "c7f6dd7c52c4f6741245aba6dbc298135290fd84eaa7f17bb05dff92a47777d7",
+  "bytes": 24286,
+  "requestId": "0FettJq36T08lTKcTSS1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2b108c54dfe902fed520271ea4af657e73185a006e69fefd311b9da0c60b201c",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

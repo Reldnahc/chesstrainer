@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-pawn",
+      "label": "Tactic deflection missed pawn",
+      "text": "There was a defending pawn to lure away with another move. That deflection goes unused, and the pawn keeps its job."
+    },
+    "takeId": null
+  },
+  "requestHash": "e38b51efba145030350c7257bc0631c877d3691c6b7fd9de432d9547b230287d",
+  "recordedAt": "2026-10-04T07:36:44.758Z",
+  "sha256": "b12f087f7b9742674e429f6f4eb83657f2496b623981d223903368bb5374278d",
+  "bytes": 24892,
+  "requestId": "8wci3HfZPpq3yrazfdn2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fc8f434f8e9543581afe8ea38120a23a303eec52f0d7c9f2267de6f3ade9d84e",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-pin-missed-queen",
+      "label": "Tactic pin missed queen",
+      "text": "Compare the stronger candidate: it pins an enemy queen to its king. With this move, that queen stays free to wander."
+    },
+    "takeId": null
+  },
+  "requestHash": "9c497ab5d1c8731fc06acb8440b9a28a60bf3ab35223c3fc1e5f9a3f2b72f5e3",
+  "recordedAt": "2026-10-04T07:32:30.961Z",
+  "sha256": "ec57a0d155d0bd1d82d76ee016c995e7f841910c81efb223c502fdd72441b1b9",
+  "bytes": 24452,
+  "requestId": "ENeES6zBQQkC6bazRBya",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e5d40d301475383540410ae4af738fa4f32586e7a09735f62c1b35d2e501038d",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

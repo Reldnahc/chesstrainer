@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-queen",
+      "label": "Tactic undefended capture played queen",
+      "text": "That queen has no guard at all. Take it. Nothing more complicated than that."
+    },
+    "takeId": null
+  },
+  "requestHash": "f0651c6782798a6706669840c4a626239b2b63bf57a6f549974b1ecbc0e8c206",
+  "recordedAt": "2026-10-04T07:43:34.912Z",
+  "sha256": "ad42c2d640c5d5ada954dea966e1b5d73a20e6f0572d3041a4339920eb2cabb3",
+  "bytes": 17494,
+  "requestId": "Fd3wtHLB5DFmttd4f6Eb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f16f2c5b70a1dcd1a6bf60a289413511d25a1be6f872a6dbc32ab1f3edb8422a",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

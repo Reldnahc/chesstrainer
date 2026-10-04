@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-pawn",
+      "label": "Explanation finding deflection collected pawn",
+      "text": "Lure the defender off its job, and the pawn it was minding gets taken."
+    },
+    "takeId": null
+  },
+  "requestHash": "3829a06d91d89443907e0bd862c17201d6515efdfb115915d2f5b0acf418d309",
+  "recordedAt": "2026-10-04T07:37:28.067Z",
+  "sha256": "9250749ec526c2f05d9548e5df485a43865adf149a21b8950feea7de03735289",
+  "bytes": 14829,
+  "requestId": "6VHBJdMPco3HnUtuNz2y",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9068ed55a43823df9e02d2453e9539ba704df72529a402d6810ec766d80c9239",
+    "bytes": 71515
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

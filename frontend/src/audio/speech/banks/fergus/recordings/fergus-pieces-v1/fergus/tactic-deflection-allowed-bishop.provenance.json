@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-bishop",
+      "label": "Tactic deflection allowed bishop",
+      "text": "This lets the other side lure a defending bishop away, and what it covers would be left uncovered."
+    },
+    "takeId": null
+  },
+  "requestHash": "b6b21ec70cf6b0f2f4d6c5822b0f95863e1691db51d234fde666577bd805d2ba",
+  "recordedAt": "2026-10-04T07:47:23.013Z",
+  "sha256": "5c639b0f2fe2e5f70d097f79c8abd61e3969663d827f6edfe3628ab8fd83b5ce",
+  "bytes": 20469,
+  "requestId": "2Ow3vhZzGjFiKHL2BfQU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fc6f2ef5df0a7522c9fd9aa12cf7abf288100aec8e113566fac6e7f5dd690911",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

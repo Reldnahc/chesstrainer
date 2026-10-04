@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "positional-support-alternative-rook",
+      "label": "Positional support alternative rook",
+      "text": "One alternative gives a defender to a rook that's currently unprotected."
+    },
+    "takeId": null
+  },
+  "requestHash": "8799a8f46ecd47db534e804db5c5551304c4eb3d5a13225ae863542301530c56",
+  "recordedAt": "2026-10-04T07:33:19.991Z",
+  "sha256": "3f2faa60673611da12db8d360772a7299bde0cd06d65d5e96fc968ba37c5abb7",
+  "bytes": 15124,
+  "requestId": "Y8NHq7gydMhw3c1DcEEZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "848de86e1b8222eea3a59440960cb6709238c4b10bb429616342873b3b7360e5",
+    "bytes": 74022
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

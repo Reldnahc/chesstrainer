@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-missed-rook",
+      "label": "Tactic undefended capture missed rook",
+      "text": "Another move could have taken an undefended rook, and this move leaves it there. A quick scan for unguarded pieces is a sensible first step before anything more ambitious."
+    },
+    "takeId": null
+  },
+  "requestHash": "4e64f2f61cb2df7ee8628431bd0181709f002c459c18dcc0f93c3f4a8b699296",
+  "recordedAt": "2026-10-04T07:34:26.824Z",
+  "sha256": "6725fa2e6a094ea5edf5b968f31fe25c6b9cb6c3e8935b3f50e565c4b9333de0",
+  "bytes": 33266,
+  "requestId": "J7gcyq9YrKi6ch7ob6RR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3df3bc2626ce9bb8686cb489403d4b4e00c0743019126ab240d92dcf0541fc03",
+    "bytes": 167645
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "grade-brilliant-4-knight",
+      "label": "Grade brilliant 4 knight",
+      "text": "A whole knight staked, and the checked line refuses to buckle. Few moves stand that test."
+    },
+    "takeId": null
+  },
+  "requestHash": "ca25be8f80d9ff136414944181bfcb99f8058311782ba36c59c174929a5649f1",
+  "recordedAt": "2026-10-04T07:43:12.990Z",
+  "sha256": "e618a0a7492c5ae6200169595657d4bb21cc4eae2e73b47e0eb426ff687017dd",
+  "bytes": 21056,
+  "requestId": "tebyr2HOluX2VAe0gqro",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3028249f84ddf6772e7ee3a50630910e9521a61a4c23fd1e54e99d042ec2165e",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

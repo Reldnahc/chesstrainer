@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played-rook",
+      "label": "Tactic removing defender played rook",
+      "text": "This is the right target. Take the defending rook, and everything it protected is left bare."
+    },
+    "takeId": null
+  },
+  "requestHash": "8b9a3b627810f68a1a4d743c1a94202cc13a984933cd933565b8aa6ea1f0bde1",
+  "recordedAt": "2026-10-04T07:42:14.822Z",
+  "sha256": "3af2b83251f350460188f9c365a5795d250e99a403bf0c96bdc92e7cef99ee89",
+  "bytes": 19578,
+  "requestId": "IL72cUiXWowve0tKQ9MY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7d2d74cbc54015c9dd091d7ed65afd810dedc561b0aa439091bf6d0b682d3240",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

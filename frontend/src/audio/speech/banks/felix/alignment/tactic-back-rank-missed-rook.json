@@ -1,0 +1,908 @@
+{
+  "schemaVersion": 1,
+  "scriptId": "tactic-back-rank-missed-rook",
+  "voiceId": "felix",
+  "metadata": {
+    "duration": 8.8
+  },
+  "mouthCues": [
+    {"start":0.0,"end":0.11,"value":"C"},
+    {"start":0.11,"end":0.21,"value":"B"},
+    {"start":0.21,"end":0.3,"value":"C"},
+    {"start":0.3,"end":0.36,"value":"B"},
+    {"start":0.36,"end":0.43,"value":"E"},
+    {"start":0.43,"end":0.53,"value":"A"},
+    {"start":0.53,"end":0.75,"value":"F"},
+    {"start":0.75,"end":0.8,"value":"G"},
+    {"start":0.8,"end":0.89,"value":"B"},
+    {"start":0.89,"end":0.95,"value":"C"},
+    {"start":0.95,"end":0.99,"value":"B"},
+    {"start":0.99,"end":1.05,"value":"C"},
+    {"start":1.05,"end":1.19,"value":"A"},
+    {"start":1.19,"end":1.31,"value":"C"},
+    {"start":1.31,"end":1.44,"value":"B"},
+    {"start":1.44,"end":1.53,"value":"E"},
+    {"start":1.53,"end":1.59,"value":"C"},
+    {"start":1.59,"end":1.71,"value":"B"},
+    {"start":1.71,"end":1.83,"value":"A"},
+    {"start":1.83,"end":1.89,"value":"C"},
+    {"start":1.89,"end":2.07,"value":"B"},
+    {"start":2.07,"end":2.14,"value":"D"},
+    {"start":2.14,"end":2.42,"value":"B"},
+    {"start":2.42,"end":2.5,"value":"C"},
+    {"start":2.5,"end":2.59,"value":"G"},
+    {"start":2.59,"end":2.63,"value":"E"},
+    {"start":2.63,"end":2.7,"value":"B"},
+    {"start":2.7,"end":2.76,"value":"C"},
+    {"start":2.76,"end":3.07,"value":"E"},
+    {"start":3.07,"end":3.22,"value":"B"},
+    {"start":3.22,"end":3.47,"value":"X"},
+    {"start":3.47,"end":3.55,"value":"C"},
+    {"start":3.55,"end":3.62,"value":"B"},
+    {"start":3.62,"end":3.66,"value":"C"},
+    {"start":3.66,"end":3.89,"value":"B"},
+    {"start":3.89,"end":3.94,"value":"C"},
+    {"start":3.94,"end":4.58,"value":"B"},
+    {"start":4.58,"end":4.65,"value":"C"},
+    {"start":4.65,"end":4.78,"value":"B"},
+    {"start":4.78,"end":4.82,"value":"A"},
+    {"start":4.82,"end":4.96,"value":"B"},
+    {"start":4.96,"end":5.01,"value":"D"},
+    {"start":5.01,"end":5.33,"value":"B"},
+    {"start":5.33,"end":5.38,"value":"E"},
+    {"start":5.38,"end":5.44,"value":"F"},
+    {"start":5.44,"end":5.55,"value":"B"},
+    {"start":5.55,"end":5.63,"value":"A"},
+    {"start":5.63,"end":6.19,"value":"B"},
+    {"start":6.19,"end":6.61,"value":"X"},
+    {"start":6.61,"end":6.91,"value":"B"},
+    {"start":6.91,"end":6.99,"value":"A"},
+    {"start":6.99,"end":7.22,"value":"F"},
+    {"start":7.22,"end":7.29,"value":"G"},
+    {"start":7.29,"end":7.54,"value":"B"},
+    {"start":7.54,"end":7.71,"value":"E"},
+    {"start":7.71,"end":7.8,"value":"F"},
+    {"start":7.8,"end":7.86,"value":"H"},
+    {"start":7.86,"end":7.94,"value":"B"},
+    {"start":7.94,"end":8.05,"value":"E"},
+    {"start":8.05,"end":8.17,"value":"B"},
+    {"start":8.17,"end":8.22,"value":"A"},
+    {"start":8.22,"end":8.44,"value":"D"},
+    {"start":8.44,"end":8.66,"value":"B"},
+    {"start":8.66,"end":8.8,"value":"X"}
+  ],
+  "provenance": {
+    "sourceScriptId": "tactic-back-rank-missed-rook",
+    "manualTimingEdits": false,
+    "recording": {
+      "path": "frontend/src/audio/speech/banks/felix/recordings/felix-pieces-v1/felix/tactic-back-rank-missed-rook.opus",
+      "sha256": "53031c7770fb817215a267df9dfbf7c0132be7a32f5f358f58bfa532e56fde65",
+      "bytes": 28054
+    },
+    "script": {
+      "planPath": "frontend/src/audio/speech/banks/felix/manifest.json",
+      "text": "Another move had a back-rank mate idea for the rook, against the king stuck behind its own pieces. This move strolls on by.",
+      "sha256": "78cde37fb7e62d95a04fe9f58397dcaab5a08970c7d519cc15f96a88b52c56c7"
+    },
+    "tool": {
+      "name": "PocketSphinx",
+      "version": "5.1.1",
+      "api": [
+        "Decoder.set_align_text",
+        "Decoder.set_alignment",
+        "Decoder.get_alignment"
+      ],
+      "documentation": "https://pocketsphinx.readthedocs.io/en/latest/pocketsphinx.html#pocketsphinx.Decoder.set_alignment",
+      "modelFilesSha256": {
+        "en-us/cmudict-en-us.dict": "20b5c293e1f311fb375fe067e500ec5636f4fc7af5594967263696def9b23bfe",
+        "en-us/en-us/feat.params": "c982c5f75e2a30c34d2c9ef1f6b129a5a00e67e3e927565076b58664cc2404c9",
+        "en-us/en-us/mdef": "2360f9a86889c1cfee8bd618a0269387911e5fb2920a594f506b18b8c79683b0",
+        "en-us/en-us/means": "832019e32cac12eb318964f96f469034acb12d0348eeddc3831831a100cb4dd4",
+        "en-us/en-us/noisedict": "7295b07df2c204c4f87c6782b6be1a3859d7006d4e3864181c955d6dab105a33",
+        "en-us/en-us/sendump": "8c9564c0d5bef69ca9d9bf1014abe162f071644cf02cf1fa8a483c3dc165a7a8",
+        "en-us/en-us/transition_matrices": "c1f7f28ea43177be734be1f88bd7f1b9a853d0e660f8599c67c6eaeca8bb539a",
+        "en-us/en-us/variances": "b00d696f85e96834fc10f8e5f06428d8c4db6bffdbe5845b6f69bf6efbc48fa5"
+      },
+      "configuration": {
+        "pip": 1,
+        "hmm": "$MODEL/en-us/en-us",
+        "wip": 0.65,
+        "silprob": 0.005,
+        "remove_noise": true,
+        "mixwfloor": 1e-07,
+        "varnorm": false,
+        "beam": 1e-48,
+        "lpbeam": 1e-40,
+        "varfloor": 0.0001,
+        "pl_pbeam": 1e-10,
+        "round_filters": true,
+        "fwdflatsfwin": 25,
+        "kws_threshold": 1e-30,
+        "fdict": "$MODEL/en-us/en-us/noisedict",
+        "maxhmmpf": 30000,
+        "kws_plp": 0.1,
+        "min_endfr": 0,
+        "nfilt": 25,
+        "ncep": 13,
+        "fwdflatefwid": 4,
+        "frate": 100,
+        "ascale": 20,
+        "lifter": 22,
+        "bestpath": false,
+        "tmatfloor": 0.0001,
+        "feat": "1s_c_d_dd",
+        "lowerf": 130,
+        "maxwpf": -1,
+        "pl_beam": 1e-10,
+        "alpha": 0.97,
+        "mmap": true,
+        "nwpen": 1,
+        "fwdtree": true,
+        "fwdflat": true,
+        "smoothspec": false,
+        "mdef": "$MODEL/en-us/en-us/mdef",
+        "samprate": 16000,
+        "allphone_ci": true,
+        "cmninit": "40,3,-1",
+        "upperf": 6800,
+        "transform": "dct",
+        "mean": "$MODEL/en-us/en-us/means",
+        "pl_weight": 3,
+        "sendump": "$MODEL/en-us/en-us/sendump",
+        "fwdflatbeam": 1e-64,
+        "tmat": "$MODEL/en-us/en-us/transition_matrices",
+        "fsgusealtpron": true,
+        "loglevel": "ERROR",
+        "dict": "$MODEL/en-us/cmudict-en-us.dict",
+        "dither": false,
+        "aw": 1,
+        "dictcase": false,
+        "var": "$MODEL/en-us/en-us/variances",
+        "pl_window": 5,
+        "latsize": 5000,
+        "agc": "none",
+        "ldadim": 0,
+        "lw": 6.5,
+        "topn_beam": "0",
+        "uw": 1,
+        "fwdflatlw": 8.5,
+        "ceplen": 13,
+        "backtrace": false,
+        "bestpathlw": 9.5,
+        "logspec": false,
+        "nfft": 0,
+        "verbose": false,
+        "pl_pip": 1,
+        "topn": 4,
+        "fwdflatwbeam": 7e-29,
+        "compallsen": false,
+        "cmn": "batch",
+        "fillprob": 1e-08,
+        "warp_type": "inverse_linear",
+        "unit_area": true,
+        "agcthresh": 2,
+        "fsgusefiller": true,
+        "seed": 0,
+        "featparams": "$MODEL/en-us/en-us/feat.params",
+        "ds": 1,
+        "lponlybeam": 7e-29,
+        "input_endian": "little",
+        "remove_dc": false,
+        "svspec": "0-12/13-25/26-38",
+        "kws_delay": 10,
+        "wlen": 0.025625,
+        "pbeam": 1e-48,
+        "doublebw": false,
+        "logbase": 1.0001,
+        "wbeam": 7e-29
+      },
+      "configurationSha256": "4cc690802d0d8774029df0c0d0e0a370dab93bb8a4bbe9f7a711e8a9c2d027c5"
+    },
+    "conversion": {
+      "decoder": "SoundFile",
+      "decoderVersion": "0.13.1",
+      "libsndfileVersion": "1.2.2",
+      "numpyVersion": "2.2.6",
+      "inputChannels": 1,
+      "channels": 1,
+      "sampleRate": 48000,
+      "sampleWidthBytes": 2,
+      "frames": 422400,
+      "durationSeconds": 8.8,
+      "method": "float64 SoundFile decode; arithmetic channel mean; round(clip(sample,-1,1)*32767) to little-endian PCM16 WAV",
+      "trimmed": false,
+      "resampled": false,
+      "wavSha256": "47f53618a893f3732e4c78128a1941e3259c882180d1a52d174829561f212062"
+    },
+    "resampling": {
+      "method": "Python 3.12 audioop.ratecv PCM16 mono, weightA=1, weightB=0",
+      "sourceSampleRate": 48000,
+      "sampleRate": 16000,
+      "sampleWidthBytes": 2,
+      "channels": 1,
+      "frames": 140800,
+      "durationSeconds": 8.8,
+      "trimmed": false,
+      "pcmSha256": "c64952e4fdfe90c8c360d105b098183a5032ab8b1c1db5fa98db4ad84173b056"
+    },
+    "alignment": {
+      "frameRate": 100,
+      "normalizedTranscript": "another move had a back rank mate idea for the rook against the king stuck behind its own pieces this move strolls on by",
+      "words": [
+        {
+          "word": "another",
+          "startFrame": 0,
+          "durationFrames": 43,
+          "phones": [
+            {
+              "phone": "AH",
+              "startFrame": 0,
+              "durationFrames": 11
+            },
+            {
+              "phone": "N",
+              "startFrame": 11,
+              "durationFrames": 10
+            },
+            {
+              "phone": "AH",
+              "startFrame": 21,
+              "durationFrames": 9
+            },
+            {
+              "phone": "DH",
+              "startFrame": 30,
+              "durationFrames": 6
+            },
+            {
+              "phone": "ER",
+              "startFrame": 36,
+              "durationFrames": 7
+            }
+          ]
+        },
+        {
+          "word": "move",
+          "startFrame": 43,
+          "durationFrames": 37,
+          "phones": [
+            {
+              "phone": "M",
+              "startFrame": 43,
+              "durationFrames": 10
+            },
+            {
+              "phone": "UW",
+              "startFrame": 53,
+              "durationFrames": 22
+            },
+            {
+              "phone": "V",
+              "startFrame": 75,
+              "durationFrames": 5
+            }
+          ]
+        },
+        {
+          "word": "had",
+          "startFrame": 80,
+          "durationFrames": 19,
+          "phones": [
+            {
+              "phone": "HH",
+              "startFrame": 80,
+              "durationFrames": 9
+            },
+            {
+              "phone": "AE",
+              "startFrame": 89,
+              "durationFrames": 6
+            },
+            {
+              "phone": "D",
+              "startFrame": 95,
+              "durationFrames": 4
+            }
+          ]
+        },
+        {
+          "word": "a",
+          "startFrame": 99,
+          "durationFrames": 6,
+          "phones": [
+            {
+              "phone": "AH",
+              "startFrame": 99,
+              "durationFrames": 6
+            }
+          ]
+        },
+        {
+          "word": "back",
+          "startFrame": 105,
+          "durationFrames": 39,
+          "phones": [
+            {
+              "phone": "B",
+              "startFrame": 105,
+              "durationFrames": 14
+            },
+            {
+              "phone": "AE",
+              "startFrame": 119,
+              "durationFrames": 12
+            },
+            {
+              "phone": "K",
+              "startFrame": 131,
+              "durationFrames": 13
+            }
+          ]
+        },
+        {
+          "word": "rank",
+          "startFrame": 144,
+          "durationFrames": 27,
+          "phones": [
+            {
+              "phone": "R",
+              "startFrame": 144,
+              "durationFrames": 9
+            },
+            {
+              "phone": "AE",
+              "startFrame": 153,
+              "durationFrames": 6
+            },
+            {
+              "phone": "NG",
+              "startFrame": 159,
+              "durationFrames": 6
+            },
+            {
+              "phone": "K",
+              "startFrame": 165,
+              "durationFrames": 6
+            }
+          ]
+        },
+        {
+          "word": "mate",
+          "startFrame": 171,
+          "durationFrames": 36,
+          "phones": [
+            {
+              "phone": "M",
+              "startFrame": 171,
+              "durationFrames": 12
+            },
+            {
+              "phone": "EY",
+              "startFrame": 183,
+              "durationFrames": 13
+            },
+            {
+              "phone": "T",
+              "startFrame": 196,
+              "durationFrames": 11
+            }
+          ]
+        },
+        {
+          "word": "idea",
+          "startFrame": 207,
+          "durationFrames": 43,
+          "phones": [
+            {
+              "phone": "AY",
+              "startFrame": 207,
+              "durationFrames": 15
+            },
+            {
+              "phone": "D",
+              "startFrame": 222,
+              "durationFrames": 7
+            },
+            {
+              "phone": "IY",
+              "startFrame": 229,
+              "durationFrames": 13
+            },
+            {
+              "phone": "AH",
+              "startFrame": 242,
+              "durationFrames": 8
+            }
+          ]
+        },
+        {
+          "word": "for(2)",
+          "startFrame": 250,
+          "durationFrames": 13,
+          "phones": [
+            {
+              "phone": "F",
+              "startFrame": 250,
+              "durationFrames": 9
+            },
+            {
+              "phone": "ER",
+              "startFrame": 259,
+              "durationFrames": 4
+            }
+          ]
+        },
+        {
+          "word": "the",
+          "startFrame": 263,
+          "durationFrames": 13,
+          "phones": [
+            {
+              "phone": "DH",
+              "startFrame": 263,
+              "durationFrames": 7
+            },
+            {
+              "phone": "AH",
+              "startFrame": 270,
+              "durationFrames": 6
+            }
+          ]
+        },
+        {
+          "word": "rook",
+          "startFrame": 276,
+          "durationFrames": 46,
+          "phones": [
+            {
+              "phone": "R",
+              "startFrame": 276,
+              "durationFrames": 17
+            },
+            {
+              "phone": "UH",
+              "startFrame": 293,
+              "durationFrames": 14
+            },
+            {
+              "phone": "K",
+              "startFrame": 307,
+              "durationFrames": 15
+            }
+          ]
+        },
+        {
+          "word": "<sil>",
+          "startFrame": 322,
+          "durationFrames": 25,
+          "phones": [
+            {
+              "phone": "SIL",
+              "startFrame": 322,
+              "durationFrames": 25
+            }
+          ]
+        },
+        {
+          "word": "against(2)",
+          "startFrame": 347,
+          "durationFrames": 39,
+          "phones": [
+            {
+              "phone": "AH",
+              "startFrame": 347,
+              "durationFrames": 8
+            },
+            {
+              "phone": "G",
+              "startFrame": 355,
+              "durationFrames": 7
+            },
+            {
+              "phone": "EY",
+              "startFrame": 362,
+              "durationFrames": 8
+            },
+            {
+              "phone": "N",
+              "startFrame": 370,
+              "durationFrames": 5
+            },
+            {
+              "phone": "S",
+              "startFrame": 375,
+              "durationFrames": 8
+            },
+            {
+              "phone": "T",
+              "startFrame": 383,
+              "durationFrames": 3
+            }
+          ]
+        },
+        {
+          "word": "the",
+          "startFrame": 386,
+          "durationFrames": 8,
+          "phones": [
+            {
+              "phone": "DH",
+              "startFrame": 386,
+              "durationFrames": 3
+            },
+            {
+              "phone": "AH",
+              "startFrame": 389,
+              "durationFrames": 5
+            }
+          ]
+        },
+        {
+          "word": "king",
+          "startFrame": 394,
+          "durationFrames": 44,
+          "phones": [
+            {
+              "phone": "K",
+              "startFrame": 394,
+              "durationFrames": 15
+            },
+            {
+              "phone": "IH",
+              "startFrame": 409,
+              "durationFrames": 12
+            },
+            {
+              "phone": "NG",
+              "startFrame": 421,
+              "durationFrames": 17
+            }
+          ]
+        },
+        {
+          "word": "stuck",
+          "startFrame": 438,
+          "durationFrames": 40,
+          "phones": [
+            {
+              "phone": "S",
+              "startFrame": 438,
+              "durationFrames": 15
+            },
+            {
+              "phone": "T",
+              "startFrame": 453,
+              "durationFrames": 5
+            },
+            {
+              "phone": "AH",
+              "startFrame": 458,
+              "durationFrames": 7
+            },
+            {
+              "phone": "K",
+              "startFrame": 465,
+              "durationFrames": 13
+            }
+          ]
+        },
+        {
+          "word": "behind",
+          "startFrame": 478,
+          "durationFrames": 38,
+          "phones": [
+            {
+              "phone": "B",
+              "startFrame": 478,
+              "durationFrames": 4
+            },
+            {
+              "phone": "IH",
+              "startFrame": 482,
+              "durationFrames": 7
+            },
+            {
+              "phone": "HH",
+              "startFrame": 489,
+              "durationFrames": 7
+            },
+            {
+              "phone": "AY",
+              "startFrame": 496,
+              "durationFrames": 11
+            },
+            {
+              "phone": "N",
+              "startFrame": 507,
+              "durationFrames": 6
+            },
+            {
+              "phone": "D",
+              "startFrame": 513,
+              "durationFrames": 3
+            }
+          ]
+        },
+        {
+          "word": "its",
+          "startFrame": 516,
+          "durationFrames": 17,
+          "phones": [
+            {
+              "phone": "IH",
+              "startFrame": 516,
+              "durationFrames": 6
+            },
+            {
+              "phone": "T",
+              "startFrame": 522,
+              "durationFrames": 4
+            },
+            {
+              "phone": "S",
+              "startFrame": 526,
+              "durationFrames": 7
+            }
+          ]
+        },
+        {
+          "word": "own",
+          "startFrame": 533,
+          "durationFrames": 22,
+          "phones": [
+            {
+              "phone": "OW",
+              "startFrame": 533,
+              "durationFrames": 11
+            },
+            {
+              "phone": "N",
+              "startFrame": 544,
+              "durationFrames": 11
+            }
+          ]
+        },
+        {
+          "word": "pieces(2)",
+          "startFrame": 555,
+          "durationFrames": 64,
+          "phones": [
+            {
+              "phone": "P",
+              "startFrame": 555,
+              "durationFrames": 8
+            },
+            {
+              "phone": "IY",
+              "startFrame": 563,
+              "durationFrames": 15
+            },
+            {
+              "phone": "S",
+              "startFrame": 578,
+              "durationFrames": 9
+            },
+            {
+              "phone": "IH",
+              "startFrame": 587,
+              "durationFrames": 14
+            },
+            {
+              "phone": "Z",
+              "startFrame": 601,
+              "durationFrames": 18
+            }
+          ]
+        },
+        {
+          "word": "<sil>",
+          "startFrame": 619,
+          "durationFrames": 42,
+          "phones": [
+            {
+              "phone": "SIL",
+              "startFrame": 619,
+              "durationFrames": 42
+            }
+          ]
+        },
+        {
+          "word": "this",
+          "startFrame": 661,
+          "durationFrames": 30,
+          "phones": [
+            {
+              "phone": "DH",
+              "startFrame": 661,
+              "durationFrames": 10
+            },
+            {
+              "phone": "IH",
+              "startFrame": 671,
+              "durationFrames": 9
+            },
+            {
+              "phone": "S",
+              "startFrame": 680,
+              "durationFrames": 11
+            }
+          ]
+        },
+        {
+          "word": "move",
+          "startFrame": 691,
+          "durationFrames": 38,
+          "phones": [
+            {
+              "phone": "M",
+              "startFrame": 691,
+              "durationFrames": 8
+            },
+            {
+              "phone": "UW",
+              "startFrame": 699,
+              "durationFrames": 23
+            },
+            {
+              "phone": "V",
+              "startFrame": 722,
+              "durationFrames": 7
+            }
+          ]
+        },
+        {
+          "word": "strolls",
+          "startFrame": 729,
+          "durationFrames": 65,
+          "phones": [
+            {
+              "phone": "S",
+              "startFrame": 729,
+              "durationFrames": 17
+            },
+            {
+              "phone": "T",
+              "startFrame": 746,
+              "durationFrames": 8
+            },
+            {
+              "phone": "R",
+              "startFrame": 754,
+              "durationFrames": 9
+            },
+            {
+              "phone": "OW",
+              "startFrame": 763,
+              "durationFrames": 17
+            },
+            {
+              "phone": "L",
+              "startFrame": 780,
+              "durationFrames": 6
+            },
+            {
+              "phone": "Z",
+              "startFrame": 786,
+              "durationFrames": 8
+            }
+          ]
+        },
+        {
+          "word": "on(2)",
+          "startFrame": 794,
+          "durationFrames": 23,
+          "phones": [
+            {
+              "phone": "AO",
+              "startFrame": 794,
+              "durationFrames": 11
+            },
+            {
+              "phone": "N",
+              "startFrame": 805,
+              "durationFrames": 12
+            }
+          ]
+        },
+        {
+          "word": "by",
+          "startFrame": 817,
+          "durationFrames": 49,
+          "phones": [
+            {
+              "phone": "B",
+              "startFrame": 817,
+              "durationFrames": 5
+            },
+            {
+              "phone": "AY",
+              "startFrame": 822,
+              "durationFrames": 44
+            }
+          ]
+        },
+        {
+          "word": "<sil>",
+          "startFrame": 866,
+          "durationFrames": 13,
+          "phones": [
+            {
+              "phone": "SIL",
+              "startFrame": 866,
+              "durationFrames": 13
+            }
+          ]
+        }
+      ]
+    },
+    "alignmentSha256": "e9c4ee20ac74f1d509c1d450eb5be2a5b5745d5532e62e99809d889805bf9604",
+    "mapping": {
+      "revision": "arpabet-mouth-v1",
+      "phoneShapes": {
+        "B": "A",
+        "P": "A",
+        "M": "A",
+        "CH": "B",
+        "D": "B",
+        "DH": "B",
+        "G": "B",
+        "HH": "B",
+        "IH": "B",
+        "IY": "B",
+        "JH": "B",
+        "K": "B",
+        "N": "B",
+        "NG": "B",
+        "S": "B",
+        "SH": "B",
+        "T": "B",
+        "TH": "B",
+        "Y": "B",
+        "Z": "B",
+        "ZH": "B",
+        "AE": "C",
+        "AH": "C",
+        "EH": "C",
+        "AA": "D",
+        "AO": "E",
+        "ER": "E",
+        "R": "E",
+        "UH": "E",
+        "W": "F",
+        "UW": "F",
+        "F": "G",
+        "V": "G",
+        "L": "H",
+        "SIL": "X"
+      },
+      "diphthongs": {
+        "AY": [
+          "D",
+          "B"
+        ],
+        "AW": [
+          "D",
+          "F"
+        ],
+        "EY": [
+          "C",
+          "B"
+        ],
+        "OW": [
+          "E",
+          "F"
+        ],
+        "OY": [
+          "E",
+          "B"
+        ]
+      },
+      "minimumDiphthongPartFrames": 4,
+      "diphthongSplit": "midpoint in integer frames; short phones keep the first shape",
+      "adjacentEqualShapes": "coalesce",
+      "uncoveredFinalFrames": "rest; at most two analysis frames",
+      "perClipOverrides": false
+    },
+    "cueSha256": "fe7dd9d5aa4bcc2558c3f4b6f1a78baa63432d2aa7dea1fdb437ae057184a1db"
+  }
+}

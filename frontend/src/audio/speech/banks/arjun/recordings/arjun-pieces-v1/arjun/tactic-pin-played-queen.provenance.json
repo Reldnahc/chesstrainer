@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-pin-played-queen",
+      "label": "Tactic pin played queen",
+      "text": "Pinned against its own king, that queen is tied to the line. Ask what it would like to do next; leaving its line isn't one of its legal options."
+    },
+    "takeId": null
+  },
+  "requestHash": "2d38be6de92235706cda447554bdc1d966f81c07435d45f3cadea58a0a99954d",
+  "recordedAt": "2026-10-04T07:32:47.671Z",
+  "sha256": "64c694ec890003d1c1d81db60a68cc4eb72ac7890219f60a35587fb73ff89a00",
+  "bytes": 28729,
+  "requestId": "6bomJAuKGzZWRaONv46x",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "68e168646b75d1f6dbcac0eb55a647a831d83c529b0b313a6e59ed215d077d88",
+    "bytes": 148419
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

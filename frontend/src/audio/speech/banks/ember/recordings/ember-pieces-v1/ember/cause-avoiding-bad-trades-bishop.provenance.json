@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "cause-avoiding-bad-trades-bishop",
+      "label": "Cause avoiding bad trades bishop",
+      "text": "This trade loses value. The bishop captures, but the recapture takes the bishop, worth more than what it won. Never stop counting an exchange halfway."
+    },
+    "takeId": null
+  },
+  "requestHash": "6fa1ad6be5632d6644d8a76e9811dd8ba56e9156bd040b8ee3fc57c2d0885035",
+  "recordedAt": "2026-10-04T07:42:23.545Z",
+  "sha256": "1f1d53416082780c96369dd994b1c5e7a7a31da21171458c8c0231f9b2cdd157",
+  "bytes": 32570,
+  "requestId": "8oUkbvjxXU4m5QkAffnX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "23ae4a4b30452f0b95c831d0a45d3c343caa9c0309442afd6c7e2984d7ae7a1f",
+    "bytes": 167645
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

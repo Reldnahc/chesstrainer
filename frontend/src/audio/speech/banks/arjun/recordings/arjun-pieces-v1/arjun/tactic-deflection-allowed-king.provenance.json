@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-king",
+      "label": "Tactic deflection allowed king",
+      "text": "What is each defender responsible for here? After this move, the king itself can be lured away from its defensive task."
+    },
+    "takeId": null
+  },
+  "requestHash": "ccb778dfb800522d99a4af7d6bb7173e3ed481f9b49bc8d100aa4a004bca310f",
+  "recordedAt": "2026-10-04T07:32:52.192Z",
+  "sha256": "3386735ea30a9991c9acee538cb4e0e81e27b86f97afc26b38489d77bc1939dd",
+  "bytes": 24803,
+  "requestId": "AdNA9LtBHLOPbIygjSLN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f21e592acb895ab94266c80dc6bb22f5f2dc5fbdd244615346fede5fa843e946",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

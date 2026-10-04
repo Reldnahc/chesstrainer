@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-escape-bishop",
+      "label": "Explanation frame capture promotion escape bishop",
+      "text": "The pawn captures the bishop on the last rank and promotes, getting the king out of check in the process."
+    },
+    "takeId": null
+  },
+  "requestHash": "f63ca9a6d133c44593ce740bf91050594c5fb013ed49d84dfccf44d35b287b41",
+  "recordedAt": "2026-10-04T07:44:50.252Z",
+  "sha256": "2fc77cb991f848a348e7a3861a9b24c1377bfbd45b671cda56de331d563ab0ea",
+  "bytes": 21115,
+  "requestId": "aDGC1HkWnun1fx745wrx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "26137784ecdec73e25b67d77463eeda08885f8f5ce58f00fffd34144e1cc137c",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

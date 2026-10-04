@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-check-pawn",
+      "label": "Explanation frame capture move check pawn",
+      "text": "This takes a pawn and gives check in the same move."
+    },
+    "takeId": null
+  },
+  "requestHash": "2ea9e3342fdb72cf48938c0e25ef0ddabcf697c218d903820bf65407a35f473a",
+  "recordedAt": "2026-10-04T07:30:02.003Z",
+  "sha256": "43950689488e8c9fa045fccf44b50eef669293101e1b2aef99b848b4e6d667ee",
+  "bytes": 11455,
+  "requestId": "JF3uCwhAJ21NCjoXDSzo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "80c8233e23f2dcf1d23849da142954658b264f7978f8f61e7e41ee566daf6686",
+    "bytes": 54796
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

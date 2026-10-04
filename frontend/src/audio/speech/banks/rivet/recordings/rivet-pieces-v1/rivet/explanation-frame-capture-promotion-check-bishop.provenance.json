@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-check-bishop",
+      "label": "Explanation frame capture promotion check bishop",
+      "text": "Pawn capture of a bishop, then promotion on the last rank. Check is included in the same move."
+    },
+    "takeId": null
+  },
+  "requestHash": "4a73e84cdd58fb2eed1f1a477332de0f06f668b087e5635033fac65fb25793aa",
+  "recordedAt": "2026-10-04T07:28:20.261Z",
+  "sha256": "9ee0a13fe2ecff8a7de7162bb58a9a93fc64ca535151daf6ed64107b5ad00893",
+  "bytes": 20204,
+  "requestId": "cRv8b5phj9w9HoN0DxTy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f3bac60deafdd1e56cf8e8acff925db3a55f0f6a67bd8fbc134104aace82fa39",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

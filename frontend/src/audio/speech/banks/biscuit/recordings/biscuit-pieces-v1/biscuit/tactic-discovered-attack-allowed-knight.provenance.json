@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed-knight",
+      "label": "Tactic discovered attack allowed knight",
+      "text": "Whoa, a knight of theirs is parked in front of another piece. If it hops aside, the piece behind it gets to attack. Keep an eye out for that hidden pounce!"
+    },
+    "takeId": null
+  },
+  "requestHash": "784f9e925e27008d7539fbdcc559d059c0e65a8a7883e478398f50cd158072ab",
+  "recordedAt": "2026-10-04T07:38:26.319Z",
+  "sha256": "d17cea10b3d8886c6830237e76a58a55d1dfa34d1579a49c5fc098eb9e57b891",
+  "bytes": 31560,
+  "requestId": "xqyQIDIGx95qmKfPVH4x",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8be871bca8b9e63918d2ef1f66c78aaba3b6e4aa63bc4fd729d9be9d2440c654",
+    "bytes": 160958
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

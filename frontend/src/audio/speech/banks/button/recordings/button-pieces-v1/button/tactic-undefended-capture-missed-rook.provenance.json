@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-missed-rook",
+      "label": "Tactic undefended capture missed rook",
+      "text": "There was a loose rook to collect with another move, nothing guarding it. This move passes it by. Loose pieces are always worth a second look."
+    },
+    "takeId": null
+  },
+  "requestHash": "bab2db73664a6bcea7bff773903e293512806c5e1a93514a1aaeebb61126fa80",
+  "recordedAt": "2026-10-04T07:30:47.823Z",
+  "sha256": "17eebe467e3a869879d4fab8adf86fffcba779a914e7541f226cb7719d5385fa",
+  "bytes": 29071,
+  "requestId": "KhIuqzEGSQYXU0MIiasQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a988a2108e60e85f51dd825eb3562aa8f237c83b42204ae7cf3c2cf492787e47",
+    "bytes": 150927
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

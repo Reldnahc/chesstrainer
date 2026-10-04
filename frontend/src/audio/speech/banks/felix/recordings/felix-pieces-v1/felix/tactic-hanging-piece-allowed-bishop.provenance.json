@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "tactic-hanging-piece-allowed-bishop",
+      "label": "Tactic hanging piece allowed bishop",
+      "text": "This leaves the bishop hanging, free for the other side to take. They will not need an invitation."
+    },
+    "takeId": null
+  },
+  "requestHash": "2a1c27f07a28d9b701501da1e74e13c5bef9e66cc1b8a9f218418286d078713c",
+  "recordedAt": "2026-10-04T07:43:45.460Z",
+  "sha256": "25ce736ccd78b0a2fe76da0762e89f68d1e6301249f6235010972eb78f51d5b2",
+  "bytes": 21123,
+  "requestId": "pI3S4pKLcXS5rNa8nyf7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "935b23dc08840d8fecd5b98f29c6cb972f88c85fe15c038497290304661b0498",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

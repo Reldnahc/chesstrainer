@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "tactic-fork-missed-queen",
+      "label": "Tactic fork missed queen",
+      "text": "A different move had a fork in it, several targets for the queen, and nobody played it."
+    },
+    "takeId": null
+  },
+  "requestHash": "774c60df38b9a2370edda1b5e2c15a6b09890f78fe4901f13acd6597bae3a1f6",
+  "recordedAt": "2026-10-04T07:46:51.288Z",
+  "sha256": "b1fb28fc751d261d6231381a1a0252541cd5a48d0f05deb4b248a7416cbb3901",
+  "bytes": 18577,
+  "requestId": "EayVrsidQBnoKeYEJIB1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e187c1ef5747759672dcaf3c3610ed4e8c4afbba80f7526804186379aad7ee5b",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

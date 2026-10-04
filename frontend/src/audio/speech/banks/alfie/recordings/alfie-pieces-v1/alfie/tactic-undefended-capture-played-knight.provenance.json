@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-knight",
+      "label": "Tactic undefended capture played knight",
+      "text": "The simplest gains come from pieces nobody is guarding. A knight with no defender at all is captured here. Checking for loose pieces first saves a lot of calculation later."
+    },
+    "takeId": null
+  },
+  "requestHash": "07e8e20dae8e75f6f91b3eaf243e238abbcfa1a187619c4d1a053b99f501baec",
+  "recordedAt": "2026-10-04T07:34:11.396Z",
+  "sha256": "5dc0c14a7e2ac8ead5c7bc7a6ffc313a78facc86148b63263546b90c6f896bcd",
+  "bytes": 33973,
+  "requestId": "VvEIvfwQqrn0ty8J8fnw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6c7b1491964aecce613c2da7d399780690df2ac5de28de392568cd1b07d8cdcd",
+    "bytes": 172661
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

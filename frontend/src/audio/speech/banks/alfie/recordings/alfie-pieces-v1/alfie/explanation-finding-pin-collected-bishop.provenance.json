@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-bishop",
+      "label": "Explanation finding pin collected bishop",
+      "text": "The pinned bishop can't step off its line without exposing the king. As the moves play out, it's captured on that line."
+    },
+    "takeId": null
+  },
+  "requestHash": "0aef85e37ec28cc8f997e60cff72df5bf834cc4277dda5042956c8824fa381f8",
+  "recordedAt": "2026-10-04T07:35:15.073Z",
+  "sha256": "7a5228552a4c414081dbced74c5251243cd5ab56411b634b333da9cc991b0c98",
+  "bytes": 23316,
+  "requestId": "x4GnUkN2a7O76ltH8Kt6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c430f640189749d28caeff194e649ba9075525bf0ad0c9f61ac3cef0357eefb3",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

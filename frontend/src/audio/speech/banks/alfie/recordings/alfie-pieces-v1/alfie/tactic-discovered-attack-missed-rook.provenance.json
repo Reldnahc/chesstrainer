@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed-rook",
+      "label": "Tactic discovered attack missed rook",
+      "text": "One of the other candidates was a discovered attack: a rook moving aside so the piece behind it could attack. Here that line never opens. When two pieces of one side share a line, moving the front one is worth considering."
+    },
+    "takeId": null
+  },
+  "requestHash": "5042bbef04bf1ca9208837d7e5b557791a296871d1d546a30423a005e1d74cfa",
+  "recordedAt": "2026-10-04T07:34:02.016Z",
+  "sha256": "0ec13a976142080f8522ecffca298ea6d831c28f06ead22329628ef05951dd93",
+  "bytes": 44678,
+  "requestId": "5mfZqO7lvB02EJT90ulw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "66d39d210b26b0a2c44673570e4a9dea71f15772b3df41972dfb68d236292ccf",
+    "bytes": 230339
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

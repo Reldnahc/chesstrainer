@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed-knight",
+      "label": "Tactic discovered attack missed knight",
+      "text": "Hey, look closer! A different move had a discovered attack, the knight hopping aside so the piece behind it could pounce. That trick never gets sprung here."
+    },
+    "takeId": null
+  },
+  "requestHash": "bb181c72c28f1a3b84ef6fb810d44eaf96da075012d104bbebe148ba58ca4206",
+  "recordedAt": "2026-10-04T07:38:41.384Z",
+  "sha256": "34a29f904955e730b80265c51466fe91af2d0e34d6d229bc5e1dbd1f48a79265",
+  "bytes": 31983,
+  "requestId": "OZbpgghZHgXEHhwGpKiF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "93c56e6a7186ac31fbfbeea4a98ef41785afc8ad5de4075a8162013b21a683a9",
+    "bytes": 166391
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

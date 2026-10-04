@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "explanation-finding-fork-collected-queen",
+      "label": "Explanation finding fork collected queen",
+      "text": "Fork sequence: one queen, multiple targets, one captured. Net material balance in the example: positive."
+    },
+    "takeId": null
+  },
+  "requestHash": "c03629e3764ae7e07382fd4aae3645520ae8cc236891aa5e7045a29b3bb4c3e1",
+  "recordedAt": "2026-10-04T07:28:07.362Z",
+  "sha256": "9129c6b5c1be966f39364c3a1c45a7d2ed48e3d270fba6bedca97174e39b3360",
+  "bytes": 25229,
+  "requestId": "holefqcqes2L3A1dRmwk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2de4ee92181ddadc3da3800ca6acbc8b6b529ce161c4cfc979abb3615eb506c3",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

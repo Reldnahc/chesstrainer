@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-rook-rook",
+      "label": "Explanation finding double check rook rook",
+      "text": "Watch for the double check: both rooks give check at the same time."
+    },
+    "takeId": null
+  },
+  "requestHash": "0486a0ac64ef264df27918f99a816e31a38a2c896ba00014a83713fd1a039dfb",
+  "recordedAt": "2026-10-04T07:27:00.298Z",
+  "sha256": "ed8dbb0ca40f49ead6a57f5890c8edccef169eeef9e99161194aa8e790308dfe",
+  "bytes": 14213,
+  "requestId": "n5QlwHEtpP8Bf49YAEv9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "30e59652d0bd6bbec62cad538fc4be20721593344498817f11f066c90d48ce65",
+    "bytes": 71515
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

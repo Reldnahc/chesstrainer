@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-skewer-missed-king",
+      "label": "Tactic skewer missed king",
+      "text": "A stronger move offered a skewer. The king would have had to step out of check, exposing the piece behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "1356918ec27ef06e0c511e91b3cf9d2ec94f2437b43119feb472ad2baae0441a",
+  "recordedAt": "2026-10-04T07:25:35.522Z",
+  "sha256": "94110f48011b20001b6eca0839e61af714fa32783f3fe38491bfc3d28989e1b4",
+  "bytes": 21498,
+  "requestId": "Y8mH94E8rYlY9sa3f1LJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dc5f04ac34cc4f1d029d8c60688c6e1358b8aed2504919e531776e8973d227a0",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

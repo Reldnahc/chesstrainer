@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "tactic-skewer-missed-bishop",
+      "label": "Tactic skewer missed bishop",
+      "text": "There was a skewer in a stronger move, with the piece behind left exposed once the bishop in front stepped aside. This move skips the deal."
+    },
+    "takeId": null
+  },
+  "requestHash": "40e218339dc0f214d25330995bfdaaa4666bf89dfab8a0fcdb89eb47137557a4",
+  "recordedAt": "2026-10-04T07:36:14.401Z",
+  "sha256": "b2729a5edc8eafc30ab1e02dfb575a3a6a9a109162e916ddc961a63994d4b189",
+  "bytes": 28949,
+  "requestId": "CEiiMsmMYSbqe9jeQh4H",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "985240a15f95f94ed57a10e79935f168dc3921efcd166e9130ec77c88b3d29dd",
+    "bytes": 145911
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

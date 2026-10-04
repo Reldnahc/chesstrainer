@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "grade-brilliant-4-rook",
+      "label": "Grade brilliant 4 rook",
+      "text": "Giving away a rook? Not my style, usually. But this sacrifice is sound, so I'll allow it."
+    },
+    "takeId": null
+  },
+  "requestHash": "74b829c1d1966331ab1a46115b04906a3d906dcde634a1786f45ccdf1bd3302d",
+  "recordedAt": "2026-10-04T07:37:46.518Z",
+  "sha256": "51a430e04595d78ee39c2b80fd58d27d858e3d865604f2bc7541137dd589ffe7",
+  "bytes": 22573,
+  "requestId": "bJAPjbEnFEudk3xmXWYG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4f28d0b5d3d3be044958556fbc3e9ef16946e3e6d104efda439751f1314700db",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "explanation-finding-king-skewer-collected-knight",
+      "label": "Explanation finding king skewer collected knight",
+      "text": "The king is checked and has to step out of the way, and then the same attacker grabs the knight that was hiding behind."
+    },
+    "takeId": null
+  },
+  "requestHash": "67464ee467911ed153423f62d2a2da43271277f18a63e6e6bac4f276b5a0ad6f",
+  "recordedAt": "2026-10-04T07:39:15.039Z",
+  "sha256": "fa81e083b80c81862967bd14ecf197f5137474a6ac9a3fa836221c632ff30e84",
+  "bytes": 23398,
+  "requestId": "sAjxgCd6yMWFvmgjQjbP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "de7bbd7029a58ebf1eef620c2efe60f04dd09a258104d613e3f48dc8585bf4da",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

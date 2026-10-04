@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-deflection-played-knight",
+      "label": "Tactic deflection played knight",
+      "text": "A deflection is the idea here: draw the defending knight away from its job, then use the opening it leaves."
+    },
+    "takeId": null
+  },
+  "requestHash": "d9eae4e4d8a5832a4e63ec9c637812dc21e2b1f95a1bae898a17759264fcd4b1",
+  "recordedAt": "2026-10-04T07:25:48.013Z",
+  "sha256": "30fba59c8c799ab8044563d5a8da2dafb156efc5beacaa2444f30d332a0c948a",
+  "bytes": 23313,
+  "requestId": "wfcePbxJmPJlpg43QYUv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ff020c5e7ee6572aec55f452391574abcd69510775d1e4d81caa72095a1a130d",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

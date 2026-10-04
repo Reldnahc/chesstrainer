@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-queen",
+      "label": "Explanation finding relative pin released queen",
+      "text": "The opponent's previous move broke a relative pin on the attacking queen. The next move left the target there, and it is captured in the shown line."
+    },
+    "takeId": null
+  },
+  "requestHash": "3c33961f48c0387c8c6cc073570a8db61df0669b74749840c1a8a016713f629f",
+  "recordedAt": "2026-10-04T07:26:17.904Z",
+  "sha256": "83a25a86f90ac02ddefb78345758f09b8670142ede53277d2dc6d7bd927fd029",
+  "bytes": 28597,
+  "requestId": "b3WaxeWDjhyWODCbz8kr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a91130bdebf1a7729b065fd2aba38e6cd07fa2c351a1be1c7a610e49ecd10a60",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "cause-opponent-threat-recognition-knight",
+      "label": "Cause opponent threat recognition knight",
+      "text": "The opponent's last move threatened a knight, and this move ignores it. Now the knight can simply be taken. Every move must answer the one before it."
+    },
+    "takeId": null
+  },
+  "requestHash": "81faca1c91255de2d07d9c4af206849da40012845fdc82f28d24b6ba0dc80503",
+  "recordedAt": "2026-10-04T07:42:47.720Z",
+  "sha256": "5ad8da3d054f26321ddf5e614ccc5956ccd180c9a486c1be6e2e5b4cfdbbed77",
+  "bytes": 30545,
+  "requestId": "mEic3xrWEWSuZu8CMccK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c451074e80ec5793cdc7ae0221325a37d595aaf3808b2c8f4b60925d61810019",
+    "bytes": 157196
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

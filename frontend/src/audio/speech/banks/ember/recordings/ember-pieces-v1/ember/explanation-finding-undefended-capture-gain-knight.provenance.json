@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-knight",
+      "label": "Explanation finding undefended capture gain knight",
+      "text": "The knight had no defender, and it is captured. In this example, the capture leaves that side ahead in material."
+    },
+    "takeId": null
+  },
+  "requestHash": "1f9a24a949b0c2fbf7437e8f8ca779e9cd312e58a5642a0c49c1375258b97775",
+  "recordedAt": "2026-10-04T07:43:06.659Z",
+  "sha256": "d13fab1cbfb586a80db3986ab163ae8c28c10ad6e202a73778e28032438be8ed",
+  "bytes": 24075,
+  "requestId": "A2cfVb7Ua5wShHZk7732",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5ccb3abb94dfaa23b9d8f59e46701700c101868e3cd072977e07dd5adc693290",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-pin-missed-knight",
+      "label": "Tactic pin missed knight",
+      "text": "Compare the stronger candidate: it pins an enemy knight to its king. With this move, that knight stays free to wander."
+    },
+    "takeId": null
+  },
+  "requestHash": "8dd5cdd6e348fbcb7b615dc77f4c5e35ac6969068fa54b1a3026f54a504ce83c",
+  "recordedAt": "2026-10-04T07:32:24.735Z",
+  "sha256": "b2fab5441caf31c075574da2a17be2818a550699893c84309fac6fd85bfcc63b",
+  "bytes": 24316,
+  "requestId": "zAd1BL8SaDmBcKgBbibH",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9c53f3a2dcd6cefa9a19b285d27a11b75e3c158e0efed3bc24041b1d996ad29e",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

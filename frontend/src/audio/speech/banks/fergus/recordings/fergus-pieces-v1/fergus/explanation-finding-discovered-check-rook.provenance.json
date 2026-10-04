@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check-rook",
+      "label": "Explanation finding discovered check rook",
+      "text": "The front piece steps aside, and check arrives from the rook it was blocking."
+    },
+    "takeId": null
+  },
+  "requestHash": "652ad486f0440222462774bf6f08d59c4aa56ec1857f83a3757825973f7cd447",
+  "recordedAt": "2026-10-04T07:47:43.660Z",
+  "sha256": "da93959304e4c98148624dfaa7caf8df0847639cf56899614def6fa14f2afe67",
+  "bytes": 15219,
+  "requestId": "EG2syoTgNitdBkNVMWxI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "762f0aa2206ac12fa32c9fa62c7e24c04b9eb184b87c141891cecc79def141ac",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

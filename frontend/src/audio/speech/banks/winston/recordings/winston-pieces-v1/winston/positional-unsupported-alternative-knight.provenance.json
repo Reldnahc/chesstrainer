@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-knight",
+      "label": "Positional unsupported alternative knight",
+      "text": "With another move, a knight would've been left without a defender. On its own, that wouldn't prove the knight could be won."
+    },
+    "takeId": null
+  },
+  "requestHash": "0f2a7e8470d3ec0d3687766de562c364eec99b8944af3f7ef1983ede232cbd2d",
+  "recordedAt": "2026-10-04T07:29:26.980Z",
+  "sha256": "40b6b7e126d0484329f350122e41483646d7296b3ef0c01a1015cc830f9ff5b6",
+  "bytes": 22060,
+  "requestId": "deG6nGQO4xBwF0YuASnc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "25c43151bb46bf62848036e46f23351f3434ee037a693908998dbc6069038d1f",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

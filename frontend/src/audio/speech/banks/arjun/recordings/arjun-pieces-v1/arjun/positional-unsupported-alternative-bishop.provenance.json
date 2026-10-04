@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-bishop",
+      "label": "Positional unsupported alternative bishop",
+      "text": "Another candidate would have taken away a bishop's last defender, which by itself wouldn't settle whether it could be won."
+    },
+    "takeId": null
+  },
+  "requestHash": "4be85fc04cc9a666d8a55863ddd3a47c6f1dcdf1d85e5fef026c5db23f024c86",
+  "recordedAt": "2026-10-04T07:33:01.281Z",
+  "sha256": "06f81089a7886e62440a551ff0dcadbf0ad2ecbbad5ff66c6ab6ce16daf37482",
+  "bytes": 23170,
+  "requestId": "Zx2RuUvjLxmLoDEOrLIH",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a545a75afe43db048ecb4c4f48ea559442ba1081bb007ef2b3f78298e9226362",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

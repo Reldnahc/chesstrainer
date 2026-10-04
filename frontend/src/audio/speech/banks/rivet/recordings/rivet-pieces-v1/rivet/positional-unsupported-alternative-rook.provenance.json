@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-rook",
+      "label": "Positional unsupported alternative rook",
+      "text": "Alternative output: one undefended rook. That alone would not prove a winning capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "a91008b733a6f758a5004ab50c78ffa9c1789c5d8cd806a332be340b301ad3f3",
+  "recordedAt": "2026-10-04T07:27:51.083Z",
+  "sha256": "441ce66aa516d0b6b8daf2078638f439ef0510cc0429845ada08d0d502663818",
+  "bytes": 19898,
+  "requestId": "FCSeR8ClhDiwgOVe8lV0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8c60d8a825709716ec175ddaaf4baf19842c498fe7f4cdaea7193f5d2991226b",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

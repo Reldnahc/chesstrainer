@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "grade-brilliant-4-rook",
+      "label": "Grade brilliant 4 rook",
+      "text": "Yeah, this one gets a proper reaction at the table. The rook can be had, and the idea doesn't budge."
+    },
+    "takeId": null
+  },
+  "requestHash": "c601393677139dd1ae2521c80f31e3b78c79e2ee3d15c4597c1a637144022283",
+  "recordedAt": "2026-10-04T07:46:35.151Z",
+  "sha256": "c8600f135ce8f2ee1d8553babdcd377b3830ab6ddd573a5c575745e880f7a2b4",
+  "bytes": 23252,
+  "requestId": "A9fyTL15pV3YApNdF4FP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "deb265571a339bbdd19439e88e64cf97ca9a0bc5ce5cdfb01d1fd4b291457e57",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

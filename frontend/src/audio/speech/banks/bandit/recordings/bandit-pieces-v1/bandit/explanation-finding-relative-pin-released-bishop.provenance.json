@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-bishop",
+      "label": "Explanation finding relative pin released bishop",
+      "text": "A relative pin was holding the attacking bishop, and the opponent's last move let it go. The target was left right where it stood, and the line shown captures it."
+    },
+    "takeId": null
+  },
+  "requestHash": "59610e905c4b8b25e2f3ee6550ef7c97dc9d4dc96d3e5fc740887c6f49d7d695",
+  "recordedAt": "2026-10-04T07:37:22.925Z",
+  "sha256": "f8b5ce945ca06c0f7651d30250426b3aaae56d65a6204ed51619925e05f71fa2",
+  "bytes": 32194,
+  "requestId": "glQgyVlVNFy9nEEMFk52",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "587aa4fbcc508b80dc7c56f15b763feedba7df744b8688abaada035d3c163542",
+    "bytes": 164719
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

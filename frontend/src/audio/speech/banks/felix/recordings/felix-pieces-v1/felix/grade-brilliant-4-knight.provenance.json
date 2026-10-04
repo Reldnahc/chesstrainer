@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "grade-brilliant-4-knight",
+      "label": "Grade brilliant 4 knight",
+      "text": "Brilliant. The knight goes; the position doesn't."
+    },
+    "takeId": null
+  },
+  "requestHash": "da692a2cbb0636c89bcbd0c54452a08979b1f33beae1c738e55ed2647bd345be",
+  "recordedAt": "2026-10-04T07:44:41.862Z",
+  "sha256": "ad15f03367c89bd873664606ad37be39e5d9ce95fbe022421162416a38b3f976",
+  "bytes": 12727,
+  "requestId": "r6VmCqnyhzro4PHdAdLD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8e837e90ce5b03ef55526483b254ad3e6795340841a976b69dc3358bfb5c60f6",
+    "bytes": 65245
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

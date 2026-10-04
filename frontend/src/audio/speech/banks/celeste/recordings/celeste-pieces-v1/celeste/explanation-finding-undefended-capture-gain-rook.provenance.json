@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-rook",
+      "label": "Explanation finding undefended capture gain rook",
+      "text": "An unprotected rook is captured here, and the capturing side ends this example ahead on material."
+    },
+    "takeId": null
+  },
+  "requestHash": "757fdf3385d4505c3804fe98c48b0745afe06486a5b1a4e1bf02673041a74c1a",
+  "recordedAt": "2026-10-04T07:41:16.159Z",
+  "sha256": "1a32e8e0de8475fef3137a695de2a8ea7e63809d46313242b154f109a42a6683",
+  "bytes": 21706,
+  "requestId": "gNkSRijCeRg2RbzWc4eb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a27d1a587d0a13c74b64b8737b41988bcf0564f338aebc5532b70bfd0b91447d",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

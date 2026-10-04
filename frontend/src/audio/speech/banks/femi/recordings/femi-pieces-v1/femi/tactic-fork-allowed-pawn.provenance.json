@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "tactic-fork-allowed-pawn",
+      "label": "Tactic fork allowed pawn",
+      "text": "Hold that thought: the other side has a fork coming, their pawn lined up against two targets at once. Job one is locating that pawn."
+    },
+    "takeId": null
+  },
+  "requestHash": "be42e1cc5ac855d17e3bb6121bfb729dff1ca5342ac1ca1a3a9e1e4b7d69bcc5",
+  "recordedAt": "2026-10-04T07:44:57.627Z",
+  "sha256": "e159ce5250df3c866dd77debe1898a60138ccdc03061a78f370b4feec9865ed3",
+  "bytes": 29250,
+  "requestId": "65gsPlAn3VA6X03WcZ7Y",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0d37071490c202372796ff8ca71dbeed66379fc19475efd182466ef453067804",
+    "bytes": 149673
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-rook",
+      "label": "Tactic deflection missed rook",
+      "text": "Deflecting a defending rook was possible with a different move; here the rook stays exactly where it was."
+    },
+    "takeId": null
+  },
+  "requestHash": "939b12123bc324da288a728ce8b47434e25fb58e10909f469d4f0d70c0cdad30",
+  "recordedAt": "2026-10-04T07:47:12.885Z",
+  "sha256": "8ad093b48dbf4525c6ce4ccea4d9dd6a139e43ddcd25d451c0c67417957fae1b",
+  "bytes": 22887,
+  "requestId": "S3LFNW6zrZTFt3maLGBW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "362707db762c0f57fae25990561dcdd24636de73792e5f7b2cbe14c836bafc7b",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

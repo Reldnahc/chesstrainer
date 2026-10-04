@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "tactic-fork-played-rook",
+      "label": "Tactic fork played rook",
+      "text": "There's a fork in this one: a single rook bearing down on several targets at once. Follow that rook and see what it reaches."
+    },
+    "takeId": null
+  },
+  "requestHash": "c738fbe2e63ebb0e07f9dd30233aa999cca325224b6756067b4c9e60c7c520c8",
+  "recordedAt": "2026-10-04T07:28:43.351Z",
+  "sha256": "817d71a52ca15041bd0630c1a4664b9fe7252ddcd33467ce8a6709d918549dd6",
+  "bytes": 24082,
+  "requestId": "HogOXpkOJI1nQlHRohjs",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0c899e500008cdd72b26e6ec1048f201298c01b402220ba298b823a38d4f030c",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-knight",
+      "label": "Explanation finding undefended capture gain knight",
+      "text": "An unprotected knight is captured here, and the capturing side ends this example ahead on material."
+    },
+    "takeId": null
+  },
+  "requestHash": "8c57cbe8947f40357eaba2522f4043e350a7981c7ce3e0a877d5230c6502311b",
+  "recordedAt": "2026-10-04T07:41:12.767Z",
+  "sha256": "4290356c0e34e449721ad1a7d705ca864d2de5a1c1c07919c22e273c901afc4d",
+  "bytes": 21428,
+  "requestId": "7udict0e9YyYO7M3CdqC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "30b9abba278e51cfe609730680a842a1c1d82648339fae76e650eef92d1061a0",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

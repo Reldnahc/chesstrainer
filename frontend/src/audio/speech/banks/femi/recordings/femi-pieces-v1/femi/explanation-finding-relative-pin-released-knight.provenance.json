@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-knight",
+      "label": "Explanation finding relative pin released knight",
+      "text": "Notice that the opponent's last move took the relative pin off the attacking knight. Nothing moves the target to safety, and the line shown wins it."
+    },
+    "takeId": null
+  },
+  "requestHash": "7fb38f245111d1d47741ef3627fa2fef4e6f06b0667dac415d14aeb72fd210ba",
+  "recordedAt": "2026-10-04T07:45:52.950Z",
+  "sha256": "e7c37a7514988d0157309a2b728cc555845286d938f9621b261a78f897dcfd89",
+  "bytes": 31733,
+  "requestId": "o4ZHhIhzOLoakAbbz9ti",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5d66c29348f3747b805303a85eb83a3a6f9f99a8333e9ffaa37d8b9dd3992d03",
+    "bytes": 159704
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

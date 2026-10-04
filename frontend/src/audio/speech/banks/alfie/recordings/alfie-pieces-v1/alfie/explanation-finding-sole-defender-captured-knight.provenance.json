@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-knight",
+      "label": "Explanation finding sole defender captured knight",
+      "text": "The capture sequence starts with the lone defending knight. With it gone, the piece it was guarding is taken next in these moves."
+    },
+    "takeId": null
+  },
+  "requestHash": "cc155455acecdba71d4d0a6dfcb0ebee33e2e45347de08783cc7624e47ae09b7",
+  "recordedAt": "2026-10-04T07:35:23.226Z",
+  "sha256": "2e99aecc7acbb32dfff87aa6ebb62004390909394971d1d0d52ac425906247df",
+  "bytes": 24461,
+  "requestId": "Ev1aJLcrSaid6ep6c9rY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c72f6ec81973bd9e3b3bd60ecbd6cea835b40d6954aabdb9313008dd800d274c",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

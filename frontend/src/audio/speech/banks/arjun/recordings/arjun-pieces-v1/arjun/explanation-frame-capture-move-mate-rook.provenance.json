@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate-rook",
+      "label": "Explanation frame capture move mate rook",
+      "text": "One capture of a rook, and it ends in checkmate."
+    },
+    "takeId": null
+  },
+  "requestHash": "e8313f78db36480eddf68ac197f77d29f587621cb0b4cc02242bb3de05d76f4f",
+  "recordedAt": "2026-10-04T07:33:41.528Z",
+  "sha256": "6671a46d86cec94fad2219b8097734da3e1a4f1ba39449c5b9202fdfabc06c93",
+  "bytes": 11435,
+  "requestId": "mGpl06HeeJRL3iGuzDVC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5116a1393dae4f73e9e0cac63b658ce053858700b84fda88fb910d61d466a99c",
+    "bytes": 56050
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

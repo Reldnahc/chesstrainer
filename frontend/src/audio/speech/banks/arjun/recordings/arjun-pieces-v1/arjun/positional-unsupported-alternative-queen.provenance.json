@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-queen",
+      "label": "Positional unsupported alternative queen",
+      "text": "Another candidate would have taken away a queen's last defender, which by itself wouldn't settle whether it could be won."
+    },
+    "takeId": null
+  },
+  "requestHash": "18fe4bb696e3480eb9efac20fe44d6c8fb591f695aee2107d479153c8786e7b5",
+  "recordedAt": "2026-10-04T07:33:05.241Z",
+  "sha256": "d14b2460b1c9d047d590b246d60cdcfe53237e40108edbb281282fa0a7259a2e",
+  "bytes": 23420,
+  "requestId": "95byc90lHE8pNnIx4Kgj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "77a99cbfd9a140dce92d7f299d7df7da71740d9cae401760dc641cfede71ee1a",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

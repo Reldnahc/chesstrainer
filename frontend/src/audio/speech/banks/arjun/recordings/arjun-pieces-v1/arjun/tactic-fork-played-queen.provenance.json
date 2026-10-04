@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-fork-played-queen",
+      "label": "Tactic fork played queen",
+      "text": "Interesting move: a queen lands where it touches several targets, and the reply can't comfortably cover them all. Worth replaying to see how it got there."
+    },
+    "takeId": null
+  },
+  "requestHash": "a22c7e9887fd73185e05a37e21a970b1bde9a26863d4ff9167dd53414b0532ff",
+  "recordedAt": "2026-10-04T07:32:11.773Z",
+  "sha256": "8f3a534ba8a413721a1092ee785e3f08501590e6e7d25ffcc0125124d70b90c4",
+  "bytes": 30229,
+  "requestId": "YREzRTiImX94TjGNXZ4j",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bb24f97a5f1c76a686e11a7381d6aa7d5a2df1ad4e361f76e1deac5e8a5d3865",
+    "bytes": 157196
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

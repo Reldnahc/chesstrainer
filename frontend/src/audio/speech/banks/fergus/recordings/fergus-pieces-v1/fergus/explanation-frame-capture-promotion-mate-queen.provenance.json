@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-mate-queen",
+      "label": "Explanation frame capture promotion mate queen",
+      "text": "The pawn captures the queen, promotes, and gives checkmate, and the king has no legal way out."
+    },
+    "takeId": null
+  },
+  "requestHash": "66eeaf07be6ee15abd2bfad39bde981e40141f7e798b02e479b71087aa254b59",
+  "recordedAt": "2026-10-04T07:47:56.305Z",
+  "sha256": "37d6f7baf39f5de77eb4e5a51e1ca1b3cc27f9573b6210009101a23715386c60",
+  "bytes": 21180,
+  "requestId": "axDHCXxpM8E2YXG7IOqo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d97a485a1ed2363b83be2d966ecdf9c869db81f58ed1aa584eb57f7b0cfe3779",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

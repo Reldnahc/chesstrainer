@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "cause-abandoned-defender-knight",
+      "label": "Cause abandoned defender knight",
+      "text": "The knight had one real defender, that defender has left, and the knight can now be captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "e0c1eb98d14c47d7d36e28e82a4c55e169c5a448581be46b2d37d66e47e1b682",
+  "recordedAt": "2026-10-04T07:47:30.248Z",
+  "sha256": "bbce1dbed300a0bd43fdafbed795da579a02c2622105cf380e273d95e8e06c80",
+  "bytes": 20469,
+  "requestId": "GYQogdRJE39TV6vCFMK9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "acbbeb8dcb4e58bb6e504af5c455ab6f5ef9f9cd47b946d378c9c1be000b1d44",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

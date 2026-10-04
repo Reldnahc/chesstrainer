@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-queen",
+      "label": "Explanation finding pin collected queen",
+      "text": "Follow the pinned queen: the king behind it keeps it stuck on the line, and it gets captured before the sequence is done."
+    },
+    "takeId": null
+  },
+  "requestHash": "33630092ffe8adf1d7324a3e336487ae354ead9190ca7da88db60cd9d2c1a5df",
+  "recordedAt": "2026-10-04T07:33:12.330Z",
+  "sha256": "686ee94f71c6ac2321da386866908715a0226eb0fa2721e578acaaaca6501407",
+  "bytes": 23129,
+  "requestId": "z4x35MT5ShS78zsw3I4L",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d7631fa22b5f292472c88ac641244d9866d1ab99a5dd241a97339836079d9478",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

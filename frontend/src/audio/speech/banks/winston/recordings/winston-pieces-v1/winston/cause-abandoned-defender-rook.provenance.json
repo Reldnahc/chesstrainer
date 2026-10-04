@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "cause-abandoned-defender-rook",
+      "label": "Cause abandoned defender rook",
+      "text": "That's a rook without its only real defender, then. This move takes the guard away, and the other side can now capture it. Before a defender moves, check what it was looking after."
+    },
+    "takeId": null
+  },
+  "requestHash": "2edb868866b530b9bde27398e854a671fc69195a9ec9b829058cf2e6c442bd05",
+  "recordedAt": "2026-10-04T07:29:57.845Z",
+  "sha256": "923b8d7732a17f592579151750463a2fbd9fc78d7bf75bd1a99ec6ceed8033a9",
+  "bytes": 32960,
+  "requestId": "qw4EkgeJqNJdyO1zbBVO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e37ec43f0f327803dfb9d3d4e190bade2adf0d9e989922c964a229fb61f5262c",
+    "bytes": 171407
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "tactic-fork-missed-queen",
+      "label": "Tactic fork missed queen",
+      "text": "A different move had a fork in it, one queen reaching several targets at once, and this one passes it by. Have a look at the engine's move and find that queen."
+    },
+    "takeId": null
+  },
+  "requestHash": "7f852adb66107bb285f63270362d95e48aa007fa322b284d9ea80eef68b4e9e5",
+  "recordedAt": "2026-10-04T07:29:09.072Z",
+  "sha256": "377689a9a407d1ad672ad36f29afff0cbcff14e94f94d38d424b25bc966a25e7",
+  "bytes": 30741,
+  "requestId": "J1FVbxSv1Z74InKt1aTO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2a3abd0b7bed43abef6a3e77842159386c5f3557cab3fcdf1ff03002040c9f4a",
+    "bytes": 159704
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

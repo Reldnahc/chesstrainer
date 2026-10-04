@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-queen",
+      "label": "Positional unsupported actual queen",
+      "text": "A queen has no defender after this, which is a fact about the queen and not a loss of it."
+    },
+    "takeId": null
+  },
+  "requestHash": "1f083abdd1ffcdf43f18a8632c234bc7ac8c32da28460000c0ff894d22d78199",
+  "recordedAt": "2026-10-04T07:47:15.972Z",
+  "sha256": "be40f094f8a77c30e83ef7b5ca2a4fa6e3a3c0e1b8a520bc878262db4d01b4a8",
+  "bytes": 19766,
+  "requestId": "k1iIz8BLAOAVSOh7uOzZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "13949789d2564d0a9567ce2243f43c32dd25ed26f3a0be0e0ee1b668671d403a",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

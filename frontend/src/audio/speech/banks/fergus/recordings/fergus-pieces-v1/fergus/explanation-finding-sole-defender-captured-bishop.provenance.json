@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-bishop",
+      "label": "Explanation finding sole defender captured bishop",
+      "text": "The lone defending bishop is taken first, and later the piece it guarded goes too."
+    },
+    "takeId": null
+  },
+  "requestHash": "73a9744056650f2e4d09c9a48ceaf72771303ec16e9b5297694e99eb5552f939",
+  "recordedAt": "2026-10-04T07:47:35.547Z",
+  "sha256": "0cdf998880a5724ce940c409854e80252c892dd25737d58f2a5214ea6125b2d3",
+  "bytes": 18794,
+  "requestId": "mMLRbvULQg00w4FcYsTD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f574c328c95626b60fb73c847e5fe1d6b41244510fc70ea6eef22fa436e57f25",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

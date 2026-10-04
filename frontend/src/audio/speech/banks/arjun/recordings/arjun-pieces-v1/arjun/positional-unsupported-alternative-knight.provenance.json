@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-knight",
+      "label": "Positional unsupported alternative knight",
+      "text": "Another candidate would have taken away a knight's last defender, which by itself wouldn't settle whether it could be won."
+    },
+    "takeId": null
+  },
+  "requestHash": "89aa888cf113e35547c0378cab1dee3df8246c77975f306c73e1b98f038ce688",
+  "recordedAt": "2026-10-04T07:32:59.249Z",
+  "sha256": "b215dda3360ebecc004e251f47e4143050b139417fe803ea1844cdc37c4f5bdc",
+  "bytes": 22928,
+  "requestId": "778fDABtvxGWTVpPGeKh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ac3e3a47bbd214102738c800a6b7a94fe852a4e33c33ae84ed1b53716d9e0931",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-bishop",
+      "label": "Explanation finding skewer collected bishop",
+      "text": "Keep your eye on the bishop in front. When it moves off the line, what was standing behind it gets captured along that same line."
+    },
+    "takeId": null
+  },
+  "requestHash": "9a3f0b0b42d2ae0b986847cfb5a92ed355566e16990fdcd45b7f47634901ca61",
+  "recordedAt": "2026-10-04T07:29:52.081Z",
+  "sha256": "99aa84b17a08fd72e4a4602e974f7491416ee090f2994071e67283a07602e0a3",
+  "bytes": 24263,
+  "requestId": "7bBv6WJdiX9mXmWThIfM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "08db56ceda6d3171c2140bd3fd17c9f869dcd8d748a58c96d8c09a1cc79433ad",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

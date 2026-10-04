@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-queen",
+      "label": "Explanation finding sole defender captured queen",
+      "text": "Step one: the lone defender, a queen, comes off. Later in these moves, whatever it guarded follows."
+    },
+    "takeId": null
+  },
+  "requestHash": "58aa0e100928bf38d3e942211b3a1b33d4cf64efc6de68019dc42895a43871af",
+  "recordedAt": "2026-10-04T07:44:28.860Z",
+  "sha256": "c70f81be899ffd1ccf9adf364216a6cb18dda68fae7409d372654236a28fe3f7",
+  "bytes": 25240,
+  "requestId": "VmqVt6uj0cUiXkCSVtnp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "99e9942096cfd56381be4059fd03eb89b5ddda1afffdece321ef4948d5d34173",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

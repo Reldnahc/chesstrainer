@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "positional-support-actual-knight",
+      "label": "Positional support actual knight",
+      "text": "A piece with a defender can't simply be taken for free. This move gives the knight support it didn't have, so a capture on that square could now be answered with a recapture."
+    },
+    "takeId": null
+  },
+  "requestHash": "28a58c0a7085ff1451ae38166c45321ca72f2a42fad48524ea09b09580e09e75",
+  "recordedAt": "2026-10-04T07:35:32.931Z",
+  "sha256": "41f95989a96c62dec9d9f73f95af34889181a3f199455d254a987005e7eb3d64",
+  "bytes": 31741,
+  "requestId": "rzgTL6PZSlR0FDPqkoo6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b2d7bd8c79f94ce8b20a5eb2d68bb74b77d178235853b1027e45401f4bc041b9",
+    "bytes": 159704
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

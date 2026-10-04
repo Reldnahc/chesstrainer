@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-missed-rook",
+      "label": "Tactic undefended capture missed rook",
+      "text": "Hey, look closer! Another move could have gobbled up a rook with no guard at all. That snack zips by here. Easy habit: look for anything unguarded before every move."
+    },
+    "takeId": null
+  },
+  "requestHash": "99fec7aa358813afcc15fad5020311fd7c201f04658a8c1381649ca718c72f21",
+  "recordedAt": "2026-10-04T07:38:20.723Z",
+  "sha256": "c8796e4aba8fb1dd5d0c8da0ddc1a993d6bb530fd7b365e14f7de736244040e4",
+  "bytes": 37001,
+  "requestId": "zCJ6WjThQevrfryISuIW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dff60d6e5eb7f31bd3b99fb3c8b96f350ff9332b5d3bb7555dbdfbf6e730af77",
+    "bytes": 193141
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

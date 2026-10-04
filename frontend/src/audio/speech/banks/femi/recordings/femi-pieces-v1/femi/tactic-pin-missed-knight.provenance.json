@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "tactic-pin-missed-knight",
+      "label": "Tactic pin missed knight",
+      "text": "Put the stronger move next to this one and there's a pin to the king in it. The pinned knight would have been tied to that line, since leaving it exposes the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "2219a9e4138d10e3112ccf8417c27a90e6c0f373fb89a67ab5089e4986f30709",
+  "recordedAt": "2026-10-04T07:45:02.181Z",
+  "sha256": "7b67603aa2927daf66485898f2dfba6b5ac11135cf1d77eeddcd126724dd80af",
+  "bytes": 32316,
+  "requestId": "TSwMf7I6hKbym9wXmxOl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b4818a47aa231ed906ecf74c4dc6efd5db83a4572bc1a34aabdd25c77492a530",
+    "bytes": 160958
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

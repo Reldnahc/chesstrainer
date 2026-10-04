@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-rook",
+      "label": "Tactic undefended capture played rook",
+      "text": "A rook standing all alone, unprotected. The idea is simply to take it, so check for loose pieces before anything else."
+    },
+    "takeId": null
+  },
+  "requestHash": "f5645bdba4518e8dc4a6a6ee922fd7f8cd28a01127bdb1c6a97c7a8fcf7c9259",
+  "recordedAt": "2026-10-04T07:30:39.146Z",
+  "sha256": "957eaae6a895cbfb2d61f2c1899f8cb736847a685d325cf6fb676d68c2aaba9c",
+  "bytes": 27619,
+  "requestId": "emXpVKI7FzHzDsZLUdRW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3a9e1f4394996bb63abbe34cc5d8ffb2cdec6ede0b5a9563b15c45f8cb8ca417",
+    "bytes": 142986
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

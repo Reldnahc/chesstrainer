@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-queen",
+      "label": "Explanation finding undefended capture gain queen",
+      "text": "Look at the undefended queen being captured. The example shows a net material gain for the capturing side."
+    },
+    "takeId": null
+  },
+  "requestHash": "31ca6b11e70cb8b72ebad8b87f2f5c84546dab17761f7f2b9deb721f7a320b34",
+  "recordedAt": "2026-10-04T07:26:42.371Z",
+  "sha256": "246b4abc0ddc7e8abe36db89b4aae3857d38e5ac2a721bb8b26750ba05518446",
+  "bytes": 21396,
+  "requestId": "iU0265X1IaGmWyTpBovp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "85bbda36b685c0ed8f03497234bcb5ff1a428b7e80310c9eeb705e03e02fbc4c",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

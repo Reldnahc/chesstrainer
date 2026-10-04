@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "grade-brilliant-2-queen",
+      "label": "Grade brilliant 2 queen",
+      "text": "A bold queen offer. Daring that survives acceptance is rare, and this one survives it."
+    },
+    "takeId": null
+  },
+  "requestHash": "6c64766ff3292bfc0655916df4a4a22db518a5724863cd922fff069c605c7d61",
+  "recordedAt": "2026-10-04T07:43:30.247Z",
+  "sha256": "9c80b34ad3cc28f63dcb77e4935f2b86f01a16271975655a6d736688f6fc09e1",
+  "bytes": 22287,
+  "requestId": "qzBhg6OZNKk5gnYNrJ0q",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "20c5c47d73e48ef3843395633ad8a5a2427599e4ecb7bcd0a757c8945c467d41",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

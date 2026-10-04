@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-rook-queen",
+      "label": "Explanation finding double check rook queen",
+      "text": "Double check. The rook and the queen attack the king at the same time."
+    },
+    "takeId": null
+  },
+  "requestHash": "72858aa9046b426aafe90e62ad206ed795100f0f4f97e60c674a5ce85cc01502",
+  "recordedAt": "2026-10-04T07:28:31.166Z",
+  "sha256": "204d93f69ff7e7de72feffae7af73d51499aa146990f778b3bf39c83eb97ebbc",
+  "bytes": 15552,
+  "requestId": "AIodQWg4Oz2Z905g2Huj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "eb876cdeb082a962fc5ca6f45652638056e66d2579105263c466f19699910b38",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

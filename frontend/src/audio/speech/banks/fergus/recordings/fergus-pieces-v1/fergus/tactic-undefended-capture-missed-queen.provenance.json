@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-missed-queen",
+      "label": "Tactic undefended capture missed queen",
+      "text": "There was a queen with no guard available to take, and it is still standing there."
+    },
+    "takeId": null
+  },
+  "requestHash": "a8f51a1e58fd2854af1ebd0cb0082e776dd331fd8f461b3c971a229f33a31d4c",
+  "recordedAt": "2026-10-04T07:46:55.454Z",
+  "sha256": "dfb301a6d3195beef5c35a52d171b0e6dc788d27e80866a4bff00683aec31194",
+  "bytes": 16290,
+  "requestId": "gK8vCgcyysaS4WA6U3k0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4a65dc269b2d828794c880552fbad883f55bc79a5c7953db0ef7e3b821215cd2",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

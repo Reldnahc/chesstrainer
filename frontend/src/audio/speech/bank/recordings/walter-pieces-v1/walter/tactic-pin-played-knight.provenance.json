@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-pin-played-knight",
+      "label": "Tactic pin played knight",
+      "text": "The key idea is a pin to the king. A knight caught this way cannot leave the line and expose its king."
+    },
+    "takeId": null
+  },
+  "requestHash": "1644c24e9e3a3e6f61ba6a24180db222837a8a38c73a3adaa506752f9ff7aafa",
+  "recordedAt": "2026-10-04T07:25:56.917Z",
+  "sha256": "f0410d49bb081af1c45cf15e44f9c42b4ffd213aafaf1474a5747abb888eddc5",
+  "bytes": 22714,
+  "requestId": "KLXGsBl4kU895EeDzQPr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1383e9034cddb4ecb0d4e01d93d02907af2ffc2d3e9654a567d447a6929c4ac3",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

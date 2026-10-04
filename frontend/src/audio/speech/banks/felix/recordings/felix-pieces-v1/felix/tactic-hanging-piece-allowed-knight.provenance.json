@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "tactic-hanging-piece-allowed-knight",
+      "label": "Tactic hanging piece allowed knight",
+      "text": "This leaves the knight hanging, free for the other side to take. They will not need an invitation."
+    },
+    "takeId": null
+  },
+  "requestHash": "33beba40075603c44be942f972fdb35173258bff865693b29950e51f2c061cbc",
+  "recordedAt": "2026-10-04T07:43:43.829Z",
+  "sha256": "6d347274b74a96078b361d71e5d6ce093fa3660f2f2fc93220de8a6c080a7d9a",
+  "bytes": 20434,
+  "requestId": "BOOO30aUlmiNC5497YQB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3ec71e834422c87bde1b4fa730a60b5b173408bca385580fa3196516b8a9ab0a",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-knight-bishop",
+      "label": "Explanation finding double check knight bishop",
+      "text": "This is double check, the knight and the bishop at once, so only a king move will do."
+    },
+    "takeId": null
+  },
+  "requestHash": "0c01b162592b836415caba1db67aefc0500c12a36a51e643e20e4266bf5cd572",
+  "recordedAt": "2026-10-04T07:47:54.793Z",
+  "sha256": "8a21cd822ea8554edd2165f75e3941d77a18079423f3d85d01c4448b5b7d8b8d",
+  "bytes": 19387,
+  "requestId": "p1LdvC1sBT9HMoCMwDiE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6efa3266fbfdd425fd0922abc4c24740090b7b1957239f81461ea9c9698e0617",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

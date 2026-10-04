@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed-pawn",
+      "label": "Tactic removing defender missed pawn",
+      "text": "A stronger move would have removed a defending pawn, leaving whatever it guarded uncovered. Not on this move, though."
+    },
+    "takeId": null
+  },
+  "requestHash": "4a4308ab96f881952265eb25a4c16b173a28514a28a016c8d5da0a7477bed614",
+  "recordedAt": "2026-10-04T07:45:20.116Z",
+  "sha256": "e76a80999b8b8b1f0969afb32419ec38e62fe05dce0cc8b42191ff58ef2e2370",
+  "bytes": 23932,
+  "requestId": "gKefEbfBUfRAwNmRfzph",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c07dcf9a24dab8dd08a4b41d18ca29b18e4d6a3ca6900762c57cd1c83ba62123",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

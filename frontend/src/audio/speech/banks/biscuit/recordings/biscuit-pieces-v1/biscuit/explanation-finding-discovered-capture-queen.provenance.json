@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-capture-queen",
+      "label": "Explanation finding discovered capture queen",
+      "text": "A blocker scoots out of the way, which clears a lane for the queen behind it to make a capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "d54a2bcc98dbdb307f5dc0f913821438f99cce8991b0f0b1baba909b495be44b",
+  "recordedAt": "2026-10-04T07:39:19.814Z",
+  "sha256": "761a8d53f483e17ba100cab361c9cfb62b7f1f31c3999d850cf9d9df436c3215",
+  "bytes": 17404,
+  "requestId": "eXAzAgKAhiHnbSbBdphg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "766fd9327aa5985e45b5d08f398340a5a4c3c83b2071fc2b3cd428cf8c668ce4",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

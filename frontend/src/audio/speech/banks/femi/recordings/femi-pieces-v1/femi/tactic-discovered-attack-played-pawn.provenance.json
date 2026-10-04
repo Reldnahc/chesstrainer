@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-pawn",
+      "label": "Tactic discovered attack played pawn",
+      "text": "Discovered attack, then. The pawn in front clears the path, and suddenly the back piece has a clear line to hit."
+    },
+    "takeId": null
+  },
+  "requestHash": "841009c6586262f6e4a60aaa995a544d5817c41ec9fbe7d6c4cbef2f1d48e8f9",
+  "recordedAt": "2026-10-04T07:45:14.240Z",
+  "sha256": "69a78971923e514650f774fda81fc867e42814c4da5726857590c0689befbeed",
+  "bytes": 24173,
+  "requestId": "SqXk2dPimEeDBpcw6etC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0eb01d3a7cd94b5f4f5133d62d3e70b4986810fe0b966f4b9c8ab144effc18f8",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "positional-development-alternative-knight",
+      "label": "Positional development alternative knight",
+      "text": "With another move, a knight could have stepped out to join the game."
+    },
+    "takeId": null
+  },
+  "requestHash": "031601d874416acf1c66c92ba241ba9a2cb5206d3741f8aef3d129c2961a8b8c",
+  "recordedAt": "2026-10-04T07:40:47.327Z",
+  "sha256": "0ad0bd3d9536d18079152055ae069573d743aff662ca0eb207415f007c46c44f",
+  "bytes": 12626,
+  "requestId": "y2OLPgKUgXi33jOU8bXr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d969125e75f52e0fe6ab4a58c06b72e15ace51a174ddb678abd4be28fd52cb01",
+    "bytes": 61066
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

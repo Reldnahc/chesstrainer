@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played-pawn",
+      "label": "Tactic removing defender played pawn",
+      "text": "Watch what the defending pawn protects. Capturing it is the idea here, so notice what would lose its protection."
+    },
+    "takeId": null
+  },
+  "requestHash": "066f85ded29439d00a9554ed3364897390099e62db46f4616cef4e7d6158204f",
+  "recordedAt": "2026-10-04T07:25:56.246Z",
+  "sha256": "38acf8282ce6752f7ade38f93ce3c2274152bf6f2620c74a2e9d7b1aae138615",
+  "bytes": 23899,
+  "requestId": "ZFlb4YPE2LyCaBuQXy9x",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c25d96eb574cebcde71df781dbb9b348ef6f0d49ff7808100532b36f0998c23a",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

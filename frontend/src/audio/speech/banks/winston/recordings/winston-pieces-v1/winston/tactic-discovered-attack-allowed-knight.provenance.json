@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed-knight",
+      "label": "Tactic discovered attack allowed knight",
+      "text": "A discovered attack becomes possible for the other side here. A knight of theirs could move out of the way and uncover an attack from the piece behind it. Check which lines that would open."
+    },
+    "takeId": null
+  },
+  "requestHash": "54fbee012a7a5c1e33056e51df33963ef2541d40f520cfc366a553afd032f8cc",
+  "recordedAt": "2026-10-04T07:29:06.461Z",
+  "sha256": "b0743aa37270bc99e051d5c533460856e552c1c5176efe67254b6a93b12023ad",
+  "bytes": 32761,
+  "requestId": "8tcphqaOgY1qjCsZCqXS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d700da327cda3249ef17b87f7c8d7781f0102af80fa2ba237abcfd406738cf68",
+    "bytes": 167645
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "tactic-back-rank-allowed-queen",
+      "label": "Tactic back rank allowed queen",
+      "text": "A king needs at least one free square off its back rank. This move lets the other side aim for a back-rank mate with a queen, because the king is hemmed in by its own pieces. The king's escape squares are the first thing to check here."
+    },
+    "takeId": null
+  },
+  "requestHash": "f440e4dff8138de563463171258aecb3a2aedc3dc107a729b558c17ba100b6b1",
+  "recordedAt": "2026-10-04T07:35:22.357Z",
+  "sha256": "00ae41bc91916ab2a358df60c9378add53ae38d5ea1be96fb80368e7bb3735b0",
+  "bytes": 43144,
+  "requestId": "Ho8xYUFLz0hL48CrwYQ9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "17f9b76ea7a35aefa455582a8e784f0714457f466aa44439941d32e633015331",
+    "bytes": 219890
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

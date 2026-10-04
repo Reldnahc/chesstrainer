@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "tactic-pin-allowed-rook",
+      "label": "Tactic pin allowed rook",
+      "text": "Now the other side has a pin against the king to work with. A pinned rook holds its line or the king is exposed."
+    },
+    "takeId": null
+  },
+  "requestHash": "4ec0d6d55d9bdb23622b46c5b500e414804fe5980dddbf8e0ed58f464a2a5044",
+  "recordedAt": "2026-10-04T07:43:26.408Z",
+  "sha256": "9d3a7dd4d44bb8f5d53f9fd5e733042afd595d90daae55a769035beca8cdaa97",
+  "bytes": 24978,
+  "requestId": "ChCHkK3r7aHnWuZhJdiP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6d46c6ed9c4f31475f54c00217ff2b63f1f40d9aa6ffdf110a829b61819d0a87",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

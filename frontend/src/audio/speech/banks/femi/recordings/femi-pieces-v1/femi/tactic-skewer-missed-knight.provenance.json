@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "tactic-skewer-missed-knight",
+      "label": "Tactic skewer missed knight",
+      "text": "Put the stronger move next to this one and a skewer shows up. Force the knight in front to move, and the piece standing behind it can be captured. Worth setting that up on the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "753ff951453c01397f070c4c8549277d63b233a364d1eba8c58f16b11cd4e453",
+  "recordedAt": "2026-10-04T07:45:01.599Z",
+  "sha256": "e858690bcd9afcc42fd7f2f225f4c1e858c7c33c88ecf02b2536ac8a7a7382b8",
+  "bytes": 35064,
+  "requestId": "q0UdSJqhh9j96yBmUrXq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "317e5976cb48e6677cae8e5cbb1e65d8328ad619d4dd1da2e2cf11a3e42599dd",
+    "bytes": 182692
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-knight",
+      "label": "Tactic removing defender allowed knight",
+      "text": "A defending knight is now within the other side's reach. If it falls, the pieces it guards lose their cover. Know which pieces depend on it."
+    },
+    "takeId": null
+  },
+  "requestHash": "60c25244809bf6a427d64b87e1f97d9aad491dfe1e986491d5efebaba9e87a8b",
+  "recordedAt": "2026-10-04T07:41:57.888Z",
+  "sha256": "37d667f06763f19b390703ed1e1c804f7817c3dcfca0eb85ea019c51fbd6f4ab",
+  "bytes": 28840,
+  "requestId": "oG4ZmIS4BYzTap4O3kWH",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8d048c3687c9aea8798174c77b29211ae1ce11157ec3d71efef9b357ee585379",
+    "bytes": 148419
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "cause-opponent-threat-recognition-bishop",
+      "label": "Cause opponent threat recognition bishop",
+      "text": "A threat to a bishop was born with the opponent's last move, and this reply leaves it unanswered, so the bishop stays open to capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "69294c13e30f5959fab66c1139b7c7412ecd9fa31aecf317e8c05486a0921a82",
+  "recordedAt": "2026-10-04T07:41:00.233Z",
+  "sha256": "13a7f6a19544db68015121bfc9b194f42c5ca53211aa754c8829c516c96a1ad2",
+  "bytes": 27379,
+  "requestId": "AKa65PPXRKDJ5hC0WAz7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bcc3460ff79b8dd80a2739a743b50fdffc0527ba458096510c05ccadad606cd9",
+    "bytes": 136716
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

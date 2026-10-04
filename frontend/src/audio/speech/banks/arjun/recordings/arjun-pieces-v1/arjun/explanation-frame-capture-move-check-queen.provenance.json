@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-check-queen",
+      "label": "Explanation frame capture move check queen",
+      "text": "A queen is captured, and the move gives check."
+    },
+    "takeId": null
+  },
+  "requestHash": "f80a933c8e7ef9fc3fd66a86fe6e5054bc30c0802d15c8828124c057e95da59f",
+  "recordedAt": "2026-10-04T07:33:36.992Z",
+  "sha256": "579fc58cdd79507ceb90eb16268ad7f274a971e1e4c416ad90ae6ace2cce4d92",
+  "bytes": 10453,
+  "requestId": "C1NYWiTAAz7etikBi2CT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9c54665b292a8329ce1733e2ee4250f477104ff366d65b53ad18dbc0c73756b1",
+    "bytes": 52288
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

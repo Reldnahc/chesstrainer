@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "grade-brilliant-3-bishop",
+      "label": "Grade brilliant 3 bishop",
+      "text": "Oh, I do like this. A bishop given away soundly is rarer than a four-leaf clover."
+    },
+    "takeId": null
+  },
+  "requestHash": "a1310f862295d911e77bd17f09457addf55e1248cb9e70916b9d0811a5d03687",
+  "recordedAt": "2026-10-04T07:31:57.571Z",
+  "sha256": "09fd99f882961821c0f9f7b2a424e5717e9e32051cef595a00aad2728da6f9b1",
+  "bytes": 20128,
+  "requestId": "ESBbv2zZ2S9T5RF5Bnje",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e2068f92ffdc81c78e14122a4fab5a5737ad3669ccd00659605a9e5c6757393c",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

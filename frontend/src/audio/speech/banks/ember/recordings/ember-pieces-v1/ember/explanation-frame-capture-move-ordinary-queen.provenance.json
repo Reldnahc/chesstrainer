@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary-queen",
+      "label": "Explanation frame capture move ordinary queen",
+      "text": "A plain capture of a queen, nothing more."
+    },
+    "takeId": null
+  },
+  "requestHash": "b4652aa50eff30d7417911320f31e28fc7d96ee00eb5a9dbcf2b5c453b806c66",
+  "recordedAt": "2026-10-04T07:42:51.434Z",
+  "sha256": "01ec344f0783b1467fbfbc71dc8b5b243817997b0a86cdf132a547a0bcbdf164",
+  "bytes": 10109,
+  "requestId": "N6VJ2NOsm2xqsNMZj86I",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5e4e35739bdd8be9fd32bb032693c8c17d0bf975844db58e6fe2da67bafeeb3a",
+    "bytes": 49781
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

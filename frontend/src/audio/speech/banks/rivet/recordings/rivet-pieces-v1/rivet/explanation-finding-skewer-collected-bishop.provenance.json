@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-bishop",
+      "label": "Explanation finding skewer collected bishop",
+      "text": "Front unit: bishop. It moves off the line; the piece behind it is then captured along that same line."
+    },
+    "takeId": null
+  },
+  "requestHash": "dd95a92bcd0a30522d4e9181ffc0f0253daba65e81700d4cb28cb15c7f6f0c07",
+  "recordedAt": "2026-10-04T07:28:11.967Z",
+  "sha256": "79faa4ff1ea7ea15bf9422aeb144388bab56bcb62177f20cc35cc0c5e9439933",
+  "bytes": 22445,
+  "requestId": "xSW7IrbUnTFroWbwut6e",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4720a8ed3c67426893bbca79d3c96a926c5867f07245f270b3c712d606f59863",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

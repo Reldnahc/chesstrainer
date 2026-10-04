@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "tactic-deflection-played-king",
+      "label": "Tactic deflection played king",
+      "text": "Pattern: deflection. Step one: draw the defending king off its task. Step two: use the gap."
+    },
+    "takeId": null
+  },
+  "requestHash": "29db7105ec38f13fece7e04e088368311ab3e59279457d3e440185c23188b583",
+  "recordedAt": "2026-10-04T07:27:49.215Z",
+  "sha256": "af1051e4fc23693efc0389b9ffd69157e9950300a6af820ea066caedac7f48a3",
+  "bytes": 23642,
+  "requestId": "0Y1sl7nBaK8PJiwDV8VS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "57e02947cd58996ccc91e94dd32a943f6ffb84e96231fe1fb7fdf26a5e0c1d97",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

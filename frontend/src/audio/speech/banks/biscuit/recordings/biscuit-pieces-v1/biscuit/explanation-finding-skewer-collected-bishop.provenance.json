@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-bishop",
+      "label": "Explanation finding skewer collected bishop",
+      "text": "The bishop in front scoots off the line, and its buddy in back gets captured on that very line."
+    },
+    "takeId": null
+  },
+  "requestHash": "7fe569eb661a97e104effda0bbd166a706d724f569c602074e16872fddedb63b",
+  "recordedAt": "2026-10-04T07:39:07.803Z",
+  "sha256": "80086a35927a7f04d4835301dd4308d118de3557b7b321e734e73b6205788aef",
+  "bytes": 20748,
+  "requestId": "2HWw2tUoYSIe3nar2jDQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4a9d9265be80ff67ee2a3bc18f9c9e8f2bafb1241bd814799c670d3f87b7c45e",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

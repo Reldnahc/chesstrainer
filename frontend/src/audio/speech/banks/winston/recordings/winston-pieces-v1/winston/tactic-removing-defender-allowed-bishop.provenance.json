@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-bishop",
+      "label": "Tactic removing defender allowed bishop",
+      "text": "That leaves a defending bishop open to capture, and what it guards could be left without protection. Start with what that bishop's covering now."
+    },
+    "takeId": null
+  },
+  "requestHash": "c698b21db950c4400b6ce65d51c29a291f97890a14e1545585e1f53e2f897c0f",
+  "recordedAt": "2026-10-04T07:28:58.976Z",
+  "sha256": "5d037b2051d32ba3c8463c2ece619b983a55c694b35af707fdde34dbadd1577a",
+  "bytes": 26842,
+  "requestId": "yShecO4EdWBl4hnMzRPK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "eb7ec89751cfabee7d70b6d04b4783e806f1d2d114affdefeba06ee53f9f8be5",
+    "bytes": 137970
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

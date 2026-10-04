@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-knight-queen",
+      "label": "Explanation finding double check knight queen",
+      "text": "Watch for the double check: the knight and the queen both give check at the same time."
+    },
+    "takeId": null
+  },
+  "requestHash": "2acbaf8635bdc860ff32d80a19b9f0cf645d932f0892a7a7a349be8d66edf5f9",
+  "recordedAt": "2026-10-04T07:26:55.784Z",
+  "sha256": "be1907a3ddd590c4e1d39016090a7b2e33d795bc54180a3b55a2f338e72e3053",
+  "bytes": 17481,
+  "requestId": "9sF3ASUUCh7XxkIfxgyQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6845580ef0c59d9fd2b36ded1e7fcf1dbbea4bec97c5d7d661e9131eaa344b96",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

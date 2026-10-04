@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-bishop",
+      "label": "Explanation finding undefended capture gain bishop",
+      "text": "The undefended bishop is captured in this example. A net material gain for the capturing side is also established."
+    },
+    "takeId": null
+  },
+  "requestHash": "69616e50a4ad34ca299361f457fbe2d45eec1dac16244f84a735feaf5f6d0ddd",
+  "recordedAt": "2026-10-04T07:28:27.832Z",
+  "sha256": "d2b8e35cc35867782d62289484db7ce8e6acc7fd9653526eb3aabf34050c8841",
+  "bytes": 23338,
+  "requestId": "0GwCyNAQordUeK3ANl17",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "674c44d15b6511927e54d2081165abcd686a556eb836217bb50e2d2fad9b68b4",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed-knight",
+      "label": "Tactic discovered attack missed knight",
+      "text": "The stronger move uncovered an attack; shift the knight in front, and the hidden attacker would have struck. This move keeps that threat hidden."
+    },
+    "takeId": null
+  },
+  "requestHash": "3ef6e44361a4550da0a4b3138bfa48ea3587d165a2c77f676d2fd12a9458fd59",
+  "recordedAt": "2026-10-04T07:42:20.978Z",
+  "sha256": "34717336d9c4e9c01d0130d7053ae2f91bec7b470ee4a84726efa6877f776841",
+  "bytes": 27030,
+  "requestId": "foeTw48RAxhNa5ir7V8j",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f429bf84bdeca337ff7867c3b9e4bd1dcd88ee489a91a34a3f8e924f6ffb5bf4",
+    "bytes": 137970
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

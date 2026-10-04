@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-queen",
+      "label": "Tactic deflection allowed queen",
+      "text": "The queen is doing a vital defensive job. The other side can now drag it away from that job: a deflection, theirs to use."
+    },
+    "takeId": null
+  },
+  "requestHash": "8e9798b5da17e464642378c66d9ba02b9e5262ea8124a0188de31d2094a3d5f0",
+  "recordedAt": "2026-10-04T07:43:57.132Z",
+  "sha256": "aa2f027e004f137c742ef516dd737bb2eef58cdd6ae2161144f75708a03d69d3",
+  "bytes": 28443,
+  "requestId": "Y1jtz2EupcVrMf1dlysr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "021f2aadcae17e58fef4f8e980c98bf4e647cce496f36c84ed44814427bfc930",
+    "bytes": 145911
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

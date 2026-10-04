@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "tactic-deflection-played-queen",
+      "label": "Tactic deflection played queen",
+      "text": "A defender can only be in one place. This move pulls the queen away from its defensive job, a deflection, and what it was guarding is left open. Look first at what the queen was covering, then at what drew it away."
+    },
+    "takeId": null
+  },
+  "requestHash": "870441ceb3352ab86a8babbb8fd078ed378da4e2c69807756dd71be2bd00563e",
+  "recordedAt": "2026-10-04T07:34:50.263Z",
+  "sha256": "71b1f14e678b62ef75d2a0507c12adcf2d75e2d73da16422ddadfb08f7ccade2",
+  "bytes": 43287,
+  "requestId": "hLWRCve0ygRHP1ljtEbc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f6c44604c3b3e17ecbd72e36364a1a3a44bd8ee269fd024276aa2e90e4d113d5",
+    "bytes": 221144
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

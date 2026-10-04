@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-pawn",
+      "label": "Tactic discovered attack played pawn",
+      "text": "Watch the line open up: the pawn in front moves, and the piece standing behind it suddenly has a target."
+    },
+    "takeId": null
+  },
+  "requestHash": "47af0a94545a7331dddd38ee7cca10d8802b6640cfece26fac2b4fa014a5e4bc",
+  "recordedAt": "2026-10-04T07:32:24.290Z",
+  "sha256": "9165f54b70319966a2cc83eabff958fc0d9c7696422dd2f4831788938afba21f",
+  "bytes": 21794,
+  "requestId": "XejTvgRQ724yGABukjyU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "57a3b7f8e76a03bc3114c29fc969e90991198dfa4cdb0f402cf5f5eab6da3221",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

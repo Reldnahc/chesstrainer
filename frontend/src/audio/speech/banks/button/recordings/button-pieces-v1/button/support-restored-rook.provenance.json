@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "support-restored-rook",
+      "label": "Support restored rook",
+      "text": "Remember the rook that was left alone earlier? It has a defender again. Its protection has been mended."
+    },
+    "takeId": null
+  },
+  "requestHash": "2bd6ace07f8177daf984949ec7c50dfb1255f160216d356030aeb30a300d320f",
+  "recordedAt": "2026-10-04T07:31:26.190Z",
+  "sha256": "80bdd6adcd95053d8b9205ec59265076086c93f2d304b90c5fbc0f35d69678cf",
+  "bytes": 21312,
+  "requestId": "XEanZYFZXOg18t8FarTQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "08ebc0ad522e733a520f62bea4c9b9bbe1371dda1f5234a4f184987169ca1f98",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

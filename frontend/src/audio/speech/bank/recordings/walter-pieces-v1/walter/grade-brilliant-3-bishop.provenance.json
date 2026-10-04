@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "grade-brilliant-3-bishop",
+      "label": "Grade brilliant 3 bishop",
+      "text": "Bishop sacrifices like this are where a game can change character. This one stays sound after the capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "a6243e3cedf2b81a260186369908f6a9aec3ad5519f52382373fbbff4104c43f",
+  "recordedAt": "2026-10-04T07:26:45.912Z",
+  "sha256": "38d997bcb9d4f057da414936884627bf93337e6106b9782168ae0f239c454d20",
+  "bytes": 22083,
+  "requestId": "ecD5PjVXqd1WjE3lWdXC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2bda60303a0ff90190daff3044951a64b534200ee97e2ea373b35f5cf93d0581",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape-queen",
+      "label": "Explanation finding pin restricts escape queen",
+      "text": "The attacked queen cannot simply run, because its king sits behind it on the line. Whatever it does, the king has to stay covered."
+    },
+    "takeId": null
+  },
+  "requestHash": "bf86fb50529b1aa6667b0d9aa53f14d6bd34b66f23277823cc71448d3096c246",
+  "recordedAt": "2026-10-04T07:44:09.839Z",
+  "sha256": "144754ed63564b5a502c5d409594f32da3a59ddad360c1f4a748334f86fd95d9",
+  "bytes": 28951,
+  "requestId": "YyxHo63R6GXAX4auuRt7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5ddad3360cb126c8b61aa54123ee99ecdf0750c9e90b688926bbe47e6417b901",
+    "bytes": 148419
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

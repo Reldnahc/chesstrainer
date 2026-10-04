@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-pawn",
+      "label": "Explanation finding sole defender captured pawn",
+      "text": "Down goes the pawn, the only defender, and then whatever it was guarding goes too. Take the guard, and the rest is easy pickings."
+    },
+    "takeId": null
+  },
+  "requestHash": "76c15bd8d18ee7bd54126a1f0240bb474aeb6b9f6fb812e3a7ec31d384723fcf",
+  "recordedAt": "2026-10-04T07:37:18.406Z",
+  "sha256": "125fd1202f67da22c0b6661bd8c6dce1266f2163afb6013ce6a6199ec2a341f0",
+  "bytes": 28692,
+  "requestId": "nBqxC2ZU9NzGde8txYA2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "166a29a9d7f9c8dd111d7803c8b6d8ee63e8c69f65448bc81e73474917ff0be6",
+    "bytes": 145911
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check-rook",
+      "label": "Explanation finding discovered check rook",
+      "text": "One piece moves aside and uncovers check from the rook behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "7a7d988b890a981ea3e68d7adabae9a552b23b946cc0fab99aa7f1c51679e1d5",
+  "recordedAt": "2026-10-04T07:37:28.293Z",
+  "sha256": "377bfd3bcfef627caea47067826bb93c100c047e2cb3874ee166e3fb30320e83",
+  "bytes": 14764,
+  "requestId": "GJQwX4zjRu7AIiVHfoUI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6e82490696234c6f2f5fcca7bb6a3cc0272cb0a8f865926d41fda54fd23027fb",
+    "bytes": 71515
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-mate-rook",
+      "label": "Explanation frame capture promotion mate rook",
+      "text": "Capturing a rook on the last rank, the pawn is promoted, and the result is checkmate, with no legal escape for the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "cf3de3b1f0fb4516acd8036b343ad4f6b47c1cbeb96e4cf00a87cf9ab794bff7",
+  "recordedAt": "2026-10-04T07:36:01.821Z",
+  "sha256": "e6e17cc2f92b68460fb6958ec7cebed47170bd8cc6819b9f31f2649c20846c07",
+  "bytes": 24849,
+  "requestId": "koUgjCgaKlA7r4wUHvT9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fece275ba0f610d2d5b682576dbee2217f14c1d8175d358293e367653c94ef3d",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

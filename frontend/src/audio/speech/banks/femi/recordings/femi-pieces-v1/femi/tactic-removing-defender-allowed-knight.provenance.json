@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-knight",
+      "label": "Tactic removing defender allowed knight",
+      "text": "Look closely: a defending knight is now up for capture by the other side. If it goes, whatever it covers could lose its protection, so check that knight's duties first."
+    },
+    "takeId": null
+  },
+  "requestHash": "7c0882a9c5f309f3c2833ee4cbfe72c10a4360f16b4462fc5eb2a6e69bbf7521",
+  "recordedAt": "2026-10-04T07:45:09.816Z",
+  "sha256": "a09de0f24da3d5e08d81214433472acbf36b78be06bda8dd5eecd4bfc4c50473",
+  "bytes": 37030,
+  "requestId": "YpD517OFt389RVjDKuac",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "93cf6161a6bedced920e907bade7addb5d4b605639c3b1fe3eb361fafacb481f",
+    "bytes": 191887
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

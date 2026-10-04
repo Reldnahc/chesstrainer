@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-king",
+      "label": "Tactic deflection allowed king",
+      "text": "That gives the other side a deflection to use, drawing the defending king off what it guards. Have a look at what the king's covering right now."
+    },
+    "takeId": null
+  },
+  "requestHash": "884cf9b6443db43bc5b5c8c7900cc05aae2c7a6bab91c74d2225e8cecd4df391",
+  "recordedAt": "2026-10-04T07:29:22.957Z",
+  "sha256": "be2b6c2aa968f0397f9cc90fbfdcafc28aa2521ae8ad4d3d5b5dcb624973dad9",
+  "bytes": 24908,
+  "requestId": "YNGXZ5E2aSTNpfow5u1y",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ace399e2cc6addd8f71a73dc479251ad98eaa56c2b37a34291d6b114f4e2ff29",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

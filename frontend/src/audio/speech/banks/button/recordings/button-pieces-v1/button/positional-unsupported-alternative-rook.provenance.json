@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-rook",
+      "label": "Positional unsupported alternative rook",
+      "text": "Another move would have left a rook without a defender. That alone wouldn't mean it could be taken for free."
+    },
+    "takeId": null
+  },
+  "requestHash": "188bb4cf33662688590f685229f0a30bb14f6f5fc1c02302b3d469c24da2de7d",
+  "recordedAt": "2026-10-04T07:31:19.493Z",
+  "sha256": "bd801aed79ae7f44cac286ae841454d6a4602686a90bf8fe03f749cacf97925c",
+  "bytes": 19527,
+  "requestId": "8T4IW1hujij47TNjfpmi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f6cc5ce9b6d4c861b582d149a8bd96277811259c42b289f7d2464af12b7a40b6",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

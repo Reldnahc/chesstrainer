@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-skewer-played-bishop",
+      "label": "Tactic skewer played bishop",
+      "text": "Here's the skewer idea in action. The bishop in front is forced aside, and that exposes whatever stood behind it on the line."
+    },
+    "takeId": null
+  },
+  "requestHash": "e514a2fefb5a95ce27b7d7f7998d470c69a209835fa432e1c4f987292b5144ae",
+  "recordedAt": "2026-10-04T07:32:35.296Z",
+  "sha256": "ee026bc733cd91c320e5174c5475d687bd386d7834fdeceab91d94fa8e1aa5b0",
+  "bytes": 26212,
+  "requestId": "yY8ZY20GI5dABxlLgoLd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7271f1074156b5fbed464ee787ba7a73a8ff2bad19a11d4c39c8b2491172cb6d",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

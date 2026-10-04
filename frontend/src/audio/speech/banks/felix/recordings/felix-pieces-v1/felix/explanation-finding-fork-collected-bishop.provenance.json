@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "explanation-finding-fork-collected-bishop",
+      "label": "Explanation finding fork collected bishop",
+      "text": "The forking bishop hits several targets and collects one. Here the fork ends with a net material gain."
+    },
+    "takeId": null
+  },
+  "requestHash": "5de20101b78954fd75c27f4f087c8faf12edaabc22129803c9500e7e915e6030",
+  "recordedAt": "2026-10-04T07:44:19.038Z",
+  "sha256": "624ab1f4cf7d976c1a3666bc95a181a00307bd76c4b367ed771a4c8e0dbdf94b",
+  "bytes": 24032,
+  "requestId": "W7Ib9oF7CRrEK4uKX6GH",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bde91f85f75f63e35be846283282c67c60f8cc5bf4dc6037c7a5d5d7b7b8162c",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

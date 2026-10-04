@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape-bishop",
+      "label": "Explanation finding pin restricts escape bishop",
+      "text": "The attacked bishop can't just run, because it's pinned to its king. Its escape options are limited to moves that keep the king protected."
+    },
+    "takeId": null
+  },
+  "requestHash": "c4813e233c9b98e86c65807478b8c35ea7a55e555efe97cd611f373ceb0c4da4",
+  "recordedAt": "2026-10-04T07:37:02.212Z",
+  "sha256": "d66ad57fb0c3b8364840ff78d7e9183a5755f24b749b44863f06ec39deeb3857",
+  "bytes": 26496,
+  "requestId": "KoSG1v8l49PKNFpe2ROh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5b7079e259eb715a01f697ca818fb08c20ff55850c039249b2aef518e9d86096",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

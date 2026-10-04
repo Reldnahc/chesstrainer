@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "explanation-finding-double-attack-collected-rook",
+      "label": "Explanation finding double attack collected rook",
+      "text": "The moving piece attacks once and unmasks a second attack. Here the rook behind it collects its target."
+    },
+    "takeId": null
+  },
+  "requestHash": "7fe790cf0a7469f3531e17820c8e51d194cde48fb71970df510dbd2c30da2cd2",
+  "recordedAt": "2026-10-04T07:44:36.673Z",
+  "sha256": "b7ddd9262e62fb8ee9b46a9cba5a9aeaaa2366c65b9c93bf17b2d53b78dd75d7",
+  "bytes": 24469,
+  "requestId": "KCxe2ySkbqYZdDstXuog",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b2f9b945a5b3ad606d0606e029a25fb71c63d2eefe1e86e44a1505bff8906afb",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

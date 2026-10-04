@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-pawn",
+      "label": "Explanation finding pin collected pawn",
+      "text": "The pinned pawn can't step off its line without exposing the king. As the moves play out, it's captured on that line."
+    },
+    "takeId": null
+  },
+  "requestHash": "ae22ead5deccf52aeb02405a403fe0890f9330441b6b5e3b41ae4acfe20f96cd",
+  "recordedAt": "2026-10-04T07:35:11.139Z",
+  "sha256": "d55e35bac625f833bbc4b002ee4419c3e9a70cd0314f69221a81d20a3518a2a9",
+  "bytes": 23385,
+  "requestId": "Eo9mR10U8lFBJ2z6sGwP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8af1c352bda1f9a254e3487d2e4a603bc9655bf3d644173fbf08095efe3473b8",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

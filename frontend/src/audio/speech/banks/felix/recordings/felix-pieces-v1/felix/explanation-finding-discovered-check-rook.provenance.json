@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check-rook",
+      "label": "Explanation finding discovered check rook",
+      "text": "One piece moves aside, unmasking a check from the rook it was hiding."
+    },
+    "takeId": null
+  },
+  "requestHash": "a3cc3b859bdcb840367248a052c64044ddb19a692a3bd883846cc6165a60ec06",
+  "recordedAt": "2026-10-04T07:44:31.550Z",
+  "sha256": "5fd42459210ce5b5d40aced772859fa4f35b3999c3fa7babe046a3fcd0050a55",
+  "bytes": 15678,
+  "requestId": "va2JC4UEXXQ2GSlLYAO3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "39fe159dbd2dc231f84f216743668b6fe595c1adc9ae124f0b25fceced4bb36c",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

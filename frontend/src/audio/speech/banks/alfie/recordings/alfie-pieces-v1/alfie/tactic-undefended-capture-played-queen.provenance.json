@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-queen",
+      "label": "Tactic undefended capture played queen",
+      "text": "The simplest gains come from pieces nobody is guarding. A queen with no defender at all is captured here. Checking for loose pieces first saves a lot of calculation later."
+    },
+    "takeId": null
+  },
+  "requestHash": "fef7a7d13c37f7249b40d89989a107d43955eeac67d79cc38a34ce5a1d4b2939",
+  "recordedAt": "2026-10-04T07:34:19.314Z",
+  "sha256": "e00989b9c858f9890ec42ac084d84793185e5b6f2767b18b7801c1ddf4b2729b",
+  "bytes": 34113,
+  "requestId": "XvFxFvxCVx1p23fE4etG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8513055c8bb7315cd34dc7db5e12020058514612e561d8e7b724aeb3c64172c4",
+    "bytes": 172661
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "tactic-pin-played-rook",
+      "label": "Tactic pin played rook",
+      "text": "Wow, a rook is pinned to its king! It can't wiggle off that line, because that would leave its king wide open."
+    },
+    "takeId": null
+  },
+  "requestHash": "a1fd88d98f1f43815f60cd9e65ac75f15213a1561e1df8d4727e9b03f0c27e8e",
+  "recordedAt": "2026-10-04T07:38:31.671Z",
+  "sha256": "72f1ab4e333c95851d5fe6bf44390a8e27fb5f7a105ccec3228708e6928b3bb9",
+  "bytes": 25152,
+  "requestId": "2omqWpev7zkxIF6dllL9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d1c1f5965c876f11f7889f23c34dd01a258b4031ee2fd6dbbaed9776909f2e0b",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

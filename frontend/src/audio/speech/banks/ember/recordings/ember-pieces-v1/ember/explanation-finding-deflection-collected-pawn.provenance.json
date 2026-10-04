@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-pawn",
+      "label": "Explanation finding deflection collected pawn",
+      "text": "The defender is dragged off its duty, and the pawn it had to guard goes next."
+    },
+    "takeId": null
+  },
+  "requestHash": "b49739878a1c509bf63a946f6b251bbae56b1af135dc5b48ed245d8360c56ad7",
+  "recordedAt": "2026-10-04T07:42:58.278Z",
+  "sha256": "668b1fd7631f5e060a9e570fa905376764223a8c679863aa9106ec023f2ff1e2",
+  "bytes": 16112,
+  "requestId": "XSGcdkgcWQvrzbPtdML1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "01711a4e4ba8865a1d998b641f0df5ff3b765d6d265a6ec4cc6e93b2691eb8e7",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

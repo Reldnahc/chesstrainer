@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-capture-rook",
+      "label": "Explanation finding discovered capture rook",
+      "text": "Moving the blocking piece opens a line for the rook behind it, which then makes the capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "0cba097a9da94e251af4a459f74d99636c2dfac43f58258bc835d18a2a565375",
+  "recordedAt": "2026-10-04T07:35:47.999Z",
+  "sha256": "4ac6863047f2b03df01adc1003bf0aa392b7d91e9cbcdcdece7a31439a0e897f",
+  "bytes": 17232,
+  "requestId": "wIbnigzGPvjhbdUxFiBi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0856bc04129cd052c1205875986e022457a11afd25582e01179a0f89ba78d457",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

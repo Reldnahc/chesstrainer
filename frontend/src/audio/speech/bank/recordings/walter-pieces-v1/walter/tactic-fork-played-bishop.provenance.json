@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-fork-played-bishop",
+      "label": "Tactic fork played bishop",
+      "text": "The idea here is a fork: one bishop attacking several targets at once."
+    },
+    "takeId": null
+  },
+  "requestHash": "f8d3307257491e5f9cefbbfe8d7433aff807481b6dc513b304d4b9dcca2c5133",
+  "recordedAt": "2026-10-04T07:25:31.940Z",
+  "sha256": "be4d66fdfa692cc5d91d371fc8db443e9ff05137ffe508b6dc00a35c4eb29acd",
+  "bytes": 17246,
+  "requestId": "T13Cg8fgQkWceVYjyYv7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f6bc106efc5ca53da13e256bb3aef0b4e576254e82d94d594af5eb64e69b1319",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

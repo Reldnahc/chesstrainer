@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "positional-support-alternative-knight",
+      "label": "Positional support alternative knight",
+      "text": "Another move would have sent a defender over to the unguarded knight."
+    },
+    "takeId": null
+  },
+  "requestHash": "c6a5a57754e708ef9df5d1e8c5e1ca98ef5b8d15725626291b520ae04209cc56",
+  "recordedAt": "2026-10-04T07:39:10.524Z",
+  "sha256": "6ab4d15e7a0b8ee176fe7c9b990c01e5eded5b6a3c54954b9bbc28b821ae330a",
+  "bytes": 13344,
+  "requestId": "jxVK3sZNPgqRvIo7I9OV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bc170742773f37bd2cd60cf5c5b42719a2737a8c49f873815c1ee237fd3b1ff6",
+    "bytes": 65245
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

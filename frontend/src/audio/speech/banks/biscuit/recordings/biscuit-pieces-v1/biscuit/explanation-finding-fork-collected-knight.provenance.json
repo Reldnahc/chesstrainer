@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "explanation-finding-fork-collected-knight",
+      "label": "Explanation finding fork collected knight",
+      "text": "A single knight aims at several targets together, and then it gobbles one up. In this example, the fork wins material overall!"
+    },
+    "takeId": null
+  },
+  "requestHash": "51300747447699cf2c5e6449ecc8cc7dfcff2f36dac5bddf01a3d737829c3d4b",
+  "recordedAt": "2026-10-04T07:39:02.674Z",
+  "sha256": "93eee9452cdba800301956a2f8f211779874d0cc9b53f47d95370c6347dfba5e",
+  "bytes": 27297,
+  "requestId": "0BmSEIL7L1tGQCc8cyg8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9235f7f359e374302424cbca6d381ad70f632b1d0fa2419a7b56d8c6a95167ba",
+    "bytes": 136716
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

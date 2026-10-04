@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed-knight",
+      "label": "Tactic discovered attack missed knight",
+      "text": "Another move offered a discovered attack. Moving the knight out of the way would uncover a threat from another piece."
+    },
+    "takeId": null
+  },
+  "requestHash": "c06302208e6ccac9cd1d1e79769cdfa5f0a4410f3776c97d135a59acf1c2ac47",
+  "recordedAt": "2026-10-04T07:26:02.554Z",
+  "sha256": "bb3a9fc22c5e0625cb1cebc922c84be2d15cf75b913e1d85006cd43cf0d152f8",
+  "bytes": 22576,
+  "requestId": "bFPdPQRTpW84p8MopGi9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dedd809c84f2f1ca76f63a0aa321de55fcb5346e729195567ee3fc7b6b976046",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "tactic-deflection-played-queen",
+      "label": "Tactic deflection played queen",
+      "text": "The defending queen gets pulled off its post, which is a deflection, and the post is left empty."
+    },
+    "takeId": null
+  },
+  "requestHash": "aa23199764acc87339ec986dae1040cf8ac196e043e24a77d8dae587c995d337",
+  "recordedAt": "2026-10-04T07:47:16.201Z",
+  "sha256": "8b8cc45cc76cfc04a303b394a4df8f7001b6d5b2e7ad9abd0cfcc05c98a05155",
+  "bytes": 20406,
+  "requestId": "mlexKC7PV29f1pCSCYiw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8d2d3d917598275c23b5939a2d183b532af51429fcf7b16abaff8dce69224e5d",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

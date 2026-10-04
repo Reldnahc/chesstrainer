@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "cause-avoiding-bad-trades-queen",
+      "label": "Cause avoiding bad trades queen",
+      "text": "This capture with the queen invites a recapture, and the queen is worth more than what it took. Count both sides of the exchange before judging the first capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "d745e92bf4ec0285aec21c1f49eb9dcc4d159e5fb72e9a111ff8e1ce2c4e0a1b",
+  "recordedAt": "2026-10-04T07:26:16.303Z",
+  "sha256": "9db8fe43ef757cb7fe7f3212269d3f09509919ef8e2a9a7e0daf146871e1d7fb",
+  "bytes": 31512,
+  "requestId": "stR7taG2WN9BunkeofHt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cfa56304012f015e7410e3bcf767516bf64f314ad73e3cdd2c0eabd942e36ff6",
+    "bytes": 159704
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

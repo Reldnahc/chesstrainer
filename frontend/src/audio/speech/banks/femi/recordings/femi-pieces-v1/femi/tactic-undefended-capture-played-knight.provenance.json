@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-knight",
+      "label": "Tactic undefended capture played knight",
+      "text": "Simple stuff: a loose knight, and this move collects it for free."
+    },
+    "takeId": null
+  },
+  "requestHash": "d8cc3440df575229e0b6bf442e6f4efcbc2f604cdd47bb107c0469019c502273",
+  "recordedAt": "2026-10-04T07:45:06.811Z",
+  "sha256": "4e59e71a7bb2816ded42824c2d0792ec5d16f3d1bfe6c94b4bfa8afd5f3725c4",
+  "bytes": 15395,
+  "requestId": "7QjM87XWDNKwEGzd3O11",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8e2c3d68708e67638522f48a97e5b273f72f3a36cb1380a5bf125d6d365c3f4f",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

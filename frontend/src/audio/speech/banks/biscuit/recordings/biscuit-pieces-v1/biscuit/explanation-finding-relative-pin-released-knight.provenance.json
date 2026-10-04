@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-knight",
+      "label": "Explanation finding relative pin released knight",
+      "text": "Thanks to the opponent's previous move, the attacking knight is out of a relative pin. Nobody came to the target's rescue, so the line shown ends with it captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "3ecc861bf4b5efe666ae2b7e22f8f5b2a96f969c90824eb49ebe54cd53fb4cb3",
+  "recordedAt": "2026-10-04T07:38:56.798Z",
+  "sha256": "729bad732ce67fc0a6f42d9f5a3a09f6e20deeb682f71c547085e1ddc30877d2",
+  "bytes": 32447,
+  "requestId": "pfNuJKyH0J0esgcezRCf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ede9f89c0850a0a35064f872acb704e6805be45124717ee2c95644d75b82562e",
+    "bytes": 164719
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

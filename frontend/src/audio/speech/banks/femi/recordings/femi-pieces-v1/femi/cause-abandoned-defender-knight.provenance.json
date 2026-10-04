@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "cause-abandoned-defender-knight",
+      "label": "Cause abandoned defender knight",
+      "text": "This is the moment that matters. The only real guard of a knight wanders off, and the other side can pick up what's left behind."
+    },
+    "takeId": null
+  },
+  "requestHash": "c93ef32aa06cf4445e0049f52ed85396d7aa9beb14850261ef36c2a95ef65405",
+  "recordedAt": "2026-10-04T07:45:57.931Z",
+  "sha256": "e0b7cb77e5bf0af9e6650ac5911c9548a50bea55cd86f9f1181a84a836fd632d",
+  "bytes": 27820,
+  "requestId": "58oqiNQe95WeeMZmH5TU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4726c5f756240065b36052cd0e7b6b4abdb9896668a130fa45345d7c3760e056",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

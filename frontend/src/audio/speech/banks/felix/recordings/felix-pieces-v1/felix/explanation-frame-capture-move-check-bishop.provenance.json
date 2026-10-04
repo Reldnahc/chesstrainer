@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-check-bishop",
+      "label": "Explanation frame capture move check bishop",
+      "text": "Takes the bishop, gives check. Efficient."
+    },
+    "takeId": null
+  },
+  "requestHash": "7290130c9c1a1cb4c76c693823fdc760a773f8f8ca688ed7f1df2e329e18bdee",
+  "recordedAt": "2026-10-04T07:44:36.500Z",
+  "sha256": "c1f07e089e29543290c1bf320b8eaefa62f116f34a97eccc88ad21138f5ec521",
+  "bytes": 11059,
+  "requestId": "p7dsmkbotob1ZaXBQV7N",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b0e45f83a783fd2374f5864b481736859a49452665c04c0329a5ac7e961aadd6",
+    "bytes": 56050
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-queen",
+      "label": "Explanation finding pin collected queen",
+      "text": "The pinned queen is chained to its line by the king behind it. It is held there, and as these moves play out, it is captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "aeb1d1de3af09925fe7a882e0a67f3294b811342ae2f3e14b626ee34fd210068",
+  "recordedAt": "2026-10-04T07:42:44.724Z",
+  "sha256": "04d3c52f177554d7551f7bbf0e06af4b686311610cf6bad2c150ae7b4d93c57d",
+  "bytes": 25552,
+  "requestId": "0jajgEEsZCP7Cdloim9N",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c60b0034391d18f7bb8bcb97c26b27a8ce6273bac83a4aeb4da22c1c38769d59",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

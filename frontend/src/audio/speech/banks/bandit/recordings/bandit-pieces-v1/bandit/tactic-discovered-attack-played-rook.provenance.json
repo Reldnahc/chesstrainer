@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-rook",
+      "label": "Tactic discovered attack played rook",
+      "text": "The rook in front clears out, and the piece behind it gets a free shot. A discovered attack: two pieces working, one move paid."
+    },
+    "takeId": null
+  },
+  "requestHash": "940bb7f52a24924a8104253b16b206b82e9e95e8616fcf9a7a6f7ce20283820f",
+  "recordedAt": "2026-10-04T07:36:28.955Z",
+  "sha256": "324dbbcf659da3392c4907ed440cdb726e7bae31aabba8cd9502de20162e8566",
+  "bytes": 27421,
+  "requestId": "lGewVD0gcwI6kaXXJEAq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "118300bfd1a5354880178e23ead1b903731d246c0b7ca14bcc9b4150b7c56a63",
+    "bytes": 141732
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

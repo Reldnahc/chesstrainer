@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-check-bishop",
+      "label": "Explanation frame capture promotion check bishop",
+      "text": "The pawn takes a bishop on the last rank, promotes, and gives check."
+    },
+    "takeId": null
+  },
+  "requestHash": "6c3b33f3098945f7b0a440a842931c63a74e5604fc2e526550c59285388e2dd2",
+  "recordedAt": "2026-10-04T07:30:05.342Z",
+  "sha256": "4458f76be2942a0476b8a29a0a7359222c2ee9fdf6887d59db0dd0568c114074",
+  "bytes": 14062,
+  "requestId": "o1t54luuzOTbjDTQIB88",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fcc4cf1adb1f034ed66010ed11c90849b7d77b2687ac6cc6852255345bc70b4a",
+    "bytes": 70261
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate-knight",
+      "label": "Explanation frame capture move mate knight",
+      "text": "Gobble goes a knight, and it's checkmate! The king is out of places to go."
+    },
+    "takeId": null
+  },
+  "requestHash": "fc562fd7210f301d00801c08c5aaf6ddbfba547ad73df13fde9065d2be1405f2",
+  "recordedAt": "2026-10-04T07:39:28.070Z",
+  "sha256": "5ca09c06d9c24ee03710522ca6a5b135e6e0722efa63f49a439630875bb47ff4",
+  "bytes": 16843,
+  "requestId": "A1MieLPnkkjuMvKcGaIb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "aae6dadf710708051b3a77c51604b25a97c4896ab54a2a6387d5b2f6a4eb0a7d",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "positional-development-actual-knight",
+      "label": "Positional development actual knight",
+      "text": "A knight finally leaves its starting square to go looking for work. Pieces sitting at home don't grab anything."
+    },
+    "takeId": null
+  },
+  "requestHash": "58e6bb36d3c0cebb412c663482a4c7cf15a7a4ed54521591952fcd8fa77acc8c",
+  "recordedAt": "2026-10-04T07:37:09.501Z",
+  "sha256": "15f572a9ef7826971a37fa81236cf6c9d105eb0e23565419dd582b0d303b5c70",
+  "bytes": 21761,
+  "requestId": "5uIJswmNnWhTb9cwWeOT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "643cbb929eed790453f4419e2440f6d79b1ae726f6a8fc1f9a4f2ce40ff2a094",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

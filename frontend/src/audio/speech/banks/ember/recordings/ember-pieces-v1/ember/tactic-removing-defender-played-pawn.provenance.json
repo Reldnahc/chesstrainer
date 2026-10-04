@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played-pawn",
+      "label": "Tactic removing defender played pawn",
+      "text": "This is the right target. Take the defending pawn, and everything it protected is left bare."
+    },
+    "takeId": null
+  },
+  "requestHash": "eb21c586519cde9ef82e84727f6bb3b5c49ca68ea357c28f9f6c19dd5d5fdcef",
+  "recordedAt": "2026-10-04T07:42:10.139Z",
+  "sha256": "229db4d23c823b08964280502789d1d7f51226158366f1c465ce7ee4ccbc018a",
+  "bytes": 19612,
+  "requestId": "4ZAugmCTzdTkFMjG6Z83",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7ffbfbbe688eefb0967c06558306e81a1e32eb38c74c7f62cd9ad2367dff2d4a",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

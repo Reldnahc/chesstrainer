@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "support-restored-knight",
+      "label": "Support restored knight",
+      "text": "The knight left unguarded earlier has support again. Compare the two positions to see how its protection changed."
+    },
+    "takeId": null
+  },
+  "requestHash": "f60f41fdb088f70d214c2cb6a1d31ec00c4cd97efc275e11e945178785dfa9da",
+  "recordedAt": "2026-10-04T07:26:15.739Z",
+  "sha256": "a9861cc03161e4a0953ea7b77e2102b4ce9286b3d88286c5262bf329edfa285e",
+  "bytes": 22020,
+  "requestId": "lF29jsBv5Vt0NF0lCL0O",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d1154d888e2b6c6144579a16337756b6ac7cf881a5541b527b4aa5b5e1447e43",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

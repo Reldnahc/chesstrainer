@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-pawn",
+      "label": "Explanation finding deflection collected pawn",
+      "text": "Lured from its post, the defender leaves the pawn behind, and that pawn is captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "a511f63414c1d08484e35d9506d663913263ed25906a2dce4b223ca9f20b4a5b",
+  "recordedAt": "2026-10-04T07:41:08.161Z",
+  "sha256": "5052f563c026b5f055dc977a1d166674ad17fc091544a16a77b3d327f2767da5",
+  "bytes": 19255,
+  "requestId": "jSnOytkWDDlLc9lAj1iC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4e3d0551d22ad3d1a82a52aace05ddf066102bcfac0c7baf27e402d4eb94b68b",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

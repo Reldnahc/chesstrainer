@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary-bishop",
+      "label": "Explanation frame capture move ordinary bishop",
+      "text": "This move takes a bishop."
+    },
+    "takeId": null
+  },
+  "requestHash": "7717f212870c98991c0304ff98e9a9f8c03f08757a540f30da8aaefc36a8d34b",
+  "recordedAt": "2026-10-04T07:30:24.902Z",
+  "sha256": "0a98f2675f6d432ccb8c30f9c69d0ba31236e1ae33a36518d33b3ad738ee6d31",
+  "bytes": 6309,
+  "requestId": "cJtW0tJVP3DNVVnHKozE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c8138143afba904c70e3672553ff95e1e196c400296bea708eec2a048c4ffd01",
+    "bytes": 29301
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

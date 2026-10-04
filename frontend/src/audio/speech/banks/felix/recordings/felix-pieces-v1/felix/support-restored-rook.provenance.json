@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "support-restored-rook",
+      "label": "Support restored rook",
+      "text": "The earlier unguarded rook has its guard back. Repaired."
+    },
+    "takeId": null
+  },
+  "requestHash": "e76a875570c9d9559e438a5ea30d751650503e7c1444f9efe56b2d52dcb8b05d",
+  "recordedAt": "2026-10-04T07:44:12.451Z",
+  "sha256": "9c6dae18c7aae3ab1af9da90fb7bdb3df1e24f8bfc6c6a6da4184e19c3ea84e3",
+  "bytes": 14177,
+  "requestId": "SXQSxRHcn2HLXcVWr17U",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d41863ac36edb9c12f83833ab803ec558ff78f2920cebd4a083fe78752e38b2c",
+    "bytes": 71515
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

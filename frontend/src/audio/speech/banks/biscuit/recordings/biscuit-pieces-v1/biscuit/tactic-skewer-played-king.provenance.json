@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "tactic-skewer-played-king",
+      "label": "Tactic skewer played king",
+      "text": "Whoa, look, a skewer! The king in front is in check, and when it scoots away, the piece behind it gets hit on the same line."
+    },
+    "takeId": null
+  },
+  "requestHash": "06b3bce90ff7682890be07832ab3ba8a0a5259e2d0df4f0990bce76ad2b199cb",
+  "recordedAt": "2026-10-04T07:38:25.929Z",
+  "sha256": "49291cdb5974be93256656e945d505b729490015a47dff85474512c0c69cb497",
+  "bytes": 27571,
+  "requestId": "IRc47nBbW33seycClLlQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1237d5bd6718254eb0911e3b0e34702cbceb79897655208b621dcc765b0f606e",
+    "bytes": 137970
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

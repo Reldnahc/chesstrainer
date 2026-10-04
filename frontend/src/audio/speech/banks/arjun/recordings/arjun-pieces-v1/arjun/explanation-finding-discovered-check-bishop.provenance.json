@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check-bishop",
+      "label": "Explanation finding discovered check bishop",
+      "text": "When the piece in front steps off the line, the bishop behind it gives check."
+    },
+    "takeId": null
+  },
+  "requestHash": "6d523b3272c14418aeacf4838904d7a80cd5ace37140c78daaae0bad41578597",
+  "recordedAt": "2026-10-04T07:33:28.790Z",
+  "sha256": "ff7fea30774232f7efb9930c1ac0416f1a6524a459054a59469f54378af7466a",
+  "bytes": 15572,
+  "requestId": "xfZy8vlWTIIjkQS8IRDt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "04dd81fe44a8571728911ef2c030205441548960c67a2c5f26ff5344d6d75d1d",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-queen",
+      "label": "Explanation finding relative pin released queen",
+      "text": "The opponent's previous move freed the attacking queen from a relative pin, the target stayed where it was, and it was captured in the line shown."
+    },
+    "takeId": null
+  },
+  "requestHash": "2d65c7f113a8788ff005789107b64febf13fc3b669d000ecdbc6610a8cf6e081",
+  "recordedAt": "2026-10-04T07:47:35.793Z",
+  "sha256": "880f62af6227636fd4a01f4829c3e5d425fb5e439cf4ec807fc86707256e7d07",
+  "bytes": 28818,
+  "requestId": "YiZDT3REBRz9k2TfrXzI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3728757bdb97de3704b1f3642332bb764a8e69478b660a05e9ec0bc2c28065fb",
+    "bytes": 148419
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

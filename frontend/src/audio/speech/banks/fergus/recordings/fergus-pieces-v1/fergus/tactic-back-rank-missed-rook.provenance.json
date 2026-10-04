@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "tactic-back-rank-missed-rook",
+      "label": "Tactic back rank missed rook",
+      "text": "There was a back-rank mate idea for the rook against the king with no exit square, and it went unused."
+    },
+    "takeId": null
+  },
+  "requestHash": "f8666c33d7516b8fb2ed1635e86de396810c0bda4abdee901512be463b61fd73",
+  "recordedAt": "2026-10-04T07:47:26.651Z",
+  "sha256": "cfb15151b7f554a368b62d8e00a1a49f14997cb69606ab3814b7c0c218cef521",
+  "bytes": 21393,
+  "requestId": "rUkzRU4OgmV3QngB7K0L",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a7ec6cc80eb0973450c5d6205689f74490e1973934089982801a02b4b343a47b",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check-rook",
+      "label": "Explanation finding discovered check rook",
+      "text": "The moving piece steps aside, and check arrives from the rook behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "c7f3e3844146421801f65ca573a488b74c3a175340a81d3d931b9d3f624bcaf7",
+  "recordedAt": "2026-10-04T07:31:47.822Z",
+  "sha256": "2924b8219129ddcf943ef2b6b2d294269341b92a197ad67379e49c9b86ba3dae",
+  "bytes": 15126,
+  "requestId": "HpAWM29Bdoh8p7g8zj0L",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3d493d204c7685c68e5151a3018d31d246b8b63ef54912d24eb6a59dce530934",
+    "bytes": 74022
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

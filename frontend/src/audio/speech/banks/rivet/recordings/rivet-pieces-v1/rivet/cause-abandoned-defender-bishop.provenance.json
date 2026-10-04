@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "cause-abandoned-defender-bishop",
+      "label": "Cause abandoned defender bishop",
+      "text": "Cause: the only effective defender moves away. Result: the other side can capture the bishop it was guarding."
+    },
+    "takeId": null
+  },
+  "requestHash": "78c964d081bec81295e6641de8dc18f09314c3e287d85743c30ad31c338939dc",
+  "recordedAt": "2026-10-04T07:27:57.255Z",
+  "sha256": "5ef289965bf0734d28346f7904865ce19b55b54ecba543d06682abfa14886e25",
+  "bytes": 23874,
+  "requestId": "JgYrwfAzftA4dtlq3QkB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "19b687edad17eb8f9d0df964713f61691d417551a4a582c2919a5af04e9be821",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

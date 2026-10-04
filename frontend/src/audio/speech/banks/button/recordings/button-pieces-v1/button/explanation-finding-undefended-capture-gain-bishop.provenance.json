@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-bishop",
+      "label": "Explanation finding undefended capture gain bishop",
+      "text": "Nobody was guarding that bishop, and it's captured. In the example, the capturing side comes out with a net material gain."
+    },
+    "takeId": null
+  },
+  "requestHash": "de9cf46c04430f928368dd18758d5340ad3546b0c6e25fdd164da4c98c9d94f5",
+  "recordedAt": "2026-10-04T07:31:52.271Z",
+  "sha256": "701d3352b8fa5615e95c4964fc5f1c37c4315d305ff3ecc21587eef877ec662c",
+  "bytes": 26159,
+  "requestId": "pcHOU40KaYNv6mPKTOsG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6ee8a6e50199e0530e965993646bf69799a78f29fc4977a24231d1a53cecae1b",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

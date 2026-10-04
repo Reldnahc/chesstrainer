@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "grade-brilliant-2-bishop",
+      "label": "Grade brilliant 2 bishop",
+      "text": "The bishop can be taken here. It holds up anyway."
+    },
+    "takeId": null
+  },
+  "requestHash": "35f0db7799f5b179f3efe929e9ee29ac1ba58c3c196904fc44d23125589b8a18",
+  "recordedAt": "2026-10-04T07:48:10.742Z",
+  "sha256": "9f5cf77eeb004937e8d377d8f27a90a3219b86e1d425bb3411dbe04969777009",
+  "bytes": 11794,
+  "requestId": "iqj61F1SGiK0yHEgG616",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "207d2bd743525d960fc22ed8efebe9d6c8552436df6241df8da3703cd56a3686",
+    "bytes": 59812
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "grade-brilliant-4-knight",
+      "label": "Grade brilliant 4 knight",
+      "text": "Ah, now there's a knight sacrifice that comes through the capture in good order. Worth a quiet replay."
+    },
+    "takeId": null
+  },
+  "requestHash": "310a695b1b59bfcfda730eb8217d5639f913931450771520b22d0e3044ba7678",
+  "recordedAt": "2026-10-04T07:30:13.893Z",
+  "sha256": "9ad683bcff1a34fed333ba8bb6dcd218f7d4615a09bf392d4cab880e8db9b878",
+  "bytes": 20417,
+  "requestId": "40mqm7CktDVy3az0FjAk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ccd83b1d4541e430c76ea1a642170e64d5b40b3c9e128df0d11cb93bf8a95161",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

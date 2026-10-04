@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed-pawn",
+      "label": "Tactic discovered attack missed pawn",
+      "text": "Another move would have unmasked an attack by shifting the pawn in front. This move leaves the mask on."
+    },
+    "takeId": null
+  },
+  "requestHash": "e2a6b6ffec673193ed9ba014d268845177be41350f69791ba6aa6f497e26d3c7",
+  "recordedAt": "2026-10-04T07:43:53.394Z",
+  "sha256": "7205781a93334d409f9a899dbf6e6fe9a153c0d1e1f579be629c2c80b0d87e3a",
+  "bytes": 22651,
+  "requestId": "sHM8v0hbIdUbGMxgTkum",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "20cd1fba120ecfa362053c444b730da32eddb4cb45e764cd085265dc35a04756",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

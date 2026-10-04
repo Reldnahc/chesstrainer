@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed-queen",
+      "label": "Tactic discovered attack allowed queen",
+      "text": "A queen that blocks another piece's line can uncover an attack just by moving. This move lets the other side do exactly that, a discovered attack from the piece behind. Check which lines their next move could open."
+    },
+    "takeId": null
+  },
+  "requestHash": "1bfea7292056885df7623c1ae09fe7c9a9bb2f59e805a3582b2c50776bf89915",
+  "recordedAt": "2026-10-04T07:34:46.934Z",
+  "sha256": "ce2131852fbe832aa3d79d3e16959861f7346f1cc20a1096f724bc8084ea6c23",
+  "bytes": 41362,
+  "requestId": "8NoEsXI3ghTinDiGv1Ka",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a15b2c4ed5c828bac1ccd288d16e8e58cae1a2ed0607e45082926e61e36f5d72",
+    "bytes": 211113
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

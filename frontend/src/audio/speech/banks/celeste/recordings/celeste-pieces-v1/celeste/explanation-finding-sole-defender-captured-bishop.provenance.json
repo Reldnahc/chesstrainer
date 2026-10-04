@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-bishop",
+      "label": "Explanation finding sole defender captured bishop",
+      "text": "First the lone defending bishop is captured, then the piece it protected. One capture quietly makes room for the other."
+    },
+    "takeId": null
+  },
+  "requestHash": "1daa65c2c76c2407bbf4e3e48164a9d3f4745c28b6d348c60dcef499715ba4d1",
+  "recordedAt": "2026-10-04T07:41:02.237Z",
+  "sha256": "53869ce05c33910fcb508256e6209e4bc6294e27f06c8b26e0578ef86d57df4a",
+  "bytes": 26619,
+  "requestId": "0qjhSjdOqiyJTpdPS1GA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5538d39819c709f08f64caff6110fa1cc9ac48527beb5433739a25c6cc658221",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

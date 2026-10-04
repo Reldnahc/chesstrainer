@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "support-restored-queen",
+      "label": "Support restored queen",
+      "text": "The queen left unguarded earlier has support again. Compare the two positions to see how its protection changed."
+    },
+    "takeId": null
+  },
+  "requestHash": "1de5a92e5915067d8237426c7d9a7435a9974e2db7a2e25d994c60c5ad561d2e",
+  "recordedAt": "2026-10-04T07:26:21.052Z",
+  "sha256": "a6b5cda79da66a8c9539035f3f27607cb15bdbff23d45a6156d6a6f58b8a8c6b",
+  "bytes": 22603,
+  "requestId": "86Fa07liVGYrpH40CdYm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8dc222725f741dbf4e05c330b6569229b3c8926bdd76917b3fcbb8f2414b8f62",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

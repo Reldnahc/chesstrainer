@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed-bishop",
+      "label": "Tactic discovered attack missed bishop",
+      "text": "A discovered attack by moving the bishop was sitting in a different move, and it stayed sitting there."
+    },
+    "takeId": null
+  },
+  "requestHash": "48090583d7b1feabe5b20c3f79ed44748c20460e4e3d23376a2a47b1da38cd95",
+  "recordedAt": "2026-10-04T07:47:13.190Z",
+  "sha256": "e8c6e1c40dc8e7d7ffc2cf6905f1914c25d9b773a061d85d9cbd865b516f561e",
+  "bytes": 19541,
+  "requestId": "G8wKYavgH032Ulgb1nKO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fcb9aa81405f340a9a5358d12cd89cdbff8e0d3deba00b25bb3ddefd0b4c19f3",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

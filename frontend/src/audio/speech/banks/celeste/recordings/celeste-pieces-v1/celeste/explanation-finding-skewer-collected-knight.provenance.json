@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-knight",
+      "label": "Explanation finding skewer collected knight",
+      "text": "The knight in front yields its place on the line, and the piece it was sheltering is captured there."
+    },
+    "takeId": null
+  },
+  "requestHash": "4079ebe8d23536215ce93a9aec443adddcf239da4388c31d8ec6021b29c792b1",
+  "recordedAt": "2026-10-04T07:40:57.599Z",
+  "sha256": "425cd6a6cdde16ea080601f6edd210b4db73573b218e4d20fbf522a5792b59f6",
+  "bytes": 19189,
+  "requestId": "GS8eoBMAMPtsEAuBt5QB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "62968b7a28d257be26294ac5889719a60456d40d7c52a09548fef266322e079c",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

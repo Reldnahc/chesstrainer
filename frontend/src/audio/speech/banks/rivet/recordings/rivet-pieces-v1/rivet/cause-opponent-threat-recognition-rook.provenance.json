@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "cause-opponent-threat-recognition-rook",
+      "label": "Cause opponent threat recognition rook",
+      "text": "The previous move supplied the warning. This move leaves that attack unanswered, so the threatened rook can be captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "0baa63b867c7fe300015a87e687af76f0ac384dbcbe54420372a21c86508d28c",
+  "recordedAt": "2026-10-04T07:27:38.994Z",
+  "sha256": "ffdd1813d579f6918e4920bdd12e186e2b0968ac099a55137d1b0190eaaf1929",
+  "bytes": 23130,
+  "requestId": "iplemwwwp8pxm9EWs2T9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a996eb0b58effc9d9ceba8d9ecc6547d6a04b90fd6ce8346de91ec5b5977ba2f",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

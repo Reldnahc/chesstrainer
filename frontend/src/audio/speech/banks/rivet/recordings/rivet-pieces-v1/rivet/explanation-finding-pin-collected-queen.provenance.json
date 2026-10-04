@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-queen",
+      "label": "Explanation finding pin collected queen",
+      "text": "Pinned queen status: locked to the line by its king. Follow the moves to see it captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "d3aeff1a017698f8b94005081b5a0a0c84535f260cb61306f559ab82d7565b57",
+  "recordedAt": "2026-10-04T07:28:02.147Z",
+  "sha256": "ccee65149b3a7e03b6b305ff77fac7718b16d2689b97c5b3bbcf63052532a4b4",
+  "bytes": 19413,
+  "requestId": "nOoZCff4TLXD9CZNjSls",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "85f72d35c8e64c67e03809acf70775bd2dc4ad5b7943c56a4d45b97ff30d21bb",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

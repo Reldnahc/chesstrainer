@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate-bishop",
+      "label": "Explanation frame capture move mate bishop",
+      "text": "A capture that ends things. A bishop is taken, and it's checkmate; the king is out of legal moves."
+    },
+    "takeId": null
+  },
+  "requestHash": "b2fa370bead7444e08da41e62d79294e12c20790713e062516bb21be57052506",
+  "recordedAt": "2026-10-04T07:31:56.286Z",
+  "sha256": "7d8670a63351ce0130d9b3daf3d708a7f2b4c877fe8c01fd0adf0aa61db2aab7",
+  "bytes": 22444,
+  "requestId": "qmDcGbgvI5BGSMDLuZMJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "83cd1e5db0e10ab938ee036c4514f0ed07fd3a2e0daa7e38ecd08cdf3af4b2d5",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

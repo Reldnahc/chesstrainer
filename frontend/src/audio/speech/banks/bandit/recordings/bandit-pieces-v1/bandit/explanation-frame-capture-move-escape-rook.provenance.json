@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-escape-rook",
+      "label": "Explanation frame capture move escape rook",
+      "text": "The king escapes check, and a rook gets taken in the process."
+    },
+    "takeId": null
+  },
+  "requestHash": "2c6aad31a4e74fc388b32d8476f87fdc09a104f4965f2be738cc869c8e327b16",
+  "recordedAt": "2026-10-04T07:37:48.718Z",
+  "sha256": "0a4d506312783015f6e6457ebcbad72fc0269a0f5d54894ba3663cfa79426a16",
+  "bytes": 13805,
+  "requestId": "pxUMS0wFZXTdkGRKaQro",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c7d901afe8503f3ccbda8ddf1e7ebc39613e01d207f63ded1360ba5e1219dbf2",
+    "bytes": 67753
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

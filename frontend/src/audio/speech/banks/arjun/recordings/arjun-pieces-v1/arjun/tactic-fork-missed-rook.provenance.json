@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-fork-missed-rook",
+      "label": "Tactic fork missed rook",
+      "text": "Set the other candidate beside this one, and a fork appears in it, a lone rook aimed at several targets. This move takes the game down a different road."
+    },
+    "takeId": null
+  },
+  "requestHash": "17f5f1e513400138f7d4a6a90a2b9a7544004270b066037e564342f34ce08eab",
+  "recordedAt": "2026-10-04T07:32:33.196Z",
+  "sha256": "1212b0f474b9338bf9a85b1f0bca87b83e73b9a2e7d5113c8a27d9c0d7770000",
+  "bytes": 32131,
+  "requestId": "tq0cD8jZR33X8dYkgaTq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f22597a1462f0e0d313ca0c764f5ff0b1a9ba9ad4f3bebdb184fab363be57471",
+    "bytes": 166391
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

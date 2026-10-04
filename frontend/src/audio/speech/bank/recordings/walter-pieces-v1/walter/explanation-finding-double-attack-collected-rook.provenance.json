@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "explanation-finding-double-attack-collected-rook",
+      "label": "Explanation finding double attack collected rook",
+      "text": "The first piece makes its attack and uncovers a second one from the rook. That rook captures its target in the example."
+    },
+    "takeId": null
+  },
+  "requestHash": "a3cff4986bc98ec9f09dcf5e9fe55d52119c5dc64608ddcfbce8d5ffeea287ab",
+  "recordedAt": "2026-10-04T07:26:46.148Z",
+  "sha256": "c184f71b31554193a90c53fd42c0808ecea98428bf6bb4d5850873ecd5772391",
+  "bytes": 24298,
+  "requestId": "9r0hC0ejweQC1laEYKKw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a88e86514ef3913b7a866f3419e223f0f579340a02d98e365401325e4a856aec",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

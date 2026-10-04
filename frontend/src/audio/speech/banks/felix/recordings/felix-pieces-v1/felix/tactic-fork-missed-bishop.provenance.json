@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "tactic-fork-missed-bishop",
+      "label": "Tactic fork missed bishop",
+      "text": "Another move had a fork going, the bishop against several targets. This move leaves that on the table."
+    },
+    "takeId": null
+  },
+  "requestHash": "d945a16f944f6a876d2b60e078a86d9f75e7f5544c74169e62e406a48df82f5d",
+  "recordedAt": "2026-10-04T07:43:40.875Z",
+  "sha256": "36f2dde3f48dabccae76a7a576db4e5e3d6c0a7ce544b33042fd0f86acb2b654",
+  "bytes": 23736,
+  "requestId": "TN9RIkxSufgerg1XQ5rV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "72e44a62de84967f5b15d114ba41ea333f6b0872e44aa757696996c7b3f69862",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-queen",
+      "label": "Explanation finding relative pin released queen",
+      "text": "With its previous move, the opponent released a relative pin on the attacking queen. The target never moved, and it is captured in the line shown."
+    },
+    "takeId": null
+  },
+  "requestHash": "8eaa57a209774be50b7962a9f4e1e2d26ff247ec5c166a50776db40af9687c6c",
+  "recordedAt": "2026-10-04T07:42:48.367Z",
+  "sha256": "568edb6d43013e0a50fa6f7c2f915b0ea218160e51dbc14d454cc9f20931002c",
+  "bytes": 28608,
+  "requestId": "omBFbiEfuHwoiyS2rdp7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f3d252f35cc46efc4ab5c28433c446f694f8fc5b08709a1d03611e2cfae72c3c",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "tactic-skewer-missed-knight",
+      "label": "Tactic skewer missed knight",
+      "text": "Another move offered a skewer, where moving the knight in front would've exposed the piece behind it. This move goes another way. Run an eye along that line again."
+    },
+    "takeId": null
+  },
+  "requestHash": "cecefcf7327e96bdd20ff1a1726fdf0e7cb71992dfe1bff8860b6ddcb9a69878",
+  "recordedAt": "2026-10-04T07:28:38.251Z",
+  "sha256": "5d03cc5d31f310b5601308c8b3d69aabec87cec981f3e06ab32dec3dd15b947d",
+  "bytes": 30072,
+  "requestId": "4Lv9R56J9A4acZ5taSUI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "368c69aad37507e042a7cb6195b21fdacacf363540f74ff08e9c74d6c81600b4",
+    "bytes": 155942
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

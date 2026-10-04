@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "cause-opponent-threat-recognition-rook",
+      "label": "Cause opponent threat recognition rook",
+      "text": "The warning was in the opponent's previous move. This leaves that threat unanswered, and a rook can now be captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "4694fd3e428869a35dd677ee57113f868e0efac93eba52f6ae7d025c831097cb",
+  "recordedAt": "2026-10-04T07:26:05.383Z",
+  "sha256": "391dc01cee1ed15b59efc97c53df71f71b6370096323f0d22bfebc0199143db8",
+  "bytes": 22786,
+  "requestId": "CWVe4qppv88xdUqxsYVc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8b2a96280a1dea6d8ef1530b458588c0396ee2282849b3cb8fe5d8889f891b47",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

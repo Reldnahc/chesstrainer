@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "tactic-skewer-played-king",
+      "label": "Tactic skewer played king",
+      "text": "Think of a skewer as a line attack seen from front to back. The king in front is checked first, and when it steps aside, the piece behind it is exposed on the same line. Notice how the order of the pieces on that line does the work."
+    },
+    "takeId": null
+  },
+  "requestHash": "b985a67661ed8956cfa5530a07864dee7951e3401f992e147ce66f2d1da8abca",
+  "recordedAt": "2026-10-04T07:34:39.817Z",
+  "sha256": "fe547fe27cd4855b1a8247f0eb9e519f6eeedcb3aa4e9dd1f6f903e20863768a",
+  "bytes": 44238,
+  "requestId": "eUI73FYKjap0A1n0qEt3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d514da51ca1c1bbdcf1e3c415b0530c64ba97f43cb46f9bfe36bd02564273476",
+    "bytes": 227831
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-missed-bishop",
+      "label": "Tactic undefended capture missed bishop",
+      "text": "Hey, look closer! Another move could have gobbled up a bishop with no guard at all. That snack zips by here. Easy habit: look for anything unguarded before every move."
+    },
+    "takeId": null
+  },
+  "requestHash": "e4fa4420b84df25a5f396c866cb7f043857a8bbe166a98039f8216182c0a18c0",
+  "recordedAt": "2026-10-04T07:38:18.237Z",
+  "sha256": "723759e7954c02d24af0fdf7f8738cc794f41948dbdf0579b9379406aa10dc4d",
+  "bytes": 38283,
+  "requestId": "Gl0lxbM2XUuBRrLo2GnK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "47b45801610ce6f18cbe2dd06893d7b1c66d263d4eeb0392e4ab6f71f2849b06",
+    "bytes": 199410
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

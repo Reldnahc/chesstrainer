@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-pin-played-pawn",
+      "label": "Tactic pin played pawn",
+      "text": "The key idea is a pin to the king. A pawn caught this way cannot leave the line and expose its king."
+    },
+    "takeId": null
+  },
+  "requestHash": "0a609274d51f2d9fa7c8744109efb353bf8935e1227d7ec9e0b7e46e66b96250",
+  "recordedAt": "2026-10-04T07:25:54.924Z",
+  "sha256": "3cb59158294a220bfcd8efac3d1fed2bf679fc55c73dff8774e3a25d49efe736",
+  "bytes": 22754,
+  "requestId": "wM0gGlVZEY2aMOJUbAo4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f35c91aa1e13351e7cd44cb0015a94297cde55079115cde8333c123138ed7ae6",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

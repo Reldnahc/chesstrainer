@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-escape-pawn",
+      "label": "Explanation frame capture move escape pawn",
+      "text": "This captures a pawn and gets the king out of check."
+    },
+    "takeId": null
+  },
+  "requestHash": "234f58459c49e172c82580ffe8eb40b3abdb66f13b0189cb5d092d8f6195f49d",
+  "recordedAt": "2026-10-04T07:26:53.639Z",
+  "sha256": "e920f7647c6ec10fe3746a60779eef2465254af1a96a57060c1d611d9cb5f55a",
+  "bytes": 11635,
+  "requestId": "WwEAV18v9VqGsxwLyBPs",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "533b549cb852495459bef039a03c951aa9f042055f3c42174eb6100726ccd35e",
+    "bytes": 56050
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

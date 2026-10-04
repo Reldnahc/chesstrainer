@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed-bishop",
+      "label": "Tactic removing defender missed bishop",
+      "text": "A different move could've captured a defending bishop and left what it guarded unprotected. This one lets that pass. Start with what the bishop was guarding."
+    },
+    "takeId": null
+  },
+  "requestHash": "a2249a963d08659a0029b18a8a05014e06edb5951ea53de2cb4b81a799a7b3fd",
+  "recordedAt": "2026-10-04T07:29:09.983Z",
+  "sha256": "0b2eba6712e406a07dea844755bb21c1048798e462cc8ec40f92869e08450693",
+  "bytes": 28843,
+  "requestId": "UETUWZ2fkndpfsuSq9qo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3dab2b63ebb3d9b749974e2666a5271aa34c1b23636aa67830a25c213dbfc357",
+    "bytes": 149673
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

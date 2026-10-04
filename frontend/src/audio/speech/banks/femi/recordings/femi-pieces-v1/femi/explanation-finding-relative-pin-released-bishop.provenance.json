@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-bishop",
+      "label": "Explanation finding relative pin released bishop",
+      "text": "Notice that the opponent's last move took the relative pin off the attacking bishop. Nothing moves the target to safety, and the line shown wins it."
+    },
+    "takeId": null
+  },
+  "requestHash": "c5bb069bbefded754259880703457d116e95b88941d47501fe15e08a7fdae8e8",
+  "recordedAt": "2026-10-04T07:45:55.181Z",
+  "sha256": "8d46258545f18309648d32f7f222bd3a33c13e6474e3208be00ef7ecf1155398",
+  "bytes": 32209,
+  "requestId": "CbidWCTW7UslwAAeEtoI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9ab80f6b3aaaded3efa436381a55c204bc7ba12e25edb41f0a57d3779d3d1472",
+    "bytes": 163466
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

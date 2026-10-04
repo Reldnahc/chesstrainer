@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "positional-development-actual-bishop",
+      "label": "Positional development actual bishop",
+      "text": "The bishop comes off the back rank and into the game. Simple, useful development."
+    },
+    "takeId": null
+  },
+  "requestHash": "8abd52a7054137f267f564f9930f2b8659cb4001a5fb6e91d92da604f71c04ba",
+  "recordedAt": "2026-10-04T07:45:50.039Z",
+  "sha256": "9317c957c9987dedb136baffe7f88da8464418c7db1b8dc08f9e5ae51b38bd8b",
+  "bytes": 18502,
+  "requestId": "XQX82dbVJokRGOig0Ox4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "85b51b3482eb21e86f9ed81243b7c0cb5fca374d715c3358d347bf71ad1f23ef",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

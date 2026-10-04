@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "grade-brilliant-2-rook",
+      "label": "Grade brilliant 2 rook",
+      "text": "A real rook sacrifice, and the idea is sound. I've seen many offers like this, and far fewer that hold."
+    },
+    "takeId": null
+  },
+  "requestHash": "c937c8fc0a3831a9fa878b90e03ec47929867714f30ddc591d49fba93e323067",
+  "recordedAt": "2026-10-04T07:27:15.553Z",
+  "sha256": "4851eeb9f1f393d9e1ae4989e8546e65a6bc024702ba8f9757ec8aebd2d645f4",
+  "bytes": 24971,
+  "requestId": "rN4VboHBcOd8EZC5jteR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "db00b014fc2181ea6e41076b9a337a9bc3ea2c9e51f5d79eb0abc584ce6823f0",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

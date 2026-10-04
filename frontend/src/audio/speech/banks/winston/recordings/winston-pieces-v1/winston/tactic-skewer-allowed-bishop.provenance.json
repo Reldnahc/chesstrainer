@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed-bishop",
+      "label": "Tactic skewer allowed bishop",
+      "text": "Well, there's a skewer in it for the other side: if the bishop in front has to move, whatever stands behind it could be exposed. Mind what's sitting behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "7d3e446c4fa3793a01190cdbc575e41ee87b798eb2eb109e489c8b643af1d3a2",
+  "recordedAt": "2026-10-04T07:29:11.988Z",
+  "sha256": "7c198784f760103af8db0f20a2752e67c578041b924a942ccc5de6b7f48296ca",
+  "bytes": 29995,
+  "requestId": "DdnZk66NIOJL2DmnDflZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4d501e5550072ae68cd28c4d96625dd04a2ca92d4d308c48f225e2847620b4e8",
+    "bytes": 155942
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

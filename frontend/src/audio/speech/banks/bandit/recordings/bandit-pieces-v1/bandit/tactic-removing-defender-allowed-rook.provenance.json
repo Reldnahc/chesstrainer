@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-rook",
+      "label": "Tactic removing defender allowed rook",
+      "text": "This leaves a defending rook where it can be captured. If the other side takes it, whatever it guards could lose its protection, so see what that rook is holding up."
+    },
+    "takeId": null
+  },
+  "requestHash": "f64794e4883a9478d871a5b4fb92ae6aff5307cf093e1edeaea84e3c044d234f",
+  "recordedAt": "2026-10-04T07:36:38.060Z",
+  "sha256": "7a22b73d048e43df8281d7b232b46f3595dd02ffa223bf70052b0668f6ffa3a0",
+  "bytes": 31509,
+  "requestId": "qn6LRL51bFsRN74G7uab",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "802e8d4298f9bd8f10130b8541511533e640e4fd10597a10683185b7303c99e9",
+    "bytes": 159704
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

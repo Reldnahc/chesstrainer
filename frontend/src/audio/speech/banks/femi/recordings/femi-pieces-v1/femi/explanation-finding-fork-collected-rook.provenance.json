@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "explanation-finding-fork-collected-rook",
+      "label": "Explanation finding fork collected rook",
+      "text": "A single rook forks several targets and later wins one. That side has the extra material by the close of the example."
+    },
+    "takeId": null
+  },
+  "requestHash": "ceada2d7788a5e7299c48c4d4365d9b482a9af15c41fd9b3a2a15a11c2f0e8c5",
+  "recordedAt": "2026-10-04T07:46:03.677Z",
+  "sha256": "d9cbdfd07a406bb1160868cf72d8cf5caee2bde9458daa71b6d9e39b3b8235f8",
+  "bytes": 26817,
+  "requestId": "pvGSfMC8QT4MBQCKYbJf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4df39265be397a6154d2801b6e7aca355e8efc1b49f2645f7ddcdcd5019e7166",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

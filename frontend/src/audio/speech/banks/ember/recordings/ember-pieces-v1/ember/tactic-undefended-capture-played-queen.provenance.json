@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-queen",
+      "label": "Tactic undefended capture played queen",
+      "text": "A queen stood without a guard, and the move takes it. A loose piece is an invitation; this move accepts it."
+    },
+    "takeId": null
+  },
+  "requestHash": "4d0e5801497cd82c5b098a14f6e7410c1c65015cf189c1a1b8fc0cf83ac54f3a",
+  "recordedAt": "2026-10-04T07:41:51.475Z",
+  "sha256": "6d2554b0d7dfd3532f3e5e9491e5c7af2182bd98def1a4a0a8d6ec8eb6a7c2e4",
+  "bytes": 24052,
+  "requestId": "EbmwiKEHDD1Gi44KLo8L",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "11475e52daab5a5126d275bd6ded96ef06a942c95495c9fd1e83dbda9feaaef4",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

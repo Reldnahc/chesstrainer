@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-bishop",
+      "label": "Explanation finding deflection collected bishop",
+      "text": "Watch the defender move away from its job. The bishop it leaves behind is then captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "5a58ddc6033df7697e7915b9bc4645969546c4bda04c9515d952218b42117f58",
+  "recordedAt": "2026-10-04T07:26:38.902Z",
+  "sha256": "6a3c10e149b1407e74c1b8f5b5ec997093701831c83e2711f4bcfa59890ee347",
+  "bytes": 18868,
+  "requestId": "rG30i6mwA1DA89UrtjdJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3ed4075e40a1eb08fcbe951fb4cb5c2c37643e86db4786619fc5a6350c38d88e",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

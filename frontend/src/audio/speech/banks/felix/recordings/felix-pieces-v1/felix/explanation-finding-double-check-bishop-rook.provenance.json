@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-bishop-rook",
+      "label": "Explanation finding double check bishop rook",
+      "text": "That is double check: the bishop and the rook both on the king, and only a king move answers that."
+    },
+    "takeId": null
+  },
+  "requestHash": "eed83c7ca2d69892471f980dbfe7df974265192d59936e488e2166f461a3c0b3",
+  "recordedAt": "2026-10-04T07:44:49.316Z",
+  "sha256": "847704beeb25c85191a7c9078856677f7056c418ffa7789d4c1919c239ae3555",
+  "bytes": 22182,
+  "requestId": "19fyxHiFznwmDcUPRuh4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a9fdc0f07e050f69d97a395914f8a4e00616078d8ca9e0d01cf4565e689d35aa",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

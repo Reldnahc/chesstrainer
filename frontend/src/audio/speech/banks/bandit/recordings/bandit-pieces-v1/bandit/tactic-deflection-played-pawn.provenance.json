@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "tactic-deflection-played-pawn",
+      "label": "Tactic deflection played pawn",
+      "text": "Lure the guarding pawn away from its post, and its old charge is free for the taking. Rude, but that's a deflection all right."
+    },
+    "takeId": null
+  },
+  "requestHash": "71e1b4c36ff3ae47bea79db8c12f43b177fd66ff5b7ee2f0a7ffbb8b03b64150",
+  "recordedAt": "2026-10-04T07:36:53.620Z",
+  "sha256": "4383070ab3e77077033023559bfb614d95ac4789a2c129d3cd9b983ffca8abbf",
+  "bytes": 25479,
+  "requestId": "fJnesOERPkOScg4sQPXP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ede1e04fc21aa95aee96366cd360e8f3e515c12dd8edec8782f95cda0120ea6e",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

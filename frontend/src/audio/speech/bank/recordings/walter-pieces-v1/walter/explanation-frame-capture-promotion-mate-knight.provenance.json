@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-mate-knight",
+      "label": "Explanation frame capture promotion mate knight",
+      "text": "The pawn captures a knight and promotes on the last rank. This is checkmate; the king has no legal escape."
+    },
+    "takeId": null
+  },
+  "requestHash": "01e3b24abe4710ab00282f2bbe5b54af9e9eb6b8e72c5822cd97965121fe9e03",
+  "recordedAt": "2026-10-04T07:26:50.032Z",
+  "sha256": "25b706a26a56d2bb6c21a9b367fc7d834374799f869436f2584185d8c662d654",
+  "bytes": 22593,
+  "requestId": "qXIJBbN9JUHS0lt7fADN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "eb8ad3b9549d23fc597d3cc294481837fe244927cb5df60096db273fd76bdf4c",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

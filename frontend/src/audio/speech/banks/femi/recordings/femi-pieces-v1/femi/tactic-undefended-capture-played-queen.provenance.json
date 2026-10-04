@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-queen",
+      "label": "Tactic undefended capture played queen",
+      "text": "Simple stuff: a loose queen, and this move collects it for free."
+    },
+    "takeId": null
+  },
+  "requestHash": "69e7a321d3ff67fafb9818a56e3cffd820dfd99f8444665687bac768794b9fc7",
+  "recordedAt": "2026-10-04T07:45:11.157Z",
+  "sha256": "8307c2b874b767881b950687839a1dae472a3b8e4160e879ca754d361db31c86",
+  "bytes": 15899,
+  "requestId": "3nhMG8oz5N1kfQVwqof9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "26ce914257ac2908514fa682112496f9c35ca64aa6ce623e624181490dbae0d0",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

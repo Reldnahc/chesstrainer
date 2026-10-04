@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-rook",
+      "label": "Tactic discovered attack played rook",
+      "text": "The rook clears the line, and the piece it was screening gets to attack. Discovered attack, textbook."
+    },
+    "takeId": null
+  },
+  "requestHash": "27939994979f5b954167cf847dca51899db7ad07d6f36c0247eb76c87b4b5bfe",
+  "recordedAt": "2026-10-04T07:43:34.801Z",
+  "sha256": "0761e839030519c509775496f06038e0b8d8f23c4df4d73cb44ed851d611e851",
+  "bytes": 21153,
+  "requestId": "xfQ58PR0gOQv8AN8ffag",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6dafa040e0a83645837960dac8224680ba6ca106a9eeab5688bccd8285986302",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-missed-queen",
+      "label": "Tactic undefended capture missed queen",
+      "text": "Another move could've taken an undefended queen, and this one lets it go. Before settling on a move, it's worth a quick look for anything unguarded."
+    },
+    "takeId": null
+  },
+  "requestHash": "77ba103d003e2ad219bd47d454eff39da32ad0843b1c0df138126e5aca062edf",
+  "recordedAt": "2026-10-04T07:29:03.329Z",
+  "sha256": "28fbfb77fe2d39a462ce8a941295c02f54cf6b497b3841b3a1669ac9ac9c24dd",
+  "bytes": 28075,
+  "requestId": "PwPMuOzERAdfaVOxdV1R",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "da3fd1c4b816cc3dbab33ba5a4fa30875e6d9a8dfe2e45cbc15f684935722250",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

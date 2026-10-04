@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-rook",
+      "label": "Tactic removing defender allowed rook",
+      "text": "Look closely: a defending rook is now up for capture by the other side. If it goes, whatever it covers could lose its protection, so check that rook's duties first."
+    },
+    "takeId": null
+  },
+  "requestHash": "a11a2bf960ae40d814b73b12bb27811c29f79e089612ba291675c5312947672c",
+  "recordedAt": "2026-10-04T07:45:15.454Z",
+  "sha256": "c561d97aca1d25346314fdba58a6fa1a8874fa124c62ec5fdc18a944ad24ab7f",
+  "bytes": 36241,
+  "requestId": "KXX54OT5KwkNeM9SW4aX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "91e0e3076c9de75acad25cd58bca98485f896f0a276dec1dbae2e056c984a609",
+    "bytes": 186871
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

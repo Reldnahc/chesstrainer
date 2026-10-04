@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-mate-rook",
+      "label": "Explanation frame capture promotion mate rook",
+      "text": "A rook captured, a promotion and checkmate, all from one pawn move. No legal escape remains."
+    },
+    "takeId": null
+  },
+  "requestHash": "7154376103cdd199a4cca04373957dba9da6ca43460c469055abb0b5b01a6001",
+  "recordedAt": "2026-10-04T07:43:07.709Z",
+  "sha256": "4de080ff55379006014eb500ac614e8ca54fd55ff1033b28e7a3bbd7025b7945",
+  "bytes": 23798,
+  "requestId": "jsMYsAguQMoMZAscIMCR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5b20a2bba5363beb3e1b139c32916acbe33d44d9de4d19f606ae31b5d3b6a2ab",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

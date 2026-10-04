@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-queen",
+      "label": "Positional unsupported actual queen",
+      "text": "Having no defender describes a piece's situation; it doesn't mean the piece is lost. Once this move is made, a queen stands with no defender. Whether it can actually be won depends on what can reach it."
+    },
+    "takeId": null
+  },
+  "requestHash": "708b3741f103e171a6bf7acb6413d14e426e1f1118b51e7b01102ca470625317",
+  "recordedAt": "2026-10-04T07:35:02.621Z",
+  "sha256": "687ff389a1fe30c067911c01f47bc88acebe119535918796944c5aaffccccf3c",
+  "bytes": 40523,
+  "requestId": "mzEIDI60r3rab4fUbBCS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6b3c39b57711a39dab6e746720c15f052b735841f1a0962f9b87e7657f0d4f94",
+    "bytes": 207351
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

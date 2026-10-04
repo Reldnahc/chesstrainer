@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "support-restored-rook",
+      "label": "Support restored rook",
+      "text": "That rook, unguarded earlier, has a defender again. Find where the cover comes from."
+    },
+    "takeId": null
+  },
+  "requestHash": "eefb17d37194b1eee5fcc97d7b8b9d7ee53a51e0697507a7754f640da04b50dc",
+  "recordedAt": "2026-10-04T07:29:37.765Z",
+  "sha256": "a5917d9359dfbb63f7350a194716beecf2ea064c3fc6792e2877b9725d9ab5f1",
+  "bytes": 17914,
+  "requestId": "vubb9Ap3lQS3hstoY9lG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "87efb3d5b723e64fc5379a0954b73ee3d1c6bda238ca9e068d44efa712281979",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "positional-development-actual-knight",
+      "label": "Positional development actual knight",
+      "text": "A knight is out of its starting square, which is development, done without fuss."
+    },
+    "takeId": null
+  },
+  "requestHash": "1c718a398b0241cb355f7eafe6a0c584421937e7caed20bf7812f8f4830efecf",
+  "recordedAt": "2026-10-04T07:47:23.099Z",
+  "sha256": "df7063de0b1b3d254a5abfbbc6b5c6a2eb8d75ae1c4935c2845777787cce0bcf",
+  "bytes": 17694,
+  "requestId": "Sn4PdI6NGuwDi6UgEiet",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3ba8d8a55fc74ecb28b8d7a830a7819fd05b21c126bd24304ab78e60bd5c1f1c",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-rook",
+      "label": "Explanation finding relative pin released rook",
+      "text": "The opponent's previous move freed the attacking rook from a relative pin, the target stayed where it was, and it was captured in the line shown."
+    },
+    "takeId": null
+  },
+  "requestHash": "75afa94e006fa60a0724de0cf030ccc32426c0196354c14350eaa002b0d7cc0b",
+  "recordedAt": "2026-10-04T07:47:33.542Z",
+  "sha256": "231511aabfb8ce1d6c65d83e573d25616c4138f9b74f1a05dd7f95f30ed5ec84",
+  "bytes": 28845,
+  "requestId": "8KXd3qU5WaDGCf0GUOtC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1016e6e59f1e0b9abde29874f767214c5fb03c8e66c77dbd61447bc2d6854c5a",
+    "bytes": 148419
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

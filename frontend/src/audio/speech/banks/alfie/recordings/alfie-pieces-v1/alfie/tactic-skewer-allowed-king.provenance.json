@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed-king",
+      "label": "Tactic skewer allowed king",
+      "text": "When two pieces share a line, an attack on the first can reach the second. The other side now has a skewer: the king in front can be checked, and once it steps aside, the piece behind it could come under attack. Shared lines like that are worth checking before each move."
+    },
+    "takeId": null
+  },
+  "requestHash": "548427de4419e5936cd22805bbbd0ecba05e87e83d16091a2b25749f2e721002",
+  "recordedAt": "2026-10-04T07:34:56.537Z",
+  "sha256": "3dcc0d4afe928c23ea613a6c9f438e7d9a0d03045bc9b0d7bb8026114d9b5526",
+  "bytes": 50599,
+  "requestId": "V4umFyBthx80pvJsK1e9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2d47b05ee49d2c4e1e10298f79ca027555b344261530b8890659479415c99584",
+    "bytes": 262104
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

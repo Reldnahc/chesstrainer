@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-rook",
+      "label": "Tactic deflection missed rook",
+      "text": "Another move would have pried the defending rook loose from its job. That chance at deflection goes begging."
+    },
+    "takeId": null
+  },
+  "requestHash": "74c90f9610b0785ed7ae385bef2f964a3382dd05f2b1ad323f08e7ef17ba2dc4",
+  "recordedAt": "2026-10-04T07:44:06.560Z",
+  "sha256": "cfc3190e5711faec2653e93a93dde2fa4599b466deb78877e97a0a457aa555b5",
+  "bytes": 22426,
+  "requestId": "1vQwDyeb0zOO558J5xKk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "399f632fe034146d65cba1724236b0c8d81b1a82542774a23870bd5c47fff7c9",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

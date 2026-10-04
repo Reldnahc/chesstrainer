@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "tactic-skewer-missed-king",
+      "label": "Tactic skewer missed king",
+      "text": "A skewer lay hidden in a stronger move: check the king in front, and as it steps aside, the piece sheltered behind it is uncovered. That line went unplayed."
+    },
+    "takeId": null
+  },
+  "requestHash": "f22f0e356cca5a33aab516818ef7060096d1780143d497af9bf2cc9c5413a575",
+  "recordedAt": "2026-10-04T07:40:00.830Z",
+  "sha256": "da6c4cd5a4ad5ef26696ceade82a1b2ba2eff16c323d85960cbee9e506a14643",
+  "bytes": 33296,
+  "requestId": "4pq1LrmnaoHIcYWmwSjo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5d5a3d583420a6e444d142c376a56edca9d8190869319733b2207cb0ed159315",
+    "bytes": 168899
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

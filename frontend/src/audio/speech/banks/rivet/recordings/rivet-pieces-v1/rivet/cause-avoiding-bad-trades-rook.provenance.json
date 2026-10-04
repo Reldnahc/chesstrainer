@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "cause-avoiding-bad-trades-rook",
+      "label": "Cause avoiding bad trades rook",
+      "text": "The first capture is only part of the exchange. The recapture takes the capturing rook, worth more than what it took. Count both sides."
+    },
+    "takeId": null
+  },
+  "requestHash": "d57cfdfe9b46fc72df28cf8fe762c890868da257d1a1f58d3301b8d5a0e945e1",
+  "recordedAt": "2026-10-04T07:27:46.698Z",
+  "sha256": "c169195cd2bcad302706880472f7273f23bc3afb42603e7d30bc0f2b8a344c82",
+  "bytes": 28100,
+  "requestId": "VX3frx1hIe1py2fEwlco",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0587a5e8d8e392cb900e2eec69cee21b230185c7b43275eab74d23587e8c3b3e",
+    "bytes": 141732
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

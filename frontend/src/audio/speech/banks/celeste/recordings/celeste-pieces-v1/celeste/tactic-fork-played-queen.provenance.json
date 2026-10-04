@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "tactic-fork-played-queen",
+      "label": "Tactic fork played queen",
+      "text": "What a graceful idea. A single queen reaches out to several targets in one motion, and one reply rarely saves them all."
+    },
+    "takeId": null
+  },
+  "requestHash": "6d10503687ef26b9d22d88b72d400afa92a41df8c636783b3a94cc961500e154",
+  "recordedAt": "2026-10-04T07:39:42.859Z",
+  "sha256": "883b8e850cbc4690e864996934b168958f091a0e017d06444e98e6e2a24f43ce",
+  "bytes": 28486,
+  "requestId": "uAVD40tUgQklgjH5koEY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "37d33be26e510b540bf29bca1dc6b58c8a86a42a1a1594027264a43f9d367cbf",
+    "bytes": 142986
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

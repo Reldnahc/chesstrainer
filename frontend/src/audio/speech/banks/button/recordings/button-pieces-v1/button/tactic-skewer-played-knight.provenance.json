@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-skewer-played-knight",
+      "label": "Tactic skewer played knight",
+      "text": "Two pieces on one line, a knight standing in front of the other. That's a skewer: once the knight steps aside, the piece behind it is exposed."
+    },
+    "takeId": null
+  },
+  "requestHash": "e9b6ac0d0954ec6932ec5398349b00f222bd4843176df2e49ad43b4facefab25",
+  "recordedAt": "2026-10-04T07:30:43.497Z",
+  "sha256": "9e46f7ec76a1e58f84f97fadb2294349d36ba63f168ecba6fb0a72dfac0d9380",
+  "bytes": 31281,
+  "requestId": "1gXPnzfJTqgplxLgo5Sl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "df33d1db41ed0ddd5f83a8a64378654b6d801a8cb22fc87d7293d9bc5e3c3cf4",
+    "bytes": 163466
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

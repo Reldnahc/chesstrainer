@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed-bishop",
+      "label": "Tactic removing defender missed bishop",
+      "text": "A stronger move would have removed a defending bishop, leaving whatever it guarded uncovered. Not on this move, though."
+    },
+    "takeId": null
+  },
+  "requestHash": "51d0551f4b7fcca28a83d13a6207e620f32aedd32081cb4bd6573d3b4227fd81",
+  "recordedAt": "2026-10-04T07:45:23.960Z",
+  "sha256": "23c3159834ce1c5471b7ae0ac56fe124214e97d8342510783e1925626bed072c",
+  "bytes": 24011,
+  "requestId": "6P8YCIQFfV3qi2NmPRyY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1b8692d17a6b189f277ecf767de8f493f175f979f85b9e3c3b079cc8cf2022a4",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

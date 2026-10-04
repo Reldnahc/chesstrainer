@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check-queen",
+      "label": "Explanation finding discovered check queen",
+      "text": "Check comes from behind: the front piece moves, and the hidden queen strikes the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "cc8b84fa4da148e7dc188784f7da894e272a4b475f5967991c2b19c20961e76e",
+  "recordedAt": "2026-10-04T07:42:54.339Z",
+  "sha256": "a5fc223b2daea7fc546efcd74099e03a81cb74e28cba81e9f66d58684b40da8d",
+  "bytes": 17162,
+  "requestId": "iCxRAZR52HsyH9XDFREo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2ca977d47f37f14486e15ea83da8588c2a01dd08cccd3878e8e0c94f270f3d89",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

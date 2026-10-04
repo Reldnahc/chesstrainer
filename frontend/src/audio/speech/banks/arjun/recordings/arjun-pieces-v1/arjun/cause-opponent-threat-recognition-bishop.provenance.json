@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "cause-opponent-threat-recognition-bishop",
+      "label": "Cause opponent threat recognition bishop",
+      "text": "What did the opponent's last move change? It created a threat, and this reply doesn't respond to it, so a bishop is still open to capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "b6e01a3499d3026264fe7ed88e60f82526397f0b2f9ddf543444ebdbea3959b7",
+  "recordedAt": "2026-10-04T07:33:31.754Z",
+  "sha256": "c444f3b205bba9a790fd4f0662e34b92fbdc796fb0e0f3c6a4969e4db0c375b9",
+  "bytes": 30521,
+  "requestId": "LNnXJRJmpSRac3tcZAnK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e202ce2b048fd4f98900aa5289ffac5e82969743df2c9a5906a1ce114734e361",
+    "bytes": 158450
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

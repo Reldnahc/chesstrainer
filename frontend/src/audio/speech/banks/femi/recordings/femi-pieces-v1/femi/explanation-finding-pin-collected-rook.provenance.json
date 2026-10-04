@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-rook",
+      "label": "Explanation finding pin collected rook",
+      "text": "Keep that pinned rook in view. Any step off the line would bare its king, so it stays on that line and gets taken before the sequence is done."
+    },
+    "takeId": null
+  },
+  "requestHash": "fe25931ca6668260157f7134a815992c9c5683eb7e8ad5ee5f05f50ae8a006a7",
+  "recordedAt": "2026-10-04T07:46:04.693Z",
+  "sha256": "5fc4523042f2be9081abe05b239ccfd2cc4c42d34e0b0cdb9a759e2c96f739fb",
+  "bytes": 30983,
+  "requestId": "m8Twx0x0OrGB4AcMR7eA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "be3ec4ff5fad4fe1552b94372a33c7da063a4f4a68fe8f4b0178d6046c1847ef",
+    "bytes": 154688
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

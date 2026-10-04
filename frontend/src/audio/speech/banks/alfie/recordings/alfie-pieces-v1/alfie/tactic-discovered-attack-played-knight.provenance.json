@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-knight",
+      "label": "Tactic discovered attack played knight",
+      "text": "Sometimes the most important piece in a move is the one that doesn't move. Here a knight steps out of the way and uncovers an attack from the piece behind it. So look at the line it opens, not just the square it lands on."
+    },
+    "takeId": null
+  },
+  "requestHash": "31b0264099b5ec505f40cb0972995f780ed0a83839ad22eefbd03d6eb1351150",
+  "recordedAt": "2026-10-04T07:34:18.667Z",
+  "sha256": "35e0b44c52e4f8504e5072f5e4264a1bf37f9a9113d0130d2a61bd7925103bde",
+  "bytes": 44019,
+  "requestId": "x0d8pv1kc3W3ubSjGnZZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f006d0fca8bbea924a4e5d8e8fe77f6aa2ea0cba1c506508e8449e75a3bc5463",
+    "bytes": 224906
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "grade-brilliant-4-rook",
+      "label": "Grade brilliant 4 rook",
+      "text": "Brilliant. The checked line has an answer to the capture of the rook, and replaying it shows how the idea works."
+    },
+    "takeId": null
+  },
+  "requestHash": "ee53e6911335922b8751f600554899868ed16eb5945d7d7fd6052792d8ffe4fe",
+  "recordedAt": "2026-10-04T07:36:02.841Z",
+  "sha256": "5ab6738e662e37f091fc6667f34a872b192926d9b8ec0f3137e95e34f8b87618",
+  "bytes": 22418,
+  "requestId": "rgR9pllZCW9j7Te41pvO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "59392694f861866ec3649b9912df8a0d41d8e563e0999e5b7d1ec2fff81d662b",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

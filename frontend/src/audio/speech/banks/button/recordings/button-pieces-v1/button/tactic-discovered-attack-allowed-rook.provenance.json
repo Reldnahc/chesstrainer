@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed-rook",
+      "label": "Tactic discovered attack allowed rook",
+      "text": "A rook of theirs is screening another piece along a line. This allows a discovered attack: the rook steps off the line and uncovers a threat from the piece behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "14e81b81707ef6fb6b921d584a1497418b323706cf2db6ccdef405b4cbac3c57",
+  "recordedAt": "2026-10-04T07:31:01.637Z",
+  "sha256": "5bbf79f337cb4a7c426df1d5191fc854171171dc97e41896933065667679dbf5",
+  "bytes": 32620,
+  "requestId": "7JKRBny7yz6t0cd0ZhSF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ff63d39d68bac5a6ab4b00f8a23b561f1158f6db7c011f696b2bc691d9246dc6",
+    "bytes": 167645
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

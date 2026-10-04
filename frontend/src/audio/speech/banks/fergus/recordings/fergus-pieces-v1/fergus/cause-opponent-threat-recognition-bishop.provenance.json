@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "cause-opponent-threat-recognition-bishop",
+      "label": "Cause opponent threat recognition bishop",
+      "text": "The previous move by the opponent made a threat, this move ignores it, and a bishop can now be taken."
+    },
+    "takeId": null
+  },
+  "requestHash": "530d9274a3564900679fa8abaf5e6b212ba79fa07c8e33465e3ed2d2974bee54",
+  "recordedAt": "2026-10-04T07:47:39.096Z",
+  "sha256": "4e3902391f8b370e4a98bc61121f3ed40ac660dc9c1634701dd28632863a4e25",
+  "bytes": 22339,
+  "requestId": "DE3Cd3aSgsesfiAVFXOK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c48c5ba459ce98a2dd3a8433e9defd007be80d7fcb22dc6680766563647b2960",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

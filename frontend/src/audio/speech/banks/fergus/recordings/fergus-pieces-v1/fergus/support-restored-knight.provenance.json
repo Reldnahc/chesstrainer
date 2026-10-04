@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "support-restored-knight",
+      "label": "Support restored knight",
+      "text": "Previously unguarded, the knight now has cover again. Tidy."
+    },
+    "takeId": null
+  },
+  "requestHash": "10d70d185513eeb2c972a3d15853ad5922259894957cc85dd58af77cc75edb14",
+  "recordedAt": "2026-10-04T07:47:23.607Z",
+  "sha256": "f4d8f73e3e0030f453596523667dac219af2e12277e281fc27d78dc0cf020867",
+  "bytes": 15460,
+  "requestId": "0yppub0ucJut203QpslJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8de017b7dcd58c41e657f97f64de1466e44eadb0daf4923a4575b5e3ebba9947",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

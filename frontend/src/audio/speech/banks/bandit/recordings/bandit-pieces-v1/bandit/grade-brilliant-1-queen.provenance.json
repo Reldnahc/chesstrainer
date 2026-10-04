@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "grade-brilliant-1-queen",
+      "label": "Grade brilliant 1 queen",
+      "text": "Brilliant. The checked line has the receipts: the queen sacrifice holds."
+    },
+    "takeId": null
+  },
+  "requestHash": "18513f337140fcbd196e65f1469a32f862b2b2fb9677bf5d18fcb68d9bff4ca3",
+  "recordedAt": "2026-10-04T07:38:01.875Z",
+  "sha256": "3a096416951ac1e10573eac20722aba4ec8e793f325fff31157e59d5cfdbf02f",
+  "bytes": 16986,
+  "requestId": "QVAxfYoDvI4psvHKL64o",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b3814512c03d7aa8972df2e8489ce5d647fda5f18d5f1e7eb5d15fdf63666759",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

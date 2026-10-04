@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-escape-bishop",
+      "label": "Explanation frame capture promotion escape bishop",
+      "text": "The pawn captures a bishop to reach the last rank and promotes, and that gets the king out of check as well."
+    },
+    "takeId": null
+  },
+  "requestHash": "4d6e0ea6585cb442af5a48f366b48f6ca0503053464af7c432b1afaf02230c5f",
+  "recordedAt": "2026-10-04T07:32:09.824Z",
+  "sha256": "3e7b40b07165687db8e8f761d968a48708482e1e190e5ee969d0ac7ff1103026",
+  "bytes": 20515,
+  "requestId": "zdy1tIUBogbIY4a7232Q",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "06572cb412be6d4eeed32aa82a7f8ad0a4a69be034e11a4ba2431327392e6f2d",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

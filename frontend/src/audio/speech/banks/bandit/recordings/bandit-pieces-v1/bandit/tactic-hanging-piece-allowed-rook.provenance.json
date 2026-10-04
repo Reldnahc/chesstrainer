@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "tactic-hanging-piece-allowed-rook",
+      "label": "Tactic hanging piece allowed rook",
+      "text": "A rook just got left with no defender, and the other side can walk up and take it. No fancy idea needed on their end."
+    },
+    "takeId": null
+  },
+  "requestHash": "0d05af33bcb40709559d3e9ffaadf8e855361e71bfce4b3b60efb44f6190f554",
+  "recordedAt": "2026-10-04T07:36:42.842Z",
+  "sha256": "9dba44d91189569005966a9b7fdca6d2f46df166528ad45c0373455cb6dbf011",
+  "bytes": 24043,
+  "requestId": "HZrIrDJQnwVMGWIwaEvw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cd749403a4bb200ca28a91d26bc96d066ec90ffb02a6a4785d658bdf4458eefc",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

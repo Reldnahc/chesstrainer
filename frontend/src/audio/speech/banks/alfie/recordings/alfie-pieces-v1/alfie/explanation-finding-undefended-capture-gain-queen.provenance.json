@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-queen",
+      "label": "Explanation finding undefended capture gain queen",
+      "text": "Nothing defends that queen, so it can be taken without a recapture, and this example ends with that side ahead in material."
+    },
+    "takeId": null
+  },
+  "requestHash": "2b2deffad30850e1cdb05c7e74c40d0defd89709b335dbd086204230c4bc21bf",
+  "recordedAt": "2026-10-04T07:35:44.740Z",
+  "sha256": "f51d62db25e1bf692c7967c534a86fda41e2100e365dba21a74622fbe53e835e",
+  "bytes": 24425,
+  "requestId": "hvF0iLf7ioKviJZ1TFVA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7e434ab0686a57895dc3f1430d63a5617c60a49a0a5136dcb8afbbe968482fa0",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

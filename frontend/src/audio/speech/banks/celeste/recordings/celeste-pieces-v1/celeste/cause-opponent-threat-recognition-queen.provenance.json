@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "cause-opponent-threat-recognition-queen",
+      "label": "Cause opponent threat recognition queen",
+      "text": "A threat to a queen was born with the opponent's last move, and this reply leaves it unanswered, so the queen stays open to capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "ba368b64cdc7b7ae9ff9d592a4688c442f6733a0f9be4a8da74a941fd974f61d",
+  "recordedAt": "2026-10-04T07:40:32.843Z",
+  "sha256": "7fe664163db81e9f591518452082aa5f343d98665630b552cc30b3401dfca324",
+  "bytes": 28076,
+  "requestId": "bJmJ7FnKZm1IvLczx3OW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7936c59d87904d1f5934fdb5ed5b2c8bdab77f815294df96a0fd9b11b1197948",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

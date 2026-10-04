@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-pawn",
+      "label": "Tactic deflection missed pawn",
+      "text": "With another move, the defending pawn could have been coaxed away from what it was guarding. Here, that deflection never comes."
+    },
+    "takeId": null
+  },
+  "requestHash": "0afb8b0f9c814697910f184f69080f4bd9570f3887aa62f1354605780b2cc8a6",
+  "recordedAt": "2026-10-04T07:45:33.342Z",
+  "sha256": "1f106611f67e5ffb8261f7d9428e2c32a80721fdaf19be5b0bf1355b110999b7",
+  "bytes": 26161,
+  "requestId": "WlWbswfQ0aVQkfu7Agzh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "636eaaf8fa0977e77daf2bd193884e469f923cc73a60cd02e0143edcf4aef4a8",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

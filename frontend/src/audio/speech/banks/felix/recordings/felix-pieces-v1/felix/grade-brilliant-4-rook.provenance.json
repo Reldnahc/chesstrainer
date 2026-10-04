@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "grade-brilliant-4-rook",
+      "label": "Grade brilliant 4 rook",
+      "text": "Brilliant. The rook goes; the position doesn't."
+    },
+    "takeId": null
+  },
+  "requestHash": "781b00f025e88e28763c3aa9c6aa8ac3e4c2adc5683a7b1760fbcc7d798af7f2",
+  "recordedAt": "2026-10-04T07:44:44.119Z",
+  "sha256": "1dbab5d5ded99e9c15817b27a8e3380f19bd65113a484838890de5e34bd71a00",
+  "bytes": 12777,
+  "requestId": "EruubrmdHto0ekRmGdQu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d1136ef373384be376d3da099ef709ce14f7ae07b670b06a31eeb1e33e20dda2",
+    "bytes": 65245
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "cause-opponent-threat-recognition-rook",
+      "label": "Cause opponent threat recognition rook",
+      "text": "Ah, look closely! The opponent's last move threatened a rook, and that threat is still sitting there after this one, so the rook can be captured. Little lesson: start by asking what their last move threatens."
+    },
+    "takeId": null
+  },
+  "requestHash": "6114028d75865f33a708ab6a19095299933a77a02a6ebff8dc44ce482521ecdc",
+  "recordedAt": "2026-10-04T07:38:42.213Z",
+  "sha256": "24452abee88d57c844ef40dd95ef176bf2cbcfff257263a5e10be93cb058809f",
+  "bytes": 43252,
+  "requestId": "O8B3F4Jur8sPxsURDkgk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "85bd720f76d0470338133fd1f48285d6201dcd2e1bd7c5a69cdff42edd5215dc",
+    "bytes": 226159
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

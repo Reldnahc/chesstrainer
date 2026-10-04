@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-back-rank-missed-rook",
+      "label": "Tactic back rank missed rook",
+      "text": "Another move had a back-rank mate idea in it, a rook against the enemy king hemmed in by its own pieces. This move lets it drift by."
+    },
+    "takeId": null
+  },
+  "requestHash": "a2ab864672bc8a09bbc7d57f4a4387a011bcd846f3147628b62afd6b8aab3874",
+  "recordedAt": "2026-10-04T07:31:27.880Z",
+  "sha256": "c75cbab64676fe2484a02a43aa134444b4d5ab82eef02125ba3c4369a780734b",
+  "bytes": 29922,
+  "requestId": "stqnKBVvzG2FzIevHBix",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "53b340d31ef229d159da7460d0a8458fb7db1fc51ce89d1001d5409cda529278",
+    "bytes": 154688
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

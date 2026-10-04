@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "tactic-skewer-played-rook",
+      "label": "Tactic skewer played rook",
+      "text": "A skewer, this. The attack meets the rook in front first, and once it steps aside, the piece behind it is exposed on the same line."
+    },
+    "takeId": null
+  },
+  "requestHash": "b4b2713d4d07d99f832c32eb669a300b95fd907e7a69cbe7fed82b78d37ef9eb",
+  "recordedAt": "2026-10-04T07:29:03.522Z",
+  "sha256": "fade75d3385d38b2fa2ca5d9ab50b9555b4265472509e7ff84e181879f77fd14",
+  "bytes": 27960,
+  "requestId": "uaQeETQNswthacenabtf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "310ef4b040147ac6e98d259cd8e3a1e25b097c3e58b6ab6658a05291d13f4064",
+    "bytes": 147165
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

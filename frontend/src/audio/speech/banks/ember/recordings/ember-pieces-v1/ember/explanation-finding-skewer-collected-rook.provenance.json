@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-rook",
+      "label": "Explanation finding skewer collected rook",
+      "text": "The rook in front gives way, and the piece behind it falls along the same line. That is the skewer doing its work."
+    },
+    "takeId": null
+  },
+  "requestHash": "1a3cc3adf73cb5c4096707f3a6c26c7dc58eecf2146aed213a8c2bf8903a361d",
+  "recordedAt": "2026-10-04T07:42:54.251Z",
+  "sha256": "c43247d692367b1145aa1ee61e651cb3c010b536f9cbe97fd243f6a751e0ab7a",
+  "bytes": 24422,
+  "requestId": "QRtXppdIGWk61f3B7Q4A",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9cfa4a1f3aabc5b960b683ab03b5ea8e44e7a80bae9b2e494722622d4fd75ea1",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

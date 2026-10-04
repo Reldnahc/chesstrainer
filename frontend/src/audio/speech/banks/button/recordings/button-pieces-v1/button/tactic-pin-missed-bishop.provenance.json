@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-pin-missed-bishop",
+      "label": "Tactic pin missed bishop",
+      "text": "Another move would have pinned a bishop to its king. Caught like that, it couldn't leave the line without exposing the king behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "baffa2a0b433197187f344ae93a2944f8968bfe9aa1d7fd8c1026bc783e077de",
+  "recordedAt": "2026-10-04T07:30:36.946Z",
+  "sha256": "414f94c6d5ac54bbac1bf36811ec4f123ccd5868574421ac2216c72301dd4564",
+  "bytes": 24817,
+  "requestId": "PEtZrOdONJ2Ah2VjHHqx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7eabb6295865a563ba86b1128ed1127285fbb62c3fea8bff85c72f6d955ea38b",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

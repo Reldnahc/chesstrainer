@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-escape-rook",
+      "label": "Explanation frame capture promotion escape rook",
+      "text": "Capturing a rook on the last rank, the pawn is promoted, and the same move gets the king out of check."
+    },
+    "takeId": null
+  },
+  "requestHash": "cb4265119248c89befaadc7689c4728369e1b53b5273a4daf076ba20c71840b5",
+  "recordedAt": "2026-10-04T07:36:09.963Z",
+  "sha256": "7cf9da34a788378513469e94820614757fdcfac9f95adac017eede76deab73ca",
+  "bytes": 19981,
+  "requestId": "AIs6Dw2l4qwhvi1wXNTF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8244f16732a5bad196ba8c7c434995abeede0c9d23876b5fd340ab9189840142",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

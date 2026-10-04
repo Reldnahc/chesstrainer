@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "tactic-fork-played-bishop",
+      "label": "Tactic fork played bishop",
+      "text": "A fork works because one move can only answer so much. Here a single bishop attacks several targets together, so one reply may not be enough to cover them all."
+    },
+    "takeId": null
+  },
+  "requestHash": "65e559955d2e017b8b74d2151af5ec3a4052651f0c1fefd33cc03ac7dde575aa",
+  "recordedAt": "2026-10-04T07:33:56.273Z",
+  "sha256": "07e73db5da3f5e7bf65df0611e2b264f48a073c8b6ec7adfd064998a7a2c270a",
+  "bytes": 32960,
+  "requestId": "Cycm30uC7wNMUd95ZyAm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "390fbb0b233334e7e7c9bc07e5a138e7602706e234b298788e861427ab4270ea",
+    "bytes": 167645
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

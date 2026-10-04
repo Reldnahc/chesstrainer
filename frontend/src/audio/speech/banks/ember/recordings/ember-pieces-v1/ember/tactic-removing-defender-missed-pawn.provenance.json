@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed-pawn",
+      "label": "Tactic removing defender missed pawn",
+      "text": "The defending pawn was the target, and another move could have captured it. Whatever it guarded would have lost its protection. Here the pawn survives untouched, and that is a lost opportunity."
+    },
+    "takeId": null
+  },
+  "requestHash": "32801a9827d8e69eb94dcca9a634d72099969792778691e56e12bc8fcdd256df",
+  "recordedAt": "2026-10-04T07:42:07.151Z",
+  "sha256": "78c9d5da143d949c27d4f9e405a5848daff6507ab7050c4152f769578e332f91",
+  "bytes": 38647,
+  "requestId": "TFVCF7oP6ThuHRl7wJNM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dee7f75317b7b9e0a44698d315f8cfc05baf008b32dfa4f1365bc0393f1ec0a5",
+    "bytes": 198156
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

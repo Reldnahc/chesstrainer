@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "tactic-skewer-missed-rook",
+      "label": "Tactic skewer missed rook",
+      "text": "A different move offered a skewer, attacking a rook with another piece standing behind it on the same line. If the rook had moved off that line, the piece standing behind it would have been exposed to the attack. In the game, that line is never used."
+    },
+    "takeId": null
+  },
+  "requestHash": "56fd404e17c6d54f3180e4d9993d1a7c6aa61187559d6d9cb4b4122f0384c9c0",
+  "recordedAt": "2026-10-04T07:34:05.154Z",
+  "sha256": "33f405050f98337b7d35de7c7a50223964d51339c730d6fc0634cbeea7c0ba4a",
+  "bytes": 46101,
+  "requestId": "sW88RMjMNQqCbzPk8syM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7484b782031cf02f1ff5b52947abff4da0e1f9986a4bf4ed86525c9f7b29282f",
+    "bytes": 236608
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

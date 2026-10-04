@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-queen",
+      "label": "Tactic discovered attack played queen",
+      "text": "The queen steps aside so the piece behind it can attack along the line, which is a discovered attack."
+    },
+    "takeId": null
+  },
+  "requestHash": "50a8200030aba5509b0125c0febeadd216b24ff56ea6ee93eda231a067b6a55b",
+  "recordedAt": "2026-10-04T07:46:56.358Z",
+  "sha256": "25c576594b8264687d74665dfa8bfabf7d9b371619e93bc2efdfdff9e56a0fe2",
+  "bytes": 20284,
+  "requestId": "c9JWqXe80gIanmFnzbdH",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ac28a20ca1db25593ff041119175952f18a539f5536b8e623b58af50ce5c7894",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

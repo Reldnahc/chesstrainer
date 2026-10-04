@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "support-restored-knight",
+      "label": "Support restored knight",
+      "text": "The knight left unprotected earlier is connected to its defenders again. Compare the positions to see how its support returned."
+    },
+    "takeId": null
+  },
+  "requestHash": "f87b32491c096c39098f280b06d7d39b082112eb26a071be39ae6e3428022cb6",
+  "recordedAt": "2026-10-04T07:40:47.417Z",
+  "sha256": "fac833438edf60eb64d6de005bc925364797589282e26849b7a83b925519c1f6",
+  "bytes": 25500,
+  "requestId": "5bgogWWoW7fbvtsU0pZP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9e5ca64fc92ea0aec35da26b0b279fe86668dbe53d31759f33bed261308bee73",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

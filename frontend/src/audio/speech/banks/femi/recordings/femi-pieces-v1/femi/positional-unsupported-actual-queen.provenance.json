@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-queen",
+      "label": "Positional unsupported actual queen",
+      "text": "Worth noting: the queen is unguarded after this. That by itself doesn't make it winnable."
+    },
+    "takeId": null
+  },
+  "requestHash": "57f685933e804e029b157747431a295b6bff34052916887ed6fb5bdd68deb06c",
+  "recordedAt": "2026-10-04T07:45:41.640Z",
+  "sha256": "6de092fcb79722b0a56e2227333f1b048839f36ba24a5f57df908d8e7e08654f",
+  "bytes": 20549,
+  "requestId": "DrPgnFqOX7jYrQMY2GHc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4e8092b4697fec7a78f0d5ac65450e4292a91cba137a87d9f99b0ab621ad75fa",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

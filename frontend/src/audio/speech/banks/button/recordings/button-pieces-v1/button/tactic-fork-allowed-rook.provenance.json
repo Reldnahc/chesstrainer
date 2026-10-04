@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-fork-allowed-rook",
+      "label": "Tactic fork allowed rook",
+      "text": "Hm. A rook of theirs may soon have several errands to run. The other side gets a chance at a fork, that rook attacking several targets at once."
+    },
+    "takeId": null
+  },
+  "requestHash": "c76c62df4a371e69b7c48b05c1c8a856d2a1c140aadb4239aaa9951a99b5f261",
+  "recordedAt": "2026-10-04T07:30:35.870Z",
+  "sha256": "2dbf41f23c0ca6d54f9faa2dba1d92fd4f846a36f9dd7ab7407eb20b60ab2d0c",
+  "bytes": 29899,
+  "requestId": "jvyqvzekSG2d8huDWsew",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d8fc1b35b1327652a5cf8b8d3eceed77c41fcd045871c7468019b5f29bef61a7",
+    "bytes": 154688
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

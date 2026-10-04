@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape-knight",
+      "label": "Explanation finding pin restricts escape knight",
+      "text": "The attacked knight is pinned to its king, so it has no escape at all. Moving it would expose the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "67658e46dbb5c26b51ce906f5cc393aeffa41173bbe5823086b8ee390ca5edae",
+  "recordedAt": "2026-10-04T07:26:08.066Z",
+  "sha256": "ae37941fac334b34f5cf2124b3382e5a0c15c18c36e5fb385adcaaeed4e5240c",
+  "bytes": 21637,
+  "requestId": "cBp8lJvLyMtjxUihyfPh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bc033249ce0a8fc7abdcc0582d94ff8f3262a7e334bc80d2311d17ae1e34c340",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

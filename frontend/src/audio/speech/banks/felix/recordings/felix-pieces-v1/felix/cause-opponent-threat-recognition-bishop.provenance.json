@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "cause-opponent-threat-recognition-bishop",
+      "label": "Cause opponent threat recognition bishop",
+      "text": "A bishop is now open to capture. The opponent's last move made a threat, and this move lets it stand."
+    },
+    "takeId": null
+  },
+  "requestHash": "3b8edbb226d9ede168b7e3336cd378de6fe17707f1acfd0080e4dfbbdbf353a6",
+  "recordedAt": "2026-10-04T07:44:32.104Z",
+  "sha256": "8ecb1b9397dd7fce1e5f9acf8d71f4de25da7db6e534aa2846e8fa9fc0d1dd66",
+  "bytes": 23154,
+  "requestId": "BjVjTvjw1eKexzDagroO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "307323e4097ed2a0f044bd4c687e1d23650f7a6bd5761a46054853c46aef75b9",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

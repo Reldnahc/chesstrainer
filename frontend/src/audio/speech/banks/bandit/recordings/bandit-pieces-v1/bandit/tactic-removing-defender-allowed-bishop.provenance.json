@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-bishop",
+      "label": "Tactic removing defender allowed bishop",
+      "text": "This leaves a defending bishop where it can be captured. If the other side takes it, whatever it guards could lose its protection, so see what that bishop is holding up."
+    },
+    "takeId": null
+  },
+  "requestHash": "9381e167b052eef2ed9436b58a28e28d5bfc82cc1c935e6fceeb7e49db2bd11e",
+  "recordedAt": "2026-10-04T07:36:35.451Z",
+  "sha256": "dd0d0c46d43096e875d855417a67267a3bf7c3164be4bb8e244a8b34ae2dbcc5",
+  "bytes": 31544,
+  "requestId": "RmvWxaOlKpYxssUK0cE3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a8ce6dc92c54a088953adc24fe4b5d0d934790be504b7f5a53cdd630a0a61436",
+    "bytes": 160958
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

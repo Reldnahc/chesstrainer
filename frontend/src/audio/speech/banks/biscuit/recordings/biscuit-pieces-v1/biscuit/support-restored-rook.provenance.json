@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "support-restored-rook",
+      "label": "Support restored rook",
+      "text": "Hooray, a defender is back on duty for that rook that was all alone earlier!"
+    },
+    "takeId": null
+  },
+  "requestHash": "6c4e017a56d74cabf40773e94abe252df985dcb4574abc59eedc99cd91de3b92",
+  "recordedAt": "2026-10-04T07:38:56.600Z",
+  "sha256": "228a516dcc8393bf08fc0255c4155999c806a3730f1976070dcd1b53031f7465",
+  "bytes": 17285,
+  "requestId": "pEDIeuKJXU7aY5a1FhfR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ddf6b63119c6046d03b8898721c8326f5b704d4cb7b10f2b2d1cc323469b0b8c",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-rook",
+      "label": "Explanation finding skewer collected rook",
+      "text": "Once the rook in front steps off, the piece it was shielding is captured, right along that same line."
+    },
+    "takeId": null
+  },
+  "requestHash": "0ef7621b3600dbffdb5310a94dec303eeed6fcd9bfeb33c80cb9c0c42e09f478",
+  "recordedAt": "2026-10-04T07:31:37.793Z",
+  "sha256": "1955172728e06fc40c994b690dfd1cc47b0ca92273f5a21c6561c78ce6220e21",
+  "bytes": 20160,
+  "requestId": "9lxYWkgBRLKNSGae6eZz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f0387b4f3985ca19bc3248ea20de531f1971f7c5fa9724195fcf02a408f29d38",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

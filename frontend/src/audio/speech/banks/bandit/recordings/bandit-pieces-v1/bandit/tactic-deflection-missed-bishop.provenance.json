@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-bishop",
+      "label": "Tactic deflection missed bishop",
+      "text": "There was a defending bishop to lure away with another move. That deflection goes unused, and the bishop keeps its job."
+    },
+    "takeId": null
+  },
+  "requestHash": "26cefb4a0544a123e30a1202504ccc2575b9bae09f38b56ee7c2b4930da4fc83",
+  "recordedAt": "2026-10-04T07:36:48.830Z",
+  "sha256": "f8b27dcb7e8cccf9424655d879a383bbf1ddcc812ac2ea2139391f6a2d874952",
+  "bytes": 24996,
+  "requestId": "gWHuRiuYmC6Iv8gwUutl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fae6b80dc3b722310087abb0124b9cca2f547a6753c14de79398d866920222fa",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

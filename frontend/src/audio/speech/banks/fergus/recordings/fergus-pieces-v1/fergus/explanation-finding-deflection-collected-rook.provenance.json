@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-rook",
+      "label": "Explanation finding deflection collected rook",
+      "text": "A defender gets lured off duty, and the rook it was covering is captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "7f05886cb9d9fb3f377e8736a9b467e91587db60b78159c12809d385335b8148",
+  "recordedAt": "2026-10-04T07:47:44.304Z",
+  "sha256": "a90fa7df3bf31afbf82a08c6843b0ec0c1ae78f64d5e9662b0c57023500b14d4",
+  "bytes": 15931,
+  "requestId": "DynEpXylE2X3ABNGLSfI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4e5f993d49ff3d85a50ba953f083704ce495e8bf5d2f42ec11779ec6f03433c8",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

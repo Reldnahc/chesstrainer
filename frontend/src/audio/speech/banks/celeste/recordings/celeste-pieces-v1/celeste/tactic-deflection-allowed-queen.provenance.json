@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-queen",
+      "label": "Tactic deflection allowed queen",
+      "text": "The defending queen can be drawn away now. Look at what it holds together, because that is what would come apart."
+    },
+    "takeId": null
+  },
+  "requestHash": "032b36c08322418c06576c12b3ec4ae9d010be169383d0f1f4c45ab147972a0d",
+  "recordedAt": "2026-10-04T07:40:20.147Z",
+  "sha256": "68ea1b1d85518a076950bff11e24249a4b2b29a192a5bf94e0923bc41d3c536f",
+  "bytes": 23135,
+  "requestId": "h20p88DHNPGYyxgB2ruB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "60ab2d10a53b07c0e99cb1525cbbfb7227517d9e0fa6efbd1966a51d4786097f",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

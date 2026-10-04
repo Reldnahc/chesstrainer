@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "explanation-finding-fork-collected-queen",
+      "label": "Explanation finding fork collected queen",
+      "text": "The queen fork collects one of its targets, and this example finishes with a net material gain."
+    },
+    "takeId": null
+  },
+  "requestHash": "a93a5797f30b89f7b92d040b992d446090a72c20ff622749c31b7d742be9bd48",
+  "recordedAt": "2026-10-04T07:47:36.050Z",
+  "sha256": "1fb6e7e1e3b1620dfc035290f8bde5d4e5adc2927ed191d55411ac478973f862",
+  "bytes": 20778,
+  "requestId": "KcCal4ELbqU6fHlD9pqe",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8e641346ea8b84d978a404789d37a2d30a33820e3e006f0df641490d57aa17db",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

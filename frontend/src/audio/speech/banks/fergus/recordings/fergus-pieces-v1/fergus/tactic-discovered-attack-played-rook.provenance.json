@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-rook",
+      "label": "Tactic discovered attack played rook",
+      "text": "The rook steps aside so the piece behind it can attack along the line, which is a discovered attack."
+    },
+    "takeId": null
+  },
+  "requestHash": "2c19c6493c5d07ebca3746469699c65173f163087937aad66d166e02eb6de2bb",
+  "recordedAt": "2026-10-04T07:46:54.609Z",
+  "sha256": "0971079ed31e02cd9ebb20afd2d2144b9169f14b3ed5c8c7569a206dba78e0b8",
+  "bytes": 20446,
+  "requestId": "U3CtItjH32EixZU6Z1AE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bdc0960908b9c4358c850c8bd88526d18516ef4027026f029abe479f7ab6a4af",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

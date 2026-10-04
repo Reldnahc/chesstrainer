@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-fork-missed-bishop",
+      "label": "Tactic fork missed bishop",
+      "text": "There was a chance to set up a bishop fork. This move misses that opportunity to attack several targets at once."
+    },
+    "takeId": null
+  },
+  "requestHash": "d5d6ecb6148ef4e5e33050d8bebe8064aa565c486c09743fa783b5a21ab0ed92",
+  "recordedAt": "2026-10-04T07:25:48.930Z",
+  "sha256": "e4d4a27b44c7b7d5a034f6a07ce316b4eb143fd36dcb09ee8e96912a55d13ee0",
+  "bytes": 21808,
+  "requestId": "dhEXLg5LKL3BflTe2ngo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "990a42bd9a9abd028f8a97e98446dc677ea96295cc230333997f97ec5f5ddf13",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

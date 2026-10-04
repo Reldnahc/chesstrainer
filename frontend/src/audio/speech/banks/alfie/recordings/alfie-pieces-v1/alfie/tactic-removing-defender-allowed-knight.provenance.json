@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-knight",
+      "label": "Tactic removing defender allowed knight",
+      "text": "Every defender is also a target. This move lets the other side capture a defending knight, and whatever it protects could then be left uncovered. Before moving, it's worth knowing which piece is holding things together."
+    },
+    "takeId": null
+  },
+  "requestHash": "0108dc5fe17d50f495a6f6caf3a0436721984d2e00a911ccbf62d8384d432273",
+  "recordedAt": "2026-10-04T07:34:09.882Z",
+  "sha256": "5587b055ef1d2a06ce10ce87c0fadbfe54324f6ba1e594d61f36f22c7a1f5ae1",
+  "bytes": 41150,
+  "requestId": "su8kb9Ka4Zwj4e4FlO8W",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c38e0208da4bb5fcfb183016f07b316df1e8a407dc773de65324b1908597adb1",
+    "bytes": 209859
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

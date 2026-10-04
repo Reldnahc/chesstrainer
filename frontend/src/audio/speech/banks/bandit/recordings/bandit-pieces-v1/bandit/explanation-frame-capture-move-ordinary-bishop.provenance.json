@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary-bishop",
+      "label": "Explanation frame capture move ordinary bishop",
+      "text": "A bishop gets captured with this move."
+    },
+    "takeId": null
+  },
+  "requestHash": "e2a3af28c83e0b40d00947bb52b76b41ef811806db8a402d8859fda1b72f62a6",
+  "recordedAt": "2026-10-04T07:37:50.147Z",
+  "sha256": "74c87e440a4ce76b3d9cef801738c6b5a2ad590e49a66a201236c756856ec3ad",
+  "bytes": 9388,
+  "requestId": "FnURGLmT3J67wqXkxGmd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d2c9b3d0daedddeaef095b6d0bd77ac1b848dabc17cf903902372efb1fa9db71",
+    "bytes": 44765
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

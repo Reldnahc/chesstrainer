@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-knight",
+      "label": "Explanation finding undefended capture gain knight",
+      "text": "Nothing guards the knight, so it is taken with no recapture, and this example finishes ahead in material."
+    },
+    "takeId": null
+  },
+  "requestHash": "73f06ef31e2323e427069d3cbe6efca94143e35697a21b1c89e2d4948dc45620",
+  "recordedAt": "2026-10-04T07:47:51.893Z",
+  "sha256": "4ebde2a3588d2092eced2c4ca2a50a5f57e2d651b1ccebaf454c1ac9cd0b2342",
+  "bytes": 23488,
+  "requestId": "p2zyyYdf4hh20JmsF0Qx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f91cbe7f81311e22256aec671d1c569a51f7de16ba276d793705522a178f8bd0",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

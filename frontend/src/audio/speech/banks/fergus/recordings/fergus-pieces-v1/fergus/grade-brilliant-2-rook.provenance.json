@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "grade-brilliant-2-rook",
+      "label": "Grade brilliant 2 rook",
+      "text": "The rook can be taken here. It holds up anyway."
+    },
+    "takeId": null
+  },
+  "requestHash": "e031bf5d87838a6c4557438bc505ddef9345cb7844c1bed2b2cb7e1b73fa4a45",
+  "recordedAt": "2026-10-04T07:48:11.887Z",
+  "sha256": "bba901c9f755a3c3a1fb904c14f930fe8b6297b4cd40c2d508c113d77ebe4c43",
+  "bytes": 11746,
+  "requestId": "s57cHCuaOOCDusVf92F5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1ec6b12e98a55e913e5a6185fe9a1ef8f370241dd43a50d53ae07b3af92601a8",
+    "bytes": 59812
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

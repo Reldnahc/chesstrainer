@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed-king",
+      "label": "Tactic discovered attack missed king",
+      "text": "A discovered attack lay inside another move, the king in front stepping aside to free the piece behind it. That moment never came."
+    },
+    "takeId": null
+  },
+  "requestHash": "08269a0d4715ea98c7fa4d8d41933a83e233dd25a829f2726317167b637b9714",
+  "recordedAt": "2026-10-04T07:40:01.346Z",
+  "sha256": "1ff33b24139aeeb3d36357aab0b05440ae7e7e49f69632f1611335f5ecafe501",
+  "bytes": 28490,
+  "requestId": "HZGYPBEZgp3zROvqg7Lc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fb1666ebf1ac2e877ec6027db130d89f0152b293499652cdaba844592c7bda04",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

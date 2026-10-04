@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "grade-brilliant-3-rook",
+      "label": "Grade brilliant 3 rook",
+      "text": "Holy moly, a sound rook sacrifice! Little lesson: material isn't everything when the idea is solid."
+    },
+    "takeId": null
+  },
+  "requestHash": "cce3f071b556776994845f8e31edbc205ab2935fd29dedc7594f045c883557b2",
+  "recordedAt": "2026-10-04T07:39:33.274Z",
+  "sha256": "96b06e07658df8bd7ea6ad4d6ecb8b7e165e32995b2ced173d9113b7d18cbf2d",
+  "bytes": 25777,
+  "requestId": "fM2fg55fuCCJfn7TV0k1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8f7b63691f3d397e4a8c37f2e511d680d0e0d5c8066ea0e3093f89d972abca14",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

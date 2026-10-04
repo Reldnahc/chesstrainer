@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed-knight",
+      "label": "Tactic skewer allowed knight",
+      "text": "Here's what it allows: the other side now has a skewer lined up, a line attack through the knight onto another piece. Shift the knight, and the piece behind it is wide open."
+    },
+    "takeId": null
+  },
+  "requestHash": "b0ff0eefeac9bfa7dd155b623512fc5ff1f087b0d053e30858c70ba024bd58fe",
+  "recordedAt": "2026-10-04T07:45:23.797Z",
+  "sha256": "17970d7e7054ff5e8919f0bcba74a00cc37d311fd411b15820383346529b3bd4",
+  "bytes": 36396,
+  "requestId": "n0nN5TuelBXxwrd2fhl4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "992478a857fb8d1709e58b971e458d336c3a6092bcbe5d6e50aa135959143de5",
+    "bytes": 188125
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

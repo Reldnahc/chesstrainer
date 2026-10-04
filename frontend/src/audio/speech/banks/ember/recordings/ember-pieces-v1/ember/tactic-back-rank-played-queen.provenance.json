@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "tactic-back-rank-played-queen",
+      "label": "Tactic back rank played queen",
+      "text": "A back-rank strike by the queen, and a sharp one. The king is a prisoner of its own pieces on the back rank."
+    },
+    "takeId": null
+  },
+  "requestHash": "130390ab0d1e25fbf96c68553dad9ae6bc8302a842ef13fcc6d0a08705c39482",
+  "recordedAt": "2026-10-04T07:42:26.257Z",
+  "sha256": "898837e287aa53575528ed6a3ff48f785370c5d6e234719d694af8187ad0a3ee",
+  "bytes": 23874,
+  "requestId": "E5PHkQLxaDZEcNKklJDI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9ea584e28fa2da0985a4c44e5c73b5c2d72d33ee5ddc6d546e6c164235d4728e",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

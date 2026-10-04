@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-bishop-rook",
+      "label": "Explanation finding double check bishop rook",
+      "text": "A double check. The king is attacked by the bishop and the rook at once, and nothing but a king move can meet it."
+    },
+    "takeId": null
+  },
+  "requestHash": "baa78d62ec0e041e513893ac22716168c82e90b9d144fc0484d6b4fa342590d1",
+  "recordedAt": "2026-10-04T07:43:12.427Z",
+  "sha256": "ca46f3e1215bdf215bddaa5838b1241772641defefc24dff20749baf8a89fd0b",
+  "bytes": 23328,
+  "requestId": "3qT4W69gXl9uvH59VH7c",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d170e2f1c217dead8f2b223c431a447e5b56b3e57202650e9291fc35a8006a9d",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

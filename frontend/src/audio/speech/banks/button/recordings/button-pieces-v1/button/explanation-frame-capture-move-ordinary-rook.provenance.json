@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary-rook",
+      "label": "Explanation frame capture move ordinary rook",
+      "text": "A capture. A rook is taken here."
+    },
+    "takeId": null
+  },
+  "requestHash": "eb4ff7cb519847a5a7896ba0c16c01ea731883fccd85237b63b30313ce9b79ac",
+  "recordedAt": "2026-10-04T07:32:13.340Z",
+  "sha256": "1313a9952f7a559ff7af0db9e6e201842f013effb6821fbd2b04797dcee146d9",
+  "bytes": 9579,
+  "requestId": "WOR5Lt3sDTq63UceAl7m",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ad053c039d40d78f992665e3824622231151cebbafc625a40780585b268ff31f",
+    "bytes": 48527
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

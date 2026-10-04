@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "cause-abandoned-defender-bishop",
+      "label": "Cause abandoned defender bishop",
+      "text": "A bishop is there for the taking now. This move walked its only real defender off the job. Costly, that."
+    },
+    "takeId": null
+  },
+  "requestHash": "a00de2f3dfbb836d448ac35e022cebedad9b49af74ea2c13b7e1ce2d08282054",
+  "recordedAt": "2026-10-04T07:44:24.861Z",
+  "sha256": "928f46cf6fbd0d26940b83d07b443a544c8784012d79bb22fa72fdbc598304be",
+  "bytes": 23670,
+  "requestId": "maz8W7brVMpnls3fKBbm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b5023daff0f574ca003fda3a235ebbff313ec4628f663920b273d73021aa8603",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

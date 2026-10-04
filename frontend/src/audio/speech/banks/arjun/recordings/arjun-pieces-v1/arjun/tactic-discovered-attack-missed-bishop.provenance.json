@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed-bishop",
+      "label": "Tactic discovered attack missed bishop",
+      "text": "The other candidate holds a discovered attack, a bishop stepping off the line to release the piece behind. This move doesn't open that line."
+    },
+    "takeId": null
+  },
+  "requestHash": "07dec0d7a0c0b06beb9f33a9cdceec59271479c849fa53ba5f4815c13dc58a71",
+  "recordedAt": "2026-10-04T07:32:52.627Z",
+  "sha256": "4e94f8d462ba54072abbb04ce850ec13b04feb4b0e9a67f9797ff329139108e5",
+  "bytes": 27718,
+  "requestId": "5pC4ydaNyhHudLB9m1Bt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0501e4a1f587504fb0e4efd974e32afb816ce430ab9d61b349216901ed95e00f",
+    "bytes": 141732
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

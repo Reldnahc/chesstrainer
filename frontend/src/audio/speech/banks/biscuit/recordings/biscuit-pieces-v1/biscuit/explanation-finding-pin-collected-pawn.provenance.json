@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-pawn",
+      "label": "Explanation finding pin collected pawn",
+      "text": "The pinned pawn has to stay on that line, or its king would be left open. A few moves later, it's captured anyway."
+    },
+    "takeId": null
+  },
+  "requestHash": "9ab5333d4b18a256759d1da01c93544f33c93db276376a9776eee594d6423509",
+  "recordedAt": "2026-10-04T07:38:57.237Z",
+  "sha256": "b71e8825bbbcfe6cdaf35c8e0de6a5189f93d67a12d80d149f931e70f0d6ded8",
+  "bytes": 23728,
+  "requestId": "TOxesn7Y0tkSa9Ujq7c4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fc23ee53af9ac850523d1907fd357998a2c45af2a01d849c3402cbe71f1f6379",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

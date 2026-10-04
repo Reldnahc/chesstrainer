@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-bishop",
+      "label": "Explanation finding pin collected bishop",
+      "text": "The pinned bishop cannot leave its line without exposing the king, and sooner or later it gets taken."
+    },
+    "takeId": null
+  },
+  "requestHash": "3a39cce65f45e1371ebb8f929d0ce8cbc5f4eb7ed522a6f9173b4ef394bf2686",
+  "recordedAt": "2026-10-04T07:47:27.434Z",
+  "sha256": "5a29b95cd9e96c360d4d94d8fc2eaa8aa979b845c5c95ed99340104b996e23c3",
+  "bytes": 21473,
+  "requestId": "iNsscBS3Lx0MTQvTDKzK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "705113b4787b094bc8e5b55d5dc08a06c6990ea99097e98b1da72d6bf03d3b2e",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

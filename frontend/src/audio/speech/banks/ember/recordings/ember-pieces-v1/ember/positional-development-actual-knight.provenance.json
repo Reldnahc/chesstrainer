@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "positional-development-actual-knight",
+      "label": "Positional development actual knight",
+      "text": "Development: a knight is out and in the fight. A piece left at home does no work."
+    },
+    "takeId": null
+  },
+  "requestHash": "a8d34cfa30d12f9529fa04224d3e806761e4567b33840f9fbe0fb2743e9ea0ea",
+  "recordedAt": "2026-10-04T07:42:29.844Z",
+  "sha256": "5a962351d8f5e8162fd68742c1b929e1fc67f90350d76a48ae3fcd0ff7e9b48f",
+  "bytes": 19129,
+  "requestId": "ZnolhWHlIBrw2GrAk80Y",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2e95fbeaa4f41498d2cb1b4fe4c44f8ffad2997e14bf6537818bfa38460f9ccd",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

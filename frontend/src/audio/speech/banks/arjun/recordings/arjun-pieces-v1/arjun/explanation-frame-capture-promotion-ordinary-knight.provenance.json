@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-ordinary-knight",
+      "label": "Explanation frame capture promotion ordinary knight",
+      "text": "A pawn takes a knight on the last rank, followed by promotion."
+    },
+    "takeId": null
+  },
+  "requestHash": "6509010f4fbf3e470cc9a6dd510164e9f3930ad822c5a851096d7963ae3796fc",
+  "recordedAt": "2026-10-04T07:33:50.268Z",
+  "sha256": "f7fa5ab4666e90b2f13a870a363d11c7821a7bdb275b363ceb2ee107aa9b0dff",
+  "bytes": 13483,
+  "requestId": "THYChpESi8lHQlrfMrKh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f61c698d0d4e5a5995b37eb5064431612d5d58f85b8838d352e4159ffa2f4ea3",
+    "bytes": 66499
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

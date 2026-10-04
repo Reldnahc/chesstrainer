@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-bishop",
+      "label": "Tactic deflection allowed bishop",
+      "text": "This gives the other side a chance to draw the defending bishop away. That's a deflection: the bishop leaves something important behind."
+    },
+    "takeId": null
+  },
+  "requestHash": "a07ee4bb6e8aaa360a2780e316413f2bf36b88376cd9ff3f89372a5edc90ea7c",
+  "recordedAt": "2026-10-04T07:26:02.102Z",
+  "sha256": "428511c28e555f9da2dcf6a5d72c6eeb74e40bb798c6c3ff86c90dcc688f8135",
+  "bytes": 26173,
+  "requestId": "tytmo1uDlAhMfsO9INNK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8f64c078652d58f69da01bd0c49fb7a4866e809a7c178a99df59f3bbac54b324",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

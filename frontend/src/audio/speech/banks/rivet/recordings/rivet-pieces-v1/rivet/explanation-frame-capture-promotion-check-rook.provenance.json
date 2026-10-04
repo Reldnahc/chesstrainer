@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-check-rook",
+      "label": "Explanation frame capture promotion check rook",
+      "text": "Pawn capture of a rook, then promotion on the last rank. Check is included in the same move."
+    },
+    "takeId": null
+  },
+  "requestHash": "b5b2fcd0f8a8f3fbd4016fec1ba0f3fbea188f5cfff702fd7f1508f17d0ded41",
+  "recordedAt": "2026-10-04T07:28:22.043Z",
+  "sha256": "1d79a10c36b79e5f898c5a7bcd99bae181dfdb24bece128fea0e00f97b89bf1b",
+  "bytes": 19900,
+  "requestId": "i4v4Ibr52XlN8UgMJcWc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bf9df77dce8eea5a738a5c7c5ed449d1c6234fab93520658b965fd86bbda8037",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

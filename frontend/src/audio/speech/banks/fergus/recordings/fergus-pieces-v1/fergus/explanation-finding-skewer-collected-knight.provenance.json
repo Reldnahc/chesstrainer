@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-knight",
+      "label": "Explanation finding skewer collected knight",
+      "text": "Once the knight in front is off the line, the piece behind it is captured along it."
+    },
+    "takeId": null
+  },
+  "requestHash": "482c7afae6d3e496bb8fc67ff5cef90dcd4f4f1839d6db02e9859959f3df0489",
+  "recordedAt": "2026-10-04T07:47:37.302Z",
+  "sha256": "fd3d11cc29618dc3d13215fdce32a61ee6a2ae7fd6153c3190a061c7a665bb63",
+  "bytes": 17080,
+  "requestId": "HYnW9DvyiJYJtITQrarK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e2ddd2eab752561bc01a4741e2c246e0ddd589e42dd6424e098c44731861d705",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

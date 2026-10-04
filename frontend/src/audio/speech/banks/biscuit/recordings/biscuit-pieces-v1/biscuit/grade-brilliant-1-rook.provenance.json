@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "grade-brilliant-1-rook",
+      "label": "Grade brilliant 1 rook",
+      "text": "Wow wow wow! A whole rook is up for grabs, and the move still holds water after it's grabbed!"
+    },
+    "takeId": null
+  },
+  "requestHash": "5ba7850561c70f388ca158189881a115a68dde08ffb39d7a5443596449e0f280",
+  "recordedAt": "2026-10-04T07:39:53.854Z",
+  "sha256": "51c1c104ef8ef8fa7e5ff3149aacbd583a0a036a7b30196ad829698d8ef89ec1",
+  "bytes": 23704,
+  "requestId": "HoUvDyq7QcOFNQkj7UM1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "38d59291778b7d533c15f4c8b323495188b6d15a44cd8e89e322fd469ea5ecb7",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

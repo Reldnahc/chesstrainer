@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "tactic-pin-missed-knight",
+      "label": "Tactic pin missed knight",
+      "text": "A stronger move would have pinned an enemy knight against its king, holding it in line. That elegant restraint went unused."
+    },
+    "takeId": null
+  },
+  "requestHash": "9bec18dff86b961d101049e95f2265c01824ad76436ef5b9041b34156b9ce4c0",
+  "recordedAt": "2026-10-04T07:40:00.244Z",
+  "sha256": "e10c4e57f5b2ba89055cb529236b3f44f9f844c52f185121be5465b334e94cde",
+  "bytes": 26077,
+  "requestId": "3osuSICDxkn321130KqX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "094980dd474e96ce587a37abc7e894df7108275c7f2d5e19cd533411cce532c1",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-rook",
+      "label": "Tactic deflection allowed rook",
+      "text": "This lets the other side pull a defending rook away from its job with a deflection, and whatever it was guarding might end up exposed."
+    },
+    "takeId": null
+  },
+  "requestHash": "554cdead2a1c28b8c5c55ffedc9969f9c57dfe0e125e81f156775889683cc06e",
+  "recordedAt": "2026-10-04T07:45:48.217Z",
+  "sha256": "f01b2b625992a35818793e34af01d6dbbbddb1f9acda7507944db767e2ba50b5",
+  "bytes": 27274,
+  "requestId": "ymCQGAJwL8Eomaa4Zzn7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2cfeaf4494888719e682515a37d826cf4b0b2b5e1c1484b614a9c8b9d2b6a5e4",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "tactic-back-rank-allowed-queen",
+      "label": "Tactic back rank allowed queen",
+      "text": "The king's own pieces are sitting on its escape squares. The other side's queen now has a back-rank mate to aim for."
+    },
+    "takeId": null
+  },
+  "requestHash": "9af9057a12c46b111ca5c4df86033a1bf3f43e0c6415b610478ab0ed02d1865e",
+  "recordedAt": "2026-10-04T07:44:16.817Z",
+  "sha256": "3f8c155bd4addce3f2fb4d568d8b06a0ed843ecd74a2967df5c3604408ce14d3",
+  "bytes": 24850,
+  "requestId": "jRen1lp3tYpmQR29QV34",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1621b627cb7f1b811ff6d6d96f8dbfe38a06d803a1199c7df99585b16ffcc5c4",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

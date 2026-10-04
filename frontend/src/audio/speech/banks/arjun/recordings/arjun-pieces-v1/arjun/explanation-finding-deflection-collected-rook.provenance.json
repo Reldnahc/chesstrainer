@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-rook",
+      "label": "Explanation finding deflection collected rook",
+      "text": "Once the defender is pulled off its post, the rook it was minding gets captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "b68f7e3ac4a51b3ccad0ae47c3c692b6cc881448a59bfc8a7c53fab80093a826",
+  "recordedAt": "2026-10-04T07:33:28.956Z",
+  "sha256": "3eb341700aa22c9bddfe607d4c5410f537dfba9ae1da656e1832b9e2cd70518e",
+  "bytes": 16429,
+  "requestId": "avab8Da6pWl7pg5NUEqM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2f512cebabfea782c1c813b50f2f7ee1de8a40c2b4148fd1c4be1d475c62c43a",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

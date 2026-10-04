@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "support-restored-bishop",
+      "label": "Support restored bishop",
+      "text": "The bishop left unguarded earlier has support again. Compare the two positions to see how its protection changed."
+    },
+    "takeId": null
+  },
+  "requestHash": "fadb7e4822faa2bcc885851120010e2d67be5db9ed6cf21d6196974c86064e02",
+  "recordedAt": "2026-10-04T07:26:17.627Z",
+  "sha256": "f56305886f936fd35d9b0fad9a0e457a724e3445fc7b185dfefd6ccee628a710",
+  "bytes": 22472,
+  "requestId": "xvECMtHiGwhc852IZOWi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3abbae7d4aa67ab5ba847e03fd9fd0f2e4191971dd8c59bb88193a59131fa2f6",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

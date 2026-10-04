@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "positional-support-alternative-bishop",
+      "label": "Positional support alternative bishop",
+      "text": "Another move would've given the bishop a defender, so it wasn't left loose."
+    },
+    "takeId": null
+  },
+  "requestHash": "15804ecffa6ba44897e4e632b11ce05573c10193aa16b29f8346480fb544175a",
+  "recordedAt": "2026-10-04T07:37:23.133Z",
+  "sha256": "83c90e093b52630de3103fc6e819986310df8ed9a525db5b1a843b18d0f696bf",
+  "bytes": 15273,
+  "requestId": "CBoRcCMGVo0lfei1cz3a",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "789b94aebf97ad09ed77c97eee931ff0a8929b2f367c93c5d63337956b0969a1",
+    "bytes": 74022
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

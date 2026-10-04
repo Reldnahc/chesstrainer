@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape-knight",
+      "label": "Explanation finding pin restricts escape knight",
+      "text": "The attacked knight is pinned to its king, so it has no legal moves at all; every knight move would expose the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "fc4d145ac67d44ace2cf29fd0991ebd94af17da6c2ef2d2b3b9b1673a7949a20",
+  "recordedAt": "2026-10-04T07:32:57.009Z",
+  "sha256": "358160f72c2da750bd64a12a813dc67a0269808ddfcb6acc5c2e1db708791471",
+  "bytes": 24809,
+  "requestId": "m9zweI7XJXrZsTNaZOP1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a1a6be4a2241148535a87abd91c982a55223d29ba83813f57547bc321f8a3f2c",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

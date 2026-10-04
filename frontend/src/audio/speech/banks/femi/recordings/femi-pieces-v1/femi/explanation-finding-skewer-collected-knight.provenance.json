@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-knight",
+      "label": "Explanation finding skewer collected knight",
+      "text": "As soon as the knight in front steps off, the piece it was screening gets taken on that line."
+    },
+    "takeId": null
+  },
+  "requestHash": "156b896e18092950879779a9b3fc4e60b5c836be56a80b83fd6a152d164951f6",
+  "recordedAt": "2026-10-04T07:46:01.602Z",
+  "sha256": "cc3fb5ac082c2bd09c4102d7dcb1751d158dcf1c87c8821a4b63fb4db2e99b7c",
+  "bytes": 18549,
+  "requestId": "2R8CA0j3Hkw6fHMCbwQy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a7cb5459656cab50d59d2a6a4bb69be135f5c725c203180fa5b9225e78834461",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

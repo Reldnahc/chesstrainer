@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "grade-brilliant-3-rook",
+      "label": "Grade brilliant 3 rook",
+      "text": "A rook left out on the street, and the checked line says it's no free lunch. Sound sacrifice."
+    },
+    "takeId": null
+  },
+  "requestHash": "a1a015cc58c31805e526e2e04534ec6c12bd18bb1bc528364574a1ca1a53d172",
+  "recordedAt": "2026-10-04T07:37:39.228Z",
+  "sha256": "60f826ed7f58d5a342add6917505a710d2836e7d27aecc5b58b9802f4c7b1cfb",
+  "bytes": 21401,
+  "requestId": "LkgbH04AzcbxSsLFwFt3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d7a8606ee7b2ffc93efae4cfc035016caf050bc692c9d30c0650a0328492d7ef",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

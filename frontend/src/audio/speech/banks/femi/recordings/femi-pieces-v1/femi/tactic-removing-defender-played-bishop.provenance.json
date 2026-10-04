@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played-bishop",
+      "label": "Tactic removing defender played bishop",
+      "text": "That's the clever bit: the defending bishop is captured, and nobody takes over its job. Whatever it covered is unprotected now."
+    },
+    "takeId": null
+  },
+  "requestHash": "b7536e8b6482d6c4be6e7112d1b228a9fe21466259eee89b9134f20b367db7ec",
+  "recordedAt": "2026-10-04T07:45:33.475Z",
+  "sha256": "382961fe9dd5482d4978f5eb2ded221ae587a9413996a74566858536195e0288",
+  "bytes": 28875,
+  "requestId": "78hPQA0Vj4du0cRfX3Jn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9d35ffcfad1db798e7cf586a15a075ac605fb8299f746c1921a1d2d30a38295f",
+    "bytes": 145911
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

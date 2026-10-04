@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed-bishop",
+      "label": "Tactic discovered attack allowed bishop",
+      "text": "Hold that thought: the other side has a discovered attack to play now. Watch for their bishop moving off a line to reveal the attacker behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "db384cb7016d693367fabbe0d92ffc0299a06db48c28e5f0e22a9d0b4ed7839f",
+  "recordedAt": "2026-10-04T07:45:30.992Z",
+  "sha256": "ddb40ac58d33195b10f4172b977824de578e8441f3f69fc35c6a15da5e54d7ee",
+  "bytes": 27688,
+  "requestId": "4oDH9YqerSrNRUpWVOYN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ce9b30bbb3b3689e9bbc8032ed4db6510e6bd4d52e755c63c16aeac6c1d469d4",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

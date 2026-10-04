@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-rook",
+      "label": "Tactic discovered attack played rook",
+      "text": "A discovered attack, and a forceful one. Unmasked: the rook in front moves, and the attacker behind it is free. Clear the line, and the hidden piece does the work."
+    },
+    "takeId": null
+  },
+  "requestHash": "67c1e58d7c8392bf58f1c5e6a90a02d66415487a1c764c47854fc826bc96aff4",
+  "recordedAt": "2026-10-04T07:41:58.133Z",
+  "sha256": "36c82629580902ea5e048c7fea6ef52286904755e473eebac115dca6a5e8752d",
+  "bytes": 34872,
+  "requestId": "rXTORCMDbBAvnNxS9k50",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6ef7395eeb96ec0a7ed250671583e43d067bf84867aeaca9f4f6ebee720c0b01",
+    "bytes": 182692
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

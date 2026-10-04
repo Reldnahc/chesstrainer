@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed-rook",
+      "label": "Tactic discovered attack missed rook",
+      "text": "A discovered attack lay inside another move, the rook in front stepping aside to free the piece behind it. That moment never came."
+    },
+    "takeId": null
+  },
+  "requestHash": "3955362ec03b7e72258388028df1feee5db14aa32f491b5d2e29ee469d61167d",
+  "recordedAt": "2026-10-04T07:39:57.018Z",
+  "sha256": "c34cf7ba8558b4771bbb795371b211c3fd4092623655566325dbbe76ef69db8e",
+  "bytes": 29069,
+  "requestId": "AwezOxCKOh7C7sbc98Jm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ef2bfc7b173a3292deff94b36b9982235de273e7d2bab6d058cbffa875c2d196",
+    "bytes": 147165
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

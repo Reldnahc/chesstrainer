@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-fork-missed-pawn",
+      "label": "Tactic fork missed pawn",
+      "text": "Set the other candidate beside this one, and a fork appears in it, a lone pawn aimed at two targets. This move takes the game down a different road."
+    },
+    "takeId": null
+  },
+  "requestHash": "9920a3a0c830ee756810d08c1acb52abca41378679ce8b80fce0f81874d7a316",
+  "recordedAt": "2026-10-04T07:32:25.407Z",
+  "sha256": "10fe83b1211a062a2ac6652f5de17211939ec9a5eb5582f864c1a499ba273168",
+  "bytes": 31409,
+  "requestId": "F2lBH2oulAA9bLX5aqv3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9fe4e8640aa387184f93bca9f5c008991228e34b4e8226b6eb9c5f3733bb9f62",
+    "bytes": 162212
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-missed-knight",
+      "label": "Tactic undefended capture missed knight",
+      "text": "The stronger move simply took an undefended knight. Nothing guarded it. Loose pieces must be checked before every move."
+    },
+    "takeId": null
+  },
+  "requestHash": "35f2c69c4dc231ce101d19c079ae645165e19b4151f0a65fb0ba5fc956ddd3d7",
+  "recordedAt": "2026-10-04T07:41:53.369Z",
+  "sha256": "1cf4cf215a4615721f417d47ce660a1dfa5592e4579a5883da481d7f96b32ce6",
+  "bytes": 25520,
+  "requestId": "X895kjePjbKLYKBk3G3Z",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5eb155aff8b970aa58440235d131a3e9e63e62366e80f207a2a2aa33b970cdaa",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

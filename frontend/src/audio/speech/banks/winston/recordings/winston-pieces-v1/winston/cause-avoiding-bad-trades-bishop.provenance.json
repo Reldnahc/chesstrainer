@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "cause-avoiding-bad-trades-bishop",
+      "label": "Cause avoiding bad trades bishop",
+      "text": "This capture lets the other side recapture the bishop, and the bishop's worth more than what it took. Count both sides of the exchange, the recapture included, before judging the first capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "4e99aa74b0a5947f6a6103301596fa0200889d2a2729a730d13f7a775f1aca7e",
+  "recordedAt": "2026-10-04T07:29:29.882Z",
+  "sha256": "8d8018f814f88d15a72c15c8f2664a797f8821e766bf6c725dbba3f6b30a2bd1",
+  "bytes": 35438,
+  "requestId": "myTfpY4l1oWwjN7G57RN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8e9496587a23e28ed372839dc1797ac921fa6f0d7e2b55167a05d18b8c5b599e",
+    "bytes": 183946
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

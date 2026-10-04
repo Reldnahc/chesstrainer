@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "positional-development-actual-bishop",
+      "label": "Positional development actual bishop",
+      "text": "Out comes a bishop from its starting square, ready to take part in the plans."
+    },
+    "takeId": null
+  },
+  "requestHash": "194b33cb49365fff06032018a39fc3930644822c89d6b9afd88552f75056ce50",
+  "recordedAt": "2026-10-04T07:33:08.523Z",
+  "sha256": "bd95ddb9540356eb2d1a95d9640eaacb15f0c7db50027c84182a9f6ff034b1b0",
+  "bytes": 15372,
+  "requestId": "BNJ4oGXEmCdJgqJhrdb5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8fad880b88fa82de0b1c7cd83404ae41cc5d7e2250bf70b47d7e9b8f587a58b7",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

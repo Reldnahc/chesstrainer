@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-knight",
+      "label": "Positional unsupported alternative knight",
+      "text": "Another move would have left a knight with nothing guarding it, and that alone doesn't mean it could be won."
+    },
+    "takeId": null
+  },
+  "requestHash": "0cc613f112e47920ea1ba8ae11bc945e988861e82d3f2bda48a5577c1c1d0c3d",
+  "recordedAt": "2026-10-04T07:38:46.892Z",
+  "sha256": "ff0e740bd9ac9b412a993a17913d9112562eda66257d7691fd500568560891f3",
+  "bytes": 19055,
+  "requestId": "LXCyNh6U2bqW6rSWoYdf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "589bd7c86db840c59b714a9dbd007d6f09ca373d943fcafc818ed4e34f91a93d",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

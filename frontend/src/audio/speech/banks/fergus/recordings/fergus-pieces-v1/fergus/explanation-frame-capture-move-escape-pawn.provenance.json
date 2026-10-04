@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-escape-pawn",
+      "label": "Explanation frame capture move escape pawn",
+      "text": "Taking the pawn happens to end the check as well."
+    },
+    "takeId": null
+  },
+  "requestHash": "34219f5884c845b707f3f3dddfccd1aa6ec0f0d8e3541148ff9b062e02123bc8",
+  "recordedAt": "2026-10-04T07:47:56.825Z",
+  "sha256": "576c8f474b2d49b8fad2c6f29654dcdf95bdb5e43a7a54e0953f126090fc74d1",
+  "bytes": 11010,
+  "requestId": "cqAGhwiNd62as9UMcN1M",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6a0015c2fda0ea847dd96589902bbb6c7b7d2280bb921b307b4e6ce38b0079c0",
+    "bytes": 53542
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-fork-missed-knight",
+      "label": "Tactic fork missed knight",
+      "text": "Set the other candidate beside this one, and a fork appears in it, a lone knight aimed at several targets. This move takes the game down a different road."
+    },
+    "takeId": null
+  },
+  "requestHash": "040c63f4312f0eba61bf796c6cc2d6df5fe0d366ea74950e5f8917d9d6dab296",
+  "recordedAt": "2026-10-04T07:32:28.265Z",
+  "sha256": "be7275d1cbc6856a9da074f64af37cb361446f9130c89b17a72f7fb8ee6a795b",
+  "bytes": 31658,
+  "requestId": "1lXQaXdDFTjJCgtJDrCv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "011fc614f11c8494a8ca68814c6cca2b401ebc36bc725ee327866abefc2247ce",
+    "bytes": 163466
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

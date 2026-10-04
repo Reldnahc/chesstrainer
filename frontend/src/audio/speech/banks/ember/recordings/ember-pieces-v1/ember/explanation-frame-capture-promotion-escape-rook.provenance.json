@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-escape-rook",
+      "label": "Explanation frame capture promotion escape rook",
+      "text": "The pawn captures a rook on its way to promotion, and that move also frees the king from check."
+    },
+    "takeId": null
+  },
+  "requestHash": "489d7cfc4d558d0789abd3ccc5f3d44c21afa1cb8cfd2a610b913d86d694a986",
+  "recordedAt": "2026-10-04T07:43:14.501Z",
+  "sha256": "ca3a6c53c526ea5df7d5e7c23ab35469a37bf04ab703febd8f0ec93613ae68ac",
+  "bytes": 18912,
+  "requestId": "Schf2SKZE9weylkXBiTu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "eab2d2a03e2e4b3c260c77163a39f1df363fc5a7d68a618251560b1fa45eeb2b",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

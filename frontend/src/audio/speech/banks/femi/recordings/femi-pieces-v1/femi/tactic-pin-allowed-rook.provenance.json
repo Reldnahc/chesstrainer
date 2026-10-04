@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "tactic-pin-allowed-rook",
+      "label": "Tactic pin allowed rook",
+      "text": "Easy does it. The other side gets a pin against the king here, and the pinned rook can't leave its line or its king is exposed."
+    },
+    "takeId": null
+  },
+  "requestHash": "fd5568ede44785b30dfcb0635dd3ba7c3b4ff03400ac7aaa512b3b082660a34b",
+  "recordedAt": "2026-10-04T07:44:54.857Z",
+  "sha256": "8a7f6d35c70f388197b3e41bd499e0132533275a7657d330c3cb98aa043729eb",
+  "bytes": 28815,
+  "requestId": "vFkz1ixyJICaRaC41Bww",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3d7ae86c06f36d3795cf71a4eda5374af6ff6482deeae634c880a55bcd646ba1",
+    "bytes": 147165
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

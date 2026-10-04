@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "tactic-fork-missed-rook",
+      "label": "Tactic fork missed rook",
+      "text": "A fork waited inside another move, a single rook stretching toward several targets together. It's a pattern worth keeping in mind, though it went unplayed."
+    },
+    "takeId": null
+  },
+  "requestHash": "e6fb08dbfcca7535b3f8b33513760256a204cbc3feac975e1d1017bb4168a025",
+  "recordedAt": "2026-10-04T07:40:04.340Z",
+  "sha256": "3c18d8af2ab160a28f56cbda31d32138c42501778c3d18046002e2d8c240a469",
+  "bytes": 32450,
+  "requestId": "IUxNqhiTjaxWduK77wmX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c8af62a8c7758bf31d7e1be52852651cfdf09bba6b1059c16ca8beca4a701b89",
+    "bytes": 163466
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

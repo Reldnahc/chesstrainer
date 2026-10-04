@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-fork-allowed-rook",
+      "label": "Tactic fork allowed rook",
+      "text": "Here's an experiment worth running: which enemy rook could now reach a square that hits several targets? After this move, a fork like that is on the table."
+    },
+    "takeId": null
+  },
+  "requestHash": "53588f244fe7afed62d6704a607cac77259b524cc1733c46c3fb31dd20d47da4",
+  "recordedAt": "2026-10-04T07:32:20.876Z",
+  "sha256": "70c85fc3061f5fc4c510d0f95483fd3a4d99e74fd9cd8b5cfc04fd836ed4ba07",
+  "bytes": 31598,
+  "requestId": "nOkfFXN8zwHVX0M4GOnK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f886c70220f6f87b504292ca4303b1e58ba3649ce073f42ee7be10ea12a68e2f",
+    "bytes": 164719
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

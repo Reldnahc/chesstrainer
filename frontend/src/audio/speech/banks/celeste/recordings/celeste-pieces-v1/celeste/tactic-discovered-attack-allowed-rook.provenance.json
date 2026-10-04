@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed-rook",
+      "label": "Tactic discovered attack allowed rook",
+      "text": "Behind a rook on the other side, an attack is waiting to be released. Once that rook steps aside, the piece behind it is free to strike."
+    },
+    "takeId": null
+  },
+  "requestHash": "53f47c1871b10eef1fe9509958850385a73be3709fb343f4b7afe329b63795e8",
+  "recordedAt": "2026-10-04T07:40:22.034Z",
+  "sha256": "84000d583d3dfa75759d99d2f2de017a8cd60af2975593c31ceb06df1c44b7f4",
+  "bytes": 29293,
+  "requestId": "HjzhksFkIM6b63gCryb7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6dd98c29d26c6acd3bab99f47c6ba8dbda972afab76da80d26dedef28b01210b",
+    "bytes": 148419
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

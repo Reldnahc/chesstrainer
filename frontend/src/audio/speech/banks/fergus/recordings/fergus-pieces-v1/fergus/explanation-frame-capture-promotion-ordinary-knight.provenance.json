@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-ordinary-knight",
+      "label": "Explanation frame capture promotion ordinary knight",
+      "text": "On the last rank, the pawn takes the knight and promotes."
+    },
+    "takeId": null
+  },
+  "requestHash": "c9c33fb135f839b2bcf6adcd1e8d8f2c5ecf4583cf3cd659b7e9a639692c24a6",
+  "recordedAt": "2026-10-04T07:48:02.042Z",
+  "sha256": "b0a44e52826c4c4afc69774f13c2a94a63f7d5881ef4adcb62089e995b5bd7e6",
+  "bytes": 13093,
+  "requestId": "kybCOpzAzKGc5ayYfKfQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0c77938fe55d6ba8f7cdfc279ea33e3b55a3766329e0ea71aa97743d259d5f3c",
+    "bytes": 65245
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

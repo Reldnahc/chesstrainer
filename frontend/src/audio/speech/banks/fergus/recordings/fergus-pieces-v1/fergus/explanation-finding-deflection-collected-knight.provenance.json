@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-knight",
+      "label": "Explanation finding deflection collected knight",
+      "text": "A defender gets lured off duty, and the knight it was covering is captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "bcbba96cca18e45c46b0790530e9921f4d77126a6af03ca56303842de7b4acd0",
+  "recordedAt": "2026-10-04T07:47:41.522Z",
+  "sha256": "8962f545caf959655e48049fc3906afee58124e788d2dc99326731483cd7bc09",
+  "bytes": 15827,
+  "requestId": "cuCvYZsler5Ds0xHAlaI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cdf1e33fd18137eed66fc361e1444873f6d183189c88b79595be644ada3b8d7a",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

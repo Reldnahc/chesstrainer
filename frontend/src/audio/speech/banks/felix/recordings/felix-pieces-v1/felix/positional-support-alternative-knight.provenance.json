@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "positional-support-alternative-knight",
+      "label": "Positional support alternative knight",
+      "text": "Covering the loose knight was the alternative. Cheap insurance."
+    },
+    "takeId": null
+  },
+  "requestHash": "483786c22c6ecd7a681c1951179115fb04d2d7fa7e4b5bd0a21458f6384910ac",
+  "recordedAt": "2026-10-04T07:44:20.638Z",
+  "sha256": "699af61cfd3b8a4c3766aacd839c8f43bb649fe580cfaa35cfaad045f1061970",
+  "bytes": 14007,
+  "requestId": "TmoA5829AZP6RROGfDXO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ff9f90a69f325afa8a4a98187db157973131680547bdcab6658dbfe7845c79ae",
+    "bytes": 70261
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

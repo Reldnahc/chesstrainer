@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "positional-development-actual-bishop",
+      "label": "Positional development actual bishop",
+      "text": "A piece on its starting square has few squares to work with. This move brings a bishop off its original square and into play. Notice where it stands now and what it can reach."
+    },
+    "takeId": null
+  },
+  "requestHash": "3c17e4e53ba4f851c7ad53abd3e2fb37193e3590da5398ad82ee2a6ed58a3c3d",
+  "recordedAt": "2026-10-04T07:35:24.701Z",
+  "sha256": "94315700a1b830da9f067b1fda717bae3ba7109ccdfd6ba8020dc50f464c4654",
+  "bytes": 34189,
+  "requestId": "KybTD96BIRrjkUCBQpO0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fa23105074e6e914a66bce6e72ce3db4417b0f6e2f1031d4491695adaa5aa2b3",
+    "bytes": 173915
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

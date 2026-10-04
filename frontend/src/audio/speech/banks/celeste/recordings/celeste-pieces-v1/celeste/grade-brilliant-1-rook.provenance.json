@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "grade-brilliant-1-rook",
+      "label": "Grade brilliant 1 rook",
+      "text": "Oh, how beautiful. To give a rook away and lose nothing of the idea: that is chess at its most graceful."
+    },
+    "takeId": null
+  },
+  "requestHash": "8d7c2ca3693080df92b60d4321556bcfb8e115c79236b3d5dc8a3cb7a2669b0b",
+  "recordedAt": "2026-10-04T07:41:43.044Z",
+  "sha256": "4701f8d9de8ef5b37f7d92dbb4768c42eab8a38aea2afe1b2c20358f482757ac",
+  "bytes": 27473,
+  "requestId": "jKWHRi9wsL5wsMvXt1mm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "62bdf6e4e20d228119c40e5b496f4f369138ff96d2b95c8a8569806f41dfbada",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

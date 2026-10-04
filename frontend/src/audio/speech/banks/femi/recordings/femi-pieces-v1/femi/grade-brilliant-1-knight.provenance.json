@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "grade-brilliant-1-knight",
+      "label": "Grade brilliant 1 knight",
+      "text": "Oh, now that's brilliant. The knight put right on the table, and it holds up. Love it."
+    },
+    "takeId": null
+  },
+  "requestHash": "09eb7c5e6d596cc4f473adf799ef86e7ef233af0db98949afd3d0451c125d5c6",
+  "recordedAt": "2026-10-04T07:46:38.444Z",
+  "sha256": "08ff6da4e8e69cc40b5a42384fa5708dd8effc29d47c5f82e5854d5599a35526",
+  "bytes": 21771,
+  "requestId": "cbmEq03UT7GufioQklcQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "98893390a0721f9c26097deb7e4600cb60a8c87f8f2cb7de4a3de63297795051",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

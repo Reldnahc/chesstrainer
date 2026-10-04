@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "positional-development-alternative-knight",
+      "label": "Positional development alternative knight",
+      "text": "A knight could have been developed with a different move, coming off its starting square for the first time. That's worth comparing with the move played, especially in the early part of a game."
+    },
+    "takeId": null
+  },
+  "requestHash": "9b60aa3f343eec4749e3ead262a2529ee29893372ee453d0fc245f6b7d81feb2",
+  "recordedAt": "2026-10-04T07:35:27.566Z",
+  "sha256": "c27e2df89f53a128a9313936701d834141154145b8f4553314ae458d6f753736",
+  "bytes": 31873,
+  "requestId": "WqGrw9St2eUydpzWoN6Z",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5c8ef330440b901661188ecb6ba78f966aed2e17c793dc8857b579b228a57113",
+    "bytes": 160958
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

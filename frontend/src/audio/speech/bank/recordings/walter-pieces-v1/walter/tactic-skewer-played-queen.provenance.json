@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-skewer-played-queen",
+      "label": "Tactic skewer played queen",
+      "text": "A skewer is the idea here. When the queen in front moves, it exposes the piece behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "f6d443a234e29807ee799dc2791d8a0ef4ca44100f8e0d462ed33dfb7d3761c5",
+  "recordedAt": "2026-10-04T07:25:53.900Z",
+  "sha256": "7f5083ebf92853c8b7365a8f0e6d2466833bebf9311d21ac899ab23e63157b93",
+  "bytes": 19858,
+  "requestId": "9W2M3HSKwN3XAZyktY7P",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "09b80a001cb027d4bda7f577121ddaa94f67a5624857b98c81a44d0d0453afc9",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

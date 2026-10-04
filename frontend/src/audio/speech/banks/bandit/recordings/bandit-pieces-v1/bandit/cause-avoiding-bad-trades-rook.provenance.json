@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "cause-avoiding-bad-trades-rook",
+      "label": "Cause avoiding bad trades rook",
+      "text": "This capture looks like a deal until the recapture takes the rook, worth more than what it grabbed. Count the whole trade before calling it a bargain."
+    },
+    "takeId": null
+  },
+  "requestHash": "ad18dc4f32320d94ad966fa4eecd425159c9cde38a9fbf88da519c99e0e6ebb7",
+  "recordedAt": "2026-10-04T07:37:05.183Z",
+  "sha256": "5e824d4999b5348a01b5c9f1a9420ae0de2801ff6b5c93e7dfa4b5a90fdc8885",
+  "bytes": 29954,
+  "requestId": "lDLK2RxET3hn1If2UEjP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3ff5c6272ac3106f44a8bbfd1b30a8e237c87f69937d7472582d6ed6fbc7ff95",
+    "bytes": 150927
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

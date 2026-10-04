@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-rook",
+      "label": "Explanation finding skewer collected rook",
+      "text": "Once the rook in front is off the line, the piece behind it is captured along it."
+    },
+    "takeId": null
+  },
+  "requestHash": "ec0e26830ee9f5669939da7567fc7c4f963a7014d20106810f2f986384384393",
+  "recordedAt": "2026-10-04T07:47:40.464Z",
+  "sha256": "7a899a7042cf4b397c15bd70d68660a50e63530bdf220d57756b9d29c27326bd",
+  "bytes": 17804,
+  "requestId": "WYoGLrcKTSLh5PqWjpti",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2c6632687c08f4f2bcb646c1b7a6b6937b5641d448422fbe2ca5a34dc7032fca",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-knight",
+      "label": "Tactic undefended capture played knight",
+      "text": "Nothing protected that knight, and it's collected with ease. It's always worth looking for the pieces left on their own."
+    },
+    "takeId": null
+  },
+  "requestHash": "4f6ac897e85588d414cecbded14f5ab2e4608577cd07e42300c62f9d85e4cd23",
+  "recordedAt": "2026-10-04T07:40:03.193Z",
+  "sha256": "6e2b07b0d13a146b1651dd25c007f8cad53eabbf0ab940aef877130f00edb81b",
+  "bytes": 23503,
+  "requestId": "FrQ6N3gK4Wrg9eZI9lTz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1fdfdfecfb6fabe39ef2780054bfeb249c14a1f988f20aae4ece0870eb026f5c",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

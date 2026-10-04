@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-fork-missed-rook",
+      "label": "Tactic fork missed rook",
+      "text": "Another move had a fork in it, a rook reaching several targets together. This move walks past it."
+    },
+    "takeId": null
+  },
+  "requestHash": "6967d0a1e9b17d7b00c64e8ad46160da613d3f4d9350af7d51b306f19a28e335",
+  "recordedAt": "2026-10-04T07:30:45.702Z",
+  "sha256": "3c216bd2b975fa9354373b539b6f29fdad6c9668d156f96e910e0107256ab3c9",
+  "bytes": 21792,
+  "requestId": "HTdZIZtc5NdOUVsV9MNF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "de96ff64968f80ceeb92f0b613e2e50636e629aaca11ee29a86fb797748f6b46",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

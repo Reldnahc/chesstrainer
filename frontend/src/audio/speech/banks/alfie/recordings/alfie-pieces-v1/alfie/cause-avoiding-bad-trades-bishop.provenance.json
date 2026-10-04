@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "cause-avoiding-bad-trades-bishop",
+      "label": "Cause avoiding bad trades bishop",
+      "text": "Every exchange comes in two halves: what is taken and what comes back. Here the bishop makes the capture, and the recapture takes the bishop itself, worth more than what it won. So count the whole exchange, recapture included, before judging the first capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "15f8840c0d19aa544faa68cb00307d2b750998f7ff89c55d6c9ebc6fa9ba2b89",
+  "recordedAt": "2026-10-04T07:35:11.860Z",
+  "sha256": "cc311ac6e3c04b8f606e80d27b62f4163c5dbc683dc981fb597c0a03bd9784d8",
+  "bytes": 52127,
+  "requestId": "teztROCxJhgFuBmQeuvK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2348c6b24cfc3279079d6748dde58e7602919f3cdb581364e5ce5d960d77b0fa",
+    "bytes": 271299
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

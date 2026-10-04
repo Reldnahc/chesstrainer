@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "support-restored-rook",
+      "label": "Support restored rook",
+      "text": "The unguarded rook from earlier has a defender now. Comparing the two positions shows exactly where its protection came back from."
+    },
+    "takeId": null
+  },
+  "requestHash": "1884e9b467ae8c62578370457a500e6b9ed4055a26a890e8a54759c553cba0cd",
+  "recordedAt": "2026-10-04T07:35:17.720Z",
+  "sha256": "5ba4e9b984dd48a25345fe06bbbe430f90b42df19601938126df992918d6910f",
+  "bytes": 24853,
+  "requestId": "XsOb66OXlIzNPKZfIqQm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "11c5096908241430bd80d3e7dddc15340b8821b6daae8a695337ee6942fd5b36",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

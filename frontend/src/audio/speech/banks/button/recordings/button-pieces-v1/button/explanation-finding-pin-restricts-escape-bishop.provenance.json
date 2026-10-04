@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape-bishop",
+      "label": "Explanation finding pin restricts escape bishop",
+      "text": "The attacked bishop is pinned to its king, so its escape is narrow. Only moves that keep the king covered are allowed."
+    },
+    "takeId": null
+  },
+  "requestHash": "45d5711fca0e6f5281a6269b5851cb02627b3b99c513ce094ecd8f6b2aa0bd41",
+  "recordedAt": "2026-10-04T07:31:18.889Z",
+  "sha256": "54a19f280bbb284eed61fbf70ae0b50a50bae0de753fd1d9b307ca56fdfd8ae9",
+  "bytes": 24761,
+  "requestId": "inPuoCe6bNX9RCIeeSB0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7895c195b84f665507737e32849083db06281233ea2f1d40716a38c3c5eb0b68",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

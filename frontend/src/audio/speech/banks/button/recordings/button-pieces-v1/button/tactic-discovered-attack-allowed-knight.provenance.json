@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed-knight",
+      "label": "Tactic discovered attack allowed knight",
+      "text": "A knight of theirs is screening another piece along a line. This allows a discovered attack: the knight steps off the line and uncovers a threat from the piece behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "80ffa68c354f4ec766e8aacc3c43ddcd9c4c69d4dbcaabe3f3fd73ff413faa67",
+  "recordedAt": "2026-10-04T07:30:56.387Z",
+  "sha256": "05b3d50869d6ebc9f6ae73227752bb7eccef991967ca9232c8dee16c948c98e5",
+  "bytes": 31975,
+  "requestId": "wiB8YUGjCkPmx0OxROsa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "68ea62f78baaf2c3b90f5915cb8e462c1a57a50b7387d348331ebe22adee8885",
+    "bytes": 163466
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

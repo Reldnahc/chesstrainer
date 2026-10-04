@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "cause-abandoned-defender-bishop",
+      "label": "Cause abandoned defender bishop",
+      "text": "The bishop had one real defender, that defender has left, and the bishop can now be captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "8e7d9c20092b53d91d41801470920f35f801fd01a700f91294b7bd53f9b25d16",
+  "recordedAt": "2026-10-04T07:47:31.979Z",
+  "sha256": "2856fadab610746efdf9c1f656abc2354d05db6f8c71a27a27de9ff64713b875",
+  "bytes": 20809,
+  "requestId": "9x79ch7Bqa9oi985SOcL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "09c058095eed66675962009f9c634f1c64ac4abe1be887bb3dd2480e2ba1f102",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

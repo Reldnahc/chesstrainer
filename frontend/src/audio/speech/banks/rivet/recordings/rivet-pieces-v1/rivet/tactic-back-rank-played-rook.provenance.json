@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "tactic-back-rank-played-rook",
+      "label": "Tactic back rank played rook",
+      "text": "The pattern is back-rank mate. Escape squares: occupied by the king's own pieces. Follow how the rook reaches it."
+    },
+    "takeId": null
+  },
+  "requestHash": "c2d59244a837d9b939e62d1394ff39db1060c69d2f72de5762ba69ba2cad1c23",
+  "recordedAt": "2026-10-04T07:27:44.275Z",
+  "sha256": "1e70221d678c37fc3de84d6658ffdfed7b56cf30a75260ad144d0964ab14c5ca",
+  "bytes": 26394,
+  "requestId": "CZtAuQExDY48LfWDOfvW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "797b10ee55ac9fc99bb7afbe57e05324db626e338d1b4536c654adc4f36989fc",
+    "bytes": 136716
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "tactic-fork-played-rook",
+      "label": "Tactic fork played rook",
+      "text": "What a graceful idea. A single rook reaches out to several targets in one motion, and one reply rarely saves them all."
+    },
+    "takeId": null
+  },
+  "requestHash": "f04c9d6b08b55b43615d1ad537190cfa2a4d5ea085470eab5a1c6b0b3b04cca5",
+  "recordedAt": "2026-10-04T07:39:40.661Z",
+  "sha256": "e05a23d5e4bb19c995cd0072207b758c734aa22edbda17bd6fdeb4d0b6e54c6d",
+  "bytes": 29017,
+  "requestId": "GT4NUC1vUDK0nRP8emAn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fe39d263d94e3210ea3f2135a07fd02a221c2fb32230754fc269e940c955245e",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-finding-pin-prevents-capture-rook",
+      "label": "Explanation finding pin prevents capture rook",
+      "text": "Why can't this rook make the marked capture? Its king stands behind it, and leaving the line would expose the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "4b02775c091155000c8c40bd042109481258ba388aaa71eddc5b4fe960d6fa87",
+  "recordedAt": "2026-10-04T07:33:32.259Z",
+  "sha256": "36ec1f4b103bce64910733d124b2fed4b8ffa6176a889e5d7fe7df60955cde9f",
+  "bytes": 22722,
+  "requestId": "hjZ0G8ESaG88LdisWEVg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b0f9e7532bb30b26c76f9ede2f51c061f5f9d6ecaaa49cc64a62567f76fb158d",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

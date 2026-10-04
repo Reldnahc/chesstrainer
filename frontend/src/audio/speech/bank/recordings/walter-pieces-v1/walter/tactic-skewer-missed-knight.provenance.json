@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-skewer-missed-knight",
+      "label": "Tactic skewer missed knight",
+      "text": "A stronger move offered a skewer. Moving the knight in front would then expose the piece behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "04930752240a6774572a01e2d415e379ceba26794c3e97183061cd44509951d8",
+  "recordedAt": "2026-10-04T07:25:29.145Z",
+  "sha256": "6cdd73d9f8c19734c02af1dadef4bcca628c3fe043f3319513fcbfe2eada0f07",
+  "bytes": 19243,
+  "requestId": "7PJ3ZKzIJEF8suCUF3nq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ed37a6f75ae16b01c7c13f8d7e5a1ee9f78d02809833ebff11adbfed60312d00",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

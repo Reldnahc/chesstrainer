@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-rook",
+      "label": "Positional unsupported actual rook",
+      "text": "Having no defender describes a piece's situation; it doesn't mean the piece is lost. Once this move is made, a rook stands with no defender. Whether it can actually be won depends on what can reach it."
+    },
+    "takeId": null
+  },
+  "requestHash": "b57e799f1cc35cd98bce0583b9223e40ceeeeebfe87b3d7a46b813e308d92cbe",
+  "recordedAt": "2026-10-04T07:34:59.851Z",
+  "sha256": "e48b9ca4382ce99b84e82835149553fdb2298939aa6de6c0d4a79e50dde4eb75",
+  "bytes": 40024,
+  "requestId": "WjFPe8cDrvgsYEgi6PGX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "073c899b07b41e1567ae9f4a84fdf4da59d3010c260c03d2d70f936306d89816",
+    "bytes": 205679
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape-bishop",
+      "label": "Explanation finding pin restricts escape bishop",
+      "text": "Because the attacked bishop is pinned to its king, it can only move along the pin line, if it can move at all."
+    },
+    "takeId": null
+  },
+  "requestHash": "1f9119b6499d43a3918a07993ade599ad232ae2b731a40b58102a1bbe9bfd397",
+  "recordedAt": "2026-10-04T07:35:05.323Z",
+  "sha256": "b954ddc94e5b15e22c8ccf5c6f7b37e4b0b70c157b1c16ff174bd899b033d9ce",
+  "bytes": 21348,
+  "requestId": "XnzRWryHYrh7hmvX3rqE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "915d9aecd18e31275392297611662cedde084913319c63376d28f979ecc48a13",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

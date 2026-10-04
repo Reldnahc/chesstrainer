@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "grade-brilliant-4-queen",
+      "label": "Grade brilliant 4 queen",
+      "text": "A queen given up for nothing obvious. And it's sound."
+    },
+    "takeId": null
+  },
+  "requestHash": "0f954fc11156bf5373a4e2886a9a787c30f8485cf184b1633c30f8eafbc86b64",
+  "recordedAt": "2026-10-04T07:47:55.706Z",
+  "sha256": "091f9095c383b5b97c6bd9c0b9900ad77e36007c774de62d07fd638558a00253",
+  "bytes": 14604,
+  "requestId": "sr5fh1ZWeePfoQz17YiS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "625b024699237ecca7c1f957ff0090c267e6d2165c80cde18825d523c8263339",
+    "bytes": 75276
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

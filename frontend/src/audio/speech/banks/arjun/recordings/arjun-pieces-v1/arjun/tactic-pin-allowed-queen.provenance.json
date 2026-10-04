@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-pin-allowed-queen",
+      "label": "Tactic pin allowed queen",
+      "text": "What happens to the queen in front of the king now? After this move, it can be pinned there, and a pinned queen can't legally step off that line."
+    },
+    "takeId": null
+  },
+  "requestHash": "25f6e58c6b1d304a2b8e4aaf174d1a4c13d31080ded99756541e78d640a4ac5c",
+  "recordedAt": "2026-10-04T07:32:20.873Z",
+  "sha256": "88c3e87cd9ad35484af8ead7deadb88831d9ec614a77f81879f9f1dbf2f5c1dc",
+  "bytes": 28646,
+  "requestId": "9rWk1AsJINAn4CbTRAHh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5e751d7ce026df95d5516aa60731857dbc04379ba92d279e1f6db2b8ea547408",
+    "bytes": 149673
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

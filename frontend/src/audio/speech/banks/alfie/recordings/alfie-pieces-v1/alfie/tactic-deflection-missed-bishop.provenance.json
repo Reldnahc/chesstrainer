@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-bishop",
+      "label": "Tactic deflection missed bishop",
+      "text": "Another move could have drawn the defending bishop away from what it was guarding, a deflection. This move doesn't. The idea to keep: a defender that's drawn away leaves its job undone."
+    },
+    "takeId": null
+  },
+  "requestHash": "36c80543bc568d6dca8ac2b42bf7e6df2928bfb81fb26bfd968892c0cea952b3",
+  "recordedAt": "2026-10-04T07:35:00.430Z",
+  "sha256": "415c3f374941d9a35c183520df158247252f2d546fb373500699d3ff3ce61ce1",
+  "bytes": 36877,
+  "requestId": "xtEWbUGudlDDe5zsPyXy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a4ec1b6c81f85fde4269132f45b413cd586af6e2cbea00651af998d2ed2d3e5b",
+    "bytes": 191887
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

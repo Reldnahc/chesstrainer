@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed-bishop",
+      "label": "Tactic discovered attack allowed bishop",
+      "text": "Their bishop is standing in front of another piece. If it moves, the piece behind gets a clear line. A discovered attack, available to them."
+    },
+    "takeId": null
+  },
+  "requestHash": "c332788cc4af167e082ed16656f8374b7df26d81a4ed215d0718ad1946bbcac7",
+  "recordedAt": "2026-10-04T07:43:44.842Z",
+  "sha256": "ac40f815e7c8e3eab29994d642854fe31fae14f4276603a4b95d68cddb140a44",
+  "bytes": 30493,
+  "requestId": "RJlDYWzkFHBJH7uQgi7F",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d7174daacae3d1ec14a0fed9b28f58d3b707f7fdbe67afb9348491d2cb36a9a3",
+    "bytes": 157196
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "positional-support-alternative-queen",
+      "label": "Positional support alternative queen",
+      "text": "The alternative would add support to a queen that was undefended before the move."
+    },
+    "takeId": null
+  },
+  "requestHash": "81d21d49f4dc15cf26bee18cef634a38bbaafe54e717663db8d06327991ba611",
+  "recordedAt": "2026-10-04T07:28:05.057Z",
+  "sha256": "bf071acfabc855cccadcd3eed4a47a320841f8ecb1e466e633cf6a80376d319b",
+  "bytes": 16120,
+  "requestId": "Z6Ws7KIivIFFECjMLajb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9c353f75f46056e4b8fc6399a06792692eef82f932f8890bf1cbe4b8fac3173e",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "tactic-back-rank-missed-rook",
+      "label": "Tactic back rank missed rook",
+      "text": "The stronger candidate had a back-rank mate idea in it, a rook against the enemy king boxed in by its own pieces. A pattern worth testing on the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "4c47e6249a37c55d84b2f4df79df6f745e1084d8db813d6f225829d2047bd639",
+  "recordedAt": "2026-10-04T07:33:16.687Z",
+  "sha256": "c7dc6e7fbc6962f3166ede1d90ee97cafea25aed465d290dfc197b0075a763ef",
+  "bytes": 31643,
+  "requestId": "XqjPvxCqFyMczenYo6Ag",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4ce41182d81e61536c0a70f760b5a48ac87eb2a2a0202610cd2a8777ae3573da",
+    "bytes": 162212
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

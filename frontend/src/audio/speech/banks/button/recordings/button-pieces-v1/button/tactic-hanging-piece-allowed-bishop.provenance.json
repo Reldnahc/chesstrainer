@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-hanging-piece-allowed-bishop",
+      "label": "Tactic hanging piece allowed bishop",
+      "text": "A bishop is left with nobody looking after it. After this move, the other side can take it, since nothing defends it."
+    },
+    "takeId": null
+  },
+  "requestHash": "2b74d05f945f60ddc3866ffba6ef8c0489ad27ac61314b67eaa812bda9bb3f0a",
+  "recordedAt": "2026-10-04T07:30:54.212Z",
+  "sha256": "25d2c5c66971121267756aef97b1b0e0145ff99da63694e8b89f9c4bf4ce690c",
+  "bytes": 24336,
+  "requestId": "Y6iRKObLJpGfugTy73Bu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d88bdbd71763ad1bbe69818eabdb1369e6ed021bfe493a0b8d5ea0b1b3ef3e5b",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

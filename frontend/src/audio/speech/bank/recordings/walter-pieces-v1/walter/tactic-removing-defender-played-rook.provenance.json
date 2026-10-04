@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played-rook",
+      "label": "Tactic removing defender played rook",
+      "text": "Watch what the defending rook protects. Capturing it is the idea here, so notice what would lose its protection."
+    },
+    "takeId": null
+  },
+  "requestHash": "2a8261bf76d9e699173ddf08b0d4ef4d9f301c3ff9028b4a034025c1973818a0",
+  "recordedAt": "2026-10-04T07:26:01.613Z",
+  "sha256": "dec8e2f2a3f6cd79ba03333028b0cf8b0b28ef76cad7af12b5a52e41bf5aa359",
+  "bytes": 22788,
+  "requestId": "YPRLStjqa3UEGuaJVULs",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b3d3fb973f821ff901b66318e7a0ce8ae297121cd122f935feb77a922d392599",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

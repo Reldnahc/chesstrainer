@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-escape-rook",
+      "label": "Explanation frame capture promotion escape rook",
+      "text": "The pawn takes the rook, promotes, and at the same time gets the king out of check."
+    },
+    "takeId": null
+  },
+  "requestHash": "7c76184122a353604304ee1262999dc55918fa2896ea131b431b0609de9963b8",
+  "recordedAt": "2026-10-04T07:48:00.883Z",
+  "sha256": "0926aa266a2956e1f395e6f3b57bc6d504f7b3a0823ba3f4bf84bec4c19a21a1",
+  "bytes": 17717,
+  "requestId": "ZiKK5ascnll0Ygy6O2R5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a39ce235294dc096cf754323287e35d39425d44f9d60d632d4c9163076216dee",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

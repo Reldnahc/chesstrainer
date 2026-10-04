@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-rook",
+      "label": "Explanation finding undefended capture gain rook",
+      "text": "The rook had no defender, and it is captured. In this example, the capture leaves that side ahead in material."
+    },
+    "takeId": null
+  },
+  "requestHash": "044b92cc911bf60abc023948466b82cefcc6c4ce39a68c33d6b62ebc5e280180",
+  "recordedAt": "2026-10-04T07:43:10.593Z",
+  "sha256": "ca41b5ea4847304e91f1d8d0f618fea555ac282db555cfde238d12edf6fbbb54",
+  "bytes": 23169,
+  "requestId": "Qgp0beuqa2sGnSuS8uGj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a29d0c05d0f40650311fce0b7d2e5e25647eba67462c4994466f53b2237a112d",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

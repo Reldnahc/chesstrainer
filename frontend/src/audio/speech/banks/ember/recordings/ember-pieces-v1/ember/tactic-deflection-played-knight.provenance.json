@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "tactic-deflection-played-knight",
+      "label": "Tactic deflection played knight",
+      "text": "Deflection, executed well. With the defending knight hauled away, the guarded point falls open."
+    },
+    "takeId": null
+  },
+  "requestHash": "2790c21a55283ca993f8db752b18c38f696c918f6a1da39af4f3764be3a38528",
+  "recordedAt": "2026-10-04T07:42:21.175Z",
+  "sha256": "e39bf06e80f2802eae967591087a0598e23692c40c5b18309f1611edd030af0a",
+  "bytes": 21255,
+  "requestId": "L6zhX9FW7qkpwEMJLANw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d7b42877e7fc3b1a6b0ae16b5be70c7c67f4fdb1d612123140946e7ae9a0c6ad",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

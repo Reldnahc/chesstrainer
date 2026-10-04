@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "grade-brilliant-4-bishop",
+      "label": "Grade brilliant 4 bishop",
+      "text": "Brilliant. I'd love to explore what the bishop buys here; the sacrifice is sound."
+    },
+    "takeId": null
+  },
+  "requestHash": "3f7d933ffa80f5702859e298162636af98c8fb615279c76ca0ecf9baed0506ef",
+  "recordedAt": "2026-10-04T07:33:45.289Z",
+  "sha256": "fd846fd73c482d9116ce7a4168613511395c503d24187e9ce537fb6fd752f4ad",
+  "bytes": 18364,
+  "requestId": "zOSy4BKZbmWXkZgBnOZq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f3f9ec27854e5b42bb862b1af5d34db2f424499c5f838d68ba1d3ab6ba1d7fcf",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

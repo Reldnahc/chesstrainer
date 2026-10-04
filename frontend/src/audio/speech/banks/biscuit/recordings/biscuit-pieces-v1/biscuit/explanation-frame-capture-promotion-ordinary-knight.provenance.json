@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-ordinary-knight",
+      "label": "Explanation frame capture promotion ordinary knight",
+      "text": "Chomp, then promote! A knight gets captured on the last rank, and up pops a brand-new piece."
+    },
+    "takeId": null
+  },
+  "requestHash": "7e1285f928bd42a6f297ebe36a4890bbf6882620ad6bbaaa0b7fcca8f16d43f5",
+  "recordedAt": "2026-10-04T07:39:42.342Z",
+  "sha256": "ed6a226644117f20f8ac4075a94c40bd550d05373102450e593426a4300c50e2",
+  "bytes": 21444,
+  "requestId": "EAwBLX6xOjKBVdnlj5rZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3c9cd5a3fa09cedd7884e001e7ef17719e0fb39ee80bc75e895880bdf3507eda",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

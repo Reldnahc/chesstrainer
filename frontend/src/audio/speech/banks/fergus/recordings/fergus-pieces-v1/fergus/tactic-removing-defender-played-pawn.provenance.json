@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played-pawn",
+      "label": "Tactic removing defender played pawn",
+      "text": "The defending pawn comes off the board, so whatever it was guarding may now be loose."
+    },
+    "takeId": null
+  },
+  "requestHash": "244c3ce40d8699c304b991a37a1b8c9c55200d96756d33d97693c01deb3dae41",
+  "recordedAt": "2026-10-04T07:47:03.941Z",
+  "sha256": "37eefaa11840d8188e89430c1e12acdcbddfc0f81e8ffd28066c685e24d9b7bf",
+  "bytes": 18093,
+  "requestId": "uxmwe8XMwMvyOcd4saXN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5eba5b0d0c92c0abdc6191c90639618a3bbd0da97d2c1b41a11cafb6adb2cffc",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

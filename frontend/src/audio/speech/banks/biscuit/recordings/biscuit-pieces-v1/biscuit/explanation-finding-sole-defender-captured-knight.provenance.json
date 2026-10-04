@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-knight",
+      "label": "Explanation finding sole defender captured knight",
+      "text": "Poof, the knight that was the only guard disappears first. Then, later on in these moves, what it was guarding gets captured too."
+    },
+    "takeId": null
+  },
+  "requestHash": "4d06cef2bccdaccb69f3314ba6ba3af9ebea0d174476a0b35fd16d46b57589eb",
+  "recordedAt": "2026-10-04T07:39:09.622Z",
+  "sha256": "534dd08d4d9f572228b944b8f950f4ff243ec06412afe9b4c93215866f9b6a75",
+  "bytes": 27957,
+  "requestId": "ZCvXG6or9I8MnAHtqITa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d83c31cde52f26a192167ab8c1e69f2ef4707770ff505a2150809b8ff0532926",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

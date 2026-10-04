@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-knight",
+      "label": "Explanation finding undefended capture gain knight",
+      "text": "Nobody was guarding that knight, so it gets taken, and the example ends with the capturing side ahead on material."
+    },
+    "takeId": null
+  },
+  "requestHash": "55c9c2185d8f3e4443bbb2419832754b17130b4586acce76bf268b01f5cf30f9",
+  "recordedAt": "2026-10-04T07:37:45.675Z",
+  "sha256": "c01529a60313086a1681d2685ffc44157d2c5f8039b4d8ababa487907a753501",
+  "bytes": 22967,
+  "requestId": "vJd275ISKmndAbo5R7Kv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1ec69131e734e7c238d5e5015f41e55ac00d808cc8cbc653dbab950a8f27830d",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

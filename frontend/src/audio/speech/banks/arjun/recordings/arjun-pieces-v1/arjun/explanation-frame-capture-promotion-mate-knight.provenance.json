@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-mate-knight",
+      "label": "Explanation frame capture promotion mate knight",
+      "text": "A pawn capture of a knight, a promotion, and checkmate, all in one move."
+    },
+    "takeId": null
+  },
+  "requestHash": "86c44eea3ead55782be47ba2ccbefed16e962e54a9c9e9da31a51b471edc05eb",
+  "recordedAt": "2026-10-04T07:33:39.419Z",
+  "sha256": "b96ed1d30b4c1565486b0c6d022fd1491f58453c80232713118d460160c6290f",
+  "bytes": 17699,
+  "requestId": "6y8GuEZOgQHTfMvOB755",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "189f82f0abe3cbc51c49d1a5dccb42c5529cba032620bad95b87c5effe7e9b2d",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

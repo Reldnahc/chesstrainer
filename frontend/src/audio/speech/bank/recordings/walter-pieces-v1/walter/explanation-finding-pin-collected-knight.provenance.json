@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-knight",
+      "label": "Explanation finding pin collected knight",
+      "text": "Watch the pinned knight here. It cannot leave the line without exposing its king, and it gets captured as these moves play out."
+    },
+    "takeId": null
+  },
+  "requestHash": "dec60b98baef86bedaa3de6fa612bd3cea87526da86e72c1034c391c7b7ca432",
+  "recordedAt": "2026-10-04T07:26:17.549Z",
+  "sha256": "c0dbcfd073a8a8e46f395b427bcd550f09f22c6a4f9160c280486f08bd765a7d",
+  "bytes": 23823,
+  "requestId": "woQUdKWCg8Cf5RB2f2vw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c3f82289262487c900f74c84ff25c3979c0059503bfd6d7580507ea5eb37f818",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

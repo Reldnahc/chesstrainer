@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "grade-brilliant-2-bishop",
+      "label": "Grade brilliant 2 bishop",
+      "text": "Wow, okay. The bishop on offer, and it's sound. That's the stuff club stories are made of."
+    },
+    "takeId": null
+  },
+  "requestHash": "2fc3f4a993007e01dd0b293a6c3443e923b9b4ffbf1882ceb9ec02e66a37cd29",
+  "recordedAt": "2026-10-04T07:46:47.143Z",
+  "sha256": "ad67773061dc3a45da96a1db0aed30d6f2c5cb7efe2cb9fedeb6aed2b17491d0",
+  "bytes": 22133,
+  "requestId": "DNJcPD2NGCiVnNsH5ayf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6f332c473462e23705f29489d7607fec79fd3f29ec213d1fabc6bd11cf7c4ad4",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

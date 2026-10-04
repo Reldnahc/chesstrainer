@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-check-pawn",
+      "label": "Explanation frame capture move check pawn",
+      "text": "Takes a pawn, with check thrown in."
+    },
+    "takeId": null
+  },
+  "requestHash": "81df88eef48d1c582bed5ebf8cb8eb002931c4f69ab469d53b4b7c43c0aa4f65",
+  "recordedAt": "2026-10-04T07:37:31.810Z",
+  "sha256": "05fad420fb4fa78cb870635ac2afdba12f57f4e30cca48268a9d0456ad7fb0a0",
+  "bytes": 8818,
+  "requestId": "qz7qxphdCRo9Ze4mhmV4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7e0cd01efe4357b8afb051f2726a3394b0ef6535674738e059ed26017a56c5ad",
+    "bytes": 43511
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

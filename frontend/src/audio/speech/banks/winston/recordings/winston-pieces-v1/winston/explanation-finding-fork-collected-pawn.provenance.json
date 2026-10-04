@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "explanation-finding-fork-collected-pawn",
+      "label": "Explanation finding fork collected pawn",
+      "text": "Here the fork does its work. One pawn attacks two targets, then takes one of them, and this example also shows a net gain in material."
+    },
+    "takeId": null
+  },
+  "requestHash": "2f78d846ada539d6bcfe6b132577977e0acf7e867428abf8ae7f73873e191bd5",
+  "recordedAt": "2026-10-04T07:29:41.114Z",
+  "sha256": "2eaca59f4d94d13404f21ed14217b7314e2d36f7799d8167a0790cca70c8f0a9",
+  "bytes": 28291,
+  "requestId": "kIlAClwydd6xC5GkzElJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dec177788233a9f0a43130a244fcd22ddcee4da857449d7cfeed71cc76a06fab",
+    "bytes": 147165
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

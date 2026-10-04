@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "tactic-fork-allowed-pawn",
+      "label": "Tactic fork allowed pawn",
+      "text": "Hm. A pawn of theirs may soon have two errands to run. The other side gets a chance at a fork, that pawn attacking two targets at once."
+    },
+    "takeId": null
+  },
+  "requestHash": "e548c17a2ebabc25e9e7ee0d961a7d74d1db8b4d2b07b0f736173425475b0df1",
+  "recordedAt": "2026-10-04T07:30:28.495Z",
+  "sha256": "8349f55a0cae56a8930504af7797da333a7438810ef20772568643dd76bd032d",
+  "bytes": 30660,
+  "requestId": "pZdlBT1imvJhHV7b3I1l",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3e30859d55cac8666ffdbcd321b5636f19284430fc63fa68b16ec1d1f5e3f9ce",
+    "bytes": 158450
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

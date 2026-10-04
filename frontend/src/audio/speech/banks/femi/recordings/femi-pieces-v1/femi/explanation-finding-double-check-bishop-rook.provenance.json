@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-bishop-rook",
+      "label": "Explanation finding double check bishop rook",
+      "text": "Double check here; the bishop and the rook both give check, so the only answer is to move the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "d193d902bbc244b978e2ff129f6d6c1caa9f92bab90e2b49f24103bd36f6ab3b",
+  "recordedAt": "2026-10-04T07:46:28.612Z",
+  "sha256": "3c5d3f0e2f54be6ecf040c7f7bb4af7d419aa55607fef7b90be7e759dcd4328f",
+  "bytes": 21991,
+  "requestId": "8azjFzjffSSAKRHhYvEj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "95246c841b2450cf500f6218f115d4b705b7c033cd47bc0c934e7092d0981e1d",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

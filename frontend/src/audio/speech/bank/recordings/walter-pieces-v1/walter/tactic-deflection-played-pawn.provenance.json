@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "tactic-deflection-played-pawn",
+      "label": "Tactic deflection played pawn",
+      "text": "A deflection is the idea here: draw the defending pawn away from its job, then use the opening it leaves."
+    },
+    "takeId": null
+  },
+  "requestHash": "d360a3e0d428ba45962812abab4c9f8c45f4cf0ec4d8f3bc4c6482b5797c3ea4",
+  "recordedAt": "2026-10-04T07:25:46.219Z",
+  "sha256": "63f8164b6b819c4c79e23d06b015d97ac504c373d01ed9c1afe244d39315cea8",
+  "bytes": 23067,
+  "requestId": "Cv4ixGUbm36NM2hBZOng",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a9dec6bf931def53b76233e3127f6110e6e8cb4962c0865658a737e093807bd8",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

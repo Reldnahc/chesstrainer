@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "tactic-pin-played-queen",
+      "label": "Tactic pin played queen",
+      "text": "Pinned to its own king. That queen can't step off its line without exposing the king, so it's not leaving that line."
+    },
+    "takeId": null
+  },
+  "requestHash": "c495bfa20ffcbac6da2dd57ae2fa39ccf5ad8dd9705d59a5ac34aea611a2f329",
+  "recordedAt": "2026-10-04T07:36:37.439Z",
+  "sha256": "5223fd585a5b72a38774bb237d6ebd6209bd1538185a39360178aac948498c46",
+  "bytes": 25987,
+  "requestId": "ze4hLMqVw1D6fIZKzEs4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2c2e6db37c674855bd3cd175598292fdd93ba1e989a4722f069e989c531bf30a",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

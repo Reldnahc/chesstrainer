@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-pawn",
+      "label": "Explanation finding pin collected pawn",
+      "text": "Watch the pinned pawn here. It cannot leave the line without exposing its king, and it gets captured as these moves play out."
+    },
+    "takeId": null
+  },
+  "requestHash": "6a329241ff0bc0a78f166794b966e2c8b7bce39037531ac4091eb302068ce078",
+  "recordedAt": "2026-10-04T07:26:15.455Z",
+  "sha256": "7369876328aeb844a9d9895561e04a4ae6fd1c5cbcb1f6fae249ae194a4af72d",
+  "bytes": 24256,
+  "requestId": "ebSbYeud6FCZCjenK6xz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9a48624781ff298b4c4588d9459fae8fac1c43095c5b0461ab57791c8d33822f",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

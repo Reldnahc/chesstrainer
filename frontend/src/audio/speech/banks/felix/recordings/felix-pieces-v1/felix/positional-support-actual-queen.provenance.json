@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "positional-support-actual-queen",
+      "label": "Positional support actual queen",
+      "text": "That queen was on its own. Not anymore; it has a guard."
+    },
+    "takeId": null
+  },
+  "requestHash": "05e2c340bd6a2ff3c8ce8465fd56871b95fd5021efde638dce8a768a4b2fa736",
+  "recordedAt": "2026-10-04T07:44:19.565Z",
+  "sha256": "4f05b67fcb0fb55051f185fd180086eccbb253d6635f356e4c949c0175c35466",
+  "bytes": 14566,
+  "requestId": "6zdKqxuWTYAjeJmEpDCl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b8d328c5a05878c7eb4ae40abef3eb3c216a64a1da25d5d4f31867c19a28c6d1",
+    "bytes": 74022
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

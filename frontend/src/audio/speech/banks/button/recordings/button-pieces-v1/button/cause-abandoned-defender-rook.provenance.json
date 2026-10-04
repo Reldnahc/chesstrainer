@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "cause-abandoned-defender-rook",
+      "label": "Cause abandoned defender rook",
+      "text": "What was that rook leaning on? This move pulls away its only real defender, and now the other side can capture the rook it was holding up."
+    },
+    "takeId": null
+  },
+  "requestHash": "49aaa033b8342bb3f28561e6850bb88b0ca5e45ee389416d5e1358053ccfe2da",
+  "recordedAt": "2026-10-04T07:31:36.627Z",
+  "sha256": "54ea01ce6494dc8acdd8ff8646fcae9027ea2f0bdebc07caae05888b08dbbeec",
+  "bytes": 27777,
+  "requestId": "8MJZXVhWS45SB2VHTAy0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "00edd2a11dac2fd886fa538bc260ec1837c51fa7d750243b8e2765267ad9fcd4",
+    "bytes": 141732
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

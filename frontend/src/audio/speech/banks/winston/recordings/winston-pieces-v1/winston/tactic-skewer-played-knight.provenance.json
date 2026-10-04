@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "tactic-skewer-played-knight",
+      "label": "Tactic skewer played knight",
+      "text": "A skewer, this. The attack meets the knight in front first, and once it steps aside, the piece behind it is exposed on the same line."
+    },
+    "takeId": null
+  },
+  "requestHash": "90839c334e3ca88ff58bafe14ef6ab44794e5d0051a82b6924bc63a856ddbd62",
+  "recordedAt": "2026-10-04T07:28:59.565Z",
+  "sha256": "bff22a39c7ae97a314d284a3b22d838a90a586644b4826c099d6d8bd39025c68",
+  "bytes": 27454,
+  "requestId": "cQCuuORB9PyHYMZ0TObc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "097c253ceaead8fb9b6949ca67bdf4453d32d38d40c73f07acf68d12f4313b5a",
+    "bytes": 142986
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

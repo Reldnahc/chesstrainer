@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "tactic-deflection-played-bishop",
+      "label": "Tactic deflection played bishop",
+      "text": "The defending bishop gets pulled off its post, which is a deflection, and the post is left empty."
+    },
+    "takeId": null
+  },
+  "requestHash": "37107f6cb25ef3fec235b7cb04d844043e79fd59b8fcb4b349f73854b5fd128d",
+  "recordedAt": "2026-10-04T07:47:12.944Z",
+  "sha256": "0fb5739f7918f437c2cb212202788f38bfb4156d613a0487b6c435275ad31827",
+  "bytes": 20521,
+  "requestId": "VxjSL8G5RVSeaA7pE1AA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "86b5b3e030fe74dc3bb98dada8b3a40fc21f344fb782d41b3f5ea08a5c35b0f5",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

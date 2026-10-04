@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-pawn",
+      "label": "Tactic removing defender allowed pawn",
+      "text": "Alert: a defending pawn has become a capture target for the other side. What it guards could then lose that protection."
+    },
+    "takeId": null
+  },
+  "requestHash": "b953673ffcc96a57663c90fbfb665fd4a6f04aa0ee04f79ac5b555562908edca",
+  "recordedAt": "2026-10-04T07:27:20.095Z",
+  "sha256": "baa4ec5a0f2bcb0c10b27ee1a0babf3bda494662ec8ec022d23157441024f4ba",
+  "bytes": 24147,
+  "requestId": "MNSv5berImX01lqoiL0U",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e253e0008a4557eabd50b7534612aa99b5ceb4e8216ba753ea4ecdc7908c641d",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}
