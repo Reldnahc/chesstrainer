@@ -107,16 +107,20 @@ search, through the shared engine cache). The best move is kept only if it is
 unique by the pack verifier's margins in `puzzles/verification.py`: at least
 100 cp better than the second line, or a mate with no equal or faster rival mate.
 The opponent then plays the engine's best defence, not the move played in the
-game. The line continues until the next learner move is no longer unique, the
-position is mate, or `PUZZLE_GENERATION_MAX_PLIES` is reached, and is cut after
-the last learner move. It needs at least two learner decisions and must end in
-mate or at least +150 cp with the opponent to move. A forced first move, a
-one-move tactic, an ambiguous root or a thin payoff abstains, and a position
+game. The line continues until the next learner move is no longer unique or the
+position is mate, and is cut after the last learner move. It needs at least two
+learner decisions, at most `PUZZLE_GENERATION_MAX_PLIES` plies (9, so five learner
+moves), and must end in mate or at least +150 cp with the opponent to move. A
+line that would need a sixth unique learner move abstains as `too_long` rather
+than being cut mid-attack. A forced first move, a one-move tactic, an ambiguous
+root or a thin payoff abstains, and a position
 already serving a ready puzzle for the account abstains as a duplicate.
 
 Kept lines become `source="games"` definitions keyed `game_id:ply`, with the
-vendored Lichess tagger's motifs plus Lichess-style goal (`mate` and `mateInN`,
-or `advantage`/`crushing`), length and phase themes, no rating, and provenance
+vendored Lichess tagger's motifs plus Lichess-style goal (`mate` and `mateInN`
+only when the kept line ends in checkmate, otherwise `advantage`/`crushing`, so a
+forced mate cut short by an ambiguous move is a crushing win), length
+and phase themes, no rating, and provenance
 naming the matchup, date, move number and the move actually played. Each row in
 `game_puzzles` records its status, abstention reason, root and verification
 analysis IDs, engine, depth and thresholds; `game_puzzle_searches` records one
@@ -177,8 +181,8 @@ Puzzle history does not create exercises, engine searches, ordinary Review rows,
 FSRS changes or weakness evidence.
 
 Library statistics use lightweight account-scoped aggregates, plus pack
-attribution, rating range, theme counts (length and provenance tags excluded)
-and how many puzzles are ready to retry. Resume lists contain at most the twenty
+attribution, rating range, theme counts split by source (length and provenance
+tags excluded; a source tab lists only its own themes) and how many puzzles are ready to retry. Resume lists contain at most the twenty
 most recently updated unfinished sessions with at least one committed move or
 reveal; an untouched start is not listed. Direct links to older sessions remain
 valid. No puzzle rating or practice count is described as mastery or evidence of

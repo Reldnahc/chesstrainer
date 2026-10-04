@@ -211,7 +211,8 @@ def build_line(search, root: chess.Board, *, max_plies: int):
 
     Returns ``(Built, None)`` or ``(None, reason)``. The solver must have at least
     two decisions, each the engine's unique best move, and the final position
-    must be mate or at least PAYOFF_CP ahead with the opponent to move.
+    must be mate or at least PAYOFF_CP ahead with the opponent to move. A line
+    that would need a solver move beyond ``max_plies`` abstains instead of being cut.
     """
     solver = root.turn
     board = root.copy(stack=True)
@@ -247,11 +248,11 @@ def build_line(search, root: chess.Board, *, max_plies: int):
             )
             board.push(move)
             line.append(move.uci())
+            if len(line) > max_plies:
+                # Cutting a line that still has a unique next move leaves it unfinished.
+                return None, "too_long"
             if board.is_checkmate():
                 stop = "mate"
-                break
-            if len(line) >= max_plies:
-                stop = "cap"
                 break
         else:
             lines = search(board, multipv=1)
@@ -297,9 +298,10 @@ def line_themes(boards, built: Built, label: str) -> tuple[str, ...]:
     except ValueError:
         pass  # A line the tagger cannot frame still verified; labels are not a gate.
     decisions = len(built.decisions)
-    if is_mate(built.payoff):
+    # A mate score the line stops short of is a crushing win, not a mate puzzle.
+    if boards[-1].is_checkmate():
         themes.add("mate")
-        if built.stop == "mate" and decisions <= 5:
+        if decisions <= 5:
             themes.add(f"mateIn{decisions}")
     else:
         themes.add("crushing" if built.payoff > 600 else "advantage")

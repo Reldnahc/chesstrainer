@@ -310,7 +310,7 @@ test("puzzles from your games hide the source game until the solve and link back
   await page.route("**/api/puzzles", route => route.fulfill({ json: {
     available: 1,
     sources: [{ id: "browser-game-fixtures", name: "From your games", source: "games", count: 1, attribution: "Built from your imported games", url: null, rating_min: null, rating_max: null }],
-    themes: [{ id: "fork", count: 1 }], retry_available: 0, solved_puzzles: 1, resume: [],
+    themes: [{ id: "fork", count: 1, sources: { games: 1 } }, { id: "pin", count: 4, sources: { generic: 4 } }], retry_available: 0, solved_puzzles: 1, resume: [],
     stats: { solved: 1, clean: 1, failed_then_solved: 0, revealed: 0 },
     generation: { automatic: true, analyzed_games: 12, searched_games: 9, unsearched_games: 3, puzzles: 1, candidates: 20, kept: 1, last_searched_at: "2026-10-03 14:00:00", job_status: null },
   } }));
@@ -320,6 +320,8 @@ test("puzzles from your games hide the source game until the solve and link back
   await expect(page.getByRole("button", { name: "Search 3 unsearched games" })).toBeEnabled();
   await expect(page.getByRole("group", { name: "Goal" })).toBeVisible();
   await expect(page.getByRole("group", { name: "Difficulty" })).toHaveCount(0);
+  // Pack themes stay on the pack tab; this tab counts only its own puzzles.
+  await expect(page.getByRole("combobox", { name: "Theme" }).locator("option")).toHaveText(["Any theme", "Fork (1)"]);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   await page.screenshot({ path: `test-results/study-puzzle-games-${info.project.name}.png`, fullPage: true });
 });

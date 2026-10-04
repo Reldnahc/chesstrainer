@@ -3742,6 +3742,10 @@ export interface components {
             count: number;
             /** Id */
             id: string;
+            /** Sources */
+            sources: {
+                [key: string]: number;
+            };
         };
         /** RatingPoint */
         RatingPoint: {

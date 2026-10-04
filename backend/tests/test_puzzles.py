@@ -460,6 +460,26 @@ def test_invalid_provider_records_rejected(changes):
         definition(**changes)
 
 
+def test_library_theme_counts_split_by_source(settings):
+    games = FixtureProvider(
+        (definition(key="g1", source="games", themes=["fork", "pin"], rating=None),),
+        id="game-fixtures",
+        source="games",
+    )
+    app = create_app(
+        settings,
+        workers=False,
+        start_engine=False,
+        puzzle_providers=(FixtureProvider((definition(),)), games),
+    )
+    with TestClient(app) as client:
+        themes = client.get("/api/puzzles").json()["themes"]
+    assert themes == [
+        {"id": "fork", "count": 2, "sources": {"generic": 1, "games": 1}},
+        {"id": "pin", "count": 1, "sources": {"games": 1}},
+    ]
+
+
 def test_provider_boundary_rejects_duplicates_and_mismatched_source(sessions):
     provider = FixtureProvider((definition(), definition()))
     with pytest.raises(ValueError, match="Duplicate"):

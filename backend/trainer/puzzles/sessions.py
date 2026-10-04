@@ -149,7 +149,8 @@ def library(db, providers, settings=None):
             info["rating_max"] = definition.rating if high is None else max(high, definition.rating)
         for theme in definition.themes:
             if theme not in META_THEMES:
-                themes[theme] = themes.get(theme, 0) + 1
+                by_source = themes.setdefault(theme, {})
+                by_source[provider.source] = by_source.get(provider.source, 0) + 1
         if (provider.id, definition.key) in solved_identities:
             solved_puzzles += 1
         outcome = latest.get((provider.id, definition.key))
@@ -181,8 +182,10 @@ def library(db, providers, settings=None):
         "available": sum(info["count"] for info in sources.values()),
         "sources": list(sources.values()),
         "themes": [
-            {"id": theme, "count": count}
-            for theme, count in sorted(themes.items(), key=lambda item: (-item[1], item[0]))
+            {"id": theme, "count": sum(by_source.values()), "sources": by_source}
+            for theme, by_source in sorted(
+                themes.items(), key=lambda item: (-sum(item[1].values()), item[0])
+            )
         ],
         "retry_available": retry_available,
         "solved_puzzles": solved_puzzles,
