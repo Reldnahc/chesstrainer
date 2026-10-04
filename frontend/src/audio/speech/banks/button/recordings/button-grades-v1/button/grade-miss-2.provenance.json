@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "grade-miss-2",
+      "label": "Grade miss 2",
+      "text": "My eye keeps drifting to the moves that weren't played. Somewhere among them was a real chance."
+    },
+    "takeId": null
+  },
+  "requestHash": "91d979f4e3e7d993f1968e304f48d2102a717a235688a547b807bdccf2e867e9",
+  "recordedAt": "2026-10-04T07:20:43.806Z",
+  "sha256": "1a603670c64175fa54574fb0687d28b1bcd581ad92464ce79818434e4f3936e3",
+  "bytes": 20377,
+  "requestId": "gRzMpSj8t6M3opD1JWQV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2f308c9fdc21bd545998d67b1a151d5d8efd3c7f8ef5e3fb45e70e91952d9394",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

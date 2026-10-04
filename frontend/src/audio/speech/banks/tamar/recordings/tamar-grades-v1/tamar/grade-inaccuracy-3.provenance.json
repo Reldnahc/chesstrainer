@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "grade-inaccuracy-3",
+      "label": "Grade inaccuracy 3",
+      "text": "Precision dips a little here. I want the stronger move found and the difference put into one sentence."
+    },
+    "takeId": null
+  },
+  "requestHash": "5f213bce375de568fa7b6d09f2b00b3489ba8f9a9556b866159d56d0eb217184",
+  "recordedAt": "2026-10-04T07:24:32.708Z",
+  "sha256": "da59651b14e4f75430e8e378a2289bcda35b5d74c19680313a6e52f0423cd75c",
+  "bytes": 20081,
+  "requestId": "v60tvMDsBNj56kINxDlS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fffd72b57ceb3ff4b47167e3cb0b2971da892863ab7137c638c1d27d0a0cbab6",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

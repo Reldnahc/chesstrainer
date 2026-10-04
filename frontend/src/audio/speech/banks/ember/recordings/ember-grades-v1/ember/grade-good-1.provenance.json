@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "grade-good-1",
+      "label": "Grade good 1",
+      "text": "Acceptable. The sharper path lay elsewhere, but little is lost."
+    },
+    "takeId": null
+  },
+  "requestHash": "11c4d540b9d94c91e81c7ea686c281940bd38e94a600e2bb4f574d07e88faf2b",
+  "recordedAt": "2026-10-04T07:21:43.636Z",
+  "sha256": "9dd26532eb665d112dc506db9ac24c018687840a696837428235bf44969d68ee",
+  "bytes": 15501,
+  "requestId": "Q8i7dM6qjSiYu4wpVUWY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4d35d79528dcb00be6591910ff7bedb0d12641bae966f8b7dfff6513ddc16953",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

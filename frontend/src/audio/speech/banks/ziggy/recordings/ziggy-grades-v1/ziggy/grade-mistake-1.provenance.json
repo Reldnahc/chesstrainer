@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "grade-mistake-1",
+      "label": "Grade mistake 1",
+      "text": "That is a mistake, and not a small one. A clear drop in value, from one move. I find that striking."
+    },
+    "takeId": null
+  },
+  "requestHash": "c4b35f9340790ce25ea601ceee301f4ea9499e5324960a385e2ce60dafd4e97e",
+  "recordedAt": "2026-10-04T07:24:36.616Z",
+  "sha256": "c37e3c8595cb9ef1b622a4db86879dd031bf8331b24c61124f778bb21b11bb66",
+  "bytes": 24777,
+  "requestId": "6mf31ulWFdWJuUQ4EQ0b",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "750a0c82171058af48c26d228815ff47e188f9eeeffd4f86253328a12d9663de",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

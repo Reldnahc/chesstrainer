@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "grade-blunder-1",
+      "label": "Grade blunder 1",
+      "text": "Serious, this. A great deal of the position's worth is given up here."
+    },
+    "takeId": null
+  },
+  "requestHash": "26f6be2f04a91aac8691c1d632ec448d2fef416c861084292ffad73bb77eef59",
+  "recordedAt": "2026-10-04T07:22:40.282Z",
+  "sha256": "6bf7331eb6035a1d05f9e97b2389b29961cd3c82193569d3923a0d7137e3019e",
+  "bytes": 15840,
+  "requestId": "naAU3OpOHxgBNgEi0XG8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b962b60e490c0725acc5268a6c5fbb329aa47ca9f22d3db03bd8f003c87a46c7",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "grade-best-1",
+      "label": "Grade best 1",
+      "text": "The best move in the position. It keeps the game on the course it was already on."
+    },
+    "takeId": null
+  },
+  "requestHash": "541923e8ab246b8fc5452dea6cc844da16284ed35be3531aeb34b911b31c6c3a",
+  "recordedAt": "2026-10-04T07:20:20.709Z",
+  "sha256": "54e7d495bb1053a2b63c191c509a3b97538a81f56e31fe98a0ea2b2f469a27df",
+  "bytes": 15810,
+  "requestId": "d3RPlNp50fz8yLLYDbXg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b9d64f49458b7ff9e7c3d579bb3ac2b9cca5b19ffd421ab039d179b5b08fa97d",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

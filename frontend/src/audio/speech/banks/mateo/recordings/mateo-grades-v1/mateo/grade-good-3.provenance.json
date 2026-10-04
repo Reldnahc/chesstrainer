@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "grade-good-3",
+      "label": "Grade good 3",
+      "text": "Just a hair off the best move. Still a good one!"
+    },
+    "takeId": null
+  },
+  "requestHash": "25302e97c99d5dedeb30fdda47ef2cef3661bffbc64f2567cff473a83b6e0e0e",
+  "recordedAt": "2026-10-04T07:22:56.443Z",
+  "sha256": "ac8803d468c37f684a5569f09b8a3f9dfeea8f50dcc31b65c91108075ab7e24f",
+  "bytes": 11812,
+  "requestId": "5npCHOVamefcC9jocvNk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "675527e664671be8a090d52e8f948045ae1605737f1c102332fc4d1796713ebc",
+    "bytes": 57304
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

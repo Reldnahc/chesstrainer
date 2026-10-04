@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "grade-blunder-1",
+      "label": "Grade blunder 1",
+      "text": "Well! A big heap of value tumbles away with that move. A blunder, so."
+    },
+    "takeId": null
+  },
+  "requestHash": "39438ddc8d9e5b9b86bd7e03e73f646e5a2953c244a13d19fa7d69801490cc51",
+  "recordedAt": "2026-10-04T07:23:43.069Z",
+  "sha256": "5327f6dff95d02bf062c3b9e959e5dcf07d4437994a032ffe523eb3c167c8919",
+  "bytes": 19397,
+  "requestId": "bJenbAWLXYeYUrFk0WTc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "434e8a719e053fe382d4db6b310ca85b19a9d76274f279345cd1f0be69a71176",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "grade-great-2",
+      "label": "Grade great 2",
+      "text": "Great move. Right when it mattered, no less."
+    },
+    "takeId": null
+  },
+  "requestHash": "17faa797e20f533083bae2fa9cfaab14754e9c30fca04ff3801e51d9411a2733",
+  "recordedAt": "2026-10-04T07:21:41.357Z",
+  "sha256": "6c57a1c513e62c25a8b96c8d4bc62309f4e6fcfbc878c927122c9045fb8e607e",
+  "bytes": 12013,
+  "requestId": "HsUFNckSlqNqk9nberg9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "103afd9d898d4794fc29369829d66b7d662c640155fb0fb5cf03757339b66d07",
+    "bytes": 57304
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "grade-great-4",
+      "label": "Grade great 4",
+      "text": "Great. Strength and timing, meeting gracefully in a single move."
+    },
+    "takeId": null
+  },
+  "requestHash": "d136685c9dde936545b20e8a6c58c9848ec3f6e4f2948556e3b96f40420707e4",
+  "recordedAt": "2026-10-04T07:21:27.217Z",
+  "sha256": "8f211ec1b895f15addf82c5df7ddd02d1db04efade1866faf6c956b627b3b124",
+  "bytes": 16711,
+  "requestId": "Ql7WpLn6NaGXzkSQJhNU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5148bdc22c4171ef30bd457859161645192155bc25a61bcf13b834e8361d269b",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

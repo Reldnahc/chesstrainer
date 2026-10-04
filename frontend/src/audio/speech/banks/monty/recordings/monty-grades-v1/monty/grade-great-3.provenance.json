@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "grade-great-3",
+      "label": "Grade great 3",
+      "text": "Great. Bottom line: a turn that counted, and a strong move on it."
+    },
+    "takeId": null
+  },
+  "requestHash": "c7a930652112117d4d58f6e5bc7b25dd629354add1648b0b3b75686da362abe7",
+  "recordedAt": "2026-10-04T07:22:56.920Z",
+  "sha256": "33944e3604a8336911135dd3753ea35f8f9fe14992f4a51ba7665545eb5dbd6b",
+  "bytes": 16042,
+  "requestId": "tYHwWJ8LQRHNZ8Q5HLek",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2bb60658a1a317e4d94d25f289cc520c0bd089d777b0f495903bb1fe78c76ec4",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

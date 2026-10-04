@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "grade-best-1",
+      "label": "Grade best 1",
+      "text": "Best move. The engine would sign it as is."
+    },
+    "takeId": null
+  },
+  "requestHash": "1669b9aa383fe1608ec5ef90405c8ae33e7929b8131b57a004543ad52770f691",
+  "recordedAt": "2026-10-04T07:21:45.470Z",
+  "sha256": "54c38ab74649fd70a1304c9ea78c2e7d52ba96ceb90bd921fc4be3e774c0a3a4",
+  "bytes": 11456,
+  "requestId": "ctohs7YhwOR1bpFWPVH6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "71b486990eb8c253ad8018f65bbb7d6e1faf40af4918f9c7cc6fdd9f60fc708a",
+    "bytes": 57304
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

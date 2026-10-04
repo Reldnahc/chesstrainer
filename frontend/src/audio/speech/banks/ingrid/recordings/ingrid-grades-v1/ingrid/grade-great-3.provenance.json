@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "grade-great-3",
+      "label": "Grade great 3",
+      "text": "Lovely to see. A moment that rewarded a strong move, and it gets one."
+    },
+    "takeId": null
+  },
+  "requestHash": "8cd776ea220f1a0157b41327665a412ab72be1655dbae246d4ef72bd6754bfb1",
+  "recordedAt": "2026-10-04T07:22:10.799Z",
+  "sha256": "51518334d2e97b91f5d1a64e701dce852521732c10517fc057aa59f143fe8afc",
+  "bytes": 17383,
+  "requestId": "wjgoZiwETxheHt3DII4Y",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bd6a7da2df325a4304a794a43c12b1fbc43950c5f143e159af30543a88b95c67",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

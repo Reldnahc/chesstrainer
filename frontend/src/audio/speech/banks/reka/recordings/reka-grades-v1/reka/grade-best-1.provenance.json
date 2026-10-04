@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "grade-best-1",
+      "label": "Grade best 1",
+      "text": "Bullseye! That's the engine's very first pick."
+    },
+    "takeId": null
+  },
+  "requestHash": "714e5b020ff59f0fe0d44d52dc9a51ea2c4865d108f44f96e81367ac5be1416c",
+  "recordedAt": "2026-10-04T07:23:47.946Z",
+  "sha256": "d027b2dff36d018d95143a5b7ff0f54f390fab17546c928b78f69c5394be0d06",
+  "bytes": 11446,
+  "requestId": "8BKWTdllovj9uEW3Avp9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0f37d5d57807562190bda1ebe4287e27818840956109e5776c8995b3ca04ef0f",
+    "bytes": 56050
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

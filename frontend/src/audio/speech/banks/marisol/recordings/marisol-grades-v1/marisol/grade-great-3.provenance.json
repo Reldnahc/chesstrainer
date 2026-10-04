@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "grade-great-3",
+      "label": "Grade great 3",
+      "text": "Two facts to record: the timing was critical, and the move is strong."
+    },
+    "takeId": null
+  },
+  "requestHash": "c6084ec93bb8da4d3b10e513609b85d5247fa6c215935d2cb0c3cae80cccc300",
+  "recordedAt": "2026-10-04T07:22:40.666Z",
+  "sha256": "151637af0022396a156230c5b9ff5f4ba45cc9c7439fd9f236a7c91d4d21a798",
+  "bytes": 16563,
+  "requestId": "NosKWIPsb9yZG5VCuj6o",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bcdd436e2ff3124f284e35176dd6634e62d4544013d27c6841b3910c6a01ea03",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

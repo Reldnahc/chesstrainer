@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "grade-great-1",
+      "label": "Grade great 1",
+      "text": "Right moment, right move. Grubby or pretty, a strong move when it counts is a strong move."
+    },
+    "takeId": null
+  },
+  "requestHash": "7cfaad5744dd6a41bc9cdb3e42ac2733722c7593b5976d5821442462ae9b00b3",
+  "recordedAt": "2026-10-04T07:21:03.953Z",
+  "sha256": "af41733911764417de40981c26748e32c96c9ea425a17f59a456a6205ed45dcc",
+  "bytes": 22028,
+  "requestId": "XnwbwU4A3ENECj7R5xFk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4ff8ddcf3405400a326ab0537ff49883565717caf234c762b37969d8317f78e6",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

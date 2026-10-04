@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "grade-good-2",
+      "label": "Grade good 2",
+      "text": "Good. A sensible direction for the game, even if the top choice was a touch more accurate."
+    },
+    "takeId": null
+  },
+  "requestHash": "d3da1d0d85535bb07a9255fc07a9922880e2e62b47d89258d4f80fd978d06286",
+  "recordedAt": "2026-10-04T07:20:27.940Z",
+  "sha256": "e70efa1c2a75048b7bc69720c538f53977e3c9a9cef6176fe4e19a06c0fcad5e",
+  "bytes": 19023,
+  "requestId": "HSX2vIw5aeIosKRCr63X",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "49c3e2bd487af345723e23a2a37dc05bee3588991c72e56e016e39b1fc3387a9",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

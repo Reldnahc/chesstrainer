@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "grade-blunder-1",
+      "label": "Grade blunder 1",
+      "text": "A blunder: the most serious grade there is, and so the most important kind to study."
+    },
+    "takeId": null
+  },
+  "requestHash": "ce3ce4dbd6f0cb2ed08017ad263232d10e297d1c2da4ded08b696082703f6586",
+  "recordedAt": "2026-10-04T07:21:08.544Z",
+  "sha256": "89ecf55b157569d02501af3c68d0f99618417e7e75898767bcb06a29e43bc6be",
+  "bytes": 18964,
+  "requestId": "d8pBmKoauDW3laM8QsEN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f27cf360a3b86ae468e0b83c2ab0e917f81cf475fb970e17835ffad9876fc917",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

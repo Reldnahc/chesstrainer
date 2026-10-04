@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "grade-mistake-1",
+      "label": "Grade mistake 1",
+      "text": "A real mistake. Errors of this size teach well, for those who return to study them."
+    },
+    "takeId": null
+  },
+  "requestHash": "9bbc3e27f259a2cde99795fecb720a23a948dd1a78c69e0fdc75e418e36b0229",
+  "recordedAt": "2026-10-04T07:23:03.623Z",
+  "sha256": "eab6e141ff6da6a3af09aabdfd0ebf118d3498f88506f53492dd382794605357",
+  "bytes": 20112,
+  "requestId": "1zIk5y6Tx1sXlGWtKcXm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c2e29e886f52cfd68d470415b2a1392e8b3f16ea0d705116d18983a318d79387",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

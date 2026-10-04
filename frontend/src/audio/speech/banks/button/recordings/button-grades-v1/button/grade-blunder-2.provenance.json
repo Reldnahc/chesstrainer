@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "grade-blunder-2",
+      "label": "Grade blunder 2",
+      "text": "Quite a lot gives way all at once here. A costly blunder."
+    },
+    "takeId": null
+  },
+  "requestHash": "6ea42bd3b668d9bba66e293711d22d17ac98d72c8b3521b981cca6b6053d5185",
+  "recordedAt": "2026-10-04T07:20:49.800Z",
+  "sha256": "26fa5a827870f7c784f960d84d014a1b2ce625bebe18d0413ede39172872c35d",
+  "bytes": 14203,
+  "requestId": "Gx37lgjgJCi6ZKRiMtsn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bdfd38d1b8a3998a7bf2efb8c87d9473876de7dd264ac679cbf43aae2aa8dd2d",
+    "bytes": 71515
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

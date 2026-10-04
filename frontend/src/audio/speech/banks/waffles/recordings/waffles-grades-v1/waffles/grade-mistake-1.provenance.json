@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "grade-mistake-1",
+      "label": "Grade mistake 1",
+      "text": "Misfire! A real mistake, and the cost is well beyond a slip."
+    },
+    "takeId": null
+  },
+  "requestHash": "cc2dc951a54c6aa93d9db05109c9160d10295b8259806550f0776b9c57ebf840",
+  "recordedAt": "2026-10-04T07:24:15.814Z",
+  "sha256": "148ade8229c16a46a015ddec073acb9a591365ff72ecb450ce081a6bdf440441",
+  "bytes": 16889,
+  "requestId": "Q6xbhRLnLlCqBIXKGMvO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fdf24c1236b680039bb3cca84d571916d0c5ee680877d309b95dcad8a38c8d06",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "grade-blunder-1",
+      "label": "Grade blunder 1",
+      "text": "That's a blunder, a real swing. It deserves a proper, unhurried look."
+    },
+    "takeId": null
+  },
+  "requestHash": "2d6f6869932c5e96324e95144b2f95bc1600e2a44b830cd2da9683a11eaa70a6",
+  "recordedAt": "2026-10-04T07:22:24.729Z",
+  "sha256": "07bc2a131735844e3f2fb5edb3018210f9f7bb84b749f597d3b9e51ca988b225",
+  "bytes": 18414,
+  "requestId": "EZtGVRrLsGiMEMzRqlYt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "76f7dba0a36b6117ffc4511366d065378a831d8534a09738a510963bb9d39711",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

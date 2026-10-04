@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "grade-good-4",
+      "label": "Grade good 4",
+      "text": "Deviation from the top choice detected. Size: small. Action required: none."
+    },
+    "takeId": null
+  },
+  "requestHash": "b0bfe19bc1fa2261711251bf3f1b28cacbb7a3028f022685ae28ee8e85ca8eed",
+  "recordedAt": "2026-10-04T07:20:30.257Z",
+  "sha256": "04390169b26859a72a1fd490a119c625ab90d96dec6eea1f429781e7aef11050",
+  "bytes": 20158,
+  "requestId": "5HhwjEGIysvIeecLMEs9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "826ac3b8488e59ddc6fd4221d82e938daa6133670d7d07437c87c8927fa1cd35",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "grade-great-4",
+      "label": "Grade great 4",
+      "text": "The stakes were heavy. This move holds the weight."
+    },
+    "takeId": null
+  },
+  "requestHash": "a50d876fd3226e79e723a00c43c3e3506a37c2d913f46445961f63d3dfaa0d4b",
+  "recordedAt": "2026-10-04T07:22:58.154Z",
+  "sha256": "0fc2cff58d180dc4ba7f9df6990632dcf18a1f442d02617603c4d37141353cd7",
+  "bytes": 11937,
+  "requestId": "dc3jeHHa8ErU702Xlx60",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fe9105ee49928b2bc307a272a175e3a2761df4d43a2435554a85b14b51520bc3",
+    "bytes": 61066
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

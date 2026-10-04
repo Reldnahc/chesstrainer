@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "grade-miss-3",
+      "label": "Grade miss 3",
+      "text": "A missed chance, plainly. The stronger move had more in store, and that's the bit to study."
+    },
+    "takeId": null
+  },
+  "requestHash": "18ec752f9a09d185c5cf6e06c8128aef2529ab45cfab2b49424602cdcc23f263",
+  "recordedAt": "2026-10-04T07:22:21.314Z",
+  "sha256": "4c5b5fc999ba7bc38bffc7bb03a24340734798f9c5469ed2e3a91eef1e2a0600",
+  "bytes": 20460,
+  "requestId": "3dUzsO1EsAalVqpXNVCL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "80012eb6864d4b15132fb4b353baf3a5c8e46e7d5bb5b795e6f8f202815fbbd9",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

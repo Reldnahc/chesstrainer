@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "grade-blunder-4",
+      "label": "Grade blunder 4",
+      "text": "Severe error. If I could dig into just a few moments of this game, this would be one."
+    },
+    "takeId": null
+  },
+  "requestHash": "5ca39b0458b9641f338b7fb63aa852f3deea02bf336ebf6bc6dab1e71a410614",
+  "recordedAt": "2026-10-04T07:20:56.093Z",
+  "sha256": "a5f137cbc06930fee309aca2338ac0debf3729fb72e992cb351ab7420cbe1e91",
+  "bytes": 19676,
+  "requestId": "WOptL4ltQH0qEbMtXrAv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ada83e50bda245d59e6042907efd75a99a5793aa31a4c5a7c2be6d443fe5265d",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

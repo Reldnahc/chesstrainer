@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "grade-blunder-4",
+      "label": "Grade blunder 4",
+      "text": "A severe blunder. Of the lessons a game can hold, this is among the costliest."
+    },
+    "takeId": null
+  },
+  "requestHash": "d961deee160364a1c58ea4c8a534ababcbc58630e0522af80a833d141696e769",
+  "recordedAt": "2026-10-04T07:23:20.792Z",
+  "sha256": "1ddfe3a8da1d3e7ea72d024789afc2a605888a87eb748cf27e313c3920ddb104",
+  "bytes": 20851,
+  "requestId": "VG2r4X2aws3uvjGnS0x0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "44398eb5719b5b663a742434bfa19ea2d349a48099f1bca2fce80f0c64b946d7",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

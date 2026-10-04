@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "grade-great-2",
+      "label": "Grade great 2",
+      "text": "Great move. High-stakes turn, precise answer. Note the timing."
+    },
+    "takeId": null
+  },
+  "requestHash": "8db0b1310e6a741f8346a1377f60aef23c8d7dc46d2bf20dda1b140b46c97d49",
+  "recordedAt": "2026-10-04T07:23:55.698Z",
+  "sha256": "5818c2984aeca62b64fc144ddce5c039215bafc87553d9964a0b8f753f7184c2",
+  "bytes": 16022,
+  "requestId": "KzZT1MQ2cYjS5H0OW1lZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "39ce9c79b332057d8b77cd18adf3f197f52dc5d225ee05224e2400b02282d1bf",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

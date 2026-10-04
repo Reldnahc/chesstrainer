@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "grade-mistake-4",
+      "label": "Grade mistake 4",
+      "text": "I noticed this one at once. It is a clear error."
+    },
+    "takeId": null
+  },
+  "requestHash": "b5544b17277bdd031ac738ec57ba0d15863881955e9dd6e4ad740483c187c934",
+  "recordedAt": "2026-10-04T07:22:33.214Z",
+  "sha256": "e47b45973ded6a08bf18467458cdbf6c42672ae3ef3faa76dfab9d367c9e664d",
+  "bytes": 12281,
+  "requestId": "uCezZwHfuDLTQrj5TS6s",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2d87179ecfa5d53d1bc4be652ee7a234a1d31326ad543ddca9930b561a685e6b",
+    "bytes": 61066
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "grade-miss-3",
+      "label": "Grade miss 3",
+      "text": "A miss. The chance itself is the assignment: find it and play it through."
+    },
+    "takeId": null
+  },
+  "requestHash": "85fbf457a0ef24eb04404416388e00f901b080f5c64867545a5c7513b382b286",
+  "recordedAt": "2026-10-04T07:24:13.663Z",
+  "sha256": "c04b856bbfe231e32d4eb0e1bd6ce67a4b035f30db50718d258854c779946ff2",
+  "bytes": 16272,
+  "requestId": "Qr2r483vA7uE2fLAWJuQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "60135967312942275c83c59c59f01535aaf61647d6eb771c60861cd1c05bff19",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

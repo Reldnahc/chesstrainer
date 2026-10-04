@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "grade-brilliant-2",
+      "label": "Grade brilliant 2",
+      "text": "Wow, okay. Material on offer, and it's sound. That's the stuff club stories are made of."
+    },
+    "takeId": null
+  },
+  "requestHash": "658f6974d18378cda22a955d7d4f7f6117a230faf3fa1af9fd344e6412c5c6f4",
+  "recordedAt": "2026-10-04T07:21:48.933Z",
+  "sha256": "5cab8a70113ac245728cc5635e044f1790b829c080f4c6bd6a73c12db6796b6b",
+  "bytes": 22880,
+  "requestId": "cLVkaDGGQWlz7R7cPq0P",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3573eee4b2492e5458644278dfc943d8060ace084b4f53b2c2d0ca846c82f75f",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "grade-best-1",
+      "label": "Grade best 1",
+      "text": "The engine's first choice, found and played. Nothing left behind."
+    },
+    "takeId": null
+  },
+  "requestHash": "6a475afbe57f6ec2f7a8c355558976d62a6ceb457225ae0ddd7e57d275ef47fe",
+  "recordedAt": "2026-10-04T07:22:31.810Z",
+  "sha256": "1c94e0b6b5d2df8c9c40637ea33abfefe1332fddc7afbdfdcc8edbb89939daa6",
+  "bytes": 16332,
+  "requestId": "V8rsWTq3ph1PTjGFDT0t",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f03c3ab5174a118a80060a76235141fc79c8cebff1387dc0a13dc0c3956f0e4d",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

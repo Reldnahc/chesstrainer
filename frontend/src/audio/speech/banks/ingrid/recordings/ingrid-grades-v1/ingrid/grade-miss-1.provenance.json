@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "grade-miss-1",
+      "label": "Grade miss 1",
+      "text": "Tucked into this position was a real chance, and it slips by unused."
+    },
+    "takeId": null
+  },
+  "requestHash": "671e87588a13a3b69e2f5142e00fbf4f6ce98f196ce24cc381a7fa50e21d53ad",
+  "recordedAt": "2026-10-04T07:22:17.535Z",
+  "sha256": "dda3bf9f04dd781d667d0a1f6e0f38448b14f7907e98b431baea41d69b5325bc",
+  "bytes": 17245,
+  "requestId": "Y3foC2Y1YdDnbwlGMniu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dfdcae573be3b9e58fe5c0f78d5ef82c8c67a7983ab387c188ffe64d7307e7be",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "grade-brilliant-1",
+      "label": "Grade brilliant 1",
+      "text": "Oh, how beautiful. To give a piece away and lose nothing of the idea: that is chess at its most graceful."
+    },
+    "takeId": null
+  },
+  "requestHash": "eac24c98a7599b716a69475a9068e4b732d12c3b1129c2a70d08f00367cdf21b",
+  "recordedAt": "2026-10-04T07:21:16.244Z",
+  "sha256": "b5360f8829dfd2b97f8fee9cd74e282b5884bfeabe51772f0bc642e293b6a542",
+  "bytes": 28255,
+  "requestId": "rliRc28iU83DUIqEpyzK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "21ac92ba933b3e00f2d7f714b3e85afa1485b1716eff8598724bca4c2e42e6d4",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "grade-great-2",
+      "label": "Grade great 2",
+      "text": "Mm. A strong move, that, on a turn that carried a good deal."
+    },
+    "takeId": null
+  },
+  "requestHash": "3a45180807433067fd3d680860488dea7de5633a84c99759e327a6c6de8de307",
+  "recordedAt": "2026-10-04T07:20:16.311Z",
+  "sha256": "032d66a3c7c2371308c2cd5d0374a26197482397bbee885d7eef4683a1a84127",
+  "bytes": 15996,
+  "requestId": "b6OtNsAdsTjZkA5qCc5i",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "55803864ec787cb4b65ee568197ea61876fc40af5172da00f3def2c15e26d6b1",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

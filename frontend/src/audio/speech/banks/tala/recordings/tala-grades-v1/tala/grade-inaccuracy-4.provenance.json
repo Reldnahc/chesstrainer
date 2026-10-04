@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "grade-inaccuracy-4",
+      "label": "Grade inaccuracy 4",
+      "text": "An inaccuracy. Small, but puzzles care about small."
+    },
+    "takeId": null
+  },
+  "requestHash": "4a0944177b7fb07a144fa74fd319a136b748fd5534d7ec852a080d1a9e3a8be0",
+  "recordedAt": "2026-10-04T07:24:18.533Z",
+  "sha256": "60f8509874ced5e747f04a7d39b547ba9b034ee6b8e266b441e10c5135df4945",
+  "bytes": 14493,
+  "requestId": "YFA2WTntmfPgYE88Vncd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5ac667896861d5835ab50e9114c0bde2960f062b7a3f453f192144e681f9cde4",
+    "bytes": 72768
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

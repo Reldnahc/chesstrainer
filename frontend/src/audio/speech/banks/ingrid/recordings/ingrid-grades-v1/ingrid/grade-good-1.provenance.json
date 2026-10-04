@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "grade-good-1",
+      "label": "Grade good 1",
+      "text": "Comfortable chess, this. Sound, with just a touch less bite than the top choice."
+    },
+    "takeId": null
+  },
+  "requestHash": "c92850d3c40adc62a69bce245feea1c332d3198c4e52b11a8999d3676a4bc8e0",
+  "recordedAt": "2026-10-04T07:22:18.948Z",
+  "sha256": "79b60f31c81f964bf41a1d6d443094bb66523584b13a9b683982c4699e457c6b",
+  "bytes": 18622,
+  "requestId": "4lDV7DpqEITiSh2jf3vy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "709147df302a79308ddc5e32c910e50eeb827cdcb7bf2104fc6b89fa82272087",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

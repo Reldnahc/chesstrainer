@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "grade-brilliant-2",
+      "label": "Grade brilliant 2",
+      "text": "Brilliant, quietly. A sacrifice, and the line beneath it holds."
+    },
+    "takeId": null
+  },
+  "requestHash": "f11afe3990ba02feccc500081c0642c6c45e07bed346096fa547ec75932c50e4",
+  "recordedAt": "2026-10-04T07:24:21.923Z",
+  "sha256": "c6d8ddefccbee6c85d2b783e79bde8c67b7d5b2e761595ad7265ca6ab5bfb624",
+  "bytes": 17306,
+  "requestId": "WBkvHo1N6RIqVRSzdKFo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "506fc0a10cdb243843e1f7dfc8694065db91199214ec69f7e6919093f5b8361a",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

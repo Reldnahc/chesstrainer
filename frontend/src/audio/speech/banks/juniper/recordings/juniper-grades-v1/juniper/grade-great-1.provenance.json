@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "grade-great-1",
+      "label": "Grade great 1",
+      "text": "I kept my eyes on this moment; it mattered. The move is a strong one."
+    },
+    "takeId": null
+  },
+  "requestHash": "e415edcf54f4ca0241415efaf461cfc6fbc6f87330b1689c17ab56815db658e3",
+  "recordedAt": "2026-10-04T07:22:25.777Z",
+  "sha256": "61223b1fe7f208bc7e1e9c3d432f729497b6401c23166a1e7a7842fcf6fa216f",
+  "bytes": 17543,
+  "requestId": "VXMBH4gzGCWnsqq7GA5X",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "087e40ba7746385750e6db25239399198b54cf8eab8e50102cb3bf88e80eff9e",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

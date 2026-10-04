@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "grade-miss-4",
+      "label": "Grade miss 4",
+      "text": "Swing and a miss! The chance on this turn goes untouched by this move."
+    },
+    "takeId": null
+  },
+  "requestHash": "5134ca0ec111f126efd8dc61ce7d94b189e0e38892a256de67c05853968b5631",
+  "recordedAt": "2026-10-04T07:23:49.738Z",
+  "sha256": "7b21bd9ebe8a50b839295569ec3a3e735124cadbe8e1c1f94521818f0bb92f49",
+  "bytes": 15953,
+  "requestId": "spMwajIkgtyxGvZTj8q2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "717589f0df5b90551ecb16696c22e0e06d85eb6ab4b0c211740940864b1d5215",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "grade-mistake-2",
+      "label": "Grade mistake 2",
+      "text": "A mistake. Some of the position's poise is lost here, and not a small part."
+    },
+    "takeId": null
+  },
+  "requestHash": "3e512a55fc2f22009c0a7a40fb37fd86ef783625d930ff4f7655079395ae321f",
+  "recordedAt": "2026-10-04T07:21:18.633Z",
+  "sha256": "a99dedc5068d44b7e79148c5360c3e9c5b6f2e3e2e1b7986d9f351f6c08c8eef",
+  "bytes": 18394,
+  "requestId": "Bh4wUTj1TjeEAV0wyfX2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7f8f4263dfed9904aa2b30206a4f675655f29a79c81604a4091a2aa596f6ddb4",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

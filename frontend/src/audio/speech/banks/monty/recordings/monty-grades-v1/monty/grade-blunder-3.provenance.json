@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "grade-blunder-3",
+      "label": "Grade blunder 3",
+      "text": "Big drop. This move gives away a great deal."
+    },
+    "takeId": null
+  },
+  "requestHash": "a80a5be48f5ab4fdb503ccd4afcc668b85717b4e8deeae35a16d891413cc74ab",
+  "recordedAt": "2026-10-04T07:23:01.635Z",
+  "sha256": "de8f8a99e9c44a276d1978730199d94ee0577743d1049db62d4241f882c1e404",
+  "bytes": 12169,
+  "requestId": "Kg3XatAU6GqGzDDPntrL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5b598e3963e63552456f7b95f464e116d741e7e0cf8ebb5f21f043992bb3e5b9",
+    "bytes": 61066
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "grade-great-2",
+      "label": "Grade great 2",
+      "text": "On an ordinary turn, this would simply be a strong move. On a turn this important, it's a great one."
+    },
+    "takeId": null
+  },
+  "requestHash": "c9340ed658d577b79e8e1ad7fa1c3edc62d9536f60d913859d71ee029c9310cc",
+  "recordedAt": "2026-10-04T07:20:51.705Z",
+  "sha256": "0b3a4cbb5c200b6138b7b44ca084e26f92fc2571de4d80adabf4d2e5fc21e10c",
+  "bytes": 21653,
+  "requestId": "tVPxiCd214NYlnOpxkaN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ced93e61def3f512efc64daaccc57a1b43fd327ec19d7e91621650175c296c62",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

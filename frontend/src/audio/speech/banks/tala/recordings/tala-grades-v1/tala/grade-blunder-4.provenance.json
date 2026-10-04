@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "grade-blunder-4",
+      "label": "Grade blunder 4",
+      "text": "Plot twist, and a costly one: that's a blunder."
+    },
+    "takeId": null
+  },
+  "requestHash": "6f6125c00ed69d3387235cab1367fe53c6bf9496df5272b53f80e42f8316321f",
+  "recordedAt": "2026-10-04T07:24:14.077Z",
+  "sha256": "c28a91828309b211571773df6c006ded45cb0448b393f271c463049b3a65296d",
+  "bytes": 13805,
+  "requestId": "MJJvEQwzvi8vNBq9As3L",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bfaddf8be1170fc3a62c0bde660141ccc8c9eaf9392c2a5534b8be863674b2f9",
+    "bytes": 67753
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "grade-inaccuracy-4",
+      "label": "Grade inaccuracy 4",
+      "text": "Just shy of the mark. The move gives away a little, nothing more than that."
+    },
+    "takeId": null
+  },
+  "requestHash": "accde3eb298fff6c787d2b79733e09cd29f3215e017c8c25da581143592e865e",
+  "recordedAt": "2026-10-04T07:22:29.862Z",
+  "sha256": "16c229884a8c41af868ac38a2caccd50fa0198ec6ce388a958cba1c3bd65092b",
+  "bytes": 16287,
+  "requestId": "AJXrO197XhXZKCDuzlic",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d1a01c45e5c5cf2043cbf2f47f9b5525629aa583bdbef45989aab02c55575244",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

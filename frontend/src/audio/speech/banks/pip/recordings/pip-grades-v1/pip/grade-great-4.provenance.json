@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "grade-great-4",
+      "label": "Grade great 4",
+      "text": "Well, now! A big turn, and a strong move to go with it."
+    },
+    "takeId": null
+  },
+  "requestHash": "316d0cfc529ae5932f33a86a404c8bcc3262f444da3e96ca3b3bcfb9d8290557",
+  "recordedAt": "2026-10-04T07:23:33.175Z",
+  "sha256": "d95ef992135665a8db43a42d6cb423e5eb4353e341612cfc0b7bdf1f744cc687",
+  "bytes": 14548,
+  "requestId": "ijLOJbl2tR2L6DtRfpLC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "993afc61023ec0355bf3bef9e3800012c84e26effe728624bb2fdd9ea9aa0182",
+    "bytes": 72768
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

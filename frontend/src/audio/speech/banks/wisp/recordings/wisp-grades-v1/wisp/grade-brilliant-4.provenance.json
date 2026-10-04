@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "grade-brilliant-4",
+      "label": "Grade brilliant 4",
+      "text": "A sound sacrifice. Those are seldom seen, even from where I watch."
+    },
+    "takeId": null
+  },
+  "requestHash": "61e0beb184a1bc3ce0ca2d06d53b31034627ad47505ec04e9dcc6fbc32eac84e",
+  "recordedAt": "2026-10-04T07:24:24.641Z",
+  "sha256": "09fd84d72e5dec7cf019f2e53b5769dd0c827c7f2f4096b07b0104d07ef3c671",
+  "bytes": 16378,
+  "requestId": "ijyncD9mheHXNzJUxRRt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "790bc766677190234cab768540c00ba271793b67da63101fec68f57b7c791291",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

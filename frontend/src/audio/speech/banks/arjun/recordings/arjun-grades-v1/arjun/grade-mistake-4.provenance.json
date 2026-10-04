@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "grade-mistake-4",
+      "label": "Grade mistake 4",
+      "text": "Mistake. The interesting part is working out exactly what this move let go of."
+    },
+    "takeId": null
+  },
+  "requestHash": "36979fc076c9ab5547320723a82853bc768c54d62c231ce421fbe9aa6a68df14",
+  "recordedAt": "2026-10-04T07:20:43.310Z",
+  "sha256": "c3725c38f05778607ae895c4152ed18d241576f7c819b951f7231f141bfc1c5a",
+  "bytes": 17901,
+  "requestId": "untD2ezXmzelvxHOn8JO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0880928346d0fededa9af43a82083c701cabbe1bce2f5653012bd7d7e88537a6",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

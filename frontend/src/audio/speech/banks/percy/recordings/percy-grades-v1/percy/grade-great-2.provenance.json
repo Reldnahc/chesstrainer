@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "grade-great-2",
+      "label": "Grade great 2",
+      "text": "A strong move at a big moment! Whatever moved on this turn earned its keep."
+    },
+    "takeId": null
+  },
+  "requestHash": "c0136d96236d0688ecec19e88b311e9bd826d25075b41c2a70354eefc4086ba4",
+  "recordedAt": "2026-10-04T07:23:13.368Z",
+  "sha256": "f7ac61234988cfcf2836820fe51b12820a4268fe7919e0cb49962bac80e84b63",
+  "bytes": 16964,
+  "requestId": "GAjtuAVNbXcbzaLp6DS6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "23134aba64776452b79fcd275507798e246ae47b7986b6ac8ca49009fb2cad99",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

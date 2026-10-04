@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "grade-best-3",
+      "label": "Grade best 3",
+      "text": "Poised and precise. A move that simply belongs in this position."
+    },
+    "takeId": null
+  },
+  "requestHash": "2fdc09b8e1c32e669b1d72ecc53cbb36d6dbb7b14f4c15b280e1daf0a0465ab2",
+  "recordedAt": "2026-10-04T07:21:31.087Z",
+  "sha256": "47c9e12a6f016b71c8dd0fc65708870ed25cee34af4d6489ff02fc4327348b55",
+  "bytes": 16353,
+  "requestId": "5zushGJxTe86FIwjBVyj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9c8c5a4f954767230b3c52cb04d097cbe1d82db028ae5ae2bbefa606ac4df5fb",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

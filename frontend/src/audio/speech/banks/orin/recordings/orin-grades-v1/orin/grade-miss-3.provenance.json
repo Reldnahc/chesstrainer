@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "grade-miss-3",
+      "label": "Grade miss 3",
+      "text": "The board offered something here, and this move is spent on other business."
+    },
+    "takeId": null
+  },
+  "requestHash": "bb9ceff67afab9c2df75d1450baa92dbdc1395dadd1b1c18d7745e27fbb4bf1b",
+  "recordedAt": "2026-10-04T07:23:13.095Z",
+  "sha256": "42e01bd026592e69c75b89a5f5c273fbaa348a0ee75e3f780d2ceb3354cd4062",
+  "bytes": 16585,
+  "requestId": "3xF2yV0ydAqvWoqeouao",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ee247e0690ec2726a81db5c9c264a9d1ff5d6f0776deb283d84dc3f77f3cb23a",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "grade-miss-3",
+      "label": "Grade miss 3",
+      "text": "Missed. The position held a real prize, and this move fails to seize it."
+    },
+    "takeId": null
+  },
+  "requestHash": "385b0c350238376da16256d50d04704a0703cf2d9311ef0ce3fd96737e3158a7",
+  "recordedAt": "2026-10-04T07:21:43.757Z",
+  "sha256": "041999e00497ebba9d00c21eae9827e22a3eaf2abcd7fa8e67ba115789d37ff2",
+  "bytes": 17432,
+  "requestId": "C9M7XucZKizO2HeFuDkU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7b12472d0ea73450cc4ef7128aa6af6633b05e8b50e38606746eef8e209d8606",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

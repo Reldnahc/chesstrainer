@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "grade-blunder-2",
+      "label": "Grade blunder 2",
+      "text": "Whoa! A big, big swing, and all from the one move."
+    },
+    "takeId": null
+  },
+  "requestHash": "0c7f8286b6cd4f0ed891d3a4eed2adc1bd83a0b755e2e77f7ef5f31baaaa38ff",
+  "recordedAt": "2026-10-04T07:23:44.365Z",
+  "sha256": "cc8372e6e035f1a6f34f70b3277d325163bbba31adc1f8ccce6d1e686476d181",
+  "bytes": 16024,
+  "requestId": "m68MyAeXDhQEpBxbdNqd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a56928149191835c3912ac774abe22a170c13c625a2d1907e821a523071cabe7",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

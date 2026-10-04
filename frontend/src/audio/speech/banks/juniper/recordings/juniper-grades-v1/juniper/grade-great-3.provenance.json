@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "grade-great-3",
+      "label": "Grade great 3",
+      "text": "Here was a moment with weight in it, and the answer is strong. I liked watching that."
+    },
+    "takeId": null
+  },
+  "requestHash": "b73d04a45999f5425a5127217892107f5b2816f0f3a646bd2183d51033c8a462",
+  "recordedAt": "2026-10-04T07:22:28.939Z",
+  "sha256": "563b28bcbda90f14a6d90062638b2b6bbe6c262984f876ea58a6abcc5ac8d1c6",
+  "bytes": 18373,
+  "requestId": "SiQPKPPAm4vhl5k83uPF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6c256c92556ddff7173014f314b62da53362966da03ea89edd398b22ce8334ec",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

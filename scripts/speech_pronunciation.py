@@ -39,10 +39,13 @@ LEXICON = {
     "peekaboo": ("P", "IY", "K", "AH", "B", "UW"),
     "psst": ("P", "S", "T"),
     "reka": ("R", "EY", "K", "AA"),
+    "smidge": ("S", "M", "IH", "JH"),
     "tala": ("T", "AA", "L", "AH"),
     "tamar": ("T", "AA", "M", "AA", "R"),
     "wheee": ("W", "IY"),
     "wonky": ("W", "AA", "NG", "K", "IY"),
+    "wowee": ("W", "AW", "IY"),
+    "yowza": ("Y", "AW", "Z", "AH"),
     "ziggy": ("Z", "IH", "G", "IY"),
 }
 

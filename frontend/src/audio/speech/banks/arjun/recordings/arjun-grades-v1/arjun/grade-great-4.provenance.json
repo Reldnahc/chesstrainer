@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "grade-great-4",
+      "label": "Grade great 4",
+      "text": "A big moment, and a strong idea to meet it. That's a fun one to test on the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "9504630378e0d996d423b748e2d0e5335bf44500e732c5d6f62e90e1606a897c",
+  "recordedAt": "2026-10-04T07:20:49.054Z",
+  "sha256": "0c447e94631f421601c1c761a30ee2833456dd469b9d071207d357962d15124f",
+  "bytes": 18527,
+  "requestId": "Jpktx7HfDTcSXhnPyvOR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "40c32a850dd5e5e255d4070ba9acd3129318643e5a5da43ef8b3ef07c22c5dff",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

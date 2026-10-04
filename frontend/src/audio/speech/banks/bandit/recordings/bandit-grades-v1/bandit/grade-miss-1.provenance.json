@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "grade-miss-1",
+      "label": "Grade miss 1",
+      "text": "Miss. An opportunity sat there unlocked, and this move doesn't try the door."
+    },
+    "takeId": null
+  },
+  "requestHash": "0a20878b5d52abc9c1d6826a74c5d6f85ffcc2ef184fbad4ac718772e441ca92",
+  "recordedAt": "2026-10-04T07:21:03.740Z",
+  "sha256": "01d1afd6124c25913ca1b936032414fb5c71e6eabfe8052e4e3e9780413620a3",
+  "bytes": 17902,
+  "requestId": "LcVpxis5mCAE1DLutM4K",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "90c866dc0eba99f38ace7e82d34d9fe5f34b204ffd944a8b1a9dc52db1eb8afd",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

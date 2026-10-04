@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "grade-inaccuracy-1",
+      "label": "Grade inaccuracy 1",
+      "text": "Ah, a slip. Only a small one, but the position gives a little ground here."
+    },
+    "takeId": null
+  },
+  "requestHash": "bda83255dfdf8f6e4e669cbce1767d878d5a19694f7aa257e8570663613370dc",
+  "recordedAt": "2026-10-04T07:20:31.110Z",
+  "sha256": "4c3951e8b8b46dfd22569476e759f2f575dcfb4b2f7fa1305bc56f7690bc5214",
+  "bytes": 17473,
+  "requestId": "JhtkNc48kwNIYkJOOLdm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7954dbaf9437cc1a638f136dcfc095c336b0ac6e6001052a549af0095e429daf",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

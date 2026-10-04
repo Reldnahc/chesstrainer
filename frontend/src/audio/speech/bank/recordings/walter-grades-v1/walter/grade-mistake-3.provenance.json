@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "grade-mistake-3",
+      "label": "Grade mistake 3",
+      "text": "That's a mistake. Errors like this tend to echo through the moves that follow."
+    },
+    "takeId": null
+  },
+  "requestHash": "734ab416dc20268569465c18c99214cc1c57c74c41b3554d003728e8234bb96e",
+  "recordedAt": "2026-10-04T07:20:10.068Z",
+  "sha256": "a18aba2945519a00d8080ab9fbdd51b1cf90ee4857513bdcbfa01a09b783d8b7",
+  "bytes": 15923,
+  "requestId": "NO1BW0Ytk4YSvsGLvUGp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5f9f90a4cddda890f5ca3726cb8c42921ac7e8908d4f5dc1ae57423c8ded5675",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

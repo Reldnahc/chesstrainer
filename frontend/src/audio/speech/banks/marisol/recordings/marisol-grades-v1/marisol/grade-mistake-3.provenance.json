@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "grade-mistake-3",
+      "label": "Grade mistake 3",
+      "text": "What changed here is more than a slip. The position is markedly weaker."
+    },
+    "takeId": null
+  },
+  "requestHash": "63962caed9068097a0b8f069d51ce0dca294c025171fbd09698b0f6244a94d3c",
+  "recordedAt": "2026-10-04T07:22:34.792Z",
+  "sha256": "a8e3d523d20efb22cad0d4878b9e982ead7743c20b80e4b4f378ce496ddc7c70",
+  "bytes": 15933,
+  "requestId": "HU3xwHvnPmDqzW4RvDGE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "07c9e36dfd6fb3112e6d8ec4fe0770c17ec28c998b8a277cf767d956d0995f0b",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

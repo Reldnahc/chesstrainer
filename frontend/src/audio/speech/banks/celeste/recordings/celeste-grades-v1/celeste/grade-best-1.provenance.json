@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "grade-best-1",
+      "label": "Grade best 1",
+      "text": "The finest choice available. Nothing here shines brighter."
+    },
+    "takeId": null
+  },
+  "requestHash": "2be469408403d5a3455637e1b0a353b7948457c9626be4ee71d6229e35ab47b4",
+  "recordedAt": "2026-10-04T07:21:28.485Z",
+  "sha256": "d09d26d0e922b112523fc0ad70109f9853cb6f3a563758d9e3d4a026c0bd0df7",
+  "bytes": 14310,
+  "requestId": "x2GuzJlSZeBDc4pERJ81",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "aed6404c3a390664f1e4937121a2530036650f2aef19ca7bff432b35c8aac89b",
+    "bytes": 70261
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

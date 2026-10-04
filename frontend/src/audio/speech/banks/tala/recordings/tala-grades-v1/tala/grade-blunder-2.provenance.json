@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "grade-blunder-2",
+      "label": "Grade blunder 2",
+      "text": "Red pen out! A big, costly swing, and a clear blunder."
+    },
+    "takeId": null
+  },
+  "requestHash": "5f366d5b015a72e3f444feec8094028387eef631c7f2b8b0090ed9c7ec6f11bd",
+  "recordedAt": "2026-10-04T07:24:11.322Z",
+  "sha256": "7ea2f5c7d8b97a439817ee01010d1ad39a13a585fd9a990b6e26ec5480477430",
+  "bytes": 17681,
+  "requestId": "uH8IIIES8cP1YdO5q05M",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "defbecedaa964bdb23674597659ae55942dec2c23c943c028e5d9394105e2d01",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

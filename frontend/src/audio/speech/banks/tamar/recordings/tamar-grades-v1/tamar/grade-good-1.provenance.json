@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "grade-good-1",
+      "label": "Grade good 1",
+      "text": "Solid, not the sharpest. There was a little more to find."
+    },
+    "takeId": null
+  },
+  "requestHash": "8600569e275567771a9666ecddd25fa8732673ea2e6bc2802baf072967fc720e",
+  "recordedAt": "2026-10-04T07:24:23.030Z",
+  "sha256": "c6b2a2910c578a23d1a2458dd33dfdc54db81fe1bb2e70491f6c757acc257134",
+  "bytes": 13753,
+  "requestId": "sNILR35WR1cls4kLrtBS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4895ed24d6c1d0eff8f92334c883b6626691b19b837e9b1a301475a7db47b587",
+    "bytes": 69007
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "grade-mistake-4",
+      "label": "Grade mistake 4",
+      "text": "Pawns can't step backward, so they take a cost like this very seriously. A mistake!"
+    },
+    "takeId": null
+  },
+  "requestHash": "f33e047c0dcd136a5cdcb63479a19cba535773ec149dad78fa3f92d40f1d9e22",
+  "recordedAt": "2026-10-04T07:23:09.572Z",
+  "sha256": "eb24029bc245c0367be90d98db0230c89a9f6f897cdde7b51d5f0fba72289966",
+  "bytes": 18885,
+  "requestId": "SLDZiVn2VOcVRz22CGI6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "80b8ac25419481c3722e0cf185338b3c2cc4a4d0a8a3a4ebbeafa81be1cd8cd9",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

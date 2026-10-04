@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "grade-great-3",
+      "label": "Grade great 3",
+      "text": "Why does this moment matter so much? That's the question I'd start with. The move itself is great."
+    },
+    "takeId": null
+  },
+  "requestHash": "454c4cf9836daf56cd277a1f714489b92044a545da804d5e154643ac0d6dcb0b",
+  "recordedAt": "2026-10-04T07:20:47.317Z",
+  "sha256": "d1a8ac0790a4b908188e963bfad8553f9950d59ff5d40c8cafcc48f187ef405d",
+  "bytes": 20511,
+  "requestId": "rLkNh0PmNNeL9CaoABBR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c22ab5df089de083f3f5383a8920cb4105eb4cb219e85d1ea3a90df031e6c474",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

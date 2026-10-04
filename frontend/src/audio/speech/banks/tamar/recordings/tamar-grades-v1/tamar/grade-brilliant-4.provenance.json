@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "grade-brilliant-4",
+      "label": "Grade brilliant 4",
+      "text": "Notebook entry: material given up, checked and sound. Study it until the idea is second nature."
+    },
+    "takeId": null
+  },
+  "requestHash": "6b9a79ae1c5856f16f47026bc73cbdae255773d079f449b0b48a380e4620987a",
+  "recordedAt": "2026-10-04T07:24:10.389Z",
+  "sha256": "0808bfdb7963d1d5c3514ebfc241bb435459f1a051794859ee0113d291bbc51c",
+  "bytes": 23929,
+  "requestId": "HMW1ecxr2JdZmSjLh8Dh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "73610af0d7341530a510232164e4dc39f59a0b90da5b8369065d6431ec5cbcba",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

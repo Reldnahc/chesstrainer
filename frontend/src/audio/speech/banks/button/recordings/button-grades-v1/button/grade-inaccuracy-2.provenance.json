@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "grade-inaccuracy-2",
+      "label": "Grade inaccuracy 2",
+      "text": "Curious. The position settles a little lower after this move, like soil after rain. An inaccuracy."
+    },
+    "takeId": null
+  },
+  "requestHash": "31420e860d58808692caf5b3c041b7500e43f24cf41f4d3b75ae4a39ad4b964f",
+  "recordedAt": "2026-10-04T07:20:52.751Z",
+  "sha256": "81361d39d9f80ea2da7d1841df3d0c47ffe55bc94037c46b39278180e6a203d9",
+  "bytes": 24328,
+  "requestId": "pzaO4Ldh32pR0junxn8A",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ae4bfa69035e66a030b43762a01e3d689488ab57f5cc80c09eafba4ab4089eba",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

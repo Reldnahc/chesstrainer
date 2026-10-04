@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "grade-good-2",
+      "label": "Grade good 2",
+      "text": "Solid. That's perfectly playable chess; the top move's only a fraction better."
+    },
+    "takeId": null
+  },
+  "requestHash": "321ef3e4644e74c70359009106dcb9284022016eda9dde50dde81410663229b6",
+  "recordedAt": "2026-10-04T07:22:06.898Z",
+  "sha256": "71069d91389b2ca5bc8ca6bfc3101dfe213e54b0bcab5659fb903363a35221e4",
+  "bytes": 18286,
+  "requestId": "MRw8LmC86uwlOfaFIrQD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "971f0a6a5c733c3058a5c465cee7410c497bc6075b0cd10dbcab87773bf54c70",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "grade-inaccuracy-4",
+      "label": "Grade inaccuracy 4",
+      "text": "Not far off, this one. Just a little crooked."
+    },
+    "takeId": null
+  },
+  "requestHash": "e454b81c546015edfc48e303a1fd0bac7fb367872b251e1bfda613ce48545028",
+  "recordedAt": "2026-10-04T07:20:55.156Z",
+  "sha256": "1f56a5db7ab9a9f93a7613421c0e84fe80053d6871cd056d6671c10f849641fa",
+  "bytes": 11202,
+  "requestId": "7tN13278KudcHjwPZabQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "98046c77181943cc883e6ea3878b1929999f72f86de97f11199e1738c8581afd",
+    "bytes": 54796
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

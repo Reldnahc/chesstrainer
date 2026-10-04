@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "grade-inaccuracy-4",
+      "label": "Grade inaccuracy 4",
+      "text": "Here the position loosens, only a little. Small cracks are worth noting before they widen."
+    },
+    "takeId": null
+  },
+  "requestHash": "f0d3498969409e593b72d2d59e4bf817e93323dec9d191b22dba0e9095f8de1c",
+  "recordedAt": "2026-10-04T07:23:30.897Z",
+  "sha256": "dfddf623ff89484199b22e9b6622ccd9b1271b9330d9fc7224edbaa040cca9a6",
+  "bytes": 21163,
+  "requestId": "Unpuy4JXDEVo7WsP2cMZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "729c35b912b4271cde14f4ce64c763cec28914b1a2c879108d87d8b3b66c4db1",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

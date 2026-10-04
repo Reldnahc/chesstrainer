@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "grade-mistake-3",
+      "label": "Grade mistake 3",
+      "text": "Mistakes are judged by what changes, not by how a move looks. After this one, the position is clearly worse."
+    },
+    "takeId": null
+  },
+  "requestHash": "4fd6d4aecd5e1bc3bf4836b3b9627e65236f3eb135ab69d58d14c5d134fbcc7e",
+  "recordedAt": "2026-10-04T07:20:58.513Z",
+  "sha256": "b50090beb19f86741876abab72f6e627855c07dd00be242efa1cad10f443547e",
+  "bytes": 24437,
+  "requestId": "1iW5OZ0IAIKeax1csjVE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9f2693f90c882de2d3ecf94ba81855d7ea451d2089b48ab64a8f859547f9baa6",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

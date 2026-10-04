@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "grade-blunder-4",
+      "label": "Grade blunder 4",
+      "text": "Whoa, that's a cliff-sized drop in value! Definitely a blunder."
+    },
+    "takeId": null
+  },
+  "requestHash": "4486c5bb45a4d3d29249a4a25d3ea6b999b101bf33a2f08fb5fc829ee009034b",
+  "recordedAt": "2026-10-04T07:23:01.483Z",
+  "sha256": "d87b1a8f9cfe198a1768f8f36ce9cdbb38fe44da3943ff5376af25d092a93515",
+  "bytes": 16569,
+  "requestId": "Ghc9gyAb4c4R2Mrrrf8U",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "decd4d6cb39783117b7ce1598c155676d5f5533e65d194a69e3fe2f7e55ef68e",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "grade-good-1",
+      "label": "Grade good 1",
+      "text": "Hardly a thread out of place. The top choice was only a hair ahead."
+    },
+    "takeId": null
+  },
+  "requestHash": "b4de8dafe5564ed0ffd72b7e1e4962da8def15252ad63b89869acea3ec354dd6",
+  "recordedAt": "2026-10-04T07:22:37.209Z",
+  "sha256": "1c3eb69b6ac55a73f83515c05c0cbc8e0938902a5e8d2552e2e347a9f7b8534b",
+  "bytes": 15744,
+  "requestId": "A8xzgdGxKxC82jmnDJp0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "95a4e30f86dcf77149db602f43dd1a157d7853bf04353b35952d67438a3a989f",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

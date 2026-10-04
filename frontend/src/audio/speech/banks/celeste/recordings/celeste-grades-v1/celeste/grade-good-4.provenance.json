@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "grade-good-4",
+      "label": "Grade good 4",
+      "text": "Good, and soundly made. The very best move was only a whisper better."
+    },
+    "takeId": null
+  },
+  "requestHash": "dd384466d999185545141d24daf937085f36f26e3bb2a099bf581af9b4c1c478",
+  "recordedAt": "2026-10-04T07:21:39.356Z",
+  "sha256": "38b4643279ee96bc4e624c319ea961308e593df8c8a4e992050174c398ab58cd",
+  "bytes": 18724,
+  "requestId": "mgmnTcPFB8rwxWhv68rn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "81192c1906ba754f6426611f24b0891e7231f1152072bce58463fef579293019",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

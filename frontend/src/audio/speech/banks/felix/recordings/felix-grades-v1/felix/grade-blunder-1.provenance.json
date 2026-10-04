@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "grade-blunder-1",
+      "label": "Grade blunder 1",
+      "text": "Blunder. That is an expensive move."
+    },
+    "takeId": null
+  },
+  "requestHash": "96a4d9077b5c746a3be5707a3843a18205a8c1440966f4d1fe45b030ffd87323",
+  "recordedAt": "2026-10-04T07:21:52.760Z",
+  "sha256": "5eb77403f592ce2e2e0f6461e1124a5e82caacb5c1cf891d0998202ef949b19f",
+  "bytes": 11584,
+  "requestId": "RXyUYXhJbPrO4qwov7bQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6f74e1dee232f26f7d9a35ce90fc015b9d78a4d364e4312bf1ffe1cde34b7c21",
+    "bytes": 56050
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

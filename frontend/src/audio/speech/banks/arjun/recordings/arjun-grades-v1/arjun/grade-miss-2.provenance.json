@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "grade-miss-2",
+      "label": "Grade miss 2",
+      "text": "A missed opportunity. I'm curious what the stronger candidate would have led to."
+    },
+    "takeId": null
+  },
+  "requestHash": "edc28346daf1ab4e996ed8138c1dda323d84d0d1df5c814d6dfed962a2811a52",
+  "recordedAt": "2026-10-04T07:20:46.267Z",
+  "sha256": "99221722ecebc69ce96376ee9191e074c12c81fa34530ee3ce8204c1b93351bc",
+  "bytes": 16604,
+  "requestId": "0vPmY0vXGyYBzjduUTeu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a255117bc07b295f0a47d26bcb188a118f32a817dcebebaac905af076f880ce6",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

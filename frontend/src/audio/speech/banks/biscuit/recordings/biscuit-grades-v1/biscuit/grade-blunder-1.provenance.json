@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "grade-blunder-1",
+      "label": "Grade blunder 1",
+      "text": "Yowza, what a giant swing! This one's a blunder."
+    },
+    "takeId": null
+  },
+  "requestHash": "b5b7c693da89554352be3730c349c8dcb69bda2a26961b752348fec35a1b6865",
+  "recordedAt": "2026-10-04T07:21:28.524Z",
+  "sha256": "369d694fc3765557c85aee1e2c7c77f9d6d3e28f751fd79bcaa852a2233cdca1",
+  "bytes": 15320,
+  "requestId": "Hz03asUoutuQbbn9MARE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "16484428d0d519a00785235544cd24bcd9d0afee53855a61f119b1db7a3305d5",
+    "bytes": 75276
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

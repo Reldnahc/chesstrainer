@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "grade-mistake-4",
+      "label": "Grade mistake 4",
+      "text": "Clear mistake. The better move existed; find it before this game is closed."
+    },
+    "takeId": null
+  },
+  "requestHash": "26f27b417d5df283369ce6b12c913b9067a43e857d246bb47ba1f1140b22ade0",
+  "recordedAt": "2026-10-04T07:24:09.574Z",
+  "sha256": "0223699a94b54f1c36952ded4285b13519c7a66c1082c0f64a3840731ebf1dbd",
+  "bytes": 17580,
+  "requestId": "YjzQAXdfLyQpTJg6P60x",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c3f69a9ee8d2d5047627245a6cadc84155f573fab711093a9ac119c57843f2dd",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

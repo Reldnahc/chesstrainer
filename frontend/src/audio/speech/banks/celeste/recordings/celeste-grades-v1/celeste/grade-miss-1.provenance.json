@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "grade-miss-1",
+      "label": "Grade miss 1",
+      "text": "A chance shimmered in this position, and the move glides past it."
+    },
+    "takeId": null
+  },
+  "requestHash": "f5962527dcc4b56a9198068ceb0d1dea75dcff5031dbfb8343522c35a54655bb",
+  "recordedAt": "2026-10-04T07:21:23.146Z",
+  "sha256": "2551517dab0418fd150130d9db1db524f080de0678210ac8eecd18cb202c1ea9",
+  "bytes": 15190,
+  "requestId": "feq75n64F0DOUdhx5W33",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "134696378b23ed055aa8b3d87ab02e230cadacf327ea98f718c75cc299821610",
+    "bytes": 75276
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

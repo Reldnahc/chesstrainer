@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "grade-blunder-2",
+      "label": "Grade blunder 2",
+      "text": "Simple problem: a big swing, the wrong way. This one is worth a hard look."
+    },
+    "takeId": null
+  },
+  "requestHash": "f55767ac43ec268cce8909e6c8b61507cffff56dc5244086dd0c16e91a5b379a",
+  "recordedAt": "2026-10-04T07:23:00.555Z",
+  "sha256": "17e84f3ffda218f3ed8ebe50661977bc6068bed6ef3b2da27db5c47060a9ae7d",
+  "bytes": 19028,
+  "requestId": "sVQZCEGXeUYAMhNW8XaW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "21e80c026f3fc21a8d2d84c9bc3ff3070ebf2a4ec0ce2501fd58c1fce4c94624",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

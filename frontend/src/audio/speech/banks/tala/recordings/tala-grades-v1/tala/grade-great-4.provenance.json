@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "grade-great-4",
+      "label": "Grade great 4",
+      "text": "Which turns really mattered in this game? This was one, and the move found here is strong."
+    },
+    "takeId": null
+  },
+  "requestHash": "12d231d60f3a875287c4ce3cdfdfba7c124a63fc77e5292575a2f43ed7e6ab94",
+  "recordedAt": "2026-10-04T07:24:01.671Z",
+  "sha256": "78550362f45ae3310410464769f79f652c969628269b3d63bbe798d0759fb069",
+  "bytes": 20592,
+  "requestId": "cVR6WxbAoIVuuS7VlNZ7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0c3884a95bf7f3a5cb483a9d0aa1104b9ffc150fc926ac144272deeba5c59803",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

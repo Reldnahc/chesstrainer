@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "grade-brilliant-2",
+      "label": "Grade brilliant 2",
+      "text": "On the board, a piece is offered. The analysis finds the offer sound."
+    },
+    "takeId": null
+  },
+  "requestHash": "972a32ef3ee13c4fa7324ff12b5ef6cb5fd907d86ab0785a700a821a2b84b4d6",
+  "recordedAt": "2026-10-04T07:22:32.868Z",
+  "sha256": "7fe4a27f26fba4e017824bd54e77514e69686f50fd9a75fcd72b47fd87500ceb",
+  "bytes": 16097,
+  "requestId": "t9v4OW8jo4BzRlMyC2XU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "986e5acfde0f4303e9e9ec97c0d2761dc2bb3f45674463f41ea91e5c50f41333",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

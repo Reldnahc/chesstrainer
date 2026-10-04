@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "grade-mistake-3",
+      "label": "Grade mistake 3",
+      "text": "Costly. In review, this error comes ahead of any smaller ones."
+    },
+    "takeId": null
+  },
+  "requestHash": "6bb029164f93ddd79b07f59eca6330e4c1256aaf5a2220edd2425a1eddb37d3a",
+  "recordedAt": "2026-10-04T07:24:08.007Z",
+  "sha256": "2eb157e06635d71b45baaeec796460a596ee61e6e5c96ddc9f02ecb5b7e39e72",
+  "bytes": 15535,
+  "requestId": "A7l5mqZpsPU5B0SF7Fq6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a622ecdb9e7a40aadd48773e0e6fb07c41a5f4d504f1efe5036b668645c6543b",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

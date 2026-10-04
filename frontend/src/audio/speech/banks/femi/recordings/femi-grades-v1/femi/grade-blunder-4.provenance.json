@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "grade-blunder-4",
+      "label": "Grade blunder 4",
+      "text": "Right, blunder. A huge swing on this one; worth replaying a couple of times."
+    },
+    "takeId": null
+  },
+  "requestHash": "311f0eca16e7f176034c3e278754663e2336e82db70ea13a0d9ad065594b2986",
+  "recordedAt": "2026-10-04T07:22:09.319Z",
+  "sha256": "14b723c192092de059b4d182a1eb87e806a83d437eb5292f5a572a970714e1eb",
+  "bytes": 19049,
+  "requestId": "Mxe9E95JgrV3cn2RaOaQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2b17d6fcc94efe441e629f538cc42b98b8246bcdd3182dec7c9a9f6745ff6dbd",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "grade-great-4",
+      "label": "Grade great 4",
+      "text": "So much hinged on this little turn, and the move is strong. Delightful!"
+    },
+    "takeId": null
+  },
+  "requestHash": "2b287fed789ed3054eda8215e2f67467ff5050e33f9d343f0599163a49cfbbaa",
+  "recordedAt": "2026-10-04T07:23:28.476Z",
+  "sha256": "7e96bb5e69f0192506ceaeba676cf72d691b924eab914dc7b0f59dca9311f06f",
+  "bytes": 17189,
+  "requestId": "E9LRwlE3AoaHmGTToRNk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "636ed0fa867f4889f27d1413dfad370234c29a63d5d8ff35e203365e6b6506dc",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

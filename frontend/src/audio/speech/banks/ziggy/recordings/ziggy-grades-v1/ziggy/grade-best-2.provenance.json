@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "grade-best-2",
+      "label": "Grade best 2",
+      "text": "The move played and the engine's first choice line up exactly. A neat alignment."
+    },
+    "takeId": null
+  },
+  "requestHash": "d1f25ceda6bb0c51ac7b90fc3499b7255554d70438ce63b71caeed0ca8ef2362",
+  "recordedAt": "2026-10-04T07:24:49.292Z",
+  "sha256": "349b9de4785458a6c28b9e3f398257d27bc99d776063371521bc5909c305813f",
+  "bytes": 18610,
+  "requestId": "4wajyHOfy2SW2xkvzCPu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3adb00568a5847a49f47a568a481a0bd78a22d9c44b922ea4307cf840b102ce8",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

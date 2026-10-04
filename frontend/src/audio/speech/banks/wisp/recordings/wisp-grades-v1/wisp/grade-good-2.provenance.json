@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "grade-good-2",
+      "label": "Grade good 2",
+      "text": "The top move stands only a breath away. This one is good, and sound."
+    },
+    "takeId": null
+  },
+  "requestHash": "89deee8d35909aa572a819a8ad8a7e370a9fa51f5a6a1fadfd30c6df200eeb72",
+  "recordedAt": "2026-10-04T07:24:38.463Z",
+  "sha256": "c59e2940f77ecbc0d6dbbbdd28f71bdac15ecf5dfbc0d9abca95c84224719626",
+  "bytes": 16936,
+  "requestId": "ThemcQgCAQKAVcw1CCEz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "97815d07d9d489bc6ac2ef6660686933b6b08a9427e1ad80e241997221d7c1b2",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

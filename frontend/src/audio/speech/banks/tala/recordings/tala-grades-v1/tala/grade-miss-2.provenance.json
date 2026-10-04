@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "grade-miss-2",
+      "label": "Grade miss 2",
+      "text": "Missed chance. The detail that mattered on this turn never makes it into the move played."
+    },
+    "takeId": null
+  },
+  "requestHash": "7e0224c5c11e51ee1735caace7fc7e9dd6abbcad89152c6b463372380e4ab866",
+  "recordedAt": "2026-10-04T07:24:05.186Z",
+  "sha256": "13530c649c493037fe614ffcd6ed225ab11ba65e7d5e5df062fcab2048f9a72a",
+  "bytes": 18859,
+  "requestId": "ZpZvorYKcCHpSKIT6v5o",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e21bdfd2e7765237b76e1b882be4efc55e403b6fb7ec5b4df5b49e360abe7000",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

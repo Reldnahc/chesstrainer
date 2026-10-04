@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "grade-best-3",
+      "label": "Grade best 3",
+      "text": "Best. The discipline of the correct move is learned slowly and kept long."
+    },
+    "takeId": null
+  },
+  "requestHash": "79bdc49cb2cf53efb082c87ec7c941da823c4c3b849b8bd630b1556f1d47a6a9",
+  "recordedAt": "2026-10-04T07:23:16.923Z",
+  "sha256": "c5d81521a13a7113750e0a66a80893603888b70407078a2e7836b4f4963f2447",
+  "bytes": 18482,
+  "requestId": "6dt9cym0cOXII5B3ieo5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1f7e7d30c1842fd69fac49317080aaef583e5c45ae73a1f051b44aed1d6baf37",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -50,11 +50,11 @@ def test_pilot_scripts_match_the_registered_recordings_without_losing_base_meani
         manifest = read(path)
         records = {row["id"]: row for row in manifest["recordings"]}
         assert manifest["coachId"] == coach
-        # Generic lesson prompts and the plain-move grade takes may be authored
-        # before they are recorded.
+        # Generic lesson prompts and piece variants may be authored before they
+        # are recorded.
         unrecorded = (catalogue.keys() | extras.keys()) - records.keys()
         assert all(
-            catalogue[key]["group"] == "lessons" or key.startswith("grade-") or key in variants
+            catalogue[key]["group"] == "lessons" or key in variants
             for key in unrecorded
         )
         assert records.keys() == original.keys() | (extras.keys() & records.keys())

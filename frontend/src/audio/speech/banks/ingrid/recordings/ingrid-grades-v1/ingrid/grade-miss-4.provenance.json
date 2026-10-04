@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "grade-miss-4",
+      "label": "Grade miss 4",
+      "text": "Something good was knocking about here, and this move ambles past it. One worth replaying."
+    },
+    "takeId": null
+  },
+  "requestHash": "952c089c8c34a83d6d5cd9b8730d1c5ceae026dda32b9b4109b64d167c2d7e9c",
+  "recordedAt": "2026-10-04T07:22:22.963Z",
+  "sha256": "dc0b2e8d5a24381c88f46e22ae86ddd3c635b588515e4804e066a0fafa3d5e17",
+  "bytes": 20189,
+  "requestId": "744rxRMCpd2JEFyn5jLz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9a97a054a1da325d44c8b2fdefcea803d4a1a38887fdfff23e741381d7c39f2a",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

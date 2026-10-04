@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "grade-mistake-2",
+      "label": "Grade mistake 2",
+      "text": "Somebody's short-changed here. A genuine error, and it adds up."
+    },
+    "takeId": null
+  },
+  "requestHash": "4cd1ce7df37d6019fb532624ac20c1ff13f444d3fe391fe5a2093a037e340248",
+  "recordedAt": "2026-10-04T07:20:59.075Z",
+  "sha256": "72b7782c3edafa105bd55c701bab7846c9144344a15c343d07dc5055b52dd252",
+  "bytes": 15852,
+  "requestId": "qlhG0ZUIuDlmlinS5Z6x",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cf2f110b6b522e421a6cf8b8dc7e60437dc2e72ccc219e13fd0eb61a778b6205",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

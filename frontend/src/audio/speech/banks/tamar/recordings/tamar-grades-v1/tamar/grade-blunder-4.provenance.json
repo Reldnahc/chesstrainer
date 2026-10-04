@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "grade-blunder-4",
+      "label": "Grade blunder 4",
+      "text": "A clear blunder, and an expensive one. By the end of the review, this position should be known cold."
+    },
+    "takeId": null
+  },
+  "requestHash": "943e93c198eed20f8c868000460a4b86320bd70f924340c0e323162332059bd8",
+  "recordedAt": "2026-10-04T07:24:21.473Z",
+  "sha256": "02d309e6432fc1eb9f1ee6f603fa2139eb572134ef068595ab728a803de74c42",
+  "bytes": 22446,
+  "requestId": "Xg1zxFbgxHoXMB3icJ9b",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fec6228a5b7ab84513dbc88dbca5fcf095ebaa228109cdbd0ac1f98c121b0ece",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

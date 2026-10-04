@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "grade-blunder-2",
+      "label": "Grade blunder 2",
+      "text": "I watched the balance tip, hard. A costly move."
+    },
+    "takeId": null
+  },
+  "requestHash": "481e5b165caaad4eeb60dfa0259709d169c6780337e8516d7df9e34ba8b58560",
+  "recordedAt": "2026-10-04T07:22:41.473Z",
+  "sha256": "b83846bb7b23e07c85f2dc4bf716e52071762065894cda6a73204b40bb501632",
+  "bytes": 13905,
+  "requestId": "8JzkCswTOTDMIlnnINcx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1e88980d441873895038d29c8313162a1ef221cf7d97e0ef50033d5574180c64",
+    "bytes": 72768
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

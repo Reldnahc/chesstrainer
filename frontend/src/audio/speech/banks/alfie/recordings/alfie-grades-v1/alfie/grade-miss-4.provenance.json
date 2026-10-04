@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "grade-miss-4",
+      "label": "Grade miss 4",
+      "text": "A chance goes unused here. The move itself is less important than the one that wasn't played."
+    },
+    "takeId": null
+  },
+  "requestHash": "b55898e936c43d6bf8ccf67d8fa9fc2f91d3835b4d4e4b0a037a308abef4b259",
+  "recordedAt": "2026-10-04T07:21:07.025Z",
+  "sha256": "01b61904176c2d204bf1e2925b63cb46c1b2a0c437dcbb8f0d0fc3bfddca1441",
+  "bytes": 18414,
+  "requestId": "gEKEO9b0HO1hn5xzNs1j",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "17887b321893b8d66939e488a45b2eedc433cd1327804f935907e9b7795d29f1",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "grade-brilliant-1",
+      "label": "Grade brilliant 1",
+      "text": "A sacrifice that stands up to the capture. Work out exactly why accepting it refutes nothing."
+    },
+    "takeId": null
+  },
+  "requestHash": "e7c53cbe570e85bf8df1d7d07b1c0ad455f72e1739aa052b7454be3c770346a1",
+  "recordedAt": "2026-10-04T07:24:04.988Z",
+  "sha256": "f2ba3c97089eda7838877835f5a5abb426ffe62b20bdd90564335165ca3686ee",
+  "bytes": 22074,
+  "requestId": "We4JI5yiYwayaa0h45NO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "66cb63740268bcee7d24719f1257898f6ff164a39639f649b75dc0e11aac77ee",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

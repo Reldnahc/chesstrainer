@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "grade-great-4",
+      "label": "Grade great 4",
+      "text": "Fascinating. Strength, applied on the very turn where it counted. Such precision is what I came to observe."
+    },
+    "takeId": null
+  },
+  "requestHash": "bda9db2b4e50ed8126a9782e899743491ab68a36cfa80aa1d19a75d1cdb1a7e8",
+  "recordedAt": "2026-10-04T07:24:46.215Z",
+  "sha256": "02b005787ab69fdc879e6cbb3381dcf093f91435888a5fa431849e9cd84ba353",
+  "bytes": 23929,
+  "requestId": "TZTxh3OcRJ72sz4J3xuW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f3a6ad6e973fd61c01bdc51bc74fe9ec34c6f73480e98ae8b9cbde984897cef7",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "grade-best-1",
+      "label": "Grade best 1",
+      "text": "Best. The engine's first choice."
+    },
+    "takeId": null
+  },
+  "requestHash": "359c10cdfedaa31a1ea3959259c74259b86476ac2177cd84da643f39a028bd91",
+  "recordedAt": "2026-10-04T07:22:22.039Z",
+  "sha256": "a676869403dbb4363f5f72193c395b670a86328d0cecb0ea613efa892a391a74",
+  "bytes": 9243,
+  "requestId": "iHeTOf9zDfWO9ylpXUHw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6b78fb19da840ae5df808a6a518e31ca128cef79eaeb60363ee8b6af6f8a8166",
+    "bytes": 47273
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

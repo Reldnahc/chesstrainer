@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "grade-blunder-2",
+      "label": "Grade blunder 2",
+      "text": "Alarming, even to an outsider. This move costs a great deal."
+    },
+    "takeId": null
+  },
+  "requestHash": "87cc54cab81543b5ddca989ca22d1f7c1a158cc079bf7a0f5c0b9287033989d7",
+  "recordedAt": "2026-10-04T07:24:50.740Z",
+  "sha256": "28596e56f8200df635cf5be28b99b4b6921b529b385f82deab3d552601b6286a",
+  "bytes": 15815,
+  "requestId": "gOE4I6m0uCCKX9ttzqNQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a614ee794a72677fe695611b9edd45b986ed4885bfcfd691cf5bcf6dcd7f1a17",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

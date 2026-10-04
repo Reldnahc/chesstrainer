@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "grade-great-2",
+      "label": "Grade great 2",
+      "text": "Simple point: strong moves matter most when the stakes are high. This is one."
+    },
+    "takeId": null
+  },
+  "requestHash": "f9e18af0bbf21dfae8dbb8ce6a93cef58abb7563f1228dace9722fd60f593460",
+  "recordedAt": "2026-10-04T07:22:55.519Z",
+  "sha256": "2c218fb1594f7f35167ea5f1f4038701f79cf3fc4fcb029af842cbc9e4eb8407",
+  "bytes": 17459,
+  "requestId": "zGmllwU98oKXQCJrN32y",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a08f873e2b0cab1017895d69b9f44267499846e2bd7dfcc0596f275fe2fd3bc9",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

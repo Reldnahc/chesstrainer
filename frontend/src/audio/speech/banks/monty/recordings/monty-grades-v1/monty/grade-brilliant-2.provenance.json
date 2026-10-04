@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "grade-brilliant-2",
+      "label": "Grade brilliant 2",
+      "text": "One piece put up for the taking, at a real cost. The checked line says it is sound."
+    },
+    "takeId": null
+  },
+  "requestHash": "29b8c779f8512dec6d958083db113d1eb35d4d65ca12d5bd496b18f742306540",
+  "recordedAt": "2026-10-04T07:22:49.876Z",
+  "sha256": "c7a32adc660bf31b0ae209e174d7f1ca244a3fc4cba71467ff75ddedb2176e78",
+  "bytes": 18336,
+  "requestId": "jhQffaMapPwfkgEWtUDG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3c013e898402612832a915226ae00b14b9cfbafa0317f11d18dc57e9fdd60d84",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "grade-blunder-2",
+      "label": "Grade blunder 2",
+      "text": "Serious. This move costs a large amount, and nothing in it offsets the cost."
+    },
+    "takeId": null
+  },
+  "requestHash": "fde5bf7032f66c3f947d0ca631b7742164cf271422a0c2e45e0ec76199a9bb2e",
+  "recordedAt": "2026-10-04T07:22:44.556Z",
+  "sha256": "ff6b0f8c65749a563982a1445d4611c1bd8de3cdbb159122e9f05377b195909f",
+  "bytes": 18254,
+  "requestId": "WVPYXKj8ikJ4ZDWUiS7a",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "468dff5064f89fed6be94433ff3175779ad6b35ca876a4e84f5af9c881fc4e94",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

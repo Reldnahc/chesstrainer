@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "grade-miss-3",
+      "label": "Grade miss 3",
+      "text": "Miss. Somewhere in this position was a real gain. This move was elsewhere."
+    },
+    "takeId": null
+  },
+  "requestHash": "9d3f1b389e14572181816097d3adbecb9a2aecc22aab37dde205423d0152f900",
+  "recordedAt": "2026-10-04T07:21:50.402Z",
+  "sha256": "8eaadd2262051e9bcd2997d4d7a61398adc620a42479bf3b092873960db085b3",
+  "bytes": 19201,
+  "requestId": "f6LgZ414EKOgnbxDNswW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ed94084a4b6e9526a974cc9190c9330e8216b50e6005333ba76d87aa3486f083",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

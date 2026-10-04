@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "grade-inaccuracy-4",
+      "label": "Grade inaccuracy 4",
+      "text": "A minor loss of precision. On my scale, a ripple, not a wave."
+    },
+    "takeId": null
+  },
+  "requestHash": "1e85dee7046f1d8aec985dadb051ab714209b372d086f55d7611ed5f87326f60",
+  "recordedAt": "2026-10-04T07:25:03.628Z",
+  "sha256": "bca680d1a7637acb54258b8802412caa053118e1c1e0ac32eb8d8f4aa3e03a99",
+  "bytes": 15889,
+  "requestId": "AGDjRy52QpnqQ3hAz5CQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5562daadcb22acb55a00df32de3f7530d6f9503a3bb129e97f557baa81c34a80",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

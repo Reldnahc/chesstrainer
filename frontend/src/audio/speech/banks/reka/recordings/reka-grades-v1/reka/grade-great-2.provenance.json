@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "grade-great-2",
+      "label": "Grade great 2",
+      "text": "Feel the tension? A moment with teeth, and this move is strong enough to handle it."
+    },
+    "takeId": null
+  },
+  "requestHash": "01d40fed4a1fd6693a9ea8b2487af107fc87fa46b8dcd738e305aa4a1b2150bd",
+  "recordedAt": "2026-10-04T07:23:43.933Z",
+  "sha256": "c04ba88814c1347ac7ef3a77399e7ff3402f61cdb0cd9deb9dcab0581a3096b9",
+  "bytes": 17272,
+  "requestId": "mYWvEJxUf5zPDODQgER8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "91af3c4a714c4119ad4636a52708459ba3489550855bb0969de27a423f78dfa4",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

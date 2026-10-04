@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "grade-miss-1",
+      "label": "Grade miss 1",
+      "text": "Intriguing. An opportunity existed on this turn, and the game went another way."
+    },
+    "takeId": null
+  },
+  "requestHash": "74df149f7e829f8cc9d7b4314d1e596fbba89d3500a9391bdb79dfdc25d6e995",
+  "recordedAt": "2026-10-04T07:24:42.979Z",
+  "sha256": "4a2b4801e54db66ab053e61092bed705cf0fe0507a6bcd9abcbe6fc22f50c4cf",
+  "bytes": 18183,
+  "requestId": "Fp8laYJCYmNm4vhPwD5s",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a9cd15f383301203a072549bcb111a851ba31f21d1eef295e03a4d3a455c5768",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

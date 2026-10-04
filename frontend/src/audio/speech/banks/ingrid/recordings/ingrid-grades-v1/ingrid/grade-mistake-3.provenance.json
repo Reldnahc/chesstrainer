@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "grade-mistake-3",
+      "label": "Grade mistake 3",
+      "text": "A clear step down with this move. That's mistake territory, and worth a proper look."
+    },
+    "takeId": null
+  },
+  "requestHash": "1a660422f6480100ca76f24e918dfb45a4aca73667a77d75e4ed48fac34dcd0d",
+  "recordedAt": "2026-10-04T07:22:14.400Z",
+  "sha256": "be773ab795f43fdff4bed49b9f9fa2dc33207d3f035c161b5a4c8c58fc83efdc",
+  "bytes": 19213,
+  "requestId": "fjXKaOeen52Di6eVJ9A6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ffbdb994428a033e0e88920536e9d47d8acbc43b8e3d3e5d626db37396283a84",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

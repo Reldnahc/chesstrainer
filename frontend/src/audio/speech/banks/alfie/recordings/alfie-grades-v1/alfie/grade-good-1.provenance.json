@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "grade-good-1",
+      "label": "Grade good 1",
+      "text": "A good move. Sound moves are the foundation; the sharpest ones are a refinement on top."
+    },
+    "takeId": null
+  },
+  "requestHash": "8c939efd604e6d5b93ced248306f73735cbf143e4f3dfb584a72e7ebb2eb032a",
+  "recordedAt": "2026-10-04T07:21:03.449Z",
+  "sha256": "f48fb1078eb13b96267a114e11131b576d064b95ec6d3ea3d0339c35b0d595b6",
+  "bytes": 20993,
+  "requestId": "XX1alMWvBiS3eb5NJJhj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "353c910849d0f71b72bf101d39a8ffb93e9cf5d7bbf5bb35a578a2f1b5ea71e4",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

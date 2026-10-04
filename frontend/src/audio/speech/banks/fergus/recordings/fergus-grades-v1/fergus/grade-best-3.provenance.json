@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "grade-best-3",
+      "label": "Grade best 3",
+      "text": "The engine agrees. Short review."
+    },
+    "takeId": null
+  },
+  "requestHash": "6f3d8509a16da2a6200bb3b5b03a852e3b5ec1210f6c03f24ec45c46e8118982",
+  "recordedAt": "2026-10-04T07:22:04.211Z",
+  "sha256": "38656548f253104fc0e0634022637fe2940c37b87accb25c8b6375c0f8decf49",
+  "bytes": 8991,
+  "requestId": "cI9eslv3Lw5or3bYbBwR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5b9f239d92c041dc83b3321922bcb83b272251b26fedd257fc94498b5b5e6c52",
+    "bytes": 47273
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

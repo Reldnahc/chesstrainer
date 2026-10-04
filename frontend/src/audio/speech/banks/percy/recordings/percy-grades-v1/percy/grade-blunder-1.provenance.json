@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "grade-blunder-1",
+      "label": "Grade blunder 1",
+      "text": "Oh my! A big blunder. That one shook every square on the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "f7d5e016e916d85d8dfbbd562e2f061b5a4b20a7f75378516dfb68063d2619d3",
+  "recordedAt": "2026-10-04T07:23:16.364Z",
+  "sha256": "574d2243ba0b96346aca9da621cdc7cdabf90a2ac59065e0d831e26b6ba221c5",
+  "bytes": 17266,
+  "requestId": "3Jg9yuY2MsHPbUWcXXgd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "27e8d7cb9712c00fe618d99d8d3eb7cdd694ee60cb31e6bea7f41a6e5d34a58d",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

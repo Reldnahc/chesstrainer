@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "grade-brilliant-1",
+      "label": "Grade brilliant 1",
+      "text": "Ooh, brilliant! A piece is offered up, and the idea rides out the capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "e11ce2ccbc88a964a97e6f64f9fa59228ac1616d2917bdca51c7a58d6aea138e",
+  "recordedAt": "2026-10-04T07:23:22.926Z",
+  "sha256": "bcadb261975f4a020ddf4b0dce480715ae7e74dea3703fec6bd353cba46d92e1",
+  "bytes": 17717,
+  "requestId": "cpEr6r6F53Tdgf404DKT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fe65c5095a75a83cce80e0677257538d4cde34a1ef6ba61a440ced8e24c5c747",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

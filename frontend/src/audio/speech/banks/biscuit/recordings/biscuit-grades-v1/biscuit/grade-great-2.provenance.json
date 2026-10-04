@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "grade-great-2",
+      "label": "Grade great 2",
+      "text": "Oh wow, a great move! When things got important, this one came through strong."
+    },
+    "takeId": null
+  },
+  "requestHash": "51e9307cc80cf7339ea0df250de190cd43ad83ac39bbb487be9e7a0820e638a0",
+  "recordedAt": "2026-10-04T07:21:19.209Z",
+  "sha256": "532633e1ba9273423cd52c05038df8ec780edd0948a76e6cff5368eeb6be2579",
+  "bytes": 19848,
+  "requestId": "eKOhhKp5rd3IKhhBOnU6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6bd0cac71b70e684de8a838bd3b5e9691f2ba7868bd6f2386693b4d63f4bd6b5",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "grade-great-4",
+      "label": "Grade great 4",
+      "text": "A strong move, made where the stakes stood above the ordinary."
+    },
+    "takeId": null
+  },
+  "requestHash": "7ebca8ea37b4d1455564094c20e87c222469c1d6482a6573bf0b3454f5bedd53",
+  "recordedAt": "2026-10-04T07:22:41.941Z",
+  "sha256": "7d08ed961f3f68bed8275aec02d4228bcad1190570ff3e903e48168588d66ead",
+  "bytes": 13531,
+  "requestId": "ttu8VGZ3YThHdAEBi9uA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2523618edf9e3369288d592ebdbca8eb9c7e34fc1140495adbf33a68d211731e",
+    "bytes": 69007
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

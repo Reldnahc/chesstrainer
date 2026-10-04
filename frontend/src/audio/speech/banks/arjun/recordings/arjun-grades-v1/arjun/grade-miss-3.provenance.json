@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "grade-miss-3",
+      "label": "Grade miss 3",
+      "text": "A chance slips past here. Worth exploring which idea it was."
+    },
+    "takeId": null
+  },
+  "requestHash": "a83e5ebd47fba9c85b560f47f8344d42b426352b3854cd5f4d6b2d49c4fd7525",
+  "recordedAt": "2026-10-04T07:20:47.625Z",
+  "sha256": "f1d075d3adc72713e2fa958c86e1fad3e8e7d9d1b0fd3a1703e41f24b3d8982b",
+  "bytes": 14391,
+  "requestId": "A5W0r7na6hhazuPLTCoe",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c1c1fc1b60645d53b140c4b755acb4d6f6612d06843b421cece9b1e427c755e5",
+    "bytes": 71515
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

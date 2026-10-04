@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "grade-best-1",
+      "label": "Grade best 1",
+      "text": "Best move. Top of the pile, fair and square."
+    },
+    "takeId": null
+  },
+  "requestHash": "c3a4ee7951ac356dcc4116ddfd6d161ec35738c30adad9b06130c8ba255a6b06",
+  "recordedAt": "2026-10-04T07:21:09.702Z",
+  "sha256": "576fb5f534081592307eb10c6babe322afb933ffc20a3d41c79df437d9ae0389",
+  "bytes": 12610,
+  "requestId": "GvEPG6aT4O1xna7jYKSE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "425c449f9930c19e2e970f35692a248684e5f271b2a50885c2406bc49e47120b",
+    "bytes": 62319
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

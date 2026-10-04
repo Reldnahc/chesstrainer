@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "grade-blunder-2",
+      "label": "Grade blunder 2",
+      "text": "The cost of this move runs deep. Look back at it carefully."
+    },
+    "takeId": null
+  },
+  "requestHash": "28265ebb76368f8f250bac2f309e2f1f0cb4a9d8d8b5af9b7dcaa538df752b5f",
+  "recordedAt": "2026-10-04T07:24:36.273Z",
+  "sha256": "f540dffc575b825ee9b2bfb867b47198914ed74d3e2c64780153ab3dc962de52",
+  "bytes": 13843,
+  "requestId": "4HgiKoWUZxiBUktdSrPQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "de79dd1314c8a13c884442652722921dae8440d60458748be254f6d7fbcf81fc",
+    "bytes": 71515
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

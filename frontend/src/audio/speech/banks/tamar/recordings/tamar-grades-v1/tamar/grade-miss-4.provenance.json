@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "grade-miss-4",
+      "label": "Grade miss 4",
+      "text": "A real opportunity sat in this position, unclaimed. I want it looked at twice."
+    },
+    "takeId": null
+  },
+  "requestHash": "8475997538674bf845873707ccbf7a109cbf1b7bd366fefbc575724575caa0d8",
+  "recordedAt": "2026-10-04T07:24:15.293Z",
+  "sha256": "e082bdea8630ac0e2d0f569c74958eb27c5b3705f0caea8b56ecf27bf38ae9ce",
+  "bytes": 18436,
+  "requestId": "HEL32XOCNUi39d9QmATI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f33ca94fa96fabe952aeb129e5167bb9a9d7e2a7447b0ad3775c40f02e1f575c",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

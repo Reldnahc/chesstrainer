@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "grade-great-2",
+      "label": "Grade great 2",
+      "text": "A move this strong, at a moment this big? I'd buy that every day of the week."
+    },
+    "takeId": null
+  },
+  "requestHash": "ee9b570dfce913b5d8314de22844c3eab8101a08470dae83e6f03f545996f31f",
+  "recordedAt": "2026-10-04T07:21:05.703Z",
+  "sha256": "cdbc02b15171ea32deaf7a8a764970952861baf31f2a9d172da205ec445e1813",
+  "bytes": 18088,
+  "requestId": "Ndr5lgH92Ku98OUOV9td",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9e080769b8ac50db7cc56c5831c7cddea695224675086e7798ece71a99ef125c",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

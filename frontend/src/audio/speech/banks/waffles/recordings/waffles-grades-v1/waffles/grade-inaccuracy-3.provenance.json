@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "grade-inaccuracy-3",
+      "label": "Grade inaccuracy 3",
+      "text": "Minor skirmish. The line bends a little here; it doesn't break."
+    },
+    "takeId": null
+  },
+  "requestHash": "4e8f2aca761c9a831960e773cc4ef29dd92e78c4f8634ef78c3307ee2670b09d",
+  "recordedAt": "2026-10-04T07:24:39.389Z",
+  "sha256": "38ae9bbf42ea3021d43dde1df54a8388421bc38ac6e8dfa57a81cc621df4e529",
+  "bytes": 14870,
+  "requestId": "kmAM0PaRp8NW50wAoXbX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "49555e7d585a97806469f8a6ab78b221e6049d731453787166dc8b95a1ca1d42",
+    "bytes": 74022
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "grade-blunder-2",
+      "label": "Grade blunder 2",
+      "text": "Everything tilts on this move. Big, costly, and very much a blunder."
+    },
+    "takeId": null
+  },
+  "requestHash": "ceafbb0945136a669147594f17ce58c0ca6f73d37b8f221d92ced7b997625c99",
+  "recordedAt": "2026-10-04T07:22:06.421Z",
+  "sha256": "170b36a117708466c7ca7e1f176996d5969bb346b5b534e34759fc912578b92f",
+  "bytes": 19546,
+  "requestId": "4SbsaZfPJmgdjbgCYowq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d481043222dc0d043dee1f8f1dba3bed5a037d77c693d8c3c56ae21cf597a90c",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

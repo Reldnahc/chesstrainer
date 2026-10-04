@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "grade-miss-3",
+      "label": "Grade miss 3",
+      "text": "A missed chance. A mistake is about what a move gives up; a miss is about what it doesn't take."
+    },
+    "takeId": null
+  },
+  "requestHash": "e3e12168e81b8b7c011b0b140413ed76e862dc0acac02c161d4b64c0073a842c",
+  "recordedAt": "2026-10-04T07:21:05.316Z",
+  "sha256": "af565f74616746c9c603375fe7cbe6c37c6e7b7a115d935a17c4974a65612a54",
+  "bytes": 22079,
+  "requestId": "TeNyMGuqW1aNqziaP7wG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "814196a1cdd7a5780bd82009c2cd07d9db54e3f4699e598cf6e510b514258016",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

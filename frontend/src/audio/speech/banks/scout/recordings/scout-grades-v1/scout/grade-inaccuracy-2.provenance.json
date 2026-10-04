@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "grade-inaccuracy-2",
+      "label": "Grade inaccuracy 2",
+      "text": "Off by a little. Mark the spot. Small, but it counts."
+    },
+    "takeId": null
+  },
+  "requestHash": "c9ef0d0b5e3ed649ddf8a566e3dc8f7692e635d7ca3a61227234258373ceb63d",
+  "recordedAt": "2026-10-04T07:24:11.109Z",
+  "sha256": "56d7645eef912c17282369f4acca8f00aecd3e4498c9a581020fdd2e73997fd2",
+  "bytes": 14013,
+  "requestId": "z5efdvf8BqYn9FiN4E3n",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ac85d539a17e338ac66f8a7f80cb6dd3e4b33004a7dde8b73f233d34025d1c0c",
+    "bytes": 72768
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "grade-best-3",
+      "label": "Grade best 3",
+      "text": "The engine's first choice. Commentary would only slow it down."
+    },
+    "takeId": null
+  },
+  "requestHash": "df914d0c61f0e66781533d28cb6de4db2a33c03e5e131fba7b975b742fd7e35b",
+  "recordedAt": "2026-10-04T07:21:47.669Z",
+  "sha256": "aafd1a94f5b07eb449c81f56d29826a05a79264c99b6a7a9aab2229488327d89",
+  "bytes": 14665,
+  "requestId": "HRD8vL9KJMqMdY5yAIgj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "73a8b5f65489e63d517d003afc5c5e009e62f1c2a3750ff6b354d2801214fb94",
+    "bytes": 74022
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

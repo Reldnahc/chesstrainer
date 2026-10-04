@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "grade-great-1",
+      "label": "Grade great 1",
+      "text": "Strong. This moment was important, and the move answers it well."
+    },
+    "takeId": null
+  },
+  "requestHash": "849728c123c50580a50246b74fdc943707358ccdf45766bbbf107f89ff37dbb5",
+  "recordedAt": "2026-10-04T07:22:54.048Z",
+  "sha256": "85fdc2a98eeb2725ce923ec0309958f3379dc5e60721eb0b05829ce072dd2fbc",
+  "bytes": 15113,
+  "requestId": "ju7G4rANEEUCO0BIZLdU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "652c286d359877ce1418bab9206d84d191fb4c60a88f1113549ad6e083d3174f",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

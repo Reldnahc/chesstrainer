@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "grade-miss-2",
+      "label": "Grade miss 2",
+      "text": "This move does not collect the available gain. That is what makes it a miss."
+    },
+    "takeId": null
+  },
+  "requestHash": "8a62ee007cb1fd364b7fbb88ce9b20401934f3f0480a0d9377e7c6aa1d64fcb5",
+  "recordedAt": "2026-10-04T07:22:38.592Z",
+  "sha256": "ffdf8ec4ac97fa7228b6bded3bf67b549bdeda3516367306010112c167627d6a",
+  "bytes": 15838,
+  "requestId": "GAL8nyeLvAHccRETptxA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "359db0b0b298e50a7cefd5a2dda3f68d806205572596995ffb1e4ec787e036a8",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "grade-blunder-1",
+      "label": "Grade blunder 1",
+      "text": "A blunder, and a serious one. What went so wrong here? That's worth working out carefully."
+    },
+    "takeId": null
+  },
+  "requestHash": "bd2095949a8bf366180e1ef685854d9c298b2a68ace70249f1c4fca72c524881",
+  "recordedAt": "2026-10-04T07:20:51.376Z",
+  "sha256": "2b9d721d47e6b2df11b949be704a595b2839786f46ddf7373b7b1128ab379d70",
+  "bytes": 20431,
+  "requestId": "1qEiVzmauXK7BzrXV26n",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "eb34c1fde062a2141781704a2d58ab9921ea67159ee3ccfa4da312047f883ae0",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

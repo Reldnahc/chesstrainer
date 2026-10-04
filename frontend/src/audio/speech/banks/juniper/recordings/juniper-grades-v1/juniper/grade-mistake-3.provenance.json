@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "grade-mistake-3",
+      "label": "Grade mistake 3",
+      "text": "The position grows thinner here. This move hands over more than a little."
+    },
+    "takeId": null
+  },
+  "requestHash": "eae63f0fe391daea8ad118b392b902dea1ad98490a3bc25fbba2de087a10250a",
+  "recordedAt": "2026-10-04T07:22:32.132Z",
+  "sha256": "266299dba78676bc8cd6949c71a18d42bfde0106cdaff84890fb2b02b0b60d45",
+  "bytes": 15391,
+  "requestId": "BtcGvZW7Cu559yvy4OGa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cb6b3f168baea38b0626fa9fb82ac082e63900a9b681a46d4d873efad3c47c8f",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

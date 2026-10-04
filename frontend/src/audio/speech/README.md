@@ -323,7 +323,10 @@ speaks one of four `grade-<grade>-<n>` takes instead (`gradeTake` in
 relationship keeps its own clip. Each mainline move counts the earlier moves with
 the same grade, so neighbouring same-grade moves never share a take and replaying
 a move repeats its take; the game seeds where the cycle starts. A coach without a
-take recorded keeps the generic reading.
+take recorded keeps the generic reading. All 960 takes (32 per coach) are recorded
+under each bank's `recordings/<voice>-grades-v1/` with the coach's locked voice and
+settings: **65,807 input characters / 7,971 provider credits**, five requests at a
+time, every request ID matched in the provider history and no retakes.
 
 A line about one particular piece also has **piece variants** that name it ("the
 pinned knight" instead of "a pinned piece"). Each is a catalogue meaning

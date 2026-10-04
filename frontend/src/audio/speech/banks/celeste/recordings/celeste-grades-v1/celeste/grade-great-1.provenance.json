@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "grade-great-1",
+      "label": "Grade great 1",
+      "text": "Wonderful. A moment heavy with meaning, and the move is fully equal to it."
+    },
+    "takeId": null
+  },
+  "requestHash": "7ea0485d132ef07e3746d0be863b186c1ecca10b435c1d9db9d93f50af8c06be",
+  "recordedAt": "2026-10-04T07:21:23.105Z",
+  "sha256": "38852e342709f3c1cfa53f5ff4d8770a38226b15e645091452eb79e82a89dad6",
+  "bytes": 18612,
+  "requestId": "DxunwEYJutmi6h7g2SbA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4bee5e6f3852060e56273585c01297e2049d776331f477064690aafdf3291b4e",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

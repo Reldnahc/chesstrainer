@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "grade-great-3",
+      "label": "Grade great 3",
+      "text": "Now that's a great move. Plenty of games hinge on moments like this one."
+    },
+    "takeId": null
+  },
+  "requestHash": "25a63cddd6c8996ecab7bbecc715b8474cf08d9d53bf0976d54431ce5707700c",
+  "recordedAt": "2026-10-04T07:21:57.286Z",
+  "sha256": "f4a5becd7ebcb87959e19b5b7b0bd5f370bec55173968b9dda7277e050ac2186",
+  "bytes": 16888,
+  "requestId": "PQJCYfySgG4wzjjkZMqW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d218f132c4df9324fdc86417141904defb460ab2e718dad9ef2e9d493a133f68",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

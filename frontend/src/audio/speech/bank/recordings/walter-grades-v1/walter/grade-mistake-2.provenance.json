@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "grade-mistake-2",
+      "label": "Grade mistake 2",
+      "text": "The balance moves here, and not by a little. A real mistake."
+    },
+    "takeId": null
+  },
+  "requestHash": "a1505abe366865792b609ad3962c4dd52456b64c2b9e6ee36b02d7a1d1af915a",
+  "recordedAt": "2026-10-04T07:20:08.589Z",
+  "sha256": "fc0f7534b027343c4e08e36022e4778216a7374182903c76da160a7582504718",
+  "bytes": 15205,
+  "requestId": "FLX6L2H6kYz1UErtdJ3K",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2ee77158e635a39207bf21cbc9414648369920b719047234cc476e8fd87d2826",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

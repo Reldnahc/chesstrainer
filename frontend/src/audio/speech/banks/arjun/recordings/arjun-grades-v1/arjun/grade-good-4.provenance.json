@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "grade-good-4",
+      "label": "Grade good 4",
+      "text": "Solid. What did the sharper option do differently? Small things, probably, but worth a look."
+    },
+    "takeId": null
+  },
+  "requestHash": "e401bbdd5c174ddba05550e42d550f804c8e62dd7ad758dcd1dc07d0723fd2c1",
+  "recordedAt": "2026-10-04T07:21:01.488Z",
+  "sha256": "34653f1dc3f7e69390f762a214fd3e2a143f02e91e23ffd93ccc7c2fc4f9c104",
+  "bytes": 21539,
+  "requestId": "Q913B359J4GJfOBQOhjv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "69299169ac389afa4de2b2f54e4f5ceeb9ced3c0c3610c1c4872c8e3acb49283",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

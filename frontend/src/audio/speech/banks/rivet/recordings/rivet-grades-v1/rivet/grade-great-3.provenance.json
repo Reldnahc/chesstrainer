@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "grade-great-3",
+      "label": "Grade great 3",
+      "text": "Great move. Recorded at a moment when the choice carried weight."
+    },
+    "takeId": null
+  },
+  "requestHash": "63c2b227dd05633681815c7fb88d60570f246704b93f8489cc9cacf5685985f0",
+  "recordedAt": "2026-10-04T07:20:18.247Z",
+  "sha256": "151e5cc8cf697afdc58ae80a2d63b369fde649d5772866934e3a1d6fc2a97860",
+  "bytes": 14600,
+  "requestId": "T2SRvDY8DEFpYZHSLjtg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "700eacd433675918289424ab62003fa548df5d2a4467b2fdca6d396e4cbdca6b",
+    "bytes": 72768
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

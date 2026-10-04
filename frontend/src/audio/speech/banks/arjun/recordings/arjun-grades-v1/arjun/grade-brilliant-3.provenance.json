@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "grade-brilliant-3",
+      "label": "Grade brilliant 3",
+      "text": "The fun kind of idea: a piece goes on offer, and the question is whether it holds. It does."
+    },
+    "takeId": null
+  },
+  "requestHash": "3cee40144a6327b74ff6ea2bd907dabc0ee605fc0fdedb70d4fecc5c84177c2b",
+  "recordedAt": "2026-10-04T07:20:40.978Z",
+  "sha256": "e659ceba579668d28c5ea4c30be07f0c70f8d019b63fc11a701c69593319c3bd",
+  "bytes": 20607,
+  "requestId": "mCUJd2jEwMovJ8G5SyWc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e93bffcec67775a0def014b4ab4678acb4f39cee4ff6efb498d09d9b175901bf",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

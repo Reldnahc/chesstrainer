@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "grade-miss-4",
+      "label": "Grade miss 4",
+      "text": "Close at hand was a real chance. A different move would have taken it."
+    },
+    "takeId": null
+  },
+  "requestHash": "6616f75ef5d7bf4c9079dcd0d47a46304e97ccf0d5890a8b327b23bdf25be0cf",
+  "recordedAt": "2026-10-04T07:22:38.763Z",
+  "sha256": "949f6ab6dca2ecef2270945ca8662fcf3b867b407d3d37f2be28608736c64518",
+  "bytes": 15514,
+  "requestId": "QbISxcGRcB5pFHTOYs0y",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d4463e59d488ccce8d82c2feddd36c95204f5f3ca911daedcb25f6bd8f8a3b8f",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

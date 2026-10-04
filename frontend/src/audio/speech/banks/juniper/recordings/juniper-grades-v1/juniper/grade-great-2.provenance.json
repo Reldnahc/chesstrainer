@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "grade-great-2",
+      "label": "Grade great 2",
+      "text": "A turn that counted for much. Quietly, the move rises to it."
+    },
+    "takeId": null
+  },
+  "requestHash": "7432e80c0e6f501ac677798c0295c89df18af37e13581142745ceae6b30b3b93",
+  "recordedAt": "2026-10-04T07:22:27.332Z",
+  "sha256": "594e74805a2edb18c7d3a0763ee1e6bf79380dd4b1e02cfb708a569f09d3dba0",
+  "bytes": 16462,
+  "requestId": "JpwI0eYUviSVFtedqiuk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "da536a1aee1a5fa4f78d08bc49998693cdb540930d469a6030bf07c6d270ffd9",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

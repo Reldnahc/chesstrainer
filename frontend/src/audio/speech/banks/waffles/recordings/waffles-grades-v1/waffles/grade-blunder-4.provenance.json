@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "grade-blunder-4",
+      "label": "Grade blunder 4",
+      "text": "Big shake-up on the field! That move costs dearly, and every unit feels the hit."
+    },
+    "takeId": null
+  },
+  "requestHash": "ae66a4e3d4e81ac47152b7871091b4a98b47af4ca7c48ca2b6e229d53236a326",
+  "recordedAt": "2026-10-04T07:24:31.810Z",
+  "sha256": "6bd04ffcf197cfe48d42b0a8626edfd0bd616bad25e186f65f5da948c48c4a6c",
+  "bytes": 20081,
+  "requestId": "1qMzKkoZTmSGNNIQ2RxF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0d473122f3dafa15ff8e5b1b2219ff92ff90b48b0bcb3bb0438ef481002be35c",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "grade-blunder-2",
+      "label": "Grade blunder 2",
+      "text": "This is a blunder of real consequence, the kind no flourish can disguise."
+    },
+    "takeId": null
+  },
+  "requestHash": "c063377642cd5efb686c3bf172da89e93df775abd91f64e8b920f807605fa3fe",
+  "recordedAt": "2026-10-04T07:21:30.545Z",
+  "sha256": "2c08419fe7c219c2eafe46ddbfa923e909a6b8434d2e9cb146fd1e5c293e4d66",
+  "bytes": 18216,
+  "requestId": "O84x520afUAMKOIOFL4S",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3fbf27f518d1158e87a095eac739418e681564052e2cc6241e382296bb068c49",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

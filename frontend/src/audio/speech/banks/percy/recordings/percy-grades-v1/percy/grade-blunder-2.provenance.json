@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "grade-blunder-2",
+      "label": "Grade blunder 2",
+      "text": "Pawn's honest opinion: that's a very expensive blunder."
+    },
+    "takeId": null
+  },
+  "requestHash": "4de57a75af277d100569f78e9092124ed5400b6dab9c3c0277446e8510f06a5f",
+  "recordedAt": "2026-10-04T07:23:17.478Z",
+  "sha256": "bfdd0fd0a06285cce79bb8a5c3d5e3fda3235069ac39b0f5c0116cdfbf531e60",
+  "bytes": 13140,
+  "requestId": "KrusNPUeoTa5kml5ci3v",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8e325be85e8b30cea6b5ef3c68420d47dfcae2c715d2c4b6b7a9c8311bda3bd0",
+    "bytes": 65245
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

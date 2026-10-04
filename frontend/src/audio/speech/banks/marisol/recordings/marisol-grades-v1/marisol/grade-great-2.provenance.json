@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "grade-great-2",
+      "label": "Grade great 2",
+      "text": "Great. A strong move. It arrives at a turning point, which is what lifts the grade."
+    },
+    "takeId": null
+  },
+  "requestHash": "4640e5b0b1f1366dae868a6526bf29028407f0b6a5825e405183108c91581be4",
+  "recordedAt": "2026-10-04T07:22:39.073Z",
+  "sha256": "d2f3a2b2049f062542bb8a24aef5d0fd29bea23b2ad4675d67c14b5aa28daf49",
+  "bytes": 18027,
+  "requestId": "RV4eVVtaLqM4FJHeiDXO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a4c7a083455e915079b5a8fb7ad32514982f196e554bad8afa0ed9a51297120f",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

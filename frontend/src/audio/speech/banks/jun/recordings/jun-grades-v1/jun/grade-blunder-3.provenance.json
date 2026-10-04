@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "grade-blunder-3",
+      "label": "Grade blunder 3",
+      "text": "The top choice retained far more. This move is a blunder."
+    },
+    "takeId": null
+  },
+  "requestHash": "428e6ba9d9cbf32033d05ef8ade6337f7c5b5b16ce306dc40257cb10a9f3398c",
+  "recordedAt": "2026-10-04T07:22:26.727Z",
+  "sha256": "fc1e3a5b631c9f53ecf1f2f9abac0bc4b93886feeb7517f785953e8a427de343",
+  "bytes": 13961,
+  "requestId": "lfTs8vrVVww8GmeaweiU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a786b22e4c3d7f4ca99beac7455fe3f815d720a04398155a8954daa9ba78088e",
+    "bytes": 70261
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

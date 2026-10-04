@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "grade-great-4",
+      "label": "Grade great 4",
+      "text": "Turning points are where games are decided. This one is met with strength."
+    },
+    "takeId": null
+  },
+  "requestHash": "c507b0ab170a587c405dd3001c129d311b7da896d909f2c932daafebc854377c",
+  "recordedAt": "2026-10-04T07:23:12.830Z",
+  "sha256": "44b452b87afe2c26dd275a1555b624ab9addd344c048a0f7745ffbe641a0daa7",
+  "bytes": 17767,
+  "requestId": "uhUTviStrioNMRvZZQcN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3b02a81384fbbf3a7135908fd2cc670362241884bea1bceaf9cdc10bf514f59e",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

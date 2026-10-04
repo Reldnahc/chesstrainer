@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "grade-good-3",
+      "label": "Grade good 3",
+      "text": "A respectable move. Respectable is acceptable; the top choice was better still."
+    },
+    "takeId": null
+  },
+  "requestHash": "a12afd20330b3067d7c54cd0f4aaed6e8e26938d121c0e8c311680ad27002d58",
+  "recordedAt": "2026-10-04T07:24:26.214Z",
+  "sha256": "61818b887835d48c857c18b864d2a8bbf8ddb1c8f2269f98f73c793306aab76d",
+  "bytes": 19419,
+  "requestId": "IP91AdXDmc4T7GNugZKc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0bf92a4eeffe1e20bb24525b25fea7296c13bc0407504f339ec7f1a9eabc4006",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

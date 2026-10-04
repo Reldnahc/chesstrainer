@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "grade-great-1",
+      "label": "Grade great 1",
+      "text": "I'd tuck this one away somewhere safe. A strong move, when so much was at stake."
+    },
+    "takeId": null
+  },
+  "requestHash": "2add88f58d4a48dc4c45a96ac2a5db44a32f8f393815600bdc55dfab17f19916",
+  "recordedAt": "2026-10-04T07:20:32.904Z",
+  "sha256": "668d0d1b1a52098f6d37a0906ad8433a127672d2a400d833739b75e9d2bbe528",
+  "bytes": 18021,
+  "requestId": "NRcG23HeoTmjwMvI6QtK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3074dac2f1e5a12167d817809448ed346dc75a91dd581f1b0c9a752658125836",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "grade-good-1",
+      "label": "Grade good 1",
+      "text": "Sound. Between this and the top move, the gap is faint."
+    },
+    "takeId": null
+  },
+  "requestHash": "870089d36c57138223dff7dec5a28ff4625dac1dbeb704c41fed017f44437b34",
+  "recordedAt": "2026-10-04T07:24:37.041Z",
+  "sha256": "47182acb6b8f16b5f16b65c19c4cc0678cef7d451ca116345d2b6b4935a23c5f",
+  "bytes": 14177,
+  "requestId": "t6uhTstmfisBZMBBFGk4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "085c6ee78bd171e650fee251c488b55250cd1033d9602b5935649ded119ebc37",
+    "bytes": 72768
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

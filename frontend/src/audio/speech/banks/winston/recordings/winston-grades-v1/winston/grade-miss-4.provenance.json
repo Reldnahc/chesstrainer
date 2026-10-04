@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "grade-miss-4",
+      "label": "Grade miss 4",
+      "text": "Well now, there was more to be had on this move. A miss, and no fuss about it."
+    },
+    "takeId": null
+  },
+  "requestHash": "6be1fe5d385315d45913a0a5eeddd5780f1247db409bb6d547a3195a535f0819",
+  "recordedAt": "2026-10-04T07:20:34.573Z",
+  "sha256": "475cdafeb07a373ad25c3a51bbac5aabcb82fd6ae9a53e6ecfcf6839a48aac32",
+  "bytes": 17242,
+  "requestId": "MhZ1pEOdmJgSbqWJzSv5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ccd567150281029f03777ad3f9e70a87cfe50bb7f662032c6b32c277f6eb2d0e",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

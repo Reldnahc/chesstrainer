@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "grade-mistake-4",
+      "label": "Grade mistake 4",
+      "text": "A mistake: more than a slip, and it registers clearly on my instruments."
+    },
+    "takeId": null
+  },
+  "requestHash": "c871715f0583a7d91736ee6ecbbfb914b74645a8f8ef167340949e36ec426268",
+  "recordedAt": "2026-10-04T07:24:41.303Z",
+  "sha256": "d845b192881581476d2655765c5dbfd32c3f6677ab2e88a0ba4aa0995708967a",
+  "bytes": 15935,
+  "requestId": "1lb0pgDGhvJmhQfv7lkY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c4d28c8677f3b123125fcd14a4cc2377a16fdc0e62df07689e84e8e02d21e817",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "grade-great-1",
+      "label": "Grade great 1",
+      "text": "Battle-tested! The fight hit a critical point here, and this move is a strong one."
+    },
+    "takeId": null
+  },
+  "requestHash": "18ae26ae758b97f5498dbc067e9ac875777b71c900ce5b17d739fc8457d8081f",
+  "recordedAt": "2026-10-04T07:24:22.362Z",
+  "sha256": "6a050ca1a682e3aacf97d4194e947580debfa2a458d598871fd214c9dc8f71c9",
+  "bytes": 19528,
+  "requestId": "emRACHQYYgMnHSTilduq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b8a5e4b3406fb6b6e285865e26f46bf4d9b9c5772d9c7766dda35a2944ea9955",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

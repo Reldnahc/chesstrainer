@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "grade-blunder-3",
+      "label": "Grade blunder 3",
+      "text": "Goodness, what a costly blunder! Easy habit: give swings this big the first look in review."
+    },
+    "takeId": null
+  },
+  "requestHash": "a94c4be67a95c39352b523daa697b0c2c9fe92c381bcf2f0cae914ec82b1e0cd",
+  "recordedAt": "2026-10-04T07:21:31.643Z",
+  "sha256": "d480ef7620cde33daca4883fdce6297e2f99365ba688175079dee73b3e3b6d29",
+  "bytes": 22973,
+  "requestId": "YLvNpizXbrMhkzlZWHhO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9fee68c6a9ae027914087b804e0b099f3300d2c8039f9b91def1ae5de2c3dd44",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

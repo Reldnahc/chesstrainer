@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "grade-mistake-3",
+      "label": "Grade mistake 3",
+      "text": "Wrong decision. That costs something significant, and it shows in the position."
+    },
+    "takeId": null
+  },
+  "requestHash": "2e30f049a81ae6b6765c8abc7d92976f3e3de0b9fe8b4e06da22acc0f8417b98",
+  "recordedAt": "2026-10-04T07:21:38.102Z",
+  "sha256": "59422bf558bae2d58521d7794391c0118bc49594e1ad6a9b2f8ead431c084c05",
+  "bytes": 16664,
+  "requestId": "qps7KAjbB5dCriwWKjSX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "786e60e8d5beb4090c725d4d8e0f680a15d0956ea4d013ac785d16a5960f728b",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

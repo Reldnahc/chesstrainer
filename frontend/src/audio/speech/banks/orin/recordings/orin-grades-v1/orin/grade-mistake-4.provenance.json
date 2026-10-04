@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "grade-mistake-4",
+      "label": "Grade mistake 4",
+      "text": "A mistake of real weight. What the position held a move ago, it holds less firmly now."
+    },
+    "takeId": null
+  },
+  "requestHash": "32260b6f4c56fa32a531fdf4731f316c81f4cfc8a979549949e06a21dab9d119",
+  "recordedAt": "2026-10-04T07:23:08.254Z",
+  "sha256": "5530328a8d11df89c6008c3df8fb41bc63a349e382a7a5e1f778856cee5a3a1d",
+  "bytes": 21521,
+  "requestId": "O5w29ruZqE4VZ4lZYSdb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bbe406df809d7fef6990571be64dc51392f7270859df648ca83233485b8ba0c2",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

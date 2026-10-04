@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "grade-mistake-2",
+      "label": "Grade mistake 2",
+      "text": "Real value is given up here. In my notes, this one is underlined: a mistake."
+    },
+    "takeId": null
+  },
+  "requestHash": "33f00b4d527402008a3e4ab4a1bc8cf1269d0d8301ad98426f48dfe6d0ce539c",
+  "recordedAt": "2026-10-04T07:24:38.212Z",
+  "sha256": "bcfee1ee733182b85ff5b6bb99f1c92333c2c31b4bf32de768590d6ab061ee49",
+  "bytes": 19578,
+  "requestId": "5OiSzej15zMMKXpnr95s",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "03949db0f0eeb3fea9ad70ce2133229eeaacc36023f8728f5edc6d327e01f025",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

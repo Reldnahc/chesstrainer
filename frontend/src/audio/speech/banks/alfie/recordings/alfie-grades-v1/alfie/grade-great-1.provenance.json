@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "grade-great-1",
+      "label": "Grade great 1",
+      "text": "Strength at the right moment is worth more than strength at any other. This move shows it."
+    },
+    "takeId": null
+  },
+  "requestHash": "5e6b589d40e92c13cf37e0b563979cdd60f5c50262f8b1fc20d2b4e0445b399e",
+  "recordedAt": "2026-10-04T07:20:50.198Z",
+  "sha256": "a3b56b7db6fdf5967af1dc4ac53c24b8937e8cf20d3ad09248e1c97040312862",
+  "bytes": 18180,
+  "requestId": "0fewcx5mrX1H4l4rQJ2P",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "93d6e5c4d2530f0aa91da031594822150ad2fede51e984a2eb12ab2a4c3b30fc",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

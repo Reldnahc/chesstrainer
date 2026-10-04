@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "grade-inaccuracy-1",
+      "label": "Grade inaccuracy 1",
+      "text": "Slightly off course! A small drift, but a drift."
+    },
+    "takeId": null
+  },
+  "requestHash": "82d0cb4bd5190a96a57b395cf911c0bbbe38a889a60667bcc9a60b3f9caaa942",
+  "recordedAt": "2026-10-04T07:24:36.934Z",
+  "sha256": "52c6ca46460285c09de1f8078a80d82c5aa290a7aff2f1ca42af6329b86640eb",
+  "bytes": 13021,
+  "requestId": "bP3MXaSqd3GnGezDCwxu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2b3e4ee149f4f2c199902ba77cfa2abcb5fb09bcdb59c3c283ccef14b81dcbad",
+    "bytes": 65245
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

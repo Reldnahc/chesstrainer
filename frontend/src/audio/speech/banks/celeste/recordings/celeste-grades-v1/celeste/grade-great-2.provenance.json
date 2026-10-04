@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "grade-great-2",
+      "label": "Grade great 2",
+      "text": "How fitting: a strong move, arriving just when it mattered."
+    },
+    "takeId": null
+  },
+  "requestHash": "bda58e3a0370a44d734489d9b0bf0589af009c505e152e48bdbd40cf58050ecd",
+  "recordedAt": "2026-10-04T07:21:24.466Z",
+  "sha256": "fd83bed31dba8292ac6d2a4fdf0b8ea5a03e8b1fb3d39210ceb49782526f76b5",
+  "bytes": 15208,
+  "requestId": "yTW1C0u244WckWVy9MK7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f649ee64adde4bef054ca77cf2559abfbc481f8bd11720e9ae22b78d11f3c277",
+    "bytes": 75276
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

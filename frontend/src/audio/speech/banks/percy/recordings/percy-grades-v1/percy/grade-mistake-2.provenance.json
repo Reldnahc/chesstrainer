@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "grade-mistake-2",
+      "label": "Grade mistake 2",
+      "text": "Mistake! A real error. Every piece on that side just got more work to do."
+    },
+    "takeId": null
+  },
+  "requestHash": "65c86c0cbc8e3bcb6d4ec4d79bbc85488e6911455d5b0220953c048891aa1c8d",
+  "recordedAt": "2026-10-04T07:23:06.311Z",
+  "sha256": "5406b14376ed0bd08adb82d5f54cea3242fd723cf4a35598cce5f3f9ff8e5d58",
+  "bytes": 18382,
+  "requestId": "zbQrLSXWtoxnwutSMfwG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "df7305becb65f448fe5eb335e146a4a048c317f532849f55cb458d2b3a170ebd",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

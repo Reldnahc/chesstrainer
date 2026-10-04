@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "grade-great-2",
+      "label": "Grade great 2",
+      "text": "Oh, nice. Good timing on that, too; this was a moment worth getting right."
+    },
+    "takeId": null
+  },
+  "requestHash": "cf3da538321896a13e6cbf95e4c51c3a5feab619c66d635878192af1ad6cb04e",
+  "recordedAt": "2026-10-04T07:21:55.686Z",
+  "sha256": "21705fb11609f2ce5d09a7e13aaafec355189f1dbd0c78734658fa6373f0c1e6",
+  "bytes": 17821,
+  "requestId": "lRg2x6LB8A5sFILJdcc1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3733802797b2bcaff445684deac0b758bcae9a6edfe9fd663d8bfe57a77b7ce5",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

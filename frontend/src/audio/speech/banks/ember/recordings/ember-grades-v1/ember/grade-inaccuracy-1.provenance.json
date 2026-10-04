@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "grade-inaccuracy-1",
+      "label": "Grade inaccuracy 1",
+      "text": "Short of exact. A small slip, and the position is a shade weaker for it."
+    },
+    "takeId": null
+  },
+  "requestHash": "afc1a6c3cddbe2589ba985afbb76333ad0d5f70e73d1ea3d311e0d0836bf1c7d",
+  "recordedAt": "2026-10-04T07:21:49.169Z",
+  "sha256": "52e94e6073b07c5fbed75fb70eb2e10c75f01ea054fe62314d503e83f32cb632",
+  "bytes": 17677,
+  "requestId": "jvuQLvn5HRJ7hgVvfWQy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "266fa38181ec35adc6e03787c9693fd491a2d3c8e25ae674bbe771fae0c8e1f5",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

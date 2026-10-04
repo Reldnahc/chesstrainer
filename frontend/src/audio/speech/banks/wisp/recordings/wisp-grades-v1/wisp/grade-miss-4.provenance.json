@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "grade-miss-4",
+      "label": "Grade miss 4",
+      "text": "A chance drifted through this turn, quiet as a draft. This move let it pass."
+    },
+    "takeId": null
+  },
+  "requestHash": "b0c69ce61d4bba331ef024f18e04f7ae1491164f9b4b70dadd7f096b87981d53",
+  "recordedAt": "2026-10-04T07:24:33.984Z",
+  "sha256": "605cae83e4f660929d194f9eb5f20d4aa4850fa4271b39e88290d50f0dbb71c1",
+  "bytes": 19716,
+  "requestId": "bQ6SVUzjLHRK8W9L40vb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "05fa5bbc7a19f426a49f6d2fb38d2987746bc5c4f550937445821786b6f90c1f",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "grade-great-4",
+      "label": "Grade great 4",
+      "text": "A great move. Mild fireworks."
+    },
+    "takeId": null
+  },
+  "requestHash": "f719638dc69cff25a72a04305c747a16f56e776f9bb39c65150220e275a92044",
+  "recordedAt": "2026-10-04T07:22:01.624Z",
+  "sha256": "ec40ddc97acec2fdf91fce9b650664ffd9887972537f184f28917312ab9d9807",
+  "bytes": 10988,
+  "requestId": "0WEHWFpSnT2sVvGeAQp4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b4c4a0ff1720eee3748303f21ba758a1f362ff0cdf9b6c5a49af88882c781a75",
+    "bytes": 53542
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

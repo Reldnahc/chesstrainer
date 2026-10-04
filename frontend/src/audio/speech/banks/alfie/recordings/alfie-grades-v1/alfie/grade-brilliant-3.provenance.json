@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "grade-brilliant-3",
+      "label": "Grade brilliant 3",
+      "text": "Counting material is usually the first step. This move is a reminder that it isn't the last one."
+    },
+    "takeId": null
+  },
+  "requestHash": "29f804f619420379fd9c33fb28b2a6a3217d08934a5d3b136568ff73229f9585",
+  "recordedAt": "2026-10-04T07:20:46.969Z",
+  "sha256": "8f28d78944f65d3303192acd740c958dfca6c35686bd9133f1712f55e62d8276",
+  "bytes": 20038,
+  "requestId": "vGrRMetPphR8Eb9jju07",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5e464e80ada52364344019faf68c33b8f4b45dbb2ee1ab1901669b4d6ca375b2",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

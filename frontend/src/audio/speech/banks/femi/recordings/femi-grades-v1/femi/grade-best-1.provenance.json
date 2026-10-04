@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "grade-best-1",
+      "label": "Grade best 1",
+      "text": "Best move. Couldn't ask for more than that."
+    },
+    "takeId": null
+  },
+  "requestHash": "08f457eb52bf29b60a32cac613b666c17c9ecf474112e2fcc04d18865cb5164d",
+  "recordedAt": "2026-10-04T07:21:59.859Z",
+  "sha256": "0056bbe52ae2fa814540841dda66b9d5ce98021de963e232b36cad7389d6cb51",
+  "bytes": 10070,
+  "requestId": "S6NqSfz8p2VjyctsGrv9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "123b0a91d2ba28c1aa56103c8b444c18eb0a8ab8b3bdd630117849b0ff2d941d",
+    "bytes": 49781
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

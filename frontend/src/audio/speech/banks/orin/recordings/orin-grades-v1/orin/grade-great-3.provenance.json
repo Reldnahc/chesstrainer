@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "grade-great-3",
+      "label": "Grade great 3",
+      "text": "Great. A move is weighed by its hour as well as its merit, and this one weighs well on both."
+    },
+    "takeId": null
+  },
+  "requestHash": "d6a975c06d6677d4444f9ea3034eaafd4261c72da7bcca3d8dd13f997c60525c",
+  "recordedAt": "2026-10-04T07:23:11.439Z",
+  "sha256": "69f9887cbb98fa68eed0272534fbf7ea470fa3b1ef2e3551c32c8221c608fabf",
+  "bytes": 22733,
+  "requestId": "Gf5GoNijSVBNruALNG9p",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c66a87745f66c9426d9c3f7f3720ddd7fd45e7b67330389b546f0f062da91921",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

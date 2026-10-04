@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "grade-brilliant-2",
+      "label": "Grade brilliant 2",
+      "text": "A proper sacrifice, so! A piece goes out on a limb, and the limb holds."
+    },
+    "takeId": null
+  },
+  "requestHash": "290099f7e58ef27264862f65f6f947be5a540dbaa3fdbb55e7ac43af893e26d3",
+  "recordedAt": "2026-10-04T07:23:24.495Z",
+  "sha256": "7d66f924e39827124753ef11aadd8ccb1b66e8424eaed5c17a99aeae411e27bc",
+  "bytes": 18915,
+  "requestId": "gKfVsP6WtBOHuQjxJWE9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "aed5cd62381cf56ca6010a56c74c71dfe057c5925565f40bce728083339e702c",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "grade-good-3",
+      "label": "Grade good 3",
+      "text": "Good. A sensible little move, the kind a position is glad of."
+    },
+    "takeId": null
+  },
+  "requestHash": "ccbf4e2788ee41d5795b2a97392d75098df9c4a7c5b8ac8667aa1f305655f235",
+  "recordedAt": "2026-10-04T07:20:47.354Z",
+  "sha256": "95cbf17774b9efa5607a8ab4aefea61a5c0e45b98ed50c680679754ab359ea11",
+  "bytes": 14480,
+  "requestId": "4SIwSfSZbXVbVyhdHVbt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2daf0a44df9dad8961e271f79d8dff800bc89c4f74f0a1244ca0effc9c597bf3",
+    "bytes": 72768
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

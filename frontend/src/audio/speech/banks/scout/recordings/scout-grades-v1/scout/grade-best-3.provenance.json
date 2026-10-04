@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "grade-best-3",
+      "label": "Grade best 3",
+      "text": "Engine's top choice, executed clean. Add it to the pattern file."
+    },
+    "takeId": null
+  },
+  "requestHash": "560ef782a6813052c51e106912b6cdab789e2afe031dac896eb995430fa9ae4b",
+  "recordedAt": "2026-10-04T07:24:01.496Z",
+  "sha256": "8e17cde5b584684e8678fcad234b405e958e4daf06b50ee8b43dfa5f4947fd53",
+  "bytes": 14109,
+  "requestId": "wkh0IAMgyR0QwB9meke4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2860582ccbd41a89cd8438fdbbcf892166bc1a75ccf83fc4407e7d8a70a2c02f",
+    "bytes": 71515
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

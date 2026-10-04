@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "grade-great-3",
+      "label": "Grade great 3",
+      "text": "Witness statement: big moment, strong move. Nothing fishy at all."
+    },
+    "takeId": null
+  },
+  "requestHash": "9cc407944652625b4fb4f4a1c2ba9afa50d05c626427dca5380e37e73ace19d3",
+  "recordedAt": "2026-10-04T07:23:26.849Z",
+  "sha256": "e7bca90d9854a864b35d304647f1a65e89e0463f5a8a75aaa78c108befb39d43",
+  "bytes": 16468,
+  "requestId": "0KllppkHgoIujWPw4TvD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7d4811fbb9702fd96576d3d48a7f2db68175f42ecc4cea359c5b0efcf7c541f4",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

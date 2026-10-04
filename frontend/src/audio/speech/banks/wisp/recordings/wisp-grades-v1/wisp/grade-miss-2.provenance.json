@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "grade-miss-2",
+      "label": "Grade miss 2",
+      "text": "A real chance stood quietly on this turn. The move played does not reach for it."
+    },
+    "takeId": null
+  },
+  "requestHash": "b65b9551979ed2417f5c2f4c3a35c7b88d7ca0f0493811bf3830afa71696e768",
+  "recordedAt": "2026-10-04T07:24:30.800Z",
+  "sha256": "109e04862814299c517e8af6869eab7885088f50c3612872be3e9325eb4d42fd",
+  "bytes": 18418,
+  "requestId": "w9rXcbdD9UtjTsqwpcUX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f9377b50a31d07001688a7700e91cc196a45a9fe9b3bc375aa7307c73efe4666",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

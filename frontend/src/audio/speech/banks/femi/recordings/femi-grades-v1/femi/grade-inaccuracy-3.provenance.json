@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "grade-inaccuracy-3",
+      "label": "Grade inaccuracy 3",
+      "text": "A tidier move was around here. This one leaks a little."
+    },
+    "takeId": null
+  },
+  "requestHash": "10c2dffa2594af830dd4be72562addee5fadf22c06fc5a3f5085b2a424963420",
+  "recordedAt": "2026-10-04T07:22:14.379Z",
+  "sha256": "d745c1141aa44ca25ad0f02a2598c0fa12f4e6c9bae8a66ad63d065dec8fb081",
+  "bytes": 13103,
+  "requestId": "CAewsqDFuuLiY1kTNtCI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "66da5f1a439d92fdf55f1dd87acf70bd03536815ff9d517632b2db6a909a500b",
+    "bytes": 65245
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

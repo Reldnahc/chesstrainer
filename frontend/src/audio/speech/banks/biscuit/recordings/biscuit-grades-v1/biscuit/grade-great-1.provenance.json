@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "grade-great-1",
+      "label": "Grade great 1",
+      "text": "Wowee, a key moment, and look how strong this move is! That one's a keeper!"
+    },
+    "takeId": null
+  },
+  "requestHash": "bf49367c1854570cc0602d072b52835800249849c57cbf433aaa42eb0b1a43bf",
+  "recordedAt": "2026-10-04T07:21:17.622Z",
+  "sha256": "5298b853125c05fe154b1d5dcdb453f68524602e2214bb8fd47369f8f4704a11",
+  "bytes": 20521,
+  "requestId": "WhKVehcUDzXbbGvYEwn4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0690dcb3b618eb4c2796f911fc39b72955c36ae68356044d86c5e09b2fc05a72",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

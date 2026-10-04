@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "grade-mistake-1",
+      "label": "Grade mistake 1",
+      "text": "A real mistake. The game had one shape before this move and a worse one after it."
+    },
+    "takeId": null
+  },
+  "requestHash": "38e2ca2156dc897640889807d47a40967964035fd4e97ddce38653bf97c77f6d",
+  "recordedAt": "2026-10-04T07:20:07.201Z",
+  "sha256": "ded77e7642fbc9563f435223cf0855c7c4086a3348f996fcbfcbfb816b9a5739",
+  "bytes": 18565,
+  "requestId": "QDpXoSpV9UGHr2udL4wr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c77d57faf74eec13b07d4ef032bfed6c73d97995249c99b9681aba669279128a",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

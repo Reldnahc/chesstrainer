@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "grade-miss-3",
+      "label": "Grade miss 3",
+      "text": "Chance in range, and this move holds fire."
+    },
+    "takeId": null
+  },
+  "requestHash": "28ab77160c275dca6fe3a85dd9da514c940fa97331e249d7efe180ae89b1b12f",
+  "recordedAt": "2026-10-04T07:24:24.060Z",
+  "sha256": "50b9bf0cf98a2e62bbd4542c7ca34ef2ee44f833544e0bc3874992fa89c43915",
+  "bytes": 11557,
+  "requestId": "ETgSeSWUesMmgQYlza7U",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b95c4ffc6ab42ca1e43044655e79cb2da01f1ba64522f2df2d6f976ad898540b",
+    "bytes": 57304
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "grade-inaccuracy-1",
+      "label": "Grade inaccuracy 1",
+      "text": "Hm. A little pebble in the shoe here. Small, and nothing tips over."
+    },
+    "takeId": null
+  },
+  "requestHash": "ec6472f1d20b238dc698d86b957e853ca30a5866489cc724bff7b9d53b498d28",
+  "recordedAt": "2026-10-04T07:20:50.695Z",
+  "sha256": "6d7be8f89835ee08b57fce61cf5ff42fdaf753c8e40ac691169db48565ea842d",
+  "bytes": 18606,
+  "requestId": "c2Sdepkhf1FXtyeMbtP5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fad2eaf3ceb071dfb2a9131aa5a25ebee27ac0c62c144637432044a3cd2d340f",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "grade-miss-3",
+      "label": "Grade miss 3",
+      "text": "I keep looking at what this position held. This move passes over it."
+    },
+    "takeId": null
+  },
+  "requestHash": "64fac385d6d499fb0f0204e3ef1e2a1a975046e0017fe9121a4ad4509e4214f7",
+  "recordedAt": "2026-10-04T07:22:37.362Z",
+  "sha256": "3264879bde6ef096531169e05e2edb311112bb54e563bf08cec407237f9585a7",
+  "bytes": 15507,
+  "requestId": "RYvfLE1kz8aN22N5YFti",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1fc8eda8b4b86aeaedb0700a2c1f5ad9c20b1446052b8a38ef2fc8f68602a88a",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

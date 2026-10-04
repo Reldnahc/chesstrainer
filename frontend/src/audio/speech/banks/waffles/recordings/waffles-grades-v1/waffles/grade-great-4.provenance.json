@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "grade-great-4",
+      "label": "Grade great 4",
+      "text": "Right call at the right time! That's how campaigns are won."
+    },
+    "takeId": null
+  },
+  "requestHash": "0813d2fc39479fdbb9f392a86868d52e5e54dcf8000a484c7279efb871197068",
+  "recordedAt": "2026-10-04T07:24:26.524Z",
+  "sha256": "86346757fddb945bb81aa1ffd55bc50de67a950da3783f225022671b126adc3c",
+  "bytes": 14945,
+  "requestId": "vLPo72H9rrseVOVH5Sqe",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5dd4bff2895f8135c19c715744ad1aec9b71b9b15ce7c7d243dbffc5533739ba",
+    "bytes": 71515
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

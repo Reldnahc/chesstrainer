@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "grade-great-1",
+      "label": "Grade great 1",
+      "text": "Great! Even a pawn could feel how much this turn mattered, and the move met it head-on."
+    },
+    "takeId": null
+  },
+  "requestHash": "9e6e8a7f9136beb5bc0de35da4a2a8a7406167aae22e181897f0d873f6b6d26f",
+  "recordedAt": "2026-10-04T07:23:11.826Z",
+  "sha256": "cf0f3bef845eab0263f4ae7d412a35e5da992a0b69b157e16bb24ff19c2274a1",
+  "bytes": 18408,
+  "requestId": "t6ZBdfAFUnFregu6bmSX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "53eca8db0e4bd592998a1df06a403f0cd1f705489522c25c64385cfc8cf2cd95",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

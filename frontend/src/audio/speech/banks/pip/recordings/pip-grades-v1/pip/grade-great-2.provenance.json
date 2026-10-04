@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "grade-great-2",
+      "label": "Grade great 2",
+      "text": "Now then, this one counted. And the move holds its nerve."
+    },
+    "takeId": null
+  },
+  "requestHash": "721b84ffa0ca8e993e21e68358e2fec393c84adfc62f9844a8776df0a31f11af",
+  "recordedAt": "2026-10-04T07:23:30.407Z",
+  "sha256": "23c8d79a4c8786e5e19d04a25600de9c5c86c674ee0206ee646a6af5173e9531",
+  "bytes": 14847,
+  "requestId": "wC0623sgfup34meC43Ur",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "46add8ed5651ba7c1414721dffc841e3ea315ee98bef73e106a048755c443d29",
+    "bytes": 74022
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

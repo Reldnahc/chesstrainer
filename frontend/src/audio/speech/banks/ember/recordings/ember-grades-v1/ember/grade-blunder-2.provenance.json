@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "grade-blunder-2",
+      "label": "Grade blunder 2",
+      "text": "One move, and the position is far worse. I call that a blunder without hesitation."
+    },
+    "takeId": null
+  },
+  "requestHash": "3505d79dc3979dacc0e9ecfbfc725217f4461475d8cd8f1d3a8e25738cc4e796",
+  "recordedAt": "2026-10-04T07:21:48.204Z",
+  "sha256": "2f5b2e54f1fc14a4db4d6e87af88dd31e485850b9cc49076269a4312af15fa85",
+  "bytes": 19401,
+  "requestId": "ODzHg2ajXZKK6iGMoTW3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e7a61d2fd69b03601bfc5bae63d2fad8ff53e242bcadc825d1d3a4497f7c24d5",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

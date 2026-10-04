@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "grade-miss-4",
+      "label": "Grade miss 4",
+      "text": "A missed chance. Let us remember the shape of this moment."
+    },
+    "takeId": null
+  },
+  "requestHash": "ae1c17ca9c95377958854f21f1158ab1695495aa2946f7e397e6775f436581a6",
+  "recordedAt": "2026-10-04T07:23:14.499Z",
+  "sha256": "035607478b2c4438f347ebb85d0cb7202ac7c72c8f80b7216562be9458da7739",
+  "bytes": 14598,
+  "requestId": "yr72TmDshgl32PB09a0O",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a19d277c01dc0a6b323d207d71e09e58dfd4894889ecb0529160493ebf9738aa",
+    "bytes": 75276
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

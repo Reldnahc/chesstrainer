@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "grade-blunder-3",
+      "label": "Grade blunder 3",
+      "text": "The position is a much colder place after this move. A blunder."
+    },
+    "takeId": null
+  },
+  "requestHash": "76e5fffe9ee1dfd3363cb3d1e99fee960a05842beed355bc5ce41c0bea12e3d9",
+  "recordedAt": "2026-10-04T07:24:37.627Z",
+  "sha256": "50950c3f26c3a365bc93eaa28377ee28d0310a94a3e71c11b9880716d6026fd3",
+  "bytes": 15706,
+  "requestId": "sTMUeZjeYSotPyDaEBrX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c89e5ae3281ee53c3c181751e0d0cc6dadf5a65a2cfbedbbe6cef8dc3a3dc714",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

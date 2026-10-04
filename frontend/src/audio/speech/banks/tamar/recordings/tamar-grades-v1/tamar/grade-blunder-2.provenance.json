@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "grade-blunder-2",
+      "label": "Grade blunder 2",
+      "text": "Blunder, no question. The notebook gets the whole line after it, written out move by move."
+    },
+    "takeId": null
+  },
+  "requestHash": "100c59abd11e1d4873062fecd48aeb0a29a6cae08e2da695eac7c3fadedb1676",
+  "recordedAt": "2026-10-04T07:24:18.213Z",
+  "sha256": "e490876868d80f87c58749302e66f5233a9098706ea13d628c50f8ea37930a20",
+  "bytes": 20831,
+  "requestId": "SfJ7IOmrVeok7p4xFf80",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a3ca8f112acf13b96b126a1091bb397dc5b0a23552793be8e5d95f54f9611647",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -120,11 +120,11 @@ def test_registered_bank_records_exactly_the_authored_scripts(coach, voice):
     assert (manifest["coachId"], manifest["voiceId"]) == (coach, voice)
     scripts = read(f"banks/{voice}/scripts.json")["records"]
     recorded = {row["id"] for row in manifest["recordings"]}
-    # Generic lesson prompts, the plain-move grade takes and piece variants may be
-    # authored before they are recorded; they stay silent until their clip is added.
+    # Generic lesson prompts and piece variants may be authored before they are
+    # recorded; they stay silent until their clip is added.
     variants = {key for ids in piece_variants().values() for key in ids}
     assert all(
-        row["group"] == "lessons" or row["id"].startswith("grade-") or row["id"] in variants
+        row["group"] == "lessons" or row["id"] in variants
         for row in scripts
         if row["id"] not in recorded
     )

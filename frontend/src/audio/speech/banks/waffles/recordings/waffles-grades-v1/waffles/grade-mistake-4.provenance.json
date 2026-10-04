@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "grade-mistake-4",
+      "label": "Grade mistake 4",
+      "text": "Breach in the line! That move gives up ground that matters. Flag it for review."
+    },
+    "takeId": null
+  },
+  "requestHash": "0ffdddcb98e845c78f298355ea4a5eed153677e1ef8f1795590483d012c7ca12",
+  "recordedAt": "2026-10-04T07:24:20.272Z",
+  "sha256": "28740f0c89e64fac665f9cda0c6d0f9222285ca4dd4f30e8429bb7c5635f3d0c",
+  "bytes": 17337,
+  "requestId": "BJP5ZvAZnxiGr7Q2rtdX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "77213b7d32d4841293ba9653bef7335cc485f35273f4479651fa72e93e7f64f4",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "grade-great-4",
+      "label": "Grade great 4",
+      "text": "Eyes up! Strong move, crunch time. Those two together never get old!"
+    },
+    "takeId": null
+  },
+  "requestHash": "6891f9d7f9ee655fb4ff5bc8fb3fdda541bee6209350017b4d4061ca740eedd4",
+  "recordedAt": "2026-10-04T07:23:46.871Z",
+  "sha256": "cdae1a009466673a4ddbdf34c2e8162a12de2f438b97dbde39f20fce3641070a",
+  "bytes": 17519,
+  "requestId": "APcoUyS4HhoADKNtfRxh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b952918e35af79e3eb1b5fcd0dee523a6e6fcffd7a3a5aa6e62d02af5b369da4",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "grade-mistake-2",
+      "label": "Grade mistake 2",
+      "text": "The position was stronger a move ago. What was given up here is no small thing."
+    },
+    "takeId": null
+  },
+  "requestHash": "24abcb38748c2da3ec6a59ed4b1e52affc58caa02cd3ff450e0739544397f15a",
+  "recordedAt": "2026-10-04T07:24:24.818Z",
+  "sha256": "cbaaec5b19480da934da710b4ab864e41513c691c6938f8607fc2b0a93d11852",
+  "bytes": 17094,
+  "requestId": "8hYRu8JkDSbjw2T6dd9k",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "45e65f89efea962a2586e90019e1989e51f8739ebd2aab3285c85f23e72d1304",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

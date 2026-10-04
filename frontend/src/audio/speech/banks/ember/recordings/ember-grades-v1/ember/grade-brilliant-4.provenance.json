@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "grade-brilliant-4",
+      "label": "Grade brilliant 4",
+      "text": "Real material staked, and the checked line refuses to buckle. Few moves stand that test."
+    },
+    "takeId": null
+  },
+  "requestHash": "517e6d641939c1e5fc5420ef02042677ff2aa3ae175e0df516d653ae4c5672bf",
+  "recordedAt": "2026-10-04T07:21:31.794Z",
+  "sha256": "a9e97e8a62772bd9c93a5426404398ca1b59683a99f1dc8175bd642cc09f111b",
+  "bytes": 20684,
+  "requestId": "7S2UQJVj1Ibs8YcfaEfT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "93a84cfa8991839908ea4821e9d5d1c67bfa12607cd03496717b11480a421748",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

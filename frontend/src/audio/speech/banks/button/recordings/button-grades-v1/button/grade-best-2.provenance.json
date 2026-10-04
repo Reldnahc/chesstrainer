@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "grade-best-2",
+      "label": "Grade best 2",
+      "text": "Oh, that's the one. The best move, and a pleasant one to see."
+    },
+    "takeId": null
+  },
+  "requestHash": "a02cdc4b28818171761c75b915cd305183b2390a3a73cbd3dfcef32b3db3a647",
+  "recordedAt": "2026-10-04T07:20:40.308Z",
+  "sha256": "14a17b1a27ebd7722c5f361190acf3c357fafc0b224a3e663153ab0090f5a6c8",
+  "bytes": 15022,
+  "requestId": "JOgBBRCN0jU14U6BUyPm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8daf33fc8e8a13a27428fc99d38bcee3346e91997c228307bf91f83d85b1b390",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

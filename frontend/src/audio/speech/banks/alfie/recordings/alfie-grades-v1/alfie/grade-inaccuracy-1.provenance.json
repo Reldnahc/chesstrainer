@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "grade-inaccuracy-1",
+      "label": "Grade inaccuracy 1",
+      "text": "A small inaccuracy. The best move kept a little more, and the difference repays one careful look."
+    },
+    "takeId": null
+  },
+  "requestHash": "fda3dd323f49f161d33e275a6354c221c53f2f13f89891f3bed3faec1cefd081",
+  "recordedAt": "2026-10-04T07:21:10.244Z",
+  "sha256": "5ae2414a159b896349298c87d42ff0964c8210922d6f48e21b04df34d4fc1385",
+  "bytes": 20825,
+  "requestId": "Dbli7wTMlxVu5OMf8AES",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4d6319fa9165626fec6113bc1cfc3a34ab742ec732f8ab1795c0d6cc572bc125",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

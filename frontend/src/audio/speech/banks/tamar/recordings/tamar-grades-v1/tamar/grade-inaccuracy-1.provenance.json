@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "grade-inaccuracy-1",
+      "label": "Grade inaccuracy 1",
+      "text": "A small slip. Small slips are still slips; this one goes in the notebook."
+    },
+    "takeId": null
+  },
+  "requestHash": "726cad3c9d1e0e69d9ae771beeae9fa3ef79b48bc57c9cd018d2809faec3bf5f",
+  "recordedAt": "2026-10-04T07:24:29.461Z",
+  "sha256": "ad25bf938660bb43b30ea908675e8b14720aa32adf2289ab97254272210cccbf",
+  "bytes": 17496,
+  "requestId": "WhGdZ3OdlRDdd5iANA93",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "76e76969fe63f2c581d1366f118f74b7363bb88d224094a87a464f8aca82be7d",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

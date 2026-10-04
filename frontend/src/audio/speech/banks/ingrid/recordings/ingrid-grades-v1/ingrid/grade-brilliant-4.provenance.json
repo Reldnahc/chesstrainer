@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "grade-brilliant-4",
+      "label": "Grade brilliant 4",
+      "text": "Worth a smile, this one. Costly on paper, sound in practice."
+    },
+    "takeId": null
+  },
+  "requestHash": "5b96ed4d7642b9ed6ad4a9dbf8b77179d87466c215b2efb104f50233ce21c8de",
+  "recordedAt": "2026-10-04T07:22:05.993Z",
+  "sha256": "9badf00b54a53a793cdcd4df47d7ab4179a0f3899128ecc57d64ada010f4a984",
+  "bytes": 15616,
+  "requestId": "dT9zWnfjb0gO2RP8PcHC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "31c77fe48bd3f91537bbb763f582c68eabf0ace36050321a3063f51f345b85ef",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

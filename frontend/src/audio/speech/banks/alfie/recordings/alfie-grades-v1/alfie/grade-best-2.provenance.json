@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "grade-best-2",
+      "label": "Grade best 2",
+      "text": "Best. Nothing here improves on it, which a few alternatives on the board will confirm."
+    },
+    "takeId": null
+  },
+  "requestHash": "d041c733943f29a60ee4c744f163dc2eca81f1309d559db46418ca981d3d9407",
+  "recordedAt": "2026-10-04T07:20:58.411Z",
+  "sha256": "95e06f9713f3ad399c3dedab4481408a34620c4174a42750ae6360b157c51ef5",
+  "bytes": 17617,
+  "requestId": "tgUzN7JCsTgXj5YQlpsy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8423d7c871ee05e0ce56e2f959afee0b2e582acb8585302fca2470162622b1b1",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

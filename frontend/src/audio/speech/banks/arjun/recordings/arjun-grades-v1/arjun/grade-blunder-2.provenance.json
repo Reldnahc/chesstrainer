@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "grade-blunder-2",
+      "label": "Grade blunder 2",
+      "text": "This is a costly one. What would the position look like without it? Very different, I suspect."
+    },
+    "takeId": null
+  },
+  "requestHash": "de40a16bb641949101d8e4f858d9fafa515f0dce79e93b5d706280f610268bf7",
+  "recordedAt": "2026-10-04T07:20:53.265Z",
+  "sha256": "768fff98e388339c9ad78527b5e01384f73a0f42679d847b3ff1602f224ea436",
+  "bytes": 20762,
+  "requestId": "i1fvTwJt2xu294mcr8wm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8ec3aa5a23e69766cd1406f0f9f6c6544217ed1461076f6b7b9962a907848047",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

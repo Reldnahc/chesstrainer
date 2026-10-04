@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "grade-great-3",
+      "label": "Grade great 3",
+      "text": "Great. Strong chess at a moment with real weight. Put this position in the notebook."
+    },
+    "takeId": null
+  },
+  "requestHash": "12f3ebc2e4af21ea42aa73dc455c191055bb65c64ac0c9071c8f6a58340143a8",
+  "recordedAt": "2026-10-04T07:24:14.898Z",
+  "sha256": "f087a4ba51271d969d935ab5b6ee225f9654ec637724087e56b05e3ebaf3b15a",
+  "bytes": 18737,
+  "requestId": "G2excqPSGbh9BY5KSSzM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c20939235ffa93ef1e8b1c05541187c549c890f379a400e39d32bfaca5c33a88",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

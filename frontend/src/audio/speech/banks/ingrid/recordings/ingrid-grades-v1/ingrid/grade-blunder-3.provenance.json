@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "grade-blunder-3",
+      "label": "Grade blunder 3",
+      "text": "This one does the position serious damage. The useful part now is seeing why."
+    },
+    "takeId": null
+  },
+  "requestHash": "04bb982d4f672faac588a13ed928e00c10fd21904842736a42e4df91101582e2",
+  "recordedAt": "2026-10-04T07:22:27.762Z",
+  "sha256": "367bed3f4688fb7e5205aea516b50b3807c3fb98ece186b2497d5576b95525b8",
+  "bytes": 19543,
+  "requestId": "y0gGOyv1bdmrM3ebXguJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0b4220e84a80735b3f05c575e6362c573e56a46c60cf5dc51f08e8131f7dee02",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

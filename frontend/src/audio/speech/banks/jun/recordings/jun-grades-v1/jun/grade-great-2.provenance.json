@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "grade-great-2",
+      "label": "Grade great 2",
+      "text": "Precise. The position was sensitive at this point. The move is strong."
+    },
+    "takeId": null
+  },
+  "requestHash": "38181c1598731481abf0a733bed2a1b08256ef6c884c83aabfea828b89933bd1",
+  "recordedAt": "2026-10-04T07:22:18.696Z",
+  "sha256": "1e244a662f24c3d1ccd642de6385c44823db726d6998d18bffbd053c822b0d6a",
+  "bytes": 16692,
+  "requestId": "qJoViJEz9onFnyrt8BXS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "639633def290657735cfbf8ff669b79c468e22b70279aa6cb81231e27de75dd9",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

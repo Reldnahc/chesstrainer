@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "grade-great-1",
+      "label": "Grade great 1",
+      "text": "Strong, and on time. Punctuality is underrated."
+    },
+    "takeId": null
+  },
+  "requestHash": "eb9f15c609ddfa0b83bb82327c892f797cf9ff60acb4653d3752c64c816986ae",
+  "recordedAt": "2026-10-04T07:21:40.253Z",
+  "sha256": "11d39fe39417a8ca4e8c4cf810afaa7b7a75c856c312da858391cd26c57e5c65",
+  "bytes": 14549,
+  "requestId": "u8RxBeBhhkA5VwybGeIH",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "605989cac86adb9177f8eca5657da9beb652fb13bd588343a5295f8111bcc61a",
+    "bytes": 72768
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

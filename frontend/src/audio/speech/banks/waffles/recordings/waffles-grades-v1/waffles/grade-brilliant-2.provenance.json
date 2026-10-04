@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "grade-brilliant-2",
+      "label": "Grade brilliant 2",
+      "text": "Brilliant! Material sent over the top, and the checked line backs the charge."
+    },
+    "takeId": null
+  },
+  "requestHash": "8fa196057e068eea25fa3222a341adf5e4403407191a0e8a62b230de1dcf5746",
+  "recordedAt": "2026-10-04T07:24:17.414Z",
+  "sha256": "7d34d01db236fc30886162df48661ad851964db82f91824c366e124eec8ccc0a",
+  "bytes": 17589,
+  "requestId": "4W9MfJQPnOnV50RW6cDT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a380ace49996ef647725c34d22958aeb7e5e40f2a55b5e4d1ef5cb4470223450",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "grade-miss-4",
+      "label": "Grade miss 4",
+      "text": "Something good was ready to happen here, and this move didn't give it its turn."
+    },
+    "takeId": null
+  },
+  "requestHash": "715507065cc0907e310e6450d171d1237986c52b31cf331ae800e8c8c700577e",
+  "recordedAt": "2026-10-04T07:23:15.042Z",
+  "sha256": "d3086ce9a3f595779812ead631aa3130a90061f4ae481322148df79ea33f63aa",
+  "bytes": 14983,
+  "requestId": "I1nSoRjzayqwfywkyW1I",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "681df25a91497385fc727ef35f27213394244d948cf8514a9c56b631a06ee084",
+    "bytes": 72768
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

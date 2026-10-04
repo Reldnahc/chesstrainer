@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "grade-blunder-4",
+      "label": "Grade blunder 4",
+      "text": "A blunder. After this one, the position is hardly itself anymore."
+    },
+    "takeId": null
+  },
+  "requestHash": "1dd0bac00c02913a746059dcf88b88d7d8084c2efe2b44e3cc5042a001f994e1",
+  "recordedAt": "2026-10-04T07:20:52.719Z",
+  "sha256": "7321a6bdd8844eb5002487b6ea42fc00fefdf985a3092b9455350053bd41e050",
+  "bytes": 16058,
+  "requestId": "UpjxA8Jna8CtVlXxykjD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1d0ee17bb5d27d3861b69e1e8d05a3a906b743fb7d2529c5949064ceba1ff3ec",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

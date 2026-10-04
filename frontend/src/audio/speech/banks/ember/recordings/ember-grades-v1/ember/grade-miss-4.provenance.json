@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "grade-miss-4",
+      "label": "Grade miss 4",
+      "text": "This move passes over a stronger path, and that does not go unremarked."
+    },
+    "takeId": null
+  },
+  "requestHash": "6b31808f859e4f450d064c5f54ac3ab667284681022782e2c65b20699759cd71",
+  "recordedAt": "2026-10-04T07:21:45.129Z",
+  "sha256": "185e99f624a4c341f0fe84328de1377bf47b603438e77d4e517ced70800da5a2",
+  "bytes": 16696,
+  "requestId": "3oKL0THZPrWBQVf0DrYv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a970c4dd57c9da87530fc8e09d4726f79072b5aaabd05798737f7e6257e3e50c",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

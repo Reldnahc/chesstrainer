@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "grade-brilliant-4",
+      "label": "Grade brilliant 4",
+      "text": "Brilliant. Weighed in material alone, it costs; weighed in the searched line, the idea endures."
+    },
+    "takeId": null
+  },
+  "requestHash": "915412d5934561420523766c93abb8b4fb8e1046e6e9d77b5ee44f3e0dd87d48",
+  "recordedAt": "2026-10-04T07:23:06.329Z",
+  "sha256": "72eeabf37f019377ae9cf9fada7c102a6ebeb516d6f0616abcbc829e798daeaa",
+  "bytes": 25388,
+  "requestId": "q75tiGYKwWewgG7Rc2IZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ef5e4f665ee07855cacb9c0d1997a2a33ecdee425b94375740cd080e928f6b70",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

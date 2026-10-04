@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "grade-good-1",
+      "label": "Grade good 1",
+      "text": "Holding formation. Not the sharpest move, but sound."
+    },
+    "takeId": null
+  },
+  "requestHash": "3d5342d1940262407a60c3f01c94f0def9cbdebf215d901fe86bcbfa04e45087",
+  "recordedAt": "2026-10-04T07:24:31.904Z",
+  "sha256": "bbd0cb0e6ffdfc2141e4115233f7689d977938f378782a6d28a6b45fa3b68e36",
+  "bytes": 13936,
+  "requestId": "Qj7dA13qHvNGJao1toJq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1d1d0e10dc8db17dd4e492b6eea89a198a73dcf63a23278a8ecced7ad4a0b491",
+    "bytes": 69007
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

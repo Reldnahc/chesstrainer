@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "grade-inaccuracy-4",
+      "label": "Grade inaccuracy 4",
+      "text": "An inaccuracy, a small step off the best path. Over a game, steps like this can add up."
+    },
+    "takeId": null
+  },
+  "requestHash": "fb300de591f732ba1feb748cde607d6aeae87a4cc394d50ee918c8819b4f046a",
+  "recordedAt": "2026-10-04T07:20:36.963Z",
+  "sha256": "137c5ae7023caa612fe50f634ef01075a784af21112a5b4d6534ebe42774047d",
+  "bytes": 21872,
+  "requestId": "JIvrjvUiXmRg6UmhoRFT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "659c01b0f4cb513d54e25c43ada24beffaf318897e426ffc1cac2b3ed08e93c5",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

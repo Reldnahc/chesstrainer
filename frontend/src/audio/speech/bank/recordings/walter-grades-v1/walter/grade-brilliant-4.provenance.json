@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "grade-brilliant-4",
+      "label": "Grade brilliant 4",
+      "text": "Brilliant. A sound sacrifice, and a position worth coming back to after the game."
+    },
+    "takeId": null
+  },
+  "requestHash": "2981fcc0731b3c33851ab066610a36c41720a905a848d455fd523441633aeaee",
+  "recordedAt": "2026-10-04T07:20:12.778Z",
+  "sha256": "40403449eae597f5b260f5b4fa5b3e4975bc813fe20e3ef70ef23907d43f8684",
+  "bytes": 18382,
+  "requestId": "5AA1uIPFon8Wp68QYJlL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "44d5e3c372ece50515cc81e36e3e989d46420fab95e54434f8edfbd6d6340fde",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

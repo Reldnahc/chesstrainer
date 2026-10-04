@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "grade-blunder-3",
+      "label": "Grade blunder 3",
+      "text": "A heavy blunder, and the game takes a very different shape from here."
+    },
+    "takeId": null
+  },
+  "requestHash": "bbfcb56b7a9a5c3f74e94a2029be2f378a0e6979b6fa752f467da3542925a8cc",
+  "recordedAt": "2026-10-04T07:20:21.545Z",
+  "sha256": "f8fb9fd92e455206fd909c002e34d23dbc548e6a606dcce0b07b0c8352bb0e93",
+  "bytes": 14181,
+  "requestId": "aEwhpT7m3si0seDTyVTg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "38fb3f13a445a6c8f6d0e7bfebab50184c1947cbb0e5995c9aa4f441d3ed7f8f",
+    "bytes": 69007
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

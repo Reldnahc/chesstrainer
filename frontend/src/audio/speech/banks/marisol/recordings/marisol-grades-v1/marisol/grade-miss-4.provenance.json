@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "grade-miss-4",
+      "label": "Grade miss 4",
+      "text": "For the record: a concrete chance existed on this turn, and a different move was played."
+    },
+    "takeId": null
+  },
+  "requestHash": "79d5339152a803d46eda61b14319eee061ccfaa41e8b693a77fc1e99a4de0787",
+  "recordedAt": "2026-10-04T07:22:41.710Z",
+  "sha256": "8d8da21931f8880762ab1026ab14438c7cf0dcc97b9d63eb0ff9b05f172677b0",
+  "bytes": 18612,
+  "requestId": "lFGajIyH2jcRkyuDyI61",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "861eaa368cdac07413e8d9cee2443038c059c185ea068c7516978af1850b7bee",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

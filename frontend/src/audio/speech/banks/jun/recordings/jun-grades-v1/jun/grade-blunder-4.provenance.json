@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "grade-blunder-4",
+      "label": "Grade blunder 4",
+      "text": "One move, drastic deterioration. Blunder."
+    },
+    "takeId": null
+  },
+  "requestHash": "39265520255487fe10129d20b18f5b0612dae634470b014f29e4139d9281cd0f",
+  "recordedAt": "2026-10-04T07:22:27.933Z",
+  "sha256": "c2b4ac6128c25f610db4df6b4a258780df767fde4f7dbbf989c47a06359416a9",
+  "bytes": 13173,
+  "requestId": "ztbANwicdxy24TSyIFd4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b6f37be3cc3421b36363f5790a151941fd4550403feb3d6a1ddab7f529c25683",
+    "bytes": 70261
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

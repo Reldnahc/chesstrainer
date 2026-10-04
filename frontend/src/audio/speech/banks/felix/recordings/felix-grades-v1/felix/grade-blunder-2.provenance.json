@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "grade-blunder-2",
+      "label": "Grade blunder 2",
+      "text": "Blunder. A big swing, in the wrong direction for whoever played it."
+    },
+    "takeId": null
+  },
+  "requestHash": "f1cbe7340a61de0c84f24d119bb60fd19c70ca6592eb9b01af356600b0b53f67",
+  "recordedAt": "2026-10-04T07:21:54.296Z",
+  "sha256": "955d8ce3ab115de24e19049528c28b2f4f80ba9336630bbd8a8be424de569eda",
+  "bytes": 16593,
+  "requestId": "3ygtMDpDke274QbNZgi7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "572ef1debbe327f5ffd24dc72accc7da89ea348feaf6e9e3e078cf532628437c",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

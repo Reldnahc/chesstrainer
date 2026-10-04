@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "grade-great-2",
+      "label": "Grade great 2",
+      "text": "A great move. The position stood at a crossroads, and this move sets out on a strong road."
+    },
+    "takeId": null
+  },
+  "requestHash": "3fa2324031c75b309937b1ee7018ca8381062a95f0c6a0ac9266022081a47300",
+  "recordedAt": "2026-10-04T07:23:09.646Z",
+  "sha256": "1f6108d3ee375037841cf1585a5907fe6cddb595668e2c3bc4a0dff8f1152a47",
+  "bytes": 23600,
+  "requestId": "XuJbNg9fwj0CGhpsNma4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "01fbb0054b46bd1fa9d2fee0e2e9c18f800abc0dd7c307429fc4a14a786bc1a7",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

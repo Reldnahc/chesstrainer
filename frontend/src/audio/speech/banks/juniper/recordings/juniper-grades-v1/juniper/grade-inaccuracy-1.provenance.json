@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "grade-inaccuracy-1",
+      "label": "Grade inaccuracy 1",
+      "text": "I paused here, only briefly. A small inaccuracy."
+    },
+    "takeId": null
+  },
+  "requestHash": "c3232c42fb23eb5c1e899ed6d50ec3bb7510160cd3646800c9eb5001b86488b5",
+  "recordedAt": "2026-10-04T07:22:42.242Z",
+  "sha256": "2cc5c4556861e06e71f0897a61195a6b9d58558ededaf86097d9a2155bf9a67b",
+  "bytes": 13650,
+  "requestId": "Xsg9EO2ITTdlpOetlnYJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b9ec2ee8b26b1b9f9e585b7a801c75bc3dbf725130586d7a963889b1ac0bc9c4",
+    "bytes": 72768
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

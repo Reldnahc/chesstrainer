@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "grade-miss-4",
+      "label": "Grade miss 4",
+      "text": "The position contained more than this move collected. These quiet gaps fascinate me."
+    },
+    "takeId": null
+  },
+  "requestHash": "6af3dbb7e3d52500c76358c16ba0673b3bb128d263f5655340cad94a8e480fbb",
+  "recordedAt": "2026-10-04T07:24:47.791Z",
+  "sha256": "486c9c22372b6538177b81266b85cec39cb1b1bddb31147fbb637bff10430a41",
+  "bytes": 18056,
+  "requestId": "W82erDdEHG5t0Tlf2es9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a9e15bf718d9af45820bc7b578447c9fdadd2dedcd3c962b7280c60f344134e1",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "grade-blunder-4",
+      "label": "Grade blunder 4",
+      "text": "A severe loss lies in this move. It is worth finding why."
+    },
+    "takeId": null
+  },
+  "requestHash": "7195f13524e32f8d465e57a1f1b076d51a156efff01ce19d09309230a8b9d4d8",
+  "recordedAt": "2026-10-04T07:24:38.986Z",
+  "sha256": "9d7712cbbd877e792b38e960339331b72f8a0f0a411c150df881fda72402ac27",
+  "bytes": 15060,
+  "requestId": "3Znqo97TyALdRgcDrvBb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0f919b1f9e0ba8edf74661c96f19f5dfac5336a267b1e00c7956794308b13200",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}
