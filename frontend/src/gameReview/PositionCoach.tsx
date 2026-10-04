@@ -99,9 +99,12 @@ export default function PositionCoach({
   const selection = {...speechContext, intent: displayedIntent, utterance, anyCoach: true};
   // The Maia insight is shown beside the bubble but never voiced.
   const speech = selectGameSpeech(selection);
-  const {primaryId} = speech;
+  const {primaryId, gradeId} = speech;
   const coachId = utterance.coachId, voiced = hasCoachVoice(coachId);
-  const selected = coachRecording(coachId, speech.recordingId) ? speech.recordingId : primaryId;
+  // A grade take replaces the generic reading once this coach has one.
+  const gradeScript = useSpokenText(coachId, voiced || explaining ? null : gradeId);
+  const grade = gradeId && !explaining && (voiced ? coachRecording(coachId, gradeId) : gradeScript) ? gradeId : null;
+  const selected = grade ?? (coachRecording(coachId, speech.recordingId) ? speech.recordingId : primaryId);
   // The greeting is the start's own line, whether the review just opened or the
   // learner returned there, so the bubble's no-report prose does not gate it.
   const openerId = selectGameOpener({ply, variation, report, frame, live,
@@ -112,7 +115,7 @@ export default function PositionCoach({
   // line, or the coach's script line for a meaning not yet recorded. "Show why"
   // keeps the written explanation, where the concrete detail lives, and
   // selection keeps validating against the written utterance throughout.
-  const spokenId = explaining ? null : voiced ? recordingId : openerId ?? speech.recordingId;
+  const spokenId = explaining ? null : voiced ? recordingId : openerId ?? grade ?? speech.recordingId;
   const spokenLine = useSpokenText(coachId, spokenId);
   // A script that lacks one sentence of a pair still speaks the lead.
   const spokenLead = useSpokenText(coachId, explaining || voiced || openerId ? null : primaryId);
@@ -128,7 +131,7 @@ export default function PositionCoach({
   const preferencesReady = !!useOptionalCoachPreferences()?.ready && !!useOptionalAudioPreferences()?.ready;
   const voice = useCoachSpeech({scopeKey: `game:${positionKey}`, recordingId, utterance: opener ? undefined : utterance,
     automaticEventId: speechOpening && (!preferencesReady || reviewStarting) ? null : speechEventId, ready: !speechPending,
-    manualRecordingIds: [primaryId, explaining ? null : speech.recordingId].filter((id): id is string => !!id)});
+    manualRecordingIds: [grade ?? primaryId, explaining ? null : grade ?? speech.recordingId].filter((id): id is string => !!id)});
   useEffect(() => {
     onVoicePlaying?.(voice.playing);
   }, [voice.playing, onVoicePlaying]);

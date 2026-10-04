@@ -3,7 +3,7 @@ import type {Game, Position, Report} from "../../gameReview/types";
 import {gameIntent} from "../../dialogue/gameIntent";
 import {humanInsightLabels} from "../../dialogue/humanClaims";
 import {object, strings} from "../../dialogue/eventClaims";
-import type {Claim, CoachUtterance, DialogueIntent} from "../../dialogue/model";
+import {stableKey, type Claim, type CoachUtterance, type DialogueIntent} from "../../dialogue/model";
 import {bookRecordingId} from "../../dialogue/openingPresentation";
 import {sequenceRecordingId} from "./sequence";
 import registry from "./banks/registry.json" with {type: "json"};
@@ -255,7 +255,42 @@ export function selectGameSpeech(context: GameSpeechContext) {
     const secondId = selectGameRecording({...context, claimIndex: lead + 1});
     if (secondId && secondId !== primaryId) recordingId = sequenceRecordingId([primaryId, secondId]);
   }
-  return {recordingId, primaryId};
+  const gradeId = gradeTake(context, recordingId);
+  return {recordingId, primaryId, ...(gradeId ? {gradeId} : {})};
+}
+
+/** Takes per move grade for a ply with nothing more specific to say. */
+export const GRADE_TAKES = 4;
+const gradePools: Readonly<Record<string, string>> = {
+  Brilliant: "brilliant", Great: "great", Best: "best", Good: "good",
+  Inaccuracy: "inaccuracy", Mistake: "mistake", Miss: "miss", Blunder: "blunder",
+};
+const correctionGrades = new Set(["Inaccuracy", "Mistake", "Miss", "Blunder"]);
+// The generic readings a grade take stands in for. Anything else (a capture,
+// check, tactic, mate, opening or relationship) is specific and keeps its clip.
+const plainCorrection = new Set(["evaluation-loss", "stronger-alternative",
+  sequenceRecordingId(["evaluation-loss", "stronger-alternative"])]);
+const plainPraise = new Set(["best-supported-choice", "good-choice"]);
+
+export function gradeTakeIds(label: string): string[] {
+  const pool = gradePools[label];
+  return pool ? Array.from({length: GRADE_TAKES}, (_, index) => `grade-${pool}-${index + 1}`) : [];
+}
+
+/** A ply whose whole line is the generic reading for its grade rotates through
+ * that grade's takes. A mainline ply counts the earlier moves with the same
+ * grade, so neighbouring same-grade moves never share a take, and replaying a
+ * ply repeats its take. The game seeds where the cycle starts. A variation has
+ * no move history and takes its position's take. The caller falls back to the
+ * generic reading while a coach has no take recorded. */
+function gradeTake(context: GameSpeechContext, recordingId: string | null): string | undefined {
+  const {game, report, frame, ply, variation = false} = context, label = report?.label;
+  if (!recordingId || !label || !gradePools[label]
+    || !(correctionGrades.has(label) ? plainCorrection : plainPraise).has(recordingId)) return;
+  const ids = gradeTakeIds(label);
+  const seed = Number.parseInt(stableKey(variation ? [frame?.fen, label] : [game.id, label]), 16);
+  const earlier = variation ? 0 : game.frames.slice(1, ply).filter(item => item.report?.label === label).length;
+  return ids[(seed + earlier) % ids.length];
 }
 
 /** Historical Walter-only consumers; new code selects meaning independently of voice. */
