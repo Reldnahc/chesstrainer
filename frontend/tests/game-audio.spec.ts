@@ -3,6 +3,7 @@ import react from "@vitejs/plugin-react";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { createServer, transformWithEsbuild, type ViteDevServer } from "vite";
+import { devRecordingAssets } from "../vite.shared";
 
 // Keep playback observable without replacing the production navigation or graph.
 // A stable scope matches AudioProvider's contract, including across rerenders.
@@ -93,7 +94,7 @@ test.beforeAll(async () => {
   server = await createServer({
     configFile: false,
     root: path.resolve(path.dirname(fileURLToPath(import.meta.url)), ".."),
-    plugins: [react(), {
+    plugins: [react(), devRecordingAssets(), {
       name: "game-audio-fixture",
       enforce: "pre",
       resolveId(id) {

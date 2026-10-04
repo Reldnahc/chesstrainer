@@ -3,6 +3,7 @@ import react from "@vitejs/plugin-react";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { createServer, transformWithEsbuild, type ViteDevServer } from "vite";
+import { devRecordingAssets } from "../vite.shared";
 
 // Real production components in a small browser fixture allow changes to board
 // inputs while a modal is open, without coupling these contracts to an engine.
@@ -73,7 +74,7 @@ test.beforeAll(async () => {
   server = await createServer({
     configFile: false,
     root: path.resolve(path.dirname(fileURLToPath(import.meta.url)), ".."),
-    plugins: [react(), {
+    plugins: [react(), devRecordingAssets(), {
       name: "modal-contract-fixture",
       resolveId(id) {
         if (id === "/modal-contract.tsx") return "\0modal-contract.tsx";

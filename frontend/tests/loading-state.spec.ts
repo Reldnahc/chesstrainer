@@ -3,6 +3,7 @@ import react from "@vitejs/plugin-react";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { createServer, transformWithEsbuild, type ViteDevServer } from "vite";
+import { devRecordingAssets } from "../vite.shared";
 
 // Exercise production consumers and their real requests without a database or
 // engine. Deferred routes let the test observe the otherwise brief load state.
@@ -59,7 +60,7 @@ test.beforeAll(async () => {
   server = await createServer({
     configFile: false,
     root: path.resolve(path.dirname(fileURLToPath(import.meta.url)), ".."),
-    plugins: [react(), {
+    plugins: [react(), devRecordingAssets(), {
       name: "loading-state-fixture",
       resolveId(id) {
         if (id === "/loading-state-fixture.tsx") return "\0loading-state-fixture.tsx";
