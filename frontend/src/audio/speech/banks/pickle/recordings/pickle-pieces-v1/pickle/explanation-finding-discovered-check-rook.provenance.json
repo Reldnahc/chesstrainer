@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check-rook",
+      "label": "Explanation finding discovered check rook",
+      "text": "One piece steps aside, and surprise, there's check from the rook that was hiding. Peekaboo!"
+    },
+    "takeId": null
+  },
+  "requestHash": "7ebf9e1815d591d97b0695f2a19f8a10928ffac6055b1bb47dea8867ec2d4de8",
+  "recordedAt": "2026-10-04T08:02:44.123Z",
+  "sha256": "8a54fbf2d2005ca56e6ac712a524862684b22198230b63090bc55ab405da1884",
+  "bytes": 20400,
+  "requestId": "fYEcdJ1XUV17gsdGBXcZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "58380f6df5388e548a0ec4b2b037308a11f70e4514e26fd8f3cc7984ad9277e0",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

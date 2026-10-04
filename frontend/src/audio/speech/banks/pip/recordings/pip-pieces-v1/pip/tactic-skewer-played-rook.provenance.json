@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "tactic-skewer-played-rook",
+      "label": "Tactic skewer played rook",
+      "text": "Ah, grand. A skewer: the rook in front is attacked, and when it moves, the piece behind it is left open."
+    },
+    "takeId": null
+  },
+  "requestHash": "f4b5b72204752ac7fda6030dc3fb10f6fe934c8eb28f46fb24120e8f65bf3dcf",
+  "recordedAt": "2026-10-04T08:03:37.859Z",
+  "sha256": "82ba11a207c0a42434c4a63606219df983d0beb3b79868467b32fbe111b3b104",
+  "bytes": 26299,
+  "requestId": "enGyZuQE7iAtF0JC9jr1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a946d9a872da100e90a3c9f4a444521a3980fc13a3024986b596f177957813e4",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

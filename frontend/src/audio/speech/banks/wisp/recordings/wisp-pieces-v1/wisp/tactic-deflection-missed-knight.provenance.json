@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-knight",
+      "label": "Tactic deflection missed knight",
+      "text": "Another move could have drawn the knight away from its task. That deflection is not used."
+    },
+    "takeId": null
+  },
+  "requestHash": "90cb0c8afaaa89852b060898615fe4156da8808be6249c49ea236ca69c50f5e5",
+  "recordedAt": "2026-10-04T08:14:00.803Z",
+  "sha256": "7cb92b0bf63d7708e1ce2c750a582ab4556ed8b29426c7a4ac88f741e8aa3575",
+  "bytes": 18358,
+  "requestId": "nAgz3Z8UVkPHAOMk3ZQL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cacf1ed6f0c254f674f52e520311512548d6b8035e01e2fc94a37b5cb4ff86e6",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

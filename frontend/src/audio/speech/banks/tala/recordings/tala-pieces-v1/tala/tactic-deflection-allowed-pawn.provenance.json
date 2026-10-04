@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-pawn",
+      "label": "Tactic deflection allowed pawn",
+      "text": "Spot the busy pawn: it has an important job, and the other side can now drag it away from its post."
+    },
+    "takeId": null
+  },
+  "requestHash": "8caf11bb03f84ecbbf6b2c9632d490fab424e4bf24a9b152cce5964564c46ae8",
+  "recordedAt": "2026-10-04T08:09:10.806Z",
+  "sha256": "87da86d015eaf7f7195e56321c0866c75041550b6d9ce5de8b3f30d0b89e70cb",
+  "bytes": 22033,
+  "requestId": "UFNjlKnFTXgr7kXN2fIJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fa3b017a8e1466c135c46e9e9ea21cf3fa768ffd0161280b6d68c12981528f7c",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

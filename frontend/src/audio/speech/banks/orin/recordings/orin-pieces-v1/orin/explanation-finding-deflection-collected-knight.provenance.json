@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-knight",
+      "label": "Explanation finding deflection collected knight",
+      "text": "The defender is lured from its post, and the knight it was guarding falls in its absence."
+    },
+    "takeId": null
+  },
+  "requestHash": "528b45ecb7fab64ea85f28ad6c82fe1180bde555a99e32b94c446a5a5cfd797e",
+  "recordedAt": "2026-10-04T07:59:14.848Z",
+  "sha256": "9bc9162ba6eaad2c687ac3ad32f90babc6c8f35aa132c8781f37b62e27e9bc53",
+  "bytes": 19245,
+  "requestId": "czAUzWjReaoy29H2FTi0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "858f800de020deecdaa29007c4a49139d5c02108b950bd0b688b6da48967ea8b",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

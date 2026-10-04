@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "grade-brilliant-4-knight",
+      "label": "Grade brilliant 4 knight",
+      "text": "Here's a riddle: when is giving a knight away correct? When the capture can't crack the idea, like here."
+    },
+    "takeId": null
+  },
+  "requestHash": "1ba0e61d399fbdf01a5145ab22c969ded6d133f4ec6df555b8809f779470f387",
+  "recordedAt": "2026-10-04T08:09:51.985Z",
+  "sha256": "6919cc4df399f389f7ccff46da4f3921231818fc606eb178aad1aceef0a0a28f",
+  "bytes": 23195,
+  "requestId": "MbLFvvcge0TiuiN3CoKz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "17ea35c586a98846582bd91a0f26dac24ae2d5dc8afed9c78e3ae325bf0d8942",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

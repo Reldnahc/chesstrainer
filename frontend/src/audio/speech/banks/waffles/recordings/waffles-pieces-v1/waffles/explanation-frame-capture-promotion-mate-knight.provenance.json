@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-mate-knight",
+      "label": "Explanation frame capture promotion mate knight",
+      "text": "One pawn captures the knight, promotes and mates. Every square around the king is denied."
+    },
+    "takeId": null
+  },
+  "requestHash": "f6be3f695be32ddeeddcebad661a1e77c40830ed5380025366dbfae4379c0f41",
+  "recordedAt": "2026-10-04T08:13:18.273Z",
+  "sha256": "15aa6a6f79f6d4c8877aded161a671c4e0bf62785cfc23a5c71dcc2cc3d9840c",
+  "bytes": 21665,
+  "requestId": "t4oCYRWD4LYCTSV4JvMT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ec618e21af8d7ba915676267d00b2b84d7b45c89f3da0bff69f4a9cf4d97c9f8",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

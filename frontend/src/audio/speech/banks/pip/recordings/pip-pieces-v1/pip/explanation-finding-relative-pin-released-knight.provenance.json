@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-knight",
+      "label": "Explanation finding relative pin released knight",
+      "text": "A relative pin on the attacking knight came undone with the opponent's last move. The target stayed where it was, and in the line shown, it gets captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "bb100554889abf1f1cf06b6ca6432d818d07a2410b6f8d47d1c616678628890c",
+  "recordedAt": "2026-10-04T08:04:06.437Z",
+  "sha256": "54b002cde611ccdf9f5335097b774b4745de5fadff2ef7b1da7deaa424a9cb8d",
+  "bytes": 31860,
+  "requestId": "0lgPcF8KYqIN9uP1756R",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5be9907c0d081e62fd2f391beda16d67eee8773a09effa79c3ea8029e37ee580",
+    "bytes": 162212
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

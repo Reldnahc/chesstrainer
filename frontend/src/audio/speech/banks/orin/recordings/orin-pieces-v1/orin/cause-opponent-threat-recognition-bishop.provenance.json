@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "cause-opponent-threat-recognition-bishop",
+      "label": "Cause opponent threat recognition bishop",
+      "text": "Every move asks a question, and the opponent's last one created a threat. This move leaves it unanswered, so the bishop can now be captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "adff4374d243da05dda47894cd116f2d87141a416f3cb757b5743a243b540086",
+  "recordedAt": "2026-10-04T07:59:17.746Z",
+  "sha256": "66ebd1385c3b6b8015e07aea7b7b39234cfe5619af877e2c33d6e99bdcc4fefa",
+  "bytes": 30952,
+  "requestId": "zTYYEZ3HDlD6YKo9oZWy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4de0a4e1ea777d462a99e3a877de856b2b73ec218d650eb5e0904c58a019f243",
+    "bytes": 159704
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "tactic-skewer-played-knight",
+      "label": "Tactic skewer played knight",
+      "text": "Ah, grand. A skewer: the knight in front is attacked, and when it moves, the piece behind it is left open."
+    },
+    "takeId": null
+  },
+  "requestHash": "032368b571abfc265bb750fe41bfbf51bec63cbf90b3e728875dbcc808b6afa0",
+  "recordedAt": "2026-10-04T08:03:33.664Z",
+  "sha256": "1b9abebf076fab7ac441d7ffa6900a42feddbd25c9cd2412bc02203f6e6c7fdf",
+  "bytes": 26399,
+  "requestId": "gCeh435O4hWGSHVY4f4O",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9e058f7cbcaf4ed7f67c2387286488587c6618d9569ef3ab50b3aa063c0467b9",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

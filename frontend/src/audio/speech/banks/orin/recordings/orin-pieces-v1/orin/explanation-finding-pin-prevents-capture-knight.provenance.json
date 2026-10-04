@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-finding-pin-prevents-capture-knight",
+      "label": "Explanation finding pin prevents capture knight",
+      "text": "The pin to the king forbids this capture: the knight may not leave its line, because that would expose its own king."
+    },
+    "takeId": null
+  },
+  "requestHash": "6692ebd8eb79e59367678a899c57c5096f85864bccceb1f2fb09ffeb6a98ee31",
+  "recordedAt": "2026-10-04T07:59:19.335Z",
+  "sha256": "5c59e4d75f3157ba9234383d78edcb5686c86339a89cdbb2632dc2a3bf60872e",
+  "bytes": 25010,
+  "requestId": "6cT5fY6zhxgXoHSxtQkx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a9a5e4f0fad6d178264a212f63ba7789439cfaee28de68921786a0f725e531bf",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

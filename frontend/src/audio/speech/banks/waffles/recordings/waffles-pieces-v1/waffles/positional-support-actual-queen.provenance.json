@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "positional-support-actual-queen",
+      "label": "Positional support actual queen",
+      "text": "Reinforcements! A queen with no guard just got one."
+    },
+    "takeId": null
+  },
+  "requestHash": "0ac14860dd3cb18ddd93c755456161b19a1f5f6c77c077a883405e2e7bc83f16",
+  "recordedAt": "2026-10-04T08:12:55.292Z",
+  "sha256": "1240166cdfbbba1ff4815991756ba4777e5aae4d4cfddc164a83493648ab142f",
+  "bytes": 13450,
+  "requestId": "T77PhJUYtsggh5e2KSTB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f219bfa06eccae4159d303ac8e7a62a82ba4a535e60e905cdcef45178701aca6",
+    "bytes": 66499
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

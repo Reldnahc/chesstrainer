@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-queen",
+      "label": "Tactic removing defender allowed queen",
+      "text": "Here's the plain risk: a defending queen could be captured now, and the piece it protects would be left without that help."
+    },
+    "takeId": null
+  },
+  "requestHash": "00fb8ae3db4d7f90da334879c251d026337a7abd82cd0a662d936b88ce77b502",
+  "recordedAt": "2026-10-04T07:48:23.143Z",
+  "sha256": "cd4a81ec51ba79d261d486d4ebce1b6cc31407225890ce87a837e6a6b30cc372",
+  "bytes": 24571,
+  "requestId": "23WdzTqOMEQk3xYLxaSH",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "da6b88ceebfc9fab3668a5e9b8401ea77078b5ed038b02d9c7ed26f390f68964",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

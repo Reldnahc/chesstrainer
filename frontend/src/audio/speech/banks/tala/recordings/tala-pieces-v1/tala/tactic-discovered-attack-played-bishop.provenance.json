@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-bishop",
+      "label": "Tactic discovered attack played bishop",
+      "text": "Which piece was the real attacker? The hidden one! The bishop in front steps away, and the attack behind it switches on."
+    },
+    "takeId": null
+  },
+  "requestHash": "b20dba80ab1f54caebffe7c3a85367a48dce2b54a38b7b4922f91d5856b09902",
+  "recordedAt": "2026-10-04T08:08:39.953Z",
+  "sha256": "1e68684ba6e9fef598904f618acea076d2f2a78a4cc67ada3e79eb991c0b8cd3",
+  "bytes": 26116,
+  "requestId": "U9ctURMv6ic7P16PFiXS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "73313f056fe24122ff6208cad21dcddd56a2f52051f1edc64cfb652fc7d6efb5",
+    "bytes": 136716
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

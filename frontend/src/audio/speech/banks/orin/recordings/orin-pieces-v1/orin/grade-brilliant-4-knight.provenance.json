@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "grade-brilliant-4-knight",
+      "label": "Grade brilliant 4 knight",
+      "text": "Brilliant. Weighed as a lost knight, it costs; weighed in the searched line, the idea endures."
+    },
+    "takeId": null
+  },
+  "requestHash": "fe2a97ee21c06b73679b270f1fa764c2c3dcecb911dca09a807354cefc243ef6",
+  "recordedAt": "2026-10-04T07:59:34.032Z",
+  "sha256": "cc051094bbddf1f9b897530752bd4aeac7829d547273eb6d358c148020014b92",
+  "bytes": 24654,
+  "requestId": "9wBwiW8e0qrbDHAgQA6k",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0c271d3f88a561e2cfa24d3b568c6c996361454dacd9390f713b3444a9b7ef1b",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

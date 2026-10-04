@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-capture-rook",
+      "label": "Explanation finding discovered capture rook",
+      "text": "The blocker moves, a line opens, and the rook behind it captures along that line."
+    },
+    "takeId": null
+  },
+  "requestHash": "00a0cd73c61d707a3bb745353658c787c5aeb5798bd56bc085ae42b49d4c7b39",
+  "recordedAt": "2026-10-04T07:52:43.149Z",
+  "sha256": "57f7f086fcc40280c5589e786028a6867f8f4c799dc6205fd89b48af28f3fe95",
+  "bytes": 19322,
+  "requestId": "AKao4BYQ8n9KEAXgFUPe",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a2bebeaf7e7e4ac633a3b8ad8bc5d21caf1c5dff9664e9d32984915084aa2bb6",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

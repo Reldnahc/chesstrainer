@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed-pawn",
+      "label": "Tactic removing defender missed pawn",
+      "text": "The guard should have gone. Another move captured the defending pawn and left its duties uncovered. Strike the guard first, then what it guards."
+    },
+    "takeId": null
+  },
+  "requestHash": "fdd96c5001e06d088d06da92d9cc16bee7b692ad0940077a7cd46797aebce42b",
+  "recordedAt": "2026-10-04T08:10:31.759Z",
+  "sha256": "392e98a0b4e5babb3d6eb367bb829cade7eecbfaced8e0a5a1d8d3bd93ba81a1",
+  "bytes": 30265,
+  "requestId": "jtWBUCgRzZm7kAZRH8PX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c20f9cd2ad4ab652899ab45e0093ecca8c758c7330db63bfb72669ac3dc2e8b5",
+    "bytes": 154688
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

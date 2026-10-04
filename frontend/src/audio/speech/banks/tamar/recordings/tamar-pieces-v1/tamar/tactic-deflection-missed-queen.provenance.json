@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-queen",
+      "label": "Tactic deflection missed queen",
+      "text": "The deflection was on. A different move would have pulled a defending queen away from its post. When a defender has two duties, hit one of them."
+    },
+    "takeId": null
+  },
+  "requestHash": "f28da9afd75a3b41fba0cd231f6314dd4fe55d12f46a05c99d9ca346a3d10100",
+  "recordedAt": "2026-10-04T08:11:02.131Z",
+  "sha256": "197a919a06d23a77d8e2c12f6c1f2c09ce35cde0874eae0d0fc52a390e84dc40",
+  "bytes": 28077,
+  "requestId": "YcduN6BOJOFBOxGM39NH",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bee82db98c28fc8fe332ca443816ba4a29cf47272cdf5ad78c1d9a997c1110de",
+    "bytes": 145911
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

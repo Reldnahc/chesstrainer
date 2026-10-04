@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "explanation-finding-pin-prevents-capture-pawn",
+      "label": "Explanation finding pin prevents capture pawn",
+      "text": "This pawn is pinned to its king, so it can't make that capture. If it left the line, its king would be exposed."
+    },
+    "takeId": null
+  },
+  "requestHash": "8066fe1cdaaa050c7b85e63349612f118033fcc5047b977f93dd6934209d0055",
+  "recordedAt": "2026-10-04T08:04:22.325Z",
+  "sha256": "37995f8163cd771e0bf49447ad2869368aae86a48bc166b17ecb6ec830078391",
+  "bytes": 24768,
+  "requestId": "U7HvyD4hmZ4p3PbxbZ02",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "47dc057414ffc6b25221eb6e78e69d297a2dafd16f3c008c3c63ba8b297970cc",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

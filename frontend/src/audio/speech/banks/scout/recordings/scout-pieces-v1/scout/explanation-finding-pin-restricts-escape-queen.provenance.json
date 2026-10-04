@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape-queen",
+      "label": "Explanation finding pin restricts escape queen",
+      "text": "Pinned, can't run. The attacked queen is tied to its king, so it's limited to moves along the pin line."
+    },
+    "takeId": null
+  },
+  "requestHash": "11708e6ab01cc50a4fcca2da6f8ec8fa5cb124365fe03eb765ff8811381f64b6",
+  "recordedAt": "2026-10-04T08:07:25.457Z",
+  "sha256": "850929f9edf3cd32b61030fffcfca89780b0e814f46f09f64f25c4470afa0fe8",
+  "bytes": 21865,
+  "requestId": "3YwYiY0oEKDnFIT4pnbR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "37702e14be6b754dac304ac380e876c1df2d8729b58bf7a94859fbf92ef0c6bb",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

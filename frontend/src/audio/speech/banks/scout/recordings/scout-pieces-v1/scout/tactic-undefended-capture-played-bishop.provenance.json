@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-bishop",
+      "label": "Tactic undefended capture played bishop",
+      "text": "Loose bishop, collected. Nothing was guarding it, so it comes off for free. First scan, every move: loose pieces."
+    },
+    "takeId": null
+  },
+  "requestHash": "78f45e407b64ee45d3066ade47950cbf886bcb13b715bceff8acc4fb7e65e596",
+  "recordedAt": "2026-10-04T08:06:41.057Z",
+  "sha256": "16ba793c108feb762b736d8e024d72728ee1e4d06aa01744603c66c1232fb72a",
+  "bytes": 24822,
+  "requestId": "tpti8neOyLoCSmcK92Zb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5870803da483826f0450390bbd7675cbf319df8e79b00dbc4ff4583988e35e32",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

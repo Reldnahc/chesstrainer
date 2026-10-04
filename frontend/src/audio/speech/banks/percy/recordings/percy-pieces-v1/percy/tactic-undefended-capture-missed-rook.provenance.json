@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-missed-rook",
+      "label": "Tactic undefended capture missed rook",
+      "text": "A rook with no guard was there for the taking with another move, and this one walks past it. Always check for loose pieces first."
+    },
+    "takeId": null
+  },
+  "requestHash": "ae62b116f24b3cd38c05d7f4a5e746267448a758e341b45fbf5cc39c0db20e4d",
+  "recordedAt": "2026-10-04T08:00:13.551Z",
+  "sha256": "0ec5e5a20e5ca8f8bcef76c07dee0ea7c0789289b242a3307b69b6ba5b0597d6",
+  "bytes": 24864,
+  "requestId": "APfbLSHbvoVwj4sEOSQJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b99e02f2291ffd36eaa0afc2ab52e42326eaaf674413107c880720963b0bf26f",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

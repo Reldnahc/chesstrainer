@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "tactic-skewer-missed-bishop",
+      "label": "Tactic skewer missed bishop",
+      "text": "A stronger move had a skewer ready. Once the bishop in front stepped aside, the piece behind it would have been exposed. This move skips it."
+    },
+    "takeId": null
+  },
+  "requestHash": "07d9989dcbda582e41adb8202f854089936dc9e11472802c2ac149862468dbe0",
+  "recordedAt": "2026-10-04T08:03:16.200Z",
+  "sha256": "d6c629dc647469b2fcfec8e5b1581f17fbb22cb37c408231f77be15acb1b6f8c",
+  "bytes": 29420,
+  "requestId": "a0Nh9nh7tditBRBIGxEi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c0c8a1130cce698ce8872317d72722d2c5744ad54ec1d7b0112af23a6edffe23",
+    "bytes": 150927
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

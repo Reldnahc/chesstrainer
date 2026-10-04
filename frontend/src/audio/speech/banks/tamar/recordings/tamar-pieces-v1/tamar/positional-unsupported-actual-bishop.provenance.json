@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-bishop",
+      "label": "Positional unsupported actual bishop",
+      "text": "A bishop stands alone. No defender covers it. That is a weakness to watch, not a lost piece."
+    },
+    "takeId": null
+  },
+  "requestHash": "4b3a0fbcef2b978e051dc467a3385c6ae45c62d5011ee1c6ae59135c551bad1c",
+  "recordedAt": "2026-10-04T08:11:30.121Z",
+  "sha256": "9e4ee07cd545c8d2721e9780b2bebb81b504f4549d595c60cb9b55cd49058bab",
+  "bytes": 23361,
+  "requestId": "ZBND7dc01GwaFhk0Z9FC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9a8aa375d6e1b9c50093c64c675ffc8caff788e46ac2e411c2dea4a04a361c14",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

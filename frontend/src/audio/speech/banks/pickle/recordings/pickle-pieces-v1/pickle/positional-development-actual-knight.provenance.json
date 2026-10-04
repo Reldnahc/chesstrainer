@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "positional-development-actual-knight",
+      "label": "Positional development actual knight",
+      "text": "Hop! The knight leaves its starting spot. Out of bed and into the game!"
+    },
+    "takeId": null
+  },
+  "requestHash": "3e00004faf870dc64d8026d46137990f409f156550bcecb032926eb5b9e7399f",
+  "recordedAt": "2026-10-04T08:02:18.371Z",
+  "sha256": "e7da4052f8e2abbc24a707802e918467c1d6ce0e628b2cc570e689979736f601",
+  "bytes": 16702,
+  "requestId": "kV6STgbxLKbIGjoczfYW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5ec8704f05c392b9a47bcbbff405bd1372389788334116a40265b9139adc6e89",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

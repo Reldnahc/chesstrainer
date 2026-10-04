@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-ordinary-rook",
+      "label": "Explanation frame capture promotion ordinary rook",
+      "text": "Capturing the rook on the last rank, the pawn turns into a new piece."
+    },
+    "takeId": null
+  },
+  "requestHash": "b446ccbb605f1cdf8187b39b9966493bbc60ceef2f7caddbf4515ee8e378b7ab",
+  "recordedAt": "2026-10-04T08:11:49.569Z",
+  "sha256": "0588d400ffe1342f41698df51bc58bfd45ae07767ff76b27b5d658b72b5266fb",
+  "bytes": 14959,
+  "requestId": "ZuOjA8O8OZIGykMPeSJy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f5f45d8d002d642eca832a11ab1e14d16b806e443d358120d12a362006eb78b8",
+    "bytes": 74022
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

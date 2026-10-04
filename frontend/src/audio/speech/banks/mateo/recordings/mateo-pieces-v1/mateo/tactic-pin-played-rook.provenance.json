@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "tactic-pin-played-rook",
+      "label": "Tactic pin played rook",
+      "text": "A pin! The rook in front can't step off the line, because its own king is standing behind it on that line."
+    },
+    "takeId": null
+  },
+  "requestHash": "47cde5df6d9fa7b72fa40377a54eeae1f0c2340694e30688ec57130f074a70f2",
+  "recordedAt": "2026-10-04T07:55:03.232Z",
+  "sha256": "12fdf95845be73089f1cb9c4c0e21132567b83e95c8ef62dbb2f27f3c28a99cb",
+  "bytes": 22498,
+  "requestId": "DIVMdiKepnVXVP2Dj5YW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a258bf5b0bed14a1188aea2ef9a903e3eee5289ba1e19ea48684eef72ecbef00",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

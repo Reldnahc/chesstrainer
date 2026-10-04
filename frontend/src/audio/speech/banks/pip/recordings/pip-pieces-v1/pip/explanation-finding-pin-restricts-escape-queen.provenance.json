@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape-queen",
+      "label": "Explanation finding pin restricts escape queen",
+      "text": "The attacked queen is pinned to its king, so it can't simply run off. It can only move in ways that keep its king covered."
+    },
+    "takeId": null
+  },
+  "requestHash": "c7b584525187c1d20024dd713d1a0d0dc8887c87b5b761b276150f685237f508",
+  "recordedAt": "2026-10-04T08:04:03.570Z",
+  "sha256": "823ed46c7b6663ad2372e88e018684386e2d71e2f3d0d6a1f1364115d125f434",
+  "bytes": 26003,
+  "requestId": "vQouMLNnBvr2fET6JbXc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6562300832ad56dfb60c91a93c911336beda161be836dc4e3a31d1f65bb5e207",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

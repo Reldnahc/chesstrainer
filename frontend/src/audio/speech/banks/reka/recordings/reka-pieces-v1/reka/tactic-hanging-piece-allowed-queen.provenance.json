@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "tactic-hanging-piece-allowed-queen",
+      "label": "Tactic hanging piece allowed queen",
+      "text": "Little detail: a queen has zero lookouts, and the other side can simply gobble it."
+    },
+    "takeId": null
+  },
+  "requestHash": "9236183b4e5ff05075b3175097729a404a45bd35013af726140d14251a07d31a",
+  "recordedAt": "2026-10-04T08:05:24.294Z",
+  "sha256": "505bed2579c851057ef22bea6cea098007d083e8ce04f930e9cd565e6153c76c",
+  "bytes": 18577,
+  "requestId": "Gmh4XbL8JjaZ1njJqu5A",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1883501350d93e73e293aad070f7854b24591727e9cf9eab7467c1543edb055c",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

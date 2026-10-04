@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-finding-king-skewer-collected-knight",
+      "label": "Explanation finding king skewer collected knight",
+      "text": "The check compels the king to leave the line. The same attacker then collects the knight that stood behind the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "5b2e79698e55dee6b1e0ca3d0ee4a046ab9504bb51d3d0b66ccb9e8f5a27cc23",
+  "recordedAt": "2026-10-04T07:59:19.560Z",
+  "sha256": "d8bfd2b9fb95c5a72e0f904558cb34bb933b400f19be722209ca70c5b6f5509a",
+  "bytes": 23974,
+  "requestId": "CLhZ4vtGGZCLCIPQSeRy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4463b26fca8ea33177c39a3bc634a908259706e3f61771813da7a989a87cf1e8",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

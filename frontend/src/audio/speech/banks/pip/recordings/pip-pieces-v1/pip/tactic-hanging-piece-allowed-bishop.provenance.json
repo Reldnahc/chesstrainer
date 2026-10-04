@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "tactic-hanging-piece-allowed-bishop",
+      "label": "Tactic hanging piece allowed bishop",
+      "text": "Ah, a loose bishop. This leaves it with no defender at all, and the other side can take it."
+    },
+    "takeId": null
+  },
+  "requestHash": "4ce828719b18ccb04e024479253087450ba36586d63509e5b25582efe78718c3",
+  "recordedAt": "2026-10-04T08:03:39.016Z",
+  "sha256": "bd034e6b414f06c0714ade3f778ab9d05e6a3cc2b88fc870e4684f0d2891849c",
+  "bytes": 20671,
+  "requestId": "R4kWv02Y5CHrjb3IVI33",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f8f12552494f5042728e8268ad67231e9f91349ef7c61c3521f6fe98a55f6092",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

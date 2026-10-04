@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-pin-played-bishop",
+      "label": "Tactic pin played bishop",
+      "text": "Absolute pin. The pinned bishop has no legal exit from the line while its king stands behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "3e41548027d2b20a1517ceb6f2d463670dc37cb63978be2c47babb04d19e4ed9",
+  "recordedAt": "2026-10-04T07:50:02.741Z",
+  "sha256": "3e057660260a8be73fcee297b512ea53a1ad930c777ee86ab9eb2e43849934ae",
+  "bytes": 22552,
+  "requestId": "AwINhRNzC5KJn4825AfX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f109daca50246a8e9ab7fb9da7645e8caa9ae4c3bd69ba6cc0b8dd83147c609c",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

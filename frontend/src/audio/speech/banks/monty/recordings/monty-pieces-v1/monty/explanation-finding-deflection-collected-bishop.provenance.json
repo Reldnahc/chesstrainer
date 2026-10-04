@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-bishop",
+      "label": "Explanation finding deflection collected bishop",
+      "text": "First the defender gets dragged away, then the bishop it was protecting gets taken."
+    },
+    "takeId": null
+  },
+  "requestHash": "a29162cf1306c548f29fbbed4814a5a9b200468879ed959e2d7caafd475571ed",
+  "recordedAt": "2026-10-04T07:57:32.149Z",
+  "sha256": "901d10eb644ce96cea04dcda2bfb6d3175d2207e858247d94a678fc7eec1a5f1",
+  "bytes": 17171,
+  "requestId": "y6DPn5bs8f20DSbqpXSz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fb7f9d97078e3479c51649acb30f6c31222e93a72d05311ee3960765f0ba7b55",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

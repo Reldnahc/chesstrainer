@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed-bishop",
+      "label": "Tactic discovered attack allowed bishop",
+      "text": "Hang on. The other side can now move their bishop aside and uncover an attack from the piece behind it, a discovered attack."
+    },
+    "takeId": null
+  },
+  "requestHash": "953556bbe67891b4134544c844c4068d1a2cf97aa2e2308acdbe85346ce1baa2",
+  "recordedAt": "2026-10-04T08:03:41.073Z",
+  "sha256": "36d771e8aa64f32a91e335ce1dbe29909f8731d3d2bfded5b322e3d6894b8d29",
+  "bytes": 26789,
+  "requestId": "L8qhVz2Eojx9Mwm1gWgm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ecfbcea3cbff4995abbbcabc2865ad7fe99b7b49253f4353741cc94a792507b5",
+    "bytes": 136716
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "tactic-fork-missed-knight",
+      "label": "Tactic fork missed knight",
+      "text": "The stronger move had a fork tucked inside it, the knight reaching for several targets together. Worth setting it up afterward and playing it through calmly."
+    },
+    "takeId": null
+  },
+  "requestHash": "039d06ba9ccb52862ab2c9e6891ee9a78559f7983f871b8b91985d2109017b74",
+  "recordedAt": "2026-10-04T07:48:24.722Z",
+  "sha256": "62617d396ab4f7ee3631bd237b5d0eea4972ffdbecc1aaa4e914f12eebf107ad",
+  "bytes": 30000,
+  "requestId": "NhRVA1bwSS2beakni1Mu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8feb6702c184336ecb2e8127ebc48559871adb29e202f9f7c7d4ba47adf0ccf5",
+    "bytes": 153435
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

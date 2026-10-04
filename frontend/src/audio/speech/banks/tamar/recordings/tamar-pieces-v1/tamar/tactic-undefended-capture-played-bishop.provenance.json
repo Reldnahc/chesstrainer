@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-bishop",
+      "label": "Tactic undefended capture played bishop",
+      "text": "Free material, collected. Nothing protected that bishop, so no recapture follows. Take what is free, then look further."
+    },
+    "takeId": null
+  },
+  "requestHash": "6cdecaa7225c250d12322b1056f03d46dae4747d74bd9dd322ad4a973a800514",
+  "recordedAt": "2026-10-04T08:10:24.042Z",
+  "sha256": "6e6977c8e79de07c440974177a9b204874f6297ffab052eb5a2c6b3ac8b6061e",
+  "bytes": 27030,
+  "requestId": "76mZuu4UZItW3g9fmyzT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "604f11499ddfa5d2463560ecdcbcbe756d2f9651a970b87d20762f1aa7f72bc3",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

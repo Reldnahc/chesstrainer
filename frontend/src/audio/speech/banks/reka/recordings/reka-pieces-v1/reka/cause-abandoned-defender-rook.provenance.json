@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "cause-abandoned-defender-rook",
+      "label": "Cause abandoned defender rook",
+      "text": "Here's the leak. This move walks the only real bodyguard away from a rook, and the other side can collect the rook."
+    },
+    "takeId": null
+  },
+  "requestHash": "c5ce486b99f8a6d357afcd667abd171911a77d99b87bf9cbe1181f93e155893d",
+  "recordedAt": "2026-10-04T08:05:52.465Z",
+  "sha256": "2885a8d92c2a2c26d467af7fdac30d96464d889a7b708e364924cee1fe2312e3",
+  "bytes": 22533,
+  "requestId": "7Ub463veErDqAm6mzwRV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "28619ac277b6d2ab7ab7a9e6269693b065d6979a5d1a8b4c04ab975393050d29",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

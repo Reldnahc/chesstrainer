@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-check-bishop",
+      "label": "Explanation frame capture promotion check bishop",
+      "text": "Capture, promotion, check. The pawn takes a bishop on the last rank, promotes, and the new piece attacks the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "0c2f5958e6882f7aeec92d81cfe1f4dc73be56121ba35b1e27b5c866716aa4b7",
+  "recordedAt": "2026-10-04T08:07:59.688Z",
+  "sha256": "e7d992be304c41b2b5823ef87d9dc0a2fa6d40fce95df98084476ea5e016bbe0",
+  "bytes": 23661,
+  "requestId": "awAeWIXubKpDPubQWPty",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3a976e40eade0ab7ad9f2e2811186c79ae437d99619d89e6bca722a971f2f5f0",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

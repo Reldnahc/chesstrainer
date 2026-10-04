@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-queen",
+      "label": "Explanation finding relative pin released queen",
+      "text": "The opponent's previous move freed the attacking queen from a relative pin, the target never moved, and the line shown captures it."
+    },
+    "takeId": null
+  },
+  "requestHash": "ac61f376c49f9342062b50f70a933903689578399f5bc574d675d3f704dd01f5",
+  "recordedAt": "2026-10-04T08:11:13.516Z",
+  "sha256": "8ef7465cfc5bb33501d9aa6dadb9aecde33a13b0d3ee8ff170b5c4f231437d89",
+  "bytes": 25735,
+  "requestId": "gdjZUfpKBMZP9myFa4ql",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f6efea7100f2d188365416e4497d30c3aef8ba1b60db8e8cc92cce678c994fdd",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

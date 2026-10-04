@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed-bishop",
+      "label": "Tactic skewer allowed bishop",
+      "text": "After this move, a bishop and the piece behind it are lined up so the other side can skewer them. The bishop would have to step away, leaving the rear piece exposed."
+    },
+    "takeId": null
+  },
+  "requestHash": "07c35445ff36f8708c37be31c0074f5baa4d69ee2480e025d66a076c1e96ab79",
+  "recordedAt": "2026-10-04T07:53:26.804Z",
+  "sha256": "629ae70ff7a8f7ae8acc25329d79de162f9db90d6b7d393481349a608ec291e0",
+  "bytes": 32673,
+  "requestId": "Ilj1hI7OyqANNv1CmRum",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bef255156db1d5f5fb473977f5ca3a53337fff6df8c82208ce0456605c40b0d2",
+    "bytes": 170153
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

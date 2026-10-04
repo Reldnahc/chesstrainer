@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "tactic-back-rank-allowed-rook",
+      "label": "Tactic back rank allowed rook",
+      "text": "Back-rank pattern. The king is boxed in by its own pieces, and this move opens a route to a back-rank mate for the other side's rook. Make an escape square before it's needed."
+    },
+    "takeId": null
+  },
+  "requestHash": "a7c72d393021c37123a4030cf9c69a9ef6694783c49c62ce3dedbb89a1ebc117",
+  "recordedAt": "2026-10-04T08:07:28.918Z",
+  "sha256": "6a899639f711cd200001342da12f056c34e11d2fe01f57a0581d1dbe2e5d5a50",
+  "bytes": 33853,
+  "requestId": "GawccuY4X1j7mDsI9WWn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "74cf02e348c3161a4088727833080c07e62a2238746e7f1f06da85eccd75f9a3",
+    "bytes": 173915
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

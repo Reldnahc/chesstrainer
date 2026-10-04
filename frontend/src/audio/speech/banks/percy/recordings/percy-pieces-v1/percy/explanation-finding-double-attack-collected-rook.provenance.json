@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-finding-double-attack-collected-rook",
+      "label": "Explanation finding double attack collected rook",
+      "text": "The moving piece makes one attack and opens a line for a rook. That rook is the one that captures here."
+    },
+    "takeId": null
+  },
+  "requestHash": "1cdd57e1182e4a42aeb9037940a6c60b51444b43dde9d75d5be245fc0bd8068f",
+  "recordedAt": "2026-10-04T08:01:10.404Z",
+  "sha256": "94e6b71f50fe25778fc6572d0d7bf353feff0811defdd329bc7794e3f3e4cfef",
+  "bytes": 20581,
+  "requestId": "jpx3KT0slmnzQ7zlZN3g",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4cfd9ce9a739407a3d921c376f592a260dbc4dc8c76c0dfbf21b177b1511ef1f",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

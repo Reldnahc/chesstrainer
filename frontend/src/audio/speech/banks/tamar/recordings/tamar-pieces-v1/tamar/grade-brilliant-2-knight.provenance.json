@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "grade-brilliant-2-knight",
+      "label": "Grade brilliant 2 knight",
+      "text": "Brilliant. A knight given, the position still holding: that is a sacrifice done properly."
+    },
+    "takeId": null
+  },
+  "requestHash": "cd94ca5d1d612ce0367591ee2694fe08ace901cfc38edfb1ef85004c351fce26",
+  "recordedAt": "2026-10-04T08:11:58.201Z",
+  "sha256": "847df70417d12e79385f7e6be7e03d44830575788b8243271a35e665641c811d",
+  "bytes": 21320,
+  "requestId": "UX5Z4dPRXXG76GSBwVZC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7dbd65e3785482ba8eb4cc37a7597147c54f3ad428883ab6a587bf5d81fee94c",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

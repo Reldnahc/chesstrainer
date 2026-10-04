@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-rook",
+      "label": "Tactic removing defender allowed rook",
+      "text": "Freeze frame: the other side can capture a rook playing bodyguard now, and whatever it shields could tumble right after."
+    },
+    "takeId": null
+  },
+  "requestHash": "29a1f55bd01b86ee71c80853ebccb1ad1af6a1f18321ed6f9f590a8fe0bb1b93",
+  "recordedAt": "2026-10-04T08:05:11.925Z",
+  "sha256": "03aab8cfd43f861ed5b8e4d82ab148571655d8b953218f9bdb069e9cd9928a7d",
+  "bytes": 23444,
+  "requestId": "jLSTJwn1PPeBF4Whi8lS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "39274c099562ca517fefbcc9cc72a5d109a3efed94e823f8bc13838f1fed6fe4",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

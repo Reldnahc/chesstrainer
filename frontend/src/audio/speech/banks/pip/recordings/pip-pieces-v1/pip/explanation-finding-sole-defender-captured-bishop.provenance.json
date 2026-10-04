@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-bishop",
+      "label": "Explanation finding sole defender captured bishop",
+      "text": "First the only defender, a bishop, goes. Then the piece it was guarding is taken too. The first capture is what makes the second one work."
+    },
+    "takeId": null
+  },
+  "requestHash": "212608178ecb7e2c7306c1a468a6d0ed00602f5b7de46075986e26ba8a470736",
+  "recordedAt": "2026-10-04T08:04:21.134Z",
+  "sha256": "16fd58d083da85bc520e8686dd11f5f652feb47cc00f3b8b1c40b46a0a91992a",
+  "bytes": 31574,
+  "requestId": "dnXUvxMyCuiTF8qxgLOk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4cda88ae64fb6d262ab3aef13363ff470be077c405c317763f77a0602880bffb",
+    "bytes": 162212
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

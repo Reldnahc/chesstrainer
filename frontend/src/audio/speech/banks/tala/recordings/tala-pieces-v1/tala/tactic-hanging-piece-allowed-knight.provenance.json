@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "tactic-hanging-piece-allowed-knight",
+      "label": "Tactic hanging piece allowed knight",
+      "text": "Count the defenders on that knight: zero. It's simply there for the other side to take."
+    },
+    "takeId": null
+  },
+  "requestHash": "9d55f1dacb0f3707d378f18c8dbfa0ad2d7f448e598e8df959413d4342ee9c6a",
+  "recordedAt": "2026-10-04T08:08:51.103Z",
+  "sha256": "47d3f9f9910e7e53b183cfc2e119912f0c109a336b80b7de54d4e86033e84b67",
+  "bytes": 18674,
+  "requestId": "gofnSCKdtnPJxaR06Jl0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ee9faeb8bd6b1495b6f2e484582bbaf16e1207a882613e14cd8f1597ac4220e1",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

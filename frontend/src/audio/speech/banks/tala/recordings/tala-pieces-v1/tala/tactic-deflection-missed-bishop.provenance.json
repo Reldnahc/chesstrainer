@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-bishop",
+      "label": "Tactic deflection missed bishop",
+      "text": "Which move pulled the bishop off its job? Another one, not this. Here, the bishop keeps guarding."
+    },
+    "takeId": null
+  },
+  "requestHash": "6b2da11305f48b784092a6ef49546eec52de2f6cc86a49803a994429c00a8993",
+  "recordedAt": "2026-10-04T08:09:05.065Z",
+  "sha256": "0aca8b0cb4322ff8335757a90e539bd9021fd825eba9803d1630bd701a5abc67",
+  "bytes": 22815,
+  "requestId": "T8WZIt7jTuBlIzdMvzZu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ee2c7737685b4b838815be197fbc2c8195678fecb91e90b1599f86e54db2faa4",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

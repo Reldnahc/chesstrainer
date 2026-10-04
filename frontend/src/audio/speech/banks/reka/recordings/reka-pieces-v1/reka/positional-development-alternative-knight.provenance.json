@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "positional-development-alternative-knight",
+      "label": "Positional development alternative knight",
+      "text": "Another move gets a knight out to play; this one keeps it home."
+    },
+    "takeId": null
+  },
+  "requestHash": "772d74b58612e78363e076934c58736735764047daec8ad07fc11143b47dfb04",
+  "recordedAt": "2026-10-04T08:05:43.330Z",
+  "sha256": "03a883cd250dd67c3b80c850e720030587de3b0b61f06567214e48b859f7d27b",
+  "bytes": 13586,
+  "requestId": "L9FdF1Ol2wuv35wCQcO7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "28993774714a23bb4538398aff63154af5dafe71714b358e5ece54cb39dcf6ba",
+    "bytes": 67753
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

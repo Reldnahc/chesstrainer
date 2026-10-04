@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-knight",
+      "label": "Explanation finding deflection collected knight",
+      "text": "The defender is drawn away from where it stood, and the knight it was covering is captured next."
+    },
+    "takeId": null
+  },
+  "requestHash": "1d46656a9828b86519cba1016f12b958a170a32b03883066366497217a3cb0a9",
+  "recordedAt": "2026-10-04T07:54:06.747Z",
+  "sha256": "f09cbe31925b4655c872796029b55aebb8ebabd307488f5fcd574410570215ad",
+  "bytes": 18096,
+  "requestId": "DLs9AXvJBWzthbOfsue8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5a6f6cf89da448a68cbbc6083b51dc4b8c42a72723583816614a842a726f07a9",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

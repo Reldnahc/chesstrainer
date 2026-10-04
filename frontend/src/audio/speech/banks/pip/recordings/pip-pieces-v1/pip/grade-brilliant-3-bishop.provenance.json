@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "grade-brilliant-3-bishop",
+      "label": "Grade brilliant 3 bishop",
+      "text": "I love this one! Most of the time, a bishop given away is just lost. Not here."
+    },
+    "takeId": null
+  },
+  "requestHash": "ff7527db9dd67c7967e799093d117b0217a664d9699fed2d2877fceb4ce90f17",
+  "recordedAt": "2026-10-04T08:04:37.608Z",
+  "sha256": "d7d861f64b03a394a0c8f41b63aea307ea09c006b6d05773184c7b4b6a4c9966",
+  "bytes": 20609,
+  "requestId": "eWqsZIr5fSRTdJSfh355",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f90ba84738aefba61f65b9d8824a1e2ebc208198f07cc8baab2fe249f884debc",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

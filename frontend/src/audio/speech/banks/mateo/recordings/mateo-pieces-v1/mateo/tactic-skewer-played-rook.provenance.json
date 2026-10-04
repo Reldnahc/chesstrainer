@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "tactic-skewer-played-rook",
+      "label": "Tactic skewer played rook",
+      "text": "Skewer! The rook in front has to get out of the way, and then the piece behind it is up for grabs."
+    },
+    "takeId": null
+  },
+  "requestHash": "84518509d66a990d895c426baba42ce40d47b7f13829a45c1c90e43d755559e0",
+  "recordedAt": "2026-10-04T07:54:53.274Z",
+  "sha256": "eb7073fe3dced9ddf0ac38185fbea9e7f311b24b27428ef126afe179b0760fe2",
+  "bytes": 21349,
+  "requestId": "8NLPKNvooKcNWUhrUabT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b7bb3508d75c9732be1cf40e7ebb71c13b71f3d33d1ab21a8ee199ed4a8d8639",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

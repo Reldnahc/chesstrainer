@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "tactic-back-rank-allowed-rook",
+      "label": "Tactic back rank allowed rook",
+      "text": "The back rank needs a look. After this move, the other side has a back-rank mate idea with a rook, the king fenced in by its own pieces."
+    },
+    "takeId": null
+  },
+  "requestHash": "1f8c08bfa90696cbe0aaf46c73ecb654b068bbdad068d65ba7d93d3d0dbad6c8",
+  "recordedAt": "2026-10-04T07:52:15.343Z",
+  "sha256": "663ab6b1381471eeda9952df277fd30a7480dc75adb07cc19fba6a1da5d87364",
+  "bytes": 31488,
+  "requestId": "QwtV1v3ZMm2CdceHyzgb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f90dca1d8a1035cf86c2ab83ac0d9730f64c60b057498329fdeaf7ea0060cebc",
+    "bytes": 160958
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

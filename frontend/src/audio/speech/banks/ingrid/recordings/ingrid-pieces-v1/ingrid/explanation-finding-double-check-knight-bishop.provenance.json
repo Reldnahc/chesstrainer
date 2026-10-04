@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-knight-bishop",
+      "label": "Explanation finding double check knight bishop",
+      "text": "Double check: the knight and the bishop check together, and only moving the king can deal with it."
+    },
+    "takeId": null
+  },
+  "requestHash": "be9f739699a9ddcf377d94174f04fc9f68a11dd693e1c9ca1c8193807848de33",
+  "recordedAt": "2026-10-04T07:49:37.275Z",
+  "sha256": "d21245e50e110e11e698fdddbc2c1ab45eed69d5e3193fd0224962daa4f31b64",
+  "bytes": 21068,
+  "requestId": "Jl8zmw815uXTZ1zg5RYt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a8c96cc491a45d4ff31198e0bf301a7d1260246fcb5995765298458f3385c299",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

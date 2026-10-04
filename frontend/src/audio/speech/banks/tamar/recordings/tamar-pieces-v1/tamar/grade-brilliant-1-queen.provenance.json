@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "grade-brilliant-1-queen",
+      "label": "Grade brilliant 1 queen",
+      "text": "A queen sacrifice that stands up to the capture. Work out exactly why accepting it refutes nothing."
+    },
+    "takeId": null
+  },
+  "requestHash": "e76e56fbb7c0378e6a871ee8989a206cc60ae5a7b442444ae79ab713ebd7863b",
+  "recordedAt": "2026-10-04T08:11:56.731Z",
+  "sha256": "8978aedbf730759a98b91bdd27fcfe7cf521c8c5ea0f0667cc50118d8f90006e",
+  "bytes": 23162,
+  "requestId": "13d5wEtGsf7QzYxWZJsD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8d552c8ab8172e79b3a16480d64b894a45dab771a4d393fe1fc154ed79d97f6e",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-rook",
+      "label": "Positional unsupported actual rook",
+      "text": "Plain fact: this rook has lost its guard. Weak spot, yes; lost rook, no."
+    },
+    "takeId": null
+  },
+  "requestHash": "fbc08c546339fefc471f9649052211732d91eb26d5a5f5f50f881a97770cd404",
+  "recordedAt": "2026-10-04T07:56:53.329Z",
+  "sha256": "fe639555d75241ca00f3b17dbbcd83d48a493245a38ddc7b3dba79d6f14c5052",
+  "bytes": 20490,
+  "requestId": "kdrGX1p6ZL0Y2oKDbsrO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "839238482bf52f4ca9637732c6de59c3defb1b77a6bd629ea002f09be1fb9fbb",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "positional-support-actual-rook",
+      "label": "Positional support actual rook",
+      "text": "A rook that was flapping in the wind gets a bodyguard. One loose end fewer."
+    },
+    "takeId": null
+  },
+  "requestHash": "9964ba940f672930bc7a42c1903fa329e8d52e9026dce89dd5cb217bdf3264e3",
+  "recordedAt": "2026-10-04T08:05:49.452Z",
+  "sha256": "8921f0850fbb0fd92d0be7d3b3c8610647dd7b754ecf6c88724498212b9c2d29",
+  "bytes": 15777,
+  "requestId": "AjyVXQtpmOnNV3IKZcYw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a2bfba0c7fe050aeb1fc173c78a7dc7a706eba942a99f5e3214d2e02c8cfa80e",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

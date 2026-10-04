@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-queen",
+      "label": "Tactic deflection missed queen",
+      "text": "The stronger move tempted a defending queen off its spot. Set it up and watch everything it was holding fall apart once it leaves."
+    },
+    "takeId": null
+  },
+  "requestHash": "d20ffcb8c59d6ab885f61091b8c916ab617a890116a9bd4acc4aff0b5f5335cc",
+  "recordedAt": "2026-10-04T07:55:19.340Z",
+  "sha256": "6c3ebe0153b1c6d966d68df8040617d2e7651ce8db915041c9aa788c984b94d2",
+  "bytes": 26814,
+  "requestId": "LcBpvEjeZwUmKFY2uMcg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "48cc7e38ad11a06bc24e1d16815f8724f1079c08724032268a89ea6acae171d7",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

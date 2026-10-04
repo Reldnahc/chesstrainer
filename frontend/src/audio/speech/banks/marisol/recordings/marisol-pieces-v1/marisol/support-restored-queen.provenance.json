@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "support-restored-queen",
+      "label": "Support restored queen",
+      "text": "A queen lost its protection earlier on. That protection has returned."
+    },
+    "takeId": null
+  },
+  "requestHash": "f88cadd3dec5206ba2a9133bf21ee133f3ae046ee32c489492047410a57c018a",
+  "recordedAt": "2026-10-04T07:53:52.515Z",
+  "sha256": "5b6932d77154d3142aa4d48f4029f96877816d65f8001af3d4a4efb14324d0d7",
+  "bytes": 15871,
+  "requestId": "fBBG14C9dOOLxQza4nnv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2085c7eec39bb6b11f702045e4f5fdca1bbff768c9be8068b6dda494c627a115",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

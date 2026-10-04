@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "cause-abandoned-defender-queen",
+      "label": "Cause abandoned defender queen",
+      "text": "Hold the post! This move pulls the only effective defender off duty, and the other side can take the queen it was guarding."
+    },
+    "takeId": null
+  },
+  "requestHash": "e79a51f153ea9aaa5f7908dd82e483f9e4829222598acc5900888c6d0b192e76",
+  "recordedAt": "2026-10-04T08:12:48.601Z",
+  "sha256": "0768328fd296be3bf3e45a27b8c1d209284d3bacc5a7931dad1e62d14390f71d",
+  "bytes": 25281,
+  "requestId": "rsbdeU5J3Kfzb9Ql0DzN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "eac8d0388039113a947a4f516c69d5fd1e2d3e66e5a3327fecf70f33640c63e9",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

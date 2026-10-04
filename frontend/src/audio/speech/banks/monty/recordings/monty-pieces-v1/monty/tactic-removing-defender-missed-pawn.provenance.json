@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed-pawn",
+      "label": "Tactic removing defender missed pawn",
+      "text": "The better move went after the defending pawn. Without it, the piece it guarded would have stood with no help. As played, that pawn is still standing guard."
+    },
+    "takeId": null
+  },
+  "requestHash": "7d7ca48e05a7023b05a0ba1ee2b9e26ed0a90366a7b162645c37cdf9bd8a7521",
+  "recordedAt": "2026-10-04T07:56:30.624Z",
+  "sha256": "8662feb6364cad0d392cd0e3926753ebbd2e5dd930b17011d8f7d2c25565df36",
+  "bytes": 31018,
+  "requestId": "Rocw1mIZRlCtGAqWJq1o",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fc9b939b07584e1df381223e1cec77cc09d16595b580cc13a380080cf5e28a4a",
+    "bytes": 160958
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

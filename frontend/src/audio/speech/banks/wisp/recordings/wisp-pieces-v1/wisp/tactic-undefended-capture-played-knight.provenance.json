@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-knight",
+      "label": "Tactic undefended capture played knight",
+      "text": "A knight stood with no guard. The idea is simply to take it."
+    },
+    "takeId": null
+  },
+  "requestHash": "dc660a759f267acb0f464eb195c1cb2199ebe8234201f90ec8ce9975604575c7",
+  "recordedAt": "2026-10-04T08:13:37.687Z",
+  "sha256": "053c9bb690b97a20b28f90e56ba15e55110b034258d9d8d138a41f1a817d99a6",
+  "bytes": 14614,
+  "requestId": "ci4QFvSa9ipsIRovj4NK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ce68c298aedaa795077dc5a782d129d6527d4a98fd585cb080aff2091ddcb66f",
+    "bytes": 74022
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

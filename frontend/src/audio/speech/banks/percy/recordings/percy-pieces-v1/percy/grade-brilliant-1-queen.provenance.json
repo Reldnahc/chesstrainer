@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "grade-brilliant-1-queen",
+      "label": "Grade brilliant 1 queen",
+      "text": "Oh my! A queen ends up in harm's way at a real cost, and the checked line holds once it's taken. Brilliant!"
+    },
+    "takeId": null
+  },
+  "requestHash": "5a6061f5711c19cd841a9f498860238e934d23bc088d9e77322f0f91f66416ae",
+  "recordedAt": "2026-10-04T08:01:35.147Z",
+  "sha256": "af3f5ad404c6554f1fbf5df90b11580ef8971ffcdb4606bfe881245a5bda01d7",
+  "bytes": 25252,
+  "requestId": "4FSoOiIVaRIaErVdWOXP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b33438726264acd3ccfce002c66bee486d3b2411a8a2091d7da4d658c82c4bca",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

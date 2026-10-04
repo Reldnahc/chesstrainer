@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-fork-played-queen",
+      "label": "Tactic fork played queen",
+      "text": "What changed: the queen now sits where it touches several targets at once. It follows that one reply is unlikely to cover all of them."
+    },
+    "takeId": null
+  },
+  "requestHash": "dcebe0aa2ad1dd4e1090acf9b542bcb169c1b7cb752eb12e52d559c95daf6010",
+  "recordedAt": "2026-10-04T07:52:54.607Z",
+  "sha256": "8bed070fa1809045acb04330f927788ee02ae54413d1e90f4e5ec3fbcc140830",
+  "bytes": 27805,
+  "requestId": "vtUbcBML9pKwbYu8oTFV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "50f4f3fd103c532887e9a9e82d4f78858f16004c390b091b3bf25b63bb5be2b8",
+    "bytes": 145911
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

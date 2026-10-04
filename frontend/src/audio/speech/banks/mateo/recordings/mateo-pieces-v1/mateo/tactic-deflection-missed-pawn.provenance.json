@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-pawn",
+      "label": "Tactic deflection missed pawn",
+      "text": "The stronger move tempted a defending pawn off its spot. Set it up and watch everything it was holding fall apart once it leaves."
+    },
+    "takeId": null
+  },
+  "requestHash": "530b7d081786069426b8a5bdba9dd4a6bcd20f0a64903b7ba5c7c04dc6edb272",
+  "recordedAt": "2026-10-04T07:55:11.100Z",
+  "sha256": "9e354f687dff3648b473d2269406cc38fa7e373d1718507217ffebc38daf7e87",
+  "bytes": 26474,
+  "requestId": "Vwqt7CvFe94Br2rvUOw0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "249b37fbc1e5b1233f899306fb947abe1300c748a33a04de40c4134031a61187",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

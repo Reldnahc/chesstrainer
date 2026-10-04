@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-bishop",
+      "label": "Positional unsupported alternative bishop",
+      "text": "With another move, the bishop would have ended up without any defender, though on its own that wouldn't have meant it was lost."
+    },
+    "takeId": null
+  },
+  "requestHash": "1f4330cc4e4b7c278cdceeda0270ba4df96b25dd26893f52deff6220e2161de4",
+  "recordedAt": "2026-10-04T07:48:57.470Z",
+  "sha256": "5b8f0055bc7e97d66282cf4ddf083b25d5df2f518dd81ff5230f2785937a9114",
+  "bytes": 24332,
+  "requestId": "U2MZCTKMr10L46U0rPTp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fb8db50435eced67c51468a6f7a7ee0194797544e2829d54d4f54cc1abea3207",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

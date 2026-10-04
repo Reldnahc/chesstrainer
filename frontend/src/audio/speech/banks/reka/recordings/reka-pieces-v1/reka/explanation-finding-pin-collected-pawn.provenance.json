@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-pawn",
+      "label": "Explanation finding pin collected pawn",
+      "text": "Keep tabs on the pinned pawn. Stepping off the line would bare its king, so it gets gobbled as the line plays out."
+    },
+    "takeId": null
+  },
+  "requestHash": "1e276243976a9c11a4e0bf2f4522f5d719cdae1bb92c0984cb9a4ed63a5d91bd",
+  "recordedAt": "2026-10-04T08:05:45.434Z",
+  "sha256": "7aa5e2b6dc489234e7a94e13309237bc81777fa69a3f30f37e0db77b3fda0d07",
+  "bytes": 23148,
+  "requestId": "AAFXpVuXxa2v7YjvMQVR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "64c29198fa48fa8d292a198a52798205dc73702aede2be033494de2b9dc165c4",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

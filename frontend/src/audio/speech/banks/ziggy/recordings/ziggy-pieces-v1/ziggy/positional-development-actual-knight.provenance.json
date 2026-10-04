@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "positional-development-actual-knight",
+      "label": "Positional development actual knight",
+      "text": "A knight leaves its starting square and enters the game. Development, plainly visible."
+    },
+    "takeId": null
+  },
+  "requestHash": "48192beaa8644d75178fd52111f40747ba7f5bf1ffc278af67f09cbf95c11c24",
+  "recordedAt": "2026-10-04T08:15:55.153Z",
+  "sha256": "dd27a910833a5ec866625d46bdeaa7c05121f94064d499f9169b9eb263b21d6f",
+  "bytes": 18167,
+  "requestId": "PeBUSa7aJYMpUn24dHeX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9e70ebc98f7d40956e78ce53023c4762c99f998fd3c7e83e6f9df11c7042a487",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "positional-development-actual-bishop",
+      "label": "Positional development actual bishop",
+      "text": "A bishop wakes and moves out. Small, but notice where it has settled."
+    },
+    "takeId": null
+  },
+  "requestHash": "ace83e03dd8e805b273df18689b51b9ba827ebf32094bffb379352d2ee59c694",
+  "recordedAt": "2026-10-04T07:52:11.271Z",
+  "sha256": "cd75657dddbcc100167e03b5d6e3281f14228124ad33051dddd966d23f2e5b93",
+  "bytes": 16959,
+  "requestId": "joRR8poUDSr9YFYuBr8g",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d04a47c933de298c0af8645f2442e99dd993158f24d40165fcf841d5c5f12e3a",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

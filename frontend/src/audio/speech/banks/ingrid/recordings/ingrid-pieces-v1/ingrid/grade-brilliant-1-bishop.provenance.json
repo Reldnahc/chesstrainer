@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "grade-brilliant-1-bishop",
+      "label": "Grade brilliant 1 bishop",
+      "text": "Now that's lovely chess. The bishop goes, and the checked line has no objection."
+    },
+    "takeId": null
+  },
+  "requestHash": "59b023aa409cd9c6042997e3a74de6779ed044bcc8ff0ecc45c270ed18edc4ea",
+  "recordedAt": "2026-10-04T07:49:47.538Z",
+  "sha256": "1689bc47e5a4631e0bf1dacbc4343e4cc858623fdf3c6ab46bbff52dc3d41df9",
+  "bytes": 19247,
+  "requestId": "kEh2rVofMtZ8JPprdqfT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1ca225134f6ab1d75a66d21b598b0b9237aaae719e03bc904ce736b6c8fa17ce",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

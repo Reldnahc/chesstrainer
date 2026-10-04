@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-queen",
+      "label": "Explanation finding undefended capture gain queen",
+      "text": "No one guarded the queen, and it is captured. The capturing side ends this example with a net material gain."
+    },
+    "takeId": null
+  },
+  "requestHash": "3d6ef865ce05401a167f8ef02bec2be5052028e01582106f75b5d6e8211b774b",
+  "recordedAt": "2026-10-04T08:14:58.888Z",
+  "sha256": "7459d45bf865217f490619c35e85f3792bef07796724766d9a7f7d38a603339a",
+  "bytes": 23830,
+  "requestId": "CMkZ3O7TpapdZ3kulku8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a7b7046fca21cf44d83fbe9697c35b95cd5a3e3336a06c036f2b8adfed54daec",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

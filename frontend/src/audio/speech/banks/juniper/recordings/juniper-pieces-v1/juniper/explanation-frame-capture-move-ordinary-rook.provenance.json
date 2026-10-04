@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary-rook",
+      "label": "Explanation frame capture move ordinary rook",
+      "text": "A rook is captured, and the board grows a little emptier."
+    },
+    "takeId": null
+  },
+  "requestHash": "ab39e1dd931bb3e4ca7ee6d445acb11f2d04194b4c34ee0c3bb3e91ba58d7b2a",
+  "recordedAt": "2026-10-04T07:53:00.391Z",
+  "sha256": "9111ffd3ccd75c12410c28e05282989d9d251099c065dd2af7bcac312a455181",
+  "bytes": 12926,
+  "requestId": "v51UIxu9uo60ivYDfwXp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "02dd1aa8f130cb0699a76e2c59c7a15a749049697100bd065d07d9fc0b87a581",
+    "bytes": 65245
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

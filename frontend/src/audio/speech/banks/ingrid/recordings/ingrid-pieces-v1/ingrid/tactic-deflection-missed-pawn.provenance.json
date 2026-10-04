@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-pawn",
+      "label": "Tactic deflection missed pawn",
+      "text": "The stronger move pulled a defending pawn away from its job. Set it up afterward and see what falls apart once that pawn leaves."
+    },
+    "takeId": null
+  },
+  "requestHash": "595899e1c88480baf0db9d282d19f991974a7195fb7118defa34c7553b4b102e",
+  "recordedAt": "2026-10-04T07:48:49.856Z",
+  "sha256": "2b22fdef4ed5ee6ec8b25de66c56d98f2174cded2ae46902ff36ae976a014d2c",
+  "bytes": 27830,
+  "requestId": "qBOOQixhuCoR9Sggoew1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4691d04fda90c87b8d371f33e20d77d8d8a13559ab3ec52f0fc419d55c368188",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-fork-played-pawn",
+      "label": "Tactic fork played pawn",
+      "text": "Fork. The pawn now hits two targets, and one reply rarely rescues both of them."
+    },
+    "takeId": null
+  },
+  "requestHash": "e71468c9aff610a609e21049a3e461e5ec80b242da01f0e9f980799b34de61c8",
+  "recordedAt": "2026-10-04T07:49:32.094Z",
+  "sha256": "4dcac5a3a374220f91ae3f11fa1aea86bfac03cedffbcf28e48a15c86ba36be8",
+  "bytes": 18852,
+  "requestId": "BDqO0XR8Q4boXL3lZug8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a605d40402bfee55874f5407eba99c89118b5d4fa049725c3368d8aee0d10584",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

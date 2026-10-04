@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate-pawn",
+      "label": "Explanation frame capture move mate pawn",
+      "text": "The pawn is captured, and the game finishes in checkmate."
+    },
+    "takeId": null
+  },
+  "requestHash": "2d5b402fbf0debc82076a1b2a01e2935f96d01252dc0764e4d32c901d9d8b977",
+  "recordedAt": "2026-10-04T07:49:33.524Z",
+  "sha256": "52f61744145ed845671ce81fcc286e71a82c228e33cd17dd5e1f74d7f873bd7d",
+  "bytes": 13174,
+  "requestId": "qTUUgBdgMbGmmK540EBn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "638b7eda57c30ceed593371a4a8927cc4451fae31900ea14537d4df7d028314d",
+    "bytes": 65245
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

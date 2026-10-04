@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-rook-rook",
+      "label": "Explanation finding double check rook rook",
+      "text": "Double check. Both rooks attack the king at once, so the only answer is a king move."
+    },
+    "takeId": null
+  },
+  "requestHash": "6f8b266b3e291d7fb187b4079b5c393c6b351ea7c68e080dcf0b053d69dce25d",
+  "recordedAt": "2026-10-04T08:08:21.399Z",
+  "sha256": "8d6e3296832c09d04e0974e917d3c6acea869284b75b9e20e1d35c2f4bfff46b",
+  "bytes": 17990,
+  "requestId": "5gJ5oLZmsYotGTYUUnwj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "90599845f8e985cb433e72e7b9cc44d384d777a336e229b9198953225a61d102",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

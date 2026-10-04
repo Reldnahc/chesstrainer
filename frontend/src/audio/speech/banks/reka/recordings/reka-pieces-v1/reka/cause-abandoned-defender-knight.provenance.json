@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "cause-abandoned-defender-knight",
+      "label": "Cause abandoned defender knight",
+      "text": "Here's the leak. This move walks the only real bodyguard away from a knight, and the other side can collect the knight."
+    },
+    "takeId": null
+  },
+  "requestHash": "960d8b6d909f09006542924f8d4e4a10820c12a5ec4ff9edef68baeb80a295e3",
+  "recordedAt": "2026-10-04T08:05:48.647Z",
+  "sha256": "67807ceb28b6f8a31daa1273f51166d3e0f0e0a3d4e9560baad28a7102184493",
+  "bytes": 22809,
+  "requestId": "eIe50vovU9kWjuYiEFvt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1c50cbb7d010bc704364f4900895a7280c39bba8ce70c35c6aee2cbcfada811f",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

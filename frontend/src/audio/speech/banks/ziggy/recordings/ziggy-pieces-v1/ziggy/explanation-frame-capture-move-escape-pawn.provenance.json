@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-escape-pawn",
+      "label": "Explanation frame capture move escape pawn",
+      "text": "Capturing the pawn also removes the check on the capturing side's king."
+    },
+    "takeId": null
+  },
+  "requestHash": "9873d03f2c9c4c8af96996a917f1aa1d870afde4bb2136bf294582f9a70fdec2",
+  "recordedAt": "2026-10-04T08:16:37.802Z",
+  "sha256": "0e5619222bb61eb1c5217bda77b618ea22dd3eea179be095eb4bf1de83548887",
+  "bytes": 15108,
+  "requestId": "omomIx39kpGWno5zMAry",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ed1db16083b38d31d4feacec5974619e1e4cf96793e53ca392de53552c4b8d09",
+    "bytes": 74022
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

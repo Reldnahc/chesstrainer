@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-queen",
+      "label": "Explanation finding pin collected queen",
+      "text": "The pinned queen cannot leave its line without exposing its king, and later in the line it is captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "663fd0c08240b81811703eda8aba905e3e6a4178167ecedb8dd9d0730c44c69e",
+  "recordedAt": "2026-10-04T08:11:13.528Z",
+  "sha256": "aa9d6eca54027292c2b8e6e00fb981ee610bb356fe50dce23cb9bd71e9452ab4",
+  "bytes": 20502,
+  "requestId": "02uGvg2AAkNWXpx4trGd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "266c354294a14226032815bc6bcd1b47129b858d6b6df17ab7d43e893eea111d",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

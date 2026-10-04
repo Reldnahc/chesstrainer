@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "grade-brilliant-1-bishop",
+      "label": "Grade brilliant 1 bishop",
+      "text": "A bishop offered. I looked for a flaw in the idea, and the checked line shows none. Lovely."
+    },
+    "takeId": null
+  },
+  "requestHash": "1044986eae59d328892bd612fac48c62718ac20ba4f9cf2cdd8e4c6b1cb49ddc",
+  "recordedAt": "2026-10-04T07:53:01.246Z",
+  "sha256": "ffead95f75374a95fec19a2fe67dc27525d37281fd36ed4f41eaa2db183ebc13",
+  "bytes": 20482,
+  "requestId": "JbNgbb5PCVmr1Laj9XGn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0ba4f61f66a3d3cb7a64c857e577c9f918e0ef5f7a9c0c35afd00da6f736cbe4",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

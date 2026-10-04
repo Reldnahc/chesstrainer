@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-check-bishop",
+      "label": "Explanation frame capture move check bishop",
+      "text": "Capture and check together. The bishop is taken, and the king is attacked."
+    },
+    "takeId": null
+  },
+  "requestHash": "6ee9e016213f749367455d6b47a6195d2f9a7585474061770a9a90d0ef7302df",
+  "recordedAt": "2026-10-04T07:57:27.915Z",
+  "sha256": "8ebf9e510aec96300b5e185d19aaaf2c032543f592a36858857b8aa6df35e99d",
+  "bytes": 16708,
+  "requestId": "PbalMBGuxKply7JK4dni",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b20bd193ef8ed6e6b3aa280478be22a448109e8adfd2a2cf122f83209c20e1b8",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

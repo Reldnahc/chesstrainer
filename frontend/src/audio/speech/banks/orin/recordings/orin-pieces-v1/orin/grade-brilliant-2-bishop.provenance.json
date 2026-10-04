@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "grade-brilliant-2-bishop",
+      "label": "Grade brilliant 2 bishop",
+      "text": "Few patterns are older than the sound sacrifice, and few are rarer. Here is one, and a bishop pays for it."
+    },
+    "takeId": null
+  },
+  "requestHash": "17f04ed8136e4104c33c2f9777feba4794c22d46f01269fb1ff7faeb39a503af",
+  "recordedAt": "2026-10-04T07:59:55.294Z",
+  "sha256": "0619d984aa342dea1e49ea94b36952557c028058dc47550fe2ae7377e41589a7",
+  "bytes": 26840,
+  "requestId": "sG6PMM2hGtys0CXYZI93",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "07743dfb5314b6d348cf125a0bfeeb880e6c5138ae7df8d01372616ce4c2ab45",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

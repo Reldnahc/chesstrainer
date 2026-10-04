@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-pawn",
+      "label": "Explanation finding relative pin released pawn",
+      "text": "Thanks to the opponent's last move, the attacking pawn wasn't stuck in a relative pin anymore. The target stayed put after that, and in the line shown, it gets captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "efc3830bbafa4f2e5a633199afef87c75dd3ddecbcfc7d82044d4eca503a1b22",
+  "recordedAt": "2026-10-04T08:00:43.257Z",
+  "sha256": "53dd5c13b88855bde68cac0ee8c404bd5a3c0d9af35330620c77fba62dc9f183",
+  "bytes": 32406,
+  "requestId": "ClGWc2PH4nzwwVTJbGYN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2af34c17a09916eda4e77c6f97d4d5e00882e30bf97073fd0ab6cc9f75bb568f",
+    "bytes": 163466
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

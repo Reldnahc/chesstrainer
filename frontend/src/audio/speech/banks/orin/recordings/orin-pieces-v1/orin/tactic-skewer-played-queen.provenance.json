@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "tactic-skewer-played-queen",
+      "label": "Tactic skewer played queen",
+      "text": "The skewer is the pin turned around. The queen stands in front; when it steps aside, the piece behind it is laid open."
+    },
+    "takeId": null
+  },
+  "requestHash": "4712f6aff68c40e936e465b2dbd42920ba0a4ffc2e11bb9443d680af14eb3a4f",
+  "recordedAt": "2026-10-04T07:58:22.053Z",
+  "sha256": "1c6cbf1e612e86e178f04b4cf1783d687ca2fa9f91ddfb05035162d4e292bd91",
+  "bytes": 27771,
+  "requestId": "sU2c8sox3esKDFB9ITcK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f4c5e86b864ce9e171788c4cc41f18cc8a2be5a83a0d96173ea11f31fac36f89",
+    "bytes": 145911
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

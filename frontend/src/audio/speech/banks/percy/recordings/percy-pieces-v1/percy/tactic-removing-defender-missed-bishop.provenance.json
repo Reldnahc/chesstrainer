@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed-bishop",
+      "label": "Tactic removing defender missed bishop",
+      "text": "Another move could have captured a defending bishop and stripped the protection from whatever it was guarding. This one passes that up."
+    },
+    "takeId": null
+  },
+  "requestHash": "01c9086f2a38f34849bb8c9fe130274c6bcfc00bac2e11165b433b26c9305423",
+  "recordedAt": "2026-10-04T08:00:16.175Z",
+  "sha256": "109cc3663e512b3e5aa22df22c34cc0a3dc14ca7a09186babe60f6b02e073a9f",
+  "bytes": 22997,
+  "requestId": "sIfrk9jcKUp4s5GOlPfR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "259f34cd2c2faee20bd4eb0182e039fc23082d30451a4f1e1b53394f0cf2f426",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

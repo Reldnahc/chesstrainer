@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "support-restored-rook",
+      "label": "Support restored rook",
+      "text": "A proper repair. The rook that was hanging loose earlier has protection once more. Keep an eye on it."
+    },
+    "takeId": null
+  },
+  "requestHash": "15e4b06f870ccbe44b1209391c4f2145b81efc86bedf32504872570b052c5a82",
+  "recordedAt": "2026-10-04T08:11:09.363Z",
+  "sha256": "60244be1f6b17e1501e3eb3f0fff06cb950abc27f4391c489ced692a65267d6f",
+  "bytes": 20447,
+  "requestId": "o0iF7EQuECC0bmerOMrc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ed068ec2e342da59492586f0dd1461d0af7184fe9ff0be8b10ec0c7369ae81d8",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

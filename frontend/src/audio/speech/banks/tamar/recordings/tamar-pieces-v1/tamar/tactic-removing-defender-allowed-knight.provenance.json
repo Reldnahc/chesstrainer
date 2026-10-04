@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-knight",
+      "label": "Tactic removing defender allowed knight",
+      "text": "A guard under threat. The other side can now capture a defending knight, and what it protects would lose its cover. Notebook rule: know which defenders carry the load."
+    },
+    "takeId": null
+  },
+  "requestHash": "a299b5a95db9565d4176050b98e6a5d4fa6a4bed2446d7bff4150cccfad45254",
+  "recordedAt": "2026-10-04T08:10:21.955Z",
+  "sha256": "deae67497b0e0303ee31122e1c2464b14ba028d731463ab1620c962e4c3d6a50",
+  "bytes": 33349,
+  "requestId": "AufH8cHJ7koEmqZTPqOe",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c937fdc7313e4ff03e5685211c373db646ea3d4f96c2e23abfd3d67b707a5631",
+    "bytes": 175168
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "tactic-pin-allowed-queen",
+      "label": "Tactic pin allowed queen",
+      "text": "A line to look at. This gives the other side a pin to the king, and a queen pinned like that can't leave its line without exposing the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "43cbf498e33cf57f2a951351e8c5df479aaf8a7e9a05b853b1d40e5d3cf0c72c",
+  "recordedAt": "2026-10-04T08:03:21.263Z",
+  "sha256": "6fbe1ee489c6c9a62a58f1014d34d0317bb830235228dc079ced6dfee7596010",
+  "bytes": 29515,
+  "requestId": "UGP56HVJfAj0pTjdnS0y",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "27a78b697dd822d6fc7bb1e6eb297bfca12eec631054c20dad7a90d7d6e1832e",
+    "bytes": 150927
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

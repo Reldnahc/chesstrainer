@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-knight",
+      "label": "Explanation finding sole defender captured knight",
+      "text": "Sole defender down. The knight is captured first, and later in these moves the piece it was guarding goes too."
+    },
+    "takeId": null
+  },
+  "requestHash": "ee5974984850e87ef4be91ca61ee7a58e0357e8dcf89a3bec7ba0bd76e4e76c6",
+  "recordedAt": "2026-10-04T08:07:39.200Z",
+  "sha256": "c944fac365eba39132048df00a2b793aeb65ec3a895e30a41a087930de471748",
+  "bytes": 21744,
+  "requestId": "VOGexpSDLhcrVaz480vt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e54386ba25935031bb4a6801c1817fa68ea39f775a784f766cd3a2aaa93941c4",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

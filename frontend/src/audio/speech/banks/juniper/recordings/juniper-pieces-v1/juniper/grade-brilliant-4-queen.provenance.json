@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "grade-brilliant-4-queen",
+      "label": "Grade brilliant 4 queen",
+      "text": "I'll remember this one quietly. A real queen sacrifice, and it stands up to being taken."
+    },
+    "takeId": null
+  },
+  "requestHash": "9c4d5447a7f7760d2aa071ea858b89b5aafaac66556dcdea732ab6d07b67a478",
+  "recordedAt": "2026-10-04T07:52:51.907Z",
+  "sha256": "8fc024bc7275d7e5a20fa7643c2c851515e0ad87ef9957b28de3b79a74804f6a",
+  "bytes": 21195,
+  "requestId": "RyO8pqVFjLJXdrM9L5Ia",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "605a2aef736a7e9e1fd00e393bc3b0883a20fdfea649e134a2c15228aede5735",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

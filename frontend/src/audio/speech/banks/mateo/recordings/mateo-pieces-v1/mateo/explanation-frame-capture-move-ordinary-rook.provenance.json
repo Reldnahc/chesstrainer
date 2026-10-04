@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary-rook",
+      "label": "Explanation frame capture move ordinary rook",
+      "text": "Capture. A rook gets knocked off the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "52066810efd1a9860e49acad5bb655f43c5be21815506f4a73b0f024012a4083",
+  "recordedAt": "2026-10-04T07:56:14.970Z",
+  "sha256": "8fbeb16cdb7f990f87bf6f161521ebc9b5d7fbcb31114899d133cd92d80841c2",
+  "bytes": 10622,
+  "requestId": "POIMDuRjwNIUEA5dbWvA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3e85a9429a70a57084353fcfe12aeb93f203b63f3cb49c06c2bd316009fb76ea",
+    "bytes": 52288
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

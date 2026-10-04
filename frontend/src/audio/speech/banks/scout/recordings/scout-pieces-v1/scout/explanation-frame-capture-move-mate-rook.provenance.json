@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate-rook",
+      "label": "Explanation frame capture move mate rook",
+      "text": "Capture and mate. One move removes a rook and leaves the king with no legal escape."
+    },
+    "takeId": null
+  },
+  "requestHash": "520421c26080979ccdfadcea1730e1c44463a5e34e1a6af114d1a06f1a46e0ac",
+  "recordedAt": "2026-10-04T08:08:08.111Z",
+  "sha256": "a50fd78b1f294afbc9448565aec3abb7d9f98c8f8381ff577a6bee41a96e2da8",
+  "bytes": 18393,
+  "requestId": "TAEpECLZfhMcRyD2DC9L",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b6ea985f99469baf26f508033d54c09ec73110f78ccaf992937127ec629ea380",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

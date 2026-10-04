@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "grade-brilliant-3-queen",
+      "label": "Grade brilliant 3 queen",
+      "text": "I love this one! Most of the time, a queen given away is just lost. Not here."
+    },
+    "takeId": null
+  },
+  "requestHash": "cfef5b32d3ac7ecf419e75d26331e6b9b79ad59a6123923f4b90c8e56869771a",
+  "recordedAt": "2026-10-04T08:04:40.517Z",
+  "sha256": "72d2a9605ef8eef1a070996eaf13c71848451565a3831ea07435e387599fa662",
+  "bytes": 21511,
+  "requestId": "jp8aQo4e0bv5EuIHPKmA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "aeb56b960ffbfb6506452cd40cb4035205ad5c5eeadf8f1b6cc27be3250cc7dc",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-bishop",
+      "label": "Explanation finding pin collected bishop",
+      "text": "Watch what becomes of the pinned bishop. Bound to its line by the king behind it, it is captured before these moves are done."
+    },
+    "takeId": null
+  },
+  "requestHash": "38cdc4c93eb1f77ce183840bcb011e0cd3b7beaf207ca6278abc573e9c27dd36",
+  "recordedAt": "2026-10-04T07:58:57.886Z",
+  "sha256": "a2089281096344fe50b9f03265d05b1fdb9a751d8020b1a21b04440f672ea99a",
+  "bytes": 25943,
+  "requestId": "OsDDFM7ITEnVr2mDCbkC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4fefda6e39ff88f25faf95c5e21f88f7ca839ede220e5eabeb6e2dd80ee372e6",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

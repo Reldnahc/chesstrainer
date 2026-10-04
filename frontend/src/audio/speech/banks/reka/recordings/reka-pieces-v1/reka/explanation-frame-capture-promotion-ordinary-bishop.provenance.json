@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-ordinary-bishop",
+      "label": "Explanation frame capture promotion ordinary bishop",
+      "text": "Capturing a bishop, the pawn lands on the last rank and morphs into a fresh piece."
+    },
+    "takeId": null
+  },
+  "requestHash": "e8e38387b93aefeb69521ef77f37e0d67c18e15234abe390b2410ee7f2b04694",
+  "recordedAt": "2026-10-04T08:06:23.057Z",
+  "sha256": "8781bdd96bfbf3ca819f3847673e7ceed127c87811d50b1851f412e4e3a3329c",
+  "bytes": 17500,
+  "requestId": "UjJSPIA1LZRgrfWJjnHN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cc37e0a34b0036e6e3b49898b9a1d621a0d896644281e5d427b68856bb862bcc",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

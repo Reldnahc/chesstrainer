@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-mate-knight",
+      "label": "Explanation frame capture promotion mate knight",
+      "text": "The pawn captures a knight, promotes, and gives checkmate, all at once."
+    },
+    "takeId": null
+  },
+  "requestHash": "32438ba45ad2943154f62052716c0445707f3a36252e9afcfcb2bdcb18cd6ba6",
+  "recordedAt": "2026-10-04T07:55:54.696Z",
+  "sha256": "69ba5c32c6b85ebd1e7d9e27c93812fda22190424cc0aabcfab480115c655b1c",
+  "bytes": 16809,
+  "requestId": "UWpzItVfCtDUFjj70EgV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "95751dd6c0264f3b1fdb7647eb015c745ccaa55a3de5ced53e794d9c527f037a",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

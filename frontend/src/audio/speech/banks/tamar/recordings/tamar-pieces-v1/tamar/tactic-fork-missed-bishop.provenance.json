@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-fork-missed-bishop",
+      "label": "Tactic fork missed bishop",
+      "text": "A fork went begging. Another move sent one bishop after several targets together. From today, forks belong in the scan before every move."
+    },
+    "takeId": null
+  },
+  "requestHash": "eac8081fbf9ef1d5a87339b8393b5ca9e7f1a72cb221f883a72733eea4fb943c",
+  "recordedAt": "2026-10-04T08:10:29.537Z",
+  "sha256": "5e6b90c3e1a9771fdd43ad0adac94d3fa6b237575637ae4eb61fc274f317e51c",
+  "bytes": 30680,
+  "requestId": "ThYELIwVZBmiWpGSnEM7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dca142943b6059f5f1e43fa491c5c46dd9322f163e7ce0ee931296e1ed22c264",
+    "bytes": 157196
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

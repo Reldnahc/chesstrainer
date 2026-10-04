@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "support-restored-bishop",
+      "label": "Support restored bishop",
+      "text": "The bishop that stood unguarded earlier has protection again. Good to see that tidied up."
+    },
+    "takeId": null
+  },
+  "requestHash": "35a127dc399f44bcc5d258e4e04097f16332fe0fcef81237cea0d1ee55eb6911",
+  "recordedAt": "2026-10-04T07:49:04.733Z",
+  "sha256": "f5abbdf280f24bb4d1618168ca89aa55573dd9c74f9e7ff8ff47008b2b0229ec",
+  "bytes": 18245,
+  "requestId": "ONKIEI5COZQK6GpierH6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "864e2cd5f8ceddcdf1fe5d52de688e29a7745436a5682c2289450326f29092ae",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

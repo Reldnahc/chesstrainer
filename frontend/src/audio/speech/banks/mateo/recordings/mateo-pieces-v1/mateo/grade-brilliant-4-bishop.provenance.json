@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "grade-brilliant-4-bishop",
+      "label": "Grade brilliant 4 bishop",
+      "text": "Ooh, I love these. A bishop given up, and the whole idea stays on its feet."
+    },
+    "takeId": null
+  },
+  "requestHash": "274d6c15c7d4d91c05498d0a479d98d8ebb891713935f8896c222a4358eb2380",
+  "recordedAt": "2026-10-04T07:55:58.252Z",
+  "sha256": "b0dfc6c58bccc521977d958e577f9f5fb7fa4b91a02ba5ebf3316cab97e78093",
+  "bytes": 19147,
+  "requestId": "1pONoP7IL6J5Q4eiJxfF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "805ec0df8ec50d40af342827602233b7924f858c3e1ff4cd4490d7f2af9adabd",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "grade-brilliant-3-bishop",
+      "label": "Grade brilliant 3 bishop",
+      "text": "This is the move I want every student to see. A real bishop sacrifice, and it holds when captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "fd94ea7c8bb9d161a64ef2cafa8da48d10ad04eecad5354007faf22b40b83d9e",
+  "recordedAt": "2026-10-04T08:11:40.237Z",
+  "sha256": "f23d71c26d191ae712f1907bdbe4f989e4d014830851b1ea9cb666c828f79c69",
+  "bytes": 22302,
+  "requestId": "p23OGie3UYtttlOzlY4t",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "555f2fa289f52130ca1cabe9f432c865df43800ff817fb3cb02883866f160ab1",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

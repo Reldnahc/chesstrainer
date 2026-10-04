@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary-rook",
+      "label": "Explanation frame capture move ordinary rook",
+      "text": "A capture. There is one rook fewer on the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "4f5784249d8f359ba356a9c32a3d0a78cecf4dbdd2ac9baae033a5752bb32d8e",
+  "recordedAt": "2026-10-04T07:54:32.329Z",
+  "sha256": "c4a83309cb7e02e34176b8e2c4c292ff01d38893f3cf59c8193d5ec5713455d3",
+  "bytes": 11899,
+  "requestId": "aW6SrAbpb0gvwygF2GQy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a81d95a65fea7c74eaa6a0c35bd9b08757d6c59440370ff9b3cb8e7ac681b801",
+    "bytes": 61066
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

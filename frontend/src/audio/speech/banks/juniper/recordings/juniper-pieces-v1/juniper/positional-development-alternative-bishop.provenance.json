@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "positional-development-alternative-bishop",
+      "label": "Positional development alternative bishop",
+      "text": "Another move would have woken a bishop and brought it off its home square."
+    },
+    "takeId": null
+  },
+  "requestHash": "1b6efc137d801a889801944a876c7e7204e3de8068c1eaaa66fe30bf5a3af36c",
+  "recordedAt": "2026-10-04T07:52:13.768Z",
+  "sha256": "3b499fe8920068cfc36afd5352df7cbbddd27615302502c0f2cbe5335ebbf18d",
+  "bytes": 14134,
+  "requestId": "cLvszZEq1uUm8KhwFHx7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e39f4100c5f453e35c179434b6e51e1dafff2a62ba0ff6b8e9bb5c783edc265a",
+    "bytes": 69007
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

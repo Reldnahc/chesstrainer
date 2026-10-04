@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed-rook",
+      "label": "Tactic removing defender missed rook",
+      "text": "The better move went after the defending rook. Without it, the piece it guarded would have stood with no help. As played, that rook is still standing guard."
+    },
+    "takeId": null
+  },
+  "requestHash": "9e9a2fd1dc5ca8f2d11e270a7d7a5b67dfeb3a69e4e418310ad946f0e4945052",
+  "recordedAt": "2026-10-04T07:56:38.194Z",
+  "sha256": "db35ef7779a6c49ba466fdde3046eb1f03863f839ee7015c9c3cca9fa8e7cf8b",
+  "bytes": 30876,
+  "requestId": "Oi6RYu6FsRzqsmk5TUce",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1a050c52e33eb476bd449e8979bc7d4713ea2786ac20171052d7f97bc2f29a99",
+    "bytes": 159704
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-skewer-played-rook",
+      "label": "Tactic skewer played rook",
+      "text": "The rook at the front of the line is under attack now. When it steps away, what was standing behind it becomes the target."
+    },
+    "takeId": null
+  },
+  "requestHash": "896e05a570331054a211162312fe7f4f866d0a172ec63788912e8501c835dd7d",
+  "recordedAt": "2026-10-04T07:53:17.841Z",
+  "sha256": "e19e3bc9a075716141f1c2bcf8afce6dd76a4b98d127af6a5046f9384fd61955",
+  "bytes": 23425,
+  "requestId": "EzkgsGJlJqjwT8igWBq0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ffa06fcc1c0a6396429b0a771936f36e60c8ec2e95f6409c0d10bd4eb973dab4",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

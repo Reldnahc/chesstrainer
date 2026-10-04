@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-king",
+      "label": "Tactic deflection missed king",
+      "text": "Which move pulled the king off its job? Another one, not this. Here, the king keeps guarding."
+    },
+    "takeId": null
+  },
+  "requestHash": "81b8e6c30d17e51e479a98f28fd32eaed242eb6eaed6ff234d7d962f4081a0b8",
+  "recordedAt": "2026-10-04T08:09:10.914Z",
+  "sha256": "e33ad251f1ba9b6ae3f2e2b149c9e3818392198981129963ceaa64554f5a3f41",
+  "bytes": 21966,
+  "requestId": "nwLclyJVQ9XQgX7CS3sG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "95c65cbad35f76982695b3872f62ba613fca1f1dbb1024b373c0749d6051d41d",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

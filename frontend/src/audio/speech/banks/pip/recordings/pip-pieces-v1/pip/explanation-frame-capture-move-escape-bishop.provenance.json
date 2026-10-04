@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-escape-bishop",
+      "label": "Explanation frame capture move escape bishop",
+      "text": "This move takes a bishop and gets the king out of check, both at once."
+    },
+    "takeId": null
+  },
+  "requestHash": "0160b2aa100fcf55dacdcce9ce2bf13058c96f17f1e6b598e73cb8616810641b",
+  "recordedAt": "2026-10-04T08:04:47.530Z",
+  "sha256": "dbcda39b41973d92c4ab2d0427f3a784f59a64a9a170719acc1c7e8ffdf7817c",
+  "bytes": 15701,
+  "requestId": "BmTrebbIqXb4eH1R3q7o",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e4e0b54d4397a775afdfa426a454c28e4c3cfa7c10e2500fb7530b2e9345e3ea",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

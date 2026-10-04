@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-missed-rook",
+      "label": "Tactic undefended capture missed rook",
+      "text": "An unguarded rook was there to collect with another move, and the played move passes it by. Loose pieces should be counted before anything more elaborate."
+    },
+    "takeId": null
+  },
+  "requestHash": "e1281ec3f1518c8cd913577645283b1e3905707fd3fd96a6ae8b62b1f312f800",
+  "recordedAt": "2026-10-04T07:58:18.117Z",
+  "sha256": "43e67390512b06e465e3db7bacc9102c3d3bb4b7555d2f1e928f38f3c2326296",
+  "bytes": 31404,
+  "requestId": "7NJgKBFD6FqIHr1kR1Ei",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6914a932f68ec59459c890be98f36b502a02b13b78540e5e3a7c3755b78e5b0a",
+    "bytes": 160958
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

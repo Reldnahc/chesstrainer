@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "tactic-hanging-piece-allowed-bishop",
+      "label": "Tactic hanging piece allowed bishop",
+      "text": "Hanging bishop. This move leaves it with no guard, and the other side can take it. Every move, run the guard check on every piece."
+    },
+    "takeId": null
+  },
+  "requestHash": "8778d4a5cd631ff1e88ff132bd855377a53ed219d8cca0c902a4899292370555",
+  "recordedAt": "2026-10-04T08:06:58.372Z",
+  "sha256": "1f2eea0fe62b18195326c1486416a98ade4d25ca9da1bd53a6713670d399df40",
+  "bytes": 26692,
+  "requestId": "UgemLsxGv5weUUfPGQnh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5e394067f72d08cda7c8e94ca37db7832e2dd247e27a0248b537d94f3e04cb76",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

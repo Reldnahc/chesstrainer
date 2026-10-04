@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-bishop",
+      "label": "Tactic deflection missed bishop",
+      "text": "Another move could have pulled the defending bishop away from its duty. That deflection would have left what it guarded uncovered."
+    },
+    "takeId": null
+  },
+  "requestHash": "316dd77da01de47a29fc48c7e1bfe25f6072fdd5d7627b66127758e01615fac6",
+  "recordedAt": "2026-10-04T08:15:49.098Z",
+  "sha256": "91ead54ae2c3dc4262eaf51b4a745fc3c12c3d407076a050b35c9ef0cc42eeae",
+  "bytes": 23606,
+  "requestId": "kY9UfGavbBUX2PhOx9qo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f481144f46bde8dfcdc4885126821d06efc7ad894834b94ec628aa0583422e9f",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

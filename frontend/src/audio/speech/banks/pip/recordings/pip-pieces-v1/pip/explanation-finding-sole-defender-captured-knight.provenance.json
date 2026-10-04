@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-knight",
+      "label": "Explanation finding sole defender captured knight",
+      "text": "First the only defender, a knight, goes. Then the piece it was guarding is taken too. The first capture is what makes the second one work."
+    },
+    "takeId": null
+  },
+  "requestHash": "257e988a80a2a4b22dc618eade06aaae922c5fbc860d44e1562ac2b06d03bf6c",
+  "recordedAt": "2026-10-04T08:04:18.957Z",
+  "sha256": "bdcbfe1c0da0ab4354ca48e51a0313f8b3a6836d2d59adb44ce278cf6f9c23bd",
+  "bytes": 31732,
+  "requestId": "0wpQEAteziiqew0Cbb9z",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4b6b461676aa9503c735f5d2169f49a36f7466ee3a3f734a5dfb3b938d270f4b",
+    "bytes": 163466
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

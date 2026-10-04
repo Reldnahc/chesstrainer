@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "cause-abandoned-defender-rook",
+      "label": "Cause abandoned defender rook",
+      "text": "I watched the defender walk away. It was the only real one, and the rook it guarded is open to capture now."
+    },
+    "takeId": null
+  },
+  "requestHash": "35219554643dc640a28d999db7f7b2cbe3ea9749d747946b1c65b9cffcfd3e30",
+  "recordedAt": "2026-10-04T07:52:27.759Z",
+  "sha256": "87d9a2ce2f58d8e6aa4a0abb1f8cd8d666c17a589df8ef0f669aa473c9bad1d1",
+  "bytes": 22359,
+  "requestId": "vpK673zxH8BYYDHjYk0L",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4953ab7e5013621dd221a902f6eae09e504a10fa2c558b2ac9f96c9a6dc68d8c",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

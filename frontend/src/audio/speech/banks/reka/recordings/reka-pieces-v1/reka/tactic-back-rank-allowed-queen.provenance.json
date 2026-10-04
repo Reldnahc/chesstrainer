@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "tactic-back-rank-allowed-queen",
+      "label": "Tactic back rank allowed queen",
+      "text": "Eyes up on the home row: the other side's queen has a mating tripwire there, with the king crowded in by its own pieces."
+    },
+    "takeId": null
+  },
+  "requestHash": "9c0e492b67727a5daadc40710a80f253b4316b6b72e026566cea7d90604d8490",
+  "recordedAt": "2026-10-04T08:05:42.284Z",
+  "sha256": "fd10d122fdcce4ce2cd507fdf57ff33b561b99c2f04a7d99909c9ee77f74ae99",
+  "bytes": 23929,
+  "requestId": "RRy0cYhlHYPBlZZFX7bN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2422ee3772d803399b4f31a292f3e66beb7fe5147a5a10aa02217714faf5dc42",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

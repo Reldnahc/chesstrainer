@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-knight",
+      "label": "Tactic deflection allowed knight",
+      "text": "The simple risk here is a deflection: a defending knight can be pulled off the piece or square it's covering."
+    },
+    "takeId": null
+  },
+  "requestHash": "6629bed00cce45f8f7a6badd9bfba7b2fccd01551b93c4ca22dcfab956f25dd1",
+  "recordedAt": "2026-10-04T07:48:48.173Z",
+  "sha256": "82e5757dfb48a2777dfcc3b91bc0bc0ec8d4078b6707c8ddc1394b02148998f6",
+  "bytes": 22204,
+  "requestId": "kuKdtW88U3hSpUl9gGPK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a40d87c51c40f99f7e46e51bfcd27f42008b1b6c9677cce6d62682c07c76082c",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

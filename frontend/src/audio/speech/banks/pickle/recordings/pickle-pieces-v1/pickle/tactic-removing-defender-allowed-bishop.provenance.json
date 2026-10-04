@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-bishop",
+      "label": "Tactic removing defender allowed bishop",
+      "text": "Interesting! Somebody's defending bishop is a sitting target now, and if it goes, whatever it was guarding goes unprotected too."
+    },
+    "takeId": null
+  },
+  "requestHash": "44ad0ed0991ec3b19a21ddf4bcbad2c27205130c6eb8e35e817afd2f5eb2af2b",
+  "recordedAt": "2026-10-04T08:01:47.880Z",
+  "sha256": "84d4fe27a6805a9f507d9d06ecfb7a85943bd813b5e83f10c648ed8510212cc0",
+  "bytes": 26590,
+  "requestId": "MuToD4uvrgxtKAYVJwwc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9993d14ececff7395cd28133a1e15efb234766f4930661df4087aa9547685657",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

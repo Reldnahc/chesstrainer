@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-queen",
+      "label": "Positional unsupported alternative queen",
+      "text": "A different move would have left a queen unwatched, though that by itself would not hand it over."
+    },
+    "takeId": null
+  },
+  "requestHash": "b00fddbe56d9bb6574d0a500f31cfc9ee8b8f59b79096fdb7f763b372608a598",
+  "recordedAt": "2026-10-04T07:52:04.965Z",
+  "sha256": "07afa45ac79dde55dd4a4f770140042e1f63196a1fb14d78ec70e6859ae4dffd",
+  "bytes": 19758,
+  "requestId": "11apmzRGPbhdHvpSpRh4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d6983936514eade6267b3b5e91a447e5b3405ce65e708fdd024b795b54f7c26f",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

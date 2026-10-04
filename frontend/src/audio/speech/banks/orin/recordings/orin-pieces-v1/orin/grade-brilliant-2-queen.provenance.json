@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "grade-brilliant-2-queen",
+      "label": "Grade brilliant 2 queen",
+      "text": "Few patterns are older than the sound sacrifice, and few are rarer. Here is one, and a queen pays for it."
+    },
+    "takeId": null
+  },
+  "requestHash": "fe7a85b1dde8ef2cd199a2d4b77e5bb33baa7a5effd127b78642ba57eac2715c",
+  "recordedAt": "2026-10-04T07:59:59.487Z",
+  "sha256": "7a51a766c088f41e08183a9b1ee04cb8f820919fac8c75e030fdf3b342839a47",
+  "bytes": 26732,
+  "requestId": "8Ce8xVbv5lusyaJzKndY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "699742d5bed427f9a47b4802d5cfd5b84a6c9291631782fb916c9a62dd17b35a",
+    "bytes": 139224
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

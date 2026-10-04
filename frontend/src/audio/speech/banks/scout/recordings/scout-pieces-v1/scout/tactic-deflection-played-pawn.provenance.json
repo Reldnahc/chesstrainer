@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "tactic-deflection-played-pawn",
+      "label": "Tactic deflection played pawn",
+      "text": "Deflection. The pawn on defense gets pulled off its post, and the thing it was covering opens up. Spot its job, then the move that broke it."
+    },
+    "takeId": null
+  },
+  "requestHash": "3d9600c22b1463d8d6e6e9931db1f8c713bfa1f22bbe3cd68e65ebdb01b56c05",
+  "recordedAt": "2026-10-04T08:07:16.189Z",
+  "sha256": "981f7d6b97c92d41828ac97dc32ee065a60f2819eb1fcd6c1f505a19f6b41ada",
+  "bytes": 27507,
+  "requestId": "61JfBUk8iOR0WihDOHoA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "231c3c0cc209b0091cfe069314db7de5ba62d40e0db636e0155485f0e17dd107",
+    "bytes": 141732
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

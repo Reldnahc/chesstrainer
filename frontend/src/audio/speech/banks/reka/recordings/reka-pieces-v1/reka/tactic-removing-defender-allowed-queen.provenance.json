@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-queen",
+      "label": "Tactic removing defender allowed queen",
+      "text": "Freeze frame: the other side can capture a queen playing bodyguard now, and whatever it shields could tumble right after."
+    },
+    "takeId": null
+  },
+  "requestHash": "dd60d21652c006f2bd75432e87017b1c088fee4b793e25001c4c243fa9dd51a7",
+  "recordedAt": "2026-10-04T08:05:13.893Z",
+  "sha256": "475a0b5aaca2b63e993cb2b975009411c496054583c4c3c881195ee07a201f48",
+  "bytes": 23467,
+  "requestId": "0S0QPK53Yp2DbRqmGu5J",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4d5e4b65ac6f31737b52aa208984f94d93e130bb0a04a413a5bbf92ee3711b48",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-escape-pawn",
+      "label": "Explanation frame capture move escape pawn",
+      "text": "Capture of the pawn, and the king is out of check in the same move."
+    },
+    "takeId": null
+  },
+  "requestHash": "c3ae63cadfa781236edfeb935b5024b0136e383be707c5280e66764e86f8361c",
+  "recordedAt": "2026-10-04T07:51:05.553Z",
+  "sha256": "dfd1a1e8d8daca35166bbe4791aa7638934550a1618b5bc7b4563e1813fd9614",
+  "bytes": 14568,
+  "requestId": "jDCeo9MdFNb7iJcNKtPx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f006c02459f11617514c1994ebebd643947253a69b1b0c8614ced920c051f328",
+    "bytes": 72768
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

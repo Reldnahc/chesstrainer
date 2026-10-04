@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-bishop",
+      "label": "Tactic discovered attack played bishop",
+      "text": "The bishop clears out and a hidden attacker behind it comes alive. Big idea: a discovered attack, where moving one piece wakes up another."
+    },
+    "takeId": null
+  },
+  "requestHash": "c6f0b2beb1f955f617c9e629fd596176c8578ae54c59f9497b3b6041584cf0d3",
+  "recordedAt": "2026-10-04T07:56:30.687Z",
+  "sha256": "90f9b6c96e8b12f6c9ffa3722a61010133feaf1e43ace41209c4155b10d335a4",
+  "bytes": 29955,
+  "requestId": "2sSd65Gs3GpUFFmSHams",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "caa01c0c343674e088c7537726946b50161397c3855e79efc268d0e73a5ac4fc",
+    "bytes": 155942
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

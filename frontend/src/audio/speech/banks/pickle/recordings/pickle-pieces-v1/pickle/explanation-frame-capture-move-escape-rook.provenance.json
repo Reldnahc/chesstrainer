@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-escape-rook",
+      "label": "Explanation frame capture move escape rook",
+      "text": "Capturing the rook rescues the king from check. Two jobs in one!"
+    },
+    "takeId": null
+  },
+  "requestHash": "c6228bfc467abf0025ea9b70899b64cc8c0c27b1a2b3f870f8fbf869eb3451df",
+  "recordedAt": "2026-10-04T08:03:03.693Z",
+  "sha256": "28b9448291d07a6ffe8eb5ad777925acac45a45c9170b349719dde33985d1948",
+  "bytes": 15152,
+  "requestId": "iliSP9Oi4ceNBy2rMrn3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8736824d043ea149b87b93fc9065b5d03004f909ef63bbee52ddabd3370fa508",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

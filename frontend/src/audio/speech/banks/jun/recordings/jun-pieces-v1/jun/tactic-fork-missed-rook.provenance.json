@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-fork-missed-rook",
+      "label": "Tactic fork missed rook",
+      "text": "A fork was available in the stronger move, the rook striking several targets in a single move. Unused here."
+    },
+    "takeId": null
+  },
+  "requestHash": "c4c06168a4adfcecf76687bd171490b0ad1cb5677f37f0af1e79111177852071",
+  "recordedAt": "2026-10-04T07:49:55.490Z",
+  "sha256": "41ab1107de172e8175f7f35dff2b3332ead7ab2d2a65ed48040f6cb242436596",
+  "bytes": 22439,
+  "requestId": "Ov9k7d31WEblK1pCY0hx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "178631844078dcf2d0531db8c17f45a3ea5622994fb552f43043f51df8f31cdc",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

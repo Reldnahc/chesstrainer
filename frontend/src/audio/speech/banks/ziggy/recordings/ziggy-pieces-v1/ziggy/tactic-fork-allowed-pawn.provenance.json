@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "tactic-fork-allowed-pawn",
+      "label": "Tactic fork allowed pawn",
+      "text": "Curious how much one enemy pawn could do from here. A fork is now possible for the other side, with two targets under attack at once."
+    },
+    "takeId": null
+  },
+  "requestHash": "8fb61d20e1e826d6d9831eefdf9f0a2f135440372e9024b2c4978a5898becbd6",
+  "recordedAt": "2026-10-04T08:15:09.307Z",
+  "sha256": "f7c0fd2e9a536f60e74a9ac011b41a0627cb3aa28d42b3d57d0311a67f83d6ab",
+  "bytes": 27526,
+  "requestId": "9jZCJHMq0MUoYDw76ztb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4e3383ded1f3060b0a989a030bcf26d3512b1e47cf0d4937267c48697077060e",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

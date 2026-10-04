@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "cause-opponent-threat-recognition-bishop",
+      "label": "Cause opponent threat recognition bishop",
+      "text": "With its last move, the opponent made a threat, and this move does nothing about it; the bishop hangs because of it. The other side's move always gets looked at first."
+    },
+    "takeId": null
+  },
+  "requestHash": "dc522958e6dacce028c8793efaaa8883b715a47279ec41b9e53c8eebd748d800",
+  "recordedAt": "2026-10-04T07:57:19.341Z",
+  "sha256": "cda86f9013514b29035ebd16d6bcf18bf8b96208c9b95bbf1f9bfe7a47ada777",
+  "bytes": 33095,
+  "requestId": "kI9nM984efDjw2kksKPr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "772a4eaa79586b3af66b36399bc5cbcdd3146b49c1fdd893bef7887ae5e12522",
+    "bytes": 171407
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

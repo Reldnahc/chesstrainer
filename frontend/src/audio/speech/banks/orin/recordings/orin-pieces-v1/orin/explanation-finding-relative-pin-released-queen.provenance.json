@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-queen",
+      "label": "Explanation finding relative pin released queen",
+      "text": "A relative pin held the attacking queen until the opponent's previous move released it. Left where it stood, the target falls in the line shown."
+    },
+    "takeId": null
+  },
+  "requestHash": "fb46c57ad04d02581324d54a1a596f090865c4cbd46d8fed98edf3432ef1f044",
+  "recordedAt": "2026-10-04T07:59:07.228Z",
+  "sha256": "aa7d64ba30a7ef6b0f1d9be611b92de82340bdfbd33318dfd87e6340057581e6",
+  "bytes": 31329,
+  "requestId": "QxhLHqgU0VSPr17y28cW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a668c44f2713e539da719ce6777baaef8afe5ffff680dca9fd540abb960dc02d",
+    "bytes": 162212
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

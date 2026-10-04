@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-rook",
+      "label": "Explanation finding deflection collected rook",
+      "text": "The defender gets tempted away, and the rook it was minding gets captured right after."
+    },
+    "takeId": null
+  },
+  "requestHash": "9dbfc4f566b45d9a0cf76599b2bea533dbf22dc03e32e8ce5db91adb8fcb8b4d",
+  "recordedAt": "2026-10-04T08:02:53.724Z",
+  "sha256": "0c395fac06430c3b7a2c85f2d89b78c3c14b274532a679d712aab1b769de6cb8",
+  "bytes": 17150,
+  "requestId": "oPZNf24mEtxwl14qYFm8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "891a3d94bc56f7862dde8897a73bd6596c6eb7a981013727a1a59e616554e67b",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

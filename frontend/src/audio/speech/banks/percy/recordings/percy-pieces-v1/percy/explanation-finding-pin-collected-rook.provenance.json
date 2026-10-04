@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-rook",
+      "label": "Explanation finding pin collected rook",
+      "text": "Watch the pinned rook closely. It can't leave the line without exposing its king, and before these moves are done, it gets captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "81cd4a70d98efa7004610ed26bddaefb5ae6d1d62848e46c889b4a31d1c722fd",
+  "recordedAt": "2026-10-04T08:00:51.883Z",
+  "sha256": "7ba222a167c55d2b856ccd94825992dc8069c8c3cef2149e9fcfeb72d0e67b01",
+  "bytes": 24974,
+  "requestId": "LZmpfiGwTqEnBdR4ntrp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1838ddc53001b458e60e79fdb3a1914aa604a6d607e6cb070cb772e92238a5f5",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

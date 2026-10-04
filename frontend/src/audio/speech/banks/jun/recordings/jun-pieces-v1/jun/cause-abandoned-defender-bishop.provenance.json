@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "cause-abandoned-defender-bishop",
+      "label": "Cause abandoned defender bishop",
+      "text": "This move abandons a defense. The bishop's only defender relocates, and the bishop can now be captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "875bb92162d21edabe3cfee143b0caeb73809c9b696278e0a4de761336a3dd4b",
+  "recordedAt": "2026-10-04T07:50:36.918Z",
+  "sha256": "f9f77dbe393bdd0fe0746086c9ecb8873bdcb43680be2927968e80227b9eb1ee",
+  "bytes": 22844,
+  "requestId": "BhcAynDjIXRy2p2fPtoO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b663920a668f2e4a1811eda0ae77c8fd2d4676da38fe6db7ddeafcc682c936aa",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

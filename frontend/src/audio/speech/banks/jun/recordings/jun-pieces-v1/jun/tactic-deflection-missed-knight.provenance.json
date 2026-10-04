@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-knight",
+      "label": "Tactic deflection missed knight",
+      "text": "The stronger move deflected a defending knight from its duty. This move leaves the defense intact."
+    },
+    "takeId": null
+  },
+  "requestHash": "77007cffedce274c3dea6b3d84e17b2b2a2607e65578f80d15192b296854eab1",
+  "recordedAt": "2026-10-04T07:50:14.206Z",
+  "sha256": "5df5c53480a5b1c85c4a02d1f100b113139beef85b3d63866fb3c459fff7dc4a",
+  "bytes": 21165,
+  "requestId": "z9VikGFpn7CYtgUPmotp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "148a00a85d65ccf4294c926c02d2034ba59436fe1e40d6ee469c7777b73c46af",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

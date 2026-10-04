@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played-queen",
+      "label": "Tactic removing defender played queen",
+      "text": "Here's the trick: take the defending queen first. Once it's gone, whatever it was guarding loses its protection."
+    },
+    "takeId": null
+  },
+  "requestHash": "1e0e6eb289a8fc8d352bc4e8ecc8b4f6c04cd2f3c2899c601eba87005297be01",
+  "recordedAt": "2026-10-04T08:03:52.083Z",
+  "sha256": "68bca3969154933b7e739259e025281012ea45cde621a9b6f1223503408b19bf",
+  "bytes": 24994,
+  "requestId": "UgKgqPEx688ZAlLqn2b4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "eefe7fc6e6bbb67e34efc089f5c08f7243d4b6b628a031d8dfd3975a4019dceb",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

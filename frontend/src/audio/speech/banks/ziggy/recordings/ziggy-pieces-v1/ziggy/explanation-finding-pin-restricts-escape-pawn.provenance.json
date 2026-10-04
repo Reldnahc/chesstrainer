@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape-pawn",
+      "label": "Explanation finding pin restricts escape pawn",
+      "text": "The attacked pawn is pinned to its king, so it cannot simply run. Only moves that keep the king shielded are allowed."
+    },
+    "takeId": null
+  },
+  "requestHash": "ec314a815f5d26deba1190a75fbef548802c44cf98381ab68e151f309eef0ccc",
+  "recordedAt": "2026-10-04T08:15:44.556Z",
+  "sha256": "487f636214a3d3b71e9a275cbb261039186a5c01585bc924b80e453e921ee304",
+  "bytes": 24321,
+  "requestId": "QKzdljGHUtcGtnd6iRfX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "100263ec113c85f4c402ceb429bc4d4d1a8bf622d27409a8285793de216096a2",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

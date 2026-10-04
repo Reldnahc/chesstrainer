@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "tactic-skewer-played-knight",
+      "label": "Tactic skewer played knight",
+      "text": "A skewer. The attack lands on the knight in front, and when it steps away, the piece behind it on the same line is exposed. Two targets, arranged in a queue."
+    },
+    "takeId": null
+  },
+  "requestHash": "f09d05c15dc544c5e4a1c921fa1114a05b2dab9e6aa21f2a825bbeadf6effb5b",
+  "recordedAt": "2026-10-04T08:15:21.658Z",
+  "sha256": "8c783b8df5f7699015e101dba69e9f8c2fa5acb99da1248604b14d1de795f907",
+  "bytes": 33939,
+  "requestId": "G3DkdtTJUFbQwetQjHY9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bea9b7a70550b9f2e98770e3ba17df3e6523dfa1172ddc033640fc810f13be49",
+    "bytes": 178930
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

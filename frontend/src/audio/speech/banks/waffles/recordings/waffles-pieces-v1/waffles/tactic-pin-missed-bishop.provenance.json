@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "tactic-pin-missed-bishop",
+      "label": "Tactic pin missed bishop",
+      "text": "Another move could have pinned a bishop to its king. That bishop would have been stuck on the line, unable to leave it without exposing the king. Opportunity declined."
+    },
+    "takeId": null
+  },
+  "requestHash": "f9388e0abd282c1afbb05397ff65853156586e9c3e377a2d99e7167eb078f31c",
+  "recordedAt": "2026-10-04T08:12:09.024Z",
+  "sha256": "2b6dca94999110317ad91a4646cba6d5f2e4de96e9b1fb87def8ed175ff1b49e",
+  "bytes": 33446,
+  "requestId": "VVhZpeI8N7SKvUZHA1Du",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "36491fcbdbd4ec326bf5947c090786ab208f2f39a34b78fc887768a2eb861cc0",
+    "bytes": 171407
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

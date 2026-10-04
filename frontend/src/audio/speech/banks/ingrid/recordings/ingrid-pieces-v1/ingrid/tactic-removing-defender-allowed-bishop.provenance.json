@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-bishop",
+      "label": "Tactic removing defender allowed bishop",
+      "text": "Here's the plain risk: a defending bishop could be captured now, and the piece it protects would be left without that help."
+    },
+    "takeId": null
+  },
+  "requestHash": "90723638563361ef962291be81eca349428de8ab1a83453ea046b93f37047b2b",
+  "recordedAt": "2026-10-04T07:48:19.019Z",
+  "sha256": "201fd39a60c115897d3f3ba2145bd33a51daf55d6917d232b144cd7ff6d6ac32",
+  "bytes": 25005,
+  "requestId": "ZjK3Ks0xpB87gWYcZxAe",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0e1322ccec0f6e7554cba483c6bd8e685e6af3b2af7350b747f19e626f56c0f9",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

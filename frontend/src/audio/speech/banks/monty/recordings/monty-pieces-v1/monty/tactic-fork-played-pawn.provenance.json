@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-fork-played-pawn",
+      "label": "Tactic fork played pawn",
+      "text": "One pawn, two victims. This is a fork: it goes after two targets, and one move may not be enough to save them both."
+    },
+    "takeId": null
+  },
+  "requestHash": "1e3e9ff89d039fcf0312ea127e886ea5b1093e99c6f316b775942e43b1f36618",
+  "recordedAt": "2026-10-04T07:56:00.664Z",
+  "sha256": "724b6be39a89be63b7d666e73e7dfcea5020f2f5bdc72fa9691b7ff7b2c881e5",
+  "bytes": 27902,
+  "requestId": "dVBLlJ7N4XbYJloMXOi1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "feaab66c18c35594019968d7615fc17527e351808f227facff1bed99008a9c1b",
+    "bytes": 147165
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

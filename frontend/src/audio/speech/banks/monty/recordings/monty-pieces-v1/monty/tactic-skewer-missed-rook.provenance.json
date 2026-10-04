@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-skewer-missed-rook",
+      "label": "Tactic skewer missed rook",
+      "text": "A skewer was the better move: the rook in front is hit, it steps away, and the piece behind is left to be taken. So that chance is gone."
+    },
+    "takeId": null
+  },
+  "requestHash": "7260568459c54068f2deba14ede5813b8f8fcc264989b284e4951eebeeaf9c4f",
+  "recordedAt": "2026-10-04T07:56:19.335Z",
+  "sha256": "d644562fc43b30beea64fe7bf91f6a2a9e13ef5f8a70a9122197d8a72f9d4bfe",
+  "bytes": 28121,
+  "requestId": "ghCBM43IF9XLKZ0oz7ko",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e3eae8876a60ab9368d76b86003397727f3cdc7515c60337c2a3d7839f20689b",
+    "bytes": 147165
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

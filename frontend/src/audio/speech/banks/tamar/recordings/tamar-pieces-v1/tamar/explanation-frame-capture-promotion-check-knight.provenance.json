@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-check-knight",
+      "label": "Explanation frame capture promotion check knight",
+      "text": "The pawn takes the knight, becomes a new piece, and that piece is giving check."
+    },
+    "takeId": null
+  },
+  "requestHash": "a6892618624a8f5dc68e83ab8cd6501e97a41d4e29e640358408f4f917e29f31",
+  "recordedAt": "2026-10-04T08:11:31.903Z",
+  "sha256": "364dd4f2db677ad597d2cb9f74d68516447149e81778a052c86e421d6d12868c",
+  "bytes": 16648,
+  "requestId": "8W1FHvky52VOhKet6BlE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8144b2528538e8ec81a7d61670ea9e0978d2f306ec4b7e37e10e9012e4e3fd73",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

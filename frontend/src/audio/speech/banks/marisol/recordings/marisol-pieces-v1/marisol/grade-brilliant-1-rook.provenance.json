@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "grade-brilliant-1-rook",
+      "label": "Grade brilliant 1 rook",
+      "text": "A rook has been left open to capture, at an immediate cost. The position can afford it."
+    },
+    "takeId": null
+  },
+  "requestHash": "3e047b02176bdbd9d6978cf2cb36b1a0cb357b8a95b4ab0f879e4a522abad93b",
+  "recordedAt": "2026-10-04T07:54:33.842Z",
+  "sha256": "270edd38f1e0945bca49713d39263efef2f868c59d5c6f48ffb2f25b483d37b2",
+  "bytes": 18717,
+  "requestId": "ShHF6yWZil5bNoErVLWQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "066892905555a89a3afcc0fdc6d2558b6e312b159bb83a5ff312e29b4d10dd78",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

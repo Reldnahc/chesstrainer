@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "explanation-finding-pin-prevents-capture-rook",
+      "label": "Explanation finding pin prevents capture rook",
+      "text": "The rook cannot make that capture. It is pinned to its king, and leaving the line would expose the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "126ba6f89307defcade3969041016d6ae2bf7ea215eb4c320cc37035a1a1fef6",
+  "recordedAt": "2026-10-04T08:14:36.268Z",
+  "sha256": "3e039ee4150f5617a4eafc072bc1c1dc28d8b1446de7e267ac95e71bfb0f66af",
+  "bytes": 21069,
+  "requestId": "f6HMzYos5c8T2ITTws9M",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7abfdd7909ba8ff7e3218dd88c949980a3a5d12c34a862ae7fa80f910f7901c8",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

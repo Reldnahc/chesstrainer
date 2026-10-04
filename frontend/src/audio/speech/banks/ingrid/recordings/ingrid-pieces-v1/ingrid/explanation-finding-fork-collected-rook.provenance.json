@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "explanation-finding-fork-collected-rook",
+      "label": "Explanation finding fork collected rook",
+      "text": "Watch how the fork pays off: the rook threatens several targets, then picks one of them up. In this example the material ends up ahead overall too."
+    },
+    "takeId": null
+  },
+  "requestHash": "0939be5c649d8f6526f685a3c6f67a9925bbfd57633f614ae958587e1eeb1829",
+  "recordedAt": "2026-10-04T07:49:17.943Z",
+  "sha256": "19fcc903c9c75202cdd11a35bf0cb8f8c1e49587ea9c33eb2de1d99eceb252d0",
+  "bytes": 32835,
+  "requestId": "kO11oyNJPOZFKadB8e6S",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1eff93b100c28613db216c9f0e3a433aee52fe48cec8756c27f7d4904426fe9b",
+    "bytes": 167645
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

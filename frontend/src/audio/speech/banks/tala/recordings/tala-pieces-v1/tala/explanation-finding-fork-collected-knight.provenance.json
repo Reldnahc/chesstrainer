@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-finding-fork-collected-knight",
+      "label": "Explanation finding fork collected knight",
+      "text": "See the knight fork in action: several targets attacked, then one captured. Tally it up, and this example ends with extra material."
+    },
+    "takeId": null
+  },
+  "requestHash": "f6fec40f4d26a4c4a4d36241cceb171d82d7a2dc7bd1186a26f51ad8e6883c23",
+  "recordedAt": "2026-10-04T08:09:25.775Z",
+  "sha256": "89aeed3eab6b21ee03206f135eb971655e628598ce4d92aab2b6ea67163dcb93",
+  "bytes": 29451,
+  "requestId": "1zyamCKJ2lUsSHtQgHdU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "106d59f377a28f8c7d2d45317ef53cbcd0bcac6092e09daa725fb9fcd00f7691",
+    "bytes": 150927
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

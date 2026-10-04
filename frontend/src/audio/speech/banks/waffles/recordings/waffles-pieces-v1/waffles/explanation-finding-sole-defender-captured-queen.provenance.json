@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-queen",
+      "label": "Explanation finding sole defender captured queen",
+      "text": "The lone defending queen is taken out first, and its charge follows."
+    },
+    "takeId": null
+  },
+  "requestHash": "349792f8cfccc9e190744da92aad1e4bd3410de57ee1a1a9bcb2e22a94f4ad1c",
+  "recordedAt": "2026-10-04T08:13:03.891Z",
+  "sha256": "b8798f242c9ef27bcf74228d2cbb62e6e8f32511d62baf3c5a94b0a07e19c52f",
+  "bytes": 15878,
+  "requestId": "Umb2yB5JKPRov20DZYb0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9c7645656846a4cb37b79d59b58f3927ddb88ca2854cf9dd44e390ebfc16abf9",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-check-rook",
+      "label": "Explanation frame capture promotion check rook",
+      "text": "The pawn captures the rook, promotes, and checks with the new piece."
+    },
+    "takeId": null
+  },
+  "requestHash": "faada3fda7dccd482a7e5d2ad3fe7125f24f9a2066529329cab1fe11e93f3c6f",
+  "recordedAt": "2026-10-04T07:51:03.937Z",
+  "sha256": "38cb81e2f61a7626bc55aa645f65bcb7b281b54196c0a163488de236cb485b1b",
+  "bytes": 14519,
+  "requestId": "LfnbAcamWY9xcAk7Xx5P",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e55d378e9fa1ee797dea1d1bfc8f93d232f646e6a96b23505c6d043280dda448",
+    "bytes": 72768
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

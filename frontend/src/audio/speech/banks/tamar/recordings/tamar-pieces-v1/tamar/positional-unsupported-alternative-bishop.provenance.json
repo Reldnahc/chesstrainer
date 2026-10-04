@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-bishop",
+      "label": "Positional unsupported alternative bishop",
+      "text": "Another move would have stripped a bishop of its defenders. On its own that loses nothing, but note it."
+    },
+    "takeId": null
+  },
+  "requestHash": "e086292e2818716d61d20e36197416b758c9556576bbfcf847c6dc85376462de",
+  "recordedAt": "2026-10-04T08:11:00.807Z",
+  "sha256": "22bd644905ce2c2a12328e30f65079a583f13b87559e2347f4204584a2e213e0",
+  "bytes": 21366,
+  "requestId": "G2KztFvGq53UhpYEoobr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "448f84d5b8b789e43c3a6cba3a2d18ee707cbd671270b3ecdad55ff8d3d03520",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

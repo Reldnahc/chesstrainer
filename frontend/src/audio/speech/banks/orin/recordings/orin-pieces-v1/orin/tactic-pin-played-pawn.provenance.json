@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "tactic-pin-played-pawn",
+      "label": "Tactic pin played pawn",
+      "text": "Here is the pin to the king, a pattern worth knowing by heart. The pinned pawn must stay on its line, because leaving it would expose its own king."
+    },
+    "takeId": null
+  },
+  "requestHash": "6a0fe2cd5fc5a311cf2aa22840874b2298a9837ad72d02312fad21954cf3e530",
+  "recordedAt": "2026-10-04T07:58:16.600Z",
+  "sha256": "cecce740e9b18724a37938bb2047732993465c41fd8583de4ae1e9d974d92692",
+  "bytes": 33289,
+  "requestId": "wWzvS1jkVeUE8Oe84GLk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "faa9c3b9d2244452fed595ced064ac1cd4284de9e0fde464afd26d285d265a28",
+    "bytes": 172661
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

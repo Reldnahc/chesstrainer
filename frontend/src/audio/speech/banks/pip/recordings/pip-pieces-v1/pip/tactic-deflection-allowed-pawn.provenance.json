@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-pawn",
+      "label": "Tactic deflection allowed pawn",
+      "text": "This lets the other side drag the pawn away from its job. That's a deflection, and whatever it was guarding could be left open."
+    },
+    "takeId": null
+  },
+  "requestHash": "37afbe7a4026b67dd044a36fb50ef3b9c9ecaa46c210953c0fd9023d49f20c10",
+  "recordedAt": "2026-10-04T08:03:55.289Z",
+  "sha256": "eb80885f9c08cd67216e313f7bdc580a82f34c43b92ffd4ff39327d0dd6d6a08",
+  "bytes": 26680,
+  "requestId": "wHRPkZ3iQ3CaE3Gc7ShK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7db369dbd2ebf1720fe12426af943015cf2b6ba987672444a6f68602c83dfbd9",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

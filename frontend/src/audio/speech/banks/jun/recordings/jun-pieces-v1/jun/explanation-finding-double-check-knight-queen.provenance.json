@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-knight-queen",
+      "label": "Explanation finding double check knight queen",
+      "text": "Double check. The knight and the queen give check at once, so only a king move is legal."
+    },
+    "takeId": null
+  },
+  "requestHash": "723b74fc5bc31fffba9bb832868c6e26a21e024b222369154d35bf606d83adb3",
+  "recordedAt": "2026-10-04T07:51:04.705Z",
+  "sha256": "34b9e5ac034d20649d7dc6c463f92dd7a7608cfb23cd593e48cb67555d47065e",
+  "bytes": 19544,
+  "requestId": "CNUqkZdea1W17DOTIfMj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5e929cfcd74b56b03926fc2e7a2ab258dcd70a47187991a77c75252c57dff1c2",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

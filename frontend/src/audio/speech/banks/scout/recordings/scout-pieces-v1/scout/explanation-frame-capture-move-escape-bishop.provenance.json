@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-escape-bishop",
+      "label": "Explanation frame capture move escape bishop",
+      "text": "Capture, out of check. Taking that bishop ends the check too."
+    },
+    "takeId": null
+  },
+  "requestHash": "70f3250b24aa8ab8f8c5649e414146f7fc1ef7f428b05913c4e9508211cf0a98",
+  "recordedAt": "2026-10-04T08:08:13.501Z",
+  "sha256": "a7fa0a8c5304bb1676ce3d1cd3060514c3936ac68a4680184da7d53e10ecddb3",
+  "bytes": 13430,
+  "requestId": "yAA7eznK5qB5ZxjUcipd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "83324f0c1d72d175dc5adf7abbba8dde7a61b2dd40ae35288f7bbbadae773a0f",
+    "bytes": 69007
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

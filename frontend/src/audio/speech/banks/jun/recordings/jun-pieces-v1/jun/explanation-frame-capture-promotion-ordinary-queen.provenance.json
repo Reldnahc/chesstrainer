@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-ordinary-queen",
+      "label": "Explanation frame capture promotion ordinary queen",
+      "text": "A pawn captures the queen on the last rank and promotes."
+    },
+    "takeId": null
+  },
+  "requestHash": "a292f53a16206eaf327ead682e57ae24bca8fa5f2a47f6399513e84ab895b365",
+  "recordedAt": "2026-10-04T07:51:15.523Z",
+  "sha256": "f33aa1db3da3f860669d1faa96b2bf10e9c12bddb5940adba1b06c7b6d1bfab8",
+  "bytes": 13071,
+  "requestId": "pJq1fUJLL3vwulIvEruN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3fdc34e15324d33f6a2ac812f806fa6f961762add1dd0358cbb5f2bb572769c3",
+    "bytes": 63991
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

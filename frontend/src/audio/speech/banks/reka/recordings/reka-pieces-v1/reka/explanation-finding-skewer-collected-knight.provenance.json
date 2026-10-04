@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-knight",
+      "label": "Explanation finding skewer collected knight",
+      "text": "The knight in front is forced off the line, and the piece it shielded gets gobbled."
+    },
+    "takeId": null
+  },
+  "requestHash": "c067d654e5d034bf085483e19fecbcbd9234df500b4a236c66ef12e35cb2aef9",
+  "recordedAt": "2026-10-04T08:05:52.410Z",
+  "sha256": "24af105e32d53f0ac13436fe06fff1fdf44067c0c82168025be5547818a8f895",
+  "bytes": 15870,
+  "requestId": "9Ghqx2ILX7BTU7Cqa6az",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "63a21eddb6ea8f78455cb5e9cb52922ca8b51ef7b7e3db10dc20ef232170748e",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-knight",
+      "label": "Explanation finding undefended capture gain knight",
+      "text": "A knight with no guard comes off the board, and the side that took it ends this example ahead in material."
+    },
+    "takeId": null
+  },
+  "requestHash": "88e733bc68bf89de4f7435899df65ba0a7c07fd5f57a922a3fbbed4b14b67180",
+  "recordedAt": "2026-10-04T07:55:49.670Z",
+  "sha256": "7ec8cc268879fda58197fc5070a446416529aca66dade0b5f6f457e63d6d2ff0",
+  "bytes": 20849,
+  "requestId": "VbMxyBiUbUeLvoqKhuer",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "34e6664d776d7361c02f591ca9e40a10c3edbec449324295c42095988ab05281",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

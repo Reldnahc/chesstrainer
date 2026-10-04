@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-check-knight",
+      "label": "Explanation frame capture move check knight",
+      "text": "Take the knight, and check! Double duty from one move."
+    },
+    "takeId": null
+  },
+  "requestHash": "28ce2a74679940202192eb26ea7cfe70d2e9f9335b70977ba32ca3d049eab36c",
+  "recordedAt": "2026-10-04T08:09:44.063Z",
+  "sha256": "887496ed623258e68a70c492fb557d1dbf5764755199f30a6149cb6b16be29af",
+  "bytes": 13555,
+  "requestId": "V2Cwa6sOVgb1roq8M26w",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "157db6f51012465df48ee8ba7e1f03c963e3831ca5e1638e67a5a2d2905f4268",
+    "bytes": 67753
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

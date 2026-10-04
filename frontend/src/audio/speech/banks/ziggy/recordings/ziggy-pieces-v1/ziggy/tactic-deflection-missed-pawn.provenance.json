@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-pawn",
+      "label": "Tactic deflection missed pawn",
+      "text": "Another move could have pulled the defending pawn away from its duty. That deflection would have left what it guarded uncovered."
+    },
+    "takeId": null
+  },
+  "requestHash": "06abd63c58d5f3c57ed9b3d2865e486d0f8a0111100196fce22e0b914e23aa46",
+  "recordedAt": "2026-10-04T08:15:45.505Z",
+  "sha256": "04bc0c9b9c0236a5d644b6bba9f7a06de01c8f7d79d18fe95a02bcf11df15b6e",
+  "bytes": 23067,
+  "requestId": "2tcm9jx7a7jWINMom5DL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "669ad1e8432d90c6a6ad07b2ad2bbb30fa19ea038e951ae0f8912449a7941d36",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

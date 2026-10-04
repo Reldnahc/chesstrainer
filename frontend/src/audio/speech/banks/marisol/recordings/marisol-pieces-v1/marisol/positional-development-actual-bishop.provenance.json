@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "positional-development-actual-bishop",
+      "label": "Positional development actual bishop",
+      "text": "A bishop is no longer at home; it has been brought into play."
+    },
+    "takeId": null
+  },
+  "requestHash": "e383c66ed053185be6fd3c4d5ea5c05845f3df831b85a6e25f0d2433ca30ea82",
+  "recordedAt": "2026-10-04T07:53:48.970Z",
+  "sha256": "2ff15db293de69a7088eb4d4f91f3a4243a1080c61fec49732a3601fc8b0aa17",
+  "bytes": 12925,
+  "requestId": "ALV2L3wHjdjYQ0ZVqvom",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0e754574b80661753b313040cbd177d8f0f1e18f374d1cd8bbf6eff8ac40895d",
+    "bytes": 65245
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

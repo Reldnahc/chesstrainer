@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-pawn",
+      "label": "Tactic discovered attack played pawn",
+      "text": "Slingshot: the pawn moves off the line, and the piece hiding behind it opens fire."
+    },
+    "takeId": null
+  },
+  "requestHash": "ff613112b6a52af53b763a5caa34af57899e5c6984f468527ee8599f27aeaaf3",
+  "recordedAt": "2026-10-04T08:05:08.083Z",
+  "sha256": "a9caf7577124814bc20d2ec239c873432fa9ab1ac99721a5254f2a82fa1acdc6",
+  "bytes": 18124,
+  "requestId": "x0efpaVAvMLMu8uMOKWT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "de0b0313db79b58dd52671de94632a4acbd0f5a82f136d97696c9432c36a49d6",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

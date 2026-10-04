@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-check-pawn",
+      "label": "Explanation frame capture move check pawn",
+      "text": "The pawn gets captured, and there's check on top of it."
+    },
+    "takeId": null
+  },
+  "requestHash": "b72aeaededd38ebc247e4e7e510ac6b7310a3192670bd57322321799d20186c9",
+  "recordedAt": "2026-10-04T07:55:49.425Z",
+  "sha256": "ee71d8c35f9f888a6e8847aafc077b1ae54935d9e0b29341798177e96ce662f6",
+  "bytes": 11617,
+  "requestId": "hg8LSmLiMJlmD6bvtUnp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "533b19ebd0b62901975a1e95df870aa2f945fb9245b48938578f65a71af6c0a6",
+    "bytes": 56050
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

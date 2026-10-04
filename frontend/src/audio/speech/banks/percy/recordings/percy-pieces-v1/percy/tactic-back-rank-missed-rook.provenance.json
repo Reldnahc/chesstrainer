@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-back-rank-missed-rook",
+      "label": "Tactic back rank missed rook",
+      "text": "A back-rank mate idea was on for the rook, with the enemy king trapped by its own pieces. This move lets it get away. Go back and find it."
+    },
+    "takeId": null
+  },
+  "requestHash": "6a92e236e158040af01671121c1b12fe3a2aab0ea28967b78f0517d0799e9cde",
+  "recordedAt": "2026-10-04T08:00:46.445Z",
+  "sha256": "30ecc31a6fdf61db56aace15ff1a92eaa3692279075f26df6682f6bb15b743cc",
+  "bytes": 27470,
+  "requestId": "4n37w7PWeXlo3nFYfdAY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "26f574bafa8ccd99500a248996e7ea7cf2c63e2e9ed71d5334b6e1b1d74111af",
+    "bytes": 141732
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

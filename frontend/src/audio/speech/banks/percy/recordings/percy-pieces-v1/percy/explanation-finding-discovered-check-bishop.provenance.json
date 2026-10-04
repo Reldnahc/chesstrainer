@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check-bishop",
+      "label": "Explanation finding discovered check bishop",
+      "text": "One piece moves aside, and the bishop it was blocking delivers check."
+    },
+    "takeId": null
+  },
+  "requestHash": "918474fc7bd043271efac5e4edcc029acb9e0cb95f9df29289fa8212c70654c9",
+  "recordedAt": "2026-10-04T08:01:04.864Z",
+  "sha256": "8cc0b196537e95df5339aa372ddc2e111138796947459125f9d919789c3cafdb",
+  "bytes": 14426,
+  "requestId": "zwSEWBlwhFdzBDTnvmkm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3f5ff3e642f6d09618fb25afb4cf6550d2d1939c39406a94169ea7ca33cf5abc",
+    "bytes": 70261
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

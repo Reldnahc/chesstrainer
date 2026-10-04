@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-bishop",
+      "label": "Explanation finding relative pin released bishop",
+      "text": "A relative pin held the attacking bishop until the opponent's previous move released it. Left where it stood, the target falls in the line shown."
+    },
+    "takeId": null
+  },
+  "requestHash": "c664ece0562620e9edf21d1c1f9dee7c448eb2e1ffcb6087393ad09d23ee9cb4",
+  "recordedAt": "2026-10-04T07:59:02.101Z",
+  "sha256": "5a4981aadfc8e97975b4c91827b18f2cda30d8197dc3891379884e9b4c66cf81",
+  "bytes": 31254,
+  "requestId": "97vSP2po0KYidFINUGCH",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9cd3d6e757306d174b082e3122ec28d3e24e6323695019a6c0265e8fbc729963",
+    "bytes": 160958
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

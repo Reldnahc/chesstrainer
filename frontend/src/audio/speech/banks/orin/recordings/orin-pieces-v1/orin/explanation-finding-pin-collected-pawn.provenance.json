@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-pawn",
+      "label": "Explanation finding pin collected pawn",
+      "text": "Watch what becomes of the pinned pawn. Bound to its line by the king behind it, it is captured before these moves are done."
+    },
+    "takeId": null
+  },
+  "requestHash": "862e937e39197f2b64a950cd1d4b1d984bf17c323a96e9217576de23917be897",
+  "recordedAt": "2026-10-04T07:58:53.975Z",
+  "sha256": "49e107f8bd18144142160be0231e900492121690d9d5d47a783a815c6ed68c87",
+  "bytes": 26353,
+  "requestId": "NmuAROM5sBvNaVs5BUdZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8d05582f2e0987bd8a165536a225c0a509d42c7a68792f4899b2e1270558f34c",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

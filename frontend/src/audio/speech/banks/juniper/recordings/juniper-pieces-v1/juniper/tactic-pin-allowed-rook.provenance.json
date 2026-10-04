@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "tactic-pin-allowed-rook",
+      "label": "Tactic pin allowed rook",
+      "text": "Something tightens here. The other side can now pin a rook to its own king, and then it cannot step off that line."
+    },
+    "takeId": null
+  },
+  "requestHash": "f76d13a4f4ab1b5264930cefa69ff8322d70a0248a8a94ecf8c43c9fb8365aa7",
+  "recordedAt": "2026-10-04T07:51:21.554Z",
+  "sha256": "75f0a19158ba087123b192fd141380ceac4fb1ca68cf6b80c5005797efdd6c06",
+  "bytes": 25089,
+  "requestId": "EZFJfj9OouQ10BB8px35",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "14406aac92271032d856ef8d6af09a95c27d99e9143e89ac312965f32450f988",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed-bishop",
+      "label": "Tactic skewer allowed bishop",
+      "text": "This opens up a skewer for the other side. When the bishop in front moves, whatever stands behind it on that line could be exposed."
+    },
+    "takeId": null
+  },
+  "requestHash": "272fd835a1721b182818c90b6b9ca382cfec5dbe56d7e4edabdc606f3caa4fdf",
+  "recordedAt": "2026-10-04T08:00:14.171Z",
+  "sha256": "3bb2d830a926aa2cc596a4524a6fd4fc064306ff7335588e5a879cd6e7c38a0c",
+  "bytes": 25303,
+  "requestId": "Gyba4gNymx0qDTS1EaZ1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4db270e3dc88a8e1b3961ef2e05e42ca50f6409fba483313c159549732c51789",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

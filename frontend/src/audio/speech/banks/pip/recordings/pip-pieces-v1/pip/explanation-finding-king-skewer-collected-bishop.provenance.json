@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "explanation-finding-king-skewer-collected-bishop",
+      "label": "Explanation finding king skewer collected bishop",
+      "text": "The king has to get out of check, so it steps off the line. Then the same attacker takes the bishop behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "6574ba34f829b3adf6a2aa12a1ca9526c5b68d70e8bb96de4a9f306bcc638ab1",
+  "recordedAt": "2026-10-04T08:04:25.877Z",
+  "sha256": "d2781dd521da2b6bf727ec597b72d308512e1d1f537647b878266b9d70e5b6fa",
+  "bytes": 23774,
+  "requestId": "UGMoJtAFaShsrMHMcEYy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "01f0f291594e2bae409c0c53744935fd4f2e81743117a806e90074d39185f1ec",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

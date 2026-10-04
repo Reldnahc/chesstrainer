@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-pawn",
+      "label": "Explanation finding pin collected pawn",
+      "text": "The pinned pawn cannot leave the line its king stands behind, and it is captured before the sequence ends."
+    },
+    "takeId": null
+  },
+  "requestHash": "03f0ff8b6c9ecd8540bd311313c28a59a1f0e488be64833ee3ddef492422cad7",
+  "recordedAt": "2026-10-04T07:50:38.635Z",
+  "sha256": "a337af65d08209b72d13ebbd0d4c44c85bd5738375163fe6c8338d84c70f10d1",
+  "bytes": 21589,
+  "requestId": "DPa8QkLb5annf2XFV1YW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ab75d2986d7674b6768fcac281e01e36d9fe0316c74de2cabf1626586ab2d072",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

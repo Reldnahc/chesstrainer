@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed-queen",
+      "label": "Tactic removing defender missed queen",
+      "text": "A different move could have captured a defending queen. What it guarded would have stood without that protection."
+    },
+    "takeId": null
+  },
+  "requestHash": "778574290423d796df3f4556f4d4d633ccbc228f79b9f9c496dffe3348ed20c4",
+  "recordedAt": "2026-10-04T08:14:04.809Z",
+  "sha256": "bfaa35ef2a6ddfb9ba45ad00ea72c565a1ac6647bfa5f61d9013f21bcd514913",
+  "bytes": 20915,
+  "requestId": "gOabR9CkoYy5pLBMTFsA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d61b89a441818039127ad0769d75a55a4a2cfba6e414f16adf378f75589885e9",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

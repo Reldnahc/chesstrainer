@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-check-knight",
+      "label": "Explanation frame capture move check knight",
+      "text": "After the capture of the knight, the king is in check."
+    },
+    "takeId": null
+  },
+  "requestHash": "dadeba56bbb09e74754030acc06d53e05bdb55b073d1e2dc5f73ea0f5452d9f3",
+  "recordedAt": "2026-10-04T07:54:11.364Z",
+  "sha256": "b979cd83b7ab7e68c7ecce69ab4cd1a681f3b513c62ef63da7c8d372e3aee32a",
+  "bytes": 11356,
+  "requestId": "2rmjZOJkk0osJypMX22y",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3235b860361bd9a2eab5631e8598d758d20d07e88af4fea22d548143f5c780a3",
+    "bytes": 56050
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

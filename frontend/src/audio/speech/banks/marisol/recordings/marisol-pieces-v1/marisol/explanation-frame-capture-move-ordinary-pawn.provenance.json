@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary-pawn",
+      "label": "Explanation frame capture move ordinary pawn",
+      "text": "A capture. There is one pawn fewer on the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "8ec8f928f3cf89e6c0cec19b53f4e73a8cdf048718b532c52cf3987ea893ae21",
+  "recordedAt": "2026-10-04T07:54:29.014Z",
+  "sha256": "f94123caa746aa67f3f9fc4440597e8677e99d54fb49d2dac2942f9617dfd79b",
+  "bytes": 11770,
+  "requestId": "tPtW1i64rJej6iTiErWT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "42a984a28b32e017ef40cf7a93169af11ee5a370c9e5dec358694ef2f13c7c2a",
+    "bytes": 59812
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

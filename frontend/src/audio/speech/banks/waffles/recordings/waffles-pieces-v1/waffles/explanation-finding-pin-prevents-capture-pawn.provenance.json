@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "explanation-finding-pin-prevents-capture-pawn",
+      "label": "Explanation finding pin prevents capture pawn",
+      "text": "That pawn can't make that capture. The pin to its king holds it: leave the line, and the king is exposed."
+    },
+    "takeId": null
+  },
+  "requestHash": "29aeedc8d80254920b0ff7fb8c00a9a900be532c170c9666de7168720c13cbb0",
+  "recordedAt": "2026-10-04T08:13:02.066Z",
+  "sha256": "c885bb7f9ddab0e24b475bcaed78a9f16fd9b5e107f005d3fd1fe2793717c079",
+  "bytes": 23887,
+  "requestId": "rgJ8P4SNBnP5q8cRr1YX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "79303e745d2ecb958eced24ef6fec97abf96be1ceb1258822beb5e4e3c3378d4",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

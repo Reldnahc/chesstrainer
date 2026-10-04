@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "tactic-deflection-played-rook",
+      "label": "Tactic deflection played rook",
+      "text": "Deflection rests on a simple truth: a defender cannot guard a post it has been lured away from. This move draws the rook off, and its duty is left unattended."
+    },
+    "takeId": null
+  },
+  "requestHash": "5126e0fb1c64a8414f845984a3d60cc602a4581b568c4ce18cec9bb6824d97d7",
+  "recordedAt": "2026-10-04T07:58:39.607Z",
+  "sha256": "7b6d2e1ac6fefad90cc1a1b438c7e32711dfe91bb6d6a373cc79be9a79ac7aba",
+  "bytes": 35866,
+  "requestId": "RMhitHzR33f1Xqnq3FEe",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ccdfd7d444fb80dcd53112583c01fe0aa4170e9ce92c7f1de33aff8054ff4da1",
+    "bytes": 188125
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

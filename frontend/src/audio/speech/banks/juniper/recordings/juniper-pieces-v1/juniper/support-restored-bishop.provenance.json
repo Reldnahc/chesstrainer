@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "support-restored-bishop",
+      "label": "Support restored bishop",
+      "text": "Earlier a bishop was left on its own; now someone is covering it again. Look at how its protection came back."
+    },
+    "takeId": null
+  },
+  "requestHash": "41d0efc9e8bf2390ede50c00d74514a6cc732a1befae87e5e809e924293ea249",
+  "recordedAt": "2026-10-04T07:52:08.966Z",
+  "sha256": "dcbe4fe8ca1f78c87e4d0ef1b6dce44eaa47ac4b1353cf8804cfdcde77258d83",
+  "bytes": 23909,
+  "requestId": "1CSwUcFQh8YvnwXOS2vn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2a16e58b438a0870c0ff3b7e4630cbc60213259c62cca5c0daeaf4333a55c3b4",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

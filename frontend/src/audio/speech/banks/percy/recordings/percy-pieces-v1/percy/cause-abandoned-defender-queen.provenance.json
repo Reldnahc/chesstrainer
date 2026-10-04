@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "cause-abandoned-defender-queen",
+      "label": "Cause abandoned defender queen",
+      "text": "Hold on, that defender was busy! This move pulls the only real bodyguard away from a queen, and the other side can grab that queen. Before a defender moves, ask who it's protecting."
+    },
+    "takeId": null
+  },
+  "requestHash": "048ed50d6f8421f0559a6e39fd01dd9adf7e3a87d86ffe58dcddb2c03a9c975f",
+  "recordedAt": "2026-10-04T08:00:58.841Z",
+  "sha256": "cc1e0bf6dff00f53c435cafae0206ce87c46f2b22e804e0b69e0b3a4c32d1aa4",
+  "bytes": 37630,
+  "requestId": "I2csQnGGsUjSTX5XR1ex",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "02d3abf0865347ccb2313f6c7a9ab46625136a9cbb5c79b3d7fd34920e487c34",
+    "bytes": 190633
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

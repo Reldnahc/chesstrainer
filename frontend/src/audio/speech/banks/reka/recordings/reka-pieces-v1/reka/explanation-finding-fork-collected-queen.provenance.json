@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "explanation-finding-fork-collected-queen",
+      "label": "Explanation finding fork collected queen",
+      "text": "The queen lands, forks several targets, and one of them gets collected. When the dust settles, that side is up material."
+    },
+    "takeId": null
+  },
+  "requestHash": "9ad1b96fc14e86c1b499b67380269d53faca695e73df0ce1f224f95e1fd91c58",
+  "recordedAt": "2026-10-04T08:05:59.484Z",
+  "sha256": "bd248edf50dac9c27c83766055b6c64f38027f211a0da066f2254f2e4a7186e5",
+  "bytes": 26779,
+  "requestId": "dXrde24PIZ7j5jGuVm4S",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2cce2794fd92d0ec99d2790e1c4edcc4b40a6d86d89680e6273beddb3f157f15",
+    "bytes": 136716
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

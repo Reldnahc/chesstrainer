@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-pawn",
+      "label": "Tactic deflection allowed pawn",
+      "text": "This gives the other side a deflection. They can pull the pawn off what it guards, so look at what that pawn is covering right now."
+    },
+    "takeId": null
+  },
+  "requestHash": "8326d078a84a91111baf44bedb91bdc901bfb4384c0a76d2c71de0a260236021",
+  "recordedAt": "2026-10-04T08:00:33.686Z",
+  "sha256": "ea2755a140d05dd2e6f343d9a312e9711326b3fbe07b9c19a0892e1ec2467fd9",
+  "bytes": 23489,
+  "requestId": "TbySMMmeWKcHN2KzAkwU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "153ab88fdc144ee3dd431a3c6d095582d3027198b4c1e224f6b514bb95525178",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

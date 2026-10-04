@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "explanation-finding-double-attack-collected-queen",
+      "label": "Explanation finding double attack collected queen",
+      "text": "Two targets, two attackers: the moving piece threatens one, and the line it opened threatens the other. The queen behind collects."
+    },
+    "takeId": null
+  },
+  "requestHash": "d0999e2a6a905d9f38a232ae2e81df92433ef2ed5cc2c73115da8877bf1430cb",
+  "recordedAt": "2026-10-04T07:54:13.997Z",
+  "sha256": "e8348eb286a2ebdd980935a9c7b813396e2f9dc8841696faf7ce8f4f5a56c839",
+  "bytes": 27640,
+  "requestId": "RyR8iJh341qJz5DBsilI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fc44a92aa5ee4487e84f116ea38583e9a4cd5548432cd11efd502b4f94f11516",
+    "bytes": 147165
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

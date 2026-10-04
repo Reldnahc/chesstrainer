@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "tactic-deflection-played-knight",
+      "label": "Tactic deflection played knight",
+      "text": "Deflection rests on a simple truth: a defender cannot guard a post it has been lured away from. This move draws the knight off, and its duty is left unattended."
+    },
+    "takeId": null
+  },
+  "requestHash": "733e2e99e623dabbd7d65bb88de3a00a9c6c9adbdd290129d61b59ebae2987eb",
+  "recordedAt": "2026-10-04T07:58:33.921Z",
+  "sha256": "fc359a21132504cee95eb6ca932f019e4351062a025beb3419f9e97279b8ee40",
+  "bytes": 36064,
+  "requestId": "M2F9oS0etLKRaHYFAh6q",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "62ef2c721a5ef54b7270e393cab51e7f70a2680dcb4d9596f379d4c9189bd731",
+    "bytes": 188125
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

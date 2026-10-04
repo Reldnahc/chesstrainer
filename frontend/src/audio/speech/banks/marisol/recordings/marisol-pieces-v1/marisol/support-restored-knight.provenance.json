@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "support-restored-knight",
+      "label": "Support restored knight",
+      "text": "A knight lost its protection earlier on. That protection has returned."
+    },
+    "takeId": null
+  },
+  "requestHash": "d86d6d7aa81dbd4590d470dfe0512bffabe0e635796b1bdec7ac7dcd0bcd97d5",
+  "recordedAt": "2026-10-04T07:53:48.254Z",
+  "sha256": "f857e6a71a8b09b5aa3f6e0e95368f9d45c3fa2fd6312a40361d306e8da47f9a",
+  "bytes": 15900,
+  "requestId": "GasnGJEJ1LT1xMzbQTNa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9a174754c79b3dd105bde1b5b9bb16ccbd3d61b2aa67d91435c6021f930dfe9d",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

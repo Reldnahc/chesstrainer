@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed-knight",
+      "label": "Tactic skewer allowed knight",
+      "text": "Zoom in on that line: a knight with another piece stacked behind it, and now the other side can skewer them. Chase the knight, and the piece behind it hangs."
+    },
+    "takeId": null
+  },
+  "requestHash": "263346d6668ec8851e581b90ee4be4f7ebd9f395c180b4f4f2cf02bd35f3d03f",
+  "recordedAt": "2026-10-04T08:08:52.874Z",
+  "sha256": "d967d01ec578a03bccafa1b97208c0b310dffd9c8e40400c536b8e14126bb864",
+  "bytes": 30632,
+  "requestId": "IvNWejvf8xKqDymlCGVD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bbe1498d5949f34949b39553fd7da4325aa06041a4442344f1bf6ee636e213b5",
+    "bytes": 157196
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

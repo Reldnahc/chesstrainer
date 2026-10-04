@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-capture-bishop",
+      "label": "Explanation finding discovered capture bishop",
+      "text": "When the blocker moves out of the way, the bishop behind it captures along the opened line."
+    },
+    "takeId": null
+  },
+  "requestHash": "6139bcb20519589f4fed8f1a9c283ed6d9142df09152083c904b0621acf22341",
+  "recordedAt": "2026-10-04T07:49:28.133Z",
+  "sha256": "461728d97766a988dc80bd5c88124ccaaa9383d0a62ecf6dc5b117813b458588",
+  "bytes": 18338,
+  "requestId": "RlupZvD0ZNaA68cAlXRD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4ae7481777f09bcfda7c357e539657e03e59fabdf79a0a9f81a8a63d8ce4c9d6",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

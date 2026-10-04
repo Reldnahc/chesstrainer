@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-finding-double-attack-collected-queen",
+      "label": "Explanation finding double attack collected queen",
+      "text": "The moving piece makes one attack and uncovers a second along the line it leaves. In the example, the queen on that line completes the capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "33112844430d9527f40b2ec56d170b4acab9b3405ba70825be3660f41ddcd73d",
+  "recordedAt": "2026-10-04T07:59:31.776Z",
+  "sha256": "d42466cb38381595c3c2a2ff56c755a6174a8dc0a4d2256c20299c85b75e5714",
+  "bytes": 30731,
+  "requestId": "b4l3ygHpt29DVDKVZaUT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a899623bd04da7d36230caf5d179068dc89c5c4cfe93ee13ea2ae92b678982d8",
+    "bytes": 158450
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

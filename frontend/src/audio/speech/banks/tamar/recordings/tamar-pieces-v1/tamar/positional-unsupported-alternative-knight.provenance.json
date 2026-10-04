@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-knight",
+      "label": "Positional unsupported alternative knight",
+      "text": "Another move would have stripped a knight of its defenders. On its own that loses nothing, but note it."
+    },
+    "takeId": null
+  },
+  "requestHash": "8a2ebaa14e30b7cf739981c209ef8714633e50419a73c3746bd9127076241161",
+  "recordedAt": "2026-10-04T08:10:59.201Z",
+  "sha256": "863275d363c28fe4a157bdc247ff6c6222158ffd258c481d0426763cdfbbfed5",
+  "bytes": 21135,
+  "requestId": "CaDy3qtdjDHLgFKVJSio",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b66577db78f2eb7ab38c657a79e2ff6bf550070d38b27385475ad416d31c7899",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-king",
+      "label": "Tactic deflection allowed king",
+      "text": "Deflection risk created. The king can now be drawn off its defensive duty; identify what it currently covers."
+    },
+    "takeId": null
+  },
+  "requestHash": "fe0fd123a9e1781c83dd3329c78a509cecb6156be651dba74678fd217f7a80ae",
+  "recordedAt": "2026-10-04T07:50:10.614Z",
+  "sha256": "d47597e11e6b43257eb5674f73e875811f7a1796550bc410c531d929c50a8802",
+  "bytes": 24126,
+  "requestId": "16MXnB3QWtdn2NFLp0ci",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "06dc542c24838ad278f4aae96560602e7fe33642d90cb6eedc13a14b59eab686",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

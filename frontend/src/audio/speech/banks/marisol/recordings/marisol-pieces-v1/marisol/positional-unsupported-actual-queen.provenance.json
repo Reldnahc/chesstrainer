@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-queen",
+      "label": "Positional unsupported actual queen",
+      "text": "The queen has lost its last defender. The weakness is real; it does not on its own show the queen can be won."
+    },
+    "takeId": null
+  },
+  "requestHash": "fb3b3be7575bd5ee532a1beb95b236d3cb48dab9f2369ed11091db9d6ba7681d",
+  "recordedAt": "2026-10-04T07:53:38.653Z",
+  "sha256": "20aafe8ed73360b97c1d8b7f580058c0a2a3b70a2c33a072f7a787a56793db9c",
+  "bytes": 24320,
+  "requestId": "gTrLnzYQQfYGyTUYsgJr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d2b464c141b334b4c92020f64900acee21e82b46124008def535611c55d1e26a",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

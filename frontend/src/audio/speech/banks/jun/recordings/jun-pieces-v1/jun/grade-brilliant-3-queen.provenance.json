@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "grade-brilliant-3-queen",
+      "label": "Grade brilliant 3 queen",
+      "text": "Immediate cost of a queen, sound justification. Brilliant."
+    },
+    "takeId": null
+  },
+  "requestHash": "c9f7d8da79109e768d7ead2f993d2694b00b729817e8cf0144b0020e00442a53",
+  "recordedAt": "2026-10-04T07:51:06.799Z",
+  "sha256": "fe6466de83fe6d96251f12a85c3dc074dd620f60469a247b9e490c815aa5bd59",
+  "bytes": 14335,
+  "requestId": "NJAGJsAy2J8OTeeRgA5o",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "62b6d433bb9752e8ce880cc9c77a8a2cde8fcc318cd544c7149d745d7b9ef2e4",
+    "bytes": 74022
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

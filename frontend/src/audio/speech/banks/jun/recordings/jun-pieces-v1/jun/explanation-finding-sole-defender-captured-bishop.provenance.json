@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-bishop",
+      "label": "Explanation finding sole defender captured bishop",
+      "text": "Sequence: capture the only defender, the bishop, then take what it was protecting."
+    },
+    "takeId": null
+  },
+  "requestHash": "13288ec69df1e50f95c89a4d739b02b11f818846fc559f32a5af8e71d0b9bdf0",
+  "recordedAt": "2026-10-04T07:50:50.016Z",
+  "sha256": "06dcf6d9a81a6c402cbfc6481c5a4ad27a783e55f3c0f9f9c38ecc4201bf43b9",
+  "bytes": 17727,
+  "requestId": "LFzJby9YQxFKDR3yDwZ9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6727e7bcc7e492ab7a6faed6db8d82e69b327b1610957e92fdbd90bf3d9e2198",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

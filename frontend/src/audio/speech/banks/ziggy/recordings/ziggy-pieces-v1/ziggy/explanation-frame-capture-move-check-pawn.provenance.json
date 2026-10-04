@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-check-pawn",
+      "label": "Explanation frame capture move check pawn",
+      "text": "Capturing the pawn also gives check. Two things accomplished by one move."
+    },
+    "takeId": null
+  },
+  "requestHash": "14f5d3c938a1fc11744205f314c4201860639b10fb4ab2006b155b4333230538",
+  "recordedAt": "2026-10-04T08:16:22.749Z",
+  "sha256": "d7511e7b582634951276e892d9b758b62a47675198ffa3908f8156ab23e2bafd",
+  "bytes": 17388,
+  "requestId": "Sha4e11DOj1VlpAVfGLJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e3b7605fcae3cd3170ea5d393fffe981402c1f3a75de5f330c64f15933cd4d31",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

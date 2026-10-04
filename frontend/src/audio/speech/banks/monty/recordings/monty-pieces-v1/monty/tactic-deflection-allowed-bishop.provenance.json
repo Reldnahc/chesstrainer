@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-bishop",
+      "label": "Tactic deflection allowed bishop",
+      "text": "One defending bishop carries a lot here, and the other side can now drag it away and leave that work undone. Deflection is the name for that."
+    },
+    "takeId": null
+  },
+  "requestHash": "9970c8f8d82cc8a8f6f4c1d828358d13fdb39a5caa1a971225b28a335a19c106",
+  "recordedAt": "2026-10-04T07:56:58.115Z",
+  "sha256": "ce8b8dbde1ed31d0c11729dcba0c3a02e6d2e93df4274005d73cd0b9da294b2d",
+  "bytes": 27454,
+  "requestId": "f52oSnzGqeAxazsVTMtE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a9e0465e3655e92329ca526bc2ccace164603ff2b5be2196e0d818f990a91c72",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

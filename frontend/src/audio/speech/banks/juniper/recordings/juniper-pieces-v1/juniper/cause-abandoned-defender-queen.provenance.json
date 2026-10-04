@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "cause-abandoned-defender-queen",
+      "label": "Cause abandoned defender queen",
+      "text": "I watched the defender walk away. It was the only real one, and the queen it guarded is open to capture now."
+    },
+    "takeId": null
+  },
+  "requestHash": "6d893ce2f9b84c999375ce109adb272358043a4734e3701610420f86ecb631a5",
+  "recordedAt": "2026-10-04T07:52:29.496Z",
+  "sha256": "733ae6e5fa718fe3877ff823abc719ebc072f374c0718565ffbbf1a5f4c41daa",
+  "bytes": 22866,
+  "requestId": "yU9JA1t2pA0TY8ZPdq9v",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1478a8fa3b7ff35d97d0f34cfb719a47e0967940dd883202b62303f83b9660f1",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

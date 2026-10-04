@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "cause-avoiding-bad-trades-queen",
+      "label": "Cause avoiding bad trades queen",
+      "text": "This capture by the queen starts a bad trade. The recapture takes the queen, and it is worth more than what it grabbed. Count a trade all the way to its last capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "a99152c19a54d64afb4cb5c3946a48c85297d34dee665d303158e8bf03e3e51f",
+  "recordedAt": "2026-10-04T07:57:04.019Z",
+  "sha256": "f61318833a7b4ad3372b71bb63ead400998bd691c4058368d567f3d8d2ce93fc",
+  "bytes": 33814,
+  "requestId": "niThH2zVLzoGTIxT3Dw9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "44c275858cb811707ca8640db35701d400488b1fe63f987f213406dc64675fcd",
+    "bytes": 175168
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

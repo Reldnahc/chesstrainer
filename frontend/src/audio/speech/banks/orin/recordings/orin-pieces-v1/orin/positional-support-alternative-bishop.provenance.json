@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "positional-support-alternative-bishop",
+      "label": "Positional support alternative bishop",
+      "text": "Another move would have given an unguarded bishop a defender, so it would no longer stand alone."
+    },
+    "takeId": null
+  },
+  "requestHash": "f341a0930493707849c55c14606e0157925726c924d13fb95baac4cf02226f6f",
+  "recordedAt": "2026-10-04T07:59:10.021Z",
+  "sha256": "b7e8769f549ff5775460aaaff498dd9cbd670b6008ef20df2bec277bc524526c",
+  "bytes": 20215,
+  "requestId": "o4eTXTl8fj2zriBx8xML",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7f6780beebe6f5b1f88cadcfba285cbe1729f52b20e4b22d35f870baa9899e1d",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

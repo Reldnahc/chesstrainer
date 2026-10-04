@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "grade-brilliant-4-rook",
+      "label": "Grade brilliant 4 rook",
+      "text": "Brilliant. To my eyes, a strange gift: a rook offered at a real cost, with the checked line holding firm."
+    },
+    "takeId": null
+  },
+  "requestHash": "bcc8151abf61bcfd8fcc756f9196748dca95cf6f459d667a92bbaa9e452ec69e",
+  "recordedAt": "2026-10-04T08:16:35.680Z",
+  "sha256": "36124fa33c5307f0a22368ef52be6c0338ea25345dfd61933a124cf8c5288a31",
+  "bytes": 25776,
+  "requestId": "YEGeMlam6QpPDNWo4pt0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "953ee5b00d42649a1b22a64b2c072ab0e484cf28b51592bfd5650c2f64c226be",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

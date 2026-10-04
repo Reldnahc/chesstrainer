@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "positional-development-actual-bishop",
+      "label": "Positional development actual bishop",
+      "text": "Bottom line: a bishop is out of its starting spot and ready to work."
+    },
+    "takeId": null
+  },
+  "requestHash": "5806fac19455ca87a661c1ee24dbf45a5e6d726c39762162c7e97d5fc5f43094",
+  "recordedAt": "2026-10-04T07:57:06.747Z",
+  "sha256": "7e68a485618490469b9574ace87ecc131d8dc704c8c07a1001305403f94ea9c1",
+  "bytes": 16030,
+  "requestId": "tPxEt5ZxVwmphFbzuKgs",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3ab529676d3fec555adec1f19d6ed818c685124823e8113e5af3528c6a65b4fc",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

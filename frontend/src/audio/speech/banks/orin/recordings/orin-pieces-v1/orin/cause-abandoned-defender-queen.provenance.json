@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "cause-abandoned-defender-queen",
+      "label": "Cause abandoned defender queen",
+      "text": "A defender has a duty before it has a destination. Here the only real defender of the queen walks away, and the other side can now capture the queen left unguarded."
+    },
+    "takeId": null
+  },
+  "requestHash": "7699eb32c8fff32541d4833c44d118a80b9b95da41708b7794f49d81a4c68e17",
+  "recordedAt": "2026-10-04T07:59:13.215Z",
+  "sha256": "d44be396f034abc6d6f8ccc472112c92fc32cfc2b1797a60f5d932704f6ebe95",
+  "bytes": 36229,
+  "requestId": "P96HQn532amUlbpdMLSv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5ae99786452d341823e47c0807fed29ff4f0a7210e01aa9d11261cbf67e1fb06",
+    "bytes": 186871
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

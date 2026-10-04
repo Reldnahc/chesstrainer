@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-knight-queen",
+      "label": "Explanation finding double check knight queen",
+      "text": "Double check: the knight and the queen attack the king at the same instant. Remarkable, the efficiency of it."
+    },
+    "takeId": null
+  },
+  "requestHash": "dc5999306baddb4d7cf79a42e0be06db0885a275411391c0e49baf75a72a440e",
+  "recordedAt": "2026-10-04T08:16:37.303Z",
+  "sha256": "f784f813694cb70161cea65cfef657ca75cf5330f49ea55acfd8c755c0b98b5c",
+  "bytes": 23822,
+  "requestId": "B0apw4j0a3xXrN7k12HY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f3bc0f182b5b7681f453dc6db82128703f65414e2c5aeb96921c2ccde6a61840",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-queen",
+      "label": "Explanation finding pin collected queen",
+      "text": "Keep watching the pinned queen. It can't leave its line without exposing its king, and by the end of these moves, it's captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "238ec216f40413cf50d74b60bf8b64939f17ae91df080471c4658b2194b7d246",
+  "recordedAt": "2026-10-04T08:04:13.960Z",
+  "sha256": "c182723165bf15a0f0079e75527390b8b1ab22c5b95990e67e84b69ffa7e064e",
+  "bytes": 26252,
+  "requestId": "xELRksAytzh3zzXiqre8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "aa787715748fbf9a115422b6f09a83a6bef127d7315cf61eb7a27255890e3aaa",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

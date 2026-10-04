@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed-bishop",
+      "label": "Tactic removing defender missed bishop",
+      "text": "The better move went after the defending bishop. Without it, the piece it guarded would have stood with no help. As played, that bishop is still standing guard."
+    },
+    "takeId": null
+  },
+  "requestHash": "218d1a1a9bcf45c09ff98ba4895ee1f6dc328ae2b5e6b8c8691df6e10a7e3b9b",
+  "recordedAt": "2026-10-04T07:56:35.692Z",
+  "sha256": "874818c895b774fa4b2f134e456cbbafdc7b6ae1b511197cee025a3165da28b1",
+  "bytes": 31525,
+  "requestId": "kYnAPv3QMqQJqzbxaak3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c4fd0db221a291297d0401e069a444dd7e7aae130ad14f68222e80b687dbfa80",
+    "bytes": 163466
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

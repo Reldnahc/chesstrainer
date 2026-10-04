@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-rook",
+      "label": "Explanation finding undefended capture gain rook",
+      "text": "No defender covers the rook, so it falls without a recapture, and the line finishes ahead in material."
+    },
+    "takeId": null
+  },
+  "requestHash": "7b358a584eebc7b77611bb05158e79ace48418c6e03594e4953e999c3df9c69b",
+  "recordedAt": "2026-10-04T08:11:33.169Z",
+  "sha256": "7a3aaa4d83552fa17d384c2058b8e5dbf6f2d572f1b65b4599dfb7b1902e88c3",
+  "bytes": 21499,
+  "requestId": "nN04fb3Tie8Wv0Gg4N6Z",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "054dd8d0df2b31fcaa652134a25237153eaa29980a5e904827ac2ffc104708fc",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

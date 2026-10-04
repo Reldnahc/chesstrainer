@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-queen",
+      "label": "Positional unsupported actual queen",
+      "text": "Plain fact: this queen has lost its guard. Weak spot, yes; lost queen, no."
+    },
+    "takeId": null
+  },
+  "requestHash": "6a84317011909cf1a9b74124de3194ea01f8e6be82bf27bc5c422e059fa28093",
+  "recordedAt": "2026-10-04T07:56:55.085Z",
+  "sha256": "c776a1e53dec36dfddb0bfafbd0d26a455d877b819bf21703ceaa5bf21364a4f",
+  "bytes": 21662,
+  "requestId": "wzqK8N6oz3kl1aklnO8w",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ea91c014dbe89e86a466e4a0b4dbed6b16339b381feb861281cdf8d3d6355bb0",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

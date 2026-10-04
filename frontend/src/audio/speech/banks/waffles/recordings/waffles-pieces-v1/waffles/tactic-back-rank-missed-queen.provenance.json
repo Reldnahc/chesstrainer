@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "tactic-back-rank-missed-queen",
+      "label": "Tactic back rank missed queen",
+      "text": "A back-rank mating idea for the queen was there, the king hemmed in by its own troops. This move stands down instead."
+    },
+    "takeId": null
+  },
+  "requestHash": "ae4b9a7e495267720cddf2d87dd1dc6b67f440c0764a0c23e7ee57b9123fe2f7",
+  "recordedAt": "2026-10-04T08:12:40.764Z",
+  "sha256": "16bdab8a065cd2f7bb14ed8bfe82fd909e293273d755b16265e9fccc96ad54e6",
+  "bytes": 26739,
+  "requestId": "Mh9bQi6OVbDi3oc8al3f",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0dea07bdcaa59fe93b782a1f595b88d90fa4d1faba9a3d8223d5b6fbb3d64f35",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

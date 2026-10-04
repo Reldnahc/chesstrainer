@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-capture-bishop",
+      "label": "Explanation finding discovered capture bishop",
+      "text": "The blocking piece moves out of the way, and that opens a line for the bishop behind it. That bishop makes the capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "90769fbaae11e4f715d23146800d865e3015399c3bb9258432cc1d2955ef1111",
+  "recordedAt": "2026-10-04T08:04:39.737Z",
+  "sha256": "f4655ee889ce459703e52856574b28f89cb78ee288d3cfd689e087bcf1fae32e",
+  "bytes": 24537,
+  "requestId": "7xBshM3E4xZC0LsojTzT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f03c9c49ea52e15ae498e37ddc2f679d18d1e90c04b0b63ce0ca9d8fc490fba8",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

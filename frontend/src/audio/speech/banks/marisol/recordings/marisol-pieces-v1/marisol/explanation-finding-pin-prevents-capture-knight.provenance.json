@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "explanation-finding-pin-prevents-capture-knight",
+      "label": "Explanation finding pin prevents capture knight",
+      "text": "The marked capture is not legal here. The knight is pinned, and leaving the line would expose its king."
+    },
+    "takeId": null
+  },
+  "requestHash": "409f1223d842b7aaf956ab83f9a0556fbeae161d03b4b22a4b62ec2a2a9d35c6",
+  "recordedAt": "2026-10-04T07:54:08.008Z",
+  "sha256": "039ddaf01e7425216688610b3ff3461e012fa4ad0bcbb2b225c95e2a92df53dc",
+  "bytes": 20807,
+  "requestId": "fzQNzwTFmpeGSy0uPTZc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "afbd3135f71c8de732e1a7aa424632dbac7388a5a5e97527b57b480db71d2b84",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "grade-brilliant-1-bishop",
+      "label": "Grade brilliant 1 bishop",
+      "text": "A bishop sacrifice of rare quality. The material is spent, and the idea outlives the spending."
+    },
+    "takeId": null
+  },
+  "requestHash": "d0e6f7beaddbf37684a7454df881b6fbf6991a4b790ab574f787aae33cd74ffd",
+  "recordedAt": "2026-10-04T07:59:47.007Z",
+  "sha256": "1ead29e86f932bd1afc52dfcb9d0d7271161c0899f6462f8302ac2aee41690b2",
+  "bytes": 23748,
+  "requestId": "Gh6TP0WrtHgbRISS0Xuq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "aac775924f0c52b2e269868ad0486dac2e970c1067a3ad7d9790154576a9fd6a",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

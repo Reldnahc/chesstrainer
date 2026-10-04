@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "grade-brilliant-2-knight",
+      "label": "Grade brilliant 2 knight",
+      "text": "Oh, that's nasty! The knight is handed over, and the whole thing still holds together."
+    },
+    "takeId": null
+  },
+  "requestHash": "02ea49e412ed8165ee9b0c42d400c60b7db40fc931c38bbd77af44de70e1668b",
+  "recordedAt": "2026-10-04T08:06:42.936Z",
+  "sha256": "5edcfef20918526da85b1e33f79581223938d42e291dfab8ef53156372f28fe0",
+  "bytes": 20338,
+  "requestId": "FuXe2Fd8bqzRlIjJFRQK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bb3e67b99722ec1da97c71e4dbd1e1d9bad9460fd92b66ce107499f049fdc788",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played-bishop",
+      "label": "Tactic removing defender played bishop",
+      "text": "Here's the idea: take out the guarding bishop. Whatever it was protecting loses its protection, so look at what that bishop was responsible for."
+    },
+    "takeId": null
+  },
+  "requestHash": "24e80aed05c72c9b13269ae4bec7fb002c08d10a1a42c5d02f461e95a004c429",
+  "recordedAt": "2026-10-04T08:00:29.822Z",
+  "sha256": "a5f28a7b2c9b35a5c6103f8ea691538baeea642b81c0b674bf9202ac7cc9c810",
+  "bytes": 28444,
+  "requestId": "DeFeUQI8oSVLufBM8nAi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e8cfb1c0441b352f063cdaf64edfdf9011a757910469e538a16a5dc5576db89e",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "cause-opponent-threat-recognition-knight",
+      "label": "Cause opponent threat recognition knight",
+      "text": "Here's the clue: the opponent's last move threatened a knight. This move never dealt with it, so that knight can be captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "1392569644c1338593a7e5e7c8886834423c606d5577b68192366d6ff50e4f28",
+  "recordedAt": "2026-10-04T08:02:41.823Z",
+  "sha256": "73e523b81dac1303dded02488538e99754bac76c8a451ed1944030c7357fbf14",
+  "bytes": 25020,
+  "requestId": "ZDVXm9VcGojmQOxyTcb2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "06fc9484eb6a5f28d00929e46904a5459b353ab4a892fa3fe42b4b0e1307d73c",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-pin-missed-knight",
+      "label": "Tactic pin missed knight",
+      "text": "The stronger move pinned an enemy knight to its king. This move leaves that knight free to move."
+    },
+    "takeId": null
+  },
+  "requestHash": "7e905da83d705883d14f44fbd1b328e07ed8b3e1adc50a415e8b1a5e6acc9bcc",
+  "recordedAt": "2026-10-04T07:49:56.839Z",
+  "sha256": "377ffb578ff6f4451c4d337ec2e12bfbfca6867dc58548f0b46a0be0bf9f9ec8",
+  "bytes": 20167,
+  "requestId": "8eorRGWGIC4gdpxapahn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e081dfb8cb73c6d2ba9620e8d98a0479433b80d4e08f3887bff70a6eca2ae198",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

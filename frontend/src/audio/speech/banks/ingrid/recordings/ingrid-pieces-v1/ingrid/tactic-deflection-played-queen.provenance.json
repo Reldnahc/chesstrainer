@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "tactic-deflection-played-queen",
+      "label": "Tactic deflection played queen",
+      "text": "The defending queen is tempted away from its post, and what it was covering is left open. Neat and practical."
+    },
+    "takeId": null
+  },
+  "requestHash": "fc2eb11f8a0b64144569f17d5913ee8fbf91a04800ce4e0cf9ab1855b303e9e5",
+  "recordedAt": "2026-10-04T07:48:42.745Z",
+  "sha256": "514528b3b2b1ed75540a630bdb54dec500317375d6a0ccd65577f55973d439e2",
+  "bytes": 24515,
+  "requestId": "gwCDKPOiUr5mt5HCT4im",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8803317f956093e67f33d30cd20c98d6309c9bf61ba78dfab907e954df8a9b17",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-king",
+      "label": "Explanation finding skewer collected king",
+      "text": "The king in front steps out of check. Behind it, along that same line, the next piece is captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "94fe641d3d05a33414b99ea83adf932e2ddfc6c3b9dd7397ce143e2dd6e0960e",
+  "recordedAt": "2026-10-04T07:52:24.830Z",
+  "sha256": "77efcffaf0e7a95764ee89ade8986455200e117d00fefa511603f62d0a4fbd80",
+  "bytes": 21204,
+  "requestId": "yOBQTFD7xWxMLwIzxmtW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "02929d26238ab19e9bac8d0d7e4299ccb3e44081688677d0bd2da4e4b205fad8",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

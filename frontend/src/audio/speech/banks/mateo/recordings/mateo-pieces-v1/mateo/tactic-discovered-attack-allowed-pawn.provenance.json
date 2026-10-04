@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed-pawn",
+      "label": "Tactic discovered attack allowed pawn",
+      "text": "Look at this line. Another enemy piece is hiding behind their pawn, so when the pawn steps off, the hidden one gets to attack."
+    },
+    "takeId": null
+  },
+  "requestHash": "3984c919e9d09c1e7264f9902934a73e3731a54c5169e474ea67eeb2b0d63506",
+  "recordedAt": "2026-10-04T07:54:57.513Z",
+  "sha256": "b0ee702a1c8c51801df89f44d1507d94732f9c3081f8cb9ed2ec99865d068f47",
+  "bytes": 25261,
+  "requestId": "9c1UEmv8YsBvyqSgehA3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b72ef8ea3d20e23ea7676b4a6a5d0893736db75ecff52d8cbec864c2bb2b00bb",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

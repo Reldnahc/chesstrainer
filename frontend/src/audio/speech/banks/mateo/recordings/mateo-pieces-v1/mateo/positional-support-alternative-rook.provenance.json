@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "positional-support-alternative-rook",
+      "label": "Positional support alternative rook",
+      "text": "With another move, a rook that has no defender right now would have picked one up."
+    },
+    "takeId": null
+  },
+  "requestHash": "25cc32642bf29dd3d9d19ffb9e3fb84ce942f10ce0b4683d91562611c734799c",
+  "recordedAt": "2026-10-04T07:55:37.128Z",
+  "sha256": "cc4165dcbc0c1f06e35110e9ccf74f0b81eb66a17f8675bc7bdf93fd6a157ce1",
+  "bytes": 15917,
+  "requestId": "MFiUZswlG7UswrkRU12r",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b1dc6de0f6b09e38b170b14f946d070786f16e32f87f3c5c2d942b600e0a9119",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

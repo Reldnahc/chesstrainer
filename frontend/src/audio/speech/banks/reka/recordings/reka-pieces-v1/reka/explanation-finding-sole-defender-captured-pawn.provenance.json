@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-pawn",
+      "label": "Explanation finding sole defender captured pawn",
+      "text": "The lone bodyguard, a pawn, gets captured, and then the piece it was protecting tumbles too."
+    },
+    "takeId": null
+  },
+  "requestHash": "f1429cea9b00a30dcea1930ff6c5e39ab7c069dca432fe8da2a99344a992b1eb",
+  "recordedAt": "2026-10-04T08:05:55.223Z",
+  "sha256": "c9c6a6cd046a8b92e4208f6e6bb81025269693f5ce1f67cf4c2dff3485c661ec",
+  "bytes": 21617,
+  "requestId": "VdPOVFEMOYcbJrpFhIn1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8c2e09d9e5d11d6bba0db2bf8556202176572fc24cf4d670b1636a993d5ff143",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

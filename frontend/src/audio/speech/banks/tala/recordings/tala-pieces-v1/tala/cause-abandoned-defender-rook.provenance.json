@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "cause-abandoned-defender-rook",
+      "label": "Cause abandoned defender rook",
+      "text": "Found the detail! One defender was holding that rook up, and this move marches that defender off duty, so the other side can take the rook. Quick check before a defender moves: what's it holding up?"
+    },
+    "takeId": null
+  },
+  "requestHash": "87f08c57430a249dd8520b84852676e2cccee5355340acf7404a5e85e0ad29e7",
+  "recordedAt": "2026-10-04T08:09:33.433Z",
+  "sha256": "2b41ff01b557ce5cfd256309afe25f0198a4695cddef495b9b9ac6aae88562c4",
+  "bytes": 40327,
+  "requestId": "8C4etPidsguEwHX2xJW2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e8615195a158da993efdaca55a914ee73e6da87e2e28ca83c772f2891a40012b",
+    "bytes": 212367
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

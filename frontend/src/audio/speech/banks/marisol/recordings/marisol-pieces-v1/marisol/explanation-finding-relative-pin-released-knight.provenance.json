@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-knight",
+      "label": "Explanation finding relative pin released knight",
+      "text": "A relative pin had been holding the attacking knight. The opponent's previous move lifted it, and the knight captures a target that never moved, in the line shown."
+    },
+    "takeId": null
+  },
+  "requestHash": "ed9707be889adb98b7b9a890775ca732e107cf54b6ead63d4a2d1029f9f73f33",
+  "recordedAt": "2026-10-04T07:53:52.094Z",
+  "sha256": "f220ab50f7d3c0508f20e58ac5877ae2723c8f87f6cfc5a2f348d38713b01081",
+  "bytes": 31470,
+  "requestId": "saVthnFC8AF1GzQ0tY8m",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d16242c5592eac50a4e259f6f10f046bbf66b5c2ff575216fb70d3a24699bdc2",
+    "bytes": 163466
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

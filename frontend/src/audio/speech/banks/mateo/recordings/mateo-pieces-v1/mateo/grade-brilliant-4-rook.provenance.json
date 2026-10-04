@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "grade-brilliant-4-rook",
+      "label": "Grade brilliant 4 rook",
+      "text": "Ooh, I love these. A rook given up, and the whole idea stays on its feet."
+    },
+    "takeId": null
+  },
+  "requestHash": "20e5e74b48e83332e5667d73b37ca5e4057cd39c6bbf1196545f43390ff1f949",
+  "recordedAt": "2026-10-04T07:55:59.885Z",
+  "sha256": "f6e46650db20b3121a2f1f6a273f4d54501fe4bdb772cd2d78ba61a7b114db8c",
+  "bytes": 18580,
+  "requestId": "qgM2z3IFWE8w7iIqyFZi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4ec2514b98e682c437101f2931d92b2801f2ba53821b524aebbd2c4623c98ea5",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

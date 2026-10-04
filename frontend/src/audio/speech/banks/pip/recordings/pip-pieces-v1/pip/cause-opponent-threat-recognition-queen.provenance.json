@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "cause-opponent-threat-recognition-queen",
+      "label": "Cause opponent threat recognition queen",
+      "text": "The warning was in their last move. This doesn't answer that threat, so now the queen it hit can be captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "4873221852cea8b92079ce4cf7c541facb86776d7dd5054a32dc3838bc79d9b8",
+  "recordedAt": "2026-10-04T08:03:56.209Z",
+  "sha256": "292424c218d2cfe683ac4bb438d66c5e23742b71dfe4ae4d34565033c29c5e2f",
+  "bytes": 23561,
+  "requestId": "mBWfmCQdcewCfMHc4vj8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5d601bb4e0fab8ab611e84b63f92f340af4cee6ac1057c4d81ba8bf43a2d8bda",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

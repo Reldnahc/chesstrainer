@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "tactic-pin-played-queen",
+      "label": "Tactic pin played queen",
+      "text": "Snap: that queen can't leave the line without exposing its king to check. Nailed to that line."
+    },
+    "takeId": null
+  },
+  "requestHash": "65794b7e9b7bb700999f744782a2bbfadc7ee65ba464927f50539c6d054765e1",
+  "recordedAt": "2026-10-04T08:05:18.926Z",
+  "sha256": "cd963ac8a9920047c957f91cb3e972a04f4761e29ad3e718a8f1890d31c0b01e",
+  "bytes": 20572,
+  "requestId": "GbjeApMCv4MhJMYQJ5Lq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fffc79c4b974c281c8d5594e25c18c82db097bb75727b55382ddac0d66a43328",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

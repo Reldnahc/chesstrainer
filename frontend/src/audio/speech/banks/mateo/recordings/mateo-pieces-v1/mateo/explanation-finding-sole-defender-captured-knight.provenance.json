@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-knight",
+      "label": "Explanation finding sole defender captured knight",
+      "text": "The only defender, a knight, gets taken first, and then the piece it was guarding is next on the menu."
+    },
+    "takeId": null
+  },
+  "requestHash": "7edd3136cda7f6a3984a938978f46fe85de9c9960186d5a6a86bafd49fa5dbd3",
+  "recordedAt": "2026-10-04T07:55:37.387Z",
+  "sha256": "762832c21a48864557ae5f3713e9a5a5aabd0a4f8b3e00e8c85ec64713096b6d",
+  "bytes": 23189,
+  "requestId": "hDPEoe3HP9n9x5EKhT6Q",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "500e80f3d80a2c721746225e37e353c1757e5061a1a97df03807fc855fccce85",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

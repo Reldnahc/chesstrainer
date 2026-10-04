@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "grade-brilliant-4-bishop",
+      "label": "Grade brilliant 4 bishop",
+      "text": "Brilliant. The cost is a whole bishop, and the idea is strong enough to carry it."
+    },
+    "takeId": null
+  },
+  "requestHash": "d002dd86b95967bf901bc857bdd3e138004fa183ca999e9f55416600dec40a67",
+  "recordedAt": "2026-10-04T07:57:45.355Z",
+  "sha256": "2731aa0f6676e61a3cf2efb4e8f7a534f140266cbb4acac78351f994a7d50356",
+  "bytes": 18319,
+  "requestId": "f3S306FPrToR3Dpg4NnA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "35edb28f10e97676e89b37989d2909d55c9dbc696995ea06d702ea680719d3b5",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

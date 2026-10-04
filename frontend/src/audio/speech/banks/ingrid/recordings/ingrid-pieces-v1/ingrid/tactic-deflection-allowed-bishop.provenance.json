@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-bishop",
+      "label": "Tactic deflection allowed bishop",
+      "text": "The simple risk here is a deflection: a defending bishop can be pulled off the piece or square it's covering."
+    },
+    "takeId": null
+  },
+  "requestHash": "f722adb5f68b7db5fbdd4228e24852b03d6ceb0fc252e8ff72dc11f17ec6d118",
+  "recordedAt": "2026-10-04T07:48:50.138Z",
+  "sha256": "02c42a1d6a80153ffce61d8a1176217f85699b17865567fb9759cdd17068adfc",
+  "bytes": 22328,
+  "requestId": "IP5EByyZ7gbplPBKQ1bw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e964cd77be23a5d19ac3285ae3383f4050c5ac1d130bc9e0d0df9a8d7bcf0432",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

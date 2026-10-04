@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed-king",
+      "label": "Tactic skewer allowed king",
+      "text": "Look down the line with me: the other side now holds a skewer, and once the king in front steps out of check, the piece behind it may be taken."
+    },
+    "takeId": null
+  },
+  "requestHash": "0853d450afc7df82ea1445c22f3c83404a04b7e87fd0038d8a770e6af05e333a",
+  "recordedAt": "2026-10-04T07:51:54.431Z",
+  "sha256": "190f3128a874c6911f78074a9815a7ef55fabd8b85a67fa62872ec3f193f88c4",
+  "bytes": 28942,
+  "requestId": "5zWwhxq9iOeKky1F1mHn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "85e3648cb0f6e11001f2ed4456b4f0d22ae13e8019e84f27b6b5c6f27b37d73a",
+    "bytes": 150927
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

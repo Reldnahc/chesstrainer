@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-pawn-rook",
+      "label": "Explanation finding double check pawn rook",
+      "text": "Double check: the pawn and the rook are giving check together, so only a king move answers it."
+    },
+    "takeId": null
+  },
+  "requestHash": "46d8f96acdf93e5bf3c7eec3322ec9a4d61bdc1da0484d8156dfd6cb170f6211",
+  "recordedAt": "2026-10-04T08:11:38.531Z",
+  "sha256": "28f30350abb6a97e4957c6595ec7433b4e8332376f0007136f708dd9a0aea382",
+  "bytes": 20146,
+  "requestId": "3UtMlczEaJtMATUJOU5L",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "16afb863fee92a58c61c09df3d914583bb8b740a1e6611160fde4298543b48bb",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

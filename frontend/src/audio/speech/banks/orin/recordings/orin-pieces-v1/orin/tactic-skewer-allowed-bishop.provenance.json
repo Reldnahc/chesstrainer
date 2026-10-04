@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed-bishop",
+      "label": "Tactic skewer allowed bishop",
+      "text": "Beware the skewer, the pin's reversed cousin. This gives the other side one: the bishop in front may have to move and leave the piece behind it exposed."
+    },
+    "takeId": null
+  },
+  "requestHash": "15ccf22e4ae84b9be6bb63db2941d08aaa6010c3dac7b1cdc6e53e4dc301a3e9",
+  "recordedAt": "2026-10-04T07:58:29.708Z",
+  "sha256": "1c4eb258b7dd2b0e04146f41958ffbb27575f67ad42557de4138ca04067f3f0e",
+  "bytes": 33415,
+  "requestId": "lMfZdLQRFTSVlqqaP2mD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f9e3698a3fb8b5343996364afd3ac5a7ae0e152bb8ecd8fd2fc4ce9c856fdeaa",
+    "bytes": 173915
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

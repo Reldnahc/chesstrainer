@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-rook",
+      "label": "Tactic discovered attack played rook",
+      "text": "Slingshot: the rook zips out of the way, and the piece hiding behind it opens fire."
+    },
+    "takeId": null
+  },
+  "requestHash": "057847c3ea19182ae085f3077c2d3ead30ad71f0682ef423eb083242002728b2",
+  "recordedAt": "2026-10-04T08:05:12.597Z",
+  "sha256": "356d94980965826b98905ca72493db4b49f19b84ecd23ddd3ae2df6757deb731",
+  "bytes": 17722,
+  "requestId": "IXjbpjRmrTU7iHgSb0zn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9e44fcc3702b2d4d6aa646717f0035712284884b9d6f92906f635ec960e37c59",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

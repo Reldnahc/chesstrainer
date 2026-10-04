@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-pin-played-bishop",
+      "label": "Tactic pin played bishop",
+      "text": "The pin holds. Stepping off that line would expose the king behind, so the bishop in front is stuck on the line. Pile more pressure onto a pinned piece."
+    },
+    "takeId": null
+  },
+  "requestHash": "52b400e49421d5ffc64445295a498ae8639b28370e03cfeda67c747793873d47",
+  "recordedAt": "2026-10-04T08:10:41.286Z",
+  "sha256": "e5985024bb0dd2cda55090ce2efb350c6e88af2752abdcbc983bca4f1e641588",
+  "bytes": 31982,
+  "requestId": "3H1SxfmqkYS45LxYM7BS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d01656cfaea8ae2b7882c4d7bbc2a5cf4390aa7337029dcefbaae03e59759b0b",
+    "bytes": 164719
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

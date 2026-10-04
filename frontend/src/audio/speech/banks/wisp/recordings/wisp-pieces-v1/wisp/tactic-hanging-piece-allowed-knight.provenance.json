@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "tactic-hanging-piece-allowed-knight",
+      "label": "Tactic hanging piece allowed knight",
+      "text": "A knight is left behind with no guard. The other side can take it."
+    },
+    "takeId": null
+  },
+  "requestHash": "aea513aa8bfd54da474d8a68ceb76b80e3ea00690b0fd85abe22b8f0273733e1",
+  "recordedAt": "2026-10-04T08:13:50.513Z",
+  "sha256": "448c6db1dbd03ce31081d3a4ec8d2be301af04be31a4911fc052117609485b8d",
+  "bytes": 14188,
+  "requestId": "MUDDgSk7oo82TJBfqZ8n",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f203f5caddc26958650f87926d0025a52a34c3598b876fb74b3cb5c1686f99b4",
+    "bytes": 71515
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

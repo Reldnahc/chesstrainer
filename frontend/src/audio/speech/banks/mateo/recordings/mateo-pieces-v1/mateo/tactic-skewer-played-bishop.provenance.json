@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "tactic-skewer-played-bishop",
+      "label": "Tactic skewer played bishop",
+      "text": "Skewer! The bishop in front has to get out of the way, and then the piece behind it is up for grabs."
+    },
+    "takeId": null
+  },
+  "requestHash": "2ef9909b94fb95a6a3d54e7e9a10b77c32712715ca7389383c5248ad0febb166",
+  "recordedAt": "2026-10-04T07:54:51.477Z",
+  "sha256": "66e9ad1fd2479a836d746cd51291204ec99d1c1232b43b4970fb19ab28cc3643",
+  "bytes": 21614,
+  "requestId": "RuZXW2fWmcIrZXLCs4Ga",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "06d40ed00d357b207a4c6acdf7fac62b32cf26fd982adad24be0e666b1ec4d71",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

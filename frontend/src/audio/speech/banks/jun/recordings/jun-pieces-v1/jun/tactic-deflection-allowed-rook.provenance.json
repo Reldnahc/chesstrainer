@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-rook",
+      "label": "Tactic deflection allowed rook",
+      "text": "Deflection risk created. A defending rook can now be drawn off its duty; identify what it currently covers."
+    },
+    "takeId": null
+  },
+  "requestHash": "7a6d2a02660fb892fabcaf92cf8ddc881e5b5c26c2b89d96bfa37f01c7984e3c",
+  "recordedAt": "2026-10-04T07:50:35.934Z",
+  "sha256": "5be95b06f111b8dcf6620fcdde2260cb6ac7ee4661a7d9a9e8f4ab12125cb3b0",
+  "bytes": 24112,
+  "requestId": "1cDjUucsPgscpknaB5zY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8a95923e79bdcb1176a5f00430a06996d750aa8e1a29d50bf28da3870895d6a9",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

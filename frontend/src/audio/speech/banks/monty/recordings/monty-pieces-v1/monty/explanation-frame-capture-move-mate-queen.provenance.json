@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate-queen",
+      "label": "Explanation frame capture move mate queen",
+      "text": "The queen is captured, and it is checkmate. The king cannot get away."
+    },
+    "takeId": null
+  },
+  "requestHash": "057d25ad7627b3f98c87593bf25686a3b4f0940965ebf2e293cbc51fab2375cc",
+  "recordedAt": "2026-10-04T07:57:37.982Z",
+  "sha256": "d74c22c4b05a98e05b6edd802bf5c09d0530da366bf7aa35107039f17beba679",
+  "bytes": 15827,
+  "requestId": "OdCJUAaCRSXXkCXribPZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "10720f5ff0fa28ce9b1752fc60b11a647db75c18350c566340872a26a3371c57",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

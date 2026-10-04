@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-knight",
+      "label": "Positional unsupported alternative knight",
+      "text": "A different move would have left a knight unwatched, though that by itself would not hand it over."
+    },
+    "takeId": null
+  },
+  "requestHash": "7b41abd7377891697157dc554254b227a122c6b895c1fa21f7e9842311261f82",
+  "recordedAt": "2026-10-04T07:52:00.070Z",
+  "sha256": "3e53077e0ba555975f45efb6c297f93c429c9918567999960d8fe642e802bd07",
+  "bytes": 19575,
+  "requestId": "N5aUNEaXxIlkB5ld5NNG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a037fcec421209a84a1e351957fdfcf6ffe828e83ecc617f3441538c83027032",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

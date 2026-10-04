@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-bishop-rook",
+      "label": "Explanation finding double check bishop rook",
+      "text": "Double check: the bishop and the rook attack the king together, and only a king move can answer both."
+    },
+    "takeId": null
+  },
+  "requestHash": "5bc9cb03c406939a0d5ec1ac098e06a1f26169c895993b45ea3395f70f46af82",
+  "recordedAt": "2026-10-04T07:59:42.518Z",
+  "sha256": "3cccd63a2a0c7a8f8202ce77199dddd2d3385f9418fa163e92453753160d71b2",
+  "bytes": 22954,
+  "requestId": "28q4bRpyxai49ZiFDBFS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3c42a28f634d7271e0df4ea2d0779ecdcf47d85ef4793f5dbf78b6cb9f1f3ea9",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

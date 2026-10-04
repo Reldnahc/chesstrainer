@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed-rook",
+      "label": "Tactic removing defender missed rook",
+      "text": "The stronger move knocked out a defending rook first, so the piece it guarded had nobody watching it. That's a clever move order."
+    },
+    "takeId": null
+  },
+  "requestHash": "1f87ed66888dbbad3edc96fc45b40502ceea2ff17c972321e55b7152249d2dad",
+  "recordedAt": "2026-10-04T07:55:01.228Z",
+  "sha256": "357d2c8497b52298d0d8efeafff35ea0a9f8ec1d1d4d79b7e8dd58e8a4e8f5c3",
+  "bytes": 26484,
+  "requestId": "6ZDBoJggzcwLPcTbRA2d",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1b21bceeaa43bc3196a9c70f7a301b429a8e07331f4b69d0da7d7760548109a4",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

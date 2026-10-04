@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-fork-allowed-rook",
+      "label": "Tactic fork allowed rook",
+      "text": "Simple problem: this lets their rook fork several targets. Before moving, look for the square where that rook could land."
+    },
+    "takeId": null
+  },
+  "requestHash": "1cb39b960307e130a1b062b7d9ce516872ea18ac939b743c4835455fc4f34a7b",
+  "recordedAt": "2026-10-04T07:56:17.718Z",
+  "sha256": "3032d9fa1a3e0adb09d20f4edb2f341f004307d4a0cd862e63d2bf05f5e84ec3",
+  "bytes": 24544,
+  "requestId": "bqFVbwXro8xyrwYaXMjB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8aa3e62bf0152a583047ca38a30e1ed955127cbbef83a9660a3c913d8513688f",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

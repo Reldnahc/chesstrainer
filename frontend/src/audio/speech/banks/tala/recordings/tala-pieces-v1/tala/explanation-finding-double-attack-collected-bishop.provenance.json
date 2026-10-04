@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-finding-double-attack-collected-bishop",
+      "label": "Explanation finding double attack collected bishop",
+      "text": "Double trouble: the moving piece makes one attack, a hidden bishop makes another, and the hidden bishop is the attack that cashes in."
+    },
+    "takeId": null
+  },
+  "requestHash": "921cf1188a788d638c3a65c4ead4418baedce690da6041808e60cea33108d515",
+  "recordedAt": "2026-10-04T08:09:47.588Z",
+  "sha256": "b0463f4de9969c4bb5aac3040164ec2c30b2c199f9e17f2fbc06f0b56f78376e",
+  "bytes": 27651,
+  "requestId": "p9tPKs6meMPW37EsCvIW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6b5a92978a61d814e9270b1661267922a45fd2c7ebbdd047c4c1636b86e1fd58",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

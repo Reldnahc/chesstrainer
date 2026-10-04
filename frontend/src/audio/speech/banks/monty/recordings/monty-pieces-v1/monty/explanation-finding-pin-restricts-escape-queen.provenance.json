@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape-queen",
+      "label": "Explanation finding pin restricts escape queen",
+      "text": "The attacked queen has its king behind it, so it is pinned. Its only moves are ones that still cover the king, so running is hard."
+    },
+    "takeId": null
+  },
+  "requestHash": "f9c8a6f88a8adf2af5b9549400d2bc6722caa9cb0fa41033f5038d477e910b43",
+  "recordedAt": "2026-10-04T07:57:09.199Z",
+  "sha256": "b7a641c9f81c792e22e7355d366626f2a98139273239f7350df56c88fe5661d7",
+  "bytes": 27783,
+  "requestId": "vuO031HcstSYx2sSGb4X",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "34e6f7054f654d54784079682b2451c26c0196c79c829c4b543233c956fc48aa",
+    "bytes": 141732
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

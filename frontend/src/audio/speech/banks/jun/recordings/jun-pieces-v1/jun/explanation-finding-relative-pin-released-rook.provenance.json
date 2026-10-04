@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-rook",
+      "label": "Explanation finding relative pin released rook",
+      "text": "The attacking rook was held by a relative pin. The opponent's previous move released it, and it now captures a target that did not move, in the line shown."
+    },
+    "takeId": null
+  },
+  "requestHash": "0b224eb7d1206aea90750ee962b80486888ebfc2dcd5d3436ce08e0025f3aff1",
+  "recordedAt": "2026-10-04T07:50:45.828Z",
+  "sha256": "adbbaa8318671f12d78efa7a21bfb546ba4b76b79def8ef34e6bd6d772b77ccb",
+  "bytes": 31402,
+  "requestId": "U9rHPPsb9MT1Zae9zDOk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "09739010cd4e308e89cf597aa5ad621e99fccad5698ebbbe8e86bd31d2cf7ad9",
+    "bytes": 160958
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

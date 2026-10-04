@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "tactic-deflection-played-knight",
+      "label": "Tactic deflection played knight",
+      "text": "The knight is coaxed off its post, and the thing it was guarding sits alone. A deflection, quietly done."
+    },
+    "takeId": null
+  },
+  "requestHash": "64f29d66510fc3a1874264ada6763e6b1a6a8fafdb006876388640b2b9202c73",
+  "recordedAt": "2026-10-04T07:51:48.326Z",
+  "sha256": "b6863a83d5adbf7d09e20260d92fb972671577b60379a2507e6b1ab198217071",
+  "bytes": 22789,
+  "requestId": "5vmmbhLQZ2qefI7GBhxk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "71b46db5698a4c8cd3257fe2b499c67ed44f04d20ff4b76476bfff10d1475a54",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

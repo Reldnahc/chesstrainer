@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-finding-pin-prevents-capture-knight",
+      "label": "Explanation finding pin prevents capture knight",
+      "text": "No capture possible: that knight is pinned, with its king behind it on the same line."
+    },
+    "takeId": null
+  },
+  "requestHash": "89c53b9b03ad96a8d9ebdeb7c9ebe3c47113bf75821043989e3ec11cc10fd081",
+  "recordedAt": "2026-10-04T08:09:35.395Z",
+  "sha256": "e661eecd18d7debcfffdd1c44d6deec0b51c40de190973c9a54b9316c576eb84",
+  "bytes": 18774,
+  "requestId": "4Rpj4I35NURLEmbk9Ccf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b45fad6b84ed6e13d030043ec00fe30a6f662c56dbe995f9985f64184cd7526a",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

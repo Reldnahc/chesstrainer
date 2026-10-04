@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-escape-rook",
+      "label": "Explanation frame capture move escape rook",
+      "text": "Taking the rook also brings the capturing side's king out of check."
+    },
+    "takeId": null
+  },
+  "requestHash": "4e068c4325564ccdbbb8603b32aaf7bc3c72e5d6dbfe6e0ff29e08ff74968829",
+  "recordedAt": "2026-10-04T08:11:44.059Z",
+  "sha256": "92d588e5d2e7d7741d65d17283e71df9d6fa9b7aafa32a1da907860379845bb7",
+  "bytes": 14135,
+  "requestId": "hTSCmAvPIEL0zdAifO5H",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c2a8ae5f79a410a85d72343c55932a3818e49ba89621bdfdcf5b90a7a29f0f54",
+    "bytes": 69007
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

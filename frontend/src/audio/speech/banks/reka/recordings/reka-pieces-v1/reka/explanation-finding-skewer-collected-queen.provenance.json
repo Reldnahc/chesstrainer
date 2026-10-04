@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-queen",
+      "label": "Explanation finding skewer collected queen",
+      "text": "The queen in front is forced off the line, and the piece it shielded gets gobbled."
+    },
+    "takeId": null
+  },
+  "requestHash": "e2a72311755d7312d95e2c83d7c950fecfe76b8a73e2c6dbe2da787207c5a7e2",
+  "recordedAt": "2026-10-04T08:05:56.749Z",
+  "sha256": "c336d664ff4ef5a25d2c2bce14a938d6915ca1a178273e649ff651d0cc2d2b29",
+  "bytes": 16340,
+  "requestId": "T1NOxxQpcpnAWBdrTdgL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e978206bfabccbe68c2fef012165a9d3091e0233fe5264b66b5c0338791e11f8",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

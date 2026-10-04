@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate-pawn",
+      "label": "Explanation frame capture move mate pawn",
+      "text": "Capture of the pawn with checkmate. Game over."
+    },
+    "takeId": null
+  },
+  "requestHash": "259ca7cbf3cb8339b48be7d3d667ba5f84bd03840db3636a62a2fba707d9f2e5",
+  "recordedAt": "2026-10-04T07:50:59.809Z",
+  "sha256": "a8d2c0d202028bc57feb1b1db4335e6ec05a5f65b1148356d33b7a647a56927c",
+  "bytes": 11331,
+  "requestId": "43V7T7yKKH12ff5sr8GE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9397bd38e203503be3722ea395328d6c3243d0354cc9d93326b17546851c47d9",
+    "bytes": 57304
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

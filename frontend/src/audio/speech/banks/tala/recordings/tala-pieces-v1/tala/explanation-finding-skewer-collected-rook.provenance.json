@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-rook",
+      "label": "Explanation finding skewer collected rook",
+      "text": "The rook in front moves out of the way, and the piece behind it is captured on the very same line. Skewer complete."
+    },
+    "takeId": null
+  },
+  "requestHash": "53017d5304dc7df5e2085465ece9ca9663a21b9920aad50f65c126ae5c6607f6",
+  "recordedAt": "2026-10-04T08:09:37.248Z",
+  "sha256": "68687a69ff9ba6960ecb8db55bc064a59a135e7f07cdd5d558125cbba06fc02e",
+  "bytes": 24562,
+  "requestId": "QPkuKpmPyfwTQaGXq6PJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "685660ab2416e9ef6f352f82cdb04ee3f21c265ac94e10573da80ac740c82611",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

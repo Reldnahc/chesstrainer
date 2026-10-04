@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-knight",
+      "label": "Positional unsupported alternative knight",
+      "text": "A different move would have left a knight undefended; that alone would not have made it winnable."
+    },
+    "takeId": null
+  },
+  "requestHash": "22478ca74c8f862dcc381a1aa8cfd7e33da61673831e5f893c4a9ec84e8cc6fb",
+  "recordedAt": "2026-10-04T08:15:46.167Z",
+  "sha256": "b60b22df3fe3563560d4ee131d72535eeef247b5ec2015e2b97da3074bb291fe",
+  "bytes": 18108,
+  "requestId": "318W46Zoedj4BeYSC4cN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "633778fd121e7eb9a46a8497d905ee833970439a3c63536eab9e5711d3e9c52d",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

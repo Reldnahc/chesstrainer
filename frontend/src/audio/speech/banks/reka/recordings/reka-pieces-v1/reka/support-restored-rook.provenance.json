@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "support-restored-rook",
+      "label": "Support restored rook",
+      "text": "That rook left hanging earlier finally gets its bodyguard back. Replay that switch."
+    },
+    "takeId": null
+  },
+  "requestHash": "493a1d51346d7da3b03c3673932e42eb01e4f01a1a9d3817c0d40a244de7fbc5",
+  "recordedAt": "2026-10-04T08:05:47.204Z",
+  "sha256": "96c85ecd98ff56b73e5e14b4a1bb1f803aee04848a6c0922329fbed5ff6b3e0f",
+  "bytes": 17012,
+  "requestId": "A6ThTrSQsTUf6sMLAIST",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6b3b00341531d641b44b8b03b1e546011839546689a19b04fdc87b73e97f3382",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

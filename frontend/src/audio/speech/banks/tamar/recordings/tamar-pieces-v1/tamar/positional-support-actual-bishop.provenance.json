@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "positional-support-actual-bishop",
+      "label": "Positional support actual bishop",
+      "text": "Cover restored. The bishop that stood without protection has a defender again. Loose pieces get checked every move."
+    },
+    "takeId": null
+  },
+  "requestHash": "49f34c293360c427d8e64c37b31f49153a98f3aeeffdaef6a2da2833aa3841b7",
+  "recordedAt": "2026-10-04T08:11:14.372Z",
+  "sha256": "81ce9dac1c24ba93d83cca63e8acb43d04cf63dd65f46c262f75dacf7d96b41e",
+  "bytes": 24697,
+  "requestId": "dGpGA1cdaaZBSVNtTNNt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "99af44ee3c5aebc718c05210e271181f327b8b3c6b124edcd34541546d4ef806",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-king",
+      "label": "Tactic deflection missed king",
+      "text": "Under the stronger move, the king would have been pulled away from what it guards. Here the king is undisturbed."
+    },
+    "takeId": null
+  },
+  "requestHash": "cb436176578084f4fa0872beb2cdbeed418fe82f1328b96ef9f78711ae72fd9b",
+  "recordedAt": "2026-10-04T07:53:39.176Z",
+  "sha256": "34cafacdee6b7cd0fbd972707812b04f0dd8b99b28d97334fecfa65c7857c5d0",
+  "bytes": 21976,
+  "requestId": "rdfLltITMojTLpEa7Ef0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "311b4ad6359f7d7bb86b962b0496b4574b66dde1096d8cbb7582c763bf508335",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed-pawn",
+      "label": "Tactic discovered attack allowed pawn",
+      "text": "Discovery threat. This move lets the other side shift their pawn and unmask an attack from the piece behind it. Scan their stacked pieces before moving."
+    },
+    "takeId": null
+  },
+  "requestHash": "451b0d9818cd252b508bf593ed08bf19072bbd87d2ebad60a30ab5e8fa538b9a",
+  "recordedAt": "2026-10-04T08:06:54.920Z",
+  "sha256": "a41a41013b8ebd0ace771d643c753037c2ecf56a51c5c2172ad85f8bc4e8fdc7",
+  "bytes": 29660,
+  "requestId": "qYF6Jnjgupl5fDC2TOXG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "eb1384d2eaa9cc0f2fd533f5215f348a6b382a609cf7569b5508dfb54c826473",
+    "bytes": 152181
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-back-rank-played-rook",
+      "label": "Tactic back rank played rook",
+      "text": "Back-rank mating motif with the rook. The king's own pieces block its escape squares, and the rank behind it is the weakness."
+    },
+    "takeId": null
+  },
+  "requestHash": "157b53d0b7cf2e20ef2fef48bc42aa48c2d879fd1b9da38d0389274ddbfd7cb4",
+  "recordedAt": "2026-10-04T07:50:22.995Z",
+  "sha256": "75d245c44951b84de467acb3e0e9438c6c22c7fb301c1645d43134e70625c5a3",
+  "bytes": 26720,
+  "requestId": "fTxaN103YjZpzziq9AuX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2dd5cab31a1806320d3ad666d854fb5162a80737adfddea2d724c58eaa127488",
+    "bytes": 136716
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

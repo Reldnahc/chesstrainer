@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-rook-queen",
+      "label": "Explanation finding double check rook queen",
+      "text": "Double check! Blocking can't help against the rook and the queen at once, so the king itself has to move."
+    },
+    "takeId": null
+  },
+  "requestHash": "8073d6e869862a0e46e750e1c5130077b83352b903dacac81c5763dea8a6c4e5",
+  "recordedAt": "2026-10-04T08:10:07.992Z",
+  "sha256": "05c74e0b9d401e373a2e17b54bde870bda32d1af4881fb2224e6ee847c5e1f74",
+  "bytes": 22343,
+  "requestId": "2U7xuw7P16Gb2NUq9hJt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ddbf36d8234d2e72275478f28df7b24b16574efcb0afe398d14f28b8fa25e75b",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-escape-bishop",
+      "label": "Explanation frame capture move escape bishop",
+      "text": "Grabbing the bishop doubles as the escape from check."
+    },
+    "takeId": null
+  },
+  "requestHash": "cb3855e8355f5ccdc6172c19492568378e59ce438bfbb8838b8b0ff01dbbb833",
+  "recordedAt": "2026-10-04T08:06:17.584Z",
+  "sha256": "06b535f7b0cc83d8fa85ad6d6ce60f1f7e3536e5a2eb7cd2fc2fef8ce27dda9d",
+  "bytes": 11205,
+  "requestId": "g8AmNZA3d2r7CtZFyAo7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6b1b263429e01813ca3fd2886f816e8769c66cd7e9bc1194eb5e32093d87c17a",
+    "bytes": 53542
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

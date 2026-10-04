@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "grade-brilliant-2-queen",
+      "label": "Grade brilliant 2 queen",
+      "text": "A queen handed across the board at a loss, and the checked line still approves. A brilliant specimen."
+    },
+    "takeId": null
+  },
+  "requestHash": "142607c7de30074dc87fbb4c084ca850b0fa02f4eae1c40df9be9c1534b69c1e",
+  "recordedAt": "2026-10-04T08:16:59.845Z",
+  "sha256": "5f4be72ce3125732de3c3977f6960cd28165b8c20243b542d21f19eca8912d80",
+  "bytes": 21392,
+  "requestId": "Vbr2JLqvcfvoRVHROsnX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f5d5864d8a52173f18eb11a1f16d4761c18bb5f1ef0b943f73ad0693a555d26a",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

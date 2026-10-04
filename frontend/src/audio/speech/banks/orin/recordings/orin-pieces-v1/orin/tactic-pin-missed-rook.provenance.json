@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "tactic-pin-missed-rook",
+      "label": "Tactic pin missed rook",
+      "text": "A pin to the king was available in another move. A rook held that way must stay on its line or expose its own king, and the played move forgoes it."
+    },
+    "takeId": null
+  },
+  "requestHash": "1e78863e8d3a5e47f892ecb4fb925a97596d52d2acb8331db124001c026ef42a",
+  "recordedAt": "2026-10-04T07:58:10.849Z",
+  "sha256": "e256d9d7cf9a924b669892a9971ad864d640b68570422ddf1730e94acecbc643",
+  "bytes": 34234,
+  "requestId": "SsQORK4IdFtkLFVFftiK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0d50a2ffd750e5d05d4cd795783cdf51f7a410311d65faa2c8c38230bac2ad72",
+    "bytes": 176422
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed-queen",
+      "label": "Tactic removing defender missed queen",
+      "text": "The stronger move would have captured a queen on bodyguard duty and left its client exposed. That trapdoor stays shut."
+    },
+    "takeId": null
+  },
+  "requestHash": "db55e684e0238f4e1b0c3fc62e6b8deced5159312d899b4cdc9302729e56854b",
+  "recordedAt": "2026-10-04T08:05:23.416Z",
+  "sha256": "98826088a307c9fbf2f6a922572bce44bbb7f9dcf80c98defe2c5c8c5116e702",
+  "bytes": 24178,
+  "requestId": "U2MIJZ3ks5dWRJWHxXOX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bcc6c2eb84de2625de3a7055ddc6a32d672e0c5dabffeb3dd45fd852d07bfa33",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

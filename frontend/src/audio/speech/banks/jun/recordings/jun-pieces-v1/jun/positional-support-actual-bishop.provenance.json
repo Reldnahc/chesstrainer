@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "positional-support-actual-bishop",
+      "label": "Positional support actual bishop",
+      "text": "A previously unprotected bishop now has a defender."
+    },
+    "takeId": null
+  },
+  "requestHash": "bc980fe47aa8ccd733c8f0118094b11e0b6bdf4408ff25681a025383a13a694e",
+  "recordedAt": "2026-10-04T07:50:38.961Z",
+  "sha256": "cc20d1a6bf26e3260b5ffc9171cf1746fa730d4425d4577ba8b916d975fda8cc",
+  "bytes": 12495,
+  "requestId": "XRU0xwldLVnAAGPNwKga",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "33a2a17a75f12b4cb2c8738ce6f4e33d5deacad514f76098ae710798c228dab8",
+    "bytes": 59812
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

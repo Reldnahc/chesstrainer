@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "tactic-skewer-missed-king",
+      "label": "Tactic skewer missed king",
+      "text": "A skewer was available in a stronger move: check the king in front, and once it moves aside, the piece behind it is exposed."
+    },
+    "takeId": null
+  },
+  "requestHash": "534943a1fa577c39703ecb7806050c316c75647ca6c5d336c08821289a34fc63",
+  "recordedAt": "2026-10-04T08:15:10.260Z",
+  "sha256": "1d9b080e3d1bc76a0ba7987e3890cd417d6a9fe4e7ccde8c394b4a053398227d",
+  "bytes": 25067,
+  "requestId": "7a1IMLarqdtFT726Nlgx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4b4d21b4ba812baf4ae4cb39cbe4c14277fc2368826dfcb8bee6e198eb9a2c41",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

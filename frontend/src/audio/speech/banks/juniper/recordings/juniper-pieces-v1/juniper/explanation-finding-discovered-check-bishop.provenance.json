@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check-bishop",
+      "label": "Explanation finding discovered check bishop",
+      "text": "A piece slips out of the way, and from behind it the bishop gives check."
+    },
+    "takeId": null
+  },
+  "requestHash": "261e18d3065238869ba572b1a229335f9de0469c44ce5cb293a0cfb0b167ad89",
+  "recordedAt": "2026-10-04T07:52:31.036Z",
+  "sha256": "b4462bfd4d5f5bed30208d13e1b63b9389b8f53b8855ac6c0b0dd21c758439cf",
+  "bytes": 15600,
+  "requestId": "t4U1mkGtK47wNWGK6DqO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "81401f8055f8cdfdeb4707c540c69f6637e1ba1aed9f6a66b1aa504d91e522d6",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

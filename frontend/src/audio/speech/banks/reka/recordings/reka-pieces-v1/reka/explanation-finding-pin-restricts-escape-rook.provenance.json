@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape-rook",
+      "label": "Explanation finding pin restricts escape rook",
+      "text": "The attacked rook is nailed to its king, so fleeing is off the table. Anything it does has to keep its king screened."
+    },
+    "takeId": null
+  },
+  "requestHash": "0f75e179791091327d91715c56512ef8139db416fedccad0a90d7e75b71bf65e",
+  "recordedAt": "2026-10-04T08:05:41.681Z",
+  "sha256": "d97710118f81805f78e0a6cf1e05eb551f53219bfcb54fcec46d3d4fc7464be9",
+  "bytes": 25373,
+  "requestId": "SlfmuKJrrCo3vND4pmDH",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f2bd6ecf7544b05a89df1d5abe9d0fc7601533b40a992cac5dd4f38d619aeaac",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

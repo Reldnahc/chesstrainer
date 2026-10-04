@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-rook",
+      "label": "Tactic undefended capture played rook",
+      "text": "Free material, collected. Nothing protected that rook, so no recapture follows. Take what is free, then look further."
+    },
+    "takeId": null
+  },
+  "requestHash": "4c0e06c69aee518118e891a90003fd8b1c9dd7b475cdd3a1270df35928ba24aa",
+  "recordedAt": "2026-10-04T08:10:25.984Z",
+  "sha256": "8b1304764be086f426b08b87fad35488f6b9ea785775f7eb4f1a3d6330989bc8",
+  "bytes": 27033,
+  "requestId": "MIhC3UeE2tzjOoc0tv0J",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a5fc4d6393dbe6f7323376fdafb5293a1377714f55038e814ed2a505b08d6855",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

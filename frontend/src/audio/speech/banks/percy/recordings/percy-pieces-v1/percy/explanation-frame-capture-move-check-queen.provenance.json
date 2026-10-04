@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-check-queen",
+      "label": "Explanation frame capture move check queen",
+      "text": "A capture of a queen and a check, both with the same move."
+    },
+    "takeId": null
+  },
+  "requestHash": "a29834d1f4048e6035f87723e27d8acd4fc2a63fd91430ca195c4507c062c184",
+  "recordedAt": "2026-10-04T08:01:10.674Z",
+  "sha256": "22234f1e0083bd545d29409a5a47d5f612874e2946447dbe8db22b76355e8acf",
+  "bytes": 13052,
+  "requestId": "3TM78KZKFQ2SsVOBUNdo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b896e0a24d5ca7eacf426d78fd5aac02842a94976b48a718e2c8a6eb6984d35e",
+    "bytes": 63991
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

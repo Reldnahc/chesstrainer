@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed-bishop",
+      "label": "Tactic skewer allowed bishop",
+      "text": "A bishop and another piece are lined up on one line, and now a skewer is on for the other side. When the bishop shifts off, the back piece is a target."
+    },
+    "takeId": null
+  },
+  "requestHash": "dd6d542b15b9db66d91a47183915d021655501dbc64862a5e117d9ce1f5cf108",
+  "recordedAt": "2026-10-04T07:56:40.356Z",
+  "sha256": "1c7962c423c057b5255f953ddbedda164e95b4e162ccab26ec4b842dad050fcd",
+  "bytes": 30919,
+  "requestId": "iILrjoHGaHlGTCnSJS8i",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b08ab940eff3a0fd8cfd60312f665ee6affcb65731543df815902ea21a95eb4c",
+    "bytes": 158450
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

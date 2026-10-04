@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-queen",
+      "label": "Tactic deflection missed queen",
+      "text": "Deflection missed. Another move could have pulled the queen off its job and opened what it guarded. Find the overworked defender next time."
+    },
+    "takeId": null
+  },
+  "requestHash": "11ec9b9636c104dccd2c1c45b6d3da369a893858dd7647c10655a8689f70dc5e",
+  "recordedAt": "2026-10-04T08:07:18.150Z",
+  "sha256": "229439c141b14b9e994a344d3e55cbafefc888197370911f80e5496c834e2737",
+  "bytes": 25716,
+  "requestId": "KgJPkV2Y0pU8dUi3uf8a",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5740a53279115df93a078e63f613325bc2a3171f1198788cff4003e945bc42a6",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

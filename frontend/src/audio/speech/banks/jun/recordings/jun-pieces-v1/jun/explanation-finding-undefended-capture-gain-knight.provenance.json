@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-knight",
+      "label": "Explanation finding undefended capture gain knight",
+      "text": "An unprotected knight is captured. The capturing side finishes this example ahead in material."
+    },
+    "takeId": null
+  },
+  "requestHash": "d60955010e035bcb0952c4db1e2cf0a30209c02cd05397fd2627954a8fa8bbf2",
+  "recordedAt": "2026-10-04T07:51:04.004Z",
+  "sha256": "fd9cb9c77a8521380dab04d7a4c8b4cecde898a05f022a5e5cd073b993455a7e",
+  "bytes": 20394,
+  "requestId": "4UkHFNa5M6IRTZGpVdCm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ca18367f73c721d4575dc7d7213101fc8908310fb49ed52ad63ad5ac71f167a7",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

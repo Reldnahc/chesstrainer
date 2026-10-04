@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-queen",
+      "label": "Tactic undefended capture played queen",
+      "text": "That queen was sitting there unguarded, so it's taken without any cost. Checking for loose pieces like that is a good habit."
+    },
+    "takeId": null
+  },
+  "requestHash": "a5daf16265b9fd04272ca1a71babdf4d4a702fa0f71f081ecca75943370df98f",
+  "recordedAt": "2026-10-04T07:48:24.404Z",
+  "sha256": "f16469616e4faa209e1d9f51cec5169e04d06ac6653b087243d293d046d00772",
+  "bytes": 26697,
+  "requestId": "Zp8AAQr72ows3cMmIhxP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a7812be009eb584585a2a56564b03ff77ff136c2bff59ab343f606c5d2d59013",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

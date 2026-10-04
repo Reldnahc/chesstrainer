@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played-bishop",
+      "label": "Tactic removing defender played bishop",
+      "text": "Here's the trick: take the defending bishop first. Once it's gone, whatever it was guarding loses its protection."
+    },
+    "takeId": null
+  },
+  "requestHash": "86bee3c54c904d4f12e842cea4a1e9054707f056af25e2d0e694279abef4fd3f",
+  "recordedAt": "2026-10-04T08:03:48.166Z",
+  "sha256": "acd2fc3dcf547911c519abc982f5c7f9072ab417b7c3171ba0d1ce99d5b32366",
+  "bytes": 25516,
+  "requestId": "FQqHwXZ6Y1SVQ8s4pogN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "42b94307cab20d7c44c75a6abacc006faad6bc53ebe3f61aee40868bba89ac8d",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

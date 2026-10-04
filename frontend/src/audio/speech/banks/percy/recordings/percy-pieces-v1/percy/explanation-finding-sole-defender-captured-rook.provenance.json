@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-rook",
+      "label": "Explanation finding sole defender captured rook",
+      "text": "The lone defender, a rook, goes first, and then the piece it was protecting. Once that rook is gone, nobody's guarding what's left."
+    },
+    "takeId": null
+  },
+  "requestHash": "771b04c14da545289d0e6b16973a66861ecda66c4323f3c673d7ac523de87cf5",
+  "recordedAt": "2026-10-04T08:01:02.065Z",
+  "sha256": "45d951bb341a7a45d4cdaa50c4f610184b8878b7b9da8842081b385cbde30c91",
+  "bytes": 27161,
+  "requestId": "2srSn8JVFEsq7pH7D3rY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0bb630dc07b0e08544b58fde25bb70a11a946c087674772d577c53ab3b15c18b",
+    "bytes": 137970
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

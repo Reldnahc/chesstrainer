@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "tactic-pin-played-pawn",
+      "label": "Tactic pin played pawn",
+      "text": "A pin! The pawn in front can't step off the line, because its own king is standing behind it on that line."
+    },
+    "takeId": null
+  },
+  "requestHash": "422543a0c51904c3893824bbe947fec308dfd6beca083fe6539193cc5216484b",
+  "recordedAt": "2026-10-04T07:54:58.043Z",
+  "sha256": "107592d01cfbe1b4a1c0c913ac0e433337506a36711bde740b6a1ee051ca29ea",
+  "bytes": 22684,
+  "requestId": "VKsrcD1zol0c4mwbnU92",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f1c1c78e3fa124dacf697e3afc10053d81ecceaf7189e7bde5d3c270ff3cf588",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

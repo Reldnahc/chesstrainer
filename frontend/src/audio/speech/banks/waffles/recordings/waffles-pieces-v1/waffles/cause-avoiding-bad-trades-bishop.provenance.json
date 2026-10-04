@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "cause-avoiding-bad-trades-bishop",
+      "label": "Cause avoiding bad trades bishop",
+      "text": "Full count on that exchange! The bishop takes, the other side recaptures it, and the bishop was worth more than its catch. That trade costs the mover."
+    },
+    "takeId": null
+  },
+  "requestHash": "00d1a2b6f0d44243a960c3b10fad2df7daf9679e610c2d964d83c5d092514ad1",
+  "recordedAt": "2026-10-04T08:12:41.319Z",
+  "sha256": "508565acb8405041783b53b98f81d1facd6c335e80b5d8c0951bb274aa02c58b",
+  "bytes": 33074,
+  "requestId": "EEhVce3utsJoxFQH2jx3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5d2fd34ba79b155fda01156bb024959e8c0511b21b1ca1e1dfb12842124b5efb",
+    "bytes": 166391
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

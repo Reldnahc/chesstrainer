@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-check-bishop",
+      "label": "Explanation frame capture promotion check bishop",
+      "text": "One pawn captures the bishop, promotes on the last rank and gives check. Busy soldier!"
+    },
+    "takeId": null
+  },
+  "requestHash": "274c8cd0f177f94e5bbcfa9061c327ad3a828d16e5d7662ac4e6e2709a44b61a",
+  "recordedAt": "2026-10-04T08:13:13.393Z",
+  "sha256": "0915202e559bc4f08cf9a0b274c2c19b42f4223ead7952a769cc4ccfbc02a6d0",
+  "bytes": 20645,
+  "requestId": "2Kxl439I6SFCW9ULxqrE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5c7fd0e39548d065c9bdc81b4f75245c456318ce31697f330c4d89de60c554c3",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

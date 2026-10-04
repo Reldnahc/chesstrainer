@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "grade-brilliant-4-rook",
+      "label": "Grade brilliant 4 rook",
+      "text": "I'll remember this one quietly. A real rook sacrifice, and it stands up to being taken."
+    },
+    "takeId": null
+  },
+  "requestHash": "510a5ff18437a33326641ce195a5a91235cbc76bcc047e64dffb5c4a1bcd776e",
+  "recordedAt": "2026-10-04T07:52:50.299Z",
+  "sha256": "cbf1f334843663fc869a954062c1ca71db291ae5424542fa3a3b0818f4239564",
+  "bytes": 21084,
+  "requestId": "MLM2gINIoy0yeqYTkzh8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fa9d6b1e9061a04237178d6798af1e08bebb9d03c9637392739a36b05863ff67",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

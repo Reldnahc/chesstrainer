@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "positional-development-actual-knight",
+      "label": "Positional development actual knight",
+      "text": "Another piece joins the fight. The knight leaves home for active duty. Keep counting how many are still at home."
+    },
+    "takeId": null
+  },
+  "requestHash": "684fa1355043be356fcc996608da946815337913a2956027aba6e28ec5a074f6",
+  "recordedAt": "2026-10-04T08:11:04.903Z",
+  "sha256": "4e6c65b00da489768143565bb27c50ff786647414765212781ac2bb0382193fd",
+  "bytes": 22540,
+  "requestId": "sMVxg1LGqx06Rh4qICSM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "40aaadd57c81119e7ccf22af8eb8e58833cce42ffb09ec3a90bcb7d97db613fe",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

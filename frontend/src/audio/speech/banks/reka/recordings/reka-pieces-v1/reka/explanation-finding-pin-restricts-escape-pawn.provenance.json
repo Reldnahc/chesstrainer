@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape-pawn",
+      "label": "Explanation finding pin restricts escape pawn",
+      "text": "The attacked pawn is nailed to its king, so fleeing is off the table. Anything it does has to keep its king screened."
+    },
+    "takeId": null
+  },
+  "requestHash": "5a382d0ea61dea4ffa48b6570208755a3a03969a70aae134a7e8447f3aa18276",
+  "recordedAt": "2026-10-04T08:05:35.209Z",
+  "sha256": "7d5d78b219538fda3f4709380f213785df1bcf3015f633408cd286035a88ee30",
+  "bytes": 25090,
+  "requestId": "1bn1ItuAqBb2opFeALRl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "80934b7f6508333a36a13fb20c078dacb4dfacd663469bac8c57ad13bf096842",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-rook",
+      "label": "Tactic deflection allowed rook",
+      "text": "Spot the busy rook: it has an important job, and the other side can now drag it away from its post."
+    },
+    "takeId": null
+  },
+  "requestHash": "cbf01861950497926dcd528fb31c839a03690f8a830f02b8f77ae3e84ebad929",
+  "recordedAt": "2026-10-04T08:09:16.332Z",
+  "sha256": "19a0fb71525d4a8cf40aa09d0a878c7c017fcab185e3806df992cb1b253f55e2",
+  "bytes": 22450,
+  "requestId": "RJ7PlGcAICMh6O77iF5t",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "38628a73f8159b5ae91d62fa9d44ce0975b779d5dcad35dd384608d166c40a94",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "grade-brilliant-1-bishop",
+      "label": "Grade brilliant 1 bishop",
+      "text": "Oh my! A bishop ends up in harm's way at a real cost, and the checked line holds once it's taken. Brilliant!"
+    },
+    "takeId": null
+  },
+  "requestHash": "476d52e639051f0ca21c2898c75105149fbdb0e0d0053263f9c90af41dbbe7ac",
+  "recordedAt": "2026-10-04T08:01:31.298Z",
+  "sha256": "9fb8ed5420604e0e1f2c8722e6777233d8b441d24dac4523ac6defaafcda265c",
+  "bytes": 25032,
+  "requestId": "gIXvpGmS9V7YquIbHF9j",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7cea3aa6f91ee32ff539f7853aee609832835f980ee9acedee0613314de6d52f",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

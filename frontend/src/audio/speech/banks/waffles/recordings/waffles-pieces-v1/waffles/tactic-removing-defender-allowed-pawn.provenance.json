@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-pawn",
+      "label": "Tactic removing defender allowed pawn",
+      "text": "Defender in the open! The other side can capture that pawn, and whatever it guards could end up unprotected. Check its duties now."
+    },
+    "takeId": null
+  },
+  "requestHash": "fa7e9f82f76b70f58bc0026847543a903ff96077466ff0762a7afb16d3ddb6c8",
+  "recordedAt": "2026-10-04T08:12:05.914Z",
+  "sha256": "3b7113389201410dd77a56e3f9c23362c20c633d6e034b4064f5930acd825ecf",
+  "bytes": 27958,
+  "requestId": "69QStV52gAYpMLQ0GtPj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2931d0d71f8b10e880b1612a6e002c9a63ec671ba41bd2db982e55b6fea2e348",
+    "bytes": 139224
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

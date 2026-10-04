@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-fork-played-pawn",
+      "label": "Tactic fork played pawn",
+      "text": "Now that's a hardworking pawn! Fork time: one little pawn hitting two targets at once, and a single reply rarely gets them both out of the way."
+    },
+    "takeId": null
+  },
+  "requestHash": "74a753b4dbc0b42ace922bedd934e3be43d55f8c52098fc6e9a8411ab800867a",
+  "recordedAt": "2026-10-04T07:59:39.362Z",
+  "sha256": "9c49837e5c8729f02185627da2ae86d172da2d914b2ffcbde920d306f7a90b93",
+  "bytes": 31778,
+  "requestId": "I05rSpGLaoWXrmLUbBQF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8f202814686201d5a32ff7d629110e1ee5cc2c609de3dae1cb2ad1c5d58db9b7",
+    "bytes": 160958
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

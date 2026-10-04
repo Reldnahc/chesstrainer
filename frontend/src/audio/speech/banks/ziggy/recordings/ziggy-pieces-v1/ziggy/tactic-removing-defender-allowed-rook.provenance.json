@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-rook",
+      "label": "Tactic removing defender allowed rook",
+      "text": "Now the other side can capture a defending rook, and whatever it protected may be left without cover."
+    },
+    "takeId": null
+  },
+  "requestHash": "b3248fe8aff78549c038ecd7d5f77ee6f7bc311d4d0b3b0d539e18bf59db3fbf",
+  "recordedAt": "2026-10-04T08:15:20.316Z",
+  "sha256": "0e15b63104a1d9eb13912b6003e9c845a19c2e87652fd6e55e0db93afa870704",
+  "bytes": 19351,
+  "requestId": "9ebX42AvEOjU4P98cA7W",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "da50ef321c467c6d7c788912c2889a36c621488ee0052d6f5c7b73d1a79d1034",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

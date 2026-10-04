@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "tactic-fork-played-knight",
+      "label": "Tactic fork played knight",
+      "text": "The fork, a pattern every player must learn: a single knight attacks several targets, and the defender can rescue only one of them."
+    },
+    "takeId": null
+  },
+  "requestHash": "f581a8c6b5652123744ec9b636a5cac8ae99c2ff41c84cec81d9aefdb8430362",
+  "recordedAt": "2026-10-04T07:57:44.259Z",
+  "sha256": "b417714166afdbd38fb27add3f857e6f16ae8fe19e74b384aaa0a87d2381aee6",
+  "bytes": 29508,
+  "requestId": "tYsVOdausN7kfOoO8yyY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ec063e4b0d3c7a97869b936d83e7f631cc07c70fd2f32760b33e4707a55dfb6b",
+    "bytes": 153435
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

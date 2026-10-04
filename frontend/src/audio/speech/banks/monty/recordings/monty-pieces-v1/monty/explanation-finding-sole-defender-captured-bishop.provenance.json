@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-bishop",
+      "label": "Explanation finding sole defender captured bishop",
+      "text": "First the bishop on guard goes, and it was the only guard. The piece it was protecting falls later in these moves."
+    },
+    "takeId": null
+  },
+  "requestHash": "28b1444cfa74cefdea85d0941d4a3711db53dbbe7b394b06b4578e10c213a57a",
+  "recordedAt": "2026-10-04T07:57:23.876Z",
+  "sha256": "b414f27c0cfee95b98dd1246430cb8624c67e43252555865cd9cca0ef8a99fae",
+  "bytes": 24143,
+  "requestId": "3v7QqImo3aB3XSPxkgS9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "22a9d5ae360bee426ecae3ca44dfe8e3b90888bf6fea6521850361b00d10b6db",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-mate-bishop",
+      "label": "Explanation frame capture promotion mate bishop",
+      "text": "The pawn takes the bishop, promotes, and mates in the same move."
+    },
+    "takeId": null
+  },
+  "requestHash": "dc0cfa1835bf36c92fe7c8284a44ab98c1af7af1fefd394fe685d1d2cd814805",
+  "recordedAt": "2026-10-04T07:49:35.980Z",
+  "sha256": "7b8107bad85965ebce1d0c5aec92d98fb64883fa92f051be97e93bb5188a2634",
+  "bytes": 15044,
+  "requestId": "87XIa03pRCisTLTovw6s",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d864f183f8f3d42fb682d9afeca2e504a0db96451dc65b2418c1560fa161d7ee",
+    "bytes": 75276
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

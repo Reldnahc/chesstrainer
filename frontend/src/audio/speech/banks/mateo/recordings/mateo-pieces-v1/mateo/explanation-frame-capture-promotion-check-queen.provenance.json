@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-check-queen",
+      "label": "Explanation frame capture promotion check queen",
+      "text": "The pawn takes a queen, promotes, and the new piece gives check straight away."
+    },
+    "takeId": null
+  },
+  "requestHash": "8bc7c52801da7c70b6d9e89b9425ce6b8ade7c953aba6b01208403ac5cb803f1",
+  "recordedAt": "2026-10-04T07:55:53.304Z",
+  "sha256": "2f600401d698f187324d26a831344de9af7f598f69e366b2c9c922e9867f8dc7",
+  "bytes": 16588,
+  "requestId": "jbK62GMi568X0WNUKXmw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "09eb2bf9bb3da4c5e9d4a4791e054c0ac2401b26fcd0702cfb68bad16cb206f4",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

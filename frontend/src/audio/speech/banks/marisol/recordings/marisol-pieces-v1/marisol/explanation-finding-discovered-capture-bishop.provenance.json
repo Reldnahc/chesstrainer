@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-capture-bishop",
+      "label": "Explanation finding discovered capture bishop",
+      "text": "The blocking piece steps off the line; the bishop behind it then captures along the opening it left."
+    },
+    "takeId": null
+  },
+  "requestHash": "0764e8fea14cc768e6d17e513dd32a2561414792263fc6cae19d50b2cb8c6ae3",
+  "recordedAt": "2026-10-04T07:54:22.154Z",
+  "sha256": "d8b0f8aa13d08c36a2f28ab2e45edf6546adc327ebb67136d34676c58989eee2",
+  "bytes": 20264,
+  "requestId": "AftN9Y0o6eS4Hxx5p2Lk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6dce7362b3ceb7683feb62ef4d9bba68ae1d3703fe09f5c4fe5a1c207139ed9a",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

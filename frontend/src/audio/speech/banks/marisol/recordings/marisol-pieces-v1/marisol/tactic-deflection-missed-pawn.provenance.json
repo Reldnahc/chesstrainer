@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-pawn",
+      "label": "Tactic deflection missed pawn",
+      "text": "Under the stronger move, a defending pawn would have been pulled away from what it guards. Here that pawn is undisturbed."
+    },
+    "takeId": null
+  },
+  "requestHash": "a73474e0a624363968ce3c9d725dd18385fc82f609f6b2a3892da5faa50b8b8b",
+  "recordedAt": "2026-10-04T07:53:28.995Z",
+  "sha256": "8865b4cef0f048195160827b4cf0d0d9cb6ebf1e80a278af5eb1b83c5ab0b062",
+  "bytes": 24666,
+  "requestId": "BD9Jdey8K4j29DX5pe48",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "72ca0f1062139fffe5c6242517cdf5f083df478c94212a504037182be575eac7",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

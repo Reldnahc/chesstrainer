@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-deflection-played-rook",
+      "label": "Tactic deflection played rook",
+      "text": "Deflection. The defending rook is pulled away from its task, and the piece or square it covered is left unguarded."
+    },
+    "takeId": null
+  },
+  "requestHash": "1e36778af74e6f79e1d9114f3622578a2be0a52256b19642a8646232b95e17b5",
+  "recordedAt": "2026-10-04T07:50:24.541Z",
+  "sha256": "e5d6dc6d9cfbab7fce29a598a06160d8385429e7a6cd7b0868dc03454ceb5e49",
+  "bytes": 24429,
+  "requestId": "VW5t7PMROG3LFvfZEXxF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9456d02b8a3c980888730bad36ed619fe25041ce470edd5f929379fc08c3a5e6",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

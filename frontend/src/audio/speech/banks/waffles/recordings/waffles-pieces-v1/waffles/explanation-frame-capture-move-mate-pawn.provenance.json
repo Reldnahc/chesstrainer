@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate-pawn",
+      "label": "Explanation frame capture move mate pawn",
+      "text": "The pawn falls, and it's checkmate. Every escape route is closed."
+    },
+    "takeId": null
+  },
+  "requestHash": "0aa3b13537a916781b415e6790ecaa2323ff186fb65a3d7a045ead6c518b00f9",
+  "recordedAt": "2026-10-04T08:13:10.306Z",
+  "sha256": "1b4ee02f94b48c74279f60ad744ae845b70230fb13f6f9deb5eab16ad05d53f1",
+  "bytes": 16641,
+  "requestId": "0yy8MsDy5fLKLlrrnQff",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6be7b2c26a4a553b2e4c41b1e70a711d5fad0637594fef73013a00c34de4685a",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

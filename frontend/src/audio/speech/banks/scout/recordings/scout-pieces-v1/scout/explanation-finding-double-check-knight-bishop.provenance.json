@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-knight-bishop",
+      "label": "Explanation finding double check knight bishop",
+      "text": "Double check. The knight and the bishop attack the king at once, so the only answer is a king move."
+    },
+    "takeId": null
+  },
+  "requestHash": "758b1e12ad98e5c6363ba2551454b2ebb8c0f2f8a1b5597a649147a8b8de8eb2",
+  "recordedAt": "2026-10-04T08:08:12.724Z",
+  "sha256": "27640ef67ab849aa39894d39d4c87ff4f673bfc146dc75d23b6493e80f3a25e2",
+  "bytes": 19739,
+  "requestId": "ejinKY6MRaWYmyKJZM4T",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "53358b3c50bcce415f83c4f2de86b7838791e9a530860ebe119cd9b6f0bc9e5d",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-queen",
+      "label": "Tactic discovered attack played queen",
+      "text": "Discovered attack, launched! The queen in front moves off, and the piece behind it goes on the attack. Two units in action off a single order."
+    },
+    "takeId": null
+  },
+  "requestHash": "d9b59ce08f25b3a954d073050767ec684bdeb45bbcfeb6828f2b3c71cdf08918",
+  "recordedAt": "2026-10-04T08:12:15.843Z",
+  "sha256": "e0249a95de3db1f170d681129061da0190aec2489c25644607f6567ed85e6af5",
+  "bytes": 30754,
+  "requestId": "Pz95YNIkaPH2QQd4b1Ln",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "734b5b01851ba06afad3e9b5773df58478affd2c16357335bca98d6b294effb1",
+    "bytes": 155942
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-queen",
+      "label": "Tactic deflection allowed queen",
+      "text": "This lets the other side drag the queen away from its job. That's a deflection, and whatever it was guarding could be left open."
+    },
+    "takeId": null
+  },
+  "requestHash": "6de09c2dae12c5143be761fca9fa7bfb9e4a264db1c8b5c2baeea1cd5fd97ee7",
+  "recordedAt": "2026-10-04T08:03:50.570Z",
+  "sha256": "0fb45dbb1dab3f8c396c620186efe18e4935da1fc1da60f3c06e420be1c10710",
+  "bytes": 26270,
+  "requestId": "EESAbibAc76ijYL6glHN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e763d4d936d9afd66b2b3903a477fd913a6ac5c98ecbaeb04787e01508dad982",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

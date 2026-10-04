@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-skewer-missed-queen",
+      "label": "Tactic skewer missed queen",
+      "text": "A skewer stayed in the box. Another move attacked the queen in front with another piece waiting behind. From today, look past every target."
+    },
+    "takeId": null
+  },
+  "requestHash": "3b04c91598e0523bc85fbe2cc71a9b0b01645489458a4c4ad54861cead767175",
+  "recordedAt": "2026-10-04T08:10:14.220Z",
+  "sha256": "e6605392d2ef458d5400f780e1767018f49331bc8e878fa12b984454d8019e1b",
+  "bytes": 29738,
+  "requestId": "zMVNz0qd5vB7Ly5Qjy0w",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d5123362af3545a54693e8bc8369c8d8f307c469c3870b856d804d7ddc90c62b",
+    "bytes": 153435
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-queen",
+      "label": "Explanation finding relative pin released queen",
+      "text": "Big picture: the attacking queen was under a relative pin, and the opponent's last move freed it. The target did not move, so in the line shown it is taken."
+    },
+    "takeId": null
+  },
+  "requestHash": "d37b297c8397f4560174bc7125700c34a1a6068a2c30a59866a101769d960cd4",
+  "recordedAt": "2026-10-04T07:57:14.034Z",
+  "sha256": "b82a79eecee801d6d14ff674d93485fdecb545ab97f8121e6abb94b47822d7ad",
+  "bytes": 34342,
+  "requestId": "FGD2gaspaetbwGMwExi6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3a3954a6950412057609f2fe5dfbe61bad0525c2b55be9131711d61df10246eb",
+    "bytes": 180184
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

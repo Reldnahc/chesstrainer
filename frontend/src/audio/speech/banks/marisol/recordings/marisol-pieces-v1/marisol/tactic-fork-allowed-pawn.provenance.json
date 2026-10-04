@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-fork-allowed-pawn",
+      "label": "Tactic fork allowed pawn",
+      "text": "One detail is different after this move: an enemy pawn can now reach a square from which two targets are hit together."
+    },
+    "takeId": null
+  },
+  "requestHash": "c02d7e1417a899c42dbbf6c5f2dc1fac20006ac773e3547e5d92c644801dadfd",
+  "recordedAt": "2026-10-04T07:52:56.634Z",
+  "sha256": "e714c66001b66a3bafab8ea25a53bf47a6dab9de252b4e3569cdd17287bb2cfc",
+  "bytes": 24115,
+  "requestId": "ZUvuwW1f0WWm0A80l9u5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cfd0b9282b98df08115718901155765b766feb662a423821802609b2f461c5b1",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

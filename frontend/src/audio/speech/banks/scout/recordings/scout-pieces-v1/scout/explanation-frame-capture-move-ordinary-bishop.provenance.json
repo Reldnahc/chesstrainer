@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary-bishop",
+      "label": "Explanation frame capture move ordinary bishop",
+      "text": "Capture. A bishop leaves the board for good."
+    },
+    "takeId": null
+  },
+  "requestHash": "e0c46366238a36216c12bc2f99ec88d1048caace33a5e1deeab73499bc2c7cee",
+  "recordedAt": "2026-10-04T08:08:26.223Z",
+  "sha256": "87cfc9cbe40953914f8ec5de7641f3e22830422b87811657cfb7d22addab5a1e",
+  "bytes": 10904,
+  "requestId": "iqDVYcgxuIHqzMho2x1g",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "03f1203cf287966ce50d606c3b26b8ce06e6190157444fa1772513d03a3fd941",
+    "bytes": 54796
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

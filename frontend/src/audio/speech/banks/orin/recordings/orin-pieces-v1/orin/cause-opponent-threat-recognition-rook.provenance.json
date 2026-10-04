@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "cause-opponent-threat-recognition-rook",
+      "label": "Cause opponent threat recognition rook",
+      "text": "Every move asks a question, and the opponent's last one created a threat. This move leaves it unanswered, so the rook can now be captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "97b180d0595c8d57f31d92d83f45b33788e73a4433b458e87b951094c2082df6",
+  "recordedAt": "2026-10-04T07:58:39.781Z",
+  "sha256": "adfd12ccc103ba5d1e3d0aa27ab61b51a558ad21d33cbb0b243408e6da9c64e7",
+  "bytes": 31129,
+  "requestId": "19m1VjgMr2g8kmN7Puee",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "52637b4724fb3b740f9e6283f4a0a07c9a8de0367a2814c2437873131707c8aa",
+    "bytes": 162212
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

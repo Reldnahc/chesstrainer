@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "grade-brilliant-1-queen",
+      "label": "Grade brilliant 1 queen",
+      "text": "Strong. Big picture: a queen is put on offer, and the position stands firm after the capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "77342b82a4c332480f3bbe5b2652434d96bfb6450665d16d7cd01c622c91b8b8",
+  "recordedAt": "2026-10-04T07:57:58.945Z",
+  "sha256": "dc7b212c83e20bb1dd9067b89191a6a18993d31c91a92d0cbd0bb790270b02fe",
+  "bytes": 21946,
+  "requestId": "8uRT9qhVHKBAPouipBz4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1f3582f0057f0a7f4484450192b5b6b32369176ab80a2772773eed372df78dfd",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

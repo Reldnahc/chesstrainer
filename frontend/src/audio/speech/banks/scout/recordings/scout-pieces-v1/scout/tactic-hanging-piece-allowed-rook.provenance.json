@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "tactic-hanging-piece-allowed-rook",
+      "label": "Tactic hanging piece allowed rook",
+      "text": "Hanging rook. This move leaves it with no guard, and the other side can take it. Every move, run the guard check on every piece."
+    },
+    "takeId": null
+  },
+  "requestHash": "478ff6bb2b2b0ff0c979f9d41d1a222ef55b6d86e0899b7e7b627fd1413c32bd",
+  "recordedAt": "2026-10-04T08:07:00.755Z",
+  "sha256": "dfbf3a2694d1f27e66350b846ec3c400fe87e0bfd41d3b311f9f6fd65a742ed6",
+  "bytes": 26159,
+  "requestId": "3OAaDxUeYj2fGRHgYFvi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5a4161fff79d3f8dc1f4a9b019048829a79146d57502a86be2322ddf715838b7",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

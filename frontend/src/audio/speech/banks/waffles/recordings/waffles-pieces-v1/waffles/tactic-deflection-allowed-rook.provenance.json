@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-rook",
+      "label": "Tactic deflection allowed rook",
+      "text": "Posts under pressure! The other side can pull a defending rook away with a deflection, and what it guards could be left open."
+    },
+    "takeId": null
+  },
+  "requestHash": "dcce9a9e4b6e054064ba34f4767f83869f8f4c268137c3bd92dd73dc5dea19f0",
+  "recordedAt": "2026-10-04T08:12:41.064Z",
+  "sha256": "93dc50738cb0f7c09aab7e6e86b4767ab6f921d4d5ad35fd7f787f347c289080",
+  "bytes": 24810,
+  "requestId": "igWxC5EKPMBuJy35tvR3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5899b07b3cc48bf299f9c543c054de3028e3fe1e0c7ef2885b179fbc4d66b729",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-rook",
+      "label": "Explanation finding pin collected rook",
+      "text": "With its king behind it, the pinned rook is nailed to that line. As these moves go on, it gets taken."
+    },
+    "takeId": null
+  },
+  "requestHash": "eb6419f1f3e2b1154485dc59aba29a04c6772ef61ce85c8c8d34ed8f2ef97fe2",
+  "recordedAt": "2026-10-04T07:57:16.221Z",
+  "sha256": "cd8b7cf355861b570cd24b09096441271a4960e15620d92d2c8f46efdd9cf3cc",
+  "bytes": 21868,
+  "requestId": "BnljbhK3fTQxynrzVeYW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c59f64659ec3a84723924f95edd79eaa83b6ecd0a2ffae377f6c57d3dd08bda1",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

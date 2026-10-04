@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "grade-brilliant-3-knight",
+      "label": "Grade brilliant 3 knight",
+      "text": "What changed is that the knight is on offer. What did not change is that the position holds."
+    },
+    "takeId": null
+  },
+  "requestHash": "b1b2e0c3b040d1fc4ad1e6f95b9892c9fe2c0f83315f47764576e8045bbd9743",
+  "recordedAt": "2026-10-04T07:54:15.415Z",
+  "sha256": "4930396e70afc01ed0ba70014e5340723e3b39b5d53298a966d37bc1d2836899",
+  "bytes": 19159,
+  "requestId": "mitDoXQING85s6uCRL5R",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1bfc687de41ccef60d6a8998468a0b605dccf077ef0498d8647d2650da38e4f6",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

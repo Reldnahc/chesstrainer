@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-knight",
+      "label": "Explanation finding sole defender captured knight",
+      "text": "First the knight on guard goes, and it was the only guard. The piece it was protecting falls later in these moves."
+    },
+    "takeId": null
+  },
+  "requestHash": "3ea347f0f3ca3ed2bf9a50d1eec51d06a91dc200d3fcb05a0333df32aaee6057",
+  "recordedAt": "2026-10-04T07:57:22.014Z",
+  "sha256": "28e1803659f954440cb7eb48d8964595e2308cf697a944d7add1674c6fa0a31a",
+  "bytes": 23964,
+  "requestId": "zc3hCFrocwxB0oQtSXNJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7e39765390695b2174b4c5607706d2da387d2d6df5b271cd548fcc4041d7ae78",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

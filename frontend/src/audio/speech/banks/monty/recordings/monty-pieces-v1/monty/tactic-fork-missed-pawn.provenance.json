@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-fork-missed-pawn",
+      "label": "Tactic fork missed pawn",
+      "text": "Simple point: a fork was sitting right here, with a pawn able to hit two targets, and the move played walks past it."
+    },
+    "takeId": null
+  },
+  "requestHash": "d80cc6860ef07afc2e74ee98db70737f65e40901bafaeeb80b201631a049c587",
+  "recordedAt": "2026-10-04T07:56:21.745Z",
+  "sha256": "389fefddb604cb262f7edca701219e9d4ff82c40a3b3d9c1c017b102e3604d06",
+  "bytes": 25193,
+  "requestId": "1xA4XXNN4lstPRUE7WZ8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "27bf73e86ca9157aa7862c158c5d773a43a26489a5f4dcc8f0a541df1919ea9d",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

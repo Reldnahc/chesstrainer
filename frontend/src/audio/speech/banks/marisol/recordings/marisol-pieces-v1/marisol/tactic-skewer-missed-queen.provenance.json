@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-skewer-missed-queen",
+      "label": "Tactic skewer missed queen",
+      "text": "A skewer sat inside the stronger move: pressure on the queen in front, the real target behind it. After this move the line remains untouched."
+    },
+    "takeId": null
+  },
+  "requestHash": "bd4265c09ca6da3ffc44657c83ed4f5f210a965c3fcc40a55d4bad35c800f4c2",
+  "recordedAt": "2026-10-04T07:53:10.017Z",
+  "sha256": "3435108586e0d8932198646599b9890fb3cefe78929cc3eeea3faa8b0fe2dfdb",
+  "bytes": 30079,
+  "requestId": "DI6mgkiaXvfW6VgwFaX5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "18845bd45fc78649546dbb8b0826c36d93f157e55096d4ce1a117cb0277e09af",
+    "bytes": 159704
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "grade-brilliant-1-knight",
+      "label": "Grade brilliant 1 knight",
+      "text": "Now that's lovely chess. The knight goes, and the checked line has no objection."
+    },
+    "takeId": null
+  },
+  "requestHash": "e189521bbfd8b887dcea9d6c6ff497b0877cddc0e0796b07499245ad7318a66e",
+  "recordedAt": "2026-10-04T07:49:46.141Z",
+  "sha256": "e60c0207acf06b6658905ba2a4d70709a1c08e0328757642a9a8ecb595349d71",
+  "bytes": 18917,
+  "requestId": "ApqXcG8SHqNUbOoazgJ2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fc265544db92be232fba49a611ea469fbbe9a1ca6fd2efd3643c90744e29f1e2",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

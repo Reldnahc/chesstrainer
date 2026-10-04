@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "positional-development-alternative-knight",
+      "label": "Positional development alternative knight",
+      "text": "With another move, a knight would have come out to play, but it's still waiting at home."
+    },
+    "takeId": null
+  },
+  "requestHash": "3d238c4537b8db59a8baabd421869b68816a11ef55b791d2e50a4293ba278e9d",
+  "recordedAt": "2026-10-04T07:55:25.581Z",
+  "sha256": "248e9900feb028b239aba9929488d768a4aad7ec060b22ec5db653dec6c4c442",
+  "bytes": 17353,
+  "requestId": "iS1ykjSQkdcbLJOTlBzG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d4496b0292bea06fe87c32e502668f36bd9265200b797d95fdf5dbb68d22606d",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

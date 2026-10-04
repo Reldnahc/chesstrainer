@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check-bishop",
+      "label": "Explanation finding discovered check bishop",
+      "text": "A piece moves off the line, and the bishop behind it gives check along the opened line."
+    },
+    "takeId": null
+  },
+  "requestHash": "ad8a66031436c6c381d14d11834cead8a6a3aae143b8ff3526e1349afed8f521",
+  "recordedAt": "2026-10-04T07:50:47.769Z",
+  "sha256": "81f7e7cdfcb76ad0536f24ed2a93e62674346ea6e17cdeda5a97f24a2844209e",
+  "bytes": 17968,
+  "requestId": "xaKmklkLavgiX0SHAVCo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5d5ef36c4f0492c4aa5a37c9c48fac9dbd6d2c8e585e73193c96c41ee00d7c69",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

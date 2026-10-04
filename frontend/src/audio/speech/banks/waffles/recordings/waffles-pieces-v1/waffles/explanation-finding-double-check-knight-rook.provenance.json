@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-knight-rook",
+      "label": "Explanation finding double check knight rook",
+      "text": "Double check, the knight and the rook at once!"
+    },
+    "takeId": null
+  },
+  "requestHash": "397f74827cef38b513cfb1f7ac15cc06f828e849d50cabbf1d65cb4d3ab2206f",
+  "recordedAt": "2026-10-04T08:13:08.116Z",
+  "sha256": "6a1e6c96bda9e7eae26eb0d7e51fcd21dd474ce92ddf21a44513e252617c7490",
+  "bytes": 11300,
+  "requestId": "lpDNWLtrjhglUXhIASya",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f9455da8b6cd3b3c4001060719513d50e3193e4b13487e1941b7b0a92353eba8",
+    "bytes": 54796
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

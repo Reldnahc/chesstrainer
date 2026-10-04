@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-bishop",
+      "label": "Positional unsupported actual bishop",
+      "text": "Plain fact: this bishop has lost its guard. Weak spot, yes; lost bishop, no."
+    },
+    "takeId": null
+  },
+  "requestHash": "f17e722fdd0338a82eceeb060e15a99bde2ed5b38f3ab29d4070cf86eee748c0",
+  "recordedAt": "2026-10-04T07:57:22.333Z",
+  "sha256": "1977b4d424b9e1c0ff7db687cd01f6578ba8cabd273daa75d505689049c91b99",
+  "bytes": 21519,
+  "requestId": "7g4Ohci0JAB8TuaY59QJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ca7e4c4914e684da3325ae316394df721a0f64ebb298b732b06c3efc4c4c4965",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

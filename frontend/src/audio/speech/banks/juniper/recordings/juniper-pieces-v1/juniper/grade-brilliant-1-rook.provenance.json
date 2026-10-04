@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "grade-brilliant-1-rook",
+      "label": "Grade brilliant 1 rook",
+      "text": "A rook offered. I looked for a flaw in the idea, and the checked line shows none. Lovely."
+    },
+    "takeId": null
+  },
+  "requestHash": "cdeb6c993cf5b05aefa7b4358e966e24519d54e6c19dc1d9028b56d65eb4b5cd",
+  "recordedAt": "2026-10-04T07:53:03.060Z",
+  "sha256": "038cfd35448c275db6da43f2a1b0f8a0b103ef0a1d71cec67e58b61f0a094867",
+  "bytes": 20938,
+  "requestId": "feLxHWN0Xktsxi3jTcQg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "affacf88cf91da8ec4b2e6d74a984060d4746503bbfc014d2c35593b1bccab29",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

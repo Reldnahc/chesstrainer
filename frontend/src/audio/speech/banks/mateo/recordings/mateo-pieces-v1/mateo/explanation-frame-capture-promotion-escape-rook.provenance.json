@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-escape-rook",
+      "label": "Explanation frame capture promotion escape rook",
+      "text": "The pawn grabs a rook and promotes, and that one move also gets the capturing side's king out of check."
+    },
+    "takeId": null
+  },
+  "requestHash": "b32bd7cd4a4295effa38121e67f3a44d394e29e71d0a84a863c9b0b141c839b2",
+  "recordedAt": "2026-10-04T07:56:03.697Z",
+  "sha256": "d7f5f909a698bcc6dda47280d0978a114e22589187cb59ade71fdd6273da7695",
+  "bytes": 21434,
+  "requestId": "Yrm44nFu8wUGuat4bEle",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "df85fdfe4d473033ef4554a05653cc3bb317ce58e46f4402db125836b88032ac",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-rook",
+      "label": "Explanation finding deflection collected rook",
+      "text": "The defender gets pulled off its post, and the rook it covered is then taken."
+    },
+    "takeId": null
+  },
+  "requestHash": "9a11f4cb5c0535806466d4723e71273e7ad0215369206312bd79a3e1eefeb1a9",
+  "recordedAt": "2026-10-04T08:11:26.313Z",
+  "sha256": "0b48708938f9c4bc2b39a23acc2066a6edf232aa8287df71245b86d83c3df781",
+  "bytes": 15219,
+  "requestId": "b0q7jow154iVXJOvWBzg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0c686d5d98251ce99e65f6caa4de64632f1f0402864084bc7fc43d6a0a051b46",
+    "bytes": 75276
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

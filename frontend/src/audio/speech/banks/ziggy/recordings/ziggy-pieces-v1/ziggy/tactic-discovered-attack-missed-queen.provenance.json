@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed-queen",
+      "label": "Tactic discovered attack missed queen",
+      "text": "A discovered attack was sitting in another move: a queen gets out of the way, and a threat appears from the piece behind."
+    },
+    "takeId": null
+  },
+  "requestHash": "b17d40cab3a56c9589201cfc1bb54c49f753118dff075b43d006507a9fef128d",
+  "recordedAt": "2026-10-04T08:15:06.371Z",
+  "sha256": "15a9096aae6eed6acd99cd6e202e061c18cc04eb3e805c3b725f5de8922e8e3a",
+  "bytes": 22638,
+  "requestId": "c6ZwelomWvX1GqMuwlOE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "18d6f017369c02f125da14c473ccb0f351225ae8572d9827ad1a5dcd5967a27c",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

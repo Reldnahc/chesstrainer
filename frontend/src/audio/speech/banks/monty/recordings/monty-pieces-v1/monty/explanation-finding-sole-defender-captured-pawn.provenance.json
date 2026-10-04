@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-pawn",
+      "label": "Explanation finding sole defender captured pawn",
+      "text": "First the pawn on guard goes, and it was the only guard. The piece it was protecting falls later in these moves."
+    },
+    "takeId": null
+  },
+  "requestHash": "50a54f6bbd9794aac41c1e242ecb7edc91c7d95ba230c13d526ebdf44d0516c0",
+  "recordedAt": "2026-10-04T07:57:20.197Z",
+  "sha256": "6a1578e23e2b4d726a588e1f35eaac63e2f95e3be4e1c43c391ef9903702b9c9",
+  "bytes": 23815,
+  "requestId": "nptTgw0ncDzzGXaBapUy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d7e5a6fc526b610d752815ea50db97becdb642a3936e7ceab5cdf0696bb6a0a4",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

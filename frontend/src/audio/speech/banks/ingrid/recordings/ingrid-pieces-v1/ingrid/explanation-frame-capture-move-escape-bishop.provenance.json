@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-escape-bishop",
+      "label": "Explanation frame capture move escape bishop",
+      "text": "Capturing the bishop here is also the way out of check."
+    },
+    "takeId": null
+  },
+  "requestHash": "d87c95b58b04331c93c330565b9a0826f38dcfc8a38392a6adc6a5fddf59ab2a",
+  "recordedAt": "2026-10-04T07:49:41.720Z",
+  "sha256": "79c9582433c3ce0a414823e8ca3e74b8125fcc2cb4f524cb3db2ba3ab087d63d",
+  "bytes": 12559,
+  "requestId": "Az1YGjqrwypE4JLeDtBV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9aeea8aed7ac7f7bbfb464d8ac18600cd72b7cde7e3be820af8fdc97bb1755ac",
+    "bytes": 61066
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

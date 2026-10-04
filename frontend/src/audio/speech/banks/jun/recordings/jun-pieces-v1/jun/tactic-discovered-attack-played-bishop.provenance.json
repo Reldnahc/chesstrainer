@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-bishop",
+      "label": "Tactic discovered attack played bishop",
+      "text": "Discovered attack. The bishop in front moves, and the piece behind it attacks down the line that just opened."
+    },
+    "takeId": null
+  },
+  "requestHash": "8f7331bce8fa69d4ffbbf7316828fa797d6fc754dbd7450f9a5206bfa34e3089",
+  "recordedAt": "2026-10-04T07:50:03.267Z",
+  "sha256": "9e6bc227d24b2ee6c2965af2834f65214b46a13d915c4ecf2f38efc01dbec953",
+  "bytes": 23103,
+  "requestId": "tJWGzDoSG1zzH2UZs7SD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ab7bc1dff87de761236934945b24b19ee1e68aba37be6230d2bde0dc3cd95969",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

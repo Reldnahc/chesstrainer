@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "tactic-fork-missed-bishop",
+      "label": "Tactic fork missed bishop",
+      "text": "Another move had a fork primed, one bishop on several targets together. This move never gives the order."
+    },
+    "takeId": null
+  },
+  "requestHash": "8032ad3dfdddfd692bd2ba3f8d771c9c7232f6a2604b6bce17656a510f750fe8",
+  "recordedAt": "2026-10-04T08:12:02.479Z",
+  "sha256": "6faa256dce90b2594c639ae2367791abfbb17a5a414ed89fef5d6493d8c74cfe",
+  "bytes": 24195,
+  "requestId": "2YKWhFcxfL1OmndziYoD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6039d07890110af2e49ac9c96540275a4a1fd2f584c231c663eee4e1e1c35ca9",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

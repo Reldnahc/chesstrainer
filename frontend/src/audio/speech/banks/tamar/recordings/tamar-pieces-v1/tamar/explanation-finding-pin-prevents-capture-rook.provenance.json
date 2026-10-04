@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-finding-pin-prevents-capture-rook",
+      "label": "Explanation finding pin prevents capture rook",
+      "text": "That rook is pinned to its king, which makes the marked capture illegal."
+    },
+    "takeId": null
+  },
+  "requestHash": "6b4c4626e4d801b910acd30ba52292ce74e1449e20d1c943fde7ff7c5aac3e05",
+  "recordedAt": "2026-10-04T08:11:25.209Z",
+  "sha256": "ab82a93f537053de656cb84ffc58adb8884ab1c54026f3a82acb4fc66f669779",
+  "bytes": 15336,
+  "requestId": "8eTQCax5w5WHKggH6SRv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a572f9214c7daa0066d724de1b0ab3755b3043866516908ac8a57cc2e8a4a2ce",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "tactic-fork-allowed-pawn",
+      "label": "Tactic fork allowed pawn",
+      "text": "Puzzle piece: after this move, one enemy pawn can land on a square that hits two targets together. Forks grow out of squares like that."
+    },
+    "takeId": null
+  },
+  "requestHash": "6de4c123129c37baa3e8fb3cd09718a3828dca7c0054738278f882afcdef2e8e",
+  "recordedAt": "2026-10-04T08:08:25.267Z",
+  "sha256": "b06fe1ae59e722fd378ff78d79d16c3853d88d3cb9f386024479b45e935afd95",
+  "bytes": 28444,
+  "requestId": "4uPk6akfpSfhgvXDfi1M",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "96680168b4662f967253c9fcfebd9a0597379825481bc5631fef03a5ee02d101",
+    "bytes": 145911
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "grade-brilliant-4-bishop",
+      "label": "Grade brilliant 4 bishop",
+      "text": "Commander's move! Into the record books with this one: a bishop sacrifice that keeps its footing under fire."
+    },
+    "takeId": null
+  },
+  "requestHash": "e423893d22c79448063ba3586cb1c0a746459994ef3fff3967cdad35b5840aff",
+  "recordedAt": "2026-10-04T08:13:22.777Z",
+  "sha256": "aeaca84d2eb941b33a6c55d3081a1747bfc50f517703500e4ad418c62c5f2c3f",
+  "bytes": 24027,
+  "requestId": "7mJIbgXGi9VaLgrLsWwi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8f41ca0de85bdfc22ebd551584981c40651f62b89300e97c316836a2feb111a7",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-pin-missed-queen",
+      "label": "Tactic pin missed queen",
+      "text": "With the stronger move, an enemy queen would have been fixed in front of its king. As it is, that queen keeps every option."
+    },
+    "takeId": null
+  },
+  "requestHash": "b52f4aaf6cb75a9123b4722f6ec1f542b75ecab4b8bdb15385bba32d48c3d37b",
+  "recordedAt": "2026-10-04T07:53:12.048Z",
+  "sha256": "e935df49845cd65bc398a86dedb5b059fdfaa3b268c53749c39af782d8de2b2f",
+  "bytes": 25249,
+  "requestId": "gjxJlXLHaSikwrXBRkjz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6977811954c4d5099358d59a1e25da4c0917b3555080d8c53089755b902b0c90",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

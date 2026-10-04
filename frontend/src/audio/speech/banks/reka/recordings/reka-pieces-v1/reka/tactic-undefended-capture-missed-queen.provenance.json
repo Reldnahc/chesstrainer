@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-missed-queen",
+      "label": "Tactic undefended capture missed queen",
+      "text": "Another move could have gobbled a queen nobody was watching, and this one leaves the snack on the table. Always scan for freebies."
+    },
+    "takeId": null
+  },
+  "requestHash": "87b0b3fc172ed6c5a2f1777091f31e3e3a3f6c68605334debfe8bdc20162601e",
+  "recordedAt": "2026-10-04T08:05:17.739Z",
+  "sha256": "e363587f249fb9b8fd1b80a401d53f527ce9773c4d0acc35edc4fee4b95b83d8",
+  "bytes": 25604,
+  "requestId": "HWPGAhoZ19VPBCf1T3ax",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f71ac945c92df7ed9b64cad0610ac8211abc7273568b62473ad64895d1e8affc",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

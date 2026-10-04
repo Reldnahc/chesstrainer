@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "explanation-finding-double-attack-collected-bishop",
+      "label": "Explanation finding double attack collected bishop",
+      "text": "The moved piece attacks one target and opens a line for a bishop. In this example, the bishop takes its target."
+    },
+    "takeId": null
+  },
+  "requestHash": "0466bd12ec4c0fccf150e9dbdb99b192058ed95d5cb5aa8ce417e5648db1030c",
+  "recordedAt": "2026-10-04T08:14:38.807Z",
+  "sha256": "84588612c9dba46ad0b9fe57d581ec7e9cbf58b5d59e1cde492e4eb646573ae6",
+  "bytes": 24266,
+  "requestId": "Ab9WORKHFlbJzKQuIoeU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d1bc7e3a382d8c3347063573513bedd98c205742854587c4bed8ea614f3e00a0",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

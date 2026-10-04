@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-pawn",
+      "label": "Explanation finding sole defender captured pawn",
+      "text": "Step one: the lone defending pawn is snapped up. Step two, later on: whatever it was guarding gets snapped up as well."
+    },
+    "takeId": null
+  },
+  "requestHash": "f8ff8af5da4a7e4c577134b690e7c1f5baeb5f29d920bae0d530c0e3adfe2d9d",
+  "recordedAt": "2026-10-04T08:02:38.956Z",
+  "sha256": "79e73ef335768d2bac9695b5e19acc4bc5f81a63b6dec6757c5d64f9a13a0c17",
+  "bytes": 27014,
+  "requestId": "qeajHA2q64To5fhSqh2T",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0ddf8a3670d05b81d142c4357c8bad11e7149c1e169a52e66afb7b521a6c4c8a",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

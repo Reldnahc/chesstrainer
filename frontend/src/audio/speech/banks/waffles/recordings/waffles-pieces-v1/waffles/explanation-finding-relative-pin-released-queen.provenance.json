@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-queen",
+      "label": "Explanation finding relative pin released queen",
+      "text": "A relative pin used to hold the attacking queen. The opponent's last move ended it, the target sat still, and the line shown takes it."
+    },
+    "takeId": null
+  },
+  "requestHash": "88f389bb311374db8757d22343f2d519f49a3a73350fc2dbc40e1bf8903f5b68",
+  "recordedAt": "2026-10-04T08:12:52.711Z",
+  "sha256": "0b9caa758f5151a7e3ff4ad3f439fb54e68303abbac699e3386695b397073d7e",
+  "bytes": 30347,
+  "requestId": "wKSP4ZhKVi4v8rhHD6lM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "862fac531d72f796076c39ad882ef6f8af2fe24540d107ff5349696f9f4e0145",
+    "bytes": 155942
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

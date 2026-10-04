@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "tactic-pin-missed-bishop",
+      "label": "Tactic pin missed bishop",
+      "text": "The stronger move would have pinned an enemy bishop to its king. This one lets that bishop wander freely, and that's the whole difference."
+    },
+    "takeId": null
+  },
+  "requestHash": "e0f9ce644637a96983716d6835ec61311723ceac4006a6ffae93da71f734e575",
+  "recordedAt": "2026-10-04T07:48:17.428Z",
+  "sha256": "800efcb9d589768637dd4070aaf739b2e31a42a5a5b9af310de83df91a939dd7",
+  "bytes": 27862,
+  "requestId": "uv3loeDyZjYYmVfQbsID",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "97937adfbe5f3c3e7951ff5097a36d0a66711cf0f69eac93188d3a1cb567ba8f",
+    "bytes": 141732
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-king",
+      "label": "Explanation finding skewer collected king",
+      "text": "Out of check and off the line goes the king, and the piece that was hiding behind it is captured along the line."
+    },
+    "takeId": null
+  },
+  "requestHash": "a874860d88137d797db148ee23d650a0e9a9e4293b411231d6f18727c4efb599",
+  "recordedAt": "2026-10-04T08:02:47.582Z",
+  "sha256": "cfae53636e7c07b29bf151c120f008be45641eec7900ff1b70f065bb24aa49d2",
+  "bytes": 21565,
+  "requestId": "iVY7nk9MtgrqiVIilGP9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "301eeaee73b4abc1bea82f77ae918bece71416dfe0eb146d8b343ccb41be245c",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

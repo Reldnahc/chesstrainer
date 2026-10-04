@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-bishop",
+      "label": "Tactic undefended capture played bishop",
+      "text": "Free for the taking! An undefended bishop can be captured here. Always check for loose pieces before anything fancy."
+    },
+    "takeId": null
+  },
+  "requestHash": "91edba7111329b065dc0c33a96c007fa46c1f199029251c3e5202c38ba026a32",
+  "recordedAt": "2026-10-04T08:00:03.325Z",
+  "sha256": "401f1ffc82a5fa99469d7e93bc04c52c4d68f2c2fbb5f9ac6d63e2926fb47bc5",
+  "bytes": 24093,
+  "requestId": "rjRJx96mks0FlzRcIxyZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "658ea0e8113f908b6c9232066a024213916aaaaa1bf6790547ccbbffbc8ec3c3",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

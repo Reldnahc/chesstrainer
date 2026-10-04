@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-escape-queen",
+      "label": "Explanation frame capture move escape queen",
+      "text": "After the capture of the queen, the king is out of check."
+    },
+    "takeId": null
+  },
+  "requestHash": "6ce4be3e9af34008ea2bd63965226144c26b03a88fe17f9561b0eb53b90f5881",
+  "recordedAt": "2026-10-04T07:54:26.167Z",
+  "sha256": "7c41c26e410fcff297bd53c5c88c94d587f80ef5e939f1898d335c95e0cab2e5",
+  "bytes": 12386,
+  "requestId": "wlBrvOowT6cRsoPge12C",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "15ac51965c6e3ca3820d9e73538e8251988d22e716e66321c77848b406293122",
+    "bytes": 61066
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

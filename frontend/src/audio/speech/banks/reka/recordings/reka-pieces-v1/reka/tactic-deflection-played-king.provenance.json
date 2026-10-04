@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "tactic-deflection-played-king",
+      "label": "Tactic deflection played king",
+      "text": "Decoy: the king on defense takes the bait, and its real job goes begging."
+    },
+    "takeId": null
+  },
+  "requestHash": "d5e50c8a52f950a3338c5b5498d8188150792f4b34e53d32bb5f64c040e9cb5e",
+  "recordedAt": "2026-10-04T08:05:32.826Z",
+  "sha256": "12f38a6086bcb0a797e3ae16596dba3e7f69c6fa2695f4511efa67c4c86fefe7",
+  "bytes": 17270,
+  "requestId": "ZfvV0HbzfAXtPDeKGGe4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2dd81c6f8689def7478a0322de330dfba73bd0599715553dc7536e321add2258",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

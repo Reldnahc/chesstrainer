@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "grade-brilliant-2-bishop",
+      "label": "Grade brilliant 2 bishop",
+      "text": "Brilliant. Bishop on offer, capture tested, position still standing. Top grade, confirmed."
+    },
+    "takeId": null
+  },
+  "requestHash": "2b7229063cb89483ebf7fde85674b4822f44520a01fd3a774fad118782e65072",
+  "recordedAt": "2026-10-04T08:08:31.035Z",
+  "sha256": "5878417f3dc49b59142665e997ca7a33e75720cfa208f3c311b2c7cc72093472",
+  "bytes": 20985,
+  "requestId": "lAsHV6M9vbfjgCRR4A8U",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "05fff1fddc965ea51ccab253d7e81550fbe281e2ef8439196a80dbd8e0c24520",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

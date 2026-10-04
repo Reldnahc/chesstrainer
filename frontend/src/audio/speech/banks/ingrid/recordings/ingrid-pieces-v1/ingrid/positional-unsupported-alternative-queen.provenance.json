@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-queen",
+      "label": "Positional unsupported alternative queen",
+      "text": "With another move, the queen would have ended up without any defender, though on its own that wouldn't have meant it was lost."
+    },
+    "takeId": null
+  },
+  "requestHash": "f9fb2bb5d3fd66c3e5e7b3ec4cc83ae61fccc6536efd94822d05cd54809fc728",
+  "recordedAt": "2026-10-04T07:49:01.448Z",
+  "sha256": "c02dc5535b5db508076744da721b0a366cec0ef9121c4f672a321263a8d50627",
+  "bytes": 24527,
+  "requestId": "L6I0v4LYi8H5n5VgsPeq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "38c97300a438a1873dfb6532e960cdc10d74bb555f3f8465b0a6c753811bdc94",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

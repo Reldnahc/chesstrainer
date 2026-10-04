@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-finding-king-skewer-collected-rook",
+      "label": "Explanation finding king skewer collected rook",
+      "text": "The king has to answer the check by stepping aside, and the rook it was screening is taken by the same attacker."
+    },
+    "takeId": null
+  },
+  "requestHash": "eeb57aa7cab07066bdb6577ea4d2578ef7bbcb67d52868bf2baeb94ba52a73b1",
+  "recordedAt": "2026-10-04T07:52:30.151Z",
+  "sha256": "77093221f9cd66894f812a88d31af19be0897e0257b2adf11d9c307b2651dc3b",
+  "bytes": 22126,
+  "requestId": "LkUVNCevupXJlJjKDI2X",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d358ce8ec58b431b1703de9385b7557306a0d35c483b99f1c992582c41618fba",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

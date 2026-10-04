@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "support-restored-knight",
+      "label": "Support restored knight",
+      "text": "The knight left alone before has a guardian once more."
+    },
+    "takeId": null
+  },
+  "requestHash": "2d692f384b06010ed4a5f7d929c638a05ab493973da2bc9be00720722a44db21",
+  "recordedAt": "2026-10-04T08:14:15.811Z",
+  "sha256": "4059b89d65728337334ca6e45e1ac9a32695c09b3f9ea24cec3681970ea528be",
+  "bytes": 12779,
+  "requestId": "X6cOg0NUw9YKf5ck7W2z",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "148482ccd50b05b05bbd5fea3e3b4caad6d4df343f6ab06a97460d9d508279cf",
+    "bytes": 62319
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

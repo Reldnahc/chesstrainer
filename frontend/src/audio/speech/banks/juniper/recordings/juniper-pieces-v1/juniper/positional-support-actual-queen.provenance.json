@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "positional-support-actual-queen",
+      "label": "Positional support actual queen",
+      "text": "That queen stood unwatched. Someone covers it now. Better."
+    },
+    "takeId": null
+  },
+  "requestHash": "46c55e47e8012db9fc6aaabdff0e3168563e2da6e6f0e86e07d6742812e8759c",
+  "recordedAt": "2026-10-04T07:52:19.063Z",
+  "sha256": "0e881502810f82057871f6d65c1c36263c5c6f8f936af79217f6b1302c9fcfa6",
+  "bytes": 15213,
+  "requestId": "EA6kPc57sI5zXiE11lVd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f7ef1e7d6d7e4cdd97eb0db9fd3e75a39376b9e41e9f95844294a6ee971d1cc7",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

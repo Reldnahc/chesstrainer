@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-escape-pawn",
+      "label": "Explanation frame capture move escape pawn",
+      "text": "The pawn is taken, and with it the king is out of check."
+    },
+    "takeId": null
+  },
+  "requestHash": "c5e41f9598b944ba6ed0b7561305c270859031b0fa97c574129f9ed2f3fc6f61",
+  "recordedAt": "2026-10-04T07:52:49.891Z",
+  "sha256": "60055bd735abf56d68207ea9f58cf12479fa4ddbddd2de221d130f777ac1e186",
+  "bytes": 13473,
+  "requestId": "wkVqnYQ4aBiXHlcTG7fC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3879cc61c87f68bab6724fe26a979adae180b2dea50da21501dca6071508a50b",
+    "bytes": 67753
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

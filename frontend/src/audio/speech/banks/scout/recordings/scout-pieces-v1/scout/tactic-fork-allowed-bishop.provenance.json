@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "tactic-fork-allowed-bishop",
+      "label": "Tactic fork allowed bishop",
+      "text": "Fork spotted, and it's theirs. After this, a bishop of theirs can reach several targets in one go. Scan where their pieces can land before committing to a move."
+    },
+    "takeId": null
+  },
+  "requestHash": "b5e088532ce85b860112c759c8efbe9b1937860720b3f197de74bc401553ae97",
+  "recordedAt": "2026-10-04T08:06:35.303Z",
+  "sha256": "f5f9d6d7c41fb2dd88953807076dfe115a3b7cdb9ef98447a5d2f9eab1485490",
+  "bytes": 31361,
+  "requestId": "QB4dbzxmsHr07lDeCnal",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0e20c6f9d6a48ce97b02ce1daceb06f9c3a896a0a0d34253d092fe84b46d7c9a",
+    "bytes": 160958
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

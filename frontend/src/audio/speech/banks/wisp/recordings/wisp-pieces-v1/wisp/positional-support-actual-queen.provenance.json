@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "positional-support-actual-queen",
+      "label": "Positional support actual queen",
+      "text": "A queen that stood alone now has a defender."
+    },
+    "takeId": null
+  },
+  "requestHash": "8fc9ed46392c875027e58b657f56a0d786185e9a1e9e078633af9327fecc2026",
+  "recordedAt": "2026-10-04T08:14:24.465Z",
+  "sha256": "fd94f3cf7f90c6f91f40989001ce4205e15e9675ba72fad29bc56c81893a826d",
+  "bytes": 11857,
+  "requestId": "oYnCKukWN1XrL2KWndUT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fb2bb8aab352429aef5cfb6885f2a540572826ec125e1821fb421ee1acec0fc9",
+    "bytes": 58558
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

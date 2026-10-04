@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "tactic-skewer-missed-king",
+      "label": "Tactic skewer missed king",
+      "text": "The stronger move had a skewer tucked away, king checked off the line, back piece exposed. A spicy one to set up and replay."
+    },
+    "takeId": null
+  },
+  "requestHash": "f14c6f91dbf1c6f100a19b902895fd48cabbed0a915196837330c47fa5796a95",
+  "recordedAt": "2026-10-04T08:05:06.544Z",
+  "sha256": "e1cbf24c8479295907340c979359791f911aa586ac65f19cc01535ded40bce10",
+  "bytes": 26515,
+  "requestId": "6hO0SA9oOMRKOS5Q9by1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "82ed121b741857ec95cd887a53e639071ed6f7f1dced266da6b3007aec8df315",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

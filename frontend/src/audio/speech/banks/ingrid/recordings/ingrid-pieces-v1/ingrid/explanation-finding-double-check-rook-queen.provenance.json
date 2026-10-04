@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-rook-queen",
+      "label": "Explanation finding double check rook queen",
+      "text": "Double check: the rook and the queen check together, and only moving the king can deal with it."
+    },
+    "takeId": null
+  },
+  "requestHash": "db82ffa9cbb87ca0a51249d8d6eba6771006db72387903c08985305102dd928b",
+  "recordedAt": "2026-10-04T07:49:46.781Z",
+  "sha256": "703cf1c6fcd08aa72561360247935571025642ee3ed4134655ec6507fd75d5b1",
+  "bytes": 20586,
+  "requestId": "eOpRdClwbQsjm4cbGVN7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fe4edf111e9266c3af8d9065a026eab3be8cf26b43f651ac11bc62b861c630ec",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

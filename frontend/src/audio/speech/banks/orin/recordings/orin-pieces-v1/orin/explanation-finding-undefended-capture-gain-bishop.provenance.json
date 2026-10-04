@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-bishop",
+      "label": "Explanation finding undefended capture gain bishop",
+      "text": "An unguarded bishop is captured here, and the side that takes it finishes the example with a net gain in material."
+    },
+    "takeId": null
+  },
+  "requestHash": "8788e89e65881113f6402088ded7e900d198058fe947caeacc3331893fa142fc",
+  "recordedAt": "2026-10-04T07:59:29.200Z",
+  "sha256": "d1c9f947fcddde0a01b6017366fca4400f1b7446ac9e41ad5b8f8d2a41a47699",
+  "bytes": 24718,
+  "requestId": "zcX5bN7R8GZMIaXngyq2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "77763b5efe9e8893200b43bebc3915a10b3099092a526e33ee05a49f02e2acde",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

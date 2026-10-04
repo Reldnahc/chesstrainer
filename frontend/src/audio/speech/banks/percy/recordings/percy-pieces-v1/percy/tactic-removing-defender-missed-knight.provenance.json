@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed-knight",
+      "label": "Tactic removing defender missed knight",
+      "text": "Another move could have captured a defending knight and stripped the protection from whatever it was guarding. This one passes that up."
+    },
+    "takeId": null
+  },
+  "requestHash": "0e95b3bc5bacfc1f83be2a6248c83ea8b0c13f720dcfde90e8ba11c931b415ab",
+  "recordedAt": "2026-10-04T08:00:14.147Z",
+  "sha256": "00cdfec53b789f2351745f7922aa059be554e59464c2b794a593d62da09c7eb8",
+  "bytes": 22979,
+  "requestId": "RmsOdMaSu2drdyeZ8TBG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "33892cd59e83ff700b9f9f20c4e0ee1bae79bbb87aa13d7bc204725faabece40",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

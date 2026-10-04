@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed-queen",
+      "label": "Tactic discovered attack missed queen",
+      "text": "The stronger move contained a discovered attack: move the queen in front, open the line for the piece behind. Not used here."
+    },
+    "takeId": null
+  },
+  "requestHash": "297b3be9d26ef9f1f4d55fcb5c5b3a0d15c7afc1b339fc8a83a61256923a1f7b",
+  "recordedAt": "2026-10-04T07:49:54.869Z",
+  "sha256": "d57718002b65142017981587f67f1fefb5f9daa0340107bc330a9dc2e72826a0",
+  "bytes": 25229,
+  "requestId": "AMQefpPHFrxNNzNK4OTv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cc24704b2f0a62fc007c23b18d288f8ce09ca21a05de95a8be9ed48dc96a357c",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

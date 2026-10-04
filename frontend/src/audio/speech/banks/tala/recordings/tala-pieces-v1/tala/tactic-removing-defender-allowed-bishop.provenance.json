@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-bishop",
+      "label": "Tactic removing defender allowed bishop",
+      "text": "Notice the guard: a defending bishop can be captured by the other side now, and whatever it protects would lose its cover."
+    },
+    "takeId": null
+  },
+  "requestHash": "0cedcec9130c4b4b7f703fba0943058383f83407fa45143baed374ecb967ae65",
+  "recordedAt": "2026-10-04T08:08:41.554Z",
+  "sha256": "925063e932928985477a6a46e80d153fd65e840d90f9df127258038514da7dd9",
+  "bytes": 25336,
+  "requestId": "rUZJsuvS7CyqFsxpbfGl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "46e9253e49d6e41a819335e8a731a38b382062ac596e65b6893c1015dd0328cd",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed-king",
+      "label": "Tactic discovered attack missed king",
+      "text": "Another move had a discovered attack: the king moving out of the way to uncover a threat from the piece behind. After this move, that threat stays hidden."
+    },
+    "takeId": null
+  },
+  "requestHash": "1dae8bdb1006f8e05d6223fcd597cd03f94aa93a19084193d3ada471414919a0",
+  "recordedAt": "2026-10-04T08:13:36.297Z",
+  "sha256": "feffa2eff7cc95dad7f4af2806a84170eabf234d731639809269b4c7df9a36dc",
+  "bytes": 31602,
+  "requestId": "ExYBOkBe3uzz6jn20E7j",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e89445f8fb2dd8c18752808ab0b5348cbb8fc5815f05794af823f0d2d5538405",
+    "bytes": 164719
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

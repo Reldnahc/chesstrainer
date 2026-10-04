@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed-pawn",
+      "label": "Tactic discovered attack missed pawn",
+      "text": "A discovered attack was sitting inside the stronger move: move the pawn off the line, and the hidden one behind it strikes. Here that line stays shut."
+    },
+    "takeId": null
+  },
+  "requestHash": "464fc2c3af3393ee49848720321b238e564543a9665e55af65ba9406f50109f2",
+  "recordedAt": "2026-10-04T07:55:10.047Z",
+  "sha256": "045911015c57a6f88c98e3da6f9c6a8aff3889e18826c504960001672145c6ef",
+  "bytes": 31939,
+  "requestId": "XSqR47r1t7dIZXNIQhMx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e7c8b913d38b7fe781eb4f942070ee2e17a44180403d3bddc5e587c37ebb020c",
+    "bytes": 160958
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-capture-bishop",
+      "label": "Explanation finding discovered capture bishop",
+      "text": "A blocking piece moves. Along the line it opened, the bishop behind makes the capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "d200dff5dc88d451b62525564f312aa18ea0b363f75109d4cff1cd9baaa8495a",
+  "recordedAt": "2026-10-04T08:15:00.467Z",
+  "sha256": "d9db9d45db5397d6fb3a196a5c37606d6e6562343bc1c654d7a66bde5135f37c",
+  "bytes": 18496,
+  "requestId": "jGBeFoDXomAAPcXbhORy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7b676b7b5ec58d84e8ec33a841e3e73a5b16310e386ad60ba6d2ff159b563cdd",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

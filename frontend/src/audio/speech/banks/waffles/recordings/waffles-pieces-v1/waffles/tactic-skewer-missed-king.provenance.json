@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "tactic-skewer-missed-king",
+      "label": "Tactic skewer missed king",
+      "text": "Loaded skewer, sitting in a stronger move. Check the king in front, drive it off the line, and the piece at the rear is exposed. This move passes on that order."
+    },
+    "takeId": null
+  },
+  "requestHash": "531701268c7d577c829b774bd7344a514b67500126aa5ee4fa316c5ebe978ee6",
+  "recordedAt": "2026-10-04T08:12:04.027Z",
+  "sha256": "86338d95a365a9e879d43707909817cf9aaade2734cfcef38269139eec838b99",
+  "bytes": 33091,
+  "requestId": "FdeFDA3xAEQy8pey3wxb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "50d852251f43940cc0410f1a231b8a3cae8581a3432eff0ec1bdabba97c74042",
+    "bytes": 170153
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

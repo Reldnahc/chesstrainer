@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-queen",
+      "label": "Positional unsupported alternative queen",
+      "text": "With another move, a queen would have been left unguarded. That on its own wouldn't prove it could be won."
+    },
+    "takeId": null
+  },
+  "requestHash": "c7a5e38094b32fd9a7949852ef73664a6cfc2a2d6fd48efa023e26ea6f7e8801",
+  "recordedAt": "2026-10-04T08:02:21.551Z",
+  "sha256": "ed68af44f4259046be08e03ea8cc3f5f21c87295edbb2b3159cd52972304dad9",
+  "bytes": 21228,
+  "requestId": "AhGA1YH6VT9DAkGCBf24",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d6911fc1cf3c925496c5b9d9cd0346c897d8f846452bcab533dc65b57afdd9a6",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

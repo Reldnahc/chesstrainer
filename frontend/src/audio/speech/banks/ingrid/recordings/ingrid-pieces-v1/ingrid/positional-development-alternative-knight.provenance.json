@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "positional-development-alternative-knight",
+      "label": "Positional development alternative knight",
+      "text": "With another move, a knight would have been out and working. Here it's still at home."
+    },
+    "takeId": null
+  },
+  "requestHash": "75e583373e5ac0057745ecc963af4138317b77453440c73d00451eff97fc17c5",
+  "recordedAt": "2026-10-04T07:49:02.792Z",
+  "sha256": "715090a0310b31adf12085af8dd953a1967a3312ca1b4dc3b3fd01faecc65ba3",
+  "bytes": 17638,
+  "requestId": "pwLtbk3Rah5G3Yc3weXx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f7d18cf21ae4e1c6bb6ce5f5a65d18ff695cbd93109e7c5aed46da5beebdf457",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

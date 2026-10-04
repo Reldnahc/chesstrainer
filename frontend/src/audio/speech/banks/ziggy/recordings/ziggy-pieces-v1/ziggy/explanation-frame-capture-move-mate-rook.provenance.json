@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate-rook",
+      "label": "Explanation frame capture move mate rook",
+      "text": "The rook falls and checkmate arrives in the same move. The king has no legal answer."
+    },
+    "takeId": null
+  },
+  "requestHash": "3d1df133944a51b2f932f7a8e52cfbd613a5ce137dd42a8ade657355f1087b97",
+  "recordedAt": "2026-10-04T08:16:34.942Z",
+  "sha256": "fdf820959cd7d4cad13398d24508c38c33fb3b487d17747b15fc2c5801102dc0",
+  "bytes": 19119,
+  "requestId": "p80bAoZYBIfnLgteDw15",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8ec84bc58fd34b24d981dd3c5db32808d0f101e4839c9b8219ff3b6eb74779da",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

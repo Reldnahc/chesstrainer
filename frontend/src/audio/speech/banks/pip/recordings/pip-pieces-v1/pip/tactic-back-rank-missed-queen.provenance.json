@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "tactic-back-rank-missed-queen",
+      "label": "Tactic back rank missed queen",
+      "text": "Oh, that one went begging. A back-rank mate idea was there for the queen, the king trapped behind its own pieces, and this move lets it go."
+    },
+    "takeId": null
+  },
+  "requestHash": "c23107a99f089dc8f945df013f130944674d3e7190f5bab5860057be7754079d",
+  "recordedAt": "2026-10-04T08:04:17.942Z",
+  "sha256": "33c14e0eabddcfbf1ed19f36974d4fed9b795744fcd929a9d87efa5afbbf9f6f",
+  "bytes": 31941,
+  "requestId": "JZOmExq0EY3cMcOPUxAk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1ef8342ca1a385b60f9d5bb195e566ab83f679013784ab1e6107a5b49e91e986",
+    "bytes": 164719
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

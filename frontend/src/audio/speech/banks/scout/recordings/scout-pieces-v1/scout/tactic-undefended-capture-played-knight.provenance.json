@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-knight",
+      "label": "Tactic undefended capture played knight",
+      "text": "Loose knight, collected. Nothing was guarding it, so it comes off for free. First scan, every move: loose pieces."
+    },
+    "takeId": null
+  },
+  "requestHash": "1e9f45502a7c8df499ba0757e976e0bef6a3d173c5956bc21fb990080280a9d3",
+  "recordedAt": "2026-10-04T08:06:38.745Z",
+  "sha256": "3851d0c3c95e889a11abdd83b26ce447da3c690652542e2014831ddb3e12740e",
+  "bytes": 24485,
+  "requestId": "wOQxqioRIb8RJD9GRldH",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "65f6e53f1554c713595d6082c417e45a6a2906a1e826311fe6e81dd297d90865",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

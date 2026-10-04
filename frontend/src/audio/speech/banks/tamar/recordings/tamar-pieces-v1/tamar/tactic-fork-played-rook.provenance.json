@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-fork-played-rook",
+      "label": "Tactic fork played rook",
+      "text": "The fork lands. A single rook now has several victims, and usually only one of them gets away. Notebook rule: study the square it came from."
+    },
+    "takeId": null
+  },
+  "requestHash": "6b15731dcae1e3312a9e35ae64207e05d77c5ddae340ff26bae395d509ed8224",
+  "recordedAt": "2026-10-04T08:10:07.992Z",
+  "sha256": "e595be532380cd07436728d16de7c9025f931550f5202c647bd62cc471eba3a5",
+  "bytes": 31334,
+  "requestId": "aXgLQy3YLof6pmwwilk2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c44cde1c58cab93f277e74836e5769fcedc1f123454f22ba144f9fd00edeb322",
+    "bytes": 163466
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

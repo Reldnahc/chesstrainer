@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-pawn",
+      "label": "Tactic discovered attack played pawn",
+      "text": "The pawn has moved off the line, and the piece that was behind it now attacks along it."
+    },
+    "takeId": null
+  },
+  "requestHash": "8a03b445f63ea22c39aee006c957fb3e1387362816cc7537b83eeb47b623ea02",
+  "recordedAt": "2026-10-04T07:53:14.013Z",
+  "sha256": "20f523004a90bf92167a142c304006a3f5182fcb02bfbd146f8f94c51cfaba67",
+  "bytes": 17722,
+  "requestId": "Lgf0h8Or3kmySZzLDdCT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "db28618836f8232d142499f61ff53658dc68f2b76af552b12267c95618f11cfd",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

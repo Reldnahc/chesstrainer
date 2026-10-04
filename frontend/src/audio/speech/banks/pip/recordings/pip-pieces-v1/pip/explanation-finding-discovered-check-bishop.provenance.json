@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check-bishop",
+      "label": "Explanation finding discovered check bishop",
+      "text": "The moving piece gets out of the way, and check comes from the bishop behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "958a697c203f065df83d6c5f837253b56bb8d2081714a2731dbe82af18f7b6d6",
+  "recordedAt": "2026-10-04T08:04:31.196Z",
+  "sha256": "66ee473d9f19ed2a28a35b2e9f0bf4e3f1deb423480b73c0aba32fd1838c9908",
+  "bytes": 16322,
+  "requestId": "S5Ac8KjdyQMzlWmdVzxn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3368d2b14b42b466cabf653019992fc4fd414317e05a74d9d0fc1d7eae4d5c99",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

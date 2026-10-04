@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "cause-avoiding-bad-trades-knight",
+      "label": "Cause avoiding bad trades knight",
+      "text": "Count the trade all the way to the end. The recapture takes the knight, worth more than what it took, so the swap loses material."
+    },
+    "takeId": null
+  },
+  "requestHash": "81cdf62539407b8522594cbb2feeb3e76f8919f63445c7197566053c27775131",
+  "recordedAt": "2026-10-04T07:55:15.527Z",
+  "sha256": "ca325d74ca8ee24e450eeb117fca1afa7299ea4ad169faef51817ee72a34906c",
+  "bytes": 25616,
+  "requestId": "hvGkJ2G0IM3QZj1WEkDi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8ba359dbd6b42f6c91a6292276a45970b0f52bfdbe8963b191f2c0ca38317ef9",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

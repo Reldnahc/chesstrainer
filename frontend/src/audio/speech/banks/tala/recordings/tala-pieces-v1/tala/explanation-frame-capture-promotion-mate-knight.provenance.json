@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-mate-knight",
+      "label": "Explanation frame capture promotion mate knight",
+      "text": "Three in one: grab the knight, promote, checkmate, all with a single pawn move."
+    },
+    "takeId": null
+  },
+  "requestHash": "1bbac6d9501cc7954fd6a9c3a759bbb9cdade7f54b981762c3e4f502236b727b",
+  "recordedAt": "2026-10-04T08:09:49.602Z",
+  "sha256": "dd6dd46070fb36de3f2597f6b14e97a475853332786045426c7e0e3763b9c29b",
+  "bytes": 20164,
+  "requestId": "J6gcxu8Z9PXv4K54xWdT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4aca4cb58affdbe5051ee65db43941c5f26645f32bb8f01db539c1c267d8d570",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

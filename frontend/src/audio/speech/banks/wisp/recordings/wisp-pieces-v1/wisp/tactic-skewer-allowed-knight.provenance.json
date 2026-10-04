@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed-knight",
+      "label": "Tactic skewer allowed knight",
+      "text": "The knight is not alone on its line. The other side can try a skewer, and moving that knight could expose what stands behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "02e628cc91f6cf9a7cf44b1bda55bd7ae234edcb9088db98214061b28d2ecfb4",
+  "recordedAt": "2026-10-04T08:13:54.230Z",
+  "sha256": "b4b4387868a05a0c360d3e77898137d3b9d7b1943ecc957aed81fb8d46146b63",
+  "bytes": 26070,
+  "requestId": "K9KpFN2ajeLcwORT07fQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "eed5d0b97fce7f2906d41d626971f3b25a0bbb982d64611a816be73864806623",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

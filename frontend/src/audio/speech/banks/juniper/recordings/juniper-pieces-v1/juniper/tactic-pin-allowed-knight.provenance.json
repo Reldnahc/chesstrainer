@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "tactic-pin-allowed-knight",
+      "label": "Tactic pin allowed knight",
+      "text": "Something tightens here. The other side can now pin a knight to its own king, and then it cannot step off that line."
+    },
+    "takeId": null
+  },
+  "requestHash": "6f57fd02e672ce48a115d1f4397087946dbe632f87eff9138f1f2f5ffad5a69b",
+  "recordedAt": "2026-10-04T07:51:17.565Z",
+  "sha256": "be7699794fbbd2ecc11b4283d3d4fe8668ecd09020667a9db8096874b7461564",
+  "bytes": 25466,
+  "requestId": "VDvQR6tXoMQSGAMzryqF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "94ddcc9d180be8ae524ff2671756ba83d13cba07cb3fec140a676f55e6a9a451",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

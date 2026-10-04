@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate-queen",
+      "label": "Explanation frame capture move mate queen",
+      "text": "The queen falls, and it's checkmate. Every escape route is closed."
+    },
+    "takeId": null
+  },
+  "requestHash": "2bcf8292ea598d64ab5ccfb63a1453edccc441b85ad6851e902a5f17f30c1b14",
+  "recordedAt": "2026-10-04T08:13:15.991Z",
+  "sha256": "a299df14818111d532da6b323aa95a78cdec7cee8654f6a39d43949ce618c77a",
+  "bytes": 16668,
+  "requestId": "gK8WiRBNOSyt3gxXWX7A",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c4ab9d534c08fc4f9af8cbcdb568249312d623527797a2711c84a2476d3f2add",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

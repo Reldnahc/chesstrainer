@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-pawn-queen",
+      "label": "Explanation finding double check pawn queen",
+      "text": "Double check. The pawn and the queen attack the king at once."
+    },
+    "takeId": null
+  },
+  "requestHash": "312baa658dea4d74378ee8f2a828064be30871e862c8f110f57d49fca35bd168",
+  "recordedAt": "2026-10-04T08:14:45.367Z",
+  "sha256": "13e1f984ad8fc3447b088e6a3f2c3105dd6418c9e0b4c0956415bc3c8acb15ae",
+  "bytes": 14615,
+  "requestId": "NaWqLikiGdTGnM1rFNAJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ebacb8cc77c5297604b2bab9ac78c403cdf6426db69842b3d2fb87c7e6386529",
+    "bytes": 75276
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

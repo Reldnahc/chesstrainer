@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "tactic-skewer-missed-rook",
+      "label": "Tactic skewer missed rook",
+      "text": "A stronger move had a skewer ready. Once the rook in front stepped aside, the piece behind it would have been exposed. This move skips it."
+    },
+    "takeId": null
+  },
+  "requestHash": "686c05c45a2337d38637ea825ebeb711c4d049f22919b9aa97950df48043fd34",
+  "recordedAt": "2026-10-04T08:03:18.253Z",
+  "sha256": "0e1e91b38228e8b125aa63522539cd552fb603b41a3601d419cb130783b9b7a4",
+  "bytes": 29237,
+  "requestId": "xuVNmtSZnJljecMTe5In",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1cb2fdaf49ba85ada5219cb42349310f45aa9b9d3b9803b9bb40769d01ac5b15",
+    "bytes": 149673
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-escape-bishop",
+      "label": "Explanation frame capture promotion escape bishop",
+      "text": "The pawn takes a bishop and promotes on the last rank, and that gets the king out of check as well."
+    },
+    "takeId": null
+  },
+  "requestHash": "b94001447900bb6e207202824c197635cc3fc471921a41d5324b6c244dfdfd06",
+  "recordedAt": "2026-10-04T08:04:48.263Z",
+  "sha256": "527c60627671a804d1b87495707a3e82e106ba46dee2bd6666912fbd31353d4a",
+  "bytes": 19570,
+  "requestId": "xMqGU1uVHSWVwVxHbwWN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7506015501c800070ee6b33c564197923996d0b2d71068da738c9ff430f5a6c2",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

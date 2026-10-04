@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-finding-fork-collected-knight",
+      "label": "Explanation finding fork collected knight",
+      "text": "Fork cashed in. The knight hits several targets, then takes one of them, and this example ends with a net material gain for that side."
+    },
+    "takeId": null
+  },
+  "requestHash": "a662b783e04a54ef6f478e633268726fdf178447852c3625e160a5bf7aa50635",
+  "recordedAt": "2026-10-04T08:07:39.231Z",
+  "sha256": "df3be830cb3a000d1d8775ae18decc241d59d984cdedc07085d55b59301888d2",
+  "bytes": 26425,
+  "requestId": "C9VmazOlXzJvfyouNe3D",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ea4d1ece7cec26d859a2091fc569b41c545eb19fba6e26aab99a8de8ded7853d",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

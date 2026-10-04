@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-fork-played-rook",
+      "label": "Tactic fork played rook",
+      "text": "Now that's a hardworking rook! Fork time: one busy rook hitting several targets at once, and a single reply rarely gets them all out of the way."
+    },
+    "takeId": null
+  },
+  "requestHash": "7e1b29e920ebce1da88b2ef89c80e7d3be52057d0494290559f45070d52781c7",
+  "recordedAt": "2026-10-04T07:59:47.061Z",
+  "sha256": "d989ce25a7fffd62eadb2abc961da65355f88dfc803a8c3f0e7502e9653a5b8d",
+  "bytes": 32076,
+  "requestId": "IoHGGIMaaS9mfcDVsuBz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "da764f1fee15ef6d46af97bf29cf89b49841985ecdfaafce2942ef5bca28ff6d",
+    "bytes": 162212
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

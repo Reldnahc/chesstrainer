@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "tactic-skewer-played-queen",
+      "label": "Tactic skewer played queen",
+      "text": "Skewer on target! Attack the queen in front, and once it clears the line, the rear piece is exposed. Textbook."
+    },
+    "takeId": null
+  },
+  "requestHash": "07166780a1c2e57e02c1fd66cf888ad5989d8c5922d65b0291c20584e3ae4dfb",
+  "recordedAt": "2026-10-04T08:12:22.195Z",
+  "sha256": "dde0226e0e53c9b06737e56c401fbb68cfa9ce139abea46c82ed2bce524f05ab",
+  "bytes": 26099,
+  "requestId": "cr82o038MwzvlrN4jaIt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0acbaf7561d370a14a25a12ab1cdd9b5bee43aaace488bb73c3fb2a160608b28",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

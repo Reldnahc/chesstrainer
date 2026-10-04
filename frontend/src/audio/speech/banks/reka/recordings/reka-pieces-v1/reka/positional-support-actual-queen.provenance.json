@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "positional-support-actual-queen",
+      "label": "Positional support actual queen",
+      "text": "A queen that was flapping in the wind gets a bodyguard. One loose end fewer."
+    },
+    "takeId": null
+  },
+  "requestHash": "f5c3c742bf65f42447acce3ac2d699905b7d41e32c41f1c11539a3715d7b7b83",
+  "recordedAt": "2026-10-04T08:05:50.866Z",
+  "sha256": "9617f5a1b0e7b1f008f067e61a4c99d4d65c419c22e856f19105a660abbccc28",
+  "bytes": 16587,
+  "requestId": "Ep9mdP8FHVfdbhzvuk1A",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "42dbacb1e97e2adbeb1173a78102baf492596ad3834cf6a6e39845a566ffe17b",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

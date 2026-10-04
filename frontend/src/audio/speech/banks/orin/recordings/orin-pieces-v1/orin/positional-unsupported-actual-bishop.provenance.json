@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-bishop",
+      "label": "Positional unsupported actual bishop",
+      "text": "A bishop is left to stand alone after this move, with no defender at all. An undefended piece is a weakness, but not yet proof that it can be won."
+    },
+    "takeId": null
+  },
+  "requestHash": "534f2ba1f3b0f53ae34fe86cb2c310b9064c711a9dc48ee8b659f22186797016",
+  "recordedAt": "2026-10-04T07:59:18.188Z",
+  "sha256": "c70a99e3859917ce37b9a69692b73bc7f96fdfbdc8200a60140c5d6a2214702e",
+  "bytes": 33121,
+  "requestId": "aQR60yvytGeivlDwfVhQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5a8f30961380447b656364eec02bda72753126bafaef67472c31cfa0455cd71c",
+    "bytes": 170153
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

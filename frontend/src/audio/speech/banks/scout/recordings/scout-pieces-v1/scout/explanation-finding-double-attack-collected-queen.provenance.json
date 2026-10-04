@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-finding-double-attack-collected-queen",
+      "label": "Explanation finding double attack collected queen",
+      "text": "Double attack cashed in. The moving piece makes one threat and unmasks a second from the queen behind it, and that queen makes the capture here."
+    },
+    "takeId": null
+  },
+  "requestHash": "897dfcb18443c1d3ea55bf2b2b3aebf1005a5b8d886a15f72eccf495e25d5850",
+  "recordedAt": "2026-10-04T08:08:07.258Z",
+  "sha256": "239652260cef78766e71ead2639c09ede0bde88f6a57308db62c8a1ce98ee712",
+  "bytes": 27950,
+  "requestId": "XvMxelO8QTfzFxJSa7Qe",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f137ad2b6713f0c0cb3e3a5eb038038922b60e27c06c75ee3bee78b51112cf1a",
+    "bytes": 142986
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

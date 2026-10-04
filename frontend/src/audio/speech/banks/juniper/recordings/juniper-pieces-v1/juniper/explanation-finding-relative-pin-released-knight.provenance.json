@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-knight",
+      "label": "Explanation finding relative pin released knight",
+      "text": "The opponent's last move let a relative pin go, and the attacking knight was free. Its target never moved away, and the line shown ends with that target captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "9f81cfb8bc80af7ddac3a190dc236e3ab7d17cd96c016347222389c68039293a",
+  "recordedAt": "2026-10-04T07:52:08.897Z",
+  "sha256": "ca3271d949d740c3efc78cdfcb1e7a00a599bcc154d69c83ce1fffb2eaa2deea",
+  "bytes": 34611,
+  "requestId": "szuctGjEXRhHB9BFCU80",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2eae586bf7e5e142b896bd538d53e4cb600fdd9df4bb13cc792030e80792e1bc",
+    "bytes": 177676
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

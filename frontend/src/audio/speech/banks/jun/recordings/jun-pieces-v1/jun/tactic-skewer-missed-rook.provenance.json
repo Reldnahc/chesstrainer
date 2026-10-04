@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-skewer-missed-rook",
+      "label": "Tactic skewer missed rook",
+      "text": "The stronger move set up a skewer: attack the rook in front, collect the piece behind it. Unused here."
+    },
+    "takeId": null
+  },
+  "requestHash": "d6451857630031f4ca12079421e34d2b77b3f5913320d2fd1a3376328823cf66",
+  "recordedAt": "2026-10-04T07:49:54.803Z",
+  "sha256": "0734edd20034d1c189d0f475a4e0728921ffb096c3d164de2d775b7309172ccd",
+  "bytes": 21451,
+  "requestId": "V5luJYL6jOHK9EDmel77",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4575e18b6b4b9878da66853342b323120c3ea5d8c184d6dfa67ce603ea44ff13",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

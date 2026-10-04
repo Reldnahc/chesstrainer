@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-skewer-played-rook",
+      "label": "Tactic skewer played rook",
+      "text": "The skewer bites. The rook in front is attacked, and when it steps off the line, the piece behind it is next. Lines like this pay out."
+    },
+    "takeId": null
+  },
+  "requestHash": "cc8df85c5a9943accf63eca550c0d74bf363cacaaa87e76776cf29b31f24d3b1",
+  "recordedAt": "2026-10-04T08:10:29.415Z",
+  "sha256": "ec7e2a3671aa88c6b7a9d0ea253ae039cb8727283eaec462c54754babd46a371",
+  "bytes": 28981,
+  "requestId": "Fs04gPyomORJKN4lgtc8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dbf2e06ddb8cff939401704cbcfe7676b0bb73f442157f1257bdb08f4fe4a14f",
+    "bytes": 149673
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

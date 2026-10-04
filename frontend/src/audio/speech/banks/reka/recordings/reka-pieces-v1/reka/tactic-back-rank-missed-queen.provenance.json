@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "tactic-back-rank-missed-queen",
+      "label": "Tactic back rank missed queen",
+      "text": "The back-rank tripwire was armed, the queen ready to spring it and the king crowded in by its own pieces. This move never trips it."
+    },
+    "takeId": null
+  },
+  "requestHash": "ac4a84ac43560539314a0347bf27c211a776a8d04cb0c6703222da13df6f95db",
+  "recordedAt": "2026-10-04T08:05:46.617Z",
+  "sha256": "c5ddfcd73dc01e029c5fd7d187fe1f7727cc8fc3197bb8b291f9df1dcd9de293",
+  "bytes": 28312,
+  "requestId": "nCCdI6uImacLK2yDgBuG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "68b1052a9fec8e030a5c1d56f4da99e0e6bb99ad56fa477ad7be367873aff7aa",
+    "bytes": 142986
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

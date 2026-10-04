@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-pawn",
+      "label": "Explanation finding pin collected pawn",
+      "text": "Eyes on the pinned pawn. Its king would be exposed if it left the line, and these moves capture it."
+    },
+    "takeId": null
+  },
+  "requestHash": "235a025a6312ef060523b0829cb8ae646403374123292a39a188e1aab2ad249e",
+  "recordedAt": "2026-10-04T08:12:50.047Z",
+  "sha256": "ae39f9d92dc3a1c3bac6d25d3b563e4c2795876109432f84dda52190a3ef093a",
+  "bytes": 21591,
+  "requestId": "kb0EcWtLq5kDIuxuowmk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3227a04ccc08a3d6ed36190cc2ef641c2fe17713b5ffcee3ddf23b001ddd1833",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

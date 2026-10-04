@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "tactic-back-rank-allowed-rook",
+      "label": "Tactic back rank allowed rook",
+      "text": "See that back rank? After this move the king can't get off it, and the other side has a back-rank mate idea with a rook along that row."
+    },
+    "takeId": null
+  },
+  "requestHash": "05e9690cb9f47f966a97a717019629b7d734ef44067eb443328b990428cc368a",
+  "recordedAt": "2026-10-04T07:55:27.647Z",
+  "sha256": "559385b8f612981fd7d24d20147d00df15066addc0290dfb7740c0b9eca94406",
+  "bytes": 26729,
+  "requestId": "6dPlgpcJ2bAFSMIIo0p3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dfe1037dc5482d01babd9ba1cc4e885b1d5073a8b61ea4ca2017e174cba8eb5c",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

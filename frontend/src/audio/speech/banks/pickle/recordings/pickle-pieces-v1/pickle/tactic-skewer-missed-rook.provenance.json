@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "tactic-skewer-missed-rook",
+      "label": "Tactic skewer missed rook",
+      "text": "Ooh, a skewer was hiding in another move. Chase the rook in front off the line, and the piece behind it would have been exposed. Missed clue!"
+    },
+    "takeId": null
+  },
+  "requestHash": "ec420200b20d5c62248902e4ed58ca086dabddafbc7d6b5ea04c8d53dad7d30a",
+  "recordedAt": "2026-10-04T08:01:33.805Z",
+  "sha256": "dc40d940552b36c23b39ba0691a3efbea9bf4077362c0c2c8149f4d73637d092",
+  "bytes": 29362,
+  "requestId": "w27R4rmvm8fdJqEo4Omp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e730ac3e3b627a062c962cb88f308be3f5f2d03605071f67be1da10081a9b883",
+    "bytes": 150927
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

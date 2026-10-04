@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed-king",
+      "label": "Tactic discovered attack missed king",
+      "text": "A discovered attack was tucked inside another move! The king could have stepped aside to unveil the attacker behind it. This move kept the curtain closed."
+    },
+    "takeId": null
+  },
+  "requestHash": "c2aa9ee0c96065183c8db05ba7df4e2cca68072a6a2e746d87782e9719f2aac9",
+  "recordedAt": "2026-10-04T08:01:34.432Z",
+  "sha256": "b9720df2da6bfba7dd03736df8bb2bb29e7da4bf4418b377032e613ceda887be",
+  "bytes": 29612,
+  "requestId": "5gmWL0nnKcncpCfbCYYy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d8fb94bc34d49b1d823626e2125b57cec252ee935aace1dda8d6fa57376e9cda",
+    "bytes": 152181
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

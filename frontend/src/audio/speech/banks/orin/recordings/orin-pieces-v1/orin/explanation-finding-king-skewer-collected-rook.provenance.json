@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-finding-king-skewer-collected-rook",
+      "label": "Explanation finding king skewer collected rook",
+      "text": "The check compels the king to leave the line. The same attacker then collects the rook that stood behind the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "25d7a146f17820a97e5ff6ddc929f06c4f33cab3520033c9ca0a7a3cde953302",
+  "recordedAt": "2026-10-04T07:59:23.506Z",
+  "sha256": "03d7e7a5a70b87fca2bfcd58eb0b204f5f8f832f087f864ee5a5f0f0a1ffe4ff",
+  "bytes": 24282,
+  "requestId": "wYKRuk2siV6wGxgoQ0T0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5191a20311b1246a8114a39b94e6ceeec15fa4e3519bef1a7872055df6ddfb4f",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

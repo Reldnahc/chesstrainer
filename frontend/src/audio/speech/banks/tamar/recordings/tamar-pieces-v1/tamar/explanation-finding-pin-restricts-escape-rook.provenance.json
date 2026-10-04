@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape-rook",
+      "label": "Explanation finding pin restricts escape rook",
+      "text": "The attacked rook is pinned to its king, so it may move only along the pin line."
+    },
+    "takeId": null
+  },
+  "requestHash": "bd3b75b73ebd1cdeb6f820863a944cbc891a87e94c428d16ee3bce3b831edfc8",
+  "recordedAt": "2026-10-04T08:11:03.230Z",
+  "sha256": "576c3e749fc482933541fb7dee0f22c9d151657c0ea2fe51ac7c3ecba54dd8b8",
+  "bytes": 17260,
+  "requestId": "4mXlRLGqJr6YOQIr7AOy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3781aa22e6c96ad879354b7f8aef18a5f921a706c65ad0239fbbdf85f48bd857",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

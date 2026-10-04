@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-bishop",
+      "label": "Tactic deflection missed bishop",
+      "text": "A decoy was available in the stronger move, luring the bishop off its post. Here it gets to stay comfy."
+    },
+    "takeId": null
+  },
+  "requestHash": "5f307f95d989c389c91fe464ab038f02232a91435614b2da9a2690800360115c",
+  "recordedAt": "2026-10-04T08:05:28.722Z",
+  "sha256": "b080bea32363ea3b5cad378fd21c0d2ec64f46cd992e4f0fe65df87afa2e6ca3",
+  "bytes": 21961,
+  "requestId": "DHiYHfVN0YqkaiYbvfIV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "40796015776f304e2744a11a62dabdf57c49843c4ab83c74661d86c5bd9509de",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

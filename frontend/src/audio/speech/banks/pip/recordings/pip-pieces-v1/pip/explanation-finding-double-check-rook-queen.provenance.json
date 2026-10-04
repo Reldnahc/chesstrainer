@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-rook-queen",
+      "label": "Explanation finding double check rook queen",
+      "text": "Double check! The rook and the queen are giving check to the king at the same time."
+    },
+    "takeId": null
+  },
+  "requestHash": "e4a08532496b8b50847304e5fe40c10135e5f13da454c64a6e818b064daaf017",
+  "recordedAt": "2026-10-04T08:04:53.507Z",
+  "sha256": "463bbffd3a7b565a9532d3ad07e0c5613d4c9e5abad10fd77f25a449ea62ff60",
+  "bytes": 17046,
+  "requestId": "ltCGGaUmDJw4JwZUhe92",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1765949ddeac268cf89979f960383723c50204b8575116a988d18b6274dec6c1",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

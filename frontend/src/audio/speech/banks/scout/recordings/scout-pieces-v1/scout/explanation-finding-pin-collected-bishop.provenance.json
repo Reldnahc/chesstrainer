@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-bishop",
+      "label": "Explanation finding pin collected bishop",
+      "text": "Pinned bishop, collected. It can't leave the line without exposing its king, and as the moves play out, it's taken."
+    },
+    "takeId": null
+  },
+  "requestHash": "dbcc064a1e7f42af9678288bed942bacf0e4cee1cc9ea3f2d0f950e0ea52f284",
+  "recordedAt": "2026-10-04T08:07:31.454Z",
+  "sha256": "95070f7b478af110ab13c14f52825dd5c1912c00a9af9b06d5110f9152d5a7f2",
+  "bytes": 23058,
+  "requestId": "ZKilIRxEGuIdn7ZJCeHH",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "078e686781257ca801f89b757a6eae33f64f4a97229ba3ad69fc8d2e24623cf4",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

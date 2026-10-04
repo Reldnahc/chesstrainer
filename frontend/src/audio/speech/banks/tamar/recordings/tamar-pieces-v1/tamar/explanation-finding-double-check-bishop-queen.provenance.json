@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-bishop-queen",
+      "label": "Explanation finding double check bishop queen",
+      "text": "Double check: the bishop and the queen are giving check together, so only a king move answers it."
+    },
+    "takeId": null
+  },
+  "requestHash": "22b882c0d23539b6dd01b916e00c142c15978ac16222506abc3e27f416ff1e6f",
+  "recordedAt": "2026-10-04T08:11:48.487Z",
+  "sha256": "4d060fb8f626de4c2e43ef259670311bc876e677b5bc717e0a06067b4a91e716",
+  "bytes": 20392,
+  "requestId": "rfURilCvEUAx2zE6n121",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bea55e5ad33ee91106a64ba4850d6426dff5f68d443afa2c2b2a082eb90bede6",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

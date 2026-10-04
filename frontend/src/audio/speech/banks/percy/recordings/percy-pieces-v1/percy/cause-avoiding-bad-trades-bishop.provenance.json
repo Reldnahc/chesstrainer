@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "cause-avoiding-bad-trades-bishop",
+      "label": "Cause avoiding bad trades bishop",
+      "text": "Whoa, count the whole trade! The bishop makes this capture, then gets recaptured, and it was worth more than what it took. An exchange isn't done until every recapture is counted."
+    },
+    "takeId": null
+  },
+  "requestHash": "daf064fc2bdf4eb97da5e9d2c1e2d20e9e8b80f990bed9c650c46c2d2b9dc1c1",
+  "recordedAt": "2026-10-04T08:00:33.434Z",
+  "sha256": "9a9da3b6942ac078ee3d244164c347cab00ed2eb7115945da6eb8e83fe5f2d0f",
+  "bytes": 36924,
+  "requestId": "JvzEHJuMu5ZrctFeybqp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "01d9d3c4b72993f47c06fbc8dbc82d4bd62c11313b3d2fe0ea01c080fb517d0d",
+    "bytes": 183946
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

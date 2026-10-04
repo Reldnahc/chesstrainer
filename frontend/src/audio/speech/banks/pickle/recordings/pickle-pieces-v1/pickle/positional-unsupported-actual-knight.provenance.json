@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-knight",
+      "label": "Positional unsupported actual knight",
+      "text": "Hmm, this knight is left without a single guard. Suspicious! Though unguarded doesn't mean it can actually be won."
+    },
+    "takeId": null
+  },
+  "requestHash": "97a30e8ae66c45f337f61aa59d7fe4d985eb498c40b6a74439afc7013582d522",
+  "recordedAt": "2026-10-04T08:02:36.884Z",
+  "sha256": "cc65f0f098e2975acd3d5d28fffc1773efbfc258c4d25d8a9e55a63a27ca6680",
+  "bytes": 26652,
+  "requestId": "jH9EXdeSCVaQKB2Ojouk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "06b5c55a525387500c3b2b0a4e2ba5af2a071d513f09741f53f7b0676b426aa3",
+    "bytes": 139224
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

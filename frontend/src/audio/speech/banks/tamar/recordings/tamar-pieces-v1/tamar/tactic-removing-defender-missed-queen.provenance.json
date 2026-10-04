@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed-queen",
+      "label": "Tactic removing defender missed queen",
+      "text": "The guard should have gone. Another move captured the defending queen and left its duties uncovered. Strike the guard first, then what it guards."
+    },
+    "takeId": null
+  },
+  "requestHash": "4166a945b74387f9d9496b682e65a3c5d559dc96ea2d0757859b8394f091fd06",
+  "recordedAt": "2026-10-04T08:10:40.792Z",
+  "sha256": "38a2dec976d49e1af6542221c223b14902447a5b3a82c04cfc8451f12fc0247a",
+  "bytes": 30337,
+  "requestId": "swwsg1Uc8HU1hAV3tdUK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bb31190caf94d2a037144c39c7637785118990a33e8df60263d9cef6a1b9b256",
+    "bytes": 157196
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

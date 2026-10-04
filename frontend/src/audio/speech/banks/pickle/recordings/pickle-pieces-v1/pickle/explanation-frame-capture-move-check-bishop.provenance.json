@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-check-bishop",
+      "label": "Explanation frame capture move check bishop",
+      "text": "A bishop gets captured, and it's check too!"
+    },
+    "takeId": null
+  },
+  "requestHash": "12f7cc2850e822f269881190451d643a5e9dbd66b21583425e60813fa3e8743f",
+  "recordedAt": "2026-10-04T08:02:48.284Z",
+  "sha256": "70d989f7f809797861249a695d87eab17f21623c9046bbd882be99ab8e466d37",
+  "bytes": 10452,
+  "requestId": "B4SL0hTfYvRSYjpcdvcb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "367869a89ca69f4cbc942bd6ee8bee86f892c0928caeb10cd34f821850fcb942",
+    "bytes": 52288
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

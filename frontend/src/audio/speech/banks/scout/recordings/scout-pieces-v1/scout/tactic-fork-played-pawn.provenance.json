@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "tactic-fork-played-pawn",
+      "label": "Tactic fork played pawn",
+      "text": "Fork in play. The pawn hits two targets in the same move, and a single answer might not save them both. Spot the pawn, then check both targets."
+    },
+    "takeId": null
+  },
+  "requestHash": "ea7f7311f713ad6fe3602dd1eca9fe21765bc59b92f6e0a5177fb7893a819083",
+  "recordedAt": "2026-10-04T08:06:17.591Z",
+  "sha256": "253e4c99ca882a4cd5c4afff5498a99cd98a02b447d01f7f8cb8312cd45c82f6",
+  "bytes": 29820,
+  "requestId": "1yKjRRKeEZX0kFqRTogt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5abaa6e884883782b4ff4702b263d2ff0fa4403f302748e18045134750a36db3",
+    "bytes": 154688
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

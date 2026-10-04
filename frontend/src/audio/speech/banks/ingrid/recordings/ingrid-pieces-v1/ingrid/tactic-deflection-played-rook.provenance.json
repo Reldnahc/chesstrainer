@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "tactic-deflection-played-rook",
+      "label": "Tactic deflection played rook",
+      "text": "The defending rook is tempted away from its post, and what it was covering is left open. Neat and practical."
+    },
+    "takeId": null
+  },
+  "requestHash": "5e9d7a588eb8d3cb780d776f22b4764b75cc0ffe240be470db741c66a73ecef0",
+  "recordedAt": "2026-10-04T07:48:40.751Z",
+  "sha256": "4d9070056ab348a16f5a6634a309ea35dfaa30d6286599e9dbe6a9fc324bfe57",
+  "bytes": 23680,
+  "requestId": "UbEVvLghGBlBKljGgsuv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "db50fef5c34e184ef5aec4f20c9ff5e5c5fb705101094d90f2f7f73c04515094",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

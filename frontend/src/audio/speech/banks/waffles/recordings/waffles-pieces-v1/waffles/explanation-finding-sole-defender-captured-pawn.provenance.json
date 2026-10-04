@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-pawn",
+      "label": "Explanation finding sole defender captured pawn",
+      "text": "The lone defending pawn is taken out first, and its charge follows."
+    },
+    "takeId": null
+  },
+  "requestHash": "780a720953275f8d2188d27739dffb4918721039ecb3ed1a06d798d49203c408",
+  "recordedAt": "2026-10-04T08:12:58.504Z",
+  "sha256": "36a50ca76d06fbaa374043919b30fcc3bcf9624554600fdef41a6fdcc663ffac",
+  "bytes": 15519,
+  "requestId": "Pjrvzag7ayWtqbRyyKVP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e6acb67fa79789cb9bc3135cf301a96699d9c27425e058abeedb847a7a82a236",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

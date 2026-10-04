@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-mate-bishop",
+      "label": "Explanation frame capture promotion mate bishop",
+      "text": "After capturing a bishop and promoting, the position is checkmate."
+    },
+    "takeId": null
+  },
+  "requestHash": "d0c3bc0e321dfeee29a73be0b4751165c0947007e45fe8d3d864450cd7388952",
+  "recordedAt": "2026-10-04T07:54:19.740Z",
+  "sha256": "fcdf08dfe328e007e7418121fa9def5baa1915cd2ff7390b6f6f4808bb597269",
+  "bytes": 14021,
+  "requestId": "JpAi6OC3NVcikRH264UT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7bf94af8a0977850ad83da4c0dfc216bacd0add912b91c7e70b035f4f73400fe",
+    "bytes": 70261
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

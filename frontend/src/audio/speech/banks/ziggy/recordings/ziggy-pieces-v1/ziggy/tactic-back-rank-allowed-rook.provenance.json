@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "tactic-back-rank-allowed-rook",
+      "label": "Tactic back rank allowed rook",
+      "text": "This opens a route to a back-rank mate for the other side's rook. The king's own pieces are the ones blocking its escape."
+    },
+    "takeId": null
+  },
+  "requestHash": "3851240d3c7ddd9ff856947c2d052d0618eb66a41da55305c8d6ef319fd43bac",
+  "recordedAt": "2026-10-04T08:16:01.463Z",
+  "sha256": "c7474a9c0c02d35f403c68759587e65019a095f59e63b37bad7f1f7eb5f1efe3",
+  "bytes": 23605,
+  "requestId": "Q5IOFDznve46yyyeZQNh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0d36c8b32f288ebc8e852b774a579bb18d3f204cf88188851c5540e851dc50f0",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

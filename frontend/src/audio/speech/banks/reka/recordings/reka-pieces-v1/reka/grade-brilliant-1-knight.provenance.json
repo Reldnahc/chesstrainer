@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "grade-brilliant-1-knight",
+      "label": "Grade brilliant 1 knight",
+      "text": "Zing! A knight goes on the table, and the idea laughs off the capture. Gorgeous."
+    },
+    "takeId": null
+  },
+  "requestHash": "32668dd8f3c4c660a320d85f02a91116fad3409460f522f156cac2ce7f531989",
+  "recordedAt": "2026-10-04T08:06:36.297Z",
+  "sha256": "cf6fb6aa5b51ddc7015d86e12bddd14566aae83129f883f6c32f472471d59239",
+  "bytes": 19968,
+  "requestId": "R8leSYzEdOoaa7vKT4au",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1aea1912824964988d11960bb1a3bbc99dd727d407d4be8154ad29b0c510c8f8",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

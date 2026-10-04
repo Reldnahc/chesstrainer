@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-queen",
+      "label": "Explanation finding deflection collected queen",
+      "text": "The defender is tempted off its post, and the queen it was looking after gets captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "8c5676172b2e120093493db5d03f5011437ece542ab186ac2ab3aa9dac4a707f",
+  "recordedAt": "2026-10-04T07:49:26.595Z",
+  "sha256": "5bd963b25d1d496ab0d50f179268d0cc2e6de52a744c76f443d085ed5bbc15dd",
+  "bytes": 17722,
+  "requestId": "FhcJQaQ2P0cVTPN7FvmC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3a921d11c775ebc07efe076d0ea373b5bf1d0804c94a9562c4cb473fca64b036",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

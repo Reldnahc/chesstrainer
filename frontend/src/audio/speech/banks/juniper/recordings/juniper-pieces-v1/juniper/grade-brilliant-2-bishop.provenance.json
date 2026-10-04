@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "grade-brilliant-2-bishop",
+      "label": "Grade brilliant 2 bishop",
+      "text": "I keep coming back to the bishop standing there, waiting to be taken. Costly, and sound all the same."
+    },
+    "takeId": null
+  },
+  "requestHash": "b2578cc37f1c6f8004cb22acb5fbd943f198d0abea0f85cf79c278bb8b8cfc5d",
+  "recordedAt": "2026-10-04T07:53:08.709Z",
+  "sha256": "22ef1a75558231f858ca0a77443ffba27c03c1b7dba9355ce29c93be0a7f1548",
+  "bytes": 22418,
+  "requestId": "GxNBqnUISLgXUDxzwtDT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "44dea670491ad90e58da58cbc125ffc1cf158daa2f98a2f0256b43e9532dcdba",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

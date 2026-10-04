@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "tactic-deflection-played-knight",
+      "label": "Tactic deflection played knight",
+      "text": "A deflection. The defending knight is drawn away from its duty, and what it was guarding is left exposed."
+    },
+    "takeId": null
+  },
+  "requestHash": "bbd1921354ac50d1d1dc39ed206594791bf1cbf4a991f51436a086f2b528227f",
+  "recordedAt": "2026-10-04T08:15:33.248Z",
+  "sha256": "a490c9756accd3f4fa4a0e87b81f4286deb8c65962601174d230c2b132b2299e",
+  "bytes": 22175,
+  "requestId": "w5F5hYE2PNpz3me2xErr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ea639d5fb7ba6efddf2e69e7642966a579687143ec0d1ac3d2a0a3975a185f13",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

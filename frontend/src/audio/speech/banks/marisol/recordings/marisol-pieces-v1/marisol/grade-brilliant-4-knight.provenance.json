@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "grade-brilliant-4-knight",
+      "label": "Grade brilliant 4 knight",
+      "text": "Brilliant. The knight sacrifice is real, and so is its soundness."
+    },
+    "takeId": null
+  },
+  "requestHash": "6d638e8da749b6e010c7b9dc6f613b689f9adc68b7179810c4a05a92843ac7a9",
+  "recordedAt": "2026-10-04T07:54:21.627Z",
+  "sha256": "5aabd7ebac8f72b9ace051eff9813c74fcb4660b56c59da6d25aa5cb422b9c1e",
+  "bytes": 16335,
+  "requestId": "noJeNpVq6MEStMhbPLCV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "aaffe88a0b773fc1dc7e7e381123d49741d6a628a66174452b09e035babc5c3f",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

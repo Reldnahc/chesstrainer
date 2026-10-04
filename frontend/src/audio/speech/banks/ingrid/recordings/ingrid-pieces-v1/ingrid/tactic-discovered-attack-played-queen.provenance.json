@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-queen",
+      "label": "Tactic discovered attack played queen",
+      "text": "The queen in front moves off the line, and suddenly the piece behind it is attacking down that line. Tidy little idea."
+    },
+    "takeId": null
+  },
+  "requestHash": "f37362ab19dc22d1ec616a0c977af11880f8ae30cbcadbe35225fbad671fea92",
+  "recordedAt": "2026-10-04T07:48:27.519Z",
+  "sha256": "67f0ff9b55652475e101ce389964afba13cd400f5a73805051cff226d9e59f6e",
+  "bytes": 25274,
+  "requestId": "BAD3yx1tcrsrUkxW8PtK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6dc23c2f87dcc36f1174a37cde4281c965e45761a0695da9019eb3ca31043eed",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

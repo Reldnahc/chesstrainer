@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-capture-rook",
+      "label": "Explanation finding discovered capture rook",
+      "text": "Discovery cashed in. The blocking piece moves, the line opens, and the rook behind makes the capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "605c78105d3f77a0f51168272ec331b8f7bf23ad6b2cef76e6d63b0985771d1e",
+  "recordedAt": "2026-10-04T08:08:16.636Z",
+  "sha256": "42e283f1c6cac678ba39e0976347c6e1e33ef01907fd24c7e73c2e918c286ece",
+  "bytes": 21113,
+  "requestId": "dmz4kknvFpZsEOzX9PFb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "32cbefe4dbe34de00b8df1ef13a9ae3fca30228e3e25fa256111e784a8c33aa3",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

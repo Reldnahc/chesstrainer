@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-rook",
+      "label": "Explanation finding pin collected rook",
+      "text": "The pinned rook can't leave the line in front of the king. A few moves on, it's captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "4f480beb483f7a5036563ffa6745adbec310928ae6deeba06e2ee5b92081f299",
+  "recordedAt": "2026-10-04T08:09:23.668Z",
+  "sha256": "e8e89b46f0faff55c8fe1ccb8a905a8490b8be73d1af7313fb237ca20f5c8958",
+  "bytes": 18559,
+  "requestId": "k56NvlKl4MGkM9bGS8LU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0f15781fec1340d1f95e7be7acec9f572c643d67be9cd34486906b83df4d2509",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

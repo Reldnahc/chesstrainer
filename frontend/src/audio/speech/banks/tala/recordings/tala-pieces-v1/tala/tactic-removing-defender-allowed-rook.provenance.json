@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-rook",
+      "label": "Tactic removing defender allowed rook",
+      "text": "Notice the guard: a defending rook can be captured by the other side now, and whatever it protects would lose its cover."
+    },
+    "takeId": null
+  },
+  "requestHash": "fb7d89c81d71d55e3e992907515bff73255343d20e09afef544709a8fe9c86b8",
+  "recordedAt": "2026-10-04T08:08:43.819Z",
+  "sha256": "8300d0e1b4b7fd8536e752eed456297985845f30499d100a60f275e028cf72cc",
+  "bytes": 25082,
+  "requestId": "aGEfYJZHMR1r0ZgDiOK2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "372906566e96a9434150ca7fb1b2b5b7f68a1aa97aa81f49b2fd2023470d4aaf",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

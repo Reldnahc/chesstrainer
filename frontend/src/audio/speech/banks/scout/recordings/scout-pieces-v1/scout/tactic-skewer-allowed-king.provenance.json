@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed-king",
+      "label": "Tactic skewer allowed king",
+      "text": "Skewer alert. The king shares a line with another piece, and this move lets the other side aim down it. Once the king is checked off the line, the piece behind can be hit. Watch shared lines."
+    },
+    "takeId": null
+  },
+  "requestHash": "552c870e76ad71bf757c325b9111b5220a222d11560da6cb0bfdc75f4d110ac9",
+  "recordedAt": "2026-10-04T08:07:15.555Z",
+  "sha256": "25b15e113e9e695b592346fdf4a74a0fd8eb60a8d5ca288a84b42104a1109b38",
+  "bytes": 37521,
+  "requestId": "wGEX4kDLkE9NGcTIFXWb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2347daa3e7dba44a21e9e17af9f208716e6b7edde96a6980c8f68bded06bd19f",
+    "bytes": 196902
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

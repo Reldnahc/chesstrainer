@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "tactic-back-rank-played-queen",
+      "label": "Tactic back rank played queen",
+      "text": "The back rank. The king is boxed in by its own pieces, so that last row is a real weak spot, and the queen goes right at it."
+    },
+    "takeId": null
+  },
+  "requestHash": "260e106000351525ad7e12d0f5f2ed9ac0177deb9eceb8fdfd7048c614e40c11",
+  "recordedAt": "2026-10-04T07:55:25.663Z",
+  "sha256": "92931434a40bcbea1bf53793cd17c7da39d446ef6a052eb5a8091b6d8fd99836",
+  "bytes": 28401,
+  "requestId": "b4ejl7vUJjTcP28Q7NjQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4c3360f5c6a2c11eb1e965611d36da45a11f91ead7fe67aae202b5830acdadf6",
+    "bytes": 141732
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-knight-rook",
+      "label": "Explanation finding double check knight rook",
+      "text": "Double check. With the knight and the rook giving check, only a king move is possible."
+    },
+    "takeId": null
+  },
+  "requestHash": "e9539172711b56ed0b2bba3b17a756bc1765775a27edbccac66196f04147c672",
+  "recordedAt": "2026-10-04T07:54:20.238Z",
+  "sha256": "67f1360c89daae4cc17cdd5ad2377409dade02721ce5583242e4b26375b6ad16",
+  "bytes": 17727,
+  "requestId": "l5qLTEg2lUEFFT6yoSqA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "611bc83d0a6bf63943f83859d17e0f6d5144269c49e7a820f5f99710e43e97c0",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

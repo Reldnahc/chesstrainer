@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape-pawn",
+      "label": "Explanation finding pin restricts escape pawn",
+      "text": "The attacked pawn has its king behind it, so it is pinned. Its only moves are ones that still cover the king, so running is hard."
+    },
+    "takeId": null
+  },
+  "requestHash": "c3143b3daa8f97d2f24c2a3349bc1a559259d3683ae5d828eb81e2f2c1d0c797",
+  "recordedAt": "2026-10-04T07:57:01.041Z",
+  "sha256": "7f896891136049756c8fc12669f4f3c0c81fb2d7cb90fe30cf4ff2257fcf5be0",
+  "bytes": 27618,
+  "requestId": "fkBGPvilCgzKPnRXw9Ur",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5e87d891f1d273689b194676f4654433112b2cacf5af3e6957cdfb648fd37e15",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

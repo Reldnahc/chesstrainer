@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "tactic-deflection-played-rook",
+      "label": "Tactic deflection played rook",
+      "text": "The rook on guard is drawn away from its post. What it was covering is left open. That is the deflection."
+    },
+    "takeId": null
+  },
+  "requestHash": "8c78076ad47d79284e3603ee9ceef6f585ac3e083fb6b30725d10315a86193e8",
+  "recordedAt": "2026-10-04T08:14:12.442Z",
+  "sha256": "95f0eab2e87a61b9b107b4325ea5f675db3ae990540e81d4c742669136844e87",
+  "bytes": 23116,
+  "requestId": "yFoVJEKQ8GmPukrVmObH",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bb88d29b2fb5016d3d940c2791ce58c4b4be7ab48e24dc439b9499a10de4e398",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "positional-support-actual-queen",
+      "label": "Positional support actual queen",
+      "text": "That queen was standing around unguarded, and now it has a buddy watching its back. A defender!"
+    },
+    "takeId": null
+  },
+  "requestHash": "282c716f3ae53d917f470f499b871feca35d8f9b921d533da9b17f4aa54998ba",
+  "recordedAt": "2026-10-04T08:02:29.210Z",
+  "sha256": "73f0675d2550a07cb702d62068c4f291da33c83d085f0d2ed3844106822310a4",
+  "bytes": 21742,
+  "requestId": "XsMgfCI5RDKRNDuJQwza",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f82026b983310e95dca0a08385fcd38246ec25fac6d073ec799a41391a5db024",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

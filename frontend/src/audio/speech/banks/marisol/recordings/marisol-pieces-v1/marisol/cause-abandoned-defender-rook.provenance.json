@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "cause-abandoned-defender-rook",
+      "label": "Cause abandoned defender rook",
+      "text": "The only real defender of the rook has gone elsewhere, so the rook is now open to capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "398899e675ac8d45f668cd2eae9604c8feaa6fdd285e8bd810683e37fba6bda2",
+  "recordedAt": "2026-10-04T07:53:55.872Z",
+  "sha256": "bfc8f9057c411b6748c0417824e5e30594bdbee951616f6e682b5aa355b8c97a",
+  "bytes": 19010,
+  "requestId": "RcmfMMEJJX52ebuuDI43",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6495287cbfde72c2357f504d46b0b3aa1fa0bfa8ed62c048437e3b9789e48457",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

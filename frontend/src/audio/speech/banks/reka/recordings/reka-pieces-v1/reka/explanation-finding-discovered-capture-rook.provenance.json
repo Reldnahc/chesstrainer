@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-capture-rook",
+      "label": "Explanation finding discovered capture rook",
+      "text": "A piece zips out of the way, the line uncorks, and the hidden rook behind does the gobbling."
+    },
+    "takeId": null
+  },
+  "requestHash": "e1cecec1682c3366fc8937983cf648ad03aee337ffe807ac64945be7bf8e3a46",
+  "recordedAt": "2026-10-04T08:06:14.675Z",
+  "sha256": "1fba5c40b68d7b411431f5154adc7e8d0b11e66e82c849f38757800430c28055",
+  "bytes": 18884,
+  "requestId": "wRv3LTAtjeTlgXyJJ6ju",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f7f5b07e05495de3ceef8f90e33c724ddeda5400fd69f96d0909adb6579da168",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

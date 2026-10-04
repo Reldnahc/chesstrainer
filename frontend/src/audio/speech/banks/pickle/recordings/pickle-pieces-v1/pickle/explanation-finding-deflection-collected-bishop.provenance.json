@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-bishop",
+      "label": "Explanation finding deflection collected bishop",
+      "text": "The defender gets tempted away, and the bishop it was minding gets captured right after."
+    },
+    "takeId": null
+  },
+  "requestHash": "189252f0a0492498177b61e226096368ade049efe965dc5b9e377de867dfb5d1",
+  "recordedAt": "2026-10-04T08:02:52.201Z",
+  "sha256": "690535b25e4c835f683b190a0c9c6db15456527887204118e307843b90cd9e1f",
+  "bytes": 17360,
+  "requestId": "reqp1JytDnEtMjMhd1mR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9d1ff6db49e3abd8fa3de7994b53a392e30d8b94fa2277f5a8514130c2b2c364",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "cause-abandoned-defender-queen",
+      "label": "Cause abandoned defender queen",
+      "text": "Found the detail! One defender was holding that queen up, and this move marches that defender off duty, so the other side can take the queen. Quick check before a defender moves: what's it holding up?"
+    },
+    "takeId": null
+  },
+  "requestHash": "55cc6739f95163645ae7a9ae29140347360cd6b8d2048c081a05335c59e30889",
+  "recordedAt": "2026-10-04T08:09:36.611Z",
+  "sha256": "b26c45ed5732653b6aa4795230d4000f2b6ca2484523ea60139f096c0e52f40f",
+  "bytes": 42156,
+  "requestId": "nccN0Ie93r4tq6DSHi2E",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d7449c5d415c4b49318c7c298e6ed3778de3fe60496e679cd540de992c828cc9",
+    "bytes": 218636
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

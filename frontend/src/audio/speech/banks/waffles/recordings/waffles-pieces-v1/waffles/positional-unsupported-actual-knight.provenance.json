@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-knight",
+      "label": "Positional unsupported actual knight",
+      "text": "No guard on this knight now. That alone doesn't mean it can be won, but keep watch."
+    },
+    "takeId": null
+  },
+  "requestHash": "f1195de46aad167c032439d0630fd4673dbd95c66ec81b130b7938cdad0ba8aa",
+  "recordedAt": "2026-10-04T08:13:01.610Z",
+  "sha256": "e176d781d572fa66dd58b418c8eceadb2a805f9038c804e871666fe59798c3f8",
+  "bytes": 18943,
+  "requestId": "Y6sQNjzS8RoftnGXqUab",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b0e829a8aa6f2cc1a6558e8b7dc70d06092632a27f90f0d7ccf3083ba2c10a55",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

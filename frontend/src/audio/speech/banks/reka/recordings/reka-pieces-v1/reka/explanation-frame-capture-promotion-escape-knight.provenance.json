@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-escape-knight",
+      "label": "Explanation frame capture promotion escape knight",
+      "text": "Capturing a knight, the pawn lands on the last rank, morphs into a fresh piece, and lifts the check on the capturing side's king in one swoop."
+    },
+    "takeId": null
+  },
+  "requestHash": "c0dc75cd414b3e5e2f1e12a26b3e850672ac13127fb773d6ba1581ab6af927f5",
+  "recordedAt": "2026-10-04T08:06:27.362Z",
+  "sha256": "dac84f0a2d09f57bffee6cc7fef9e6705ff3298adf95e42375282d335511de7a",
+  "bytes": 28279,
+  "requestId": "qjLkXVvz2G8bxEXDM2RJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "45197da4aa5d17f99b0e6c493c3944818f8de595b12b2b3be29b4c95452fcd86",
+    "bytes": 141732
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

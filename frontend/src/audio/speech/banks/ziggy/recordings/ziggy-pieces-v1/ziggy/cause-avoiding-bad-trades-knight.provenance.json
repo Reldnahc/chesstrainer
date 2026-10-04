@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "cause-avoiding-bad-trades-knight",
+      "label": "Cause avoiding bad trades knight",
+      "text": "The knight captures, and the recapture takes back something more valuable: the knight itself. An exchange is only finished when both captures are counted."
+    },
+    "takeId": null
+  },
+  "requestHash": "9b8f397242a110a8a6bab95fb2ae5b4162625177a46a4f90fd3d1108083eefe8",
+  "recordedAt": "2026-10-04T08:15:46.741Z",
+  "sha256": "64553be66c0a1ea58c919e9cf130e973544700df8a02450f0279af3cdb039a91",
+  "bytes": 30559,
+  "requestId": "ldGZao8jMEoJV7ScfPpe",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b9387cbc4cd6e0f39f7ba5b0fa21dfd0b0dc459842ccd30415a8ed8327199b90",
+    "bytes": 158450
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "support-restored-knight",
+      "label": "Support restored knight",
+      "text": "The knight that stood unguarded earlier has protection again. Good to see that tidied up."
+    },
+    "takeId": null
+  },
+  "requestHash": "689e2c5f79affd33ca7a8ffc9848fda5d62e240069f7a76eebba4c9be3acd3d9",
+  "recordedAt": "2026-10-04T07:49:03.048Z",
+  "sha256": "f29e85a51f5bfb76adc6a156d3aa6615d98971176355b28cbad820ecdfc4af6a",
+  "bytes": 18330,
+  "requestId": "0CBZymdCLA9YF30oQPXd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "85efd0d1b2fbb8399ceb42805b3740b6d066b7b3758e55fb9722f138b6339c36",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

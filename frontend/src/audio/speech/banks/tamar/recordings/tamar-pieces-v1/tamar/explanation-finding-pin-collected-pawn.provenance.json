@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-pawn",
+      "label": "Explanation finding pin collected pawn",
+      "text": "The pinned pawn cannot leave its line without exposing its king, and later in the line it is captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "90e79c625551da146b39b9efd25c8b209cb6060991f313b200c25ee586943894",
+  "recordedAt": "2026-10-04T08:11:06.604Z",
+  "sha256": "9ef3b33966b9e908dd953b9130f5f6a608301519aa96a0db4c910e6a1920975b",
+  "bytes": 20516,
+  "requestId": "IELnTraB5NUZa4awdxcm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "00660cbed9b03f1c6e18c8e7b14c8b69e4d102d9fa44942c5b4ad7b329bcf46c",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

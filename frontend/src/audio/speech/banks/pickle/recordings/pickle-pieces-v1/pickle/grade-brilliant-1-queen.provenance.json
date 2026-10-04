@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "grade-brilliant-1-queen",
+      "label": "Grade brilliant 1 queen",
+      "text": "Wait, a queen left out in the open? Suspicious! Whoever grabs it finds the idea still standing."
+    },
+    "takeId": null
+  },
+  "requestHash": "3f1288931e7f473a53f49d9b5293a5312c1df1a2ae0a38ef159854be6f9095ac",
+  "recordedAt": "2026-10-04T08:03:14.687Z",
+  "sha256": "411c621ad99f45e31dc7806ac706a21da88f9aebb31c40a1ce6e0eb829be20f9",
+  "bytes": 23485,
+  "requestId": "qXVlrVSZWO3qKGZfVa8P",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4942df430be6f21072bff56d4a7ecdf2104b1f81b54ccc54c7dbb597b861c344",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

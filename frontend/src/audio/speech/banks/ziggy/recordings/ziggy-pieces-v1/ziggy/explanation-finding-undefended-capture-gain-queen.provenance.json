@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-queen",
+      "label": "Explanation finding undefended capture gain queen",
+      "text": "The undefended queen is captured, and in this example the capturing side comes away with a net material gain."
+    },
+    "takeId": null
+  },
+  "requestHash": "8e86b08853ebbee5278d17680bb707fbeabeb18bf4f42b893a5a3ce41b833541",
+  "recordedAt": "2026-10-04T08:16:24.945Z",
+  "sha256": "4df21a229035eb2ef39a176e3d783e4e5289bdd124cb74cc8de2abd7b55cdba7",
+  "bytes": 23104,
+  "requestId": "C5UvJrvyu8feWfpesgrv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1ba05905662d1bdb7d2006392e1ed048dc167e986d07f1f1b95b9df95af3a100",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

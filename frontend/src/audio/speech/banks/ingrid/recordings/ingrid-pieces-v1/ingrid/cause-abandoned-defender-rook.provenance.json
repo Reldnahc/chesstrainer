@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "cause-abandoned-defender-rook",
+      "label": "Cause abandoned defender rook",
+      "text": "The simple problem is that the rook had only one real guard. Once that guard moves away, the rook can be captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "c9943916deefd0b09daacfc674dc00ce7e223ba3a5859286e8a5a5a43cccf7ea",
+  "recordedAt": "2026-10-04T07:49:20.853Z",
+  "sha256": "5f33f5f3c5365d5ad107c2a45ed972a911900283ee2997bda3d94e9666c2041c",
+  "bytes": 24542,
+  "requestId": "2W82Yk9IRRdDyQaRGwMn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c34f3511875c6f2e8993157afa278e27845a323fee7f43073196aaa681ce1a75",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-queen",
+      "label": "Positional unsupported alternative queen",
+      "text": "Had another move been played, a queen would have stood unguarded. By itself, that would not prove the queen could be won."
+    },
+    "takeId": null
+  },
+  "requestHash": "6c937e28697313e614467b0c59d78a7c6576825971c487d525687e9f0d0d8f04",
+  "recordedAt": "2026-10-04T07:58:53.280Z",
+  "sha256": "8e05b5705af3f421e1f30193fa6b7ac98ec48f9a4aac4e9a26bc38d8e016d326",
+  "bytes": 26468,
+  "requestId": "ujDrKR5SlPaQkYw5pLjz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "27b0abee333ea608b6fa5b53ceb09d6d2c20df08cc1e4417341db700c1759e81",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-pin-missed-bishop",
+      "label": "Tactic pin missed bishop",
+      "text": "With the stronger move, an enemy bishop would have been fixed in front of its king. As it is, that bishop keeps every option."
+    },
+    "takeId": null
+  },
+  "requestHash": "1949d09cf3f8638a6a58c8763e30a5e51f2cb0594f6381223711889c4e1fa378",
+  "recordedAt": "2026-10-04T07:53:07.695Z",
+  "sha256": "40452ced6ca218d27d3b4d88f4fbcedf3e712ddd04107df1bb6bca600ca110ec",
+  "bytes": 25025,
+  "requestId": "U9hkp27QFRsLbyUPdb6w",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "81d592ae58b95c7d357141d11212f45184bd0ab6091fd2082bda12d7f906ff4a",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

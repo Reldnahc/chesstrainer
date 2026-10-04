@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "tactic-skewer-missed-rook",
+      "label": "Tactic skewer missed rook",
+      "text": "The stronger move had a skewer to offer: lean on the rook in front, collect the piece behind. A good pattern to keep handy."
+    },
+    "takeId": null
+  },
+  "requestHash": "fccfe5afe36624a1b18a1c35714a2ac797da1e8a999c2d678817e42552fb6802",
+  "recordedAt": "2026-10-04T07:48:12.430Z",
+  "sha256": "a38a31f621b0e14a060d31e70453e18f5acbb4d0108bf0077fc3b5d820516f3c",
+  "bytes": 25622,
+  "requestId": "mqUSwUExaVOZKe1HHCGJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a5574c322baf2dd7c8f1c7133ee1920c0884b9c4a0901c4f838f14faf4792179",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

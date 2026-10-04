@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-check-pawn",
+      "label": "Explanation frame capture move check pawn",
+      "text": "Taking the pawn comes with a check attached."
+    },
+    "takeId": null
+  },
+  "requestHash": "16cf7e4b17632ca1c038e2405fe11b0461f0118fe12fc29a5764268e0913e233",
+  "recordedAt": "2026-10-04T07:49:28.724Z",
+  "sha256": "3dfac6351a5460e8b2d875a044253e5506f3cd4671edae48f88804ad70d4de1f",
+  "bytes": 9733,
+  "requestId": "l8kvcXQkmeRKM2MF3P4L",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ed6753d98d05fd255c77cf5c20082f1b0e31081ce51e437ecf52b9b9a8b01ba2",
+    "bytes": 47273
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

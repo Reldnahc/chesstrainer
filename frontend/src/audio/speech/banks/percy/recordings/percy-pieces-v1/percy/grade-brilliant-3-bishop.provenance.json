@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "grade-brilliant-3-bishop",
+      "label": "Grade brilliant 3 bishop",
+      "text": "Now that's a sacrifice! The bishop pays its price up front, and the idea is sound."
+    },
+    "takeId": null
+  },
+  "requestHash": "dea3bbd0a65a5d4121f4c9c112c1a88860998f51a33ff763d7bed2271e5a401c",
+  "recordedAt": "2026-10-04T08:01:14.999Z",
+  "sha256": "669f0a29c4b228fc3201f31f4bba5f73fe0e6d5201bb57940c25c15252313dd4",
+  "bytes": 18908,
+  "requestId": "OZedg8ggPlgPSB9MV486",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "59b8a390c9a6f49ce5798c3a8f58dff24db28ca034b721a65fe1ee883ca1e881",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

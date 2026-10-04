@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-check-rook",
+      "label": "Explanation frame capture promotion check rook",
+      "text": "Capturing a rook, the pawn lands on the last rank, morphs into a fresh piece, and checks the king in one swoop."
+    },
+    "takeId": null
+  },
+  "requestHash": "b004f5f87a456b8d190cd4e4d181738642474b0402d8d0e3f6837df25f575fbe",
+  "recordedAt": "2026-10-04T08:06:15.270Z",
+  "sha256": "96209761d64cfc2c1dba74e8638e6c9dd21e27493c44ff100742d548fe1095ae",
+  "bytes": 23288,
+  "requestId": "tzvEdlhdpOlxe6JEWbmk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "83ed5d3c6f108a235ba1737e9a84ac3b64049833d55136930b965b17faba58eb",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

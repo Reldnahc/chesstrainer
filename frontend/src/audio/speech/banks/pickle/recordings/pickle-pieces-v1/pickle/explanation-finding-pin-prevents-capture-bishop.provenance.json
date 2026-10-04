@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "explanation-finding-pin-prevents-capture-bishop",
+      "label": "Explanation finding pin prevents capture bishop",
+      "text": "That capture is off-limits for the bishop. It's caught in a pin, and leaving the line would expose its own king."
+    },
+    "takeId": null
+  },
+  "requestHash": "fcf8d533200cd124e544d6ae1c0a0ce2c0225139007ff953e35b110b10ecb1df",
+  "recordedAt": "2026-10-04T08:02:41.599Z",
+  "sha256": "e2234916948b09a25d5fd5b7b8453c7c2d227c353cb4bd8de44daa1dde2f0383",
+  "bytes": 22450,
+  "requestId": "Oi6P0Jc3AuXjMDst0wvF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4cb54b9e5c1216eff937a8503b1b0c0470871004a5154ace84516eb76d7c99c2",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

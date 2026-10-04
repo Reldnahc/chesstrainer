@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-knight",
+      "label": "Tactic undefended capture played knight",
+      "text": "Free for the taking! An undefended knight can be captured here. Always check for loose pieces before anything fancy."
+    },
+    "takeId": null
+  },
+  "requestHash": "375f7f69d38c3358ab3bfcff5f4aaca9e115144ae0406d80666fe39b2df51b49",
+  "recordedAt": "2026-10-04T08:00:01.566Z",
+  "sha256": "250f9461fd2579a9aaecdf43b6b66a96fc7a91e0cf303d899cd95b811d576166",
+  "bytes": 23967,
+  "requestId": "1dUryv0io5olS80QfAa9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4b57985a03820dd8485cae6ccdc1a921f023f00b8b7b0fec58368ceb7a3df57c",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

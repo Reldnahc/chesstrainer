@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed-pawn",
+      "label": "Tactic discovered attack allowed pawn",
+      "text": "A discovered attack is now possible: a pawn moves out of the way, and a threat appears from the piece behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "25dd23454d624deb1d5e9140d312da269965c983ab5930edd6b8b1e2fe5a0086",
+  "recordedAt": "2026-10-04T08:15:24.831Z",
+  "sha256": "a4b60b3b49fdc80f069bb3fb1fdb7f5cc22374bddd204afd44ad7444249db172",
+  "bytes": 22031,
+  "requestId": "5G0dk0l28rc3rr3Ohvyp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dfbab69aaa6af65aa4a3f744fedf02e824b84e3d0c7f3624862d3ba4484d771e",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

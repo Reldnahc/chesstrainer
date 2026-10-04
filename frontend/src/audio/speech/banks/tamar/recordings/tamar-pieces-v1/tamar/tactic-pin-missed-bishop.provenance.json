@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-pin-missed-bishop",
+      "label": "Tactic pin missed bishop",
+      "text": "A pin was waiting. With another move, a bishop would have been stuck on the line in front of its king. I want every line through the king examined."
+    },
+    "takeId": null
+  },
+  "requestHash": "d4b50812dc00c7c4c32310256ac69e757a178c5708ca603f21fe156d157787f6",
+  "recordedAt": "2026-10-04T08:10:18.139Z",
+  "sha256": "0cce73deee9b025b1627ccff31247bbc9013e512e422cfea71fdc9a71b22b9f7",
+  "bytes": 28502,
+  "requestId": "smFZHZnJrClgfpxuWOLy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0e3cf8eb8209a4e66fb531502371eb8bc675101140007544e0bfcae1fd2f1b63",
+    "bytes": 147165
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

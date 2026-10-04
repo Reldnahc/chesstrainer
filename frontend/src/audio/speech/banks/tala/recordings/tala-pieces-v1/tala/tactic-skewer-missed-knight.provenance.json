@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "tactic-skewer-missed-knight",
+      "label": "Tactic skewer missed knight",
+      "text": "The kicker was a skewer: a different move would have chased the knight off its line and left the piece behind it hanging."
+    },
+    "takeId": null
+  },
+  "requestHash": "e8855250320bd81cbf684bb1a0f3aa46865b2e8b173242039463fe6a41bf2e1a",
+  "recordedAt": "2026-10-04T08:08:25.642Z",
+  "sha256": "4ca66b2d95f96115419e102fe21bbd3a4ca27d87082751b3ef5371bd25380aa0",
+  "bytes": 23718,
+  "requestId": "IstQqWLL0BNPgvKucYgu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fb8f2d64649484c3a2057055241023d02639d76519680f80bb935d1f9e5b3caa",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

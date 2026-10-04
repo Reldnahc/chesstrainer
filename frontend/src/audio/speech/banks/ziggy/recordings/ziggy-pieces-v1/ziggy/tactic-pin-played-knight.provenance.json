@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "tactic-pin-played-knight",
+      "label": "Tactic pin played knight",
+      "text": "Interesting. This knight looks free, yet it is pinned to its king. Stepping off the line would expose the king, so it holds its place on the line."
+    },
+    "takeId": null
+  },
+  "requestHash": "b473725c282752cdde3943e3df66c6dba8f778456de7efb335d9168901234a71",
+  "recordedAt": "2026-10-04T08:15:32.760Z",
+  "sha256": "c5b060dbb25d84c971688d65e306d09812236ec9c107b9cbc9eedb6448d6113c",
+  "bytes": 29931,
+  "requestId": "cFID6DjUcplKWITUYkuT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a63fbf09c4bff18ef592ba6903c0e2e3c4cadf113b93c915c8e9b1cd40ffecc7",
+    "bytes": 158450
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

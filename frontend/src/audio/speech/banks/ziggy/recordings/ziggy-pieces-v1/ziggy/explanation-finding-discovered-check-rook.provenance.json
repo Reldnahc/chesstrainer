@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check-rook",
+      "label": "Explanation finding discovered check rook",
+      "text": "The moving piece clears the way, and check comes from a rook behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "b5ab78daa476bbcf3cdc0255392258a5c3c2a1afe9c0289a85afeed57e19ff86",
+  "recordedAt": "2026-10-04T08:16:20.309Z",
+  "sha256": "4b649bf17cfe51b04b30cc92bc53b1b299e38b7356046f191b519cbfb063096a",
+  "bytes": 14552,
+  "requestId": "LGPILdcQaZ0enmJhG3V1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7fc5f5c91f15e93d0ae40942f85d6c92273b69b9c22e7d36e060e4665813b504",
+    "bytes": 72768
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

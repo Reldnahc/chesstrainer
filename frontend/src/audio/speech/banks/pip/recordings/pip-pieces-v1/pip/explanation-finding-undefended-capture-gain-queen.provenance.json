@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-queen",
+      "label": "Explanation finding undefended capture gain queen",
+      "text": "Nobody was guarding that queen, so it's taken. In this example, the side that took it comes out ahead in material."
+    },
+    "takeId": null
+  },
+  "requestHash": "a9fc56da5508d7bdbac2b17215b7904f31e419856b82deaca8cd3170315963d7",
+  "recordedAt": "2026-10-04T08:04:37.573Z",
+  "sha256": "973b7d39fa2e5d72be0106dfd71419550aa573cc22a306d661685495ed4b497c",
+  "bytes": 26285,
+  "requestId": "2sge8CINoPwIaHemrE1I",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d1a872c38c0c28be3ebf9d34039a285d16eb7c61f31e118ad668f2a7fc8937bd",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

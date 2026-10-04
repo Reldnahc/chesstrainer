@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "positional-support-actual-knight",
+      "label": "Positional support actual knight",
+      "text": "A loose end gets tied up: the lonely knight picks up a protector."
+    },
+    "takeId": null
+  },
+  "requestHash": "e02cc321de10a9f4908914f6d00b217ca6497af65d601ed7e17edde611779cb5",
+  "recordedAt": "2026-10-04T08:09:26.882Z",
+  "sha256": "8062589920b9501738190499f50b73808b11108c478783745ecce0af9e757951",
+  "bytes": 15612,
+  "requestId": "ZmPpuDs5yTlHai9peiCp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6a5cbbe71d26b1efa880d178dd7756920a97501c0a11e3e00f2bc8d49883055f",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

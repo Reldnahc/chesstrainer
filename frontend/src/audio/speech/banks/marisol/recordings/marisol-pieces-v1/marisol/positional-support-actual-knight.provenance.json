@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "positional-support-actual-knight",
+      "label": "Positional support actual knight",
+      "text": "Before this move, the knight had no defender. Now it has one."
+    },
+    "takeId": null
+  },
+  "requestHash": "c4913fd8041bd15aeff58a510dd3bda385be5a4ed186dd8825f22c4fa7cc65e6",
+  "recordedAt": "2026-10-04T07:53:53.771Z",
+  "sha256": "2fde75bf6cd061c9bf56520123f20441e3c9ac75b39b77c2ff90e386eb671a4e",
+  "bytes": 15606,
+  "requestId": "tIMpPbgLMIxYD1Y99ghM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e171f31b08c44d1fa86896c1dcb2accc8cdd8be41727cfd7dfbd6838df0e22a9",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

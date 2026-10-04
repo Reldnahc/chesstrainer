@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "cause-avoiding-bad-trades-rook",
+      "label": "Cause avoiding bad trades rook",
+      "text": "Bad trade. The rook captures here, the recapture takes it, and it's worth more than what it took. Count the full exchange, every capture, before starting it."
+    },
+    "takeId": null
+  },
+  "requestHash": "ec5b13e039ebaf8721b7cc66c3d4a574d1a73014d5c986f0ac563da06317d885",
+  "recordedAt": "2026-10-04T08:07:27.815Z",
+  "sha256": "99a63f7b27f841907d653360f8c876b8f98b9fe3ff6cbd2496e1ac13119d60d6",
+  "bytes": 31221,
+  "requestId": "y4ammYquUwuv0RVDdIE3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5a58cfbb94e902a54ebce1fec6a3e6abb7224ad4ecbe212b7af434172f55e772",
+    "bytes": 160958
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

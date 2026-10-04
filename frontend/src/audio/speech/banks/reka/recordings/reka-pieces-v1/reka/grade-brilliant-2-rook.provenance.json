@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "grade-brilliant-2-rook",
+      "label": "Grade brilliant 2 rook",
+      "text": "Oh, that's nasty! The rook is handed over, and the whole thing still holds together."
+    },
+    "takeId": null
+  },
+  "requestHash": "22be1fec870eb7bd722cd7c834ce103f8511aed2a1a422baec552b2a7f00474d",
+  "recordedAt": "2026-10-04T08:06:46.189Z",
+  "sha256": "e42211ee5511fd08031754c69d85d8bb66210c5a1a47ae341cd83c3c2dd965b5",
+  "bytes": 19523,
+  "requestId": "a285X0VAvvoWhgNlu3Z0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a99bb616a75116f2ba4d638062078c84beafaaa63348ba2b1397c906bff6aac2",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

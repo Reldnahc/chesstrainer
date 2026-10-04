@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-finding-king-skewer-collected-rook",
+      "label": "Explanation finding king skewer collected rook",
+      "text": "King skewer. The king, in check, steps aside, which exposes the rook behind it to the same attacker, and it falls."
+    },
+    "takeId": null
+  },
+  "requestHash": "e1d5d9a422acb3afd806a847c2dacbd4c98b082f2f3e10e99977d81edff9fb42",
+  "recordedAt": "2026-10-04T08:08:02.891Z",
+  "sha256": "6ab8c4b558e174030272100c27a11fc7c9b72239e8c5717b1c7c87c11f6915c3",
+  "bytes": 25278,
+  "requestId": "LxOen5VDG17NOCLxXMbw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9e6612793bc9415ea547f28b057fec6f45fbf432dceacae73c1f2222f6871efa",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

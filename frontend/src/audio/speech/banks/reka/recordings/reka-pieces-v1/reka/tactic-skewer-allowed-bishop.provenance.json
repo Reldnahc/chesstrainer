@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed-bishop",
+      "label": "Tactic skewer allowed bishop",
+      "text": "Little detail with big teeth: a skewer is lining up for the other side, the bishop in front chased off and the piece behind it left open."
+    },
+    "takeId": null
+  },
+  "requestHash": "097ad88f3ca0fc34f362d1b11c2a3ec6219dee6c993c0146f71dfc7378f911f7",
+  "recordedAt": "2026-10-04T08:05:20.495Z",
+  "sha256": "e8c75105b9d1454e3a641c4490ea74dd2f3a15e3e867635c5c847a3a8ecddc9c",
+  "bytes": 28759,
+  "requestId": "RYoMzTwjRfFvCSNvMWkd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d3c5784c6165c3cdda6d6a3b06109300da8d3f022cb148074a6a6746e2d60fdc",
+    "bytes": 145911
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

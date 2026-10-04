@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "grade-brilliant-2-rook",
+      "label": "Grade brilliant 2 rook",
+      "text": "Brilliant, quietly. A rook sacrifice, and the line beneath it holds."
+    },
+    "takeId": null
+  },
+  "requestHash": "96dc6e046f44e70a060664355a5df886af8f6915d86af5ccb1ba3c297b86396f",
+  "recordedAt": "2026-10-04T08:15:11.804Z",
+  "sha256": "eeab4ecb0cea80123efeae5185d26004decb08e2795716010478571f58c3dedf",
+  "bytes": 18673,
+  "requestId": "1XFKAhaGkq4VCWKKd5WN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "725fc945ad74dd5c0a78eaa2e544ae56867394bcd5dfdd068dcc716b1729768c",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

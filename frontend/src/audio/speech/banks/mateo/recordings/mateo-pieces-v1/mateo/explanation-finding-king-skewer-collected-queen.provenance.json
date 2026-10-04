@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-finding-king-skewer-collected-queen",
+      "label": "Explanation finding king skewer collected queen",
+      "text": "Check pushes the king out of the way, and the same attacker grabs the queen standing behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "d0506e2a97ffa9ead4083d3f20db109691f975b464d504d3172af6bf3e5930f2",
+  "recordedAt": "2026-10-04T07:55:47.912Z",
+  "sha256": "e2b0c32b774f9bb4e4155228a944689105690b8a6106620887bf48bb79f4d250",
+  "bytes": 18440,
+  "requestId": "Mri0DFd1fJUtuhjZDDlK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d50189261511f38c02a30272d19d233336d497caf8a07b962df663daed4b421c",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

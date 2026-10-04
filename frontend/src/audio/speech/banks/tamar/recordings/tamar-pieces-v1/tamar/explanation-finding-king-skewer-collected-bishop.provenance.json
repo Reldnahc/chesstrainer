@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-finding-king-skewer-collected-bishop",
+      "label": "Explanation finding king skewer collected bishop",
+      "text": "Checked, the king has to step off the line, and the attacker then takes the bishop that stood behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "50e22b35dc4b19b3e5cf1019591b4f359fd6491a8f9bceff0e54c6c62be96cf6",
+  "recordedAt": "2026-10-04T08:11:24.465Z",
+  "sha256": "eccb3197158e3245127b0b97ef4b94d5b26dae00c9c60e1080531ae5d8db49fa",
+  "bytes": 19953,
+  "requestId": "BKzVOcQCHQk3hMQzcNge",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "38139c7a09f7df189e85319c55f158e912d24ac78f28a30284dcc353ad450464",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

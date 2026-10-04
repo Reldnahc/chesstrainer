@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "tactic-fork-played-knight",
+      "label": "Tactic fork played knight",
+      "text": "Look at that: one knight attacking several targets at the same moment. A fork, and a very busy knight."
+    },
+    "takeId": null
+  },
+  "requestHash": "76fe9bfbc2cd1a8c984b24374d3946fa066502b5086c0f60fe98312cd2301355",
+  "recordedAt": "2026-10-04T08:15:01.178Z",
+  "sha256": "7b3b60ac18431b65a8bdbc550ca53cdf2d76b3e23dcdc33e64ed530ce84b2989",
+  "bytes": 23004,
+  "requestId": "cMC1uQaeHOayiHlNkcn6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f3b48c31d407d94bdec82fea70b3e5c638186fc1ee755b12eb9bbea6e356700d",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

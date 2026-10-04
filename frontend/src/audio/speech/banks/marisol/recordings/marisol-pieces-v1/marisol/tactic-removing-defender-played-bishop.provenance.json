@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played-bishop",
+      "label": "Tactic removing defender played bishop",
+      "text": "The bishop doing the defending has been captured. Whatever depended on it has lost that cover."
+    },
+    "takeId": null
+  },
+  "requestHash": "9bc23b5bd84d948b5d589e62fac0f3def84a46cb6d9548dde2c63f7e29faa932",
+  "recordedAt": "2026-10-04T07:53:30.246Z",
+  "sha256": "c77d9d6bcbf01b510dd61613e4faca7a362464d419cb0a3d8d4ed623c5b21855",
+  "bytes": 18585,
+  "requestId": "4yenWHseOIb8WwQnjNWl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ee469238c38bc5c8f4f15bb96543cb62e6ce2d0c147bad0b8057e91958ba663f",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

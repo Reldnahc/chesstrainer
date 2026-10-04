@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "positional-support-actual-knight",
+      "label": "Positional support actual knight",
+      "text": "A knight that stood alone now has a defender."
+    },
+    "takeId": null
+  },
+  "requestHash": "850fdefc6506082ec0ba11c7e4f950fee583eede066b5b9626cccb6d2fe9d654",
+  "recordedAt": "2026-10-04T08:14:21.089Z",
+  "sha256": "4dee1012baaa6f54d72294d384872318323433ac12ec4ec462765d44a3c8702b",
+  "bytes": 11452,
+  "requestId": "DOSvM3enxE0D6FKqLAvY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b0ff37a59b425d129cb50e3b9f6ce44eb83b585c87ba415c95e49ef2106a470a",
+    "bytes": 56050
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

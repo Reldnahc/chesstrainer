@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate-knight",
+      "label": "Explanation frame capture move mate knight",
+      "text": "This takes a knight, and it's checkmate too. The king's got no legal way out."
+    },
+    "takeId": null
+  },
+  "requestHash": "686b53740a6f8813082dfa4bfcbbb636a8ebbca420722c5205f8023d059deea8",
+  "recordedAt": "2026-10-04T08:01:13.523Z",
+  "sha256": "6cc1a74febf1b88d5e702aca43d786e4338fc22bafc67e5b3766218701d5c33b",
+  "bytes": 16496,
+  "requestId": "eWk2MC4ihApnWnuAyFNi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1ce39348996d50938e18fe2262c96cc49b7a2713aa026b07c183455fb52d4985",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

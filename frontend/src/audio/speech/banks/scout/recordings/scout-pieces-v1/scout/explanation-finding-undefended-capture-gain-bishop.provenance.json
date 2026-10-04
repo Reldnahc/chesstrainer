@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-bishop",
+      "label": "Explanation finding undefended capture gain bishop",
+      "text": "Loose bishop taken. Nothing protects it, so no recapture follows, and this example ends with that side ahead in material."
+    },
+    "takeId": null
+  },
+  "requestHash": "57f9488c08876bebf8f262824ea4667e5672acb9dae40b17e074ebd6a4ba1c02",
+  "recordedAt": "2026-10-04T08:08:09.079Z",
+  "sha256": "2c72eda99c201167d9118e3143f4782805c0c950ee1aa3badea26c5056b467cc",
+  "bytes": 24652,
+  "requestId": "rvWj6nCqDWSvzPrwCz0B",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0e05c93dadfefda25a32e606a43d3c3001d4e91d7341446a3b6a5e7e36bf5a03",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

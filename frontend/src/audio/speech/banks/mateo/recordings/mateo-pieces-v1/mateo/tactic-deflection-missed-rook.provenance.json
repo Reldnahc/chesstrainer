@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-rook",
+      "label": "Tactic deflection missed rook",
+      "text": "The stronger move tempted a defending rook off its spot. Set it up and watch everything it was holding fall apart once it leaves."
+    },
+    "takeId": null
+  },
+  "requestHash": "bb73889fd5ba59f3857556ac0d47d20b425e4eaad8145e2d5a8845d4ea8e5deb",
+  "recordedAt": "2026-10-04T07:55:17.253Z",
+  "sha256": "194ca1bfcaffd57320ff00da30074863794f8752457ef6381275a746e26fd05b",
+  "bytes": 26838,
+  "requestId": "jdcdVn7KSmcOkvGtJ7Q3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9f7f4fd8407f9d17f87556bb1222fdb9a7c6b5698b16fa8ffa54ca9a2ae83037",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "cause-abandoned-defender-bishop",
+      "label": "Cause abandoned defender bishop",
+      "text": "Found the detail! One defender was holding that bishop up, and this move marches that defender off duty, so the other side can take the bishop. Quick check before a defender moves: what's it holding up?"
+    },
+    "takeId": null
+  },
+  "requestHash": "20f8ee27201719a692529ef667670899f8c50adb841c9fd4ab4dfb209a3cde35",
+  "recordedAt": "2026-10-04T08:09:30.368Z",
+  "sha256": "d921a90ee62fda6bfe6d85db6e49c2f35b00d5690b89973d5fdf118377421245",
+  "bytes": 41598,
+  "requestId": "Wf0n3TN7qnVgfYvOS75X",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "32e741ce393158a70d97d4d1a9198752eb003547e4b6b8b548cd2b82edde84bd",
+    "bytes": 218636
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

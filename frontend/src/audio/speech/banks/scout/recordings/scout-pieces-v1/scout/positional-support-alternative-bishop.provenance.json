@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "positional-support-alternative-bishop",
+      "label": "Positional support alternative bishop",
+      "text": "Cover available. A different move would have put a guard on a lone bishop. Compare which pieces stay guarded each way."
+    },
+    "takeId": null
+  },
+  "requestHash": "2794dc9ff964716940f947c23024ee2b2122a67b761c9d5a632af16b9e5fbc32",
+  "recordedAt": "2026-10-04T08:07:47.184Z",
+  "sha256": "66598d76d20b36287af32bb509d8659e3b547a148de45baafa3595da5255f080",
+  "bytes": 22937,
+  "requestId": "XeBowXvl2tHj9mdoWigO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d4a737daa929b479f069cf808a4a43d81fb66ad9ba74fd9de92fd25e20774a4c",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

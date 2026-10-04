@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-escape-pawn",
+      "label": "Explanation frame capture move escape pawn",
+      "text": "The pawn is captured, and the capture is what gets the king out of check."
+    },
+    "takeId": null
+  },
+  "requestHash": "3e57957533f73de41d1a986acc7bda517b2ff6811f76f81a942a8120ca9bbc15",
+  "recordedAt": "2026-10-04T07:57:39.271Z",
+  "sha256": "2fbb2b884a14db662dfcbd790c6199184c46d8c9d136d43c9bbef5b06a4d3d38",
+  "bytes": 14595,
+  "requestId": "QFPPlQaXocLCw741HnfR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9f8fb6de36b6eb8a38af8290afcb83dacbcccf4aa799b50cef44ada2f045b3e6",
+    "bytes": 72768
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

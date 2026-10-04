@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-bishop",
+      "label": "Tactic discovered attack played bishop",
+      "text": "The bishop moves aside, and the piece behind it wakes and attacks. That's the discovered attack, working quietly."
+    },
+    "takeId": null
+  },
+  "requestHash": "23ffb67f997e4654770de0bbdab98f4569126a18e3c14fd3b62697e370226b5b",
+  "recordedAt": "2026-10-04T07:51:31.903Z",
+  "sha256": "6d0cc223aba097bfec45976e182c7fa67cd82cc3001ff10c39ef6b0a0679e5ec",
+  "bytes": 24895,
+  "requestId": "uMUZr5JT5QkZrmId2BID",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "af77b61dd2844533ed493e599d53a438c3130a9daf24988dc259b69276845a8e",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

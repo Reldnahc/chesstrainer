@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "positional-support-actual-bishop",
+      "label": "Positional support actual bishop",
+      "text": "Before this move, a bishop stood undefended. Now a defender covers it. A new connection on the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "9ec98693a9e7e66841063b3814c5c00b08c8b91f5037c24b7d249b3bafd68f19",
+  "recordedAt": "2026-10-04T08:16:02.676Z",
+  "sha256": "4c616ad894a0c7c5d2e374fbb74e829ba5cf4ae141ba18658c66a6966dba939d",
+  "bytes": 23128,
+  "requestId": "RV3pwBqQXCFOqkDPCJKa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c72b4bbb7f8a50fc562a6c247dd84381356eb58aa5d15ac5b3e3b4342f8a3b24",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

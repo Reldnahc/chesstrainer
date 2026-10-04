@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-bishop",
+      "label": "Positional unsupported actual bishop",
+      "text": "The bishop has lost its last defender. The weakness is real; it does not on its own show the bishop can be won."
+    },
+    "takeId": null
+  },
+  "requestHash": "9eadb1d088866e677d8da3b621102f3d27baa8ada7afbde02fe1b4c8f2e58640",
+  "recordedAt": "2026-10-04T07:54:07.902Z",
+  "sha256": "1262857a340add353aa2ea7fbac6f730318b72fe3bb5a9b6f7c9548b80ead2af",
+  "bytes": 24369,
+  "requestId": "FmT3FO33CPJ9kLSkKNLv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "325a4bd49c14d60168205ab818037f723d7ebd581a6f78951d0cec03e0c935ba",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

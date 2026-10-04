@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-queen",
+      "label": "Tactic deflection allowed queen",
+      "text": "Spot the busy queen: it has an important job, and the other side can now drag it away from its post."
+    },
+    "takeId": null
+  },
+  "requestHash": "6b8ff292c351852b89f127d5315117e0ea54383f78e8e7db5633ba299a8f2d63",
+  "recordedAt": "2026-10-04T08:08:57.735Z",
+  "sha256": "ecf48bfbdc611f22126ff36c57107c3c51c02237fe4391000b6b1ea2189731cc",
+  "bytes": 22603,
+  "requestId": "TGMlBRHueDcRel7aZNJm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "26c14c0d5d6295c8347f9b5b8a6160e66519f5137812cd4305181c32545a4bc8",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

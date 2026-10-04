@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-king",
+      "label": "Tactic discovered attack played king",
+      "text": "A discovered attack! The king steps out of the way, and the piece behind it suddenly has a clear line to attack. Two pieces working together."
+    },
+    "takeId": null
+  },
+  "requestHash": "7f04a4e3453322505752e64a29d91c50a3ad306a40310e3436124b0d881f3c33",
+  "recordedAt": "2026-10-04T08:00:08.930Z",
+  "sha256": "390c080ad5dba2fce4fefc098da57b4d6f123ce879abe55404b34bbcda41e80d",
+  "bytes": 29002,
+  "requestId": "XoIwNYOJMcWFTU1S582m",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3a1f3991328374b003612b87bf07f37337fcf257a7cf67618a0db775a9de35ed",
+    "bytes": 149673
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

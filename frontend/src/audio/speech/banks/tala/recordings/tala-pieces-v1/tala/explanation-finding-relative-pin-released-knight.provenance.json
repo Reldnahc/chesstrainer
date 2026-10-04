@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-knight",
+      "label": "Explanation finding relative pin released knight",
+      "text": "Backstory first: the attacking knight got unpinned. It had been in a relative pin, and the opponent's previous move broke it. The target never moved after that, and the line shown captures it."
+    },
+    "takeId": null
+  },
+  "requestHash": "be1b3573dbf22c60a59506dda4328420b0072e762582db65c7bc53063aca5052",
+  "recordedAt": "2026-10-04T08:09:22.683Z",
+  "sha256": "93c5113ee592cda3e5c6a4438004c6c65dfa0afa8af175acaf182658a3032772",
+  "bytes": 40995,
+  "requestId": "P0cQu0C4z8JP0G1AMaPY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c51e7acd4d49dc0bbdc894980c5b15c1db2d439f5e5e6387c7ac587321c8dc08",
+    "bytes": 211113
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

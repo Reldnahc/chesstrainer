@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "tactic-pin-missed-bishop",
+      "label": "Tactic pin missed bishop",
+      "text": "Another move could have pinned their bishop to its king, holding it on the line. Quietly, that pin went unused."
+    },
+    "takeId": null
+  },
+  "requestHash": "bd1f380a4642611b05eedc3bedfc08a704b825c6d450361d32343e50135bff23",
+  "recordedAt": "2026-10-04T07:51:29.592Z",
+  "sha256": "2e981e932295d8fd71639f3fca64b69935de63b0758fcb9cc3ae3b6aafa6abca",
+  "bytes": 24755,
+  "requestId": "NnFYLO13KFeA9m9FtsEp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c132732ab555701b3c3cc83765aa3780c55e7e3c18cebcf70bcc7599738d897d",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "support-restored-rook",
+      "label": "Support restored rook",
+      "text": "That rook left unguarded earlier has a defender again. Patched up!"
+    },
+    "takeId": null
+  },
+  "requestHash": "97be4987479b278634500b3ab7e496492a5ca7208ba6c99e2f25e53811f83e64",
+  "recordedAt": "2026-10-04T08:02:25.417Z",
+  "sha256": "cb65d0c059eedf753de085fe0181df7fb85beee0162d80f970482c00cea1cdd7",
+  "bytes": 15147,
+  "requestId": "VVDwjgqarstrgECOogX3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b298c06fb750421dfd0d605a604a9e07a9fce42c3d8a176d0ea0c49dbd308939",
+    "bytes": 75276
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

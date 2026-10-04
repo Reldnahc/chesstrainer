@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "grade-brilliant-3-bishop",
+      "label": "Grade brilliant 3 bishop",
+      "text": "Giving up a bishop is easy. Giving it up soundly is hard. This one is sound."
+    },
+    "takeId": null
+  },
+  "requestHash": "0f632eb737de4fb9d83f22d1ff48eafab862c9e5da1834b6bcea4d6f86f7389a",
+  "recordedAt": "2026-10-04T07:57:38.655Z",
+  "sha256": "51aa2ab1e64bd1ce2b6f04ec23820dfe375e542813760b29bebd0187cda05060",
+  "bytes": 19342,
+  "requestId": "8ljlVeE9GV7pSCCGjEhV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "97304438d86198ad19a21dd3fbe3c07069a8e2dd63cb8f914cec9c5cd247403b",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

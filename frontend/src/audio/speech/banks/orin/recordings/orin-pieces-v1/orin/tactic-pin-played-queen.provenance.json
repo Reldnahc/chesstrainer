@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "tactic-pin-played-queen",
+      "label": "Tactic pin played queen",
+      "text": "Here is the pin to the king, a pattern worth knowing by heart. The pinned queen must stay on its line, because stepping aside would expose its own king."
+    },
+    "takeId": null
+  },
+  "requestHash": "61d7ab73947b112441e962fcecb165843fe83f4d220104231ce5e50d05273a4a",
+  "recordedAt": "2026-10-04T07:58:26.806Z",
+  "sha256": "5a3f0dc817d261e38ecb7b6a82ee91336856f8d71b9ccef060fed00bf88d932c",
+  "bytes": 35056,
+  "requestId": "ixgZhwcqGv7bN4S6FnXK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3c1cbcaf1b0b4bc0a089f8079417d48c8b9e46787213a145c9ae6a0fce1634a6",
+    "bytes": 182692
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

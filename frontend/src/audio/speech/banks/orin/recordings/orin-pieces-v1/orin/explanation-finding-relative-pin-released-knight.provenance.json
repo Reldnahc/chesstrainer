@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-knight",
+      "label": "Explanation finding relative pin released knight",
+      "text": "A relative pin held the attacking knight until the opponent's previous move released it. Left where it stood, the target falls in the line shown."
+    },
+    "takeId": null
+  },
+  "requestHash": "8113a2fefeb0ecd57f3e739cb738bec5930b5cbfcd759c61a54c7b76e64ba0b8",
+  "recordedAt": "2026-10-04T07:58:59.898Z",
+  "sha256": "8202ae0d7da5bf89301c3b8da6ef1b22a6df9d1bf0384b8cc9e31a3fd7e2c0e0",
+  "bytes": 31477,
+  "requestId": "TRcCURmR9YaF9BSeIMNh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e5ca527a25df5e2bf83dd1def5adddd6c5387009dfd348b17bed822447d4341f",
+    "bytes": 162212
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

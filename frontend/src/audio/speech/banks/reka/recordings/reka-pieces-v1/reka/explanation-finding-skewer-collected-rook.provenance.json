@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-rook",
+      "label": "Explanation finding skewer collected rook",
+      "text": "The rook in front is forced off the line, and the piece it shielded gets gobbled."
+    },
+    "takeId": null
+  },
+  "requestHash": "4a6f678b8d0a028d2a08a9d905c38df824ed331815b89aa30fe9e0a28333f565",
+  "recordedAt": "2026-10-04T08:05:55.354Z",
+  "sha256": "0cea9d1c70f656928e2df1c1280cfce02e82db6d2ae8437d4dbfd5e845148f88",
+  "bytes": 15921,
+  "requestId": "fBxF5G1ijfWmlUFFRFBc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b72a07a4994adb8fd148723d8630ee4a2d83543cef9cb3be224405e035b42031",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

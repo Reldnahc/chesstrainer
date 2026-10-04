@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-check-rook",
+      "label": "Explanation frame capture move check rook",
+      "text": "Taking the rook comes with a check attached."
+    },
+    "takeId": null
+  },
+  "requestHash": "1072a1363f4efe9c3cf68301a379488b8159b980daac58503b8909aff96200aa",
+  "recordedAt": "2026-10-04T07:49:31.457Z",
+  "sha256": "2cb897dc5fde0290e61780834da3a4f848449f0d748a0774087c8fc09846c443",
+  "bytes": 10013,
+  "requestId": "u3SSMLICR7rpHXA3xhEy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6e36ab2c15570bf446d716c1af17f055e41a466aeff997ac482d65646f35dac1",
+    "bytes": 48527
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

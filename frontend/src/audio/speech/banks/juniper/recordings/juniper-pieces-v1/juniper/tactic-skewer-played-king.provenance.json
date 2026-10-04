@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "tactic-skewer-played-king",
+      "label": "Tactic skewer played king",
+      "text": "A skewer, neatly drawn. The king in front is in check and has to make way, and the piece it was hiding lies open."
+    },
+    "takeId": null
+  },
+  "requestHash": "77fa95068c530074f3fd79193a1a8af963db0381dd49168bba04eb8a15ba7650",
+  "recordedAt": "2026-10-04T07:51:43.553Z",
+  "sha256": "a72bb572ca759034b7d29ba262ab52b27047663dc254bb095f26387b25711732",
+  "bytes": 26066,
+  "requestId": "BP8jxCDkN4MtFDZLQX86",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3aa48984a9f06912a06e14f700a4334c3ab61105220c67b934880d6c62640ee9",
+    "bytes": 137970
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

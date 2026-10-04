@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "cause-opponent-threat-recognition-rook",
+      "label": "Cause opponent threat recognition rook",
+      "text": "With its last move, the opponent made a threat, and this move does nothing about it; the rook hangs because of it. The other side's move always gets looked at first."
+    },
+    "takeId": null
+  },
+  "requestHash": "6210366b2d62408780a5954f0725ceead1d2747ce30fcb89b3bee2553b201c86",
+  "recordedAt": "2026-10-04T07:56:51.162Z",
+  "sha256": "ae5771178606b0ab215b9c7678cc95db1b5671229cd41fb4e773dd66115b1b12",
+  "bytes": 33636,
+  "requestId": "Tr5pFTzFdRFWVeb7oHIr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "160b00aac5cd07ebb39048619878ccd43fb05999f7850d7cdc265588c6a4aadb",
+    "bytes": 175168
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "tactic-back-rank-allowed-rook",
+      "label": "Tactic back rank allowed rook",
+      "text": "Mark this pattern well: the back-rank mate. After this move the other side has a route to it with a rook, because the king's own pieces hem it in."
+    },
+    "takeId": null
+  },
+  "requestHash": "d29751240cdbf51d8b8421ad37681eecda4a12e0c70cd71bcca922d4b03856ce",
+  "recordedAt": "2026-10-04T07:58:56.680Z",
+  "sha256": "023bf05f04b4a60dc623d2646243e0630fecbe3357e4613c51e03dda7e08c8ef",
+  "bytes": 32604,
+  "requestId": "Cu0NIT9FbbMekRV0s3B2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c1cb0e4e77f37afe426cedf4d961e218e23191ea92882f6f348accb08708a894",
+    "bytes": 170153
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

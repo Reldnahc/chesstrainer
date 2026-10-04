@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-escape-knight",
+      "label": "Explanation frame capture promotion escape knight",
+      "text": "Capturing the knight and promoting gets the king out of check, all in one go."
+    },
+    "takeId": null
+  },
+  "requestHash": "edb8a3e2fa614358a62ac79fe598d9007d6d4c16627ce15b9a18885f2cab46e3",
+  "recordedAt": "2026-10-04T07:49:39.953Z",
+  "sha256": "53212cac41bc276fae15910ac3726bbc72aa19db3b55b1e81fff132f3ea4188c",
+  "bytes": 17136,
+  "requestId": "mgAaejXwmfu2k1xCjmnm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4c8ed8c2e0c572c19ab2bd2e3f648fb9de7b2d38c6807b55906cd1d6e02a09fd",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

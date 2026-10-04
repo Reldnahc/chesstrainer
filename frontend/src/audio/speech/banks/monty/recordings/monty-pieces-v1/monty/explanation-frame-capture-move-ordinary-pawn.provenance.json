@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary-pawn",
+      "label": "Explanation frame capture move ordinary pawn",
+      "text": "A capture: the pawn comes off."
+    },
+    "takeId": null
+  },
+  "requestHash": "8b962d302bcb70476fdb1cba74c86cfe38b42ef9b05aaf4bddc72b3453adea67",
+  "recordedAt": "2026-10-04T07:57:50.179Z",
+  "sha256": "31ba955c2b529b571fe0e76fb23e80696853b747bfd21d60e2aeb2be864e7b24",
+  "bytes": 8676,
+  "requestId": "IogZ0UnevbxyjgjBUZQF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3ed1d8ab9d4776e7826817766d9f96c64f61d9430282b39c121aaf6db17901b5",
+    "bytes": 44765
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

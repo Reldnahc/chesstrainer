@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "explanation-finding-king-skewer-collected-knight",
+      "label": "Explanation finding king skewer collected knight",
+      "text": "Check forces the king off the line. Then the same attacker takes the knight that stood behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "d9df326a234c6b0e1f77304fb267025876a063a6e107d2bb6caa8144f8b7a6e1",
+  "recordedAt": "2026-10-04T08:14:46.111Z",
+  "sha256": "5e33e430d681e4dbd78818acf708352fea37e473e09ca38a2a3d5c66cf7d0f6a",
+  "bytes": 19570,
+  "requestId": "gkCJ5hWLxYBnRkEYfO8S",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e7506c881fc2d6031e3266e9e9939c7603f2f2af6eed6aad76fd010c492fe2e9",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

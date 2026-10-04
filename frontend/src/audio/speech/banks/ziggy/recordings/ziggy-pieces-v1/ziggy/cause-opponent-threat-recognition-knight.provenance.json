@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "cause-opponent-threat-recognition-knight",
+      "label": "Cause opponent threat recognition knight",
+      "text": "The opponent's previous move carried a threat, and this one does not respond to it. A knight is now open to capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "b8bb73bf67cf8605cc2367b4e6e6d61a5f8423f941bdd7c20ed0e02bfda3f8e1",
+  "recordedAt": "2026-10-04T08:16:17.954Z",
+  "sha256": "b3d909975699a7e8336562ae6eea1b4a263ea5e649ff023203c70d008ddb022c",
+  "bytes": 24368,
+  "requestId": "LGhI49EBGL41kI6fB4DA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2d12406bd7adcba8f7cf95f0b2d2865700826999ae26ff0da557456f6b61356b",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-queen",
+      "label": "Positional unsupported alternative queen",
+      "text": "A different move would have left a queen flapping in the wind, though that alone wouldn't make it winnable."
+    },
+    "takeId": null
+  },
+  "requestHash": "7b8e55f3130d29e8bc2f9a6a82fea9d1fd71e7602e7c99fac0788071180fd3a4",
+  "recordedAt": "2026-10-04T08:05:42.334Z",
+  "sha256": "fbf00ef6561a6a57a05da87eb57b14eb041bba908280e57d06dad9b0b177db1a",
+  "bytes": 19349,
+  "requestId": "atunWXpIA9tzmlVTGQsA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d4a6e4df0df8e927bc91f875316a4b2c5e53b2ea6731d73376be84effd2b0405",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

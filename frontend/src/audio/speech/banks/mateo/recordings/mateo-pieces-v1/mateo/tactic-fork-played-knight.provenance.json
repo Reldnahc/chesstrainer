@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "tactic-fork-played-knight",
+      "label": "Tactic fork played knight",
+      "text": "Oh, a fork! The knight lands on a square that hits several targets at once, and a single reply rarely rescues all of them."
+    },
+    "takeId": null
+  },
+  "requestHash": "f8ccecc6dcdf3db9b40b53da8e1c8f0cadb09dc445a285885180646a692f1884",
+  "recordedAt": "2026-10-04T07:54:28.311Z",
+  "sha256": "74f432d51bb7becdf2ce9e26b5603144aa294c1d3ded73f3726eff98e737d4ef",
+  "bytes": 25954,
+  "requestId": "Nd8DAuHoRlB5Wu3kvEBp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "370cd1f7a1e7bdb3287eededce57f95724ac6872c1aa73b82bfbbb72f324cced",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

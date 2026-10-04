@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "positional-support-actual-knight",
+      "label": "Positional support actual knight",
+      "text": "A knight that was flapping in the wind gets a bodyguard. One loose end fewer."
+    },
+    "takeId": null
+  },
+  "requestHash": "6c02ddc217041909f386f0a9aa9651cf388ff056631eca45f2c8c73df5b3973b",
+  "recordedAt": "2026-10-04T08:05:46.385Z",
+  "sha256": "2ade80dd4b6755fd3ac6ea9fbaa68901e17a5b8dcc04a5c209e5bb5a60ee18df",
+  "bytes": 15755,
+  "requestId": "u6meHMcGSpuWYvpTamwy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2eab629f6232bf46e1be2909e535aba91466b79943d1cbe552bcb578fcc55413",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

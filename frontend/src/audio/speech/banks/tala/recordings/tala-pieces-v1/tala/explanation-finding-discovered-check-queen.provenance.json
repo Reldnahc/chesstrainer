@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check-queen",
+      "label": "Explanation finding discovered check queen",
+      "text": "The blocker moves aside, and boom, the queen behind it is giving check."
+    },
+    "takeId": null
+  },
+  "requestHash": "a2050268c799b60eecdf9d40a9370758a5689608490efce6426541f969fdfa09",
+  "recordedAt": "2026-10-04T08:09:45.669Z",
+  "sha256": "6d39dc433d011f84011d6576829ca66ae745407b0f4874ef7c3bb3a7c0af2ddb",
+  "bytes": 16907,
+  "requestId": "w3bhMkB8rYkHDG5OfJmQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4a5e356c6d0fe195806ff1bd32d45460d00c51f485aa704193226553c044ea45",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

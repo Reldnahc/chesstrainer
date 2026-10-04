@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary-knight",
+      "label": "Explanation frame capture move ordinary knight",
+      "text": "With this move, a knight leaves the board by capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "31b4e2bc061dc18f2423789e843f04c568d2e47074b4d7ed766cf398c166d1a1",
+  "recordedAt": "2026-10-04T07:59:50.066Z",
+  "sha256": "ca7ca1d99479b0229e2be727b823bc3c2b460d005d36efdb7d752e9602037361",
+  "bytes": 12608,
+  "requestId": "OZakP8JNI40MHKzx3gjg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1852b638eb55aabb5fbec5a5941c0db47ad3e84755f95ce02f02674d2f32fb9f",
+    "bytes": 62319
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

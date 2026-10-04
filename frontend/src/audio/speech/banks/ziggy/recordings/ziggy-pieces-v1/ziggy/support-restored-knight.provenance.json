@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "support-restored-knight",
+      "label": "Support restored knight",
+      "text": "Earlier, this knight was left unguarded. Now it has a defender again."
+    },
+    "takeId": null
+  },
+  "requestHash": "62a3880e3961cfb0c19a556a12681d0eb0cce06ae4f2d1c2564b3b730abd18c4",
+  "recordedAt": "2026-10-04T08:15:52.282Z",
+  "sha256": "e33764983943a67741cebba6edb0c72f26e2f5fd10da3ad6e768bebe25c257a2",
+  "bytes": 15849,
+  "requestId": "c1bVqUUfmOoQiWYj4XXt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "63a9905ceb609a1b67052efedd7e3e37a9c65872e99037b8e55a6c1b4146731f",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed-knight",
+      "label": "Tactic discovered attack missed knight",
+      "text": "A discovered attack was sitting in another move: a knight gets out of the way, and a threat appears from the piece behind."
+    },
+    "takeId": null
+  },
+  "requestHash": "e647cbaac317726ccdba71f87ed6f444190a4778f1213c1b536ef54c0e56c212",
+  "recordedAt": "2026-10-04T08:15:38.166Z",
+  "sha256": "77bbebb16f4c10ab292dd849d0d9aeb5089313952f448a7e5dd86b9864bbdf82",
+  "bytes": 22419,
+  "requestId": "IU3hQBsaQPiGuWsBesUG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "11c30af034d5cd002260eb3fc5b2ab0db0dece9deab543a2af411181ba7f302b",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

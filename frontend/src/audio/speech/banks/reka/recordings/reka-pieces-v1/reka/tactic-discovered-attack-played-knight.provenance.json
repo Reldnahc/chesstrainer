@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-knight",
+      "label": "Tactic discovered attack played knight",
+      "text": "Slingshot: the knight zips out of the way, and the piece hiding behind it opens fire."
+    },
+    "takeId": null
+  },
+  "requestHash": "b65fe974653c72052b33384171882d68723e6ae9f9cfe1881af5900fae28172e",
+  "recordedAt": "2026-10-04T08:05:09.683Z",
+  "sha256": "14750e9f237023fdfd398217485b2ef9de8b574de328f3c31f3fc0af5358430a",
+  "bytes": 18153,
+  "requestId": "CvyVZNkf3bwBtb2TKAAZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "39f143d5fe73cbf77a3d4cfccc9b5b41bb67c2d050f428589721f511141e9d50",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

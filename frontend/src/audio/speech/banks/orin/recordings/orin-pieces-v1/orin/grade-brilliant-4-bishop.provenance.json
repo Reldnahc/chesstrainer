@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "grade-brilliant-4-bishop",
+      "label": "Grade brilliant 4 bishop",
+      "text": "Brilliant. Weighed as a lost bishop, it costs; weighed in the searched line, the idea endures."
+    },
+    "takeId": null
+  },
+  "requestHash": "d92dd2cf4689bb4773af8ec38ea8453d30f5b5a3e3a737545f0ce5b333a81ca5",
+  "recordedAt": "2026-10-04T07:59:36.111Z",
+  "sha256": "4d40ce7f468c9075b85df2bd26c09f358e271bf5b6d4555e0c88fae1a1f84c91",
+  "bytes": 24319,
+  "requestId": "5zWyAo3qRQanlsHSRhqQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "44f3d810ee0e61af20b6cbd019a0954f67be963326492db215f2213ebe2cf669",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

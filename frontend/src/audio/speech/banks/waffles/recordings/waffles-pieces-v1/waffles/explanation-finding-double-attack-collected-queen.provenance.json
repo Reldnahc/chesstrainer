@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "explanation-finding-double-attack-collected-queen",
+      "label": "Explanation finding double attack collected queen",
+      "text": "The first piece attacks and uncovers a second attacker, a queen. The capture comes from that queen."
+    },
+    "takeId": null
+  },
+  "requestHash": "dcaa365bc4ba843e1cc331ea19d88136f85614217eec933dcbdc38925a3b9b94",
+  "recordedAt": "2026-10-04T08:13:03.648Z",
+  "sha256": "6b5a0c0635d80eceedec9de2ea90f20fa8ea66f99ee542bb8333dbee433ca20a",
+  "bytes": 21513,
+  "requestId": "i5zmO6Vq1EdA6dh6cuVQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8031835f4c5ee5db95ce836cd3ef1084b6ce6d3f7d840e28b5c40dc21736947d",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

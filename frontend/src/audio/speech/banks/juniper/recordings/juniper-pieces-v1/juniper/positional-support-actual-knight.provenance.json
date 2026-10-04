@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "positional-support-actual-knight",
+      "label": "Positional support actual knight",
+      "text": "That knight stood unwatched. Someone covers it now. Better."
+    },
+    "takeId": null
+  },
+  "requestHash": "4c5ea5910e96c4308411444da12e469150f7053a12ceb8628caa78ff48cddcc8",
+  "recordedAt": "2026-10-04T07:52:15.096Z",
+  "sha256": "ed31333817b01d54c1b58d4301f02153d30816b8c594cb53c0ec8b635816fcc0",
+  "bytes": 14524,
+  "requestId": "lYmCAQ9jlV5Eawz3KuhC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "22e3032b23bcd737383331aa90e2386426d6abdfefdb791954760c95b5c84b28",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

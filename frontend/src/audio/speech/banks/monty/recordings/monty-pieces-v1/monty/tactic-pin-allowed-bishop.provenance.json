@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-pin-allowed-bishop",
+      "label": "Tactic pin allowed bishop",
+      "text": "Simple problem: a pin against the king is now on offer for the other side, and a bishop caught in it stays stuck on the line."
+    },
+    "takeId": null
+  },
+  "requestHash": "b91fb962a29dbda4fc9b28b1e1977ce0af1cabf57ed067b1d874de8f9667123b",
+  "recordedAt": "2026-10-04T07:56:08.209Z",
+  "sha256": "f94ee0814466ff080f1ba6c0e62fb5db8dc660abfff68968d49fe9be28fb5959",
+  "bytes": 25215,
+  "requestId": "trFK11nY0V5Y3GIl8EIj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "855c79a7d097134bf73b65f7eb02fbf7947081d37d3c88f0e64e07fd3d6f6f85",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

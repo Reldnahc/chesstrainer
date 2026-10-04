@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed-rook",
+      "label": "Tactic removing defender missed rook",
+      "text": "The guard should have gone. Another move captured the defending rook and left its duties uncovered. Strike the guard first, then what it guards."
+    },
+    "takeId": null
+  },
+  "requestHash": "551ad57a80c9998f89aacf3fc29ef4e274d7f1a92a1eef87be407b141e15e87c",
+  "recordedAt": "2026-10-04T08:10:38.543Z",
+  "sha256": "3d48a099189f20b2d0fc6cb0ceb9627b2327ed1e4799c0a292b143ab94e939cf",
+  "bytes": 29194,
+  "requestId": "rZJysrs1O4MDMTPbQoqo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8c20175aca87f049775f9c5b4f2b2d3d77fbaf2d97583d03a79973fcbbaae2ee",
+    "bytes": 150927
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

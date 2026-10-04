@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-king",
+      "label": "Tactic discovered attack played king",
+      "text": "The king clears out and a hidden attacker behind it comes alive. Big idea: a discovered attack, where moving one piece wakes up another."
+    },
+    "takeId": null
+  },
+  "requestHash": "883e9e50514ad2c5a06f4e087e5ef1b9f9132075e5e3a78dca1ab57095a0ef89",
+  "recordedAt": "2026-10-04T07:56:37.425Z",
+  "sha256": "1c2911d9f7cb8fd6e1226d54701e161c74f1aa61147097952f60b6cec6bbc69f",
+  "bytes": 30444,
+  "requestId": "wXWwRfA4DBQMTqUZTQps",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2e9538cfe5eab394d1e17ff11c2f8aacdbca687684a2de5abc15a14d257b7961",
+    "bytes": 158450
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

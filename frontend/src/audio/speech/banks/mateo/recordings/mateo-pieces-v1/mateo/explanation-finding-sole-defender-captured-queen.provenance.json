@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-queen",
+      "label": "Explanation finding sole defender captured queen",
+      "text": "The only defender, a queen, gets taken first, and then the piece it was guarding is next on the menu."
+    },
+    "takeId": null
+  },
+  "requestHash": "ebe3de97319a5aeb56bc3da7c2a4e408b0280609f085310bafad43ca9e5e9668",
+  "recordedAt": "2026-10-04T07:55:42.888Z",
+  "sha256": "8d7872473a47c5ef713a93a2a1e23dbcdcabc3a4842a329eb0eb170f8c6cfb37",
+  "bytes": 22694,
+  "requestId": "8zjzqfjhBO7sNZQ96qLP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "170c6c78e0c64e3779430e0966f8ccb209e808abc8f8509ff7a957df4ce154c5",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

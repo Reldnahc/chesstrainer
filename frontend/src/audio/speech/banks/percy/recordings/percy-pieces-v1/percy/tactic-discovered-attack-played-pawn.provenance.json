@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-pawn",
+      "label": "Tactic discovered attack played pawn",
+      "text": "A discovered attack! The pawn steps out of the way, and the piece behind it suddenly has a clear line to attack. Two pieces working together."
+    },
+    "takeId": null
+  },
+  "requestHash": "f8e16dc43ed67910e3a02038b65e3ca54b06b9f11e838a5455ddfbaa39929ba8",
+  "recordedAt": "2026-10-04T07:59:57.901Z",
+  "sha256": "c5e24269ed5b2c59c4eeb2b3187ab2b48f42b3c656ca016c7c1f04191b07a3ee",
+  "bytes": 30111,
+  "requestId": "QYP8BZBX463kZ5zqSEBi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9ef335f115ec38824d51f0f153ba44c2d329ef7f6859155483a672ddc95de157",
+    "bytes": 154688
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

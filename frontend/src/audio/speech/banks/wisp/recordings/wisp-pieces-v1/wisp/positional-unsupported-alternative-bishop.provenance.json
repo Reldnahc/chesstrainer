@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-bishop",
+      "label": "Positional unsupported alternative bishop",
+      "text": "With another move, a bishop would have been left with no defender. That alone would not mean it could be won."
+    },
+    "takeId": null
+  },
+  "requestHash": "c64b7b5dd92c04a0d0aec86897c52ee66e5b56b9e093ad551d6a8ba6741c8b68",
+  "recordedAt": "2026-10-04T08:14:10.891Z",
+  "sha256": "6457e140b39f45b98bde435dda7fa7c18bcc680dd7f042e85b04b4476d5c4ddd",
+  "bytes": 20978,
+  "requestId": "uM0UfVQBzcBSk7YffIZO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f1d6b0577c89dc421508e55fd457ac2f43dbcc13acd5aa2b4ead8f1ce10e2a84",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary-queen",
+      "label": "Explanation frame capture move ordinary queen",
+      "text": "A capture: a queen is removed from the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "be9de6112b9a5988f201b74c79d29a397e1bc2f5051b43ede4d48f2a70126301",
+  "recordedAt": "2026-10-04T08:16:21.242Z",
+  "sha256": "012f2e154fee5c4ced3f56ed8414c983a1a1f8d467ef196c4483a363c3326715",
+  "bytes": 10959,
+  "requestId": "CD2BwifJcfyLvyWOx8Du",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0a3c3a16a9e57594f2639a384d440f76d13b3d861ad120a54f73e5308cb9cda5",
+    "bytes": 56050
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

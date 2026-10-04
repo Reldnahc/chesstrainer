@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-knight-rook",
+      "label": "Explanation finding double check knight rook",
+      "text": "Double check: the knight and the rook attack the king together, and only a king move can answer both."
+    },
+    "takeId": null
+  },
+  "requestHash": "aae796579ac856741f2aab6290e0eaf2e853e6384fdd187773c3adf9961a87ec",
+  "recordedAt": "2026-10-04T07:59:39.005Z",
+  "sha256": "6c77f6f4bdbe4b4f675bbacd8adbe157c2964e223a4f5929d3a2ddea230c9b1b",
+  "bytes": 22740,
+  "requestId": "DBmyCaoKUk3EknYEj9US",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cacab84f4299dedaf2687b73651e301a4b32a7f4076cf7b80543fbb12bce2753",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "support-restored-rook",
+      "label": "Support restored rook",
+      "text": "Big picture: the rook that was loose earlier is safe behind a guard now. Good."
+    },
+    "takeId": null
+  },
+  "requestHash": "0f864e45c9354f680d65c8e96e556ea53f554421a762f786ecf8cf8ce3301ad7",
+  "recordedAt": "2026-10-04T07:57:07.457Z",
+  "sha256": "d50cf46d0a5d94a8cc247a40f636f501d1b06c7a43ab371fe09c5024d52272b3",
+  "bytes": 17995,
+  "requestId": "QPiK88afBrpyQcDqa52V",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "66d5ab46af2025502d77c5a5e9c42eda5801c69bd3fbd46aeb83551a648b3176",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

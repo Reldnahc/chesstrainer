@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary-queen",
+      "label": "Explanation frame capture move ordinary queen",
+      "text": "Capture. A queen gets knocked off the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "bbc840cb9fb53746a2e654c5d110abd2acec68ec9b58afcdaa45689ef724885f",
+  "recordedAt": "2026-10-04T07:55:48.282Z",
+  "sha256": "e6ab2721da1d305ce44fc8b4f85aa007df4dfa977f0fd21101a4fd43c12ba5ac",
+  "bytes": 10679,
+  "requestId": "E2UgKaqMNFiSBrsIB38N",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "df247a9d1a1d1f25fe202177720f4ba20cf832d6c661625f5b7d5307c76940c3",
+    "bytes": 52288
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-rook",
+      "label": "Tactic deflection missed rook",
+      "text": "There was a defending rook to draw off its post in another move. That deflection never gets ordered."
+    },
+    "takeId": null
+  },
+  "requestHash": "fd54dbb3525d71d01ab60d4569761ecb25c47cce0cb36b168f7ae4749fbd7f78",
+  "recordedAt": "2026-10-04T08:12:25.397Z",
+  "sha256": "31c849cb09d35359a767c609982dba5eb62f4cfadcc16bc831f37ec3741fdaee",
+  "bytes": 20766,
+  "requestId": "mpNv3F6MQM4aOyJ9U0l7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "19b82266893c76040e363274076467d1b05c5f6154f08641ccce07a511496ec9",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

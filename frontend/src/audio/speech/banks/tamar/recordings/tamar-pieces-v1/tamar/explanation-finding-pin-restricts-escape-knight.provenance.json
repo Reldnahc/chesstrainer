@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape-knight",
+      "label": "Explanation finding pin restricts escape knight",
+      "text": "The attacked knight is pinned to its king, so it has no legal move at all."
+    },
+    "takeId": null
+  },
+  "requestHash": "04d5141890b7a4e1f54e30742c414ce7fa8b834442482e75e58bd96d8a715242",
+  "recordedAt": "2026-10-04T08:10:59.886Z",
+  "sha256": "0c576aa0cf5b4e1902d4f0fb636bbb56445c8d132d8e5536f78d09e86d9a4369",
+  "bytes": 16798,
+  "requestId": "4xGjglkWtLLlzoaZIYQM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9e866cfa85d123afddc28c870b533a02e8a18d284f0707da878881e4c134ea7d",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

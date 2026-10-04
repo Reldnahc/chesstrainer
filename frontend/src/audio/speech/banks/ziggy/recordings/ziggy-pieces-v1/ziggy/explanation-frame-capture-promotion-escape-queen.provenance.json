@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-escape-queen",
+      "label": "Explanation frame capture promotion escape queen",
+      "text": "A capture of the queen on the last rank, a promotion, and the end of the check against the pawn's own king, all from one pawn move."
+    },
+    "takeId": null
+  },
+  "requestHash": "68b1956df49e23f39cfaeeab833b5cc20ec5cf09d728a1154594e87e85a0bdd1",
+  "recordedAt": "2026-10-04T08:16:44.601Z",
+  "sha256": "18ee5dd2b9eefaf89973ae9f5f25d45f37f11e55840c2b8994f96f619ac02ffe",
+  "bytes": 27536,
+  "requestId": "LGmtCCIGWOLKA79sXJY9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9ee88a73cbdb09f8b633f46c4e273c469f29caa64e64277bae032caa3a97a567",
+    "bytes": 137970
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

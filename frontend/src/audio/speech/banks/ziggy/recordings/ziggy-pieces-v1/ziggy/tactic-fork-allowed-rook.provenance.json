@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "tactic-fork-allowed-rook",
+      "label": "Tactic fork allowed rook",
+      "text": "Curious how much one enemy rook could do from here. A fork is now possible for the other side, with several targets under attack at once."
+    },
+    "takeId": null
+  },
+  "requestHash": "78a22e027ae749fdea16ed8fd50f7654c9f248e44727848b3d75576096c2885f",
+  "recordedAt": "2026-10-04T08:15:16.077Z",
+  "sha256": "00e6b064a04913de93dd5089a19e5103544de9a49a3dc6af63c0cffc09fcc077",
+  "bytes": 28290,
+  "requestId": "F9JrAhT2sQR8FTQJG3PA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "58a2a0e7ca65746a0328e2ed0b8d65eadb1bab147dcd609eceda6e71a115b431",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

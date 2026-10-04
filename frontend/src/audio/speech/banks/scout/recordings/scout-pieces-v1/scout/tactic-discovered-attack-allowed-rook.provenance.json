@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed-rook",
+      "label": "Tactic discovered attack allowed rook",
+      "text": "Discovery threat. This move lets the other side shift their rook and unmask an attack from the piece behind it. Scan their stacked pieces before moving."
+    },
+    "takeId": null
+  },
+  "requestHash": "158fba40d50af42f29ce8ef3801456627fa22f92e139b2be57b74a797582b8d0",
+  "recordedAt": "2026-10-04T08:07:02.207Z",
+  "sha256": "c470df72862407d83bbd57d0804df3c636dc32f9534c835d6cc1bbfa98ac021c",
+  "bytes": 29529,
+  "requestId": "qLrzeMYC7DcWExACk44d",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6ab6ef72224ac11abf1e49d51078917c280feec444d141295e0e015098ad14f6",
+    "bytes": 150927
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

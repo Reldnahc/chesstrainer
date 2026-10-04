@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed-king",
+      "label": "Tactic discovered attack allowed king",
+      "text": "Here's a discovered attack handed to the other side. Their king could move off the line and let the piece behind it attack. Figure out which line it would open up."
+    },
+    "takeId": null
+  },
+  "requestHash": "04e13f8949b59b5e1cda879e91b00433990b00bdafafa86eac2a0a027499f415",
+  "recordedAt": "2026-10-04T08:00:22.465Z",
+  "sha256": "74a6d98cf6f1317c90030ce67ac78f3fe6262be4a22696f5fae159d44f302db6",
+  "bytes": 30100,
+  "requestId": "LqPuF5YIyU6nmg7KZMHI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c93ee2d3d77799473af935c3923c114371bee897976f82031e68b79f80c116b0",
+    "bytes": 153435
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

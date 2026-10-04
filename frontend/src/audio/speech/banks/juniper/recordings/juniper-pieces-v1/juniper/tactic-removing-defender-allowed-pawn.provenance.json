@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-pawn",
+      "label": "Tactic removing defender allowed pawn",
+      "text": "The other side can take a guarding pawn here. If it goes, the piece it was looking after stands uncovered."
+    },
+    "takeId": null
+  },
+  "requestHash": "c417f80ba971d0209ae2fac0f9a38d95ed6f7f01b61b19ec1d61b31b72a10912",
+  "recordedAt": "2026-10-04T07:51:30.071Z",
+  "sha256": "84083f98fb3b41381fde8a118a2a3b094ac820dbc467a5e12c9f4f6e94f68654",
+  "bytes": 22477,
+  "requestId": "z9KRmtYKeS68xHy3WBFB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "82563ae1dbd76165def57e2070508a2384a028eadacca3c0b0a268549381e69c",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

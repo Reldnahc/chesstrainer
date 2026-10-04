@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "tactic-hanging-piece-allowed-queen",
+      "label": "Tactic hanging piece allowed queen",
+      "text": "The plain issue here: a queen is left with nothing guarding it, and the other side can simply pick it up."
+    },
+    "takeId": null
+  },
+  "requestHash": "e7ff843014b17838fc81d3b609878736317f316af696b091cb641ad0380a93ea",
+  "recordedAt": "2026-10-04T07:48:40.173Z",
+  "sha256": "c725c649dad442f81550877e335b77ae3bf55ff14a80a8566a15d46b5c31ae88",
+  "bytes": 21983,
+  "requestId": "Jqc2GM7QUPVWgDAJfthC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "42d6df0722809ce4295eeb5370ec1278441bd9ead56fc59efdf4a21b1d5c9eaf",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

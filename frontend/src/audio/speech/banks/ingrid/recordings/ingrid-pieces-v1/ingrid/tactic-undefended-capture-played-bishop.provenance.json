@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-bishop",
+      "label": "Tactic undefended capture played bishop",
+      "text": "That bishop was sitting there unguarded, so it's taken without any cost. Checking for loose pieces like that is a good habit."
+    },
+    "takeId": null
+  },
+  "requestHash": "3f52c325bf8f9a5243e9fc37295dc74e838f04b51dd181da88529485b1b18391",
+  "recordedAt": "2026-10-04T07:48:20.363Z",
+  "sha256": "6a11264fe3d21fa971b5017e3179b5f0418a99c451c7178a78095cac4ada5692",
+  "bytes": 26374,
+  "requestId": "HZLdWLskeUp5L5op14cz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "428adfbc5dc2d8f0aaec49da4d24850d3e432ff17673d3228843ac546be79747",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

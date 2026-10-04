@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "positional-support-alternative-rook",
+      "label": "Positional support alternative rook",
+      "text": "The alternative added a defender to a rook that currently has none."
+    },
+    "takeId": null
+  },
+  "requestHash": "8f68b9a64b086ace8fd7f68990b588ad5082d221df0753f658f8b97f2af6c0c8",
+  "recordedAt": "2026-10-04T07:50:45.033Z",
+  "sha256": "63edceed668936de6fcc6bcf67391f1b660e4639a13cac4469b36773891e1bfb",
+  "bytes": 14649,
+  "requestId": "km0SQ8zhUTS0zO8aeETb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fe2cd001e787aed75d3ac9e19f06135afdfb685d0ad422386f6906b4d131e686",
+    "bytes": 70261
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

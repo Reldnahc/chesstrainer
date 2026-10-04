@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "grade-brilliant-1-rook",
+      "label": "Grade brilliant 1 rook",
+      "text": "Rook sacrifice, and it reads correctly. Immediate cost, idea verified in the checked line."
+    },
+    "takeId": null
+  },
+  "requestHash": "35941f42e7c0255e7c27ecc9510ae66814c636bfb11be0b4bb238cdf3c77c8a7",
+  "recordedAt": "2026-10-04T08:08:25.954Z",
+  "sha256": "1c11a5ff1172e8242835863fd288454d87f7520cedd11ecce23fc0eb5419703a",
+  "bytes": 19710,
+  "requestId": "wG6DJU8hapjiAxEjUfrx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bc7c6d15169bab5c8ec1e97fb624fa1fd0b972be39a86b1c96d5dd25277e069e",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

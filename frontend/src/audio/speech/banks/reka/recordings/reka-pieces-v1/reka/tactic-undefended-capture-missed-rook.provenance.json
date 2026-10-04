@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-missed-rook",
+      "label": "Tactic undefended capture missed rook",
+      "text": "Another move could have gobbled a rook nobody was watching, and this one leaves the snack on the table. Always scan for freebies."
+    },
+    "takeId": null
+  },
+  "requestHash": "9887038860302c233f1d28697598ecb6ccf4680f97058837e0c3e793fd4890ce",
+  "recordedAt": "2026-10-04T08:05:15.738Z",
+  "sha256": "7e27ff50db08589c9f01fe94b897693ffd205f2c37620518ea2edb96b3121088",
+  "bytes": 25551,
+  "requestId": "OmaugqE3a7NoVEZPIma3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "aff36df39a3c54877330f41fdd0dfdfa530f0ef2ade9396c2adf247639b1d422",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

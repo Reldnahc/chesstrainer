@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate-bishop",
+      "label": "Explanation frame capture move mate bishop",
+      "text": "The bishop is captured, and the game finishes in checkmate."
+    },
+    "takeId": null
+  },
+  "requestHash": "459db459319b690f33815d7a1e4647c55ad4fa7c3c8c7775dbc7efa7ea43bfad",
+  "recordedAt": "2026-10-04T07:49:35.855Z",
+  "sha256": "b92a1fd3cb9769341b309b86f0a76470f7bee1d3066b3726ccfe13f2b477eb43",
+  "bytes": 13493,
+  "requestId": "FyPzlwFANNG0jB0eeyEA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "be23270eb4d242c90dd2934fae14662b06ab5a0d15e7efef2e7ef4d4445f4789",
+    "bytes": 66499
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

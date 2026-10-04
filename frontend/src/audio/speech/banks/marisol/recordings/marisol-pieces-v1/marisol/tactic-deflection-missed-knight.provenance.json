@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-knight",
+      "label": "Tactic deflection missed knight",
+      "text": "Under the stronger move, a defending knight would have been pulled away from what it guards. Here that knight is undisturbed."
+    },
+    "takeId": null
+  },
+  "requestHash": "22c861076a922263bed38c3f8e460a87353bf2ef3cf018a6ae0734650c9666ea",
+  "recordedAt": "2026-10-04T07:53:31.003Z",
+  "sha256": "63f1b1e939c5f11429c5e7675edb5f0be9b48ac6aad6720a21b8b9f691424092",
+  "bytes": 24694,
+  "requestId": "lnYUONvl5IJSSUoQPg4k",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "096fd2435568ad3d444535b085bd248a40af07885e5476a226c0cdd1103b8155",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

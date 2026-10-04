@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "tactic-skewer-played-rook",
+      "label": "Tactic skewer played rook",
+      "text": "Two pieces stand on one line. The attack meets the rook in front first, and when it steps aside, the piece behind is exposed. A skewer."
+    },
+    "takeId": null
+  },
+  "requestHash": "2c9dad96644182160789133b008746662c51acaed485bf31b4af471ad6f2323d",
+  "recordedAt": "2026-10-04T08:13:47.220Z",
+  "sha256": "baa1600681fe7bbd2da4e5367e6a3d70a58295836f21935f876f77ba85b691e4",
+  "bytes": 30947,
+  "requestId": "wvPTrUScXtYNdXYjqf0t",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e0a0143a0522c3d3d3b9ab970eaa80764ffeca3228820e866221865084222ebb",
+    "bytes": 163466
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

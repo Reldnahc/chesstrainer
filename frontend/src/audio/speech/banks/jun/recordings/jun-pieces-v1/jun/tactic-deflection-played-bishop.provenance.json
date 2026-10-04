@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-deflection-played-bishop",
+      "label": "Tactic deflection played bishop",
+      "text": "Deflection. The defending bishop is pulled away from its task, and the piece or square it covered is left unguarded."
+    },
+    "takeId": null
+  },
+  "requestHash": "91218a2a168cd57534e9eb013d29743cc7fcbd0ee54354c539f4c503d63a9baf",
+  "recordedAt": "2026-10-04T07:50:22.404Z",
+  "sha256": "306c72f0655737a948ba449c67da52d465ad50a2022649e413d63df5725d9b9c",
+  "bytes": 25237,
+  "requestId": "tuX8meOu5C1WmcbZFrJS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ca0e735f597ea36d39dede18de3785b393dabcb429d087d81d1feb4e36e8afb9",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

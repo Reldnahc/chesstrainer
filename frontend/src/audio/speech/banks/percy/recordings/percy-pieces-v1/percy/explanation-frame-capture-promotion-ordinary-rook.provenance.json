@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-ordinary-rook",
+      "label": "Explanation frame capture promotion ordinary rook",
+      "text": "The pawn takes a rook on the last rank and promotes right there."
+    },
+    "takeId": null
+  },
+  "requestHash": "f333627cc31d55f30c4ae403ba5a3e0a82ad7663157600931a8f4c4298c5552c",
+  "recordedAt": "2026-10-04T08:01:26.427Z",
+  "sha256": "78577f8d153a8b8af75f37f08f03b14997ca25dd8a299525c70a3ef812300d91",
+  "bytes": 13386,
+  "requestId": "rUW1vok4m6Jpc5OVmHIN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cb96d22d61a7c0f9e2b1ba72e5230a14eaf8e1bdbe27c1744e3641eb8bd587a3",
+    "bytes": 65245
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

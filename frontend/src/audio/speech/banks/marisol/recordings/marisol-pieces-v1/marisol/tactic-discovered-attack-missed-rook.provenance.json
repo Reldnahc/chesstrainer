@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed-rook",
+      "label": "Tactic discovered attack missed rook",
+      "text": "The stronger move would have uncovered an attack by moving a rook off its line. That line has stayed shut."
+    },
+    "takeId": null
+  },
+  "requestHash": "41674917e477bc539426e8a393a0eb6f1112379ad64e91185657e5bfc7ee6910",
+  "recordedAt": "2026-10-04T07:53:02.821Z",
+  "sha256": "253a4ea1a52456c45a60675e0269b01438b6c94f4fefebd05432fa99894be1b5",
+  "bytes": 21280,
+  "requestId": "heKqNq0U0xzi0cJyTLya",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d7b637150daeab1e2a40ca967312d1db392051a441712a8d2214761c75a07433",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

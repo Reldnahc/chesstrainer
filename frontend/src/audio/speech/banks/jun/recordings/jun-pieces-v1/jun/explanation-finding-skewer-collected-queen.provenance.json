@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-queen",
+      "label": "Explanation finding skewer collected queen",
+      "text": "Forced off the line, the queen in front abandons the piece behind, which is captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "107a823176069f2022be392929a2e44af0633468813722b28721cf2609deb3c8",
+  "recordedAt": "2026-10-04T07:50:54.334Z",
+  "sha256": "7ead8a329aae68507ac9f05419d218ca4700eae49c654fdfdf7231bf31e96c4e",
+  "bytes": 17063,
+  "requestId": "S31DKnLWpxR4nRz1XeCY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bb92ca56e0b1df41c7bd3cd5b6abd30a19d8a3b300913e0065f6cfbe9ccddab0",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "grade-brilliant-1-rook",
+      "label": "Grade brilliant 1 rook",
+      "text": "Ooh, brilliant! A rook is offered up, and the idea rides out the capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "8926c80682b6c4d7be0dee087b980d075ed89000a6c92fa2dd73cd3d791510b5",
+  "recordedAt": "2026-10-04T08:04:56.061Z",
+  "sha256": "34f3bd22104a47e29b1a6f45a5f564d1c05afe8f222cc29f2a653b1c1b1b76ee",
+  "bytes": 17537,
+  "requestId": "yktdeKDBkqRygGwbhi1m",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "adb31b9c40d1a468cf941033d3a77e7071421e666774dea460c8b21e3740b449",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

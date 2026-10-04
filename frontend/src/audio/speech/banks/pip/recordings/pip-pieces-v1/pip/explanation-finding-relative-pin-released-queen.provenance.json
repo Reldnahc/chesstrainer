@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-queen",
+      "label": "Explanation finding relative pin released queen",
+      "text": "A relative pin on the attacking queen came undone with the opponent's last move. The target stayed where it was, and in the line shown, it gets captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "62707414bf71570214066f00a45ac93aab92ebfd33450bc86b3d3ea94a169de9",
+  "recordedAt": "2026-10-04T08:04:13.542Z",
+  "sha256": "d7e5e1da09ec418f17f1c3212f5f801e041122c8e82a95b280bc7248a48ec99d",
+  "bytes": 32114,
+  "requestId": "oXrdpkVoLnvPXEJgYzHR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9cb2cda8e5e16c7048046650f0b73215522b88c08e4599ba019ce1cc862491ad",
+    "bytes": 163466
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

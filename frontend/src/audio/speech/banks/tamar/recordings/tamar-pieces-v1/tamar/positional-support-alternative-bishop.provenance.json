@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "positional-support-alternative-bishop",
+      "label": "Positional support alternative bishop",
+      "text": "Cover was on offer. Another move gave an unprotected bishop a defender. Compare which pieces each move leaves loose."
+    },
+    "takeId": null
+  },
+  "requestHash": "b31f5df9cf576aafcf1313fa4aaf83807bcda0e0720d0cf3f19faca329e82d4b",
+  "recordedAt": "2026-10-04T08:11:22.678Z",
+  "sha256": "6b43edae4212bd4e1b9e1ebdec9cc560f00fa24cc7808b11dd89ef6456ce1a6d",
+  "bytes": 26167,
+  "requestId": "N0ObqrP3ErWjm9U4Js6R",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5beb578b07b13d7b04b8c099c71f7a08b32d61f0e883b7ba940e8d20fcadf476",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

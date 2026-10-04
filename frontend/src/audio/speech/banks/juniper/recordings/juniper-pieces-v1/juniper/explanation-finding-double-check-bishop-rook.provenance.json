@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-bishop-rook",
+      "label": "Explanation finding double check bishop rook",
+      "text": "Double check. With the bishop and the rook checking together, only a king move can answer."
+    },
+    "takeId": null
+  },
+  "requestHash": "31d8ac900209e0a2900f4d6e3f7a0ac79f46724253e89d438c415060e2cba264",
+  "recordedAt": "2026-10-04T07:52:50.761Z",
+  "sha256": "22279d4c1208f4500f26709cc9d2a3039ce607ba799a308e9cc106a9f01e3d72",
+  "bytes": 19756,
+  "requestId": "EFlnfK7E5RpKHs1OJu6z",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c641553051486aaff42c2bb26c33607a23565e0cb7817fc806827b19adcbb0ab",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

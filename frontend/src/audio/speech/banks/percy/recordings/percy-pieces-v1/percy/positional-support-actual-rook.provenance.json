@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "positional-support-actual-rook",
+      "label": "Positional support actual rook",
+      "text": "Good, somebody's got its back. A rook that was out there with no protection now has a defender."
+    },
+    "takeId": null
+  },
+  "requestHash": "5d98b9c2784bd91523bf5777fe2050dbabb90f6be9231c6493a6c2ee01e50fd7",
+  "recordedAt": "2026-10-04T08:00:49.969Z",
+  "sha256": "4fd3ec4937774a1bd313ffb34e9f5dcd119d07a6052950c30aa5681519acd4ff",
+  "bytes": 20308,
+  "requestId": "uxdKFewhtSq1LapWs4A9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6e29d611d3cbae955c3941e03633b482fce0873ced4ab9836ac276dc2a406506",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

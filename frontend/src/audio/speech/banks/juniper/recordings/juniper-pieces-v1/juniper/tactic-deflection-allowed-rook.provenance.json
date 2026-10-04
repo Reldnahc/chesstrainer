@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-rook",
+      "label": "Tactic deflection allowed rook",
+      "text": "A defending rook can be coaxed away now. Watch what it guards; that is what would sit alone."
+    },
+    "takeId": null
+  },
+  "requestHash": "b2d3b180f651d46ba7d03e2d1fc19901067bbefb7ef482b7eeabb53320f51779",
+  "recordedAt": "2026-10-04T07:52:03.368Z",
+  "sha256": "dbc8a0c818c75e2f0dc142f11201443b4cbe492aadd7eff269c9f6ffc2437d81",
+  "bytes": 20663,
+  "requestId": "jRe1RG66UpzfnqXlodZw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "726aee3846fd2a295526c79dccaf1bd197d554f0f25267606a4237463f54464d",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

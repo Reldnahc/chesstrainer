@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-ordinary-knight",
+      "label": "Explanation frame capture promotion ordinary knight",
+      "text": "Capturing the knight as it arrives, the pawn reaches the last rank and promotes."
+    },
+    "takeId": null
+  },
+  "requestHash": "66024f747673f02d53373813f8546d902a6beb27942c29cc6df61f9829808a52",
+  "recordedAt": "2026-10-04T08:14:52.587Z",
+  "sha256": "06e2d1cb386bcf02509df226e2cdc672f0df2b1952f7a4dd55c61d051a7e0209",
+  "bytes": 16731,
+  "requestId": "YV4r7ILEjuFqxLSrcPj5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a4d5b64854f789db964f1c0baaa4a0ba06c168a3f4052f47946c9bd75a17c75b",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

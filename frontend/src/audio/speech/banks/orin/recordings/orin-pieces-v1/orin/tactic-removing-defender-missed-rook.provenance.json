@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed-rook",
+      "label": "Tactic removing defender missed rook",
+      "text": "Another move could have captured a defending rook, leaving whatever it guarded without protection. A reliable method, and it was available."
+    },
+    "takeId": null
+  },
+  "requestHash": "1f436de5e3e3dd7da474752af8ae3170eba0713818ebf3fb8d33cb89bb3fecc0",
+  "recordedAt": "2026-10-04T07:58:26.482Z",
+  "sha256": "d4cc2a946a1bf83d8cdcc8e1d31bf259bad6701a75e950dc4d0f7511664a1e1d",
+  "bytes": 30284,
+  "requestId": "c0YBkdMOUBaH59R1sbZj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0e0a026ed93e2887d9be92ad3062df957b8bd8ea6d8e2988532fbf559aaaea2a",
+    "bytes": 155942
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-ordinary-rook",
+      "label": "Explanation frame capture promotion ordinary rook",
+      "text": "The pawn captures the rook at the far end and promotes there."
+    },
+    "takeId": null
+  },
+  "requestHash": "c012bed319900908bd0a8a9e173daa3e78ec77d3cf11a7604f505c23086ec14c",
+  "recordedAt": "2026-10-04T07:49:47.823Z",
+  "sha256": "9a15e5633a54f5f0c14a64cba584182ee4884a2c6f18956f0437ab3a1ee9f742",
+  "bytes": 13169,
+  "requestId": "TTnlUTVcVq3CK5IXHWfn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9fcdc09239507c7a0116c0e73decda006c512920758f0251f2407996a7b165ce",
+    "bytes": 65245
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

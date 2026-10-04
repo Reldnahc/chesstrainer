@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-queen",
+      "label": "Tactic undefended capture played queen",
+      "text": "Free queen! Nothing was guarding it, so it comes off the board without costing anything."
+    },
+    "takeId": null
+  },
+  "requestHash": "a57d7e69eebbdbbad89b73774f80e2c46d173051c730b9805efbc5b3e9eec965",
+  "recordedAt": "2026-10-04T07:54:45.973Z",
+  "sha256": "a442d331e4f8eb5ca8a7374494257d4541aec401a62e5dd45694997cca9c8a9d",
+  "bytes": 18146,
+  "requestId": "vcgIYnHUUTRN5FrG1Vam",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a67474fcd4019b8403aaa607fc8919bf387185315972c136ace07e50ad4bdcd8",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-bishop",
+      "label": "Tactic deflection missed bishop",
+      "text": "Another move could have dragged the bishop off what it was guarding. That deflection went unused. Look at what the bishop had to cover."
+    },
+    "takeId": null
+  },
+  "requestHash": "b52a8540e5ce592daf60cd9cb9b16012a68a700b37904b24d4e87db67ad4137e",
+  "recordedAt": "2026-10-04T08:00:30.140Z",
+  "sha256": "084a5a38ea702769541a9a1b9d9873c8dd0358cadf0c472fa921179102cf67cd",
+  "bytes": 24407,
+  "requestId": "koznHjCUtSyeUjHBDzli",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7777d11dc3c914dce8c758ab60fc6835d7380436722d22f8a5cdd5e589e6f5d0",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

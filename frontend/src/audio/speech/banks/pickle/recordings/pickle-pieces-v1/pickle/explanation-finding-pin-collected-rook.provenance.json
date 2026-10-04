@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-rook",
+      "label": "Explanation finding pin collected rook",
+      "text": "Stepping off the line would leave its king exposed, so the pinned rook has to stay on it. Before the moves run out, it's captured anyway."
+    },
+    "takeId": null
+  },
+  "requestHash": "cd46901658512de07f166f1618af5fd34f284d3e907e90e9ac105a6a499e5b81",
+  "recordedAt": "2026-10-04T08:02:34.653Z",
+  "sha256": "6e85aa647b317495b9069b529a53e9f163d9b367c79c32cd55d3c67f8339892c",
+  "bytes": 27306,
+  "requestId": "wflcrGdvhjHOG8SzMAIL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "da9a5453b172915c9d13cfa69f9990aa912afcee46c486be0707150529aa27e1",
+    "bytes": 139224
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-pawn",
+      "label": "Tactic deflection allowed pawn",
+      "text": "This gives the other side a chance at a deflection, pulling a defending pawn away from its task, so whatever it guarded is left open."
+    },
+    "takeId": null
+  },
+  "requestHash": "c9ca55818e02cf45ad0b9aaaf308deb70e83b23126dbc177aad90d5c8e9d3582",
+  "recordedAt": "2026-10-04T08:15:41.999Z",
+  "sha256": "f0442e47e52b43105aa8352e665c10aac88453d508d0f24473437f9e36d01dd0",
+  "bytes": 26097,
+  "requestId": "DkMoKcpVwCPYT6w16Kpt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3c9640f16e81dc190a8cf1a34e0dcca0d610bbef1e09cdb8306a23dc3c509e09",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed-knight",
+      "label": "Tactic discovered attack allowed knight",
+      "text": "Discovery threat. This move lets the other side shift their knight and unmask an attack from the piece behind it. Scan their stacked pieces before moving."
+    },
+    "takeId": null
+  },
+  "requestHash": "0a1bc63bf98c50a0e817c4e2aeedfb9aa60e5ed3d3933f0a120db1d5cd2c2627",
+  "recordedAt": "2026-10-04T08:06:57.180Z",
+  "sha256": "a3b24152d977f4e2895500d72363ac480d75d2467d7462cf9b2dd6a899ec01e6",
+  "bytes": 29391,
+  "requestId": "L84WqZTFvh4Tfo4ZXdOu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "507895811e76d35dcec121ea307317fb9e89454bef311b938cc2c1635ea1170d",
+    "bytes": 150927
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

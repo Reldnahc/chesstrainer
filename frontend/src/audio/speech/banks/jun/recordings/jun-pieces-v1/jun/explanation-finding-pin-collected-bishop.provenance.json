@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-bishop",
+      "label": "Explanation finding pin collected bishop",
+      "text": "The pinned bishop cannot leave the line its king stands behind, and it is captured before the sequence ends."
+    },
+    "takeId": null
+  },
+  "requestHash": "f55a64157a1a7d5a63f862d762038522c5fe4d28f5bc7598cdf56c5888c025d1",
+  "recordedAt": "2026-10-04T07:50:42.056Z",
+  "sha256": "fdfc73978e98be1bf12c7668a1374352655524b11396f1ec890a600f8b0eef4a",
+  "bytes": 21440,
+  "requestId": "8zgQWrplwwQnE0dPaxDb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3fbe8d471f5c4e5cc6977ffa4b4fd4a4592f5a295aab55accb34c64c540a4f99",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

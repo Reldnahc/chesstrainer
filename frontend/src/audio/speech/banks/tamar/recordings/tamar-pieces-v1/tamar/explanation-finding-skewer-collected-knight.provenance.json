@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-knight",
+      "label": "Explanation finding skewer collected knight",
+      "text": "Once the knight in front clears out, the piece behind it on the line is lost."
+    },
+    "takeId": null
+  },
+  "requestHash": "67781fe78bc3b356df4536e6cfd67aca4ca3b3e3b5bc93bfc7dc5f67334b786c",
+  "recordedAt": "2026-10-04T08:11:15.024Z",
+  "sha256": "6c7f993b83f963dcf24e4b2a572f7a444c522f355ca6d96a305c15d71ebdf237",
+  "bytes": 15756,
+  "requestId": "OaY67n8KykQ2tpBzfSOP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b0bb895219e42c551f572df6f9c8414e998447a90534cfe8f4bfa915f6ba7da9",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

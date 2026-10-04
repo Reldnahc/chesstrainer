@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-knight",
+      "label": "Tactic discovered attack played knight",
+      "text": "Oh, that's clever. The knight steps out of the way, and the piece behind it gets to attack. A discovered attack, so."
+    },
+    "takeId": null
+  },
+  "requestHash": "b482c917353dbab9705f137ababca0111912e2ee3e3019219517239de34536fc",
+  "recordedAt": "2026-10-04T08:03:26.967Z",
+  "sha256": "370b8e829063bb1ae91f9d567d94fd78bc0d6965ada2a2a1167556e6618d2d37",
+  "bytes": 27898,
+  "requestId": "Rek45Of6oOKcVx3Pqde8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "68d6afa4695bb6a8d29b1ab4564496042e1555e0c5b2b897fd72f9c13017b910",
+    "bytes": 142986
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

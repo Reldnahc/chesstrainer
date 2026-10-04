@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-queen",
+      "label": "Explanation finding skewer collected queen",
+      "text": "Out of the way goes the queen in front, and the piece that was hiding behind it is captured along the line."
+    },
+    "takeId": null
+  },
+  "requestHash": "3230ed198a57814ff3ff9413ed074fb29310e5deb3c506e76322591e0e4f356f",
+  "recordedAt": "2026-10-04T08:02:45.767Z",
+  "sha256": "2d109aeba80929f260cb5675a9237eedf8ea92ee20cad4ec0ed40ba8caef90c2",
+  "bytes": 19940,
+  "requestId": "azzA01UqBGSI2gIkl4Gy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f45a0e88d1c4c6193bca59f4b0b82c51c1c917228ef5a499d1390b5c7a7bc6f5",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

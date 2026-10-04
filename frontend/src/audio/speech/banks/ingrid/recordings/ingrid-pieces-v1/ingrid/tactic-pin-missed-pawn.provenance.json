@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "tactic-pin-missed-pawn",
+      "label": "Tactic pin missed pawn",
+      "text": "The stronger move would have pinned an enemy pawn to its king. This one leaves that pawn free to move, and that's the whole difference."
+    },
+    "takeId": null
+  },
+  "requestHash": "cb4df40ed2ca2c8c93dc2868beaf36fc9f0a51df66109a312420a47d36e7c639",
+  "recordedAt": "2026-10-04T07:48:13.140Z",
+  "sha256": "9e25733668acdad72892ce36ebfa7b227b07a3680b2a09b0e2f490b09d318065",
+  "bytes": 26888,
+  "requestId": "NTvTnYK1I5xtI0R1mgIT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2cef70abc6466c567bd5ce7db9e91d485fa181cebcfaef1c82d7ad5956738bb4",
+    "bytes": 136716
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

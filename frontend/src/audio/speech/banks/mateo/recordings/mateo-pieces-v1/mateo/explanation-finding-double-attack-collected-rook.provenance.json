@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-finding-double-attack-collected-rook",
+      "label": "Explanation finding double attack collected rook",
+      "text": "One target is hit by the piece that moved, a second one by the line that just opened up, and the rook in back is the one that grabs."
+    },
+    "takeId": null
+  },
+  "requestHash": "ee5e9beff96fe5cf8dccde40f45ec5f6cd4d57143b192890a64e712e5290930b",
+  "recordedAt": "2026-10-04T07:55:52.644Z",
+  "sha256": "d3918b75a98ac908ee00d72bfd7c12ded38257964101428f903a9cfcdfb1b006",
+  "bytes": 26706,
+  "requestId": "6oWPAawBiHNmHLX92xEv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "50288f710ebbcc9b7123cfe03a7ecc6ad9471f98893a177a4328ecd3b1e4a23c",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

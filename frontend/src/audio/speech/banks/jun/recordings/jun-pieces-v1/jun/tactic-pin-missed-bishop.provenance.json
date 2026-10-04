@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-pin-missed-bishop",
+      "label": "Tactic pin missed bishop",
+      "text": "The stronger move pinned an enemy bishop to its king. This move leaves that bishop free to move."
+    },
+    "takeId": null
+  },
+  "requestHash": "2a8f99f66b95a4d25f0f6d9ce32a110c018432cbdba31c1a4b00e9d2cd6d2792",
+  "recordedAt": "2026-10-04T07:49:58.589Z",
+  "sha256": "aef7496eb86c233ea40064f12069f7a167a45bfe0fabe91b62a4201d35a97807",
+  "bytes": 20833,
+  "requestId": "4SKMfhKR3Z6b3PSAArdJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f874accbcdff731639664d4a6e27593d3ec249004912e2cde5a98beadbc656a5",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-mate-bishop",
+      "label": "Explanation frame capture promotion mate bishop",
+      "text": "Capture, promotion, mate. The pawn takes a bishop on the last rank, promotes, and the king has no legal way out."
+    },
+    "takeId": null
+  },
+  "requestHash": "e520a776770f68fb15209119bb93ec00295dfe8f8a9117223b34c116ec5ffbfd",
+  "recordedAt": "2026-10-04T08:08:07.813Z",
+  "sha256": "b2865f914b7521457ba93e5d9f865cf104a789ba379e44731127fa82562b1730",
+  "bytes": 24393,
+  "requestId": "PWFfczLsGZbYvkfg52UX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b015dc14b10e023e5c365e5ee81f7d4569d7c565d1ba2e35a443666dce04ef69",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "tactic-hanging-piece-allowed-rook",
+      "label": "Tactic hanging piece allowed rook",
+      "text": "Count the defenders on that rook: zero. It's simply there for the other side to take."
+    },
+    "takeId": null
+  },
+  "requestHash": "0d677159444e59a98a0678e9a9e2a5a75f7cc826c554c1f8fdbee14af22a326c",
+  "recordedAt": "2026-10-04T08:08:54.373Z",
+  "sha256": "b8221b61753665d67c419926e1f6cf389d226c69ee75543f9d89685151c15707",
+  "bytes": 18775,
+  "requestId": "2qW5SfnxSPJ9jZczGW1q",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5afaae7abae53283ff47843647b18927d81cc5be0490f8ae8edfe15baf57ac05",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

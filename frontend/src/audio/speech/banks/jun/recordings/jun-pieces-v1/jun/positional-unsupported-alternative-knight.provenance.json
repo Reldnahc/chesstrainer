@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-knight",
+      "label": "Positional unsupported alternative knight",
+      "text": "The alternative left a knight without its last defender. That alone would not have established a loss."
+    },
+    "takeId": null
+  },
+  "requestHash": "b90c77a7635f406946b5d6461465e4839aacb71ff0485830c0e1bab207b011cd",
+  "recordedAt": "2026-10-04T07:50:28.905Z",
+  "sha256": "1e259104b8bbdb21425c69d6f72d4ce862639bd6a8a594783487e54dc42197e3",
+  "bytes": 20744,
+  "requestId": "VGLFuF0ULgsKMEXmRpvD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f531e000419e067f80c6412cd220aeb3b2c5a0ed3849124cf1c04e62b1c8f9d2",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

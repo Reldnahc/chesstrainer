@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-deflection-played-pawn",
+      "label": "Tactic deflection played pawn",
+      "text": "This move drags the defending pawn off its post, so whatever it was guarding has no cover now. Plain deflection."
+    },
+    "takeId": null
+  },
+  "requestHash": "a55eab9fead6769a11d23b3de3d35cd7e2aa60b76d74633e213ef26a0f329442",
+  "recordedAt": "2026-10-04T07:56:42.425Z",
+  "sha256": "0ad04e62e8d29efb988ef080988662d049bbac4a82ad846d966e268ed4ccc48c",
+  "bytes": 24634,
+  "requestId": "AQQ0K4xJTuYP3a6zz8yK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1b979c3084901846188356c084061b51a34e53a0b6643bcaad70973a1b69f5b8",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

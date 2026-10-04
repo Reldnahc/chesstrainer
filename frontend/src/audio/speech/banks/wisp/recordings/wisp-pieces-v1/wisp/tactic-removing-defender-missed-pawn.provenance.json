@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed-pawn",
+      "label": "Tactic removing defender missed pawn",
+      "text": "A different move could have captured a defending pawn. What it guarded would have stood without that protection."
+    },
+    "takeId": null
+  },
+  "requestHash": "f0fd2604d8c85079d75e6984e5c8e21f3c9e014cfb526ef91254ee7b2b388349",
+  "recordedAt": "2026-10-04T08:13:57.871Z",
+  "sha256": "3a1d091dfdc7c4e9027ae8b611822569c294fc0dd15d1ad347bad163331fac0f",
+  "bytes": 19930,
+  "requestId": "yskOUS7OI1lstPXY3hgg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f351d476976c272244015ccde3315abd0fe689f053f2f1c2c83f5b015b75e139",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

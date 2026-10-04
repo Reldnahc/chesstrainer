@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape-rook",
+      "label": "Explanation finding pin restricts escape rook",
+      "text": "Since the attacked rook is pinned to its king, running away isn't an option; whatever it does must leave the king shielded."
+    },
+    "takeId": null
+  },
+  "requestHash": "632b5d1a540a387c654aae0e2caa00063ea4c9490fd93f77d87fb6bcb6c58bb3",
+  "recordedAt": "2026-10-04T07:48:58.276Z",
+  "sha256": "7f313d1381b50a7be6b795c7cb46ba22a7ab608c016987c229d6a3dc5a2139ad",
+  "bytes": 26610,
+  "requestId": "j5135FZX7twb012RLk7Z",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3db2ac9f368ac09d7c8430928cc45bef2f81b23cc99899bf627aaebe6491f5a5",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

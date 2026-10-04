@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check-bishop",
+      "label": "Explanation finding discovered check bishop",
+      "text": "One piece steps aside, and surprise, there's check from the bishop that was hiding. Peekaboo!"
+    },
+    "takeId": null
+  },
+  "requestHash": "ba8be6e0b0e4ceffcca3e0724016581ca3bc8640d2b2d99b01902f2069e6d8f3",
+  "recordedAt": "2026-10-04T08:02:42.444Z",
+  "sha256": "72f6048c9b160bc318ae660292a779afe8c927f96d679222f1631e7295b2a1c6",
+  "bytes": 20385,
+  "requestId": "LzhKigqfTCtVoAriEWFC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "78402f7d5808da2896b4bec158f231884066ea673a4e810c438a504fd40554f3",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

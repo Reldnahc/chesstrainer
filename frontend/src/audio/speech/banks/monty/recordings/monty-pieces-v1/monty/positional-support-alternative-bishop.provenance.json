@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "positional-support-alternative-bishop",
+      "label": "Positional support alternative bishop",
+      "text": "A different move would have given cover to a loose bishop."
+    },
+    "takeId": null
+  },
+  "requestHash": "9a51dd0af40e0720a4bcb9504f231ad316284c647491e7b2aa6fc4c847b4a64b",
+  "recordedAt": "2026-10-04T07:57:16.988Z",
+  "sha256": "665df0b325ab4912d55cee90ec2b59ba9519bb0afd859f627fe73c83d20edf20",
+  "bytes": 11273,
+  "requestId": "vwWoNH3He1i0xZsY0KSp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e655b00fb2c133bf01530ef05472ec4764799c9eb8699b9c7c26767ba2cfd4ee",
+    "bytes": 54796
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

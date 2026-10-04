@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-bishop",
+      "label": "Tactic deflection allowed bishop",
+      "text": "One bishop carries an important task. The other side can now draw it away, a deflection, and that task would go uncovered."
+    },
+    "takeId": null
+  },
+  "requestHash": "51bd3f9e7d817fcabdc6d632c83bbc3d03b7a82ec12f1057c3b243ee56e96ba1",
+  "recordedAt": "2026-10-04T08:14:22.825Z",
+  "sha256": "1bb7be9d174f69bd4a8620dd283adf0e5cdebd633976f28ba5682c94bd795ecd",
+  "bytes": 26679,
+  "requestId": "q0WKvfkh8GOMnrv9PrpF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "eb3670b9b9d4c0260bdaa3cbfc9b2972b184ab35b730586cc08365bb2137eb35",
+    "bytes": 139224
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

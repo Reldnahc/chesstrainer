@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-bishop",
+      "label": "Explanation finding undefended capture gain bishop",
+      "text": "No defender covers the bishop, so it falls without a recapture, and the line finishes ahead in material."
+    },
+    "takeId": null
+  },
+  "requestHash": "590a51abfa755237f957f6b199e37d19e713bab24b30282a61264136ce8f0735",
+  "recordedAt": "2026-10-04T08:11:31.361Z",
+  "sha256": "c8da6e4648bdde298bbba97d4f528e1507688a6116de5741803433c404838214",
+  "bytes": 21738,
+  "requestId": "Z1IVAxDs17n9Qge5j7J7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b1b61135fc0e0428928acc93431fc59338fd0765ed62e469885d425e6548c7a1",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

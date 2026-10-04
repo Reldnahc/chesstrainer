@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-pin-allowed-pawn",
+      "label": "Tactic pin allowed pawn",
+      "text": "This concedes an absolute pin. The pinned pawn is fixed on its line; moving it off would be illegal."
+    },
+    "takeId": null
+  },
+  "requestHash": "b5a71b6d8064a74d4ec0bbadb6cb57df90bace2c0765906babb41326697ecad8",
+  "recordedAt": "2026-10-04T07:49:45.633Z",
+  "sha256": "f9b91a20550a69c886716a1a46a135390a3a61eafd1b6a17ed2692be18164069",
+  "bytes": 23418,
+  "requestId": "A1qWHUjgWMyTtuKjI47Q",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0ee2a92e4696197c66dd0dc56173fc76007535dfb127e9a8c4f2ed2447b5c6ce",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

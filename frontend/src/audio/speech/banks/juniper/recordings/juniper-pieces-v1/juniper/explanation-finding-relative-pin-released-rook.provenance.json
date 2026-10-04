@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-rook",
+      "label": "Explanation finding relative pin released rook",
+      "text": "The opponent's last move let a relative pin go, and the attacking rook was free. Its target never moved away, and the line shown ends with that target captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "154209c0b5f87450c201737b01837d0e3b1709e23ce44679ffc032070aff2b5a",
+  "recordedAt": "2026-10-04T07:52:13.935Z",
+  "sha256": "003335854404bb7bc8f429da9d3419c442cc3159568e74e5859b10bfeb678fbf",
+  "bytes": 34947,
+  "requestId": "2Xye4GUdNIR5JQLMVGM4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e9da1013d8c05c45c7cfe17a80bfbe505a28faea80c5f3fa3a3575cfde456f30",
+    "bytes": 182692
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

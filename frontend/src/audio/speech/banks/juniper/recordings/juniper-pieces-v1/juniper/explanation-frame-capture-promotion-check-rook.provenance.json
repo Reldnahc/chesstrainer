@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-check-rook",
+      "label": "Explanation frame capture promotion check rook",
+      "text": "Capturing a rook as it goes, the pawn reaches the far edge, promotes, and gives check."
+    },
+    "takeId": null
+  },
+  "requestHash": "7a0fc35bdce8fec6aa55cf8a976353f607e9e8e1fbc8a9b6873544e47740f17c",
+  "recordedAt": "2026-10-04T07:52:39.030Z",
+  "sha256": "d7cae1d82b4687a7c4990a0a5f6d7c7d9ed1b6f518ffd9a4c7704f2c6312f016",
+  "bytes": 19339,
+  "requestId": "hF7p5hjofkUVdtymkr13",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6b0066372313b1a87e0bc3d706d977cf9430f1b70282b6010f7aada8be8a081c",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

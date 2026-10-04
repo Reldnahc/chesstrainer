@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-deflection-played-rook",
+      "label": "Tactic deflection played rook",
+      "text": "The defending rook is dragged away. A deflection pulls it off duty, leaving its square unwatched. Learn what each defender is tied down by."
+    },
+    "takeId": null
+  },
+  "requestHash": "374205695d773648b39a6d78ae719d9c6c45bf06daa2535c0950397723b2db2c",
+  "recordedAt": "2026-10-04T08:10:50.005Z",
+  "sha256": "82a9249ba830b34c7e2d2f81dfc33bf031be74091d1086dc8825f55727962a95",
+  "bytes": 29718,
+  "requestId": "oVqMMPM5thAGQzzsLvy4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "56176e96df689aba166525056acf77bda9636feaa9e652db9eef4e0302a236b4",
+    "bytes": 153435
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

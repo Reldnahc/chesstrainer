@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-bishop",
+      "label": "Tactic removing defender allowed bishop",
+      "text": "What is guarded is only as safe as its guard. This lets the other side capture a defending bishop, and whatever it protected could then stand without cover."
+    },
+    "takeId": null
+  },
+  "requestHash": "b0f90482385032501c36914b72eea036e425006d9bc1e113a37b04a4f8fb2aec",
+  "recordedAt": "2026-10-04T07:58:13.205Z",
+  "sha256": "23328baf933405a88fbb82806db078fbe4d1dd8fc7a868a90a390bb23ce98edf",
+  "bytes": 34355,
+  "requestId": "kR3dwHP2EEXwLbbC9J2T",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d2e5caad72fcd11184f22247c7dfcd0c722dca178294172643d0228b2d2375d8",
+    "bytes": 177676
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

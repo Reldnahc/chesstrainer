@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "cause-avoiding-bad-trades-knight",
+      "label": "Cause avoiding bad trades knight",
+      "text": "That first capture with the knight looks tasty, but here's the kicker: the recapture wins back more. Tally both sides of every trade before diving in."
+    },
+    "takeId": null
+  },
+  "requestHash": "9234236cca7d0ac4cf17ad9345598493742680b09e23cde98c76533a7f897e7f",
+  "recordedAt": "2026-10-04T08:09:11.878Z",
+  "sha256": "5d0f00a8f50b9451d9571f8d6e9b992ded296eb96351d2b87f14ee7b9d584bd0",
+  "bytes": 32268,
+  "requestId": "AWDpaYcFrNOtDIDXOmCY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "aed6c916db096929d66a11ef5b1ee2d1fdd1d7597784aa5397e458a1f55542e7",
+    "bytes": 163466
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

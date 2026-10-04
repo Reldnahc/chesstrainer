@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate-bishop",
+      "label": "Explanation frame capture move mate bishop",
+      "text": "Capture of the bishop with checkmate. Game over."
+    },
+    "takeId": null
+  },
+  "requestHash": "8113a10cf7e071c9bd64c65bad90e9323e443c50eb1e9589edfa031bd3021f93",
+  "recordedAt": "2026-10-04T07:51:01.861Z",
+  "sha256": "792dcf66bc8aeec8d73be234d5b2c37a3d3d183d0f8792dcb7787cb3f8c94f84",
+  "bytes": 11950,
+  "requestId": "cpRDQ1pamnTv7oP1u5Po",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1ffca91e3eb86b5121bb8aeb64914983a1376290642997cfb1a3b216b902850b",
+    "bytes": 61066
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

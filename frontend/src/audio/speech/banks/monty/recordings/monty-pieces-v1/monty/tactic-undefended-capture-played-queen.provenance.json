@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-queen",
+      "label": "Tactic undefended capture played queen",
+      "text": "Simple point: the queen was loose, and this move takes it."
+    },
+    "takeId": null
+  },
+  "requestHash": "6674b9070fdba1fe6e1c7b46184050b4cbb894629dc44eb646f1ce76c8745e69",
+  "recordedAt": "2026-10-04T07:56:26.807Z",
+  "sha256": "339cc5d5301e83943cf06871e4623eafcc21efe2d4c5f1fe507313ba92f7c857",
+  "bytes": 13895,
+  "requestId": "2Ou9x3OJR6DpYy7vhpwI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7d5489db63a29073c903cffefdf320dad64db660b1cdc5a1b9472361ac20a045",
+    "bytes": 71515
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

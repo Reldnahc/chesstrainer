@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "cause-avoiding-bad-trades-queen",
+      "label": "Cause avoiding bad trades queen",
+      "text": "One capture down, one to go: the queen that captured gets bitten back, and it's heavier than what it took, so the trade goes sour."
+    },
+    "takeId": null
+  },
+  "requestHash": "4046b91cb5764ea7bb7424173321582264df17e8a6c33d9f03bdb30400528c09",
+  "recordedAt": "2026-10-04T08:05:39.984Z",
+  "sha256": "3ac8ddc2593df8ef9b95dd6469db2564065ea15dc1476cf6c0cdc77a8c2c758f",
+  "bytes": 26992,
+  "requestId": "hugpHBAdB3ldpMXjp7f2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "82088e683e94fff3ed2135234cf87df76157e87032f62851cdbd82610a8391f2",
+    "bytes": 136716
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

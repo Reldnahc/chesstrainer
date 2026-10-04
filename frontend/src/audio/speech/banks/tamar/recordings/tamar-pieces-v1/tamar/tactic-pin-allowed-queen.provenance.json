@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-pin-allowed-queen",
+      "label": "Tactic pin allowed queen",
+      "text": "Pinning chances go to the other side here. A queen would be stuck on the line to its own king, unable to step off. Notebook rule: keep pieces off the lines that lead to the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "155660029f17b7afd0aa7e525f5febf9e671fbac01b10632cf0d022abed7f00d",
+  "recordedAt": "2026-10-04T08:10:11.305Z",
+  "sha256": "baddac9dc21b2c40a62a0d9ee0c2823a9273cc151f738cbac6142ab426775ba8",
+  "bytes": 35097,
+  "requestId": "UlALLLdZYuYAeCl5lGBI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f2e5d12d0d2a0c91d6158229eacd8b4fe7bad456b36820c96824a525ccf5f52c",
+    "bytes": 185199
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-king",
+      "label": "Explanation finding skewer collected king",
+      "text": "The king in front steps out of check, and the piece behind it is captured on the very same line. Skewer complete."
+    },
+    "takeId": null
+  },
+  "requestHash": "11a1f5a8e417de0d1bf6ccede87bc9748cd1731a61bf927b8cfeb7a976d9b8ec",
+  "recordedAt": "2026-10-04T08:09:40.957Z",
+  "sha256": "6f0675162dcb41d2067b9b22ceec53c4b32cad3a035ef2597835b131f6926cf9",
+  "bytes": 24232,
+  "requestId": "gngV4wAZtCd4bdcrqyty",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d0f32c98b9bdea8afe326b90625ad4df48a2a9044e8718a3dce35310442d875e",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "support-restored-knight",
+      "label": "Support restored knight",
+      "text": "A proper repair. The knight that was hanging loose earlier has protection once more. Keep an eye on it."
+    },
+    "takeId": null
+  },
+  "requestHash": "a7e4bbe801d8a88b5b6d70697d0e4254258c276efaceaec936251a83064e610d",
+  "recordedAt": "2026-10-04T08:11:06.008Z",
+  "sha256": "741d34e547f579023c77499ae728a294357f43139dce2197820a486e2e64f5ac",
+  "bytes": 20735,
+  "requestId": "BXOXdGULwzg81N7QGc2z",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3707807c06a23e4fe0e55a929f6e6d6a0cf627562bdc4e449f460c93da4f2f7f",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed-rook",
+      "label": "Tactic discovered attack allowed rook",
+      "text": "A rook of theirs is screening another piece. If it moves out of the way, the piece behind can attack. This allows that discovered attack."
+    },
+    "takeId": null
+  },
+  "requestHash": "5ee4f8e6303c4b14e2e99e3e891a35eed3a49a86076529c970f474df069c6354",
+  "recordedAt": "2026-10-04T08:13:57.649Z",
+  "sha256": "db3ef24845a3290c34a2c311aec48a76fa0d7d50ea1ae3043aa03b296d436a58",
+  "bytes": 27060,
+  "requestId": "z1aqeoRIIGb1WUknyMWu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "103d22f592fc5ecf9200e3f22f0ba45ab022005309af9dc30ab84d311b9d71eb",
+    "bytes": 141732
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

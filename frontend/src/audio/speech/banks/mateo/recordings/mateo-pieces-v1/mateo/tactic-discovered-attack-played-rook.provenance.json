@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-rook",
+      "label": "Tactic discovered attack played rook",
+      "text": "Discovered attack! The rook gets out of the way, and boom, the piece hiding behind it is suddenly attacking down the line."
+    },
+    "takeId": null
+  },
+  "requestHash": "bac0d16537de16349782689e1be3b1bd231e207fe087b9b805947ecfbbe8e61f",
+  "recordedAt": "2026-10-04T07:54:51.297Z",
+  "sha256": "75560ab55de9ad9708fc2f8cb89b28b8e2f600230dba7d699563c6cb8c68ae4d",
+  "bytes": 25471,
+  "requestId": "IQGfKZW39gMcHJszESOh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b6788ecb412b4eb853333676b7e4688956ca98e9c37f8b7049a69a13580ca0a5",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

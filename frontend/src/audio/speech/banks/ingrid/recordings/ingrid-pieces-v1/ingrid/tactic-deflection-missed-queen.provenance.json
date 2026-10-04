@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-queen",
+      "label": "Tactic deflection missed queen",
+      "text": "The stronger move pulled a defending queen away from its job. Set it up afterward and see what falls apart once that queen leaves."
+    },
+    "takeId": null
+  },
+  "requestHash": "8b8895d3b1d66b38ec3e7a6da9f49bfd1adb3920c36a76ccafd62a7e23311589",
+  "recordedAt": "2026-10-04T07:48:58.304Z",
+  "sha256": "d19380f43f229e8bf9b114ca4293d62bb4e717ad62edbbc347074f74aead4313",
+  "bytes": 27263,
+  "requestId": "hiTHYfZqiuM1UTMaMIzE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e7398f64708185d2ed98791f8c918f428f4760bfd25898d8c176ed449e9c2adf",
+    "bytes": 137970
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

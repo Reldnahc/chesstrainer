@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-check-bishop",
+      "label": "Explanation frame capture move check bishop",
+      "text": "Capturing the bishop also gives check. Two things accomplished by one move."
+    },
+    "takeId": null
+  },
+  "requestHash": "fde70a0d69e01f21a4cb2fc58374cbf2bfd77e0973124cab2366d0a7e4d07ca7",
+  "recordedAt": "2026-10-04T08:16:25.731Z",
+  "sha256": "3d2bb5545a0eb3501df596c5eb4fc5917f09fdcd2b0c2469c2e136479bad541c",
+  "bytes": 16741,
+  "requestId": "RgRWnOcy56km4rflYAsf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "85c7d4c82df9f07a7e5c48014440a202591cdc18679bbfe832e78b61228907f3",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

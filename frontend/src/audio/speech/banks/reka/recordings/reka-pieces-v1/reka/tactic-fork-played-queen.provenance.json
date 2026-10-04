@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "tactic-fork-played-queen",
+      "label": "Tactic fork played queen",
+      "text": "Spicy geometry: the queen that just landed forks several targets at once, and they can rarely all dodge in one turn."
+    },
+    "takeId": null
+  },
+  "requestHash": "f996ad3697ca55d2dacdf560a487b8a92df6b28036ba57ca61923f92737741f7",
+  "recordedAt": "2026-10-04T08:04:51.867Z",
+  "sha256": "26f1197f9e84f5567ab409780f03540a54a0988b59c54810acfbcb5a22cec2a9",
+  "bytes": 24725,
+  "requestId": "6dctIFFgo2d9cnxDKw6V",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "463fda3b942665c972a4a62ed1278aee5d8bc3331b5d2876a8b2f07388b68360",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

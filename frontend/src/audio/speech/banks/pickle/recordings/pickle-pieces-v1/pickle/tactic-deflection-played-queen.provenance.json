@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "tactic-deflection-played-queen",
+      "label": "Tactic deflection played queen",
+      "text": "Shoo! The queen gets lured away from its post, and its old post has nobody minding it. Lured right off, the classic deflection!"
+    },
+    "takeId": null
+  },
+  "requestHash": "4bc4bbd842f1cb3d4b4843e2242cd1fba2d5259cf752d3b3ee254f8026ac9f40",
+  "recordedAt": "2026-10-04T08:02:13.022Z",
+  "sha256": "1b1f21554db5c92a681729fd91ce8e68cfd8b69ed203782f863a6c10c78aba23",
+  "bytes": 28518,
+  "requestId": "4nKSjys9jYtkC9RxJ1Ag",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "09a52152765afd6f0f27250f2dd662ddb7bc2cd1d8b5489ebb82dbcd2aff6b76",
+    "bytes": 148419
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

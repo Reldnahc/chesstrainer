@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "tactic-fork-allowed-bishop",
+      "label": "Tactic fork allowed bishop",
+      "text": "Here's the plain fact about this move: the other side's bishop now has a square where it can fork several targets. Find that bishop and the square, and the pattern is clear."
+    },
+    "takeId": null
+  },
+  "requestHash": "358f9b7b26d6aaa93b2c4d8e6f649d5959a75d30fb748b89a565a1fab0475f56",
+  "recordedAt": "2026-10-04T07:48:14.831Z",
+  "sha256": "f9ce44d8413ceffd1b77ce8896c8d4f5b20eee611dfc2a0013da28aeb77f0886",
+  "bytes": 35327,
+  "requestId": "Ru43IJWR9EkzQxAQbPel",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "89af67c73996c1b30e6b10ace8aca4b7be6e6706770c092944b6e642b0bcb704",
+    "bytes": 180184
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

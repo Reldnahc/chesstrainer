@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-knight",
+      "label": "Explanation finding deflection collected knight",
+      "text": "The defender gets tempted away, and the knight it was minding gets captured right after."
+    },
+    "takeId": null
+  },
+  "requestHash": "90eda62489442727acc1763c8c93d8e187e7ba73c6592bd8b6732c6f8dab0165",
+  "recordedAt": "2026-10-04T08:02:50.633Z",
+  "sha256": "863affc33aa66071f337929f57d2d7d63056cc6c0ff8bfc6ad97c5cf608eea2f",
+  "bytes": 17083,
+  "requestId": "AA8VZ2VymEHN2bnOqJCi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f94f29cfb565eb9d4cf60fb19ec0d276b322747086fb9ba6f39f617e49fe6e0b",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

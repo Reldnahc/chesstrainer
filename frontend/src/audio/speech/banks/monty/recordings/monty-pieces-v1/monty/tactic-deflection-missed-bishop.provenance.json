@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-bishop",
+      "label": "Tactic deflection missed bishop",
+      "text": "Dragging a defending bishop off its post was the better move. That chance to deflect it is left on the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "20e0ef8fd0a1d1e7cb062816e557861cc149c3230c1c0c2336d6fe02fd8ec0d0",
+  "recordedAt": "2026-10-04T07:56:48.947Z",
+  "sha256": "c8097a4643fdfd50df788e7433533e2da046232dc3042e2b3b4ceae8c814afc1",
+  "bytes": 21759,
+  "requestId": "9PRomJ2S4QNHXAq6Ib8s",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b4f3e2dc6365960776faa5e5bebbc2bf08adbefa5dd9e246d4dcc26159939746",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

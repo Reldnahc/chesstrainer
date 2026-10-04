@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "tactic-back-rank-played-rook",
+      "label": "Tactic back rank played rook",
+      "text": "The king is walled in by its own pieces. The rook uses that: a back-rank mate pattern."
+    },
+    "takeId": null
+  },
+  "requestHash": "b202710f77c4d4ae4b7a0a7bb6252e6702dffe80e534b8baf48056b5ce9db34d",
+  "recordedAt": "2026-10-04T08:14:08.644Z",
+  "sha256": "e2b33bc327d7c36c23fdf4ef53371e7dffa8416e6321b6aabbe1259810b5054f",
+  "bytes": 20263,
+  "requestId": "8vby0XVaEIsUBo6a3hcD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "459ebe5a1e6a2eb7c2dd744c66b8b8f6ea322398c9b1f38c0b08ee674a2ef60b",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

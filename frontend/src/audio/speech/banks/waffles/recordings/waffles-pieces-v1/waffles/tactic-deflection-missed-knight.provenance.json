@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-knight",
+      "label": "Tactic deflection missed knight",
+      "text": "There was a defending knight to draw off its post in another move. That deflection never gets ordered."
+    },
+    "takeId": null
+  },
+  "requestHash": "b3793154e568036d8497366da67d7f731935ee5c588200d8578df98c40174e05",
+  "recordedAt": "2026-10-04T08:12:22.055Z",
+  "sha256": "aabcb4b8f7e6a1f2507b80e848c68879d780fd97ac2b81d2623c589a9b9e3059",
+  "bytes": 20509,
+  "requestId": "lLNhz7jyaax3mcfdvc6p",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "24af09f5b33595aae3632e614f3d548050b80e51944f72c24cfb5ecc95f6f80f",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

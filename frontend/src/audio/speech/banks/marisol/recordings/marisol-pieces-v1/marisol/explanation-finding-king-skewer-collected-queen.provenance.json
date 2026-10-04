@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "explanation-finding-king-skewer-collected-queen",
+      "label": "Explanation finding king skewer collected queen",
+      "text": "A check sends the king off the line, and the same attacker then captures the queen that was behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "bb44a1a6b43571b556979288bea1ab95ca2fa89d22aa4d5688b3edfd59b66384",
+  "recordedAt": "2026-10-04T07:54:14.171Z",
+  "sha256": "1e5a3e1adc69c0e353f87288255371bd9d77e1eba063fa182b577bab0228ec13",
+  "bytes": 19572,
+  "requestId": "2arvI4MXp74lSRKVFSyJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5120c8cde3e18dfd20e1727b838249488bfbf944522ec2a68cc242a531e7a639",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-king",
+      "label": "Tactic deflection allowed king",
+      "text": "The king carries a lot of defensive work here, and the other side can now drag it away and leave that work undone. Deflection is the name for that."
+    },
+    "takeId": null
+  },
+  "requestHash": "aa1ea02440240cd52c55a1abe2fc3c35b16f84171d625eb755eb7731bad9b044",
+  "recordedAt": "2026-10-04T07:56:43.313Z",
+  "sha256": "4161492f51bf171299e6ca3a39c5c315ed52b0b5fdc595999400e112d6e27a30",
+  "bytes": 28669,
+  "requestId": "s2p1bgkV5500icK4iS9L",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b848be1ffdf98c1cf497e63f6f200acf87dd8686f1b0c21b3a3dcc92acd2078a",
+    "bytes": 148419
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

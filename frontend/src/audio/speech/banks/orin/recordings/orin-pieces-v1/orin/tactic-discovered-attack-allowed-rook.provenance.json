@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed-rook",
+      "label": "Tactic discovered attack allowed rook",
+      "text": "A piece standing in front of another can hide a threat. This hands the other side a discovered attack, where the rook in front steps out of the way and the piece behind it strikes."
+    },
+    "takeId": null
+  },
+  "requestHash": "e4505d42fd3f1f4a80f9b7dc7f9fb9f93802ccea5596243fb30c0bae2d31eaaa",
+  "recordedAt": "2026-10-04T07:58:27.219Z",
+  "sha256": "4f7f2fc1520f93fb807724a68d7080fa4af9cfcae7193ea777e813d8fd7cfb60",
+  "bytes": 36331,
+  "requestId": "dlXH95qa5SFtFYwMYJD5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "19c1573dd04e2792cd162cb686301634c5cfe2bf142b2291f5c0277f27b10283",
+    "bytes": 188125
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

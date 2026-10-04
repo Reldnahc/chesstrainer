@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "positional-support-alternative-knight",
+      "label": "Positional support alternative knight",
+      "text": "Cover available. A different move would have put a guard on a lone knight. Compare which pieces stay guarded each way."
+    },
+    "takeId": null
+  },
+  "requestHash": "5b24507677c52b426815616632b1fee32443f064224d1bfd526e7f35f9761601",
+  "recordedAt": "2026-10-04T08:07:45.229Z",
+  "sha256": "0d862c933135cbffee05e8f99642808c65216cdf59a50c488d66111e2584c9dc",
+  "bytes": 22841,
+  "requestId": "vp0qTiisTOhfqsi4oJs5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9ce0196a19bf8a1097ed12ed3cad1c673b9b40a61e82a89a4d8c73017353079a",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

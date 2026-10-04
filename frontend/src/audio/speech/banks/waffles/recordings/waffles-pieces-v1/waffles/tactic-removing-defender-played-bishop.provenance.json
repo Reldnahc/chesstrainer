@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played-bishop",
+      "label": "Tactic removing defender played bishop",
+      "text": "Target the defending bishop. Capture it, and its ward stands unprotected. Standard procedure."
+    },
+    "takeId": null
+  },
+  "requestHash": "0f0830c6ed3234b219f019527eac385b2413e7392a57d8ab590dec1cbb04d4b9",
+  "recordedAt": "2026-10-04T08:12:28.620Z",
+  "sha256": "762b2b5e2b250c377fd8f4388df89f6cd833ee9537755c1c6d82e5aceb093528",
+  "bytes": 21137,
+  "requestId": "Eeoajj8wG4h4AAVuFP0D",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a67c0c65d9c40f09ad96fec62ed4c2f15510cef13e56ab11e232ebdddffa51a5",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-knight",
+      "label": "Tactic removing defender allowed knight",
+      "text": "This leaves a defending knight open to capture. If it goes, whatever it guards could lose its protection, so check what that knight is covering right now."
+    },
+    "takeId": null
+  },
+  "requestHash": "7f6e07799853ff4b96ced059a23033a4b27eb878d602fc0541cd77dcc4738df8",
+  "recordedAt": "2026-10-04T08:00:03.855Z",
+  "sha256": "d058150282e6896b5af20e62dad267a7c0a8ce069d218103f922c18c03f36aeb",
+  "bytes": 29189,
+  "requestId": "o4z7Zm4ZuYO4ApcRw7jS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8017ad1b7526d73f7eb926858028df68f7b6f5234d820332ceb8dce30979bddc",
+    "bytes": 149673
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

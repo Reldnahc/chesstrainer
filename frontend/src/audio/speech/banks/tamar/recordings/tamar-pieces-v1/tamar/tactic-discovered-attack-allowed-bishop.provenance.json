@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed-bishop",
+      "label": "Tactic discovered attack allowed bishop",
+      "text": "A hidden attacker is ready. This lets an enemy bishop move away and open a line for the piece behind it. Notebook rule: watch what stands behind their pieces."
+    },
+    "takeId": null
+  },
+  "requestHash": "496ffc6cb36926d92bbd11c1fc67a22e1478e82fd02ad4a19de2bf7d22f50026",
+  "recordedAt": "2026-10-04T08:10:38.569Z",
+  "sha256": "8beb5cfa8f96c6411a52d241019e577f2f37cbc19dd14b9bd26f0580a615a1a6",
+  "bytes": 32927,
+  "requestId": "5qupfGArYicHeW4NV7dL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1058dcd24a8bdc450aff20fcd842addb85d2aea028945b5e48235e77401b7f75",
+    "bytes": 171407
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

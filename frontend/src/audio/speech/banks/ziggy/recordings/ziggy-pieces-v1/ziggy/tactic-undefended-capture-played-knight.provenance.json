@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-knight",
+      "label": "Tactic undefended capture played knight",
+      "text": "Before anything clever, check for pieces with no defender. Here there is one, a knight, and the idea is simply to take it."
+    },
+    "takeId": null
+  },
+  "requestHash": "e39742c9e1a649d5eff33ccc2a2d3bfa0bb7422bd127f01e0ddcede977911944",
+  "recordedAt": "2026-10-04T08:15:10.262Z",
+  "sha256": "5370ff9075038a71542ea9a4c381d426eebe854e80baa3c4f54f97fe9960e358",
+  "bytes": 25502,
+  "requestId": "u1WKYHtcjT5HvjXit0Nt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "14314d8a250bf58cac3e88f150db7d300bd52c4a12ba964c0f085a172bba02fe",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

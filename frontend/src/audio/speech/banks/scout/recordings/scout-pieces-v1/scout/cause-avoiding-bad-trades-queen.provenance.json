@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "cause-avoiding-bad-trades-queen",
+      "label": "Cause avoiding bad trades queen",
+      "text": "Bad trade. The queen captures here, the recapture takes it, and it's worth more than what it took. Count the full exchange, every capture, before starting it."
+    },
+    "takeId": null
+  },
+  "requestHash": "e5f5f7a5d7ad5e5a5adebdf4cf1751d650e1cce379dbfb5167baed6697cf9b5b",
+  "recordedAt": "2026-10-04T08:07:30.314Z",
+  "sha256": "4dc8bc95a2617ba8322a562d6b271438aa7f53e824826c8f13128a5d78cd1fe0",
+  "bytes": 31478,
+  "requestId": "LbeubcCGWzQgMDLwl30Z",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "209dcccee2c28483dc55e51eb246070ad5a9805e00615639294deb3ff417c4c3",
+    "bytes": 162212
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

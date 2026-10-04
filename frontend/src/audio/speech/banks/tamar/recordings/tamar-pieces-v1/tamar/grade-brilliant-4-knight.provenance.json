@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "grade-brilliant-4-knight",
+      "label": "Grade brilliant 4 knight",
+      "text": "Notebook entry: a knight given up, checked and sound. Study it until the idea is second nature."
+    },
+    "takeId": null
+  },
+  "requestHash": "3dbe89708f083ab6b376389a260bfc4ad3147e40c3b80ad1d8b1eb7c1819f6df",
+  "recordedAt": "2026-10-04T08:11:45.732Z",
+  "sha256": "2e289fce3eb0f256fe3b96bcfd78e89e9889a8ccd850661bde365b63f7d0540b",
+  "bytes": 23512,
+  "requestId": "psYO5IS0iXxbm29jiADg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6148bdce539b1e03ca553cbe6d0292553794bdd7abe888f9fef17786d4261b36",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

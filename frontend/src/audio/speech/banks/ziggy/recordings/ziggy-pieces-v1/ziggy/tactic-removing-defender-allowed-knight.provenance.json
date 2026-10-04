@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-knight",
+      "label": "Tactic removing defender allowed knight",
+      "text": "Now the other side can capture a defending knight, and whatever it protected may be left without cover."
+    },
+    "takeId": null
+  },
+  "requestHash": "8e912290e1f08cd845c2db4b816406439b5d77956797736d9e59c694902c7db4",
+  "recordedAt": "2026-10-04T08:15:17.004Z",
+  "sha256": "2aa31e207a777c3f73cf1f32cccc00f9441ec2402b64d90b3a7a98f94d7ac357",
+  "bytes": 19944,
+  "requestId": "gTnHGg9s8aNbT5hP3Pgd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "42d5dce25e50923180b416ee3862d5104f2d52c3cec3d9461ce9f375e4483dc4",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

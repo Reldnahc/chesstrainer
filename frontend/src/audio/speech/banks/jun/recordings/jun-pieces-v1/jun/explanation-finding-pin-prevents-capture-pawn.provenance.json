@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "explanation-finding-pin-prevents-capture-pawn",
+      "label": "Explanation finding pin prevents capture pawn",
+      "text": "Absolute pin on this pawn. The marked capture is illegal, because leaving the line would expose the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "26c332d7180ce6c79a4dac3fe0ce150e019d711881412316377a20346776467d",
+  "recordedAt": "2026-10-04T07:50:52.590Z",
+  "sha256": "ba1877bfe0dd24f3308fd561186091f37e717ac9801f072076c05119d046afe4",
+  "bytes": 21531,
+  "requestId": "aS9JRnTPAlqqkKzCcg0r",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0b4b58bc9f36109e2c2fc1508cf97fbfbb8a2062fe8b5f4e11ad44701de9d6de",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

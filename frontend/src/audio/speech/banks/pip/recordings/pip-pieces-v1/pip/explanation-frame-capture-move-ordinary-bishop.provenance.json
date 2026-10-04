@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary-bishop",
+      "label": "Explanation frame capture move ordinary bishop",
+      "text": "A capture. This move takes a bishop off the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "024ecf324a7442cf7380492a64aad0be7443de4715d52536491b87dac8586257",
+  "recordedAt": "2026-10-04T08:04:56.756Z",
+  "sha256": "6e0683d18328cd5eb8790ab4b2180b82bec2cfb3c47fd344a0a3f6ad71675366",
+  "bytes": 12400,
+  "requestId": "X6Bg1lHlE8XzWJWGPI9Z",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "79187e92647e90775a55b447ce2438b774db9c823c08230446a7b78d8050438a",
+    "bytes": 62319
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

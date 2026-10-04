@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "tactic-back-rank-allowed-rook",
+      "label": "Tactic back rank allowed rook",
+      "text": "There's a back rank to look at here. The other side's rook has a route to a back-rank mate now, with the king stuck behind its own pieces."
+    },
+    "takeId": null
+  },
+  "requestHash": "f64c5feed0da62733fbb66d3a20542b8f7e39da36798646070dd23dc4eb23797",
+  "recordedAt": "2026-10-04T08:04:10.462Z",
+  "sha256": "f707a0910e8565592c5c5f46eaed28d5b69a2c44c683ef91993223e7ed5e5c92",
+  "bytes": 27186,
+  "requestId": "bngbua4G4HDYf4XaPKUN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fa2b3e2afb4152588bf7b5bb70d459a7736e8e9476868197401da1d4d728bd45",
+    "bytes": 137970
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

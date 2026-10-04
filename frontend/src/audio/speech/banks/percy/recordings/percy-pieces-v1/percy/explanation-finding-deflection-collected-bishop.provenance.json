@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-bishop",
+      "label": "Explanation finding deflection collected bishop",
+      "text": "The defender gets lured off its post, and the bishop it was protecting gets captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "57915de75af92e5afdc0242e4096b1f93207197db005a647868c443bbd597a3b",
+  "recordedAt": "2026-10-04T08:01:08.638Z",
+  "sha256": "e0706f8e138fbe27d20fb4ed10fbd2fc52188efbbc5303c3987e5d381db4aab0",
+  "bytes": 16637,
+  "requestId": "0ECIsM3iBl4GuB6KFPJf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e4d19ac09c4d7984fb8989f926ab3dc7ba90ebff3b4719725db06be2497e362b",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

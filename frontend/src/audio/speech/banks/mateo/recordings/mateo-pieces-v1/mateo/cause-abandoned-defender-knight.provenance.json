@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "cause-abandoned-defender-knight",
+      "label": "Cause abandoned defender knight",
+      "text": "Wait, look at this. That piece was the only real guard of the knight, and now it's walked away, so the knight can be taken."
+    },
+    "takeId": null
+  },
+  "requestHash": "8a5f1c57bcfb2fe66166fd9cf2a6367e5f4a90429a25f793c3e7453f4b11a7cf",
+  "recordedAt": "2026-10-04T07:55:36.602Z",
+  "sha256": "8b78942a2586a789b3f4764ca4aa8f1b1ad2afb0781dbf36755598f63ec74f72",
+  "bytes": 26566,
+  "requestId": "7gO7IMTYRKDBkbFoOh33",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "472e19e2d15ccb10cc5ade3d7bc37ff1693e7df0853f522596504ce19163dfe9",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

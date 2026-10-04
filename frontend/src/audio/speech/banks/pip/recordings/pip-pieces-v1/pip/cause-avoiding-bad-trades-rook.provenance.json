@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "cause-avoiding-bad-trades-rook",
+      "label": "Cause avoiding bad trades rook",
+      "text": "That trade doesn't add up. After the rook captures, the other side recaptures it, and it's worth more than what it took. Always check what comes back after a capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "29387db3f898e705a4aeac2a2089715c7331f42c943139d1c9c6151d72e329ef",
+  "recordedAt": "2026-10-04T08:04:03.364Z",
+  "sha256": "b82235fa265c629b69838eb53b5bffd4677a41171eb96e3885a33be59bff446f",
+  "bytes": 34014,
+  "requestId": "hiLdWTorJIwS54ATKhGi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "128cf0f62f7141485bfa8cef9d6d69c94ab7010b3c6baa00bd595015d2f58c45",
+    "bytes": 175168
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "tactic-pin-missed-pawn",
+      "label": "Tactic pin missed pawn",
+      "text": "Missed clue: another move set up a pin, sticking a pawn in front of its own king. This one leaves that idea alone."
+    },
+    "takeId": null
+  },
+  "requestHash": "949be5c72bffe9b4358dcf2c1fec6d26bfba5a9a75297c952ea94d80296688ac",
+  "recordedAt": "2026-10-04T08:08:30.632Z",
+  "sha256": "e8ebe9b22f1c77ce43cab0b66d3467369b05a284ef28f1fdb8d5fab8226025e2",
+  "bytes": 26332,
+  "requestId": "5sXS2F2IqV6thU9fUXR4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cee6d16577aab12da8fa89f4dac2f2afe491b891b69b0332de275dd553c1288f",
+    "bytes": 137970
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

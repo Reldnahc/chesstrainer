@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed-rook",
+      "label": "Tactic skewer allowed rook",
+      "text": "A rook with another piece behind it on one line is an invitation, and this lets the other side skewer them. Notebook rule: never stack valuable pieces where one attack hits both."
+    },
+    "takeId": null
+  },
+  "requestHash": "0e1c23ac779cf9dce47920d684a901f30f8b4398a850d0f8fe20197b0c901c3b",
+  "recordedAt": "2026-10-04T08:10:41.461Z",
+  "sha256": "1e3d451ea435ca3a91026faecd0da94a2e91d6c3cce1b8906b3700b70b34f36f",
+  "bytes": 37228,
+  "requestId": "FlHkjdtJXxm9lYzSJmLj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ac17b5612928269e59d82a98b5594482e0e5ab356285fa47d3f6329a78062afb",
+    "bytes": 191887
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

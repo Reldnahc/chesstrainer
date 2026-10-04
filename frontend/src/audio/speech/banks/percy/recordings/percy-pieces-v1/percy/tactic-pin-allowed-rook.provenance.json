@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-pin-allowed-rook",
+      "label": "Tactic pin allowed rook",
+      "text": "Here's one to notice. The other side gets to pin a rook to its king, and once it's pinned, that rook is stuck on the line."
+    },
+    "takeId": null
+  },
+  "requestHash": "53b6db8d45f8ca438767d533c26c80f562d8c016c10c6a697b27773fe975e040",
+  "recordedAt": "2026-10-04T07:59:48.688Z",
+  "sha256": "57f1eba1ab80ef2714e473a571084e25849fc0f6905f1b963ce352db709e4f39",
+  "bytes": 24642,
+  "requestId": "sjmJ1oExEht9BIU0vZWb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ac9bfdcc23a0deb4b403b48ca5cd8203e9ae3d9f7a152961b5cceaf45b997315",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

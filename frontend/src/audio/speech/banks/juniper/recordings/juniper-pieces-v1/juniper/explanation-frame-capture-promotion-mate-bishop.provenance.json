@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-mate-bishop",
+      "label": "Explanation frame capture promotion mate bishop",
+      "text": "Capturing a bishop as it goes, the pawn reaches the far edge, promotes, and gives checkmate. Nowhere remains for the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "32be219d282d3d979a389845145689ac3bc39781c307da8d9a54d69dc2c742e7",
+  "recordedAt": "2026-10-04T07:52:45.235Z",
+  "sha256": "68420311585fe7ba1e248ddee3e6b82ee8b942046831a62cf4e599aac3f759f4",
+  "bytes": 26513,
+  "requestId": "d0RQCtRBdVy08HvLv2R7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ce373616137f39b206e286595926aac5664c56d30dc15b55c6ce35f9687470f6",
+    "bytes": 137970
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

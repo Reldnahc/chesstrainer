@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "tactic-fork-missed-bishop",
+      "label": "Tactic fork missed bishop",
+      "text": "A fork was hiding inside the stronger move, with a bishop hitting several targets from a single square. That's the kind of trick worth hunting for every time."
+    },
+    "takeId": null
+  },
+  "requestHash": "0f27662941464b3dbcb124f36fee84d02932f9372044e36819efe9139d0c3f56",
+  "recordedAt": "2026-10-04T07:54:51.502Z",
+  "sha256": "c3c224d97b295a08cf4256979f721b2be87e34ccef5217ac5ff0cd6215d85527",
+  "bytes": 30455,
+  "requestId": "BIyUhLR9XRndzm5OZXBa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "229a0937e05786745ffff37bab3910550573f22fca119f49502856eb50c025ae",
+    "bytes": 153435
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

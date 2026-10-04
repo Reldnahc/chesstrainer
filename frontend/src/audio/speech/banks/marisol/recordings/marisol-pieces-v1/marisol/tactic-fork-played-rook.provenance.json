@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-fork-played-rook",
+      "label": "Tactic fork played rook",
+      "text": "What changed: the rook now sits where it touches several targets at once. It follows that one reply is unlikely to cover all of them."
+    },
+    "takeId": null
+  },
+  "requestHash": "d654a31815a75859e2133f3b534a69b942908fa0ca1fc979312755e14b60a2cc",
+  "recordedAt": "2026-10-04T07:52:52.370Z",
+  "sha256": "ead57d0f82329a758fee7afd67c99d08a39886d00272847dcc0af83c57c87153",
+  "bytes": 27736,
+  "requestId": "1J7zzdbBhf21HwVK6Mi4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "58fd77fbc2e5e915bda5d0bb46929e9d403c1a5ed45cae2793d9c9263251de79",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

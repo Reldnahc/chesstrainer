@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "tactic-deflection-played-rook",
+      "label": "Tactic deflection played rook",
+      "text": "Deflection! The defending rook gets dragged away to handle something else, and whatever it was guarding is left with no one."
+    },
+    "takeId": null
+  },
+  "requestHash": "66c4bdda5e142b08cf031dd65ee0d3bd69e5c24f98879275b59233c3069a5196",
+  "recordedAt": "2026-10-04T07:55:11.227Z",
+  "sha256": "186599657d8bd98f1884012e0d45cbcb36646340636479aa964d74116276bed3",
+  "bytes": 24990,
+  "requestId": "jjsKiY3ynW2j3IcW8SWK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0a1e62b3da147a1c3f7aa44aa9ce5180f15e48e15db18b471446377ca397811b",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

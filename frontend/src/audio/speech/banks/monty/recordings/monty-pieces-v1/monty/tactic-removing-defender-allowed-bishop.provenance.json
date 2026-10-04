@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-bishop",
+      "label": "Tactic removing defender allowed bishop",
+      "text": "A bishop is holding things together, and now the other side gets to knock it out. Look at what that bishop holds up before it is gone."
+    },
+    "takeId": null
+  },
+  "requestHash": "1022b0959c4c1de40aa759535500ece4ff04572e91c3cc7f32f4858bd05a1aee",
+  "recordedAt": "2026-10-04T07:56:24.168Z",
+  "sha256": "a93272f9ca929f5b2f501cc0470cfc055563da2dc12ad2b556d02852b4d53e86",
+  "bytes": 26137,
+  "requestId": "GVPC0SPjpOdupae6xBwe",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9ee50bf8f336250a5fa6429b73e575f104e8b6ed85280b103ba231e2a3b52fb8",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

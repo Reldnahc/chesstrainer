@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-pin-played-pawn",
+      "label": "Tactic pin played pawn",
+      "text": "The pin holds. Stepping off that line would expose the king behind, so the pawn in front is stuck on the line. Pile more pressure onto a pinned piece."
+    },
+    "takeId": null
+  },
+  "requestHash": "8197250b9a1a5c4a1230bff6015f16152f21ae18743fea75a8e3655b6ab2ca1f",
+  "recordedAt": "2026-10-04T08:10:36.369Z",
+  "sha256": "d46d79f8991bf5fa54e9633c95625a49d3ee9a8861b23c524b032e168da9b4fc",
+  "bytes": 31336,
+  "requestId": "YGzJHH9zszg03d8P6jaW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ce9a7d5e5170c9b18750a1b501af84302b2d579be31d08e16907c714fed1dcee",
+    "bytes": 160958
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

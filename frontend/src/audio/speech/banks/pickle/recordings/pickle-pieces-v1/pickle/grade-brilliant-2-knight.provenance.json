@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "grade-brilliant-2-knight",
+      "label": "Grade brilliant 2 knight",
+      "text": "Case notes: a real knight sacrifice, and the checked line finds no hole in it. Weird tricks are the best tricks!"
+    },
+    "takeId": null
+  },
+  "requestHash": "053bc57d17d994d181a5b906eb13f10660a73ed3dde4c68e18baacfaaef693b8",
+  "recordedAt": "2026-10-04T08:03:16.533Z",
+  "sha256": "1c607da8dff505c74b1258d40a3e02a2b7930b17a1aa446499a82768bb3a02f0",
+  "bytes": 25637,
+  "requestId": "gwE2H6SpBC5GFHL4i7Mo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "68982aa56e65b37a17e9b199e2a4bbf1ac294f7c6eca2a3a9aaa59f6c38e4c96",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

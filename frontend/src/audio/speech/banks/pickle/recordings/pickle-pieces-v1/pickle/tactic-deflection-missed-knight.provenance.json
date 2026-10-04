@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-knight",
+      "label": "Tactic deflection missed knight",
+      "text": "A deflection was waiting in another move, with the knight on defense just begging to be lured off. That deflection is still sitting there, unused."
+    },
+    "takeId": null
+  },
+  "requestHash": "f389afb4fb5d40b4784194b0a150bac94e7ea51c17baa4c5157cd0e4da1c0014",
+  "recordedAt": "2026-10-04T08:02:09.829Z",
+  "sha256": "9d011c7f4ba1b7e2d957fe0564d96ac594026b35bba94499fd176d3bc68f66f7",
+  "bytes": 28485,
+  "requestId": "woFqCgVjZxkBmI6haBVM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "db9f9f8db74a79fd8a1699a464bd29d06a5413d715af9fae7e2eca86ea5a160a",
+    "bytes": 148419
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "tactic-pin-allowed-bishop",
+      "label": "Tactic pin allowed bishop",
+      "text": "Pin incoming. This move lets the other side tie a bishop to its own king, so it can't leave the line without exposing the king. Check every line to the king before moving."
+    },
+    "takeId": null
+  },
+  "requestHash": "9fd7968423496146bb833c7cedfce0d20309304cb540d63922265cd1fa369954",
+  "recordedAt": "2026-10-04T08:06:32.602Z",
+  "sha256": "86dcd59e573c9e332fb85e5378d395e83e314c9beac197a770874bcbfaeda9a8",
+  "bytes": 33602,
+  "requestId": "8Cr7rK5IXOQ9ry0o0YI7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "de1f757542f8e18a62b66dc8a42b6072f4313e1166264b3cc5117a2e13431618",
+    "bytes": 173915
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed-pawn",
+      "label": "Tactic discovered attack allowed pawn",
+      "text": "Their pawn is standing in the way of a piece behind it, and this move lets it move off the line so that piece can attack. Discovered attacks begin exactly like this."
+    },
+    "takeId": null
+  },
+  "requestHash": "f4f06e9cd6ba3acd6549f794a3e8b9ebb211fb2d1c62c0ac7d7a675983b767e8",
+  "recordedAt": "2026-10-04T07:56:39.985Z",
+  "sha256": "6d17576804282ab293ad206b140c76c0e195184917e6c5d0c6abfc094011c67d",
+  "bytes": 33117,
+  "requestId": "8MPqdcU1JF4dZyy88zjd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5fd8de08f48a4a2177cfd75941697abbf99df8184bbe942152ac0ce8c6ff33c0",
+    "bytes": 170153
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

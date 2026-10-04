@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-missed-knight",
+      "label": "Tactic undefended capture missed knight",
+      "text": "An unguarded knight was there to collect with another move, and the played move passes it by. Loose pieces should be counted before anything more elaborate."
+    },
+    "takeId": null
+  },
+  "requestHash": "66e80b7cd5061f44e8706bc7770ebe81b91eab6fff0ee619e3d728024712d56c",
+  "recordedAt": "2026-10-04T07:58:13.561Z",
+  "sha256": "cd9b62bd429f8dd3448e0ac731b84d69d02db79b52ab4a500de61dc2b1baa19e",
+  "bytes": 31747,
+  "requestId": "1iJjrmvw6rAKTyCKiI1l",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "33e76a844ed90033629c9a3e1da2c5abd9617c4cfa21fa94437ef46579a03f26",
+    "bytes": 163466
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

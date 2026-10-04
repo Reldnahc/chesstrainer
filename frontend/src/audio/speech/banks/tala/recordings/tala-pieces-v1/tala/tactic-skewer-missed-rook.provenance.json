@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "tactic-skewer-missed-rook",
+      "label": "Tactic skewer missed rook",
+      "text": "The kicker was a skewer: a different move would have chased the rook off its line and left the piece behind it hanging."
+    },
+    "takeId": null
+  },
+  "requestHash": "cbe6ffac5e3797b10eb322478241cdecd9ede03c3ffaac4ef5440fe9c77b0597",
+  "recordedAt": "2026-10-04T08:08:29.507Z",
+  "sha256": "5590a8b06712e54611a49eec9b8c2e5223064c662985d3eca614964a968cedf9",
+  "bytes": 23055,
+  "requestId": "o359WeIEfFe0GQG7zwnX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fdb5424b1337a562cec53ce6e8bc6fa777a4b8b9667d3caef99b9d31c5778602",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

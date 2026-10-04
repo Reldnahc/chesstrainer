@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed-pawn",
+      "label": "Tactic discovered attack missed pawn",
+      "text": "There was a discovered attack in the better move. Clear the pawn out of the way, and the back piece attacks as well. Not played here."
+    },
+    "takeId": null
+  },
+  "requestHash": "d11fa0814c67bd8af94f6dee77e2be89d6264ecfa9c58ce98394d2942a53bd48",
+  "recordedAt": "2026-10-04T07:56:54.433Z",
+  "sha256": "e59a160751525daed3f2c9fc0a4581866ec19162d838e0cdff5f9e045119e9b5",
+  "bytes": 25544,
+  "requestId": "lNyBU9wpgzPK5E7uDsF3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3cc6173918edb1b75a78b55f6dbc1257c138b96cbe0704af47978359355366f4",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

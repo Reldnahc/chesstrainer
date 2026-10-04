@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "support-restored-bishop",
+      "label": "Support restored bishop",
+      "text": "Protection has returned to a bishop that was left unguarded earlier. Set the two positions side by side and see what restored it."
+    },
+    "takeId": null
+  },
+  "requestHash": "33d19f3f24c1de2e766b636983313fd754852e6a27c2d0e2f474cb66d6e1fb71",
+  "recordedAt": "2026-10-04T07:58:57.718Z",
+  "sha256": "93a34dec841b83782aa418c8cb4441eca2aa4a2364147a3c8285a4b5bccb61ab",
+  "bytes": 28002,
+  "requestId": "Z8dT147AOa292tZ2wSMl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "751aca3b479a266ebc2cad0f233a6d8a10358f4ccba470281fb68b13f51f201d",
+    "bytes": 142986
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

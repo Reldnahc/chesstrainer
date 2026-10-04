@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed-bishop",
+      "label": "Tactic discovered attack missed bishop",
+      "text": "Tucked into the stronger move was a discovered attack, the bishop moving off the line so the piece behind could strike. That line stayed closed here."
+    },
+    "takeId": null
+  },
+  "requestHash": "7c5989fad5e14d5329ad4f8e85623f67cb02c640c2f4a1eaaaf98eae2629082a",
+  "recordedAt": "2026-10-04T07:48:49.031Z",
+  "sha256": "8f8aa9bed7ba8aff3033eac76b9fb21b8c0d39fad4337fbcec6557343723b858",
+  "bytes": 30216,
+  "requestId": "cMmvVwM0XOh1oMGREip4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5bd0e55116251cc7ac757413fe10be43ff80dad1c7e7b1c15c71f2ec7c3e348e",
+    "bytes": 153435
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

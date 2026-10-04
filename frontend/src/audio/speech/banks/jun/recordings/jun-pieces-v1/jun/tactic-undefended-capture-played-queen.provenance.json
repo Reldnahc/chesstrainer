@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-queen",
+      "label": "Tactic undefended capture played queen",
+      "text": "Unprotected queen captured; there is no recapture."
+    },
+    "takeId": null
+  },
+  "requestHash": "b3aadcfd4825b85f09f63f7aa1ae4480eef97298d845626dfa41e7064bd85273",
+  "recordedAt": "2026-10-04T07:50:01.107Z",
+  "sha256": "8cb6eeadac4d4cd07a632134b93b63e0931c98e0fb2fd9f50425e895729888db",
+  "bytes": 12781,
+  "requestId": "bs6w26zfQlBGv79VMtCV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0e57d90a82cb14ec3d036edffacc8056d2fc4720e6ff46c4640c8276a0bb71c0",
+    "bytes": 65245
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

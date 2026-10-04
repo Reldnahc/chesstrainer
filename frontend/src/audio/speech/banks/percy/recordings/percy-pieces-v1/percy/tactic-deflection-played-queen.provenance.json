@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-deflection-played-queen",
+      "label": "Tactic deflection played queen",
+      "text": "A deflection! The queen on guard duty gets pulled away from what it was guarding, and the thing it was guarding is left wide open."
+    },
+    "takeId": null
+  },
+  "requestHash": "79404ecfd884d1daba4fa7ca2508d7576b9a0b82648104b65aa01b34d462eff5",
+  "recordedAt": "2026-10-04T08:00:29.811Z",
+  "sha256": "20b797d4013346d2670f27313a66d77e3acc6bdd509dce3ef8f99e47f5b04f16",
+  "bytes": 24707,
+  "requestId": "Mic7h0q8gZRBWqUt069w",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ae6a5a215964ea2b5c35a1daee775f5b1ebee98a8900015d62af2298aea2ad2e",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-escape-rook",
+      "label": "Explanation frame capture move escape rook",
+      "text": "The rook is captured, and the capture is what gets the king out of check."
+    },
+    "takeId": null
+  },
+  "requestHash": "ff73a4b2a7bb324a8d315581fd4e3e7c3a03862bb8d30442ce40cecd211b2379",
+  "recordedAt": "2026-10-04T07:57:43.077Z",
+  "sha256": "7d305375eaa98446a5e9b8dc0ac37c0d7485aeb19937516b22cba6a22ac290bd",
+  "bytes": 14613,
+  "requestId": "R1fGtSECdTW0gLkme5ms",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d695334b05d2f7003b4bccb6eddf3bd815f5333ec7d2c681893c36427558a705",
+    "bytes": 72768
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

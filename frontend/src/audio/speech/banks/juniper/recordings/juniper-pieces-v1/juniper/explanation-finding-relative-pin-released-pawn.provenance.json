@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-pawn",
+      "label": "Explanation finding relative pin released pawn",
+      "text": "The opponent's last move let a relative pin go, and the attacking pawn was free. Its target never moved away, and the line shown ends with that target captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "3d57258c2a8d152cc0e620c58779876c7cd63aa4b08a6d614baeaaed98b2eabf",
+  "recordedAt": "2026-10-04T07:52:06.261Z",
+  "sha256": "9078b7ec6eb25418e6624ec07f23c172c703c734d76fb37c4009a59e113b45c2",
+  "bytes": 34540,
+  "requestId": "oA8fBeUaDAOiVOYaCtLu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "136b435f60a05e63af08dcf05e424f11501116d5c15008cd6030d46ca6c595c7",
+    "bytes": 180184
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

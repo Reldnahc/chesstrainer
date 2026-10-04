@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-check-pawn",
+      "label": "Explanation frame capture move check pawn",
+      "text": "This move takes a pawn and checks, in one swoop."
+    },
+    "takeId": null
+  },
+  "requestHash": "7a3a27a8b7dd973137a13cc0a2032262291f71914c85c3996cb30122a4caa172",
+  "recordedAt": "2026-10-04T08:06:02.842Z",
+  "sha256": "e880b98390aa5fb207df8b971e993f07715324e5c08dd3df0c799167d15a832d",
+  "bytes": 12188,
+  "requestId": "yfKl8eb1pZCJYDBRr5sR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "77bf8e20714617ab91fdc8e7d1137ffab90ccde75d169c05f8928d475c425364",
+    "bytes": 59812
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

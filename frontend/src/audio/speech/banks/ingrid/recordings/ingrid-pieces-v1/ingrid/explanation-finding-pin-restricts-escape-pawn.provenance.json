@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape-pawn",
+      "label": "Explanation finding pin restricts escape pawn",
+      "text": "Since the attacked pawn is pinned to its king, running away isn't an option; whatever it does must leave the king shielded."
+    },
+    "takeId": null
+  },
+  "requestHash": "3e094fb17b36ed5021b1f76a73882f8ca970271e2478c7e530a84a34acd6ef25",
+  "recordedAt": "2026-10-04T07:48:51.954Z",
+  "sha256": "a13f5d47d7ad4e495d25c4fa3b11269859874173d57c80a4bdbffa50fc6b0c9d",
+  "bytes": 26596,
+  "requestId": "HWkl26qphxLu2vGUjxWj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "17bcdef95c8bda14142be866398b9f75a714feeb272ee23bce5fc5b4389996fb",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

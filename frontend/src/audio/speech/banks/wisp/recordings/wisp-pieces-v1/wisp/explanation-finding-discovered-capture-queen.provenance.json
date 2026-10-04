@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-capture-queen",
+      "label": "Explanation finding discovered capture queen",
+      "text": "A blocking piece moves. Along the line it opened, the queen behind makes the capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "d11b1446cbc899338d8a4edcb28af87a51051f529b02d3fbef920ec04d16089a",
+  "recordedAt": "2026-10-04T08:14:32.984Z",
+  "sha256": "10d41b31d4c1d24ba78048f359552a1088fa2ccc93f510ca83e3ad6a8fe9756e",
+  "bytes": 18746,
+  "requestId": "LM7xXXDELubTuyfC9Tjd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "07f07c7408791a9b5fc8f5c63687181b5d511804dc104e6ec95dccd5f0f8100d",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

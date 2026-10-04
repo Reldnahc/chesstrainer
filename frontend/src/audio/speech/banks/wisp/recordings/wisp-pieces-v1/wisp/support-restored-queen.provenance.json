@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "support-restored-queen",
+      "label": "Support restored queen",
+      "text": "The queen left alone before has a guardian once more."
+    },
+    "takeId": null
+  },
+  "requestHash": "18e0d59b7368351467cf21450ed3a17e5a7854fa3e83f7b9a208244c873ef4d1",
+  "recordedAt": "2026-10-04T08:14:19.043Z",
+  "sha256": "a238e418daaf82820c4c6e135266f12c997bc930d0af432fe5e89af92a03c323",
+  "bytes": 12737,
+  "requestId": "abQ42zkviZsuCwvZaPae",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "051d7bf07f5ff90d18c551fdf5787f8a666231b65166fe8efbfb0df18d40c019",
+    "bytes": 63991
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed-queen",
+      "label": "Tactic skewer allowed queen",
+      "text": "Zoom in on that line: a queen with another piece stacked behind it, and now the other side can skewer them. Chase the queen, and the piece behind it hangs."
+    },
+    "takeId": null
+  },
+  "requestHash": "a6a37a12bf2c6cfce3176186e07933684f7ba404e35fae2293c276527754064c",
+  "recordedAt": "2026-10-04T08:09:00.891Z",
+  "sha256": "5ecaaebde1eb95bcbeb2565f27bd4cb3be64dc18808a93c5cd4269273ca98a1c",
+  "bytes": 30933,
+  "requestId": "EkzyixO0TUh8ZjFAN77x",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "edd6145b23a7d1ffca0381326119fb2e29e1e043740606ff7e73a2d5d7a8c941",
+    "bytes": 160958
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

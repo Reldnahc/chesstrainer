@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "tactic-skewer-missed-bishop",
+      "label": "Tactic skewer missed bishop",
+      "text": "The skewer belonged to a stronger move. Strike the bishop in front, and once it steps away, the piece standing behind it is exposed. The pattern was there to use."
+    },
+    "takeId": null
+  },
+  "requestHash": "c141efa2b8cfd504415ac66a64bf9fba134d03b9fcdf0f7f711236f14f2a7caf",
+  "recordedAt": "2026-10-04T07:57:55.773Z",
+  "sha256": "00b5a7904e7076b20f4b3b18a37c220fda770d99413e6b8a3753913bfe58fb07",
+  "bytes": 34969,
+  "requestId": "G7KUpaTXpozSwl9ChyUG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "391e55b8282f303ec52fd48520ddf38f3e75fa5998b726eddf1134c3ba9c0773",
+    "bytes": 181438
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

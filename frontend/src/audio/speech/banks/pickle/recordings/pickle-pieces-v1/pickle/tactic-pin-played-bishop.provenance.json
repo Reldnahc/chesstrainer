@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "tactic-pin-played-bishop",
+      "label": "Tactic pin played bishop",
+      "text": "See that bishop on the line? It can't step off, because its king sits somewhere behind it on that line. Stuck on that line by a pin!"
+    },
+    "takeId": null
+  },
+  "requestHash": "2e62e9c237f263a8a630309d6dc2625b48e4a0bb6722fa066ec93e76ed03db0f",
+  "recordedAt": "2026-10-04T08:01:55.997Z",
+  "sha256": "999bc08008d9488fe6723828e00bcbbbb4c2c5c0df39f18a705a5f19a741f5b4",
+  "bytes": 28070,
+  "requestId": "fDCDpJFZh0egGOkka0c2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "07dafa037195ae40305cd028a08418319bfb8a8fac51e0030e6148e4ae0f8f3d",
+    "bytes": 145911
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-bishop",
+      "label": "Tactic deflection allowed bishop",
+      "text": "A defending bishop can be coaxed away now. Watch what it guards; that is what would sit alone."
+    },
+    "takeId": null
+  },
+  "requestHash": "77b06e7b2f3f11c3614852ec48c313a8b8f7f7bbf1a8493881b422b234915540",
+  "recordedAt": "2026-10-04T07:52:01.685Z",
+  "sha256": "b8aaf2f8668220df09680e2f95b49d22f8f9a6bc9aca45813909bdedb45a522e",
+  "bytes": 21473,
+  "requestId": "yvbnCGQPHAHWjtVLtkv8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "90f2b26a2a1beee6fe25687432f37aa8a33c6408034ab4500b1e736d0c3f8f0e",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

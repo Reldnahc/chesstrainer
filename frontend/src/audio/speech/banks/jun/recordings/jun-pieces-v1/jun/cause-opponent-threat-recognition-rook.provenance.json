@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "cause-opponent-threat-recognition-rook",
+      "label": "Cause opponent threat recognition rook",
+      "text": "The opponent's last move posed a direct threat. This reply leaves it unmet, and the rook remains capturable."
+    },
+    "takeId": null
+  },
+  "requestHash": "3ca45f9a67c2def27e2d4119ac3c78d429bcbcf3cc674b4aba3dc5d03444f168",
+  "recordedAt": "2026-10-04T07:50:20.810Z",
+  "sha256": "414bd38f14a97a9ee9550e0c2750b308395d70c54bdc8b7e2d188e196f8038ed",
+  "bytes": 23707,
+  "requestId": "WNIp1qTr5GU4Bq9fZTAz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bc5755213b4461a7067fff5007fdca2f8c4f3e9ee0a9e2ad954881fa95a76fb4",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

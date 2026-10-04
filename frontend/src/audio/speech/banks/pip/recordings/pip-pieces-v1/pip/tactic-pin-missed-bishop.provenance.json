@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "tactic-pin-missed-bishop",
+      "label": "Tactic pin missed bishop",
+      "text": "Another move had a pin to the king ready. The pinned bishop wouldn't have been able to leave its line. This move lets that go."
+    },
+    "takeId": null
+  },
+  "requestHash": "b0ea2d4fea2c527be712641bbf243dde6fa48e7660f776c43ab51f2307e3641b",
+  "recordedAt": "2026-10-04T08:03:27.558Z",
+  "sha256": "0e9436032b7ebe4858470da63ec90e00f7cb0e001ebf3e019a678b7cc591eaca",
+  "bytes": 25464,
+  "requestId": "4gmILHKW3m8MnBS4ACJO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2e1fcdf7aa8f0d173cd295a8dd47507245c107fe5e30a2825cb556ea7e0e0083",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

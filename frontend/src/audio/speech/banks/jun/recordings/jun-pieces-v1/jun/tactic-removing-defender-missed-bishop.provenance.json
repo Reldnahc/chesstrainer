@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed-bishop",
+      "label": "Tactic removing defender missed bishop",
+      "text": "The stronger move captured a defending bishop and stripped the protection from the piece it guarded. This move leaves the bishop in place."
+    },
+    "takeId": null
+  },
+  "requestHash": "371e88a71eef64ca1511012ec3c95efc4ba4e1b634a5e72f98e9de1a899b4bf0",
+  "recordedAt": "2026-10-04T07:50:12.164Z",
+  "sha256": "44ce8519c71c5284a891c5d74455c0c1b08b923ee6ccc1d670ed47ab6aa0318e",
+  "bytes": 26205,
+  "requestId": "rZY1KOKfKpHainYyXpdG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "598c6e928100bef1b57d4978d988bf20b275ca1a9518ef569a82d5e937e2dbb0",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate-rook",
+      "label": "Explanation frame capture move mate rook",
+      "text": "This move takes a rook, and it's checkmate. The king has no legal square left."
+    },
+    "takeId": null
+  },
+  "requestHash": "df4f952efe10a4540df688e2cd21edf7d2c6f4a4ba56792ed31e5f9d73a333be",
+  "recordedAt": "2026-10-04T08:04:42.185Z",
+  "sha256": "0ea63c62146cf2c67b67bdb2896e0cd45ac9e1bd54ddc0171d2d493af5f1075e",
+  "bytes": 18978,
+  "requestId": "QR0KCbC3r2TPoJ7RwuFE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7c4ff494a7b2f0305b20e1e12d183287426466ae4d071555b03e98806ba797e8",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

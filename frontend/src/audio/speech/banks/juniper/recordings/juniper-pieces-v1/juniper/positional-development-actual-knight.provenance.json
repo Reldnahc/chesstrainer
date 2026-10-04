@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "positional-development-actual-knight",
+      "label": "Positional development actual knight",
+      "text": "A knight wakes and moves out. Small, but notice where it has settled."
+    },
+    "takeId": null
+  },
+  "requestHash": "1ba72cb2b77eb26d1d138645dd54348fbbd0b6b7f02b5cdc492b05aae0317029",
+  "recordedAt": "2026-10-04T07:52:09.787Z",
+  "sha256": "19c214384315c3a1c220833dd4a1fbf6cf8cd2dabdacf805952dcc770e69e8eb",
+  "bytes": 16580,
+  "requestId": "91gSjMuMELhSKN4TWv1G",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "67828d7cea6619cb5717e6c82d7648270bc89c02eba4a9bcdd549104180aa906",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

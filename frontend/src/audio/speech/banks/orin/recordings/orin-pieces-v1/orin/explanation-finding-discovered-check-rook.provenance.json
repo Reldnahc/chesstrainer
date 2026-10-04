@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check-rook",
+      "label": "Explanation finding discovered check rook",
+      "text": "A piece steps off the line, and the rook behind it delivers check: the discovered check."
+    },
+    "takeId": null
+  },
+  "requestHash": "08a452d2dd390ade2211295d5ac0a27f8b8f533a8378a72a5459e5825f903f19",
+  "recordedAt": "2026-10-04T07:59:23.157Z",
+  "sha256": "92a2959dffa7eb9c205bf3cc864fb3f30efddbd7d48b1dd94d6fdef6686b297b",
+  "bytes": 19684,
+  "requestId": "xrBLQUjiLoClzwWOHg1n",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "66639d2eeb25dc95901cbd3ed82fbaf087527cb06e32806e94d058061bbd4bdb",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

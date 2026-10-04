@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-escape-queen",
+      "label": "Explanation frame capture move escape queen",
+      "text": "Grabbing the queen doubles as the escape from check."
+    },
+    "takeId": null
+  },
+  "requestHash": "c480889134c9ed94b6deb890063d2eee4db87fa6d754837bf91795d08069db62",
+  "recordedAt": "2026-10-04T08:06:19.796Z",
+  "sha256": "facca29a0e9f219449fa687f88d47b7392a408f0fa9c4544b2b2be7da1c01f94",
+  "bytes": 11188,
+  "requestId": "3xphat5LsUagh8lK2yvU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ef03f32cac315f1290cb47b83c0958cf80dd9d6a7367286cf881801968224289",
+    "bytes": 53542
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

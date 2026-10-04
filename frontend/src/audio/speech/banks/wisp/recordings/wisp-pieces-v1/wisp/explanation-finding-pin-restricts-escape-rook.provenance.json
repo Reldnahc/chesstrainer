@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape-rook",
+      "label": "Explanation finding pin restricts escape rook",
+      "text": "The rook under attack is pinned to its king. Its escape is narrow: only moves that keep the king unexposed are legal."
+    },
+    "takeId": null
+  },
+  "requestHash": "bb8fbbb48d65eb4e3d2e016a751f108b45e99dd9693d2a02f69984b06455f57f",
+  "recordedAt": "2026-10-04T08:14:17.231Z",
+  "sha256": "7c0ce46b408735e91450056e1629d87a931e498e9ac59727066d01673676c7d1",
+  "bytes": 26709,
+  "requestId": "H7VYr2pQsfWfyqaZfgjD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3df5bee50a6be2756ac40f39a12e2fd0f2f1e26ba92ca0679b35fb2285529452",
+    "bytes": 139224
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

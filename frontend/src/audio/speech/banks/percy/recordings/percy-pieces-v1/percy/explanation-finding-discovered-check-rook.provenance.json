@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check-rook",
+      "label": "Explanation finding discovered check rook",
+      "text": "One piece moves aside, and the rook it was blocking delivers check."
+    },
+    "takeId": null
+  },
+  "requestHash": "61acd741154a074ddc4d2649aba13c5885a86e1260c2dd8d6b7844592a240b61",
+  "recordedAt": "2026-10-04T08:01:06.050Z",
+  "sha256": "973ee668f2bd92d6b5392151a1d43adb5fa5355698d5a2f80c61435c1fb05f84",
+  "bytes": 14162,
+  "requestId": "bM8aAdaxF3bphvCodkHq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7d7790eaa73c88f027ee7e70373d1ba083dc5434594a90cabb75cc4e06fd3d8a",
+    "bytes": 69007
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

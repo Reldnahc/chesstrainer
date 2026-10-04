@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-queen",
+      "label": "Tactic discovered attack played queen",
+      "text": "The discovered attack is a fine device. The queen steps out of the way, and the piece behind it strikes along the line it uncovers."
+    },
+    "takeId": null
+  },
+  "requestHash": "36200af05152a4366bcce40b61bfdcc8ab41117a1168742268317997bea1f529",
+  "recordedAt": "2026-10-04T07:58:14.062Z",
+  "sha256": "05fa259ce38ae3f6f61b079127ea76a8be97fb8c109a4f0b12d302503f30fc44",
+  "bytes": 27600,
+  "requestId": "pCwXsWgRESq3l4J6hZ3y",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bc082244d4f8ff8b50f2fb78344144b5aff33ffcd15e84f32c93368fe47fa339",
+    "bytes": 141732
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

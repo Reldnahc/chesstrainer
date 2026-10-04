@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-escape-bishop",
+      "label": "Explanation frame capture promotion escape bishop",
+      "text": "The pawn captures a bishop on the last rank and promotes, and with that same move, the capturing side's king escapes the check."
+    },
+    "takeId": null
+  },
+  "requestHash": "35c402819aca76df0cf82925b446ae9ff2e94221f855a3b608d65159781bf458",
+  "recordedAt": "2026-10-04T08:03:03.710Z",
+  "sha256": "0427b87a2225bcd8df924ef802fc9abedbaa239da8ca91c405b724ae5587572c",
+  "bytes": 25281,
+  "requestId": "OnBWWP4w7zL9jprqxXy8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e33ef713cb9dadca82cc9f5678d32c25ace5c4289795e70f57cbe0c63a8ed5d7",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

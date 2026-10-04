@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary-knight",
+      "label": "Explanation frame capture move ordinary knight",
+      "text": "A capture. This move takes a knight off the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "94ca9b5c76f279a30518498a656e7e86238df26deb4c28df29c752808e993f74",
+  "recordedAt": "2026-10-04T08:04:55.677Z",
+  "sha256": "957963102ce008210ea78df99f6f44e44549a7c9259cd8645f2ab0d28cdf3d30",
+  "bytes": 12282,
+  "requestId": "crBY53CyX64ZAuw7tnOS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f9267833468c09e2f2a137186578caae17a2ce98ac1c6b92443d79ae31b7be0c",
+    "bytes": 62319
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

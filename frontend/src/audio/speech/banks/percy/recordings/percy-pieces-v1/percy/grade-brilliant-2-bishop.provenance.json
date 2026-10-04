@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "grade-brilliant-2-bishop",
+      "label": "Grade brilliant 2 bishop",
+      "text": "That's the biggest job a bishop can take on: being offered up. And this offer is sound!"
+    },
+    "takeId": null
+  },
+  "requestHash": "62656f9e30ecfaf768a612a14eea39e1501693d7a57eb1ea96b4d71511bfdb1b",
+  "recordedAt": "2026-10-04T08:01:38.301Z",
+  "sha256": "576115a5a997a1fb25260369f23cf0b58c07f4332ed176505bf73afcd7548c9b",
+  "bytes": 19874,
+  "requestId": "D7JjWJo77s5DCN0oEY6H",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9cbf23c9eb0a00d3535007945840cee1b196a700d7c89cafaf16b4a51c2c5f45",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary-knight",
+      "label": "Explanation frame capture move ordinary knight",
+      "text": "Capture! A knight comes off."
+    },
+    "takeId": null
+  },
+  "requestHash": "f41c8f9e211e35ca1ee1b074989d118e8ac5aec7b6bed1deb73dffbc14edbef9",
+  "recordedAt": "2026-10-04T08:10:09.836Z",
+  "sha256": "606eb5a7fb556c03f7d0316d23e073df1f313a6e4f4cc74c990256581372c04b",
+  "bytes": 7963,
+  "requestId": "2UJv3QixFbzROy6tWd1D",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9df4049a440ed934321c26dbcaf34655c42b5745a3f8f3371c4c5a7ddf810e30",
+    "bytes": 39332
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

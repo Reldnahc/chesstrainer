@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-rook-rook",
+      "label": "Explanation finding double check rook rook",
+      "text": "Double check. Both rooks give check at once, so only a king move is legal."
+    },
+    "takeId": null
+  },
+  "requestHash": "2581060cf3e76197ab20841cd0167e76beab3bf3e011bf2d4d9fde0ab07b8316",
+  "recordedAt": "2026-10-04T07:51:09.452Z",
+  "sha256": "682cd9842fe3a597f72edf31e25dd34a5e4f06ecbd634400c797b6ec62748042",
+  "bytes": 17361,
+  "requestId": "uvsX8r3id79HWQHlcxBJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8dee5e27e2d6210998173b846b85612b59f04ff3e675707490a2eba2428cf26f",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

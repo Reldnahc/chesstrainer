@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-bishop",
+      "label": "Positional unsupported alternative bishop",
+      "text": "The alternative would have taken away the last defender of a bishop. By itself, that would not have shown it could be won."
+    },
+    "takeId": null
+  },
+  "requestHash": "d5317271cfc1cac832bb1e49d0263217ef97b802b0ebe67c2da29f89c7341070",
+  "recordedAt": "2026-10-04T07:53:42.996Z",
+  "sha256": "f71a9364fbcee7799c3ea585acf2ed3ed18a5d8d3a7a5a69fea165ffb46d3374",
+  "bytes": 23524,
+  "requestId": "ZUPLHiyRcVDRZlio48ix",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "097295c84ff53b869e5ed6958b0b80a288060abd6d358a71b70b8a23a586e1d7",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

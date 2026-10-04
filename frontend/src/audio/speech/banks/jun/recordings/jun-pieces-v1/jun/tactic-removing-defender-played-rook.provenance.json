@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played-rook",
+      "label": "Tactic removing defender played rook",
+      "text": "Defending rook eliminated. Whatever depended on it for protection is now exposed."
+    },
+    "takeId": null
+  },
+  "requestHash": "050e208cfe022f6b1f19b703b9ff011fe56714c2e5ed17bc84ef29d48508e5b7",
+  "recordedAt": "2026-10-04T07:50:21.477Z",
+  "sha256": "5317134450b17cd2d4db6af8e12f8dc7700a6e59454d139f6d61a74f0a7dff83",
+  "bytes": 18900,
+  "requestId": "XxCXVsMDqTU4eovZxKXr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "51dc00dbe7de747fdfd38aeb52cebb7cc07f01fe52a9df068cf3f9ca7c8b1678",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-finding-fork-collected-bishop",
+      "label": "Explanation finding fork collected bishop",
+      "text": "Look how the fork works: the bishop hits a bunch of targets, then snags one of them. When this example is over, that side is up material too."
+    },
+    "takeId": null
+  },
+  "requestHash": "5ef5a22c3f7747ff08ed9a71e07f6ae65381277bf639f88fa413451f9e97588c",
+  "recordedAt": "2026-10-04T07:55:32.023Z",
+  "sha256": "cd2b023ed9b0038497461849594ba530b27a53cec81dec0ff724f1a3bc3af0c8",
+  "bytes": 28167,
+  "requestId": "mLC0lLh44Vbid4Dz1h8L",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fd32b6c8c03158cfacce64a51fd0de6c9854e7d85f7263219676ea885a105e3e",
+    "bytes": 142986
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

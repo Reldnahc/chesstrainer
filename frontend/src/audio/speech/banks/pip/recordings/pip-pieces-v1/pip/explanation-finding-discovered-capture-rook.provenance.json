@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-capture-rook",
+      "label": "Explanation finding discovered capture rook",
+      "text": "The blocking piece moves out of the way, and that opens a line for the rook behind it. That rook makes the capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "4376a8108f65faaa7ef733103e576c2d32d4c779272b47a0194757b6b20e36be",
+  "recordedAt": "2026-10-04T08:04:41.597Z",
+  "sha256": "b75ca994a1311a32aa9c8a01f09d714e2785aa6c7fa18f097bcacb665aa260d5",
+  "bytes": 23501,
+  "requestId": "EVnU6TncWow6DjnjG0Gi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a34a79707e502e0677627b453f9729e18c77ae4a6d1da4fabcdc48a9c1dd3671",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate-pawn",
+      "label": "Explanation frame capture move mate pawn",
+      "text": "The pawn falls and checkmate arrives in the same move. The king has no legal answer."
+    },
+    "takeId": null
+  },
+  "requestHash": "492e6ba42bf02cda2ae05e88682d3e73e1663a5c9d6621a55c81ff528074491f",
+  "recordedAt": "2026-10-04T08:16:30.195Z",
+  "sha256": "a9f0df45c0c46914e4b8cbf7b02d54054e8da55a25dc7b4d2c44508fdf4d9ef3",
+  "bytes": 19396,
+  "requestId": "DfuKqMsy1YlOZDlUklRH",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2f9ffd8a6869ef8e18038cc779d5a3216c83a5e6ce977b043e221b17263b328f",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

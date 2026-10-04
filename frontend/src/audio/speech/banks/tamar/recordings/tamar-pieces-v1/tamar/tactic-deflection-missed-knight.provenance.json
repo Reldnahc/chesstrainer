@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-knight",
+      "label": "Tactic deflection missed knight",
+      "text": "The deflection was on. A different move would have pulled a defending knight away from its post. When a defender has two duties, hit one of them."
+    },
+    "takeId": null
+  },
+  "requestHash": "0c5be9a8d90883a0e933cdcab8fbd914650903d86cf1f819699faed3157732b1",
+  "recordedAt": "2026-10-04T08:10:55.191Z",
+  "sha256": "8a6080b600c9a926110bd1d649389620a5762217b08441e5f6c69c7cfd3ecacb",
+  "bytes": 28190,
+  "requestId": "wHDOz06bEcUe0IE62ccr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1da4fc5684af30c5200b42d3583e99a858a1ef4fab188303595f2e0d3d5ea9a9",
+    "bytes": 145911
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

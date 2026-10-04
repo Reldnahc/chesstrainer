@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed-bishop",
+      "label": "Tactic discovered attack missed bishop",
+      "text": "The stronger move had a slingshot loaded, the bishop zipping aside so its partner could fire. Never launched."
+    },
+    "takeId": null
+  },
+  "requestHash": "ce9c5870f7ec96fc8b0ce02ce367a7de9ff1a1aedf0d13e2ae3ac865a0c2b71a",
+  "recordedAt": "2026-10-04T08:05:31.467Z",
+  "sha256": "28a040bc6c2587aae4e3e243db005d44865555e54e64c8cd527a6ee06d45d677",
+  "bytes": 22578,
+  "requestId": "9Dn36rbkA772tonjWQX0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "81a890e2f1c29c6b274f47125b5f15b403b498e5e376e631d3bed74177829073",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

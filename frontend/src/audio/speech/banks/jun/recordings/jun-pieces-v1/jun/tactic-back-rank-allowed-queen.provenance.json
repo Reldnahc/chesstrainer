@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-back-rank-allowed-queen",
+      "label": "Tactic back rank allowed queen",
+      "text": "This permits a back-rank mate idea for the queen. The king has no escape square in front of it, and the last rank is the weakness."
+    },
+    "takeId": null
+  },
+  "requestHash": "2b048e4809cbdc5829989f45ee9560133288ba78386fa6a5777c0ef043bb83ee",
+  "recordedAt": "2026-10-04T07:50:29.522Z",
+  "sha256": "4ec8ee3806467b71d8e0d55b36d2b045dbf4ce5629e3a3497f69b121e09650ea",
+  "bytes": 26339,
+  "requestId": "f6QUOJVpBEu4Zq4YnBhB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "42bebc69f97f34afa8d27fb850b3ba36a37ed3f4fdae365292618335f829072d",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

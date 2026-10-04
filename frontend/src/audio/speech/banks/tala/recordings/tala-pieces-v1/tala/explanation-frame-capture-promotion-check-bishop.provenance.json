@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-check-bishop",
+      "label": "Explanation frame capture promotion check bishop",
+      "text": "The pawn captures the bishop, promotes, and checks, three things in one move."
+    },
+    "takeId": null
+  },
+  "requestHash": "c57db1713ecab44096065000c7590c812486f5c53f2b703d4c187c4bb82e9522",
+  "recordedAt": "2026-10-04T08:09:45.066Z",
+  "sha256": "fec9580dc28aa8b0fa62cebcdea8ea7d6e8e1a6a6fe4e3ef56b37d088b3406c6",
+  "bytes": 18763,
+  "requestId": "DqlciKpgY8IHrCZzoXDN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5c0900c1da83a087ff58462e6535351767e1591a5b116286d80546f46b7ec74a",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-rook",
+      "label": "Explanation finding skewer collected rook",
+      "text": "Watch the rook in front step off the line. Then the piece that was behind it gets captured along that same line."
+    },
+    "takeId": null
+  },
+  "requestHash": "0632f1ea685fb9f5ee2aa7073044e0f2eebf77417aca1d5864f4d36e7c56dc04",
+  "recordedAt": "2026-10-04T08:00:58.068Z",
+  "sha256": "df630af5b1db21a1d2754855b056db440dc67a32cea534341c41c740414fa4c5",
+  "bytes": 21266,
+  "requestId": "EVnpd6AidOTtR8LzgPgM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "abd56b937e332bb12a8973058fbc3747df5284bfb6cdfedba413c4fdcda2aae4",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

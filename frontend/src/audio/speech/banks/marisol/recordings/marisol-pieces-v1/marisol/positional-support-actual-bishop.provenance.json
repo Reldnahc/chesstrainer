@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "positional-support-actual-bishop",
+      "label": "Positional support actual bishop",
+      "text": "Before this move, the bishop had no defender. Now it has one."
+    },
+    "takeId": null
+  },
+  "requestHash": "b74f048bc4c09ccdd18a26da6acfaf389640352932b06bf5a121b39cc79b05b2",
+  "recordedAt": "2026-10-04T07:53:55.160Z",
+  "sha256": "9b6fe18e528d1efa2a94c61f5c6877705933eeb9da945ec9c681d33edd9b9cc2",
+  "bytes": 15579,
+  "requestId": "zbl0vZgIddMWgoUHhORE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "46bd33f93962fef21d2d384272b8b6e7e1350389e2ed351e47369e7684f88236",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

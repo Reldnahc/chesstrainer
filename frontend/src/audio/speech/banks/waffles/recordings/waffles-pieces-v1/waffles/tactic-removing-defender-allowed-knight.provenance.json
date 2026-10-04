@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-knight",
+      "label": "Tactic removing defender allowed knight",
+      "text": "Defender in the open! The other side can capture that knight, and whatever it guards could end up unprotected. Check its duties now."
+    },
+    "takeId": null
+  },
+  "requestHash": "b4bb0c94ae876ac5c7fd7c92116e4e59bf36832600b637ebeee0595b05c0fed0",
+  "recordedAt": "2026-10-04T08:12:08.001Z",
+  "sha256": "4ad143c6e980dfc58108556f8a87528cac849ae7236ca297deb5b7e701be7dc0",
+  "bytes": 28078,
+  "requestId": "kTHQ0KHlS0JoFqs1L1z7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c08086d9eee6eef726c3746ac883f9b4a82bcd58a2a49c43e75560e90ede7ff6",
+    "bytes": 141732
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

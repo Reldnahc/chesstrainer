@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-rook",
+      "label": "Explanation finding relative pin released rook",
+      "text": "Big picture: the attacking rook was under a relative pin, and the opponent's last move freed it. The target did not move, so in the line shown it is taken."
+    },
+    "takeId": null
+  },
+  "requestHash": "9cbbae5a826f4545363eace3f95ab720ff8d9643539b180e38729e8b709b7a36",
+  "recordedAt": "2026-10-04T07:57:11.445Z",
+  "sha256": "9778033274c8d5646b92f2e34f7309e743edd3fdb9b9df432968a6aea72a50b7",
+  "bytes": 33664,
+  "requestId": "DJ3p4Bh2v5sNBs7yX0b3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6cb57a3eb7a00c7567fc192fe0fb10d6705462a4e2f619fca333922f0b333621",
+    "bytes": 175168
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

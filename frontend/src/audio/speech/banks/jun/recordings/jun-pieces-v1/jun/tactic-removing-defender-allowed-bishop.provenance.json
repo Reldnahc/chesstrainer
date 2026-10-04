@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-bishop",
+      "label": "Tactic removing defender allowed bishop",
+      "text": "A defending bishop can now be captured. If it goes, the piece it guards loses that protection."
+    },
+    "takeId": null
+  },
+  "requestHash": "2cee243f01a38b6b22816d9b399e46e4a0d904811d908377e426f3271ca0c6a9",
+  "recordedAt": "2026-10-04T07:50:02.739Z",
+  "sha256": "582abd67f4a9fd6b219c75f5f689f8e98c5c6df27a3e993dff08c3b5662905dc",
+  "bytes": 20914,
+  "requestId": "9ghBCpV415QBh3XwMv9j",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "29af74704c20a2e5105f18e65be8bc058fb909e8d0cf277a6da0519cee58c4d9",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

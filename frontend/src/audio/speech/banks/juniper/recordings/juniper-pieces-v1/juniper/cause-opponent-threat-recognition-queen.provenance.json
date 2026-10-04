@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "cause-opponent-threat-recognition-queen",
+      "label": "Cause opponent threat recognition queen",
+      "text": "A threat came with their last move. I noticed it, though this move lets it be, and the queen is there to be captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "dc14c1433017cd3fd93f2dbcda21b7b9f66eb14539a58a93a6369b366007a784",
+  "recordedAt": "2026-10-04T07:51:57.661Z",
+  "sha256": "81a7e116f9eb2109ac4549723abe7e4db919e98ca489705bde9eb19251c32057",
+  "bytes": 23832,
+  "requestId": "1yItw5YHIQGBbuv9Ms6j",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6c4cffc15c565f01371bf081cafe6a3ccd5758bc0748fdbca244cc68e91c1b32",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-escape-rook",
+      "label": "Explanation frame capture move escape rook",
+      "text": "Capturing the rook also removes the check on the capturing side's king."
+    },
+    "takeId": null
+  },
+  "requestHash": "28809880655dfdb4c644d5beda50b79143d1227be1f2234cf655fbbe01f183ef",
+  "recordedAt": "2026-10-04T08:16:41.681Z",
+  "sha256": "45555f138695531894e3aca12dc5d9c6da75f044440fbef73aee6a43a4ad727e",
+  "bytes": 14778,
+  "requestId": "uHDZ7G6KHfuTkasyctMr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ba6b1ae44306cd951d6b52b9b4b8c4f8d8855595e1c90ee0d32423653f1d7384",
+    "bytes": 71515
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

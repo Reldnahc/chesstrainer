@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-rook",
+      "label": "Tactic deflection missed rook",
+      "text": "The stronger move pulled a defending rook away from its job. Set it up afterward and see what falls apart once that rook leaves."
+    },
+    "takeId": null
+  },
+  "requestHash": "16d58dd81825277537786d2ee6ebd1e5c999882b8034fe1f51610efc17a38cf4",
+  "recordedAt": "2026-10-04T07:48:56.204Z",
+  "sha256": "430849bb01885daf4e66347a35bee17f50136d4f7b68ab97f8ba360c5df52685",
+  "bytes": 26556,
+  "requestId": "ZKhYRJ9ggAtx67xJtTyv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "93aee7cd7c24a6891d110e6d78bfb3786636027256441e44f6a0feb1c563f8d2",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

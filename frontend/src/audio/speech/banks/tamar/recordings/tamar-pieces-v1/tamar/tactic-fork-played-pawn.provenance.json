@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-fork-played-pawn",
+      "label": "Tactic fork played pawn",
+      "text": "The fork lands. A single pawn now has two victims, and usually only one of them gets away. Notebook rule: study the square it came from."
+    },
+    "takeId": null
+  },
+  "requestHash": "c2471830e9181e297330de2f6945df6d57aae4e7a9a0defc3e6823bdd014b21e",
+  "recordedAt": "2026-10-04T08:10:00.649Z",
+  "sha256": "ff9170fcd54e79f95e51e47eb87950f1742a02dfae9c5c09e92afb253c00f202",
+  "bytes": 30716,
+  "requestId": "paiwo71KU4Oz2VLcW4uI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4cdc5605b686e02d22de2fa2fb8fa005ac08472dba9afe0b4f3212cc3938f885",
+    "bytes": 160958
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

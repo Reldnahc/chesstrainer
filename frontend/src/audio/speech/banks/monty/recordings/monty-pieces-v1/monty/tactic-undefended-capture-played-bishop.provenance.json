@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-bishop",
+      "label": "Tactic undefended capture played bishop",
+      "text": "Simple point: the bishop was loose, and this move takes it."
+    },
+    "takeId": null
+  },
+  "requestHash": "45493b92c5a61ac6313b2f98757f90533705e515443e6097a6de0df09c9a9e05",
+  "recordedAt": "2026-10-04T07:56:24.267Z",
+  "sha256": "1368d9ca81b57812e148d6ae34cac253a2cec0e0054228ce6073ae8aac3ff452",
+  "bytes": 14388,
+  "requestId": "YZvtsDjJNWJ9AWCxKwjS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cb27f23c99d63b8350d1c852fee4c7f5a0056e42a92fc3f6e03399d9656f6a2e",
+    "bytes": 74022
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-fork-allowed-queen",
+      "label": "Tactic fork allowed queen",
+      "text": "Simple problem: this lets their queen fork several targets. Before moving, look for the square where that queen could land."
+    },
+    "takeId": null
+  },
+  "requestHash": "aab18c0fc9ae754aec96d7790f65e5d06323e3e1de4e8ac4f3d7d044ce04344d",
+  "recordedAt": "2026-10-04T07:56:19.552Z",
+  "sha256": "22866e1979fab6276ba42c126d73e54a13b7f66295987541631fbea2cbf27687",
+  "bytes": 25391,
+  "requestId": "sCgj9xPIzm6PegwqUfyG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "305d6b8ae647a4e0d0f9187333f0fcd3fec144ea5a1644c514568e09f1c4062d",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

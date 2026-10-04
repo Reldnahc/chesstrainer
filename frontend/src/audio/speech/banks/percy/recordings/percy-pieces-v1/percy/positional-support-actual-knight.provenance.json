@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "positional-support-actual-knight",
+      "label": "Positional support actual knight",
+      "text": "Good, somebody's got its back. A knight that was out there with no protection now has a defender."
+    },
+    "takeId": null
+  },
+  "requestHash": "9d997bdfe673709367b51fb0d31f2c4373fe063589db7b6af19616c9119b3944",
+  "recordedAt": "2026-10-04T08:00:46.439Z",
+  "sha256": "d553bb744f37ac57502d76ad3ceb31d4f150a992eff6623a0cf8676f80eb5fb9",
+  "bytes": 20571,
+  "requestId": "UvUJKtyisy8N5VkiKXMS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e34e7efcbbda121ba01002527cea7b157a9b6454d48292d9a5262b626af693b1",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

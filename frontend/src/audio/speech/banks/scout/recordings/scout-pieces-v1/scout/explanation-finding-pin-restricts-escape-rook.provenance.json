@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape-rook",
+      "label": "Explanation finding pin restricts escape rook",
+      "text": "Pinned, can't run. The attacked rook is tied to its king, so it's limited to moves along the pin line."
+    },
+    "takeId": null
+  },
+  "requestHash": "d50e7ff174d2dbf59cf1829555e6c1f48f2391ac03920648ef98c505a190df83",
+  "recordedAt": "2026-10-04T08:07:23.519Z",
+  "sha256": "316a3864096bb81683a8ecdc69345fc0a8f3740b06819b53e3f5616b69463474",
+  "bytes": 21201,
+  "requestId": "pZqyuWvV3DIrJ5hzqIo4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "beda7a0fe2af5215ec919b18edfe1fc435b8d561a8f9ec01bcf37d1ded5b3b4d",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-ordinary-knight",
+      "label": "Explanation frame capture promotion ordinary knight",
+      "text": "A pawn takes the knight on the last rank and promotes, all in one move."
+    },
+    "takeId": null
+  },
+  "requestHash": "32e07e915b4b8b6c370dd3c8ce5902bf16e13040fe7197a1537f29197a58f2b1",
+  "recordedAt": "2026-10-04T08:13:23.857Z",
+  "sha256": "47de85024095238bd2a6d62c4a6547e1da14ce42182b99fc99d67aa9e42d66e2",
+  "bytes": 17063,
+  "requestId": "XEe6FPVVMtmWloa1qa05",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "95b268e198b74a87f9e0678dc4894b4ff98099c16c72c1ff5d1edc39bc37bb24",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

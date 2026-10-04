@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "tactic-skewer-missed-knight",
+      "label": "Tactic skewer missed knight",
+      "text": "A stronger move had a skewer in it. Had the knight in front stepped aside, the piece behind it would have been exposed."
+    },
+    "takeId": null
+  },
+  "requestHash": "1df343cc432599ea728336d9b78fb799a2f0b03c0b9b266fdbac909dbc37a3e2",
+  "recordedAt": "2026-10-04T08:13:28.742Z",
+  "sha256": "a417f908380e15a7c4ba57ab0ec2a62d8ac1a575a9d4a3259f8851f480ca0f70",
+  "bytes": 23203,
+  "requestId": "wwQkSzQqICzq91LjdUuM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0e4c21c096dd422a4b7ae32e7379abc4fcefcf9e006fd329e76c12bc21f3aa4b",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

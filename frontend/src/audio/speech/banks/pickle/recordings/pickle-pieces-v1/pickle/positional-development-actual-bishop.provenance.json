@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "positional-development-actual-bishop",
+      "label": "Positional development actual bishop",
+      "text": "Off it goes! The bishop leaves its starting spot. Out of bed and into the game!"
+    },
+    "takeId": null
+  },
+  "requestHash": "41aa41d22de04b7104e836baee107c47eba1708cef048dc225df3fa987c163d7",
+  "recordedAt": "2026-10-04T08:02:19.882Z",
+  "sha256": "ef960e461d66963114e352081d92be239ea0a1815601438ae8af6aae38d4b31f",
+  "bytes": 18904,
+  "requestId": "Y9gm7hRJ2exbOntIUrOP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "28b973ea224a8bff18c4db69b0c0e5a33baab43b4e505e7fe1886113ffb8f187",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

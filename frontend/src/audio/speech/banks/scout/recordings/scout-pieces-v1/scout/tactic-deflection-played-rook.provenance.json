@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "tactic-deflection-played-rook",
+      "label": "Tactic deflection played rook",
+      "text": "Deflection. The rook on defense gets pulled off its post, and the thing it was covering opens up. Spot its job, then the move that broke it."
+    },
+    "takeId": null
+  },
+  "requestHash": "fdc8ab14ce1a0d4e3c8d48063f73fe1c8dc2be6907176d005b27617cfcde2f87",
+  "recordedAt": "2026-10-04T08:07:22.881Z",
+  "sha256": "012a8727d0eca2ad1b56398ea4fc6241f501c79b5c248899f37b650d11a59a6f",
+  "bytes": 27322,
+  "requestId": "ofEValETGrvIrAiAmZGj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c4e016e8b6a94f534b274cc9cacca21c04a1acb466d19143deec4d7edb452968",
+    "bytes": 141732
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

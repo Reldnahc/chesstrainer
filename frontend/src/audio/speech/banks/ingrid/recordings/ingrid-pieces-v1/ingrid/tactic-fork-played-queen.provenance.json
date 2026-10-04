@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "tactic-fork-played-queen",
+      "label": "Tactic fork played queen",
+      "text": "Nice and simple, really: the queen settles on a square that reaches several targets, and a single reply is unlikely to look after all of them."
+    },
+    "takeId": null
+  },
+  "requestHash": "51649fa7ba20eb86c4ab434196c91671149dfb2cd7cccd7946e9f40343e685bb",
+  "recordedAt": "2026-10-04T07:48:06.578Z",
+  "sha256": "bee9720c8087d33a14cb488c9f4c4896db1aee12566f2a1af9664225fd285f02",
+  "bytes": 29187,
+  "requestId": "D3ySouMse5yEuXv6sfBg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8d3e55cbd33b3b95c3dbaa4fc562d5a56b4047cf32a7bf6cdfc326c05770cd08",
+    "bytes": 147165
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-king",
+      "label": "Tactic deflection missed king",
+      "text": "Dragging the king off its defending post was the better move. That chance to deflect it is left on the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "38ff85892de4267a57684f36f62b52c526e10efd29c50fffc418e9384a484fea",
+  "recordedAt": "2026-10-04T07:56:54.410Z",
+  "sha256": "085c92adbf5d21bc5fd4f46c9fa5b08a7a4add9224af6ac9ef321984634c28d1",
+  "bytes": 21219,
+  "requestId": "WDyMBxqolZxyOq8isHrB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9e287c4ea3260ed3245b7dfc4292274f3930eaeeaa1d8027b2ded28a8c238dc9",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

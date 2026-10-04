@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "tactic-deflection-played-pawn",
+      "label": "Tactic deflection played pawn",
+      "text": "Deflection rests on a simple truth: a defender cannot guard a post it has been lured away from. This move draws the pawn off, and its duty is left unattended."
+    },
+    "takeId": null
+  },
+  "requestHash": "fee5d8d3faa28dde3cee6d00537f34e51a48823d9c6d5dabcc9c63e9e50b4361",
+  "recordedAt": "2026-10-04T07:58:31.157Z",
+  "sha256": "c6a0430d28dfd18f5155da9f1f9048549eecbca4832e1bbcd7cc61cca35ff783",
+  "bytes": 36435,
+  "requestId": "Vdj4RqSnzg26PfLmp2UA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9a63a0c3578e0d629d4765992f8b877cea34756f74cafe79bc9ebb232e55ae5a",
+    "bytes": 190633
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

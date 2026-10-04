@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "tactic-fork-played-knight",
+      "label": "Tactic fork played knight",
+      "text": "Fork deployed! One knight hits several targets at the same time."
+    },
+    "takeId": null
+  },
+  "requestHash": "6119e9185946df4d88873e18a7f3454a2799e37f188b4c68db181150cf0fe3bf",
+  "recordedAt": "2026-10-04T08:11:41.171Z",
+  "sha256": "d3278740f5b582ebf15c6b525062933b72888483f87bd21a270a38d2b83a9614",
+  "bytes": 15466,
+  "requestId": "XyQFUrNkalQpKfDvEx02",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "201d7cdf357a334d54574256c2fab930633f3642424dfce1c203c23686137e1e",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-rook",
+      "label": "Explanation finding relative pin released rook",
+      "text": "Backstory first: the attacking rook got unpinned. It had been in a relative pin, and the opponent's previous move broke it. The target never moved after that, and the line shown captures it."
+    },
+    "takeId": null
+  },
+  "requestHash": "f7f7d4539329a09cef0832737d46bf8ab35e54fdc85b51120aabaa5e8b970c2f",
+  "recordedAt": "2026-10-04T08:09:28.261Z",
+  "sha256": "c2e3169bee19422148205d504b4118f2b3b4a62fceef7485dc7de8f7f8475663",
+  "bytes": 39401,
+  "requestId": "XAHMfMjwXWZtENS02U7K",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "40d2a9d24a77bbbf143242f0dc1c7f655745609ce53edac7d31926cc1572631f",
+    "bytes": 204426
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

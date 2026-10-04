@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "grade-brilliant-3-rook",
+      "label": "Grade brilliant 3 rook",
+      "text": "A rook out the window, and the checked line just shrugs it off. Strange case, sound idea!"
+    },
+    "takeId": null
+  },
+  "requestHash": "b8a6bd1d47fe8b5e22df46f2b5cb76c8de1326da69347133d66444e94145e7ca",
+  "recordedAt": "2026-10-04T08:03:00.749Z",
+  "sha256": "35cf82d39c5e06cefd8e7c5e99a3c7fa4ac8dad989af1b4c84f108aeb03bbccc",
+  "bytes": 20901,
+  "requestId": "qXIkYErNBGoV0jnJYatK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ecb6db1c71aed9009f863be8da41f09dccdf34e00c736ceea69b181736a6068f",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

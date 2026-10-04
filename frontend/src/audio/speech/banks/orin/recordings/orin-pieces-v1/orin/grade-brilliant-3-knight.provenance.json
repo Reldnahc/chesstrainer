@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "grade-brilliant-3-knight",
+      "label": "Grade brilliant 3 knight",
+      "text": "There is a kind of magic in giving up a knight and having it hold. Mark this one well."
+    },
+    "takeId": null
+  },
+  "requestHash": "21622c68383cce88b05db2657db6b072583d75f42ac6e04f988b7ff992f64346",
+  "recordedAt": "2026-10-04T07:59:27.429Z",
+  "sha256": "237a6ced6f3b26fe031edac8e4801df2a8af471eb184477b2fb7f0ae21c8549b",
+  "bytes": 19379,
+  "requestId": "zVAl9WsnZrU95rnk1H7A",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2d7e4026bf05fae228fa6f6a41656f4c355d5458319a30dfe70d791c2cb61e71",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-knight",
+      "label": "Explanation finding sole defender captured knight",
+      "text": "Take the lone defending knight first, and the piece it protected is next in line."
+    },
+    "takeId": null
+  },
+  "requestHash": "4beb995236966251307db4dd3a21f494f5ee81c4150513f2f0ba2a1966b731e0",
+  "recordedAt": "2026-10-04T07:49:14.095Z",
+  "sha256": "f46379064ef23779624ea0cbfa7267ca3c2c7f0850d38239ca4b068d5d35e3ff",
+  "bytes": 17316,
+  "requestId": "TIiYvupqRjzmpT1FaTKQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2ff35b4fecbcce3a04958565b5d28773d66a12c0ea99072ad4c72c9f030407ec",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-skewer-played-knight",
+      "label": "Tactic skewer played knight",
+      "text": "Ooh, a skewer! When the knight in front moves, the piece hiding behind it is wide open."
+    },
+    "takeId": null
+  },
+  "requestHash": "53e346c0e4d1c0b5c90d8337b1b5087886acb5993b8777f03d7b6049a092e59b",
+  "recordedAt": "2026-10-04T08:00:03.814Z",
+  "sha256": "14a0e35c6606d162902a3b8076382d810485c784dc4cb0c8f179d06748cf9666",
+  "bytes": 19767,
+  "requestId": "frVvsyw5VjEMWrUjCwT5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "675d6964d9eb0b21462a5d68084d79a24721bc5516ef7d18520a732210e3ae7c",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

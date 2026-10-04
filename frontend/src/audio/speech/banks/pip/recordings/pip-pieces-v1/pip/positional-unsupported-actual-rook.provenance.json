@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-rook",
+      "label": "Positional unsupported actual rook",
+      "text": "This leaves a rook with no defender. Good to notice, but on its own that doesn't mean it can be won."
+    },
+    "takeId": null
+  },
+  "requestHash": "3f8377700e0d9d800ada11b40c1b7a5afd5636606e9103343527e536e506d290",
+  "recordedAt": "2026-10-04T08:03:55.144Z",
+  "sha256": "44a2acbd8e5c7e5b8cd465cc5fa2beb02017448c21dd9e52511e8021a8584186",
+  "bytes": 22442,
+  "requestId": "6jWwaUzvNlkbWNfhyzRn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c0cd1814c5064f62f06f54eeb245c311dfb3eb268fbd0146e4ed35a27540136b",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

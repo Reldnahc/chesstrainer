@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "tactic-pin-missed-rook",
+      "label": "Tactic pin missed rook",
+      "text": "A different move would have fixed an enemy rook to its king, since leaving the line would have exposed the king. A pin, unplayed."
+    },
+    "takeId": null
+  },
+  "requestHash": "f6620a9f8617ada50f97fcf18a7810e65a4eb16dc45d554c1ad5a7ece29afe99",
+  "recordedAt": "2026-10-04T08:15:17.062Z",
+  "sha256": "fc677a5a43fbeafa785fc0c5b09475a1de7462089ce8dc4225881dbdc7069315",
+  "bytes": 25751,
+  "requestId": "8XY7sEwEKT2ly41QAngt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a9eead469b4092b1b1bee799a5256472f0f43228e8fcc118e63356a056453898",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

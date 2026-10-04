@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "tactic-deflection-played-rook",
+      "label": "Tactic deflection played rook",
+      "text": "A deflection. The defending rook is drawn away from its duty, and what it was guarding is left exposed."
+    },
+    "takeId": null
+  },
+  "requestHash": "843f2fa7d7d909339f303bae5d21924d97711432d42005513fbc886e7465befa",
+  "recordedAt": "2026-10-04T08:15:36.577Z",
+  "sha256": "19258b3456f12a4984384678591f7ca1361e66e1f12e5cc88f5206a3458beacf",
+  "bytes": 21255,
+  "requestId": "sbHkzxUdMF85tvZBQ68Z",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "07a64ecb2610a485a104ba277f8bce43d2a7062763952d9284a5ff0968c00894",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

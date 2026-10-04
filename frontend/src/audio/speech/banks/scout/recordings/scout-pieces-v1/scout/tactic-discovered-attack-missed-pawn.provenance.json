@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed-pawn",
+      "label": "Tactic discovered attack missed pawn",
+      "text": "Discovery missed. Another move could have moved the pawn off the line to let the piece behind it attack. Find the stacked pair and run it again."
+    },
+    "takeId": null
+  },
+  "requestHash": "fab0738e0de8fb1e4cb1a2c2fac36bade307a182e954622f66bfeda7940967ce",
+  "recordedAt": "2026-10-04T08:07:09.403Z",
+  "sha256": "1eaf4d7d8f6e64e155622db53dd304d457ee1e4370a6f268b1ae4eb1363bc26f",
+  "bytes": 27182,
+  "requestId": "lXE7HP2mz52927qaqrR1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ef3395f4d6470ce8d9b971d3614c85fa171c89cff48f04bd9a027f316619061f",
+    "bytes": 139224
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

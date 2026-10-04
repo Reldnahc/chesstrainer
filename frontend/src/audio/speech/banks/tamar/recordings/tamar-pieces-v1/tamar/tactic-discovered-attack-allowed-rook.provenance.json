@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed-rook",
+      "label": "Tactic discovered attack allowed rook",
+      "text": "A hidden attacker is ready. This lets an enemy rook move away and open a line for the piece behind it. Notebook rule: watch what stands behind their pieces."
+    },
+    "takeId": null
+  },
+  "requestHash": "8fd8ac289e18f5465933856c9be0491a7b29f1e051fd7ec1544a79f79f158daf",
+  "recordedAt": "2026-10-04T08:10:40.798Z",
+  "sha256": "8f90aebdac55203247e03dd34b20f0a0bdf517150029359f5fb42a03f6dfbee6",
+  "bytes": 31949,
+  "requestId": "XyIVeFPm6jhfE1UlBrCS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "53e261c40729e8d66170aa848c4495e0922bdb30c2a468677cdeab2fb632a310",
+    "bytes": 166391
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

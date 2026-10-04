@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-knight",
+      "label": "Explanation finding skewer collected knight",
+      "text": "Once the knight in front gets out of the way, the piece behind it is captured on the same line."
+    },
+    "takeId": null
+  },
+  "requestHash": "17adb0a9f138e4b068877d0b2dac857edaa5351590742140f06ae1be5475e122",
+  "recordedAt": "2026-10-04T08:12:54.460Z",
+  "sha256": "c990923a2cd152fcc055c7fe8d408be0535d9f98c4d9bdf570051b8990b829e1",
+  "bytes": 19626,
+  "requestId": "JDrIdIEPgDnyHyqaf0T6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "84701fef50854fccfcc6c33897a8acc3125a5355146c8ce3a49e0fdfee06d224",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

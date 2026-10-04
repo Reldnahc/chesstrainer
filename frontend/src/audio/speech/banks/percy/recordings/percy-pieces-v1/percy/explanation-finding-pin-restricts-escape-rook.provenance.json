@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape-rook",
+      "label": "Explanation finding pin restricts escape rook",
+      "text": "The attacked rook is pinned to its king, so running isn't simple. Any move it makes has to keep the king covered."
+    },
+    "takeId": null
+  },
+  "requestHash": "9c85ec1ed76d4536dfcf1c57243ecab4a621d5db946f021ff73a3bd15a6fb898",
+  "recordedAt": "2026-10-04T08:00:41.905Z",
+  "sha256": "1c598eaf1ac39e764c423bf9a35450fea00f76864d5b6aa045332fba504e3662",
+  "bytes": 22829,
+  "requestId": "PvcznUMuZeTnO90rGmgt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c091ebd510f6512aa22cde6b62ce6f3211742912d87b0cb58d92dfe3a83bb69b",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

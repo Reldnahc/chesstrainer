@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-knight",
+      "label": "Explanation finding undefended capture gain knight",
+      "text": "An unguarded knight is captured here, and the side that takes it finishes the example with a net gain in material."
+    },
+    "takeId": null
+  },
+  "requestHash": "cce26aba4e6bcdcb908e59e871b0467d64f09a3db7e23da9aabb7e712cb5e650",
+  "recordedAt": "2026-10-04T07:59:27.341Z",
+  "sha256": "e9c103d8f4ea818def9a0dd355493dfc7a66defc5721c2fe4d2bf29921cf5344",
+  "bytes": 24869,
+  "requestId": "LDrNCQ7LmAYhXl7OijiD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d55305eca762e6e8238e535bb1f1038c76a5e57c658a53f4c0f73bd3ef32949b",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

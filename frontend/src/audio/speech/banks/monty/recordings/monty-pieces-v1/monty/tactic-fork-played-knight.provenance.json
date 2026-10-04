@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-fork-played-knight",
+      "label": "Tactic fork played knight",
+      "text": "One knight, two victims. This is a fork: it goes after several targets, and one move may not be enough to save them all."
+    },
+    "takeId": null
+  },
+  "requestHash": "c18ecf669460493deb334b97675d900b7fcd6de44b0d5ebae18584a65dcc6b3a",
+  "recordedAt": "2026-10-04T07:56:02.652Z",
+  "sha256": "6936d4625e3f41ae521db464ab5e2b82f33451dbe87d750e56acbb416fd5c28a",
+  "bytes": 28273,
+  "requestId": "3Jjse7Zv6HoYybNmMbnJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1dcf44ebaeff657242ed9f2413c04c07dcfe73539ce611f328949a149f506778",
+    "bytes": 149673
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

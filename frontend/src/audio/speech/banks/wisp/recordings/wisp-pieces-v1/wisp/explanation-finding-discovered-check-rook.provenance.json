@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check-rook",
+      "label": "Explanation finding discovered check rook",
+      "text": "One piece steps aside, and the rook it was hiding gives check."
+    },
+    "takeId": null
+  },
+  "requestHash": "b5cdae8772006bb6e4e63829aaec9cc5424847eecf97630979069195ef6d6412",
+  "recordedAt": "2026-10-04T08:14:35.618Z",
+  "sha256": "d2a48e41d41d446e94bb8648f6661a410f4ebb19b2f0e4c3d39447d7b37c03f6",
+  "bytes": 13936,
+  "requestId": "05dQJijknYeUvZ1Kv8yf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5b6fcb8e863d879e905a694d158609d4b7c5ffd46503c4b07d5169840e093a89",
+    "bytes": 69007
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

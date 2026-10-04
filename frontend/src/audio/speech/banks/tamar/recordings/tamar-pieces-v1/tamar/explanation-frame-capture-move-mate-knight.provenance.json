@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate-knight",
+      "label": "Explanation frame capture move mate knight",
+      "text": "The knight is captured, and that is mate."
+    },
+    "takeId": null
+  },
+  "requestHash": "88d6d9fff46cdf9d62513192b77edc6b55a36206b0dd7d544b2f0f5d3440583e",
+  "recordedAt": "2026-10-04T08:11:35.883Z",
+  "sha256": "abce00b4b777b1dcf49d95a0331db6171b149ef263085913dc08f9e92b7487f1",
+  "bytes": 10634,
+  "requestId": "kcYdeLcnGLt3mXClPIHb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "27d2f99c88551cb00b485618ad273fb0fa2fa50b57368c0c9ba16daae5559163",
+    "bytes": 52288
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

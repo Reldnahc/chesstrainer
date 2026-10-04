@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-rook-rook",
+      "label": "Explanation finding double check rook rook",
+      "text": "Double check, both rooks at once!"
+    },
+    "takeId": null
+  },
+  "requestHash": "34b75b1c1e2cf50b9d8054663eba63dcb34737e8f9449c6b24a39056310b00ca",
+  "recordedAt": "2026-10-04T08:13:12.343Z",
+  "sha256": "52036603c1b442edb28d96720065ec74a015ee2e6cbe71be9ae84742baaafc86",
+  "bytes": 9235,
+  "requestId": "S21NMp46b2zUlg6lqaWG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f304e8048ab9bf5589d129c1c26ec73aa71fadc2995cab97ed0a54af4617dc2b",
+    "bytes": 44765
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

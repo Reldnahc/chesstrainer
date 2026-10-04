@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-pawn",
+      "label": "Tactic discovered attack played pawn",
+      "text": "The hidden attacker appears. The pawn in front moves away, and the piece behind takes aim down the line it uncovered. Make the moving pawn threaten something too."
+    },
+    "takeId": null
+  },
+  "requestHash": "6d0f0b9c396ffebabecc5ff6a381f3498c0db7285c93b090e222c50e5d9c9435",
+  "recordedAt": "2026-10-04T08:10:19.057Z",
+  "sha256": "f123dfcd900577d3760958ef8fd0e2daf61e34214f0bf666638cc9bfde46b480",
+  "bytes": 31529,
+  "requestId": "jRflwlxOqSAhqJXPVWn4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3e34a398ba3964325027bf9c678f49070a3e072b6281d7aa5bbb519159c30064",
+    "bytes": 162212
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

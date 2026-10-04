@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary-queen",
+      "label": "Explanation frame capture move ordinary queen",
+      "text": "Capture. The queen leaves the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "92f7b3cae708e2f1ed210a7a0004549f6a0a69448e8667b18d42c557522d6c74",
+  "recordedAt": "2026-10-04T07:50:51.013Z",
+  "sha256": "89154512db4ba9a1c51aa552601313b1bd45e754073c159df6fc0ba1aa9bf2c8",
+  "bytes": 9041,
+  "requestId": "6a7js5cZJfa1d9MSD4nf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d4149cee3575e436f94bcb21788710a96a43cb66a7c753475791677369018d86",
+    "bytes": 47273
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

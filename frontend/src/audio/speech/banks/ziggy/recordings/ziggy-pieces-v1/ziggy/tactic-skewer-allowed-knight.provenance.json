@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed-knight",
+      "label": "Tactic skewer allowed knight",
+      "text": "This permits a skewer: an attack on the knight in front that, once it moves, exposes whatever stands behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "1cdde0f8810c4fd98134b3799b13035bfc160ee31487af66b6ca57bc0cb5b6d6",
+  "recordedAt": "2026-10-04T08:15:34.413Z",
+  "sha256": "5d5f1fc5c0199845e988e95f061f82420995934eecab7b131657c9b262f8d9e9",
+  "bytes": 23989,
+  "requestId": "suPHiyMGbv3sRDZEIm3e",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3448596a6c71af11f3b8e74039cff85c0d900f858c121bf5f8a1e49819290fd4",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

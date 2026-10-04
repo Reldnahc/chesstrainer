@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-fork-missed-rook",
+      "label": "Tactic fork missed rook",
+      "text": "A fork went begging. Another move sent one rook after several targets together. From today, forks belong in the scan before every move."
+    },
+    "takeId": null
+  },
+  "requestHash": "f0183551fa128c902903b572059a69048746a7f0c2839f77d20205265d4bffb1",
+  "recordedAt": "2026-10-04T08:10:31.691Z",
+  "sha256": "63ecd09e5e0cacf21c32b56a023c3c2c7da5c1ab385b11cd1b3609f69607805e",
+  "bytes": 30030,
+  "requestId": "7zjfdZDpabjb5hgXC8tU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "70b15ebff79a90c2f66c48787425c4a7d939c10d52f3983a96fb4aa9f30bcaca",
+    "bytes": 154688
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

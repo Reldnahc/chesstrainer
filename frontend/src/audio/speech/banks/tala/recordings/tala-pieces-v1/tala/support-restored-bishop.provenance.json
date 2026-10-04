@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "support-restored-bishop",
+      "label": "Support restored bishop",
+      "text": "Problem patched: the bishop that was unprotected earlier is guarded again."
+    },
+    "takeId": null
+  },
+  "requestHash": "9f05ce8d88f06884218b6b5b1f2e6a77ea564e8a0b4c48c32110db442729273d",
+  "recordedAt": "2026-10-04T08:09:18.606Z",
+  "sha256": "7385e672496429919dfa3396a95ad2900107a3998a57c8a01128a6f620bd7f01",
+  "bytes": 16541,
+  "requestId": "BtWKVJfXs3rWOIMaqHHx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "15c0c6019bef4fecef61ff2b2208cd1ce5bd7770e855f9dcc6c25531f90cfe7e",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

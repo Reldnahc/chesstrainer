@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "tactic-deflection-played-bishop",
+      "label": "Tactic deflection played bishop",
+      "text": "Decoy: the bishop on defense takes the bait, and its real job goes begging."
+    },
+    "takeId": null
+  },
+  "requestHash": "a3a0f1e34138c9cbf706a5fc5780074e76552c87900ed84e2b9ea0e7d334ea3f",
+  "recordedAt": "2026-10-04T08:05:27.983Z",
+  "sha256": "109ca02281c6b5c0e69140adb51a3b24615440459990b7e9064a0433b7a44235",
+  "bytes": 17696,
+  "requestId": "YRf7qHLwKglMr7X0dj8Z",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8ca1c08b3750ea614411d84ddc96376c6bb8a5e87ada184f35b2bb2fd16c0354",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -91,15 +91,6 @@ def read(path):
     return json.loads((SPEECH / path).read_text(encoding="utf-8"))
 
 
-def piece_variants():
-    """Variant meanings that name the piece a generic line is about, by their base meaning."""
-    variants = {}
-    for row in read("meanings.json")["meanings"]:
-        if "variantOf" in row:
-            variants.setdefault(row["variantOf"], []).append(row["id"])
-    return variants
-
-
 def active_reference_texts():
     # Walter's and Rivet's banks; the authored voices' own manifests are checked below.
     authored = {voice for _, voice in AUTHORED}
@@ -120,11 +111,10 @@ def test_registered_bank_records_exactly_the_authored_scripts(coach, voice):
     assert (manifest["coachId"], manifest["voiceId"]) == (coach, voice)
     scripts = read(f"banks/{voice}/scripts.json")["records"]
     recorded = {row["id"] for row in manifest["recordings"]}
-    # Generic lesson prompts and piece variants may be authored before they are
-    # recorded; they stay silent until their clip is added.
-    variants = {key for ids in piece_variants().values() for key in ids}
+    # Generic lesson prompts may be authored before they are recorded; they stay
+    # silent until their clip is added.
     assert all(
-        row["group"] == "lessons" or row["id"] in variants
+        row["group"] == "lessons"
         for row in scripts
         if row["id"] not in recorded
     )

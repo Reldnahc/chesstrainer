@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-knight",
+      "label": "Explanation finding sole defender captured knight",
+      "text": "Sequence: capture the only defender, the knight, then take what it was protecting."
+    },
+    "takeId": null
+  },
+  "requestHash": "41249e4e603bd2995e923e975d5d8a04528cabbc474213677ad0a13b8f3561ed",
+  "recordedAt": "2026-10-04T07:50:48.379Z",
+  "sha256": "1bd171361c50fd8833c74ea4de548a8cd1dcd5e274d00d5f2deafc59f076bc57",
+  "bytes": 17631,
+  "requestId": "YrZtVgTJqUqyWyNglw3s",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "341094f00ef7d9b17f8e06308b13b1cc85c630b2c66c8d960b02207135d8d187",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-pawn-queen",
+      "label": "Explanation finding double check pawn queen",
+      "text": "Double check! The pawn and the queen are checking the king at once."
+    },
+    "takeId": null
+  },
+  "requestHash": "4fd08077e67245e1460edea2ea5b7718fb0ca1906db8a7bb6cf3f725f4541278",
+  "recordedAt": "2026-10-04T08:01:14.577Z",
+  "sha256": "2a51023809e082132056bf75a44b69388451c69ff36e179fd8758ea1f63b7c45",
+  "bytes": 14162,
+  "requestId": "LZyT67Vx5UVtf0dNnUO8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1669c9a030d7fabff74a9d90e76b1a710fe37f05ed6ec88c3bff190e1dc643f5",
+    "bytes": 71515
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

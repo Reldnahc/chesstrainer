@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-rook",
+      "label": "Tactic undefended capture played rook",
+      "text": "A rook stood with no guard. The idea is simply to take it."
+    },
+    "takeId": null
+  },
+  "requestHash": "84568b9a6144f83503e5e54c34657b984d50d219995e0181c9a0612279b146f4",
+  "recordedAt": "2026-10-04T08:13:40.489Z",
+  "sha256": "f302c8b0e290ea0542ea9ee810588c33af3a8ad6ce53c3cd80046494334b5b79",
+  "bytes": 14615,
+  "requestId": "KsM2kQPX4vjkgCw2pT9g",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0b711197b58e6be8a133cfb3e26b4ec04d7c9da70182abccf5482ee4419504f4",
+    "bytes": 74022
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

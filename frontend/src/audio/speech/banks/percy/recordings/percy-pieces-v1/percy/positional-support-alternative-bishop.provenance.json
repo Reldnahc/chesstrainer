@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "positional-support-alternative-bishop",
+      "label": "Positional support alternative bishop",
+      "text": "Another move would have put a defender behind a bishop that had none, so it wasn't left out there by itself."
+    },
+    "takeId": null
+  },
+  "requestHash": "99ef05f2b165041c155b25dd0e53c77f53a01fbf24ada85eead35a5fa9bc1836",
+  "recordedAt": "2026-10-04T08:00:54.878Z",
+  "sha256": "7a9ef6a47d275eda54cf8e6d7b33295d051660abbffe7de03e3e0d7c99be5cb0",
+  "bytes": 20031,
+  "requestId": "tQDijBS0ezVPLN2fGHpQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "470719c8d2d6ae75fe664b23d3d748155eb807825c9011b9149f6a17172fc9ff",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

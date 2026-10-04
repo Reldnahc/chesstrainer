@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-fork-missed-queen",
+      "label": "Tactic fork missed queen",
+      "text": "Simple point: a fork was sitting right here, with a queen able to hit several targets, and the move played walks past it."
+    },
+    "takeId": null
+  },
+  "requestHash": "550ccf7f64f73f9aee0ddc59824cf604bf6bc9ec21490bb2b33a4e13c4f01fa7",
+  "recordedAt": "2026-10-04T07:56:29.957Z",
+  "sha256": "34974a578a7021c5a8993885d45eb8d87d2618668b92286645dd13d9af8f00f0",
+  "bytes": 25510,
+  "requestId": "Z4rlpsQZwqBHnu21Noj7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6800038674c0143a57d790ece8f5e2290fcfdab35d8b04be4434cda128f0e7d1",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

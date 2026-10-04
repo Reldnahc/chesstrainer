@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate-pawn",
+      "label": "Explanation frame capture move mate pawn",
+      "text": "Take the pawn, and that's the game: checkmate."
+    },
+    "takeId": null
+  },
+  "requestHash": "fefb979e2ac2e2f18908556791f075ebd85f3e762d5ac5edd15def01d9978b27",
+  "recordedAt": "2026-10-04T08:09:48.840Z",
+  "sha256": "1b5d811da36e67ee523c5952ac8c5ab210c4e077ea8d1c8b6b4625dcd7820d39",
+  "bytes": 11372,
+  "requestId": "2Xd28poCTuL3ULfQJefK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "712a34d5400591b4e6c74faa55a9d3ac7d77e360b3c77dd7bf0c2e574b6fa860",
+    "bytes": 56050
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

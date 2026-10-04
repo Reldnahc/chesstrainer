@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-skewer-played-knight",
+      "label": "Tactic skewer played knight",
+      "text": "The knight at the front of the line is under attack now. When it steps away, what was standing behind it becomes the target."
+    },
+    "takeId": null
+  },
+  "requestHash": "07dffcf2b48d118e08be033e1e41612bbb3a3bbcd1319b429e4ed110e17ca06b",
+  "recordedAt": "2026-10-04T07:53:14.003Z",
+  "sha256": "6f74cf1d1bbb566067b0ba784ead370a4d747f7c0cf657023ce2092fd1bb3b15",
+  "bytes": 23754,
+  "requestId": "DZ4UGhUdI0BAWxYijuuZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e39db862d033bc52f38adb4eabcf53bc23c0037022eac1f71289c4f81e42f94b",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

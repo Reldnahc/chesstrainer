@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-pin-played-queen",
+      "label": "Tactic pin played queen",
+      "text": "A pin to the king! The pinned queen has to keep shielding its own king, because stepping off the line would expose it. Talk about being chained to a desk!"
+    },
+    "takeId": null
+  },
+  "requestHash": "f14cb7a91772beffd8794afd6d20205723baf8a9beb469adb12fd7b34649feba",
+  "recordedAt": "2026-10-04T08:00:23.453Z",
+  "sha256": "1ec62ad88854b97c4aa2bc0eac691017b578f6d65d56e29f3c2acfdd092d4262",
+  "bytes": 30477,
+  "requestId": "Rpcfc4dYu8kt3axeUTSm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ca3bd44b6eb186b14f186a18fe724951b42c9573bb3280d0e38262bf79da3936",
+    "bytes": 155942
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

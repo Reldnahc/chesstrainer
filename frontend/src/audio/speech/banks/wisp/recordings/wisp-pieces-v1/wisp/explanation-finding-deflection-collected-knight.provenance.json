@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-knight",
+      "label": "Explanation finding deflection collected knight",
+      "text": "The defender is drawn away from its task. The knight it was guarding is then taken."
+    },
+    "takeId": null
+  },
+  "requestHash": "70ad854678c7bdf16fb7b7058a55b640613e55d7cfd31c3b12bc1edd2fa3c7fc",
+  "recordedAt": "2026-10-04T08:14:42.761Z",
+  "sha256": "81ec8a6943b4f082f18531a89a800492be9268b9daf9dd3f6e97dd58bf780c41",
+  "bytes": 18042,
+  "requestId": "9JkpqhI0TDvPcad74JdL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3ebfde429ca6f865e95e00de7d0da81473cb073fadfa96be62bd8f188d7624e0",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

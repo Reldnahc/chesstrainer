@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-knight-rook",
+      "label": "Explanation finding double check knight rook",
+      "text": "Double check: the knight and the rook are giving check together, so only a king move answers it."
+    },
+    "takeId": null
+  },
+  "requestHash": "2f87df1441e1a8501203ae4c732d39cf1365ec583364ae6e1161ff8f84cae4d6",
+  "recordedAt": "2026-10-04T08:11:43.500Z",
+  "sha256": "05382eb04228459e3f7225110b82800f3cc27325bfdb866c29b23be3afabf647",
+  "bytes": 20342,
+  "requestId": "Qyeclzr4iScKP0WPq3BM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6c41265a221744551e6049622ebef39eb820b2ee264cf10530184b012f993050",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

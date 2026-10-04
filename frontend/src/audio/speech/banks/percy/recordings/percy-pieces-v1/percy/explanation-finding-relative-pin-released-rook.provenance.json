@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-rook",
+      "label": "Explanation finding relative pin released rook",
+      "text": "Thanks to the opponent's last move, the attacking rook wasn't stuck in a relative pin anymore. The target stayed put after that, and in the line shown, it gets captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "098734f68702f04534ae1052e35b99a50df8484dc3bf94f6c2eae2d610d2bd65",
+  "recordedAt": "2026-10-04T08:00:50.212Z",
+  "sha256": "6a1b3f1014fbd708ff6ae24cce611af15db48e5a56422c6b5860ca0ada71d181",
+  "bytes": 31592,
+  "requestId": "1WmZddbNGyblc8NF00UR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cd7a986a9a8eb22583a5562932ebd91980a6138b8dac9116ffd1278aaa34b6df",
+    "bytes": 159704
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

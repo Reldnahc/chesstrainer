@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "tactic-pin-missed-knight",
+      "label": "Tactic pin missed knight",
+      "text": "Missed clue: another move set up a pin, sticking a knight in front of its own king. This one leaves that idea alone."
+    },
+    "takeId": null
+  },
+  "requestHash": "93be5a910d4d2f0eef696a50cd447adbcf41a187e4cdba136b12ea79fa652da3",
+  "recordedAt": "2026-10-04T08:08:32.910Z",
+  "sha256": "dc8c6bdcad12c907f11c45d368fe1c7f0813f3ac90229b2de1d58b1f2931834a",
+  "bytes": 26695,
+  "requestId": "48NxrA5TEh6bYbgmj6pU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "114303259bc12492adde28c05b906eaa4c9016efdb018808f5bca7695c13b1d5",
+    "bytes": 139224
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

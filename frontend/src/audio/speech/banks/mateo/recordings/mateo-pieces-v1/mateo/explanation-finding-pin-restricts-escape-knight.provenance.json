@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape-knight",
+      "label": "Explanation finding pin restricts escape knight",
+      "text": "The attacked knight can't run away, because it's pinned to its king and has to keep blocking the line."
+    },
+    "takeId": null
+  },
+  "requestHash": "36503aabdb84997c45cba99f9c079de1cca3eb08cd3bdd4d64f5dadd8525daaf",
+  "recordedAt": "2026-10-04T07:55:17.986Z",
+  "sha256": "2ae6bf999c11a905bbbc213ee007f6a85e45e311ae45f13b8c60829598133d77",
+  "bytes": 19163,
+  "requestId": "JHTfpRwswOWDqWZtlxOG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3bc6ddeed1e517f94224a87b25ec303b6fe7e1be56e8a6a436069d0f179839d5",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

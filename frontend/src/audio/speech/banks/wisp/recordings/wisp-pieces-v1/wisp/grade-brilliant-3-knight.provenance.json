@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "grade-brilliant-3-knight",
+      "label": "Grade brilliant 3 knight",
+      "text": "The checked line does not break, even with a knight given up. Brilliant."
+    },
+    "takeId": null
+  },
+  "requestHash": "82be9ac132fedd10ca2b1525ed9ce5262f0476dcf9c664b5e8f8e7b5545e8484",
+  "recordedAt": "2026-10-04T08:14:48.939Z",
+  "sha256": "c367f47a363b0b6b29e4a9f1d2372e33531f0d917f61f1d7919d3232f70b8972",
+  "bytes": 16299,
+  "requestId": "SRGJ2ppoP0m4QbK5gqj1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e2e81d830a933220635612ad8cec58f550ceabe23e0e54647139722a21798b2d",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

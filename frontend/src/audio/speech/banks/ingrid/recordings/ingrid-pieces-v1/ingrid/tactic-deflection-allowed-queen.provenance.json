@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-queen",
+      "label": "Tactic deflection allowed queen",
+      "text": "The simple risk here is a deflection: a defending queen can be pulled off the piece or square it's covering."
+    },
+    "takeId": null
+  },
+  "requestHash": "5f9a4c7adbcf0561041952e5827becc1b6693ccb48ef71f49bb551dfd8ba4846",
+  "recordedAt": "2026-10-04T07:48:46.334Z",
+  "sha256": "9d9436f7fb1af822560cdba1bc8b532ccf6e008c674374f39b09976bf1ab68fa",
+  "bytes": 22165,
+  "requestId": "iT8T0RDnL477tBwppk0a",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9408c617525d5dc88718f6546a3675a5bf6145976e70912c03f73e1e266a42ab",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

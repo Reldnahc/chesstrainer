@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed-king",
+      "label": "Tactic discovered attack missed king",
+      "text": "Tucked into the stronger move was a discovered attack, the king moving off the line so the piece behind could strike. That line stayed closed here."
+    },
+    "takeId": null
+  },
+  "requestHash": "db1895de2028227a8be86675fff6eba8e4605c5dac4078525954a6bef8ad2520",
+  "recordedAt": "2026-10-04T07:48:15.928Z",
+  "sha256": "9dcdc06825aa634d4ef21fc7b2882b6d4c9a46dab7c42ade3428590c580d77bd",
+  "bytes": 30305,
+  "requestId": "CSrPXSnB3R6lxkjW3iHX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c1af60da26481d3b68fe6ce74f8eed12235a7481727f36630284bc6bc8b01ac0",
+    "bytes": 153435
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

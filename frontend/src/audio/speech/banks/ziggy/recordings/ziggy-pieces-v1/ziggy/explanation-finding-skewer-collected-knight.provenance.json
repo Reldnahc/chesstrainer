@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-knight",
+      "label": "Explanation finding skewer collected knight",
+      "text": "Once the knight in front steps aside, the attacker reaches through and captures the piece that was behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "99ce763bd95340ae982f32f1d6408137e4b13445ccef489f27e8c7c43efde449",
+  "recordedAt": "2026-10-04T08:16:02.577Z",
+  "sha256": "299c54f34edbbd298800633291204e45b5d5266dea88e39c5744f97806cae16b",
+  "bytes": 19973,
+  "requestId": "UzDfaQbVsebs920nxpuM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "29c76676c3e57e610b5851f2b42fd654ae7c24320b905f023690524338408d3d",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

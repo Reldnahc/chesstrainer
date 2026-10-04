@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed-pawn",
+      "label": "Tactic removing defender missed pawn",
+      "text": "A different move could have taken their guarding pawn, leaving what it covered bare. That went by."
+    },
+    "takeId": null
+  },
+  "requestHash": "223073a4b3507c04035ec13e7d7c173471339a101678fe074ff238f41b8b0271",
+  "recordedAt": "2026-10-04T07:51:38.673Z",
+  "sha256": "f3a8ccb218f16635c57e727ff958220ba965f4ab1b60dacb643467c788446999",
+  "bytes": 19814,
+  "requestId": "gMa0UMHQCEupAW40SWap",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8279c05a293065159a14284598bf134ba8d99004c569ac0470995b84b97c19a7",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

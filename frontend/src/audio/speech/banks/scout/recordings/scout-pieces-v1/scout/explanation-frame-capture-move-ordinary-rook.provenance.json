@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary-rook",
+      "label": "Explanation frame capture move ordinary rook",
+      "text": "Capture. A rook leaves the board for good."
+    },
+    "takeId": null
+  },
+  "requestHash": "98c3cfcf6e614432387a6364622d35b609ff66adc6e308d9057fad5afebf491f",
+  "recordedAt": "2026-10-04T08:08:27.325Z",
+  "sha256": "d3e6be594e95b34422fce88cec954fe47e457ff19d5853d383834a5f0a6e2a19",
+  "bytes": 10428,
+  "requestId": "tAHpcBxTDEvsKzXFc1yM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ebc0b17897226c144a64776e363dc18030431fc05332cbba497c9edaf0a550a9",
+    "bytes": 52288
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

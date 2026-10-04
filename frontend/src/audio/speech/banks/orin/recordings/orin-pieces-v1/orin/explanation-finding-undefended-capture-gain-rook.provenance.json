@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-rook",
+      "label": "Explanation finding undefended capture gain rook",
+      "text": "An unguarded rook is captured here, and the side that takes it finishes the example with a net gain in material."
+    },
+    "takeId": null
+  },
+  "requestHash": "1c4c08e0c7baadb34d86f9f67a4d0a99f55cc5d688e68a53f7f32c10b4fe3e18",
+  "recordedAt": "2026-10-04T07:59:31.089Z",
+  "sha256": "b028a63bf9d08727853a8c0073d5ed8c8524f7bd7781dca4f656bc038c6f0b91",
+  "bytes": 24838,
+  "requestId": "qda6v9q81fPLUiuvtE2U",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "265838a7672f68a5e6b10d1c5950dcec2c1d0549a37e66290f68bee0bb88e736",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

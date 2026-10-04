@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "explanation-finding-pin-prevents-capture-bishop",
+      "label": "Explanation finding pin prevents capture bishop",
+      "text": "Absolute pin on this bishop. The marked capture is illegal, because leaving the line would expose the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "853529efaae4974a6cbab679dd3b69e89b89ba829cde22e8e28fb4a1f1900b6c",
+  "recordedAt": "2026-10-04T07:50:56.103Z",
+  "sha256": "a02545f991491484422481e2f6ad251ab4ae79a43894c093828c6c94fbeabd6d",
+  "bytes": 22091,
+  "requestId": "6K14VGt2D1W2ZmjkUILi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6f4e7909b07e4baf591625a784757dd06ee15c9719603a6f15fda229d3be1759",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

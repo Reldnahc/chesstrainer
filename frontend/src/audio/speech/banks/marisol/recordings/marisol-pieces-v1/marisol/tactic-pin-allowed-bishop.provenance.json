@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-pin-allowed-bishop",
+      "label": "Tactic pin allowed bishop",
+      "text": "The bishop in front of the king has become pinnable. Once the pin arrives, leaving that line stops being legal."
+    },
+    "takeId": null
+  },
+  "requestHash": "6884c814efc725766a3d788c08120194019d6c0ce2b57e3d126cf17d692821f3",
+  "recordedAt": "2026-10-04T07:52:57.828Z",
+  "sha256": "4c813b7f3612b51f1628830999fd093e47208537e6f979f1c6445c81d229c8f8",
+  "bytes": 23037,
+  "requestId": "sflXFlWnuXJK5vzPkHPX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "612dffa49217311a3602c6e88f63900b45706a218a4731d6d8672e32819decb7",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

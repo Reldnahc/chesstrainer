@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "tactic-fork-allowed-knight",
+      "label": "Tactic fork allowed knight",
+      "text": "Alert! A fork is now available to the other side: a knight of theirs can strike several targets at a stroke. Locate that knight, first priority."
+    },
+    "takeId": null
+  },
+  "requestHash": "2a200274dc0ac938e5b5924629430e9d643d0114e75452524a86f42a771b86b6",
+  "recordedAt": "2026-10-04T08:11:49.710Z",
+  "sha256": "6faf1f2a6c3cefb14bcda677ce93eeeaf1bec7d3b39cb56dc043f5eb8f7444df",
+  "bytes": 31121,
+  "requestId": "hTOusjIiyfKtBUetQCQM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1220f56021cf0f430a0c9a5dd0864de58d48144811f39ead94cc9113c170f5a3",
+    "bytes": 158450
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

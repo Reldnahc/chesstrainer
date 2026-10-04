@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-queen",
+      "label": "Tactic removing defender allowed queen",
+      "text": "A defending queen has become capturable. If it is taken, the piece it was covering no longer has that support."
+    },
+    "takeId": null
+  },
+  "requestHash": "35373ca08547d2316aed1f3f3f9704a7ede7a3a4b68d8f39cbe27a0426f37b3a",
+  "recordedAt": "2026-10-04T07:53:22.179Z",
+  "sha256": "d308b3de25cd3c9638497d87da55001801b30cd290a2c34d404a361d175f3544",
+  "bytes": 22825,
+  "requestId": "c9yYbaKJMVE9eHMW3ikp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "86879be66ce1ff90b60c911e5734208209fdcf02114a4a0548d00c93779d3dd1",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

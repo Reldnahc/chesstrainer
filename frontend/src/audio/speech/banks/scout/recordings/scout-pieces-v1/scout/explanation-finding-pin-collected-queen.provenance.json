@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-queen",
+      "label": "Explanation finding pin collected queen",
+      "text": "Pinned queen, collected. It can't leave the line without exposing its king, and as the moves play out, it's taken."
+    },
+    "takeId": null
+  },
+  "requestHash": "24ef8461f8c34965967e7b38c5f68d58ad0a51df5675c08c9bab5416c5b849c0",
+  "recordedAt": "2026-10-04T08:07:35.272Z",
+  "sha256": "56a3b565c4a2be59b13fd4ac9723079ad86c3a9bb8969c362886ed24a08dde7e",
+  "bytes": 23425,
+  "requestId": "ypVFOqpVAdFWvn0x6ZP6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "75a94730090c6bf23d13bf89568783c271990aa0c496ab39f83aad154e5038ae",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

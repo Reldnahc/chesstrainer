@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "tactic-pin-missed-rook",
+      "label": "Tactic pin missed rook",
+      "text": "The stronger move had a pin that would have glued an enemy rook to the line in front of its king. Here that rook stays free to wander around."
+    },
+    "takeId": null
+  },
+  "requestHash": "2f788e6bcefd5456a4a9f3800375b70ce57d1cb68d7814b80120a23b0d20ee7b",
+  "recordedAt": "2026-10-04T07:54:46.033Z",
+  "sha256": "82c2fe471b5023ed4a32338790485292f44f22f87e32985a1a1a7e2d89dfad5d",
+  "bytes": 27533,
+  "requestId": "uUkD7qUAhtW2AorHmojC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3b4f9a21a015ba0f047d15bdc7ce8ecdd504f708d51f6fae78527f4e969fb1d5",
+    "bytes": 136716
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

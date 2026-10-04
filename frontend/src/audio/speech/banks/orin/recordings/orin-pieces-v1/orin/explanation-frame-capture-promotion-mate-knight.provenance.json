@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-mate-knight",
+      "label": "Explanation frame capture promotion mate knight",
+      "text": "The pawn captures a knight on the last rank and promotes, and that is checkmate, with every legal square closed to the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "ae2c4cb38b8b78908202d4800949d37e3936fb0c2da52873660b9372cdf1253c",
+  "recordedAt": "2026-10-04T07:59:28.314Z",
+  "sha256": "895da4c76bd90632c1a2182527f4ca1d1eb8007757a9c2a4a803ba111c92b474",
+  "bytes": 28309,
+  "requestId": "CPnwaslVJjseHn2rV8b8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6535060f0b2dd1cba7e39dce20f8456758ffe44f2b83deb739a3beae4e057e03",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

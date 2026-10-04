@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "tactic-pin-played-bishop",
+      "label": "Tactic pin played bishop",
+      "text": "The pinned bishop is tied to the line in front of its own king now, and a sturdy pin it is. If it stepped off the line, its own king would be in check."
+    },
+    "takeId": null
+  },
+  "requestHash": "113ab31fbb937adde957a8032e3beeb81c1469353a8f632f5838e8d7920a8f43",
+  "recordedAt": "2026-10-04T07:48:39.702Z",
+  "sha256": "28445e03dfe3e6a12822b76e5848e3df171026c32a29bdfb67548a11c0f48c1f",
+  "bytes": 31493,
+  "requestId": "9rPSUCmA5qAxgIZI9XA6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9313d8a2ad7f4a487a6e99fa38bb9794910eadae3a5888b015c244fa12d94191",
+    "bytes": 159704
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

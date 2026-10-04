@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "tactic-fork-missed-knight",
+      "label": "Tactic fork missed knight",
+      "text": "Psst, there was a fork tucked inside another move! A knight could have poked at several targets together. This move walked right by that clue."
+    },
+    "takeId": null
+  },
+  "requestHash": "f2104f7d3efbbc72db284ecfa9ea7dd78f919bc39b3714f9750c7fc4db21018d",
+  "recordedAt": "2026-10-04T08:01:43.003Z",
+  "sha256": "fc45193eb93364a299560c93e4d0b377d7886e3839f14942fa62bd3621b3d0fd",
+  "bytes": 27628,
+  "requestId": "tAGfpYPJtioK3PAowGcW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fc22da01bf6e197ec8e8eb752700fc6eb916e4ef006f059c472bdcb566e7d7d1",
+    "bytes": 142986
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

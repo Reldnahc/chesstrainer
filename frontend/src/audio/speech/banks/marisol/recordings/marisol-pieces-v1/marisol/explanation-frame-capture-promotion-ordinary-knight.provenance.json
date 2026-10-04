@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-ordinary-knight",
+      "label": "Explanation frame capture promotion ordinary knight",
+      "text": "Capturing a knight, the pawn arrives on the last rank and is replaced by a new piece."
+    },
+    "takeId": null
+  },
+  "requestHash": "6aa99b27b0545d317901f4ddb4af2a5e1aaeda1bb65575c65d63c963ed534601",
+  "recordedAt": "2026-10-04T07:54:27.803Z",
+  "sha256": "158dad310abdaad86d8cc32271d95d33fc04e8e276f8a04336ff06aac293574b",
+  "bytes": 18012,
+  "requestId": "GzJ0OCNc3kyQrtg5Nm17",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fe707d5dd093c4fcdaaa2d4d4e87bffe76691ece50b1b8139d47ac137f686f78",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

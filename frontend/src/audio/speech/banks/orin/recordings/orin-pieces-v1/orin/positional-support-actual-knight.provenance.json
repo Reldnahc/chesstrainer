@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "positional-support-actual-knight",
+      "label": "Positional support actual knight",
+      "text": "A guarded piece is a calm piece. This move gives the knight the defender it lacked."
+    },
+    "takeId": null
+  },
+  "requestHash": "3c09439970f0693f0b7a85f30b0c50363d5ed5bde0fdc03379624ad3b567cf8e",
+  "recordedAt": "2026-10-04T07:59:01.487Z",
+  "sha256": "91a39bc42a4ecb70dc4590f2de975c75ec653c726d8975a9b613b7921d19998a",
+  "bytes": 19746,
+  "requestId": "0eWh1abp3X2ckvXScMEu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "11906c08dff6679252e89843d0d0dd1a1ed8fdf400ba32bdbcfb16129b2ed2b8",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

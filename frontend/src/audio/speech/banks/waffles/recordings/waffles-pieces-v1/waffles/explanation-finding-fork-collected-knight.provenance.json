@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "explanation-finding-fork-collected-knight",
+      "label": "Explanation finding fork collected knight",
+      "text": "One knight hits several targets, then takes one. This example also ends with a material gain for that side."
+    },
+    "takeId": null
+  },
+  "requestHash": "57e54ebd90fe862b60e5aee676a58ffa5eaf6233a5a12f3e79f80134ebec2d28",
+  "recordedAt": "2026-10-04T08:12:54.530Z",
+  "sha256": "72ade88665d38b4dbab9521e9cd7ba95f69f614d363c0898c72f7b7bfd7c13f0",
+  "bytes": 24301,
+  "requestId": "5DY2JHUY7ruo62elIDeN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ea64a60609c7cf84043eb2ee59f127d37e15a670662c1e59a945e008848ab2a7",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

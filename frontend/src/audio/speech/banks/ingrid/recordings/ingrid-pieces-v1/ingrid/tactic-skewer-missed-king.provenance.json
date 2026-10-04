@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "tactic-skewer-missed-king",
+      "label": "Tactic skewer missed king",
+      "text": "The stronger move had a skewer to offer: check the king out of the way, collect the piece behind. A good pattern to keep handy."
+    },
+    "takeId": null
+  },
+  "requestHash": "e06343b650d8b4cede308b43d3414815b3fcd546d2537f37fbc0e174e8cbb0e3",
+  "recordedAt": "2026-10-04T07:48:16.727Z",
+  "sha256": "47b5efe0a2c01dbed30974fa8014b226311a8f883fc97225cbd606857695920f",
+  "bytes": 25728,
+  "requestId": "Efj9GdtF3fdF4pVvZNc6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "af73c8d487c1cb5a88b315372af34ee9bad0f794fad0360e115b3e73cad9cf4c",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

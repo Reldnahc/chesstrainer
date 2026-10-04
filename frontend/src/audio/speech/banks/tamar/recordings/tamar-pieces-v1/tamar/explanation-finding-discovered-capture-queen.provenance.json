@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-capture-queen",
+      "label": "Explanation finding discovered capture queen",
+      "text": "One piece moves out of the way, and the queen behind it captures down the line."
+    },
+    "takeId": null
+  },
+  "requestHash": "c7bef3e5e98b5d78f942fc710c18af54d7859d6aaec820bdc95dbdc3e88f413c",
+  "recordedAt": "2026-10-04T08:11:28.353Z",
+  "sha256": "ca5a89e13e982d09e8c00bb96f119cd23c7b3022363de230d2f5ebfc0a930e21",
+  "bytes": 16290,
+  "requestId": "pSJThPwj82rXKW6Hqike",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2b4dc45b35d39e1c9b407141a71b7e3641c34ca31faed51fc7a9b3516652d9db",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

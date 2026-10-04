@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played-rook",
+      "label": "Tactic removing defender played rook",
+      "text": "The defending rook is captured, and whatever it was looking after is left on its own. Straightforward and effective."
+    },
+    "takeId": null
+  },
+  "requestHash": "7825a58695c25ea02c3e8bd562a964709be77b74c9e2111bbb2a67fa19fcfff3",
+  "recordedAt": "2026-10-04T07:48:47.750Z",
+  "sha256": "68d6a0ba29171b2cd0917bec921d55422f8e814ecf7ecdc665c907dc54cd6af4",
+  "bytes": 23900,
+  "requestId": "CHOBQGM4gee622xnfcId",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e5233a5cee59864f6fe1569774007f5ad5ae17f4bf8f18b809d7766c61931391",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

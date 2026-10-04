@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "support-restored-knight",
+      "label": "Support restored knight",
+      "text": "Support restored! That knight left unguarded earlier is back under guard."
+    },
+    "takeId": null
+  },
+  "requestHash": "9d7bb22b5423a0aa36d1785b4dea1dbdf1195ae8b1a50ebf072983d97958dfbf",
+  "recordedAt": "2026-10-04T08:12:46.452Z",
+  "sha256": "6bca4a6ecaac713bc7881ac3a6c063aabea31dbef83c32744f798f7037c99472",
+  "bytes": 17021,
+  "requestId": "DRNTdgJlqfsdeV8AarDZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2a4e4514367ddef9020cc6e7a1bf74be2a1d5cca42b6d0f45a34b97dbc5a1a20",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

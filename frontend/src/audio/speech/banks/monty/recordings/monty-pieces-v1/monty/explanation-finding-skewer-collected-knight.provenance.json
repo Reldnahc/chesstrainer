@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-knight",
+      "label": "Explanation finding skewer collected knight",
+      "text": "Bottom line: once the knight in front is gone from the line, whatever was behind it is captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "4787827cee0f71f815fa713737d26e03c429e7c7963f4ab0fa8d40e5d2a0339c",
+  "recordedAt": "2026-10-04T07:57:15.634Z",
+  "sha256": "a52b003083535145681b64ca6af553736ea7be014c21f44e71e0eb814f5689a4",
+  "bytes": 19890,
+  "requestId": "VXtU26fjBuYVvxw3QOTr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8b7d90cca519174e105df622a2d94d0210f2ae2a658b0cc478989ece86bf4331",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

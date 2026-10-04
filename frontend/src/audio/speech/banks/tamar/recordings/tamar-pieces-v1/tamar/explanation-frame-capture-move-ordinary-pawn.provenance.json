@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary-pawn",
+      "label": "Explanation frame capture move ordinary pawn",
+      "text": "This move captures a pawn. Count the material afterward."
+    },
+    "takeId": null
+  },
+  "requestHash": "b0a562d2f453ff15446cdb81fb2be878960da76b48eb4795090fecfdda690d9c",
+  "recordedAt": "2026-10-04T08:11:53.072Z",
+  "sha256": "8692c44e495c0c520dabf7ffe337f22ab872adc61f0f9c9ba5481329aa13c7a5",
+  "bytes": 13132,
+  "requestId": "Jfpxg0xUIFlA79jy79T3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0818c96b02eca869accc3ea93f186aecd01c6b0eb96a4ccec8e84283acb2ce74",
+    "bytes": 66499
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

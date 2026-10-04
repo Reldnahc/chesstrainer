@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-finding-pin-prevents-capture-bishop",
+      "label": "Explanation finding pin prevents capture bishop",
+      "text": "That bishop is pinned to its king, which makes the marked capture illegal."
+    },
+    "takeId": null
+  },
+  "requestHash": "debed7d812df342b67d85602761e100a3173b39cb460df6329408fcd3b876cc8",
+  "recordedAt": "2026-10-04T08:11:23.642Z",
+  "sha256": "a31152ba648b2eff258942c03195537616b62f3c7fe4e8cfcf4bd1c1a4e5d6f8",
+  "bytes": 15528,
+  "requestId": "fZUztDtTuuXXCjpX1yy1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7986f1149ecf664a7b0fedb912a88b65ea38ee7d081caabe4a2c951ae36a9a11",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

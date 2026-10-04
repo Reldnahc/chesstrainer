@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "grade-brilliant-3-bishop",
+      "label": "Grade brilliant 3 bishop",
+      "text": "An offering of a bishop with a sound idea underneath. Brilliant, by any measure I know."
+    },
+    "takeId": null
+  },
+  "requestHash": "61a0dfe8d0d12d9f0e9dfe3a6f4ace4cf479379f2e8b15293d740e901e2e8c01",
+  "recordedAt": "2026-10-04T08:16:26.150Z",
+  "sha256": "10e2b34f2dc38d1f1f0f1475ac98507bff205fb39893f1b6b54dc8eaa919a8ea",
+  "bytes": 20686,
+  "requestId": "7II0V2UiFPkw8Rk5oN4y",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d086a64195cc47be60d1360cc5b9542d5736a32f44e52b235a2c2a3a95d3a032",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "tactic-fork-missed-pawn",
+      "label": "Tactic fork missed pawn",
+      "text": "Another move had a fork primed, one pawn on two targets together. This move never gives the order."
+    },
+    "takeId": null
+  },
+  "requestHash": "55153dd8fdb560335e724817d0716989071cde0117ce8754233055fcf400330b",
+  "recordedAt": "2026-10-04T08:11:58.568Z",
+  "sha256": "5096edc7606aa43753532b07bf9bf57852aa705793772d4fb5789d3f47a657ee",
+  "bytes": 23548,
+  "requestId": "fRYDxgad8S0IqxbIgoeR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "da9be833a44ac8c20577a72fcb1660f32744f23780a37ee0dd822509ed5beb01",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

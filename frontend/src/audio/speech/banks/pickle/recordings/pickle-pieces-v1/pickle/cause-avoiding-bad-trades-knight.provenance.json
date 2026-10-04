@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "cause-avoiding-bad-trades-knight",
+      "label": "Cause avoiding bad trades knight",
+      "text": "The capture looks tasty, but then the knight gets recaptured, and it's worth more than what it took. Peek at both halves of the trade first."
+    },
+    "takeId": null
+  },
+  "requestHash": "18768174515a08661cdf660470dfc6a22358c244eebcb42c3cfaaac268484170",
+  "recordedAt": "2026-10-04T08:02:10.106Z",
+  "sha256": "aa7685deeecc5759c1b8c335cf8bc746de28df52c5dccbc4397b4bfd865354f8",
+  "bytes": 26748,
+  "requestId": "etwLbw4DhP5OYXPpHw4L",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "25cf2102a12ce91b5e3c1d25ab12e6002364eb7e283586950ba08c9f2aca9096",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

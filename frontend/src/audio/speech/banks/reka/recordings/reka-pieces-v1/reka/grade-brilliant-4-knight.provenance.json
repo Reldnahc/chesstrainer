@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "grade-brilliant-4-knight",
+      "label": "Grade brilliant 4 knight",
+      "text": "There it is! A real knight sacrifice, and the line backs it all the way. I'll be replaying that one."
+    },
+    "takeId": null
+  },
+  "requestHash": "55601b05007eeba6eec03f82d67803f8dc3b77b7c6d7458a46ba42f9c60f24dc",
+  "recordedAt": "2026-10-04T08:06:18.545Z",
+  "sha256": "7539a64bcf361e8d1a4998b8637c009c5719d0a26e1d97df29f2195af15fb2d6",
+  "bytes": 22803,
+  "requestId": "s0cJz4tSkWwVrP7fl2Fw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "121de03e3db1ac463a54a876e479425a8598e27e85015ab188699b42f46780dc",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

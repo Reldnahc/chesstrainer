@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-bishop",
+      "label": "Tactic removing defender allowed bishop",
+      "text": "A defending bishop has become capturable. If it is taken, the piece it was covering no longer has that support."
+    },
+    "takeId": null
+  },
+  "requestHash": "b0e326a6d50c94a18f30dd8bd72fb9423a6278fbf959f32d421a4656b227a8d0",
+  "recordedAt": "2026-10-04T07:53:18.420Z",
+  "sha256": "da766f9f0b8ea7412a58e1c3f0f76b4eef9d836b79e0037586d8e6666acfaf27",
+  "bytes": 22771,
+  "requestId": "WzOl7DRMTDrulWQgvAyX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "600d77fd401db36574cef092bdefe47ea0d45f1053dbf26ad9034f1fe03c75d7",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

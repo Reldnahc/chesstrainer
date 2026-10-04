@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played-pawn",
+      "label": "Tactic removing defender played pawn",
+      "text": "Down goes the pawn on guard. Now look at the piece it was looking after; nothing watches it any more."
+    },
+    "takeId": null
+  },
+  "requestHash": "a18a95645336a371ae5f0fd23877172cb1d37c061a0013f8a98b29024f93a431",
+  "recordedAt": "2026-10-04T07:51:46.154Z",
+  "sha256": "852a5d42e45454a9a0da55e8b9a8a2a8baf94cf5d019aeb3c6ae403cc3adca05",
+  "bytes": 20341,
+  "requestId": "CG6yxdtexlqT1as1TpUm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "00fbffbbb8cd393caf59318ba3f2d9f3e6cd14c1d3edb7d771e1647b84a74abd",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

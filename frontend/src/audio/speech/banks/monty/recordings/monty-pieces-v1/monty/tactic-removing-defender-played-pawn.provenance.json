@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played-pawn",
+      "label": "Tactic removing defender played pawn",
+      "text": "The guard goes first. This move takes the defending pawn, and whatever it was holding up is left with no help."
+    },
+    "takeId": null
+  },
+  "requestHash": "cef24c8ff650e7613dd20d2a0403bf83832758ddf7f162e10b7642fd5b99a92c",
+  "recordedAt": "2026-10-04T07:56:43.304Z",
+  "sha256": "36c92494f91ae5bc46ee896e5520c51c807498a696d5447dca9719d56ab3bb15",
+  "bytes": 22543,
+  "requestId": "HVObUOGWkoCHlN3CIlYK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "33ad8e2746ddb6d642cefd0b6fe1c1a40c718c848ceae0d9c70d0ea51847454c",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

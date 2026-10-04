@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-king",
+      "label": "Tactic deflection missed king",
+      "text": "Another move could have dragged the king off what it was guarding. That deflection went unused. Look at what the king had to cover."
+    },
+    "takeId": null
+  },
+  "requestHash": "33c78ee399b1fc68f237ecf7b1e0970c0b278ed1a8a9352a9ab7093c81d34afc",
+  "recordedAt": "2026-10-04T08:00:35.990Z",
+  "sha256": "9598bcf06684da1a5d1e2893144120b97900131733345ae28b86ba5ee74192d0",
+  "bytes": 23275,
+  "requestId": "Ytc8mdI5MG47omyBoGxd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "140dcc35d449e610431664af5cff497b98bc645528e48218f90fd192a9d5f3b9",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

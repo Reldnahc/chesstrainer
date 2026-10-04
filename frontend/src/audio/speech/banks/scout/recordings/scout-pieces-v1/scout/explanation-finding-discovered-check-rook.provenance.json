@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check-rook",
+      "label": "Explanation finding discovered check rook",
+      "text": "Discovered check. The front piece moves aside, and the rook behind it checks the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "8b6dc6aaba73030f44d429f1806e4f2ff5832e8dda69ee7e39b6423d8eae53ff",
+  "recordedAt": "2026-10-04T08:07:58.198Z",
+  "sha256": "eb56375df0d59a22bd8ac33f6694c33abadab528f034e8a57dba9f0184f7e31e",
+  "bytes": 17247,
+  "requestId": "jxcmDjZD0gUsxwiDOYzH",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7f08cc0dcde0fd0327ae61e33f211224cf574ef3b2c8c6df13f582a4c79b4e30",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

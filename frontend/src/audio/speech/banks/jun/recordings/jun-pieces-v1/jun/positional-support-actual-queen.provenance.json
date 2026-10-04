@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "positional-support-actual-queen",
+      "label": "Positional support actual queen",
+      "text": "A previously unprotected queen now has a defender."
+    },
+    "takeId": null
+  },
+  "requestHash": "056be10198e1c1cadecfea24affe7ba60db42a70bbce048ff658470b59621cec",
+  "recordedAt": "2026-10-04T07:50:41.112Z",
+  "sha256": "524d0d0c0e10a088515c8195fbd5bdb7b66abe8f90407f49bcf3b32a2eee3c27",
+  "bytes": 12800,
+  "requestId": "anvGCG3TQIZh0bs5pvGj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7cbfb1f2c3b8d1461d5acf3372db19012709be2fc7365b7646e9eb050e6fbf65",
+    "bytes": 61066
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

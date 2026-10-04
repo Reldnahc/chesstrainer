@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary-bishop",
+      "label": "Explanation frame capture move ordinary bishop",
+      "text": "A bishop is captured, and the board grows a little emptier."
+    },
+    "takeId": null
+  },
+  "requestHash": "2c21f94f27f54ff8cdf69ba8075c1baa0771226378559739e99c8f585d230d6c",
+  "recordedAt": "2026-10-04T07:52:59.174Z",
+  "sha256": "9ad4ae39977fafa08f8db47a448a35e2f354c9360f03a2e8b553db2372719063",
+  "bytes": 12962,
+  "requestId": "DIs3gRFWAPHEtm6Q5Z7T",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0043f85969a237babcc36a61981865a531e614a6c8b6ba2f7345d49a57d39851",
+    "bytes": 65245
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

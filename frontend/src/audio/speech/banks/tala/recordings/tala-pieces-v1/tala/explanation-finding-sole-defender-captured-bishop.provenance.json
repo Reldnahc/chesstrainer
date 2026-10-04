@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-bishop",
+      "label": "Explanation finding sole defender captured bishop",
+      "text": "Part one: bye-bye, lone defending bishop. Part two, later in the line: the piece it protected goes too."
+    },
+    "takeId": null
+  },
+  "requestHash": "8a8d4532c431314ce45712dcd0df6eb7114c496c8d5257614f18d35ed19f94eb",
+  "recordedAt": "2026-10-04T08:09:31.658Z",
+  "sha256": "e30ddfe3579e9f1c052d4cc6db39ec0c3e97ade1a7aa6c8b9e266dabeb1aa561",
+  "bytes": 27468,
+  "requestId": "IrXpjbFvJ10ot3tjOwSS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8f8a48781420bf40b2aa3d333bc5f3b30037c95850a4162dda074559c29c7985",
+    "bytes": 148419
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

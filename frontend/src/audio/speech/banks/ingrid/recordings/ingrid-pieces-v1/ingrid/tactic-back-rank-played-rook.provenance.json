@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "tactic-back-rank-played-rook",
+      "label": "Tactic back rank played rook",
+      "text": "The weak spot is the back rank, plain and simple. The king's own pieces are sitting where it would want to escape, so the rook can attack along that last rank."
+    },
+    "takeId": null
+  },
+  "requestHash": "6f1253f0065223f7d622da91ba3d0086ebe3224e1c752d2d1534a1ca0fe8e942",
+  "recordedAt": "2026-10-04T07:49:03.098Z",
+  "sha256": "4fafa552989bba043412562ee12cee4af680dd1a83cb9083c946ef3d664fce8d",
+  "bytes": 32790,
+  "requestId": "Uf70KOjrMMlur6vndWmI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ecdabae9f34f008c9113d645077e77f7fe6e13e596e970f519476a931a0ca41e",
+    "bytes": 166391
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

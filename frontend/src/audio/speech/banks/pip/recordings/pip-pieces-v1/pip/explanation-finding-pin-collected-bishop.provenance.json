@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-bishop",
+      "label": "Explanation finding pin collected bishop",
+      "text": "Keep watching the pinned bishop. It can't leave its line without exposing its king, and by the end of these moves, it's captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "336c7e2b746e25fdb566ec45876081904d416bc04a50eae76f6f11a17cffbc20",
+  "recordedAt": "2026-10-04T08:04:09.842Z",
+  "sha256": "31fff6cfe6d149e36b270d3b06cb920b64f2bfe595072f0375212de0bae93a46",
+  "bytes": 25050,
+  "requestId": "hbqm2lLatzyh1gCKCd8K",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "317ae06e0f5ad6b28b212dc205850cccf1116725c9ef933841a9dd981074426b",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

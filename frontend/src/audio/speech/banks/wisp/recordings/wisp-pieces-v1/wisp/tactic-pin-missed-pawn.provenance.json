@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "tactic-pin-missed-pawn",
+      "label": "Tactic pin missed pawn",
+      "text": "Another move held a pin to the king. The pinned pawn would have been fixed to its line, unable to step off without exposing the king behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "009d12d73cceb8c717c192139c63c235112a3a7fb62ec8544a6b842842175ef5",
+  "recordedAt": "2026-10-04T08:13:30.835Z",
+  "sha256": "e594171adafbdd8ae6dd50cba53bc1096975a13e0d848b2f47a6ef577f6c9e36",
+  "bytes": 28926,
+  "requestId": "LVWW6OH2zMkZVrPxAPA0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2e3de989fe815c1ecc148862f4f6999854be3fb628f559c56be144a311dedf6b",
+    "bytes": 148419
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

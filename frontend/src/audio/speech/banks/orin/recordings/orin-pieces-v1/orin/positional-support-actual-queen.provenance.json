@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "positional-support-actual-queen",
+      "label": "Positional support actual queen",
+      "text": "A guarded piece is a calm piece. This move gives the queen the defender it lacked."
+    },
+    "takeId": null
+  },
+  "requestHash": "44f136be327a6a02d54fa1e1ebcd6894cc0946268430d7430553e9eef607cdb6",
+  "recordedAt": "2026-10-04T07:59:06.557Z",
+  "sha256": "2ff838d383f23a78a26e54df0d38d4052865ddd492f7dde1636af955d019a5f6",
+  "bytes": 19574,
+  "requestId": "m8nbs9EfXFtS0w3StTb3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "05abece3c3ee7f3b635c69d2764095b479e29af54acd609787414ad6dcf41511",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

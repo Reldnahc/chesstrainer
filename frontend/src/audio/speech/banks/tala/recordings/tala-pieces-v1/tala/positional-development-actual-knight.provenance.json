@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "positional-development-actual-knight",
+      "label": "Positional development actual knight",
+      "text": "Telltale sign of a good start: a knight steps out from where it began."
+    },
+    "takeId": null
+  },
+  "requestHash": "078c9b2394b544e9a733308c381fbea70dd0e90811a8085b98173e3ee0ab791d",
+  "recordedAt": "2026-10-04T08:09:21.066Z",
+  "sha256": "0c922242c35f52882ea03c612f4e603be164c7930423f54fef50bac5dfc2c8cd",
+  "bytes": 16455,
+  "requestId": "4V7AP572WVLi6q3CeMhz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "21660e55d58391917fcb7bf9b053a3a8630b252bedba0240506930147e874b5b",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

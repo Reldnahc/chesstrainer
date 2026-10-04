@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "positional-support-actual-bishop",
+      "label": "Positional support actual bishop",
+      "text": "A bishop that was flapping in the wind gets a bodyguard. One loose end fewer."
+    },
+    "takeId": null
+  },
+  "requestHash": "634f155d9e3dcd18fef917d93f6b5217db9c453d2396d8a45670ee5488e7d54b",
+  "recordedAt": "2026-10-04T08:05:47.911Z",
+  "sha256": "8c21f93a2b02c79a234cae965f9c28350084a73fff106c8029efd308e68fa6d6",
+  "bytes": 16563,
+  "requestId": "Oo7Ibh1j0ZYd21pY3nBI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6fa881a2f50bd8621fa317e9e9e562e6673f77fc47b9bc433899d7c588841750",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

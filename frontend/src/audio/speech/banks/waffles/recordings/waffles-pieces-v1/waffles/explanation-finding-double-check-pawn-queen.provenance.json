@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-pawn-queen",
+      "label": "Explanation finding double check pawn queen",
+      "text": "Double check, the pawn and the queen at once!"
+    },
+    "takeId": null
+  },
+  "requestHash": "90c3c6649a89499fc794689e67c3840d2665b25cdee3903bcf2de46517138855",
+  "recordedAt": "2026-10-04T08:13:05.785Z",
+  "sha256": "47c73f4857c922633a4dc26ce85a0c2f8a448f57fe622b2699e186a8d190fc9b",
+  "bytes": 11523,
+  "requestId": "iBjHm4pdG1aMLHLN6338",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "41e64271d49dd194d098fffa9caa99c8e3feea6df565fd0c0a4a8004df33da28",
+    "bytes": 56050
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

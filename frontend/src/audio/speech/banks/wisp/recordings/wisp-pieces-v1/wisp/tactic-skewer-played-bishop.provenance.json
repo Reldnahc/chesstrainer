@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "tactic-skewer-played-bishop",
+      "label": "Tactic skewer played bishop",
+      "text": "Two pieces stand on one line. The attack meets the bishop in front first, and when it steps aside, the piece behind is exposed. A skewer."
+    },
+    "takeId": null
+  },
+  "requestHash": "157b4d771edd16626b8439930869a32586a66a0e164b42df6d07dc49450695e3",
+  "recordedAt": "2026-10-04T08:13:44.996Z",
+  "sha256": "27e73e78e5ea3d3e5bf13952cacbab9c35874c3621b1c117718716864cee4b0c",
+  "bytes": 30978,
+  "requestId": "hXh9o3fQj0sIafjGcmlf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ca488820dd49ad3190a2ce9108ccc31e5c7720b3b3e59a68b543b5d6e1d71989",
+    "bytes": 162212
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

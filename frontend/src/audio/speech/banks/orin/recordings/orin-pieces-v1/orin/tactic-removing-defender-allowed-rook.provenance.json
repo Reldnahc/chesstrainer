@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-rook",
+      "label": "Tactic removing defender allowed rook",
+      "text": "What is guarded is only as safe as its guard. This lets the other side capture a defending rook, and whatever it protected could then stand without cover."
+    },
+    "takeId": null
+  },
+  "requestHash": "889842d915bfce104c7899f7b5f12cd4b1d4205c8ce7f5b2600a819ca2cd85d7",
+  "recordedAt": "2026-10-04T07:58:15.815Z",
+  "sha256": "ee193a87b12b38196d420d2f05e70e587faa793144fa980bcf1ae1602b70c023",
+  "bytes": 34095,
+  "requestId": "BgDV2yvTNW1VTbB89PwL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "215f466dbc191f2683ba4626519041f706cec06b5150fb709a04a05f51499007",
+    "bytes": 175168
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

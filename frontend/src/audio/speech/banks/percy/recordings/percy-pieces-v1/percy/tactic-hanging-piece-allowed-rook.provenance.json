@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-hanging-piece-allowed-rook",
+      "label": "Tactic hanging piece allowed rook",
+      "text": "Spot the problem: a rook has been left with no guard, so capturing it would cost the other side nothing. Where is it?"
+    },
+    "takeId": null
+  },
+  "requestHash": "53f20fce3cdd756938fb5bc7cad71ebd79ad606aec5e0cd118295525b0a3b433",
+  "recordedAt": "2026-10-04T08:00:21.513Z",
+  "sha256": "1d70b24b4b569307287cc14c9cdbc32f34809334823271d9e3050defc5e1667e",
+  "bytes": 23972,
+  "requestId": "xjAdwy7TnWfk7shzsT7H",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ea05f8031a7e585ccc62049abcda9882332aa2737ff5256e9c0866c207b7a0d6",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

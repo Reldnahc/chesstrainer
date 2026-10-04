@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-pin-allowed-rook",
+      "label": "Tactic pin allowed rook",
+      "text": "Pinning chances go to the other side here. A rook would be stuck on the line to its own king, unable to step off. Notebook rule: keep pieces off the lines that lead to the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "bfd4206b0308c312bcc846adde7ce05de4ad8cff03d693d73d8c41d4431e27c2",
+  "recordedAt": "2026-10-04T08:10:08.728Z",
+  "sha256": "f52aadc5ff7d1ee4db4ebe0140b20e9af438aed5dae387331c096913ba4bcf98",
+  "bytes": 35417,
+  "requestId": "0KjAog9JJmrPj3MF59Bd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9daa84d23d164ea608cda5563000a53f8857b6ba0d9ae131f6b2c6314957dc92",
+    "bytes": 185199
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-fork-allowed-rook",
+      "label": "Tactic fork allowed rook",
+      "text": "There is a forking square in the other side's reach. One enemy rook can land where it hits several targets together. I want every enemy landing square checked first."
+    },
+    "takeId": null
+  },
+  "requestHash": "9b1fdcf6d1180ffc0bf233e8350cca7b05de3c49a654e0f9b0e41c4a0b93c177",
+  "recordedAt": "2026-10-04T08:10:20.289Z",
+  "sha256": "cf260582b3fb4f349b98b47eb549b20e33df65d4171abec2e4a3a28d08f5acd4",
+  "bytes": 31711,
+  "requestId": "wrdxLEresqm2u7UJBOOA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f43d97c63b237a84b335c254300e3aa4ebae2ac74fc210e7b5f0dbe074190fb1",
+    "bytes": 162212
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

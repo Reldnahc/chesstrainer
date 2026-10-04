@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check-bishop",
+      "label": "Explanation finding discovered check bishop",
+      "text": "The blocker moves aside, and boom, the bishop behind it is giving check."
+    },
+    "takeId": null
+  },
+  "requestHash": "2772c6f9fcfe8a639f4b6152c92b2d77de42a1a2cc656b9e86eef585415bddfb",
+  "recordedAt": "2026-10-04T08:09:42.833Z",
+  "sha256": "335442070f8ab3d420b9e64dc535eeb0658af54cb76758ae919ac732576dfe51",
+  "bytes": 17352,
+  "requestId": "AFpQAW6Ik3V7DmWVb0ba",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0dc780d2e69302cc356faeab8822e97befcfd5cee0bc28f504cb862c2842dd50",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "tactic-pin-missed-knight",
+      "label": "Tactic pin missed knight",
+      "text": "A different move would have fixed an enemy knight to its king, since leaving the line would have exposed the king. A pin, unplayed."
+    },
+    "takeId": null
+  },
+  "requestHash": "c6894bc4b3882973576bf23bb39d3b58d29130cb2786e020c1acfe87c0490b43",
+  "recordedAt": "2026-10-04T08:15:13.121Z",
+  "sha256": "29ff6ba7a1ffb9d5b0a5635f2009210314aec64b7466586c309740d7a30a7344",
+  "bytes": 25121,
+  "requestId": "aoMYPKb1xWgm2LNXaxaL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b726668a3654d6234b5a31ebeedddf460d3437dd866962c9acd2e45efd7d9b47",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

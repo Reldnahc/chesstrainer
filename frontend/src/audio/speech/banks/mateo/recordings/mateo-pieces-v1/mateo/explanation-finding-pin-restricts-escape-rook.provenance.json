@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape-rook",
+      "label": "Explanation finding pin restricts escape rook",
+      "text": "The attacked rook can't run away, because it's pinned to its king and has to keep blocking the line."
+    },
+    "takeId": null
+  },
+  "requestHash": "7e8b4e5174d6337a751a786528309af8327599b68cdfc5fe19f611929207f168",
+  "recordedAt": "2026-10-04T07:55:21.191Z",
+  "sha256": "3bdb4b4142332729214cd081e158a955ff7485775d4c3b332f60e7687c4333bb",
+  "bytes": 19180,
+  "requestId": "iqGyPmoiQdDnomBAdqoC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "af3cb47c5191dc95da6c52bc586a8bb979f3ba495be1c4e7adcd2fa9a0489c8a",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

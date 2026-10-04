@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary-queen",
+      "label": "Explanation frame capture move ordinary queen",
+      "text": "Snatch! A queen gets captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "8c76ff10a1293febff311fb18c44f74addad806bb8c892e20e73e40fb584a134",
+  "recordedAt": "2026-10-04T08:02:45.226Z",
+  "sha256": "e82e5a499f8cf8f6358f06f16d12ba98ae5a62850bfc4ff749cc0d2e9c197905",
+  "bytes": 8850,
+  "requestId": "DT5KnbfuTuk1ZfNSRD8q",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "02eff60fd30eb6685968e415c52926b4626466eace61149579f952fc2df1245e",
+    "bytes": 44765
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

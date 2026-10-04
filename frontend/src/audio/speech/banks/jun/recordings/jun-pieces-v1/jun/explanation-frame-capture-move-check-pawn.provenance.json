@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-check-pawn",
+      "label": "Explanation frame capture move check pawn",
+      "text": "Check, delivered by capturing the pawn. Material and tempo in one move."
+    },
+    "takeId": null
+  },
+  "requestHash": "ddc0b188a7641d34ae6b388d233a1226cd32e10cc610aa96a4d5e571440c8c8d",
+  "recordedAt": "2026-10-04T07:50:52.598Z",
+  "sha256": "6acefff55e54bbb5d789fcb0b771fb3a71da4e6c15529e4ad1647f4e1609c458",
+  "bytes": 17408,
+  "requestId": "OdZtSG7UqX6KO6XonkTm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3cce64781b80c97dee46a09bb525f0cc368a7de63fc92ba681ff09ccc261b3f4",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

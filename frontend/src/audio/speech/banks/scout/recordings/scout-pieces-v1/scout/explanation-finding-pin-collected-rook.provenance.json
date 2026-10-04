@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-rook",
+      "label": "Explanation finding pin collected rook",
+      "text": "Pinned rook, collected. It can't leave the line without exposing its king, and as the moves play out, it's taken."
+    },
+    "takeId": null
+  },
+  "requestHash": "0bcc1906eca2ba3654de5a36e8d5a8e0f74d5edd30ebf8474f46404a49394d04",
+  "recordedAt": "2026-10-04T08:07:33.279Z",
+  "sha256": "530519e1c3953616b99ee6f45a57800b6586e39f6758e041b6023b454a80ef4f",
+  "bytes": 23020,
+  "requestId": "HjGJAR1rrXj9E5yFFA1G",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "695feef9ed1d982a6fbe8d1a8b4d7fb8b1b22bad89d20eb396737e8d284a325d",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

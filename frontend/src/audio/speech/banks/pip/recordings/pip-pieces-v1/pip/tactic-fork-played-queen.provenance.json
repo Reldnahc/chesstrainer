@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "tactic-fork-played-queen",
+      "label": "Tactic fork played queen",
+      "text": "Oh, look at that now. That's a fork, with the queen attacking more than one target at the same time."
+    },
+    "takeId": null
+  },
+  "requestHash": "92f26a431d4fbc0658d5a4cdc5d614f49077702012ff63c719bdb97bb34a678d",
+  "recordedAt": "2026-10-04T08:03:15.562Z",
+  "sha256": "398f19405d492c505fd4706345b64e7c2823d1b738705e051112da398d3af700",
+  "bytes": 22211,
+  "requestId": "rIDbxwJn55UXymbR2zQ3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bf6b80e9bb6914e7a4e860944cac96a92c652d8b5c549d64c6a8d8944c3e7a26",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "tactic-pin-allowed-bishop",
+      "label": "Tactic pin allowed bishop",
+      "text": "Psst, the other side can nail a bishop to its king now, and pinned like that, it can't wander off the line."
+    },
+    "takeId": null
+  },
+  "requestHash": "78a3a7d1b58615bc2aeeed4d3b989a01f584500f3e627d67e1b7a2fb75cf82cc",
+  "recordedAt": "2026-10-04T08:04:52.684Z",
+  "sha256": "a1f7ce3f6cdebe238adf82e966fab1d51d70b190f1f575fcae0dabafdaa8375d",
+  "bytes": 20923,
+  "requestId": "1N0uvmL83XQnl4FBl5xL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d7f587c59c1f974e3697cbb93bb4870101bbaefe91a50549c90deeff3f1b3fda",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

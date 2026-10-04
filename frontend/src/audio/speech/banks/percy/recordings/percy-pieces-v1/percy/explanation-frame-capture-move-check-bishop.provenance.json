@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-check-bishop",
+      "label": "Explanation frame capture move check bishop",
+      "text": "A capture of a bishop and a check, both with the same move."
+    },
+    "takeId": null
+  },
+  "requestHash": "1860a57adf2a428f3e2cbfe868a75c2860fe3311c7b89be3b246d41974ed8577",
+  "recordedAt": "2026-10-04T08:01:08.377Z",
+  "sha256": "21fce6ec9036787573002626412fff4a3c1130613d5f3c38b428470fe8e8dda7",
+  "bytes": 13031,
+  "requestId": "orvmKL8gJZjd8YpRq1Bb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5fa669f72b346928e7b405a31f1ffd0cda8768b240adf540f76344c8e1ee7cf6",
+    "bytes": 63991
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

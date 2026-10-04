@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-bishop",
+      "label": "Explanation finding undefended capture gain bishop",
+      "text": "Nobody was watching that bishop, so it gets taken. That side comes out ahead on material in this example."
+    },
+    "takeId": null
+  },
+  "requestHash": "7bd9c285fc2e8e5f9304c7a1ae793ca77a9dd95a4f01cee60af7668954fa95e0",
+  "recordedAt": "2026-10-04T08:01:11.166Z",
+  "sha256": "f384282b0d5e5b814088f1f0a9988696961c12d1292cf619f6c7806ba81a240a",
+  "bytes": 21418,
+  "requestId": "ehk1eRP35Th0v8UYDkzA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5fe0bf6dc522fbad88da763f312ccfa599149faa0f4e78f99bef4aeab31cb21a",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

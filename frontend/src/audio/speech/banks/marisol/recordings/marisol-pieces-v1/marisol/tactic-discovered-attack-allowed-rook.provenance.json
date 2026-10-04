@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed-rook",
+      "label": "Tactic discovered attack allowed rook",
+      "text": "An enemy rook now screens another piece. Once it moves, the piece behind it attacks down the opened line."
+    },
+    "takeId": null
+  },
+  "requestHash": "f7ee874e5e4ad92ec32df201b62f4c0ccd9f72f3d52c02ecd5b4a9cf024ee1f2",
+  "recordedAt": "2026-10-04T07:53:29.095Z",
+  "sha256": "ef6ea116f9a12a065f2c229d060cf1b162536330d4c7d32562f7fc61815427cc",
+  "bytes": 23115,
+  "requestId": "Evduvoz1TCVjIH7UKWzO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7210b3d7c6ebbd7cddf420f1da94b5c1f03bf7f9bbc6fb49501f66253339c48c",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

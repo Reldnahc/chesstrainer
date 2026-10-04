@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-pawn",
+      "label": "Explanation finding relative pin released pawn",
+      "text": "Pin released. The opponent's previous move freed the attacking pawn from a relative pin, the target stayed put, and the line shown ends with it captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "b243f58ef1c92b47bf44097a1790648e671cc2015096670a12aa51faef94f1bd",
+  "recordedAt": "2026-10-04T08:07:37.438Z",
+  "sha256": "33862e723bfe5630da9398cd96ed0583d115f651e0b9d6c09235f5611d10d4ef",
+  "bytes": 28291,
+  "requestId": "CMR5qUow9Cjts3FRhe3O",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f5fc4974f560113ef08b7cb91e3ac232577fe147aab4aed25334c2124ab42663",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

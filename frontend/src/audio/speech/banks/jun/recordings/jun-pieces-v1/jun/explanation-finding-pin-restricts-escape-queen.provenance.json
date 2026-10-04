@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape-queen",
+      "label": "Explanation finding pin restricts escape queen",
+      "text": "Pinned to its king, the attacked queen may only move along the line that keeps the king covered."
+    },
+    "takeId": null
+  },
+  "requestHash": "79aaa95235d7546aaaed45b2c36166bf7d8a7e360d134d34f85f6485f708e94d",
+  "recordedAt": "2026-10-04T07:50:37.118Z",
+  "sha256": "2ffce866329ecac5d0440662143c8912b2a7fda65dd7efd5544df43cf957a71e",
+  "bytes": 18694,
+  "requestId": "QWexOIXUB74BgHNYfGIN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "806c9f62f33f00bffef305a44365a1fc2918962283873f59f3809c5aa89ec06a",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

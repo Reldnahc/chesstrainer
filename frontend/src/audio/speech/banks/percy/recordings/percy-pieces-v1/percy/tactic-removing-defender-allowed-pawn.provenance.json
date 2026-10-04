@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-pawn",
+      "label": "Tactic removing defender allowed pawn",
+      "text": "This leaves a defending pawn open to capture. If it goes, whatever it guards could lose its protection, so check what that pawn is covering right now."
+    },
+    "takeId": null
+  },
+  "requestHash": "b2651f059bbae9438776728044f8d8df926951b020d9b4d989da59702ab1ac26",
+  "recordedAt": "2026-10-04T08:00:01.856Z",
+  "sha256": "43a7f7a6753b3ef9c98bfc163c2f711979de90ae36cffdd75136a47f72191aa7",
+  "bytes": 29553,
+  "requestId": "6s06X8cw7KiNHJc5IIqd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9a08b540945d76b12a786cdf5e57d7abffd3850e768d26ee810788839c794883",
+    "bytes": 150927
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

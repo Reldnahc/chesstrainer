@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "positional-support-actual-bishop",
+      "label": "Positional support actual bishop",
+      "text": "That bishop stood unwatched. Someone covers it now. Better."
+    },
+    "takeId": null
+  },
+  "requestHash": "730e22e226de3654e7daf85c48fd79201e0fe40306d19d8c0b5cb7d278088ec6",
+  "recordedAt": "2026-10-04T07:52:16.388Z",
+  "sha256": "d0602b6cf0e092433c1197aede73ecc25605f891e7c66e23bf229bc845208557",
+  "bytes": 14849,
+  "requestId": "uVIDzW9PCU44YSMS3wwL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d3bc6e4c98712353eab545e389f37c50c3f4673084758deed9b2cde202d520e6",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

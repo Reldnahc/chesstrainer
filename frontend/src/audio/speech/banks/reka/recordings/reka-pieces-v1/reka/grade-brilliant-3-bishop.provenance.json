@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "grade-brilliant-3-bishop",
+      "label": "Grade brilliant 3 bishop",
+      "text": "A bishop sacrificed, and the capture doesn't faze the idea one bit? That's my kind of chess."
+    },
+    "takeId": null
+  },
+  "requestHash": "694f60638cd3828addd2363e74d1c1593ba3fdf5dd8d5d721bc8c5eb39b1acf6",
+  "recordedAt": "2026-10-04T08:06:12.784Z",
+  "sha256": "a29cb4d4f90710eb5c5101c749001749e51022def719262e2aa6bfdd9691a192",
+  "bytes": 20915,
+  "requestId": "QjdFw6RjIFlFOFo8cxQE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a9a28e67407a8a00588d2624d1bc7ce2317c0b4592d6f8b71facaba006bcd508",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

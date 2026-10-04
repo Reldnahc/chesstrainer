@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-missed-bishop",
+      "label": "Tactic undefended capture missed bishop",
+      "text": "An unguarded bishop was there to collect with another move, and the played move passes it by. Loose pieces should be counted before anything more elaborate."
+    },
+    "takeId": null
+  },
+  "requestHash": "4352da3c531be4430bf9f06a5b443b0daaf3486fa876c3f9bad43ba0b0724364",
+  "recordedAt": "2026-10-04T07:58:15.869Z",
+  "sha256": "e9e51bc6d61e924126688cb77806f433e19f9d078109e24b6a56f5f2ae311d6b",
+  "bytes": 31556,
+  "requestId": "RaHn1VBJBtY1YwmPhvYM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6f90a8622c43eb5b9469dba7cd193e94a2b29e45542f563cce49ae0ce438482e",
+    "bytes": 162212
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-pin-allowed-rook",
+      "label": "Tactic pin allowed rook",
+      "text": "The rook in front of the king has become pinnable. Once the pin arrives, leaving that line stops being legal."
+    },
+    "takeId": null
+  },
+  "requestHash": "6b947ce181280ee08815c5435d90e3358fc177bf332427a0db5b02951b42982f",
+  "recordedAt": "2026-10-04T07:52:59.692Z",
+  "sha256": "c377248f0cc7a51bc597641bc06bacdcb7440c71e1f9c21453dc8acf840364a9",
+  "bytes": 22435,
+  "requestId": "Z4S1agorSqeX1Zz1tEWH",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "456eb8b188d1403496da0eee97590d84425eda2b38b48fd451f624c793091579",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

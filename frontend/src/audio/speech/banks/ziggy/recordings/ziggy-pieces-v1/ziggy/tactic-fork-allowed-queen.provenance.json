@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "tactic-fork-allowed-queen",
+      "label": "Tactic fork allowed queen",
+      "text": "Curious how much one enemy queen could do from here. A fork is now possible for the other side, with several targets under attack at once."
+    },
+    "takeId": null
+  },
+  "requestHash": "aafb36ba3119401430d0179efe0e30a31f7591c13da1e3fb3f87ab921c8509c3",
+  "recordedAt": "2026-10-04T08:15:18.245Z",
+  "sha256": "d676e8a80a932effb639f6f35d6502d6488ee805afd9a1f85a4a67389929a2bd",
+  "bytes": 27919,
+  "requestId": "8yUIi22YkN736i6o6aKT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "21433d05490504f67aeb791a7199c2935b589eb5b23aac50219811262bc4f80a",
+    "bytes": 141732
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

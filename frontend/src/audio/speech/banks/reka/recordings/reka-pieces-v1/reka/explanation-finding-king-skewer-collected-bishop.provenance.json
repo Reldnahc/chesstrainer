@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "explanation-finding-king-skewer-collected-bishop",
+      "label": "Explanation finding king skewer collected bishop",
+      "text": "The check shoves the king off the line, and then the attacker gobbles the bishop queued behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "838d9cb76bda127e96aa872abce8455b54aa2504da2fdf115db1ed5a2a34457f",
+  "recordedAt": "2026-10-04T08:06:01.331Z",
+  "sha256": "04f7691253178c8fb943b82b2281d529529f42afbcaf1167c59738350c882f3d",
+  "bytes": 19413,
+  "requestId": "MGvTXFZMOs5jlyLMfAHL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1fa20aea6a16b69dde70112f9f8f16804259f43f416f7228300aac2e58086ed0",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

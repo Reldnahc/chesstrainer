@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-queen",
+      "label": "Explanation finding sole defender captured queen",
+      "text": "Part one: bye-bye, lone defending queen. Part two, later in the line: the piece it protected goes too."
+    },
+    "takeId": null
+  },
+  "requestHash": "0f22c6dbe0c9c0f1ac8d0ddd03a4f8d1479890a71b93a29caf3018f4986ac958",
+  "recordedAt": "2026-10-04T08:09:35.880Z",
+  "sha256": "9e1f8a80198ba675ca6c17bdbc5f148f143ebbfc224eeebbb61c7f909242ee33",
+  "bytes": 27665,
+  "requestId": "rjSrzmuqbeSdpO43h5kP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a4ab6c93b9e1ca764e7925170a9479198997ae3d6d177f820ca145f6c13592db",
+    "bytes": 148419
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

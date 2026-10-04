@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "grade-brilliant-3-bishop",
+      "label": "Grade brilliant 3 bishop",
+      "text": "Puzzle-book material! Giving up a bishop looks wrong at first glance, and the checked line backs it."
+    },
+    "takeId": null
+  },
+  "requestHash": "3bc37785047f8f59030436bc031abb4deebd0a6db4c2b2bf59792eca020c1ce3",
+  "recordedAt": "2026-10-04T08:09:46.869Z",
+  "sha256": "dd67999cdf4e213bec7af06e0f78ac939ed178013218d2af0591d74aded280c8",
+  "bytes": 20934,
+  "requestId": "Uaxde5wnQD34o8ZgXTsA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a7824da4cfaf2291c2d07d9451ae5115f9d60bf28c49d4f67f72337ed2d9c774",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

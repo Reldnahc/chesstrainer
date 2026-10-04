@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-ordinary-bishop",
+      "label": "Explanation frame capture promotion ordinary bishop",
+      "text": "Capturing the bishop as it arrives, the pawn reaches the last rank and promotes."
+    },
+    "takeId": null
+  },
+  "requestHash": "8f6123e7257818a388c2e29f70a08c224bda02d9f1f14dbcc84b99d6bd1da5a4",
+  "recordedAt": "2026-10-04T08:14:54.037Z",
+  "sha256": "e6ca1a95fec7a182b4958d18d0a0d4be2ba051fa9cd54df2517eb2285134f905",
+  "bytes": 16872,
+  "requestId": "iXGFTitzaOQEwSjmThif",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8b1f9bf5408ddb0b3c983ca9b4911fa9508939626f9570a0e47cef42b24aebb1",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

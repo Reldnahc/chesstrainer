@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-queen",
+      "label": "Tactic undefended capture played queen",
+      "text": "Nothing was watching that queen, and now it's gone. The loose ones are always worth a first glance."
+    },
+    "takeId": null
+  },
+  "requestHash": "d4409caf1e873390d5eabc3caaa8c15bb8f9671e8aab5f3009173fcab4204689",
+  "recordedAt": "2026-10-04T07:51:28.958Z",
+  "sha256": "9148b7dc25df683eb71f9a82cf3aad5b2fd537a0263d63737a1cd5fae80deb26",
+  "bytes": 21457,
+  "requestId": "leOY0eET2kmf9IyWX0On",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "72e45e9ba18d412391642349ddfae3a40b3854984d4fafa8d2aff9ffd72b2383",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

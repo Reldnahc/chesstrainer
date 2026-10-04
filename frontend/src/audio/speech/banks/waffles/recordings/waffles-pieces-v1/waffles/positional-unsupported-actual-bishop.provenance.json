@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-bishop",
+      "label": "Positional unsupported actual bishop",
+      "text": "No guard on this bishop now. That alone doesn't mean it can be won, but keep watch."
+    },
+    "takeId": null
+  },
+  "requestHash": "76b493975b9cb6c02fbdae544ae7a319102c9bf6ae66da17b521d84b78e527df",
+  "recordedAt": "2026-10-04T08:13:03.156Z",
+  "sha256": "279180d6c345bfc5ebf6fdd846363e9251f670fc5d0fe585f7b0a4fed0536942",
+  "bytes": 18688,
+  "requestId": "UgWJCO9geaYuP4KrEzL4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d08c89bd9b1b58352907e305bf7d2894c2d75e9f459ef18f7e83f18f7cfccfee",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

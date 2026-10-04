@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "grade-brilliant-3-knight",
+      "label": "Grade brilliant 3 knight",
+      "text": "Medal-worthy! A ribbon for this knight sacrifice: real material given, and it holds when taken."
+    },
+    "takeId": null
+  },
+  "requestHash": "36bfa7244881171b83ade2d8da452462b98ea453b23c8d5bcfebf3db34f40732",
+  "recordedAt": "2026-10-04T08:13:13.217Z",
+  "sha256": "eaad3c2e20c795a79c03b7b8e87f83b0bab3bafa6c11b849cf21b82ad2b9f0a1",
+  "bytes": 25297,
+  "requestId": "dpfZdnVZcJBY1Fazosdf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0e2c641b955fb8d696834d7ffa73acb081a00eac2f618090b2fba23ad0bcdbca",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed-bishop",
+      "label": "Tactic skewer allowed bishop",
+      "text": "Simply put: two pieces end up on one line where the other side can skewer them, the bishop in front forced aside, the piece behind left to be picked up."
+    },
+    "takeId": null
+  },
+  "requestHash": "fb311d4f5e9c311dc366ac7a235f4455b40575f32f8ba3d6d4dde175b03afc7d",
+  "recordedAt": "2026-10-04T07:48:36.908Z",
+  "sha256": "946e0136b7396eb77cb19a81df7106e23905cfc6630ae226c17a46d5c4e1b55a",
+  "bytes": 32649,
+  "requestId": "kvECUoNCaQAXql0Vv8Pl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "71aa1f3b47b0c0b949b2d493c8d227f9065e471e99f963942ab8837500173217",
+    "bytes": 166391
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

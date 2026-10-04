@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-capture-bishop",
+      "label": "Explanation finding discovered capture bishop",
+      "text": "Front piece moves, the line clears, and the bishop in back makes a capture along it."
+    },
+    "takeId": null
+  },
+  "requestHash": "e2f975c4e6f2a5ea31748ba1f8477668f9dc0781e12e8fd7b1b69df465287c10",
+  "recordedAt": "2026-10-04T07:57:38.194Z",
+  "sha256": "ba2eb87ac551db6d4e10bacc4b99d50eb0d5ff6f3bd776213422d7e70e53ac30",
+  "bytes": 17840,
+  "requestId": "YDfUPMZS2O4AvVqcHlMO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a0b1eef5bbd9e373973d9d4d7a282428a36881bfd770028adda50c20f18bd997",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

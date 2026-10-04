@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-escape-knight",
+      "label": "Explanation frame capture move escape knight",
+      "text": "Take the knight, lift the check. One move, both jobs."
+    },
+    "takeId": null
+  },
+  "requestHash": "bd45d0fb6ecbc6ab1eb82b6ea08c79ae8ba107350cda8e74d5c4b299fd5a79cf",
+  "recordedAt": "2026-10-04T08:13:18.408Z",
+  "sha256": "644352ac450db3e7f7b6d0365c4ab04442231ced7bbed2f28bb32a8876b283d2",
+  "bytes": 14217,
+  "requestId": "i3ltcAGZNbjhQmFZSht5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "487c446239876dcdfa98eaa4487750b671dfbd63f8bf6a67e159f93affb70c43",
+    "bytes": 71515
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

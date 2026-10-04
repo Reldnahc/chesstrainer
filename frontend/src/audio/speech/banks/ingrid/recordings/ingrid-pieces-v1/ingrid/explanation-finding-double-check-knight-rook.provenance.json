@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-knight-rook",
+      "label": "Explanation finding double check knight rook",
+      "text": "Double check: the knight and the rook check together, and only moving the king can deal with it."
+    },
+    "takeId": null
+  },
+  "requestHash": "af5d5a7b35e680f13e455fed9ef9ac7cc7fb88cf1bd30b36ec28550a84dbba18",
+  "recordedAt": "2026-10-04T07:49:38.925Z",
+  "sha256": "13bf1bfc0233483e5f5bd3708cafc8090c1e2a48406e343297f478ae32d34e71",
+  "bytes": 20587,
+  "requestId": "9Gd1YUjpPhOC9NDQfCwD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6f77b5fdc3082ef4692067673dcf846d0b5235be1d4b594241a1b28763bd7dee",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

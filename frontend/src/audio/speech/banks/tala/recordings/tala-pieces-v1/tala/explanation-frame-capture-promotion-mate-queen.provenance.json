@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-mate-queen",
+      "label": "Explanation frame capture promotion mate queen",
+      "text": "Three in one: grab the queen, promote, checkmate, all with a single pawn move."
+    },
+    "takeId": null
+  },
+  "requestHash": "8e316541544958bb3383e24d795d604304fdee89e85f0301af2adfc3d9e09007",
+  "recordedAt": "2026-10-04T08:09:54.435Z",
+  "sha256": "f9cd0098470e7cf1040672b573a856f566117c6b2de65728ba68730aad16ba3c",
+  "bytes": 20340,
+  "requestId": "MCdptQeBgkLMPew5EHQj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4931562f9764fab8ae947fe5d085211b488706203f9c38208fd86d4f221a675c",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

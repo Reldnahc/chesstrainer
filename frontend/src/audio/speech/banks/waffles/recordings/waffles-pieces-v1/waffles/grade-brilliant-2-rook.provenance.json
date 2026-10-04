@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "grade-brilliant-2-rook",
+      "label": "Grade brilliant 2 rook",
+      "text": "Brilliant! A rook sent over the top, and the checked line backs the charge."
+    },
+    "takeId": null
+  },
+  "requestHash": "3210015f54191d2e4b826e4040e136e8d7ee243cd590d0b6f5571fbc1af65104",
+  "recordedAt": "2026-10-04T08:13:43.891Z",
+  "sha256": "a16743f1ed31900bf6566042e16a02f16e64099ee8653dac091f6252e025f60b",
+  "bytes": 17142,
+  "requestId": "e2UUFZA6deblr6NIEqS0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "46abe2055df5142e00d978548f07afc78338231b7783a12cb5db022aedd18883",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

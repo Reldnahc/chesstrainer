@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-bishop",
+      "label": "Tactic removing defender allowed bishop",
+      "text": "Now the other side can capture a defending bishop, and whatever it protected may be left without cover."
+    },
+    "takeId": null
+  },
+  "requestHash": "eddd0c0775c03e959abdd274114816dc51eafefe05f4b562aab75b59bda56b5d",
+  "recordedAt": "2026-10-04T08:15:18.686Z",
+  "sha256": "1a18a8d71d9ae5465483683fc8632cc4b70100418feb954c7864a520a829eebd",
+  "bytes": 19807,
+  "requestId": "Z2voO4fLAAJskYgtxxV3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "729305670b1d06ad32ea8681b39b011b20d4973f3960ec5828efeb033b4eaa2e",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

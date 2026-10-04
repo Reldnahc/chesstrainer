@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-rook",
+      "label": "Explanation finding sole defender captured rook",
+      "text": "Sequence: capture the only defender, the rook, then take what it was protecting."
+    },
+    "takeId": null
+  },
+  "requestHash": "cc23baaf8f4a11401755d459e2d9cb3e51acd059178df4217f731446a2321ee1",
+  "recordedAt": "2026-10-04T07:50:51.605Z",
+  "sha256": "f8050d7dccf9afd3f6447de43a055b343975c54c3975d1faa72bd5b47c670995",
+  "bytes": 17996,
+  "requestId": "hlqxwu2RD8RqtJsJPYhH",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8c4562c496d76588514c65da3299516fa1af564a1a1e4ec2d730ef04c3c3a651",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

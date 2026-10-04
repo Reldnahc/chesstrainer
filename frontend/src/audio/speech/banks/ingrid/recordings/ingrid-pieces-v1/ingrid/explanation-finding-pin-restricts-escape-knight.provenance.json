@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape-knight",
+      "label": "Explanation finding pin restricts escape knight",
+      "text": "Since the attacked knight is pinned to its king, running away isn't an option; a pinned knight has no legal move at all."
+    },
+    "takeId": null
+  },
+  "requestHash": "f280dc5100d2a05ccc50c5cdb4d93d7d215626a47fac21ccda96842d82a3690c",
+  "recordedAt": "2026-10-04T07:48:54.179Z",
+  "sha256": "baa2f506d51673a1c928c9ee9c9af738e4a36a1c0d0acc387ff1c993dd192c8a",
+  "bytes": 26412,
+  "requestId": "dGig70xIJWyu3GfkPnNh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e4a18c42ce1bb0dccd604c2d8797886c65daa3355462e25c030aeb3a510640f3",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

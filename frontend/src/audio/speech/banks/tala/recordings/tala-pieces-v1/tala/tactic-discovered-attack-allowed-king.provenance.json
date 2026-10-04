@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed-king",
+      "label": "Tactic discovered attack allowed king",
+      "text": "Zoom in: their king sits on a line in front of another of their pieces, and if the king moves off it, the piece behind attacks. Discovered attack incoming."
+    },
+    "takeId": null
+  },
+  "requestHash": "c809aed8b06d2f2ee373adc29011ac3bc3e2c750d77d4060f7bc12764eae87fc",
+  "recordedAt": "2026-10-04T08:09:02.313Z",
+  "sha256": "b1d2109d4906dfc98568c7df186e5c55ded4b6b5e64a8199546099cde7e88085",
+  "bytes": 33548,
+  "requestId": "qcFiF7kdUgOmSK06GV0Y",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5ca59c7154453d56e54b3acf466e4488bcc54e378bcea321bba3d07c0e9ebb29",
+    "bytes": 173915
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

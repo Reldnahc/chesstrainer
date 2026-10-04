@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-pin-missed-pawn",
+      "label": "Tactic pin missed pawn",
+      "text": "With the stronger move, an enemy pawn would have been fixed in front of its king. As it is, that pawn keeps every option."
+    },
+    "takeId": null
+  },
+  "requestHash": "d05b6533fddee02edd1d761e47391b97977d838f266fa5a512d09dcf1fe55b32",
+  "recordedAt": "2026-10-04T07:53:03.662Z",
+  "sha256": "d8f52a61bc537737411e966a3d074e882e31a862ac20dbc654b62c5aa67d7e7c",
+  "bytes": 25187,
+  "requestId": "vrYDItSC1a9m7AwLZL15",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3837d31eb47e4556bbcccf9947ecb1e517ab12a94f831bc09b19362bbe6fac7f",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

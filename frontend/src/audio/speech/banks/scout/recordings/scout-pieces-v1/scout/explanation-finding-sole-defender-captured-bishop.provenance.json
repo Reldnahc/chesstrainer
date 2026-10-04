@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-bishop",
+      "label": "Explanation finding sole defender captured bishop",
+      "text": "Sole defender down. The bishop is captured first, and later in these moves the piece it was guarding goes too."
+    },
+    "takeId": null
+  },
+  "requestHash": "7b8ab1afd3419d5273889c1fff320a0d62b9deb78aaf4c91e70c908de6d0f42e",
+  "recordedAt": "2026-10-04T08:07:40.948Z",
+  "sha256": "67f0c719ed512918995e97adff3c673961a148c26b41a74b543e3e896825f83c",
+  "bytes": 21879,
+  "requestId": "w3rqcNj7YVLy0HYeCIWs",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1b1622d2de9fe2e4bb233b79c3c247dc155d91232980673eefce780f79e1d308",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

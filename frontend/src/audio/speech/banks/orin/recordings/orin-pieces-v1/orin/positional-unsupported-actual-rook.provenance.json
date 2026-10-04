@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-rook",
+      "label": "Positional unsupported actual rook",
+      "text": "A rook is left to stand alone after this move, with no defender at all. An undefended piece is a weakness, but not yet proof that it can be won."
+    },
+    "takeId": null
+  },
+  "requestHash": "58e3bf8f52c1b14288e9316df11f348c765bf784a20667cba631602eae4ec3e7",
+  "recordedAt": "2026-10-04T07:58:42.926Z",
+  "sha256": "76ecf7cc7c470b8921c3faa539db553b6961c3f995beafa7ae7fc7d7dd25a47d",
+  "bytes": 32194,
+  "requestId": "EMEMbN3RWQgxvxSnB7u5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b7ecfad9520021fd3f4050dd6679517039ee674a1b9b1ec7e8bd1d0447432a71",
+    "bytes": 164719
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

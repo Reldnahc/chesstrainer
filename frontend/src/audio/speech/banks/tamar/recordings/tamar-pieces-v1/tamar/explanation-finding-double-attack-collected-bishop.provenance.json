@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-finding-double-attack-collected-bishop",
+      "label": "Explanation finding double attack collected bishop",
+      "text": "The moving piece makes one threat, the bishop behind makes the second, and the bishop does the capturing."
+    },
+    "takeId": null
+  },
+  "requestHash": "ef90d09d952c7e645abf6384b204bb08256c1b0b59798af77e5236a4d6806ffb",
+  "recordedAt": "2026-10-04T08:11:33.900Z",
+  "sha256": "d10f904cc3c3f2ccd3e7fc4401b842aa4b8409edd89711938aa255d2ee97eed7",
+  "bytes": 20986,
+  "requestId": "VPZJgTMe9nV8nhOABA5k",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0bdc9ce5db0b375452390e09492c75e4fd65d5d898290e0413e00336999d750f",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-bishop-queen",
+      "label": "Explanation finding double check bishop queen",
+      "text": "Two checks land on the king in the same move, from the bishop and the queen: double check. Nothing but a king move will do against that."
+    },
+    "takeId": null
+  },
+  "requestHash": "823278ead0c71442e7c976b39a3d35acf3752dfeb3c708aa8e031c67ec7d4012",
+  "recordedAt": "2026-10-04T07:57:45.373Z",
+  "sha256": "35df269c1f0a9023e95eec79a3af3cba95db8b9087f0e468fa9a2032ce1d6c72",
+  "bytes": 27269,
+  "requestId": "LrZu97WfXLG4dHHpJ0zd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "00cdd09bb13a1d2ce7622ae339c0f24e20a6f146a7af81f51822d3b74fc860f1",
+    "bytes": 141732
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-king",
+      "label": "Tactic discovered attack played king",
+      "text": "Discovered attack. The king steps aside and the piece behind it opens fire along the line. Watch the line that opens, not just the king that moved."
+    },
+    "takeId": null
+  },
+  "requestHash": "247a5a983fcf1e91fb5825f3f35684aec0af16a59fc1c714004174046cdf89b3",
+  "recordedAt": "2026-10-04T08:06:52.681Z",
+  "sha256": "552a4cce632029bb7e13d497e0f1f6b036d683f4e9638b5512c60a9e5a4f7afe",
+  "bytes": 29438,
+  "requestId": "BOHUKrXQ9wBjKEh818To",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4358e905e8ae1296578a75a55622165f410856bbaf156471cf3c3020e36f6285",
+    "bytes": 152181
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

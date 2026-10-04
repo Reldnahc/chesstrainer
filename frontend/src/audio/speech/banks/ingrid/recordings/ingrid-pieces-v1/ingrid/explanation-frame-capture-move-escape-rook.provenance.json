@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-escape-rook",
+      "label": "Explanation frame capture move escape rook",
+      "text": "Capturing the rook here is also the way out of check."
+    },
+    "takeId": null
+  },
+  "requestHash": "1d0cb8a8a533f753838d6ddcc837aff5efaa2b3b40340f52977ad60697254908",
+  "recordedAt": "2026-10-04T07:49:42.954Z",
+  "sha256": "f04cd7046795a857028dc4f34823d2bd1cc9db0b5cd40cf4a7df31a3c4c50c00",
+  "bytes": 11894,
+  "requestId": "D1d3rg4qFAzC3Lo8K3LP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "25cffc9ef87cdf3622a94a26d495a9c588c9c5b3f62368eefc5266f4c285411d",
+    "bytes": 58558
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

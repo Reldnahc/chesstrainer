@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-knight",
+      "label": "Positional unsupported actual knight",
+      "text": "Plain fact: this knight has lost its guard. Weak spot, yes; lost knight, no."
+    },
+    "takeId": null
+  },
+  "requestHash": "a8b17f7015dcb74a624badb7f2679c18b676357792ad27913730e052abde00ed",
+  "recordedAt": "2026-10-04T07:57:20.820Z",
+  "sha256": "a762e29df9f8cad3351054081c981eed60f1acc137c5bfc5179507c39aac55b7",
+  "bytes": 20782,
+  "requestId": "GM5NNpi6Eri4F9MLAUPu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "648a57f60db47fc3a3229e31443ab6ae9746b371ac6a3ab84ade9d6f342ac6b1",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

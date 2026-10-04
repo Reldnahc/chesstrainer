@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "explanation-finding-pin-prevents-capture-bishop",
+      "label": "Explanation finding pin prevents capture bishop",
+      "text": "This bishop is pinned to its king, so it can't make that capture. If it left the line, its king would be exposed."
+    },
+    "takeId": null
+  },
+  "requestHash": "c05ecf521f329d06274ffa0821d0ffe2b087564dc3400fb88b6111c8faebb294",
+  "recordedAt": "2026-10-04T08:04:26.171Z",
+  "sha256": "99f931e88234a62a76277d2f0c5b23c859b47fbbb9b8f3f9d3e70a8603dad123",
+  "bytes": 24929,
+  "requestId": "VjKnl34fdJyV8THj1EHB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c80f8086aff79a232ba8ad718c56acf1f4d5e1797d7e629a974af3630e6616ab",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

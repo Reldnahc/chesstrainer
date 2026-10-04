@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "grade-brilliant-2-rook",
+      "label": "Grade brilliant 2 rook",
+      "text": "Few patterns are older than the sound sacrifice, and few are rarer. Here is one, and a rook pays for it."
+    },
+    "takeId": null
+  },
+  "requestHash": "ca6a0e1513fceb22c00b6276561fd27f2d81208722213fe52dbd66ec60734291",
+  "recordedAt": "2026-10-04T07:59:57.298Z",
+  "sha256": "df2672c51db2247e506ef4b06b5f2ab303ff05c799cf78eaeafd66f43e7773b9",
+  "bytes": 26587,
+  "requestId": "FSPYTzGdENTx7oWUkEqT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d259eb14bea793b9df871d8de4035b5037250e1a0ab0b3a7c000c823e3852b87",
+    "bytes": 137970
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

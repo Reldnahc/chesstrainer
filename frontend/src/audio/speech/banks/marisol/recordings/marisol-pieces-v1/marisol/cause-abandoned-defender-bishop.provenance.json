@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "cause-abandoned-defender-bishop",
+      "label": "Cause abandoned defender bishop",
+      "text": "The only real defender of the bishop has gone elsewhere, so the bishop is now open to capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "7be9147a8457f0ddb1f3256b583506f17e57108ab37db0cf9f05ba0f81a44e30",
+  "recordedAt": "2026-10-04T07:53:54.399Z",
+  "sha256": "71e558bbda395bb1082060faf3bf33df2b75f867b824a317b246e617c53213e3",
+  "bytes": 19031,
+  "requestId": "8WX5xTEt1EBtSHYeEi2g",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e69212e6f803b3a55d816a261d203d9dd7337d1b1878b9a993f6a4526cf766a9",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

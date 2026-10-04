@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-bishop",
+      "label": "Explanation finding undefended capture gain bishop",
+      "text": "A bishop nobody was guarding comes off, and the side that took it finishes this example ahead on material."
+    },
+    "takeId": null
+  },
+  "requestHash": "92782cce5b38d1b93e0fcc93cb1c43edec0ea7275e2834093460f986e0e727d8",
+  "recordedAt": "2026-10-04T07:49:22.914Z",
+  "sha256": "f8a3392f096b473bf88b9786b5dd66ed4b3b1e0d677294123228fb2a99897011",
+  "bytes": 22436,
+  "requestId": "zsXxGn7rwjpRjjUVpDTV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e004f53e421018856b8bcea74bd7c2fab35ad04d235ed5e7563feb5ba4624df2",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

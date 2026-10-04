@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-ordinary-rook",
+      "label": "Explanation frame capture promotion ordinary rook",
+      "text": "The pawn captures a rook on the last rank and promotes in a single stroke."
+    },
+    "takeId": null
+  },
+  "requestHash": "32a5b6d2845b1cee8858771d881426bd70ea791ae4f0955fdc50691edaf2b11e",
+  "recordedAt": "2026-10-04T07:59:42.873Z",
+  "sha256": "0726e76f589a4d1b5a4128a83e6a43956e251150de7adbb947a894d50108f143",
+  "bytes": 17243,
+  "requestId": "hqykLZDUSiIVG14yWuH6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "23100ef455e9797705799d277461c4eb8b9af1f7667ab7737d82fb2b7f5a5f63",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

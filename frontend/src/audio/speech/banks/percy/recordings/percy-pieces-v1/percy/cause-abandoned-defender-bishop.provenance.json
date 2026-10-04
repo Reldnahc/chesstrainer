@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "cause-abandoned-defender-bishop",
+      "label": "Cause abandoned defender bishop",
+      "text": "Hold on, that defender was busy! This move pulls the only real bodyguard away from a bishop, and the other side can grab that bishop. Before a defender moves, ask who it's protecting."
+    },
+    "takeId": null
+  },
+  "requestHash": "ef828b9960e6a960fc69f02b6c6cd2ae703a0c8671b022ad4c6a07742b490ef1",
+  "recordedAt": "2026-10-04T08:00:53.904Z",
+  "sha256": "83ee46668a426f7686f423629b71ee99e74ce00ebfe7ee700e3ef82a12c6a8b5",
+  "bytes": 39246,
+  "requestId": "bodV3FzfSCgTcK5ZbhsI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9a98c500f2d65f885bc2e558bc14ae98eab516cd3be8427792d52706ff558d8a",
+    "bytes": 196902
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

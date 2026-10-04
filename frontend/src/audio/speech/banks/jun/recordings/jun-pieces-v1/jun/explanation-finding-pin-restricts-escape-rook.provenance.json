@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape-rook",
+      "label": "Explanation finding pin restricts escape rook",
+      "text": "Pinned to its king, the attacked rook may only move along the line that keeps the king covered."
+    },
+    "takeId": null
+  },
+  "requestHash": "8b437d5f666ef5953140434a2311b4939725d3cf9aabacbce139635f167aa161",
+  "recordedAt": "2026-10-04T07:50:35.636Z",
+  "sha256": "6f9ad1a68410c5fef5568df2fac1cdc07fba00720577667f4fb1231f759ea39d",
+  "bytes": 18497,
+  "requestId": "cHBqZUO9r4fAfu5R7CM8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8cd182325a58901e6183096fe5b365ea489f9213333cbadeba27a4abb3bc227a",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-bishop",
+      "label": "Tactic deflection missed bishop",
+      "text": "Another move could have coaxed a defending bishop away from what it held. That deflection stayed in the drawer. See what the bishop was minding."
+    },
+    "takeId": null
+  },
+  "requestHash": "ff3eac34be84f350ae610436efa2ba722f4d75a04147fc50a333e817ec5650ec",
+  "recordedAt": "2026-10-04T07:52:02.608Z",
+  "sha256": "598d3b1ef98cc67a385dc6650a9fb8605d29e112da2d4f6f77b9f2e4a6c47b96",
+  "bytes": 28649,
+  "requestId": "VSWBv62NmhvWzP1aLlRj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f1ea5875aae6f38d7c741c26692fad15f5a05da721a38ceb2846fdcbc3e2384b",
+    "bytes": 149673
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

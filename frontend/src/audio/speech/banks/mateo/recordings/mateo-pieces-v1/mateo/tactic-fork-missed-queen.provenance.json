@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "tactic-fork-missed-queen",
+      "label": "Tactic fork missed queen",
+      "text": "A fork was hiding inside the stronger move, with a queen hitting several targets from a single square. That's the kind of trick worth hunting for every time."
+    },
+    "takeId": null
+  },
+  "requestHash": "ff189b827b617b686a2e5360d3b726e0f9906696167912d064954c12daade370",
+  "recordedAt": "2026-10-04T07:54:56.150Z",
+  "sha256": "170ff7ffdfac2634732c7e305c47eadcff050c4c911afd8ef603f06682247ba6",
+  "bytes": 30682,
+  "requestId": "P3rlyazpotvXT9E9VAO9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f5c410e2ef8248dc0f8e5703508e18a6af7c3f4f3dbaa62fb37382a69e71e180",
+    "bytes": 154688
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-rook",
+      "label": "Tactic undefended capture played rook",
+      "text": "Unprotected rook captured; there is no recapture."
+    },
+    "takeId": null
+  },
+  "requestHash": "20082fbcee533add4e2acd9920fbfd1c6f4cc112c604b57e9751934b569ea9c8",
+  "recordedAt": "2026-10-04T07:50:00.025Z",
+  "sha256": "2cbc0b17457901645015c02ff41cb8835ee8ef1019c4c455b8c412eea51c8ae9",
+  "bytes": 12282,
+  "requestId": "dBlujYbP3LLETuZmkwTv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e93475b95defb869ed2fe1840a5ec47a1955e18b8d8ae1c03b4ab1de06c38658",
+    "bytes": 61066
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

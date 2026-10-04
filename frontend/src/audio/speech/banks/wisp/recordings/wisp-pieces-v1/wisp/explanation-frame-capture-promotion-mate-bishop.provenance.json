@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-mate-bishop",
+      "label": "Explanation frame capture promotion mate bishop",
+      "text": "The pawn captures the bishop, reaches the last rank and promotes. Checkmate comes with it; the king cannot escape."
+    },
+    "takeId": null
+  },
+  "requestHash": "9dfa76c0db466ee217220513a0d20daa1b04d5a4439c3a7eea6126eb345c393c",
+  "recordedAt": "2026-10-04T08:14:49.067Z",
+  "sha256": "cebfbf87b970e38c13950317df03fbeabbe3ba84c52ed209a2dd4dacd1a581f8",
+  "bytes": 25104,
+  "requestId": "3znCJfkHKecLOSi7YgJq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "00d2d497db31611364e3dc749e7dd96ac25783357e90348466b9e61bc3f29ffd",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

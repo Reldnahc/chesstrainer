@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-pawn-rook",
+      "label": "Explanation finding double check pawn rook",
+      "text": "Double check: the pawn and the rook attack the king together, and only a king move can answer both."
+    },
+    "takeId": null
+  },
+  "requestHash": "be758edde71d3402071ac079a8bf3bc6db4a9149801e85f9b7d0977d56c2d151",
+  "recordedAt": "2026-10-04T07:59:33.830Z",
+  "sha256": "c64a0d609ca41c7c50f6cca311918404d3cec81073c506b273a7f7c180b9452b",
+  "bytes": 23060,
+  "requestId": "KInROKcZwd3j62ATIfA4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9069203c53cb7b55f74aa23593d98b7e598af6b7a9e338c8e23780e5ff871930",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

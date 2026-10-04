@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-pawn",
+      "label": "Explanation finding pin collected pawn",
+      "text": "With its king behind it, the pinned pawn is nailed to that line. As these moves go on, it gets taken."
+    },
+    "takeId": null
+  },
+  "requestHash": "b2d73c40ede1c1a9534377c4055cd7622c3fe2bf9972490e2a77d8310b7a700f",
+  "recordedAt": "2026-10-04T07:57:10.854Z",
+  "sha256": "4ddaf67e0f206f54b843968730d7518bc90249cb35ce4104cda12040cc150bcc",
+  "bytes": 22535,
+  "requestId": "NKS3ncGX87ehsUjAtdr8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e887e29d5adc09b15375d635a4df73a5fe566e50599fc75f10a24d6d75dd66cb",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

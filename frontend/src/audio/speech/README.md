@@ -344,8 +344,11 @@ or roles holding different pieces, names nothing. Selection then offers
 alternative the coach has recorded (or, without a bank, scripted), so the
 generic clip stays the fallback and a coach with no variant recorded is
 unchanged. All 30 coaches have every variant written (Walter's and Rivet's in
-`banks/pilot-additions.json`, the others in their `scripts.json`) and reviewed;
-none is recorded yet. The written lines keep to piece facts the generic lines
+`banks/pilot-additions.json`, the others in their `scripts.json`), reviewed and
+recorded under each bank's `recordings/<voice>-pieces-v1/` with the coach's locked
+voice and settings: **8,040 clips, 889,968 input characters / 107,675 provider
+credits**, five requests at a time, every request ID matched in the provider
+history and no retakes. The written lines keep to piece facts the generic lines
 could blur: a pawn forks two pieces, a pawn never steps aside, only a knight
 hops, a pinned knight has no legal move while a pinned pawn, bishop, rook or
 queen may still move along the pin line, and a back-rank allowed or missed line

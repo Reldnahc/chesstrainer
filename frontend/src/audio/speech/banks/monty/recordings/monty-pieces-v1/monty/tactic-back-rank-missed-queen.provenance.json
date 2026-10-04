@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-back-rank-missed-queen",
+      "label": "Tactic back rank missed queen",
+      "text": "The king was boxed in on its back row by its own pieces, so the queen had a back-rank mate idea there. The move played does something else."
+    },
+    "takeId": null
+  },
+  "requestHash": "e28b12a2e65783fc8b1c5f9d7a0427c6e80edba85dbe2a9d5351f33adae8c274",
+  "recordedAt": "2026-10-04T07:57:07.560Z",
+  "sha256": "e796ef5b19d7106c3be61218bf64204916eaefac961e87b0eb61988834116713",
+  "bytes": 27647,
+  "requestId": "dSGdK0FBiXYMbRlt9ZVz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "09b3eb39bc0ec425b26f60a4fdac3f6095a9ff35fdb2fc9171e1e85ca71cf38c",
+    "bytes": 141732
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

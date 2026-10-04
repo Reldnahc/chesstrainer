@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate-bishop",
+      "label": "Explanation frame capture move mate bishop",
+      "text": "Taking the bishop is also checkmate, leaving the king no legal square."
+    },
+    "takeId": null
+  },
+  "requestHash": "453f160373904fb2892dac674d021bd63dbae30e12ad7995f05b4fec6fa7a257",
+  "recordedAt": "2026-10-04T07:59:29.326Z",
+  "sha256": "82c341939b010a2fcbadfd6d32af2a09445da4f318a3e72fa2fe65be86c6a659",
+  "bytes": 17369,
+  "requestId": "77thhdxCfpuU6IWXmUWp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "db0097d5de1b3df437283dc6362dd958239c6f6461022e17440d4658be711952",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

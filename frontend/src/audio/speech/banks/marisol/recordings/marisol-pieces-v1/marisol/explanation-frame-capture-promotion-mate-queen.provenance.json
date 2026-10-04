@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-mate-queen",
+      "label": "Explanation frame capture promotion mate queen",
+      "text": "After capturing a queen and promoting, the position is checkmate."
+    },
+    "takeId": null
+  },
+  "requestHash": "13ad7ddb87ce9d8c804a96d8cfb056afca580ae44ee4841ba3a7747608b7edf9",
+  "recordedAt": "2026-10-04T07:54:22.188Z",
+  "sha256": "28654b89ed87ac21756cdcb541281b07549b987848042e3e5ec33e2eb77898ae",
+  "bytes": 14329,
+  "requestId": "fb4TRGsBtGNGGC8zp91u",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2f887ceb12606191b5d78df6d929b35a8fea0c3435bdcbbdd4346fe96a5ae8f7",
+    "bytes": 71515
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

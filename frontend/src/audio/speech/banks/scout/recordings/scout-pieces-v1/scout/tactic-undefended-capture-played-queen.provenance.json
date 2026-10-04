@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-queen",
+      "label": "Tactic undefended capture played queen",
+      "text": "Loose queen, collected. Nothing was guarding it, so it comes off for free. First scan, every move: loose pieces."
+    },
+    "takeId": null
+  },
+  "requestHash": "00c5679771de00a2ac60de6701d8fed6a3d5015834dd4b520b10661458d48b04",
+  "recordedAt": "2026-10-04T08:06:45.631Z",
+  "sha256": "1bc46ace896e4c8fcb0e30309c733f68e839cacd466eb844fe59e0c888befe98",
+  "bytes": 24713,
+  "requestId": "BTKjZqBmIWFz932piBS8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b5b7d3a92c2acde8c3a493242682bcb15fe4d0d670c388fc025ef31e0ed46641",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

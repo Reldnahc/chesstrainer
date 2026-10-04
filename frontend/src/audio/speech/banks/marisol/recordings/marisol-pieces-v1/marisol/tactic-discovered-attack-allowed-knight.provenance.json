@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed-knight",
+      "label": "Tactic discovered attack allowed knight",
+      "text": "An enemy knight now screens another piece. Once it moves, the piece behind it attacks down the opened line."
+    },
+    "takeId": null
+  },
+  "requestHash": "8e88a89540bc8f842947e1a60e257a6ed1991da125f001366dfebf1894d11d75",
+  "recordedAt": "2026-10-04T07:53:25.574Z",
+  "sha256": "a264750d68f4b5f69a59feaa7b7fe45d186957d828721cdd29b44e326dae8bf9",
+  "bytes": 23067,
+  "requestId": "hK9G8UkfVzpXzFcPzdG5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3e31321bf9b08d84845acbdaf670425a027c52626b9e224aaf8f48edc0963655",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

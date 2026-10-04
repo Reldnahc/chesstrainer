@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate-pawn",
+      "label": "Explanation frame capture move mate pawn",
+      "text": "The pawn is captured, and it is checkmate. The king cannot get away."
+    },
+    "takeId": null
+  },
+  "requestHash": "7860d990ae32d38b53ea9bc4a7d9aaeb74f01ea3a552190555f7407ee49849f8",
+  "recordedAt": "2026-10-04T07:57:32.079Z",
+  "sha256": "4f2b73c3a5bfe3cb0ed7629760576c0a99d52e9f23001370df025784737208d8",
+  "bytes": 15475,
+  "requestId": "g7Y7WEhuJIXNwzeAR4I6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "02eff0e045f02f2a02c0a9a2b961f68deaeadd4ff6c4a1ede595adf68d5a60c6",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

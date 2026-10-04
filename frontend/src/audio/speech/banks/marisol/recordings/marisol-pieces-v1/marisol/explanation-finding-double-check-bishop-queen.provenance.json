@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-bishop-queen",
+      "label": "Explanation finding double check bishop queen",
+      "text": "Double check. With the bishop and the queen giving check, only a king move is possible."
+    },
+    "takeId": null
+  },
+  "requestHash": "33c53c80ee2c1884d833e923da113230922866bfb78d190266d438d67472b329",
+  "recordedAt": "2026-10-04T07:54:24.783Z",
+  "sha256": "2e809a03c83dc30b762883417f5344df8071114075d5b294d714b81f2274696a",
+  "bytes": 18186,
+  "requestId": "fnR3EQRyBf2nuDCc8QGm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cc5f59d53581fe5db6b4c61c5b2feb1cbc74074e6fabad131c3203b6a9b6b7b5",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

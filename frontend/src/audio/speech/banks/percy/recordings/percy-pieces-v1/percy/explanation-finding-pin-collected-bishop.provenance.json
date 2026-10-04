@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-bishop",
+      "label": "Explanation finding pin collected bishop",
+      "text": "Watch the pinned bishop closely. It can't leave the line without exposing its king, and before these moves are done, it gets captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "4c3f8503d57dadea4c5ff239ce83c2388ad265e8ca1280c09cf230b5bf5130d3",
+  "recordedAt": "2026-10-04T08:00:49.693Z",
+  "sha256": "7aabedf091195324fb745d65c079f77d7da3c193872eed53c242d52e6d92421a",
+  "bytes": 25344,
+  "requestId": "XOu0wvbcICVV8jGldYtL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ce47614ea16be46cc879ad6160b2cbdadd8990340c8b8f9f42e5a39b1e2d2145",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

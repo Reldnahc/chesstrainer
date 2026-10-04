@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-bishop",
+      "label": "Explanation finding relative pin released bishop",
+      "text": "The opponent's last move let a relative pin go, and the attacking bishop was free. Its target never moved away, and the line shown ends with that target captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "79c094ff6ebcf5891625b6020e395e34a05d47f89829cab5c393bc185a6d1adb",
+  "recordedAt": "2026-10-04T07:52:11.465Z",
+  "sha256": "a2f120553cb46198e7b1a0f3441aee74483d870b47e5a5bc0b9a1bf785aa2dcd",
+  "bytes": 34621,
+  "requestId": "N2KkX7PqBZ84vMg4sLmz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "235ae0923bc2f607d2863f7a26ea9ee23d1ce00e4c000355349df5a12c053c97",
+    "bytes": 180184
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

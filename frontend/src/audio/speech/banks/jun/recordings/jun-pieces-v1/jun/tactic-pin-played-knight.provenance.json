@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-pin-played-knight",
+      "label": "Tactic pin played knight",
+      "text": "Absolute pin. The pinned knight has no legal exit from the line while its king stands behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "e9b7aa7f695a16f155c4224c95a232229f708a909795df18b11aac32d85135eb",
+  "recordedAt": "2026-10-04T07:50:00.947Z",
+  "sha256": "1d0dabd2db1a31fac4c44586253a5699ac25a3b17bc96c140cae6c059c2ada8d",
+  "bytes": 22360,
+  "requestId": "m5M9YsUBGA9hFvo5bTwT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7528be9cad3ae25fd142dd45d579ca67ae4e81247386004a8a6368fa1059ffda",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

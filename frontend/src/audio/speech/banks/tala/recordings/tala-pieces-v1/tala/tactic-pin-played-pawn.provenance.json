@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "tactic-pin-played-pawn",
+      "label": "Tactic pin played pawn",
+      "text": "Why can't that pawn step off its line? Somewhere behind it on the same line sits its king. Pinned, neat and tidy."
+    },
+    "takeId": null
+  },
+  "requestHash": "b699389b6e25000de6b32386ebd8e6168d361b44978c43656726f618dd943bbc",
+  "recordedAt": "2026-10-04T08:08:46.301Z",
+  "sha256": "2cc48ae937365ca35adfbc1854a14dc7419f0ac9a73afdbf304442b82b895426",
+  "bytes": 27180,
+  "requestId": "T4WlzJoMZWp5X12POrbR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0fe5ba469c79c30c92846567aacba4c8c4791c9f5a56cc60d6a5925285b8a914",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

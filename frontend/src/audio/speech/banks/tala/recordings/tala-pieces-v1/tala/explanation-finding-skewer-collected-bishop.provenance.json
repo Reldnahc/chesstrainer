@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-bishop",
+      "label": "Explanation finding skewer collected bishop",
+      "text": "The bishop in front moves out of the way, and the piece behind it is captured on the very same line. Skewer complete."
+    },
+    "takeId": null
+  },
+  "requestHash": "03906841e4792b9373d0203d63ff470f4ad3e3b1d8dd34b16a2fac1ec895eca0",
+  "recordedAt": "2026-10-04T08:09:35.309Z",
+  "sha256": "5027aa9c663ea89a505c596b9b22cfc7fd041a9270431818e3a54f867d38fafd",
+  "bytes": 24762,
+  "requestId": "EslDdzFGvFSsLOLDhoRX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6774a662dcfd9afe4c1dddf2ffb2e628ea621db8bb13da52b0b6134070ed5fb6",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

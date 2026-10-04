@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "tactic-skewer-missed-rook",
+      "label": "Tactic skewer missed rook",
+      "text": "The stronger move had a skewer tucked away, the rook in front chased, the piece behind it exposed. A spicy one to set up and replay."
+    },
+    "takeId": null
+  },
+  "requestHash": "1d6608385d5daa5a540311595d2af4dd9f8e719b7619c5a5711dd1b13baff2e8",
+  "recordedAt": "2026-10-04T08:05:02.354Z",
+  "sha256": "27f2e5878ecffef154fd8435b58d75d77a9ac77b7b41182746fc104d9ff3a1a4",
+  "bytes": 28857,
+  "requestId": "Uf7F33smSkzgEdLKWEdW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d6b186bc98de556a26344e19a4e21e520afa3445bf0cccb95fd42aef01cf7c7b",
+    "bytes": 147165
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

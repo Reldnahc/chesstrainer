@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-deflection-played-bishop",
+      "label": "Tactic deflection played bishop",
+      "text": "The defending bishop has been drawn away from its job, and what it was covering is uncovered now."
+    },
+    "takeId": null
+  },
+  "requestHash": "a0ebc0f8e1f9c481e03d9b25c8347290c2b1d9e28ff7dbef0d2e9a3b8fec7d47",
+  "recordedAt": "2026-10-04T07:53:36.865Z",
+  "sha256": "beb6838807530f00174f2e412a4fa4c91b751874bed8d2374ea5207ab1f55de7",
+  "bytes": 19539,
+  "requestId": "pa4fg4jEjkMqHajSyq8P",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "508f6ca6d620cc145ec3d36d10d5ab2a481e78424bd4314edeeaccfaaa8568ce",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

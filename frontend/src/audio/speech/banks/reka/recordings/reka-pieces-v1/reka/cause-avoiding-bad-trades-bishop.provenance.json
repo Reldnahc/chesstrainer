@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "cause-avoiding-bad-trades-bishop",
+      "label": "Cause avoiding bad trades bishop",
+      "text": "One capture down, one to go: the bishop that captured gets bitten back, and it's heavier than what it took, so the trade goes sour."
+    },
+    "takeId": null
+  },
+  "requestHash": "2c904ca26f714543cf8fcaab99b5ebb7dc10acb26e1c0b78c4017b21764540e9",
+  "recordedAt": "2026-10-04T08:05:35.647Z",
+  "sha256": "1bfca493500dab9d44ce15fab558f75fe015e1067a15c87c207c40b9a60b27c1",
+  "bytes": 26866,
+  "requestId": "Dsc1eXE83PIL7M21BUtQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6e97fa263fbc780b4c00e1d25fc56a024b6b0c66bc802f515ffcdf1ca7494de8",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

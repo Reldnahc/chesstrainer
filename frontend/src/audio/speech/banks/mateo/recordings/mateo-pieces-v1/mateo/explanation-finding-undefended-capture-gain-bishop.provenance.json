@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-bishop",
+      "label": "Explanation finding undefended capture gain bishop",
+      "text": "A bishop with no guard comes off the board, and the side that took it ends this example ahead in material."
+    },
+    "takeId": null
+  },
+  "requestHash": "f5f87356c2dec4ece1b4e0b435e05afbabd1688b96873f575a62de93c1077a99",
+  "recordedAt": "2026-10-04T07:55:51.469Z",
+  "sha256": "7179128ea6507bb8eeb92ac22b2716801efa8fa70231d74317ffb9326725e8f7",
+  "bytes": 21325,
+  "requestId": "bnQqHGG88ntRh7k7mk47",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d4f54b51d0d67d5c4ed1f5bfffaaa2e68cf42a2f95edc00095a2a33b46c14e43",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

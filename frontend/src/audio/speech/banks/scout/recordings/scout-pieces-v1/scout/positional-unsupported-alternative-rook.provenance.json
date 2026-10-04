@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-rook",
+      "label": "Positional unsupported alternative rook",
+      "text": "Unguarded in the alternative. A different move would have stripped a rook of its guard. Undefended doesn't mean lost, so check what could reach it."
+    },
+    "takeId": null
+  },
+  "requestHash": "f8ddea53c9f92c9cd152bc6f579ec12fb0ae7de573ebd1d324bbe529bf4cb968",
+  "recordedAt": "2026-10-04T08:07:25.590Z",
+  "sha256": "5d8f640d8784d5dfd6c8a1c5162fbbee93ffb9868235aa36d1316b0d2ae8f643",
+  "bytes": 28320,
+  "requestId": "B9rN6nJIqwEZ0eaJhZ8Z",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "92791734650191c548a51d3af8ea4cc07a657bfc900d0ed21d3fda8f6a4cc81a",
+    "bytes": 145911
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-missed-rook",
+      "label": "Tactic undefended capture missed rook",
+      "text": "Ah, there was a loose rook going. Another move could take it, with nothing guarding it. This move leaves it be."
+    },
+    "takeId": null
+  },
+  "requestHash": "632b3ce426d937f1ec54ecf73073460d1f059033c4d11cb4811064dabc235565",
+  "recordedAt": "2026-10-04T08:03:33.690Z",
+  "sha256": "181c9cc69cf30b18cda91aff97ca72a3ec79970748673c5fe6a0b0e3a4b71c83",
+  "bytes": 24901,
+  "requestId": "sODtPuf6mIR6tyGR5qbv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3bf4227034031a73407b5da760a4073798bb9189b8c0f98b91dbbc126b777cff",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

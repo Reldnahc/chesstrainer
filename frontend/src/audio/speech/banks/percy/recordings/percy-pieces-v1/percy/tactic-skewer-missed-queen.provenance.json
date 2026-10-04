@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-skewer-missed-queen",
+      "label": "Tactic skewer missed queen",
+      "text": "A stronger move had a skewer: hit the queen in front, and when it moves, the piece behind it is exposed. This move doesn't use it."
+    },
+    "takeId": null
+  },
+  "requestHash": "8e0f76de24d1f8974c9650c9897e2f4aaa51462b0fbd50d967af9e4d5ed4a8a3",
+  "recordedAt": "2026-10-04T07:59:53.481Z",
+  "sha256": "27978f523434f16df0fda9989422a79a0009b283edce84504ec89c7d6276ed9f",
+  "bytes": 26659,
+  "requestId": "PYODcvuL6MmgFzKMRL14",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0f767800e57bfa23fe563d2b5ed7c4cf1ca31d5e4032d4acb221a23a40ca7db9",
+    "bytes": 136716
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

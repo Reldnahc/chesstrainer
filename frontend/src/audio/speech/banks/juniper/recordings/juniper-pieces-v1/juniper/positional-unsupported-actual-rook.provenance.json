@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-rook",
+      "label": "Positional unsupported actual rook",
+      "text": "Nothing guards the rook now. Worth noticing, though unguarded and lost are different things."
+    },
+    "takeId": null
+  },
+  "requestHash": "21307f5536abda70b2bac8b295ce779e3fe4c76228cd1f8ef7822ac48e04f507",
+  "recordedAt": "2026-10-04T07:51:56.549Z",
+  "sha256": "97ee20fd9dac58c4b9f80784b0a75c64a5fddadea79f7bd865ab11c8d368ad53",
+  "bytes": 21003,
+  "requestId": "kVvwHV3OFLArNaqWDGAV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a266d0c475f5de3d0f68fc4375205aa560385ca285428510f5f7c7e85af160c5",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

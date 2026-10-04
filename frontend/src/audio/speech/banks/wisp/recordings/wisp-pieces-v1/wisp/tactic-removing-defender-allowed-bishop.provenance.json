@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-bishop",
+      "label": "Tactic removing defender allowed bishop",
+      "text": "One bishop is holding something in place. The other side can now capture it, and what it guards could be left without protection."
+    },
+    "takeId": null
+  },
+  "requestHash": "74dd667362515d480629ea250b3f6c00f1a8650fd4f4e11897564b686f6ecfb7",
+  "recordedAt": "2026-10-04T08:13:52.349Z",
+  "sha256": "ef78421de50c228db02f1675082bd8d3ecf9bdc191b456d1e23b0ddfd2cf8128",
+  "bytes": 25394,
+  "requestId": "LoRbY0njqXSWCou0TC6Q",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "552a140f2234a7a6ac33ac022c2b1175879fa1e3e7f0f847c58e46e51b80392a",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

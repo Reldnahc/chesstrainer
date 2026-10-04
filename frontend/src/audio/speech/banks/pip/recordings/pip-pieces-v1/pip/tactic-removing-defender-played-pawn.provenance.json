@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played-pawn",
+      "label": "Tactic removing defender played pawn",
+      "text": "Here's the trick: take the defending pawn first. Once it's gone, whatever it was guarding loses its protection."
+    },
+    "takeId": null
+  },
+  "requestHash": "9bdb2c0065369b55b24c2fa9e0680612f5cdf7a24f56147028303c04c000ab62",
+  "recordedAt": "2026-10-04T08:03:44.269Z",
+  "sha256": "ae8eb4fb9fc1f524b0f74b39f5934c35387e96c1ad31f11310d9de2957e8c09e",
+  "bytes": 24812,
+  "requestId": "6BZLRrWrMilqOMwDzYNM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0043ec081f08989b28ac205ee7950e0dc862ecbfdde6ce123aab508f40a1bed4",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

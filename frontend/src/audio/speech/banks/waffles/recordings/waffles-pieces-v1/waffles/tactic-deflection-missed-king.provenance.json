@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-king",
+      "label": "Tactic deflection missed king",
+      "text": "Another move could have drawn the defending king off its post. That deflection never gets ordered."
+    },
+    "takeId": null
+  },
+  "requestHash": "9e877719bdd831e60cc9792fd3ddf0e79b98f27707e75631b7d481f79e07931e",
+  "recordedAt": "2026-10-04T08:12:28.656Z",
+  "sha256": "3ae9842ed83c76c8bba1e1a5d5870ce14d0a408d920547d5d14c9d87ed1e9b10",
+  "bytes": 19847,
+  "requestId": "rBHXlLk3WkU0P0BFYkPl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2c8f34d8027219a9bae0f00a1b25b3b66b62beb4a198c94c6044d2b3b8026b1f",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "grade-brilliant-2-rook",
+      "label": "Grade brilliant 2 rook",
+      "text": "A proper sacrifice, so! The rook goes out on a limb, and the limb holds."
+    },
+    "takeId": null
+  },
+  "requestHash": "e2d5f78ed36b080d7795c297676856715f6f594c2e0613f8858e254fe61856b1",
+  "recordedAt": "2026-10-04T08:05:02.518Z",
+  "sha256": "907ec05801d48b7eabf03182b26e1801f6a4ca85d635c71923e8e78a201f101e",
+  "bytes": 18157,
+  "requestId": "omlWjxpmh8i8gDGm6qvv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "de5375fb381a35f8753b4ab71ef03962c19a2fec74090d69989d3db32f24597e",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

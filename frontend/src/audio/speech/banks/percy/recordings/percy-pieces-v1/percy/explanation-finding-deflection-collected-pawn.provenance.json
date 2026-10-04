@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-pawn",
+      "label": "Explanation finding deflection collected pawn",
+      "text": "The defender gets lured off its post, and the pawn it was protecting gets captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "7bf3c38e7a262cfe7f861c4227193f9a704058edda7f3ce418e11a2c161705ec",
+  "recordedAt": "2026-10-04T08:01:05.531Z",
+  "sha256": "b10fa076a6a8ef1f551038ff07be1e0791cb937dc304a6223b00398bbe9f7d3e",
+  "bytes": 15683,
+  "requestId": "IkzrlhezLhLCcxFOXezr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a2ff0a06aa6857ec76751882ee25e10ea1c90d992a8457642ae5e5500cefa297",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

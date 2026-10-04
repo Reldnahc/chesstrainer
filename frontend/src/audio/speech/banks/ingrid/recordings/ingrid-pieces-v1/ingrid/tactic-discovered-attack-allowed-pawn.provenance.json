@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed-pawn",
+      "label": "Tactic discovered attack allowed pawn",
+      "text": "Something to settle and look at: an enemy pawn is hiding another piece, and when the pawn moves, the piece behind attacks along the line."
+    },
+    "takeId": null
+  },
+  "requestHash": "3d940c9c826e12d47f75c59dcb4a2dd8316617f692b792f788b0cd09f3fca50c",
+  "recordedAt": "2026-10-04T07:48:31.368Z",
+  "sha256": "f84c2fc283b903204b305d60345d3abf87a52b7aabb56f2926a2f5cf1c18b1ae",
+  "bytes": 30473,
+  "requestId": "JtbpN43WROlWcN1BKakv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9bf5daf25f86d2bdef218db29bee7b7de85d4cb171ff7b661415902dc2502d0a",
+    "bytes": 157196
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

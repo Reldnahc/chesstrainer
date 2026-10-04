@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-fork-allowed-pawn",
+      "label": "Tactic fork allowed pawn",
+      "text": "There is a forking square in the other side's reach. One enemy pawn can land where it hits two targets together. I want every enemy landing square checked first."
+    },
+    "takeId": null
+  },
+  "requestHash": "9d2b171cbe45d4a8c9c0c708cc5a34e6ac93f7337dacf91a4d3b7e0553f9f324",
+  "recordedAt": "2026-10-04T08:10:12.797Z",
+  "sha256": "7ddc525e5a35f3103495212cd28b0b1e4782cba8708a75d8af3a4eb29f5faecd",
+  "bytes": 32060,
+  "requestId": "Z7B6r95VhiH531uDNdIK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c4e760393b466b3aab12bccd2729e88b515695f10b5997001108a70dcca80a30",
+    "bytes": 163466
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

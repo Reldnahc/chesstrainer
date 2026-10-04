@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-pin-allowed-pawn",
+      "label": "Tactic pin allowed pawn",
+      "text": "Simple problem: a pin against the king is now on offer for the other side, and a pawn caught in it stays stuck on the line."
+    },
+    "takeId": null
+  },
+  "requestHash": "cb8fa2eb802aa6cbff7361cecdd6a3f7c9e03808c4901e5a97168fc8e712b601",
+  "recordedAt": "2026-10-04T07:56:03.747Z",
+  "sha256": "d412aa13a4c36567428131e6d8fc17d09dcdb2163ec431c8a5d3270c6ca73502",
+  "bytes": 25657,
+  "requestId": "b2qHQLE7FPo7U6v7kqtm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fe47e7cf326e041de9de346c99ef78eb6e97b57743b4f1b47aac155dc11333d7",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate-knight",
+      "label": "Explanation frame capture move mate knight",
+      "text": "The knight is captured, and it is checkmate. The king cannot get away."
+    },
+    "takeId": null
+  },
+  "requestHash": "c116796d2a6a5e6b79a356f3035e048babc53a5197d9bcf52c4e13bf013f1cef",
+  "recordedAt": "2026-10-04T07:57:33.455Z",
+  "sha256": "e05928222c619da3fba653f0aad3314e5f55ccee61d7c17a517dd2fbb70e0d8f",
+  "bytes": 16190,
+  "requestId": "qnO44S5V7jiu3ZoGgRxu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "39334aa122467564c9d9b75b50e3d2ac00083e7e4ed689384fc8ddcf4bbb348a",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

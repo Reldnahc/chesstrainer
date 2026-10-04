@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "grade-brilliant-1-knight",
+      "label": "Grade brilliant 1 knight",
+      "text": "A knight sacrifice of rare quality. The material is spent, and the idea outlives the spending."
+    },
+    "takeId": null
+  },
+  "requestHash": "dfc69f2554e608b20a5edf0fe5d91c2e15b9d23747d0e5d7035222a33d546fe9",
+  "recordedAt": "2026-10-04T07:59:45.030Z",
+  "sha256": "3cbc6b52b99ac01b54b009eacaa18a42ba7ebb1d99a3831f73ae75b57b3cfdfe",
+  "bytes": 23566,
+  "requestId": "VLggLlibpGbCKotnRAYc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "56747eb996aebc879945abfef505d17758b33619279f30754901ec91a5fe1bba",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

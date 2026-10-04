@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "support-restored-queen",
+      "label": "Support restored queen",
+      "text": "Cover restored. The queen that was hanging earlier has a guard again. Pinpoint the new guard."
+    },
+    "takeId": null
+  },
+  "requestHash": "a77ee1dfa0975dc1f46a46cba11a778f1027076f2a4cfb0fcaeafa2f2a19693c",
+  "recordedAt": "2026-10-04T08:07:34.501Z",
+  "sha256": "e5e9fef4866e72a19a8cc51936f5f88dbb3b33fd9f127c89faea31f15076a111",
+  "bytes": 18346,
+  "requestId": "tqToklUgpefBY1cj8x5B",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "705cd9037040807fc306a6b85b6b6b9a4dd5039acce237b47d5685a9c1d240b9",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

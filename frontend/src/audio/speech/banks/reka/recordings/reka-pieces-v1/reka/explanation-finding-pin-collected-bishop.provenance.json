@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-bishop",
+      "label": "Explanation finding pin collected bishop",
+      "text": "Keep tabs on the pinned bishop. Stepping off the line would bare its king, so it gets gobbled as the line plays out."
+    },
+    "takeId": null
+  },
+  "requestHash": "189db5e24be61334736a706ac4c4f8534a98f8511f6fd25b40c4fdfb63cb9e48",
+  "recordedAt": "2026-10-04T08:05:49.373Z",
+  "sha256": "d30b0edd4a101a1587bd582b031e39a953e99bf9f6a8cd86959dddfa616df345",
+  "bytes": 23131,
+  "requestId": "lkWkspOSiogohEbVDbny",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "509a1672d6a5a115fcb81852198927e31ad00dc4b8bfe1c56f29430cefb21169",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

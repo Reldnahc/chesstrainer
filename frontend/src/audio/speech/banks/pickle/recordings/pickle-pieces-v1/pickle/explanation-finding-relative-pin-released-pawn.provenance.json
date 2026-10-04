@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-pawn",
+      "label": "Explanation finding relative pin released pawn",
+      "text": "Here's a sneaky one. Until the opponent's previous move, the attacking pawn sat in a relative pin, and that move let it go. The target never moved, and in the line shown, it gets captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "9f7311ac6f7357198304b2c79bde75edbe5be74e117dc750eb6545c5f8b1a417",
+  "recordedAt": "2026-10-04T08:02:26.753Z",
+  "sha256": "45b1e0b11ff40de8525b5ee09d341803f1b9c72f90e14b1b464ac5cc162486dd",
+  "bytes": 39540,
+  "requestId": "KS8Udr9dBgsNfKN4wqBV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fd2c354dbd1fe9b2d64109341ce916a8a4c8d35bf580d549b914dd0b6439385f",
+    "bytes": 207351
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

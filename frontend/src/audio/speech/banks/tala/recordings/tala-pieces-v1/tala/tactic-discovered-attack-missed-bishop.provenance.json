@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed-bishop",
+      "label": "Tactic discovered attack missed bishop",
+      "text": "The hidden attacker stayed hidden: in a different move, a bishop would have moved out of the way to let the piece behind it strike."
+    },
+    "takeId": null
+  },
+  "requestHash": "701c8387b2343ba3a3a5dc0ca41f03b0980e7e25b48fb6ac3e824bd2bb5b2e17",
+  "recordedAt": "2026-10-04T08:09:08.747Z",
+  "sha256": "3f9c45a4c1cc51c9bfd27313f0ede645b133455723db5763e6b67b51bab86ca4",
+  "bytes": 26032,
+  "requestId": "l367Z238XAUzVv9FARfc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d22e66b854756cbaeb092f596643b585ff16daafcd586bf48b2760b4f8904a6f",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed-bishop",
+      "label": "Tactic removing defender missed bishop",
+      "text": "Defender left standing. Another move could have taken the defending bishop off the board and left its charge exposed. Hunt the defender first next time."
+    },
+    "takeId": null
+  },
+  "requestHash": "86117cdd2ce9adb5755cb50b093da9c8d44c500b704e027ab3555be793e9e27a",
+  "recordedAt": "2026-10-04T08:07:09.256Z",
+  "sha256": "3f2c57c0555dd740524f872b9efaf907dc8a5121e7c98ee8151f6e88d38fa702",
+  "bytes": 29011,
+  "requestId": "YXJ3Yr1fQbBP3SKCL2Po",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f9c4dd2a743799d4f18916d8641c326f0f52d909206f1e0c232554470a4a686d",
+    "bytes": 148419
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

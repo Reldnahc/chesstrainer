@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-rook",
+      "label": "Tactic undefended capture played rook",
+      "text": "Nothing was watching that rook, and now it's gone. The loose ones are always worth a first glance."
+    },
+    "takeId": null
+  },
+  "requestHash": "cda2d18c4836fa9c5880e0a380c70599b397f1c42d54c76bda968be59ded5d06",
+  "recordedAt": "2026-10-04T07:51:27.315Z",
+  "sha256": "c5a46489ade6401388551d4f730702e8f8b309ec1de5194785ad19e722f953e3",
+  "bytes": 20749,
+  "requestId": "5zrq0KcKpet0UCJouL6Q",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b62422bb0dc033d0957c2c3398dc2a4571126ecd5c42e39efbed53efc0689a27",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

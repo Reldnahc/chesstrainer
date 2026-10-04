@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-ordinary-queen",
+      "label": "Explanation frame capture promotion ordinary queen",
+      "text": "Capturing a queen, the pawn lands on the last rank and morphs into a fresh piece."
+    },
+    "takeId": null
+  },
+  "requestHash": "0ba37e8295d9cd65ea05a87503e5a330ca712cb37c5e0e11883c7b5b5e55b096",
+  "recordedAt": "2026-10-04T08:06:26.245Z",
+  "sha256": "31160a2a72918d1a13e1f70f29404ba3840c02eaaacde6acf77fb9dbfba46eeb",
+  "bytes": 17799,
+  "requestId": "LGgNWLNyk8rO249l1FII",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f24c96c48e993746e9a59de1216641029fb2fc16a541c47e23fa6018c3afe04f",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

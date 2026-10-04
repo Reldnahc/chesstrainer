@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-deflection-played-queen",
+      "label": "Tactic deflection played queen",
+      "text": "The defending queen is dragged away. A deflection pulls it off duty, leaving its square unwatched. Learn what each defender is tied down by."
+    },
+    "takeId": null
+  },
+  "requestHash": "e5e94312e89f71355ac08b59eb3facf7c1d1380fca88ab8b18311ebf9be15dfe",
+  "recordedAt": "2026-10-04T08:10:52.472Z",
+  "sha256": "c3cbffcbec6b80805fbf58e4f773f5e2a75fd07ecba727e83515e71f0c008bec",
+  "bytes": 30855,
+  "requestId": "RVj2E6HqKiuTYFnHdLqy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "054bec7c614e8d2941a02afaa1cc49cf030bf13b1f23b3eea894dc07e9c7b7b6",
+    "bytes": 159704
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

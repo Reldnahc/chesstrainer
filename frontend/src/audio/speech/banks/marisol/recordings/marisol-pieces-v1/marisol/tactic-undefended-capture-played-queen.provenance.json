@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-queen",
+      "label": "Tactic undefended capture played queen",
+      "text": "The queen that was captured had no defender, so there is no recapture available."
+    },
+    "takeId": null
+  },
+  "requestHash": "8cf9ac8e9e9a8be9145982399820eb4f99986b84545d91682e6e5f28a4702771",
+  "recordedAt": "2026-10-04T07:53:11.998Z",
+  "sha256": "93de97fca0a3d98e28cf98cb3a6b06a21cdd9a2120d65bfaf0466e458ccc5fa2",
+  "bytes": 16289,
+  "requestId": "4mTNSlhObfZVbpJacnI4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d4b1b6f2339835ba6dbddf9b77d80ac494e38bd48aa27cb11288924c919d5401",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

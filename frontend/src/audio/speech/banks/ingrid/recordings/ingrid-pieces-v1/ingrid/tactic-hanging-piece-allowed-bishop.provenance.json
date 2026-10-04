@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "tactic-hanging-piece-allowed-bishop",
+      "label": "Tactic hanging piece allowed bishop",
+      "text": "The plain issue here: a bishop is left with nothing guarding it, and the other side can simply pick it up."
+    },
+    "takeId": null
+  },
+  "requestHash": "7231b0ec2e2d76c7efbb5786724c99ecda5e9e108348fa370730b694f3372f4f",
+  "recordedAt": "2026-10-04T07:48:36.521Z",
+  "sha256": "a810c6b3cbbcc369624ea0f1c4731babbac26c930af54f5881e14ea57d5ca068",
+  "bytes": 22501,
+  "requestId": "JpgNqzNsbuVjViwWJsac",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d8399f97e7a5bca80ef3c39e6fbc2e9a2e1c9cf9856584d9661902fbe8eac019",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

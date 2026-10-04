@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "cause-opponent-threat-recognition-knight",
+      "label": "Cause opponent threat recognition knight",
+      "text": "The opponent's last move went after a knight, and this move doesn't answer that threat, so now the knight can be captured. What did their last move start attacking?"
+    },
+    "takeId": null
+  },
+  "requestHash": "367e6bec933e37e68672c9edbce523a7dc13fc45366e98ee117b10308f0fcabc",
+  "recordedAt": "2026-10-04T08:01:01.127Z",
+  "sha256": "b3e10c27195bbb23d4decb3c107321ef3d777f77f9545f6294feacf114812289",
+  "bytes": 30686,
+  "requestId": "DWOaUbXih9Be2jOJUCbE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5af48cb5b1bd45a0c260d8c370ad44f7d2b085774be5a35e693debbfeeda6eb3",
+    "bytes": 157196
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

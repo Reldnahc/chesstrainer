@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "tactic-skewer-played-bishop",
+      "label": "Tactic skewer played bishop",
+      "text": "A skewer. The attack lands on the bishop in front, and when it steps away, the piece behind it on the same line is exposed. Two targets, arranged in a queue."
+    },
+    "takeId": null
+  },
+  "requestHash": "b42683886f89c0b3aed022a1afc3ea0d8e9f7be45415e165b887196a199b042b",
+  "recordedAt": "2026-10-04T08:15:24.633Z",
+  "sha256": "802ebb2f0c99dd7891b934903cdf6344cd1d447838ea163b339844a710297fda",
+  "bytes": 33359,
+  "requestId": "6FnMDb98OJOyTvGYVxUy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ed151ce596e5aa5efb21756349cbc12413e45250de2edb5be0dad6dbe7f1aaad",
+    "bytes": 176422
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-queen",
+      "label": "Positional unsupported alternative queen",
+      "text": "Another move would have stripped a queen of its defenders. On its own that loses nothing, but note it."
+    },
+    "takeId": null
+  },
+  "requestHash": "5af550b70c39aa9306f4d6eb86e8b8df180b5a69c74a4630f2b432f8e6a0868a",
+  "recordedAt": "2026-10-04T08:11:04.056Z",
+  "sha256": "f0cb9201394cce3dfc9ff3b9d11f3d2ae87c6bd515944f73a522e808cabc67b0",
+  "bytes": 21680,
+  "requestId": "mptB3TmaBJuaAKDaUs6q",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "57a2e1e697add6184130b3e885973b1550864d584a49443f039b52442fd58960",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

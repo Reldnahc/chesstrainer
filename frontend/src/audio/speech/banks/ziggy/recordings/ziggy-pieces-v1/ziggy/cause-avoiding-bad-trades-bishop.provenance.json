@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "cause-avoiding-bad-trades-bishop",
+      "label": "Cause avoiding bad trades bishop",
+      "text": "The bishop captures, and the recapture takes back something more valuable: the bishop itself. An exchange is only finished when both captures are counted."
+    },
+    "takeId": null
+  },
+  "requestHash": "18541d7cf5df1009ef8a25cc1b2f15f468a3cab43501edfef238d8fcd0e9fb41",
+  "recordedAt": "2026-10-04T08:15:48.860Z",
+  "sha256": "5051cf592b6798e8421e6c186b5a021eed1cad6996dc0c99ad99eb0df2c0d838",
+  "bytes": 30918,
+  "requestId": "zF9EPrJlveWblv9JyfKW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b079082732bb66705ca2f9385c5d655bd5030adb0678cee38f4bd5dc8e14f089",
+    "bytes": 160958
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

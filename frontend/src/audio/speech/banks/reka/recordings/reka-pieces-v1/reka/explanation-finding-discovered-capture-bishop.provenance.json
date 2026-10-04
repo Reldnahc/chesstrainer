@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-capture-bishop",
+      "label": "Explanation finding discovered capture bishop",
+      "text": "A piece zips out of the way, the line uncorks, and the hidden bishop behind does the gobbling."
+    },
+    "takeId": null
+  },
+  "requestHash": "fc17355040338f2759bc289360237215a38b702feae3cbc74af78b227e976354",
+  "recordedAt": "2026-10-04T08:06:12.906Z",
+  "sha256": "77eace43b711f1dcabd3e3b0331d07e822efb0a6ddee94e0e393e67fbbd1c398",
+  "bytes": 18573,
+  "requestId": "nFp58YPKpspnBr1vFFPJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "57319e05ece1c1fef6df11d17dd89da709620686fe75189928a39f1e85ea4b04",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

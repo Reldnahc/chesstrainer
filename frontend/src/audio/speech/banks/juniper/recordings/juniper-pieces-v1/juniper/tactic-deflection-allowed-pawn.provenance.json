@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-pawn",
+      "label": "Tactic deflection allowed pawn",
+      "text": "A defending pawn can be coaxed away now. Watch what it guards; that is what would sit alone."
+    },
+    "takeId": null
+  },
+  "requestHash": "41ed9612e541e0a2cb83cba202baf7ba5567f6699e65c76d9ece21561e516a90",
+  "recordedAt": "2026-10-04T07:51:57.936Z",
+  "sha256": "5e42499676dd4ccf52e3db268930cda2f5cfda39a3f0ecbd6ec8fb27adcea9c7",
+  "bytes": 20853,
+  "requestId": "Mg3DW3SE0oQXQZ1QjJIP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "93ee3d402929d58c08bc0b15bcfe2072c0ea6ac2e38168ae193c6aad6c5b4c28",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

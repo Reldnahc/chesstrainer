@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed-bishop",
+      "label": "Tactic discovered attack allowed bishop",
+      "text": "Look at this line. Another enemy piece is hiding behind their bishop, so when the bishop steps off, the hidden one gets to attack."
+    },
+    "takeId": null
+  },
+  "requestHash": "52e7e3076130f0a780ab21c39430b25920e0ebee87f9aa04fa0d598b0b315dad",
+  "recordedAt": "2026-10-04T07:55:01.789Z",
+  "sha256": "03862faac2029d50cd688c5415e823d1e848b17713ecb40bcf172dd0959c9a67",
+  "bytes": 26166,
+  "requestId": "1Jx5rLPB7a1epwbcBiLn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "650f578b4087e612ef1182b476c5196f17f117ba663db109b66dcb9661c1832b",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

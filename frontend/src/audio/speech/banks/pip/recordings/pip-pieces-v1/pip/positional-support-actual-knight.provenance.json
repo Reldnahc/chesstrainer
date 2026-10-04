@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "positional-support-actual-knight",
+      "label": "Positional support actual knight",
+      "text": "Now it's got a friend. That knight had no defender, and now it has one."
+    },
+    "takeId": null
+  },
+  "requestHash": "feb06e6c349b214e967020a555f73a40cfe996707e61f365f10cb9be5c9c1b1c",
+  "recordedAt": "2026-10-04T08:04:13.071Z",
+  "sha256": "f1af3629bb45b6b3dde0def373da2ca7cfd726491457c86d44197c448b616b25",
+  "bytes": 17389,
+  "requestId": "RAqel9umdocgi18ABgHW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4fd990b845cc24be79318fd12de0af9fe3f29cc09fe26ac19bc570f39c53f46b",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

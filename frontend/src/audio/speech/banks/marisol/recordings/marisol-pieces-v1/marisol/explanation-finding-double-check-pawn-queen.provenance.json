@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-pawn-queen",
+      "label": "Explanation finding double check pawn queen",
+      "text": "Double check. With the pawn and the queen giving check, only a king move is possible."
+    },
+    "takeId": null
+  },
+  "requestHash": "8a5c2ec979eb20399b0858607306b39d5190a388f5336f57b84d7555b26989ae",
+  "recordedAt": "2026-10-04T07:54:17.083Z",
+  "sha256": "e4a584cc92c9bd5cf3f9da0897c76be2f45e03e8ef43b7160a4a8ce26901a8d4",
+  "bytes": 17433,
+  "requestId": "okUo9CmNyASTlVVZUCHA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e5cc77968d7d81654a295f36f2043dd1a837f8250f1d5a54c7f44d3108fe4c7c",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

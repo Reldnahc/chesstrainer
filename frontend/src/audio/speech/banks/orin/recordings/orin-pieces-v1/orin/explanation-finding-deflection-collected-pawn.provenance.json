@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-pawn",
+      "label": "Explanation finding deflection collected pawn",
+      "text": "The defender is lured from its post, and the pawn it was guarding falls in its absence."
+    },
+    "takeId": null
+  },
+  "requestHash": "3dcdb4f39ed49eb47c34382728c2f71c5754e495bec76f1cabb98159c90ce1ae",
+  "recordedAt": "2026-10-04T07:59:13.298Z",
+  "sha256": "61482e31655d09cdc474c8fff41de60e5d47ebcad22c860ad719afb71b65362a",
+  "bytes": 19647,
+  "requestId": "WBxHkPt1JHK1Brm5vw9P",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d2ea36b20f780ace1bd384056fd424acb791f9649b39d84b28143f4d069c0ace",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

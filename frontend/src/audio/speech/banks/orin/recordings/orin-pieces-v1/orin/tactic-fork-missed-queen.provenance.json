@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "tactic-fork-missed-queen",
+      "label": "Tactic fork missed queen",
+      "text": "A fork was on offer in another move: one queen, several targets, and only one of them able to escape. The played move lets that pattern pass."
+    },
+    "takeId": null
+  },
+  "requestHash": "eb8b47e8b3e5100fdf621494dd15892247ed951a084a626aad40be469c7a562f",
+  "recordedAt": "2026-10-04T07:58:13.899Z",
+  "sha256": "1c35e8756b0d2608d7135e84614ea0dfad2ee22390c75be6a52f276be71dbc5d",
+  "bytes": 32048,
+  "requestId": "T0lRvKdCVfuhlvl934eN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2fd1fc3812e02abd38b54a170a3daade8c8d1d6e4e453a23abe816757df16e9f",
+    "bytes": 167645
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

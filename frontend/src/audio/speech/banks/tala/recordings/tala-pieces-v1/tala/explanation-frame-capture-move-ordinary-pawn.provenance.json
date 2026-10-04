@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary-pawn",
+      "label": "Explanation frame capture move ordinary pawn",
+      "text": "Capture! A pawn comes off."
+    },
+    "takeId": null
+  },
+  "requestHash": "4f59af6b72d81ab01219fc8dce65a6291808f9eca58cba9e2ae713d6eab18f8e",
+  "recordedAt": "2026-10-04T08:10:08.898Z",
+  "sha256": "8e7db2ce3e712a6410eb7b9517c7400928e79b1cdb04c9334c678cb2ae551d43",
+  "bytes": 8225,
+  "requestId": "DZofwvTq06ucvL0sSD6a",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "da9ed9d90b1216a98c297c2f959dfe2792d0d918feaf167c6187be746d1d752a",
+    "bytes": 40586
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

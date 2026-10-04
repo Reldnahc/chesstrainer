@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "cause-abandoned-defender-bishop",
+      "label": "Cause abandoned defender bishop",
+      "text": "Hold the post! This move pulls the only effective defender off duty, and the other side can take the bishop it was guarding."
+    },
+    "takeId": null
+  },
+  "requestHash": "b24b5103e7c63356df77ba5db79a4a9f65ba8c9d965e63a2593bfff5c7cc9c28",
+  "recordedAt": "2026-10-04T08:12:44.827Z",
+  "sha256": "6c6fe7077e492631a889b5273dd1f3dc3321eabf64d15b5a8eb51f84a7cda62d",
+  "bytes": 25080,
+  "requestId": "xE1PwFV9qGpbzsLKF9Pt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b5983e2089b8264afd25924e4855e9f965ebdf68cf7f7e4613555d6e97560dd6",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

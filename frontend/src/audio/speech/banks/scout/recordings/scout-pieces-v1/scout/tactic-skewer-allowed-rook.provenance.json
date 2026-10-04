@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed-rook",
+      "label": "Tactic skewer allowed rook",
+      "text": "Skewer alert. Two pieces share a line, and this move lets the other side aim down it. If the rook in front moves, the piece behind it can be hit. Watch shared lines."
+    },
+    "takeId": null
+  },
+  "requestHash": "9bf659c02cdc18524cb82d8ced2a11808de2b57acefe9d522ff8c86d73035334",
+  "recordedAt": "2026-10-04T08:07:10.025Z",
+  "sha256": "250ba5dc6e6a33c7a3b0a9de05aad2dc9063ea7b17161edf6a3a80cbb432a84f",
+  "bytes": 34500,
+  "requestId": "7uNmWplpmWWKElQHvBwT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "194025853fff52ff6982b7a16eeda561cfffc4c9183d49b43971ca83801090d2",
+    "bytes": 181438
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

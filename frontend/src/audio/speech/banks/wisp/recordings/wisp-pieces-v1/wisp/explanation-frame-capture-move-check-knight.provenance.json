@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-check-knight",
+      "label": "Explanation frame capture move check knight",
+      "text": "A knight is taken, and the king is in check."
+    },
+    "takeId": null
+  },
+  "requestHash": "325af8f2c272229ded9d9cee8b9ca346fd7b33b3e40769e15ea3307568f82c8c",
+  "recordedAt": "2026-10-04T08:14:35.448Z",
+  "sha256": "d99a4a12bc246a56516defbf69de4bbe438e8d3a381c229e9c8af58d5a5ca70d",
+  "bytes": 10899,
+  "requestId": "FcYFRHHO3O1NtAAKiTmW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a6076fc58a9026a756cf97abc3e2e93ef7b28e6a70692cf26b25fce6dd17bb7d",
+    "bytes": 53542
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

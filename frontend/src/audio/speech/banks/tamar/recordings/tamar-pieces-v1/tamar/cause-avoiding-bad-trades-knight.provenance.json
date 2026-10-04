@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "cause-avoiding-bad-trades-knight",
+      "label": "Cause avoiding bad trades knight",
+      "text": "The arithmetic failed. This capture with the knight runs into a recapture that collects more than it gave up. Finish the count, recapture included, before starting a trade."
+    },
+    "takeId": null
+  },
+  "requestHash": "2185cde931d13fe1fdada9056cef7e305076dedfc4bfaed02484029722d42e49",
+  "recordedAt": "2026-10-04T08:10:55.993Z",
+  "sha256": "17589fcdc494f4856be8f9943b1c7d25490d86ae8cc34b7d1c867cf9159fa098",
+  "bytes": 34160,
+  "requestId": "JrpwRY7WJimUSSr1ZtwW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8a12d5dcdfb3c635c85bc4250cbd524f0eee209fc041b04560d746dc4eed3f7b",
+    "bytes": 175168
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

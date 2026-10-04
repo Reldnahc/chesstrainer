@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-mate-rook",
+      "label": "Explanation frame capture promotion mate rook",
+      "text": "The pawn takes the rook, becomes a new piece, and the result is checkmate."
+    },
+    "takeId": null
+  },
+  "requestHash": "e2636c759277d2d01a289429190110f83f79dd7f1bd0eecd412b77409d3b812a",
+  "recordedAt": "2026-10-04T08:11:40.911Z",
+  "sha256": "d8832618571b882b8ba2b5e4618d425b89d2a2670becc6e376c57a7ecdfa0c07",
+  "bytes": 16046,
+  "requestId": "keuDfVPcEP0Tnrzz0HeK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "82cfdd0608b9f0a5c6c6173e6f28987bbcef298d2bb17e3136e3276c4b51564c",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

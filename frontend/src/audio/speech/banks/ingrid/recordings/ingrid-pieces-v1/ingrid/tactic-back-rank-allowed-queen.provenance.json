@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "tactic-back-rank-allowed-queen",
+      "label": "Tactic back rank allowed queen",
+      "text": "The point to see is the back rank: after this move the king has no way off it, and the other side's queen can aim for mate along that rank."
+    },
+    "takeId": null
+  },
+  "requestHash": "cf86445423893d25b0236d08e62ef7461b6bd9b316a7977eb4a023cf86f82d3b",
+  "recordedAt": "2026-10-04T07:49:09.849Z",
+  "sha256": "9513bcc5a470a98c6720a82414ff1d8fb8bcb50048788f877ed391676bb6fec5",
+  "bytes": 29334,
+  "requestId": "o6kmbveyFyLbTvWI3N9R",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b31128ac48920ae2d228f54b9f4388026b98fd35b3126396c612165d2b83f127",
+    "bytes": 148419
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

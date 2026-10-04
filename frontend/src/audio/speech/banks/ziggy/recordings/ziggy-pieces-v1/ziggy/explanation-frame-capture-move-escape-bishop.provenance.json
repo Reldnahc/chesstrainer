@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-escape-bishop",
+      "label": "Explanation frame capture move escape bishop",
+      "text": "Capturing the bishop also removes the check on the capturing side's king."
+    },
+    "takeId": null
+  },
+  "requestHash": "4c82f419017f010a58375bbaccd59c530b5e31f66c4fdae9c4b7eca759078e6d",
+  "recordedAt": "2026-10-04T08:16:40.457Z",
+  "sha256": "dfb61b913da53c150b3f887020e579ac1efac5ee2122bdb2ad6515ee21a74918",
+  "bytes": 14660,
+  "requestId": "btsixJLljcv0F1Fd5TXx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f453e9a55c9bc29dfbb3302206048d11a03baa0f6a9981c7b206bc04fc134002",
+    "bytes": 71515
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

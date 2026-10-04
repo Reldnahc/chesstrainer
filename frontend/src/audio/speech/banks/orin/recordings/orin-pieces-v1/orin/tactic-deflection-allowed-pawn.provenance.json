@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-pawn",
+      "label": "Tactic deflection allowed pawn",
+      "text": "A defender with an important duty can be lured away. This move gives the other side that deflection against the pawn, so mark what the pawn is holding now."
+    },
+    "takeId": null
+  },
+  "requestHash": "bbf8f506ec1d3129baa018ac906422d0f3260571b5dd0dc6f9180bcf67527fd7",
+  "recordedAt": "2026-10-04T07:58:47.553Z",
+  "sha256": "c4844507f743a96c6d52a3cec6eec64c2df993b9e3d5ddb915e1c22a02807a59",
+  "bytes": 33519,
+  "requestId": "1HfRLui3S5iD6mAVHTDR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "041658601bc3f9665b04abfc4278c259d2892251e925347beee67f3267f58e95",
+    "bytes": 172661
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

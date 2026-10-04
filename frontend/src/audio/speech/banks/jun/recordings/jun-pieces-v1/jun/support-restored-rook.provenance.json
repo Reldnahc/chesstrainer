@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "support-restored-rook",
+      "label": "Support restored rook",
+      "text": "A rook that lost its protection earlier is defended again. Compare the position before and after."
+    },
+    "takeId": null
+  },
+  "requestHash": "ef5ebdb56f4d2d2632c119c2f0dc751ec578d86e7d7694421ba0e2465fbae4b7",
+  "recordedAt": "2026-10-04T07:50:38.344Z",
+  "sha256": "aaf73da5c0b01a062059e0958e82db036cc0bba8ff7c2731cfec84fee04757f7",
+  "bytes": 20703,
+  "requestId": "Yy3UTjZgwyTwaDdgwvkv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3d63946d980f103f42df72c2b940c67245082f531c5066c5b1f725503081133f",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-bishop",
+      "label": "Tactic deflection allowed bishop",
+      "text": "A defender with an important duty can be lured away. This move gives the other side that deflection against the bishop, so mark what the bishop is holding now."
+    },
+    "takeId": null
+  },
+  "requestHash": "68bcd9f7588cda3a80c7ae5d9730ba9abcbbf28373d317f9baf70dc4539d3a3c",
+  "recordedAt": "2026-10-04T07:58:52.485Z",
+  "sha256": "44b3c6471e99e8ace7f8db1ab7f35328f0c37e0ce92e11a73a358f187408a87f",
+  "bytes": 33215,
+  "requestId": "ezquA1aWWOGlpqctiFFs",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "962e02f1b918a3bc1799e3c22114a86f9e089cc029624b2b4e4217a6ea081a3a",
+    "bytes": 168899
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

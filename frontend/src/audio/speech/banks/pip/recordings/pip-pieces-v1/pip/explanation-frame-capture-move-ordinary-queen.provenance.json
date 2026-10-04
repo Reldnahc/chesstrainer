@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary-queen",
+      "label": "Explanation frame capture move ordinary queen",
+      "text": "A capture. This move takes a queen off the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "a2d7e76b8aa8901323f648afd5435ea139a46cd6115667499194581656c252cc",
+  "recordedAt": "2026-10-04T08:04:30.422Z",
+  "sha256": "0a3a547c874e7218a19bb77c8d8fd847e48fe625609725a646383f85e303fd24",
+  "bytes": 12094,
+  "requestId": "tyabBrBprP1MYrbhhutN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "18d6ad7f904641c147e80023fd11d38a287bce8ad5914ee623172ea8de4cef2c",
+    "bytes": 61066
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

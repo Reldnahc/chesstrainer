@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed-queen",
+      "label": "Tactic discovered attack allowed queen",
+      "text": "Hang on. The other side can now move their queen aside and uncover an attack from the piece behind it, a discovered attack."
+    },
+    "takeId": null
+  },
+  "requestHash": "8e5c1521168a244026d73f1774cf1709e295e7a82e28a0d538827b17866f6907",
+  "recordedAt": "2026-10-04T08:03:45.282Z",
+  "sha256": "d60c1898e6a945a0c7b07655fcb733554ca7aaaf8d95f92f23c19266b691a593",
+  "bytes": 26479,
+  "requestId": "AOXiblr2Tl5nIGRk3KKa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0cf61e6226f65c82527a260a65d55e8330849759f083882ad6d513fc9637f769",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

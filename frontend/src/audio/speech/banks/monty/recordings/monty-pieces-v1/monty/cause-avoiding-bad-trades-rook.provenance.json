@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "cause-avoiding-bad-trades-rook",
+      "label": "Cause avoiding bad trades rook",
+      "text": "This capture by the rook starts a bad trade. The recapture takes the rook, and it is worth more than what it grabbed. Count a trade all the way to its last capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "f4a72709f84438fedfa7ae5b1f4bc43ba4be6db6a3701263e4a5916a468e4ad6",
+  "recordedAt": "2026-10-04T07:57:01.700Z",
+  "sha256": "4f8224a9bcf243bde8c482f2d3ce450702b6779fc7d46af462fca2f8ee69f172",
+  "bytes": 32578,
+  "requestId": "QoWLFQ7q55jnX8f6v8eC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e041b341d3315d25d78c183aaab1322fd51aa5adb10834f45537eec41f9e3f42",
+    "bytes": 167645
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

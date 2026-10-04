@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-pawn",
+      "label": "Tactic discovered attack played pawn",
+      "text": "Discovered attack. The pawn in front moves, and the piece behind it attacks down the line that just opened."
+    },
+    "takeId": null
+  },
+  "requestHash": "63d5c464e9706eaebbd41613f8d62c8c170f4ee51306f09d34769329a6aade6d",
+  "recordedAt": "2026-10-04T07:49:59.872Z",
+  "sha256": "b12257346d9ad20adc8c41906160fd4e3b43bcee315c5db8d9139af07fbe85f3",
+  "bytes": 22796,
+  "requestId": "tCdykWwdq9fy3UddRPqR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9e26a5cbcd1a5b1b49fb99e2ffdf7bc5ba0b0788eaa69a6edfc0065e84572b64",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

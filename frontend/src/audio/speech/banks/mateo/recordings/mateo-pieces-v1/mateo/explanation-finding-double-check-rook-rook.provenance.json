@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-rook-rook",
+      "label": "Explanation finding double check rook rook",
+      "text": "Double check! Both rooks give check together, so the only way out is moving the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "33eb182e2b256ae89e77a42a341b896638789f999f35dddb9093e3404508583a",
+  "recordedAt": "2026-10-04T07:56:08.781Z",
+  "sha256": "9a450081eada8594baf438d15bca9459e75a2370050aa0a4e71626f690871988",
+  "bytes": 19820,
+  "requestId": "J7nXyr20NTAwqrBJTUn4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7fe38a8c0b0d6bef0bb33c9e697f8261cc6a70e525d40e08055b092d9417a4b7",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

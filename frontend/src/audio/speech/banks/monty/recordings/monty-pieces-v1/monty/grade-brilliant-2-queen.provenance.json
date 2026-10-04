@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "grade-brilliant-2-queen",
+      "label": "Grade brilliant 2 queen",
+      "text": "A queen put up for the taking, at a real cost. The checked line says it is sound."
+    },
+    "takeId": null
+  },
+  "requestHash": "1eb57782ddcc45c3e495986e5691b04d6fc0d338bc200dc077627df30d60526d",
+  "recordedAt": "2026-10-04T07:58:05.569Z",
+  "sha256": "86904698b0e7cd2ddd4d85aebc0c662027758d3d2899902b97f2e24464039846",
+  "bytes": 18498,
+  "requestId": "CLyrfCNSfStcngCrTTou",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "960b721db7ce6cd9da18ff695874d0ee74ec6155b78209d72836e06d6c018eeb",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

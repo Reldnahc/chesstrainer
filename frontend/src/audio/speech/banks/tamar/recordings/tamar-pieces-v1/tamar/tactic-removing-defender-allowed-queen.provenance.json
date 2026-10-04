@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-queen",
+      "label": "Tactic removing defender allowed queen",
+      "text": "A guard under threat. The other side can now capture a defending queen, and what it protects would lose its cover. Notebook rule: know which defenders carry the load."
+    },
+    "takeId": null
+  },
+  "requestHash": "d022adcbc2d0bb35c144212e6b007e746cf513219e94f2204b139fec9ac92019",
+  "recordedAt": "2026-10-04T08:10:29.670Z",
+  "sha256": "c523e4e4232895160e94adf913c34607fe1be3429a12a1fb1869bbbc06b063c1",
+  "bytes": 34329,
+  "requestId": "OyoFkb0VPmeyY8Rhr5Zd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dd7a1d52451eab81538a65d95662d986258e2945c03f827d9646e3543f7b96c2",
+    "bytes": 178930
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

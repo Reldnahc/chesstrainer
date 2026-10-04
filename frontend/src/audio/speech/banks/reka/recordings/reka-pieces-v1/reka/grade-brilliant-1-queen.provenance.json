@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "grade-brilliant-1-queen",
+      "label": "Grade brilliant 1 queen",
+      "text": "Zing! A queen goes on the table, and the idea laughs off the capture. Gorgeous."
+    },
+    "takeId": null
+  },
+  "requestHash": "62ef71bcb48ab3ee4bc1636e839098373b95ed7c1027fa1a5afeb426c64cecd4",
+  "recordedAt": "2026-10-04T08:06:41.254Z",
+  "sha256": "0095e3643e7f6dc50316bd5f59ebf2dcd3c13b724d9d3ccdc248c944a4639b12",
+  "bytes": 19612,
+  "requestId": "T03W7h9CpuUN2ojtjR3x",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0d33dff0f355cd003b5e8b73dc77fa404114c703d7fda57448473c24b7a35b1e",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

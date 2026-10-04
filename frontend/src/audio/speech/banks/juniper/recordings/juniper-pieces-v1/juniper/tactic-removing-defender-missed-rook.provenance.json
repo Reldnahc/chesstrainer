@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed-rook",
+      "label": "Tactic removing defender missed rook",
+      "text": "A different move could have taken their guarding rook, leaving what it covered bare. That went by."
+    },
+    "takeId": null
+  },
+  "requestHash": "c906bfb05dc91a83cfa5a41e35c4cb126432855017849d9701881b9ab612e592",
+  "recordedAt": "2026-10-04T07:51:43.167Z",
+  "sha256": "908da6688050402d492bba5f5f4074f4dc4bbb56f050d0881ef6ae6b25ad6a0a",
+  "bytes": 19445,
+  "requestId": "4Qp3I9MXQXnu90p2pPkX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a1d6308f91b92ff15e41ee4e7c4352915917958c1491e71a109f7062f8c4c665",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

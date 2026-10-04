@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "explanation-finding-double-attack-collected-bishop",
+      "label": "Explanation finding double attack collected bishop",
+      "text": "The first piece makes one attack and opens a line for a bishop. In this example, it's that bishop that takes its target."
+    },
+    "takeId": null
+  },
+  "requestHash": "62ea06ec9385a52b046d8ece8820a5dbb79a194f4478057f3c79a9ab36a65687",
+  "recordedAt": "2026-10-04T08:04:36.212Z",
+  "sha256": "1841d00bf149aee9f87c0c5f7b089130796b75aed66d4edf511ceb9a096c29e3",
+  "bytes": 25315,
+  "requestId": "1DeYSN7wD3Q7Y6T224Fd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "460e252f6b67586041be6d94295e3e536aaa43f8145c6b8975498d3eaea78e55",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

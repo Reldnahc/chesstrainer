@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "grade-brilliant-4-knight",
+      "label": "Grade brilliant 4 knight",
+      "text": "Oh, that's lovely, now. A sound knight sacrifice is a rare treat, and here's one."
+    },
+    "takeId": null
+  },
+  "requestHash": "da616a75d8f6bdcd21cd9c9eb974880d2e45084f0b705b04e0ff69f5e436f9fb",
+  "recordedAt": "2026-10-04T08:04:41.976Z",
+  "sha256": "44bd8c28bfa3638185cc242ff6c6cc726e6e5538441a155a2c51cca1be6b9bcc",
+  "bytes": 19839,
+  "requestId": "IDc6n35RnjdEO8PeGKSO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9aeca2d17f67cb3a0cdf118c2900f39eb5e8bdbc0b6bc8ca85249c7888d50e89",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

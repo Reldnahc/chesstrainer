@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-queen",
+      "label": "Explanation finding undefended capture gain queen",
+      "text": "An unprotected queen is captured. The capturing side finishes this example ahead in material."
+    },
+    "takeId": null
+  },
+  "requestHash": "99be42ac3abdbe72b54723d9a239dd544cdf32f6b6d5868ecc491b9392a8584c",
+  "recordedAt": "2026-10-04T07:51:08.543Z",
+  "sha256": "cd11e0cc304fe753ce543a779253bc70dc47e708e1eae8880460fdded90a06e8",
+  "bytes": 20607,
+  "requestId": "p8VCsiidFwXBxqbWDd6l",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3615d7957e9cd706b05a7f3120c052333600480526bdb02ba9b1ce3f6f6a3284",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

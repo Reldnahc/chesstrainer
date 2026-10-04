@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "grade-brilliant-1-rook",
+      "label": "Grade brilliant 1 rook",
+      "text": "Bold maneuver! A rook thrown into the breach, and capturing it does not win the day. Outstanding!"
+    },
+    "takeId": null
+  },
+  "requestHash": "85b9b55e2371327b5ff3fe22854540145ded9deeeab1044a7c92942fe9a7ee03",
+  "recordedAt": "2026-10-04T08:13:36.141Z",
+  "sha256": "3e4bc133320196963dff20ab00e4655f84d3509ac69b0c640d1129de73af3f4b",
+  "bytes": 24237,
+  "requestId": "yE9pIQCLJUvM9RfBwZXL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d4d0db1e76905ac05213b79b20e759807ebd0cdacb8f9c201bfc510baeb5af0a",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

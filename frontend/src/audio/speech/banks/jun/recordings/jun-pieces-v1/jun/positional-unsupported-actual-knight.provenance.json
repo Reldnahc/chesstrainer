@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-knight",
+      "label": "Positional unsupported actual knight",
+      "text": "Defender count for the knight is now zero. Zero defenders is a weakness, not by itself a loss."
+    },
+    "takeId": null
+  },
+  "requestHash": "7f1f8b64758d353154433aed6a6eab878597168964a5b069794242fc78eef4e6",
+  "recordedAt": "2026-10-04T07:50:47.854Z",
+  "sha256": "a79e1f8f88c13c029d0692e64cc6b7977a94a2f5b2fe0b427e8428afe657f2e7",
+  "bytes": 22528,
+  "requestId": "jpLF02TtGalTABN1sZ41",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "538599d3aa2d44de1d9a0382adabc96705ddca4c1cc3b77971cd203a68a9f223",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

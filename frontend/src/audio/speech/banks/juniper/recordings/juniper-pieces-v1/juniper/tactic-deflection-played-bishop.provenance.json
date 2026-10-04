@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "tactic-deflection-played-bishop",
+      "label": "Tactic deflection played bishop",
+      "text": "The bishop is coaxed off its post, and the thing it was guarding sits alone. A deflection, quietly done."
+    },
+    "takeId": null
+  },
+  "requestHash": "6676e7f95310b20971791e1abf9793188536e4604ef27cf7e2b638c5ff2f7ccd",
+  "recordedAt": "2026-10-04T07:51:50.391Z",
+  "sha256": "10b8909ed879329d8bf43d6ceb9e762e154fdb9bf9570b3cc95df7742a27e010",
+  "bytes": 22907,
+  "requestId": "zPrAdoey0KkMRD4dIFxp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d90e8319d2159ec9d4c621b5b64f8bfe113b1072bdfff3590ab2a90acb96b77f",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

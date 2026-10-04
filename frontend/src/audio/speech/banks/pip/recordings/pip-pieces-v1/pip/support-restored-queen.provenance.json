@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "support-restored-queen",
+      "label": "Support restored queen",
+      "text": "That queen was left alone earlier, and now it has a defender again."
+    },
+    "takeId": null
+  },
+  "requestHash": "3df8dc1644fab4a363f9bf69f9af3710b4f7e64114581371542f59566f499f51",
+  "recordedAt": "2026-10-04T08:04:08.809Z",
+  "sha256": "35b9d282836276696166ca7c31540b372e7e517199618ba3080b24a734d6853c",
+  "bytes": 15190,
+  "requestId": "yYPvukGgnt2OdLBOW15Z",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a06bb7b1f4df462235babd0a7abad942d7269670d6d1c7a29d7d0a19cfb53a16",
+    "bytes": 75276
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-ordinary-knight",
+      "label": "Explanation frame capture promotion ordinary knight",
+      "text": "The pawn takes a knight on the last rank and promotes right there."
+    },
+    "takeId": null
+  },
+  "requestHash": "03c6fd5ad01229c037f619f1365a5288720b14798f237e409ec98ceb475068db",
+  "recordedAt": "2026-10-04T08:01:23.955Z",
+  "sha256": "bf08ee7dbb6fdb01929a3a632cfae26bb9dcbc53786d93e4c5383063946b4f91",
+  "bytes": 13201,
+  "requestId": "doM6C75bM3DIKK171wdj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "32cb24759caaac83d376621438f92dc599f49fca18ff63b83c7e69b3220c08f9",
+    "bytes": 63991
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

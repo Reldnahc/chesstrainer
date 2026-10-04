@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed-queen",
+      "label": "Tactic discovered attack allowed queen",
+      "text": "Here's a discovered attack handed to the other side. Their queen could move off the line and let the piece behind it attack. Figure out which line it would open up."
+    },
+    "takeId": null
+  },
+  "requestHash": "d3a4ff05aba248b6d38eeb4aea5ce69288bc354a3c181c9f48a0b3488363daa8",
+  "recordedAt": "2026-10-04T08:00:20.420Z",
+  "sha256": "a9b8f8147fba93e216fdbb77a5f8680cf85d86e11f0bf68b844298f6e1ea9f74",
+  "bytes": 29798,
+  "requestId": "TSAZ46RMGPoG7OzdpSgY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "34f1988d773a675ad10a7be96d1bb544164f806bcbeb0c4cba1d1136b69f25f0",
+    "bytes": 153435
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

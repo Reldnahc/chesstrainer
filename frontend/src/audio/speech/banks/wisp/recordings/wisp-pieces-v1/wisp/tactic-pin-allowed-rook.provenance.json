@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "tactic-pin-allowed-rook",
+      "label": "Tactic pin allowed rook",
+      "text": "Look along the line to the king. The other side can pin a rook there, and a pinned rook cannot leave without exposing its king."
+    },
+    "takeId": null
+  },
+  "requestHash": "315f85b5b6736f86c5c4e692a7b1823a51f6d08eb420ba033c6ef80d043612ae",
+  "recordedAt": "2026-10-04T08:13:26.501Z",
+  "sha256": "541eafae4d423d85cd793c8cafbcef507d9be52604d63233f52bf22613fc375a",
+  "bytes": 24500,
+  "requestId": "YtwsC9YvlxjIpBjhBh4l",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "88308d9a16edd96e2c680c53c35f29f6a0a6e3b82547be7cbf0a46e53254ead7",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

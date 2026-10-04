@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-bishop",
+      "label": "Tactic removing defender allowed bishop",
+      "text": "Defender in the open! The other side can capture that bishop, and whatever it guards could end up unprotected. Check its duties now."
+    },
+    "takeId": null
+  },
+  "requestHash": "0cdcfae6e24a02438b8343561ae96a253ad5f6e2cef12f05347104f19e12b234",
+  "recordedAt": "2026-10-04T08:12:10.043Z",
+  "sha256": "6c40643cbf041967ad5c8504ceb3b256ef0cb06d3e86b91103c4934ba8226814",
+  "bytes": 28212,
+  "requestId": "08sY84s2H02RZEF1Pl1Y",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f20b6d36f8264da00b064307c6a918c93be8e643633859375d31a117d89c5544",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

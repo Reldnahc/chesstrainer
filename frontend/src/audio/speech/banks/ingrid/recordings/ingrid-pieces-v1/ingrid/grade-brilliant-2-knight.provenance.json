@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "grade-brilliant-2-knight",
+      "label": "Grade brilliant 2 knight",
+      "text": "Cool as anything. If the offered knight is captured, the position copes with its absence just fine."
+    },
+    "takeId": null
+  },
+  "requestHash": "64dc3965891f7ebf74648eccd2fccf92452189f6075914fe2093db52dde92f41",
+  "recordedAt": "2026-10-04T07:49:52.418Z",
+  "sha256": "a0962e15a9add37a5b3abe2c2c3a20f4dd030ad8af72838f4ed8cc98b78add6f",
+  "bytes": 21952,
+  "requestId": "OC0K4wObrcOpWIsuK7ON",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fbd2e5cb185ddfeedb42be18dbc6bb1a53e27bcfaf739fac828c1b45b9c7f925",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

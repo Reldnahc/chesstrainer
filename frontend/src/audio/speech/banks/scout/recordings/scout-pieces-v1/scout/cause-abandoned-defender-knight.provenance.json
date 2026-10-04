@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "cause-abandoned-defender-knight",
+      "label": "Cause abandoned defender knight",
+      "text": "Guard pulled. This move takes away the only real defender of a knight, and now the other side can capture that knight. Know a defender's job before it leaves its post."
+    },
+    "takeId": null
+  },
+  "requestHash": "c0e386c79a55518ebd02be4175dd08247538fb7692e01e8facc355ea3e8f3910",
+  "recordedAt": "2026-10-04T08:07:39.777Z",
+  "sha256": "2a206cb3ed124ea45b7ba4add30c4fb395358562298a261dbddd1cd700f60d9d",
+  "bytes": 32931,
+  "requestId": "DvLM3Iyfq6x996vJ2dgA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d67f2380dbaccbc33bdb7d07d2a17df1aa48fd3507f97f5e4bea70308a1eaf00",
+    "bytes": 168899
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

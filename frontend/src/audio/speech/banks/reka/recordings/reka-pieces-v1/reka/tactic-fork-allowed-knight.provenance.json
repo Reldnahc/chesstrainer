@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "tactic-fork-allowed-knight",
+      "label": "Tactic fork allowed knight",
+      "text": "Eyes up: a fork is loading for the other side, a knight of theirs about to land among several targets at once."
+    },
+    "takeId": null
+  },
+  "requestHash": "e216eb7bc474d816726d1a82b37ce197382117b46de16b1aa5a0c21539ca4463",
+  "recordedAt": "2026-10-04T08:04:55.215Z",
+  "sha256": "6a6018cdfbf0ccdaa8698db23ce20ae4e50d2bc6dbd949d815ef19c9c235a427",
+  "bytes": 21744,
+  "requestId": "OYk88EpTzk2DMetMkZOg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2734a8b0ad2145d7f92eafd70f1322a8c1d9c71e384364b2db5d3ba29c21d0e1",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

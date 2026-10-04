@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-pin-allowed-rook",
+      "label": "Tactic pin allowed rook",
+      "text": "This concedes an absolute pin. The pinned rook is fixed on its line; moving it off would be illegal."
+    },
+    "takeId": null
+  },
+  "requestHash": "c0130b7478e964b56af5d9865c01464d880e97408fd6d752791ca7204f68ab08",
+  "recordedAt": "2026-10-04T07:49:51.093Z",
+  "sha256": "10a147a8047643a800a388ac71ceba52a5e8aa302f119bf58f29e3a8abd4aa96",
+  "bytes": 23477,
+  "requestId": "dXVbdt5kmDoIgUwckqu1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "97f36f8a42987f199f430192d9455d7e2e510cdbd7aa63be441bd5ad0572ef50",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

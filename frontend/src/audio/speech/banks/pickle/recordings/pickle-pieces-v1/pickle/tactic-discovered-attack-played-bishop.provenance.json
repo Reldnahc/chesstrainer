@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-bishop",
+      "label": "Tactic discovered attack played bishop",
+      "text": "Sneaky! The bishop steps out of the way, and surprise, the piece behind it was aiming all along. That's a discovered attack, sneaking up out of nowhere!"
+    },
+    "takeId": null
+  },
+  "requestHash": "c22a83ff2e7ad38f2ed16f13cb85f0af85d9001bce25082c90725e03c6677b35",
+  "recordedAt": "2026-10-04T08:01:46.077Z",
+  "sha256": "eff6e2909e6ef0ab133ef4d320c22398f4da1e608bfcb92bec8a71c04e69a1c8",
+  "bytes": 34117,
+  "requestId": "ndXxCrTVe4qoRyvNQH4p",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6b4b17f46329fabc65f3e55e6c92dc912696cf4a0d1ccfc3fceda27b332681cd",
+    "bytes": 177676
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

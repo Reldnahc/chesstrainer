@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape-bishop",
+      "label": "Explanation finding pin restricts escape bishop",
+      "text": "The attacked bishop is pinned to its king, so it can't simply run off. It can only move in ways that keep its king covered."
+    },
+    "takeId": null
+  },
+  "requestHash": "8e2afac984b37124b039625b1e95f3e6b813b02fd73373b9503f3f6e0fa0fccd",
+  "recordedAt": "2026-10-04T08:03:59.586Z",
+  "sha256": "b5f19ca84c85807db27c46022ff2ffa2612294f5ae1ecd021a8a3ea005c3c303",
+  "bytes": 26067,
+  "requestId": "iWzbvl2ZHih04q1CHDZd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "55082d792c24b3794ae775d2fb9e3a52a87d93f5b62e62064cd3d00c583dad22",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

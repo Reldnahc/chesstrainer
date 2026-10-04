@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-deflection-played-queen",
+      "label": "Tactic deflection played queen",
+      "text": "This move drags the defending queen off its post, so whatever it was guarding has no cover now. Plain deflection."
+    },
+    "takeId": null
+  },
+  "requestHash": "101726e88bd87b46c6a673582b4b1d02987642909a3839ca5841d69b0f323d68",
+  "recordedAt": "2026-10-04T07:56:50.133Z",
+  "sha256": "f4674421a9c2f85bf7c91f0b6694cbdf7a9eaa9a258d6c31ec666e4a59bf53b8",
+  "bytes": 24400,
+  "requestId": "99VIsD3GJ7uJmS1aNG52",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fe6f327163dd5bb0d43929368eb088b43105098510f11845616123e93e0f0201",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

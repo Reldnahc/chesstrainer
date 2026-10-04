@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "tactic-skewer-played-bishop",
+      "label": "Tactic skewer played bishop",
+      "text": "Skewer on target! Attack the bishop in front, and once it clears the line, the rear piece is exposed. Textbook."
+    },
+    "takeId": null
+  },
+  "requestHash": "cdb53dde5be89b16b0e75cf297be7878f052430e3af5816ba32c90496430ec65",
+  "recordedAt": "2026-10-04T08:12:17.942Z",
+  "sha256": "1589267921be7bca94b75385bb4099acaef52e9c55b6caf7ac8aaf02c0d83300",
+  "bytes": 26265,
+  "requestId": "HDUHHKYVl47dio7d177c",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "16b538d8e73eeb41984624169961d22b04ee39fb7752a3e7f3ea3e5a42942142",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

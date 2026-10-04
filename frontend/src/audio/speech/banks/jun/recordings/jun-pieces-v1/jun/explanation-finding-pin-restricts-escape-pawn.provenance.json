@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape-pawn",
+      "label": "Explanation finding pin restricts escape pawn",
+      "text": "Pinned to its king, the attacked pawn may only move along the line that keeps the king covered."
+    },
+    "takeId": null
+  },
+  "requestHash": "ed3e924b27723d0e4f8eaf99deb06e7ba1532068799627fd9f4ee0335b9e3545",
+  "recordedAt": "2026-10-04T07:50:30.570Z",
+  "sha256": "bd639285dad24c43f4fa2c771b8d20ef2e932702a4cda3d235a90a6915af08ce",
+  "bytes": 18653,
+  "requestId": "RrTJTsxUbDkiCQ1TcPFg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "094ffcb651884eb2c1bf196dc9dce9e283647dd18cc5959d1d6dff60337298d4",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

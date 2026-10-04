@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "tactic-deflection-played-queen",
+      "label": "Tactic deflection played queen",
+      "text": "A deflection. The defending queen is drawn away from its duty, and what it was guarding is left exposed."
+    },
+    "takeId": null
+  },
+  "requestHash": "7fc3aac266cd70ec96a1c1588e57c5c94b60cbed0bf91ae197acbbb3c5783846",
+  "recordedAt": "2026-10-04T08:15:38.336Z",
+  "sha256": "00cdf0580515f83bbee5f871ef423d2e335080c34fcf97f34ca163ce144e191c",
+  "bytes": 22189,
+  "requestId": "6p4TK9dBdGUzvka6rkFK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "484d8a21348510b0275879387d8d69c31713601a83e0b015ddc21c53ac15e106",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

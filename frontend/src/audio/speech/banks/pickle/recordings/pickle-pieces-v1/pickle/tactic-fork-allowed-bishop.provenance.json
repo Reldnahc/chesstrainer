@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "tactic-fork-allowed-bishop",
+      "label": "Tactic fork allowed bishop",
+      "text": "Hmm, notice anything off? The other side's bishop can now pounce on several targets in one go. That's a fork waiting to happen."
+    },
+    "takeId": null
+  },
+  "requestHash": "830234e0ab43351888a91bc6c530547ae1dcea687d5bae5381a076580b7e16cc",
+  "recordedAt": "2026-10-04T08:01:34.378Z",
+  "sha256": "132eea7e3095fc1302fce65dce2ebef1d6800be46c664dcac55aa93240f6c663",
+  "bytes": 29086,
+  "requestId": "nlDdjlrGvXO2nk0k63SD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "57d587005fad0403637478300d56dd9a4d6243bb3b230684b998518d13f5322e",
+    "bytes": 149673
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

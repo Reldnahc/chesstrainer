@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-rook",
+      "label": "Explanation finding undefended capture gain rook",
+      "text": "A rook without protection is taken, and the capturing side finishes this example with more material."
+    },
+    "takeId": null
+  },
+  "requestHash": "45d8c32ef75969c28bbf12de9c58d9c99f610f870ebc9db026b4f71637a624c4",
+  "recordedAt": "2026-10-04T07:54:18.966Z",
+  "sha256": "5df12b9aa329ceaa145a4f413156470f60f6e318f5ceedc1bc35f8c05ebe9c3f",
+  "bytes": 19771,
+  "requestId": "PTdu4VVXk2RPVCGGsfzI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "508216c15e0df9037212acae61a3a68d564e218c3b195ca29483c440ebc46c6c",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

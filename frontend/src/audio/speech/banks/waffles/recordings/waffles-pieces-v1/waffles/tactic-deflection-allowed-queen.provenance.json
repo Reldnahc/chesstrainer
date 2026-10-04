@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-queen",
+      "label": "Tactic deflection allowed queen",
+      "text": "Posts under pressure! The other side can pull a defending queen away with a deflection, and what it guards could be left open."
+    },
+    "takeId": null
+  },
+  "requestHash": "6232c18fa0bbc34ebb2c861bdd6dfb5fc5fdda3d9b3fdb6206c19cfafafb0c99",
+  "recordedAt": "2026-10-04T08:12:16.849Z",
+  "sha256": "3a4eeddaea742db62fff969f156718284b3c40ac31a110c70c0a54d8e22fd84a",
+  "bytes": 25850,
+  "requestId": "b5HYxmfIEawMh2jRZfa7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6cfb72b74059d5536d1728bf4850a9368b72cd2b142e798100b02c9e274825f5",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

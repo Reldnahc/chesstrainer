@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-check-queen",
+      "label": "Explanation frame capture promotion check queen",
+      "text": "Capturing a queen as it goes, the pawn reaches the far edge, promotes, and gives check."
+    },
+    "takeId": null
+  },
+  "requestHash": "8cd14c15748231be237e4f43cf70c77e792aff54f09fd8a29af1b96587630828",
+  "recordedAt": "2026-10-04T07:52:40.716Z",
+  "sha256": "ba838d74f3264d79f9568b2fc092d4171c2e93316e8a0f489146f223c40916ed",
+  "bytes": 19472,
+  "requestId": "uoGRlylmkmtpBzuQcrGW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7ddc8b2d2c54dd3ee1121c4988505f0f39a03e39cb184426a63f91e9b8da79df",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

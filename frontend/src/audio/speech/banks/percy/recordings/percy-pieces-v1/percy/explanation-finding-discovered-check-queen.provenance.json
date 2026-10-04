@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check-queen",
+      "label": "Explanation finding discovered check queen",
+      "text": "One piece moves aside, and the queen it was blocking delivers check."
+    },
+    "takeId": null
+  },
+  "requestHash": "a40e4fd8cf1ea69e71569f49fcbcacedb87a55d934413dc534ef3000be9ab03b",
+  "recordedAt": "2026-10-04T08:01:07.189Z",
+  "sha256": "5d66accbb08b187cc288b8721153bb174f51ea6e70468b8fa349ffb7dae92d3a",
+  "bytes": 13944,
+  "requestId": "bYFxMp0WbrFpzkKuzGPb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a06affbab10b1592748062e06e2553c03ee6e49e083906cf532bdb1092afd652",
+    "bytes": 67753
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

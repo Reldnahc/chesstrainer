@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-finding-fork-collected-queen",
+      "label": "Explanation finding fork collected queen",
+      "text": "Fork cashed in. The queen hits several targets, then takes one of them, and this example ends with a net material gain for that side."
+    },
+    "takeId": null
+  },
+  "requestHash": "e7a37a5b670a1afc74a934a17aee7e3b079479958dbe7aa29283c9b40f2d5119",
+  "recordedAt": "2026-10-04T08:07:45.756Z",
+  "sha256": "ea9134f2b02f4375985e129a4c92c55da37681cd0ae0e21bf6b598e6f94940e3",
+  "bytes": 26161,
+  "requestId": "1qRZBl4WcR8FJ0NzZW4M",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6f6e92a319ec6fead5ddd8e414baeaf2ff5c87ecbb855915171bd19d4f384c0a",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

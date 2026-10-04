@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed-rook",
+      "label": "Tactic discovered attack allowed rook",
+      "text": "Zoom in: their rook sits on a line in front of another of their pieces, and if the rook moves off it, the piece behind attacks. Discovered attack incoming."
+    },
+    "takeId": null
+  },
+  "requestHash": "896213b600ed2deb52ca32f1f3ec023aa16c1b810953d91114b953f7b750d1c2",
+  "recordedAt": "2026-10-04T08:08:56.819Z",
+  "sha256": "8a4188e41d167c822fccba50bb098ea770e108c79cc05142f12b4065473ca17a",
+  "bytes": 32673,
+  "requestId": "fkyKTTg9W4JvaYLrN9bX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c182f083b1ed718c75c6d90eec37525f294ba3822be1000b0993a678277afa12",
+    "bytes": 168899
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

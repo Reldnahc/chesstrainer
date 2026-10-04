@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary-bishop",
+      "label": "Explanation frame capture move ordinary bishop",
+      "text": "Capture. The bishop leaves the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "2c7d616edb2bc67cab96c3dbdc71531bf12fd8c1419732716b29deba5f7233ce",
+  "recordedAt": "2026-10-04T07:51:13.696Z",
+  "sha256": "662a011f7f31ddcc929a6135a14b4f1534c075307ed3fbdc4476a2d6f72e0f5a",
+  "bytes": 9364,
+  "requestId": "jKLmD0WkKRM2wlfcmfbz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3550351ce1abd3e2a7ea9730ea89d0cd2fe5008f6f2c1813499823b3482f57b9",
+    "bytes": 48527
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

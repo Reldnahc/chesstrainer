@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed-rook",
+      "label": "Tactic removing defender missed rook",
+      "text": "Another move could have captured a defending rook and stripped the protection from what it guarded. Not this time."
+    },
+    "takeId": null
+  },
+  "requestHash": "fc79fc456bdf2303be9c68b34d7c318def61650388fa0a80f3bbdc21059fb44d",
+  "recordedAt": "2026-10-04T08:12:21.614Z",
+  "sha256": "43d1bd97a690688caacb1210a3e41068e96f784343c84889c3b8b68955e96620",
+  "bytes": 22241,
+  "requestId": "pbHaC6BLGt6RuyvioSq1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0ff1e7ed9e70876c4dccdc1bc302f0bec41df029b3d18cfd172003df3271a015",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

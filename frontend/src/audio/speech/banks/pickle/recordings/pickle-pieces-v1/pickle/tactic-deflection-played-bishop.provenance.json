@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "tactic-deflection-played-bishop",
+      "label": "Tactic deflection played bishop",
+      "text": "Shoo! The bishop gets lured away from its post, and its old post has nobody minding it. Lured right off, the classic deflection!"
+    },
+    "takeId": null
+  },
+  "requestHash": "cb2cd92d6e3add8ccb49c1120b188fff41430a4dc230b1df84e27789017ac9bf",
+  "recordedAt": "2026-10-04T08:02:08.685Z",
+  "sha256": "70c8c20784bf897e912f86bc2a72e3ae449b842c4872ade2b3b473f7ed325785",
+  "bytes": 28637,
+  "requestId": "GBvP9N9GK3qy0l918Bmr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "83d5f8356e1f5911f8ff56db9be71270845cd8f747106847ed57514c2a26760b",
+    "bytes": 148419
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

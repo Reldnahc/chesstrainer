@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed-queen",
+      "label": "Tactic discovered attack missed queen",
+      "text": "A different move had a discovered attack in it: shift the queen out of the way, and the piece behind it attacks. This move doesn't do it."
+    },
+    "takeId": null
+  },
+  "requestHash": "1a2f4e5fd4177c28c4a88d175e9a2d443c2de62a545d0f7c7b67f087a67d86dd",
+  "recordedAt": "2026-10-04T08:03:17.177Z",
+  "sha256": "e69400cf092d64fe3d33e5dc2c3456f32898843baa4112ad06a67efd5207fdbf",
+  "bytes": 28163,
+  "requestId": "eiTWK7kQqRCwzgdoNyDz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dbad71cfd430d183f4c9103389359807297ae50f3620ef480683c0304547c0ce",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

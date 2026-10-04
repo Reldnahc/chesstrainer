@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-pawn",
+      "label": "Explanation finding sole defender captured pawn",
+      "text": "Two captures in sequence: the lone defending pawn first, then the piece it guarded. Without the first, the second would not be possible."
+    },
+    "takeId": null
+  },
+  "requestHash": "472ec02b62cbf6c4f54b62e6b6e3dd441ef976dfd7275b4119c9f9511b8233ed",
+  "recordedAt": "2026-10-04T08:16:05.190Z",
+  "sha256": "bed4cd993ab2ca2b308cb50c1d5a94ee125a15f011c9f86ae085d9605c0cd092",
+  "bytes": 27996,
+  "requestId": "C8onJO7556mMyhwDkTR5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0f9183172cec849ae37560027680bbae66f47b89f235a1bd5a4e209bc0b403eb",
+    "bytes": 147165
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

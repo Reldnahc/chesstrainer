@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-rook",
+      "label": "Explanation finding undefended capture gain rook",
+      "text": "Loose rook taken. Nothing protects it, so no recapture follows, and this example ends with that side ahead in material."
+    },
+    "takeId": null
+  },
+  "requestHash": "41fd5426b80a36829a94a6217643d1154ff92dc6b24048b2fbbcad50ce3e270b",
+  "recordedAt": "2026-10-04T08:08:11.025Z",
+  "sha256": "00ce06ee729dcf0b39d167f7163a55fae392e579d3aa3406ce2d5c620d427fd6",
+  "bytes": 24971,
+  "requestId": "zR2ipHapE6p5KV7E4qEw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2dcb5ddff594a0528b4cbacdad6527c875ef62aeec13ee62d6b6516a07ee1ea3",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

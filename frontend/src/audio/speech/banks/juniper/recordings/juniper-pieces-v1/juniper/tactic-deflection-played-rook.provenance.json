@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "tactic-deflection-played-rook",
+      "label": "Tactic deflection played rook",
+      "text": "The rook is coaxed off its post, and the thing it was guarding sits alone. A deflection, quietly done."
+    },
+    "takeId": null
+  },
+  "requestHash": "43bc3069d99d23341b233ab2a68748ec8d23b48da7008a679d0f3a4832a24392",
+  "recordedAt": "2026-10-04T07:51:52.511Z",
+  "sha256": "f7c1d70fab090136a34b66e3058ee2d46a8527093a41a2613ed675d48c425303",
+  "bytes": 23421,
+  "requestId": "dKZMB6kyglw8EKOCAIEz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "754ec94127c57d5320aad96a9313fc1001712d638c879d1c7ef3bad0641c4484",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

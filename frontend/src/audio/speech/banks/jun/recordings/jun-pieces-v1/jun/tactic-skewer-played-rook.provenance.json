@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-skewer-played-rook",
+      "label": "Tactic skewer played rook",
+      "text": "Skewer. The rook in front must move off the line, and the piece behind it becomes a target."
+    },
+    "takeId": null
+  },
+  "requestHash": "b9e4f1f9bc1a1a83507de3c9a6cbf2caaa34c386d182a098e5cfc8284c9abb9b",
+  "recordedAt": "2026-10-04T07:50:06.385Z",
+  "sha256": "bb6e7dcff141e56e7e3c7b3493437fc2f7a49e98a569e226bb1737e8b91757e2",
+  "bytes": 20021,
+  "requestId": "2wyDqiljqvE5c4Pg1G2Q",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "60a23f36bc60e8e9b0301ffb35a0ba30da268e2b04d4ca4823df2ae7b5983c40",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

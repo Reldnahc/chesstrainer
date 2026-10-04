@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "positional-development-alternative-bishop",
+      "label": "Positional development alternative bishop",
+      "text": "Another move would have developed a bishop from its home square. The opening rewards each piece that joins the game."
+    },
+    "takeId": null
+  },
+  "requestHash": "1551e921fdfa754df7b14b47bf1144e4ec22fdc871a248f4c0980bf3d567c709",
+  "recordedAt": "2026-10-04T07:58:59.797Z",
+  "sha256": "b88a4ed30b29c3e143a86e757512975dcf1fe046039188f2449087cca07b6f20",
+  "bytes": 24059,
+  "requestId": "d5aP5Ardj9z5rGGEY2f8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d9a0af571c1d83292d58410252fcad31363c9efc87e4f826a8c21220ce8138c9",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "grade-brilliant-1-bishop",
+      "label": "Grade brilliant 1 bishop",
+      "text": "Wait, a bishop left out in the open? Suspicious! Whoever grabs it finds the idea still standing."
+    },
+    "takeId": null
+  },
+  "requestHash": "9ce7ad467de60057571d757cde36fb29774a296878a8dc43c151ee87944d6950",
+  "recordedAt": "2026-10-04T08:03:10.933Z",
+  "sha256": "d28f9441d358c2ff775e8daff582608c5a95698321d643e9cbd8f3507c7ef3eb",
+  "bytes": 23778,
+  "requestId": "KQUx34G7Uc0Pk1E4SDBa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9f712f4c681c3503db8fbd7551244feee43a1dabdb69a781285dd16257e7603c",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

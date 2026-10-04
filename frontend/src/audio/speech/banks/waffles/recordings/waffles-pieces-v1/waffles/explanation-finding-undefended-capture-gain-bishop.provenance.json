@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-bishop",
+      "label": "Explanation finding undefended capture gain bishop",
+      "text": "Captured: one undefended bishop, and by the end of the example the capturing side is up material."
+    },
+    "takeId": null
+  },
+  "requestHash": "96e57fc9767001ece1ef7c6f6881640a20aeefdb81df9e4aac362695ecaed933",
+  "recordedAt": "2026-10-04T08:13:11.207Z",
+  "sha256": "e131569dd35c5dec2d087548a6cf95763596d7bf38b830507f8eac404b795b21",
+  "bytes": 22683,
+  "requestId": "nxQphlCN6oumebSqAuti",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8875b824a4487eb1bf6ef1095435053bac152c7f54bb3c2c5259fc0449eeaac1",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

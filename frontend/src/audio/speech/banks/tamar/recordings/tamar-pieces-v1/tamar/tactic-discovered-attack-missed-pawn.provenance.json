@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed-pawn",
+      "label": "Tactic discovered attack missed pawn",
+      "text": "A discovered attack was ready. Another move took a pawn out of the way and opened a line for a piece waiting behind. Look at what stands behind every piece on the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "a16ff718491a5cd0ad361f6f0aed60786dcedd388ae370d7f5f54e9027df8def",
+  "recordedAt": "2026-10-04T08:10:48.618Z",
+  "sha256": "8d752e71d3e7a897601a8b8ce5d70c03132691f1d517901a943c83121e7d2cae",
+  "bytes": 32727,
+  "requestId": "UidMLc0CIkomN39tk8QT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dbe7293a586413f28deccded80b8ed97931b383fdfb5a85dcd1c269e2d53da55",
+    "bytes": 167645
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

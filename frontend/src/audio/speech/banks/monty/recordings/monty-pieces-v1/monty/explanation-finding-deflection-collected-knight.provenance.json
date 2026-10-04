@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-knight",
+      "label": "Explanation finding deflection collected knight",
+      "text": "First the defender gets dragged away, then the knight it was protecting gets taken."
+    },
+    "takeId": null
+  },
+  "requestHash": "c1f2047d7a4cd453bd5b9e79dbc358cc74a9ea4f1c7bc048e9488bfdd09993df",
+  "recordedAt": "2026-10-04T07:57:30.698Z",
+  "sha256": "a221c2e0b459e8b4a3c5d6407050ee247cfef5fc71a02cee591226d6aa9a9be2",
+  "bytes": 16889,
+  "requestId": "KRKvHFC6GpoYGq4hDtY2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "eadb5493073bf200f93f4409cd5eb8c83770882761e509a94ee4e5ad9240b49c",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

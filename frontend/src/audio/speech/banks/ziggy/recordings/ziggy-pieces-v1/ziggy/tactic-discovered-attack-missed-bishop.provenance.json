@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed-bishop",
+      "label": "Tactic discovered attack missed bishop",
+      "text": "A discovered attack was sitting in another move: a bishop gets out of the way, and a threat appears from the piece behind."
+    },
+    "takeId": null
+  },
+  "requestHash": "7c552a01120aed0c296a648aebb7a2cdefddcb69601907e82294aae718f283b0",
+  "recordedAt": "2026-10-04T08:15:40.051Z",
+  "sha256": "e3a8c9a77bb547b68376849d70ef2958008fd2a9b7e0f80a1f15d41af33e7a3b",
+  "bytes": 22965,
+  "requestId": "LC0FHdJApTqH8aCGUyEW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a55e3ba88a8f70f64093f2c0f42326b61242a6e776f3cd41084c9e6aee81a747",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

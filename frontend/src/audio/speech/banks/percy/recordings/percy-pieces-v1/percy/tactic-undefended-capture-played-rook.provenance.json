@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-rook",
+      "label": "Tactic undefended capture played rook",
+      "text": "Free for the taking! An undefended rook can be captured here. Always check for loose pieces before anything fancy."
+    },
+    "takeId": null
+  },
+  "requestHash": "83b6df833b20b056d1cc208f4bf8289652ad5e21551f173443f7f502ddeb25de",
+  "recordedAt": "2026-10-04T08:00:05.282Z",
+  "sha256": "e22b058483f5b74615032a66818bdc9e5eece7416d94a4cddd07b25e2747a314",
+  "bytes": 24117,
+  "requestId": "Bgb87PtgEi5wswSbUK9Z",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4e2639c827d8f9246befdb468cc468bcf6b73869f86f0648a4d4f54564e31262",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

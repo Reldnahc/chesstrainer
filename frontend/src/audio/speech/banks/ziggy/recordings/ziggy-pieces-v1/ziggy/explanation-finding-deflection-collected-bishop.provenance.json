@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-bishop",
+      "label": "Explanation finding deflection collected bishop",
+      "text": "The defender is drawn away from its duty, and the bishop it was guarding is then captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "fd19c115dbcfdeed0350dff8832f0fda09139633a84eff5ab18f26290bd6031f",
+  "recordedAt": "2026-10-04T08:16:19.264Z",
+  "sha256": "5a490f879af6f3c54fd820297530dbd46c6a506fd39f1920a229bd55473d305b",
+  "bytes": 18045,
+  "requestId": "N9lUT1iZk3pKDAED1Lox",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7760f157529490c7b3bf9eb661cb9a1b275843c5ae5905cc29901ca8258cdb64",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

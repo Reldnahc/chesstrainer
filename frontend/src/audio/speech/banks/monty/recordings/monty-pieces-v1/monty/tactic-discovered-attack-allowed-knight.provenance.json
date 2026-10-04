@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed-knight",
+      "label": "Tactic discovered attack allowed knight",
+      "text": "Their knight is standing in the way of a piece behind it, and this move lets it move off the line so that piece can attack. Discovered attacks begin exactly like this."
+    },
+    "takeId": null
+  },
+  "requestHash": "1b3fa1b85863f22a5f2230c8b2465a9a5319792a825baf785163c695c2db0410",
+  "recordedAt": "2026-10-04T07:56:42.421Z",
+  "sha256": "dc1590cb5f243a55257d3a265687e9fadd10c3cd47c9f07b28d4fa4b44ba19fd",
+  "bytes": 32366,
+  "requestId": "CFt8gRX4MewzctO5ohTj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "39b69ab4c19319209cd167399e859bbd087e6d8118542f2b68e596f4f42b86e6",
+    "bytes": 164719
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

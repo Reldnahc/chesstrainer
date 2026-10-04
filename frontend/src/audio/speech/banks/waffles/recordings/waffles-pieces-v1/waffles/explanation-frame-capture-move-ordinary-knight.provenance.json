@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary-knight",
+      "label": "Explanation frame capture move ordinary knight",
+      "text": "Capture made. One knight leaves the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "cf51ea2ab79b75c693482aae1641847ec61b1351db95376a83398b921078a1f3",
+  "recordedAt": "2026-10-04T08:13:15.574Z",
+  "sha256": "609e5f9ac523f9841eb4c95c04ca957cfbeafdaaea8438b1f1f2ca62ae320a79",
+  "bytes": 11288,
+  "requestId": "jC4gEWfjDSh2NrepDzHo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f05ae2e92edb336c25ec634299fe273339970fea7a15ed8eefb3a4171163d097",
+    "bytes": 54796
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

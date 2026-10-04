@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed-rook",
+      "label": "Tactic discovered attack allowed rook",
+      "text": "Hang on. The other side can now move their rook aside and uncover an attack from the piece behind it, a discovered attack."
+    },
+    "takeId": null
+  },
+  "requestHash": "674b86c7b82240464836fdbbac88e4a43bbf954c496e5b7a09abd1241a414cbe",
+  "recordedAt": "2026-10-04T08:03:43.204Z",
+  "sha256": "c80ba6f84db15fb7aa60bb0bfc84f03c266154b961e6280955946b555db11ea9",
+  "bytes": 26097,
+  "requestId": "Aiv6NlhzItCvHuRSyWd4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bd21c3b9d6939866e4466c677fc0da99868531a6a143fe4ce9bd30f854bf75fe",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

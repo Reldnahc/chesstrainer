@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "tactic-fork-missed-rook",
+      "label": "Tactic fork missed rook",
+      "text": "Another move had a fork primed, one rook on several targets together. This move never gives the order."
+    },
+    "takeId": null
+  },
+  "requestHash": "e041ae15a450005fd623c456b21b798ef7e7e041e83f2899f6fd396b0aae208a",
+  "recordedAt": "2026-10-04T08:12:04.301Z",
+  "sha256": "ca449d3056d6da1af4b81edea79c6005c740c32c50ea631df06348b12d382307",
+  "bytes": 23994,
+  "requestId": "zB112fCIjVEJSoYmfUGm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5a834e33bb909612362b793524278951e06d4a48baa41c1c6cfa4143a402b752",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

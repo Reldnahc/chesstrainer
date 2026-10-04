@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-pawn-queen",
+      "label": "Explanation finding double check pawn queen",
+      "text": "Double check. With the pawn and the queen checking together, only a king move can answer."
+    },
+    "takeId": null
+  },
+  "requestHash": "bc27755bd6df9aec4f013649839283d3b6123e1e3e2aabce9be8d4b295959342",
+  "recordedAt": "2026-10-04T07:52:44.101Z",
+  "sha256": "288ca0dd06499694c31c25a8d06c07d182ba32eb63d88996d58856cf5095c68b",
+  "bytes": 19609,
+  "requestId": "zLFa4UGvZzsBA9X49JrT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "84e205e4284afd964deb9218d8a8fbf9976cdbef6aa811330095eb3e0ea6c72a",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

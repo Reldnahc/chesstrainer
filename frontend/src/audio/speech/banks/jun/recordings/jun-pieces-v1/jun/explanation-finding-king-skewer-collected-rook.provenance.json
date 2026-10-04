@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "explanation-finding-king-skewer-collected-rook",
+      "label": "Explanation finding king skewer collected rook",
+      "text": "Check compels the king to leave the line, and the same attacker collects the rook that stood behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "c39d032a8fb5cacf110908d6076b39a18567ca8ed945c0e096b842bcd6fa5ca6",
+  "recordedAt": "2026-10-04T07:51:00.777Z",
+  "sha256": "41835de8a06a05ea49720cdfc000845d059007a09f9c6e770643bf9979858ad2",
+  "bytes": 19796,
+  "requestId": "bqvY0KMVOn3xLjbXkmUx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "57bc2c4cc1e401585ff7377ab114e9e673ccf04d97236d04f87b14fccae2de51",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

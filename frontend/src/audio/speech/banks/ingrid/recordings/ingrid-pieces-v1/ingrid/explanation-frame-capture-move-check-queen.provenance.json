@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-check-queen",
+      "label": "Explanation frame capture move check queen",
+      "text": "Taking the queen comes with a check attached."
+    },
+    "takeId": null
+  },
+  "requestHash": "97e683ee3dc768c5c1e037f65b603af8916ce85c39824cd9a6358673906010e4",
+  "recordedAt": "2026-10-04T07:49:32.359Z",
+  "sha256": "756d9167e1ef1d54c9624b10b1ab66dade4e1ae48906b8fc8c6bb44d5069828e",
+  "bytes": 10013,
+  "requestId": "DeFmpZ3SvXZveBqVYhor",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4f4a2390f66407c546988b274f071161f8165594c7611c6278e3707fc4c83feb",
+    "bytes": 49781
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

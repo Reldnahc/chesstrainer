@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "support-restored-rook",
+      "label": "Support restored rook",
+      "text": "Support restored! That rook left unguarded earlier is back under guard."
+    },
+    "takeId": null
+  },
+  "requestHash": "a2820e2c69cb954a96725c657334211500588009244c05b3eb82cc9e679fee11",
+  "recordedAt": "2026-10-04T08:12:49.350Z",
+  "sha256": "b297f68ca4afc04a476be23e69c0e44fe74a4190b366e8f628fcb51d79e9d728",
+  "bytes": 16634,
+  "requestId": "IvOg6jfIMNjqdWUwkXnr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d6794b1d3be8658732ec2bbf3b270007b8369fc75aef04a7167a7dc9cd3c2e66",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

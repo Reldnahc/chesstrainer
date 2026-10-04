@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-escape-bishop",
+      "label": "Explanation frame capture move escape bishop",
+      "text": "Capturing the bishop also lifts the check from the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "9c96e02f632bab920b424bb0747694310edfe00fa326ba4e33bf7af8ebbb94ee",
+  "recordedAt": "2026-10-04T07:59:36.110Z",
+  "sha256": "2d359c396746b414f6817fc12fcbf67b95a119f8b62c430acd2751e842eb9eff",
+  "bytes": 12721,
+  "requestId": "QWpFQzU1eCwBr1jW6NLu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cd1e3b241ef4c4370532e270d2958f0dbb6f166be3b9ac928bbfc70788cc693e",
+    "bytes": 62319
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-missed-knight",
+      "label": "Tactic undefended capture missed knight",
+      "text": "With a different move, an undefended knight was there for the taking. This one passes over it, and nothing was guarding it at all."
+    },
+    "takeId": null
+  },
+  "requestHash": "03e0cb0bf743ce378fa6ff8e5be9b7c3a11b7bc23b7e3968a8ec9c2e3765ca8c",
+  "recordedAt": "2026-10-04T08:15:18.494Z",
+  "sha256": "4180cc6bd77e13c7bfcfb6289e514e4298d3f5d4d73bef568ebf03d23ae63fc3",
+  "bytes": 25288,
+  "requestId": "C4gLCGrCuh0nBS0V30Tx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a668f4d2a3e81b634a86ca92a4b1af8d58d135d7484bb2a97005e64efc3bc000",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

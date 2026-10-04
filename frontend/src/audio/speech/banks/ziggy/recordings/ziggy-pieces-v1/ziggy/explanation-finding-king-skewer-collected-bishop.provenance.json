@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "explanation-finding-king-skewer-collected-bishop",
+      "label": "Explanation finding king skewer collected bishop",
+      "text": "Here the king is in check along the line and has to step away. Once it does, the same attacker collects the bishop that stood behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "d300ffe925fc60dd49edc9d29fc7709b0ede9a565036fef876382aa6ea993132",
+  "recordedAt": "2026-10-04T08:16:13.413Z",
+  "sha256": "333203672dde8aad41a1f26785866027ffc4a606a34538ced971613ca3417382",
+  "bytes": 26908,
+  "requestId": "4pEQW5AeBLKPImS44Wjb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3ac8205b145a8e107ced2053fd6ce6cdf4e0d78c62b55fe1a00ebc03be8455d9",
+    "bytes": 136716
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

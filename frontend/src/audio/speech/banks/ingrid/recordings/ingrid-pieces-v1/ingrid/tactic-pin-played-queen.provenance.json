@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "tactic-pin-played-queen",
+      "label": "Tactic pin played queen",
+      "text": "The pinned queen is tied to the line in front of its own king now, and a sturdy pin it is. If it stepped off the line, its own king would be in check."
+    },
+    "takeId": null
+  },
+  "requestHash": "46e71e130a5b695916e470f7f6636c65ca3b5defa7c81758fad66b327a590438",
+  "recordedAt": "2026-10-04T07:48:44.963Z",
+  "sha256": "38ad03d9ecbddc86bff4950a0a28ae3560050b62f1b87a95362eef4b1c22e158",
+  "bytes": 31112,
+  "requestId": "okdaVngZQrpbhxVdLE7w",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "69f81f2dc08147f4c0373cee8b511ce488347eb323bf45b85769e2d7a89f6a21",
+    "bytes": 157196
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

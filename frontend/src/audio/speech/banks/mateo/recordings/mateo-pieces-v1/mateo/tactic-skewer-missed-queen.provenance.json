@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "tactic-skewer-missed-queen",
+      "label": "Tactic skewer missed queen",
+      "text": "Ooh, a skewer was waiting inside the stronger move! Hit the queen in front, it steps aside, grab the piece behind. Such a fun pattern."
+    },
+    "takeId": null
+  },
+  "requestHash": "b69dd155b6bc925e0de61d2e3dbaccdbead62e1a9997de92085a5dc75206ead7",
+  "recordedAt": "2026-10-04T07:54:41.328Z",
+  "sha256": "a04e4eefd4e5b3ba23e162055b5ead88fc33deffcabaf7961370f756e0d54056",
+  "bytes": 30187,
+  "requestId": "TURRZ3M7qGVivrHzJ5ng",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4719e11eb7b11275973dfe0b0be3248ec87c2c1b76a0017240dbcbfae7a65835",
+    "bytes": 150927
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

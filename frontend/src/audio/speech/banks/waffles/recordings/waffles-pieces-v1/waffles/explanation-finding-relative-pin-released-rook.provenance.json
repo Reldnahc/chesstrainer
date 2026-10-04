@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-rook",
+      "label": "Explanation finding relative pin released rook",
+      "text": "A relative pin used to hold the attacking rook. The opponent's last move ended it, the target sat still, and the line shown takes it."
+    },
+    "takeId": null
+  },
+  "requestHash": "99f4c0628097c225cf2c41c8f873d259ddd84aba374f75de79242b6a9d320df7",
+  "recordedAt": "2026-10-04T08:12:50.463Z",
+  "sha256": "ec4971d9e65770d1e8a5672b5685e0544a99d547fce334d0a29c00d176137057",
+  "bytes": 29732,
+  "requestId": "H5us5XMK5GGAsCqnGyTa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5b35409c7ebcf7d64c8ffb18e9df44899ec2ed2ff988b5a17487fc2f3358471c",
+    "bytes": 153435
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

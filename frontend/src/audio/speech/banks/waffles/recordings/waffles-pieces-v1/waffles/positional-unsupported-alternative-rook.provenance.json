@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-rook",
+      "label": "Positional unsupported alternative rook",
+      "text": "Another move would have stripped a rook of its defender, which alone wouldn't mean it could be won."
+    },
+    "takeId": null
+  },
+  "requestHash": "6452b044f29a91275bd3fbe4b6e4f2392f7a447e4b196d5d757d9a63c20a8d22",
+  "recordedAt": "2026-10-04T08:12:43.405Z",
+  "sha256": "d42af76f9807050594547edcff54e70aea36ef74bd1dcacc8825bac786d9f8b8",
+  "bytes": 19069,
+  "requestId": "MIrdAU1vMPMwxpKDq3Io",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1758257094c85e4201b832c54d8b16ad181badcb0b6f2f1e912525b8ceab6901",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

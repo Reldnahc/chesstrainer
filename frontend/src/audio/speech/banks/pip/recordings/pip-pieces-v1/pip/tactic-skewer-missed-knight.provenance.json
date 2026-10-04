@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "tactic-skewer-missed-knight",
+      "label": "Tactic skewer missed knight",
+      "text": "A stronger move had a skewer ready. Once the knight in front stepped aside, the piece behind it would have been exposed. This move skips it."
+    },
+    "takeId": null
+  },
+  "requestHash": "0e948b5c9152363b3de24ddbf824c3fff006fc0aff4b28ee6c7fc7442a62198a",
+  "recordedAt": "2026-10-04T08:03:13.886Z",
+  "sha256": "42b6b842a663e7fc8b029fc0ede2d887d6179319d0cffdd606b014c3bcdf1bc3",
+  "bytes": 29286,
+  "requestId": "cE3hEH6B0zg09ai8p9bA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5d1c58ebb33ff185327f5a1d14a98a2b958bb25ae095f6d66ddda7962c2fa189",
+    "bytes": 149673
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

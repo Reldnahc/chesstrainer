@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "support-restored-bishop",
+      "label": "Support restored bishop",
+      "text": "The bishop left alone before has a guardian once more."
+    },
+    "takeId": null
+  },
+  "requestHash": "ba21ccb2366ea864c4aee38d75a35136ee89a18d86fee7263a862dba1f34696f",
+  "recordedAt": "2026-10-04T08:14:16.787Z",
+  "sha256": "f44ec8dd255792ffba62c7b6511a1397106bb46a2ed33186d71965d682bc17d2",
+  "bytes": 12700,
+  "requestId": "Bo4ZaAJyO6YVLORoQVFc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2572dd737c6599d7a8ee4d7095c9512d2b2c483f421f5e0a9aea0b68a54e5e0b",
+    "bytes": 62319
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed-bishop",
+      "label": "Tactic skewer allowed bishop",
+      "text": "This permits a skewer: an attack on the bishop in front that, once it moves, exposes whatever stands behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "fc6129ae9e92e6a1b1a1f57a713f7cdd8d5c69dc11b9ea3b624253e29a67c322",
+  "recordedAt": "2026-10-04T08:15:36.255Z",
+  "sha256": "1bf0ca3ca2cff0ec36e9a47ba1ad9e5cc32c8b683bfdcbd6c62392385044c3b0",
+  "bytes": 24422,
+  "requestId": "qBrHziCRXvVqDOOAAaO3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "11ff83cb3c5e1991c66149e241395c00ca24d1f86dabf9333686f0c461e0781e",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

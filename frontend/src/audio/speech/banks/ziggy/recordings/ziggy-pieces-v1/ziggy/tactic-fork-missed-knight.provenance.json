@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "tactic-fork-missed-knight",
+      "label": "Tactic fork missed knight",
+      "text": "Another move contained a fork, one knight hitting several targets together. This move goes a different way and leaves it unused."
+    },
+    "takeId": null
+  },
+  "requestHash": "19625b168404dda2ed2f65449542ecb1b82fbf5501b999c1d1818b2de29e220a",
+  "recordedAt": "2026-10-04T08:15:22.415Z",
+  "sha256": "77fbb442f1d7cced8f932b353157a04dc99e1359e493e663b718c2246b789c3e",
+  "bytes": 25101,
+  "requestId": "6pfb9Js76CnmedxMPrA8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7df36ed03c33a3f034ae3651c0ae727d85d491311d73d0d809519dba25d57159",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-pin-allowed-bishop",
+      "label": "Tactic pin allowed bishop",
+      "text": "This concedes an absolute pin. The pinned bishop is fixed on its line; moving it off would be illegal."
+    },
+    "takeId": null
+  },
+  "requestHash": "930714c70d11418f85fd6bbb137e000c14c2c7e73abc02cfc9a3b71adfcfa3d3",
+  "recordedAt": "2026-10-04T07:49:49.039Z",
+  "sha256": "02a5a54350080dc78284ca9d5b889aca173f325a61d304ff08c408bc97349a86",
+  "bytes": 23420,
+  "requestId": "xUqf5QktEusbRLiv5FZs",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "41b6aee2dc17131ef0a337a110262207c4d6ac2cb5b57d6b304b2f9e6d132f1f",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

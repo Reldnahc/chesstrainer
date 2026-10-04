@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "cause-abandoned-defender-queen",
+      "label": "Cause abandoned defender queen",
+      "text": "The only real defender of the queen has gone elsewhere, so the queen is now open to capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "d21417a5f94cdc814b95ebb79954278abb5633c37fbcc31e00cdd90b23f4860b",
+  "recordedAt": "2026-10-04T07:53:57.516Z",
+  "sha256": "8439662d4d5a32d823ebe6462ba109cfdc7e37d67fa5619f5a2808ac69138c45",
+  "bytes": 19271,
+  "requestId": "xKlxxQapxQyXgMtGJlbK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d441440f9b63ebaba752a17a1408b562a0528047838b576b0bf0a40d2527bc27",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

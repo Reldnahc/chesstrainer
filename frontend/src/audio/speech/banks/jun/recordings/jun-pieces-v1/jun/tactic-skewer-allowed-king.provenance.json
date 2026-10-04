@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed-king",
+      "label": "Tactic skewer allowed king",
+      "text": "This concedes a skewer. Once the king is checked off the line, the piece behind it can be taken."
+    },
+    "takeId": null
+  },
+  "requestHash": "a428386063e7e0db72b6d7bbd482fe3a5618c54efe034f8db344be3e6c295348",
+  "recordedAt": "2026-10-04T07:50:18.732Z",
+  "sha256": "a391ef95c18850244ac1c7f3cd63fc310053c41c3290a62c647f8379c2d60d76",
+  "bytes": 19851,
+  "requestId": "N2ybfEELZea7V5VJxk36",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0326a1fd1d312ad94184fdd9f854f03b6f224621c906d19e87398d15e4320712",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

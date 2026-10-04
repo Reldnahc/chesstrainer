@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "grade-brilliant-4-queen",
+      "label": "Grade brilliant 4 queen",
+      "text": "Brilliant. To my eyes, a strange gift: a queen offered at a real cost, with the checked line holding firm."
+    },
+    "takeId": null
+  },
+  "requestHash": "b3e5cc0979a64e90b6282eb02c9673c9f54cecf4ea7572a92290ac69ea563eed",
+  "recordedAt": "2026-10-04T08:16:37.740Z",
+  "sha256": "35989447aef7b58ab495eb119c254fc8801be6d0b9a02eee7221902bb315e516",
+  "bytes": 25806,
+  "requestId": "A71Ox3caiJoOCWbxooYJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5cce8d525aba6885c18f2f7f749308ed9c39452b9f997ce46d0ff1ce9e57eb15",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

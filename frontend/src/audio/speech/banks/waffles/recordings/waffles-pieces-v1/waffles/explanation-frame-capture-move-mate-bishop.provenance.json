@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate-bishop",
+      "label": "Explanation frame capture move mate bishop",
+      "text": "The bishop falls, and it's checkmate. Every escape route is closed."
+    },
+    "takeId": null
+  },
+  "requestHash": "54397ee86a49a7a41f61f6d1b8d7d7d3c625adc2b97b80c69f913bf5e94f9db3",
+  "recordedAt": "2026-10-04T08:13:13.162Z",
+  "sha256": "e86931a196ab9154689bae1a71d88bd79e398e57bcc6fefe6c28b4319698ea07",
+  "bytes": 16356,
+  "requestId": "A2KxnANYkpMMUADt56gO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a7796217e6b7607a1560ce7a12940dd54dceb021980b44f99c6eac2cd35b8400",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

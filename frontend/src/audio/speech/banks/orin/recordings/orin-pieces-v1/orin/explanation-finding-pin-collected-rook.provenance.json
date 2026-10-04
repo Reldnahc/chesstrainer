@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-rook",
+      "label": "Explanation finding pin collected rook",
+      "text": "Watch what becomes of the pinned rook. Bound to its line by the king behind it, it is captured before these moves are done."
+    },
+    "takeId": null
+  },
+  "requestHash": "537f717be9157158d829e93f2e58f815230815fa22a45a05e65e8bc5e2051cc6",
+  "recordedAt": "2026-10-04T07:59:00.164Z",
+  "sha256": "090cbc82ca31e2fadb6420803a6d0e2d21f23151bc2a0fa4c73027e91cdbfe78",
+  "bytes": 25264,
+  "requestId": "giLJ5KxwAa9rvHj2hkuc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "eba290c49c3b6d96569f2c41221a68597bb23e3ca3e557858112789e24288b88",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

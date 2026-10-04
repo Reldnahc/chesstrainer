@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-back-rank-missed-rook",
+      "label": "Tactic back rank missed rook",
+      "text": "The back rank was open for business. The king had no exit square, and a back-rank mating idea with the rook was there to use. Test the last rank whenever a king is boxed in."
+    },
+    "takeId": null
+  },
+  "requestHash": "032e3503b9793babc1d8614ed1d074ed279dbcfc170f5743a5b25a3fc170362a",
+  "recordedAt": "2026-10-04T08:11:17.670Z",
+  "sha256": "acf6ac9b187270da4655057ec28928535f550c9a272646291801903d58766f5f",
+  "bytes": 35869,
+  "requestId": "hi06PjFNjxvnkkSHJoOj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1c5b293aa88b1d0b896cdad58cd0fe8331e03b75d0153feb192164213e744eec",
+    "bytes": 183946
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

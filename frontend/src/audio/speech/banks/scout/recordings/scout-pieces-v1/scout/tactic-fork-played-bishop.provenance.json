@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "tactic-fork-played-bishop",
+      "label": "Tactic fork played bishop",
+      "text": "Fork in play. The bishop hits several targets in the same move, and a single answer might not save them all. Spot the bishop, then count its targets."
+    },
+    "takeId": null
+  },
+  "requestHash": "c5e19af0285e549f275d43fd70bdce59f7995aabf6973e7b2d98248d8887d283",
+  "recordedAt": "2026-10-04T08:06:22.611Z",
+  "sha256": "3632b97066b561a2b16f4242d0b31ba241ca4316e0459c9bdd9c9e40abc0b35f",
+  "bytes": 30071,
+  "requestId": "Gw7m6NzB29Q9opc4bsj5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "faac4850933a776cdca962b01f8a4805fdfe4c477b6ca5bbe80248a31e9ed3fa",
+    "bytes": 157196
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

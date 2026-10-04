@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "tactic-hanging-piece-allowed-knight",
+      "label": "Tactic hanging piece allowed knight",
+      "text": "Little detail: a knight has zero lookouts, and the other side can simply gobble it."
+    },
+    "takeId": null
+  },
+  "requestHash": "400f5d067e02594077ab7d6c54b26b7ed7aaaafa6fc3f72b5a44d52802788717",
+  "recordedAt": "2026-10-04T08:05:19.417Z",
+  "sha256": "9381157541bcf1ba2b6b7543aa5ad7be00e140e75b6337da63d5c588254fd2bf",
+  "bytes": 18342,
+  "requestId": "kyXTEV8XOEXWz0xR0q2U",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2f0210dde26b581e8363fbd3413f3f9e697ff37bb65a374665257ebd41393c50",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

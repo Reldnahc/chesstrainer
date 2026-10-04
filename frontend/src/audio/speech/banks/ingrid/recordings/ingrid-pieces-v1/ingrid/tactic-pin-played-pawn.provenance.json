@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "tactic-pin-played-pawn",
+      "label": "Tactic pin played pawn",
+      "text": "The pinned pawn is tied to the line in front of its own king now, and a sturdy pin it is. If it stepped off the line, its own king would be in check."
+    },
+    "takeId": null
+  },
+  "requestHash": "18913927c5f8fc040e47bae075306621a1cfd2d08e3120863a816e97369be1ef",
+  "recordedAt": "2026-10-04T07:48:34.677Z",
+  "sha256": "0f96bdc7b675e2bd739ceaaa0ba3888881855e73012b01084c081340a4242ef8",
+  "bytes": 31506,
+  "requestId": "8goc980qGwrWWrfuHDmq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5d66bb8b000175496f9a6b8ebd5f54e986e6c457fa8b48ae474d7c67fe77ed06",
+    "bytes": 159704
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

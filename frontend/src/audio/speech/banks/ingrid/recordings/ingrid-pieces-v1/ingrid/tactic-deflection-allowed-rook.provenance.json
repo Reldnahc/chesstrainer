@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-rook",
+      "label": "Tactic deflection allowed rook",
+      "text": "The simple risk here is a deflection: a defending rook can be pulled off the piece or square it's covering."
+    },
+    "takeId": null
+  },
+  "requestHash": "4693dc983173c75d24d7c309fa02927567f9a5a9620e9c18661ca84729f2d5dd",
+  "recordedAt": "2026-10-04T07:48:51.922Z",
+  "sha256": "c499ecd6266b2166fe4930994987a364803c4959ce259d7df1292f422c3ba7b5",
+  "bytes": 22001,
+  "requestId": "MZR5O9caqrPz9YZE14eH",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d12eabc0c9fb5eb522ceaed5ccc9fc3436f20ada44f7b5d12a8409562f2f21fc",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

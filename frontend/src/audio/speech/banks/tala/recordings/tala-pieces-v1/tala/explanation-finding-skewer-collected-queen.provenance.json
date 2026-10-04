@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-queen",
+      "label": "Explanation finding skewer collected queen",
+      "text": "The queen in front moves out of the way, and the piece behind it is captured on the very same line. Skewer complete."
+    },
+    "takeId": null
+  },
+  "requestHash": "e7f1267501be5a9315158cf3552c7cb18706d259c0b22f6b9beac5985a775631",
+  "recordedAt": "2026-10-04T08:09:39.040Z",
+  "sha256": "8d81083278ba6dbf7a428ef77e83575c6433fde8e907340b3c95425d1ac018d8",
+  "bytes": 25111,
+  "requestId": "FPVmGJoygxGv4ynuxvVE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e8e41b82556afa6b29a2a18ca7407bf897e7410cddca378bf05827c534aee3c6",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

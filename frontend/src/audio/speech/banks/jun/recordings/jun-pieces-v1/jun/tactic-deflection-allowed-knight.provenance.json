@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-knight",
+      "label": "Tactic deflection allowed knight",
+      "text": "Deflection risk created. A defending knight can now be drawn off its duty; identify what it currently covers."
+    },
+    "takeId": null
+  },
+  "requestHash": "9ca43a3e2626eec3f8fa1ade3238d9bb65a3d1e52c92b9c47dbfa72e95ae8b93",
+  "recordedAt": "2026-10-04T07:50:32.244Z",
+  "sha256": "2a36b9ca43ac753fb2c3bc53b66171c65e00f5bbac94bf6867f267f705f4b90d",
+  "bytes": 24121,
+  "requestId": "VBjFCUmpmfEX7wL8IqE3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e059f497e969d080c9d9f8c99f3038252d21a534ec144a869a7302f11b3821e6",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

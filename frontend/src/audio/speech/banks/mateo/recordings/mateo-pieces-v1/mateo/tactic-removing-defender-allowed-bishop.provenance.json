@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-bishop",
+      "label": "Tactic removing defender allowed bishop",
+      "text": "Hmm, a defending bishop can get captured now, and then the piece it was guarding loses its help. Which piece is counting on it?"
+    },
+    "takeId": null
+  },
+  "requestHash": "9fc4dd0ed77cdb8cd81132ea492d66e544cabfb87292dacc48b1d35fde30bcc2",
+  "recordedAt": "2026-10-04T07:54:48.236Z",
+  "sha256": "c22e9e7e7641c57e2abd1d841c9664b4d67ceaeaf541818d329d717f53ceba96",
+  "bytes": 25337,
+  "requestId": "5xVoc19Q2Ks8YFJBIodR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1f8a7c646b88f351834c2434c0736ee45a9e86ad97a8959894bc1f5701c76026",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

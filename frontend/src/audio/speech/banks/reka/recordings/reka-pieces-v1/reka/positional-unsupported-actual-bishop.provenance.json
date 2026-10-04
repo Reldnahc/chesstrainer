@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-bishop",
+      "label": "Positional unsupported actual bishop",
+      "text": "Little detail: a bishop is now flapping in the wind, no defender at all. That alone doesn't mean it's winnable."
+    },
+    "takeId": null
+  },
+  "requestHash": "7660d2f7c46e948f2a3af3ec0342b581ee30e6ecb706e70b5236c29f888fdb5a",
+  "recordedAt": "2026-10-04T08:06:00.497Z",
+  "sha256": "0c38fb33997206baa7be858698ef3b8794db006dce4bcc71ff6719c399bf8a8c",
+  "bytes": 24249,
+  "requestId": "pPfTFWsWPZHhMY8QB21b",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f50d8191be3bc807cbcfba9b0f17ad77364e7da5fe032f92aac7f18aeabaa072",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played-queen",
+      "label": "Tactic removing defender played queen",
+      "text": "Guard eliminated. With that queen captured, whatever it was protecting may now be loose. Follow up on its old duties straight away."
+    },
+    "takeId": null
+  },
+  "requestHash": "855601bf7c3401ac440a397da4f18586d289cdbcc36a68a4b341555ffc5d1491",
+  "recordedAt": "2026-10-04T08:10:56.528Z",
+  "sha256": "e3f023de6d36365a2c9a3926eaf94b3d3d36ed92df4f3c5f2e311c338cde86d1",
+  "bytes": 27801,
+  "requestId": "RMHnYgUh2r5flgRlAjnW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "13d291069ef613b43ede5b79e1890b147caccb4e4b6e8223d60855ad90a16f62",
+    "bytes": 142986
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

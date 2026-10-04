@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-bishop",
+      "label": "Tactic removing defender allowed bishop",
+      "text": "A guard under threat. The other side can now capture a defending bishop, and what it protects would lose its cover. Notebook rule: know which defenders carry the load."
+    },
+    "takeId": null
+  },
+  "requestHash": "50f6c9b1ae1f91c48f4d909e2aeaa25dd7b3ce51aa53f1bf0945502c0487e38f",
+  "recordedAt": "2026-10-04T08:10:24.335Z",
+  "sha256": "7b64d1faac135bb35b490f5f604f9cf7c89bf17a2aa2ecf6c6ea97b926845284",
+  "bytes": 34391,
+  "requestId": "dd1HwGCr4zxXNFwuGCzD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2e433b444027bbf35be74d380f3fc9908ed65e4b320f94633b229ecd2471703f",
+    "bytes": 177676
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

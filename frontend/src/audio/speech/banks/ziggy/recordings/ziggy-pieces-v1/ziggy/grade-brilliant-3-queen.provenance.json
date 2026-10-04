@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "grade-brilliant-3-queen",
+      "label": "Grade brilliant 3 queen",
+      "text": "An offering of a queen with a sound idea underneath. Brilliant, by any measure I know."
+    },
+    "takeId": null
+  },
+  "requestHash": "1ed8ea4aa376eb8f505c9f3785601f901b0d3900bf4535d2717906f07d67fe1a",
+  "recordedAt": "2026-10-04T08:16:29.443Z",
+  "sha256": "e1ff07a9a23a15aba0299ca3d7d4e806ad235efb493af66a41d68f891454c8e6",
+  "bytes": 20352,
+  "requestId": "5jKPemScdpAADdi45MVC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f0d228eb1ee5abbe6f027e69ec3f320a5f8ae4c394df78b74ebbdb3f628db2de",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

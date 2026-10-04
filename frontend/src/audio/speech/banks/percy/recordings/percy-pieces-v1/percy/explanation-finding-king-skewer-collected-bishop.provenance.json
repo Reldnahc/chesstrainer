@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-finding-king-skewer-collected-bishop",
+      "label": "Explanation finding king skewer collected bishop",
+      "text": "Check forces the king off the line, and then the same attacker takes the bishop that was standing behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "4a4f17b44a0b4203cd6d7aa0fe4161f8f08da4d62c06a6db890addd0c425d351",
+  "recordedAt": "2026-10-04T08:01:04.688Z",
+  "sha256": "f88f6958346561434bd6f15b98c9daa70d79b669ef36879be4f1cd049eef5174",
+  "bytes": 20526,
+  "requestId": "E21NYUPoD0U5xklI0bM2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3b27cf897a6fa9026741b0fcecbfb6e728260ee1c53eda02296dac6d34dd760f",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

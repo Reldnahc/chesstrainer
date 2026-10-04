@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-check-queen",
+      "label": "Explanation frame capture move check queen",
+      "text": "This move takes a queen, and it's check too."
+    },
+    "takeId": null
+  },
+  "requestHash": "065b16fe4e024351f75dadd4c216f786b5fdc1a7ad42024a85491d86554cdeee",
+  "recordedAt": "2026-10-04T08:04:35.692Z",
+  "sha256": "6d7d00b4fed8a46137b5ca227e4b5716774478e0bdba608337a7771dfc0f93e8",
+  "bytes": 11658,
+  "requestId": "jQ2iF0mE1mG2X6YRfKsp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fb94b84969ee9a7aa61c76e4fb5ac4ac270eb276f9adb33f1ada5881a3d09310",
+    "bytes": 58558
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

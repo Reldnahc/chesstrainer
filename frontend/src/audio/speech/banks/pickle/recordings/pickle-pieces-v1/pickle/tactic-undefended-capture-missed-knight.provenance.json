@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-missed-knight",
+      "label": "Tactic undefended capture missed knight",
+      "text": "Wait, there was an unguarded knight up for grabs with another move. Nobody was watching it, and this move left it alone."
+    },
+    "takeId": null
+  },
+  "requestHash": "ee5ceceb69df7d4ba4da6e6f9c2b438e5780d09d3d431ba8256be5c3592d042c",
+  "recordedAt": "2026-10-04T08:01:42.207Z",
+  "sha256": "4416f4ff350d74e1b0e49b0f3de8b6cd4d1ab9655bcdb7c0cd62cbeb1db20abc",
+  "bytes": 24164,
+  "requestId": "MJFeBX1znDNT5bcE7XdR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ae7070ed57265ddb20ee2e7f9b33d65881cdc7996993539afe7ec33131a7156b",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

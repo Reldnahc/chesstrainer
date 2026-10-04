@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "tactic-fork-allowed-rook",
+      "label": "Tactic fork allowed rook",
+      "text": "I noticed a gap. Their rook can now reach several targets together, a fork waiting to happen."
+    },
+    "takeId": null
+  },
+  "requestHash": "a4be101d4d82562d934d654f0d88750ef312d48afabb7612ad0b1cdcea398903",
+  "recordedAt": "2026-10-04T07:51:29.747Z",
+  "sha256": "a6238f29389d6b700cd4e41b40342604a68f7a60c589b4e8e6aed68c5cbdb8e8",
+  "bytes": 21530,
+  "requestId": "ThqAgLuSJ6MSTeRCcAeD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c22d6990545b3010e0613c9eafbc7c49e83420675bd2686c0106efa15d2c9355",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

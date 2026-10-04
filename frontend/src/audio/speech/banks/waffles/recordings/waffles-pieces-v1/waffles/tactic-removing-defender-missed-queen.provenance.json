@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed-queen",
+      "label": "Tactic removing defender missed queen",
+      "text": "Another move could have captured a defending queen and stripped the protection from what it guarded. Not this time."
+    },
+    "takeId": null
+  },
+  "requestHash": "f50b3b060fefad6aca0cbdb9770ef4a6fb6b32d6585ad758077f58af901e74b4",
+  "recordedAt": "2026-10-04T08:12:23.398Z",
+  "sha256": "f9accf6cd0ff60dd90231f31f16a08b588e7c4b09919584b482f165042fe3da3",
+  "bytes": 22873,
+  "requestId": "ELQfCsD6UQZnF6nRa2iV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "470f6ba1bd276286cf3949ecdaac367b32610118a6eed991b33ec73a07da0e92",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

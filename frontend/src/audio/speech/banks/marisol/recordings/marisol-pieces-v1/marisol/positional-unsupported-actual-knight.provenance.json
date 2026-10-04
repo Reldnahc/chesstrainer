@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-knight",
+      "label": "Positional unsupported actual knight",
+      "text": "The knight has lost its last defender. The weakness is real; it does not on its own show the knight can be won."
+    },
+    "takeId": null
+  },
+  "requestHash": "576b744b8469a1254597a3db1995c55678e3996c19e3e0b89d25f87115dc2e56",
+  "recordedAt": "2026-10-04T07:54:05.897Z",
+  "sha256": "25bc41c13bfb4b3a166bef043eeedc673785cedcda5ede9014b4dfd94da56eb2",
+  "bytes": 24262,
+  "requestId": "iAKYZzqKgvIdEJnSTUxa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5f952fede59bcba6119fe5be3fb71cab1c831557eb475fc1aba94f496aa68bb1",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

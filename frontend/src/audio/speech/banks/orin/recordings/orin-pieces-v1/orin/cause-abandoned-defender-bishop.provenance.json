@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "cause-abandoned-defender-bishop",
+      "label": "Cause abandoned defender bishop",
+      "text": "A defender has a duty before it has a destination. Here the only real defender of the bishop walks away, and the other side can now capture the bishop left unguarded."
+    },
+    "takeId": null
+  },
+  "requestHash": "ff44db0d6eaf0d3fe3f1860b18c35c60c9c6e295c643edd08bdd5593db24508e",
+  "recordedAt": "2026-10-04T07:59:08.081Z",
+  "sha256": "b4aa738ac6909916558f40d3dbe67d77b66b0e7c57a488fc05062fc0adebdabe",
+  "bytes": 37502,
+  "requestId": "gQmxtJ5VBjdKIQ52RhDy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c958e70a5aa8f28270430592ac8e8e4001b0cf87cc1b86586c5b6ba94168994b",
+    "bytes": 193141
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-queen",
+      "label": "Tactic discovered attack played queen",
+      "text": "Sneaky! The queen steps out of the way, and surprise, the piece behind it was aiming all along. That's a discovered attack, sneaking up out of nowhere!"
+    },
+    "takeId": null
+  },
+  "requestHash": "dfe6548c63da4e6c4aa4fbbd47c5ba31ea414f844e4880094270bf0158c6bff5",
+  "recordedAt": "2026-10-04T08:01:51.481Z",
+  "sha256": "b4f439469abc8aef1e5a895efc5b188e6a16fd4936b6dff5f4f2ba5d03a01c35",
+  "bytes": 33613,
+  "requestId": "BuX9HGJoakqddqxnTFGt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a5658a4e470cceec52e92300d823513e4e3453a6fde4aa7892ddea2ce24251c3",
+    "bytes": 176422
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

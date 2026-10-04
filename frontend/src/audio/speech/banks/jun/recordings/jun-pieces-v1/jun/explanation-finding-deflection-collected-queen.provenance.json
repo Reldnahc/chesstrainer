@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-queen",
+      "label": "Explanation finding deflection collected queen",
+      "text": "Pulled off its post, the defender abandons the queen it covered, and the queen falls."
+    },
+    "takeId": null
+  },
+  "requestHash": "fde55f901064fdb2827f605775b23072b3be20c6b2265026f301d687d0beb092",
+  "recordedAt": "2026-10-04T07:51:01.449Z",
+  "sha256": "46044fef049b327923038a383f4527ccc4a3d2f61ea5f78a87a50411fac2a72b",
+  "bytes": 18353,
+  "requestId": "MNnpuriyuysu0ExI1ElS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f3c62c5d14b9349227b1ee7a7ade1ca8afc0721cf1a6bbd7dec615e5b4378862",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

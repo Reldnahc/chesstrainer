@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "cause-abandoned-defender-bishop",
+      "label": "Cause abandoned defender bishop",
+      "text": "Simple problem: this moves the only real defender away from the bishop. That bishop can now be collected."
+    },
+    "takeId": null
+  },
+  "requestHash": "21ff18ab9a1be00c2b50ca7d868e24c943fe1d617653571896e18f93fca441a8",
+  "recordedAt": "2026-10-04T07:57:10.967Z",
+  "sha256": "d55d3b28553ae1165ce49f441437a180a8cc3c97ec1745d4a3a60f177d3d3443",
+  "bytes": 23069,
+  "requestId": "gXmDZjHCpRtzeHTyjtxA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9959113d6b49cfb031a72d3474ad9052445cef017428ce119ab23d3c278a7823",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

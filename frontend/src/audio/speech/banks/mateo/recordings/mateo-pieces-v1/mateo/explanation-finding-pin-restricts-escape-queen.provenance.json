@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape-queen",
+      "label": "Explanation finding pin restricts escape queen",
+      "text": "The attacked queen can't run away, because it's pinned to its king and has to keep blocking the line."
+    },
+    "takeId": null
+  },
+  "requestHash": "60e0e213c9448a05a5faf3a07ca3b0b63ce67eab8a2b2be74a6468919f46837d",
+  "recordedAt": "2026-10-04T07:55:22.727Z",
+  "sha256": "8e64dfeecb1de93849edb7c7e2ce795464d2bf06cf1116fa85e018fc62ca7a33",
+  "bytes": 19648,
+  "requestId": "NXckwiwXcQKKo3W9Rl07",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9a732b5596ecf4a0d165003aead1816d4409b4af8116aebb95243e3a32269207",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

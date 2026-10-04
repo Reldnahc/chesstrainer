@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-escape-knight",
+      "label": "Explanation frame capture promotion escape knight",
+      "text": "The pawn takes a knight and promotes on the last rank, and that gets the king out of check as well."
+    },
+    "takeId": null
+  },
+  "requestHash": "23da00f788b583e2ab2e489d22066b3b8209e192050cbeabd9d8bbb99a1ce038",
+  "recordedAt": "2026-10-04T08:04:46.701Z",
+  "sha256": "7f61c7f33ce20c06ea5e7540545cf76ba3029a28f72894e012593e09a0ebc2d8",
+  "bytes": 18666,
+  "requestId": "BtrthR92kAl4SIhr7BQa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ee895223ad6b7a30850a69efe72dbc7fcdfeb7eaff7464dac2c376d737ae36ae",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

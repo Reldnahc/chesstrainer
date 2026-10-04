@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-queen",
+      "label": "Explanation finding relative pin released queen",
+      "text": "Thanks to the opponent's last move, the attacking queen wasn't stuck in a relative pin anymore. The target stayed put after that, and in the line shown, it gets captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "8541a56c2a41cb8b92e9b19b7009670985a24e83524a677e1d26daa20fd0f28a",
+  "recordedAt": "2026-10-04T08:00:53.092Z",
+  "sha256": "22a43cb0fd4164fbda8738b9d368a48058e001af6b9ac776bee2421e02809558",
+  "bytes": 32311,
+  "requestId": "aMQ0Vt3HFB5ayKrSPM0G",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7151dece3a190993ae00a00ce9749484eb5a932c95728e3fb4684ae9915388ec",
+    "bytes": 163466
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

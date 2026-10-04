@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "tactic-pin-allowed-pawn",
+      "label": "Tactic pin allowed pawn",
+      "text": "Now a pin to the king becomes possible for the other side. A pawn caught that way would be stuck on the line; stepping off it would expose its own king."
+    },
+    "takeId": null
+  },
+  "requestHash": "9582b68d09e8b73c9b55b8114c429b2276c3bc8db94ebd008378f00910214bc2",
+  "recordedAt": "2026-10-04T08:15:00.053Z",
+  "sha256": "7f8b124f1864baf53b6d27b4ff9668c76c3b50ad49f49b9ed804918c8f81c86d",
+  "bytes": 29610,
+  "requestId": "VnTEaH3pPQqwd1sLEkQL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "26d89fca3cfbeaf554d6087b8b50fd5dc42c15c8800406e9d0c79497d00e207d",
+    "bytes": 150927
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

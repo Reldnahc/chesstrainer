@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-bishop",
+      "label": "Positional unsupported alternative bishop",
+      "text": "Another move would have left a bishop with no defender. That alone wouldn't mean it could be won."
+    },
+    "takeId": null
+  },
+  "requestHash": "39ebe0cc209ead996cb0b54b1907dcf87360a5283ba90ced015054a03076a446",
+  "recordedAt": "2026-10-04T08:04:00.242Z",
+  "sha256": "475abeca43ad46ea9422e82ffc5f99b40154a0f477735470b8d468b49d96943e",
+  "bytes": 19226,
+  "requestId": "t62aMrXYpDLZbR9bw98W",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3c3c047d85ad4815e7a7891fb03f69ee3b396ba5df2d3b68fbbe169266ed2baf",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-queen",
+      "label": "Explanation finding skewer collected queen",
+      "text": "Once the queen in front steps off the line, the piece that stood behind it is captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "83cf3bb73f82429b4d5b896fb6235b64446ad176444242192c64fbe8fcf6507f",
+  "recordedAt": "2026-10-04T07:54:05.912Z",
+  "sha256": "6667fa91c92735b4f9b252f8e0533488aaf86f2e564b2b0582d1b6ff10315f28",
+  "bytes": 17109,
+  "requestId": "CkO6ijl6KdKjrUcP0xlD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2797ccaf28f117dc3023d1ffe280733e5e44292a454112f89bf552210cf62844",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

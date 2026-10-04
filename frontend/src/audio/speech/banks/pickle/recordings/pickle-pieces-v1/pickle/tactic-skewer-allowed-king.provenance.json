@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed-king",
+      "label": "Tactic skewer allowed king",
+      "text": "Hmm, the king and another piece are lined up like ducks. The other side can skewer them: once the king is checked and shuffles aside, the piece behind it could be exposed."
+    },
+    "takeId": null
+  },
+  "requestHash": "bb808a58d7f7e6bc413c24283b2983d09178016c9cab60b2ebd526ff208e2d0b",
+  "recordedAt": "2026-10-04T08:02:09.560Z",
+  "sha256": "19062ddd7c3c708cba025bcfe104aeb20a6b897f5eda30a335277a2a382fcc85",
+  "bytes": 35030,
+  "requestId": "TDe4uhR0YrES3MX7LCXh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b02b22790d94500dae310784a503f73d1299e71f6c825fa0d0683221cc16cf59",
+    "bytes": 182692
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

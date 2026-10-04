@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-king",
+      "label": "Tactic deflection allowed king",
+      "text": "The king is on guard duty here, and it can be coaxed away now. Watch what it guards; that is what would sit alone."
+    },
+    "takeId": null
+  },
+  "requestHash": "b21f3a3163c754318e42410e6ff89c5aa459845d7bfb40e6fe2bbcb7446be98e",
+  "recordedAt": "2026-10-04T07:51:56.056Z",
+  "sha256": "6ce5eade283920846004d7572be1f09aa03670e9bebc91c833cf97094e32e1b0",
+  "bytes": 24887,
+  "requestId": "xleKltuMG6eQRQJlHLE0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0b11a6f5b8445c31a619d07b3b9a13eb4ed74db5023ab111d051825b359072c3",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

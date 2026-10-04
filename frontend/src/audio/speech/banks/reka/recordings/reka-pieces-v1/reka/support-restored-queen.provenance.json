@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "support-restored-queen",
+      "label": "Support restored queen",
+      "text": "That queen left hanging earlier finally gets its bodyguard back. Replay that switch."
+    },
+    "takeId": null
+  },
+  "requestHash": "5e9debc11ddd4228a24a0a9e7de1e0c0170b4dc51d417620df7edde24586b99d",
+  "recordedAt": "2026-10-04T08:05:48.787Z",
+  "sha256": "564a8567bf7c7c72039b5906360791246e86e037fc9c57201b5c57652b45d612",
+  "bytes": 17313,
+  "requestId": "tnVvyfOUgkZlbYJX83R2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "692002fb54ef890f840758114178479674e26404f14b85caee799a3827e415fa",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

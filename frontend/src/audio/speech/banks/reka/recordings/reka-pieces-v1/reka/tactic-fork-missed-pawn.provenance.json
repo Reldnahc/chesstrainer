@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "tactic-fork-missed-pawn",
+      "label": "Tactic fork missed pawn",
+      "text": "Tucked inside another move was a fork, the pawn landing with two targets in reach. That punchline stays in the drawer here."
+    },
+    "takeId": null
+  },
+  "requestHash": "4fe64a72a98c45f4182b4f233f2c1e78c501855b06c6bb63402197f724c5761e",
+  "recordedAt": "2026-10-04T08:05:02.663Z",
+  "sha256": "1ff27162520e9ca912a522f7e7e6d746697bad54a06780aff887deacf00fbe38",
+  "bytes": 24217,
+  "requestId": "216JIJYQqLqwaJXLLdFX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3e3d15fdef306398fce47097ff4383acf1956ab260d25f8e3302fe65f12eb95c",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

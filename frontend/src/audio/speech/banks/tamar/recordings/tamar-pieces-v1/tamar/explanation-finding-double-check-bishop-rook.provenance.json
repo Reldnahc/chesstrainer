@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-bishop-rook",
+      "label": "Explanation finding double check bishop rook",
+      "text": "Double check: the bishop and the rook are giving check together, so only a king move answers it."
+    },
+    "takeId": null
+  },
+  "requestHash": "cc33c335c6a018ca87c97e751c67caff633b9e329ba4cbc066957c130e6f6e6e",
+  "recordedAt": "2026-10-04T08:11:46.849Z",
+  "sha256": "0b0672d3759022e1b8a73061e97094841768ff85e711f9328f4dc83dfe1b720b",
+  "bytes": 20200,
+  "requestId": "DU9oBTEMjxVdyWGSknu4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0c774fc54849205633b75380fb1f2dd311909f22f5401bf0e9027fadd1908b66",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

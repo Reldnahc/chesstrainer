@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "tactic-fork-missed-bishop",
+      "label": "Tactic fork missed bishop",
+      "text": "A fork was on offer in another move: one bishop, several targets, and only one of them able to escape. The played move lets that pattern pass."
+    },
+    "takeId": null
+  },
+  "requestHash": "42e27bf7afc9bbfe59e2a7b74d5b6930a14f53870421bc16826d4ebb89e151df",
+  "recordedAt": "2026-10-04T07:58:09.059Z",
+  "sha256": "be04852343cd6d8cdd09cd2d6ce9e47d6304665ff1a8f02910708ff9333dafa4",
+  "bytes": 31952,
+  "requestId": "6Ed6tDPoqyfBx8z0LVh6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ad37c77e8ac42630e3097d5e82a58b2e568c1ef7288cd67c6809945b6547531c",
+    "bytes": 167645
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

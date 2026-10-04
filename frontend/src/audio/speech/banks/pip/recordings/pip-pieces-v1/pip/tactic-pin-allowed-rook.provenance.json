@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "tactic-pin-allowed-rook",
+      "label": "Tactic pin allowed rook",
+      "text": "A line to look at. This gives the other side a pin to the king, and a rook pinned like that can't leave its line without exposing the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "9d1623dbbbe870cee86e51f51a41652f3409063c2211e281100a361493e77051",
+  "recordedAt": "2026-10-04T08:03:19.004Z",
+  "sha256": "83896e16594063949e0c9837d9bbcef90210eb8031b6be722aa9ffffcaab9c9f",
+  "bytes": 29885,
+  "requestId": "Mvm3FPrlObxVkVjn7VVf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "580d8c8392c939e162dd7f28fa08f455042d91bbf6e344d1b6fe4b30b9454934",
+    "bytes": 153435
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

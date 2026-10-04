@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-finding-king-skewer-collected-bishop",
+      "label": "Explanation finding king skewer collected bishop",
+      "text": "Check. The king must move out of the way. Then the same attacker wins the bishop that was behind the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "7c02669abd708718463b55d63f42a0cc671fe1cf39f292f338e26a9a9f1de3c6",
+  "recordedAt": "2026-10-04T07:57:25.726Z",
+  "sha256": "d9f8cc5484d6015c266ee764e74a3610d702db37ab7c03e01027c4f2e5fec277",
+  "bytes": 21793,
+  "requestId": "2KCojRTzWqhasIipp5mC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "51f9824767bb4fe93bcb747d98cd2f18d75a700e6f568aee637967c20f75788a",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

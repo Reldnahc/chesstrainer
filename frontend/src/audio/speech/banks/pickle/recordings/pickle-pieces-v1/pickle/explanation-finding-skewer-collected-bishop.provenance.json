@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-bishop",
+      "label": "Explanation finding skewer collected bishop",
+      "text": "Out of the way goes the bishop in front, and the piece that was hiding behind it is captured along the line."
+    },
+    "takeId": null
+  },
+  "requestHash": "281f503b8ac5e44c632d7e65ff1a9b97bcab720d926d4439be583f48138c82d9",
+  "recordedAt": "2026-10-04T08:02:42.430Z",
+  "sha256": "47c238c4e76bf4c9f66d656c556896b63bdf49b4713403af493dc64efa6d588b",
+  "bytes": 19972,
+  "requestId": "hQtPuNs0NZ8qJCqRYQfJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d0893bd32d63806060321865975b302091129f2c53bfa2be598854dd14606484",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

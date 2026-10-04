@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check-bishop",
+      "label": "Explanation finding discovered check bishop",
+      "text": "One piece steps aside, and the bishop behind it gives check along the line it leaves open."
+    },
+    "takeId": null
+  },
+  "requestHash": "279302c340548eebcfcee2cc7b777b1fe69d13c8b29e75ac04471a3a2c970d01",
+  "recordedAt": "2026-10-04T07:49:23.714Z",
+  "sha256": "6b51cb4c19a69407a5a575426918beeca6d9ca28ba685758c8f81431f3389767",
+  "bytes": 19372,
+  "requestId": "2SQ4rP13UTjkQwjXxYcr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "97fc07dd7f1a381d604878ca2a513472edffea1d3bb3c442ef8566861792a986",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

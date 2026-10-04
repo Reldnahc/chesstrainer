@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "support-restored-bishop",
+      "label": "Support restored bishop",
+      "text": "Remember the bishop that got left unguarded earlier? It's covered again. Back under protection, where it belongs."
+    },
+    "takeId": null
+  },
+  "requestHash": "bcbc6d1aaacc154b2235475d3934ced789ab86e694912ff516f52d3458f7e42c",
+  "recordedAt": "2026-10-04T08:00:43.062Z",
+  "sha256": "3bef69174a5d5e0218b93105b7d29352b890336d01f7929c85f1f470ea5a538a",
+  "bytes": 22020,
+  "requestId": "8pV3TBrQMYEWhsLCUQaJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4ade23795dfc3c8d47f7a6369cd03e975b3909a5cf59b03b5e0de75b38fc6019",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

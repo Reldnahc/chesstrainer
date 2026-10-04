@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape-bishop",
+      "label": "Explanation finding pin restricts escape bishop",
+      "text": "Pinned, can't run. The attacked bishop is tied to its king, so it's limited to moves along the pin line."
+    },
+    "takeId": null
+  },
+  "requestHash": "b057c5434ae6e7baeed5ffe39a2a94452a87b2ebd0807632d4b17f11b97e727e",
+  "recordedAt": "2026-10-04T08:07:21.572Z",
+  "sha256": "868d44e0b313c6a104f7221ff3fb3564865bbd9bdfe9baf2c053cf69d09ffd41",
+  "bytes": 21880,
+  "requestId": "jR91vbTIvcaFOuW4PbIW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "878bf67dd0ffcadea39add46223e182f5fb6476f030768a24d4b827bbdd3a70a",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

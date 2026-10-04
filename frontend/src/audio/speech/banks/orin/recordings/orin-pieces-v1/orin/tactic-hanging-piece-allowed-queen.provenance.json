@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "tactic-hanging-piece-allowed-queen",
+      "label": "Tactic hanging piece allowed queen",
+      "text": "Pieces without a guard invite capture. This move leaves a queen for the other side to take; mark how it lost its protection."
+    },
+    "takeId": null
+  },
+  "requestHash": "07b7612d2b960dc6cb1509a53f861cea9c28db9370140b8a8efd4087487ebb9a",
+  "recordedAt": "2026-10-04T07:58:28.216Z",
+  "sha256": "0ff64700b0c5c11b13bb3fda30934985921605bebb4f86616f87a4f48d16ffcf",
+  "bytes": 27410,
+  "requestId": "eEAl8Ip6YtQYv1YZ1jpm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ca08033eef2db6375ac2cd4ffd62aec6fd8dc4c1c6970cb21e62af753f36a772",
+    "bytes": 142986
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

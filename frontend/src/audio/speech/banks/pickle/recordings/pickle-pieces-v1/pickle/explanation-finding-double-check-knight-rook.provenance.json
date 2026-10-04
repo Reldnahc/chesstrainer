@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-knight-rook",
+      "label": "Explanation finding double check knight rook",
+      "text": "Double check, ooh! The knight and the rook are both on the king at the same moment, so only a king move can answer."
+    },
+    "takeId": null
+  },
+  "requestHash": "c7a7c21d9180e0c75c370d095472f8145ff412a34b0e94dfce4fdf56e88541d1",
+  "recordedAt": "2026-10-04T08:02:59.332Z",
+  "sha256": "a2c644b49789ddc74623f6ad7e9bb0eeb84ed20f0633892e63be46d9ff2bf724",
+  "bytes": 24567,
+  "requestId": "3aImfajSq0PDnMXZDBeA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "13d94e92290cf1bc8859d81d664c2762905dde54e717e50efe29337b02115d95",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

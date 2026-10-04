@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-rook",
+      "label": "Explanation finding skewer collected rook",
+      "text": "Out of the way goes the rook in front, and the piece that was hiding behind it is captured along the line."
+    },
+    "takeId": null
+  },
+  "requestHash": "1419de5142174323aaa46a2e640007b3b5a58a4024e2fde562acdcd4e067019f",
+  "recordedAt": "2026-10-04T08:02:44.123Z",
+  "sha256": "d9b6a46add9a4988113af37bd59c96f2c176144fc62cb9c2e1c3b8c1e185c287",
+  "bytes": 19420,
+  "requestId": "tmnxvrqaRYnNRFid7HR0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "35e9707de3a809b7b4cecd489461ecdd15b86429ff6ea7ba77000304de6cdc58",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

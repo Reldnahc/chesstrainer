@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-rook",
+      "label": "Positional unsupported actual rook",
+      "text": "After this, the rook has no defender at all. That's not the same as losing it, but it's worth keeping an eye on."
+    },
+    "takeId": null
+  },
+  "requestHash": "79bc05c850812ef6bcff6205cc1aafedca211849256e782d9f66fbfb061da03c",
+  "recordedAt": "2026-10-04T07:55:12.171Z",
+  "sha256": "484a7e0d0ce75bc797c490702f4de0651a6b6ce037f9e1cd98296a3094be7b54",
+  "bytes": 22300,
+  "requestId": "J9RwDJeipVwpBlSoZe2e",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1bd23293d9e5865787ba0b1d5fb9158e1cc176a462e81c1766be939fe367a119",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

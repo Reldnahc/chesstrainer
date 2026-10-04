@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-knight",
+      "label": "Positional unsupported alternative knight",
+      "text": "Another move would have left a knight with no defender. That alone wouldn't mean it could be won."
+    },
+    "takeId": null
+  },
+  "requestHash": "6fd1728e0e764f1035bdbc8952a49bd05111a6c36859316acaa8b4bfb20dadf5",
+  "recordedAt": "2026-10-04T08:03:58.645Z",
+  "sha256": "0ed46404db57bf39f9d00d6bc5acc28c4d3572015836061e2c466da4118630d4",
+  "bytes": 19005,
+  "requestId": "ZUpAVKIHyeUF6vZ5LZ4C",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "27371434ec4e580e3658d3f5c824cb920e56002159fc46f7550c6bee7a4c4bed",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

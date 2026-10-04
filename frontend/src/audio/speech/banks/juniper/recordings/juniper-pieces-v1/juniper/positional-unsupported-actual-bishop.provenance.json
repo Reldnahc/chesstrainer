@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-bishop",
+      "label": "Positional unsupported actual bishop",
+      "text": "Nothing guards the bishop now. Worth noticing, though unguarded and lost are different things."
+    },
+    "takeId": null
+  },
+  "requestHash": "3a975bef074bfc84e3636fdc4dc8d5f603efdc3566d5ff2945abf9447a2a9ba1",
+  "recordedAt": "2026-10-04T07:52:27.554Z",
+  "sha256": "da43fe62cad290b33f04c98431ebc5bc517e5b0bfaa3e0cf281d2fe0120be102",
+  "bytes": 21861,
+  "requestId": "u4jEDr1j7j4kvlIAlp3j",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "150c781a18c324f48f032fb6c7d8c0a3bb853578fd5fefdf41e1fc079deb7588",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

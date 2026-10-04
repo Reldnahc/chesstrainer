@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-finding-double-attack-collected-rook",
+      "label": "Explanation finding double attack collected rook",
+      "text": "Double attack cashed in. The moving piece makes one threat and unmasks a second from the rook behind it, and that rook makes the capture here."
+    },
+    "takeId": null
+  },
+  "requestHash": "3a22224489ab87a86aa95c035e61603926ea31c2841ae2f4f0ea2b9b2306d777",
+  "recordedAt": "2026-10-04T08:08:04.601Z",
+  "sha256": "25062885236e3a0f9872ecb0a715784f2bf073e79fcdb71a529945d77b4df0cd",
+  "bytes": 27914,
+  "requestId": "S4TzLJKCkL6xxOhGupSh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6adcf4c6e6221baad73cabd16495fb14522dc6fb420f7919d333b9cbffe5860f",
+    "bytes": 141732
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

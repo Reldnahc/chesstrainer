@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate-pawn",
+      "label": "Explanation frame capture move mate pawn",
+      "text": "After the capture of the pawn, the position is checkmate."
+    },
+    "takeId": null
+  },
+  "requestHash": "53c985779e74ac4685cca2077948ec3f6fef3120a4ed43f1d20b9f035d013999",
+  "recordedAt": "2026-10-04T07:54:15.719Z",
+  "sha256": "5c929f212323d02b6600b8e82a26fc5afe749b909c1e3c390e873415fe52dbb1",
+  "bytes": 12387,
+  "requestId": "XAixW6Y9HyjdoQyNQ2Ld",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "91bd4cdbe4efe85780d3bc34c9cfd1de4196abbcccde315762152b1a91327bdb",
+    "bytes": 62319
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

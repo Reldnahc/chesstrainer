@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "tactic-skewer-missed-king",
+      "label": "Tactic skewer missed king",
+      "text": "A stronger move had a skewer ready. Once the checked king stepped aside, the piece behind would have been exposed. This move skips it."
+    },
+    "takeId": null
+  },
+  "requestHash": "318cc79dcf4b62f6850bcdf9a5b04587a245d0ce0f40d25ef34fca5e88baba42",
+  "recordedAt": "2026-10-04T08:03:22.579Z",
+  "sha256": "360a225adf8bc95a12cce7431da097eefd883f05fd6f6576ca115bd897ffbcbf",
+  "bytes": 28645,
+  "requestId": "US57MxbepRNOzlJYabcD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "decbf838cb48523fdbc936e8cddd4cb02a04c38d6e85ef95caca450871679405",
+    "bytes": 147165
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-rook",
+      "label": "Explanation finding sole defender captured rook",
+      "text": "Two captures in sequence: the lone defending rook first, then the piece it guarded. Without the first, the second would not be possible."
+    },
+    "takeId": null
+  },
+  "requestHash": "64ae89f3c3b89d3346fc29e0f6c65b6d0a1f1c30eba11152513f09ddac2feef2",
+  "recordedAt": "2026-10-04T08:16:11.937Z",
+  "sha256": "3492b26e4a3db1362ceb67fa5f22dd429100d5dd64b6636521c9587b3b6a86c0",
+  "bytes": 27615,
+  "requestId": "i7U7sXmkWSPOQPGu1d3U",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3003fee0d785b10261e4f331b6674533cd0e61357f1b4e6d6f452ce25b6ddf42",
+    "bytes": 145911
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

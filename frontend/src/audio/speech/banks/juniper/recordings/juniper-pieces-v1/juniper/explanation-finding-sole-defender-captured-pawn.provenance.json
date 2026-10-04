@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-pawn",
+      "label": "Explanation finding sole defender captured pawn",
+      "text": "First the lone defending pawn is captured, and then what it guarded. Notice how the first capture opens the way for the second."
+    },
+    "takeId": null
+  },
+  "requestHash": "a61fa533c7332290d352cea53d71dfe0a193f5e5dbf8976118fa4471bf413639",
+  "recordedAt": "2026-10-04T07:52:20.854Z",
+  "sha256": "45bd1041875123d824aa99da38029caf4cc590010d53f249f0541dc70bfac615",
+  "bytes": 27049,
+  "requestId": "HfXRL4NKmSTaNC2ne8sX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "018393ddc099a4c6d1111c35265ebbb9e05d0dcaf010e38137510fb827e8574e",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-missed-queen",
+      "label": "Tactic undefended capture missed queen",
+      "text": "A queen with nothing watching it could have been taken with another move. This one leaves it on the board. A glance for loose pieces comes before anything else."
+    },
+    "takeId": null
+  },
+  "requestHash": "765031a604894c88df32bfa8a042d6d71e3a6655581fba38589e44ce3a2cd7ee",
+  "recordedAt": "2026-10-04T07:51:38.977Z",
+  "sha256": "518171226af6f7aee1ca133df3bf885f94501d010a3b1638508f1b0d0950eced",
+  "bytes": 30607,
+  "requestId": "UIEwALmHzVNUrX31c1Eo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "05fa56d637d5bbc8f2771da36733c193fd75ace4fb6db852780d9e4e92aa7a0f",
+    "bytes": 159704
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

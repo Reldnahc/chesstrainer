@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-bishop",
+      "label": "Positional unsupported alternative bishop",
+      "text": "With another move, a bishop would have been left with no defender, though that alone wouldn't mean losing it."
+    },
+    "takeId": null
+  },
+  "requestHash": "a719e49f498360247ac171be9a8afa9c0cc4e3ebce9e20dbf03a6ed912d8e695",
+  "recordedAt": "2026-10-04T07:55:17.005Z",
+  "sha256": "3a00723c07059747f4b304a633c3510b3da918ff3fddfb997adf347fa83039bd",
+  "bytes": 21486,
+  "requestId": "t96t19zx7jvriXzkDcmN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3cf4dd96f98ff40e527a4df699769dd3a7488c098de8d8865c01a66e2b31a7a7",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-mate-rook",
+      "label": "Explanation frame capture promotion mate rook",
+      "text": "The pawn captures a rook, promotes, and gives checkmate, all at once."
+    },
+    "takeId": null
+  },
+  "requestHash": "42c93ab6f78e1549cdcf391539ef297d5e711a431530829ed89a93384aad2a55",
+  "recordedAt": "2026-10-04T07:55:57.470Z",
+  "sha256": "94f365231e49d8408eaf1d397bb7409ceeccf8389e2bb5dab484747978b6b02c",
+  "bytes": 16496,
+  "requestId": "S7wuAAXTbDwaYTYec7pC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2f332e0468b5fde3615b3a53d7feb2f24a048813978f63764387990fb766b3ba",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

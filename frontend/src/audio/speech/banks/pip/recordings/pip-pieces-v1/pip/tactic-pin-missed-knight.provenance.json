@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "tactic-pin-missed-knight",
+      "label": "Tactic pin missed knight",
+      "text": "Another move had a pin to the king ready. The pinned knight wouldn't have been able to leave its line. This move lets that go."
+    },
+    "takeId": null
+  },
+  "requestHash": "553048474348787ccff9cdc646a90f399234081f28463a5426a1dd414d21ab78",
+  "recordedAt": "2026-10-04T08:03:25.475Z",
+  "sha256": "7f42c8caa10e86bfc25b316251a998c48583407ee96b6aff7fdc2f68c7549c99",
+  "bytes": 25286,
+  "requestId": "Tsd9VOxlNjLbNjoztNQP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6e971a7779596555cca1aa984a3a6016dcb15bcd74c47306798d686c92f90f9c",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

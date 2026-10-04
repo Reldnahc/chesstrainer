@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "cause-avoiding-bad-trades-rook",
+      "label": "Cause avoiding bad trades rook",
+      "text": "That first capture with the rook looks tasty, but here's the kicker: the recapture wins back more. Tally both sides of every trade before diving in."
+    },
+    "takeId": null
+  },
+  "requestHash": "85c6686c1cca10e076d72ab1b6f950a89305b099721a94f7000e68b980f15560",
+  "recordedAt": "2026-10-04T08:09:16.962Z",
+  "sha256": "ecf314cb76ca0e7aad3704c103965508a2f405b394f2675984100c0f17309416",
+  "bytes": 32141,
+  "requestId": "DpEgJ3HMffDkuguMQppl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9c02f8cf20987f3ae85e4a319d7414b2fb8208dc7ee865d815764f9bd6086eaf",
+    "bytes": 166391
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

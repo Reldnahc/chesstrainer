@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played-rook",
+      "label": "Tactic removing defender played rook",
+      "text": "Here's the idea: take out the guarding rook. Whatever it was protecting loses its protection, so look at what that rook was responsible for."
+    },
+    "takeId": null
+  },
+  "requestHash": "645f67df347631253b1b64867cbccf872dc27a5ceea9b328d6c448602bf9a771",
+  "recordedAt": "2026-10-04T08:00:31.866Z",
+  "sha256": "475db1877815e5e4e763b53b4828a4cc647288d32bf70215f8f88e759281d1ea",
+  "bytes": 27780,
+  "requestId": "H6ygGlTAbmZA4hxYyw8x",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cb48cbee913f22f5f031f2fc728fc0fb66c334bfd6de074cec5598250fd3c13a",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

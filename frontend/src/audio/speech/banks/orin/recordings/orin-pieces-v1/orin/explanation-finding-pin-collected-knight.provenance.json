@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-knight",
+      "label": "Explanation finding pin collected knight",
+      "text": "Watch what becomes of the pinned knight. Bound to its line by the king behind it, it is captured before these moves are done."
+    },
+    "takeId": null
+  },
+  "requestHash": "93b80f1c1a0e07ae48730aea977cd3fdaa50d177fb781e347d2c5a6b8c633eda",
+  "recordedAt": "2026-10-04T07:58:55.946Z",
+  "sha256": "e29e4323dec1bba5ef7adc2bbefb0387cd956c68b5d2c80e161d668ef13c56b0",
+  "bytes": 26528,
+  "requestId": "tvHcN74fzQ78yyKfkIMj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7ce0ff9f2f8483cdf01ce82f919666b92b9e4ec67e003344fe7eeef8f0279cf3",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

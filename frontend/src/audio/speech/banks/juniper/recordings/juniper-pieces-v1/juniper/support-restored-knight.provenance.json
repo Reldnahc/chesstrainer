@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "support-restored-knight",
+      "label": "Support restored knight",
+      "text": "Earlier a knight was left on its own; now someone is covering it again. Look at how its protection came back."
+    },
+    "takeId": null
+  },
+  "requestHash": "f3d9146222227ebec5335c9fc608d3836f79140bdbc1608eec6f3481016ed4ce",
+  "recordedAt": "2026-10-04T07:52:07.084Z",
+  "sha256": "893300b585b36d76ff110f73647b387d62ca1c91b197b20eba23bd647facaed3",
+  "bytes": 23472,
+  "requestId": "FT1LmILWixWE8KAU0jqr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "16877badce1484a7a0532e77abc15a2d83914426b1e4a90557e961dab561500b",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

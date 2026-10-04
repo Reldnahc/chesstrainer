@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-pawn",
+      "label": "Explanation finding deflection collected pawn",
+      "text": "The defender is drawn away from its duty, and the pawn it was guarding is then captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "3469859fa41742cb90ce40d97bdcdb6a8757d508d5cf46d050758ea654d974fe",
+  "recordedAt": "2026-10-04T08:16:16.051Z",
+  "sha256": "bd775a80382d68042b97222020e2351881e37b23ecb6d32bec76171c496f690a",
+  "bytes": 17488,
+  "requestId": "8r9Ch0NnD2BNPsrbMQ2Q",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "75269184de16bc6f834fb7d34bbeea9ac0b7cfbc73db6c96a6599dfa8607b136",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

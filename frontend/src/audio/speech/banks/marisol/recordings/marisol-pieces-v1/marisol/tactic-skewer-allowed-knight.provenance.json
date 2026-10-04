@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed-knight",
+      "label": "Tactic skewer allowed knight",
+      "text": "After this move, a knight and the piece behind it are lined up so the other side can skewer them. The knight would have to step away, leaving the rear piece exposed."
+    },
+    "takeId": null
+  },
+  "requestHash": "4524326799ab9960a7494a28438367512f38f959c52392b3048f7f272e05badc",
+  "recordedAt": "2026-10-04T07:53:24.288Z",
+  "sha256": "328c997d597cfb3aba28576305e157b277bd4e6bd89a8901ae5de2d8a5cb978b",
+  "bytes": 31881,
+  "requestId": "9rN0stucXJbksqDIm7mB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0c73edc1c59525a6f399339bba448058db64b4f33691ca75c87c9bbeb59fc47e",
+    "bytes": 164719
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

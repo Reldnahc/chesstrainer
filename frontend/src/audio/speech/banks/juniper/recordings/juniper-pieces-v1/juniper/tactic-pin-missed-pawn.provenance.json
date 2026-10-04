@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "tactic-pin-missed-pawn",
+      "label": "Tactic pin missed pawn",
+      "text": "Another move could have pinned their pawn to its king, holding it on the line. Quietly, that pin went unused."
+    },
+    "takeId": null
+  },
+  "requestHash": "68ada4ce2786bd90312d4d280c57fbdb6683eb5b12d53426fc3cb49d061e989e",
+  "recordedAt": "2026-10-04T07:51:25.576Z",
+  "sha256": "6943d7a25c8abc221e1bdc92d946a5e3f9f3d753d8205de47632d31aca53ca9f",
+  "bytes": 24581,
+  "requestId": "6yOBxnbv1vjtLTptzEky",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a1473e8f5fcac66f659c86c98acba1a50af21ee30e45c97dc377fd36a9f0437b",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

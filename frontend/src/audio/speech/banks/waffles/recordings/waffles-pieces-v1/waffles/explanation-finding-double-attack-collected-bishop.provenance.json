@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "explanation-finding-double-attack-collected-bishop",
+      "label": "Explanation finding double attack collected bishop",
+      "text": "The first piece attacks and uncovers a second attacker, a bishop. The capture comes from that bishop."
+    },
+    "takeId": null
+  },
+  "requestHash": "81568f25ed01a80bd26065df6cf71aa9b60348ba3c49f67d2690201fb11ac7c9",
+  "recordedAt": "2026-10-04T08:13:00.031Z",
+  "sha256": "206e243ff745a512fb5862a604b9636cc0e42f193bcf5d08ea2003d3e6109929",
+  "bytes": 22877,
+  "requestId": "mp0qP8cD09MzoNvIInrl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7e54f946a290dfd289573df478c21dde0ca28d0e933d64c9ce7226073d7f2d29",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

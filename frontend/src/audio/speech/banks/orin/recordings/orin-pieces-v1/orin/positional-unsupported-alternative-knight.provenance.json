@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-knight",
+      "label": "Positional unsupported alternative knight",
+      "text": "Had another move been played, a knight would have stood unguarded. By itself, that would not prove the knight could be won."
+    },
+    "takeId": null
+  },
+  "requestHash": "1faebbf634206cafc7f25113cb747790d80662f02da1251e895c1bc17cd9544b",
+  "recordedAt": "2026-10-04T07:58:47.279Z",
+  "sha256": "a15679a0a7246c7cc4d88c93b056f229915066660b1af91fd5c9240f6f5bdda4",
+  "bytes": 25726,
+  "requestId": "vrKrux6ZMcAR1fLH6G35",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1b6ab4edf44d993def780543adb36fb5ef8efc370e6932e7851300de6bd4bbc6",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

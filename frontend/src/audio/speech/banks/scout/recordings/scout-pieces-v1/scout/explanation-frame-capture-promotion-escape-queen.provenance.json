@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-escape-queen",
+      "label": "Explanation frame capture promotion escape queen",
+      "text": "Capture, promotion, out of check. The pawn takes a queen on the last rank, promotes, and the capturing side's king is safe from the check."
+    },
+    "takeId": null
+  },
+  "requestHash": "05728ab572b5025bd62316466b8399b2a5bb5d18f8d838bc509e784c46dfe697",
+  "recordedAt": "2026-10-04T08:08:20.837Z",
+  "sha256": "d5b4022dc75c60567b8c3537a00ff36167b9cad5f2d969ef000fdcc1abbdde55",
+  "bytes": 27118,
+  "requestId": "C4b5at0k6VgNM1zuns0i",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "92f70f096a3c34c1ee3174c7875ac6602d38760cdea8e47c3032f123fabdf726",
+    "bytes": 141732
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

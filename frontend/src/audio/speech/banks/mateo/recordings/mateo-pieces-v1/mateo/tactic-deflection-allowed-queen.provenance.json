@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-queen",
+      "label": "Tactic deflection allowed queen",
+      "text": "Look, there's a defending queen here that can be lured away from what it's guarding. What job is it doing right now?"
+    },
+    "takeId": null
+  },
+  "requestHash": "8774766915355ec2ba401c24e9a959a7da313e623226b685ae643c9b5dae6f80",
+  "recordedAt": "2026-10-04T07:55:07.270Z",
+  "sha256": "c68a769c271fca4bb6f1891b19d88d0b377a0dde13a2f041665801150ccfbb8c",
+  "bytes": 21755,
+  "requestId": "RxN7aUrRCNH9CwrZ2ADd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "32530133a3e2a82dad92d07c8af592c16d7a58b66d6d7b60d59f64577585942e",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

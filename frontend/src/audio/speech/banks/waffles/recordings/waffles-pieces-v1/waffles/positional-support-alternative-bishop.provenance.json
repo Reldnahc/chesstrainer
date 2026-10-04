@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "positional-support-alternative-bishop",
+      "label": "Positional support alternative bishop",
+      "text": "Another move would have sent a defender to a bishop that had none."
+    },
+    "takeId": null
+  },
+  "requestHash": "f7b6b67ba6ed13d4930bfd0922f1bf1331d4d1d597a903458435e0713c82cb18",
+  "recordedAt": "2026-10-04T08:12:57.584Z",
+  "sha256": "1d71ea48d483d763c5db34bd2ea89bc4297080164fe82836c38f9d9e757f82c4",
+  "bytes": 13044,
+  "requestId": "kPd7SFnGRLYxoxTfvpJK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9512554186ed08ec8b6eded3fbe78cec64f93bc14cdd376e7bb7f10c14e0bae1",
+    "bytes": 63991
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

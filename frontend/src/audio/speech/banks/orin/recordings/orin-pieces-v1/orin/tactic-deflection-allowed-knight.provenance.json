@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-knight",
+      "label": "Tactic deflection allowed knight",
+      "text": "A defender with an important duty can be lured away. This move gives the other side that deflection against the knight, so mark what the knight is holding now."
+    },
+    "takeId": null
+  },
+  "requestHash": "00a330fd6653dbbeb2f8f54d936951949582865bc5dda79c6586962c5265b06a",
+  "recordedAt": "2026-10-04T07:58:49.903Z",
+  "sha256": "c777f62b1fe83e2ea6fb9f4eb18e3b7c30c164e4408105f29ce135a355a01e96",
+  "bytes": 32624,
+  "requestId": "2U2t5sDAJ9yfj110vdrF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e0062b4a5a2e978fa95fb66a603d8d8c9aa1244af97217e2dcffe6361d81c1d8",
+    "bytes": 166391
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

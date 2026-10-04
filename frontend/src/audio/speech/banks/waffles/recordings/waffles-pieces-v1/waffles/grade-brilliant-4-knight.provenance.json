@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "grade-brilliant-4-knight",
+      "label": "Grade brilliant 4 knight",
+      "text": "Commander's move! Into the record books with this one: a knight sacrifice that keeps its footing under fire."
+    },
+    "takeId": null
+  },
+  "requestHash": "be1ee389ac0f7e8ad24ea05d0924d1bb8b61836608edc8022f001bdae8dc6a0b",
+  "recordedAt": "2026-10-04T08:13:20.743Z",
+  "sha256": "1e5314f810e19b8e8663949a9116c97072f04da885f1485644a3601abeeb8491",
+  "bytes": 24527,
+  "requestId": "oIRQaKzcEstHR49UGljS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "55628be3b904aff8ccbc28799184dc5ce98ccb8581a7df2e40c0c2104326ce18",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

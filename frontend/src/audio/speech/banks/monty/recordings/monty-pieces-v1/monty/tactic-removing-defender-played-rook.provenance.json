@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played-rook",
+      "label": "Tactic removing defender played rook",
+      "text": "The guard goes first. This move takes the defending rook, and whatever it was holding up is left with no help."
+    },
+    "takeId": null
+  },
+  "requestHash": "7ddf930e697457ad50c4c9822c769524f6bb702056793f8df58fe5aa2f22527b",
+  "recordedAt": "2026-10-04T07:56:49.347Z",
+  "sha256": "b95c41f6b9963fe007ff80f51321880f169fd468e952abf9cd09357dabdcd304",
+  "bytes": 22771,
+  "requestId": "vVEh0xgsBCce1OGjvsnf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1fb7a651848df9ee77d3c25521632eae8bfa7fac3c54628c41265e6953da4010",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

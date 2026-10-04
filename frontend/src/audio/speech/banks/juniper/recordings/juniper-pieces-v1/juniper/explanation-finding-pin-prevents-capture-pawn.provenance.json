@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-finding-pin-prevents-capture-pawn",
+      "label": "Explanation finding pin prevents capture pawn",
+      "text": "The marked capture isn't possible for that pawn. Its king sits behind it on the line, and stepping off would leave the king exposed."
+    },
+    "takeId": null
+  },
+  "requestHash": "78e7fbc9c81cb23da12ea7ce09206b47c8d9eea2fca223628b66115380ee4507",
+  "recordedAt": "2026-10-04T07:52:24.724Z",
+  "sha256": "16a23b35a397e4ec0335923acc55c20f9e7a88e492f241c5e70aa19b5a1fd11b",
+  "bytes": 26373,
+  "requestId": "xWWvgkU83WX0mS1DxBT1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "73225fb8d8df4a524ceaec6521bb6b1aa0815aed752e6c0df4f8b682d46457b6",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

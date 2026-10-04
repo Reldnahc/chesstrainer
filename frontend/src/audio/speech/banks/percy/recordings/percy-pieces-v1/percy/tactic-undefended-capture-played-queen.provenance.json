@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-queen",
+      "label": "Tactic undefended capture played queen",
+      "text": "Free for the taking! An undefended queen can be captured here. Always check for loose pieces before anything fancy."
+    },
+    "takeId": null
+  },
+  "requestHash": "bf5803ed4fd52840e0ef417a3d66f2a0f83649cd7f2bc64366a83dc591bc58f5",
+  "recordedAt": "2026-10-04T08:00:07.531Z",
+  "sha256": "415ca1fe69d64ea27c61604ae5af36cc6c1237648e44ce47a6cff30379b6ca5f",
+  "bytes": 24383,
+  "requestId": "CAcixu4e43mwZIhFVPm1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "01b167a9d27c291f9cd735c002bda6ef9d26bb963023f128bd376c83d9f57f2d",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

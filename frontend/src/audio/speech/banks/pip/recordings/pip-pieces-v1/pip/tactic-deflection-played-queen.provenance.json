@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "tactic-deflection-played-queen",
+      "label": "Tactic deflection played queen",
+      "text": "That's the stuff. A deflection pulls the queen away from its job, and then the gap it leaves gets used."
+    },
+    "takeId": null
+  },
+  "requestHash": "15f46a319371b2ab1e12bdd84cfbed24d0112cbefdd0ff165f92b7661cbd6be1",
+  "recordedAt": "2026-10-04T08:03:51.538Z",
+  "sha256": "3a596868a37a29da7d1d490f338aefdec1c9cef35e428a70186f5d6a6e1ea2ab",
+  "bytes": 23700,
+  "requestId": "VhsKy3PjlpJTz7thqCDi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5289f05cdde208b5a48a7368f4e8345f7b18b35882b2f3cd0f9435f718ddf784",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

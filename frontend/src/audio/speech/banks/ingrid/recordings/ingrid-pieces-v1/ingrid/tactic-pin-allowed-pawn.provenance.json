@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "tactic-pin-allowed-pawn",
+      "label": "Tactic pin allowed pawn",
+      "text": "The plain issue is a pin: after this move, a pawn standing in front of its king can be pinned there and won't be allowed to leave that line."
+    },
+    "takeId": null
+  },
+  "requestHash": "c1fccfb6fbed882de232f5a0cb397bbc71aa6b91320157acc52a149abbe049cc",
+  "recordedAt": "2026-10-04T07:48:02.133Z",
+  "sha256": "13f11a15957e8162a575ef3a6968b74b7fdd18dc24f629c5859d50c15d18e6ac",
+  "bytes": 29495,
+  "requestId": "WlYpwUwFhVyzqDxIWXs0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4d6da8d81f5e739ac4ce67c33484702822d2564b144e5b2011e3aa36fd75ef39",
+    "bytes": 149673
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

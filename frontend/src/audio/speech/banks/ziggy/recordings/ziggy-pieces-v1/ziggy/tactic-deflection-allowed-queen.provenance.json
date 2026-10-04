@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-queen",
+      "label": "Tactic deflection allowed queen",
+      "text": "This gives the other side a chance at a deflection, pulling a defending queen away from its task, so whatever it guarded is left open."
+    },
+    "takeId": null
+  },
+  "requestHash": "fdaaed07598afc47c77ebe2f69a1ac917079d8b5c4a76378cd33ce400a8a9a4a",
+  "recordedAt": "2026-10-04T08:15:41.495Z",
+  "sha256": "a706b499a424038224ed78f29fb5a623caf1d67cbfc63ff001f315c1f78469e0",
+  "bytes": 26034,
+  "requestId": "LQQMpyfgsmJYb0N8WBVl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "754217b0cbc577867823d6e39221bafa106ee2f7fa4c9ad606dbab529dc50caf",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

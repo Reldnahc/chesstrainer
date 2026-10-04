@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-skewer-missed-knight",
+      "label": "Tactic skewer missed knight",
+      "text": "The stronger move set up a skewer: attack the knight in front, collect the piece behind it. Unused here."
+    },
+    "takeId": null
+  },
+  "requestHash": "34433f1740973642d125a0dc8d1361818c07ec00ebb0f4e603f501970186053a",
+  "recordedAt": "2026-10-04T07:49:50.968Z",
+  "sha256": "bb42a9f1ec9d4a75c12cbd54ee4e1e6b02df582c54a847072584b2663e1948dd",
+  "bytes": 21849,
+  "requestId": "HtrZrAMvhR722CqyLCpM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "78999ed238d8ccdea2a8b63613ef6eadb237ea5a829269e13cdbf5ff4918b3b2",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

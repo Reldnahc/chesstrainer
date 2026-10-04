@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-knight",
+      "label": "Tactic discovered attack played knight",
+      "text": "The hidden attacker appears. The knight in front moves away, and the piece behind takes aim down the line it uncovered. Make the moving knight threaten something too."
+    },
+    "takeId": null
+  },
+  "requestHash": "e437e49fc157da85148e4a90a0b0fec474666e31399b52438ecd1c60ee1cb585",
+  "recordedAt": "2026-10-04T08:10:21.548Z",
+  "sha256": "3b79ea7da072f50675a549947755308bb0e30d28f60ee331e96e436b1abe32db",
+  "bytes": 31698,
+  "requestId": "tPW509fBtWiSelQhQOSg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ae4aaa7aad3afee28896b28a07817c1ad2417e599c0b94b4627c77428bef1430",
+    "bytes": 163466
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

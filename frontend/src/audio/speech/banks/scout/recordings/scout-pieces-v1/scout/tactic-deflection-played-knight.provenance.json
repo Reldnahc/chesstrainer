@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "tactic-deflection-played-knight",
+      "label": "Tactic deflection played knight",
+      "text": "Deflection. The knight on defense gets pulled off its post, and the thing it was covering opens up. Spot its job, then the move that broke it."
+    },
+    "takeId": null
+  },
+  "requestHash": "3d68af8cc495d18a4b13d84c6e0c51e07a9fd6df4cb7326ecb839a82c283796a",
+  "recordedAt": "2026-10-04T08:07:18.448Z",
+  "sha256": "4d4b729d2e99208f630725f056c5fb189d905f2cb3d6e4a07fbca3adb7d96f8a",
+  "bytes": 27727,
+  "requestId": "VSbIlzOdVIVXZLEESw5O",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a4568e7b5e65f0b640d397487c72b88c3852614099f75347ac9bad127d233aca",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

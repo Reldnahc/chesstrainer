@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-bishop",
+      "label": "Explanation finding pin collected bishop",
+      "text": "Watch that pinned bishop the whole time. The king is somewhere down that line, so the bishop can't leave it, and it gets captured before the sequence is over."
+    },
+    "takeId": null
+  },
+  "requestHash": "d2f3287c831f6012e1ca0fe9d9eb043282fcaa8a0c6ae3924a59300e65e099b8",
+  "recordedAt": "2026-10-04T07:55:29.203Z",
+  "sha256": "1b54402b89d99dc7faaeb8e3ccdc77e30d9d5bf462dccf0eb8c80c3e7e79df0c",
+  "bytes": 28517,
+  "requestId": "GDGQWL54xKrDR4vrJXlz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ffce09c04a68bf3c6f85c0bd7ca5f1e45e1d30f543eada68f53b1fdc0b18f4bd",
+    "bytes": 141732
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

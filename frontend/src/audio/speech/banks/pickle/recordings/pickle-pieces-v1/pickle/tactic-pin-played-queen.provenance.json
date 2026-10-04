@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "tactic-pin-played-queen",
+      "label": "Tactic pin played queen",
+      "text": "See that queen on the line? It can't step off, because its king sits somewhere behind it on that line. Stuck on that line by a pin!"
+    },
+    "takeId": null
+  },
+  "requestHash": "d3b79fa79713ed9553728f424e6d1d13774a1a0161c11d556c7d1443aa6eff81",
+  "recordedAt": "2026-10-04T08:02:00.666Z",
+  "sha256": "d0e9541991f674d55d0354f1d3c328ee4e440fac5ae46866d1d0329074e97e3f",
+  "bytes": 28058,
+  "requestId": "QyvZoPHJn1qwD6T3DZYG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7dcbd755cc54bfdf1683121d251aad12fa909473b4836f24b97380ff1bec8b41",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

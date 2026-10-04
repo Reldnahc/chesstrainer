@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-rook",
+      "label": "Tactic removing defender allowed rook",
+      "text": "Defender exposed. This move lets the other side capture a key defender, a rook, and whatever it guarded could lose its cover. Know which defenders matter before every move."
+    },
+    "takeId": null
+  },
+  "requestHash": "5b1fde7da3813f20930c913bf89dd60d6659bf4c019f1153613edcee8727e4d9",
+  "recordedAt": "2026-10-04T08:06:59.312Z",
+  "sha256": "ebfdabc0e420c286cf9f090c7ec81efec92ae1b97f0ed882238541bff8569662",
+  "bytes": 34560,
+  "requestId": "hnp70OIIeqKuHaq5HtrL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8bdec0690b3f6918b682127c5b4a1075cf1fb95ef903d9903fab6bc3fa398cc8",
+    "bytes": 177676
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

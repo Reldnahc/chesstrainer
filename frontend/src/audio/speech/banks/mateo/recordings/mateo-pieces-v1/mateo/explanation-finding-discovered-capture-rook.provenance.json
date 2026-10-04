@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-capture-rook",
+      "label": "Explanation finding discovered capture rook",
+      "text": "Move the front piece, and the rook hiding behind it captures straight down the open line."
+    },
+    "takeId": null
+  },
+  "requestHash": "7a9b580ad3ef680cc4ea87b6d8ee54856c547bfcb59ccd0ab9c8cdc838f7f673",
+  "recordedAt": "2026-10-04T07:55:58.000Z",
+  "sha256": "00c296fc228b65fde8d10fd23d2aeedafef3058c8d3a2dfb706cc43e979f3ba6",
+  "bytes": 17655,
+  "requestId": "8FwJaFI3Kz8Ek5is49T1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3463eb444c268f38cb3d6dfb9cd8e0d0a150593b36395bb24d877ed358e7b3f1",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

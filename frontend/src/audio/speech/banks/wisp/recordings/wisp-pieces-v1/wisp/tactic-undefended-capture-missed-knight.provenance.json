@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-missed-knight",
+      "label": "Tactic undefended capture missed knight",
+      "text": "Another move could have taken an undefended knight. Nothing was guarding it, and this move does not take it."
+    },
+    "takeId": null
+  },
+  "requestHash": "1d0eff18b9d605b16c99ec4885330bc653f86b6ca9808a7b1a3a197f6a0cf5cc",
+  "recordedAt": "2026-10-04T08:13:43.727Z",
+  "sha256": "98e4474c43a1d7b6f842004b3b132ec085eca7fab3ec4748e91f9560c42e7cb4",
+  "bytes": 22045,
+  "requestId": "aGfiwYldAoBYFevMgIWv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6c4a502c56ab80d1279e935805e540037fa727ec29aa054ab1b47e33f8498cec",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

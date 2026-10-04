@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-knight",
+      "label": "Explanation finding relative pin released knight",
+      "text": "A relative pin had been holding the attacking knight back, and the opponent's previous move released it. Then it takes a target that had stayed where it was, in the line shown."
+    },
+    "takeId": null
+  },
+  "requestHash": "117279ac356dc7acae1e5f8be388941be02bad7650819ac3adb7d2a5b1d9f7f3",
+  "recordedAt": "2026-10-04T07:48:57.498Z",
+  "sha256": "aaaeb706cb804c0b97fccf9c3ecd7cf915cedbd98b0b40807e1ffec94ba05d8f",
+  "bytes": 35341,
+  "requestId": "nybhCWyHtTfeNpmzhuEi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "13ff84151b678692be1f5522f0369cc751e2cb43d056222ee2502067f799e20f",
+    "bytes": 180184
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

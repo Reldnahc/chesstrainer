@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-queen",
+      "label": "Explanation finding skewer collected queen",
+      "text": "Once the queen in front clears out, the piece behind it on the line is lost."
+    },
+    "takeId": null
+  },
+  "requestHash": "384582c90c4d8b9f5a8c364fcef63a04a8e0df393b61a610ef24c41268769526",
+  "recordedAt": "2026-10-04T08:11:19.741Z",
+  "sha256": "49db9e8723549d621199250baa857b15bf9fd32bfd4009410c4b56b14c415267",
+  "bytes": 16261,
+  "requestId": "ZqY7HDcZWy4wZgIaV1yl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "02f342115b9b8e0102369d7fcfe32a7fd1d045a09529aa0468a457c16126d902",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

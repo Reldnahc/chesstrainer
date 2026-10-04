@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-skewer-missed-king",
+      "label": "Tactic skewer missed king",
+      "text": "The stronger move set up a skewer: check the king, collect the piece behind it. Unused here."
+    },
+    "takeId": null
+  },
+  "requestHash": "698c6efac8362576f23ad066c6331480ea448bb011110946533f3d13dad4aca3",
+  "recordedAt": "2026-10-04T07:49:58.208Z",
+  "sha256": "19f60c269052f2af088ae6949ea1cd1a2292ea07874978e05583acd44b8d5474",
+  "bytes": 20247,
+  "requestId": "Cpgpdu3LDaoDHfdijbQK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6b3ee4abbf3bb3e1a8630bcf8b86073e8286a8e7cff419f918ed3157c177855d",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

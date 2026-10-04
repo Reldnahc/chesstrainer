@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "cause-opponent-threat-recognition-queen",
+      "label": "Cause opponent threat recognition queen",
+      "text": "Threat ignored. The opponent's last move attacked a queen, and this move doesn't answer it, so that queen can be captured. After every opponent move, ask what it now attacks."
+    },
+    "takeId": null
+  },
+  "requestHash": "5f22e924ad8df96ea4856fe65f91e8a53ee572829c79f57c2234c306b13d4cf9",
+  "recordedAt": "2026-10-04T08:07:20.113Z",
+  "sha256": "6beb48abbf1ee244c6e1cf6895cfd53fe4715c26e9dfeb79f9c91ae06ddf00a7",
+  "bytes": 34399,
+  "requestId": "kc02SnwpdOZeyJUXR3QZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "984ff5fc5f46580859e40329167299953c61425b4f8a9e88dd12b16692e8c690",
+    "bytes": 177676
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

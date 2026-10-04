@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-queen",
+      "label": "Explanation finding deflection collected queen",
+      "text": "Deflection cashed in. The defender is pulled off its job, and the queen it was covering is captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "c20ff877ebb43f7ebabf292b3ff348c139f792e63f13e3b5281dfe7cfea814c8",
+  "recordedAt": "2026-10-04T08:07:53.062Z",
+  "sha256": "c51896f303f5c480e5026c8a1f26cbf73453cf1c5d44aceb2521d28d87a8c623",
+  "bytes": 19542,
+  "requestId": "2avpkftfnR77mX5eANtw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "866b54f4f75b16efbfd196a451683cc3e7ad4ae8008496155721edbca28b1879",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

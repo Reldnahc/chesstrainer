@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-rook",
+      "label": "Explanation finding sole defender captured rook",
+      "text": "The lone defending rook is captured, and after it, the piece it was protecting."
+    },
+    "takeId": null
+  },
+  "requestHash": "1f9bd4745e3cb0cfb828c70859f2595d61434696fb8b273a185b1864dddc44d5",
+  "recordedAt": "2026-10-04T07:54:01.941Z",
+  "sha256": "8300c508bb78444b1f53b14bde919ed54f374c0d020a064da7e0db92205fef34",
+  "bytes": 16393,
+  "requestId": "3RgNMHUpIaeRU19Y4q62",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "236f8ac31e648c38ee8d110a6c6d2d69409b6908997a7c75939c17c46a25feb9",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

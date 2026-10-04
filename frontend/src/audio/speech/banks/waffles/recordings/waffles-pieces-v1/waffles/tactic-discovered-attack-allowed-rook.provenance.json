@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed-rook",
+      "label": "Tactic discovered attack allowed rook",
+      "text": "Heads up! A discovered attack is now available to the other side. Watch for a rook of theirs moving out of the way to unleash the piece behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "927b2832ee64a639c3cf807c982ce4168d72d5bb7737c72b0c4de98cba9f9ae7",
+  "recordedAt": "2026-10-04T08:12:27.198Z",
+  "sha256": "de32a060a2dbcf2b046442410288f7cf2960a978a15582a4e3875d2b5ce5ef21",
+  "bytes": 29891,
+  "requestId": "MyTYSUVpE4n4VFxLYrL0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7cced89393ef9aceda132bd83f81c194c29f461a19dfd7931d5c6bc1d34c769e",
+    "bytes": 150927
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

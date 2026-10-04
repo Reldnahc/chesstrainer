@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-knight",
+      "label": "Tactic removing defender allowed knight",
+      "text": "Freeze frame: the other side can capture a knight playing bodyguard now, and whatever it shields could tumble right after."
+    },
+    "takeId": null
+  },
+  "requestHash": "33c3590b7fa3b7b85294e64aa87eb51bd6d875aa094607b2eecabf7cbe0c03fc",
+  "recordedAt": "2026-10-04T08:05:07.947Z",
+  "sha256": "318e905390290597634db4e127a2670e28ef4d0183b1bf9e0a2a2be5d9aaa891",
+  "bytes": 22461,
+  "requestId": "6ll4JJCS0F9yY3lY5Lca",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6153386f0a83a1ba63c4fe432f96d240d185fe68005a6d55c19546f7bd531d5a",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

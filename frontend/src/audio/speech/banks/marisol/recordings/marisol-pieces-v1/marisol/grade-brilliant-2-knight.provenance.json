@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "grade-brilliant-2-knight",
+      "label": "Grade brilliant 2 knight",
+      "text": "On the board, a knight is offered. The analysis finds the offer sound."
+    },
+    "takeId": null
+  },
+  "requestHash": "ed5be4c74c12c4e75fd8b76405fb7abb0def0b62e4e9340017052fad657c6192",
+  "recordedAt": "2026-10-04T07:54:36.799Z",
+  "sha256": "29130382eb34bd638d570526ebd4d5b4f8af9cf46d64a6af00ade4881d275292",
+  "bytes": 16460,
+  "requestId": "ufPADUopBQkierffYKpl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "71abc5bb798e52c6bdf116bbd43d843e042c8df5a1b540e0c1c64df23338ec96",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

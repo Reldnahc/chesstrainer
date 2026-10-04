@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-rook",
+      "label": "Explanation finding pin collected rook",
+      "text": "Keep watching the pinned rook. It can't leave its line without exposing its king, and by the end of these moves, it's captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "33778358764f6f832c60f7bda58ca8b168c83352b901f780f9f774d5ae5eaf42",
+  "recordedAt": "2026-10-04T08:04:11.757Z",
+  "sha256": "4a100a46808d260b93dda27b3ca1401e15e869a09a40d5d04ed71567ec4b59d7",
+  "bytes": 25001,
+  "requestId": "bFRThx1G7N3sAb6SApR9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d79fcb4e2d5d66895792179d3c5dcf34ecb947ab81e0d348712cc5e71d482629",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

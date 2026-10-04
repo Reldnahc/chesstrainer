@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed-knight",
+      "label": "Tactic discovered attack allowed knight",
+      "text": "This concedes a discovered attack. An enemy knight masks another piece; when the knight moves, the rear piece attacks along the cleared line."
+    },
+    "takeId": null
+  },
+  "requestHash": "b2f2ef22b938f11ebc4135ac603a2077102d3510d23ef4a45a14cc3e96cf058d",
+  "recordedAt": "2026-10-04T07:50:13.368Z",
+  "sha256": "d19de2a817b8f1149d765ebd6f40cb17905c127cfd5860efef06e764323102b3",
+  "bytes": 29818,
+  "requestId": "04gIUwmBBYOAT4F5k0hy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3cd12de8e582d0f9e23697fec5412af3f37e891b091c0b3dd175062bea9136db",
+    "bytes": 153435
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

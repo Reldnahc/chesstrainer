@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "explanation-finding-double-attack-collected-rook",
+      "label": "Explanation finding double attack collected rook",
+      "text": "One target is threatened by the moving piece, another by the rook behind it, and it's the rook that collects."
+    },
+    "takeId": null
+  },
+  "requestHash": "2e6cccc0c0f39cfcdda227b526b630ee7e95756b136ab1aaf61b8a4da88017e4",
+  "recordedAt": "2026-10-04T07:49:30.706Z",
+  "sha256": "5e1a41cfecbc3f0ec32877a30a93cb79ef2672e9e0bf9c2d9a2e74d218903589",
+  "bytes": 23701,
+  "requestId": "oifk3QDsRvrEeWuo77Wv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1ec890d5e3b5ccddd47ddc82f4cdad29168cc92554d3f2c4e472d8de05c48a6c",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

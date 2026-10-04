@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed-rook",
+      "label": "Tactic discovered attack missed rook",
+      "text": "A discovered attack was ready. Another move took a rook out of the way and opened a line for a piece waiting behind. Look at what stands behind every piece on the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "a4e36e575f41967d5e3ed505012d285a6d4334ff26d5d03839934eee34708edb",
+  "recordedAt": "2026-10-04T08:10:14.480Z",
+  "sha256": "3135fd1cfef7df4ae45178cfc934ebff847034e953ddb3b643bab5e7f78eafe5",
+  "bytes": 33067,
+  "requestId": "bdNaXA2bk2ky0m35zltT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c53c47cdc6b396a541d7e42f1062cf940726daddb32113ba94ebc9a7f5943671",
+    "bytes": 167645
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

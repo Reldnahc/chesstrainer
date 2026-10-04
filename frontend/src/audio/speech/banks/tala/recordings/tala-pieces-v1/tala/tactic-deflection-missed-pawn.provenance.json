@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-pawn",
+      "label": "Tactic deflection missed pawn",
+      "text": "Which move pulled the pawn off its job? Another one, not this. Here, the pawn keeps guarding."
+    },
+    "takeId": null
+  },
+  "requestHash": "afdd33a978e98d0e17c0b55187776140c9241c3315f61d9719ee30cdf9107ae5",
+  "recordedAt": "2026-10-04T08:09:01.416Z",
+  "sha256": "b79e95b5eb03b6391a825edf01c99e59ffe7496a666613c0a5a90de33503b045",
+  "bytes": 22437,
+  "requestId": "I8pHj9NEcy0Fmh1aER48",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "267ecc86523a02c98fccff96b15739f07a356874bbc6380f0a5d9a187b133055",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

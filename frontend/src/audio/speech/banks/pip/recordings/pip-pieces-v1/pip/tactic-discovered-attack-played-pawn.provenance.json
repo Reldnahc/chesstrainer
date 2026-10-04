@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-pawn",
+      "label": "Tactic discovered attack played pawn",
+      "text": "Oh, that's clever. The pawn steps out of the way, and the piece behind it gets to attack. A discovered attack, so."
+    },
+    "takeId": null
+  },
+  "requestHash": "2bd02661aaf02ac1e4d57c9824fdf3bb37bcc4c9730c3427e605946260d747a9",
+  "recordedAt": "2026-10-04T08:03:24.907Z",
+  "sha256": "de7f0aeacb576c7057f8a5545e99c15d542bb3928f6e07116401395e7dd1402e",
+  "bytes": 27344,
+  "requestId": "bHwe2Lg5GY72CT9i0j0s",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2845dcdf963b003440ff63ab45ab7a535e5a50f9f03fa81abfb7e38deecb5acd",
+    "bytes": 141732
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

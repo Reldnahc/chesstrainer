@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-queen",
+      "label": "Explanation finding sole defender captured queen",
+      "text": "The lone defending queen is captured, and after it, the piece it was protecting."
+    },
+    "takeId": null
+  },
+  "requestHash": "0df29a3556e36cce0217ee15780174fbf2fa145f4e4a019f69b2fb60167d6e43",
+  "recordedAt": "2026-10-04T07:54:03.451Z",
+  "sha256": "fc0396413bbbb83dbe68a5dcfc43cf325f523a0533cbd85bd532adcfa57e85a8",
+  "bytes": 16596,
+  "requestId": "rGMzgEqRe8iF3IHCSxjx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0a110bfc2ff11ab7d42c5f3e98ddd8e9c68f239a0ac9fd628f6f4f44de430b27",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

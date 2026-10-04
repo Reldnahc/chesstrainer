@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed-bishop",
+      "label": "Tactic removing defender missed bishop",
+      "text": "A different move could have taken out a defending bishop. Then the piece it was guarding would have lost its protection."
+    },
+    "takeId": null
+  },
+  "requestHash": "98c515e09c1d5b0e2d04fa101ba7de3cd7c4cf0383db112e177530d1059c7f38",
+  "recordedAt": "2026-10-04T08:03:39.211Z",
+  "sha256": "6716d6442008c87a10f2c28bd2ba1807f5fd41daab0859763946543687a9832a",
+  "bytes": 22041,
+  "requestId": "iZ3fLkfpcLf0zKEZORno",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7e764c77aff2c570fd7acf172833bca1ca9a91d9fd70a3e89fcbf0f8680770b3",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

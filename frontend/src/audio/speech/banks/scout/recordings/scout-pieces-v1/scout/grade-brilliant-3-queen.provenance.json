@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "grade-brilliant-3-queen",
+      "label": "Grade brilliant 3 queen",
+      "text": "Pattern: sound queen sacrifice. Real material on offer, and the capture doesn't break it. File it."
+    },
+    "takeId": null
+  },
+  "requestHash": "6a1aabd85766bc42193e120654d274d4d77eaf24a33a7356abb89b99a683d4f2",
+  "recordedAt": "2026-10-04T08:08:03.423Z",
+  "sha256": "91a8064b7ebfd8a3020201f45e6d2528df4720277501c1bfd663a32e818f8b27",
+  "bytes": 21845,
+  "requestId": "GgeyEc5PsfZ58XXzPMHC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "edfac701681ac04a2094a341ecdfa7a7dc2d55e11077d5fedf9c41cf0d0694f4",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

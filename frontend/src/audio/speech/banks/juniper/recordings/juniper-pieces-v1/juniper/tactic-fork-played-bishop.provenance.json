@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "tactic-fork-played-bishop",
+      "label": "Tactic fork played bishop",
+      "text": "I watched the bishop settle where it touches several targets at once. A fork. Usually only one of them gets away."
+    },
+    "takeId": null
+  },
+  "requestHash": "c1853973b3d41daf9bcb2be6c4e0f99c0fcb02549b23d45201f2c83a5e8c0285",
+  "recordedAt": "2026-10-04T07:51:18.246Z",
+  "sha256": "e081d146ac6e5548c0c0f2a63f51b52f134fddc74413171725a06939574e69d7",
+  "bytes": 24235,
+  "requestId": "SkYq696Sx7H9tPcCejJa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5dad24776849838eb67d7c936cb61986b313a8145e995bceec71e98bb9f59a60",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

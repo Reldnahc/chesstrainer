@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-escape-bishop",
+      "label": "Explanation frame capture promotion escape bishop",
+      "text": "The pawn takes the bishop and becomes a new piece, and with that the capturing side's king is out of check."
+    },
+    "takeId": null
+  },
+  "requestHash": "34829d47a76a29a7bcb922318b0ba9fc98bc1113531120b1f42597dbc8f0d448",
+  "recordedAt": "2026-10-04T08:11:45.675Z",
+  "sha256": "6c73af3a2131b2e5084da836cb0e0ea2edabe0a7cac9714d54ae7725b3af712e",
+  "bytes": 21784,
+  "requestId": "vqEpUqI3XEmeWk3PATam",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4951302a5c06d065bc32804353a9b1c20ca26e94b7a449b6611640967269f0e7",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

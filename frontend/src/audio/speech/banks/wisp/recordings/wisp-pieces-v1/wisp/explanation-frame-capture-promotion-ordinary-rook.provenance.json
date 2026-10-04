@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-ordinary-rook",
+      "label": "Explanation frame capture promotion ordinary rook",
+      "text": "Capturing the rook as it arrives, the pawn reaches the last rank and promotes."
+    },
+    "takeId": null
+  },
+  "requestHash": "797ebc7f419a0b68d931acc399fc53bfb1caa3ddfc22071c859f8343f3b15b40",
+  "recordedAt": "2026-10-04T08:14:55.606Z",
+  "sha256": "6deb65bfb7b709bfef76aa6db3a58571fa571fa5a25e2acab0085b7569517265",
+  "bytes": 16813,
+  "requestId": "tba4mprNhQYkTi3B2KLk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "339112f338d41dd8eb5e539654d277e6f94f23f5c0d5d652f2664358d819ee03",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

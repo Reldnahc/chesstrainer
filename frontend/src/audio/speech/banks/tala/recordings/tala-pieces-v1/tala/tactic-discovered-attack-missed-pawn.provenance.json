@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed-pawn",
+      "label": "Tactic discovered attack missed pawn",
+      "text": "The hidden attacker stayed hidden: in a different move, a pawn would have moved out of the way to let the piece behind it strike."
+    },
+    "takeId": null
+  },
+  "requestHash": "cc58840e8ce4721d2b27b9ab3ea7347fb3162f579f305668a982908f60302749",
+  "recordedAt": "2026-10-04T08:09:04.636Z",
+  "sha256": "913551544e0a0b9b8ec48ce7300e4c0e0b68c25c0c5f262a47d603e37d774dd4",
+  "bytes": 25171,
+  "requestId": "8Aw6Y8VVnncgpG0knhMp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b9ff1fa8462c92d4fa32a037546748cf7bfcc4236394182c843e77f017fa454e",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

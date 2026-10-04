@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed-queen",
+      "label": "Tactic skewer allowed queen",
+      "text": "A queen with another piece behind it on one line is an invitation, and this lets the other side skewer them. Notebook rule: never stack valuable pieces where one attack hits both."
+    },
+    "takeId": null
+  },
+  "requestHash": "e770390d92451136f7d61cd47452e4024ef4176e0a1378e26376363aab5e4325",
+  "recordedAt": "2026-10-04T08:10:44.356Z",
+  "sha256": "56e719cf1de1f5d20dbe1caa1d790d6e296d54ab4cac85181746f31736afa5a8",
+  "bytes": 37856,
+  "requestId": "DnTeeemhUF9xDrgjkIPi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9a8e22f5a0090a3e089298f692a1b5348c96a8756dd50ac3270c4fa102319d64",
+    "bytes": 195648
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

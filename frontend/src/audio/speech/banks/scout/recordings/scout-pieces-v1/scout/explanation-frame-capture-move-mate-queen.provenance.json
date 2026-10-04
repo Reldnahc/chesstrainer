@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate-queen",
+      "label": "Explanation frame capture move mate queen",
+      "text": "Capture and mate. One move removes a queen and leaves the king with no legal escape."
+    },
+    "takeId": null
+  },
+  "requestHash": "25b462475dbdab5791f2388767ca433b55b0cd22febc933b209758f256bef402",
+  "recordedAt": "2026-10-04T08:08:09.747Z",
+  "sha256": "c63a5916f4190e79fdb77bd8a56afb84d91c6058672149b62a5fbb699757be1f",
+  "bytes": 18860,
+  "requestId": "g8xIZhGmZKCKh97dr9Yu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0848131101da21377d7f3a98668cd53a4bac5f56dc4472d45adde864e6fc58a7",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "grade-brilliant-2-rook",
+      "label": "Grade brilliant 2 rook",
+      "text": "A rook handed across the board at a loss, and the checked line still approves. A brilliant specimen."
+    },
+    "takeId": null
+  },
+  "requestHash": "e16a1dc2fe66084e24f17b6bcc90baaca46e728a531c288a8c48afdfb6e5320c",
+  "recordedAt": "2026-10-04T08:16:58.041Z",
+  "sha256": "9915d5e3e62fae632de9cfb338795415896ec7c1a89c61e19db602081ed7989d",
+  "bytes": 21878,
+  "requestId": "3oylktCF3zDoBJlrKGrZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fce87a720a1697c9ee6ca3e00fdcace0b31fcc9ef7c89ce04b6abfef34d863c1",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

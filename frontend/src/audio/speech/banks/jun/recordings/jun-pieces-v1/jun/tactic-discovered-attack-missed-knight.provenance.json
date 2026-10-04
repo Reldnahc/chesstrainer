@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed-knight",
+      "label": "Tactic discovered attack missed knight",
+      "text": "The stronger move contained a discovered attack: move the knight in front, open the line for the piece behind. Not used here."
+    },
+    "takeId": null
+  },
+  "requestHash": "8d79fd438d21884dc184199389520211c059ba9dbeb5f85aea33d98d513d771a",
+  "recordedAt": "2026-10-04T07:50:26.267Z",
+  "sha256": "60e1f2c20750293b90a115e29b7eb0539cb96ab81d3bc991cd32c5b52fcfb709",
+  "bytes": 25070,
+  "requestId": "5ahbAxVAtxCE4YD1Alut",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "384316d499ec55b3d9f901af88089064cac25543b9d52d1b2e81bb47ae38db4b",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

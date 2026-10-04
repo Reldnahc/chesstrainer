@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "positional-support-actual-rook",
+      "label": "Positional support actual rook",
+      "text": "That rook stood unwatched. Someone covers it now. Better."
+    },
+    "takeId": null
+  },
+  "requestHash": "186a8b55c485fbba4ec544066d1c3fc00dece772700edea3a842b8f2ef36b54b",
+  "recordedAt": "2026-10-04T07:52:17.802Z",
+  "sha256": "c755c158e62f18c314251f231a62caf3d48a01e702581c1c2ccf658faaa3b2c7",
+  "bytes": 14787,
+  "requestId": "f0cKnkUoznlqxfm6cWtt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c5555daa825e717ff7aeecf6407cae3364357888330c5b62b492f728a20568f7",
+    "bytes": 79038
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

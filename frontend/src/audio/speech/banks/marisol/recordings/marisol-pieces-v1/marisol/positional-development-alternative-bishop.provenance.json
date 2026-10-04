@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "positional-development-alternative-bishop",
+      "label": "Positional development alternative bishop",
+      "text": "With the alternative, a bishop would have been developed. Here that bishop is still at home."
+    },
+    "takeId": null
+  },
+  "requestHash": "15cdfba274b3645bddd83a552191aee93bb1cd67f15e8f38ed995a328f6ce1d4",
+  "recordedAt": "2026-10-04T07:53:52.325Z",
+  "sha256": "2e53cc15283e842b199d833008c3c1bbfb01185f1f846b7cd88d5d469b75d36b",
+  "bytes": 18333,
+  "requestId": "aOPMwqYbvuEWijmbP3XA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5a2b65527cf5255222d87dce5b32fb5b67ae9c4475f4791df572e631fb18e990",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

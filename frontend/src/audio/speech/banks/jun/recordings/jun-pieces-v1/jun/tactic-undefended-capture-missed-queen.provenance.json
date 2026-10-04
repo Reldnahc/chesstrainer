@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-missed-queen",
+      "label": "Tactic undefended capture missed queen",
+      "text": "An unprotected queen was available for capture with the stronger move. Check for undefended targets before quiet moves."
+    },
+    "takeId": null
+  },
+  "requestHash": "3bb8f63a13f4de083ac2e583e3951fdcf519648dfd0d2af430c05eef7e206176",
+  "recordedAt": "2026-10-04T07:50:08.781Z",
+  "sha256": "6b668d6df58394fb794a9a10b9db749509845211658c98617e2831b48e960cf6",
+  "bytes": 24883,
+  "requestId": "aHtMTGuihrm0PdzSmJ00",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7019b9dc6f256aeb20debb7cc934115d67237aaaa9cde694f0382bc07c14dc2f",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

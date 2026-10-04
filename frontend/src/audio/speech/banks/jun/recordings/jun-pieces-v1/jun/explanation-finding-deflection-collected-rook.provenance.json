@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-rook",
+      "label": "Explanation finding deflection collected rook",
+      "text": "Pulled off its post, the defender abandons the rook it covered, and the rook falls."
+    },
+    "takeId": null
+  },
+  "requestHash": "6c992b587fcff194bd163b6264da947c8510b6f139824827473a6efbdd2f6ea5",
+  "recordedAt": "2026-10-04T07:50:59.794Z",
+  "sha256": "5b5c30bccc584ff5a3f104234ab37ab9f16acb276656735b4eb5924c5d33163d",
+  "bytes": 17808,
+  "requestId": "cB1MRXD9DWXsr1SO7mQf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "457d73e7b07a0eeb40e2d53ff4bdf747580fb22ae831d271c11287638622474e",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

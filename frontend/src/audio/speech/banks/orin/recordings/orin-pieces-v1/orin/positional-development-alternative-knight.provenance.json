@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "positional-development-alternative-knight",
+      "label": "Positional development alternative knight",
+      "text": "Another move would have developed a knight from its home square. The opening rewards each piece that joins the game."
+    },
+    "takeId": null
+  },
+  "requestHash": "ede87e1e19568b6e8577bd48fd05d4861fc1fa3fa9e183bda3e2aa0878721843",
+  "recordedAt": "2026-10-04T07:58:57.828Z",
+  "sha256": "af3cf53dfb4a3bd85739fc1880239daac24f678653c3d1ea73164b14f3600d5f",
+  "bytes": 23732,
+  "requestId": "boIeCs04R9bHcWQ6RWRt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8f9ef5395688f198a2ab024eeb05cf969aaeb3aecae250a18c47793f3fe1231d",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "positional-development-actual-bishop",
+      "label": "Positional development actual bishop",
+      "text": "The bishop reports for work! It steps off its starting square. See where it lands."
+    },
+    "takeId": null
+  },
+  "requestHash": "8942f4cc2714a792c4816b2af9abe3c2d33d6b4e377c6bd76299101ee25f92b4",
+  "recordedAt": "2026-10-04T08:00:41.460Z",
+  "sha256": "69de292bbecab465bf80a7085b52fd87285a45a78c6a64e20a47d4b67976b8c6",
+  "bytes": 17874,
+  "requestId": "d5rpKoubULsGtFbZJJ7j",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "16fd407ea1674550c7431d1982cd52e4de20431ab420937c59c914086499a785",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

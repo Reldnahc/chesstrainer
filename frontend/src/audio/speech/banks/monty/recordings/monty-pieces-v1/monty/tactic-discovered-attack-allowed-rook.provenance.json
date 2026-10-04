@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed-rook",
+      "label": "Tactic discovered attack allowed rook",
+      "text": "Their rook is standing in the way of a piece behind it, and this move lets it move off the line so that piece can attack. Discovered attacks begin exactly like this."
+    },
+    "takeId": null
+  },
+  "requestHash": "9ac458f4bd686ea12cdb8992359dc20fdcafb9b4cfaf0427450e464d7dc04343",
+  "recordedAt": "2026-10-04T07:56:47.228Z",
+  "sha256": "d6727b5dfd6c549bf1a2aa9a73883f248c571139b94aa1ed40f580120ec126af",
+  "bytes": 31657,
+  "requestId": "olHH8pA5G2oquam4FoMK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "180071622fa7e65a81b690e246a5618e1b9991910fd5657f7fa8046c5a6227b8",
+    "bytes": 162212
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

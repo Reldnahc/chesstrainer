@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "tactic-hanging-piece-allowed-queen",
+      "label": "Tactic hanging piece allowed queen",
+      "text": "Hmm, who's guarding that queen now? Nobody, and the other side can just take it."
+    },
+    "takeId": null
+  },
+  "requestHash": "afae379b1bcce3b594f52c19537d59ba6456a5e5d9ceb78d530308fa63781e30",
+  "recordedAt": "2026-10-04T08:01:54.281Z",
+  "sha256": "f139b3d89add5095fe5fa74294953576d65755d4b6bf47a7594d60a98e4d6619",
+  "bytes": 18524,
+  "requestId": "Mw00iptPEFx1BkyRG0ta",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "16281ab56c4bcd34fbe638e4bf921ec58f3afd01f4f6857d1e6f89331a1d0d03",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

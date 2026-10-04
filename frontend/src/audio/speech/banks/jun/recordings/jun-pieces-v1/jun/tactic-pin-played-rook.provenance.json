@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-pin-played-rook",
+      "label": "Tactic pin played rook",
+      "text": "Absolute pin. The pinned rook has no legal exit from the line while its king stands behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "29f57e9dfc67e7488ad28f1277302d5b9ddc372d276b2e10f68f40df101d5c5b",
+  "recordedAt": "2026-10-04T07:50:04.671Z",
+  "sha256": "07dea4642a760390eb0f1f1c62c0fbe48b3fc0e2a470ed698c96fcf9bcaabf93",
+  "bytes": 22105,
+  "requestId": "ntmuItPW7FaaYGNlzH46",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f4e6ea628ccec0188c2e913feffb8aa6dc210bde6e43fc6f5719fd4fec91e3c5",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

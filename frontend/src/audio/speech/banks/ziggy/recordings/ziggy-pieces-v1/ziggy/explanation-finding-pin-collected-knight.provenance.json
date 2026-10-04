@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-knight",
+      "label": "Explanation finding pin collected knight",
+      "text": "Observe the pinned knight. It cannot leave its line without exposing its king, and as these moves unfold, it is captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "daa1c6d4318faa5faae4fc9fee54492b926c67e31e4e44fb620bb7727802b769",
+  "recordedAt": "2026-10-04T08:15:56.844Z",
+  "sha256": "eeee878c223e257ceafaa9479ec733d68259b320ea56e0f1301d5a18f9a1fceb",
+  "bytes": 24871,
+  "requestId": "9duQk4NrVgtcQtqTcIUU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "91433bfe8f7d5221614064905e2161f4cecd783d1f4a87d69d6f90b4dd3877f5",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

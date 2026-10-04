@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-knight",
+      "label": "Tactic undefended capture played knight",
+      "text": "Free material, collected. Nothing protected that knight, so no recapture follows. Take what is free, then look further."
+    },
+    "takeId": null
+  },
+  "requestHash": "c3d03a2e4b537e6a6fb307e3c40f820d25fd47bf18f3d42dea7c3ea09197a6a1",
+  "recordedAt": "2026-10-04T08:10:21.892Z",
+  "sha256": "252965e9aba0b5507ca3ad4653f9402058be6318a027a166faaaba238b802883",
+  "bytes": 26871,
+  "requestId": "yDuXCh74hWnUpSu8IQBf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2f33a0c78e8554c10b24c0f67bf54601c8103caa01f610f065c6c572c1aa6f45",
+    "bytes": 139224
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-hanging-piece-allowed-rook",
+      "label": "Tactic hanging piece allowed rook",
+      "text": "Simple problem: the rook has nobody guarding it, so the other side gets it for nothing."
+    },
+    "takeId": null
+  },
+  "requestHash": "a6c4ab92974fd4e0985212675db94c35a0e2c3544c7136aec436037614a2bc8f",
+  "recordedAt": "2026-10-04T07:56:39.694Z",
+  "sha256": "d6c4b0501cdc56b848cd1554750fe46960ed29d15c93c86dda038417008d940f",
+  "bytes": 18105,
+  "requestId": "6YQSGIOBwIqGrwRnrdKo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1154c0581b00d80a72c7d7c5eb57b785d2cb46e63316a2de8883a0884f3f6035",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

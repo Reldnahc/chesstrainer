@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "explanation-finding-king-skewer-collected-queen",
+      "label": "Explanation finding king skewer collected queen",
+      "text": "Check forces the king aside, and the same attacking piece then collects the queen that stood behind it on the line."
+    },
+    "takeId": null
+  },
+  "requestHash": "95b729da89e0d5a1c8111e7751ada499b59f6ca770bb281c28ffc40b739b01b8",
+  "recordedAt": "2026-10-04T07:49:19.386Z",
+  "sha256": "04305c12cb21260c4f247ec1521f88e18c3aea091b401b6b4dc300ba8598323b",
+  "bytes": 21466,
+  "requestId": "Oh7TqI9ZGzBZeqXeAzfi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "258c5e9fcdc727ee3a53b6d9179caee1629034e37eb48c319bab8a8624043db9",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

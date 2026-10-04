@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-skewer-played-king",
+      "label": "Tactic skewer played king",
+      "text": "Big idea: a skewer. The king in front is in check, it has to get out of the way, and the piece behind it is left to be taken."
+    },
+    "takeId": null
+  },
+  "requestHash": "a75e87afbd2dd13bb19990701bb98803fdc9f3b6e6400f2bbb922e4dd6054ba3",
+  "recordedAt": "2026-10-04T07:56:35.248Z",
+  "sha256": "aab13c409563275a45035f6a333ef1c92ccf3319cf6c40b31b45dbc2b70c5803",
+  "bytes": 27383,
+  "requestId": "GmRjJ7fU5KRmia1CdSzv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "365c1450b2b5d14cbf6d1b012851a9dbe9f9ebcfcde2f2b6286bfb61738e7651",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

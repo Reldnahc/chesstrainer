@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-bishop",
+      "label": "Tactic discovered attack played bishop",
+      "text": "Discovered attack. The bishop steps aside and the piece behind it opens fire along the line. Watch the line that opens, not just the bishop that moved."
+    },
+    "takeId": null
+  },
+  "requestHash": "3a192e314beb642c8506ba57e5e77e2fe3158d622bfd7f90812102c481a9739b",
+  "recordedAt": "2026-10-04T08:06:45.632Z",
+  "sha256": "85d510b642ddec9ef8774d55e49bba73c37d23b14fcd72a6de16d0a6bd06aee4",
+  "bytes": 30106,
+  "requestId": "DW0fCmwJhoqwdf0BcZXR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6fac719a960906f9bd44c0d963c028146bf876da60f69a1e7750435203151191",
+    "bytes": 154688
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

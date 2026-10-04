@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary-bishop",
+      "label": "Explanation frame capture move ordinary bishop",
+      "text": "A capture: the bishop comes off."
+    },
+    "takeId": null
+  },
+  "requestHash": "ecea509fa7c94f8cf86cf6a7b61194c62339e272a59a4bec9847bd786b33e289",
+  "recordedAt": "2026-10-04T07:57:51.910Z",
+  "sha256": "9cb2cf72bbd47d8ff0640c5dca262836500f97fb66d373fe6d263fd57d6b23d8",
+  "bytes": 8746,
+  "requestId": "8DtevKZFYPZSUxLZXkma",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c5b9d68774045da6c4a2da9ab2c8b119b0fa330986528eff5425207adf3f4e06",
+    "bytes": 44765
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

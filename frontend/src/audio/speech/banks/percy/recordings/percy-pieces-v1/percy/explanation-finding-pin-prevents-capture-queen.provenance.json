@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-finding-pin-prevents-capture-queen",
+      "label": "Explanation finding pin prevents capture queen",
+      "text": "That queen can't make the capture, because it's pinned to its king. Moving off would expose its own king, so it can't leave that line."
+    },
+    "takeId": null
+  },
+  "requestHash": "b39c54092b9d4d573dd10ca2e312e62cf61335ad565f9c2b5cc4ab054f87b42f",
+  "recordedAt": "2026-10-04T08:01:05.768Z",
+  "sha256": "b61f549c93c9909e1ec848d61ac153aebddd11713869d9ad5cd7119ee80f4903",
+  "bytes": 26470,
+  "requestId": "wzxyB7nAmzagbb3Mo17a",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ea4a25dd1ae3c9513bb5eea595f96df15f9bc7603512b4924c8ec67babbf9cf0",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

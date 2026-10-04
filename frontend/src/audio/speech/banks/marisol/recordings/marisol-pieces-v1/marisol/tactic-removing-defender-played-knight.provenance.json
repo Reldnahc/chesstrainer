@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played-knight",
+      "label": "Tactic removing defender played knight",
+      "text": "The knight doing the defending has been captured. Whatever depended on it has lost that cover."
+    },
+    "takeId": null
+  },
+  "requestHash": "850c1549595565d1a1bb706b05e124d4e1b4b751fa1b3cf5620d9f6d376d1c50",
+  "recordedAt": "2026-10-04T07:53:28.669Z",
+  "sha256": "13139d4809025683e9b51c081c00bef5e56646158124417b5a4d0b6acae3554f",
+  "bytes": 19107,
+  "requestId": "cpADLI7ZIwgEw2wkimpV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7a8b0bad92128a9ce64fdec00480f94640b31b3ef53a49692d17034e5243555e",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

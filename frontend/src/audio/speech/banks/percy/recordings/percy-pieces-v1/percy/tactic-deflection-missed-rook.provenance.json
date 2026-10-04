@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-rook",
+      "label": "Tactic deflection missed rook",
+      "text": "Another move could have dragged the rook off what it was guarding. That deflection went unused. Look at what the rook had to cover."
+    },
+    "takeId": null
+  },
+  "requestHash": "2d13968218c60f67abe59297b6b62769f25e388c9c0e8b217023509c9fc12bda",
+  "recordedAt": "2026-10-04T08:00:31.859Z",
+  "sha256": "1766fe69093d4933bb238613658233ad83d4e848b4f37b1207d2d782aaf48bdf",
+  "bytes": 23498,
+  "requestId": "7zcexv2biaoLPITr14bS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "baee6af2b13169bee27e71a090aa20905341ea35337b81beed27f03a168c943b",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

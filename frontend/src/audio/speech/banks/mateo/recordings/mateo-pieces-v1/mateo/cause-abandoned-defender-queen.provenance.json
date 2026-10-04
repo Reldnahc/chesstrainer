@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "cause-abandoned-defender-queen",
+      "label": "Cause abandoned defender queen",
+      "text": "Wait, look at this. That piece was the only real guard of the queen, and now it's walked away, so the queen can be taken."
+    },
+    "takeId": null
+  },
+  "requestHash": "dd5d34597f1713388e1f34be86c5af487cbd740038f301e21dcde483635ae18c",
+  "recordedAt": "2026-10-04T07:55:43.174Z",
+  "sha256": "5ee4d19ab35bd30b3bde99efa411a1058a2b7f60efa6e2969d29aa1460515dab",
+  "bytes": 25966,
+  "requestId": "mJ1TOAhVKQl6CF0chJYT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bf47b7952ca2142ca64a91bedf81c0454e2ed0bdce15a288f714b075854fdf76",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

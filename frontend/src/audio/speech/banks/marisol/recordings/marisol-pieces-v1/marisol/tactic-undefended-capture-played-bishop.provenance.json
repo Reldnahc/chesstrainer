@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-bishop",
+      "label": "Tactic undefended capture played bishop",
+      "text": "The bishop that was captured had no defender, so there is no recapture available."
+    },
+    "takeId": null
+  },
+  "requestHash": "bf2ac7e83e7f51b8ec3e9cade1249670d0b1c97f4f9356d19c2807984bea4953",
+  "recordedAt": "2026-10-04T07:53:09.151Z",
+  "sha256": "d0a776a2bf96414e07d814b447b2e6c997a262b89953c0f2fba5700681d907bd",
+  "bytes": 16759,
+  "requestId": "ktYXANn10NKfTnhEoOX4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d434aab5dcddf2b6947941980a2962579fbb3b770109b6e1fea7f7cda0160d58",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

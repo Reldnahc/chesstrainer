@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-pin-played-knight",
+      "label": "Tactic pin played knight",
+      "text": "The pin holds. Stepping off that line would expose the king behind, so the knight in front is stuck on the line. Pile more pressure onto a pinned piece."
+    },
+    "takeId": null
+  },
+  "requestHash": "9a8f5a3736ab8949b737bb2fb820c5652aebf6c12e12322ea41357545c3c28b7",
+  "recordedAt": "2026-10-04T08:10:38.800Z",
+  "sha256": "9723326021f83ecfc381972272993378a46b21e483530216abb06d73e94eba8a",
+  "bytes": 31287,
+  "requestId": "npIBJkpZ16pwKVIgZlVB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "853ca23f299517df16c1c4ac60b587a509d826fb121322bfbe390420ff4679fc",
+    "bytes": 160958
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-bishop",
+      "label": "Explanation finding skewer collected bishop",
+      "text": "Bottom line: once the bishop in front is gone from the line, whatever was behind it is captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "43ca9cf984b5223b45dfc4e45c94f2db7b5406b90cfac6f76067f70e56cc0f0e",
+  "recordedAt": "2026-10-04T07:57:17.282Z",
+  "sha256": "e85b320205fe239c96013eaef505fce5bb571080041d3c91c204c7e1e4ce5f9c",
+  "bytes": 20216,
+  "requestId": "C2MAjt4zXqnn9ay2MB55",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bbf43ffad83b76b234cd5517db54864dce154413e0f04c81d14f64696460eb2a",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

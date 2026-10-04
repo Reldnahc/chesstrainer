@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-rook-queen",
+      "label": "Explanation finding double check rook queen",
+      "text": "Double check: the rook and the queen attack the king together, and only a king move can answer both."
+    },
+    "takeId": null
+  },
+  "requestHash": "c5dfa4c264f4bdf28108348d27dd2471dbf4742d4a05c4a1e491f24491a4b52a",
+  "recordedAt": "2026-10-04T07:59:47.980Z",
+  "sha256": "ff83daaefb4aef30788718e7f46d59668ec6b4609bfbc8312cdcaca5de244c8d",
+  "bytes": 23343,
+  "requestId": "bmkSsm0qxtfHFcEvo2Mh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c2f40a1b1ad169cd8ca17adc5b26c893b594b20e12843ba1719d6c2de8b264e2",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

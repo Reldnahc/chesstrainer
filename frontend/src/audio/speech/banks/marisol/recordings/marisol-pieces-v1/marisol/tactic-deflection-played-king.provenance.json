@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-deflection-played-king",
+      "label": "Tactic deflection played king",
+      "text": "The king has been drawn away from its defensive job, and what it was covering is uncovered now."
+    },
+    "takeId": null
+  },
+  "requestHash": "c44013828f3d4b9328be860a54eb6b96ed6cd04c3d75fa8e793f45e8282fb85e",
+  "recordedAt": "2026-10-04T07:53:41.810Z",
+  "sha256": "c1d1965f7e28ecc57095c839d2343155eca678c5d3e97f8e5fbeceb515284634",
+  "bytes": 19214,
+  "requestId": "bCJgnpX7cL3TWUFoReIk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "39a3c200f1e0aa085b27902fdd027ed4188930570cb7a1463d6b528ef5665399",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

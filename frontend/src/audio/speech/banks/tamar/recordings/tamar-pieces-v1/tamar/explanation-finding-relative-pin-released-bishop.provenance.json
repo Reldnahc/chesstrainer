@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-bishop",
+      "label": "Explanation finding relative pin released bishop",
+      "text": "The opponent's previous move freed the attacking bishop from a relative pin, the target never moved, and the line shown captures it."
+    },
+    "takeId": null
+  },
+  "requestHash": "d39c206be6d9038f31835820d30c7eceb0abe3b4eb46096f0dc0d96d0169a542",
+  "recordedAt": "2026-10-04T08:11:09.382Z",
+  "sha256": "57397eb62eef4d05fbd0ceab48f0b73ce6c0c5d2358c8eaf139bf4b74a8d3347",
+  "bytes": 26638,
+  "requestId": "6mXvnSnYlDsQPxSE7oOJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ad6b16b08355287eec2fbdb27ff6d861a355f380bcd18f34c80c817918c26052",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

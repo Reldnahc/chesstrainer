@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-knight",
+      "label": "Explanation finding pin collected knight",
+      "text": "The pinned knight cannot leave its line without exposing its king, and later in the line it is captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "e64f0a981dc47d3240edf3c0f554ec935b3502397193e8690c09ea9d4259871f",
+  "recordedAt": "2026-10-04T08:11:08.335Z",
+  "sha256": "64e1973ac0bd8b7293e95538143fdfbd69e526028147a174d0119db0254048ca",
+  "bytes": 20569,
+  "requestId": "jg4uBNYTJiwlYdmn61qc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bd2aff46698368101280c46720e8f6db64a222ddd07ac18db2a0382b9c10a06b",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

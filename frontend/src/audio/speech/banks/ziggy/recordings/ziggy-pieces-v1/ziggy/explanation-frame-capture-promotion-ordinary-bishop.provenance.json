@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-ordinary-bishop",
+      "label": "Explanation frame capture promotion ordinary bishop",
+      "text": "A pawn captures the bishop on the last rank, and promotion follows on the same square."
+    },
+    "takeId": null
+  },
+  "requestHash": "78f22ffa62325462531c6559c26efd524d70d5e3f7adc0ea822b2bba89309cde",
+  "recordedAt": "2026-10-04T08:16:45.806Z",
+  "sha256": "4ffb3be3809e3c5c1302e957d68e0c2efc34b30c3e9ce13b7ee6771cb045c6a4",
+  "bytes": 16747,
+  "requestId": "0IMKz7oou2xPDZUbBjgV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6e711a5248cd2ac2aadab460fe0fad9414a37e2edf6cde4b5b6ae91882a62229",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

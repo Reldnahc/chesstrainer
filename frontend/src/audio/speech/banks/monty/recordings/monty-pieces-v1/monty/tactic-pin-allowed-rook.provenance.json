@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-pin-allowed-rook",
+      "label": "Tactic pin allowed rook",
+      "text": "Simple problem: a pin against the king is now on offer for the other side, and a rook caught in it stays stuck on the line."
+    },
+    "takeId": null
+  },
+  "requestHash": "a8a1493bf941bbcb0cb4b89b5b679ac9cc4f0076aa0d6e8fc5c325bda2b1332b",
+  "recordedAt": "2026-10-04T07:56:10.592Z",
+  "sha256": "ff96c12e6c66ca0cd5d33d0cee78b77291e3d63b8bb80ed559f8574e0b3ae4af",
+  "bytes": 25678,
+  "requestId": "RF0bvlKKfaRlRRKBUNs0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fe6729a03db17e4b908f6eacc3540b419238a1f1fdbf9280f27d3ddd6845fa0c",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

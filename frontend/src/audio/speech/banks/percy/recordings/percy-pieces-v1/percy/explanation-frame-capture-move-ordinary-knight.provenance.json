@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary-knight",
+      "label": "Explanation frame capture move ordinary knight",
+      "text": "A capture: a knight comes off the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "d958362d8fcdd8e24c8c86ed5752b0fb2f3a3aea392f8caba5f01d6b490bcb52",
+  "recordedAt": "2026-10-04T08:01:24.912Z",
+  "sha256": "9d8d26f7652510b3bdfb4bf21f3ca04c9efe851c3a4f2704193a91d3e75c6c64",
+  "bytes": 10011,
+  "requestId": "aaIdTq9sjQ1ievvzIZKA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3e4668062d492e52930b8aeb0405b9405c7cffc0bb07219a9a9883eb1c703db9",
+    "bytes": 51035
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "tactic-fork-missed-pawn",
+      "label": "Tactic fork missed pawn",
+      "text": "A fork was hiding inside the stronger move, with a pawn hitting two targets from a single square. That's the kind of trick worth hunting for every time."
+    },
+    "takeId": null
+  },
+  "requestHash": "7ffc64eb71e34662143cc8f25d3e53b7d1d156bcec4e63ae2e1fde94b15d4b2e",
+  "recordedAt": "2026-10-04T07:54:46.834Z",
+  "sha256": "b53ec240684f131b36b9a72b9d91071aaf2e52184fa7954e7f776040ddfa5b0a",
+  "bytes": 29781,
+  "requestId": "AT7NyM6prJ16vtc3eiUG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0d684fc2aff59865c7218ef4e34fe4f42a811b09383963ba899a0b6aa8e94b99",
+    "bytes": 149673
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

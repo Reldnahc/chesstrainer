@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "tactic-back-rank-played-rook",
+      "label": "Tactic back rank played rook",
+      "text": "The back-rank mate is among the most reliable patterns there is. The king's own pieces wall it in, and the rook on the last rank finishes the work."
+    },
+    "takeId": null
+  },
+  "requestHash": "14966f2d1d94325f2e0dd0094b9aca9bb91ec77670586ca52a9081e39b1b3ba9",
+  "recordedAt": "2026-10-04T07:58:51.956Z",
+  "sha256": "786dc0841a7dbd5a3327c857e1e24c2c66026c4a9b00b0a03363d09cb276452a",
+  "bytes": 30969,
+  "requestId": "4F8vPkYlEQmSdDhM8tEX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "229b0f075559de872b62e29fc481cb830e95acc2a205df32fa1a96a9bb310ed1",
+    "bytes": 159704
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

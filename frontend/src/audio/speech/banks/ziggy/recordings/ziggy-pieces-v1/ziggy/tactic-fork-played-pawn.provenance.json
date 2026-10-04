@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "tactic-fork-played-pawn",
+      "label": "Tactic fork played pawn",
+      "text": "Look at that: one pawn attacking two targets at the same moment. A fork, and a very busy pawn."
+    },
+    "takeId": null
+  },
+  "requestHash": "156ccb09797d8403d5581db9e9d106c27364bba9f0b3b6c871f17891eae1e651",
+  "recordedAt": "2026-10-04T08:14:59.344Z",
+  "sha256": "28df80a97b84d1e4fbd7f68af214fda657e5dd87cfec72c3c8ab5e77d8cdd1de",
+  "bytes": 23969,
+  "requestId": "uCZyAmv6s2CjWcnObOQ5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "588e459737ada296a1917fb50212d63d238df14b1811d84e6108e20a4d65d50d",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

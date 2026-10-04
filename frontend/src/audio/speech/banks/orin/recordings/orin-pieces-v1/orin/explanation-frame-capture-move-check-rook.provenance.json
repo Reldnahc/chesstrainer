@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-check-rook",
+      "label": "Explanation frame capture move check rook",
+      "text": "This captures a rook, and the same move gives check."
+    },
+    "takeId": null
+  },
+  "requestHash": "86d1eb63fd7063179c3e82eef0f64cdec5630392e80e2522f9464cefeed7f5b2",
+  "recordedAt": "2026-10-04T07:59:24.082Z",
+  "sha256": "05cbc434ad698a9f01a1e39007b0bd6e4f40273db952ee0bf4cd87dfe54ce9bf",
+  "bytes": 12236,
+  "requestId": "Z3mEdFGX9kErn38Eu8QA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2ec6ff78c4bcda3270e04086e376b0cb7f31ec8c1abdbced3349d1f30a49b0b0",
+    "bytes": 61066
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

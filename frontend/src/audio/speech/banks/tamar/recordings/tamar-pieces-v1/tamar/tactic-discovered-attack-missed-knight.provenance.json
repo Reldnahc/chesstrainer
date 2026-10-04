@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed-knight",
+      "label": "Tactic discovered attack missed knight",
+      "text": "A discovered attack was ready. Another move took a knight out of the way and opened a line for a piece waiting behind. Look at what stands behind every piece on the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "b5a3b669d186ed72e32b3ec65daa9fb9a8879de43042084f1fce4fa41d00d595",
+  "recordedAt": "2026-10-04T08:10:51.204Z",
+  "sha256": "83be8021b72f054f7fd47ad12c36898aeb2754dc6d996d741efd99ea392f43bd",
+  "bytes": 33868,
+  "requestId": "5IQKx8b0VLmQ9KCUnfhB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "56afe096d411b56fc9f2eeaee2840a91b51c3310df918ae5158a2081c6adb511",
+    "bytes": 171407
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

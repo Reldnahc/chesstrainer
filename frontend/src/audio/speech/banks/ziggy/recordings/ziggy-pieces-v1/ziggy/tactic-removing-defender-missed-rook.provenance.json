@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed-rook",
+      "label": "Tactic removing defender missed rook",
+      "text": "Another move could have captured a defending rook, stripping the protection from whatever it guarded."
+    },
+    "takeId": null
+  },
+  "requestHash": "8bc43c18e98ed1cbdaee05eb7a0fa94c6da223525640da8d2a28385791e2232f",
+  "recordedAt": "2026-10-04T08:15:28.029Z",
+  "sha256": "b33c930139981518049bb3e5c591cb2d1ff5fdb3102fe5ef0c6e670c394196ec",
+  "bytes": 17924,
+  "requestId": "Jzog0uRIS1zodeAEYx1y",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d8a1d41ac4cfa43f89a0aabcb112b433c9248bcfd76e51faa84b509592cd7f73",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

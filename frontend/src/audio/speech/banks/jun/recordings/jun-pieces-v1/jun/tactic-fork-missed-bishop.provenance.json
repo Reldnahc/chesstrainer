@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-fork-missed-bishop",
+      "label": "Tactic fork missed bishop",
+      "text": "A fork was available in the stronger move, the bishop striking several targets in a single move. Unused here."
+    },
+    "takeId": null
+  },
+  "requestHash": "b4f7ea6c04e7ca9c340c32fb4392b458011a24aee2d48a2ae5a379512e86171d",
+  "recordedAt": "2026-10-04T07:49:53.628Z",
+  "sha256": "6bb5b8a9d2e9ad4273445c3524c5d7921ae43072e93cffb7b221c822dc48d073",
+  "bytes": 22944,
+  "requestId": "vqGRZAMiJyZ84oD5yiqL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cf3b89370f8b37cb02a91bc244e7bcddd3d04124c307a810860caf1e02439102",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

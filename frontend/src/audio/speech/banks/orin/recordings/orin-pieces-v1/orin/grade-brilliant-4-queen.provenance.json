@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "grade-brilliant-4-queen",
+      "label": "Grade brilliant 4 queen",
+      "text": "Brilliant. Weighed as a lost queen, it costs; weighed in the searched line, the idea endures."
+    },
+    "takeId": null
+  },
+  "requestHash": "c294448738ad9ddb1891465f05558c47e29a036d3de93ea731dfb0bd77c74a16",
+  "recordedAt": "2026-10-04T07:59:39.972Z",
+  "sha256": "937c7d1c52bcbc58d36a3137e9c8bc7c0fd36818258b79c42b7b00d92cd51bef",
+  "bytes": 24341,
+  "requestId": "XU1RCXo7inrOui0mjbFN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "98869e29b66c1d93ac04cd5501db3952a49f37fe44c20f19f412e779edad857a",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

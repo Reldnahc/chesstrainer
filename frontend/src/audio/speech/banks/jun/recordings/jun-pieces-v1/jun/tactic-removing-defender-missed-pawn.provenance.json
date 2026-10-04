@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed-pawn",
+      "label": "Tactic removing defender missed pawn",
+      "text": "The stronger move captured a defending pawn and stripped the protection from the piece it guarded. This move leaves the pawn in place."
+    },
+    "takeId": null
+  },
+  "requestHash": "e0337f37df6511b3f2ff695817e254e3cc4a1b8d114dd665e94c9f48ee8b7d29",
+  "recordedAt": "2026-10-04T07:50:08.043Z",
+  "sha256": "a9b953f4155c413675e5be61623002bb9ef9099ead411e6624e538ab0c12993a",
+  "bytes": 26605,
+  "requestId": "LSW41JmaJjzvlggaB4t4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c5c3139203415c55141c5ea3d8bf049c1236c084aa6523b4abe8bd70cd691998",
+    "bytes": 136716
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

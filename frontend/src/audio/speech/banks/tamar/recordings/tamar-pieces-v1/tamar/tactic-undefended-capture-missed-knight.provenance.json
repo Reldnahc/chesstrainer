@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-missed-knight",
+      "label": "Tactic undefended capture missed knight",
+      "text": "Free material stayed on the board. Nothing guarded that knight, and it was left alone. Count every loose piece before a quiet move."
+    },
+    "takeId": null
+  },
+  "requestHash": "1af6ce0154d3e44e2088e8ef107dff2a66f0557b201ea0d5911e893a3b91adec",
+  "recordedAt": "2026-10-04T08:10:30.274Z",
+  "sha256": "cf097bd4ad4b53c8105f944223fb5c38f0c1b2358526cf0d95067c95cacccae8",
+  "bytes": 27165,
+  "requestId": "Bb2sEWL5HPMFHqCHpVtY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c5edb8a175f02566ef9375d7fdffe4e63e828fcf8d7801609ca1506b56a4059b",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

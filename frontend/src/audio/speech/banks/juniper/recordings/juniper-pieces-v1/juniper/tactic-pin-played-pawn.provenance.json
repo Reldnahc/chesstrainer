@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "tactic-pin-played-pawn",
+      "label": "Tactic pin played pawn",
+      "text": "With its king standing behind it, the pawn is held to the line. Stepping off it would open the king, so it stays on that line."
+    },
+    "takeId": null
+  },
+  "requestHash": "1ce0baeefc5d5984b1382783b67814478911d376fdb8e0cd326f761fcfd21b90",
+  "recordedAt": "2026-10-04T07:51:42.730Z",
+  "sha256": "86391e8d2e4b7ee567d8a718c684dcd8297166165a678c52e75e827fd3d43236",
+  "bytes": 27039,
+  "requestId": "OreB0yl6OUSoXTmbcz1c",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4df72b6f0dc8d5f8460a300375d0592def0de821f041cc75ea6fcd2f96b11c0d",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

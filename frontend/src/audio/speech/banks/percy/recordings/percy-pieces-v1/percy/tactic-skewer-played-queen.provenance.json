@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-skewer-played-queen",
+      "label": "Tactic skewer played queen",
+      "text": "Ooh, a skewer! When the queen in front moves, the piece hiding behind it is wide open."
+    },
+    "takeId": null
+  },
+  "requestHash": "2e53fde24ae3dac651eea87de125ec51682c8301d4c87cabf898ac83ce7dcdcb",
+  "recordedAt": "2026-10-04T08:00:08.420Z",
+  "sha256": "f2c33be4acc33dc391e4723c8d9d2858d0a8ee05fa5fd5ae605950612e1d6fad",
+  "bytes": 19889,
+  "requestId": "991EreIBdgK2yqFJcji3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "800879bf5730a8c5a476278b117f864eee8d3225aa223177e9228f3d7f453ca7",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

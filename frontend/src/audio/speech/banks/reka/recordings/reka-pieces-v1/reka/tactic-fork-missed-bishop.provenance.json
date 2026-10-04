@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "tactic-fork-missed-bishop",
+      "label": "Tactic fork missed bishop",
+      "text": "Tucked inside another move was a fork, the bishop landing among several targets. That punchline stays in the drawer here."
+    },
+    "takeId": null
+  },
+  "requestHash": "d2ff5400d09747da438eb20497917a9dc862261b57025e6135b8f5723933aec8",
+  "recordedAt": "2026-10-04T08:05:06.884Z",
+  "sha256": "215b6dd69bba3e22c52e435372c72859b86390a4c5e50ab0c7cf36fbcc9916a6",
+  "bytes": 24079,
+  "requestId": "eNaQlYDFV5qcirmI0JpX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "361a794ac69251e7e220594fa8a0b1e3adf125ecddf924318a04bfc816704b68",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

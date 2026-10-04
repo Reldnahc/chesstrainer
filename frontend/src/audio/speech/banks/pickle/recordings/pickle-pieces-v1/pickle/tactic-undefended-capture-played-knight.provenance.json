@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-knight",
+      "label": "Tactic undefended capture played knight",
+      "text": "Who's guarding that knight? Nobody! So it gets taken. Simple as that."
+    },
+    "takeId": null
+  },
+  "requestHash": "69f517a6d87e4367721654a51fcac240c1f723c44f0dc939af2089343ccf292d",
+  "recordedAt": "2026-10-04T08:01:35.826Z",
+  "sha256": "da5bef7ffb46ef03940606d70a9f6e7e17ec88d36db4e5b8ed883111b7689925",
+  "bytes": 16409,
+  "requestId": "M805x0NClkNLrDcTE2U7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "84560e89076adf59cc281eefdb0701bba85fb53a76ae5000875e4871983e4929",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

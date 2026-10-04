@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary-bishop",
+      "label": "Explanation frame capture move ordinary bishop",
+      "text": "A capture. There is one bishop fewer on the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "6f427c604670467b8446759b6cd660e8a3d297a1fc201e8cbc8471c31f4c5558",
+  "recordedAt": "2026-10-04T07:54:31.280Z",
+  "sha256": "960913a8584416dbc7f0a8408d3e4bc9fac73cec376d94059f42056dbc337ecc",
+  "bytes": 11947,
+  "requestId": "oOwkXM7ypjd9QHvWGJ7k",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f2d43ac468301bf28062bb39d4bc30b23dc59c34d9b6aad9d979996dbf268624",
+    "bytes": 61066
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

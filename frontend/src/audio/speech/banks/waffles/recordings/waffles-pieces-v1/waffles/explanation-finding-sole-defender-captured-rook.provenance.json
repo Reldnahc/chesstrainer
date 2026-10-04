@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-rook",
+      "label": "Explanation finding sole defender captured rook",
+      "text": "The lone defending rook is taken out first, and its charge follows."
+    },
+    "takeId": null
+  },
+  "requestHash": "56bdca7064080d9edd1aa4f151e2b64424473377ee65d28ea70b58a2164e4f43",
+  "recordedAt": "2026-10-04T08:13:02.545Z",
+  "sha256": "4b07987e6abfd7df2afe7db3ffc6ec4e30f0c70347c4977a1dba5a3e757560db",
+  "bytes": 15160,
+  "requestId": "kcreGkodpIsnDDFpZ68q",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a9549838c84fe74b185189ce797f1171b517d22d11588c82ebf859ea37e3d72f",
+    "bytes": 75276
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

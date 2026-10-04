@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed-rook",
+      "label": "Tactic skewer allowed rook",
+      "text": "Beware the skewer, the pin's reversed cousin. This gives the other side one: the rook in front may have to move and leave the piece behind it exposed."
+    },
+    "takeId": null
+  },
+  "requestHash": "c474e53ded638855e87e16acdaad85a7ab875d012f57bfabb56ec605dcbd90a3",
+  "recordedAt": "2026-10-04T07:58:32.296Z",
+  "sha256": "e169c81d30371b2961469f7d1c4ec267cf4b4a806b8b287fbee97a511754488e",
+  "bytes": 32850,
+  "requestId": "labhD3bYembgJ6fbUxkj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "95b24ec710e7831bc36bcf24565c487df9080d0b2801de65488724cf73f1d3a6",
+    "bytes": 170153
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

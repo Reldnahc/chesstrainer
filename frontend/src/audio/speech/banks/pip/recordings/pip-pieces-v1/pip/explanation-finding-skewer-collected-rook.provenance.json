@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-rook",
+      "label": "Explanation finding skewer collected rook",
+      "text": "The rook in front steps off the line, and the piece behind it gets captured along that same line."
+    },
+    "takeId": null
+  },
+  "requestHash": "f81f2fd16560048cde885a9ecb731bf8557520165a2f7f16824699dfccc1d3ab",
+  "recordedAt": "2026-10-04T08:04:18.611Z",
+  "sha256": "bea2316056082493ff0151a1ab303d712236bdefa52c93cee5c087a27a09a956",
+  "bytes": 19187,
+  "requestId": "W6yud2vLusxFlsrgeHXb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1a89941920bec2e544f9703566cdbabb54ebbdce0d485a7142efe6ed7b4687a0",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

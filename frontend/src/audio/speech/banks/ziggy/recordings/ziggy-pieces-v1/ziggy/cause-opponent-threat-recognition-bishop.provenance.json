@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "cause-opponent-threat-recognition-bishop",
+      "label": "Cause opponent threat recognition bishop",
+      "text": "The opponent's previous move carried a threat, and this one does not respond to it. A bishop is now open to capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "ac08e951491e5d4292239501a6a8ed1cb3f7731d48fb2f08ebeead1f93a6d867",
+  "recordedAt": "2026-10-04T08:16:19.828Z",
+  "sha256": "c4f26c2de8c7aa2e58f280019ebade40264c39cfbb2b3787c212a99034c9e3b0",
+  "bytes": 23658,
+  "requestId": "zmqKOMgn9psYknrgiXoh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c3f015ac135b287801350ee5da4f962af0b96224b883d8c92f6e61c13dd8d995",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

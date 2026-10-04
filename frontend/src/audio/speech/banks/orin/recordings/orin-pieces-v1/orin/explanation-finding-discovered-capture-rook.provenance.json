@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-capture-rook",
+      "label": "Explanation finding discovered capture rook",
+      "text": "The blocker moves aside, and a line opens behind it. The rook on that line makes the capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "2dfc9713becabc45678375cac6749f8489c60c1e210b369784b97392b9239ae2",
+  "recordedAt": "2026-10-04T07:59:36.678Z",
+  "sha256": "ba8e707ccb9c77c403c84886ce21042a985673b9b6024da539e8251a4e807d5a",
+  "bytes": 21714,
+  "requestId": "mR0wURWY6cFLPmTmPkWu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9d347e24f65cdcd06dec00b7c6ad97f53f0f0437132b9f68ac97b23f2456c6d6",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

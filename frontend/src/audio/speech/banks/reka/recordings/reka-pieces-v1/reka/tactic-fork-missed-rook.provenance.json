@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "tactic-fork-missed-rook",
+      "label": "Tactic fork missed rook",
+      "text": "Tucked inside another move was a fork, the rook landing among several targets. That punchline stays in the drawer here."
+    },
+    "takeId": null
+  },
+  "requestHash": "c55a07cc4be5b917f1e3debc74b696caedefc6f0a47aaa67acf790701635e4a6",
+  "recordedAt": "2026-10-04T08:05:08.755Z",
+  "sha256": "6cd347f40a547b040491610f2ff9ab01dfe942bf95331ee9bf57022f36c6cf0b",
+  "bytes": 24277,
+  "requestId": "chg2piAiuqts6OuaxyEY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a65482300f22a4672a20471d11571354b0f39cbc0d8a9c81fd19c8488d199f38",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

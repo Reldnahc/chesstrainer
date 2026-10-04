@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "grade-brilliant-4-knight",
+      "label": "Grade brilliant 4 knight",
+      "text": "Pawns get offered up all the time. A whole knight, and soundly? That's something special!"
+    },
+    "takeId": null
+  },
+  "requestHash": "abf3c24be910aba1452cc582d84aa3888c792df99c8347c8ec18c0139a3af31f",
+  "recordedAt": "2026-10-04T08:01:19.607Z",
+  "sha256": "8ab663869e7b6d5542fc6426123014040e197e519356c61e79009641de580161",
+  "bytes": 19874,
+  "requestId": "cU5Wx7gKeEZAEzROSYOH",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e6fe938291d3504ce52098e3074136af87cd15f5b32677ffd2f6b07b750fca58",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

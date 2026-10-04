@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "tactic-fork-played-pawn",
+      "label": "Tactic fork played pawn",
+      "text": "Riddle: what can one pawn hit at once? Here, two targets. That's a fork, and usually only one target gets away."
+    },
+    "takeId": null
+  },
+  "requestHash": "7460f7c9c9ad12ce3db1d611fd0c33d93366f07250e03d27a72ac2e19b620b23",
+  "recordedAt": "2026-10-04T08:08:13.106Z",
+  "sha256": "7b3db121f7f00cb156ba32ad25d0e6d1f0b06378c41eddd59d2ee70bd472ea38",
+  "bytes": 29091,
+  "requestId": "DEZqzEq5aOR6ItQkA5Rl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7a87a6628a46a4edb9383dd7ee927a1a5cb956ec217a6ea5627bc174bd49a930",
+    "bytes": 153435
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

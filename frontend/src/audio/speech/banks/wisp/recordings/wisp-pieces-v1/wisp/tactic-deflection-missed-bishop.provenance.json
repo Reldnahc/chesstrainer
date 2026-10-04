@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-bishop",
+      "label": "Tactic deflection missed bishop",
+      "text": "Another move could have drawn the bishop away from its task. That deflection is not used."
+    },
+    "takeId": null
+  },
+  "requestHash": "bd727b72daf2eb263eb01f507867cfc862b61cd6ae71ce49199415422bf0fe05",
+  "recordedAt": "2026-10-04T08:14:02.248Z",
+  "sha256": "b4d77c54452ef6e1ce42ecf0eb7a3e59a815e73db4137a4cd8cebf56b2073034",
+  "bytes": 18862,
+  "requestId": "FTBsYrTuCkfAmOT19WNU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6e12a69a77ec07e20cefa15eda1b24d3031b8b0284db47cf8bd8f72d6e620136",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

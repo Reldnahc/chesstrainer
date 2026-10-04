@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "positional-development-actual-knight",
+      "label": "Positional development actual knight",
+      "text": "A knight is no longer at home; it has been brought into play."
+    },
+    "takeId": null
+  },
+  "requestHash": "bf8f4cc12239c1077458401758da74b8dff068b16557658f091a304718fe4d8f",
+  "recordedAt": "2026-10-04T07:53:47.743Z",
+  "sha256": "3fb60578cf2493bf07fa2a1b781ead0a64cbed11391f570b51963139379852a2",
+  "bytes": 12891,
+  "requestId": "8zjqVyC3PEbiMaiIqjNs",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b3478d7843d451ea30cbc67703eb20ae8a347e9d6c498d23da30422f630f1041",
+    "bytes": 66499
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

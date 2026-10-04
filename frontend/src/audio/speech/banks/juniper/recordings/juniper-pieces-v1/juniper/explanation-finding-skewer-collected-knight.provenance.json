@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-knight",
+      "label": "Explanation finding skewer collected knight",
+      "text": "The knight in front moves away. Behind it, along that same line, the next piece is captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "c83fd02a5a9ae666aa66e26bb1894b781b3cd32917938484ccb0774d6c616730",
+  "recordedAt": "2026-10-04T07:52:18.182Z",
+  "sha256": "8c62f56b2f64200746bab2c3e393405861c8162ea8a74681fb46700305ba60f8",
+  "bytes": 20614,
+  "requestId": "KMdTyJaC4qMaofzQ14y9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "52d5356eeb621466e06dee267d50fd03e645efa8e4721ed8fbd6cdccb57e5dd2",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

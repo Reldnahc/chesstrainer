@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-knight",
+      "label": "Explanation finding deflection collected knight",
+      "text": "Lure the defender away, and the knight it was protecting falls."
+    },
+    "takeId": null
+  },
+  "requestHash": "0d5f9c1d9de37dc656608de525aa9423e232a82ce915eb30331fb733a9417db7",
+  "recordedAt": "2026-10-04T07:55:45.179Z",
+  "sha256": "780e47c03c241da7e694cfc09cffb784fa7b48436f7b12535fa15bbf27e94145",
+  "bytes": 13556,
+  "requestId": "AJdQN3fbzwjvH4XnKtpG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "37aa24c87e465ad2c311fc90953aad77a54e37cc2b550a2c063f3cae84746f41",
+    "bytes": 66499
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

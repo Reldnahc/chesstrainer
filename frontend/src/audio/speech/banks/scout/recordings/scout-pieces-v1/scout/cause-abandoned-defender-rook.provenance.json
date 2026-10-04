@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "cause-abandoned-defender-rook",
+      "label": "Cause abandoned defender rook",
+      "text": "Guard pulled. This move takes away the only real defender of a rook, and now the other side can capture that rook. Know a defender's job before it leaves its post."
+    },
+    "takeId": null
+  },
+  "requestHash": "d7cccf52acd40c976b702f1ce1860018eee74cf215fe22b2132f4d5997ef288a",
+  "recordedAt": "2026-10-04T08:07:45.089Z",
+  "sha256": "840ffbeaa8a8b0459b51148ea8ad1d8629e5b7e4e3a5716758c50e9a3288fecd",
+  "bytes": 32818,
+  "requestId": "MO7Y51hCsQItRUUUc0cU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d6e96dff19baff89478b127199f3110a2543270c5057d8f68cd091967ca7108c",
+    "bytes": 168899
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

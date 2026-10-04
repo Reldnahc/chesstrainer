@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "tactic-fork-missed-bishop",
+      "label": "Tactic fork missed bishop",
+      "text": "Oh, there was a fork going. Another move had a bishop attacking more than one target, and this move doesn't use it."
+    },
+    "takeId": null
+  },
+  "requestHash": "c5ae18533895be7baefbdc2d46cbdf8e1f3c690630bd2ac2771e53a675a9ae6e",
+  "recordedAt": "2026-10-04T08:03:32.050Z",
+  "sha256": "1afae74861b1f0ed8409bcd518221589f8bafe7515b2fdf2e8ceee8f096d2e53",
+  "bytes": 24288,
+  "requestId": "z2JAQ73Jli3oh5g9nnRK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6d7097dd1153543a94394a6e0f565ebbdc3c2ddf2331a45eb011e6855afed70f",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

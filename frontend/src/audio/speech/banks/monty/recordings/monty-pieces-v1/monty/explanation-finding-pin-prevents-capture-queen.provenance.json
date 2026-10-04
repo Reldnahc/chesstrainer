@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-finding-pin-prevents-capture-queen",
+      "label": "Explanation finding pin prevents capture queen",
+      "text": "Pinned to its king, that queen may not make the capture shown, because stepping off the line would give the king away."
+    },
+    "takeId": null
+  },
+  "requestHash": "5d85128513ffccdacd9c87ef7beb36b44ed448f734c5cba174777925d65e4522",
+  "recordedAt": "2026-10-04T07:57:27.350Z",
+  "sha256": "9e3bdbcab2ed6f3cdf06800681414b20db9f3da0ba64551393a75006596cd2ef",
+  "bytes": 22834,
+  "requestId": "1bxrAzRISFq9oKWsyrIG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "06420717308f800a934a9b895d74dad112ab6e077390bd79edd3c4b53833584b",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

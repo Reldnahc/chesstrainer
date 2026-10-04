@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-knight",
+      "label": "Explanation finding undefended capture gain knight",
+      "text": "That knight had no guard, so off it goes. The side that grabbed it is ahead in material by the end of this example."
+    },
+    "takeId": null
+  },
+  "requestHash": "6f542f916878717fa60e6c8957e40f4ef93624b08f388545bb4cd49c75f8a7a4",
+  "recordedAt": "2026-10-04T08:02:57.309Z",
+  "sha256": "63107b386e96cef6e6bb73802046f335b32f63590c39a375ac71b7f4e3fa6d8a",
+  "bytes": 25080,
+  "requestId": "mi8mW1i03ROYDr4eC9nr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e63a6b95dfaea8c7453d2455efa110e5cdf504d1e8c10edc532020d220d7baf8",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

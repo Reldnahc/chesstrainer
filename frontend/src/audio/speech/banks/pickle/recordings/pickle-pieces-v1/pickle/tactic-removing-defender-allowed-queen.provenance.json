@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-queen",
+      "label": "Tactic removing defender allowed queen",
+      "text": "Interesting! Somebody's defending queen is a sitting target now, and if it goes, whatever it was guarding goes unprotected too."
+    },
+    "takeId": null
+  },
+  "requestHash": "f3079fbc6eb36f892ee7c2ef7067f75b15908df8d271a46eba29d649940e1049",
+  "recordedAt": "2026-10-04T08:01:52.107Z",
+  "sha256": "c60f9e6106f336d50525f691bd629f9267e6cced66adfbd31bc38e4b33ee8703",
+  "bytes": 27337,
+  "requestId": "Cudc4vW9KcnVGYT5eN1H",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9f57b491e93fd725737d2fd0e95fe5e2c80011b490fbd1b48cf1b7257bd7275f",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

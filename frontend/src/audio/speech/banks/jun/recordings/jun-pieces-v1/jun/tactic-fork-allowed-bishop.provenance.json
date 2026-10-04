@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-fork-allowed-bishop",
+      "label": "Tactic fork allowed bishop",
+      "text": "This permits a fork. An enemy bishop can now attack several targets with a single move; pinpoint it first."
+    },
+    "takeId": null
+  },
+  "requestHash": "950354c95c80180508b21687954c8ffc1196a0a17bb5bc9f70d1432a17830115",
+  "recordedAt": "2026-10-04T07:49:44.904Z",
+  "sha256": "8ff7704715edd16ad67435c4f98f78c471342510657276cb263ddcffc29641d0",
+  "bytes": 23956,
+  "requestId": "oGpxmV63goulG4lNP0Ky",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1285dcf9ac744d7e206c60558089f74fd6d969b956aaa6fecf7e5bb5f1835dbd",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

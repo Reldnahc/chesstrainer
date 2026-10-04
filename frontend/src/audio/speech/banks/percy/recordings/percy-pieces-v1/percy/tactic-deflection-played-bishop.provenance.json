@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-deflection-played-bishop",
+      "label": "Tactic deflection played bishop",
+      "text": "A deflection! The bishop on guard duty gets pulled away from what it was guarding, and the thing it was guarding is left wide open."
+    },
+    "takeId": null
+  },
+  "requestHash": "63f5da3a9ca182abb13cab155b77b50c1306c836235fc03c777b1c760a40c5b8",
+  "recordedAt": "2026-10-04T08:00:25.747Z",
+  "sha256": "4ed1ef80df9020c7e6984eacc729ce1ada167e6a892a13e89399497a2c45eb93",
+  "bytes": 24613,
+  "requestId": "bdionCaLvLPHTD7mly3y",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "91db9fe8d0a8224db8b1717552f80b1ebcf337c708d4d613cfc6cdeef262aea3",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

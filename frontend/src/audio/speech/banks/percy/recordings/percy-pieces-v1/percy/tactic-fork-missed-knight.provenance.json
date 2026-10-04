@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-fork-missed-knight",
+      "label": "Tactic fork missed knight",
+      "text": "There was a fork in a different move, a knight going after several targets at once. This move lets that chance go by. Go find the knight that could have done it."
+    },
+    "takeId": null
+  },
+  "requestHash": "316a12768ee9d95789a3ad0feb79a50990ef67e5b99ed1a085a00523af60a922",
+  "recordedAt": "2026-10-04T08:00:05.208Z",
+  "sha256": "5930ff3002a2bce8bbffb434be244bc3b9ae2290f8f02c6a9f31bc375703af7b",
+  "bytes": 29376,
+  "requestId": "NIaJV01jMVhIxADrmxUp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6bf513ef57fbee836cff24f9e92c4ea77f2094ea0ce95d0080de702b83f1c377",
+    "bytes": 150927
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

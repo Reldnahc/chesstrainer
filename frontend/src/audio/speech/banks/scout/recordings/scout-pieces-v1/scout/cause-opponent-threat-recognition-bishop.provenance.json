@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "cause-opponent-threat-recognition-bishop",
+      "label": "Cause opponent threat recognition bishop",
+      "text": "Threat ignored. The opponent's last move attacked a bishop, and this move doesn't answer it, so that bishop can be captured. After every opponent move, ask what it now attacks."
+    },
+    "takeId": null
+  },
+  "requestHash": "5ba436f86c1b535a614584bdaa614a1e484cbe4f5a424a143e41a7c547cbd8a8",
+  "recordedAt": "2026-10-04T08:07:53.068Z",
+  "sha256": "2507d607e8880a3bf0e04f7f505b1db975d5267a756c6cef2103326f77b29d8b",
+  "bytes": 34239,
+  "requestId": "7u3Shk686NAJA72CVuBx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "69c65d570b1b3387de5c59cc0b3819304ed0d4da43e10b518ad4974f5507628a",
+    "bytes": 177676
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

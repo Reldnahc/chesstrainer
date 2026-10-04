@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "cause-opponent-threat-recognition-bishop",
+      "label": "Cause opponent threat recognition bishop",
+      "text": "The threat had to come first. The opponent's last move went after a bishop, this move paid it no attention, and now that bishop can be captured. I want every turn to start with their threat."
+    },
+    "takeId": null
+  },
+  "requestHash": "3e8bdab9a1b1a3978497f2439697e006fb3eabc985041125d4f8da69cba2dad1",
+  "recordedAt": "2026-10-04T08:11:36.138Z",
+  "sha256": "f64e4baff3f3a5f718c8bdd04d9c5321120d2bcce3c96ec75169e2db8aa5aa10",
+  "bytes": 37861,
+  "requestId": "QnO1pzUwhhfGqxBl0iOH",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "015667570c77fc950fbe444aab7f52bcf6a99efde3e2f26cdf9f2f57687b8a40",
+    "bytes": 195648
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

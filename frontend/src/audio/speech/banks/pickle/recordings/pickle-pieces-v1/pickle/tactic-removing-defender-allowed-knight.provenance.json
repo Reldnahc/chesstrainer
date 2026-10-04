@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-knight",
+      "label": "Tactic removing defender allowed knight",
+      "text": "Interesting! Somebody's defending knight is a sitting target now, and if it goes, whatever it was guarding goes unprotected too."
+    },
+    "takeId": null
+  },
+  "requestHash": "733ffa9e076f9d590891b4f4cff156e66fb7a02f1341e88bb5718a06876d05f6",
+  "recordedAt": "2026-10-04T08:01:45.978Z",
+  "sha256": "9bef67fc6b64a996f92a0fb3a8c1158a960cea5831b302c058fd75242be11628",
+  "bytes": 26950,
+  "requestId": "tKMdOXt0bN1VhnLR9lVJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "60257f2c6f366c652f3f74fd81d35a5450b2dc28f38a9172633d01a683f992e3",
+    "bytes": 137970
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

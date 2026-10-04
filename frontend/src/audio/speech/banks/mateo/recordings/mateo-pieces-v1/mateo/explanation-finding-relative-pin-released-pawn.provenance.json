@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-pawn",
+      "label": "Explanation finding relative pin released pawn",
+      "text": "A relative pin was holding the attacking pawn back, and the opponent's previous move set it free. In the line shown, it then captures a target that never moved."
+    },
+    "takeId": null
+  },
+  "requestHash": "ca5852a70c395eb7c2894944e87d315691970afc090af0266401cb772fb3cc3f",
+  "recordedAt": "2026-10-04T07:55:24.876Z",
+  "sha256": "a0625c0110afa8c222c44cc28e0a55965dbe468f186d865916392b56f64202f6",
+  "bytes": 31500,
+  "requestId": "vQjs7TBcXiqARK2afR5Z",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5c4fcea960cbdbb4d811d1595a9036200dcbe3bfd180ab171c93ecda34053877",
+    "bytes": 158450
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

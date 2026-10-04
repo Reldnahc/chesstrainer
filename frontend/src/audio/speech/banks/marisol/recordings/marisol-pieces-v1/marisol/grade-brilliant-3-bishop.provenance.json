@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "grade-brilliant-3-bishop",
+      "label": "Grade brilliant 3 bishop",
+      "text": "What changed is that the bishop is on offer. What did not change is that the position holds."
+    },
+    "takeId": null
+  },
+  "requestHash": "ab9f081093b3c8439b0d772e027cb2dc385f38f9f574c3b149ffc5b7e8b831e7",
+  "recordedAt": "2026-10-04T07:54:16.855Z",
+  "sha256": "19182c8acffc74496a63037fc97a7bf075fd301fb3424a8ba87ed33ca461909c",
+  "bytes": 19147,
+  "requestId": "E539HASLasw24Pu9uR6f",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d66d920658b61da42d1cd47aa8384e380fd0325867406f06629151a470143962",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

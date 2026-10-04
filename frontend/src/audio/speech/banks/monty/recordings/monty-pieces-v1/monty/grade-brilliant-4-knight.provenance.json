@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "grade-brilliant-4-knight",
+      "label": "Grade brilliant 4 knight",
+      "text": "Brilliant. The cost is a whole knight, and the idea is strong enough to carry it."
+    },
+    "takeId": null
+  },
+  "requestHash": "26db98dfb6a76a0380e3555f5572ecfe95a8b5889da7e8f5ecad7bd9adaa6c22",
+  "recordedAt": "2026-10-04T07:57:43.727Z",
+  "sha256": "940a89d17fd21740b880d20c56ffeda0d43dbd2e4256dd0fc1ecf07e05842928",
+  "bytes": 17852,
+  "requestId": "Axholazy4T13EC5VrEE4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "28543b8e789b9370a6e72c7d128743d3e20ed2d0b3b70da71800ec5f4fbcae15",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

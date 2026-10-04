@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "explanation-finding-king-skewer-collected-rook",
+      "label": "Explanation finding king skewer collected rook",
+      "text": "Check pushes the king aside, and then the attacker claims the rook that stood behind."
+    },
+    "takeId": null
+  },
+  "requestHash": "c4f1ea1c8f2a666e4ea48d38b5a013656de69a0fad07191408a97bfff9a310f3",
+  "recordedAt": "2026-10-04T08:13:05.958Z",
+  "sha256": "8d4ca4e0f73cb63c538b68275c32c69cd75d2ad562c51a58c2d475c537d5c944",
+  "bytes": 17829,
+  "requestId": "3ClR4uGAQmNUlWkwpXMn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b07ed13a3bbbac8673de7a80e1d89c89056f5215187e8d15d277dc4f74ac7432",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-knight",
+      "label": "Positional unsupported alternative knight",
+      "text": "A different move would have left a knight flapping in the wind, though that alone wouldn't make it winnable."
+    },
+    "takeId": null
+  },
+  "requestHash": "300a35ee094734c53b2a889309035d4c8a9d5e22eb5d61bb7569ab3d56954845",
+  "recordedAt": "2026-10-04T08:05:37.371Z",
+  "sha256": "c8ccc544b8ea1a6ecb79b523d21faa055afceaac843dbef19fb6c2d8cdd6959b",
+  "bytes": 18899,
+  "requestId": "i87VPg72MUaHLjMhAAkI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "99dfbc23cb581a110c397d7e285addd792bd7c649817f63f67f442a5db69da75",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

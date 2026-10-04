@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-finding-fork-collected-pawn",
+      "label": "Explanation finding fork collected pawn",
+      "text": "Look how the fork works: the pawn hits two targets, then snags one of them. When this example is over, that side is up material too."
+    },
+    "takeId": null
+  },
+  "requestHash": "a1fbf915ec31687aadeabb94ceccad5c58c24a0c771c51e34468d688187dbbb6",
+  "recordedAt": "2026-10-04T07:55:27.399Z",
+  "sha256": "b291de71f5bbb0c72d8c5bc7580f84c107478ce5fee419e3b481ea04b87385df",
+  "bytes": 27718,
+  "requestId": "2Qx5febG5EzSn7zYVQ5u",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "19e3fbdfeb7fd693bd9e5b30e8e959ec8517082463acf35b49487abd8ac709ee",
+    "bytes": 137970
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

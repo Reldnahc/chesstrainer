@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-queen",
+      "label": "Explanation finding sole defender captured queen",
+      "text": "Step one: the lone defending queen is snapped up. Step two, later on: whatever it was guarding gets snapped up as well."
+    },
+    "takeId": null
+  },
+  "requestHash": "95779b75d328535f8d9e137e7e8fdc238701580743569b0524da5ea9a32dbe29",
+  "recordedAt": "2026-10-04T08:02:47.509Z",
+  "sha256": "dcbf3eb72115ee1893affd2e20b574710e79d20350c42ab8d75ac75edcf00ce3",
+  "bytes": 27120,
+  "requestId": "1gX9gYgzRXJEAfuKDxgY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d620cc5f5307812ec59bb2205a9578ca933c78be317537b77d243608082104bd",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

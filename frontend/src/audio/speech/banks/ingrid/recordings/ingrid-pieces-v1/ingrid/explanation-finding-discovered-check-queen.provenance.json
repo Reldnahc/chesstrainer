@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check-queen",
+      "label": "Explanation finding discovered check queen",
+      "text": "One piece steps aside, and the queen behind it gives check along the line it leaves open."
+    },
+    "takeId": null
+  },
+  "requestHash": "da7f849e54d90043ecaa3c10160cb7a90e946cdcd53232e8efd991b6c9666d41",
+  "recordedAt": "2026-10-04T07:49:27.012Z",
+  "sha256": "9b82af8fe407c227e68ec2ef57217c158f4324a58d499e164264bc26f498ec68",
+  "bytes": 18528,
+  "requestId": "8HCFSVP8TNdnxBXzauhy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e995941731b350fa0dced1b4667d1c9cb63552d0cf0d21d7a62840f73bdbbe8f",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

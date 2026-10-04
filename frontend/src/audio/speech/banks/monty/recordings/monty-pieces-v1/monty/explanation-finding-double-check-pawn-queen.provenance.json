@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-pawn-queen",
+      "label": "Explanation finding double check pawn queen",
+      "text": "Two checks land on the king in the same move, from the pawn and the queen: double check. Nothing but a king move will do against that."
+    },
+    "takeId": null
+  },
+  "requestHash": "c1c495c737788e47de24f9bcc5d593e5007ccc57f735b1cb536f663d68b66b67",
+  "recordedAt": "2026-10-04T07:57:35.086Z",
+  "sha256": "2d9c997a88ddd6967311bde089b351ebc3212bfc782f964c34e8612cb9ef4f38",
+  "bytes": 27043,
+  "requestId": "teFduoEl3Zboe9vK1NqP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "349dc69d64a0a670f1004f3fc44a67601d3b51758aeb936521f38f630f473e0c",
+    "bytes": 141732
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

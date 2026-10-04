@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape-pawn",
+      "label": "Explanation finding pin restricts escape pawn",
+      "text": "Pinned to its king, the attacked pawn has no free retreat, so any escape has to keep the king shielded."
+    },
+    "takeId": null
+  },
+  "requestHash": "718f39007597f5c198846441ef412170e6486f99f69043e9e8d3b4c89907f845",
+  "recordedAt": "2026-10-04T08:12:40.863Z",
+  "sha256": "df40fc6cbb9c9c530a59770c20fb62fd75f535f7b506ddf78f4354169be6d576",
+  "bytes": 23531,
+  "requestId": "SjxCFhNQ4DFoipb7xeDF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "07f85f3aca63251cc11dcfabbc15808bbb135ff8c993da4a7a35c99dce1b2e99",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

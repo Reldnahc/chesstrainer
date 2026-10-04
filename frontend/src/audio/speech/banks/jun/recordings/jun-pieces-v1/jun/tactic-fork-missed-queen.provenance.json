@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-fork-missed-queen",
+      "label": "Tactic fork missed queen",
+      "text": "A fork was available in the stronger move, the queen striking several targets in a single move. Unused here."
+    },
+    "takeId": null
+  },
+  "requestHash": "a43ed6751b10ed714b7841fc130faa56d0ed401cd873c2d88490ffa28558d8fe",
+  "recordedAt": "2026-10-04T07:49:57.521Z",
+  "sha256": "096a861e57640d674af8a802d7fe0c995b35c80063c6ed332674e34b686907f6",
+  "bytes": 22518,
+  "requestId": "LXgr7WDfo1JtSYIvGxGB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "787cef31ca8c2da9ee6b28e7825b336619c3cbd3b31741225a4e7ffcd502f4a0",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

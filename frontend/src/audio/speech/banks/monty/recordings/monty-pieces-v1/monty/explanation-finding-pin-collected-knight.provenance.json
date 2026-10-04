@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-knight",
+      "label": "Explanation finding pin collected knight",
+      "text": "With its king behind it, the pinned knight is nailed to that line. As these moves go on, it gets taken."
+    },
+    "takeId": null
+  },
+  "requestHash": "06b0c8c8bd53c9a3a671f5707ca6038bfa0789c932b994500e797b5edeb55b8f",
+  "recordedAt": "2026-10-04T07:57:12.788Z",
+  "sha256": "a2a9af33969e73c242852aab762f263acde256fd398b9e7e46f8f25e21052046",
+  "bytes": 22160,
+  "requestId": "bi5s7OPl5Wt6O66424p4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d2512f951a1d063d4b83fc91f4680ca71ce884d815431972583ef3ec5f9b0cc5",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

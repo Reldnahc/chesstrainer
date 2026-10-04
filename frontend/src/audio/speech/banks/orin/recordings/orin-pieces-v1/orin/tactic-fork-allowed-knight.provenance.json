@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "tactic-fork-allowed-knight",
+      "label": "Tactic fork allowed knight",
+      "text": "The fork serves either side of the board. This move lets the other side set one up, with a single knight reaching for several targets at once."
+    },
+    "takeId": null
+  },
+  "requestHash": "ec7a006322d0f0ca74b4f0c8438b6060e5965d06b506ffc0401f7079bc2fc101",
+  "recordedAt": "2026-10-04T07:57:55.774Z",
+  "sha256": "89e34becd9d3babf219f3a5f4265ab7bb4c9d15dc38ec06bd0303532afa03e9a",
+  "bytes": 29585,
+  "requestId": "GjqZSR8CjAeCKwmJeGeI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0721f75a353a1621cbd4b5fcefc5fea490c830b858291b98eb8f73f4b2e95d75",
+    "bytes": 153435
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "cause-avoiding-bad-trades-queen",
+      "label": "Cause avoiding bad trades queen",
+      "text": "The exchange has a second half. The recapture removes the queen, which is worth more than what it captured, so the material count falls overall."
+    },
+    "takeId": null
+  },
+  "requestHash": "abc01ed8875db246b557d44e534b3167484debb587e9623e3f95b27207bd88ad",
+  "recordedAt": "2026-10-04T07:53:46.582Z",
+  "sha256": "21e2f518e5a5488f5139df725522f4c65d51b843de398e4350b3ae081807c4c6",
+  "bytes": 27646,
+  "requestId": "ad2iG3PcSdZsVPCzXgex",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d04ad0596d5b411aa382326185d6e7255482e23a92ebc91c33cdca6bc82a45b4",
+    "bytes": 142986
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

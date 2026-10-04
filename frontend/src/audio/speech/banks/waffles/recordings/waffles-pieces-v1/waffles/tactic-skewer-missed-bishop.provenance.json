@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "tactic-skewer-missed-bishop",
+      "label": "Tactic skewer missed bishop",
+      "text": "Loaded skewer, sitting in a stronger move. Drive off the bishop in front, and the piece at the rear is exposed. This move passes on that order."
+    },
+    "takeId": null
+  },
+  "requestHash": "b693bccec50f82590f995932460888d45d1721e2e7c2750d9734e06923c61b75",
+  "recordedAt": "2026-10-04T08:11:56.330Z",
+  "sha256": "5ecbdd89551f2689a285bcb92ecf659bcee64fbb6a48738dd03d438bcb068f03",
+  "bytes": 30319,
+  "requestId": "ryQBK50NtEt1ujgVmelB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "69b1475f307acdb8e1c2b5989b34dfb64bce1fea790d7b5fdd08e90cf5b06a83",
+    "bytes": 154688
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

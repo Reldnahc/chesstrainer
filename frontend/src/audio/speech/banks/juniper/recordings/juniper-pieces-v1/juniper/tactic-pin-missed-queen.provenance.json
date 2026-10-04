@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "tactic-pin-missed-queen",
+      "label": "Tactic pin missed queen",
+      "text": "Another move could have pinned their queen to its king, holding it on the line. Quietly, that pin went unused."
+    },
+    "takeId": null
+  },
+  "requestHash": "6555c1544cc0ef7781f46519db60aad9f6fc06319da96871fac1485cacff7081",
+  "recordedAt": "2026-10-04T07:51:33.845Z",
+  "sha256": "10b7fd72e40c37a2db56d97b584df4f337e4c1220a28e804d3b5aa14fe6337db",
+  "bytes": 25026,
+  "requestId": "QQsciTVeDvOEUvcR0fPC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1aceb6fe1a67e9591860c8313cf5c27ff10a03ff1af81967d70a651e0671e814",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

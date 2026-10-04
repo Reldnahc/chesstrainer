@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-fork-played-pawn",
+      "label": "Tactic fork played pawn",
+      "text": "What changed: the pawn now sits where it touches two targets at once. It follows that one reply is unlikely to cover both of them."
+    },
+    "takeId": null
+  },
+  "requestHash": "77134ad8f305581ff89a2e09383356dfa40132d73d77097e5ca9bc5321df17c2",
+  "recordedAt": "2026-10-04T07:52:45.702Z",
+  "sha256": "91c4d13c443fd78e9db9e4392d03e450ba24ee7bfa2c66f75a42c3f535f05e9e",
+  "bytes": 27575,
+  "requestId": "wyHibDaRRT2YJvQY7odo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e75fab6b679dea6dd155b35b323b96427cd7aecca0d560dfa3a3048c6af69110",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

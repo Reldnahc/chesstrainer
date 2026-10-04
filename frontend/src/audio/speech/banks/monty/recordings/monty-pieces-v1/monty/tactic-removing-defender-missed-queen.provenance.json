@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed-queen",
+      "label": "Tactic removing defender missed queen",
+      "text": "The better move went after the defending queen. Without it, the piece it guarded would have stood with no help. As played, that queen is still standing guard."
+    },
+    "takeId": null
+  },
+  "requestHash": "9fa954231d611de72023c258e594ec01561daeb0a10cee098d0666444a2bacfd",
+  "recordedAt": "2026-10-04T07:56:40.313Z",
+  "sha256": "02c8f4ba4b28659be07221a869c06f95d6ecfc65856e7a1c87d8b2329a9e59a8",
+  "bytes": 31228,
+  "requestId": "BnxM3AflWTxO5yDHTCTj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1af3031b7a87f9fc8dd1c9173ef9aaf647edd8647f31bcb092670df5f7ffd3cf",
+    "bytes": 162212
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

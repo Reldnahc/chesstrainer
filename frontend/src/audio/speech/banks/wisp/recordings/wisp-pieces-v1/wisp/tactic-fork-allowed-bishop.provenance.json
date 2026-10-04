@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "tactic-fork-allowed-bishop",
+      "label": "Tactic fork allowed bishop",
+      "text": "Something waits on the other side's turn. A bishop of theirs could attack several targets at once, a fork."
+    },
+    "takeId": null
+  },
+  "requestHash": "b7151e90c8299b7a6bdfc52fa5c9b18bc7a245e368a7f95c7cc2191835dac6c2",
+  "recordedAt": "2026-10-04T08:13:30.677Z",
+  "sha256": "ccf44c8b1c033f74acf5f11c035df087836849ae159bbac883f3e2844398a6ad",
+  "bytes": 22747,
+  "requestId": "tO2ae1z0PVsDX1OiINk1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "39ed9c05abc78131ee7e469a6404f798ae9e530e8d961d60f6f1c275412cd7e7",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

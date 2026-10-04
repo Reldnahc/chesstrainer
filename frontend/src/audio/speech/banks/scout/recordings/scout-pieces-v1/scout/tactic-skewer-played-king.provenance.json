@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "tactic-skewer-played-king",
+      "label": "Tactic skewer played king",
+      "text": "Skewer on the line. The king takes the check, and once it steps aside, the piece behind it is open. Read the line front to back."
+    },
+    "takeId": null
+  },
+  "requestHash": "26a5b583153a2990e4a1c51fce3a44a6c5b9bd2ebfe399711689fe5ccfe84f96",
+  "recordedAt": "2026-10-04T08:07:01.438Z",
+  "sha256": "9eed7e99c4ffb8b42d9c572a5a77c9214689b799a460a7caa6a91c53f78edd5a",
+  "bytes": 25952,
+  "requestId": "yhrmL5KiSG1LN9Xmqgfw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ee0f63c63135ac17d38c0fefc0d05e3a9cbd87ad34a843b93b6c0b87254fb4c9",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

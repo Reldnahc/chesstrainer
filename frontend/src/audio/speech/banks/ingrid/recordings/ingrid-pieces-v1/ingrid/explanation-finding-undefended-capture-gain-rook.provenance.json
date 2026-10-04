@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-rook",
+      "label": "Explanation finding undefended capture gain rook",
+      "text": "A rook nobody was guarding comes off, and the side that took it finishes this example ahead on material."
+    },
+    "takeId": null
+  },
+  "requestHash": "f5a5b2a380724c437b929759fbba737ae79f37fb009cb6091876a3dc72710437",
+  "recordedAt": "2026-10-04T07:49:24.702Z",
+  "sha256": "6b9d2798fe1dde6f580c746c2509bea45c8b46019085ad3782e0e8a03a7167d2",
+  "bytes": 22087,
+  "requestId": "9JK6e0VsNx6WDxhnViay",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5e02aca50d5509a43b2fa5c95e9df7c4d628ee815b439d3d9d90f26822ac8cd1",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate-queen",
+      "label": "Explanation frame capture move mate queen",
+      "text": "A queen gets captured, and that's checkmate! The king has nowhere left to wriggle."
+    },
+    "takeId": null
+  },
+  "requestHash": "70ffdaee373a45f796f115fd3e3dd1bfe03cffced129fcb88d22fd626408837d",
+  "recordedAt": "2026-10-04T08:02:58.403Z",
+  "sha256": "59073bd339f969a660ff6de1a64b4d9619f9484f1dd35178890b8440ff1338b6",
+  "bytes": 18122,
+  "requestId": "0xaFTyjv0C5QOaIFezhg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3b7356cca654dc162381dc2005ac92978b8a1986da21c980019f65a3829461e8",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

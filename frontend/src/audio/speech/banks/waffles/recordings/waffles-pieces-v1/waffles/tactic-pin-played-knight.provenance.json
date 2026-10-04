@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "tactic-pin-played-knight",
+      "label": "Tactic pin played knight",
+      "text": "Pinned to the king and held on the line. That knight can't leave it without exposing its own king."
+    },
+    "takeId": null
+  },
+  "requestHash": "157601794d3f51f897064b2ca8442b107516aa17e8599118ad3681742e28598f",
+  "recordedAt": "2026-10-04T08:12:09.540Z",
+  "sha256": "e239af3fc129e584801ad8641d1f49e9feb2e8b6befb177acfc5c9678dfc9bbb",
+  "bytes": 20928,
+  "requestId": "FDA43w4WMeG6rB2XtxP9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "42baf5e4945ad6a3028c3025d6f246a8ad694d9f0950a8ef5a06a3961b0822ef",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

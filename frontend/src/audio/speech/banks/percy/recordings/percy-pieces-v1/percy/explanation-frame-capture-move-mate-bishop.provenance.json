@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate-bishop",
+      "label": "Explanation frame capture move mate bishop",
+      "text": "This takes a bishop, and it's checkmate too. The king's got no legal way out."
+    },
+    "takeId": null
+  },
+  "requestHash": "b47b0481efd275fbe4b87fcfd812fb3fa09577312f1349b9a85d9a195e2cf800",
+  "recordedAt": "2026-10-04T08:01:14.933Z",
+  "sha256": "67edbdec05a87a8cccd1a6fb94cb779937309bfd453bb26baf97a97fdbc2021f",
+  "bytes": 16593,
+  "requestId": "s15dz017ENrMnWOl1mVY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4af210e1fce5537b0e37099e5690576542f1ec3327f3abf32cca3e40ca3c52f8",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

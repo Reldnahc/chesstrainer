@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed-rook",
+      "label": "Tactic removing defender missed rook",
+      "text": "The stronger move would have captured a defending rook and stripped cover from what it guarded. That rook is still standing."
+    },
+    "takeId": null
+  },
+  "requestHash": "25e1908f80c3b22146bc3b1a133487b5e2e70b1405af29e0010aa5e881d8be78",
+  "recordedAt": "2026-10-04T07:53:30.053Z",
+  "sha256": "30554e158093da0b4beef325ce190a43a9486888ba2295792ee0bce17fc6db10",
+  "bytes": 23637,
+  "requestId": "9s4q7wwPReGzQX8nfGQc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ddbcc965626880fca5c9b3f92e313b3845c89dfbc76e9aa1ce1e2be1c487a4dc",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played-bishop",
+      "label": "Tactic removing defender played bishop",
+      "text": "Punchline: the bishop playing bodyguard gets captured, and whatever it was shielding is suddenly up for grabs."
+    },
+    "takeId": null
+  },
+  "requestHash": "76cc37fed6ce631b980ed87bbcc13372898ab22f5b79a124afa2b12b5345948a",
+  "recordedAt": "2026-10-04T08:05:29.345Z",
+  "sha256": "1c5ca040bb181346a73d85143d2052077c92c5940515a0d9b202b5d54d6e29a4",
+  "bytes": 21608,
+  "requestId": "TorkN98orpfUuSElaymC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "89c69c5e1dc715d28f3976001b0cc6267edcc5bfa30dafdc1d80a6292eb87324",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

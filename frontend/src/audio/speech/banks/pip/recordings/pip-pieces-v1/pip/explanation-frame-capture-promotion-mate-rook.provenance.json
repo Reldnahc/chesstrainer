@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-mate-rook",
+      "label": "Explanation frame capture promotion mate rook",
+      "text": "The pawn takes a rook and promotes on the last rank, and that's checkmate. The king has run out of legal squares."
+    },
+    "takeId": null
+  },
+  "requestHash": "028263f4762a05f7ee0e87df2f51080d6984b964c24e61205a09a111623095ca",
+  "recordedAt": "2026-10-04T08:04:42.831Z",
+  "sha256": "bc388c6374b7b2ed82cc8b5b9be970a2461db96191e544e68a7a79550531fdcb",
+  "bytes": 24106,
+  "requestId": "yR5xf92sMJNi3nz243Ct",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bdb990cf1f40af7e455ef5dccbc7459defbba2a2dfe05df8063fe8deaff9602c",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

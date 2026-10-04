@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "grade-brilliant-3-queen",
+      "label": "Grade brilliant 3 queen",
+      "text": "Puzzle-book material! Giving up a queen looks wrong at first glance, and the checked line backs it."
+    },
+    "takeId": null
+  },
+  "requestHash": "cb48aaeb6c6a1a16d55673feb7df98bfe85bb3246a45268047f1ed6ff80c3ffd",
+  "recordedAt": "2026-10-04T08:09:50.050Z",
+  "sha256": "31520656ae84e669e79e4b738585679341bd02c33c2c8a22fc1c3402f8447c72",
+  "bytes": 20912,
+  "requestId": "dS5TAQbTo1IFvU6z0ogm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f96a0929afb0ff11036e8f032a1e9535b1408f5b94cf8c101fdf5c37f0ad87c2",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

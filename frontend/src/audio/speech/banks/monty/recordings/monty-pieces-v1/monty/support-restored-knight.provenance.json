@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "support-restored-knight",
+      "label": "Support restored knight",
+      "text": "Big picture: the knight that was loose earlier is safe behind a guard now. Good."
+    },
+    "takeId": null
+  },
+  "requestHash": "21ee896d9ff1c38267f6f7b4d4abd53217ce8226b520ef19b5a968c3241a3c26",
+  "recordedAt": "2026-10-04T07:57:04.416Z",
+  "sha256": "afa2b0c5fbf71d5a6acd29877327c1a5b13502d96a74db73cacb4e452b38a41a",
+  "bytes": 17676,
+  "requestId": "4FQAup5EA2LiTQOIfJHn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2e9d6943fae5e3e86197fc6e9eaccb3df472d6fa0ce5e8c501329812453b22b5",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

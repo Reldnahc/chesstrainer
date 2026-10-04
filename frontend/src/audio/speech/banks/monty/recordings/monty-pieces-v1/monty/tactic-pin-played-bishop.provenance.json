@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-pin-played-bishop",
+      "label": "Tactic pin played bishop",
+      "text": "The main thing is the pin. That bishop has its own king behind it, so it cannot leave the line."
+    },
+    "takeId": null
+  },
+  "requestHash": "fcc0034d3573a9b1101b46add23598b47e814ff801b50488d20dada4ead1af8a",
+  "recordedAt": "2026-10-04T07:56:35.115Z",
+  "sha256": "97dadca079ffc88bddb3afd51ac15e9e3159ce10aa703982d1745bf2a425892e",
+  "bytes": 20727,
+  "requestId": "jsF2mHkf47fkXLl06SJB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0c3288d77ae994529cfde1cf2de9a0db0b66b7fa05ea9cfb240470a1fc494770",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

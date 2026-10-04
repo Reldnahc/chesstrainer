@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary-rook",
+      "label": "Explanation frame capture move ordinary rook",
+      "text": "A capture. This move takes a rook off the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "54d57892a1c955ca640bf0ca9d631bbbebb1f712da8e19cf16e62e6254b3fc2b",
+  "recordedAt": "2026-10-04T08:04:57.841Z",
+  "sha256": "658756e5e2ff3e5c51d20bea42e946d29fcd966b90701b3ab8380f59d10c2cd4",
+  "bytes": 11916,
+  "requestId": "gh3AHy5pltih6XbG4Jk3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bd89e4c15deb75ba5d92faf5bb5d68a606c57c95a088ed40f9ac6b0a9cf2bc12",
+    "bytes": 59812
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

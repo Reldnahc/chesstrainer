@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "grade-brilliant-3-knight",
+      "label": "Grade brilliant 3 knight",
+      "text": "Puzzle-book material! Giving up a knight looks wrong at first glance, and the checked line backs it."
+    },
+    "takeId": null
+  },
+  "requestHash": "570fe5ac4a6e1af51ac9225ab9624055e9964e79c58ef36b3f02c016dd36faf2",
+  "recordedAt": "2026-10-04T08:09:45.191Z",
+  "sha256": "da0c964210f1cccfdede8a506a165eb14d3a295e38aca7314cfc71b5d8fd170f",
+  "bytes": 20838,
+  "requestId": "jjrPWtBcSQOcwFlBQs1L",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1f8d86c47685a1ff4c7af3a84e50f91477b465de3a815eca0342e2c7c511179f",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-knight",
+      "label": "Tactic undefended capture played knight",
+      "text": "Unguarded knight, captured. No defender, no problem. Target collected."
+    },
+    "takeId": null
+  },
+  "requestHash": "52362fd77ee193f75fe797ce5b564fb150b3e1f37db2448bfb75fc42d56ae52c",
+  "recordedAt": "2026-10-04T08:12:05.335Z",
+  "sha256": "d8fcec97d0980aa34de17175639c471d4a5b51d6318594006e5beeb9728c332d",
+  "bytes": 18665,
+  "requestId": "fHPX4EjBQh1ea84cY7Xb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ac33688bb57a7d02dcc5fbb3544f15d077757960cc5ed017368dcbaa4469e072",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

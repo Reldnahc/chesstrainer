@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-bishop",
+      "label": "Tactic deflection missed bishop",
+      "text": "A defending bishop could have been lured from its post by another move. No one reached for that deflection; study what the bishop had to hold."
+    },
+    "takeId": null
+  },
+  "requestHash": "da9eeabaa7cf1cd3b0f2c091fb9561fd3c8121ca1c25320648899f44f037828b",
+  "recordedAt": "2026-10-04T07:58:42.363Z",
+  "sha256": "3c2da7548c685bc05c2a5d10dbb671facf232803dfe811743b5bc761a5548c48",
+  "bytes": 29652,
+  "requestId": "XXZiXNcuqQLZfCOvOgz2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8f95043079950152207acc765e059d6860b8af7ff7e17d54ae89307a29f509f6",
+    "bytes": 154688
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

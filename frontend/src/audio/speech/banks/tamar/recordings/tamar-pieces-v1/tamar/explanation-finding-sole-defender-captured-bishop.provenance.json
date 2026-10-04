@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-bishop",
+      "label": "Explanation finding sole defender captured bishop",
+      "text": "The lone defending bishop is captured, and the piece it guarded is next."
+    },
+    "takeId": null
+  },
+  "requestHash": "c6b14cf5b8ba8088abc1bdb4e24da0a01d494e3d4508ebbe38067b4baff9236c",
+  "recordedAt": "2026-10-04T08:11:17.752Z",
+  "sha256": "1fcfb67a39c6610da37ccc12d7d042ceccefd05166d9264a73f813df3198969d",
+  "bytes": 14983,
+  "requestId": "KqxOctau8NRzRjFEdbfU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "62bfdb67d6416533dc714ec7d37043bd1daea24f38941291da7c88dc2e2d7df3",
+    "bytes": 74022
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

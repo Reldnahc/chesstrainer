@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-bishop",
+      "label": "Explanation finding deflection collected bishop",
+      "text": "Lure the defender away, and the bishop it was protecting falls."
+    },
+    "takeId": null
+  },
+  "requestHash": "49cdeea01f02fdef53fb76c8480bbd22084e5d4bdc711c0f2b1b0c2c718a5c91",
+  "recordedAt": "2026-10-04T07:55:46.430Z",
+  "sha256": "5547d0407a03cd5b12486304de4c4a17803b13d2875e2b71de155fc7f17b718f",
+  "bytes": 13647,
+  "requestId": "rlSYkgbkruDB43ESywGc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1e76ec60ebe40738931815aec66f973c193880392927f50a4b93e7f7917bb9a8",
+    "bytes": 66499
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

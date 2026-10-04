@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-knight",
+      "label": "Explanation finding undefended capture gain knight",
+      "text": "That knight had no defender, so it's captured, and in this example the capturing side comes out ahead."
+    },
+    "takeId": null
+  },
+  "requestHash": "0b2986dc015d7e7993fc429d13e98aff8a21607e45c5c7a89d12b2d0fba1f7ea",
+  "recordedAt": "2026-10-04T08:09:49.683Z",
+  "sha256": "45f3b62c55069f7cbb46cfa39d0f521473d37196a0dacf3763400513d71212c6",
+  "bytes": 22449,
+  "requestId": "vvmNA4OASaWPkrAsgUTE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3c51b591bc7cb815e911d0035574cce982ba214ac16c48181af07e62c6bb54bc",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

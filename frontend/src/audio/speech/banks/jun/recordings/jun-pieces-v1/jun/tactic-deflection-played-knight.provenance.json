@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-deflection-played-knight",
+      "label": "Tactic deflection played knight",
+      "text": "Deflection. The defending knight is pulled away from its task, and the piece or square it covered is left unguarded."
+    },
+    "takeId": null
+  },
+  "requestHash": "9e0c0a643c21a64d708de274e1013555a6cc274f090ae479410a451c2400fd4c",
+  "recordedAt": "2026-10-04T07:50:20.308Z",
+  "sha256": "4e9c53e69fea202798db8361bafad3c70351aff9e06a86ada147b0d19b0f8f47",
+  "bytes": 25084,
+  "requestId": "90W04F1TdA2xLHgTDyqx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2bc51f545242a2066b188d670a523f787f6d606d10c10941ea414d8d44bace54",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

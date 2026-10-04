@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "tactic-hanging-piece-allowed-queen",
+      "label": "Tactic hanging piece allowed queen",
+      "text": "Nobody is watching the queen now. The other side is free to pick it up."
+    },
+    "takeId": null
+  },
+  "requestHash": "350fde1b40cbb07a4fb9182ff360ee75364a8fc64b61b097022447aa6b5f198f",
+  "recordedAt": "2026-10-04T07:51:44.495Z",
+  "sha256": "4afb02f3faf6846ed1efa52039c48216cda96c3edbb0b376fc364bc42246d41f",
+  "bytes": 14553,
+  "requestId": "S4Em0NoJ8V9SABruqwfM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e077576ec90cfdf2fb7edeae507ed4935586aa8429926be97c9ba593849d9822",
+    "bytes": 74022
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

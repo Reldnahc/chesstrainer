@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-knight-queen",
+      "label": "Explanation finding double check knight queen",
+      "text": "Double check! The knight and the queen are checking the king at once."
+    },
+    "takeId": null
+  },
+  "requestHash": "489c7842226f211684563975bc167f45b002485f5d22ccc9f009df4fc443ea5d",
+  "recordedAt": "2026-10-04T08:01:18.105Z",
+  "sha256": "d09db716f291ad27ace98d86d147d5d49983b2c521fb07476a107f3150868205",
+  "bytes": 14200,
+  "requestId": "tAMlzHTPxedk9dwq5Dqe",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4ddf33c8b2bd9877e2c5bb59fd431b0455ac8eef0e9b0f8f52116d6fa441fc00",
+    "bytes": 71515
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

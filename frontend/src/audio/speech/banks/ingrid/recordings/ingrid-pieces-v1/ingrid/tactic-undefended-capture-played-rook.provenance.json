@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-rook",
+      "label": "Tactic undefended capture played rook",
+      "text": "That rook was sitting there unguarded, so it's taken without any cost. Checking for loose pieces like that is a good habit."
+    },
+    "takeId": null
+  },
+  "requestHash": "ac20ea0a00429740f3a673943f5cacee047329044fe29ec9f1aeb2aec3e3cec9",
+  "recordedAt": "2026-10-04T07:48:22.477Z",
+  "sha256": "1f3296076c029d33ab4830a06e3faf084685e48d14260a563e2953285d0a4e5b",
+  "bytes": 25751,
+  "requestId": "82FiokWkuFKhtce14gzw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f4a62b5fa5319b71420bfe9dd8604947a2b8c194c21696a51036ac7add220df5",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-capture-bishop",
+      "label": "Explanation finding discovered capture bishop",
+      "text": "The blocker moves away, a line opens for the bishop behind it, and that bishop makes the capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "e5bf6bcca4aaaacd05e0d08a67e5c54bcf322c64a51cb67d836036a4882ca45b",
+  "recordedAt": "2026-10-04T08:01:15.988Z",
+  "sha256": "0d6abf4ddf687515c5cbd0bc3466f41566b43635665b76e576bbf8dad9fd2a4e",
+  "bytes": 19070,
+  "requestId": "UkwfMfin0GRBXsnjLrjH",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "aa0b021831a7b2b3b4c76ec5444e977fab64079984b781ac60820cc21afb3c6e",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "support-restored-bishop",
+      "label": "Support restored bishop",
+      "text": "That bishop left unguarded earlier has a defender again. Patched up!"
+    },
+    "takeId": null
+  },
+  "requestHash": "017d79de648b927a1e9d8ef8450fc4da9e12cb3de3fde8c66f1cf4b49970e4e3",
+  "recordedAt": "2026-10-04T08:02:24.205Z",
+  "sha256": "4abf961073aedc2c69ccbb57a3c6865ca703e438ef2ead4397231cfce0bb24b8",
+  "bytes": 14993,
+  "requestId": "jdFYoQOE84te1W6ELvor",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "438dbc82a7bfa1d3fee926df2d546a063e877093748b1d64ed494c19c37fee0d",
+    "bytes": 75276
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

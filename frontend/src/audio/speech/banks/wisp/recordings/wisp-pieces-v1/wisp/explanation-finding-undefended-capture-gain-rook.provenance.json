@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-rook",
+      "label": "Explanation finding undefended capture gain rook",
+      "text": "No one guarded the rook, and it is captured. The capturing side ends this example with a net material gain."
+    },
+    "takeId": null
+  },
+  "requestHash": "74cb1891b3fadc5803166dadc7eccbc18540e5eb2d62a1ebe0748f16aad811ad",
+  "recordedAt": "2026-10-04T08:14:56.842Z",
+  "sha256": "1dbd297e6d02bac233d1ce6a81da5b39d3220fee7c58e274919a128fcb6f21b1",
+  "bytes": 23354,
+  "requestId": "NwUZehEEMX1Jq6TSEPjS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7a01ea4fedd5b356791989b880a49869436016f7e5ced531007c2390dff8a59a",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

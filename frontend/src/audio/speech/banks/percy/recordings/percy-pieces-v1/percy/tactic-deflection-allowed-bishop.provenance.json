@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-bishop",
+      "label": "Tactic deflection allowed bishop",
+      "text": "This gives the other side a deflection. They can pull the bishop off what it guards, so look at what that bishop is covering right now."
+    },
+    "takeId": null
+  },
+  "requestHash": "e94b1e613418239e16952a11cbee91431522edc668c067b95a1513cbd8c793fc",
+  "recordedAt": "2026-10-04T08:00:38.326Z",
+  "sha256": "7d23179798d879ad7f8837d45b861b99c84d075c7384922973933f79ce44ca50",
+  "bytes": 24639,
+  "requestId": "I07qygLt8UaRM8cTtNrk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "820668e2fe6170a0e2e964741c9884b544c7b33a49e25566220f4d3d219faa0d",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

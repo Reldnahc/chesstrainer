@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "grade-brilliant-2-bishop",
+      "label": "Grade brilliant 2 bishop",
+      "text": "Oh, that's nasty! The bishop is handed over, and the whole thing still holds together."
+    },
+    "takeId": null
+  },
+  "requestHash": "b8e00bc2ea5f0887bf518dc6e05d7ab949ebf91ebf50b0df0e0f682f7de1796c",
+  "recordedAt": "2026-10-04T08:06:44.484Z",
+  "sha256": "4161416a94e422277fce2a2008932d51f39e8229b6b03f82ae258e6db1266b80",
+  "bytes": 20233,
+  "requestId": "d8izeMsvIOiBlGFChYGq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "888e1f7d02f52899eeada54db8fe062140820e3caa1c375a3e5ed388f36de044",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

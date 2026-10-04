@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-check-rook",
+      "label": "Explanation frame capture promotion check rook",
+      "text": "One pawn move does three things: it captures the rook on the last rank, promotes, and gives check."
+    },
+    "takeId": null
+  },
+  "requestHash": "7667bf18b8c2054380caa6a8e599d51e735376fc8a00b5a1d8c7a6ee80283e9c",
+  "recordedAt": "2026-10-04T08:16:25.599Z",
+  "sha256": "aec7387d30c503e45581632d12958db41482c62bc8cf6906e894fee3a1efad50",
+  "bytes": 20839,
+  "requestId": "SFYwXCExlUweO2oqoSqK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6403ba5ea646323c73ed51dcf675f06f094a7f8f2e92bfbf6c8b0d84faa02eca",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-mate-queen",
+      "label": "Explanation frame capture promotion mate queen",
+      "text": "Capture, promotion, mate. The pawn takes a queen on the last rank, promotes, and the king has no legal way out."
+    },
+    "takeId": null
+  },
+  "requestHash": "c65861688ed04c9e5c09d5c2754d3fedaa847efee7c3b7eb8a15dd5d18b19864",
+  "recordedAt": "2026-10-04T08:08:12.305Z",
+  "sha256": "8678f74bd1443dfad1d5a86f9a7e2023ca32e586885e33916a212f2f7672f2dd",
+  "bytes": 24651,
+  "requestId": "3fLqipsABG4N6GNsDGYz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "add90f839883b6678a7d5d28ce4d96bc01bd6790af5c8ffbb2cab8312c81ffb2",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

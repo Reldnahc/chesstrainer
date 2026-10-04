@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-pin-allowed-pawn",
+      "label": "Tactic pin allowed pawn",
+      "text": "The pawn in front of the king has become pinnable. Once the pin arrives, leaving that line stops being legal."
+    },
+    "takeId": null
+  },
+  "requestHash": "36a613fdaa3802d79ac378673f42d676128c8b659475e6b7b69930fc39974311",
+  "recordedAt": "2026-10-04T07:52:54.175Z",
+  "sha256": "4db51626bb8e91f48fe11a07eb2136aa53b4c5cccc4e896fcef89b1eeed550f6",
+  "bytes": 22350,
+  "requestId": "4fWoq65ZTeqXO73t0fNS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1f3c73d72168a030db33f7b2dac5ea4c6c5827e67cde944c36fc3a4e786aa345",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

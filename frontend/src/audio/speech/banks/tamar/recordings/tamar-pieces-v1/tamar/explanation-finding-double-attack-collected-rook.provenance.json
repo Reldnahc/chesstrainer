@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-finding-double-attack-collected-rook",
+      "label": "Explanation finding double attack collected rook",
+      "text": "The moving piece makes one threat, the rook behind makes the second, and the rook does the capturing."
+    },
+    "takeId": null
+  },
+  "requestHash": "7e35152ea9c99b455bc696e677826b1229268176643b2c26af6ba2c9048b3e2e",
+  "recordedAt": "2026-10-04T08:11:35.404Z",
+  "sha256": "12a3e32041557186e6cb55955251fc035432499da1916ca7bc74e1e85cb84302",
+  "bytes": 20264,
+  "requestId": "IBAAa2G4vCMlDqymxXMg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "031138907163736c365935949a3519f475b279055366f2c7b4b33e4b316603dc",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

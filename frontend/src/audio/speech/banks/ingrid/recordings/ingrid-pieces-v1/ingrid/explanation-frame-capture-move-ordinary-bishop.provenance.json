@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary-bishop",
+      "label": "Explanation frame capture move ordinary bishop",
+      "text": "This capture takes a bishop off the board."
+    },
+    "takeId": null
+  },
+  "requestHash": "bd2ab52e321bc93527de6135272faae64dbd8ecf6b2a23b4f875f42b6d2f39a6",
+  "recordedAt": "2026-10-04T07:49:49.597Z",
+  "sha256": "c025959c4bba161648003a29031ea4baea758342708802577b9f6cb7781f4c59",
+  "bytes": 10388,
+  "requestId": "9QtQ5DvYYbvkjiRnnpTv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fc7361510e3cbc03f6f38f4d7d6d09fb8266629cac8d83457beed7d3c17a1167",
+    "bytes": 51035
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-queen",
+      "label": "Explanation finding undefended capture gain queen",
+      "text": "An unguarded queen is captured here, and the side that takes it finishes the example with a net gain in material."
+    },
+    "takeId": null
+  },
+  "requestHash": "a236cd22edc108822ae3c3455915a255e598b72b104c09a719d7dfed2705c4ca",
+  "recordedAt": "2026-10-04T07:59:33.138Z",
+  "sha256": "ce78c7d262b47af560c1154ce81b3e7fa54ec537075f3e59ba9ef920440e1f1b",
+  "bytes": 25265,
+  "requestId": "xFZqIUqUobdgaqnt05gZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "edc5fb721fe112e8fcec91814fa8db0f3f164b65ed5eb9f07f90d2d99a6e4830",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

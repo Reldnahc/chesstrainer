@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "cause-opponent-threat-recognition-rook",
+      "label": "Cause opponent threat recognition rook",
+      "text": "The opponent's last move had teeth, aimed at a rook, and this move shrugs it off. That leaves the rook dangling."
+    },
+    "takeId": null
+  },
+  "requestHash": "657568b85ded3b45cb1422d0fbc2554b232ee30caff330478fd9b1038f6fb7a6",
+  "recordedAt": "2026-10-04T08:05:29.169Z",
+  "sha256": "90a68897d9cc9912e061756b679dfc0631e62d2271b14dfdbe94d9cb1af1c484",
+  "bytes": 23674,
+  "requestId": "t8HPvYDqg7ofpLAjL5Xp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "520ac4930b4407e73a280c0e9669d6413b72d58d6017f55003a990baed237cfd",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

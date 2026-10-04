@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "positional-support-actual-queen",
+      "label": "Positional support actual queen",
+      "text": "Cover restored. The queen that stood without protection has a defender again. Loose pieces get checked every move."
+    },
+    "takeId": null
+  },
+  "requestHash": "124120f8ad55f9f7eaac2b41a0cf756b89ada2b1b8ad11c8b14fb829f1a7fdc3",
+  "recordedAt": "2026-10-04T08:11:18.311Z",
+  "sha256": "7f3c009bd72dfd8e1ff41ee31c3bcf3dfa0d1410bcd907ee4cb7c937fe71662c",
+  "bytes": 24831,
+  "requestId": "J3JXffELHheFOF5FTbw2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "24f74edff56f84ed84ae4f2b124d56704a4b544cff58292d1bb76c1f6f9fc00c",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

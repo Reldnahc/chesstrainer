@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played-queen",
+      "label": "Tactic removing defender played queen",
+      "text": "Down goes the queen on guard. Now look at the piece it was looking after; nothing watches it any more."
+    },
+    "takeId": null
+  },
+  "requestHash": "d262011d36736886fd7de9494c0e53e42166ee3134790d999ce49b87b1cf106e",
+  "recordedAt": "2026-10-04T07:51:53.557Z",
+  "sha256": "1a35d0c2c42de1f776a5eeae787c60aa22622f04ffb0e06be566b2f07a5ff8b5",
+  "bytes": 21581,
+  "requestId": "DXCzIM5CzJBU72QRGh1a",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "28a3bf8df701c87bc44925c858075c6a55cc2c74e2d6119ef44fddf7a800c5ab",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

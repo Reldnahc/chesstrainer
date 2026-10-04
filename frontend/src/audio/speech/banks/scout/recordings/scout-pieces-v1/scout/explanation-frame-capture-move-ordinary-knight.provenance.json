@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary-knight",
+      "label": "Explanation frame capture move ordinary knight",
+      "text": "Capture. A knight leaves the board for good."
+    },
+    "takeId": null
+  },
+  "requestHash": "25d9f06b5eb0bb772711b6d3784ecb13df3556477e6d747632b61d2cf2b6df8a",
+  "recordedAt": "2026-10-04T08:08:25.111Z",
+  "sha256": "0bb9ea01501ddf6142e04929711c1ca7a8be5bd70a5eac4fe55773dc2b031190",
+  "bytes": 10411,
+  "requestId": "dfnAUmkEdjWsqLuynKr1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "18dd63fa46a1983bb13b8ba727fd89a1a6b5565beb5335090b636d5ea70c1cac",
+    "bytes": 52288
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

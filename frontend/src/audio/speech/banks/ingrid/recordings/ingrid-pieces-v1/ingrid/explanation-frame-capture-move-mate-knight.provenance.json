@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate-knight",
+      "label": "Explanation frame capture move mate knight",
+      "text": "The knight is captured, and the game finishes in checkmate."
+    },
+    "takeId": null
+  },
+  "requestHash": "d40c8ca6581353bb4b088e85624baccf1cd68190efdd6254f80e92e05c8ffd3c",
+  "recordedAt": "2026-10-04T07:49:34.686Z",
+  "sha256": "9e7dca9a3f0df86d3b7aba0582d95f7c4041f235e69ae1ab78cb8d982e81dd97",
+  "bytes": 13218,
+  "requestId": "aPxRehnLbnBHR1JLEkt5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c0572a6ebaa2de9e929fa72ff999bb76380f6280a41cada8661619baece0fe6e",
+    "bytes": 65245
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

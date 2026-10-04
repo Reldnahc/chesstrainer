@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-knight",
+      "label": "Explanation finding undefended capture gain knight",
+      "text": "Captured: one undefended knight, and by the end of the example the capturing side is up material."
+    },
+    "takeId": null
+  },
+  "requestHash": "83f35cf270a98a0ebd36133f73a8f5b8337e04a1b4b44ec993546270c5791856",
+  "recordedAt": "2026-10-04T08:13:09.400Z",
+  "sha256": "fcf456f621d983b14a1e14de735eb80bb65929134a26a757cb953a754f6c96db",
+  "bytes": 23198,
+  "requestId": "pmWKLPikEGTKiMoD9ETG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "38f29e21c409583d430f64ce3b6a758687814cab7603526ac640d9e8f14c1263",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

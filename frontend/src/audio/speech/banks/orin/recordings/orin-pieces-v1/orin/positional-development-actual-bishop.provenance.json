@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "positional-development-actual-bishop",
+      "label": "Positional development actual bishop",
+      "text": "Development is the first principle of the opening. This brings a bishop off its home square; note where it now stands."
+    },
+    "takeId": null
+  },
+  "requestHash": "90bd2fba5a41f26cbad07de98a48d2f37786d19501c1e261a23a5ceb13c3ef51",
+  "recordedAt": "2026-10-04T07:58:55.873Z",
+  "sha256": "b9df243fd8879b03dd9e3d88eeb8c7afdb5395fc3df2e02605967e3d81205d77",
+  "bytes": 25768,
+  "requestId": "1hdd9ekVanZk5xiift3s",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "384bf3cab276f8859c5504d5ddce11d686ac08510625712415894b3468f91a8f",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

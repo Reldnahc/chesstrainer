@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed-king",
+      "label": "Tactic discovered attack missed king",
+      "text": "The stronger move had a slingshot loaded, the king zipping aside so its partner could fire. Never launched."
+    },
+    "takeId": null
+  },
+  "requestHash": "bfcbd5147800b5de98e0eb12fb526e69915ff3699a182b82316a779687d6c3b6",
+  "recordedAt": "2026-10-04T08:05:03.584Z",
+  "sha256": "07809491583e5ebd54459dccdb4b215fb5376102d01dccf7aa51b7b7f6864b34",
+  "bytes": 21912,
+  "requestId": "kBb4OQXNSlDBeykGkAp3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6a57754a42444ed3c735142ffbebd8d026435a3f73a75ee82c6117307775ca54",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

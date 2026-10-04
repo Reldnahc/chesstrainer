@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-rook",
+      "label": "Tactic deflection allowed rook",
+      "text": "Deflection threat. After this move, the other side can drag the rook off duty. Map every defender's job."
+    },
+    "takeId": null
+  },
+  "requestHash": "8c7c5d30407bf6cdcfde6299a3d7002d394d4a7b5f628d007648c0a8290efa79",
+  "recordedAt": "2026-10-04T08:07:34.863Z",
+  "sha256": "4966380fa8103f0626103364f2f3855bfc6b39dd5efc354db2bff0b9ac8805ec",
+  "bytes": 23265,
+  "requestId": "ccmKJa6UhSWPhsZBjsMo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2a2b4d6fbc2acf07353ba503dcd3e582760b78cb3346f2bc524360d2ce9be05c",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

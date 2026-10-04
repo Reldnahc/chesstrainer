@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-bishop",
+      "label": "Explanation finding skewer collected bishop",
+      "text": "Skewer cashed in. The bishop in front moves off the line, and the piece behind it is taken along that same line."
+    },
+    "takeId": null
+  },
+  "requestHash": "c458dc0e3ae46f6b5c6ef1e95d82c7be764b8098f673cf06b91be16f631c7656",
+  "recordedAt": "2026-10-04T08:07:50.170Z",
+  "sha256": "3603a0642d8c9d823352dbff36045f5c2096ed7bcb3d614b7889cccfec1f99b3",
+  "bytes": 22561,
+  "requestId": "9fCpWhEfR2R6xum5XC0z",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d670d3bff108f1c202329eb58ada3a03a7958d5e8d8794f70a34af838913f910",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

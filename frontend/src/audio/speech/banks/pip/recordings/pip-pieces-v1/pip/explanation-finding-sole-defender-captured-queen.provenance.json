@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-queen",
+      "label": "Explanation finding sole defender captured queen",
+      "text": "First the only defender, a queen, goes. Then the piece it was guarding is taken too. The first capture is what makes the second one work."
+    },
+    "takeId": null
+  },
+  "requestHash": "cfd68360364d2020e6ead0776a1278409d68cbbddedb67fd53900a38f363fe2f",
+  "recordedAt": "2026-10-04T08:04:26.393Z",
+  "sha256": "7048e5c39e24313d4c9252cf3d8b3e1c3e187a0a00a1a0e3b1777ae4c20af2e2",
+  "bytes": 32023,
+  "requestId": "mKBtuVLtEy94HJ9KgMYa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "68ce12595d0943991939dcf83268a2c70adb2900006d874c1ad04e3331f95ba7",
+    "bytes": 163466
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

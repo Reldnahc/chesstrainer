@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "tactic-back-rank-missed-rook",
+      "label": "Tactic back rank missed rook",
+      "text": "X marks the back rank: another move had a mating idea for the rook against the king walled in by its own pieces. Here, the move points elsewhere."
+    },
+    "takeId": null
+  },
+  "requestHash": "aff9768f0135e66f41826708a351c5401d41e47be1339d3bf4324929926a3bd8",
+  "recordedAt": "2026-10-04T08:09:21.983Z",
+  "sha256": "d79ea36ebe4a59186228c8077f96a33c3aff388670164e050f9ea4587f2ab134",
+  "bytes": 31280,
+  "requestId": "QGUzo1JG29fbR7mATxiH",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e2bd926aa50a1422124fb6d49cdf2bd5899c1a5c62289887549d1f8ac5e86ae0",
+    "bytes": 160958
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

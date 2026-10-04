@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-rook",
+      "label": "Explanation finding undefended capture gain rook",
+      "text": "Nobody was watching that rook, so it gets taken. That side comes out ahead on material in this example."
+    },
+    "takeId": null
+  },
+  "requestHash": "713e3658b1060fbf9f48b16db419f3f3a2e3f0400fb2eb2e705d50e913b5a07e",
+  "recordedAt": "2026-10-04T08:01:12.788Z",
+  "sha256": "a524008e9e9ebf058f325d0806d8af64a69f3acfa95d2623c13852371de55e4c",
+  "bytes": 20429,
+  "requestId": "C4NnVwMAir1xICdTCG6u",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "709a239907546db7f3199a4dc9c952d3a132d59d25cb5ef037d8b1b9f0da4a66",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

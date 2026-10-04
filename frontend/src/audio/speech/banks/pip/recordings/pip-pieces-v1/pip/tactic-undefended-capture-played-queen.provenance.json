@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-queen",
+      "label": "Tactic undefended capture played queen",
+      "text": "Grand, nobody was minding that queen, and off the board it comes. Loose pieces are always the first thing worth checking."
+    },
+    "takeId": null
+  },
+  "requestHash": "72a5e4d2ef9acfdebc8fad387775602c4751e7b59d5f4e2990ff1f38399d41fa",
+  "recordedAt": "2026-10-04T08:03:27.717Z",
+  "sha256": "3b5534fd2369b901bc627701f8ae235c8d30871c9e6298a747c25df7eac1f587",
+  "bytes": 25890,
+  "requestId": "ubZy6Kwkd45iInxLiUtc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6d2e3029601a592a4012a142ca750776c607935898cf2e48eab064eb179c9432",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

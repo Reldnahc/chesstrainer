@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "tactic-pin-allowed-bishop",
+      "label": "Tactic pin allowed bishop",
+      "text": "A pin binds a piece to the king behind it. This move lets the other side apply one, and the pinned bishop would then be held on its line."
+    },
+    "takeId": null
+  },
+  "requestHash": "576ab47157bbefd266c4dd6f84dcfe496d62e97b270e7ba4b75165a3735a202e",
+  "recordedAt": "2026-10-04T07:57:55.773Z",
+  "sha256": "875d6ab7dd10457d8e404d61f32c115a367a12026186e3bfcdff11c56c4979dc",
+  "bytes": 29815,
+  "requestId": "PcTKZCsBDj14jnJUKY6s",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b1ba30f5e53d5c4473e2fb67a37deca2288bf5c41c54d04d25e278c54b6f0921",
+    "bytes": 153435
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

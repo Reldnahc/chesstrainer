@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "grade-brilliant-2-rook",
+      "label": "Grade brilliant 2 rook",
+      "text": "A rook put up for the taking, at a real cost. The checked line says it is sound."
+    },
+    "takeId": null
+  },
+  "requestHash": "6c8604e7c52ac947d09afc2f9f8d7b183517d058841cef3b99f6eeaf33da3a36",
+  "recordedAt": "2026-10-04T07:58:03.933Z",
+  "sha256": "4232d8d46faaebc9da4807d68d7868da0055a65ec57e50efd81244e3be342d91",
+  "bytes": 18341,
+  "requestId": "GalEhYYJrSSk04RFDMgU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7a28e4588d620d78a4170c002d94d0013a4b63c5345507d6c0629b886531e0f0",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-fork-allowed-queen",
+      "label": "Tactic fork allowed queen",
+      "text": "This permits a fork. An enemy queen can now attack several targets with a single move; pinpoint it first."
+    },
+    "takeId": null
+  },
+  "requestHash": "c3cd38ee1c558bff0a5a0a113aa2371679b35191d361f5ad398ab1a8cc28f9eb",
+  "recordedAt": "2026-10-04T07:49:48.476Z",
+  "sha256": "c605bab0fc309c18f7905f9ee314bdd7357043ffdf5ae1a8fad515d52e2d003f",
+  "bytes": 24080,
+  "requestId": "5aKVNKJOtYAPb83eoqRs",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e3ee1a7a9dbd44eab63c4e7be3d4153880cd27f2030c2e1c37100f18bb2c7411",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

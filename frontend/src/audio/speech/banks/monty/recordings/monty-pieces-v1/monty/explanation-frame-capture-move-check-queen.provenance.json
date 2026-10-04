@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-check-queen",
+      "label": "Explanation frame capture move check queen",
+      "text": "Capture and check together. The queen is taken, and the king is attacked."
+    },
+    "takeId": null
+  },
+  "requestHash": "ffc7efe8e6b7c332b12351053e955b9b74c02e32becd4f0c90e8aa0432c9ea16",
+  "recordedAt": "2026-10-04T07:57:30.805Z",
+  "sha256": "f06db25b235ef87f825dad5c21ce6e3f84206c85ac48d4b54224a5d3543c681d",
+  "bytes": 16227,
+  "requestId": "STZSTH7IdDZfCMz16hUI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "76c926b2b2fcb1041acc13b0c9994bc88484d5c7a9b6a7f74acc04ad2203346d",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

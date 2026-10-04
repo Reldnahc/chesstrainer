@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-pin-played-rook",
+      "label": "Tactic pin played rook",
+      "text": "The main thing is the pin. That rook has its own king behind it, so it cannot leave the line."
+    },
+    "takeId": null
+  },
+  "requestHash": "6d5bf5403bd99daf812a36cd2659ebf011a0e139ff82e4c0f59ffa6c5fb89084",
+  "recordedAt": "2026-10-04T07:56:36.831Z",
+  "sha256": "0737d365168da1434b728ae54cc95b9d69e9a8ba47a36b8acdb80a209142cac4",
+  "bytes": 20025,
+  "requestId": "LxnSKMs2Y0ImXyCxmAM7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ae066f057ab5cd9f321f879f46ba671a4fedd4e4b7d9a5faa5973ae23fb01b52",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

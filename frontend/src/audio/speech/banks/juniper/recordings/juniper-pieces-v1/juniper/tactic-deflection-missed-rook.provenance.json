@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-rook",
+      "label": "Tactic deflection missed rook",
+      "text": "Another move could have coaxed a defending rook away from what it held. That deflection stayed in the drawer. See what the rook was minding."
+    },
+    "takeId": null
+  },
+  "requestHash": "a4412d99869a994b456dc34dce7e8a6bdd321500e1abfb1afdd54101d0b0926d",
+  "recordedAt": "2026-10-04T07:52:04.789Z",
+  "sha256": "b1df2f4b49a1c93e9ffe6083db037f9d7598130f92c54db37bfdf6807159efca",
+  "bytes": 28274,
+  "requestId": "FV17uPxIntZFEXPPAHVU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b76bd3d0a38f6a5073f660bcc204dc2ad71c8e759671f0e86172026e61117174",
+    "bytes": 147165
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

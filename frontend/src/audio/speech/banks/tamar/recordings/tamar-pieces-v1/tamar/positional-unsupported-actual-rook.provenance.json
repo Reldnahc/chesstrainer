@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-rook",
+      "label": "Positional unsupported actual rook",
+      "text": "A rook stands alone. No defender covers it. That is a weakness to watch, not a lost piece."
+    },
+    "takeId": null
+  },
+  "requestHash": "f009dbb9cd1670f3886a43cac32a5b1d296be37a2e62480f7dcb7f731414059e",
+  "recordedAt": "2026-10-04T08:10:55.723Z",
+  "sha256": "9f50afea2b6b3deaf50a8bc3274a2b9cdfc3cfb032797ca48c56b7eb41f50f98",
+  "bytes": 22752,
+  "requestId": "r0hXnlW7X8AueojjzkfG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dc3eb039eab868fa73da12c8cca2cee9e8082289064ff2599fc4b62452be0c80",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

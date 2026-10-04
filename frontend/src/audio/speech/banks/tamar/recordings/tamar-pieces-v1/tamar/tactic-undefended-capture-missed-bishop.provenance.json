@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-missed-bishop",
+      "label": "Tactic undefended capture missed bishop",
+      "text": "Free material stayed on the board. Nothing guarded that bishop, and it was left alone. Count every loose piece before a quiet move."
+    },
+    "takeId": null
+  },
+  "requestHash": "498e724950d5beef84e0252a03fa631d55711a98c1594597c33e2b539fa81c31",
+  "recordedAt": "2026-10-04T08:10:32.337Z",
+  "sha256": "c539b7f77f9876a8f08d092f5796e33d701cb71b8733ecdcb9d71d8264b1a2a3",
+  "bytes": 27152,
+  "requestId": "atQqsdUWnfYOp3fk6XA0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a02ed4c45d4586dc958e1660ad726c29ec9de4910965c690894e188f8815b2bd",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

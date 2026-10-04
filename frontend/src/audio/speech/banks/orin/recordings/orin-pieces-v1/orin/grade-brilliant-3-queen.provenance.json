@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "grade-brilliant-3-queen",
+      "label": "Grade brilliant 3 queen",
+      "text": "There is a kind of magic in giving up a queen and having it hold. Mark this one well."
+    },
+    "takeId": null
+  },
+  "requestHash": "946749da0be0d293f4e41e93f64f4594a90db1ab5e6d6fd84072fa23fa45b8b2",
+  "recordedAt": "2026-10-04T07:59:32.113Z",
+  "sha256": "83357195c830678503963101898c9c452e364a302c952e07514fefc58ae0ebd5",
+  "bytes": 19723,
+  "requestId": "89exBC1AOqVYNdvWQzpz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3a9f54a33e974316ec73bc5c6a66ddf39641353327c0e5f26373866991afc503",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

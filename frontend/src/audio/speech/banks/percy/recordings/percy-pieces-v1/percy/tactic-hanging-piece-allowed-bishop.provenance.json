@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-hanging-piece-allowed-bishop",
+      "label": "Tactic hanging piece allowed bishop",
+      "text": "Spot the problem: a bishop has been left with no guard, so capturing it would cost the other side nothing. Where is it?"
+    },
+    "takeId": null
+  },
+  "requestHash": "1abc7a1bf1b47e05d5600cdb08d8906995981e67bb7136e203a2d7d6cfd2d6d7",
+  "recordedAt": "2026-10-04T08:00:19.497Z",
+  "sha256": "2bf529e9ab0f42db50ca6f19ce0669997c8b8a01718152abb7569157a2571b5f",
+  "bytes": 24165,
+  "requestId": "i06TnBsHpnqip0cbKtD5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7fae65fcb66020ebc35d08e5fcafc06bdeabcaa5d373b8efece0e2ea619a4e0d",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

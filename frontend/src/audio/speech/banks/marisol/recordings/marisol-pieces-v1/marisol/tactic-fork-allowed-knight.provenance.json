@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-fork-allowed-knight",
+      "label": "Tactic fork allowed knight",
+      "text": "One detail is different after this move: an enemy knight can now reach a square from which several targets are hit together."
+    },
+    "takeId": null
+  },
+  "requestHash": "96cfa3648915f58013ffbebdcb8c9a72bda55aa5ad701b903b5242f2c936c0a4",
+  "recordedAt": "2026-10-04T07:52:58.443Z",
+  "sha256": "e9cf6de2aed7aa384f949b975516e273fe34777ba5760621798918d2cba3007c",
+  "bytes": 23868,
+  "requestId": "LOMieZ4NhRLCXf9tIBsl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9639ac1af240ac5224da9897a0891e818949c631042d0ca8d9686f168c21e2da",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

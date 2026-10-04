@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-queen",
+      "label": "Positional unsupported actual queen",
+      "text": "Defender count for the queen is now zero. Zero defenders is a weakness, not by itself a loss."
+    },
+    "takeId": null
+  },
+  "requestHash": "164f4d5cd6c0d1ddaa8bfa73577eee026e2acd351e4237b82c9d972fab700655",
+  "recordedAt": "2026-10-04T07:50:27.359Z",
+  "sha256": "cccb95b0f1543e08aecb89c20927128a18712e1b721e12eae458e8dd4cc127c3",
+  "bytes": 23321,
+  "requestId": "GHMeXR8XT64ax2IxacTj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "31554274ea5cc75ae2b3a3cac38b89a48409bf75ab04256eb02346259dd3cd39",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

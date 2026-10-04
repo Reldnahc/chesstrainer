@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "grade-brilliant-2-bishop",
+      "label": "Grade brilliant 2 bishop",
+      "text": "A bishop put up for the taking, at a real cost. The checked line says it is sound."
+    },
+    "takeId": null
+  },
+  "requestHash": "ef3de91f0287ce86b110c18a650c50a56a7ef526a78cd6bd86bfb4f18519b36a",
+  "recordedAt": "2026-10-04T07:58:02.315Z",
+  "sha256": "1969795dd3761bc70f1c4ed5abfed8ceee773a8915a5702a35b5e041747edc3f",
+  "bytes": 19143,
+  "requestId": "6NTqtChlOlVVWJYLEJsR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "07f20867cbcf651e8ceec1733f70a84e89bd8502a2c2f19e17943447a6674f17",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

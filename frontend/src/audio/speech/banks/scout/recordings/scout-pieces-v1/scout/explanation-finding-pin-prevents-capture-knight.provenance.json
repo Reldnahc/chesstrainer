@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-finding-pin-prevents-capture-knight",
+      "label": "Explanation finding pin prevents capture knight",
+      "text": "Pinned, can't capture. That knight is tied to its king, so the marked capture would expose the king and isn't legal."
+    },
+    "takeId": null
+  },
+  "requestHash": "37125f2092fcc38cad2904e868331362abfe7b822c27ec458baf2ff8e4c96bc2",
+  "recordedAt": "2026-10-04T08:07:49.936Z",
+  "sha256": "e72131dbeb658b500c81b664a6a396f587575b00ae18b78121f5b5d78dfcee28",
+  "bytes": 24435,
+  "requestId": "uF6RuYJeoSdSvMcdkDtU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fb841e4b0853b5455986a8add5b69596ef9db3041a625331e8f9a6a484c55c4a",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "positional-support-alternative-rook",
+      "label": "Positional support alternative rook",
+      "text": "Another move would have given a guard to a rook that has none right now."
+    },
+    "takeId": null
+  },
+  "requestHash": "0b040c638d69ca702367dfc0a24fd764c5a1f3b00fe60a227f2b04ab0dce8034",
+  "recordedAt": "2026-10-04T07:49:14.724Z",
+  "sha256": "de8dcf6cd16353c4bdecca224b899dfa6e5c33d00b646055b8c9d83b316f0799",
+  "bytes": 13983,
+  "requestId": "fX74ptagM1OdBGMRF4kb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3e7da86ab373151681256d5150e328ec92d15cdec7e1d08514219e2a6fde4804",
+    "bytes": 67753
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

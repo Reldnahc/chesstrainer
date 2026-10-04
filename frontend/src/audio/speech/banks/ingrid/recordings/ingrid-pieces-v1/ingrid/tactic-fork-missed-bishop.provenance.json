@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "tactic-fork-missed-bishop",
+      "label": "Tactic fork missed bishop",
+      "text": "The stronger move had a fork tucked inside it, the bishop reaching for several targets together. Worth setting it up afterward and playing it through calmly."
+    },
+    "takeId": null
+  },
+  "requestHash": "3252af88051457927363f57ad19ebbfe9e4c1aea9c85a7749c19cc201f3f0e97",
+  "recordedAt": "2026-10-04T07:48:27.140Z",
+  "sha256": "9e7f609dd9084c2f4f96e0532455408052cc019e6e5d9d91ac888b191931dfd8",
+  "bytes": 30731,
+  "requestId": "zZzyUggwFmWstO8W606a",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "47d757be96ed02bd0983a9c93e57285c530144909cec1be94227162312cd73ee",
+    "bytes": 155942
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

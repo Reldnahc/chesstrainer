@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "support-restored-queen",
+      "label": "Support restored queen",
+      "text": "Remember the queen that got left unguarded earlier? It's covered again. Back under protection, where it belongs."
+    },
+    "takeId": null
+  },
+  "requestHash": "187edc610a4e0992e4fc9b2d3f9f847445e7d22e4f16f437f74cfae5e42256c1",
+  "recordedAt": "2026-10-04T08:00:46.339Z",
+  "sha256": "facf188d8690960966bb56c352596d3ecdbdc04ccc8ac26068310da6b75da804",
+  "bytes": 21187,
+  "requestId": "a9InwIuLBeNTGhOAIcmE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "20a68993e6e6bbd61a8bd5be8b5cc86cfee7b1530bb450312b2428c62d55e89f",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

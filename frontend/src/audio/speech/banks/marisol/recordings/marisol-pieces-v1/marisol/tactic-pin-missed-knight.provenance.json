@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-pin-missed-knight",
+      "label": "Tactic pin missed knight",
+      "text": "With the stronger move, an enemy knight would have been fixed in front of its king, with no legal move. As it is, that knight stays free."
+    },
+    "takeId": null
+  },
+  "requestHash": "d0935a5ad5b3813fdf10a19e9a4c48f6039dbe763eb210e9ede8bbf4a2a73797",
+  "recordedAt": "2026-10-04T07:53:05.889Z",
+  "sha256": "7ae57e74cf9bdd2c294f16af7c0f7b254f993b2c7869f3836355ff38e6c1f77e",
+  "bytes": 28017,
+  "requestId": "pb4mxnqmdhFbKrTA4Ahe",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d419d620347368366c81c976f0c9305f4b609dec31d5a019b468913de2e2608a",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

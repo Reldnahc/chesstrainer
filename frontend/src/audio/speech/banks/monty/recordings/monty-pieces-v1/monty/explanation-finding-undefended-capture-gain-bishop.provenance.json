@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-bishop",
+      "label": "Explanation finding undefended capture gain bishop",
+      "text": "That bishop was loose, so it goes. This example ends with the capturing side holding extra material."
+    },
+    "takeId": null
+  },
+  "requestHash": "3f512ab45288762adc5a6fb7042ee726f12c751508722151e55229e90101d069",
+  "recordedAt": "2026-10-04T07:57:32.677Z",
+  "sha256": "8c631544cbb6b4ba67ff06f72973bf786917374221c5c0dc03f89511cadedc18",
+  "bytes": 22803,
+  "requestId": "ZVqJOdGIfo6W9prTkjXD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f451ae20e41f0d3e8c241f544bed1602ffeb4536632ac768906deaf5aea609aa",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-fork-played-knight",
+      "label": "Tactic fork played knight",
+      "text": "The fork lands. A single knight now has several victims, and usually only one of them gets away. Notebook rule: study the square it came from."
+    },
+    "takeId": null
+  },
+  "requestHash": "6d391f53c49fdcc3ef1916e2ab4beda7c5d8f3337a852cb4aaab8546a2472b2f",
+  "recordedAt": "2026-10-04T08:10:03.101Z",
+  "sha256": "c5c57d341bfacec6069c8a562e73cb8678f8849b2f86de519d6d0a2f5e219672",
+  "bytes": 31481,
+  "requestId": "HEp9ugMFDYNFX2H3IVqJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "24392b5d11f2da24b8d04aba08a8df6a9aa2f869e7e84561652be397ad7686d2",
+    "bytes": 163466
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

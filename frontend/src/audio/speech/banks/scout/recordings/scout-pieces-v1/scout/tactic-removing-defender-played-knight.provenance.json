@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played-knight",
+      "label": "Tactic removing defender played knight",
+      "text": "Defender down. This move captures a knight that was guarding something, and that something may now be loose. Spot what it was covering."
+    },
+    "takeId": null
+  },
+  "requestHash": "c32cdb56b08f06d7b846806bc3dd5a3d7e41e6d6bc6cec1c751631b1a3d86ef7",
+  "recordedAt": "2026-10-04T08:07:07.574Z",
+  "sha256": "cc8c9424b53aafceb1421851257cb9bf2650050e3fa1942be81c285b383fce08",
+  "bytes": 25013,
+  "requestId": "PnwcW4w2gVCIGIt1oOMI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c9be2d9cd772948a708d21a899611b715e7732233f82f07f89927ed63c739b0a",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

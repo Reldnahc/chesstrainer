@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed-king",
+      "label": "Tactic discovered attack missed king",
+      "text": "A quiet discovered attack waited in another move: once the king in front moved, the piece behind it would strike. It stayed hidden."
+    },
+    "takeId": null
+  },
+  "requestHash": "d95aa767c7a13edb538fb3f3ccaec0bfbc4904781e6f79d202d93e2ce69c3739",
+  "recordedAt": "2026-10-04T07:51:22.322Z",
+  "sha256": "0dec9f535cf4e221807390bf99b9e941c9913eda5c79d73e9b3009e42d4adb1c",
+  "bytes": 28380,
+  "requestId": "pDlF16jDNna5UtDNZIS6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1abd913f6e38eab5519004cc3d362d5b99a75526d73b1f7859d1fc52ff144be9",
+    "bytes": 149673
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

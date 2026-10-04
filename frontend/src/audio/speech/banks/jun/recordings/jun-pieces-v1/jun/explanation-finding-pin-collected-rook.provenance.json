@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-rook",
+      "label": "Explanation finding pin collected rook",
+      "text": "The pinned rook cannot leave the line its king stands behind, and it is captured before the sequence ends."
+    },
+    "takeId": null
+  },
+  "requestHash": "afdb98a5c626f848aef27d855ae45960a28d9083f64888f43942cbe4d34865d6",
+  "recordedAt": "2026-10-04T07:50:43.562Z",
+  "sha256": "921d2f70e7ed6841f7ecf3e40090a571035062ac030bf5b31fba6ee2d5a30755",
+  "bytes": 20805,
+  "requestId": "JprTnIGGIC81KLupB7AA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "830fde1be7f3dcac09e106c7a44087257be79b171733ca7ad701777537e8247a",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

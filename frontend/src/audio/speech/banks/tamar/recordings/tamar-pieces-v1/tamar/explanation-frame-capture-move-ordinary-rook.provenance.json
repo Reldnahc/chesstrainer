@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary-rook",
+      "label": "Explanation frame capture move ordinary rook",
+      "text": "This move captures a rook. Count the material afterward."
+    },
+    "takeId": null
+  },
+  "requestHash": "a61fa28d6b57cf39d0d350cb660be54484e4e0173a2fd629420f2e8bead38f7d",
+  "recordedAt": "2026-10-04T08:11:56.462Z",
+  "sha256": "a118f918620548dc110c48a97650a0747332e8b6bca524b4cca79c1343f0cc5f",
+  "bytes": 12827,
+  "requestId": "xitP3URvPsB2l9PeZDVC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "15f6616d9763c6f5787cacc582dd1b6be09c3a46c8f36b5270b3054f02aa5b5f",
+    "bytes": 65245
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

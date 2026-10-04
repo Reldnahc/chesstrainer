@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "positional-development-actual-bishop",
+      "label": "Positional development actual bishop",
+      "text": "Bishop deployed off the back rank. Another unit on duty!"
+    },
+    "takeId": null
+  },
+  "requestHash": "f8c7b13939bbc2c00a85e37435cf1d4921808c859832f69e44c05134a6309789",
+  "recordedAt": "2026-10-04T08:12:48.640Z",
+  "sha256": "74ebb28d33c0cd0064a901cc36ec243c0338ae96e7245882ec5a211b5e2d948c",
+  "bytes": 14343,
+  "requestId": "la8S1p1ft84Kdt3jsCt8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f4eff2abb816ba81584534491a3519a8d73db6d71b77ff2eab60e0bc1526e992",
+    "bytes": 70261
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

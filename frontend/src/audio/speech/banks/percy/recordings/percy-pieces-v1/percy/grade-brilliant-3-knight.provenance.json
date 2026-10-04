@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "grade-brilliant-3-knight",
+      "label": "Grade brilliant 3 knight",
+      "text": "Now that's a sacrifice! The knight pays its price up front, and the idea is sound."
+    },
+    "takeId": null
+  },
+  "requestHash": "2f146f98cda03052d070906e0b6c6038f9e0ee6d0720545014142a8550dd3568",
+  "recordedAt": "2026-10-04T08:01:13.581Z",
+  "sha256": "8ff8220492f12d469c023e98fd5795a785e7a7c47979060f9d334ab39e40ab23",
+  "bytes": 18541,
+  "requestId": "LwSbAIycfpEvYb6kTKBD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a527264d81202153bfa2540e7d7686cf6bccf33cfbb664db136f6be1d0848aee",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

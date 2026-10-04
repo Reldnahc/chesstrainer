@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-knight",
+      "label": "Explanation finding sole defender captured knight",
+      "text": "First the lone defending knight is captured, and then what it guarded. Notice how the first capture opens the way for the second."
+    },
+    "takeId": null
+  },
+  "requestHash": "497c5151188944c2830abe85b2f7e24028c95651c2ae3303423e32eae3f8d60d",
+  "recordedAt": "2026-10-04T07:52:23.038Z",
+  "sha256": "c637861bd1fff3119c0de362a694b0410a58072c6eff3fbf04e90619717f6c41",
+  "bytes": 27158,
+  "requestId": "sqpxTVDS4XqjgEGyY2wo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c94e381b0c41822d382a79b2b1a1563bf473dc4d9821b3fc56ff32aa8659897b",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

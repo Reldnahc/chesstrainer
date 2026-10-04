@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-rook-queen",
+      "label": "Explanation finding double check rook queen",
+      "text": "Double check. The rook and the queen attack the king at once."
+    },
+    "takeId": null
+  },
+  "requestHash": "894027b6023b0845164ea80a22fa2d02c87391bfe1408375438cfca3a0113a24",
+  "recordedAt": "2026-10-04T08:14:54.382Z",
+  "sha256": "3c920a6edacfd440d6e28d7bef7cd8c4ee4acc459680fbb823deb2fa6b6465ba",
+  "bytes": 14496,
+  "requestId": "KznmXTRPxnk2yHNSAPBe",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "111c54d091067224ed7299d3ad0994f99f66cff25bb314af9ed9d61cb6ec02b8",
+    "bytes": 74022
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-bishop",
+      "label": "Explanation finding relative pin released bishop",
+      "text": "The opponent's last move snipped the relative pin holding the attacking bishop. The target sits tight, and the line shown gobbles it."
+    },
+    "takeId": null
+  },
+  "requestHash": "ba051fb3581a3d4133130c85867ae346b408749ebcf3a1bdf79036839d4ca9bd",
+  "recordedAt": "2026-10-04T08:05:46.746Z",
+  "sha256": "2dcbf74a913c3ec148dc243f8c677e3323176eb7905422b8c0b3ea0a385fc961",
+  "bytes": 26841,
+  "requestId": "C9WgnRXZe04Y56mpwHHl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "86228d49c86f15ef01dfba4619bd96ef161e5ebcb05f43399111f51040f46950",
+    "bytes": 136716
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

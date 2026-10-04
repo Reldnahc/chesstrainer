@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-bishop",
+      "label": "Explanation finding undefended capture gain bishop",
+      "text": "An unprotected bishop is captured. The capturing side finishes this example ahead in material."
+    },
+    "takeId": null
+  },
+  "requestHash": "236158e1429498cd308b4ac7e3d49c221dc1a96872fdb1852a551d6fe9f7edec",
+  "recordedAt": "2026-10-04T07:51:05.511Z",
+  "sha256": "e09d9e7db6ccd5089e4456aad50cbd53471f4022edcfb2b73326565ad2b2b740",
+  "bytes": 20670,
+  "requestId": "gjN2dHz7oNqsZydzBkUJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0b931d99f6026943b73183eb155148c5a1a5efbbafc4d06ffd40e5a090fef6b3",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

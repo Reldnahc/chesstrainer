@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-rook",
+      "label": "Tactic deflection missed rook",
+      "text": "The deflection was on. A different move would have pulled a defending rook away from its post. When a defender has two duties, hit one of them."
+    },
+    "takeId": null
+  },
+  "requestHash": "be631472ee81815170e27d46e48d4d0bcd649a0d01c94342e16d3f5c490a8c39",
+  "recordedAt": "2026-10-04T08:10:59.852Z",
+  "sha256": "979abddb61a3e0a06083091131785fb18ec301687bca54dc1c1a50b115821e2f",
+  "bytes": 27898,
+  "requestId": "ZGCpUhvmaRMgjeVXiXG9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "852ff8facb94c8522e8de06199ec699617c1ef861bf93d7116a348ac7e015265",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-missed-bishop",
+      "label": "Tactic undefended capture missed bishop",
+      "text": "An unprotected bishop was available for capture with the stronger move. Check for undefended targets before quiet moves."
+    },
+    "takeId": null
+  },
+  "requestHash": "b5d531012b213b4bd5aa20ceaf642d3913bd9c022465c68ef2fa86a40ef6980c",
+  "recordedAt": "2026-10-04T07:50:04.836Z",
+  "sha256": "1f1c12ea777c82db5ad05d2ccf178a88928511792b6cd1921017fcccf82337d3",
+  "bytes": 25285,
+  "requestId": "0bprYiA1kEwNswb4UZeV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a1372118c2e1e80d4b295a465439dbe6e8747888bb96ed8e89e46e9d0362b410",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

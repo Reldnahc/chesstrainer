@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "tactic-back-rank-missed-queen",
+      "label": "Tactic back rank missed queen",
+      "text": "A back-rank mate idea for the queen was there, the king hemmed in by its own pieces. This move goes another way, and the idea goes unplayed."
+    },
+    "takeId": null
+  },
+  "requestHash": "885398ffa5ded5940b081a40d8597c2984957ffe1839e591008c94aeb005f2a7",
+  "recordedAt": "2026-10-04T08:14:19.144Z",
+  "sha256": "2ca18fffce0e8e0677392912a483cbe83dba0e5fdf93d39c42a7e68051f7efd8",
+  "bytes": 30209,
+  "requestId": "6Jvk2o4tSgB8ct62V40K",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d46668cc211a9ec3f83a6cac3e22256239c9b5e8ccc553987585c0baaca6f63a",
+    "bytes": 155942
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

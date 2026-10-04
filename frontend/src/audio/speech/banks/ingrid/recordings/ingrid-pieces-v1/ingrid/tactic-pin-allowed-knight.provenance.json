@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "tactic-pin-allowed-knight",
+      "label": "Tactic pin allowed knight",
+      "text": "The plain issue is a pin: after this move, a knight standing in front of its king can be pinned there and won't be allowed to leave that line."
+    },
+    "takeId": null
+  },
+  "requestHash": "1c839646d45c1964216ffdd7c73beb005915e809abccee1cf1dd7517533fbf49",
+  "recordedAt": "2026-10-04T07:48:04.246Z",
+  "sha256": "8fdd4c6d1ea351f314314b25b8a7d6ba1fac13ed23516a8e76d307b48b8b4fc4",
+  "bytes": 29320,
+  "requestId": "T51CNj36GoY9Zw283Eyo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "21054ee45560d7b2dff487217be2c5f9ccbdc14aa52a7d4190f452b8e46eab26",
+    "bytes": 147165
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

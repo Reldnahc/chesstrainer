@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-knight",
+      "label": "Tactic discovered attack played knight",
+      "text": "Discovered attack, launched! The knight in front moves off, and the piece behind it goes on the attack. Two units in action off a single order."
+    },
+    "takeId": null
+  },
+  "requestHash": "c715603f404b13c02633c475b8f55bf2796f59f2d7dcbef99312c5053f39b1ab",
+  "recordedAt": "2026-10-04T08:12:08.754Z",
+  "sha256": "b83fbc94d8cb4d3366238229b5dd2d6f261e922636c212116bc7402e923bc881",
+  "bytes": 30993,
+  "requestId": "ngC9Iq4sI6Q0TnfN33T1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dbf7d39e5aa43347490117e2806e3fd54826de364c82ad28c8fd147e52d5aba6",
+    "bytes": 159704
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

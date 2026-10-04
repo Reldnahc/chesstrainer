@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-escape-knight",
+      "label": "Explanation frame capture move escape knight",
+      "text": "Taking the knight also brings the capturing side's king out of check."
+    },
+    "takeId": null
+  },
+  "requestHash": "3b684150ecc8705849e23c1fb9d987e12134131df84985f758e7a5ec9a035a27",
+  "recordedAt": "2026-10-04T08:11:41.548Z",
+  "sha256": "4cbabea5487c1b2a908d2383ef32543e4c8493e3e2f722b2805c7a6bba9fbe11",
+  "bytes": 14167,
+  "requestId": "dhzNhzFNdWkMjxbCkBN6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "384a46b6a0abdc5a400e343ce56259d8ae00eb7085b57bfc0496c353b452a01e",
+    "bytes": 69007
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

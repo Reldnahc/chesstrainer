@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape-queen",
+      "label": "Explanation finding pin restricts escape queen",
+      "text": "The attacked queen can't run, because it's pinned and its king still needs the shield."
+    },
+    "takeId": null
+  },
+  "requestHash": "912e19f7c8e3ca55d21f7cd68e07f63f6c4658567ea629f1dc294bfc402e9712",
+  "recordedAt": "2026-10-04T08:09:16.732Z",
+  "sha256": "0988b502a781c3b47f0d18ec5010beaf0cc56943bb6b0179a7378760cec31099",
+  "bytes": 18045,
+  "requestId": "u6uyoWttVxbHgFkamFG1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "64876c540013049a87e4e2c0403eb0ef6b82a8792b36a7e6e2b838cd7fe7597d",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

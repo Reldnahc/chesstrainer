@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-rook",
+      "label": "Explanation finding sole defender captured rook",
+      "text": "First the rook on guard goes, and it was the only guard. The piece it was protecting falls later in these moves."
+    },
+    "takeId": null
+  },
+  "requestHash": "58c32cf96b41c57456d57e85389fb6aa0c856837b498faf08904d29d77257f1b",
+  "recordedAt": "2026-10-04T07:57:25.853Z",
+  "sha256": "47d3bc0943aefea4649227aa455e156e4e14be5aae2f1c6d90c4cf7b2c25989b",
+  "bytes": 24082,
+  "requestId": "EQKRC19b35J625ovu7nx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "965780766629d3d6c1b1052703ab9ce8097e0445177ee65e046b10571cbb8387",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

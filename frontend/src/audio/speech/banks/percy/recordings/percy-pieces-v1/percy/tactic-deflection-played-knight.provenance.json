@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-deflection-played-knight",
+      "label": "Tactic deflection played knight",
+      "text": "A deflection! The knight on guard duty gets pulled away from what it was guarding, and the thing it was guarding is left wide open."
+    },
+    "takeId": null
+  },
+  "requestHash": "2d9aea8ecb1c30e45da261ecfcfcad8cad6f794946f1b7116dac424c486247a5",
+  "recordedAt": "2026-10-04T08:00:23.813Z",
+  "sha256": "3d16ce5d2aa3fbe6c25e47e1564cb8a9d0dcb16ffc316f739c91c8e8a852936a",
+  "bytes": 23120,
+  "requestId": "RbmC25lOtUZRdqJoJK60",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f452e4528ecf6e269f8a8645f7ab99048ee19dbe0d8cba9b42608768128629c5",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-knight",
+      "label": "Explanation finding deflection collected knight",
+      "text": "Deflection cashed in. The defender is pulled off its job, and the knight it was covering is captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "93f25f2e4879d68456565977c0a0a108615870db1fdc8c220f2b2de105c8d4ec",
+  "recordedAt": "2026-10-04T08:07:48.019Z",
+  "sha256": "85586cada04308aee370d727482ca284040832f0c96b29a095edb06fd18f4e44",
+  "bytes": 19167,
+  "requestId": "9q6y4gB7kpMyrWg5lHFC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e2b6af0a2087c0ab2bdc8d58dbd5caa6a6d6c379ba723e03e1dde9da7e3a21f2",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

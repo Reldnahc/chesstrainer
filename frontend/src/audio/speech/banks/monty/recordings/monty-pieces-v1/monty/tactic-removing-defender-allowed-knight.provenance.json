@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-knight",
+      "label": "Tactic removing defender allowed knight",
+      "text": "A knight is holding things together, and now the other side gets to knock it out. Look at what that knight holds up before it is gone."
+    },
+    "takeId": null
+  },
+  "requestHash": "33cadc2f95dc5260226020235fa299505528bc2210e243b02abfbc1bef3a537b",
+  "recordedAt": "2026-10-04T07:56:21.967Z",
+  "sha256": "57b68993036e0902dd765fdb9e3eb6b50dfa7dc7a743ba4222a0e4658ff74137",
+  "bytes": 25647,
+  "requestId": "BO3tAJwllnST2JmhuSJC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "933f9da5aa79ba784b40bba1bf469546d7259bd504bd259ce241d2899dc09073",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

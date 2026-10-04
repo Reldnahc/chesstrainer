@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-capture-queen",
+      "label": "Explanation finding discovered capture queen",
+      "text": "The blocker steps aside, the queen behind it gains a line, and it makes the capture along that line."
+    },
+    "takeId": null
+  },
+  "requestHash": "973f50d2d041974959fe4d60da46ad1af08b33c7810c3cc6319a49b7d2cd773b",
+  "recordedAt": "2026-10-04T08:16:17.540Z",
+  "sha256": "6d234f29e248b776ae8884c9b6a308dad4aec01aed5c26ca8a47cf36bdd6e995",
+  "bytes": 19943,
+  "requestId": "Lvu6EmEwAxj3PIpWTf4K",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "24c6041eac00ed5ff5f706287e7c11bb722c9f1ded729527896f46a1c8f6f9ac",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

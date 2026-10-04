@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed-knight",
+      "label": "Tactic discovered attack allowed knight",
+      "text": "Look at this line. Another enemy piece is hiding behind their knight, so when the knight steps off, the hidden one gets to attack."
+    },
+    "takeId": null
+  },
+  "requestHash": "bbcc9171e470e7e5551273a0812d30253891537f9a8515d1f9ad4442e323cf43",
+  "recordedAt": "2026-10-04T07:54:59.586Z",
+  "sha256": "7bd0b32b555f9914738624cdee731f5fcdd55a6781f7596083515b6af13ef20e",
+  "bytes": 25584,
+  "requestId": "yF8g0E49UAKOD4hVaZ6F",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5c548866e926fdc64889087a694e1c6b925046ba9dd34540310269aaaa670dbf",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

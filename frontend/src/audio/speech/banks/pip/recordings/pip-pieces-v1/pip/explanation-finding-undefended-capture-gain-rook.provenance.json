@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-rook",
+      "label": "Explanation finding undefended capture gain rook",
+      "text": "Nobody was guarding that rook, so it's taken. In this example, the side that took it comes out ahead in material."
+    },
+    "takeId": null
+  },
+  "requestHash": "109e5b058dece93d26e19003a9d4b334feaf4f44525a096b357f8ec884d70887",
+  "recordedAt": "2026-10-04T08:04:35.496Z",
+  "sha256": "9e8b35f0fe89df1049140904c6117c12936b92a3eb32f0ea3d12a50759ec3c1c",
+  "bytes": 24736,
+  "requestId": "r1JkMrDUY6BT07VeUxIm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0310a8cfe9715fabeaf222d750c26f85b43544b1b6da4f51ea150d99ebc6a7d0",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

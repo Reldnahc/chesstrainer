@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-queen",
+      "label": "Tactic deflection missed queen",
+      "text": "A defending queen could have been lured from its post by another move. No one reached for that deflection; study what the queen had to hold."
+    },
+    "takeId": null
+  },
+  "requestHash": "c85ed146419a26e22fe6356cc102a25ddc9adc39ddd1834dcf69a7c7d7ff223b",
+  "recordedAt": "2026-10-04T07:58:47.200Z",
+  "sha256": "0300e47d7fea338efb5b191011b702f50dcaf5c27ee406127f9be7777b81ac36",
+  "bytes": 30088,
+  "requestId": "0wnNKoCvnJ5tPdDtC6mW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4aa86187ac9178c50ea8518b6ed862f1685e9ccf8660560900821831c27099fa",
+    "bytes": 155942
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

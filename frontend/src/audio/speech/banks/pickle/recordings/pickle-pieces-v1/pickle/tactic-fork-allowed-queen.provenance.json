@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "tactic-fork-allowed-queen",
+      "label": "Tactic fork allowed queen",
+      "text": "Hmm, notice anything off? The other side's queen can now pounce on several targets in one go. That's a fork waiting to happen."
+    },
+    "takeId": null
+  },
+  "requestHash": "df0a31ccba2b9b3a549dcf34d400ca357b5b5bfe591df0ca0b843d6e889258f3",
+  "recordedAt": "2026-10-04T08:01:38.727Z",
+  "sha256": "519561f109684aa4c7e7427c38aa50fa768a40275c870db8ba3a92ebc1ad1ea3",
+  "bytes": 28592,
+  "requestId": "vq4Ew3R9BlAmFLwSkzfJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c96542f31de15852dc2141722ad6d4804582585ea0a76dd50849aa3a3f96ff0a",
+    "bytes": 148419
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

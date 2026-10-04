@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-king",
+      "label": "Tactic deflection missed king",
+      "text": "Another move could have coaxed the king away from what it held. That deflection stayed in the drawer. See what the king was minding."
+    },
+    "takeId": null
+  },
+  "requestHash": "e09419ad3cf6f50388eed5c021632471cca61e6d539bfa5215b551652801f7f2",
+  "recordedAt": "2026-10-04T07:52:08.921Z",
+  "sha256": "2620f3a41f2f3f54b36a39ecb031336e2aebcc8d324b8fd401ec98a774f51736",
+  "bytes": 25956,
+  "requestId": "MhdXyvYMDGdispqJWvb0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "632562d92054d9d0fa9e9dc57f5abf61ec983792baffca03d4f557416ff39223",
+    "bytes": 136716
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

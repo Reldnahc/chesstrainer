@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "tactic-skewer-played-rook",
+      "label": "Tactic skewer played rook",
+      "text": "The skewer is the pin turned around. The rook stands in front; when it steps aside, the piece behind it is laid open."
+    },
+    "takeId": null
+  },
+  "requestHash": "857f561e1f321de7729e69490fa45f14056580ff768d0b52f9533bd8ba0a0d5c",
+  "recordedAt": "2026-10-04T07:58:19.927Z",
+  "sha256": "1e3bbceb3ae53c2fd583596279d4db797ff56973ae7a512b5fc0362fe3412326",
+  "bytes": 27352,
+  "requestId": "qr32QtuA4j2EJNxc5wB1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9016ee3b10c45d8ea82f26b823223a0da80111a5fc39ce1a586ae4c8e1b25553",
+    "bytes": 142986
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

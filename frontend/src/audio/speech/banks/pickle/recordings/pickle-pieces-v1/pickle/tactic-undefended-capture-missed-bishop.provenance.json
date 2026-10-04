@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-missed-bishop",
+      "label": "Tactic undefended capture missed bishop",
+      "text": "Wait, there was an unguarded bishop up for grabs with another move. Nobody was watching it, and this move left it alone."
+    },
+    "takeId": null
+  },
+  "requestHash": "54f1afccd2c1da14e058d6facb07f95e4f81d7bbf4812f4807dba2966192a496",
+  "recordedAt": "2026-10-04T08:01:44.283Z",
+  "sha256": "1d9ea6bc791c9eea53d5d7b2821f98c0f81f6c150c35d6d7b4d5b794ecd1c5d5",
+  "bytes": 24271,
+  "requestId": "wqX1B6HyX6eAsHJhS6xE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9317b0bfc77d761f26b1340c13a0b3534d0707a483221eae24c5ac6c55358b8b",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

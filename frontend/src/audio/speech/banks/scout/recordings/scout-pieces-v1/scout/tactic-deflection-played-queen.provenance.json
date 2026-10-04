@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "tactic-deflection-played-queen",
+      "label": "Tactic deflection played queen",
+      "text": "Deflection. The queen on defense gets pulled off its post, and the thing it was covering opens up. Spot its job, then the move that broke it."
+    },
+    "takeId": null
+  },
+  "requestHash": "de489bf1458d84217ed626589af266a68ad7912515ad9362ec3489dda0427024",
+  "recordedAt": "2026-10-04T08:07:25.238Z",
+  "sha256": "0531235ee485d6421a0db0e0109138a492a13c2daf89007784c8f94489d3ac52",
+  "bytes": 28028,
+  "requestId": "sAP8YFTTMRT0cFHwSBBl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "981b51a1d2d3176b8e8123007e52b954896e241ac8d55683b8accf0ddf03730f",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

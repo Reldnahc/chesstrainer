@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "explanation-finding-pin-prevents-capture-queen",
+      "label": "Explanation finding pin prevents capture queen",
+      "text": "The queen cannot make the indicated capture, because it is pinned to its king. Stepping off the pin line would expose the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "b2ba46e704d7cfca863da74c516204480305585378425884bd6d6d415ad7e68c",
+  "recordedAt": "2026-10-04T08:16:19.722Z",
+  "sha256": "a8e071d477fcef1a900bf021bfed7964d6dd5ada7f9c76bce3ab4cf8e2322e51",
+  "bytes": 24181,
+  "requestId": "7LUWB452r9UoR0osv7fy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2ddee18e16797623fcb7e43e58069c599da2bd89f272327268373f709e60f50c",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

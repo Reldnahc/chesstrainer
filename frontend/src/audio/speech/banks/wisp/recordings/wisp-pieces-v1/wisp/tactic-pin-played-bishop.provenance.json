@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "tactic-pin-played-bishop",
+      "label": "Tactic pin played bishop",
+      "text": "The bishop on that line cannot leave it. It is pinned to its king, and stepping off would expose the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "d792f0980fbf549739e0db1c75c58acf730d4ccd2e28634500d7fa948e739b2a",
+  "recordedAt": "2026-10-04T08:13:49.664Z",
+  "sha256": "eae5191fac34cb9376502db95fda7ce483039fbb23748af9ca23cd95d9afb359",
+  "bytes": 22172,
+  "requestId": "q4uDDJFdmz7aoTrC0vAq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0c5d375706e6302a3d827ce7696ac376cb917f881b24a9f27c57bf7f67b87b80",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

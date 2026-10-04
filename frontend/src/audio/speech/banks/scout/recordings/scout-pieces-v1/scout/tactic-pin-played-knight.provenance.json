@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "tactic-pin-played-knight",
+      "label": "Tactic pin played knight",
+      "text": "Pin locked. The knight is held to its king now, and stepping off the line would expose the king. Mark it and watch what it can no longer do."
+    },
+    "takeId": null
+  },
+  "requestHash": "b3b0c8fa43ccc52f88a0a2cb584354577ea349a07491626dfc3edfb04e52d378",
+  "recordedAt": "2026-10-04T08:06:55.464Z",
+  "sha256": "3e48a9e449b8edc40d7caf65f82c7d410a55649e3ed9e1ec4f0260f7bdd1f6f4",
+  "bytes": 27194,
+  "requestId": "C3l3F69M24ZZwFIfFSOI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6dd42e5080d05e3f3435c5c46aac71c52931a01567f1984b340959d0ba488aed",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

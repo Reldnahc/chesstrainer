@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-rook",
+      "label": "Explanation finding undefended capture gain rook",
+      "text": "Nothing guarded that rook, so it's taken. In this example the capturing side ends ahead on material."
+    },
+    "takeId": null
+  },
+  "requestHash": "27462ab750f45b33da2adfa98505c5ef9e76999585ae8da450a13ee4fa76cd43",
+  "recordedAt": "2026-10-04T07:52:37.703Z",
+  "sha256": "7d5943e8a58f010614958348cdbe65af030a57516b592a7b8784bc34e4a1473e",
+  "bytes": 23484,
+  "requestId": "fgsScwFPzP3eME8SXVVB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "51900020720d8bb305907f01cd78f7dcd7038e46656fe9a137a709cbc53272df",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

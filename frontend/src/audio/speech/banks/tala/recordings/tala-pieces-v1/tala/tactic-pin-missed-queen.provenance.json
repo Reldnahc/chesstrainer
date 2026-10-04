@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "tactic-pin-missed-queen",
+      "label": "Tactic pin missed queen",
+      "text": "Missed clue: another move set up a pin, sticking a queen in front of its own king. This one leaves that idea alone."
+    },
+    "takeId": null
+  },
+  "requestHash": "14f7d62ca11ffc65fb84dc490c11ca63d95a53866ba9a6ba776bcc2eb7ec024a",
+  "recordedAt": "2026-10-04T08:08:39.255Z",
+  "sha256": "1f5f80b693212f128e3b346162006dc34d43733eb94590198a6f9973d71f1f7b",
+  "bytes": 27187,
+  "requestId": "QUkCtB2hcfzLXZIMcOnD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ae86a562740c4652b17ccbe5a09b8bba91c46a1549cde760bed2c13c650d0467",
+    "bytes": 137970
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

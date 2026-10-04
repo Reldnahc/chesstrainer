@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-knight",
+      "label": "Explanation finding deflection collected knight",
+      "text": "The defender gets lured off its post, and the knight it was protecting gets captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "a88d934ceb1a65b92722c0066eaa1c1a874860145c594a710ee13888ccfd4c2b",
+  "recordedAt": "2026-10-04T08:01:07.050Z",
+  "sha256": "bbaa02b63512eda1508dac81a4eb6b2788d3f6d43c37dd22b28b4b8ad6e00c69",
+  "bytes": 15933,
+  "requestId": "snS2sP9NadPZCnTUcnCT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3f2b522630654d3763768e64f8b5c4b926d7c3b23062fa8ba61d269fd1728820",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

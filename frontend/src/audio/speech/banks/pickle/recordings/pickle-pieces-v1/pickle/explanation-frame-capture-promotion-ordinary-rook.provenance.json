@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-ordinary-rook",
+      "label": "Explanation frame capture promotion ordinary rook",
+      "text": "Snatch and promote! The pawn captures a rook as it lands on the last rank."
+    },
+    "takeId": null
+  },
+  "requestHash": "ce9ffe35a80fdeedab4b851c1a3d2d56480d90322a7b05c4294cf06e430816a7",
+  "recordedAt": "2026-10-04T08:03:09.694Z",
+  "sha256": "4f205bd947b36a9bacdaf696ab620a79d69df1b75513897d8ba9419e83193948",
+  "bytes": 16938,
+  "requestId": "RGnXq5Ape1w0h6di1p9R",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d6e56bcce0b95209714c0f2eaaa811a7b6257e4c18093918eb200b7e493c1342",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-bishop",
+      "label": "Tactic removing defender allowed bishop",
+      "text": "Defender exposed. This move lets the other side capture a key defender, a bishop, and whatever it guarded could lose its cover. Know which defenders matter before every move."
+    },
+    "takeId": null
+  },
+  "requestHash": "6e95970a5895cc691cb833d24cc8ea286f2cbfd64c0ba0719476a4f4f5f1aaea",
+  "recordedAt": "2026-10-04T08:06:56.616Z",
+  "sha256": "096535e85eb24a6200fe9adef19ee7e032466827f53adc32890434894cfdd935",
+  "bytes": 35406,
+  "requestId": "S4Sv6uwDoZI41XhrxuJ0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6c3fdde82af7f84ee632c6db41725071bebe88e1d3759cff78d7cef2ef4bf1be",
+    "bytes": 182692
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

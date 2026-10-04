@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-hanging-piece-allowed-queen",
+      "label": "Tactic hanging piece allowed queen",
+      "text": "After this move a queen stands without protection, and the other side can take it with nothing coming back."
+    },
+    "takeId": null
+  },
+  "requestHash": "64c3281f3f8c1db226220a27c69efbaff31f9583b11bd146f24aa6a6f64d2d52",
+  "recordedAt": "2026-10-04T07:53:25.357Z",
+  "sha256": "6394014bd5cc6b1a0e5af713f445714b7be80b09e2c70a6de43327311d61dcef",
+  "bytes": 21270,
+  "requestId": "EmkrMCXUuLTnsefpiH4W",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cdaf9b0d3ae126d64f52d5e58f94cb4720f78683dc888d2eb442675183b3b1c5",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

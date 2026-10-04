@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "explanation-finding-pin-prevents-capture-knight",
+      "label": "Explanation finding pin prevents capture knight",
+      "text": "Capturing is off the menu for that knight: it's nailed to its king, and stepping off would hand the king a check."
+    },
+    "takeId": null
+  },
+  "requestHash": "3616fba3fcc38e8939f23a4c79f3934d86d24e73db49ac6567d9bb85e8137fcb",
+  "recordedAt": "2026-10-04T08:06:03.098Z",
+  "sha256": "324be462b19ad4ceedd5bac9bd1b30aec30a8b8567abd0b51cd2cbb4ca0ce8b4",
+  "bytes": 21705,
+  "requestId": "jFis6EVOZokRed47Wkej",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1b527754981431f15c802261403268cae7149e83e9f91b10064f610cb8c87d7b",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

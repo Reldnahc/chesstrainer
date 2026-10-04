@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "support-restored-knight",
+      "label": "Support restored knight",
+      "text": "That knight was left alone earlier, and now it has a defender again."
+    },
+    "takeId": null
+  },
+  "requestHash": "9c7d38fa2f5782ad781af7e35a75dbee97dff05b0ba2167e90207e8fa00f4230",
+  "recordedAt": "2026-10-04T08:04:04.975Z",
+  "sha256": "cdda1e9729e02b9e4ed566ce4eb3b080a4a51ec1336e3246f8d20b6be382ce1a",
+  "bytes": 15399,
+  "requestId": "5TGd5iTqC1VteekODFbP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b9b7672890c4cfc92a38f8bb3b6cd697132c480e67d12f2a1566c3920ac6804e",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

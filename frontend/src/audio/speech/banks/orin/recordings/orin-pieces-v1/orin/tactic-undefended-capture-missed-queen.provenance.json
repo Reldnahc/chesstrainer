@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-missed-queen",
+      "label": "Tactic undefended capture missed queen",
+      "text": "An unguarded queen was there to collect with another move, and the played move passes it by. Loose pieces should be counted before anything more elaborate."
+    },
+    "takeId": null
+  },
+  "requestHash": "fc6b9270d1f88120a0f6036c97c61d0a6f010bf12bc841b005771b8a610f7bf4",
+  "recordedAt": "2026-10-04T07:58:20.366Z",
+  "sha256": "678e1b91992ee241cf4ff8bed7783ff2ee2a746ab478b0d232ef090f6a348431",
+  "bytes": 31673,
+  "requestId": "voCeWENocJ4mvKDhMamw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "39e649059e6a657cdc3abb9850b1cf9e63e6e6b11cf5c3054886ecef88712a9a",
+    "bytes": 162212
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

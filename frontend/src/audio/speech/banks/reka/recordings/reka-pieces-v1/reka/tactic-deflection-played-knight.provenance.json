@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "tactic-deflection-played-knight",
+      "label": "Tactic deflection played knight",
+      "text": "Decoy: the knight on defense takes the bait, and its real job goes begging."
+    },
+    "takeId": null
+  },
+  "requestHash": "db591698a3c5977197382ce2e6201f76a56f767dc829567d0bbb480829447fe6",
+  "recordedAt": "2026-10-04T08:05:26.480Z",
+  "sha256": "601d27c3d24b5cb9b2f4efc3546dc5cc18d9bc862b7cb08dd2dcc1d1b540859b",
+  "bytes": 17574,
+  "requestId": "bkuNenLxLKAy0ycOw9k6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5fce12383a224de8fe948e28c72914f4611cbf611193634b265f80f617be71a0",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

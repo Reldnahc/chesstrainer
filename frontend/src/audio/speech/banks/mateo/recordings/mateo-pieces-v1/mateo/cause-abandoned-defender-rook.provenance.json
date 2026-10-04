@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "cause-abandoned-defender-rook",
+      "label": "Cause abandoned defender rook",
+      "text": "Wait, look at this. That piece was the only real guard of the rook, and now it's walked away, so the rook can be taken."
+    },
+    "takeId": null
+  },
+  "requestHash": "580b77ab64e5d6458477c82f4b5eb13aca7e3c68a81b21883358b14ca2a1e41d",
+  "recordedAt": "2026-10-04T07:55:40.800Z",
+  "sha256": "39d89f065d0fa36e0610bce0b25f24c346d6bc7c67ff90555768d98fe66f06e1",
+  "bytes": 25504,
+  "requestId": "RNlGRmVQFke2nLdGfZRv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d4e35e6e90205d4e1504e167bc26c6e4516c4607afb112442dd70600a1d0685f",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

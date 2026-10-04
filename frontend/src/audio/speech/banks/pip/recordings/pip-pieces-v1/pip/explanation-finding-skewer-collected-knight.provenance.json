@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-knight",
+      "label": "Explanation finding skewer collected knight",
+      "text": "The knight in front steps off the line, and the piece behind it gets captured along that same line."
+    },
+    "takeId": null
+  },
+  "requestHash": "30a3d597f6a66d974a8e2e2f1a6c5ffd8c33f10b236779911e8ffdbf3b148fe8",
+  "recordedAt": "2026-10-04T08:04:15.183Z",
+  "sha256": "d222fbf5a78a2869e18e50d5c4ec82903827b3190b8022c79b0e2bbb1f32d172",
+  "bytes": 19094,
+  "requestId": "IYoyCt2PWUDmUJbMrDs3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6c6450e987babdfcb1397ea936243999ff2f1a8c27818737e74ada0dacb72dc4",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

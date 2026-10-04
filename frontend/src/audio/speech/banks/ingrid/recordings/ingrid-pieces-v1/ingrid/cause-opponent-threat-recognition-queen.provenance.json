@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "cause-opponent-threat-recognition-queen",
+      "label": "Cause opponent threat recognition queen",
+      "text": "A threat came with the opponent's last move, and this reply doesn't deal with it. That leaves a queen open to capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "e16ac824a6ddc6bd451f4d8fc2e87113b11c2b6b28f3c94342544b781ea1ca2a",
+  "recordedAt": "2026-10-04T07:48:49.568Z",
+  "sha256": "e1446e1d2be78de98ba4c8c7971e0e35ec28ce8e03b2ed8fc448633a15f7e8d1",
+  "bytes": 24418,
+  "requestId": "WmS2uHc2kzsCp2NC5WLT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6b949f8aa51fd578f18c5cc35f697dbbdf7d77e9bf91ec77c3510b24a450dbd7",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

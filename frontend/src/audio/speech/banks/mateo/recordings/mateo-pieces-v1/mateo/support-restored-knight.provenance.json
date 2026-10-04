@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "support-restored-knight",
+      "label": "Support restored knight",
+      "text": "The knight that was unguarded before has a defender again. Good fix!"
+    },
+    "takeId": null
+  },
+  "requestHash": "03c1d7d3a9dab84a085ccf9ed8a48787df560eebf4d7443e0ddee6cad4f9d6e9",
+  "recordedAt": "2026-10-04T07:55:21.558Z",
+  "sha256": "8ac8313807928ba2a8bfc1a154a25f68b39faf86ac7ee0ffc9e98c18b3d8b96c",
+  "bytes": 15322,
+  "requestId": "9l1CN9hKAmK5Jf34QcjN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0c115e1ad4ef2f73d72af6a61caec8fbd7312b60553450b66f5a16afa9c6c481",
+    "bytes": 75276
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

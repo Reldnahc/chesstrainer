@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "tactic-hanging-piece-allowed-knight",
+      "label": "Tactic hanging piece allowed knight",
+      "text": "Hanging knight. This move leaves it with no guard, and the other side can take it. Every move, run the guard check on every piece."
+    },
+    "takeId": null
+  },
+  "requestHash": "e6ff377617acf09cf1282625fdf542b208fbe7c7f4b7a3f29e12f4fd63b8e47d",
+  "recordedAt": "2026-10-04T08:06:56.219Z",
+  "sha256": "1a9c65b3f208ea5e69b33dea712c370073f3bdfae802b800369faa7880243f0f",
+  "bytes": 26272,
+  "requestId": "9HXFzXbPnSAKNhNqEbXZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b2bea3e94d1bc7c3f05abfd1b96e19296b493b5c8d6367de030e42f0fcb80513",
+    "bytes": 136716
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

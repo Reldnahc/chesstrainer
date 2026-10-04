@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "tactic-deflection-played-bishop",
+      "label": "Tactic deflection played bishop",
+      "text": "Deflection! The defending bishop gets dragged away to handle something else, and whatever it was guarding is left with no one."
+    },
+    "takeId": null
+  },
+  "requestHash": "1428683a44690db5534ed675c55f90e43d3a217bb3889aa556f80ec0b5037192",
+  "recordedAt": "2026-10-04T07:55:09.160Z",
+  "sha256": "35f949b8c69f41f9437e49a48b1f5bedfde89c53afa744dccc5760d15d5cb732",
+  "bytes": 25512,
+  "requestId": "3itndgBEh59eFjD6lbNb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2991ab46d2df880eac31964052ed781f66dc87743ee13c4e93daf9ed0dbef233",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

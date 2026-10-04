@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-knight",
+      "label": "Explanation finding undefended capture gain knight",
+      "text": "Loose knight taken. Nothing protects it, so no recapture follows, and this example ends with that side ahead in material."
+    },
+    "takeId": null
+  },
+  "requestHash": "04a2d8c9719792fd58c46ce34511cf0a630ab07ad479c1ec5a3031233613bb88",
+  "recordedAt": "2026-10-04T08:08:07.012Z",
+  "sha256": "f8dcee17bd284a5e425e116b240168d0a1b0efb9c9bd7e51bc7f46aa3299037a",
+  "bytes": 24428,
+  "requestId": "68TKlbc0FVaSogFMkpZW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3fefd94f29c781c69dc2961a5d7548675767efea7a01b60e20758e3fbe18ef49",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-capture-rook",
+      "label": "Explanation finding discovered capture rook",
+      "text": "Front piece moves, the line clears, and the rook in back makes a capture along it."
+    },
+    "takeId": null
+  },
+  "requestHash": "2cf640fd995e9a53632ef246b1995ed881fc69a356b5c51a6b55d0d70c129b7f",
+  "recordedAt": "2026-10-04T07:57:39.665Z",
+  "sha256": "df71222056b6a3ba2dd7fe417522ca07c8ed7ae4e7183fc4d4f7dbd83cb43db7",
+  "bytes": 17683,
+  "requestId": "EoflqlLkZeX1KDECNDkX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "01903012622962e06bd607502e7ffab889453613762911786f78a2cac76ff3cd",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

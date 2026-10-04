@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-rook-rook",
+      "label": "Explanation finding double check rook rook",
+      "text": "Double check: both rooks attack the king at the same instant. Remarkable, the efficiency of it."
+    },
+    "takeId": null
+  },
+  "requestHash": "c09e1674601161fc4a0bf4ec07a23f73cc75e2ace0f4c2b78c27fe6624f16fcc",
+  "recordedAt": "2026-10-04T08:16:43.162Z",
+  "sha256": "595311f80bb93bb942c1dcb2981620cb39db91bda0f17fc389007e77b02f6ddc",
+  "bytes": 21249,
+  "requestId": "voe8rx1TK5W96ESeaTLt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d3f0c0aa7973b08b0f659f1f7d443aee949f0e620a1ae3841762a96b42350b8c",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

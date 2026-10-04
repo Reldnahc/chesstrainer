@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed-queen",
+      "label": "Tactic skewer allowed queen",
+      "text": "Simply put: two pieces end up on one line where the other side can skewer them, the queen in front forced aside, the piece behind left to be picked up."
+    },
+    "takeId": null
+  },
+  "requestHash": "1d5483e1792795af1d0978a2e53500048b4488a80245e2eed78fd9784c69666e",
+  "recordedAt": "2026-10-04T07:48:42.129Z",
+  "sha256": "7c742cd38f320b8204437776facf05440c0ef30d9d64aa206e2d8f975d04173c",
+  "bytes": 31404,
+  "requestId": "aSZHMOX2yZcfdrRcopfq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e3151e926d513b89542cfd41efccd43816c9e6a650eb5292f953a737a7ba1fb2",
+    "bytes": 163466
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

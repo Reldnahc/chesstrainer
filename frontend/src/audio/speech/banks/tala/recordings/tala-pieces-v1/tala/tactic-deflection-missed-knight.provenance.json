@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-knight",
+      "label": "Tactic deflection missed knight",
+      "text": "Which move pulled the knight off its job? Another one, not this. Here, the knight keeps guarding."
+    },
+    "takeId": null
+  },
+  "requestHash": "701889043a6eddd357ec08a48423a07a23aec984999c80a1a4d3aeb58651cf50",
+  "recordedAt": "2026-10-04T08:09:03.186Z",
+  "sha256": "f2331ae338d2f7a373efb90b35892d24e14d31086ee90f7433874cc46f660a41",
+  "bytes": 22035,
+  "requestId": "B6ZukSE6adIHqEiodiyQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3b6e6fc8b3c45b578d719760bcce62db3d41d591ea759e435ae87cbe5a279885",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

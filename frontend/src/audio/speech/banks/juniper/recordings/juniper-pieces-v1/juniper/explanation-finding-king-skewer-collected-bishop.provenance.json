@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-finding-king-skewer-collected-bishop",
+      "label": "Explanation finding king skewer collected bishop",
+      "text": "The king has to answer the check by stepping aside, and the bishop it was screening is taken by the same attacker."
+    },
+    "takeId": null
+  },
+  "requestHash": "4fb5afc497e5a3d5374996d652071cdd7dbefcc2f97c3a9921085a3df2244065",
+  "recordedAt": "2026-10-04T07:52:28.438Z",
+  "sha256": "7e0da0fe658af7585b458784ee156364751e7ef3a9a5af1738389daeed5f8a14",
+  "bytes": 22278,
+  "requestId": "Flu9YI9S291X68MG8y2w",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d6f3414e39f2cff3109656dd77883b9816896814a93346bca38e515f2c330d30",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

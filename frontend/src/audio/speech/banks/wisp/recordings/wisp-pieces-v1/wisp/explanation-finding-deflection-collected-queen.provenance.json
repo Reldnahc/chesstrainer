@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-queen",
+      "label": "Explanation finding deflection collected queen",
+      "text": "The defender is drawn away from its task. The queen it was guarding is then taken."
+    },
+    "takeId": null
+  },
+  "requestHash": "3adc80af9cf1cac84593d645bf98fa82cb1714734c4aeb127c6b574214029a23",
+  "recordedAt": "2026-10-04T08:14:47.222Z",
+  "sha256": "5602ae7a91f62ce27f5b5856ead51c806f80ccaa962e8a4b47e4ead09d1a0e96",
+  "bytes": 17850,
+  "requestId": "9DMHQFFvpk9Vhp9mgJCr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3c618af2d300bb7e863d02fb00444ba3ccbee465cb85b0cfc71d3f40c387a94a",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

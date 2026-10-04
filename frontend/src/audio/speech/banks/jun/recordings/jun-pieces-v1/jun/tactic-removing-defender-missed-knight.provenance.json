@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed-knight",
+      "label": "Tactic removing defender missed knight",
+      "text": "The stronger move captured a defending knight and stripped the protection from the piece it guarded. This move leaves the knight in place."
+    },
+    "takeId": null
+  },
+  "requestHash": "0296caa27be1e6df9e0639c98d5112b04215dc113db8685f53c5886486fa9973",
+  "recordedAt": "2026-10-04T07:50:10.006Z",
+  "sha256": "9417e70aff6a734f6af81cfd6a45e339b1158acda951f8c06c823b4ce0839caf",
+  "bytes": 26164,
+  "requestId": "eqBroQggoTznwxr8qYhs",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0bb05eb8dff7ffe16cf0ba8928a9df9af22cac6e22fcbfe520e16829a820a25a",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

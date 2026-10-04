@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-queen",
+      "label": "Tactic removing defender allowed queen",
+      "text": "Defender exposed. This move lets the other side capture a key defender, a queen, and whatever it guarded could lose its cover. Know which defenders matter before every move."
+    },
+    "takeId": null
+  },
+  "requestHash": "de39d409837b907f0f1e364e1ffd0254ab7ec339bd57b621d1b5b76e88e2e9f8",
+  "recordedAt": "2026-10-04T08:07:01.989Z",
+  "sha256": "4dae37322ee554799c831ce2d93ffd3363db42da6b7913663e58c14e0cd24c36",
+  "bytes": 35583,
+  "requestId": "uySp4NoWUXgpgxdpJF9D",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "962320cef28b4c8c18a83b333928cd31c2893d2a8be28f8f42c20958922c5dbc",
+    "bytes": 183946
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

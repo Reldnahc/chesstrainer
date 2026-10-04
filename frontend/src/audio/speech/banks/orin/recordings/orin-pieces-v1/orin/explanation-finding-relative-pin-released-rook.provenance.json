@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-rook",
+      "label": "Explanation finding relative pin released rook",
+      "text": "A relative pin held the attacking rook until the opponent's previous move released it. Left where it stood, the target falls in the line shown."
+    },
+    "takeId": null
+  },
+  "requestHash": "b7a4e3c7a8e9147b0cb779f4631e8abe61a1c1561c95c86612bc3bb91e4d7fd9",
+  "recordedAt": "2026-10-04T07:59:04.625Z",
+  "sha256": "9b8f6dc226b7771dcdf0c9f90e7d92d229af34c4aa6d2ce44d8afd31e9f282aa",
+  "bytes": 30722,
+  "requestId": "fIWm8BfWk3aLjvCh6Gjw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b44b9a0d8748504c3a4c09478fb8f7030c69e30736fa206f71ee4163f9455589",
+    "bytes": 157196
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

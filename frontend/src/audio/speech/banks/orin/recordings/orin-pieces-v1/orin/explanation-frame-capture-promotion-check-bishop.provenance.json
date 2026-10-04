@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-check-bishop",
+      "label": "Explanation frame capture promotion check bishop",
+      "text": "The pawn takes a bishop on the last rank and promotes, giving check with the new piece."
+    },
+    "takeId": null
+  },
+  "requestHash": "96ac022f6fb038c2c4ba5db3f9e4224cd493c9509e5b5d69ad73753b2893c5e1",
+  "recordedAt": "2026-10-04T07:59:23.026Z",
+  "sha256": "c746c947443953c519662adac42bbe66ab0a1a957160c9e4fae5454a8c611643",
+  "bytes": 19315,
+  "requestId": "4bk2Y6HcZnxmLhIphk2r",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0151a7a484635eed81951bad73205a1e19580c3ca77c16bd28e40899357e70c8",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

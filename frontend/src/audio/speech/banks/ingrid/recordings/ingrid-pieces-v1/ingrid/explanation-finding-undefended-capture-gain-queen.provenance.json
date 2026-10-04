@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-queen",
+      "label": "Explanation finding undefended capture gain queen",
+      "text": "A queen nobody was guarding comes off, and the side that took it finishes this example ahead on material."
+    },
+    "takeId": null
+  },
+  "requestHash": "83b1eda97e7ef42fe95e4aaccfa43697f6f221fcd8f3fc2471d64f0934caae94",
+  "recordedAt": "2026-10-04T07:49:26.523Z",
+  "sha256": "8293b29d5b1183f26383022012597c9ce8327995bf51d5b6f1a39935c1a5329f",
+  "bytes": 22404,
+  "requestId": "zwmAxsHquyxFXx4j372E",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8686439348ee93d5732621b39a1789cff3b1f0cd35dbc8a22d9b263e014226b6",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

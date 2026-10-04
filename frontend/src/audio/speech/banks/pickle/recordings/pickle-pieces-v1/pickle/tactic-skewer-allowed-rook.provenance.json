@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed-rook",
+      "label": "Tactic skewer allowed rook",
+      "text": "Hmm, two pieces are lined up like ducks. The other side can skewer them: if the rook in front shuffles aside, the piece behind it could be exposed."
+    },
+    "takeId": null
+  },
+  "requestHash": "4262c826e3b595307b0ff1c0603ac05514c252a63acda55fa6b40291e949576c",
+  "recordedAt": "2026-10-04T08:02:04.613Z",
+  "sha256": "c68b182d5d5db704dceb09a3c32fc91135e785b44b8b571eabd40a73c78af82a",
+  "bytes": 30869,
+  "requestId": "R8et60j699aLJB8au5PC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c4946061f2d655c61f04bf78c50857cdb953914a7f956d4ef67a5eb9c03c8abe",
+    "bytes": 162212
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

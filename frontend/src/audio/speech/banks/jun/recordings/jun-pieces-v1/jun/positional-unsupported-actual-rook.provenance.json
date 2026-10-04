@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-rook",
+      "label": "Positional unsupported actual rook",
+      "text": "Defender count for the rook is now zero. Zero defenders is a weakness, not by itself a loss."
+    },
+    "takeId": null
+  },
+  "requestHash": "c049251c59dd000ffcdf2d9746d526e0041df9b5930c6e36bacdc9c04b01d557",
+  "recordedAt": "2026-10-04T07:50:25.346Z",
+  "sha256": "4e422803c769bdbb714bec82cb6e332a95a7271e5cff69a89fb637f391b86dcd",
+  "bytes": 22421,
+  "requestId": "3IWhreyCkBig3bhaKu0U",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c30766d624358a608e76c732e0c25ea2e45c99843fcc932aea28ecf460ae7592",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

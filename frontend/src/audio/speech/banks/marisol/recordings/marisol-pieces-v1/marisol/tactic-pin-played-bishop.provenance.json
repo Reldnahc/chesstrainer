@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-pin-played-bishop",
+      "label": "Tactic pin played bishop",
+      "text": "A bishop now stands on the line between its king and an attacker. Stepping off that line is no longer a legal option for it."
+    },
+    "takeId": null
+  },
+  "requestHash": "d989c370b760616f8ff843c100346ee60b8204e5a9f62c4e01a8f522d70f0a3d",
+  "recordedAt": "2026-10-04T07:53:19.806Z",
+  "sha256": "570034e0613da93cb3c4c65b40175246134338b7b4011501f9c7117c5328b5e5",
+  "bytes": 25790,
+  "requestId": "JAaZr8673XwfewwcTEKd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fb0b2a8390baf86aac148b32fedd0ecbb58b0b822215824fc79b5b4d52fcb879",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

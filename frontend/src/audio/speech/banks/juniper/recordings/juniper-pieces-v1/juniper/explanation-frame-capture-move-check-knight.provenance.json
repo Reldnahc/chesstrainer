@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-check-knight",
+      "label": "Explanation frame capture move check knight",
+      "text": "The knight is captured, and check comes with it."
+    },
+    "takeId": null
+  },
+  "requestHash": "6a1e8f738d15ad004fc005fbeecba61d6c36a924e70197dff8a99a563a06a98e",
+  "recordedAt": "2026-10-04T07:52:36.658Z",
+  "sha256": "59ad024e0f6b68c4899b71855c1c334e0ed808e1f2d1edeabe84885aea9f5b8f",
+  "bytes": 10915,
+  "requestId": "ykKK7D3mt6LbX6qJhm8P",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "aa336fc1c9d6b10a5e15416eb22e9bb5d0960193028dc9215c148c8b7121b286",
+    "bytes": 54796
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

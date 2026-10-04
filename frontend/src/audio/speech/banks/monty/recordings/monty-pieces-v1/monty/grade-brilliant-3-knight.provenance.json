@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "grade-brilliant-3-knight",
+      "label": "Grade brilliant 3 knight",
+      "text": "Giving up a knight is easy. Giving it up soundly is hard. This one is sound."
+    },
+    "takeId": null
+  },
+  "requestHash": "b8a59f02ebee06db2b3b6d1e3f45ccabee47162595e4c98739868e897af7ab9e",
+  "recordedAt": "2026-10-04T07:57:37.001Z",
+  "sha256": "a6752ace00d3ac4a223bd1c58df353c16cd98e4687f8504edfc697728893bedd",
+  "bytes": 19617,
+  "requestId": "eRbZtKZzsLJ6dFPmY6vj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ed71fb556476423a7c912e865b84ed4ca8109910685e39573745181390b097f3",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-knight",
+      "label": "Explanation finding relative pin released knight",
+      "text": "A relative pin was holding the attacking knight back, and the opponent's previous move set it free. In the line shown, it then captures a target that never moved."
+    },
+    "takeId": null
+  },
+  "requestHash": "0a6534cc96baae4cb03fe930fe2f1bbc35c7e7ffc375a6243ddb3c1161316608",
+  "recordedAt": "2026-10-04T07:55:27.136Z",
+  "sha256": "2e68f6716788b92dda5d379ced2f117d45213e7048058b268624e9203c4034f3",
+  "bytes": 31825,
+  "requestId": "QPHxe2lU7CTYpSKvli7U",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "104fc66e967ccf507f75f31b1efee849466e48e4ed4a4744070b107b32d1255a",
+    "bytes": 159704
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

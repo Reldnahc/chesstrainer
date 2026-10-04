@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-rook",
+      "label": "Tactic undefended capture played rook",
+      "text": "Unguarded rook, captured. No defender, no problem. Target collected."
+    },
+    "takeId": null
+  },
+  "requestHash": "4801f20edafba533c4eea001af646158c86275c6dc86a3630e938f5a54e47d85",
+  "recordedAt": "2026-10-04T08:12:08.170Z",
+  "sha256": "9521c0638b83a10f27ad686a89af4922f58ec4577d0b0fedcc0ed35051ae6990",
+  "bytes": 18618,
+  "requestId": "7imxCCDU5p363534Ry8M",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "74eeff8d101848eff3d15457d05aa798d7b3b5d19bd8fb9d2e40e5126d60bd97",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

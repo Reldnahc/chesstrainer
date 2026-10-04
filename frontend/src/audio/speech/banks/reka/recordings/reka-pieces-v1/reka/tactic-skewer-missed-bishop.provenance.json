@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "tactic-skewer-missed-bishop",
+      "label": "Tactic skewer missed bishop",
+      "text": "The stronger move had a skewer tucked away, the bishop in front chased, the piece behind it exposed. A spicy one to set up and replay."
+    },
+    "takeId": null
+  },
+  "requestHash": "354e12a96d100add565a5ac073027d3cb6ccbcdd388a8a9c1be38c7b4c1c67cb",
+  "recordedAt": "2026-10-04T08:05:00.030Z",
+  "sha256": "28bf5a35f8bfe85daab42c424edef5bedaf5946d68a7294f4947569e3a82df91",
+  "bytes": 29523,
+  "requestId": "FPSr5mTPNUbrrc9NfDgo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "252f560683b77693de44f84a0ab38def028486126a7399f88980ee688973e5d5",
+    "bytes": 149673
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

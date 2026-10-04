@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed-bishop",
+      "label": "Tactic skewer allowed bishop",
+      "text": "Now then. This lets the other side line up a skewer. If the bishop in front moves away, the piece behind it could be exposed."
+    },
+    "takeId": null
+  },
+  "requestHash": "b9348e72ea2fbc37b2623b530452bfb4fa50f55399d003a4a8494118cca49c33",
+  "recordedAt": "2026-10-04T08:03:46.258Z",
+  "sha256": "d23c0caebef1a388b35da952fd8622c65126af49ef2fc942690869e53b114784",
+  "bytes": 27916,
+  "requestId": "rVRf8jVcMWRiLJTWes0p",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dec114d6d8e7efb0a52a8a787ca7818345c9cdcc3bfc5b1b0b90fce4e81a0a94",
+    "bytes": 142986
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

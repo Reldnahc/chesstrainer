@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played-rook",
+      "label": "Tactic removing defender played rook",
+      "text": "Here's the trick: take the defending rook first. Once it's gone, whatever it was guarding loses its protection."
+    },
+    "takeId": null
+  },
+  "requestHash": "03d8302f7c47df8b926c2d1c534d4a7badc4ebc65580e0b669fae8080e53114a",
+  "recordedAt": "2026-10-04T08:03:50.241Z",
+  "sha256": "9fe30c7f302f8c91a94d2e200ac86bed2092759fddcc6ee73485927a3912d3c4",
+  "bytes": 24929,
+  "requestId": "CMUvOGc4ek9sIST7D0LG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9597f50431991e3685cff5ecc805a722956c9741043dd0cb91f5847e66a0c811",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

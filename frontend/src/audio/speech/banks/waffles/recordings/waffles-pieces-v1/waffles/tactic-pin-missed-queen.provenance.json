@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "tactic-pin-missed-queen",
+      "label": "Tactic pin missed queen",
+      "text": "Another move could have pinned a queen to its king. That queen would have been stuck on the line, unable to leave it without exposing the king. Opportunity declined."
+    },
+    "takeId": null
+  },
+  "requestHash": "df3fd20d1507831944642a1dbbb0cf12e22e77b21e6410beb07dfe163c0cd029",
+  "recordedAt": "2026-10-04T08:12:13.724Z",
+  "sha256": "96860a3fc7750b7d0b96c901187541195db6462956ad63f120496cf8830daff3",
+  "bytes": 33242,
+  "requestId": "qYY3VmDejenJQqEflMrP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c9fcef3c0638b30dd1ffdf21e81287be0306238216ebf071a1ada3695414b6d1",
+    "bytes": 170153
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

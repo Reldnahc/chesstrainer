@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-fork-allowed-knight",
+      "label": "Tactic fork allowed knight",
+      "text": "Pattern time: now the other side has a fork, a knight of theirs that can hit several targets at once. Find that knight, then count what it reaches."
+    },
+    "takeId": null
+  },
+  "requestHash": "91d790aaa2bbdd0cddda42217d0c30c5a6169ae8b712899f7fafb00337b17674",
+  "recordedAt": "2026-10-04T07:59:53.872Z",
+  "sha256": "dd61b59d428925ad250e8be2fd9d96b181f783f83622f35997140dfd7b66f5dd",
+  "bytes": 28911,
+  "requestId": "HsG8pLoKxOVOCi2Bopy6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fbc24da5c3179ad7f85a0bc624e10451f2d75b91ee6cec638fc6c0af9be6f006",
+    "bytes": 152181
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

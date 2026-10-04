@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-bishop",
+      "label": "Explanation finding relative pin released bishop",
+      "text": "Thanks to the opponent's last move, the attacking bishop wasn't stuck in a relative pin anymore. The target stayed put after that, and in the line shown, it gets captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "8f44ca411f5343413ea480a2caddb3382b9f0290cd4839750d145489d7fcfa7c",
+  "recordedAt": "2026-10-04T08:00:48.021Z",
+  "sha256": "5b3ababf9d5c137a48c964a1cbb6a98a4d75aa89d6b78c21202b83bab9a17469",
+  "bytes": 32411,
+  "requestId": "ELaR2Z58WYuYb80vZzeN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "369f322e44434e963b438f84ab778aabde41cef6fc0059ab816af75d7220fe7a",
+    "bytes": 162212
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

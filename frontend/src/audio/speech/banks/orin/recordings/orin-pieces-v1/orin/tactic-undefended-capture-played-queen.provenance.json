@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-queen",
+      "label": "Tactic undefended capture played queen",
+      "text": "The simplest principle of all still applies, and an unguarded queen falls to the first attacker. Here this move takes one. Before any combination, count the loose pieces."
+    },
+    "takeId": null
+  },
+  "requestHash": "cc236e7ef2e4ec988ee13b0a870b81f18437019fc0b2ef4d4813c36bbca60f3f",
+  "recordedAt": "2026-10-04T07:58:11.278Z",
+  "sha256": "bb5a02507e4231ebad7bf112fa1a6ba6b2d36681778f79557c93065f9eb27989",
+  "bytes": 38547,
+  "requestId": "6Re6Owg0Dha6zMKHxzck",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "beefd83f7a648df5b4f47a590c4e9cb8194983c753c1a9854718e598024636ae",
+    "bytes": 201918
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

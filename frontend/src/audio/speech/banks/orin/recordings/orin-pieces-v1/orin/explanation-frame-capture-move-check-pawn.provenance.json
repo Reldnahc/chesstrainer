@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-check-pawn",
+      "label": "Explanation frame capture move check pawn",
+      "text": "This captures a pawn, and the same move gives check."
+    },
+    "takeId": null
+  },
+  "requestHash": "0d082dd16f94ed6542227ef4c31d43e326d6e907e861400b8f4742427e414602",
+  "recordedAt": "2026-10-04T07:59:20.734Z",
+  "sha256": "44415f19021c72dfc043105c719f5c663c2a81763fc723c0dcbc0e03df60a1a7",
+  "bytes": 12908,
+  "requestId": "6GgosNCP8XFmPp6MjVs3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7a8872a38e64c9f57810359fcd47ae6e704e77c66151072f0015af1b06d21f39",
+    "bytes": 65245
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-rook",
+      "label": "Explanation finding relative pin released rook",
+      "text": "A relative pin was holding the attacking rook back, and the opponent's previous move set it free. In the line shown, it then captures a target that never moved."
+    },
+    "takeId": null
+  },
+  "requestHash": "f9e55d023ae3be3e19dd85a5dda9a7e4a0fd9a8b8687efa30c87f8cada2a4367",
+  "recordedAt": "2026-10-04T07:55:31.894Z",
+  "sha256": "ca88145d3c7428baffb43bbedf0f63e3c75ec7c94c2f2b173a123e4b878dbe80",
+  "bytes": 31211,
+  "requestId": "bujDkjIDp8jyt9nEx6zr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cdb4e8b354ababffbb73a0cc5661d03cb79e0aa19ba956b675402bd22152edf9",
+    "bytes": 157196
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

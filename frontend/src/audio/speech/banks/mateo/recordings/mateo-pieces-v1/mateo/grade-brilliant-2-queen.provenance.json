@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "grade-brilliant-2-queen",
+      "label": "Grade brilliant 2 queen",
+      "text": "Wait, it just gives that queen away? And it still holds up? That's so cool."
+    },
+    "takeId": null
+  },
+  "requestHash": "66724649fd4701c284d4ff1bbecdd2e7b741f0c997998d2aa4d34633e0f85190",
+  "recordedAt": "2026-10-04T07:56:17.773Z",
+  "sha256": "ed0465384740f7c069639020107ddb498c1446e6e7646f623e4f6fca5c3851c7",
+  "bytes": 18317,
+  "requestId": "3jGPzvaWvoFsSusrmxcc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5cdeac7d98e2c000b2a267c278d1cc177d40cb4c16cd4ad3348ca4542a2c3aa7",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-pin-missed-rook",
+      "label": "Tactic pin missed rook",
+      "text": "Another move could have pinned a rook of theirs to its king. Pinned like that, it couldn't leave the line without exposing the king. This move lets that chance pass."
+    },
+    "takeId": null
+  },
+  "requestHash": "75b713cd3bdebfaf186c70b453ed4ebd17f0b69aebc8950dfc38ece562e0eef3",
+  "recordedAt": "2026-10-04T08:00:00.136Z",
+  "sha256": "48f7e4f1a1ff91b28c69b58e17197d9042ca191fc395a05da764d85f4d3ff71f",
+  "bytes": 30630,
+  "requestId": "xJF9znXlc78iVWEo8JnY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d4bad6e7b9d639bb7c1990939bf9cc66d9d8dc00200c196df50c416e9da79863",
+    "bytes": 157196
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

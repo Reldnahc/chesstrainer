@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-mate-rook",
+      "label": "Explanation frame capture promotion mate rook",
+      "text": "The pawn captures a rook on the last rank and promotes, and it's checkmate! The king has nowhere left to wriggle."
+    },
+    "takeId": null
+  },
+  "requestHash": "b52e6a6f4bfd6de4634a71040b65f5c58d0aaf3d0cfdb272b2521f187b07a40f",
+  "recordedAt": "2026-10-04T08:02:57.781Z",
+  "sha256": "348230ecfef492a7617087f37c1fb4a9c0d967926a1e87425d9b3378ac23c735",
+  "bytes": 23194,
+  "requestId": "sSe87t7LrbhiXyBOUlt0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1166ca3790674a3dbf95a067808170a9939a11201b7601726170ddf69642a8be",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

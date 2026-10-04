@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed-bishop",
+      "label": "Tactic discovered attack allowed bishop",
+      "text": "Here's a discovered attack handed to the other side. Their bishop could move off the line and let the piece behind it attack. Figure out which line it would open up."
+    },
+    "takeId": null
+  },
+  "requestHash": "56dc38821bf927205f171e2bb879ff94dbb213af5a415d3b4ad98c594b498398",
+  "recordedAt": "2026-10-04T08:00:15.841Z",
+  "sha256": "d439cf964024b34f2af1d866f24724e03fb41d29891c5f03774f78fac14b174f",
+  "bytes": 29729,
+  "requestId": "WucT7L0qTP7pAvbZkv6A",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a5f9b4be47cf6d5c710de2d3a007177798a098c0fc5d669b2384e117d072dc0b",
+    "bytes": 152181
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

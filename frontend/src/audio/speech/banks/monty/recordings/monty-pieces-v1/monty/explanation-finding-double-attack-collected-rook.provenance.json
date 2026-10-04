@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-finding-double-attack-collected-rook",
+      "label": "Explanation finding double attack collected rook",
+      "text": "One piece moves and attacks, and the line it leaves lets the rook in as a second attacker. Here, that rook takes what it was aiming at."
+    },
+    "takeId": null
+  },
+  "requestHash": "0ab9e1bedf7dcdb9bde65e35934753461c7bc578c763d64e9551c186fd307afa",
+  "recordedAt": "2026-10-04T07:57:28.924Z",
+  "sha256": "f429a43aed5668124c05cbd9779f5dc0e06c761c59956d51fb5ee8332d780a8c",
+  "bytes": 27344,
+  "requestId": "WvZz43MlMSy7cMxBStZY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b35f48fc4830d0ae3c4b60e22eb5695e333be899aab815c2ec0be7aacc939f17",
+    "bytes": 139224
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

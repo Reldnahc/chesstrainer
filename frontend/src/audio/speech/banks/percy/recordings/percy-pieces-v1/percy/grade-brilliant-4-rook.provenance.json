@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "grade-brilliant-4-rook",
+      "label": "Grade brilliant 4 rook",
+      "text": "Pawns get offered up all the time. A whole rook, and soundly? That's something special!"
+    },
+    "takeId": null
+  },
+  "requestHash": "8c1136d982d30e2e8bf0df78a9b4bb44f1c5459e7770536c66b8d35d6f49f22f",
+  "recordedAt": "2026-10-04T08:01:22.764Z",
+  "sha256": "d7b6db9a4dfce580a10cd8e4e0743f2a403281f6628770dd2652b457bc907cf0",
+  "bytes": 20024,
+  "requestId": "vuEDwSnhVFfnDySjHES6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0b8ba31cdbfe51bd59196813d80336a70bf91b12c20d883a72daad2209798b7d",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

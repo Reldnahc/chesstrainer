@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-knight",
+      "label": "Explanation finding pin collected knight",
+      "text": "The pinned knight cannot leave its line while its king stands behind. Before the sequence ends, it is captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "fc024ecfd3f7ec8e38575cfcf25561196516dfc2aa357ccdbc2a46af7a42805a",
+  "recordedAt": "2026-10-04T07:53:50.489Z",
+  "sha256": "79ba8e50728723d78d3d1f9d5d6853c9ed16817147530e31e34ce3520df555e6",
+  "bytes": 22675,
+  "requestId": "tjXqHh5hpvywwnzgt73x",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b3fe90009e5f931ee2aca379916b7358d688ca9978d34d916e0e72e8fb96e262",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

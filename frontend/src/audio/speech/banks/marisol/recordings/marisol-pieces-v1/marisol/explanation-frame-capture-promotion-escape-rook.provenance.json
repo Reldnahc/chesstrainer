@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-escape-rook",
+      "label": "Explanation frame capture promotion escape rook",
+      "text": "After the pawn captures a rook and promotes, the capturing side's king is out of check."
+    },
+    "takeId": null
+  },
+  "requestHash": "7d6e3138e5b829daad8ab1230ef5d557e985718c69c5aa2ae263279769d20c87",
+  "recordedAt": "2026-10-04T07:54:27.091Z",
+  "sha256": "3408c2e5a1d8f2fcd3033fe1af9f893a8c2df8d9a3d6453254e49b7b8e6ac09f",
+  "bytes": 17823,
+  "requestId": "7I2UpgbbXDgXevzl2EC7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8e2e28cf4060407a693a09288fd3e1dec06f488e646119c29dc8f76e8fc056df",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "tactic-fork-played-pawn",
+      "label": "Tactic fork played pawn",
+      "text": "The fork, a pattern every player must learn: a single pawn attacks two targets, and the defender can rescue only one of them."
+    },
+    "takeId": null
+  },
+  "requestHash": "38e4271868b4cb7cb44a537b2e7cf1e567b493293cff36965262e9cc581a7197",
+  "recordedAt": "2026-10-04T07:57:42.245Z",
+  "sha256": "e6cac25d6ea8572c2c4cb4aff6bbf7fe0457d12eef1ba953d91d3202fe13cd76",
+  "bytes": 29007,
+  "requestId": "gr57mEDdAgZYTJzTetxl",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "585b44c3c182294196cc8ac5773b1d67967cba194a506243874af0a7f5636262",
+    "bytes": 150927
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

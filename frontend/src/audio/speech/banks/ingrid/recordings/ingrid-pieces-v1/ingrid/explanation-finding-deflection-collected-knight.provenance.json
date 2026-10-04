@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-knight",
+      "label": "Explanation finding deflection collected knight",
+      "text": "The defender is tempted off its post, and the knight it was looking after gets captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "ccb246545bc9c716796797314f629c89d6512630a2f23b305bbb5cec66a869c1",
+  "recordedAt": "2026-10-04T07:49:21.933Z",
+  "sha256": "b8f112156b97eb2d1308f0ed7386a941c6450284e1b09762cffda8accc5986c7",
+  "bytes": 17439,
+  "requestId": "jJxZq4KY4xbQxXvAGHis",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "190158c136fcd4ce149411a8a28b1bf1ddf7ecdc871a8d443439d87029da21f8",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

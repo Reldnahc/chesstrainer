@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-ordinary-bishop",
+      "label": "Explanation frame capture promotion ordinary bishop",
+      "text": "The pawn captures the bishop at the far end and promotes there."
+    },
+    "takeId": null
+  },
+  "requestHash": "a247b6896b8aed1cd06a6eef47c2c9c50f167dbf1c619a398ae433fd8f51a183",
+  "recordedAt": "2026-10-04T07:49:46.619Z",
+  "sha256": "b6ee1641f6947a18a1e5592e9619f40bc5989a6c89116e38f5489bd03cda5852",
+  "bytes": 12958,
+  "requestId": "en7bNffsFzHZKTf3rz9T",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "edfc05f764ca6ffbddc45755fa145283a4caed768e0513b6adf05ccf6ba51fab",
+    "bytes": 63991
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

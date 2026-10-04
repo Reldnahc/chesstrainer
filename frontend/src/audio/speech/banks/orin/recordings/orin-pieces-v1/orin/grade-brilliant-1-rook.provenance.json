@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "grade-brilliant-1-rook",
+      "label": "Grade brilliant 1 rook",
+      "text": "A rook sacrifice of rare quality. The material is spent, and the idea outlives the spending."
+    },
+    "takeId": null
+  },
+  "requestHash": "bb8348d90e5162b2dd014bde4d7db368d165c0f5c4cf88d3ff773cd66ee44098",
+  "recordedAt": "2026-10-04T07:59:48.853Z",
+  "sha256": "59c90edc831b8bb37abb146c8975ca5a8be34db82fbcc30c9325d4904598708e",
+  "bytes": 22918,
+  "requestId": "IA5wukZk04TmeqSLEPAp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dee58bbd3324e5e8e140c87bfcdb4347fc1450880f77407cb468b79438c04a4f",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "grade-brilliant-4-bishop",
+      "label": "Grade brilliant 4 bishop",
+      "text": "The highest grade requires a sound sacrifice. This bishop sacrifice meets the requirement."
+    },
+    "takeId": null
+  },
+  "requestHash": "bdb31b299a09715be53d10082227f7a30f6000d97fa30ef0bcbe59b9809bddc0",
+  "recordedAt": "2026-10-04T07:51:10.044Z",
+  "sha256": "954e9a461f90b199256d20b2be3e15defcf8a77d2f9a5e35c31fad0f049b58c9",
+  "bytes": 20002,
+  "requestId": "oMy7Bcmqx5RYyklNFslF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "26a403dfee6dac1e784a7f50c82ea5bac058cb60159c13bbdd680e42d1e4d978",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

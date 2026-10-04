@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-queen",
+      "label": "Explanation finding relative pin released queen",
+      "text": "The opponent's last move snipped the relative pin holding the attacking queen. The target sits tight, and the line shown gobbles it."
+    },
+    "takeId": null
+  },
+  "requestHash": "2ea439f5f236ee3e4156d5ebba332c0047c1571938902812b01a9ca7e46ff096",
+  "recordedAt": "2026-10-04T08:05:50.926Z",
+  "sha256": "c322936f08e7e09725c8cef8e149b1c392e886ac65c08489416799f6e0643a13",
+  "bytes": 26695,
+  "requestId": "LcnGHvwylhUpECRWBucb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5218024df352756e3c856879c3c77649c63a851e08c9d0c5992932cb46fa829b",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

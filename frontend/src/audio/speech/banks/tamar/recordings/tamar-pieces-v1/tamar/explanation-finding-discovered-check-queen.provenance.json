@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check-queen",
+      "label": "Explanation finding discovered check queen",
+      "text": "One piece clears the way, and the queen behind it is now giving check."
+    },
+    "takeId": null
+  },
+  "requestHash": "f76b7f6e00ce1c55d3b4878fa24908513bb83f543ec117c0c6263a784ebad375",
+  "recordedAt": "2026-10-04T08:11:32.302Z",
+  "sha256": "9f9162a9be6f1775f6d255a20c53a2e305d24f86ebb02745077941689784f81b",
+  "bytes": 14217,
+  "requestId": "zs2b4eAnJxb40PTHsMYZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e89a9cfaa44aaeafecbd6ea31d35c4a6935305eb06ebd72e9bc1aaa9e6f7dabf",
+    "bytes": 70261
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

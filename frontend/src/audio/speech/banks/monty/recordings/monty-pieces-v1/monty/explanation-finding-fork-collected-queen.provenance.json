@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-finding-fork-collected-queen",
+      "label": "Explanation finding fork collected queen",
+      "text": "Here the fork collects. The queen goes after several targets, takes one, and this example comes out ahead in material."
+    },
+    "takeId": null
+  },
+  "requestHash": "e6fbc571f9414be8d4a68a5a6517d2f15ab58187b24db2815f88b87810223950",
+  "recordedAt": "2026-10-04T07:57:18.511Z",
+  "sha256": "336e8108ca0e79a2c659108f4ee1188a2cf3782d88aaf782ceb2958a774075c3",
+  "bytes": 24955,
+  "requestId": "lOXdMAgQbrq1mN4jQ5nP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6d6b68b72892a8bc869e860f04c5d2efe846f32baf453f5dd6032a6ed4a01f48",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-king",
+      "label": "Explanation finding skewer collected king",
+      "text": "Once the king in front steps out of check, the piece behind it on the line is lost."
+    },
+    "takeId": null
+  },
+  "requestHash": "8f176aa08657ae1dca2f3634ab11c162062bd4c5cddad24924450f1becc8c189",
+  "recordedAt": "2026-10-04T08:11:21.181Z",
+  "sha256": "fdc71840b6b8d7504ccb603e4bce2f441a9f5729f830e50ad89c4f026aaeefa1",
+  "bytes": 17304,
+  "requestId": "V1IUpuELuI1Uh7tF2KPu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3d271bea34dd1960341d79618f3aaa8a8f1de01a12075195018a25096c41c9f3",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

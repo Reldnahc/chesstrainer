@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "tactic-fork-missed-knight",
+      "label": "Tactic fork missed knight",
+      "text": "Fork left on the table. A different move would have hit several targets with a knight. Find that move and lock the pattern in."
+    },
+    "takeId": null
+  },
+  "requestHash": "2910f8055409d74c077a6e4e66735e1ff4eb6aa736c84e1d7c650af4aef8e918",
+  "recordedAt": "2026-10-04T08:06:44.509Z",
+  "sha256": "8f5c25e14367f591ba963584593bbd703ccead54e879bd7a4634a733db2f4c69",
+  "bytes": 23094,
+  "requestId": "jpXfkpWznV68elCOUYCy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9b61a078915a704094d1966fdae3f99db0924cf88ffecfe738c3fe4718ff009a",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

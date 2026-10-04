@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check-bishop",
+      "label": "Explanation finding discovered check bishop",
+      "text": "One piece steps out of the way, and suddenly the bishop behind it gives check."
+    },
+    "takeId": null
+  },
+  "requestHash": "13ce4c8a8aa656eeaf4526bbe749fc8691775339747fbc43a624d7199bf233e0",
+  "recordedAt": "2026-10-04T07:55:45.535Z",
+  "sha256": "da271c8300eaaa0bb9f00a7a1a74744182d0c0e46edf16501a44d75c7a6c203a",
+  "bytes": 16313,
+  "requestId": "An1Tw5iGPkPUGNKTE57M",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4b0579e1a676bb70d5dbd2b6899d34fa9ff5b02afb41cb85f1766339c6b0c980",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

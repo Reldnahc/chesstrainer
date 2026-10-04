@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate-knight",
+      "label": "Explanation frame capture move mate knight",
+      "text": "Capture of the knight with checkmate. Game over."
+    },
+    "takeId": null
+  },
+  "requestHash": "956f6379f51baa8292bf355f4d7465eb10467803a0e9fce48cf96db0f492f17a",
+  "recordedAt": "2026-10-04T07:51:00.851Z",
+  "sha256": "aad979b22c18769cf8ff8cae27faf2fc25ba651fefea31c194eeb7afe2cca21d",
+  "bytes": 11237,
+  "requestId": "2CTkfaCCxWeAZP21ZFnp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "680d9ff100736e5d27eb17e2124d7a49e12ec8b5f70ce3a5f4a7806bc20d4597",
+    "bytes": 57304
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

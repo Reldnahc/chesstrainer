@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed-knight",
+      "label": "Tactic skewer allowed knight",
+      "text": "Now then. This lets the other side line up a skewer. If the knight in front moves away, the piece behind it could be exposed."
+    },
+    "takeId": null
+  },
+  "requestHash": "ed665753d07205a9199c247d9f6cdaae8c0502d0a08717aada2d935cdd931759",
+  "recordedAt": "2026-10-04T08:03:44.039Z",
+  "sha256": "82c313c23ede121060d04a65c17d62f0a019fd55bf8f51758a2ab261d427249e",
+  "bytes": 27522,
+  "requestId": "wXu3SpNQw1PVUHsdJLK5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dbf0ee4d77d8d8296b8c66d90239911b6150df7c2bb2bc443436a0c4e5edeab5",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

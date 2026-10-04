@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-missed-bishop",
+      "label": "Tactic undefended capture missed bishop",
+      "text": "The better move takes a bishop with no guard on it. The move played leaves it sitting there. Loose pieces come first."
+    },
+    "takeId": null
+  },
+  "requestHash": "078319a658baeab6fa8b00f4e5104c4ff40bdf9d044e1db82a5c575b6570a01c",
+  "recordedAt": "2026-10-04T07:56:30.857Z",
+  "sha256": "ae37040678e5d066ccb7525c936fa4f0f583eafe725f6b0fb87a8d0ccfe710f8",
+  "bytes": 23687,
+  "requestId": "hqZXPFpis8W9tKz5aswx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3e557469c70044d7be714fb8b912f7eea5c69fc1d32b52d3583a31aac3c411e6",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

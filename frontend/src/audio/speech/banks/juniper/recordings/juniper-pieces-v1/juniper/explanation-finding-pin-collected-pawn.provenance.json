@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-pawn",
+      "label": "Explanation finding pin collected pawn",
+      "text": "My eyes would stay on the pinned pawn. It can't leave its line without baring its king, and before these moves finish, it's taken."
+    },
+    "takeId": null
+  },
+  "requestHash": "446d5d1e4d5356ecb61a5cfbb42daccca6a5632b1a6f51b68a420ab954795b73",
+  "recordedAt": "2026-10-04T07:52:10.560Z",
+  "sha256": "27253e856fe27258ba978665b931b84ae7a810f657379e6a2a17d756327265c8",
+  "bytes": 26541,
+  "requestId": "dvv5JrLciSM6U360PYTj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "aefdf3e627b3ce128b1e5f469656644e852e0b2e2e4df9e25ea24a82c34bd8c3",
+    "bytes": 137970
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

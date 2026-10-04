@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-ordinary-pawn",
+      "label": "Explanation frame capture move ordinary pawn",
+      "text": "With this move, a pawn leaves the board by capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "9503cc3e28ad3a955b7c38c4638c4ff1ae2398887b7f827fdb2a9bdae292b701",
+  "recordedAt": "2026-10-04T07:59:49.044Z",
+  "sha256": "fb4d8c6afcd346ade825ba0497a93509f211b590c6d54d79bd3d82716e4a9704",
+  "bytes": 12399,
+  "requestId": "tb37eV2GomavLyHt8B3B",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bc3d30482b0e6667b8e439df1f9ee2439cb7615d4a402adefac6567cfd5a19b0",
+    "bytes": 61066
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

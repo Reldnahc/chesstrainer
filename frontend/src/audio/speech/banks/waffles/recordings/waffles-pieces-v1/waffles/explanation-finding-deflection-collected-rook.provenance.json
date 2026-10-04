@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-rook",
+      "label": "Explanation finding deflection collected rook",
+      "text": "The defender is lured off its post, and the abandoned rook is captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "4519f05cd1d5ef5b8339503a74391afea8812aa049cdae0de55f8c7e5cf166c0",
+  "recordedAt": "2026-10-04T08:13:09.408Z",
+  "sha256": "e4c2aed127c85c6ee28ac5ad907deb7718e0eb83004506c7b7964841d5b80651",
+  "bytes": 15915,
+  "requestId": "MSxhouBOOFNH09GpJwXD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "665bd7f62d798d1fcaa5367dcb03c3a6189ef98e7253fe56370771879434bce2",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

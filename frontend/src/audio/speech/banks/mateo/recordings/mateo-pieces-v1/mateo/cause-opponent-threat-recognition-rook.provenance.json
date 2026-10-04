@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "cause-opponent-threat-recognition-rook",
+      "label": "Cause opponent threat recognition rook",
+      "text": "The opponent's last move made a threat, and this reply doesn't stop it. So the rook can still be captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "7749e2a012e30a280eb29381f27d4e68aee902cd0fe60067cf479d9c6e37371f",
+  "recordedAt": "2026-10-04T07:55:11.369Z",
+  "sha256": "99a082faa6561c67f8a6f37692a73a39c3174ef00b6f256486bd45e9ab60588c",
+  "bytes": 23530,
+  "requestId": "jrE5f4n83SVPTPanpQfh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3f75810bf55a708352acdb9958cb30372e4c89dd79bf2d78b5d235be7d281d20",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

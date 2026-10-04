@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "tactic-skewer-missed-queen",
+      "label": "Tactic skewer missed queen",
+      "text": "The skewer belonged to a stronger move. Strike the queen in front, and once it steps away, the piece standing behind it is exposed. The pattern was there to use."
+    },
+    "takeId": null
+  },
+  "requestHash": "b31d0efa1c273087f593c68efa5bd5d0afb85648e50f175d0fa0b3906ce3a1a2",
+  "recordedAt": "2026-10-04T07:58:01.113Z",
+  "sha256": "2a659e7c27e8758f240766d46739f1c42bf0fbb16a883e9777dbc7ac1976566f",
+  "bytes": 34472,
+  "requestId": "grswGmiYfp3txk02hfVC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0273d437c74e295a8bc8751ed5be36cfb24bb6392545342b9945d8104a7cbb9d",
+    "bytes": 178930
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

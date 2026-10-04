@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "tactic-fork-missed-knight",
+      "label": "Tactic fork missed knight",
+      "text": "In another move, a knight could have reached for several targets: a fork. It slipped by unplayed."
+    },
+    "takeId": null
+  },
+  "requestHash": "2b591b91698d45ae8be25e1c0715a6724f05d15185f0152ae43478a06c1d26eb",
+  "recordedAt": "2026-10-04T07:51:34.941Z",
+  "sha256": "40370256c844617d06885597891508d7252fdd29661e93d57aabcad9671ec4d6",
+  "bytes": 22183,
+  "requestId": "vocbUY5AAWvm5eX3HpRu",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9c579bd77bd0eb514c67e04b6c94c9b51e33b91bb4ee6c35fa47b011f1f40a25",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

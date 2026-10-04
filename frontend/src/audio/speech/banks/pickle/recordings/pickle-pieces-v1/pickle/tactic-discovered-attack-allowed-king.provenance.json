@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed-king",
+      "label": "Tactic discovered attack allowed king",
+      "text": "Something's hiding behind their king. If the king wanders off, the piece behind it gets to attack. A discovered attack, theirs for the taking."
+    },
+    "takeId": null
+  },
+  "requestHash": "8c724a7abdc12150e9c5694316530c9c6683ce0a1e22390ff458a4dc14c6d3b5",
+  "recordedAt": "2026-10-04T08:02:07.748Z",
+  "sha256": "73f8a7b7a1e1675d94d490ad3446b436e0f3162e6603075d12ba09d5acc07cc1",
+  "bytes": 28901,
+  "requestId": "qOIoKmthS3PUNPrAegKV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cdf9a143c24f50af8265b184571f6bcc7bc13e6214c476b02683686051444ae1",
+    "bytes": 153435
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

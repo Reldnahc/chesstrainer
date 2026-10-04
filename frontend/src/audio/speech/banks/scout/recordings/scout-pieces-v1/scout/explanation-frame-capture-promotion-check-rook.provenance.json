@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-check-rook",
+      "label": "Explanation frame capture promotion check rook",
+      "text": "Capture, promotion, check. The pawn takes a rook on the last rank, promotes, and the new piece attacks the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "2ef5d3f911133806c9182af7966e4f2e4070df3431e09d55378b2ffb15bd0a08",
+  "recordedAt": "2026-10-04T08:08:01.551Z",
+  "sha256": "439e3cadb83b96b3ebfaf2f411f2add37e46751ee4535408f79a5bbc37b28890",
+  "bytes": 23465,
+  "requestId": "NNd5axjlt01a2KP0xZJb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f83c3170cb8beedb334cc04255c010f951a41374ad48ffcf1ae3093b81c16676",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

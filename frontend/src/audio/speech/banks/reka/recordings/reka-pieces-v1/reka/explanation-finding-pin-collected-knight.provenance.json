@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-knight",
+      "label": "Explanation finding pin collected knight",
+      "text": "Keep tabs on the pinned knight. Stepping off the line would bare its king, so it gets gobbled as the line plays out."
+    },
+    "takeId": null
+  },
+  "requestHash": "5283b3b05b6ac71e3b12ea6b849af0e6cc7aa460ecb61b0a63d0b3bbc6643b19",
+  "recordedAt": "2026-10-04T08:05:47.490Z",
+  "sha256": "5679976ec417af20ac15a207e9060a9475c4949b58d3b6f2e62e1e3d07e72e47",
+  "bytes": 23686,
+  "requestId": "tCZlRJypeZyIODhbBogv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7349db41f11151d325bf6a5f1c1caf787ec6d60a81a185c813d957f4997451c1",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

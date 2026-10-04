@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-knight",
+      "label": "Tactic deflection missed knight",
+      "text": "A defending knight could have been lured from its post by another move. No one reached for that deflection; study what the knight had to hold."
+    },
+    "takeId": null
+  },
+  "requestHash": "2e180375263609730769305fed38a2d19c29c6cf8f3ced5a45e18d0a43eb201f",
+  "recordedAt": "2026-10-04T07:58:39.865Z",
+  "sha256": "741fb9e0838a8bd2ca5beca9756ce97dd29f4acfafdbc097efda7a2124f37516",
+  "bytes": 29050,
+  "requestId": "cEEsUqQC1WP1g7RM0dHD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fe8711e406fa52ec66ba1dab0da65abf4167e2eddef62a4b412d116df6ee7246",
+    "bytes": 150927
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

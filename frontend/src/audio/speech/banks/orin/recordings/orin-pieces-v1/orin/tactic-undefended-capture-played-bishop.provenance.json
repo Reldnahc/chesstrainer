@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-bishop",
+      "label": "Tactic undefended capture played bishop",
+      "text": "The simplest principle of all still applies, and an unguarded bishop falls to the first attacker. Here this move takes one. Before any combination, count the loose pieces."
+    },
+    "takeId": null
+  },
+  "requestHash": "8d48957b6a0bc55bc8aa3f986dbff9c195addc79da91bbb252197f11859b0175",
+  "recordedAt": "2026-10-04T07:58:06.197Z",
+  "sha256": "9d62d3da9c28c9ef2e77d93349b78ccbe22789d30700774fdfc00bc0e42690d8",
+  "bytes": 39673,
+  "requestId": "1Ypf52B1y4vPlfye3giX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ac8b99f241f04bffeb8e4a1c0970d4619d843344ea79000b4a8a12226f8247ff",
+    "bytes": 208605
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

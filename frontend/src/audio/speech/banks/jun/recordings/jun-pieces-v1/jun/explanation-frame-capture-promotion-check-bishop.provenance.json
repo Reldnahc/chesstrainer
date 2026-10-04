@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-check-bishop",
+      "label": "Explanation frame capture promotion check bishop",
+      "text": "The pawn captures the bishop, promotes, and checks with the new piece."
+    },
+    "takeId": null
+  },
+  "requestHash": "814654a89c1c0861ae17cfe9ca59adf0a0a1a96152d6aa4aa659e75a7c38cc85",
+  "recordedAt": "2026-10-04T07:51:02.702Z",
+  "sha256": "9e233d9d21666af5ca372e9d24c6ae8caa97e1fd6c9b0f05291842ba71322b7b",
+  "bytes": 14842,
+  "requestId": "X9sm6Rsi8YiVf9P4dCg6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3484c94e707a272e41e0a1f4ab7f0bd60ec81a2cb5095eca98da8b597c26547b",
+    "bytes": 74022
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

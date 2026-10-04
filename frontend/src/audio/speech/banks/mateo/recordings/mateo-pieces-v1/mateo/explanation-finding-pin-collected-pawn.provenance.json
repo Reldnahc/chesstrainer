@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-pawn",
+      "label": "Explanation finding pin collected pawn",
+      "text": "Watch that pinned pawn the whole time. The king is somewhere down that line, so the pawn can't leave it, and it gets captured before the sequence is over."
+    },
+    "takeId": null
+  },
+  "requestHash": "b0c5eed35d1d2cc4e8e01dc646a397c093c0b1fe15d5225ff1ec76ffc9af11ec",
+  "recordedAt": "2026-10-04T07:55:24.822Z",
+  "sha256": "94814e567380092caef6f931b352f9d97c6ae139daa7cbbd30676dc70caa339c",
+  "bytes": 28244,
+  "requestId": "wmB0nZWEpIEAOpfjAzSg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7fc622f92229341f135f2f11ef763ee46d52fc72c320ff7e9cc9f9893c50ae6a",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

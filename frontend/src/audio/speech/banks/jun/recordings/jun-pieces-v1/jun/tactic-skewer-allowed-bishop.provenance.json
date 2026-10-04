@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed-bishop",
+      "label": "Tactic skewer allowed bishop",
+      "text": "This concedes a skewer. Once the bishop in front is driven off the line, the piece behind it can be taken."
+    },
+    "takeId": null
+  },
+  "requestHash": "353de07334d2c0ff11fdfe56be8bc612b401346e23a5de4e06579968fc4e554a",
+  "recordedAt": "2026-10-04T07:50:13.431Z",
+  "sha256": "91b9c72427d485f02ecac88f5755139552a61012c23967461873236eb03e3099",
+  "bytes": 21919,
+  "requestId": "HLqFiHRYXQjnzS8FXXbW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d56f5d8cb5358ff6398d6e6ed073c05f19da33674c8658c5b47778bf3aa09133",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

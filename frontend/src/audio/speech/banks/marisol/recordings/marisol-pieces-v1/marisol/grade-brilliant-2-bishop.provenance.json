@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "grade-brilliant-2-bishop",
+      "label": "Grade brilliant 2 bishop",
+      "text": "On the board, a bishop is offered. The analysis finds the offer sound."
+    },
+    "takeId": null
+  },
+  "requestHash": "56a45388eab5882a6aa9ffa2040024e04d4995b02ddfd23924d325e623ccca38",
+  "recordedAt": "2026-10-04T07:54:38.154Z",
+  "sha256": "7b2ca3f906ea9c0c49dd9b43f8dc57d716558b23df3091c534fbfc6b428ae32f",
+  "bytes": 16290,
+  "requestId": "xCF3dMazG08kBhN6PE4k",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bc3f50154252b86051e13ca3f5c7412fc5da970df2c5d05fb23470db19d4b40b",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

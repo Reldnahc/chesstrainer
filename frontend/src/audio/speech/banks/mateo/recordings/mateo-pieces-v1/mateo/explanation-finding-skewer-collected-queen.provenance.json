@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-queen",
+      "label": "Explanation finding skewer collected queen",
+      "text": "The queen in front steps off the line, and the piece it was hiding gets taken."
+    },
+    "takeId": null
+  },
+  "requestHash": "9fefecaabfe96dc0bae0ac41b3e92ebf43d5f7e71282c6cc5c3ca1f2dc4745da",
+  "recordedAt": "2026-10-04T07:55:39.610Z",
+  "sha256": "987d1d1038e9dcdf4327815e12278f585570787178c55864d624aba361fd77f2",
+  "bytes": 15796,
+  "requestId": "GAhIc4ZUV48lX1U1rRZy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cc72aaa7145c13c8d9d51469ac735537b43413951149689c0f0bcc1a4bc87986",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

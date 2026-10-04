@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-queen",
+      "label": "Tactic discovered attack played queen",
+      "text": "Slingshot: the queen zips out of the way, and the piece hiding behind it opens fire."
+    },
+    "takeId": null
+  },
+  "requestHash": "8b71849d27ca23632b2f3642f4951a2c743b15399bd13ffee8dc5611d9f67b00",
+  "recordedAt": "2026-10-04T08:05:14.038Z",
+  "sha256": "b463ab2ed76692ee40c3e5f8264c01fbd40ba544f75a82d234cdd8394518deb1",
+  "bytes": 17943,
+  "requestId": "uH4qREBqdJDmNnL7uXa7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d96de3f6cab07cc9849adbb0bae08ac61cc95c6df2ae19340385c412fa3cd1a8",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

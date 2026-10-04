@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate-queen",
+      "label": "Explanation frame capture move mate queen",
+      "text": "Gobbling the queen lands mate, and the king has no legal square left."
+    },
+    "takeId": null
+  },
+  "requestHash": "4183b8390979542e9e3ee4e909057e8dc102d2d1cae04bbae009c5b50411c569",
+  "recordedAt": "2026-10-04T08:06:14.248Z",
+  "sha256": "94313b4426850098a2beec0b4f54bb05854660ba5739648e19337ea92b40b336",
+  "bytes": 15173,
+  "requestId": "xOmYLy21ywnrS175uhy9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d4e39243ba544fcc3377c6e26ecad8ceff3c87ae91b5b809e36273c69f6bb528",
+    "bytes": 74022
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

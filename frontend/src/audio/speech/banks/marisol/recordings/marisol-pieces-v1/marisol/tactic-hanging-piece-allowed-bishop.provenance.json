@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-hanging-piece-allowed-bishop",
+      "label": "Tactic hanging piece allowed bishop",
+      "text": "After this move a bishop stands without protection, and the other side can take it with nothing coming back."
+    },
+    "takeId": null
+  },
+  "requestHash": "e2b62ff1276e2dfddaefdb8e189c7e5e5e1b5df1275c7e19e99ac05f060ef23e",
+  "recordedAt": "2026-10-04T07:53:22.190Z",
+  "sha256": "1b4a8a67bc2eb8c9ef71f90117fa85c5d611fdc9311eb8a333b0d3e6139fbc8f",
+  "bytes": 21203,
+  "requestId": "uEPnMMOOpvP8ftrT8JM5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ecdfc74efae06f6306fecbcef9ce52f6b43963261e9d3cbae47245a35a6c5139",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

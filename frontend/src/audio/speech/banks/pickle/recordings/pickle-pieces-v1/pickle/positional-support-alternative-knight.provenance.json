@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "positional-support-alternative-knight",
+      "label": "Positional support alternative knight",
+      "text": "With another move, that unguarded knight would have had company. Nobody likes standing alone."
+    },
+    "takeId": null
+  },
+  "requestHash": "74c546d8c86d7e01aecaf236ba983ac33f1eeb05361ef123c4de12ab8409a4f9",
+  "recordedAt": "2026-10-04T08:02:30.637Z",
+  "sha256": "057419a7cee29ff76a0e1eedc887ed641b716a58ae67f2ea6d6e42874464f13c",
+  "bytes": 18642,
+  "requestId": "NUJ4ddfwBiwMFX3xB5JD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6dff5794a47d678ebbe23602e83e03ad240333fd66d79a37339a9f864502b4e0",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

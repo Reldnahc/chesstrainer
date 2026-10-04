@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed-king",
+      "label": "Tactic skewer allowed king",
+      "text": "Little detail with big teeth: a skewer is lining up for the other side, the king checked off the line and the piece behind left open."
+    },
+    "takeId": null
+  },
+  "requestHash": "4503037322846a3b12ce8224fee9ebbf96d7d77601e7d3b6d53feebac2118ed2",
+  "recordedAt": "2026-10-04T08:05:26.924Z",
+  "sha256": "66bebdd26abbef6aac14eba05800d122e43d1854a20514e4520e52aa5678a87e",
+  "bytes": 26897,
+  "requestId": "g6Tarrj02aTlw3hyH8U9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b1da67c783ec4bdcc890782f31602b716c76d8e5b1ee9d795c886ed87d99176d",
+    "bytes": 136716
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

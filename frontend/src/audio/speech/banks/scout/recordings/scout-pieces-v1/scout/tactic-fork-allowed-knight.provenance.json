@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "tactic-fork-allowed-knight",
+      "label": "Tactic fork allowed knight",
+      "text": "Fork spotted, and it's theirs. After this, a knight of theirs can reach several targets in one go. Scan where their pieces can land before committing to a move."
+    },
+    "takeId": null
+  },
+  "requestHash": "6c8ec0bbf7354381a3fb40e68b802c9f5f3233a2c91a907322249113ec86418e",
+  "recordedAt": "2026-10-04T08:06:32.596Z",
+  "sha256": "4a41162c9b5e4bfc8d360f78848f10d06874017ecab9c0b643a4a85e10667848",
+  "bytes": 30639,
+  "requestId": "U1Oj3MuOoH8hvigs1Wxq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ed31dbeb777a4046dbc63cd7a1532099c85cc2d1a529b5e4f7cdd4b6c5433ca0",
+    "bytes": 157196
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

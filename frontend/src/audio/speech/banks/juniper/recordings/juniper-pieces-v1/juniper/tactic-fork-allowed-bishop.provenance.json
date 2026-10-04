@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "tactic-fork-allowed-bishop",
+      "label": "Tactic fork allowed bishop",
+      "text": "I noticed a gap. Their bishop can now reach several targets together, a fork waiting to happen."
+    },
+    "takeId": null
+  },
+  "requestHash": "6bd06fabae00f570d4f696e6cd460af1534d148e46c232e05a52833289741cce",
+  "recordedAt": "2026-10-04T07:51:27.813Z",
+  "sha256": "c676ed0dc67c03b6d989ad0f54836e210899c0990358c9a4c1d86f8c813a54f3",
+  "bytes": 21540,
+  "requestId": "z1yRK3RrVHvt3P6ArEKv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0c92dc414b63a86f1ebda408a99e29512c1589dafcdd32a3e798b34e6cc10acb",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-bishop",
+      "label": "Positional unsupported alternative bishop",
+      "text": "A different move would have left a bishop unguarded, though being unguarded doesn't make it winnable."
+    },
+    "takeId": null
+  },
+  "requestHash": "aa14636b12337926792d07098928315077fe70f84e74486386347cb1d88a475d",
+  "recordedAt": "2026-10-04T08:09:12.749Z",
+  "sha256": "e9f12e2dd550b2f6c29dd79821c7849cfaafa817f63f43ed82e78c0ff3116f19",
+  "bytes": 19871,
+  "requestId": "LaKAuP0f4BmkXSYEKdtm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ab51d47e94952534e6ea271d877aa170a9846e7935ae0c26d538af75dd5d67fd",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

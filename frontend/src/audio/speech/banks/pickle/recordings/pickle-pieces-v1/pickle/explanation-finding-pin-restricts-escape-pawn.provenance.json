@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape-pawn",
+      "label": "Explanation finding pin restricts escape pawn",
+      "text": "The pawn under attack is caught in a pin against its king, so it can't just run away. Whatever it does, the king has to stay hidden behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "6b1af694e9acb0913038a22b1e69b96cff1b96246bf239259e0e249676735c43",
+  "recordedAt": "2026-10-04T08:02:17.108Z",
+  "sha256": "7082dd0282b45551ea81264fc374cedbd49cb14f7200f7639c5a9a2bc797e50d",
+  "bytes": 28521,
+  "requestId": "9FyTxGCzEsBCMNeFrIJj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1b02616d7af77cc33d436175f6350b285d208e264c52b1797b4cbb24a9598cdf",
+    "bytes": 147165
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

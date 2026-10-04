@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-escape-bishop",
+      "label": "Explanation frame capture move escape bishop",
+      "text": "A bishop is taken, and with it the king leaves check."
+    },
+    "takeId": null
+  },
+  "requestHash": "a499eb7e1297df3f326f4d5c72f586d28993b229c0adab0ead46c37c53e0bb8c",
+  "recordedAt": "2026-10-04T08:14:49.008Z",
+  "sha256": "dc5febb99a5fcf47d80bd89c14b38bfdc0ccc262a2b4b9e04ebda7e84584aad0",
+  "bytes": 12650,
+  "requestId": "0yCW71cMfJtG0O2fmk6X",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c164b261dbe58639073e025d5b7df767e8834f9eb6971eaff3b150ac0cf365b6",
+    "bytes": 62319
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

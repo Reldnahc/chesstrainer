@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "support-restored-bishop",
+      "label": "Support restored bishop",
+      "text": "Cover restored. The bishop that was hanging earlier has a guard again. Pinpoint the new guard."
+    },
+    "takeId": null
+  },
+  "requestHash": "77b876f9619a66de54de43a27d18130bdeff4d8b8c9b9ac6ed7da8603a9494bf",
+  "recordedAt": "2026-10-04T08:07:31.255Z",
+  "sha256": "0461169293e93e25851c3f4d9b5e0d7f049e6440ff03e2327362552a7c24785e",
+  "bytes": 18664,
+  "requestId": "13iLkK7aHgpPalFKRzpH",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ce5d46d2afd9fc34fac4fce0de99e84e29be76bb4de659e3920703c6b9051341",
+    "bytes": 95756
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

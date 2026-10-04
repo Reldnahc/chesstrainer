@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "positional-support-alternative-rook",
+      "label": "Positional support alternative rook",
+      "text": "The alternative would have supplied a defender to a rook that has none at the moment."
+    },
+    "takeId": null
+  },
+  "requestHash": "c926093591a0359fccb1e16866235ed662f27740e2d3e4c998d93385ea5555d8",
+  "recordedAt": "2026-10-04T07:54:02.131Z",
+  "sha256": "0e4dfda059fe4f33242de29444c8795fa7ec1c45a39c2f68cb79c01f844b9907",
+  "bytes": 15655,
+  "requestId": "dBjkQIbAGAdxwsuI6ewX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ea3a554aecb4ece200827924e2f6ffdb7c5ddc24340a82a6f193e280e48314de",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

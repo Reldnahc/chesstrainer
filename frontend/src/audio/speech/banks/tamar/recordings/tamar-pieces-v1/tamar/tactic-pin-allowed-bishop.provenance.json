@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-pin-allowed-bishop",
+      "label": "Tactic pin allowed bishop",
+      "text": "Pinning chances go to the other side here. A bishop would be stuck on the line to its own king, unable to step off. Notebook rule: keep pieces off the lines that lead to the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "c6bc525258c081bc447e2bce9729f90ce83824de51c0efe37e3d5ca584f96735",
+  "recordedAt": "2026-10-04T08:10:05.918Z",
+  "sha256": "00bdb7f015c6839ab57e460196442a61324b37fd3d9dff16fa7f31350ec4c299",
+  "bytes": 35626,
+  "requestId": "3tvLQOq1BF0Y7lrrrCQL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "efa332c41589511f300ca0d1c0f04ae767ee2a625b8f04aecf5fa763b7ec3014",
+    "bytes": 186871
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

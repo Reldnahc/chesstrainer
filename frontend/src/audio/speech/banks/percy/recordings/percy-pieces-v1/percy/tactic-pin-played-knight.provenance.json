@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-pin-played-knight",
+      "label": "Tactic pin played knight",
+      "text": "A pin to the king! The pinned knight has to keep shielding its own king, because stepping off the line would expose it. Talk about being chained to a desk!"
+    },
+    "takeId": null
+  },
+  "requestHash": "2df560c6ebc5ddd5897cc8f14936648b639d6bd15ff040a8306c1ef24dcbcdce",
+  "recordedAt": "2026-10-04T08:00:16.678Z",
+  "sha256": "74172edc32d766b9e7f609dd42598740c4873516dcbafe3195bfe73fedb21c3e",
+  "bytes": 30163,
+  "requestId": "fL22u2aldGip287u7Xym",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5f95850c2b6c866681bdb69f20fe55f268fd9a0a72e77eb2bdc780a5265ae0a7",
+    "bytes": 153435
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

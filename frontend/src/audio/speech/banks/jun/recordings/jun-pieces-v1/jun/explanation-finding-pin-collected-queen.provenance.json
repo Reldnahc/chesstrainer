@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-queen",
+      "label": "Explanation finding pin collected queen",
+      "text": "The pinned queen cannot leave the line its king stands behind, and it is captured before the sequence ends."
+    },
+    "takeId": null
+  },
+  "requestHash": "f0999bbcb276427dae49f47ddf1177c2de621b2e0cfeebb98ae70abe5892a16d",
+  "recordedAt": "2026-10-04T07:50:45.250Z",
+  "sha256": "2023a762c6ced9abcd0fc7da9186faa15b93d9cb289f60276a06aac398625ba7",
+  "bytes": 21440,
+  "requestId": "kF7780NSUIuhlrPkw3hn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5b74fc87cf6c985ced0a8f44f336c42272da7c62a64a6753325c84d213605990",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

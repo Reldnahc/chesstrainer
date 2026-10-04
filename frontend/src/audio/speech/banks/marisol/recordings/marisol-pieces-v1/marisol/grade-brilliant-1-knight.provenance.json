@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "grade-brilliant-1-knight",
+      "label": "Grade brilliant 1 knight",
+      "text": "A knight has been left open to capture, at an immediate cost. The position can afford it."
+    },
+    "takeId": null
+  },
+  "requestHash": "1942bc96adae4627f2edc464b8c2f6330c89049ab0aac53c2010768d2bfc9949",
+  "recordedAt": "2026-10-04T07:54:30.595Z",
+  "sha256": "55eba882408b06ba834dfe59d8829cece38f22908e250f879edbcd48f0123dfe",
+  "bytes": 18957,
+  "requestId": "HGrEnHFArnRInUnCHJG5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "40b8364faa7b6d3957c85f01521145acb93f0d34c1bf4fa173ba42e9e96b6b3f",
+    "bytes": 97010
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

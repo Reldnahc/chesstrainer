@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "tactic-skewer-played-bishop",
+      "label": "Tactic skewer played bishop",
+      "text": "Skewer on the line. The bishop in front takes the hit, and once it steps aside, the piece behind it is open. Read the line front to back."
+    },
+    "takeId": null
+  },
+  "requestHash": "03c6c024b7bdb20bf0730c535fc9823ad17f300ab223cdc5afe8bf696650575d",
+  "recordedAt": "2026-10-04T08:06:54.477Z",
+  "sha256": "193da08a9d6bf719bf18f1bfde476a490eb8aa6505159cde7bb46e3c5dea05c6",
+  "bytes": 26876,
+  "requestId": "NpkWs5CtIkByzxwFow7j",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a1271e46ef11d82caa7580e48dcba58fb1a273c4ed61b8fe479aa9f19ec6ad42",
+    "bytes": 139224
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

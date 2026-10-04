@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-finding-double-attack-collected-bishop",
+      "label": "Explanation finding double attack collected bishop",
+      "text": "One target is hit by the piece that moved, a second one by the line that just opened up, and the bishop in back is the one that grabs."
+    },
+    "takeId": null
+  },
+  "requestHash": "fe4bc6dc4e98ab4792caf0479f2a73a70b98fb2c33229e9359790c164665a5e8",
+  "recordedAt": "2026-10-04T07:55:50.443Z",
+  "sha256": "a0a53f5ac31b15775af62f8aa55fc0600a54fec2447741116f044db1daed5890",
+  "bytes": 26209,
+  "requestId": "ThqKY0Npfanjv9OsGt8b",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "44787742d1f171595bcccdc89a500a1fc57e467ed981c3f33db2056bb2592ffe",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played-rook",
+      "label": "Tactic removing defender played rook",
+      "text": "Target the defending rook. Capture it, and its ward stands unprotected. Standard procedure."
+    },
+    "takeId": null
+  },
+  "requestHash": "ab961ae2ece20daf1a3f23890e5fb78c88b92702532d293cfa221d45c9416d77",
+  "recordedAt": "2026-10-04T08:12:30.176Z",
+  "sha256": "0159075174009cfd883bf0c4b0b5f0b5320bb4b6710a1c651830a71e1621a6cb",
+  "bytes": 20906,
+  "requestId": "NgSMhtCJUozYJxsBNEXe",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8f55be09ae0e735c1d8065d9c1dfec23ffa93ba7b1117ae3ba41d1bb8e6d2fc1",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

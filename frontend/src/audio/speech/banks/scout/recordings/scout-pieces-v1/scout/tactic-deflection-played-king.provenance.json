@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "tactic-deflection-played-king",
+      "label": "Tactic deflection played king",
+      "text": "Deflection. The king on defense gets pulled off its post, and the thing it was covering opens up. Spot its job, then the move that broke it."
+    },
+    "takeId": null
+  },
+  "requestHash": "ab18a4d922fd25ad7535743e57d17ce8450b670fbd36855e0888ce2bc0334fc1",
+  "recordedAt": "2026-10-04T08:07:27.572Z",
+  "sha256": "3f7e672692fbc691eff6edaacd7bed969b0ad3c9a8ffb16d94ab103721e23e72",
+  "bytes": 27428,
+  "requestId": "C1aB7JDQTlpKQtP9OlHb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "122c083d93652fb2d7d88de7e1a918ab867a90b7efa8b62e0438b92090885d06",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

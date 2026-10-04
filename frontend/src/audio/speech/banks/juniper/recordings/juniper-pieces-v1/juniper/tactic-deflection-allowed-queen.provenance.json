@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-queen",
+      "label": "Tactic deflection allowed queen",
+      "text": "A defending queen can be coaxed away now. Watch what it guards; that is what would sit alone."
+    },
+    "takeId": null
+  },
+  "requestHash": "35cc29006bace43422117602d603649c77b0a63f69282a36bb2691530da33068",
+  "recordedAt": "2026-10-04T07:51:53.824Z",
+  "sha256": "eef8c19cb875ec0cef34add8911db224f0c623d18314a317e5c104fa651fd44f",
+  "bytes": 21897,
+  "requestId": "hgGn36iKFKh5b6gCZpBK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "63151b54aac0e3614128543c9255ab46adc0c71c3dadc448c693aef0eca892e4",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

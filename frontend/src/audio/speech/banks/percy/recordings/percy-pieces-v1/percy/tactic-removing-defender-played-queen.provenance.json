@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played-queen",
+      "label": "Tactic removing defender played queen",
+      "text": "Here's the idea: take out the guarding queen. Whatever it was protecting loses its protection, so look at what that queen was responsible for."
+    },
+    "takeId": null
+  },
+  "requestHash": "e27903a42574116ac938228b747b941d00f930a5f051f5d3c355b852f1874a16",
+  "recordedAt": "2026-10-04T08:00:34.031Z",
+  "sha256": "c0c3463f34b03e4c9300dd3a0595637826be9a2a6a25debd863bc0b977b7474d",
+  "bytes": 27667,
+  "requestId": "gh9ioa8uyAITl7BxEcBn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "80421695faf6656cbd5355d81c64fad23f9c15dbf4dd40e7be32954e4f2b39dd",
+    "bytes": 142986
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

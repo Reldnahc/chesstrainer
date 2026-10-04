@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "grade-brilliant-3-knight",
+      "label": "Grade brilliant 3 knight",
+      "text": "This costs the knight on the spot, and the idea is sound anyway. A brilliant one!"
+    },
+    "takeId": null
+  },
+  "requestHash": "a505862245eccd44b8b496a03de2746f4e35f5d5f8ab1e86cb25792a218ba047",
+  "recordedAt": "2026-10-04T07:55:50.554Z",
+  "sha256": "51d4e3bf38cc73ccfd131e8dcdbb54ab162c17cade85de15a994c74b5f79bdf8",
+  "bytes": 17905,
+  "requestId": "W7olbtbDefMU2FdMDZrJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "04a59da67d3698ec747b33c7d23a799f8f23d45f6ede07052618c4a02e52156f",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

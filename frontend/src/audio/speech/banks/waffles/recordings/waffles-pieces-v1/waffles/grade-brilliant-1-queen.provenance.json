@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "grade-brilliant-1-queen",
+      "label": "Grade brilliant 1 queen",
+      "text": "Bold maneuver! A queen thrown into the breach, and capturing it does not win the day. Outstanding!"
+    },
+    "takeId": null
+  },
+  "requestHash": "f1050e7e459823474cae6c71274b81d71af8a3ac20a6e89984077054cb6398ec",
+  "recordedAt": "2026-10-04T08:13:38.141Z",
+  "sha256": "1e5dbef18a8e1b9f2464f72f65f9c4702f2224901c10375bc5ccbbbcf6ae0a7f",
+  "bytes": 24832,
+  "requestId": "Ae8cT7p9mEvzP1LW7Rtr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "45dd2b2ee2d3333160cb25b4a015ef632ea4c0d299235d4079ab41b3caf5c884",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

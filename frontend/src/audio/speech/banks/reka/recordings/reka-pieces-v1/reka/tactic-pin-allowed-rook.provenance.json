@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "tactic-pin-allowed-rook",
+      "label": "Tactic pin allowed rook",
+      "text": "Psst, the other side can nail a rook to its king now, and pinned like that, it can't wander off the line."
+    },
+    "takeId": null
+  },
+  "requestHash": "044e198037594e52241ed107596e4902eaf7e329356afa98eb69e13ea36788e5",
+  "recordedAt": "2026-10-04T08:04:54.358Z",
+  "sha256": "70f9e1995f8f0f323d257d16e953ac450b549b1495b3da596823133844ead36d",
+  "bytes": 20289,
+  "requestId": "7Yfy3qmlHMKZJQ4JCmfb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "100b4adb61f0121ebd4a734a8581d40967158919de781531f23488749d109e0a",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

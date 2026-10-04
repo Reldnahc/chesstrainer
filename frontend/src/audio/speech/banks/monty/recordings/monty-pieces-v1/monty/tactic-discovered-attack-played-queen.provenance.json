@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-queen",
+      "label": "Tactic discovered attack played queen",
+      "text": "The queen clears out and a hidden attacker behind it comes alive. Big idea: a discovered attack, where moving one piece wakes up another."
+    },
+    "takeId": null
+  },
+  "requestHash": "c4444b4ed375d9059104fc93a0c1a8c86ec5f25a5931e070fffbfd9db2d0f32f",
+  "recordedAt": "2026-10-04T07:56:35.376Z",
+  "sha256": "ef42c63aa7928e07093b1f338e678c335cadf8f85a34837fdb0052c6c238ff0a",
+  "bytes": 29980,
+  "requestId": "nuqg11JI8VAjhPO8AbHO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "298135c5224bdd7df442716505202ba15fa8cbcbc8f89d6c0a2847ab0aa6b7a0",
+    "bytes": 157196
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

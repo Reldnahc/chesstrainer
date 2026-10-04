@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "grade-brilliant-1-bishop",
+      "label": "Grade brilliant 1 bishop",
+      "text": "Strong. Big picture: a bishop is put on offer, and the position stands firm after the capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "1ecdc58c4ddd6591bbbcd8349d828ca00f15efa0b95ae2643c5fed51809fafea",
+  "recordedAt": "2026-10-04T07:57:55.659Z",
+  "sha256": "281836adfdebd0a6f8cdd3ecfd8ec2d90000f03554591d89510395cfdb0ff006",
+  "bytes": 22328,
+  "requestId": "tFZIk6ATONeOfj92AZN5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4965daf4383ed706ddca340691c24ecbf12ebceafd760d17a86be9cfabc09280",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

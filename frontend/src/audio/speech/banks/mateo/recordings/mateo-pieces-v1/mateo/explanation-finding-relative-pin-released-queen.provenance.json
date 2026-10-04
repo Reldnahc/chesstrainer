@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-queen",
+      "label": "Explanation finding relative pin released queen",
+      "text": "A relative pin was holding the attacking queen back, and the opponent's previous move set it free. In the line shown, it then captures a target that never moved."
+    },
+    "takeId": null
+  },
+  "requestHash": "52b4d19fc252792ecc3ae3a72079f355fcef6fdb5fa0c496a3295a4964cc2009",
+  "recordedAt": "2026-10-04T07:55:33.999Z",
+  "sha256": "8bb7a2dc40b2b7b44ea65e9d41073bc3e881599da25179f7863da782641e3be0",
+  "bytes": 31450,
+  "requestId": "VA0vaO2i5GQayug61O9O",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "256abcbc6b34db9a6b9a977d53b156d34d261d9a3e209c314f5d410b5ad52d13",
+    "bytes": 158450
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

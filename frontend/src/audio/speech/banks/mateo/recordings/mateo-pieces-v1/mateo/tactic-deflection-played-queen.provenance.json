@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "tactic-deflection-played-queen",
+      "label": "Tactic deflection played queen",
+      "text": "Deflection! The defending queen gets dragged away to handle something else, and whatever it was guarding is left with no one."
+    },
+    "takeId": null
+  },
+  "requestHash": "f8f7ddfe8e5c2473844fa02365d61dca5dfb804f9c7dbda806916d797e03aa7b",
+  "recordedAt": "2026-10-04T07:55:13.276Z",
+  "sha256": "d242ea9a6663d377b87ce58d34cd8e38daeaef39b6572f068fce929277a4adb4",
+  "bytes": 25241,
+  "requestId": "5W6RWCJHrITkeojerBY1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5c817ca05fe18853f0166d0931fcd9ea927d881624c491a1b4827ab2c2e2ff79",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

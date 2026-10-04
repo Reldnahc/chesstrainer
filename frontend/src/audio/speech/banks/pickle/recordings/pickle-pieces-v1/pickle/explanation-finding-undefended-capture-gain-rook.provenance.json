@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-rook",
+      "label": "Explanation finding undefended capture gain rook",
+      "text": "That rook had no guard, so off it goes. The side that grabbed it is ahead in material by the end of this example."
+    },
+    "takeId": null
+  },
+  "requestHash": "172d388f8a9ca5f1290e69f3eb6da6bfcac18d7e0310bb9c8e17340005b78bec",
+  "recordedAt": "2026-10-04T08:03:01.433Z",
+  "sha256": "1eef7112d0b60cc2dd588c0faf70a0f60aa6626c0a3402512218692f26695244",
+  "bytes": 24515,
+  "requestId": "rD4LxiTfufDcimqdLz7f",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2568564eef89577aac67db7fc9ed9ef1ad5c1f5f17689ebb7797f8a50a4bcd23",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

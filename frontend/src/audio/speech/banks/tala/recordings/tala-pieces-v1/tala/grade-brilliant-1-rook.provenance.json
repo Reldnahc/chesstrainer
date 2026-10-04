@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "grade-brilliant-1-rook",
+      "label": "Grade brilliant 1 rook",
+      "text": "Circle this one! It offers the other side a rook, and the checked line stays solid after the capture. Brilliant!"
+    },
+    "takeId": null
+  },
+  "requestHash": "e32b03f5b4feecf86251aa90ac86b7465842be3fb256551ef0cbeda2eb36872e",
+  "recordedAt": "2026-10-04T08:10:05.730Z",
+  "sha256": "92af491d1fded8ebc3aa8c92ee43ba7fbc372d95d16e8d9f42495f6d60e68922",
+  "bytes": 25025,
+  "requestId": "Bkd4YPJ3M8qpqISeogju",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "073ccb11434d5aa1d95830a609535afbba97c6f007d26b3a9e2ca143502cdc75",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

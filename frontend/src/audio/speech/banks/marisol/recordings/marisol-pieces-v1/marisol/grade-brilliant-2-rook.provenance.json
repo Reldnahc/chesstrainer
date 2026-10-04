@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "grade-brilliant-2-rook",
+      "label": "Grade brilliant 2 rook",
+      "text": "On the board, a rook is offered. The analysis finds the offer sound."
+    },
+    "takeId": null
+  },
+  "requestHash": "73e27a70b78e9d7293b32eb0421f1d08798e7147dbf872981284f6ce698ce0b6",
+  "recordedAt": "2026-10-04T07:54:39.618Z",
+  "sha256": "00d542d9180ec4db4ddb7bfe3cfc997a4487388e665f7691ad0de3ff1bcb6bab",
+  "bytes": 16354,
+  "requestId": "YbYHtXW2FTO4vqbWdM2M",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "60a7fefdf41d90c9413df1a4160d310a13eb33b5a3f990fbcfaf029045817d4a",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

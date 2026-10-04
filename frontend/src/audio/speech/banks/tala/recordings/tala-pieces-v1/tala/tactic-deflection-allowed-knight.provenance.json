@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-knight",
+      "label": "Tactic deflection allowed knight",
+      "text": "Spot the busy knight: it has an important job, and the other side can now drag it away from its post."
+    },
+    "takeId": null
+  },
+  "requestHash": "1289ff8f9a60bef36b2e7d1a9f5aa4f3cecd232699e840a17255bb8e670e78ba",
+  "recordedAt": "2026-10-04T08:09:12.724Z",
+  "sha256": "7d2d18c4ea4158b001bbf01302ed6ed4c6c93680b679d9c23d3e2346059e0cfc",
+  "bytes": 21939,
+  "requestId": "NiEmqicUQMGg1mZz4IJk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dc69bf36e55b455140c43bb94bbeef9a7170a5dd872b69a2c058e609931a47b5",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

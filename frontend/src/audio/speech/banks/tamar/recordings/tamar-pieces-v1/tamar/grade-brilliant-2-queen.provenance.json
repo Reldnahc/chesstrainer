@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "grade-brilliant-2-queen",
+      "label": "Grade brilliant 2 queen",
+      "text": "Brilliant. A queen given, the position still holding: that is a sacrifice done properly."
+    },
+    "takeId": null
+  },
+  "requestHash": "d919cd4822a4ee83f2a3680662e0d445379ef8e94eec5701eba1bb83fa3a619b",
+  "recordedAt": "2026-10-04T08:12:03.251Z",
+  "sha256": "38df3439b148d6c8d5374c9e702f6e33f36e099b4df91ab292dd9f311e411f3f",
+  "bytes": 21706,
+  "requestId": "k8W0qzIHs4xXTZXm3zb2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "44ce2b27305c59020163f679dc1144218ef151d8e65531c09bdae3fc41837ea0",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

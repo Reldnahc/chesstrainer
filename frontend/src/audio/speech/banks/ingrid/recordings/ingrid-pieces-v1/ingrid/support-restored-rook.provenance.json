@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "support-restored-rook",
+      "label": "Support restored rook",
+      "text": "The rook that stood unguarded earlier has protection again. Good to see that tidied up."
+    },
+    "takeId": null
+  },
+  "requestHash": "31274e59a2a42ff766c72a4fafcf99f8c05b199d25a6a1bb1a2411614b3d9a02",
+  "recordedAt": "2026-10-04T07:49:06.356Z",
+  "sha256": "800de4cd1c11b61a2fa7e8c6db618a0275572a6d2f5c36cb2aef6577cbf119fe",
+  "bytes": 18343,
+  "requestId": "7gWipQPrPH4NI2Sg5PQX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9e256b60fd58ed2836df0ddaa0549c66f75fce7e9100c4b00c299f91e5ba8cd5",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

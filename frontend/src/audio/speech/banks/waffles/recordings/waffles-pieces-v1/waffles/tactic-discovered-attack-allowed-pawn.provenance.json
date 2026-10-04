@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed-pawn",
+      "label": "Tactic discovered attack allowed pawn",
+      "text": "Heads up! A discovered attack is now available to the other side. Watch for a pawn of theirs moving out of the way to unleash the piece behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "32f5db0a2dff792256395dd621308d4ec01b167408963f988c1e20435f160cae",
+  "recordedAt": "2026-10-04T08:12:20.350Z",
+  "sha256": "89138a11f8ba648eae224870009f8f2e9d078532a1c991b396645c2fd14e2229",
+  "bytes": 29909,
+  "requestId": "t4WMKqXCxlGj5N7qZ74P",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e1f8ea7596a23b08ed19609b1d61e7de4139130601052532652cf02ded6d6fee",
+    "bytes": 149673
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-queen",
+      "label": "Explanation finding pin collected queen",
+      "text": "Eyes on the pinned queen. Its king would be exposed if it left the line, and these moves capture it."
+    },
+    "takeId": null
+  },
+  "requestHash": "c9c473e653ece5f6ee76c62dc88e2971470ef17b31941bb87b0dfd9e37a9d838",
+  "recordedAt": "2026-10-04T08:12:57.116Z",
+  "sha256": "9bed5701d44f89f1adb0d78db410ee0678081f575e857d9d93e58a2e29c8415d",
+  "bytes": 22111,
+  "requestId": "hzQoVoOZzLXmsROsVqft",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b6907f391f313dded908b4e7d543c7c319fd7c2472206ec308dd9dc8a9453c0d",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

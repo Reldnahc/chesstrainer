@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "tactic-skewer-played-rook",
+      "label": "Tactic skewer played rook",
+      "text": "A skewer, neatly drawn. The rook in front has to make way, and the piece it was hiding lies open."
+    },
+    "takeId": null
+  },
+  "requestHash": "919f901c3c33fe6f2ffcf5c7c52345c3d7e839598169f3fbe4b8e671c7ce9278",
+  "recordedAt": "2026-10-04T07:51:39.513Z",
+  "sha256": "0ebf08fe1ed8c310d559af14ebb278668d5d475ba93ba5827e25e2c956edd666",
+  "bytes": 22602,
+  "requestId": "VzWgdksuSh90WRhXXt3R",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9f3a8862611bc937f8684a36d205d5904e28e2cc5a52e52445558d3419dfa04d",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-bishop",
+      "label": "Tactic removing defender allowed bishop",
+      "text": "Look at the defenders now. The other side can capture a defending bishop, and whatever it was guarding could be left without cover."
+    },
+    "takeId": null
+  },
+  "requestHash": "65a6f40ef22af73eba74d7f61c3e6672cae2354aa8ec5ca6e684009004e2e7e9",
+  "recordedAt": "2026-10-04T08:03:29.042Z",
+  "sha256": "51ff53e5047b50221dea9806a5f3d8acb7bd35c354b4fa9288a8fcd19e3c4e71",
+  "bytes": 24730,
+  "requestId": "7iMx4tDILlFNJedZL8xk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b8ac37d1d4d23c239cd9250c1439d0643846eebb28f2f33f0ec9f10adc07727c",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

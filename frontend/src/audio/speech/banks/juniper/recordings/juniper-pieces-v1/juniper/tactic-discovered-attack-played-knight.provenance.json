@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-knight",
+      "label": "Tactic discovered attack played knight",
+      "text": "The knight moves aside, and the piece behind it wakes and attacks. That's the discovered attack, working quietly."
+    },
+    "takeId": null
+  },
+  "requestHash": "96ddbe9801dfd0a46d9f29e9b85d5f7f01b7f5fd76ddfa3aea8256d290ec334e",
+  "recordedAt": "2026-10-04T07:51:29.790Z",
+  "sha256": "8ddcdd6dad61849866a1b705245377450262c0586c7839c0f5c56d362f6d341f",
+  "bytes": 24803,
+  "requestId": "HY2RQ4QkcmU8gyixYOen",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "031a7274f2c3d9275924a6af30a11c9875f8a331386c044e502b901b98c224d1",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

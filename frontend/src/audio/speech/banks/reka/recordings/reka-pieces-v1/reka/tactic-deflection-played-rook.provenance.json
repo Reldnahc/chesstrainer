@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "tactic-deflection-played-rook",
+      "label": "Tactic deflection played rook",
+      "text": "Decoy: the rook on defense takes the bait, and its real job goes begging."
+    },
+    "takeId": null
+  },
+  "requestHash": "c30de152b1ec0227049f41ecbde7fc28700a31cad2df4f95ec6ac55f38f466ab",
+  "recordedAt": "2026-10-04T08:05:29.548Z",
+  "sha256": "3325fd0dae80205bf1ff83bd7079a4dcba77f0a6b2aa804c293e5e7801190575",
+  "bytes": 17194,
+  "requestId": "c8KVNkC2F0KB3YkxEKLZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c114e49498879fbfbab63c7345e8e806b45cb8db7e2cfc14d4496ef1afbe4819",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

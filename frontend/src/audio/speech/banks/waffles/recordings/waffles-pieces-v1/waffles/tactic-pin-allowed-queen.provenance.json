@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "tactic-pin-allowed-queen",
+      "label": "Tactic pin allowed queen",
+      "text": "Status report: the other side has a pin to the king in reach. Once pinned, the queen can't leave that line without exposing the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "d69810abf279faf306dbcacecc3ae84c769293d837a30daf476b49d7f08f87fa",
+  "recordedAt": "2026-10-04T08:12:01.783Z",
+  "sha256": "0c91aacaa746dc7adc3291ecc3b977348c715cd0ff7d760bf3a1b5fb37698319",
+  "bytes": 28430,
+  "requestId": "R5WSDccBTLaIKLbLSYo8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "de8dcbe68ef8997d0ae94596b658bdc85beaf88f4fc5abad9a15de65b9cc284e",
+    "bytes": 142986
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

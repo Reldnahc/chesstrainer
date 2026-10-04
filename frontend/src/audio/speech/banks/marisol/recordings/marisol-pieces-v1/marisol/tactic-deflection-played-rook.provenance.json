@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-deflection-played-rook",
+      "label": "Tactic deflection played rook",
+      "text": "The defending rook has been drawn away from its job, and what it was covering is uncovered now."
+    },
+    "takeId": null
+  },
+  "requestHash": "e5442121e39bea9197f2596292296d4cf011ee2c471b406893362b8972317745",
+  "recordedAt": "2026-10-04T07:53:38.526Z",
+  "sha256": "4f8ecfaa85d3116e64a92713cabc91cd3aa208878806709a349abe8c3de0c160",
+  "bytes": 18988,
+  "requestId": "ilfNHzTiqFYlQ8hs5wU5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5859435633b13f74ff27cab8bb99fbbdb9053297a42870422d80a19209486e2c",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

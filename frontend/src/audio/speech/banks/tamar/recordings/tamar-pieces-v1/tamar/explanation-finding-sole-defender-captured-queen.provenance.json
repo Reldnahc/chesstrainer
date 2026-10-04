@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-queen",
+      "label": "Explanation finding sole defender captured queen",
+      "text": "The lone defending queen is captured, and the piece it guarded is next."
+    },
+    "takeId": null
+  },
+  "requestHash": "8485a5c2ce9dd7bb23b34005df02c7e6afc981ca3772c48f63404b23e7b2007e",
+  "recordedAt": "2026-10-04T08:11:20.656Z",
+  "sha256": "aebf4b9e05e5dc8513be38439941af33c8c8ca80f9dc5bacad00a96fc600c081",
+  "bytes": 15289,
+  "requestId": "tq7UPyYdQsH7MOInKiD8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6b903007a584a21883076b2eda2bc415da68f991822641058b2b127dbcf7ee19",
+    "bytes": 75276
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

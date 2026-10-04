@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-pawn",
+      "label": "Tactic removing defender allowed pawn",
+      "text": "A guard under threat. The other side can now capture a defending pawn, and what it protects would lose its cover. Notebook rule: know which defenders carry the load."
+    },
+    "takeId": null
+  },
+  "requestHash": "d98b12710c771c7cc482ed91307a6c5260a1e2efc1d6357c61daf7aba4e61587",
+  "recordedAt": "2026-10-04T08:10:19.261Z",
+  "sha256": "5591ec90198f8d41440a39c71f99f861b68fa3f75ccb6516e088b7b0f12cd185",
+  "bytes": 34349,
+  "requestId": "cmZPHa5YvkOlYyI4urS0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "469cb0cd0ced58fdbec4f4fe8bb1fc0a0c0054f1b119b6c15453cc6e91804a7c",
+    "bytes": 178930
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

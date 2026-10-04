@@ -39,7 +39,6 @@ def test_pilot_scripts_match_the_registered_recordings_without_losing_base_meani
     assert original.keys() == base_rivet.keys()
     assert not original.keys() & extras.keys()
     catalogue = {row["id"]: row for row in read("meanings.json")["meanings"]}
-    variants = {key for key, row in catalogue.items() if "variantOf" in row}
     # Every meaning, piece variants included, has authored Walter and Rivet text,
     # recorded or not.
     assert catalogue.keys() <= original.keys() | extras.keys()
@@ -50,11 +49,10 @@ def test_pilot_scripts_match_the_registered_recordings_without_losing_base_meani
         manifest = read(path)
         records = {row["id"]: row for row in manifest["recordings"]}
         assert manifest["coachId"] == coach
-        # Generic lesson prompts and piece variants may be authored before they
-        # are recorded.
+        # Generic lesson prompts may be authored before they are recorded.
         unrecorded = (catalogue.keys() | extras.keys()) - records.keys()
         assert all(
-            catalogue[key]["group"] == "lessons" or key in variants
+            catalogue[key]["group"] == "lessons"
             for key in unrecorded
         )
         assert records.keys() == original.keys() | (extras.keys() & records.keys())

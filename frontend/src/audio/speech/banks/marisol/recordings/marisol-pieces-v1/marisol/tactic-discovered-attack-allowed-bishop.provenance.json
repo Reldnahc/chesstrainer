@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed-bishop",
+      "label": "Tactic discovered attack allowed bishop",
+      "text": "An enemy bishop now screens another piece. Once it moves, the piece behind it attacks down the opened line."
+    },
+    "takeId": null
+  },
+  "requestHash": "716b6000c1cff5683533e6b1a5d8fc0591051c126d043583ee18ed4edde59206",
+  "recordedAt": "2026-10-04T07:53:27.404Z",
+  "sha256": "b2a6a7fb421ad033437d8ba0c9b905a0d87b0026014459d7edcf76fb32022f7e",
+  "bytes": 22987,
+  "requestId": "RMS35nPPT4LW1cXmFWwf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a44ab44d5716337e40e2988aecbf506c87e1fb61c6d2367fdba6f4e1f527e009",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

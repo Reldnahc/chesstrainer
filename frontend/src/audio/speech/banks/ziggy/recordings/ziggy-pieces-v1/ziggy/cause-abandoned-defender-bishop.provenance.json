@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "cause-abandoned-defender-bishop",
+      "label": "Cause abandoned defender bishop",
+      "text": "A convincing move on its own, but it removes the bishop's only real defender. Now the other side can capture the bishop that was left behind."
+    },
+    "takeId": null
+  },
+  "requestHash": "75f38b11d1e6b688cbbf71b46103f2a51b37be7b78f9e731f0e49a7bf98fdfe5",
+  "recordedAt": "2026-10-04T08:16:11.942Z",
+  "sha256": "305b794977dfdf68c09db235db6c568615ed8f53e45bc78364ce35c011a2f7d1",
+  "bytes": 27738,
+  "requestId": "XCKLebgt27tcBtSaKRha",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c8743402b6152231be42f1ae53b0d990e074210b567c3a49370f1e0fdaba8c8e",
+    "bytes": 141732
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

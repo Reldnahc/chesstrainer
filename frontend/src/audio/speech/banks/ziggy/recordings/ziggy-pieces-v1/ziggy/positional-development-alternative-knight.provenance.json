@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "positional-development-alternative-knight",
+      "label": "Positional development alternative knight",
+      "text": "With a different move, a knight would have come off its starting square into play."
+    },
+    "takeId": null
+  },
+  "requestHash": "01947c0c58918c364b0001ff463581485745ac1bb758e07b5fdbed2b9a474f68",
+  "recordedAt": "2026-10-04T08:15:57.999Z",
+  "sha256": "27a716aaa45ebab70a5dd0cfa5a6f6aa69dcd641c1a8d18dc00d54384eaeefc8",
+  "bytes": 14460,
+  "requestId": "JNvxQWGO6kmwDCjE1sVr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "34fa8a725a5cebbebb48d62bab0cf18e9bfe565b4de07f70ac8c1f6274d8dc9f",
+    "bytes": 70261
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

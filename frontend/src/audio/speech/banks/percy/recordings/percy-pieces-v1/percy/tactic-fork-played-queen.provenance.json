@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-fork-played-queen",
+      "label": "Tactic fork played queen",
+      "text": "Now that's a hardworking queen! Fork time: one busy queen hitting several targets at once, and a single reply rarely gets them all out of the way."
+    },
+    "takeId": null
+  },
+  "requestHash": "c8a8812f7b9d5e8662117acbee1bdcfeded1a54adc5b2b209fb55602b29d8c4a",
+  "recordedAt": "2026-10-04T07:59:49.391Z",
+  "sha256": "f0913724e365588b12aa13b67940884db1fbc39ee351ddc0ac706210f3c56d4d",
+  "bytes": 32652,
+  "requestId": "oeN9y2wDkpkkLk69M3uz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "34480c2c36b5b6cb4146749b2940e6e0758b76d52e954a32d520d8755d016d62",
+    "bytes": 167645
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

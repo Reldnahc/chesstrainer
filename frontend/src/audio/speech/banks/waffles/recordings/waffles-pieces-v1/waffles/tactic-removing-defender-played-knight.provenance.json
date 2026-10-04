@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played-knight",
+      "label": "Tactic removing defender played knight",
+      "text": "Target the defending knight. Capture it, and its ward stands unprotected. Standard procedure."
+    },
+    "takeId": null
+  },
+  "requestHash": "7373263751e5ed857aa9c2f7083a91af6ed1a8f821551f25538a9de4ac423980",
+  "recordedAt": "2026-10-04T08:12:27.105Z",
+  "sha256": "b5d437a2549d2d55cd7b8cee42227b1a5efb8d9a1067f82b96788713cf118072",
+  "bytes": 21046,
+  "requestId": "SBtbCpdoFK6kW0ySakg2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ba12e7422c1b7992d67c9b07eaf40b42570c7f5070166fa0c67eec1ddeb2053d",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

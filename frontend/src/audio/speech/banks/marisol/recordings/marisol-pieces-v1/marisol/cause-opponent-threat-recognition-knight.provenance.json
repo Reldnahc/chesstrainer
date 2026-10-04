@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "cause-opponent-threat-recognition-knight",
+      "label": "Cause opponent threat recognition knight",
+      "text": "A threat appeared with the opponent's last move. This reply leaves the threat as it was, so the knight is still capturable."
+    },
+    "takeId": null
+  },
+  "requestHash": "1bc38762d515b48c7b280fdcaf68bda4851ca95e66d5f44a9614068b3af309a7",
+  "recordedAt": "2026-10-04T07:53:59.636Z",
+  "sha256": "32d7de6a855e4b51237ee5882cb460c1d76ea93fa8780e0dd9fe0de0899c4a3e",
+  "bytes": 25253,
+  "requestId": "bGDp3x3sllqlrmzIHLYL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "52cf60ee1eec33dc53ab862c3ac29fe110ab0d1e50cf9d52477be1ee5add052a",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

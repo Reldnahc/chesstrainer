@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-rook",
+      "label": "Explanation finding sole defender captured rook",
+      "text": "Part one: bye-bye, lone defending rook. Part two, later in the line: the piece it protected goes too."
+    },
+    "takeId": null
+  },
+  "requestHash": "2a6e256aec7f4d3d479687114a67b8a6ad436ac15cb7017d800d8cf56ede8994",
+  "recordedAt": "2026-10-04T08:09:33.868Z",
+  "sha256": "1b3ea0b6bddd4ca9d379ae04e5a2250a987275e720ad29dba12446f9d80f20f6",
+  "bytes": 25923,
+  "requestId": "9EFoiZCWNloG4jbpp7bi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d57a89e7ae0987b421149d0885b8a433794ddebaba7d89fc3583f4f56be4df37",
+    "bytes": 137970
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

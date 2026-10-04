@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape-bishop",
+      "label": "Explanation finding pin restricts escape bishop",
+      "text": "The attacked bishop is pinned to its king, so running isn't simple. Any move it makes has to keep the king covered."
+    },
+    "takeId": null
+  },
+  "requestHash": "4c1fce696a2ae17f46f8f33251b2e292b8b10bb82003b80c7ce68d2a3b575b25",
+  "recordedAt": "2026-10-04T08:00:40.245Z",
+  "sha256": "f03e663112a29873f5039a07719afb0470e695210ceadea48828ebf6478bb94d",
+  "bytes": 23439,
+  "requestId": "HfVblZ5unPsliKdR5asp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7805a5e4501b0f695e94eaab2a57b6255d7c7243b9dfc9b8b1da236661b66b0e",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-rook",
+      "label": "Tactic removing defender allowed rook",
+      "text": "One rook is holding something in place. The other side can now capture it, and what it guards could be left without protection."
+    },
+    "takeId": null
+  },
+  "requestHash": "aa08e91e6af7e25f662f7f5f92000f587dc5a21c565af1842f03885d63c9b04d",
+  "recordedAt": "2026-10-04T08:13:54.436Z",
+  "sha256": "02416b603907c19da73d25d062d711fa424cee0bee1271e9f9a8c23552cb2a90",
+  "bytes": 24981,
+  "requestId": "lTI5NvuhM9f73QIPSNAW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3038db52206617e9b524c03c8a3ad91427d0edda1bf77a4d60c3ecd16bf4b68b",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

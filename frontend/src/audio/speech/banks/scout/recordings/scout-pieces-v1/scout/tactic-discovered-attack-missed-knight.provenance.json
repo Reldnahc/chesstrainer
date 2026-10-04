@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed-knight",
+      "label": "Tactic discovered attack missed knight",
+      "text": "Discovery missed. Another move could have stepped the knight aside to let the piece behind it attack. Find the stacked pair and run it again."
+    },
+    "takeId": null
+  },
+  "requestHash": "186f64c66575dfc87500803c5267611402bc1a2407db32074c993371b1b60405",
+  "recordedAt": "2026-10-04T08:07:11.750Z",
+  "sha256": "b53dc07335afd813cb0839b260b6ddbf460976c7b98145d89e6490f0ea5ab030",
+  "bytes": 25819,
+  "requestId": "Xx3vq3SyVV3bTbuo8IlJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "92b1c27bea67c4a739257cf6e3b42970e0aef6b35df9037527c42a92538949d6",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

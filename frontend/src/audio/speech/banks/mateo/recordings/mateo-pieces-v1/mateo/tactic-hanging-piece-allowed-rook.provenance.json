@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "tactic-hanging-piece-allowed-rook",
+      "label": "Tactic hanging piece allowed rook",
+      "text": "Look, the rook has nothing guarding it now, and the other side is free to just take it."
+    },
+    "takeId": null
+  },
+  "requestHash": "ce839f149a38ec6b3dc41524d66c36febf88b8824ff8ecadcb05079ad09e9614",
+  "recordedAt": "2026-10-04T07:54:59.176Z",
+  "sha256": "3044711b720d057d0e80e160fa2c480ddaf9b7d6cfdbe79aeb54a5953d57eac0",
+  "bytes": 17162,
+  "requestId": "DJCqCw7TtlRdCnc0rx87",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d6c717bc1c81e669f68bb665fb4da98669dd1977716147b2e93a3f4a68161abe",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

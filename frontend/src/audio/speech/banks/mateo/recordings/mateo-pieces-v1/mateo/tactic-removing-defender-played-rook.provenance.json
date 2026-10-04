@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played-rook",
+      "label": "Tactic removing defender played rook",
+      "text": "Knock out the defending rook first, and the piece it was guarding has nobody watching it anymore. That's the whole trick."
+    },
+    "takeId": null
+  },
+  "requestHash": "2ca99016d36dcd3b682bff8e7eea1792362874a2b0d65593c8c3cb6185aa34a0",
+  "recordedAt": "2026-10-04T07:55:07.926Z",
+  "sha256": "45f3eccbf5c881c41ac98370c174667ddf8e52ef1c8c59f3713b9d015997d97d",
+  "bytes": 21864,
+  "requestId": "KCW7wheDTY5yOhRMVE8i",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "928302d55c57c0aeab3d5cf1eb37c2d82b2bb7c72011da5ebd9668ab0c9de316",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-finding-pin-prevents-capture-pawn",
+      "label": "Explanation finding pin prevents capture pawn",
+      "text": "That marked capture is illegal, since the pawn is pinned to its king. If it left the line, its own king would be sitting in check."
+    },
+    "takeId": null
+  },
+  "requestHash": "f29a18256f28957809b193da213ca38c12d68fbef3f9b075fe90739532a97eb9",
+  "recordedAt": "2026-10-04T07:55:38.387Z",
+  "sha256": "5d96589d6b087279672cab246af6a28df4935c339c434a83d0f3db2ca8a48748",
+  "bytes": 25361,
+  "requestId": "bkOYRx0886xMbsqfGdgs",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a007bef3f92add7c2ca96aca9cbee3e51dd5d6b42937fc1bcf3db6850966f4ce",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

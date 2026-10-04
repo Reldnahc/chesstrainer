@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "support-restored-queen",
+      "label": "Support restored queen",
+      "text": "A proper repair. The queen that was hanging loose earlier has protection once more. Keep an eye on it."
+    },
+    "takeId": null
+  },
+  "requestHash": "6540855f0b30d2bb77bf0094a83140517a0f0fa342bb56ea6471c47d75e1e398",
+  "recordedAt": "2026-10-04T08:11:11.119Z",
+  "sha256": "cb209a1b3e2f45065940830cacfdeea43023d41b4c97c1a82830be387aff2a44",
+  "bytes": 20833,
+  "requestId": "Qd5KZ52qzzW1KMLxIX77",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "67588addacbc85a4ff108ed32e0675d1094b867d88e6d130f44924b84f44ccfc",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

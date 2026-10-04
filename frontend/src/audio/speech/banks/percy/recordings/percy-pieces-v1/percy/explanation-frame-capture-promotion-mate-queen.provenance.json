@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-mate-queen",
+      "label": "Explanation frame capture promotion mate queen",
+      "text": "The pawn captures a queen to reach the last rank, promotes, and that's mate. The king's got no legal move out."
+    },
+    "takeId": null
+  },
+  "requestHash": "209d2cd12345fdb8565831ac2e7c557224ca080b82e9c2362345b534672cdb3c",
+  "recordedAt": "2026-10-04T08:01:19.992Z",
+  "sha256": "14ff14cbbd5dba6ca4fc79e71a7589620970cd0ed9940e431f5ec31b51fc8c34",
+  "bytes": 23691,
+  "requestId": "YdqxBqBpCjSc4Zhl3MzT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c41d84d81e95d26a93ea29e1c5405172d86e1d297146fe6a8252cc69be807cd9",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "grade-brilliant-3-rook",
+      "label": "Grade brilliant 3 rook",
+      "text": "This is the move I want every student to see. A real rook sacrifice, and it holds when captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "ff394a244283dc4197ac94800817cb47128d842f4a5d3bcad5b79767126f4b4e",
+  "recordedAt": "2026-10-04T08:11:42.074Z",
+  "sha256": "02ab3ad21205dd113a165123c0a3131e01cd2c66e446e3d3da0e5b179fb3c0af",
+  "bytes": 21669,
+  "requestId": "j40b4W8ymrxSF84FmBLg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c7b8550746a7b8c095712446499da3201bc40553a145966ca49223b12f59a102",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed-knight",
+      "label": "Tactic removing defender missed knight",
+      "text": "A different move could have taken out a defending knight. Then the piece it was guarding would have lost its protection."
+    },
+    "takeId": null
+  },
+  "requestHash": "2aabf3b5ebde93497c90f800fbb2495f673c2c5075f5aa4ab9f70c131566a511",
+  "recordedAt": "2026-10-04T08:03:37.292Z",
+  "sha256": "184830634ed21cea2370e472bc352566fc415d6300bbd2e3da514c0b5c8f8c5e",
+  "bytes": 21965,
+  "requestId": "MKLvheIt6lidhyx1Ospi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ac004e0b59609586886be2a9baa7cd8b22f3138dea2288cbe921fbe190da9fd7",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-pawn",
+      "label": "Tactic deflection missed pawn",
+      "text": "Deflection missed. Another move could have pulled the pawn off its job and opened what it guarded. Find the overworked defender next time."
+    },
+    "takeId": null
+  },
+  "requestHash": "953719245692dcbe761c013fe238441bebd8e03d0ae405b42f1cd8d19c9c1e78",
+  "recordedAt": "2026-10-04T08:07:09.249Z",
+  "sha256": "11d53e64c85a96304ebc8b5b12b43c7c9b49f6ab0f68281ac1c71aa4dcfd3be0",
+  "bytes": 25384,
+  "requestId": "d3diKHIoFHDu4khJvqXj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2775e629e5058d18eb4455387c6d45050c9de9b206cf72798c5fe9b3979d79e5",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

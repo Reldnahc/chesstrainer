@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "tactic-fork-played-rook",
+      "label": "Tactic fork played rook",
+      "text": "Fork in play. The rook hits several targets in the same move, and a single answer might not save them all. Spot the rook, then count its targets."
+    },
+    "takeId": null
+  },
+  "requestHash": "662b36f5489f88f9797838439aa3f3760175dbab0d3d02e072cd1d617851ba02",
+  "recordedAt": "2026-10-04T08:06:24.868Z",
+  "sha256": "e8f03bec71b5b04b73f365a7155551a0598ff78c90c22e19eafeff5a41ec84cf",
+  "bytes": 29553,
+  "requestId": "Ts2Y2vEjWimtyQ2AI2YG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fa9122ee88097e87b93b6f079069b3e9b60588fcdf230590974425aeca23a8e6",
+    "bytes": 153435
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "positional-development-actual-knight",
+      "label": "Positional development actual knight",
+      "text": "Development is the first principle of the opening. This brings a knight off its home square; note where it now stands."
+    },
+    "takeId": null
+  },
+  "requestHash": "0543776d41bf4050dcb016eda948f100d278b6ada2ebae7f1ac962aead628ab1",
+  "recordedAt": "2026-10-04T07:58:53.715Z",
+  "sha256": "c56d49ac45f7270e507d78ec9b9848d72dd58fe2c503349c7e40c606c46ea462",
+  "bytes": 26179,
+  "requestId": "wp8M7eSvQrmIxAnwYl6F",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3591372623584870b742b8b7bddcf18feff6bcb0b75c4719f1f0b9990f4d132b",
+    "bytes": 136716
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

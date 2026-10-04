@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "positional-support-alternative-knight",
+      "label": "Positional support alternative knight",
+      "text": "A different move would have given an unguarded knight some protection."
+    },
+    "takeId": null
+  },
+  "requestHash": "d0a23b0649ac8eda11625d9c4f163ff0419bdcf8ec5e09fd1b8b3156e8915e0c",
+  "recordedAt": "2026-10-04T08:09:32.248Z",
+  "sha256": "8998ddd394676bca57f2d69a99a9eea794a9ab84ea5debd7281078cb2ef318d2",
+  "bytes": 13437,
+  "requestId": "h97xNC0l1mP2gGCZyxC1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "11477d300b04299ec7aad8fa2f3547ebc6e8de6cfcebec4acfde7a89ac075944",
+    "bytes": 65245
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

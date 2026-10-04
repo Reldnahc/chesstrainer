@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "support-restored-rook",
+      "label": "Support restored rook",
+      "text": "Earlier, this rook was left unguarded. Now it has a defender again."
+    },
+    "takeId": null
+  },
+  "requestHash": "3a9af8067d8ea17a6c0fe02ab22032a94109a758e9ddfad429d21d2459ba9675",
+  "recordedAt": "2026-10-04T08:15:55.018Z",
+  "sha256": "e7ed1d74202e7c071d97569386f265095ecfceea5e66fb236a1696cde5d10627",
+  "bytes": 16124,
+  "requestId": "TJeEIC1wGVu7Fyb5t1D1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1e46984d11604876e0285fa521112dc56a9d6d0f0bae9263fc0b2f5e77844ac2",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

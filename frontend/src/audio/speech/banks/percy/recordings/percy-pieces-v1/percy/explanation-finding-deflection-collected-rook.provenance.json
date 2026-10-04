@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-rook",
+      "label": "Explanation finding deflection collected rook",
+      "text": "The defender gets lured off its post, and the rook it was protecting gets captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "190b43ca291b46271eb559e86ddf4ad0cec86d7eb06b04812038365e46cb0e30",
+  "recordedAt": "2026-10-04T08:01:10.149Z",
+  "sha256": "bb5a24bdf255589d1b90e9a0f1b982b884ffa9fe3a06a748c70e80cac2ff4a6e",
+  "bytes": 16022,
+  "requestId": "tuIw7GV8lvWWvkakYoab",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "95e0c1ab8e425c1a7acf14323876f1d1598d9278b117f77bd6c3a913bd90d4f0",
+    "bytes": 77784
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

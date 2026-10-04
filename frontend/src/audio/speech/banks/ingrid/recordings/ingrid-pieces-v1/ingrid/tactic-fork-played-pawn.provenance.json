@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "tactic-fork-played-pawn",
+      "label": "Tactic fork played pawn",
+      "text": "Nice and simple, really: the pawn settles on a square that hits two targets, and a single reply is unlikely to look after both of them."
+    },
+    "takeId": null
+  },
+  "requestHash": "bce247428ba6542e479be92a777fb48d01dabbd223e5e53c661ee360bc271d85",
+  "recordedAt": "2026-10-04T07:47:58.178Z",
+  "sha256": "77268a55a560cf75ccad35f4f1674c9663cde8fb2da0b4978fdcc02e5e6d4359",
+  "bytes": 28251,
+  "requestId": "LRTqRHEbLucWL3H7pOkz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b48874c254aef8c3bb526049de550d8a7661c35825f23701ed109b8efe34d476",
+    "bytes": 141732
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

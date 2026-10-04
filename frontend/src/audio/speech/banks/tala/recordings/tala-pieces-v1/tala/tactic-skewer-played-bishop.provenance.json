@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "tactic-skewer-played-bishop",
+      "label": "Tactic skewer played bishop",
+      "text": "The bishop in front is attacked, so it steps aside, and what's waiting behind it? A second victim. Skewer!"
+    },
+    "takeId": null
+  },
+  "requestHash": "fbc01aef3f987e031843e983701e2d64c122de45765256a35d0677b963ed1c72",
+  "recordedAt": "2026-10-04T08:08:43.737Z",
+  "sha256": "4cabaa23e6c82f89e9eb0acc413bddcd40fcaf58f4b44e485cbe37f2f6650f88",
+  "bytes": 26167,
+  "requestId": "4PKaAcaqueLbS8ez6X5x",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "556de6191b1081a466758c66eb6a4ad1f92117b9bc736b004eb3435a9daf79fd",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

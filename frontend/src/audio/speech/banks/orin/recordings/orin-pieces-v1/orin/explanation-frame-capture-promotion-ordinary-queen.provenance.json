@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-ordinary-queen",
+      "label": "Explanation frame capture promotion ordinary queen",
+      "text": "The pawn captures a queen on the last rank and promotes in a single stroke."
+    },
+    "takeId": null
+  },
+  "requestHash": "d4fd471e05463de3fc83fee14dfc5edfb2deb341b2e04cc944919823af451c34",
+  "recordedAt": "2026-10-04T07:59:44.242Z",
+  "sha256": "1f250942d9e3078aae6258e0d3f323ccf8f492642ba4fd6c50842facdfef3f81",
+  "bytes": 16777,
+  "requestId": "1GlgtfWZXXIeosBg6oSD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2f63d3a7ea236f3ac7b5299668e8105015f886fe71711d46c13edff7eb1829aa",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

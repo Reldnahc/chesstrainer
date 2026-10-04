@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "grade-brilliant-2-queen",
+      "label": "Grade brilliant 2 queen",
+      "text": "That's the biggest job a queen can take on: being offered up. And this offer is sound!"
+    },
+    "takeId": null
+  },
+  "requestHash": "e181ac2c93c6564e1f997d640976779850346b82e47841b7acc13f313aeeb7c0",
+  "recordedAt": "2026-10-04T08:01:41.516Z",
+  "sha256": "59b8115f6fa7429bc318f739181dfd823ae554141d906a40c17064ca142cf01c",
+  "bytes": 20387,
+  "requestId": "SH0U1FUAsogrb7hStrUO",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "75a69d00208816de7e61366a75d4c706f2c7a257e8eb503669520b09da4f2536",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

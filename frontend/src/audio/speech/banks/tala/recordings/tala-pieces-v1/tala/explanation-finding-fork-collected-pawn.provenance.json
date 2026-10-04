@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-finding-fork-collected-pawn",
+      "label": "Explanation finding fork collected pawn",
+      "text": "See the pawn fork in action: two targets attacked, then one captured. Tally it up, and this example ends with extra material."
+    },
+    "takeId": null
+  },
+  "requestHash": "55b549abe9904940c89e3d063e0ab1724f93fcb6e50e2c694a978e3c9813cd49",
+  "recordedAt": "2026-10-04T08:09:23.536Z",
+  "sha256": "693707eff4d40685bec2721781a12f6cd7d405d3becaac6ed3ef51349f77e26f",
+  "bytes": 28940,
+  "requestId": "FwNvJaguEiiN17tOdeYv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6029d4bc2f89d5c025444490b74b3cda8a0ab8eaf23ce82309d17ca92bdb9bad",
+    "bytes": 147165
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

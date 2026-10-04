@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-escape-knight",
+      "label": "Explanation frame capture move escape knight",
+      "text": "Capturing the knight also removes the check on the capturing side's king."
+    },
+    "takeId": null
+  },
+  "requestHash": "8fed7ba2513e257e65ef22d54de3cb91aa8413c956ef131400babb90cfa09070",
+  "recordedAt": "2026-10-04T08:16:39.172Z",
+  "sha256": "af78ad5ee8cc08817aa91f60d1bbfa5100511120d9f31b87db8bd77aa49d6568",
+  "bytes": 14704,
+  "requestId": "A8gDJt3YkVo49wTsuUMw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "391a170255c0c2e93dc602f52ff40bd8425420cb51d3a9c9992ec6b4a8d12f07",
+    "bytes": 71515
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

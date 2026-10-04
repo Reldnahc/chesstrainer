@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-finding-fork-collected-rook",
+      "label": "Explanation finding fork collected rook",
+      "text": "Watch the rook threaten several, then take one. In this example, the side with the fork ends ahead on material."
+    },
+    "takeId": null
+  },
+  "requestHash": "582fe84b362ebc56219240a1e8a9d04198a407fdbc52012625f1e29d19a6494b",
+  "recordedAt": "2026-10-04T07:52:20.554Z",
+  "sha256": "72b85501c286f7e91759f31ee82c1b3be5971482618a04bf2b4f24d6c3c7b462",
+  "bytes": 24517,
+  "requestId": "vaS1rPVV75GYlx0RHyIE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5136032137cbc03a02687985a257549e62442e6eb4ed54e9c09cba9bfeb23586",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

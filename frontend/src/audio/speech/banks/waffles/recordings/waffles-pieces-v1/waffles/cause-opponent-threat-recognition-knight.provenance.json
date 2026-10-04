@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "cause-opponent-threat-recognition-knight",
+      "label": "Cause opponent threat recognition knight",
+      "text": "Unanswered threat! The opponent's last move set it up, and now a knight can be captured. Every threat gets an answer."
+    },
+    "takeId": null
+  },
+  "requestHash": "63e6d59286bc8f50423f1df194183d4021b50db09d933a54ee40fdde2dc9148f",
+  "recordedAt": "2026-10-04T08:12:50.774Z",
+  "sha256": "38c996c9d113c7fa5f20bff297d739bbd9af7c2d766c38e5057921646bd6ad20",
+  "bytes": 27638,
+  "requestId": "fYBhFoJnr0jen0iVVHxx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ac92e15f1b31c9aaf416e3a70341a8c50267ed234995c2aea4ad15bceb88e37c",
+    "bytes": 141732
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

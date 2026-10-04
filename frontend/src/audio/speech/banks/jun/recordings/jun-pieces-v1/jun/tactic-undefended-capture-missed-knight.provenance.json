@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-missed-knight",
+      "label": "Tactic undefended capture missed knight",
+      "text": "An unprotected knight was available for capture with the stronger move. Check for undefended targets before quiet moves."
+    },
+    "takeId": null
+  },
+  "requestHash": "cf502da95ebb7e5668d12e993258ba490640a2175ab320178fdbf628de20ce98",
+  "recordedAt": "2026-10-04T07:50:02.825Z",
+  "sha256": "27bd9bd199a6766152fa7ad5f01550ca40b9d0bbd34c6a9c2194af1131f6633b",
+  "bytes": 25104,
+  "requestId": "tHdT015vm0LLH7dZBlIb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "95b2491d69dbaae10fd81958e2fb1f126066a256722f58161d41b67b45aa9cb0",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

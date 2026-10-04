@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-ordinary-rook",
+      "label": "Explanation frame capture promotion ordinary rook",
+      "text": "Grab the rook on the last rank, and the pawn becomes a new piece right there."
+    },
+    "takeId": null
+  },
+  "requestHash": "ebfb317745ee19bea2b7e6716e4da15745ac77d6409d91612f8f3ad74257c756",
+  "recordedAt": "2026-10-04T08:10:03.270Z",
+  "sha256": "d710016b2c135fdbc11d721b459ba98f001a5460c24c3dc43525a623b7123bd4",
+  "bytes": 15668,
+  "requestId": "mfTrUNx15E15xnP4u5yL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f51ed7658297db402a4cea4e995ba580a0cc853fd1dd685e595aabfc3ace76b6",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

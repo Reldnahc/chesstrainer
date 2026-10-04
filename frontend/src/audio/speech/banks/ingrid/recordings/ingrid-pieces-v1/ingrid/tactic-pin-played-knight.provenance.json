@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "tactic-pin-played-knight",
+      "label": "Tactic pin played knight",
+      "text": "The pinned knight is tied to the line in front of its own king now, and a sturdy pin it is. If it stepped off the line, its own king would be in check."
+    },
+    "takeId": null
+  },
+  "requestHash": "52a16bbeac2ca674da5cbf7797eeec3c236d61dbbf9b37c87debbcb708f05f02",
+  "recordedAt": "2026-10-04T07:48:37.126Z",
+  "sha256": "c074a80bef31c753dfff1826f6397f996e9f3720776bbc0eed7fd0b53a2406c8",
+  "bytes": 31563,
+  "requestId": "QNGdQv3UBWpXmjnJYLX8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0044fc7214693690e723d71532b61faa6ac5c76b1a2857435190546c5dea2266",
+    "bytes": 159704
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

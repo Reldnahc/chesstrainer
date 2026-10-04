@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "explanation-finding-fork-collected-bishop",
+      "label": "Explanation finding fork collected bishop",
+      "text": "A bishop pokes at several targets, then grabs one of them. The fork comes out ahead in material here, net."
+    },
+    "takeId": null
+  },
+  "requestHash": "e4af1aa0bce74b0e05c29ec7d8684a978161309b49e515fbdcd96874720e3cd9",
+  "recordedAt": "2026-10-04T08:02:32.328Z",
+  "sha256": "087b26a18d7beeb12028c9095cae2bac84bbd7d2be46dfe948b36f1100bb1180",
+  "bytes": 22949,
+  "requestId": "xoCZ5oRI13mCHMwaMXCg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "434b7dd84973203e5db70089788ca3c89608c93224b522433e1234350d6cb93e",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-rook",
+      "label": "Tactic removing defender allowed rook",
+      "text": "A defending rook has become capturable. If it is taken, the piece it was covering no longer has that support."
+    },
+    "takeId": null
+  },
+  "requestHash": "936e08545c3fbb4c37e8fa18da0045c5aefab9c55033181543885d146d7f8479",
+  "recordedAt": "2026-10-04T07:53:20.132Z",
+  "sha256": "ff42b828d35d43087b26aa31b424a3d7dc0839d0e97f28a66ac4661c70d682f2",
+  "bytes": 22945,
+  "requestId": "aS3Afpo1Xlb9slTjKIc8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9a92bf0c8c63c2434bd5897a451d1c0ba86b4752da1de4e88e0cbfdc3994dcc8",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

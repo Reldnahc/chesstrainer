@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "explanation-finding-fork-collected-queen",
+      "label": "Explanation finding fork collected queen",
+      "text": "Here's the fork doing its job. The queen attacks more than one target, then takes one. In this example, that side ends up ahead in material too."
+    },
+    "takeId": null
+  },
+  "requestHash": "79bdc0ab0a6812bb576351249f7629824fdadfdcd2c6ac46dcd5b7e565f63ccb",
+  "recordedAt": "2026-10-04T08:04:20.414Z",
+  "sha256": "b6a3e9fe165291a0a2116a2078acfcd753842bfc4701e6433f44c614712e5b53",
+  "bytes": 31758,
+  "requestId": "5BrygEIFHmKXmBAXSuuN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7ae3e8d3f83397f6c749394e2919b899caa3d3846f0b9036204fcb52a2b0044e",
+    "bytes": 163466
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

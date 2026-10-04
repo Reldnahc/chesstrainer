@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-knight",
+      "label": "Explanation finding pin collected knight",
+      "text": "Stay with that pinned knight: since its king stands behind it, it can't leave the line, and before the sequence finishes it gets captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "067ed68ff4e141f77ef2f73d76ce7a4f40a233714f4138c84520535beb6158e6",
+  "recordedAt": "2026-10-04T07:49:04.772Z",
+  "sha256": "b20baba20ff453f545c7d6957a43b88af411c374761d5bfccafb8d9719525baf",
+  "bytes": 28784,
+  "requestId": "dFIXlvPGCylwlteUGc8L",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c83111fc57b5ab68f90a73e63cc53ce299ac978beea71ec8af2757ec928b675c",
+    "bytes": 145911
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

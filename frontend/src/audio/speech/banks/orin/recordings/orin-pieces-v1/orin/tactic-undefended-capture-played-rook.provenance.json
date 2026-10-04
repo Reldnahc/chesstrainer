@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-rook",
+      "label": "Tactic undefended capture played rook",
+      "text": "The simplest principle of all still applies, and an unguarded rook falls to the first attacker. Here this move takes one. Before any combination, count the loose pieces."
+    },
+    "takeId": null
+  },
+  "requestHash": "d996ff436783f5b0bf17097e96a00a008d1d7e156765b7c112af53b0ac2ebd21",
+  "recordedAt": "2026-10-04T07:58:08.707Z",
+  "sha256": "2ee19e08b368fe4c9fb0c70257eb0f14fd32a70dc9e9497ef3a95548de8fbbaa",
+  "bytes": 38695,
+  "requestId": "D86HjMA5Ayresjrt7CzG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9b9885cb159117425601ab3b05ca794194877efde8385c8e0361249fcd6433ff",
+    "bytes": 201918
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

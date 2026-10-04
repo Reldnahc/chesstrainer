@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-rook",
+      "label": "Tactic removing defender allowed rook",
+      "text": "A rook is holding things together, and now the other side gets to knock it out. Look at what that rook holds up before it is gone."
+    },
+    "takeId": null
+  },
+  "requestHash": "872e79c0b45263b6e304004c83911b791384f1f9d98aa7633cac88e9a393c915",
+  "recordedAt": "2026-10-04T07:56:26.347Z",
+  "sha256": "9f8f0656c8a021791aa0ed634038c585e7aa2f0012a04e28bbda9efeb5be0c09",
+  "bytes": 25431,
+  "requestId": "9xIdf4oKFTOneMrtdDqF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "905398f008f91cf59c263bcc4ecaa06909224c6c0c9b88e85fa21446e4a3ebc8",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "cause-opponent-threat-recognition-queen",
+      "label": "Cause opponent threat recognition queen",
+      "text": "The opponent's last move had teeth, aimed at a queen, and this move shrugs it off. That leaves the queen dangling."
+    },
+    "takeId": null
+  },
+  "requestHash": "4bb24a26b07bfaf83651a6d203109067d9842645835411c3179326caf5e9a7f7",
+  "recordedAt": "2026-10-04T08:05:31.292Z",
+  "sha256": "17436a9c67c6516b0c561028f651416cb4e375503fed4d55d0f1f122ded5b4fd",
+  "bytes": 24048,
+  "requestId": "nLrP1AA1XLiIi6z67PrZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "17ce1e828e172b10b2ef52e358b95b88efea3c21480d8c18606bdda1c343e68a",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-finding-double-attack-collected-bishop",
+      "label": "Explanation finding double attack collected bishop",
+      "text": "Double attack cashed in. The moving piece makes one threat and unmasks a second from the bishop behind it, and that bishop makes the capture here."
+    },
+    "takeId": null
+  },
+  "requestHash": "a39ef02184e8f7c467df6aa179c43f8c1d53c2a5b317c304661e4b4ef01a136a",
+  "recordedAt": "2026-10-04T08:08:02.144Z",
+  "sha256": "106a8faae78803bb26eb9cdfc87426a565e1ff69e01c878e0204ae6a1e01e9ef",
+  "bytes": 28125,
+  "requestId": "6byqf78BWjPAikC69YNj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "865748254676d99460944de6d9726620d35005f27e195f1c782ec0efd27d2322",
+    "bytes": 142986
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

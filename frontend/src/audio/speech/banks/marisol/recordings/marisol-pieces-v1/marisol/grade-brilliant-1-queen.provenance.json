@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "grade-brilliant-1-queen",
+      "label": "Grade brilliant 1 queen",
+      "text": "A queen has been left open to capture, at an immediate cost. The position can afford it."
+    },
+    "takeId": null
+  },
+  "requestHash": "a75114b0d4e56c9f01581a84f1af4cf2f5c3a12bc8fd2978b29eb3981e2eb622",
+  "recordedAt": "2026-10-04T07:54:35.289Z",
+  "sha256": "c90564c87bc04c58fd40865f2deb8e110f22ad529e319e927b82a31f4a4b5572",
+  "bytes": 19059,
+  "requestId": "YbsNCGFqeNB2zb8lgFv8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "be2ead222069656d0df7e852c9825ec501c750386891f3d8c5d0e08ede2c0ee6",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

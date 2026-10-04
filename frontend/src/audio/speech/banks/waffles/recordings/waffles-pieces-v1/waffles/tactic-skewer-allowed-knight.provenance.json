@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed-knight",
+      "label": "Tactic skewer allowed knight",
+      "text": "Watch the line! A skewer opens for the other side: when the knight in front moves, the piece behind it could be exposed."
+    },
+    "takeId": null
+  },
+  "requestHash": "6403f4899ddc6dc2ff63a5f5d93a5a1fc8c5132416d4dadb379776f329d6776f",
+  "recordedAt": "2026-10-04T08:12:26.334Z",
+  "sha256": "5156fe50d21a3d8d8997ca3108a07000c99662bdf8f7ec9afac95f39464d4d48",
+  "bytes": 25108,
+  "requestId": "EMorFLn2s3mfCaPCm31n",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fa6fa9bc00967c3037392c22688537710df866e90159737172fe77e544799870",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

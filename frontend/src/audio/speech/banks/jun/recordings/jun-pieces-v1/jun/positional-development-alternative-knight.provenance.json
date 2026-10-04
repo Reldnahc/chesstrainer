@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "positional-development-alternative-knight",
+      "label": "Positional development alternative knight",
+      "text": "The alternative brought a knight off its starting square. Here, development waits."
+    },
+    "takeId": null
+  },
+  "requestHash": "a779047881575cd4a7d7e804ec64ef82f3c788d21c99b7f3e1ba540e84f0d373",
+  "recordedAt": "2026-10-04T07:50:35.515Z",
+  "sha256": "bac66a103a1d506cd1375bd56a02c3f93f4e1c1719ad33a2911bb5afb8d0c181",
+  "bytes": 17595,
+  "requestId": "iborspvhkWbpB68oEpCY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ece7dfb6442847952f5fa8dd05e525ffec179a765299e8be5ff95e1ea484584b",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

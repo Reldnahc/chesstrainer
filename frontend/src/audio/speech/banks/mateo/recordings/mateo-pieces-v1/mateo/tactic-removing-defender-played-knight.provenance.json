@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played-knight",
+      "label": "Tactic removing defender played knight",
+      "text": "Knock out the defending knight first, and the piece it was guarding has nobody watching it anymore. That's the whole trick."
+    },
+    "takeId": null
+  },
+  "requestHash": "5e9456638f2c905ab51714ff0722ce3d33ef8d537a32aac6717fe68e910ef4f1",
+  "recordedAt": "2026-10-04T07:55:04.331Z",
+  "sha256": "da0e5d773e1901bf56a64cb5cff098f3917dc22f81432b1a23c0f9f26951ff12",
+  "bytes": 22456,
+  "requestId": "ag7wbetJzV3WSRU7wCTS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5bda65bc1af8bcaca3ca8bb88e1316297e5700777267f80ead917ed832d98cf4",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

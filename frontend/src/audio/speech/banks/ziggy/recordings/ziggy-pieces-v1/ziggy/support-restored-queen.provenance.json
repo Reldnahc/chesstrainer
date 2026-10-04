@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "support-restored-queen",
+      "label": "Support restored queen",
+      "text": "Earlier, this queen was left unguarded. Now it has a defender again."
+    },
+    "takeId": null
+  },
+  "requestHash": "689dc084b909c8ab5a40003661a1828a786eef11911ab486a93c2b0186fbd467",
+  "recordedAt": "2026-10-04T08:15:56.263Z",
+  "sha256": "3cd4dbffd097ec4dc185f2d040be13a77ee9d8b39e28586ec957ea8b742947a1",
+  "bytes": 16089,
+  "requestId": "Y1YO5wMUbMtumW8u0k1d",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6b2a02c8bdd562d4756d6a18f2704ecada0fb3e62a6949cd7565e7972748a1a3",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

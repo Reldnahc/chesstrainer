@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "cause-avoiding-bad-trades-bishop",
+      "label": "Cause avoiding bad trades bishop",
+      "text": "That trade doesn't add up. After the bishop captures, the other side recaptures it, and it's worth more than what it took. Always check what comes back after a capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "80a49225897ede8e7ccbd6dbe2becfcf7a19250a307c2bd5c8ac538a2cee0f4b",
+  "recordedAt": "2026-10-04T08:04:00.994Z",
+  "sha256": "ad11b3ebde65eb37f627bad1be2dbb30c99da298ae6c83a3d015c0a4da78f77b",
+  "bytes": 34521,
+  "requestId": "JVgnKeogZArIl4MndE9F",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "55beafb3597d2f3dc2c47db721c1721add563e99c4d20a10369150d5c06fce39",
+    "bytes": 177676
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

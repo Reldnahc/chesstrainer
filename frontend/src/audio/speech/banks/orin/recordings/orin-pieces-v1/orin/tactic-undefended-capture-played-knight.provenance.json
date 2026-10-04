@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-knight",
+      "label": "Tactic undefended capture played knight",
+      "text": "The simplest principle of all still applies, and an unguarded knight falls to the first attacker. Here this move takes one. Before any combination, count the loose pieces."
+    },
+    "takeId": null
+  },
+  "requestHash": "24f94a018e6125aa4b9e9651492591b6818124d9a7b4d11fbe74faccc902e1a8",
+  "recordedAt": "2026-10-04T07:58:03.354Z",
+  "sha256": "712159bb02127aead10946531905bb4c17cb70f79e51c79078a3cd9ffd315eaf",
+  "bytes": 38734,
+  "requestId": "BYUvQFYBYcqOafgQxT32",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "18c60ee0054de19aca659011e85851a2b1ddc738d98747f3f2332cf0b4bb1a76",
+    "bytes": 201918
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

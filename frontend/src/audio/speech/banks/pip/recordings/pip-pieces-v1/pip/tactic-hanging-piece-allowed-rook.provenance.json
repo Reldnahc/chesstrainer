@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "tactic-hanging-piece-allowed-rook",
+      "label": "Tactic hanging piece allowed rook",
+      "text": "Ah, a loose rook. This leaves it with no defender at all, and the other side can take it."
+    },
+    "takeId": null
+  },
+  "requestHash": "3f994a9fab445f71a50485c51425b51bfe29906984342ecb5d23742572aad059",
+  "recordedAt": "2026-10-04T08:03:40.689Z",
+  "sha256": "ef77313fb82214e04573d22405aec4be8a24232ffc9fda6b665eb3c1313cc142",
+  "bytes": 20680,
+  "requestId": "33i0EojgUb0YssfHqcco",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e293d65092ff218439ecb8496651cb6d8ebda7d6804e7367df177aaa41383ee3",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

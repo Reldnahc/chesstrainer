@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "grade-brilliant-4-rook",
+      "label": "Grade brilliant 4 rook",
+      "text": "Here's a riddle: when is giving a rook away correct? When the capture can't crack the idea, like here."
+    },
+    "takeId": null
+  },
+  "requestHash": "f483a4a11729d5f9bac6c957504e11281b06213ca6ee284b9a4cfd1482a49e62",
+  "recordedAt": "2026-10-04T08:09:55.619Z",
+  "sha256": "171f60e0c399b4a16025837fa29aa06c409fcaebd17cee6d3827757eb3fc5904",
+  "bytes": 22686,
+  "requestId": "dRqxOt8TuMuVyfKzHq07",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3796c065bafff4eeeb3665848616a9b18f1b3b58d1a69199dd3ce156f7095254",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

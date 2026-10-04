@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed-bishop",
+      "label": "Tactic skewer allowed bishop",
+      "text": "Skewer alert. Two pieces share a line, and this move lets the other side aim down it. If the bishop in front moves, the piece behind it can be hit. Watch shared lines."
+    },
+    "takeId": null
+  },
+  "requestHash": "7940700ca410cf190c8217d84c909dcf466f49b7284955bd933d9ed493965c96",
+  "recordedAt": "2026-10-04T08:07:06.891Z",
+  "sha256": "5d653b5bd8b91384080f640d8cd42a51c87f30a7a8c83fef956ed2da50fa530b",
+  "bytes": 34612,
+  "requestId": "QxYWLr95C7tVOIzwKSC5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a0685887add4c9a3be1ae8d9acdbc71df90bcdc98a927885a04176a6d9703ed2",
+    "bytes": 178930
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

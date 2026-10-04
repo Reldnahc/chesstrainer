@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "cause-abandoned-defender-knight",
+      "label": "Cause abandoned defender knight",
+      "text": "Hold on, that defender was busy! This move pulls the only real bodyguard away from a knight, and the other side can grab that knight. Before a defender moves, ask who it's protecting."
+    },
+    "takeId": null
+  },
+  "requestHash": "d89179463a8cabc951c2beb3f9f5f9503841a355b162fc6118413d8fba71753c",
+  "recordedAt": "2026-10-04T08:00:51.026Z",
+  "sha256": "ddbd8671507538157e47fb4786125e6a2f462ddf859a503190e3253713adb520",
+  "bytes": 37312,
+  "requestId": "3a9kU7tKHJ0gqKSg6M0K",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f2df57c90870c40e2e81866cbd73b8bddbde37afbaba6866619dc6b9911b9bcd",
+    "bytes": 188125
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

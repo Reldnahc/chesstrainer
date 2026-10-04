@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed-rook",
+      "label": "Tactic discovered attack allowed rook",
+      "text": "Something is hidden behind their rook. If it moves, the piece behind it attacks. That discovered attack now belongs to the other side."
+    },
+    "takeId": null
+  },
+  "requestHash": "7de537fee721b619c817f5a15fa5a9042e770efb44b9434bccde4dfddd4715b1",
+  "recordedAt": "2026-10-04T07:51:46.528Z",
+  "sha256": "45911b7673a4e439841100f10ab79c2ab6fb2b30a38155190d8d5eb89b774c88",
+  "bytes": 29468,
+  "requestId": "b18hfVqyAqn4fkRm8sjF",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3fadf1536d1955e0f84ec2839ee90c92b4aadb1e2ee40fb0017daf8304942e6f",
+    "bytes": 154688
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

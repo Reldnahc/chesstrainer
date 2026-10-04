@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-check-pawn",
+      "label": "Explanation frame capture move check pawn",
+      "text": "The pawn is captured, and check comes with it."
+    },
+    "takeId": null
+  },
+  "requestHash": "8631a1b0a1332962bad988a5ff6bead8fdfefedb0d542c8b54f7766119cc1ab8",
+  "recordedAt": "2026-10-04T07:52:35.568Z",
+  "sha256": "84835cf5614a7a382a6637897fb5d669cd8584986c65a805a3aecab1f8e5f58d",
+  "bytes": 11143,
+  "requestId": "QdrvFc6qgLTZL3unPYUL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "39d510bb35a097f8c59fd2ff3f2bef602c91ea52b77006c2a050e6efc8551279",
+    "bytes": 56050
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

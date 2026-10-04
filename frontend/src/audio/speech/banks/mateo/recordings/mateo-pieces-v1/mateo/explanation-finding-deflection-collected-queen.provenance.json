@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-queen",
+      "label": "Explanation finding deflection collected queen",
+      "text": "Lure the defender away, and the queen it was protecting falls."
+    },
+    "takeId": null
+  },
+  "requestHash": "bc08eec06fa5d62fd2c387cc518456820fd0a643c3c14453857bfc2a04e08e60",
+  "recordedAt": "2026-10-04T07:55:48.721Z",
+  "sha256": "96a96ce6514e1b82c44914e06170e9326ad1d7df080ed07f9b19e965d8918be1",
+  "bytes": 13823,
+  "requestId": "ocvg5PXYBOx0XSWPU2Dp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "39f8b46378972c6533fed0f32c8a65219ef0f051dca7d56d7de3c587f4fbd355",
+    "bytes": 66499
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

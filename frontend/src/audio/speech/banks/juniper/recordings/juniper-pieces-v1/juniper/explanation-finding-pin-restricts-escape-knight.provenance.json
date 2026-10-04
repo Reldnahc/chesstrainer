@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape-knight",
+      "label": "Explanation finding pin restricts escape knight",
+      "text": "Pinned against its king, the attacked knight can't run at all. It has no legal move while the king stands behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "cb81fdff80ffd5aecbf16b48b9c1174c28a0ab9be8db42d0c6a9dd6459bd9b74",
+  "recordedAt": "2026-10-04T07:52:02.711Z",
+  "sha256": "0821c7b64cf7bf0cd632e16e060e68d5644728f0d388c3ace87fce8439a67ce9",
+  "bytes": 24272,
+  "requestId": "uRxIazjjw2ByeDo5nm4T",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ad7c537d8b06583dba079b220059bc8a89d11472dabc450f641c69061792f74b",
+    "bytes": 123759
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

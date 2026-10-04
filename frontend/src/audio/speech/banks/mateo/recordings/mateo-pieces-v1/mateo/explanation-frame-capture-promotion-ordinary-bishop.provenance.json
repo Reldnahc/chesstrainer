@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-ordinary-bishop",
+      "label": "Explanation frame capture promotion ordinary bishop",
+      "text": "The pawn knocks off a bishop on its way to the last row and turns into a new piece."
+    },
+    "takeId": null
+  },
+  "requestHash": "5b421433c45232f70eaeb36bfe1961e479baff1da98b49cbf9af85d8a895a5d6",
+  "recordedAt": "2026-10-04T07:56:08.812Z",
+  "sha256": "a290845b5f3e50dfdcabdf56e5754f2cef4158f2bd231173e15df10984f7d335",
+  "bytes": 17618,
+  "requestId": "f4itPZobEG9EOcj8YDti",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "095e73d2cd233610dc5cc07f1238587043da943bea0ca746579fa82ece09243f",
+    "bytes": 86979
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

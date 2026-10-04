@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-knight",
+      "label": "Tactic removing defender allowed knight",
+      "text": "The other side can take a guarding knight here. If it goes, the piece it was looking after stands uncovered."
+    },
+    "takeId": null
+  },
+  "requestHash": "4cca10736678a47b84bdd52bd7ebf64bb7e8479860116ccdffad4a05b7871e17",
+  "recordedAt": "2026-10-04T07:51:31.933Z",
+  "sha256": "d8b8d23a3a4a90093fa7f59c91fd1ee309930e621cf55fd33d4da4b526963427",
+  "bytes": 22290,
+  "requestId": "0oQCt7LMLgA1bChGLx2P",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7af9c5aebadfc26b106cbf60c9f034b640bf07db7c6079f26f7bd4593a419d7c",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

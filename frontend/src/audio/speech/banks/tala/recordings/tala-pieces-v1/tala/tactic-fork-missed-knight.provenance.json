@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "tactic-fork-missed-knight",
+      "label": "Tactic fork missed knight",
+      "text": "Which move had the fork? Wrong suspect: a different move put one knight on several targets at once."
+    },
+    "takeId": null
+  },
+  "requestHash": "77266a47e72493334ab9c746499ec0a163f589bb80f05869fe82254e09d3d478",
+  "recordedAt": "2026-10-04T08:08:38.450Z",
+  "sha256": "d0b45a6087d3827ad236ff57a230969b417d59d8b42d52d03bea1a5af1dabfec",
+  "bytes": 23049,
+  "requestId": "MNzjslGk8mJmEWGkAjeN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b6a511080f68e3c3ac3cadd698ec3caf5116d033ab9f1b397e633c071aaaec5c",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-rook",
+      "label": "Tactic undefended capture played rook",
+      "text": "The rook that was captured had no defender, so there is no recapture available."
+    },
+    "takeId": null
+  },
+  "requestHash": "891f797b7bdbc765d67ea8f284835572370c9a80372e6c206fd86641aa124829",
+  "recordedAt": "2026-10-04T07:53:10.491Z",
+  "sha256": "8f6a7c192efb1175c09c73bfc9d0c5d01c320d80ca23b3cc9ebc991e95a9e2cc",
+  "bytes": 16722,
+  "requestId": "rJTXwOzz2Zz8frHuusqD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9a17892f8f079237439aac1d4c63083e2831452c05642f643a0d46018e0d20fa",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

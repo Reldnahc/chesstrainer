@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-queen",
+      "label": "Positional unsupported alternative queen",
+      "text": "Another move would have left a queen without protection, which by itself wouldn't mean it could be won."
+    },
+    "takeId": null
+  },
+  "requestHash": "074c4c58a027830c74e3e2cd9f8af13eeb315e6beebc415f21676a14bea9dd51",
+  "recordedAt": "2026-10-04T08:00:39.678Z",
+  "sha256": "7d40c3c6bd3b118b40c48bd4b30e2419bf05d896bfb1e28d970fb2c7d1174864",
+  "bytes": 19097,
+  "requestId": "OdtGYHVvRNC5cJECw67x",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7254e03b00466ae2ca95e79a3c3677cd456ba236c1dede1d19464dfb4eef69d3",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

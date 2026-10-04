@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-rook",
+      "label": "Explanation finding sole defender captured rook",
+      "text": "Take the lone defending rook first, and the piece it protected is next in line."
+    },
+    "takeId": null
+  },
+  "requestHash": "91d0f2e21ca8c8dd5e68d4134777267e361fd5d0950d922537f5fb2a269fb435",
+  "recordedAt": "2026-10-04T07:49:17.307Z",
+  "sha256": "eb79d4fe2bae839fa302ff058cb47dcc9ceeb643a4b2cda3a629771cb8369efa",
+  "bytes": 17535,
+  "requestId": "eZOG2QeaV3SNbrpkhpIE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "df5e8c765670f2e567f86131149e4de0631003072c6a78645d3c75de9b339964",
+    "bytes": 88233
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

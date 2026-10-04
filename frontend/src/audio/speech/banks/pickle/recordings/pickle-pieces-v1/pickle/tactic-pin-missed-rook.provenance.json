@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "tactic-pin-missed-rook",
+      "label": "Tactic pin missed rook",
+      "text": "Psst, another move had a pin to the king tucked inside it. The rook in front of the king would have been stuck to its line. This move never noticed."
+    },
+    "takeId": null
+  },
+  "requestHash": "ed7a6a4eadbd86e0226fbcd0c6e592abb2c9aeaad019445203252705834a69e0",
+  "recordedAt": "2026-10-04T08:01:44.382Z",
+  "sha256": "1fd4680ca4b07842130f5f8cac785eadc4b6c0af4a30ffb0de5d425d4f990a5e",
+  "bytes": 29184,
+  "requestId": "1LcZjedXik6Ijs61wkQp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "45bce3461650b461a5f6dec0556b2c9d6eb080f8e263a507eaad0a28e089b99d",
+    "bytes": 149673
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

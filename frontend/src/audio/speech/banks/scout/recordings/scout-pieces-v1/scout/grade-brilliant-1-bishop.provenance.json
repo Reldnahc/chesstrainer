@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "grade-brilliant-1-bishop",
+      "label": "Grade brilliant 1 bishop",
+      "text": "Bishop sacrifice, and it reads correctly. Immediate cost, idea verified in the checked line."
+    },
+    "takeId": null
+  },
+  "requestHash": "52f50e69b1a4a7100b7fe772490d69977b3c4d0adce4ce76337e3db721876c62",
+  "recordedAt": "2026-10-04T08:08:24.324Z",
+  "sha256": "621e6805ddaf542f1fd8cc2ef4fdcb502bee3533cbce42fd26acefcbcdc34f12",
+  "bytes": 20811,
+  "requestId": "VAXQeQuxImzMo3mrbatz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7a0c5a0768e592357b4db1196c60f74d30a3c708c267b90cae845d4378365a8c",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

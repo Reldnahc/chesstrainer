@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed-king",
+      "label": "Tactic discovered attack missed king",
+      "text": "Another move carried a discovered attack: move the king out of the way, and the piece behind it goes to work. This move doesn't give that order."
+    },
+    "takeId": null
+  },
+  "requestHash": "bc09f1f25bfc6a31f39a2ab43cb494f3e72d66e2a17b50ed49c9ef7b67a8b64c",
+  "recordedAt": "2026-10-04T08:12:03.855Z",
+  "sha256": "1f53fe604c2f8d7a9b804398401384fc4717ccf92fc393b82d19614d4e78ea6a",
+  "bytes": 28982,
+  "requestId": "OGb4MGgdh9esk5ZueWBs",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "303cd0ab7118f53523e2da670c1cda9b03499191c9cbbe0c96daca5fe197c18e",
+    "bytes": 147165
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

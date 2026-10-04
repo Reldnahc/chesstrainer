@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "positional-support-actual-knight",
+      "label": "Positional support actual knight",
+      "text": "A knight that had nobody guarding it picks up a defender. Small, but it settles things."
+    },
+    "takeId": null
+  },
+  "requestHash": "08e095057d318173cfc190f8ae7b925e2b4c2e922538a4508460dc541175cada",
+  "recordedAt": "2026-10-04T07:49:05.982Z",
+  "sha256": "fcc3e986b4e565dcc61801adc62018a6300b5488e0cdcdea38c1eef89cbb544e",
+  "bytes": 20237,
+  "requestId": "v2k6ezg0HZ3FZLMXz1JN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f458540b0b4f406da22917a678d24c010646bc40cadfad0c39c84f44a35776f6",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

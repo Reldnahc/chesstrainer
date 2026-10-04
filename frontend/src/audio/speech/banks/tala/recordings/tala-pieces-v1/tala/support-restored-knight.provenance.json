@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "support-restored-knight",
+      "label": "Support restored knight",
+      "text": "Problem patched: the knight that was unprotected earlier is guarded again."
+    },
+    "takeId": null
+  },
+  "requestHash": "b1a181ad97f1441e357445809d4ae90de862cd63a5213bcc62cdba857cd15877",
+  "recordedAt": "2026-10-04T08:09:17.275Z",
+  "sha256": "1e4abd59164e4b65bba7fa5d6b01bdd152524bf879c7dbe3d88475906699e4e0",
+  "bytes": 16512,
+  "requestId": "CLxaLib6ZiUxgmjHyVxZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "10eef54c9a04af52dd3ba6e2d657c447ed96bc70e225152929202ed99a5df671",
+    "bytes": 81546
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

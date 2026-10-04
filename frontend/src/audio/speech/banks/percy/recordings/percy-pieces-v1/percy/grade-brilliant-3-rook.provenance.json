@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "grade-brilliant-3-rook",
+      "label": "Grade brilliant 3 rook",
+      "text": "Now that's a sacrifice! The rook pays its price up front, and the idea is sound."
+    },
+    "takeId": null
+  },
+  "requestHash": "731512e8507f8f6e169538065249e92fab145c635f938a33ee16a181263160ed",
+  "recordedAt": "2026-10-04T08:01:16.543Z",
+  "sha256": "07893f42b2d3e367d9f1bab152395e62fd5bee9683d1a67e126f6c6129350b15",
+  "bytes": 18794,
+  "requestId": "eoUwK0kqPYPPTs2WNlpm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ff75bd3c67f0e8c3722b4dcdb61407dc25c5d63853aa5120fc65c92aa51a6f0d",
+    "bytes": 93248
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-pawn",
+      "label": "Tactic deflection allowed pawn",
+      "text": "The simple risk here is a deflection: a defending pawn can be pulled off the piece or square it's covering."
+    },
+    "takeId": null
+  },
+  "requestHash": "d92769481e14c44767c58a486b2f8c0ea6607b57019aa4936a611b068af305d9",
+  "recordedAt": "2026-10-04T07:48:46.555Z",
+  "sha256": "42fe04612cafdaea65d85ffe4138607985bd3af1ec97365cc1071c481236ce4c",
+  "bytes": 22170,
+  "requestId": "TKTwLUuf7q1V0416tmzK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "79e69ca83367914c240ff26152d47af3aa9905cc1fc937d3be5bce1fbc73c9ed",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

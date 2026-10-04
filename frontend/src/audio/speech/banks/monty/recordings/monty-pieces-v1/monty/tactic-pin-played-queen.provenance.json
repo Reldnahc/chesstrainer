@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-pin-played-queen",
+      "label": "Tactic pin played queen",
+      "text": "The main thing is the pin. That queen has its own king behind it, so it cannot leave the line."
+    },
+    "takeId": null
+  },
+  "requestHash": "cef2233e658fbba8c2739fb0ef9e7fcfb0e8b14324d8b5981a53dcec1df8191c",
+  "recordedAt": "2026-10-04T07:56:38.477Z",
+  "sha256": "2a21eecf68a6fb5a6014c90ecf6ae1bfedc8258f6ca79470166e191ce6b6b657",
+  "bytes": 20504,
+  "requestId": "Fr7OU4eYaPzY121ZC1fk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b00fc4e6600b598a6a241f51484f90ba2ad83cc1e28460ab91ffd22de6570bd1",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

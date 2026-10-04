@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-check-queen",
+      "label": "Explanation frame capture promotion check queen",
+      "text": "The pawn captures the queen, promotes, and checks, three things in one move."
+    },
+    "takeId": null
+  },
+  "requestHash": "2d3fc27818580bd4d0e176b3139509e0ceb7a375efbf5f81e65b632c0273a0cc",
+  "recordedAt": "2026-10-04T08:09:47.889Z",
+  "sha256": "5a13bb366d3634db75462b6e180c6a112c7c1d873a62fa40daf638fca62218ca",
+  "bytes": 18775,
+  "requestId": "997oJdSM67kWQVO4EnAd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0aadb8d352c27844896ef768bf2ee26e06d17666cbec77d8a7beccd6cb86ea22",
+    "bytes": 94502
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

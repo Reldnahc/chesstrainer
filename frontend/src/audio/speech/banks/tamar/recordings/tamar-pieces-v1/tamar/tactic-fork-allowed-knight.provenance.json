@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-fork-allowed-knight",
+      "label": "Tactic fork allowed knight",
+      "text": "There is a forking square in the other side's reach. One enemy knight can land where it hits several targets together. I want every enemy landing square checked first."
+    },
+    "takeId": null
+  },
+  "requestHash": "ca5642aed8462c3106e76d161b406c1b01433e923979f0a9e9e5077727c861a2",
+  "recordedAt": "2026-10-04T08:10:15.285Z",
+  "sha256": "4afeb5d58351b70b236155c8a4b3135bb70e60cd066a4599934acd1d27d7813d",
+  "bytes": 32521,
+  "requestId": "QfXicOVmRgCdQjf8b8ku",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e4e04cd0b0d4c371485c42d8f1f1a771c0d6056315af204b91624bfde6d53e91",
+    "bytes": 166391
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

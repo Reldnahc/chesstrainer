@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played-knight",
+      "label": "Tactic removing defender played knight",
+      "text": "Defending knight eliminated. Whatever depended on it for protection is now exposed."
+    },
+    "takeId": null
+  },
+  "requestHash": "46b6fe605ada717ec25dc7977bdbcae9fe31486e21cb7357b47a18beeaf2ddc8",
+  "recordedAt": "2026-10-04T07:50:18.091Z",
+  "sha256": "84d8afb9f47013385282181b2663ce199a9d8522d510568fd153d2b8d185aceb",
+  "bytes": 19445,
+  "requestId": "VOi2q0pa1OYjETXkxDip",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2ef77960396cb003a182bbab5b4f438a093ed54ef9d647c6533527f7db0e99d5",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

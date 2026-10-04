@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "explanation-finding-king-skewer-collected-bishop",
+      "label": "Explanation finding king skewer collected bishop",
+      "text": "The check compels the king to leave the line. The same attacker then collects the bishop that stood behind the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "fb3ee15a6c7ac47110b67a484c9949b0de2da930308a1b56a199d89254705268",
+  "recordedAt": "2026-10-04T07:59:21.536Z",
+  "sha256": "189fe2c3ce60b64c009aee6b11b0c5c45d854877cdf2ebb2d964c5ddad6f6e81",
+  "bytes": 24843,
+  "requestId": "bBVS7TuKSVFMK0RiuMGi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b85253625ddceaeace72e4749ee068722d009f20a672c9f2ef480782917d0feb",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

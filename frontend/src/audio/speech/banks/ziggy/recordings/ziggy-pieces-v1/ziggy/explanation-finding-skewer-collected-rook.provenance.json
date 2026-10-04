@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-rook",
+      "label": "Explanation finding skewer collected rook",
+      "text": "Once the rook in front steps aside, the attacker reaches through and captures the piece that was behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "939ed534ab46737e1b0ab392133e5f39512afe262b95c0f56bb499d9ab95b18f",
+  "recordedAt": "2026-10-04T08:16:05.796Z",
+  "sha256": "027e5d3a62cae58358b10c33c849b190808f863827d8988af905abdaea8de96f",
+  "bytes": 19898,
+  "requestId": "6exbLZh58neZrR2uRIlN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "16e765b4c66b01e1ce356f7381da85e99df959dd124d89e086cde86cec32e622",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

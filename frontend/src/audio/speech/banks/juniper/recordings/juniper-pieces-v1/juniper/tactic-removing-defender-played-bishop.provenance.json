@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played-bishop",
+      "label": "Tactic removing defender played bishop",
+      "text": "Down goes the bishop on guard. Now look at the piece it was looking after; nothing watches it any more."
+    },
+    "takeId": null
+  },
+  "requestHash": "f2328cd7b38d5aefe65ddbafe0583c5bdedea96fa365861ee4011f7fbf8fb11d",
+  "recordedAt": "2026-10-04T07:51:49.922Z",
+  "sha256": "cf52acc592c95ee077e823fe6ac23aca60cb073715dd22d3f455fbbaaa9d1808",
+  "bytes": 21137,
+  "requestId": "UutLh21SVSnISkjEvgGg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "456f410bd0830aac2a0d2e4d24fdb4b5acf7332c88cc7405c1c5aa9dda6464fa",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

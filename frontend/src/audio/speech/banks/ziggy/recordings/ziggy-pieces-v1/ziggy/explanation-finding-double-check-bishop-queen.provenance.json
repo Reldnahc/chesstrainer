@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-bishop-queen",
+      "label": "Explanation finding double check bishop queen",
+      "text": "Double check: the bishop and the queen attack the king at the same instant. Remarkable, the efficiency of it."
+    },
+    "takeId": null
+  },
+  "requestHash": "8502ad3656450d4844c4daae7b3a421cd3e3880937f43cd5a73e440e4989fd6a",
+  "recordedAt": "2026-10-04T08:16:41.429Z",
+  "sha256": "ce34fe41baadd9bb1b0e7f93450a51e2d92da7fd1e117f97fc95709658c056fd",
+  "bytes": 23496,
+  "requestId": "VT4J3AZlFNFQ2YC8uIOE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "be8172ccb82c8cc66c46250bce3a726c0bd8b68fb430a2d8de641663f0d29a21",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

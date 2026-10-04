@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-mate-bishop",
+      "label": "Explanation frame capture promotion mate bishop",
+      "text": "The pawn captures a bishop to reach the last rank, promotes, and that's mate. The king's got no legal move out."
+    },
+    "takeId": null
+  },
+  "requestHash": "260420f281cf0a6e912238af56d2e65008b370d3b38e156482d89e1f13788cd7",
+  "recordedAt": "2026-10-04T08:01:15.999Z",
+  "sha256": "6a1401b645bff8a9d212c2d6d201ecefa55af3f1a160178f27e555c51ffbea03",
+  "bytes": 23646,
+  "requestId": "XbvvN6KI2fcjf3B7TJXi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8f185cff63edf81a07038cb7ab0f2a98d7487bf68dec23ab87cb9de3101b7bf3",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

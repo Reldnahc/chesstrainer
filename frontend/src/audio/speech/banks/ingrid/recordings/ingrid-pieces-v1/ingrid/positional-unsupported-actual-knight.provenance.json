@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-knight",
+      "label": "Positional unsupported actual knight",
+      "text": "With this move, the knight is left with no defender at all. Worth noticing, though that alone doesn't mean it's going to be lost."
+    },
+    "takeId": null
+  },
+  "requestHash": "e30b5be361df1ddce007b8ed155e2f0422487519b54a95980b4bbed0be1ac8f1",
+  "recordedAt": "2026-10-04T07:49:18.096Z",
+  "sha256": "0dabdf6179e3a0f35ce62c03112059597e1c11939524b7859df716925c162c75",
+  "bytes": 27585,
+  "requestId": "VeJTdDUzm3Tzzwy9WYRG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a9363a1db06201ea039562b5a439e241e9e849cec7b98cb196e3ded2d4973afb",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

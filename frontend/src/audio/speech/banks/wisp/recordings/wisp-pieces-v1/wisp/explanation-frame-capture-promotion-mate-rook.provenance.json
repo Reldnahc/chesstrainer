@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-mate-rook",
+      "label": "Explanation frame capture promotion mate rook",
+      "text": "The pawn captures the rook, reaches the last rank and promotes. Checkmate comes with it; the king cannot escape."
+    },
+    "takeId": null
+  },
+  "requestHash": "0325fe6ed91c162fd54357074658c680df41c0bee388a5b4a3006ea4a6aafd70",
+  "recordedAt": "2026-10-04T08:14:51.163Z",
+  "sha256": "2a128635cc6f7db97b748626f5a241dc07d24a497c4d436e287ca167cab95ab6",
+  "bytes": 24768,
+  "requestId": "LA3FMRL4dDHJZU0gM1g9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e95e9be8950513a8e7c17e4df80b020e1b12a9ee2a54a3831352383faec90fd7",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

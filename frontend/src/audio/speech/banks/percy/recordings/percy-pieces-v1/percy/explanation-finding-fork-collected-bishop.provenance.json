@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-finding-fork-collected-bishop",
+      "label": "Explanation finding fork collected bishop",
+      "text": "Watch the bishop go after several targets, then grab one of them. This example ends with that side ahead on material, too."
+    },
+    "takeId": null
+  },
+  "requestHash": "48713eb760ac6e0eea9dcc01a97d0d8919dfca563c40105e18621b587ec1bd8d",
+  "recordedAt": "2026-10-04T08:00:52.025Z",
+  "sha256": "61aac49cca3b058b0d142f66daa38f4c504e7d96f51d0889f005d8b3e2bf8540",
+  "bytes": 23666,
+  "requestId": "VRqghKEsvMYLZYkr8hBW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "af9c6c7d276133a09bbb8470f4f1d1dcebbd03a0092ad323f536651661a8535f",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

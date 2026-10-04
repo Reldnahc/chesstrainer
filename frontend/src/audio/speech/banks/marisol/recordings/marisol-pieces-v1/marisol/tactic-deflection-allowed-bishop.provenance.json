@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-bishop",
+      "label": "Tactic deflection allowed bishop",
+      "text": "A defending bishop can now be lured away from what it was covering."
+    },
+    "takeId": null
+  },
+  "requestHash": "dfdcc25e31790721c8787445843249d3903386cc1f3481008bb7cb431eb89b3f",
+  "recordedAt": "2026-10-04T07:53:45.345Z",
+  "sha256": "5d1b81836d840f064a43926ee89746fc0c9b88f43e46c83feb91cbb247aabb88",
+  "bytes": 13603,
+  "requestId": "xzmEWPCQCkhwThyyCBV4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "32fc8ff134175e93ed69dd9841fdcfd64e4663faef49a1544b7c9bff7b2e276c",
+    "bytes": 66499
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

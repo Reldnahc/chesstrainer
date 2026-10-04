@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "tactic-pin-played-queen",
+      "label": "Tactic pin played queen",
+      "text": "Why can't that queen step off its line? Somewhere behind it on the same line sits its king. Pinned, neat and tidy."
+    },
+    "takeId": null
+  },
+  "requestHash": "b277fa644d0a90922ed5b457d189c74a0f6903ef87dde2ff1c9fecacb2288085",
+  "recordedAt": "2026-10-04T08:08:55.395Z",
+  "sha256": "35a9853257be7ee32b470367b4205a413ed5e8ee39fc9e9ac024faa2c3710a41",
+  "bytes": 27529,
+  "requestId": "eciqgEQZ8GRMLnt0T6Hn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "147951bb65c104f881375bc53d1ad8f24afcb09cf4733cafd21eae20ef1b130b",
+    "bytes": 142986
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

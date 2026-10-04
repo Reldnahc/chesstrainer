@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check-queen",
+      "label": "Explanation finding discovered check queen",
+      "text": "One piece zips aside and the queen behind it fires a check."
+    },
+    "takeId": null
+  },
+  "requestHash": "0d67f019147a494b58e3d9f2c662936f74ca710700b2461ce9622056346a5594",
+  "recordedAt": "2026-10-04T08:06:04.143Z",
+  "sha256": "ddbdfc71f47f73921ed1acfdd11473f7efbb4da1a340cd674408e2fc5c71ea40",
+  "bytes": 13594,
+  "requestId": "1dXH9nAMb6Lu4Nk3OgOf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "85a443053caa40247eef942b585ef9d6340d740a85e5db8c4b40f65a471bd9a4",
+    "bytes": 66499
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

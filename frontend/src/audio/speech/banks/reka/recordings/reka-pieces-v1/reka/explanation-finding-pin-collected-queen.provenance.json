@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "explanation-finding-pin-collected-queen",
+      "label": "Explanation finding pin collected queen",
+      "text": "Keep tabs on the pinned queen. Stepping off the line would bare its king, so it gets gobbled as the line plays out."
+    },
+    "takeId": null
+  },
+  "requestHash": "f8ed31f697c6fd8c3e8985d6e4eee86a1e175a106d9e7de1b1c8ca74b09863f5",
+  "recordedAt": "2026-10-04T08:05:53.420Z",
+  "sha256": "5a276fb193b0c41321863fbb01665fa24ce8743ef8939a4d5e96f0215ebfb490",
+  "bytes": 23202,
+  "requestId": "pbuRr55n7prL1iRE1kXh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8f10b3b192e4c03c813286e25bcd6a972a18d7f3ab76cec655a0249bbff3c63d",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

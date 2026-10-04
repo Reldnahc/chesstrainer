@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-escape-rook",
+      "label": "Explanation frame capture promotion escape rook",
+      "text": "A pawn takes the rook on the last rank, promotes, and the pawn's own king is out of check too."
+    },
+    "takeId": null
+  },
+  "requestHash": "02b9d8a7a6350ebd336f0c5536c5ba2b45f49fa03e6696f833c9c24ca6cc1647",
+  "recordedAt": "2026-10-04T08:13:28.460Z",
+  "sha256": "f85de4b85e82e4c4bb5941278adeffa57bba0eaac7fc094f3bbf4312b034797c",
+  "bytes": 20339,
+  "requestId": "Rmz3B7Dett0l3QxyCK3w",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cff838f6e2e5b7fd9ae9d5fe936c196ccffed192d113cf01655d46e34e64a3d2",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

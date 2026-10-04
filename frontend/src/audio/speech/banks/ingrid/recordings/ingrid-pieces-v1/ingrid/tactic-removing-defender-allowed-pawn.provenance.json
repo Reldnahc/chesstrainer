@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-pawn",
+      "label": "Tactic removing defender allowed pawn",
+      "text": "Here's the plain risk: a defending pawn could be captured now, and the piece it protects would be left without that help."
+    },
+    "takeId": null
+  },
+  "requestHash": "ff4975ce166183074e0f625a7be1efdfe363ab8864fab9060f28d443f69a13ea",
+  "recordedAt": "2026-10-04T07:48:15.279Z",
+  "sha256": "06c0354fbac28d2784faa44b8cba017e68781032d97af7f0d5eb45e0bcc8f2da",
+  "bytes": 24111,
+  "requestId": "BPj5Cp3UjNQkdknQBqJU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bf557ae79395e3c5dbf1cf57987d0ea2fc25f3f71894e64150ef36e38a74d9cc",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-queen",
+      "label": "Positional unsupported alternative queen",
+      "text": "Unguarded in the alternative. A different move would have stripped a queen of its guard. Undefended doesn't mean lost, so check what could reach it."
+    },
+    "takeId": null
+  },
+  "requestHash": "10514f4f60688aacc08a6161828ddce9b23daeed2f97ec23c81225249aa511c1",
+  "recordedAt": "2026-10-04T08:07:27.890Z",
+  "sha256": "30b8a06af16c27faf8288b83c37e728451922e7f01ec6ea683c5aaaa5c8201e2",
+  "bytes": 27270,
+  "requestId": "oN3mCho0fXTaHBtC8rng",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3fd584e3ab0b380ed3d7527b9e6cc14b73210fd9740635d7f0fb7455dc512a8c",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed-queen",
+      "label": "Tactic skewer allowed queen",
+      "text": "Beware the skewer, the pin's reversed cousin. This gives the other side one: the queen in front may have to move and leave the piece behind it exposed."
+    },
+    "takeId": null
+  },
+  "requestHash": "d44786f1dbd7533e4a0bc9f0798c27bd65079d6b1e7260ac52375b87de90a137",
+  "recordedAt": "2026-10-04T07:58:34.665Z",
+  "sha256": "67a33bda8219d8a16407babf84b35d9e55c024196d6feaa5d9c7024d2559410d",
+  "bytes": 32747,
+  "requestId": "5wl4YMJoc8nSdpbarR3B",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5920fa7a8f96202d09b4ee1ed295ba8b21d132bdd80c09f148ba26e50ea6ec65",
+    "bytes": 170153
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

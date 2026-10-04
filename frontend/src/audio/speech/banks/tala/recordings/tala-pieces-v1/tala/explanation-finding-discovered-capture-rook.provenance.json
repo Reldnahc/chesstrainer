@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-capture-rook",
+      "label": "Explanation finding discovered capture rook",
+      "text": "A blocker moves aside, which opens a line for the rook behind it to capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "d920e374f12e2b94ec07ca70aa627b2695ef5b4a04463ffd88be7254e8b1e19b",
+  "recordedAt": "2026-10-04T08:09:57.654Z",
+  "sha256": "fc314dff61e23c97093c57cab12cc7f2aa2f48e434b64da5fe95c04c2e1954c7",
+  "bytes": 16209,
+  "requestId": "QT3H6cSURLXnPML7qNeM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "76624e7d8a6430bbdad719f17eaed78205f572e71cbd31b09ebc49d637e40e63",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

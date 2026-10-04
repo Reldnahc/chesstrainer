@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "tactic-fork-allowed-knight",
+      "label": "Tactic fork allowed knight",
+      "text": "Something waits on the other side's turn. A knight of theirs could attack several targets at once, a fork."
+    },
+    "takeId": null
+  },
+  "requestHash": "74d95939bb2b538a0287f5ffd4759055a5ed0ab9d86e34b9e6bf5bc08cc838f8",
+  "recordedAt": "2026-10-04T08:13:28.953Z",
+  "sha256": "c9b808225991e50942e0717bbedb4bc5a333589b030c3a4323c5bab1b2c3a809",
+  "bytes": 21708,
+  "requestId": "tkCXMz2Exs5WAtFNSTGI",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cb16a2ca3597ce224663d020ae0b458f54a99fc94ecc164d6469b909cb82b371",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "tactic-pin-allowed-rook",
+      "label": "Tactic pin allowed rook",
+      "text": "Spot the line: the other side can now pin a rook in front of its own king, and that rook would be stuck on the line."
+    },
+    "takeId": null
+  },
+  "requestHash": "863db9f7dd2f30a2f2d3a04569d8f0353774b2536cd3f34c65fa996e4ee4240b",
+  "recordedAt": "2026-10-04T08:08:26.274Z",
+  "sha256": "2d0b2df5cdd19c3813fa20623ecab55102ef0d54a34235ab8ba1866dfc30d81d",
+  "bytes": 24758,
+  "requestId": "L5TqOvWF31YTMmJ9Syn5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "056b9087b8505620388b92d094ac3d452fbdf7bc8611a81bdc927920d0dc4c4c",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

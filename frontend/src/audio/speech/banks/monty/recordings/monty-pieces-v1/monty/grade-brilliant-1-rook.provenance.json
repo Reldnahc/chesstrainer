@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "grade-brilliant-1-rook",
+      "label": "Grade brilliant 1 rook",
+      "text": "Strong. Big picture: a rook is put on offer, and the position stands firm after the capture."
+    },
+    "takeId": null
+  },
+  "requestHash": "107020ba24ff8d65fba80ba5b31fd3a6c971b25cba91db733ced9ff90e657f68",
+  "recordedAt": "2026-10-04T07:57:57.244Z",
+  "sha256": "e648d56dab31a5069edee45554a5e3d8a9eb1fae2c1246a3c05bfa091f9fbc86",
+  "bytes": 21504,
+  "requestId": "ZxuGsb82XoI9cYwbMKqa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b3a5e6411bb761bef10097cf324dce022eede503721a0da2acb03b4338343c24",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

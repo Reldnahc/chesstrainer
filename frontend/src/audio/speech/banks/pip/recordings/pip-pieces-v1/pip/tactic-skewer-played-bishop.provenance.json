@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "tactic-skewer-played-bishop",
+      "label": "Tactic skewer played bishop",
+      "text": "Ah, grand. A skewer: the bishop in front is attacked, and when it moves, the piece behind it is left open."
+    },
+    "takeId": null
+  },
+  "requestHash": "e383968b5ddce9b05f2312992e4b4607e4942eefda26fc1beee7a838125e551f",
+  "recordedAt": "2026-10-04T08:03:35.740Z",
+  "sha256": "1c6f02e679f3318477de056266bb6e1583f27010072056dcafba97fc6b5daeec",
+  "bytes": 26607,
+  "requestId": "rJM2uCzStGFYjCLtnWY0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1066a83981e47d0addbe9df0aadc2cd499a41e76c3e0a167c9b4a7e301f7b246",
+    "bytes": 136716
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

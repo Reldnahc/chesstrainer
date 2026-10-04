@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-king",
+      "label": "Tactic deflection allowed king",
+      "text": "Posts under pressure! The other side can pull the defending king away with a deflection, and what it guards could be left open."
+    },
+    "takeId": null
+  },
+  "requestHash": "1717ab60461257fda918c1620c03e97fab7964b0913166fdab63b0b7c7a7df14",
+  "recordedAt": "2026-10-04T08:12:18.795Z",
+  "sha256": "85216859f7c69570613fbaeb4990630f07c57d3a2cabe67e03f67d1bac522aae",
+  "bytes": 26024,
+  "requestId": "XjVxV82Aj75fwxqqbgKM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "051745d0e52f70bacda9d7feee1d7bfa8a26da91f47e033c23e5d656ea28e2d6",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

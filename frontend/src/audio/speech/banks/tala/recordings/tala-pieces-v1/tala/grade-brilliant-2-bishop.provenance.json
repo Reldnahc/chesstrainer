@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "grade-brilliant-2-bishop",
+      "label": "Grade brilliant 2 bishop",
+      "text": "Clue: the bishop on offer is real, and so is the cost. The answer: it still holds up. Brilliant!"
+    },
+    "takeId": null
+  },
+  "requestHash": "2330c498fe6bcfd0768dabcd7ee1a8024dadc9ba4bfd83daaba5af6b1d41efe6",
+  "recordedAt": "2026-10-04T08:10:12.285Z",
+  "sha256": "325627ae2987bf40b9fbe92d4ac1a3584d639cb4189a7d6cdd2092d0d2e75a2f",
+  "bytes": 25244,
+  "requestId": "gLSsWGYMFiDpTmvqvM1d",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f72c3ab92652f256517af407ada7ec316de892e42f82f287f6a7c27c1e9695d9",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

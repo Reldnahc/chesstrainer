@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-king",
+      "label": "Tactic deflection missed king",
+      "text": "Another move could have pulled the defending king away from its duty. That deflection would have left what it guarded uncovered."
+    },
+    "takeId": null
+  },
+  "requestHash": "c2464721d24b546d719e10d3358a0ceacd3a493ede25fe91db12ee305e38b108",
+  "recordedAt": "2026-10-04T08:15:54.845Z",
+  "sha256": "365ac94ba2734684823053128e520dc83f92968a357accf49b755d8bcbb1783c",
+  "bytes": 23695,
+  "requestId": "w0CYSP28Y39Nc4iBWTYo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e9cb1c24288b8f09e00fdd8074bd443f851390e85d196bcae0c6de96e1f4a961",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

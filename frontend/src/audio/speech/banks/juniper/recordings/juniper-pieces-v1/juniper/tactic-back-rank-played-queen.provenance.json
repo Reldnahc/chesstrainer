@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "tactic-back-rank-played-queen",
+      "label": "Tactic back rank played queen",
+      "text": "The king is fenced in by its own pieces along the back rank. The queen closes the back-rank mate, softly."
+    },
+    "takeId": null
+  },
+  "requestHash": "aceabd2ee962797ae1510c7ad82cde668f284a2017cac2b19c9a957780381bc3",
+  "recordedAt": "2026-10-04T07:52:13.077Z",
+  "sha256": "2f2c526418fd3cd382b23aab3651408fa7d008d599ad9637db9535c940448d57",
+  "bytes": 23928,
+  "requestId": "dmhLZYXRE7FRVox79zyT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "97a42dea47f2a04a19386a2132d6afb338c886f2e79b9c7595bcaf29adb0e030",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-deflection-played-pawn",
+      "label": "Tactic deflection played pawn",
+      "text": "Deflection. The defending pawn is pulled away from its task, and the piece or square it covered is left unguarded."
+    },
+    "takeId": null
+  },
+  "requestHash": "d5cae61c1f027f98c037290199a96cc5bfa81f42c8484c159baa8cd5b665da80",
+  "recordedAt": "2026-10-04T07:50:18.288Z",
+  "sha256": "64df3657bee9156807c7f0cc9b82b2d89af781367f69f1eea3cafc3338eb7a7b",
+  "bytes": 24852,
+  "requestId": "mbIXelhyYYeSjg5JOllG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3ea5b1fdb1f28735a2631076eb3221dc038d942e778016670dadb53873780a94",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

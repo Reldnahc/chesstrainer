@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-back-rank-played-rook",
+      "label": "Tactic back rank played rook",
+      "text": "The back rank gives way. The king's own pieces fence it in, it has nowhere to run, and the rook has the last rank in its sights. That pattern is worth hunting every game."
+    },
+    "takeId": null
+  },
+  "requestHash": "254e7cd62ebd0ba6ceb234bfd897c7c1625eeac56178e1cfef885f7e8cc74cda",
+  "recordedAt": "2026-10-04T08:11:06.660Z",
+  "sha256": "882cfd91dfe75b6980bbd6b16bd974ebf77c90e02b5916eb40f7c32a5c5c557f",
+  "bytes": 35113,
+  "requestId": "URNMlqNMTUjeF5QnXLMM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "97a875c1007295e0911b44955275f7a91968bce88a2ff15f8c230e1d001a2c12",
+    "bytes": 182692
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

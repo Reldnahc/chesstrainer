@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed-rook",
+      "label": "Tactic skewer allowed rook",
+      "text": "This opens up a skewer for the other side. When the rook in front moves, whatever stands behind it on that line could be exposed."
+    },
+    "takeId": null
+  },
+  "requestHash": "1864e9c3ab52809cb347859870f12584d1110d8f9b24d7b4753f6d5ec28d5383",
+  "recordedAt": "2026-10-04T08:00:16.040Z",
+  "sha256": "0c89dc584e5b8adc64458522f8adab08659547ce28ccdd2a98c5282d8c59b89e",
+  "bytes": 25090,
+  "requestId": "J6TsY3OLdk06KvHj37IL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "50674fe4f9b570d256e01532558106f8667c66b8fe56e8d500283c517fbb50c9",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

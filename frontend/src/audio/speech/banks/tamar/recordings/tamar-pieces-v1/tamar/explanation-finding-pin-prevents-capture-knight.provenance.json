@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-finding-pin-prevents-capture-knight",
+      "label": "Explanation finding pin prevents capture knight",
+      "text": "That knight is pinned to its king, which makes the marked capture illegal."
+    },
+    "takeId": null
+  },
+  "requestHash": "bf70bf3fdb1da5aa9f2ce2f4b1f59f3ec0081f26fbca1f041b59a22fbfe123fc",
+  "recordedAt": "2026-10-04T08:11:22.252Z",
+  "sha256": "2a8691fc18f15fcd237344a19d7fda1f969c0b646c8efb1de005ce1e1ae1fe29",
+  "bytes": 15509,
+  "requestId": "7YeP1LHqwcsISlkcoYLC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "004fd4cbfa466905c1d732c8bf126b0df17c60f3b729bffd651f811a1ecd4756",
+    "bytes": 76530
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

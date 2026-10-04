@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "explanation-finding-double-attack-collected-rook",
+      "label": "Explanation finding double attack collected rook",
+      "text": "The first piece attacks and uncovers a second attacker, a rook. The capture comes from that rook."
+    },
+    "takeId": null
+  },
+  "requestHash": "807e29d2b9f35668b567b0c86568865e211be3c3a25a5a1bfdcec91251504baf",
+  "recordedAt": "2026-10-04T08:13:01.949Z",
+  "sha256": "d034f0646d5b4b7395b5cff24456e84b6ab9249a4d1bc73e2078c63ee99d47fc",
+  "bytes": 20985,
+  "requestId": "GzptJrHlJDo2CpZW5Mtm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bb97c19992af52fe790a30d5d4ea8a635a599c38b197f79de65f277dd00634af",
+    "bytes": 107459
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

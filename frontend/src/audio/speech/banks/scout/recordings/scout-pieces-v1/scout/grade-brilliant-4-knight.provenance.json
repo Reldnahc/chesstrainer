@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "grade-brilliant-4-knight",
+      "label": "Grade brilliant 4 knight",
+      "text": "Offer made, offer holds. A knight paid up front, idea intact. Benchmark position."
+    },
+    "takeId": null
+  },
+  "requestHash": "bcd7baf12ecfb32199672dd5ef11f1844934edf4348be071be98c9c14e655bfa",
+  "recordedAt": "2026-10-04T08:08:05.108Z",
+  "sha256": "22b6595a04bcd130b9a4404288967e5e92e7d698dce57730a8e5c8aa23bcfd7d",
+  "bytes": 20746,
+  "requestId": "ojFeVeEKW7XHekRpZHRZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "377845c7868d0e621441487515b86fbd63e1ee61455371e5fb2d822e7f7b5907",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

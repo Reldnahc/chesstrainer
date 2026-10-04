@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-bishop",
+      "label": "Tactic deflection allowed bishop",
+      "text": "Deflection risk created. A defending bishop can now be drawn off its duty; identify what it currently covers."
+    },
+    "takeId": null
+  },
+  "requestHash": "ca060618083e8243d6f1a161f82c836f6c629d4b52866f013c7a05ecb60e476c",
+  "recordedAt": "2026-10-04T07:50:33.937Z",
+  "sha256": "5534f795aa374f1d7cfed84b9ddd987d5440fbb5a19660d84bcc9644c913a839",
+  "bytes": 24483,
+  "requestId": "8BhK3x2rCTa4DimdUXhL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "aff819cbb8ab2622709475671c626326588509cff12d50dcf59e4281be5218a5",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate-bishop",
+      "label": "Explanation frame capture move mate bishop",
+      "text": "A bishop is captured, and checkmate comes with it. Every square is closed to the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "fb016066b587f868adb8f5d80c22b0d442c75ea248fe100b0328f687d9693a80",
+  "recordedAt": "2026-10-04T07:52:45.488Z",
+  "sha256": "2f7fe6d6855513bb814c493ed424bfc0dc8e448df9cc796028a2be9f1aae3e3d",
+  "bytes": 19508,
+  "requestId": "VfNwqAKTK5vnhtxp2MQ1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0a36759de215744d43eb701c6240842c75541f5ce1faaca2e4491c75cac2ad1b",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "explanation-finding-double-attack-collected-bishop",
+      "label": "Explanation finding double attack collected bishop",
+      "text": "One target is threatened by the moving piece, another by the bishop behind it, and it's the bishop that collects."
+    },
+    "takeId": null
+  },
+  "requestHash": "b7d348ac529f25d4d63fda0ea8eff93aaa6e4c8ba7046b0d5ba016377fb44ba0",
+  "recordedAt": "2026-10-04T07:49:28.826Z",
+  "sha256": "455ff159a4da9adac970789e958a4cd7b274a25707c44870f402c6f07cffe5a6",
+  "bytes": 23820,
+  "requestId": "g3PpXFYh1GdKtHERGv5L",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "220ca42dfb6f88be834c429281c25746f19c181b5514e02a66e84768d32511a5",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

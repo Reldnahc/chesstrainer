@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed-knight",
+      "label": "Tactic skewer allowed knight",
+      "text": "A knight and another piece are lined up on one line, and now a skewer is on for the other side. When the knight shifts off, the back piece is a target."
+    },
+    "takeId": null
+  },
+  "requestHash": "e263cb4511fcd56ec861aa494686cdbaa88121b8b7d8f23de555259002054dfc",
+  "recordedAt": "2026-10-04T07:56:37.779Z",
+  "sha256": "93f716c2a073661aae956685cd8a5f6dd35fcd53284c9ce5a228484f2a06ac8a",
+  "bytes": 30141,
+  "requestId": "c45gf4IGmkhMAGN1KmIr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "33463d2cf024c294bbed92307b9662dc39220285a0245348159d951afc60ee2a",
+    "bytes": 155942
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

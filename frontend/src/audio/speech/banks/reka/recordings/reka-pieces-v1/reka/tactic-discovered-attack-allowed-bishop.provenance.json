@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-allowed-bishop",
+      "label": "Tactic discovered attack allowed bishop",
+      "text": "Eyes up: the other side has a slingshot ready, their bishop zipping aside so the piece behind it can fire."
+    },
+    "takeId": null
+  },
+  "requestHash": "c91bf1809d00698cf51ac92b431437b9d9c684e37fa5fecbc27ac5e01d617cf9",
+  "recordedAt": "2026-10-04T08:05:20.996Z",
+  "sha256": "02d0158ac29757fa01afa564a1a7c05d9041cd6c968d3d85676182826e2f2bf1",
+  "bytes": 21964,
+  "requestId": "8WedTUTvteUFVe8h9lBR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b3914ac908fcd751d53e133dcaf9cde2ac84ca7e57ec63f0148c1fbb447a5512",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

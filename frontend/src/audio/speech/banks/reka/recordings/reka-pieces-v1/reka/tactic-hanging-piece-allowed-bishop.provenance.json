@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "tactic-hanging-piece-allowed-bishop",
+      "label": "Tactic hanging piece allowed bishop",
+      "text": "Little detail: a bishop has zero lookouts, and the other side can simply gobble it."
+    },
+    "takeId": null
+  },
+  "requestHash": "ae7c0a614d74112e67ced4606f1b79ca5e6ff8354eddbc476e466dcae510ff73",
+  "recordedAt": "2026-10-04T08:05:21.187Z",
+  "sha256": "b7d19d02ca4860302f6f10463d60099eec0cde8ef0710835f82c588d49585029",
+  "bytes": 18222,
+  "requestId": "MvPhFvVrI7FtyeyoYAja",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d7dc718f42da93f95534523fb4250d93d0902d4c5572f519c540759c6e3b0ad7",
+    "bytes": 91995
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

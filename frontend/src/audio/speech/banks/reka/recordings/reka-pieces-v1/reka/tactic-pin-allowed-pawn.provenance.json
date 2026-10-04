@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "tactic-pin-allowed-pawn",
+      "label": "Tactic pin allowed pawn",
+      "text": "Psst, the other side can nail a pawn to its king now, and pinned like that, it can't wander off the line."
+    },
+    "takeId": null
+  },
+  "requestHash": "96f532b90999c1a4550edcc6669f80345ecdf320f50ea0a7c452194a649aa76a",
+  "recordedAt": "2026-10-04T08:04:49.005Z",
+  "sha256": "5215e6bf4deecd28f593e1ab6dcc6658361fc3fc2be523149b1d5960b5854534",
+  "bytes": 20800,
+  "requestId": "K1HxztCheu0fOK0wKwXb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d09be30d2f22278ff62dc9d7821aa279aec7616fe7f6ea46af8372df05b1b1af",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

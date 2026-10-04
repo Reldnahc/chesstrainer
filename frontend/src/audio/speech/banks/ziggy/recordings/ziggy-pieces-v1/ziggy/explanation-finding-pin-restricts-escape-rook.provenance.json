@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "explanation-finding-pin-restricts-escape-rook",
+      "label": "Explanation finding pin restricts escape rook",
+      "text": "The attacked rook is pinned to its king, so it cannot simply run. Only moves that keep the king shielded are allowed."
+    },
+    "takeId": null
+  },
+  "requestHash": "27097ab4bb317849899c8037a968b685c20e510f0ccf3bb58d85edea3fdea094",
+  "recordedAt": "2026-10-04T08:15:50.473Z",
+  "sha256": "f711ccd21c8389877acb23fb2ec4a703ea50fe9e84552882ccc0a9b44c0e75fa",
+  "bytes": 24353,
+  "requestId": "RtxYCoBRKoH5QrUZQbiJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d3ac9b99b07e4b7808dedc64b8e518605b0025e877c7acfd0e05e0bd9453b633",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

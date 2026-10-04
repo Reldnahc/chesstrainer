@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-queen",
+      "label": "Explanation finding sole defender captured queen",
+      "text": "Sole defender down. The queen is captured first, and later in these moves the piece it was guarding goes too."
+    },
+    "takeId": null
+  },
+  "requestHash": "fce4ea5a0e85c8fec071edf9c68923280234fea3c10369e08fdee746119144df",
+  "recordedAt": "2026-10-04T08:07:44.673Z",
+  "sha256": "3af6952d47f1bc48805610933d106ae1fba4ba20fd5f7e4b69666552ca9bd2d0",
+  "bytes": 21945,
+  "requestId": "yjVLta8pjY8pNoCuEwVm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "24715f60c644031677855b5bdda70964702d935fee6e06c0791504ee796b184b",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

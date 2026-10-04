@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-missed-bishop",
+      "label": "Tactic undefended capture missed bishop",
+      "text": "Which move grabbed the loose bishop? Look elsewhere: that bishop had zero defenders. Quick check before every move: anything loose?"
+    },
+    "takeId": null
+  },
+  "requestHash": "de5dfb471b71f38cb013083d51cf5592de8e3674326d40d9ca12a4f5e93e4993",
+  "recordedAt": "2026-10-04T08:08:45.040Z",
+  "sha256": "8206292e17ca02dd4cf837d766c1c18c5d3745448cb9ae3526ad6f1abb4c4272",
+  "bytes": 29369,
+  "requestId": "ZdA5XvWBAZ31G3Mlglib",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "551cb336eb22d6e67ff996c8296e9f24c80a25fcb3597fee9cd1134af1b79f4b",
+    "bytes": 153435
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

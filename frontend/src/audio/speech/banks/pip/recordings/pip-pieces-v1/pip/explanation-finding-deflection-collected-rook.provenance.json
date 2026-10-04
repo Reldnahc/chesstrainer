@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-rook",
+      "label": "Explanation finding deflection collected rook",
+      "text": "The defender gets pulled away from its job, and the rook it was guarding is then captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "1662586ac13bf206db2212177f0f0d8050240a639f4ed018c38f55a6ae843aac",
+  "recordedAt": "2026-10-04T08:04:32.539Z",
+  "sha256": "73c030c29ed1b218fddc2d90f837ef6a0b12bb60ecdd52b13b05a2e9fb59bd96",
+  "bytes": 18053,
+  "requestId": "WvWkeeFYZpPVQD5TwVIW",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d8c86d2391272c72b9f5ea804c4cc13bcaf34ea27ced5f56f5eaa8cfc8e1b88c",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

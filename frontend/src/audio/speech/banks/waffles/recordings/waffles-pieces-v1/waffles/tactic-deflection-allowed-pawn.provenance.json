@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-pawn",
+      "label": "Tactic deflection allowed pawn",
+      "text": "Posts under pressure! The other side can pull a defending pawn away with a deflection, and what it guards could be left open."
+    },
+    "takeId": null
+  },
+  "requestHash": "aa2e5d293eb63507900bca2f5dddbfbdbf6b1f86f1147f60b8ef9b16fbbd4882",
+  "recordedAt": "2026-10-04T08:12:34.936Z",
+  "sha256": "9d3720ac764e55c8d3eccbfbc2109dad0731fdaa935f1314669d7f79d3d28b87",
+  "bytes": 26062,
+  "requestId": "OKc0cg3w3Nz0b1QZEaPM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "df54b73dbd435a946ef1905580cdf12f3cd31e17ca0b77ac47107ef10fc71a8f",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

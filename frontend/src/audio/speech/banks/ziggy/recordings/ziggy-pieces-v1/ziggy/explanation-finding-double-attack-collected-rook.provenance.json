@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "explanation-finding-double-attack-collected-rook",
+      "label": "Explanation finding double attack collected rook",
+      "text": "The first piece makes its own attack and opens a line for a rook. In this example, that rook captures its target."
+    },
+    "takeId": null
+  },
+  "requestHash": "6ff096d2f2181aa907629186dc2fa954dbd6cc61c11117fe174a00a58308c997",
+  "recordedAt": "2026-10-04T08:16:25.403Z",
+  "sha256": "759ffe659b50f415aaf3ff09a7b27abb59aa3ec24c171a176108314cfa2c5acb",
+  "bytes": 23281,
+  "requestId": "QEjGCyKWpKSrMNblzxSj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "db774804e78984b9777f4c5c212d759e360d022011c8c60cb603a7386729e8bb",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

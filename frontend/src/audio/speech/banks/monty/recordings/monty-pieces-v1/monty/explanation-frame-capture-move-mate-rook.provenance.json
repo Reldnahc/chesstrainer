@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate-rook",
+      "label": "Explanation frame capture move mate rook",
+      "text": "The rook is captured, and it is checkmate. The king cannot get away."
+    },
+    "takeId": null
+  },
+  "requestHash": "761af66d9de6d699023925cf81c9722b9421393871597e7823765ffd7871e760",
+  "recordedAt": "2026-10-04T07:57:36.466Z",
+  "sha256": "c64c3a0c88064c901d247bda30c545afa63813a4c8dd88d09df60ccb9542c84b",
+  "bytes": 15648,
+  "requestId": "NOGa30NuimvrwgDiQLcU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1dd3360e43bed1902b7a1f074d64fc4dfad2fdca6732e2f25daee219b8889c6d",
+    "bytes": 80292
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

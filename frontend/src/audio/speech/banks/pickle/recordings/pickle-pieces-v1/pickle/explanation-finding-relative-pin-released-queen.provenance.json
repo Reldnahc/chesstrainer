@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-queen",
+      "label": "Explanation finding relative pin released queen",
+      "text": "Here's a sneaky one. Until the opponent's previous move, the attacking queen sat in a relative pin, and that move let it go. The target never moved, and in the line shown, it gets captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "95e708e481578e9f0c45ce99aa16e85d41929f60a2e4a88f003e9c3c35f23f91",
+  "recordedAt": "2026-10-04T08:02:39.097Z",
+  "sha256": "734b5c94f7713010d6889a97936b14b886d67296dc18c5d998a346d21b7cb1c3",
+  "bytes": 39284,
+  "requestId": "lBToSyEN9vnewK8WB799",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8d52e0944211c3a1789ec79ac72b619d0e6ccdb2a5c3397a20ddf867bb2c85f7",
+    "bytes": 205679
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

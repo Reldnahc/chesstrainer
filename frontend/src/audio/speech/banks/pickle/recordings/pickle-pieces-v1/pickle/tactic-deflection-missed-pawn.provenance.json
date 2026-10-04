@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-pawn",
+      "label": "Tactic deflection missed pawn",
+      "text": "A deflection was waiting in another move, with the pawn on defense just begging to be lured off. That deflection is still sitting there, unused."
+    },
+    "takeId": null
+  },
+  "requestHash": "906bad271e05d89315d7fea1c0981a65586a546a64ed926eb30f0e29af229036",
+  "recordedAt": "2026-10-04T08:02:07.420Z",
+  "sha256": "e9e00ee686e97b8656d0983172fab056690dcb0de27fb104d83076919ba57a52",
+  "bytes": 28811,
+  "requestId": "To9QU2cccTBIqQTJD5sZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5857ffd631bd207c7bd6690287ab0cbb2429f29b7c18a8fe6f4993069f84bf5e",
+    "bytes": 149673
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

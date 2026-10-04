@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played-bishop",
+      "label": "Tactic removing defender played bishop",
+      "text": "The defending bishop is captured, and whatever it was looking after is left on its own. Straightforward and effective."
+    },
+    "takeId": null
+  },
+  "requestHash": "48a1b3b702f541b954a767b11c2300dc0e985a87650d9ce779bb0713b72ccd9a",
+  "recordedAt": "2026-10-04T07:48:45.914Z",
+  "sha256": "0b2657d04b7d53803ee85040c83564b7300ac22b28b54e9521fec3fa85c1df55",
+  "bytes": 24302,
+  "requestId": "fi6vt2oN9smS2nHKpjUn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "319b631dc57e153b19db60f5375aa33ec78f09f47dad1c306f552ee7025ff126",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

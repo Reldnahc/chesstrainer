@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "explanation-finding-fork-collected-knight",
+      "label": "Explanation finding fork collected knight",
+      "text": "A fork in operation: the knight threatens several targets and, a little later, captures one. By the end of this example there is a net material gain."
+    },
+    "takeId": null
+  },
+  "requestHash": "b184c94a26a5275f18fc7cf0bf927153fcb01ecb2fd23e3abbb7c08b0f766443",
+  "recordedAt": "2026-10-04T07:53:57.272Z",
+  "sha256": "994944d4e221bcf415273be847479f8b8503f374d66915f40db330fc348e6e92",
+  "bytes": 31463,
+  "requestId": "rbNrJUpagL9SQjghciiL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "21881dbd2219d4f1689f84db728835bdc21d6df789bfa6f75f88e96e6aedc67c",
+    "bytes": 164719
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

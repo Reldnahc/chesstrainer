@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "tactic-removing-defender-allowed-pawn",
+      "label": "Tactic removing defender allowed pawn",
+      "text": "A defending pawn has become capturable. If it is taken, the piece it was covering no longer has that support."
+    },
+    "takeId": null
+  },
+  "requestHash": "409d33733a103540a1b5eb9ca7d4ac31455203e752fcf70c7245df56ef3a38be",
+  "recordedAt": "2026-10-04T07:53:14.757Z",
+  "sha256": "118d69d5f6bd1bca520cce44cdb2782d72f94f80eb96341226c4de52d4f23637",
+  "bytes": 22997,
+  "requestId": "NGUGcKoCzT5EHUTBBels",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6fe225f53dc80e2b65b7839278370eb38425201b264dc8b978a185987b24fc08",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

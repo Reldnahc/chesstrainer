@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed-bishop",
+      "label": "Tactic skewer allowed bishop",
+      "text": "A bishop with another piece behind it on one line is an invitation, and this lets the other side skewer them. Notebook rule: never stack valuable pieces where one attack hits both."
+    },
+    "takeId": null
+  },
+  "requestHash": "54a9756388c5759f93665f43f9f3d97bd41261e08fc7e427681ddd9aed87b742",
+  "recordedAt": "2026-10-04T08:10:38.761Z",
+  "sha256": "687735db152aa583681269df7f5966c84d22ef954c60085188634efb384c0d7c",
+  "bytes": 38008,
+  "requestId": "aPyjXyRmYMUWpYBU4MkK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7eadb1630b1b73711b657e016cd629ba30fc270fa516ab016e2767c2db7d7361",
+    "bytes": 195648
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

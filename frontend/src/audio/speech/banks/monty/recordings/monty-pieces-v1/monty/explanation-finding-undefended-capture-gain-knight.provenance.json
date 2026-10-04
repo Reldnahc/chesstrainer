@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "explanation-finding-undefended-capture-gain-knight",
+      "label": "Explanation finding undefended capture gain knight",
+      "text": "That knight was loose, so it goes. This example ends with the capturing side holding extra material."
+    },
+    "takeId": null
+  },
+  "requestHash": "aa5a3a41de927f4aa7b0788a87829da26c07be85a8d63dc6ac3842fafc5130ec",
+  "recordedAt": "2026-10-04T07:57:31.091Z",
+  "sha256": "da30abc37fd7db5973f998ac86913c3aff1da0d5c9eb62d5b8280e6a22a973fb",
+  "bytes": 22098,
+  "requestId": "7JLjvHwKTvcRLqqwZkNp",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dfcd26bfb119d828ed50fdfebfe6a00b27d5b116ef84f997ed2fdb361525ac87",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

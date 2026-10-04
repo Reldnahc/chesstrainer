@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "support-restored-bishop",
+      "label": "Support restored bishop",
+      "text": "A bishop lost its protection earlier on. That protection has returned."
+    },
+    "takeId": null
+  },
+  "requestHash": "3227a90a0894c7c7f1be6b5186b557e67d9fe70a7d857cf5d3b54e1642b363d6",
+  "recordedAt": "2026-10-04T07:53:49.734Z",
+  "sha256": "ae43c619f7a410a003037f44bb2bc026f9b2142b9b79a5ef6364a11c3a2535f2",
+  "bytes": 16216,
+  "requestId": "Pa0OZH8N8gUAXv9E1oou",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "64e46b67656738cd6d77710e60f9583b2864bb3816c6491576e992a281e63125",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

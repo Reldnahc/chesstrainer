@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-knight-bishop",
+      "label": "Explanation finding double check knight bishop",
+      "text": "Double check. The knight and the bishop give check at once, so only a king move is legal."
+    },
+    "takeId": null
+  },
+  "requestHash": "ca7d0d5744169c439155d59714be47252e064867b4bebc651fd1d4e4dfac75bb",
+  "recordedAt": "2026-10-04T07:51:01.615Z",
+  "sha256": "94a3f8bc7cef172e5eb366cb61f8d07c59c24d8fa61930cb467b0c40a6ff349b",
+  "bytes": 19481,
+  "requestId": "PczvfSVnwrRGlIlgrolZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "02a7ce0af97bf5c41b0e1f4d7eecde3a6e68aef8eab5e9c0c1300e3461faad2e",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

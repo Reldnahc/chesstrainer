@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "tactic-fork-played-bishop",
+      "label": "Tactic fork played bishop",
+      "text": "Look at that: one bishop attacking several targets at the same moment. A fork, and a very busy bishop."
+    },
+    "takeId": null
+  },
+  "requestHash": "82d74fd4083df42ddbb97c22d10d31172862f1a3f43d9d529f25a6aae69ea431",
+  "recordedAt": "2026-10-04T08:15:02.991Z",
+  "sha256": "666c6a46094cc5961352bced163cd26a2538aa4e08719e1ab30aa8c061e834c9",
+  "bytes": 24013,
+  "requestId": "kcRE8fKHVH4BlcFMc4gK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "30a657cf27735854a39299f421e188b5d61931a3cd1426c1df3d40cb23ee2c0d",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

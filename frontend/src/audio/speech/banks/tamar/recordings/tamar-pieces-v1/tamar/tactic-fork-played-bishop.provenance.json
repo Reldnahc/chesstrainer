@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-fork-played-bishop",
+      "label": "Tactic fork played bishop",
+      "text": "The fork lands. A single bishop now has several victims, and usually only one of them gets away. Notebook rule: study the square it came from."
+    },
+    "takeId": null
+  },
+  "requestHash": "62f9e0b5a0afdc8fd44cecc1c11a0a66e6768e1ab4e13ff3550b042e2d4af7e8",
+  "recordedAt": "2026-10-04T08:10:05.627Z",
+  "sha256": "122bb2a13f670590f882f8d6f2af4563a20043a9bdc1b6c6924429124888bffe",
+  "bytes": 31891,
+  "requestId": "9HraiS3zt3qgy5pW5GUa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "530de2709b54a6d1f5faa6f9b3f754a69dd3f5ccc3e5a7cb860d9cbf0adaaec3",
+    "bytes": 166391
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

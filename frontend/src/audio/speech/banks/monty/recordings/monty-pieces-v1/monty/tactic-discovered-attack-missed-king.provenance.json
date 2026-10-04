@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed-king",
+      "label": "Tactic discovered attack missed king",
+      "text": "There was a discovered attack in the better move. Clear the king out of the way, and the back piece attacks as well. Not played here."
+    },
+    "takeId": null
+  },
+  "requestHash": "776c444215d77d01888871ee954ae863d4a7372691e05caee09246bd47062030",
+  "recordedAt": "2026-10-04T07:56:21.672Z",
+  "sha256": "4a41bd2ec6b0e744b62fbae2e9bba08fdf1f27c875d65531cc3944de278a1433",
+  "bytes": 25427,
+  "requestId": "IUiqFgPwCd1T1LhmsN3A",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "af02f3538e7f4e32ebcdf4de997e80de72c03c0edfc099879245c1de7d814d82",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

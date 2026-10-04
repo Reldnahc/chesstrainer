@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-missed-rook",
+      "label": "Tactic undefended capture missed rook",
+      "text": "An unguarded enemy rook was there to collect with the stronger move. A quick scan for loose pieces before a quiet move catches these."
+    },
+    "takeId": null
+  },
+  "requestHash": "d94d4d00c560cc9122555604d6a328b77d9a83dd9d5077bb5fd1760f329f9faa",
+  "recordedAt": "2026-10-04T07:48:30.507Z",
+  "sha256": "6e131dd681591f3f327679c87b30f5dd0cac4ea0f0bc1dd771cea251df4f34aa",
+  "bytes": 27290,
+  "requestId": "0p3zSsd0ZuAcqtxp4DO0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "95fbf17392040a60de312eef7117af8e7da11ae38bcd0a1a5aa75f6294d65896",
+    "bytes": 136716
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-played-knight",
+      "label": "Tactic undefended capture played knight",
+      "text": "Count the guards on that knight: zero. So it comes off the board for free."
+    },
+    "takeId": null
+  },
+  "requestHash": "73f7e036d3189db7ca0107aa673089af5d74abc1344c179fafea70fc4f907fb3",
+  "recordedAt": "2026-10-04T08:08:35.784Z",
+  "sha256": "c21db613ca559267db0453e623b9960645f8dd84b9132f20d05cf4f774dd6afb",
+  "bytes": 16404,
+  "requestId": "Aas2cwwvr4beXhX4jCBh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fcb9c3d1194cb572c5496839417a323bb2c1c094479dcc634684cbccde4ed1ff",
+    "bytes": 82799
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

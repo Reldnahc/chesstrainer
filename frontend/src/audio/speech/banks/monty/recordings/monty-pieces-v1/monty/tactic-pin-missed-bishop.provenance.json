@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "tactic-pin-missed-bishop",
+      "label": "Tactic pin missed bishop",
+      "text": "A pin against the king was the better move, because it would have nailed a bishop to its line. Here that bishop gets to move freely."
+    },
+    "takeId": null
+  },
+  "requestHash": "01481272ffc58ec02e0e046062768d2a2c47ca7c16d31d3ba3c58c7eb5a64095",
+  "recordedAt": "2026-10-04T07:56:19.185Z",
+  "sha256": "7833fae0e024a25da1c52b6148228bcff96ed262dc7c50213197946177501054",
+  "bytes": 25530,
+  "requestId": "CxZalOyZJDQiTH4cDwdX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "28b45652c282ef77c6669a08a2932425c0b5f9f9897d8cdeb5318211c847cc0e",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "tactic-pin-missed-knight",
+      "label": "Tactic pin missed knight",
+      "text": "The stronger move had a pin that would have glued an enemy knight to the line in front of its king. Here that knight stays free to wander around."
+    },
+    "takeId": null
+  },
+  "requestHash": "9e59c1e4522a785ee751707202bb68794cb6aaafe7513af2edbcb1cdfbed1839",
+  "recordedAt": "2026-10-04T07:54:41.530Z",
+  "sha256": "69fb880d1e723531459692f89ad02f7a899cfc8445b958a063772b628a0278cc",
+  "bytes": 27309,
+  "requestId": "VWebutNEHSAGfMEfHwQJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "037ba99895c366794e40ceb2b197278b1bb940510a5c856648d71db1e4f37ef5",
+    "bytes": 136716
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

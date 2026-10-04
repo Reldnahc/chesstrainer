@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "positional-development-alternative-knight",
+      "label": "Positional development alternative knight",
+      "text": "Developing a knight was on offer with a different move."
+    },
+    "takeId": null
+  },
+  "requestHash": "42bd07cb74ac36bed35aae9be7e326a2fd0bcb4f049b5fab4eee5a3ae3c3d8cc",
+  "recordedAt": "2026-10-04T07:57:07.748Z",
+  "sha256": "456aff1270e538969613082dbb628a06a76d3b1834d48ae55cb243679089d587",
+  "bytes": 11130,
+  "requestId": "7BJjqkBVMO6JeVT59Skv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "db74f53f1bffbe56418a1c52d6efb56008f72df583e5f36688494c75310004cf",
+    "bytes": 53542
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

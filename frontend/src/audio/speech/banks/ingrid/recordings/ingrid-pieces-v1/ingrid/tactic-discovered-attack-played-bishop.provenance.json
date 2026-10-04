@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-bishop",
+      "label": "Tactic discovered attack played bishop",
+      "text": "The bishop in front moves off the line, and suddenly the piece behind it is attacking down that line. Tidy little idea."
+    },
+    "takeId": null
+  },
+  "requestHash": "456a60da6e0a3f56baa67aa0ef6d582527d270539a208bd26103abd7eb308796",
+  "recordedAt": "2026-10-04T07:48:23.143Z",
+  "sha256": "80bb211d929a4b02134a5a30edf3905bf05e4a040b0e429d333af6212dcfc81a",
+  "bytes": 25280,
+  "requestId": "6Ol6fGTtjQ4wLaoQSOWa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "61fcb63a0ae37ea9a90d62abc9bf2ce603cc1b865715aedaf91987ebd7f09de8",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

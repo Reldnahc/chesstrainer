@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "explanation-finding-relative-pin-released-bishop",
+      "label": "Explanation finding relative pin released bishop",
+      "text": "A relative pin on the attacking bishop was lifted by the opponent's previous move. The next move left the target standing where it was, and the shown line captures it."
+    },
+    "takeId": null
+  },
+  "requestHash": "c653320247731e97276f39c3611f65d14e1184ce9ccce144ccc12ef316d2d353",
+  "recordedAt": "2026-10-04T08:15:56.035Z",
+  "sha256": "770d4a667411b25655969650ef3649c8d04839755c14feb4752bae12ce3fe64c",
+  "bytes": 31989,
+  "requestId": "qXjhyRI55o7LguUorAgq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "be3fd95f5344e8e1a632b589a31c848e459515af25982c75be3b84bdd38afe97",
+    "bytes": 160958
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

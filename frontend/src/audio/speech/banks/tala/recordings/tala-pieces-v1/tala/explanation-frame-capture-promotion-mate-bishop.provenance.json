@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-mate-bishop",
+      "label": "Explanation frame capture promotion mate bishop",
+      "text": "Three in one: grab the bishop, promote, checkmate, all with a single pawn move."
+    },
+    "takeId": null
+  },
+  "requestHash": "9c1444b1d72a6443e36b46beeea9df7de4485c587a1c68c0cec3b76b63ea8b24",
+  "recordedAt": "2026-10-04T08:09:51.142Z",
+  "sha256": "254db5ed26e7d969e1ef205643d8c94a2b6698140fc1a02b369ca9ce23368804",
+  "bytes": 19858,
+  "requestId": "VRHEZj90Ruv42PTMlUJ2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "75e2799aff8abb00e49eec07f6532bd0e4f580ce1b4fbb74fae6fb688d6addb2",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

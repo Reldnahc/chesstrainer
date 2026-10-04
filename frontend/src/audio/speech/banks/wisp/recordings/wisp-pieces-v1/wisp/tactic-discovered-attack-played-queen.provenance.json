@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-queen",
+      "label": "Tactic discovered attack played queen",
+      "text": "The queen steps out of the line. Behind it, another piece was already aimed. That is the discovered attack."
+    },
+    "takeId": null
+  },
+  "requestHash": "5d17d1c75208fade96b1b0444255c4c8b3afe9e27c1d64ebfcb46f2f13b6bb6c",
+  "recordedAt": "2026-10-04T08:13:46.839Z",
+  "sha256": "5dde02888f97e5ed9bcdd0db1269537065e9b4091644c2a85649aaaf306cfd40",
+  "bytes": 23572,
+  "requestId": "9yBpXAnjIEgPVl7yZhJU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "83681a08ad5917057a43dba056b70d71a927a7f668c812098c6e84c6045b7d51",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

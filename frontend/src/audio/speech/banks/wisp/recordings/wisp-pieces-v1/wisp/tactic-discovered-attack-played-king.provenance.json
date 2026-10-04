@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-played-king",
+      "label": "Tactic discovered attack played king",
+      "text": "The king steps out of the line. Behind it, another piece was already aimed. That is the discovered attack."
+    },
+    "takeId": null
+  },
+  "requestHash": "873e1d3b45d5b083b99035c5d3ecc547d034ad0f7f477e517f754d9ba43ecdf5",
+  "recordedAt": "2026-10-04T08:13:48.856Z",
+  "sha256": "91e4ebc0a9a3d482b4574693e3e913ba49c1cfb87112e723d79f354362d223df",
+  "bytes": 24293,
+  "requestId": "xzDbjsNarD8ZmxDTVTFj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "29c1e11b16cef922565ea46eef271c7b4a82b9058fddc41f8466052fd58e86cb",
+    "bytes": 126685
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

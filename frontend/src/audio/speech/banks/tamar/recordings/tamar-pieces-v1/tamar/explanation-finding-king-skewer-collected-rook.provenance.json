@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-finding-king-skewer-collected-rook",
+      "label": "Explanation finding king skewer collected rook",
+      "text": "Checked, the king has to step off the line, and the attacker then takes the rook that stood behind it."
+    },
+    "takeId": null
+  },
+  "requestHash": "7c7e6131ef81ed203206143e122cee1e685ea6c6faf8bc65488198130694e189",
+  "recordedAt": "2026-10-04T08:11:26.199Z",
+  "sha256": "2c02dd6372395e8c42d3e2340b6a131b3cf20ba4fa631bf206d16a921dce1f6d",
+  "bytes": 19746,
+  "requestId": "cFaiG3W5bxViTQ3YWsES",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "af3100f9f953f15234e05aa03c2b1f29eb901827c377a61be780a174b4b993a3",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

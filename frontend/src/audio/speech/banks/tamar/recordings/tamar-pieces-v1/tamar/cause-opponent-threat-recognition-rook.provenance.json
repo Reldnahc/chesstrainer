@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "cause-opponent-threat-recognition-rook",
+      "label": "Cause opponent threat recognition rook",
+      "text": "The threat had to come first. The opponent's last move went after a rook, this move paid it no attention, and now that rook can be captured. I want every turn to start with their threat."
+    },
+    "takeId": null
+  },
+  "requestHash": "6acd36cd8988df576581ffc9c6dcf9cb3a5cd672d5871d95786b964bcfe0a1a9",
+  "recordedAt": "2026-10-04T08:10:50.548Z",
+  "sha256": "a2bf8a8d409f3f38de39c4babff6428d19b6c4c245220a6ae47529e8ecbb160a",
+  "bytes": 37830,
+  "requestId": "D4oVA1Ht9LgIFT2j6JWc",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9973add58150c1d2d53e76f4d174cd44c047af5a787968adc27818299712d652",
+    "bytes": 195648
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

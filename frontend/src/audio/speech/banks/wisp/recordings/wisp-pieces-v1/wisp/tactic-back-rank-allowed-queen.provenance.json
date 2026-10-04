@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "tactic-back-rank-allowed-queen",
+      "label": "Tactic back rank allowed queen",
+      "text": "The king's own pieces stand where it would need to escape. That gives the other side's queen a route to a back-rank mate."
+    },
+    "takeId": null
+  },
+  "requestHash": "84a3cbbf73c7e6d4e76117b3cebdb5c20c18f22ad69b479bbdf15eee64b34db3",
+  "recordedAt": "2026-10-04T08:14:14.428Z",
+  "sha256": "bd07870ffb79ed2fe6dbe7c21caecb15a3480b42d5bd935843c0318316260b2b",
+  "bytes": 23778,
+  "requestId": "dvwppDVWdfsRIjuhyvYM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8e550c49c3d2961f225c2281bffb11cad96cff0bd9eeadca8c2dd58fddb0caf4",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

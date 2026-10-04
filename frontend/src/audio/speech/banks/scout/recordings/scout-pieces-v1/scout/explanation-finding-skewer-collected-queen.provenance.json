@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-queen",
+      "label": "Explanation finding skewer collected queen",
+      "text": "Skewer cashed in. The queen in front moves off the line, and the piece behind it is taken along that same line."
+    },
+    "takeId": null
+  },
+  "requestHash": "fb2dc09f3b32f520fe4831861f6a309346b4bf35665dac508092afd8e87cb080",
+  "recordedAt": "2026-10-04T08:07:54.156Z",
+  "sha256": "abb3efd6c5bb44c09fce063822a68ffdee4e4c02fa42dbccbfe252fbc11b2652",
+  "bytes": 22645,
+  "requestId": "MwXX0Ka7OjxffR6DKgYt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dc5ab66c66938a777a42a3058d57ac9fb0696320039ad1a67f8f0325f9b55c2d",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

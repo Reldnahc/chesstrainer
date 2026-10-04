@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "explanation-frame-capture-move-mate-rook",
+      "label": "Explanation frame capture move mate rook",
+      "text": "This takes a rook, and it's checkmate too. The king's got no legal way out."
+    },
+    "takeId": null
+  },
+  "requestHash": "d83e792d156debfaf87daf231a9787c4f36959369b1bdcea575fbb4c034a37ca",
+  "recordedAt": "2026-10-04T08:01:16.376Z",
+  "sha256": "580efb7c5d30fe385758fdee970ba87e2ab79bdfad8040859aaebc37fe4dd34a",
+  "bytes": 16887,
+  "requestId": "7XRhKEDaBYucZ0o53vtM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cdc7fafe3d4bc1fcfbceccfea457fa9f9c6eaaa8ff36e617f20e32a997d77c5c",
+    "bytes": 84471
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

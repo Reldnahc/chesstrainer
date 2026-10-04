@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "explanation-finding-fork-collected-rook",
+      "label": "Explanation finding fork collected rook",
+      "text": "One rook attacks several targets, then takes one. In this example, the fork also ends with a net material gain."
+    },
+    "takeId": null
+  },
+  "requestHash": "99373fa793c8f8990431753f79c8fd7e443a1f5bc3ee0c71dbc455c53a1ba190",
+  "recordedAt": "2026-10-04T08:14:27.372Z",
+  "sha256": "85459055fd0fb683ce56fc9e0a727cd06c1b4ee22324a9b763c24e931f220e73",
+  "bytes": 25243,
+  "requestId": "7Mj1ryZQQcKPuVCm1JEU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "be45b191af71b77ea5f07c15bacf1663dc5903ccec3d007c3ca1cef41585ceef",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

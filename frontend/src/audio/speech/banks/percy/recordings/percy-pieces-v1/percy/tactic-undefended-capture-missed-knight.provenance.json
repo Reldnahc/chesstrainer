@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-undefended-capture-missed-knight",
+      "label": "Tactic undefended capture missed knight",
+      "text": "A knight with no guard was there for the taking with another move, and this one walks past it. Always check for loose pieces first."
+    },
+    "takeId": null
+  },
+  "requestHash": "719255c5562521a262c8ee0df43f259d1c9d09b357afd0b40381bf68215260c9",
+  "recordedAt": "2026-10-04T08:00:09.597Z",
+  "sha256": "b26001fdb7a0463b0f61881d71a352c3d39e2dfc6a1fd72d46ae8a06389726df",
+  "bytes": 25642,
+  "requestId": "m6YwyIVLHuDoOAPvKnFt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a0d8ca652aab793c24eaaea1c51c13430d60f496757edaaa3f087e124d849401",
+    "bytes": 130447
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

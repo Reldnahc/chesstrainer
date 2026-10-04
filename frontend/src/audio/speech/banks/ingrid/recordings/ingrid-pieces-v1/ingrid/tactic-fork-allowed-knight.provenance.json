@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "tactic-fork-allowed-knight",
+      "label": "Tactic fork allowed knight",
+      "text": "Here's the plain fact about this move: the other side's knight now has a square where it can fork several targets. Find that knight and the square, and the pattern is clear."
+    },
+    "takeId": null
+  },
+  "requestHash": "014f946b9a8f16a4d686de30218ead2bac39f53281deda0847566a3e915adb58",
+  "recordedAt": "2026-10-04T07:48:12.323Z",
+  "sha256": "a682a82978f5c719d2cdbbe59cdaf11f97556850dc416ba10a3702d45225b9bf",
+  "bytes": 35886,
+  "requestId": "NHMdHBdxE8cHfT9zh5Py",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b98a0c772877e6609e22fc8ba444e0c7237d2054433beb990cccb525351e6e88",
+    "bytes": 182692
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

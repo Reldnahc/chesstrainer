@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-knight-bishop",
+      "label": "Explanation finding double check knight bishop",
+      "text": "Double check. With the knight and the bishop checking together, only a king move can answer."
+    },
+    "takeId": null
+  },
+  "requestHash": "9df201c497226c32e7f053909ae4176a11eb5e748411903b819cfe98dff4307b",
+  "recordedAt": "2026-10-04T07:52:45.741Z",
+  "sha256": "b5f84def0b5bfccfb59d2296da35aa9e7e338193700c54fb4ffb8007e1100376",
+  "bytes": 19421,
+  "requestId": "8YnddONEeV0MATboFAym",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "783806662f388ef0bf9faff92716e73aa0ff99cd78283941129a4a150fe183cd",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-queen",
+      "label": "Tactic deflection allowed queen",
+      "text": "An overloaded queen. This lets the other side lure it away from its duty. Notebook rule: never give one defender two jobs."
+    },
+    "takeId": null
+  },
+  "requestHash": "b7241853080ad3dfaebaa178490a59618db874e412b80aaa547e8662a8dd2ec9",
+  "recordedAt": "2026-10-04T08:10:48.673Z",
+  "sha256": "58d03929719dabb03127dd9788032e64511665ab990909b406a3e12a463d1164",
+  "bytes": 28878,
+  "requestId": "LGtaOXwHFoh97g7ziJaC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "faa8dd76eff2a427d6b8c5a2874df03854402c1cd37959d0dd03044a2222bbee",
+    "bytes": 153435
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-mate-rook",
+      "label": "Explanation frame capture promotion mate rook",
+      "text": "Capturing a rook, the pawn lands on the last rank, morphs into a fresh piece, and mates in one swoop."
+    },
+    "takeId": null
+  },
+  "requestHash": "062c4930db85e08023b67b1b661e093555326645534e7fb1f25d3911e93ba461",
+  "recordedAt": "2026-10-04T08:06:23.072Z",
+  "sha256": "6ba70bbb56fb46a4b54e23411f4fae138c0e3b7333313fe67f8b3a4e8c00696f",
+  "bytes": 22155,
+  "requestId": "ei5hYTU14pPG7EowQ6j6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7a85b95118a514c814f8b92a27827f182314dd2d8511bc21a960e4e86a3d6756",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

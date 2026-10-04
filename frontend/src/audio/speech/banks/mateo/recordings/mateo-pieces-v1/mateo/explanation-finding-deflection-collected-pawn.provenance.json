@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-pawn",
+      "label": "Explanation finding deflection collected pawn",
+      "text": "Lure the defender away, and the pawn it was protecting falls."
+    },
+    "takeId": null
+  },
+  "requestHash": "139cb5bd467ab60c32e48f38f2aa99de2ee49652629b3005f8207fc02075ddf1",
+  "recordedAt": "2026-10-04T07:55:44.007Z",
+  "sha256": "2a01e1367ce5127a06f9937699f937f283a093043bf2c76688910214d8993f2c",
+  "bytes": 13057,
+  "requestId": "emqrUBxOxIGE6UPnt45R",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "41ee6e8b28ee0b03f16bda1744e5c902428ca4ce82ce2bd1d3e0115dac1e6a98",
+    "bytes": 63991
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

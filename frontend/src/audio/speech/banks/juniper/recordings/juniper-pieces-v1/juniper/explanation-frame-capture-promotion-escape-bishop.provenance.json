@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-frame-capture-promotion-escape-bishop",
+      "label": "Explanation frame capture promotion escape bishop",
+      "text": "Capturing a bishop as it goes, the pawn reaches the far edge and promotes, and the capturing side's king is freed from check."
+    },
+    "takeId": null
+  },
+  "requestHash": "00a9e31b460ce4b0d74035c437733d4e1acf51c05e10c4c0683a89bb6183645d",
+  "recordedAt": "2026-10-04T07:52:53.798Z",
+  "sha256": "1c16d4545920e28454f7c9bc4f654ea6490ea40bfd8f75e80277c16ca4d0c542",
+  "bytes": 26183,
+  "requestId": "YKf6CQ1zNfiv7hdC6bLT",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a6fab9023ef9bcf69a788a69df3dfaafe12d98f6ff2ae49ade02c091c43bd0df",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

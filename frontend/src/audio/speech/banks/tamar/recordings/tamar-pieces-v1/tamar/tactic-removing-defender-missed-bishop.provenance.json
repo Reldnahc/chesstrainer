@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed-bishop",
+      "label": "Tactic removing defender missed bishop",
+      "text": "The guard should have gone. Another move captured the defending bishop and left its duties uncovered. Strike the guard first, then what it guards."
+    },
+    "takeId": null
+  },
+  "requestHash": "e062af3c94fd59d4371d40a95ff38d96878b0c05177f47cf55bc295f02cfa990",
+  "recordedAt": "2026-10-04T08:10:36.122Z",
+  "sha256": "6b9bea22573561d6e3d633a313a8a1258ed837156a93532102c4a9dbd46e8a0d",
+  "bytes": 29987,
+  "requestId": "FZD4sk2HIUdu6GuxWQnq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2afa8d6ed4c05fa5f26a5ef2c992f220f5017c624cc67c153e57b496615d9746",
+    "bytes": 154688
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

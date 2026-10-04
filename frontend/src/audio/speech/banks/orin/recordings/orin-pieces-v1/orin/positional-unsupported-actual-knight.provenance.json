@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "positional-unsupported-actual-knight",
+      "label": "Positional unsupported actual knight",
+      "text": "A knight is left to stand alone after this move, with no defender at all. An undefended piece is a weakness, but not yet proof that it can be won."
+    },
+    "takeId": null
+  },
+  "requestHash": "8336108356cdc4cc8fc1e853879cc2281a3afe2691486128b10cc1c3d96eb3d5",
+  "recordedAt": "2026-10-04T07:59:15.832Z",
+  "sha256": "b4f8fbbe4da81beae173957d7bebf80207092ac75fca1884352cc3d950c49f42",
+  "bytes": 32220,
+  "requestId": "pCmPpM4lviSTvJiAQu23",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7535936493b21f201d1e7c558a8cae7c8ad75ce63ac7f45160966bbe65733f02",
+    "bytes": 166391
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "cause-opponent-threat-recognition-bishop",
+      "label": "Cause opponent threat recognition bishop",
+      "text": "Here's the clue: the opponent's last move threatened a bishop. This move never dealt with it, so that bishop can be captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "799909102b73fdd1b20f0699d702756f23120d6bcf8e68c1ca568694a21cfc2f",
+  "recordedAt": "2026-10-04T08:02:43.902Z",
+  "sha256": "08d7ecbee52c94dc2330fcce00e86d82a2654ebfb66c0cb972ef9852314a61ca",
+  "bytes": 25722,
+  "requestId": "dI60g8HY6k78CARfaDCi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ce14a6006bfb3127ba2383b1a07e29908e3aab395c2ca08e139492ea34bc79d5",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

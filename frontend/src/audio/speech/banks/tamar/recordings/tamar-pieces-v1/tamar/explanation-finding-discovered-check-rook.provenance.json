@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "explanation-finding-discovered-check-rook",
+      "label": "Explanation finding discovered check rook",
+      "text": "One piece clears the way, and the rook behind it is now giving check."
+    },
+    "takeId": null
+  },
+  "requestHash": "0b03b6e3f76016ccb56026829d0a97cf55079fb0c4a37a47e204b12f69474aa0",
+  "recordedAt": "2026-10-04T08:11:30.957Z",
+  "sha256": "57a4bd6e27eb6b10a111e3b4aa31bf9ae1d57ff73c75c34a3a128f3b4092d7ea",
+  "bytes": 14575,
+  "requestId": "czdtVlT4fZOhPeYBnVzf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "44ea1814abb1bef17339aa3fabf32c9211f575c8767069e1420a97cb4ab9ecf8",
+    "bytes": 71515
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

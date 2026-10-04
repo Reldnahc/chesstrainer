@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "tactic-deflection-allowed-king",
+      "label": "Tactic deflection allowed king",
+      "text": "This lets the other side drag the king away from its job. That's a deflection, and whatever it was guarding could be left open."
+    },
+    "takeId": null
+  },
+  "requestHash": "e2d2ff0c15430431fa1fb00245de8519046e75c7b31069486bb5be5cdac9f612",
+  "recordedAt": "2026-10-04T08:03:52.518Z",
+  "sha256": "b03f35b1cba83b8e86f154887deaa360831bd7ef5d1e960b4d2af3926d2f6e1e",
+  "bytes": 26241,
+  "requestId": "ti324FlBm4XCiSusbN9k",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c5f6edb31b54d7baee24602b5dfe42e0864e20b808691cce1451ee663774f08f",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

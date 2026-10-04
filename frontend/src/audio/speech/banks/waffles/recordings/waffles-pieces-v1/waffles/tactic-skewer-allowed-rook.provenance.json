@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "tactic-skewer-allowed-rook",
+      "label": "Tactic skewer allowed rook",
+      "text": "Watch the line! A skewer opens for the other side: when the rook in front moves, the piece behind it could be exposed."
+    },
+    "takeId": null
+  },
+  "requestHash": "2398a7a6aade13334baa2e714e34479c027de4f6c63483c7a4ea150192c527fc",
+  "recordedAt": "2026-10-04T08:12:30.822Z",
+  "sha256": "95d9dc283d273530bc06eb925aa17d1e4644ed68bef3405bee42b092368243f7",
+  "bytes": 26042,
+  "requestId": "tQyYPSyxRqIoLxE95wZw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "48f6174b364048802fa12a3a0cf7f8caa3ac55734a972d048d2b094cd7ef6630",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

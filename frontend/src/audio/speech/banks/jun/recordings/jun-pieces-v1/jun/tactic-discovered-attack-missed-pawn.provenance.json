@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "tactic-discovered-attack-missed-pawn",
+      "label": "Tactic discovered attack missed pawn",
+      "text": "The stronger move contained a discovered attack: move the pawn in front, open the line for the piece behind. Not used here."
+    },
+    "takeId": null
+  },
+  "requestHash": "9c2fe0cf3d46378eaabc98164eb06b266934aec3a2d67a3a2d98ac8635f4c1cc",
+  "recordedAt": "2026-10-04T07:50:24.026Z",
+  "sha256": "62a36b66a3ce59cd31736c65c1c810b6e2ab8d7273416aa8195ff117e3a651ed",
+  "bytes": 25668,
+  "requestId": "NqQ0t7tgUnADVl7Msm4u",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2a354dd2f1cd11b4e0c3ead8a698068d04731b9924d9856d722bc483d293d9cf",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

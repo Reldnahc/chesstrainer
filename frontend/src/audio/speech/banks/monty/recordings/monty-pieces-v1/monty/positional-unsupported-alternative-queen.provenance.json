@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "positional-unsupported-alternative-queen",
+      "label": "Positional unsupported alternative queen",
+      "text": "Another move would have taken the last guard away from a queen. A loose piece is a target, not a lost piece."
+    },
+    "takeId": null
+  },
+  "requestHash": "9e2b9008ef3f5c4fc2421a0b15a337caa8bec57f54e4e09df563588e9151c6a0",
+  "recordedAt": "2026-10-04T07:57:02.781Z",
+  "sha256": "467f9575e017103eb42b173b5f8222ebfcc3109d33ba603db9611ab31f6e4030",
+  "bytes": 22445,
+  "requestId": "X324e1KEWV73tyOGgv6p",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e20a5b587fc45095d8cf158c3f54b78f41ae3f131e0765c175130e3716d07b9f",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "explanation-finding-deflection-collected-pawn",
+      "label": "Explanation finding deflection collected pawn",
+      "text": "Pulled off its post, the defender abandons the pawn it covered, and the pawn falls."
+    },
+    "takeId": null
+  },
+  "requestHash": "998197ec10679558819f405d771751fe10f48dd5c98463f908cc49e1c5759324",
+  "recordedAt": "2026-10-04T07:50:54.940Z",
+  "sha256": "aaea672be094cffd063afdd3fb8aa3ca370df96a741c20ef285e955a20808396",
+  "bytes": 17616,
+  "requestId": "xN2HkhGmgP4vDZ1sOsNy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4cbd5992a7400129e36acc46765d806263e385176c514301bf44534ad7423e54",
+    "bytes": 89487
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

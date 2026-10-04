@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "explanation-finding-skewer-collected-bishop",
+      "label": "Explanation finding skewer collected bishop",
+      "text": "The bishop in front moves away. Behind it, along that same line, the next piece is captured."
+    },
+    "takeId": null
+  },
+  "requestHash": "f9c7fe43b38ebe061e0fb063b09713383441d710cd12ff2e5f606f060c3fc70c",
+  "recordedAt": "2026-10-04T07:52:19.970Z",
+  "sha256": "01fa69f9b28a5f0305beeea3a3458e9c711ca62eeb0c1ec3e45d8bfd19e14e11",
+  "bytes": 21069,
+  "requestId": "rksXiAIBlbCT4OJOOcx3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5e4205139489cc5e3531b5c21ab9de2ccbc88d853fd65ff1eb3a1f3db6015c7a",
+    "bytes": 109967
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

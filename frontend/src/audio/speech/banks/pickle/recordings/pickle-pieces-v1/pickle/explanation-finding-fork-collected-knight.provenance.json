@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "explanation-finding-fork-collected-knight",
+      "label": "Explanation finding fork collected knight",
+      "text": "A knight pokes at several targets, then grabs one of them. The fork comes out ahead in material here, net."
+    },
+    "takeId": null
+  },
+  "requestHash": "6a3e7ea5d3f815ec750a2b7d0e9944e032aa92c68e88938155ee8e7bc8ba5b62",
+  "recordedAt": "2026-10-04T08:02:30.485Z",
+  "sha256": "37c744d6898bd48d142162e1736563daa3e961239dcc8e1ef9a09eee68ce8c1f",
+  "bytes": 22337,
+  "requestId": "iOdxZZCV5MmvKMD5KoY7",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a76a815ef6f2f9db7a451de49c7babf3ce9638480b275f3a004cf4f0b368400e",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

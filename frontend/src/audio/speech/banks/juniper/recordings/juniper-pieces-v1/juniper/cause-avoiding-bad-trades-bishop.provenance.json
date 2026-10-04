@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "cause-avoiding-bad-trades-bishop",
+      "label": "Cause avoiding bad trades bishop",
+      "text": "On its own, the bishop's capture looks fine. Then comes the recapture, and the bishop is worth more than what it took. Count what comes back, not only what goes."
+    },
+    "takeId": null
+  },
+  "requestHash": "27e368b3f56b7bc8b2754a0d59ba73868bb4d3d8e2e51c43754d9d7e7accf80c",
+  "recordedAt": "2026-10-04T07:52:03.115Z",
+  "sha256": "57d09992758a76a21175e92b57c3189380c10699755d8aeebdc574ff65b0edb4",
+  "bytes": 34272,
+  "requestId": "XdMJWhVxezopWpyecYrE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fe57bb8e86f2c7fbc3214d8ec5f3ae775eec9dc1f135ed4272f6ac05472e0723",
+    "bytes": 182692
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

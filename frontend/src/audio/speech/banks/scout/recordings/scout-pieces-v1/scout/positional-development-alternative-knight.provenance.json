@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "positional-development-alternative-knight",
+      "label": "Positional development alternative knight",
+      "text": "Development available. A knight could have entered play with a different move. Weigh it against the move played."
+    },
+    "takeId": null
+  },
+  "requestHash": "f45f51294cc1231acb3f7d798c0612ddcaa7e4daaef27497a062ef48b3f8d638",
+  "recordedAt": "2026-10-04T08:07:35.519Z",
+  "sha256": "96a8fd302a8c1611e2736cdd7cf779680c540debf81d9ac722a123f7f77fd309",
+  "bytes": 20525,
+  "requestId": "2eGZkoJILhcY0tp0a4ru",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1d1aecba959c5b2a02978043956eae5ac431c7c360c18cb4fb8d0eebef5febd0",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

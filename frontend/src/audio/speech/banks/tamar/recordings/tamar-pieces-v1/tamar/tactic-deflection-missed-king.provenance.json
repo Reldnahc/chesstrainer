@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-king",
+      "label": "Tactic deflection missed king",
+      "text": "The deflection was on. A different move would have pulled the defending king away from its post. When a defender has two duties, hit one of them."
+    },
+    "takeId": null
+  },
+  "requestHash": "8b4b9a7423fede40f9c385cd81279d0046b675c2ba5be6a8a793ec10a8edd83a",
+  "recordedAt": "2026-10-04T08:11:04.203Z",
+  "sha256": "aa0cbd044bc404ec0a5d0f7fde49e9fb0f4624b9a0fa5448c74f738aa1fbe54a",
+  "bytes": 28297,
+  "requestId": "BCUTHqK7nkEyyURtRrQr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f9b0f6e7a0b5a69e6ce184c9f5425f1e3cb977601dc512cb4bf2091a045fb579",
+    "bytes": 147165
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

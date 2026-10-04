@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-pin-allowed-bishop",
+      "label": "Tactic pin allowed bishop",
+      "text": "Here's one to notice. The other side gets to pin a bishop to its king, and once it's pinned, that bishop is stuck on the line."
+    },
+    "takeId": null
+  },
+  "requestHash": "1709c0d9164728e69800d0506ab0ce434546df17f947fb4b53c9047bbfb48caf",
+  "recordedAt": "2026-10-04T07:59:46.512Z",
+  "sha256": "d2947a6d4962aea1ae541dc778e0c21b2eac40d1aae15a464662e3f9b41492ba",
+  "bytes": 24722,
+  "requestId": "haNF8Y4Z7tzGUgLxzd69",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2012328cd2f69d7ecec5a4d51bc50246385aeb96adc0dd147b661397327299ea",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

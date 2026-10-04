@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "tactic-removing-defender-missed-queen",
+      "label": "Tactic removing defender missed queen",
+      "text": "Another move could have captured a defending queen, stripping the protection from whatever it guarded."
+    },
+    "takeId": null
+  },
+  "requestHash": "52408b0494fab2ddad5a86958e8ab23e76d94f85945b58f155d33d80159d07e8",
+  "recordedAt": "2026-10-04T08:15:29.630Z",
+  "sha256": "b3c24ce33a5cd8ee5be85695ce0895913649a0f551af787538fbd2c373fd93c9",
+  "bytes": 18366,
+  "requestId": "kmbKzB8ZVVZTKN9t6pxm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "82085528af87f8598f07c75ba319714b1bc583da91c217876e56c3fed4026c81",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

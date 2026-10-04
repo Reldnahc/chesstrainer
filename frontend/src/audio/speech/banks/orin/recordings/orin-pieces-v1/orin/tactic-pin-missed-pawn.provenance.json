@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "tactic-pin-missed-pawn",
+      "label": "Tactic pin missed pawn",
+      "text": "A pin to the king was available in another move. A pawn held that way must stay on its line or expose its own king, and the played move forgoes it."
+    },
+    "takeId": null
+  },
+  "requestHash": "298b3cd112f7e87fa31eb38eacb8fcdb72e01ef38a163ffbf395a7a23b60989e",
+  "recordedAt": "2026-10-04T07:58:02.834Z",
+  "sha256": "8187a3baf96a060ad3928172ddf578819582643563025aad7af5ab2ae43464f7",
+  "bytes": 33306,
+  "requestId": "Po8mKIl29GEfzzy8ZiWG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "06caa7b868fc47a9e2e0bfb7a36d3cf7f8f1fda695290c94cf3d09f5b8fe53ec",
+    "bytes": 171407
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

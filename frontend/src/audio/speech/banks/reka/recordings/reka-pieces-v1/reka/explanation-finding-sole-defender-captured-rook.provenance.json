@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "explanation-finding-sole-defender-captured-rook",
+      "label": "Explanation finding sole defender captured rook",
+      "text": "The lone bodyguard, a rook, gets captured, and then the piece it was protecting tumbles too."
+    },
+    "takeId": null
+  },
+  "requestHash": "c5798def78ce5ad2771e36ec4c0831794432e529fe3169388c607032e7400743",
+  "recordedAt": "2026-10-04T08:06:00.355Z",
+  "sha256": "d5805396fc9153bd253aba89e363cfb5718fb0c2e5c9caeea0f1f8448ab1117c",
+  "bytes": 20443,
+  "requestId": "eQr9JWwHbmnbTtf9dZn0",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "98e7cf07d96b68ff618715c722d40855db9ec1ab4956e382d3c82ba6bc458449",
+    "bytes": 100772
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "tactic-removing-defender-played-rook",
+      "label": "Tactic removing defender played rook",
+      "text": "Who was guarding that? This rook, that's who. Take it away, and the thing it guarded is suddenly on its own."
+    },
+    "takeId": null
+  },
+  "requestHash": "ea94da036a7b4ffe2225bb89f9102ef9472a63180f21577dec8eaf39ebc852ba",
+  "recordedAt": "2026-10-04T08:02:01.698Z",
+  "sha256": "910a2eec4df12a23e98a9ad38a3798b038715086b2a7bc86407d0c18d9015808",
+  "bytes": 23332,
+  "requestId": "OfiIg3b4vsP37JeXq4ZQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e8618ab09963b0966a555d8dacc0589c67fba03d03471a64e486cfa96d70f622",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

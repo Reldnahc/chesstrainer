@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "explanation-finding-double-check-knight-queen",
+      "label": "Explanation finding double check knight queen",
+      "text": "Double check! The knight and the queen give check together, so the only way out is moving the king."
+    },
+    "takeId": null
+  },
+  "requestHash": "27da7f740b44622c09325f9d3624ec54a0aaa317d4a90ed65ee1794bf8e47de8",
+  "recordedAt": "2026-10-04T07:56:03.571Z",
+  "sha256": "55349395cfb4175113f3188a1bdde157e4bb5a796ebcbb3f33fbfc636835212c",
+  "bytes": 21405,
+  "requestId": "FgoSgmU3QM9efVLmvqCr",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7ea9d3b346983217f7b7e1c11ea8c82ead10f3e09b77e79590f359a693115b0e",
+    "bytes": 106205
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

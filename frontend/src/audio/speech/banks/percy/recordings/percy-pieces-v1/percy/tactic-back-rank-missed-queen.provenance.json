@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "tactic-back-rank-missed-queen",
+      "label": "Tactic back rank missed queen",
+      "text": "A back-rank mate idea was on for the queen, with the enemy king trapped by its own pieces. This move lets it get away. Go back and find it."
+    },
+    "takeId": null
+  },
+  "requestHash": "ef0a484fd71c7b672013a58ac8efb0caed975c22299607e423afa3cfe90ae544",
+  "recordedAt": "2026-10-04T08:00:48.496Z",
+  "sha256": "39daea37e076d7af080ab3c7b3fa2e7f314368f87954f6881f19c32cd66b271e",
+  "bytes": 28407,
+  "requestId": "Ig8DZPYnpS9VSzLZz2oR",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0079061ce61ee0b4800d71043c6e71afcde8c7a693e519e2bb3b4ed9883f32e1",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

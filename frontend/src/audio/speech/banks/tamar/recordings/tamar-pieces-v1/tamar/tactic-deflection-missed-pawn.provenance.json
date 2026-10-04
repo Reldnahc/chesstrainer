@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "tactic-deflection-missed-pawn",
+      "label": "Tactic deflection missed pawn",
+      "text": "The deflection was on. A different move would have pulled a defending pawn away from its post. When a defender has two duties, hit one of them."
+    },
+    "takeId": null
+  },
+  "requestHash": "d02072be9e9d61211bd2f1048d5d371f2e6929b493660ca2bd7ccbb76fde32fd",
+  "recordedAt": "2026-10-04T08:10:53.120Z",
+  "sha256": "1a26f9e59f00915b19b7894beb189c1016a08c8351ea53b26b32bdff2b7891c8",
+  "bytes": 28050,
+  "requestId": "FxB8HUCZwivGYJjdCdtZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "280b5e80c9d4f97810558c0100d1da6132c7ff0f97dc8fea46d819dea8164ef4",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}
