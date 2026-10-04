@@ -107,18 +107,19 @@ search, through the shared engine cache). The best move is kept only if it is
 unique by the pack verifier's margins in `puzzles/verification.py`: at least
 100 cp better than the second line, or a mate with no equal or faster rival mate.
 The opponent then plays the engine's best defence, not the move played in the
-game. The line continues until the next learner move is no longer unique, the
-position is mate, or `PUZZLE_GENERATION_MAX_PLIES` (9, so at most five learner
-moves) is reached, and is cut after
-the last learner move. It needs at least two learner decisions and must end in
-mate or at least +150 cp with the opponent to move. A forced first move, a
-one-move tactic, an ambiguous root or a thin payoff abstains, and a position
+game. The line continues until the next learner move is no longer unique or the
+position is mate, and is cut after the last learner move. It needs at least two
+learner decisions, at most `PUZZLE_GENERATION_MAX_PLIES` plies (9, so five learner
+moves), and must end in mate or at least +150 cp with the opponent to move. A
+line that would need a sixth unique learner move abstains as `too_long` rather
+than being cut mid-attack. A forced first move, a one-move tactic, an ambiguous
+root or a thin payoff abstains, and a position
 already serving a ready puzzle for the account abstains as a duplicate.
 
 Kept lines become `source="games"` definitions keyed `game_id:ply`, with the
 vendored Lichess tagger's motifs plus Lichess-style goal (`mate` and `mateInN`
 only when the kept line ends in checkmate, otherwise `advantage`/`crushing`, so a
-forced mate cut short by the cap or an ambiguous move is a crushing win), length
+forced mate cut short by an ambiguous move is a crushing win), length
 and phase themes, no rating, and provenance
 naming the matchup, date, move number and the move actually played. Each row in
 `game_puzzles` records its status, abstention reason, root and verification

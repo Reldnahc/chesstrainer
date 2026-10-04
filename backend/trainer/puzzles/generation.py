@@ -211,7 +211,8 @@ def build_line(search, root: chess.Board, *, max_plies: int):
 
     Returns ``(Built, None)`` or ``(None, reason)``. The solver must have at least
     two decisions, each the engine's unique best move, and the final position
-    must be mate or at least PAYOFF_CP ahead with the opponent to move.
+    must be mate or at least PAYOFF_CP ahead with the opponent to move. A line
+    that would need a solver move beyond ``max_plies`` abstains instead of being cut.
     """
     solver = root.turn
     board = root.copy(stack=True)
@@ -247,11 +248,11 @@ def build_line(search, root: chess.Board, *, max_plies: int):
             )
             board.push(move)
             line.append(move.uci())
+            if len(line) > max_plies:
+                # Cutting a line that still has a unique next move leaves it unfinished.
+                return None, "too_long"
             if board.is_checkmate():
                 stop = "mate"
-                break
-            if len(line) >= max_plies:
-                stop = "cap"
                 break
         else:
             lines = search(board, multipv=1)

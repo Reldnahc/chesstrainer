@@ -218,8 +218,8 @@ def test_build_line_keeps_unique_moves_and_the_best_defence():
     assert built.solution == ("c3d5", "e7d7", "d5b6")
     assert [d["san"] for d in built.decisions] == ["Nd5+", "Nxb6+"]
     assert built.payoff == 605 and built.stop == "ambiguous"
-    capped, _ = build_line(Scripted(FORK), chess.Board(FORK_FEN), max_plies=3)
-    assert capped.solution == built.solution and capped.stop == "cap"
+    # The defence after the last unique move may pass the cap; the line still fits.
+    assert build_line(Scripted(FORK), chess.Board(FORK_FEN), max_plies=3) == (built, None)
 
 
 @pytest.mark.parametrize(
@@ -256,7 +256,8 @@ BACK_RANK = {
     key(BACK_RANK_FEN, "a2a8", "d8a8"): [("a1a8", mate(1)), ("g1f1", -500)],
 }
 # A learner's game (session b11d17d3): Black has a forced mate in 16. The old 13-ply
-# cap ended the line on Qc2+, seven Black moves in and still labeled mate.
+# cap cut the line on Qc2+, seven Black moves in, and still labeled it mate. Here the
+# scripted line instead ends there because Black's next move is ambiguous.
 CAPPED_MATE_FEN = "2b1kbnr/pp4pp/1q1p4/3p4/3P4/PP3P2/2n1K1PP/5R2 b k - 0 18"
 CAPPED_MATE_LINE = (
     ("c2d4", 16, 1431),
@@ -288,6 +289,11 @@ def capped_mate_answers():
             answers[board] = [(uci, mate(mate_in)), (rival_move, rival)]
         played.append(uci)
     answers[key(CAPPED_MATE_FEN, *played)] = [("e2e1", -mate(8))]
+    first, second = list(replay_board([*played, "e2e1"]).legal_moves)[:2]
+    answers[key(CAPPED_MATE_FEN, *played, "e2e1")] = [
+        (first.uci(), mate(7)),
+        (second.uci(), mate(7)),
+    ]
     return answers
 
 
@@ -306,15 +312,21 @@ def test_mate_themes_need_a_line_that_ends_in_checkmate():
     assert {"mate", "mateIn2"} <= set(themes)
 
     root = chess.Board(CAPPED_MATE_FEN)
-    max_plies = Settings.model_fields["puzzle_generation_max_plies"].default
-    built, reason = build_line(Scripted(capped_mate_answers()), root, max_plies=max_plies)
-    assert reason is None and built.stop == "cap" and built.payoff == mate(10)
-    assert len(built.solution) == 9 and len(built.decisions) == 5
+    built, reason = build_line(Scripted(capped_mate_answers()), root, max_plies=13)
+    assert reason is None and built.stop == "ambiguous" and built.payoff == mate(8)
     boards = replay(root, built.solution)
     assert not boards[-1].is_checkmate()
     themes = line_themes(boards, built, "capped")
     assert "mate" not in themes and not any(theme.startswith("mateIn") for theme in themes)
     assert "crushing" in themes
+
+
+def test_lines_longer_than_five_learner_moves_abstain_instead_of_being_cut():
+    max_plies = Settings.model_fields["puzzle_generation_max_plies"].default
+    assert max_plies == 9
+    root = chess.Board(CAPPED_MATE_FEN)
+    answers = capped_mate_answers()
+    assert build_line(Scripted(answers), root, max_plies=max_plies) == (None, "too_long")
 
 
 def test_saved_scores_select_missed_mates_and_wins_only():
