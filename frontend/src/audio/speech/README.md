@@ -324,6 +324,23 @@ relationship keeps its own clip. Each mainline move counts the earlier moves wit
 the same grade, so neighbouring same-grade moves never share a take and replaying
 a move repeats its take; the game seeds where the cycle starts. A coach without a
 take recorded keeps the generic reading.
+
+A line about one particular piece also has **piece variants** that name it ("the
+pinned knight" instead of "a pinned piece"). Each is a catalogue meaning
+`<base>-<piece>` with `variantOf` and `pieces` in [meanings.json](meanings.json),
+listing only the pieces that can occur there: a pin never holds a king, a
+back-rank mate is a rook or queen, an undefended capture is never a pawn, and the
+explanation double check names both checkers (`knight-rook`). There are 271
+variants over 60 base meanings. [pieceVariants.ts](pieceVariants.ts) reads the
+piece from the evidence that selected the clip: a tactic's witness roles and
+their `pieces`, a positional fact's `piece`, an explanation finding's roles on its
+frame board, a capture frame's `capture`, and for a brilliant take the piece the
+sacrifice's accepting capture takes. A role square holding the wrong side's piece,
+or roles holding different pieces, names nothing. Selection then offers
+`<variant>|<base>`: playback, mouth timing and the bubble use the first
+alternative the coach has recorded (or, without a bank, scripted), so the
+generic clip stays the fallback and a coach with no variant recorded is
+unchanged.
 `game-review-opened` and the nine lesson prompts are recorded for Walter, Rivet,
 Winston and Button, so each registered bank holds all 195 catalogue meanings.
 These 40 takes used **2,262 input characters / 273 provider credits**, with every

@@ -6,6 +6,7 @@ import {object, strings} from "../../dialogue/eventClaims";
 import {stableKey, type Claim, type CoachUtterance, type DialogueIntent} from "../../dialogue/model";
 import {bookRecordingId} from "../../dialogue/openingPresentation";
 import {sequenceRecordingId} from "./sequence";
+import {hasPieceVariants, sacrificedPieces, tacticPieces, withPieceVariant, withPieceVariants} from "./pieceVariants";
 import registry from "./banks/registry.json" with {type: "json"};
 
 export type GameSpeechContext = {
@@ -249,14 +250,41 @@ export function selectGameSpeech(context: GameSpeechContext) {
   const claims = context.utterance.renderedClaims ?? [];
   const lead = claims.findIndex(item => !humanInsightLabels[item.code]);
   const primaryId = lead < 0 ? null : selectGameRecording({...context, claimIndex: lead});
-  let recordingId = primaryId;
+  let recordingId = primaryId, secondId: string | null = null;
   const second = claims[lead + 1];
   if (primaryId && second && !humanInsightLabels[second.code] && ["game", "variation"].includes(context.intent.mode)) {
-    const secondId = selectGameRecording({...context, claimIndex: lead + 1});
+    secondId = selectGameRecording({...context, claimIndex: lead + 1});
     if (secondId && secondId !== primaryId) recordingId = sequenceRecordingId([primaryId, secondId]);
+    else secondId = null;
   }
   const gradeId = gradeTake(context, recordingId);
-  return {recordingId, primaryId, ...(gradeId ? {gradeId} : {})};
+  // Each sentence and grade take may also name its piece; the generic line stays the fallback.
+  const pieces = new Map<string, readonly string[]>();
+  for (const [index, id] of [[lead, primaryId], [lead + 1, secondId]] as const) {
+    const named = id && hasPieceVariants(id) ? gamePieces({...context, claimIndex: index}, id) : null;
+    if (id && named) pieces.set(id, named);
+  }
+  const mover = context.frame ? opposite(context.frame.turn) : null;
+  const sacrifice = gradeId?.startsWith("grade-brilliant-") && mover
+    ? context.report?.intelligence?.events.find(event => event.kind === "sacrifice" && event.actor === mover) : undefined;
+  const sacrificed = sacrifice && mover ? sacrificedPieces(sacrifice.facts.acceptance_move, context.frame?.fen, mover) : null;
+  const variants = {
+    recordingId: recordingId && withPieceVariants(recordingId, pieces),
+    primaryId: primaryId && withPieceVariants(primaryId, pieces),
+    ...(gradeId ? {gradeId: withPieceVariant(gradeId, sacrificed)} : {}),
+  };
+  return {recordingId, primaryId, ...(gradeId ? {gradeId} : {}), variants};
+}
+
+/** The piece a selected game-review clip is about, from the evidence that selected it. */
+function gamePieces(context: GameSpeechContext, id: string): string[] | null {
+  const item = context.utterance.renderedClaims?.[context.claimIndex ?? 0];
+  if (!item || !context.report) return null;
+  if (item.code === "support_restored") return typeof item.slots.piece === "string" ? [item.slots.piece] : null;
+  const event = eventFor(item, context.report);
+  if (!event) return null;
+  if (id.startsWith("positional-")) return typeof event.facts.piece === "string" ? [event.facts.piece] : null;
+  return id.startsWith("tactic-") || id.startsWith("cause-") ? tacticPieces(event) : null;
 }
 
 /** Takes per move grade for a ply with nothing more specific to say. */

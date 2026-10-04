@@ -1,7 +1,7 @@
 import registry from './banks/registry.json' with { type: 'json' };
 import type { SpeechMouthTrack } from '../../coach/speechMouth';
 import { recordingAssets as assets } from './recordingAssets';
-import { SEQUENCE_GAP_SECONDS, SEQUENCE_SEPARATOR } from './sequence';
+import { ALTERNATIVE_SEPARATOR, SEQUENCE_GAP_SECONDS, SEQUENCE_SEPARATOR } from './sequence';
 
 type BankManifest = {
   coachId: string; voiceId: string;
@@ -43,10 +43,20 @@ export const COACH_INTRODUCTION = 'coach-introduction';
 
 export function hasCoachVoice(coachId: string): boolean { return banks.has(coachId); }
 
-/** Unknown coaches or meanings stay silent; a different character is never a fallback. */
-export function coachRecording(coachId: string, id: string | null | undefined): VoiceRecording | null {
-  if (!id) return null;
+/** Each sentence's first alternative this coach has recorded ("a|b+c"), or null. */
+export function recordedId(coachId: string, id: string | null | undefined): string | null {
   const recordings = banks.get(coachId)?.recordings;
+  if (!id || !recordings) return null;
+  const parts = id.split(SEQUENCE_SEPARATOR).map(part => part.split(ALTERNATIVE_SEPARATOR).find(item => recordings.has(item)));
+  return parts.every((part): part is string => !!part) ? parts.join(SEQUENCE_SEPARATOR) : null;
+}
+
+/** Unknown coaches or meanings stay silent; a different character is never a fallback. */
+export function coachRecording(coachId: string, requested: string | null | undefined): VoiceRecording | null {
+  if (!requested) return null;
+  const recordings = banks.get(coachId)?.recordings;
+  const id = requested.includes(ALTERNATIVE_SEPARATOR) ? recordedId(coachId, requested) : requested;
+  if (!id) return null;
   const ids = id.split(SEQUENCE_SEPARATOR);
   if (ids.length === 1) return recordings?.get(id) ?? null;
   const parts = ids.map(part => recordings?.get(part));
@@ -77,16 +87,16 @@ export function coachRecordings(coachId: string): readonly VoiceRecording[] {
 // Only the selected coach's compact tracks are loaded. Authoring models and full
 // phoneme archives never enter the runtime or the initial application download.
 export async function coachMouthTrack(coachId: string, id: string): Promise<SpeechMouthTrack | undefined> {
-  const bank = banks.get(coachId);
-  if (!bank || !coachRecording(coachId, id)) return;
+  const bank = banks.get(coachId), recording = coachRecording(coachId, id);
+  if (!bank || !recording) return;
   const tracks = loadedTracks.get(coachId) ?? await bank.loadTracks();
   loadedTracks.set(coachId, tracks);
-  return sequenceTrack(tracks, id);
+  return sequenceTrack(tracks, recording.id);
 }
 
 export function loadedCoachMouthTrack(coachId: string, id: string | undefined): SpeechMouthTrack | undefined {
-  const tracks = loadedTracks.get(coachId);
-  return id && tracks ? sequenceTrack(tracks, id) : undefined;
+  const tracks = loadedTracks.get(coachId), recorded = recordedId(coachId, id);
+  return recorded && tracks ? sequenceTrack(tracks, recorded) : undefined;
 }
 
 // Historical Walter-only audition fixtures use these adapters. Production uses

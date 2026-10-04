@@ -172,7 +172,10 @@ combination meanings (253 were retired on 2026-10-02 and the last five on
 2026-10-04), and the three per-move clock observations were retired on
 2026-10-03. The catalogue has 194 meanings: 171 original meanings, 11 varied
 opening meanings, the game-review opener, the picker introduction, the Play
-greeting (`game-start`) and nine lesson prompts. That is today's measured
+greeting (`game-start`) and nine lesson prompts. It also lists 271 piece
+variants of 60 of those meanings, which name the piece a generic line calls "a
+piece" (see the [speech README](../frontend/src/audio/speech/README.md)); the
+generic line stays as their fallback. That is today's measured
 coverage, not a required
 count to copy into every future test or a budget ceiling.
 

@@ -32,8 +32,9 @@ test("all twenty recorded frame combinations use explicit replay facts and retai
         checkmate: ending === "mate", escaped_check: ending === "escape"}), 1);
       const expected = !capture && !promotion && ending === "mate" ? "mate-finished"
         : `explanation-frame-${capture ? "capture" : "quiet"}-${promotion ? "promotion" : "move"}-${ending}`;
-      expect(id).toBe(expected);
-      selected.push(id);
+      // A captured pawn names itself first; nothing but a piece stands on the promotion rank.
+      expect(id).toBe(capture && !promotion ? `${expected}-pawn|${expected}` : expected);
+      selected.push(expected);
     }
   }
   for (const ending of ["ordinary", "check", "mate"] as const) {
@@ -59,7 +60,8 @@ test("practice summaries follow producer identity, never matching legacy or arbi
   expect(practiceRecording({position, feedback: feedback({message: "Good move.", message_kind: "good_move"})})).toBe("srs-fallback-good");
   expect(practiceRecording({position, feedback: feedback({message: "Good move.", message_kind: "good_move", grade: "revealed"})})).toBeNull();
   expect(practiceRecording({position, feedback: feedback({explanation_summary: "Legacy authored teaching", message: "Good move.", message_kind: "good_move"})})).toBeNull();
-  expect(practiceRecording({position, feedback: feedback({completed: false}), frame: frame({capture: "rook", gives_check: true})})).toBe("explanation-frame-capture-move-check");
+  expect(practiceRecording({position, feedback: feedback({completed: false}), frame: frame({capture: "rook", gives_check: true})}))
+    .toBe("explanation-frame-capture-move-check-rook|explanation-frame-capture-move-check");
   expect(practiceRecording({position, feedback: feedback({completed: false})})).toBe("srs-retry");
   expect(practiceRecording({position, feedback: feedback()})).toBe("srs-fallback-study");
 });
