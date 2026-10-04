@@ -68,7 +68,7 @@ function tacticalRecording(item: Claim, event: Event, mover: "white" | "black", 
   const f = event.facts, role = f.role, motif = String(f.motif);
   if (event.kind !== "tactic" || event.confidence !== "line_witness" || !searchEvidence(item)) return null;
   // The grade only rejects a contradictory role; it cannot invent a tactic.
-  const poor = ["Inaccuracy", "Mistake", "Miss", "Blunder"].includes(report.engine_label ?? report.label);
+  const poor = ["Inaccuracy", "Mistake", "Miss", "Blunder"].includes(report.label);
   if ((role === "played" && poor) || (["allowed", "caused", "missed"].includes(String(role)) && !poor)) return null;
   const source = role === "missed" ? "best" : "actual";
   if (!item.evidence.some(ref => ref.source === "stockfish" && ref.field.startsWith(`${source}_line/findings/`))

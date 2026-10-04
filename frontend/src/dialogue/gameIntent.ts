@@ -47,7 +47,7 @@ export function gameIntent({game, report, frame, ply, key, expression, explainin
   // Recognized theory is shared by both players; it is not personal praise.
   // Keep the incoming reaction so check and explicit explanations still win.
   if (!learnerMove && !(mover && report.label === "Book")) expression = "explaining";
-  const poor = ["Inaccuracy", "Mistake", "Miss", "Blunder"].includes(report.engine_label ?? report.label);
+  const poor = ["Inaccuracy", "Mistake", "Miss", "Blunder"].includes(report.label);
   const side = mover === "white" ? "White" : mover === "black" ? "Black" : "The mover";
   const opponent = mover === "white" ? "Black" : mover === "black" ? "White" : "The opponent";
   const move = report.actual.san, best = report.best.san;

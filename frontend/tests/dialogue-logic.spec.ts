@@ -127,7 +127,8 @@ test("human naturalness does not become a population claim or override the grade
   expect(intent.decisions).toContain("domain_shift");
   const text = renderNeutral(intent).text;
   expect(text).toContain("natural mistake");
-  expect(text).toContain("3.40 pawns");
+  // The Book badge decides: the coach recognises the line instead of grading its loss.
+  expect(text).not.toContain("3.40 pawns");
   expect(text).not.toMatch(/%|players at your|you thought/);
 });
 
@@ -170,7 +171,8 @@ test("book is recognition, positive findings teach and arbitrary structure is no
   const intent = gameIntent({...args, report: value});
   const text = renderNeutral(intent).text;
   expect(text).toContain("Bongcloud");
-  expect(text).toContain("3.00 pawns");
+  // The Book badge decides: no correction for a recognised move.
+  expect(text).not.toContain("3.00 pawns");
   expect(text).not.toMatch(/recognition|does not mean|quality grade|sound/);
   const fact = event("positional", {feature: "rook_file", line: "actual", side: "black", after: "open", file: "d"});
   expect(renderNeutral(makeIntent("key", "best", "game", "best", [positionalClaim(fact, "exd5", "Nf3")!])).text).toContain("black's rook");
