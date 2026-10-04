@@ -27,6 +27,9 @@ test('evaluation scales to the game and preserves mate scores without a redundan
   game.job = {status: 'completed', completed: 24, total: 24};
   await page.route(`**/api/games/${id}`, route => route.fulfill({json: game}));
   await page.route(`**/api/games/${id}/analyze`, route => route.fulfill({json: {report: null, score: null, best_move: null}}));
+  // The game's frames are stubbed; a real review would leave a game puzzle due on this
+  // worker's server and change the review queue for later files.
+  await page.route(`**/api/games/${id}/review`, route => route.fulfill({json: {job_id: 'evaluation', status: 'completed'}}));
   await page.goto(`/games/${id}?ply=1`);
   const graph = page.getByRole('region', {name: 'Original-game evaluation'});
   const coach = page.locator('.coach-speech');
