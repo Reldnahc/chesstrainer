@@ -15,6 +15,10 @@ async function submitSignup(page: Page) {
 }
 
 test('account signup, engine-free sync, second-device login and private library', async ({page, browser, extraHTTPHeaders}, info) => {
+  // Saving the username starts a sync, and Games only notices it finished on its next
+  // 15 s status check before Update games is enabled again; with two devices this
+  // test needs about 25 s, too close to the default 30 s on CI runners.
+  test.setTimeout(60_000);
   const username = `friend-${info.project.name}`;
   await page.goto('/');
   await page.getByRole('button', {name: 'New here? Create an account'}).click();
