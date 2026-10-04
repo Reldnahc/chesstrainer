@@ -107,6 +107,8 @@ class PuzzleProviderInfo(Contract):
 class PuzzleThemeCount(Contract):
     id: str
     count: int
+    # The same total split by source, so a source tab lists only its own themes.
+    sources: dict[PuzzleSource, int]
 
 
 class PuzzleStats(Contract):

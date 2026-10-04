@@ -95,6 +95,10 @@ export default function StudyScreen({ mode, source, courseId, courseRevision, op
   }
   const unsolved = puzzles ? Math.max(0, puzzles.available - puzzles.solved_puzzles) : null;
   const available = source ? puzzles?.sources.filter(item => item.source === source).reduce((sum, item) => sum + item.count, 0) : puzzles?.available;
+  const themes = (puzzles?.themes ?? [])
+    .map(theme => ({ id: theme.id, count: source ? theme.sources[source] ?? 0 : theme.count }))
+    .filter(theme => theme.count > 0)
+    .sort((a, b) => b.count - a.count || a.id.localeCompare(b.id));
   const generation = puzzles?.generation ?? null;
   const gamesCount = generation?.puzzles ?? 0;
   return <>
@@ -174,7 +178,7 @@ export default function StudyScreen({ mode, source, courseId, courseRevision, op
             <span>Theme</span>
             <select value={selection.theme} onChange={event => select({ theme: event.target.value })}>
               <option value="">Any theme</option>
-              {puzzles.themes.map(theme => <option key={theme.id} value={theme.id}>{puzzleThemeLabel(theme.id)} ({theme.count})</option>)}
+              {themes.map(theme => <option key={theme.id} value={theme.id}>{puzzleThemeLabel(theme.id)} ({theme.count})</option>)}
             </select>
           </label>
         </div>

@@ -7418,11 +7418,25 @@
           "id": {
             "title": "Id",
             "type": "string"
+          },
+          "sources": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "propertyNames": {
+              "enum": [
+                "generic",
+                "games"
+              ]
+            },
+            "title": "Sources",
+            "type": "object"
           }
         },
         "required": [
           "id",
-          "count"
+          "count",
+          "sources"
         ],
         "title": "PuzzleThemeCount",
         "type": "object"
