@@ -17,7 +17,8 @@ the durable sources; reading semantics requires no migration or engine/model.
 
 | Family | Supported facts | Required evidence / abstention |
 | --- | --- | --- |
-| `mate` | Newly allowed or missed searched mate | Best/played Stockfish IDs and typed mate transition; already-forced loss is not a new error |
+| `mate` | Newly allowed or missed searched mate | Best/played Stockfish IDs, typed mate transition and `mate_in` (1 when the reply itself mates); already-forced loss is not a new error |
+| `forced_mate` | A move inside a forced mate that neither allows nor misses it | Best/played Stockfish IDs; `stage` is `started` (the opponent's last move allowed it), `continued`, `slower` (a faster mate existed), `next` (mate on the mover's next move whatever the reply), `hastened` (already lost, mated sooner) or `held` (already lost, best defence); delivered mate stays a `finish` |
 | `evaluation_change` | Concession, lost advantage, decisive transition | Saved best/actual scores; mate remains separate from cp |
 | `critical_resource` | Only-good-at-depth, defensive versus decisive resource, practical difficulty | Safe best, losing searched runner-up, near-best played move, multiple legal moves; a good separately searched alternative disproves uniqueness |
 | `sacrifice` | Sound offer and explicit acceptance response | Existing Fieldwork sacrifice witness and acceptance analysis ID, under 50 cp loss and no newly lost/allowed mate |

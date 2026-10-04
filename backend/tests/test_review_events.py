@@ -75,6 +75,36 @@ def test_new_mate_transition_has_both_analysis_references(before, after, transit
     assert not events(report, kind="mate")  # Already mated / preserved mate is not a new error.
 
 
+@pytest.mark.parametrize(
+    "best,after,previous,stage",
+    [
+        ({"kind": "mate", "value": 5}, {"kind": "mate", "value": 5}, 300, "started"),
+        ({"kind": "mate", "value": 5}, {"kind": "mate", "value": 5}, {"kind": "mate", "value": 6}, "continued"),
+        ({"kind": "mate", "value": 2}, {"kind": "mate", "value": 4}, None, "slower"),
+        ({"kind": "mate", "value": 2}, {"kind": "mate", "value": 2}, None, "next"),
+        ({"kind": "mate", "value": -6}, {"kind": "mate", "value": -2}, None, "hastened"),
+        ({"kind": "mate", "value": -1}, {"kind": "mate", "value": -1}, None, "held"),
+    ],
+)
+def test_a_move_inside_a_forced_mate_names_its_stage(best, after, previous, stage):
+    report = move_report(played="e2e4", best="d2d4", before=best, after=after)
+    if previous is not None:
+        report["previous_score"] = (
+            previous if isinstance(previous, dict) else {"kind": "cp", "value": previous}
+        )
+    assert not events(report, kind="mate")
+    event = events(report, kind="forced_mate")[0]
+    assert event.facts["stage"] == stage
+    assert event.facts["mate_in"] == abs(after["value"])
+    assert event.facts["winner"] == ("mover" if after["value"] > 0 else "opponent")
+
+
+def test_delivered_mate_and_ordinary_scores_have_no_forced_mate_stage():
+    for best, after in [({"kind": "mate", "value": 1}, {"kind": "mate", "value": 1}), (300, 250)]:
+        report = move_report(played="e2e4", best="d2d4", before=best, after=after)
+        assert not events(report, kind="forced_mate")
+
+
 def test_lost_advantage_and_decisive_swing_are_separate_and_small_loss_is_not_major():
     lost = events(move_report(best="d2d4", before=300, after=50), kind="evaluation_change")[0]
     assert lost.facts["lost_advantage"] and not lost.facts["decisive"]

@@ -35,6 +35,7 @@ class ReviewEvent(Contract):
     id: str
     kind: Literal[
         "mate",
+        "forced_mate",
         "evaluation_change",
         "critical_resource",
         "sacrifice",

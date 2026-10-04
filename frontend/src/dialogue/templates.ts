@@ -1,6 +1,12 @@
 /** Each template says only what its named evidence-backed slots establish. */
 export const neutralTemplates: Record<string, readonly string[]> = {
   allowed_mate: ["This allows a forced checkmate. {reply}", "{opponent} now has a forced mate. {reply}"],
+  forced_mate_started: ["{move} starts a forced checkmate: mate in {mate}, whatever {opponent} replies."],
+  forced_mate_continued: ["{move} keeps the forced checkmate going: mate in {mate}."],
+  forced_mate_slower: ["{move} still forces checkmate, in {mate}, but {best} mated sooner."],
+  forced_mate_next: ["{move} leaves {opponent} unable to stop checkmate next move."],
+  forced_mate_hastened: ["The position was already lost to a forced mate; {move} lets it come sooner, in {mate}."],
+  forced_mate_held: ["The position was already lost to a forced mate; even the best defence is mated in {mate}."],
   missed_mate: ["{best} kept a forced mate; this move lets that finish go.", "There was a forced finish with {best}. This move loses that mate."],
   tactic_played: ["{move} finds a {motif} in the engine's continuation. {detail}", "The point of {move} is a {motif}. {detail}"],
   tactic_allowed: ["This allows {opponent} a {motif} in the strongest continuation. {detail}", "{opponent} has a {motif} in the continuation. {detail}"],

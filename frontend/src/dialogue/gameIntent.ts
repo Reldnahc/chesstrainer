@@ -60,6 +60,11 @@ export function gameIntent({game, report, frame, ply, key, expression, explainin
     const add = (code: string, slots: Claim["slots"], priority: number) => claims.push(claim(code, slots, priority, event.evidence, [event.id]));
     if (event.kind === "mate") add(f.transition === "allowed" ? "allowed_mate" : "missed_mate",
       {best, opponent, reply: report.immediate_reply ? `${opponent}'s strongest reply is ${report.immediate_reply.san}.` : ""}, 100);
+    // A move inside a forced mate is about the mate, ahead of any tactic or
+    // structure. A played back-rank tactic already explains that same mate.
+    if (event.kind === "forced_mate" && typeof f.stage === "string" && !events.some(other => other.kind === "tactic"
+      && other.facts.motif === "back_rank" && other.facts.role === "played"))
+      add(`forced_mate_${f.stage}`, {move, best, opponent, mate: Number(f.mate_in)}, 97);
     if (event.kind === "tactic") {
       const item = tacticalClaim(event, move, best, opponent);
       if (item) claims.push(item);
