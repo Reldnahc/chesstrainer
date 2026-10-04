@@ -345,7 +345,7 @@ unchanged. All 30 coaches have every variant written (Walter's and Rivet's in
 none is recorded yet. The written lines keep to piece facts the generic lines
 could blur: a pawn forks two pieces, a pawn never steps aside, only a knight
 hops, a pinned knight has no legal move while a pinned pawn, bishop, rook or
-queen can still move along the pin line, and a back-rank allowed or missed line
+queen may still move along the pin line, and a back-rank allowed or missed line
 names an idea, not a mate.
 
 `game-review-opened` and the nine lesson prompts are recorded for Walter, Rivet,
