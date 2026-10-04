@@ -122,12 +122,17 @@ def position_changes(board, move, unmoved_minors=None):
                     added=names(sorted(new - mapped)),
                     removed=names(sorted(mapped - new)),
                 )
-        if before_pawns["doubled_files"] != after_pawns["doubled_files"]:
+        old, new = before_pawns["doubled_files"], after_pawns["doubled_files"]
+        if old != new:
+            # `added` is what this move doubled; a pair broken up elsewhere
+            # leaves an older doubled file in `after` that the move did not make.
             emit(
                 "doubled_files",
                 color,
-                [chess.FILE_NAMES[f] for f in sorted(before_pawns["doubled_files"])],
-                [chess.FILE_NAMES[f] for f in sorted(after_pawns["doubled_files"])],
+                [chess.FILE_NAMES[f] for f in sorted(old)],
+                [chess.FILE_NAMES[f] for f in sorted(new)],
+                added=[chess.FILE_NAMES[f] for f in sorted(new - old)],
+                removed=[chess.FILE_NAMES[f] for f in sorted(old - new)],
             )
         if (
             color == mover

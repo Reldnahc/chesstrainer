@@ -214,7 +214,7 @@ test("all positional speech branches validate their structured facts and keep al
     {code: "flights", name: "king-flight", facts: {feature: "king_flights", opened: ["g2"]}},
     {code: "castle", name: "castling", facts: {feature: "castling", before: "e1", after: "g1"}},
     {code: "bishops", name: "bishop-pair", facts: {feature: "bishop_pair", before: 2, after: 1, side: "black"}},
-    {code: "doubled", name: "doubled", facts: {feature: "doubled_files", before: [], after: ["c"]}},
+    {code: "doubled", name: "doubled", facts: {feature: "doubled_files", before: [], after: ["c"], added: ["c"]}},
   ];
   for (const example of cases) for (const line of ["actual", "best"] as const) {
     const report = structuredClone(causal[0].report);

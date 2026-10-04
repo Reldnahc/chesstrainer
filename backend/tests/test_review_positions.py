@@ -55,6 +55,15 @@ def test_pawn_structure_tracks_identities_not_merely_changed_square_names():
     assert not changes("7k/8/8/8/2P5/8/8/K7 w - - 0 1", "c4c5", "isolated_pawns")
 
 
+def test_doubled_files_name_only_files_the_move_newly_doubled():
+    board = chess.Board("7k/8/8/3p4/2P5/8/2PP4/K7 w - - 0 1")
+    doubled = changes(board.fen(), "c4d5", "doubled_files")[0]
+    assert (doubled["added"], doubled["removed"]) == (["d"], ["c"])
+    # Capturing one pawn of the c-pair leaves the old f-pair: nothing newly doubled.
+    broken = changes("7k/8/8/8/3n4/2P2P2/2P2P2/K7 b - - 0 1", "d4c2", "doubled_files")[0]
+    assert (broken["after"], broken["added"], broken["removed"]) == (["f"], [], ["c"])
+
+
 def test_pawn_rules_are_color_symmetric_and_handle_en_passant():
     board = chess.Board("7k/8/8/3pP3/8/8/8/K7 w - d6 0 1")
     move = chess.Move.from_uci("e5d6")

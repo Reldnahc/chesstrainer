@@ -35,8 +35,8 @@ export function positionalClaim(event: Event, move: string, best: string): Claim
     case "king_flights": return make("flights", {lead, squares: join(strings(f.opened))});
     case "castling": return make("castle", {lead, square: words(f.after)});
     case "bishop_pair": return make("bishops", {lead, side: words(f.side)});
-    case "doubled_files": return strings(f.after).length
-      ? make("doubled", {lead, side: words(f.side), files: join(strings(f.after))}) : null;
+    case "doubled_files": return strings(f.added).length
+      ? make("doubled", {lead, side: words(f.side), files: join(strings(f.added))}) : null;
     default: return null;
   }
 }

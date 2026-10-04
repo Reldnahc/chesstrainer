@@ -13,7 +13,7 @@ const facts = [
   {feature: "king_flights", opened: ["h2"]},
   {feature: "castling", after: "g1"},
   {feature: "bishop_pair"},
-  {feature: "doubled_files", after: ["c"]},
+  {feature: "doubled_files", after: ["c"], added: ["c"]},
 ] satisfies Schema["ReviewEvent"]["facts"][];
 
 export function positionalClaims(line: "actual" | "best") {

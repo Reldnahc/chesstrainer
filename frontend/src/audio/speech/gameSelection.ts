@@ -134,7 +134,7 @@ function positionalRecording(item: Claim, event: Event, mover: "white" | "black"
     case "king_flights": if (f.side === mover && squares(f.opened)) name = "king-flight"; break;
     case "castling": if (f.side === mover && square(f.before) && square(f.after)) name = "castling"; break;
     case "bishop_pair": if (f.side === opposite(mover) && f.before === 2 && f.after === 1) name = "bishop-pair"; break;
-    case "doubled_files": if (files(f.before, true) && files(f.after) && !same(f.before, f.after)) name = "doubled"; break;
+    case "doubled_files": if (files(f.before, true) && files(f.after) && files(f.added)) name = "doubled"; break;
   }
   return name ? `positional-${name}-${line}` : null;
 }
