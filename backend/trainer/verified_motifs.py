@@ -66,6 +66,22 @@ class TacticalEvent:
         )
 
 
+def trade_back(board, move, captured):
+    """Taking back a piece that just captured something at least as valuable
+    on the same square completes a trade; the piece was not left loose. This is
+    the upstream Lichess hanging-piece exclusion, applied to the game history."""
+    if not board.move_stack:
+        return False
+    prior = board.copy(stack=True)
+    last = prior.pop()
+    taken = prior.piece_at(last.to_square)
+    return (
+        last.to_square == move.to_square
+        and taken is not None
+        and VALUES.get(taken.piece_type, 0) >= VALUES[captured.piece_type]
+    )
+
+
 def hanging_capture(event: TacticalEvent) -> None:
     captured = event.before.piece_at(event.move.to_square)
     gain = (
@@ -89,6 +105,7 @@ def hanging_capture(event: TacticalEvent) -> None:
         # An equal trade followed by an unrelated lost pawn is not a hung
         # queen. Later compensation may reduce a real initial material loss.
         and immediate_gain > 0
+        and not trade_back(event.before, event.move, captured)
     ):
         event.add(
             "hanging_piece"
