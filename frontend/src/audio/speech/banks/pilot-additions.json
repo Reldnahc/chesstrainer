@@ -1016,12 +1016,6 @@
       "rivetText": "A route to back-rank mate with the queen was available. This move passes up that finishing pattern."
     },
     {
-      "id": "cause-abandoned-defender-pawn",
-      "group": "game_review",
-      "walterText": "This move takes away the only effective defender of a pawn. Now the other side can capture what was left behind.",
-      "rivetText": "Cause: the only effective defender moves away. Result: the other side can capture the pawn it was guarding."
-    },
-    {
       "id": "cause-abandoned-defender-knight",
       "group": "game_review",
       "walterText": "This move takes away the only effective defender of a knight. Now the other side can capture what was left behind.",
@@ -1044,12 +1038,6 @@
       "group": "game_review",
       "walterText": "This move takes away the only effective defender of a queen. Now the other side can capture what was left behind.",
       "rivetText": "Cause: the only effective defender moves away. Result: the other side can capture the queen it was guarding."
-    },
-    {
-      "id": "cause-opponent-threat-recognition-pawn",
-      "group": "game_review",
-      "walterText": "The warning was in the opponent's previous move. This leaves that threat unanswered, and a pawn can now be captured.",
-      "rivetText": "The previous move supplied the warning. This move leaves that attack unanswered, so the threatened pawn can be captured."
     },
     {
       "id": "cause-opponent-threat-recognition-knight",
@@ -1456,26 +1444,26 @@
     {
       "id": "explanation-finding-skewer-collected-knight",
       "group": "srs_explanations",
-      "walterText": "Watch the front knight move aside. That opens the way for a capture of the piece behind it, along the same line.",
-      "rivetText": "The front knight moves off the line. The piece behind it is then captured along that same line."
+      "walterText": "Watch the knight in front move aside. That opens the way for a capture of the piece behind it, along the same line.",
+      "rivetText": "Front unit: knight. It moves off the line; the piece behind it is then captured along that same line."
     },
     {
       "id": "explanation-finding-skewer-collected-bishop",
       "group": "srs_explanations",
-      "walterText": "Watch the front bishop move aside. That opens the way for a capture of the piece behind it, along the same line.",
-      "rivetText": "The front bishop moves off the line. The piece behind it is then captured along that same line."
+      "walterText": "Watch the bishop in front move aside. That opens the way for a capture of the piece behind it, along the same line.",
+      "rivetText": "Front unit: bishop. It moves off the line; the piece behind it is then captured along that same line."
     },
     {
       "id": "explanation-finding-skewer-collected-rook",
       "group": "srs_explanations",
-      "walterText": "Watch the front rook move aside. That opens the way for a capture of the piece behind it, along the same line.",
-      "rivetText": "The front rook moves off the line. The piece behind it is then captured along that same line."
+      "walterText": "Watch the rook in front move aside. That opens the way for a capture of the piece behind it, along the same line.",
+      "rivetText": "Front unit: rook. It moves off the line; the piece behind it is then captured along that same line."
     },
     {
       "id": "explanation-finding-skewer-collected-queen",
       "group": "srs_explanations",
-      "walterText": "Watch the front queen move aside. That opens the way for a capture of the piece behind it, along the same line.",
-      "rivetText": "The front queen moves off the line. The piece behind it is then captured along that same line."
+      "walterText": "Watch the queen in front move aside. That opens the way for a capture of the piece behind it, along the same line.",
+      "rivetText": "Front unit: queen. It moves off the line; the piece behind it is then captured along that same line."
     },
     {
       "id": "explanation-finding-skewer-collected-king",
@@ -1584,12 +1572,6 @@
       "group": "srs_explanations",
       "walterText": "The first piece makes its attack and uncovers a second one from the queen. That queen captures its target in the example.",
       "rivetText": "Attack vector one: the moved piece. Attack vector two: the queen on the line it opened. Example outcome: target collected by the queen."
-    },
-    {
-      "id": "explanation-finding-double-check-pawn-bishop",
-      "group": "srs_explanations",
-      "walterText": "Watch for the double check: the pawn and the bishop both give check at the same time.",
-      "rivetText": "Double check. The pawn and the bishop attack the king at the same time."
     },
     {
       "id": "explanation-finding-double-check-pawn-rook",

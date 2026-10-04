@@ -1332,7 +1332,7 @@
     {
       "id": "tactic-skewer-allowed-king",
       "group": "game_review",
-      "text": "Beware the skewer, the pin's reversed cousin. This gives the other side one: the king in front would be checked and must move, leaving the piece behind it exposed."
+      "text": "Beware the skewer, the pin's reversed cousin. This gives the other side one: the king in front would be checked and forced to move, leaving the piece behind it exposed."
     },
     {
       "id": "tactic-skewer-missed-knight",
@@ -1705,11 +1705,6 @@
       "text": "A back-rank mate idea for the queen was there, the king boxed in by its own pieces. This move lets that well-known pattern slip away."
     },
     {
-      "id": "cause-abandoned-defender-pawn",
-      "group": "game_review",
-      "text": "A defender has a duty before it has a destination. Here the only real defender of the pawn walks away, and the other side can now capture the pawn left unguarded."
-    },
-    {
       "id": "cause-abandoned-defender-knight",
       "group": "game_review",
       "text": "A defender has a duty before it has a destination. Here the only real defender of the knight walks away, and the other side can now capture the knight left unguarded."
@@ -1728,11 +1723,6 @@
       "id": "cause-abandoned-defender-queen",
       "group": "game_review",
       "text": "A defender has a duty before it has a destination. Here the only real defender of the queen walks away, and the other side can now capture the queen left unguarded."
-    },
-    {
-      "id": "cause-opponent-threat-recognition-pawn",
-      "group": "game_review",
-      "text": "Every move asks a question, and the opponent's last one created a threat. This move leaves it unanswered, so the pawn can now be captured."
     },
     {
       "id": "cause-opponent-threat-recognition-knight",
@@ -2178,11 +2168,6 @@
       "id": "explanation-finding-double-attack-collected-queen",
       "group": "srs_explanations",
       "text": "The moving piece makes one attack and uncovers a second along the line it leaves. In the example, the queen on that line completes the capture."
-    },
-    {
-      "id": "explanation-finding-double-check-pawn-bishop",
-      "group": "srs_explanations",
-      "text": "Double check: the pawn and the bishop attack the king together, and only a king move can answer both."
     },
     {
       "id": "explanation-finding-double-check-pawn-rook",

@@ -1312,27 +1312,27 @@
     {
       "id": "tactic-skewer-allowed-knight",
       "group": "game_review",
-      "text": "Here's what it allows: the other side now has a skewer lined up, a line attack through the knight onto another piece. Shift the knight, and the rear one is wide open."
+      "text": "Here's what it allows: the other side now has a skewer lined up, a line attack through the knight onto another piece. Shift the knight, and the piece behind it is wide open."
     },
     {
       "id": "tactic-skewer-allowed-bishop",
       "group": "game_review",
-      "text": "Here's what it allows: the other side now has a skewer lined up, a line attack through the bishop onto another piece. Shift the bishop, and the rear one is wide open."
+      "text": "Here's what it allows: the other side now has a skewer lined up, a line attack through the bishop onto another piece. Shift the bishop, and the piece behind it is wide open."
     },
     {
       "id": "tactic-skewer-allowed-rook",
       "group": "game_review",
-      "text": "Here's what it allows: the other side now has a skewer lined up, a line attack through the rook onto another piece. Shift the rook, and the rear one is wide open."
+      "text": "Here's what it allows: the other side now has a skewer lined up, a line attack through the rook onto another piece. Shift the rook, and the piece behind it is wide open."
     },
     {
       "id": "tactic-skewer-allowed-queen",
       "group": "game_review",
-      "text": "Here's what it allows: the other side now has a skewer lined up, a line attack through the queen onto another piece. Shift the queen, and the rear one is wide open."
+      "text": "Here's what it allows: the other side now has a skewer lined up, a line attack through the queen onto another piece. Shift the queen, and the piece behind it is wide open."
     },
     {
       "id": "tactic-skewer-allowed-king",
       "group": "game_review",
-      "text": "Here's what it allows: the other side now has a skewer lined up, a line attack through the king onto another piece. Once the king steps out of check, the rear one is wide open."
+      "text": "Here's what it allows: the other side now has a skewer lined up, a line attack through the king onto another piece. Once the king steps out of check, the piece behind it is wide open."
     },
     {
       "id": "tactic-skewer-missed-knight",
@@ -1705,11 +1705,6 @@
       "text": "The back rank was there for the queen to exploit, with the king's own pieces blocking its exits. This move lets the mate idea drift past."
     },
     {
-      "id": "cause-abandoned-defender-pawn",
-      "group": "game_review",
-      "text": "This is the moment that matters. The only real guard of a pawn wanders off, and the other side can pick up what's left behind."
-    },
-    {
       "id": "cause-abandoned-defender-knight",
       "group": "game_review",
       "text": "This is the moment that matters. The only real guard of a knight wanders off, and the other side can pick up what's left behind."
@@ -1728,11 +1723,6 @@
       "id": "cause-abandoned-defender-queen",
       "group": "game_review",
       "text": "This is the moment that matters. The only real guard of a queen wanders off, and the other side can pick up what's left behind."
-    },
-    {
-      "id": "cause-opponent-threat-recognition-pawn",
-      "group": "game_review",
-      "text": "Look at the opponent's last move: it made a threat, and this move leaves it unanswered. That puts a pawn up for capture."
     },
     {
       "id": "cause-opponent-threat-recognition-knight",
@@ -2072,22 +2062,22 @@
     {
       "id": "explanation-finding-skewer-collected-knight",
       "group": "srs_explanations",
-      "text": "As soon as the knight in front steps off, the one it was screening gets taken on that line."
+      "text": "As soon as the knight in front steps off, the piece it was screening gets taken on that line."
     },
     {
       "id": "explanation-finding-skewer-collected-bishop",
       "group": "srs_explanations",
-      "text": "As soon as the bishop in front steps off, the one it was screening gets taken on that line."
+      "text": "As soon as the bishop in front steps off, the piece it was screening gets taken on that line."
     },
     {
       "id": "explanation-finding-skewer-collected-rook",
       "group": "srs_explanations",
-      "text": "As soon as the rook in front steps off, the one it was screening gets taken on that line."
+      "text": "As soon as the rook in front steps off, the piece it was screening gets taken on that line."
     },
     {
       "id": "explanation-finding-skewer-collected-queen",
       "group": "srs_explanations",
-      "text": "As soon as the queen in front steps off, the one it was screening gets taken on that line."
+      "text": "As soon as the queen in front steps off, the piece it was screening gets taken on that line."
     },
     {
       "id": "explanation-finding-skewer-collected-king",
@@ -2178,11 +2168,6 @@
       "id": "explanation-finding-double-attack-collected-queen",
       "group": "srs_explanations",
       "text": "The moving piece attacks one thing and unmasks the queen behind it, and it's the queen doing the capturing."
-    },
-    {
-      "id": "explanation-finding-double-check-pawn-bishop",
-      "group": "srs_explanations",
-      "text": "Double check here; the pawn and the bishop both give check, so the only answer is to move the king."
     },
     {
       "id": "explanation-finding-double-check-pawn-rook",
@@ -2392,22 +2377,22 @@
     {
       "id": "explanation-frame-capture-promotion-escape-knight",
       "group": "srs_explanations",
-      "text": "It captures the knight on the last rank, promotes, and lifts the check on the capturing side's king."
+      "text": "It captures the knight on the last rank, promotes, and lifts the check on its own king."
     },
     {
       "id": "explanation-frame-capture-promotion-escape-bishop",
       "group": "srs_explanations",
-      "text": "It captures the bishop on the last rank, promotes, and lifts the check on the capturing side's king."
+      "text": "It captures the bishop on the last rank, promotes, and lifts the check on its own king."
     },
     {
       "id": "explanation-frame-capture-promotion-escape-rook",
       "group": "srs_explanations",
-      "text": "It captures the rook on the last rank, promotes, and lifts the check on the capturing side's king."
+      "text": "It captures the rook on the last rank, promotes, and lifts the check on its own king."
     },
     {
       "id": "explanation-frame-capture-promotion-escape-queen",
       "group": "srs_explanations",
-      "text": "It captures the queen on the last rank, promotes, and lifts the check on the capturing side's king."
+      "text": "It captures the queen on the last rank, promotes, and lifts the check on its own king."
     },
     {
       "id": "grade-brilliant-1-knight",

@@ -30,7 +30,7 @@ test("every piece variant names a real base meaning and pieces that can occur th
   const ids = new Set(meanings.map(item => item.id));
   const pieces = ["pawn", "knight", "bishop", "rook", "queen", "king"];
   const variants = meanings.filter(item => item.variantOf);
-  expect(variants).toHaveLength(271);
+  expect(variants).toHaveLength(268);
   for (const item of variants) {
     const base = meanings.find(meaning => meaning.id === item.variantOf)!;
     expect(base.variantOf).toBeUndefined();
@@ -48,7 +48,11 @@ test("every piece variant names a real base meaning and pieces that can occur th
   expect(of("tactic-back-rank-played")).toEqual(["rook", "queen"]);
   expect(of("explanation-frame-capture-promotion-ordinary")).toEqual(["knight", "bishop", "rook", "queen"]);
   expect(of("grade-brilliant-1")).toEqual(["knight", "bishop", "rook", "queen"]);
-  expect(of("explanation-finding-double-check")).toHaveLength(10);
+  expect(of("explanation-finding-double-check")).toHaveLength(9);
+  // A pawn and a bishop never give double check together, and the mover's causes never name a pawn.
+  expect(of("explanation-finding-double-check")).not.toContain("pawn-bishop");
+  expect(of("cause-abandoned-defender")).toEqual(["knight", "bishop", "rook", "queen"]);
+  expect(of("cause-opponent-threat-recognition")).toEqual(["knight", "bishop", "rook", "queen"]);
 });
 
 test("a variant goes first with the generic line as its fallback, sentence by sentence", () => {

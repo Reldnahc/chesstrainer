@@ -330,7 +330,7 @@ pinned knight" instead of "a pinned piece"). Each is a catalogue meaning
 `<base>-<piece>` with `variantOf` and `pieces` in [meanings.json](meanings.json),
 listing only the pieces that can occur there: a pin never holds a king, a
 back-rank mate is a rook or queen, an undefended capture is never a pawn, and the
-explanation double check names both checkers (`knight-rook`). There are 271
+explanation double check names both checkers (`knight-rook`). There are 268
 variants over 60 base meanings. [pieceVariants.ts](pieceVariants.ts) reads the
 piece from the evidence that selected the clip: a tactic's witness roles and
 their `pieces`, a positional fact's `piece`, an explanation finding's roles on its
@@ -347,6 +347,7 @@ could blur: a pawn forks two pieces, a pawn never steps aside, only a knight
 hops, a pinned knight has no legal move while a pinned pawn, bishop, rook or
 queen can still move along the pin line, and a back-rank allowed or missed line
 names an idea, not a mate.
+
 `game-review-opened` and the nine lesson prompts are recorded for Walter, Rivet,
 Winston and Button, so each registered bank holds all 195 catalogue meanings.
 These 40 takes used **2,262 input characters / 273 provider credits**, with every
