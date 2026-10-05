@@ -1,9 +1,9 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import { devRecordingAssets } from './vite.shared';
+import { devRecordingAssets, speechManifests } from './vite.shared';
 
 export default defineConfig({
-  plugins: [react(), devRecordingAssets()],
+  plugins: [react(), devRecordingAssets(), speechManifests()],
   server: { proxy: { '/api': { target: 'http://127.0.0.1:8000', changeOrigin: false } } },
   build: {
     rollupOptions: {

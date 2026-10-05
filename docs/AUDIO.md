@@ -259,7 +259,13 @@ the owner-approved voice experiments and their usage provenance.
 recording using PocketSphinx's public word/phoneme API and the shared mouth rules.
 Detailed source/phoneme archives remain authoring evidence; `bank/tracks.json` is
 Walter's compact runtime projection, and `banks/rivet/tracks.json` is Rivet's.
-Each is loaded separately from the initial application.
+Each coach's tracks are fetched as plain JSON the first time that coach speaks,
+never bundled into the initial application or compiled as JavaScript (the 30
+tracks files are about 35 MB, which nearly filled Node's default memory limit
+when the build parsed them as modules). The application bundles only each bank
+manifest's `id`, `text` and `audioPath` (`?runtime`, `speechManifests` in
+`frontend/vite.shared.ts`); provenance and alignment paths stay in the source
+manifests for the bank checks.
 Every clip has generated timing. No individual clip was aligned by hand, and no
 native aligner or model is required by playback. See the
 [bank verification workflow](../frontend/src/audio/speech/bank/README.md).

@@ -307,11 +307,12 @@ test("a late audio decode cannot speak after navigation or unmount", async ({pag
   expect(await starts(page)).toBe(0);
 });
 
-test("a delayed mouth-track import is discarded when a newer selection replaces it", async ({page}) => {
+test("a delayed mouth-track load is discarded when a newer selection replaces it", async ({page}) => {
   let captured!: () => void, release!: () => void;
   const requested = new Promise<void>(resolve => {captured = resolve;});
   const gate = new Promise<void>(resolve => {release = resolve;});
-  await page.route(/\/speech\/bank\/tracks\.json(?:\?.*)?$/, async route => {
+  // The fetched mouth timing, not the module that only exports its URL.
+  await page.route(/\/speech\/bank\/tracks\.json$/, async route => {
     captured(); await gate; await route.fallback();
   });
   await mount(page);
