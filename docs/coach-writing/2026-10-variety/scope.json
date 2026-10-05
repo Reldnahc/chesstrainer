@@ -1,0 +1,841 @@
+{
+  "schemaVersion": 1,
+  "status": "writing-only-awaiting-review",
+  "baselineCommit": "90d210bd5034e4d2ac793be13d267a8c36e8e2ce",
+  "recordingAuthorized": false,
+  "coaches": [
+    {
+      "coachId": "classic",
+      "voiceId": "walter"
+    },
+    {
+      "coachId": "robot",
+      "voiceId": "rivet"
+    },
+    {
+      "coachId": "capybara",
+      "voiceId": "winston"
+    },
+    {
+      "coachId": "mushroom",
+      "voiceId": "button"
+    },
+    {
+      "coachId": "man-partner",
+      "voiceId": "arjun"
+    },
+    {
+      "coachId": "dog-gentle",
+      "voiceId": "alfie"
+    },
+    {
+      "coachId": "raccoon",
+      "voiceId": "bandit"
+    },
+    {
+      "coachId": "dog-puppy",
+      "voiceId": "biscuit"
+    },
+    {
+      "coachId": "unicorn",
+      "voiceId": "celeste"
+    },
+    {
+      "coachId": "dragon",
+      "voiceId": "ember"
+    },
+    {
+      "coachId": "cat-tuxedo",
+      "voiceId": "felix"
+    },
+    {
+      "coachId": "man-host",
+      "voiceId": "femi"
+    },
+    {
+      "coachId": "frog",
+      "voiceId": "fergus"
+    },
+    {
+      "coachId": "woman-blonde",
+      "voiceId": "ingrid"
+    },
+    {
+      "coachId": "man-expert",
+      "voiceId": "jun"
+    },
+    {
+      "coachId": "cat-black",
+      "voiceId": "juniper"
+    },
+    {
+      "coachId": "woman-analyst",
+      "voiceId": "marisol"
+    },
+    {
+      "coachId": "human-boy",
+      "voiceId": "mateo"
+    },
+    {
+      "coachId": "gorilla",
+      "voiceId": "monty"
+    },
+    {
+      "coachId": "wizard",
+      "voiceId": "orin"
+    },
+    {
+      "coachId": "living-pawn",
+      "voiceId": "percy"
+    },
+    {
+      "coachId": "cat-kitten",
+      "voiceId": "pickle"
+    },
+    {
+      "coachId": "slime",
+      "voiceId": "pip"
+    },
+    {
+      "coachId": "woman-spark",
+      "voiceId": "reka"
+    },
+    {
+      "coachId": "dog-collie",
+      "voiceId": "scout"
+    },
+    {
+      "coachId": "human-girl",
+      "voiceId": "tala"
+    },
+    {
+      "coachId": "woman-captain",
+      "voiceId": "tamar"
+    },
+    {
+      "coachId": "dog-corgi",
+      "voiceId": "waffles"
+    },
+    {
+      "coachId": "ghost",
+      "voiceId": "wisp"
+    },
+    {
+      "coachId": "alien",
+      "voiceId": "ziggy"
+    }
+  ],
+  "slots": [
+    {
+      "id": "positional-passed-actual-white",
+      "baseMeaning": "positional-passed-actual",
+      "section": "colour-pawn-file",
+      "branch": "actual",
+      "side": "white"
+    },
+    {
+      "id": "positional-passed-actual-black",
+      "baseMeaning": "positional-passed-actual",
+      "section": "colour-pawn-file",
+      "branch": "actual",
+      "side": "black"
+    },
+    {
+      "id": "positional-passed-alternative-white",
+      "baseMeaning": "positional-passed-alternative",
+      "section": "colour-pawn-file",
+      "branch": "alternative",
+      "side": "white"
+    },
+    {
+      "id": "positional-passed-alternative-black",
+      "baseMeaning": "positional-passed-alternative",
+      "section": "colour-pawn-file",
+      "branch": "alternative",
+      "side": "black"
+    },
+    {
+      "id": "positional-isolated-actual-white",
+      "baseMeaning": "positional-isolated-actual",
+      "section": "colour-pawn-file",
+      "branch": "actual",
+      "side": "white"
+    },
+    {
+      "id": "positional-isolated-actual-black",
+      "baseMeaning": "positional-isolated-actual",
+      "section": "colour-pawn-file",
+      "branch": "actual",
+      "side": "black"
+    },
+    {
+      "id": "positional-isolated-alternative-white",
+      "baseMeaning": "positional-isolated-alternative",
+      "section": "colour-pawn-file",
+      "branch": "alternative",
+      "side": "white"
+    },
+    {
+      "id": "positional-isolated-alternative-black",
+      "baseMeaning": "positional-isolated-alternative",
+      "section": "colour-pawn-file",
+      "branch": "alternative",
+      "side": "black"
+    },
+    {
+      "id": "positional-doubled-actual-white",
+      "baseMeaning": "positional-doubled-actual",
+      "section": "colour-pawn-file",
+      "branch": "actual",
+      "side": "white"
+    },
+    {
+      "id": "positional-doubled-actual-black",
+      "baseMeaning": "positional-doubled-actual",
+      "section": "colour-pawn-file",
+      "branch": "actual",
+      "side": "black"
+    },
+    {
+      "id": "positional-doubled-alternative-white",
+      "baseMeaning": "positional-doubled-alternative",
+      "section": "colour-pawn-file",
+      "branch": "alternative",
+      "side": "white"
+    },
+    {
+      "id": "positional-doubled-alternative-black",
+      "baseMeaning": "positional-doubled-alternative",
+      "section": "colour-pawn-file",
+      "branch": "alternative",
+      "side": "black"
+    },
+    {
+      "id": "positional-rook-open-actual-white",
+      "baseMeaning": "positional-rook-open-actual",
+      "section": "colour-pawn-file",
+      "branch": "actual",
+      "side": "white"
+    },
+    {
+      "id": "positional-rook-open-actual-black",
+      "baseMeaning": "positional-rook-open-actual",
+      "section": "colour-pawn-file",
+      "branch": "actual",
+      "side": "black"
+    },
+    {
+      "id": "positional-rook-open-alternative-white",
+      "baseMeaning": "positional-rook-open-alternative",
+      "section": "colour-pawn-file",
+      "branch": "alternative",
+      "side": "white"
+    },
+    {
+      "id": "positional-rook-open-alternative-black",
+      "baseMeaning": "positional-rook-open-alternative",
+      "section": "colour-pawn-file",
+      "branch": "alternative",
+      "side": "black"
+    },
+    {
+      "id": "positional-rook-semi-open-actual-white",
+      "baseMeaning": "positional-rook-semi-open-actual",
+      "section": "colour-pawn-file",
+      "branch": "actual",
+      "side": "white"
+    },
+    {
+      "id": "positional-rook-semi-open-actual-black",
+      "baseMeaning": "positional-rook-semi-open-actual",
+      "section": "colour-pawn-file",
+      "branch": "actual",
+      "side": "black"
+    },
+    {
+      "id": "positional-rook-semi-open-alternative-white",
+      "baseMeaning": "positional-rook-semi-open-alternative",
+      "section": "colour-pawn-file",
+      "branch": "alternative",
+      "side": "white"
+    },
+    {
+      "id": "positional-rook-semi-open-alternative-black",
+      "baseMeaning": "positional-rook-semi-open-alternative",
+      "section": "colour-pawn-file",
+      "branch": "alternative",
+      "side": "black"
+    },
+    {
+      "id": "positional-support-actual-knight-white",
+      "baseMeaning": "positional-support-actual-knight",
+      "section": "colour-defender",
+      "branch": "actual",
+      "piece": "knight",
+      "side": "white"
+    },
+    {
+      "id": "positional-support-actual-knight-black",
+      "baseMeaning": "positional-support-actual-knight",
+      "section": "colour-defender",
+      "branch": "actual",
+      "piece": "knight",
+      "side": "black"
+    },
+    {
+      "id": "positional-support-actual-bishop-white",
+      "baseMeaning": "positional-support-actual-bishop",
+      "section": "colour-defender",
+      "branch": "actual",
+      "piece": "bishop",
+      "side": "white"
+    },
+    {
+      "id": "positional-support-actual-bishop-black",
+      "baseMeaning": "positional-support-actual-bishop",
+      "section": "colour-defender",
+      "branch": "actual",
+      "piece": "bishop",
+      "side": "black"
+    },
+    {
+      "id": "positional-support-actual-rook-white",
+      "baseMeaning": "positional-support-actual-rook",
+      "section": "colour-defender",
+      "branch": "actual",
+      "piece": "rook",
+      "side": "white"
+    },
+    {
+      "id": "positional-support-actual-rook-black",
+      "baseMeaning": "positional-support-actual-rook",
+      "section": "colour-defender",
+      "branch": "actual",
+      "piece": "rook",
+      "side": "black"
+    },
+    {
+      "id": "positional-support-actual-queen-white",
+      "baseMeaning": "positional-support-actual-queen",
+      "section": "colour-defender",
+      "branch": "actual",
+      "piece": "queen",
+      "side": "white"
+    },
+    {
+      "id": "positional-support-actual-queen-black",
+      "baseMeaning": "positional-support-actual-queen",
+      "section": "colour-defender",
+      "branch": "actual",
+      "piece": "queen",
+      "side": "black"
+    },
+    {
+      "id": "positional-support-alternative-knight-white",
+      "baseMeaning": "positional-support-alternative-knight",
+      "section": "colour-defender",
+      "branch": "alternative",
+      "piece": "knight",
+      "side": "white"
+    },
+    {
+      "id": "positional-support-alternative-knight-black",
+      "baseMeaning": "positional-support-alternative-knight",
+      "section": "colour-defender",
+      "branch": "alternative",
+      "piece": "knight",
+      "side": "black"
+    },
+    {
+      "id": "positional-support-alternative-bishop-white",
+      "baseMeaning": "positional-support-alternative-bishop",
+      "section": "colour-defender",
+      "branch": "alternative",
+      "piece": "bishop",
+      "side": "white"
+    },
+    {
+      "id": "positional-support-alternative-bishop-black",
+      "baseMeaning": "positional-support-alternative-bishop",
+      "section": "colour-defender",
+      "branch": "alternative",
+      "piece": "bishop",
+      "side": "black"
+    },
+    {
+      "id": "positional-support-alternative-rook-white",
+      "baseMeaning": "positional-support-alternative-rook",
+      "section": "colour-defender",
+      "branch": "alternative",
+      "piece": "rook",
+      "side": "white"
+    },
+    {
+      "id": "positional-support-alternative-rook-black",
+      "baseMeaning": "positional-support-alternative-rook",
+      "section": "colour-defender",
+      "branch": "alternative",
+      "piece": "rook",
+      "side": "black"
+    },
+    {
+      "id": "positional-support-alternative-queen-white",
+      "baseMeaning": "positional-support-alternative-queen",
+      "section": "colour-defender",
+      "branch": "alternative",
+      "piece": "queen",
+      "side": "white"
+    },
+    {
+      "id": "positional-support-alternative-queen-black",
+      "baseMeaning": "positional-support-alternative-queen",
+      "section": "colour-defender",
+      "branch": "alternative",
+      "piece": "queen",
+      "side": "black"
+    },
+    {
+      "id": "positional-unsupported-actual-knight-white",
+      "baseMeaning": "positional-unsupported-actual-knight",
+      "section": "colour-defender",
+      "branch": "actual",
+      "piece": "knight",
+      "side": "white"
+    },
+    {
+      "id": "positional-unsupported-actual-knight-black",
+      "baseMeaning": "positional-unsupported-actual-knight",
+      "section": "colour-defender",
+      "branch": "actual",
+      "piece": "knight",
+      "side": "black"
+    },
+    {
+      "id": "positional-unsupported-actual-bishop-white",
+      "baseMeaning": "positional-unsupported-actual-bishop",
+      "section": "colour-defender",
+      "branch": "actual",
+      "piece": "bishop",
+      "side": "white"
+    },
+    {
+      "id": "positional-unsupported-actual-bishop-black",
+      "baseMeaning": "positional-unsupported-actual-bishop",
+      "section": "colour-defender",
+      "branch": "actual",
+      "piece": "bishop",
+      "side": "black"
+    },
+    {
+      "id": "positional-unsupported-actual-rook-white",
+      "baseMeaning": "positional-unsupported-actual-rook",
+      "section": "colour-defender",
+      "branch": "actual",
+      "piece": "rook",
+      "side": "white"
+    },
+    {
+      "id": "positional-unsupported-actual-rook-black",
+      "baseMeaning": "positional-unsupported-actual-rook",
+      "section": "colour-defender",
+      "branch": "actual",
+      "piece": "rook",
+      "side": "black"
+    },
+    {
+      "id": "positional-unsupported-actual-queen-white",
+      "baseMeaning": "positional-unsupported-actual-queen",
+      "section": "colour-defender",
+      "branch": "actual",
+      "piece": "queen",
+      "side": "white"
+    },
+    {
+      "id": "positional-unsupported-actual-queen-black",
+      "baseMeaning": "positional-unsupported-actual-queen",
+      "section": "colour-defender",
+      "branch": "actual",
+      "piece": "queen",
+      "side": "black"
+    },
+    {
+      "id": "positional-unsupported-alternative-knight-white",
+      "baseMeaning": "positional-unsupported-alternative-knight",
+      "section": "colour-defender",
+      "branch": "alternative",
+      "piece": "knight",
+      "side": "white"
+    },
+    {
+      "id": "positional-unsupported-alternative-knight-black",
+      "baseMeaning": "positional-unsupported-alternative-knight",
+      "section": "colour-defender",
+      "branch": "alternative",
+      "piece": "knight",
+      "side": "black"
+    },
+    {
+      "id": "positional-unsupported-alternative-bishop-white",
+      "baseMeaning": "positional-unsupported-alternative-bishop",
+      "section": "colour-defender",
+      "branch": "alternative",
+      "piece": "bishop",
+      "side": "white"
+    },
+    {
+      "id": "positional-unsupported-alternative-bishop-black",
+      "baseMeaning": "positional-unsupported-alternative-bishop",
+      "section": "colour-defender",
+      "branch": "alternative",
+      "piece": "bishop",
+      "side": "black"
+    },
+    {
+      "id": "positional-unsupported-alternative-rook-white",
+      "baseMeaning": "positional-unsupported-alternative-rook",
+      "section": "colour-defender",
+      "branch": "alternative",
+      "piece": "rook",
+      "side": "white"
+    },
+    {
+      "id": "positional-unsupported-alternative-rook-black",
+      "baseMeaning": "positional-unsupported-alternative-rook",
+      "section": "colour-defender",
+      "branch": "alternative",
+      "piece": "rook",
+      "side": "black"
+    },
+    {
+      "id": "positional-unsupported-alternative-queen-white",
+      "baseMeaning": "positional-unsupported-alternative-queen",
+      "section": "colour-defender",
+      "branch": "alternative",
+      "piece": "queen",
+      "side": "white"
+    },
+    {
+      "id": "positional-unsupported-alternative-queen-black",
+      "baseMeaning": "positional-unsupported-alternative-queen",
+      "section": "colour-defender",
+      "branch": "alternative",
+      "piece": "queen",
+      "side": "black"
+    },
+    {
+      "id": "positional-development-actual-knight-2",
+      "baseMeaning": "positional-development-actual-knight",
+      "section": "development",
+      "branch": "actual",
+      "piece": "knight",
+      "take": 2
+    },
+    {
+      "id": "positional-development-actual-knight-3",
+      "baseMeaning": "positional-development-actual-knight",
+      "section": "development",
+      "branch": "actual",
+      "piece": "knight",
+      "take": 3
+    },
+    {
+      "id": "positional-development-actual-knight-4",
+      "baseMeaning": "positional-development-actual-knight",
+      "section": "development",
+      "branch": "actual",
+      "piece": "knight",
+      "take": 4
+    },
+    {
+      "id": "positional-development-actual-knight-5",
+      "baseMeaning": "positional-development-actual-knight",
+      "section": "development",
+      "branch": "actual",
+      "piece": "knight",
+      "take": 5
+    },
+    {
+      "id": "positional-development-actual-bishop-2",
+      "baseMeaning": "positional-development-actual-bishop",
+      "section": "development",
+      "branch": "actual",
+      "piece": "bishop",
+      "take": 2
+    },
+    {
+      "id": "positional-development-actual-bishop-3",
+      "baseMeaning": "positional-development-actual-bishop",
+      "section": "development",
+      "branch": "actual",
+      "piece": "bishop",
+      "take": 3
+    },
+    {
+      "id": "positional-development-actual-bishop-4",
+      "baseMeaning": "positional-development-actual-bishop",
+      "section": "development",
+      "branch": "actual",
+      "piece": "bishop",
+      "take": 4
+    },
+    {
+      "id": "positional-development-actual-bishop-5",
+      "baseMeaning": "positional-development-actual-bishop",
+      "section": "development",
+      "branch": "actual",
+      "piece": "bishop",
+      "take": 5
+    },
+    {
+      "id": "positional-development-alternative-knight-2",
+      "baseMeaning": "positional-development-alternative-knight",
+      "section": "development",
+      "branch": "alternative",
+      "piece": "knight",
+      "take": 2
+    },
+    {
+      "id": "positional-development-alternative-knight-3",
+      "baseMeaning": "positional-development-alternative-knight",
+      "section": "development",
+      "branch": "alternative",
+      "piece": "knight",
+      "take": 3
+    },
+    {
+      "id": "positional-development-alternative-knight-4",
+      "baseMeaning": "positional-development-alternative-knight",
+      "section": "development",
+      "branch": "alternative",
+      "piece": "knight",
+      "take": 4
+    },
+    {
+      "id": "positional-development-alternative-knight-5",
+      "baseMeaning": "positional-development-alternative-knight",
+      "section": "development",
+      "branch": "alternative",
+      "piece": "knight",
+      "take": 5
+    },
+    {
+      "id": "positional-development-alternative-bishop-2",
+      "baseMeaning": "positional-development-alternative-bishop",
+      "section": "development",
+      "branch": "alternative",
+      "piece": "bishop",
+      "take": 2
+    },
+    {
+      "id": "positional-development-alternative-bishop-3",
+      "baseMeaning": "positional-development-alternative-bishop",
+      "section": "development",
+      "branch": "alternative",
+      "piece": "bishop",
+      "take": 3
+    },
+    {
+      "id": "positional-development-alternative-bishop-4",
+      "baseMeaning": "positional-development-alternative-bishop",
+      "section": "development",
+      "branch": "alternative",
+      "piece": "bishop",
+      "take": 4
+    },
+    {
+      "id": "positional-development-alternative-bishop-5",
+      "baseMeaning": "positional-development-alternative-bishop",
+      "section": "development",
+      "branch": "alternative",
+      "piece": "bishop",
+      "take": 5
+    },
+    {
+      "id": "evaluation-loss-2",
+      "baseMeaning": "evaluation-loss",
+      "section": "repetition-main",
+      "take": 2
+    },
+    {
+      "id": "evaluation-loss-3",
+      "baseMeaning": "evaluation-loss",
+      "section": "repetition-main",
+      "take": 3
+    },
+    {
+      "id": "evaluation-loss-4",
+      "baseMeaning": "evaluation-loss",
+      "section": "repetition-main",
+      "take": 4
+    },
+    {
+      "id": "evaluation-loss-5",
+      "baseMeaning": "evaluation-loss",
+      "section": "repetition-main",
+      "take": 5
+    },
+    {
+      "id": "immediate-capture-2",
+      "baseMeaning": "immediate-capture",
+      "section": "repetition-main",
+      "take": 2
+    },
+    {
+      "id": "immediate-capture-3",
+      "baseMeaning": "immediate-capture",
+      "section": "repetition-main",
+      "take": 3
+    },
+    {
+      "id": "immediate-capture-4",
+      "baseMeaning": "immediate-capture",
+      "section": "repetition-main",
+      "take": 4
+    },
+    {
+      "id": "immediate-capture-5",
+      "baseMeaning": "immediate-capture",
+      "section": "repetition-main",
+      "take": 5
+    },
+    {
+      "id": "chance-taken-2",
+      "baseMeaning": "chance-taken",
+      "section": "repetition-main",
+      "take": 2
+    },
+    {
+      "id": "chance-taken-3",
+      "baseMeaning": "chance-taken",
+      "section": "repetition-main",
+      "take": 3
+    },
+    {
+      "id": "chance-taken-4",
+      "baseMeaning": "chance-taken",
+      "section": "repetition-main",
+      "take": 4
+    },
+    {
+      "id": "stronger-alternative-2",
+      "baseMeaning": "stronger-alternative",
+      "section": "repetition-main",
+      "take": 2
+    },
+    {
+      "id": "stronger-alternative-3",
+      "baseMeaning": "stronger-alternative",
+      "section": "repetition-main",
+      "take": 3
+    },
+    {
+      "id": "stronger-alternative-4",
+      "baseMeaning": "stronger-alternative",
+      "section": "repetition-main",
+      "take": 4
+    },
+    {
+      "id": "positional-passer-advance-actual-2",
+      "baseMeaning": "positional-passer-advance-actual",
+      "section": "repetition-second",
+      "take": 2
+    },
+    {
+      "id": "positional-passer-advance-actual-3",
+      "baseMeaning": "positional-passer-advance-actual",
+      "section": "repetition-second",
+      "take": 3
+    },
+    {
+      "id": "reply-check-2",
+      "baseMeaning": "reply-check",
+      "section": "repetition-second",
+      "take": 2
+    },
+    {
+      "id": "reply-check-3",
+      "baseMeaning": "reply-check",
+      "section": "repetition-second",
+      "take": 3
+    },
+    {
+      "id": "lesson-correct-move-2",
+      "baseMeaning": "lesson-correct-move",
+      "section": "repetition-second",
+      "take": 2
+    },
+    {
+      "id": "lesson-correct-move-3",
+      "baseMeaning": "lesson-correct-move",
+      "section": "repetition-second",
+      "take": 3
+    },
+    {
+      "id": "lesson-correct-move-4",
+      "baseMeaning": "lesson-correct-move",
+      "section": "repetition-second",
+      "take": 4
+    },
+    {
+      "id": "puzzle-next-move-2",
+      "baseMeaning": "puzzle-next-move",
+      "section": "repetition-second",
+      "take": 2
+    },
+    {
+      "id": "puzzle-next-move-3",
+      "baseMeaning": "puzzle-next-move",
+      "section": "repetition-second",
+      "take": 3
+    },
+    {
+      "id": "puzzle-next-move-4",
+      "baseMeaning": "puzzle-next-move",
+      "section": "repetition-second",
+      "take": 4
+    },
+    {
+      "id": "opening-recall-accepted-2",
+      "baseMeaning": "opening-recall-accepted",
+      "section": "repetition-second",
+      "take": 2
+    },
+    {
+      "id": "opening-recall-accepted-3",
+      "baseMeaning": "opening-recall-accepted",
+      "section": "repetition-second",
+      "take": 3
+    },
+    {
+      "id": "opening-recall-accepted-4",
+      "baseMeaning": "opening-recall-accepted",
+      "section": "repetition-second",
+      "take": 4
+    },
+    {
+      "id": "grade-best-5",
+      "baseMeaning": "grade-best-1",
+      "section": "repetition-main",
+      "take": 5
+    },
+    {
+      "id": "grade-best-6",
+      "baseMeaning": "grade-best-1",
+      "section": "repetition-main",
+      "take": 6
+    },
+    {
+      "id": "grade-good-5",
+      "baseMeaning": "grade-good-1",
+      "section": "repetition-main",
+      "take": 5
+    },
+    {
+      "id": "grade-good-6",
+      "baseMeaning": "grade-good-1",
+      "section": "repetition-main",
+      "take": 6
+    }
+  ],
+  "promptArchiveSha256": "614eaac334b219e36257d25d2767bd017dc8c5c79bcd470b8173ee3f03a6a829"
+}
