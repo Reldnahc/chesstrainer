@@ -5,7 +5,7 @@ import {humanInsightLabels} from "../../dialogue/humanClaims";
 import {object, strings} from "../../dialogue/eventClaims";
 import {stableKey, type Claim, type CoachUtterance, type DialogueIntent} from "../../dialogue/model";
 import {bookRecordingId} from "../../dialogue/openingPresentation";
-import {sequenceRecordingId} from "./sequence";
+import {ALTERNATIVE_SEPARATOR, sequenceRecordingId} from "./sequence";
 import {hasPieceVariants, sacrificedPieces, tacticPieces, withPieceVariant, withPieceVariants} from "./pieceVariants";
 import registry from "./banks/registry.json" with {type: "json"};
 
@@ -25,6 +25,10 @@ export type GameSpeechContext = {
   /** Select the meaning for a coach without a recorded bank too, so the bubble
    * can show the line that coach's script speaks. Playback still needs a recording. */
   anyCoach?: boolean;
+  /** Whether this coach can say a selected meaning (a recorded voice that lacks
+   * the clip cannot). An unplayable meaning passes the lead on, so a newly
+   * written meaning never silences a move before it is recorded. */
+  playable?: (id: string) => boolean;
 };
 export type WalterGameSpeechContext = GameSpeechContext;
 const voicedCoaches = new Set(registry.banks.map(bank => bank.coachId));
@@ -226,7 +230,7 @@ export function selectGameRecording(context: GameSpeechContext): string | null {
         || event.facts.transition !== (item.code === "allowed_mate" ? "allowed" : "missed")) return null;
       // Letting the reply itself mate is its own, more urgent line; the general
       // allowed-mate clip stands in until a coach has recorded it.
-      return item.code === "allowed_mate" && event.facts.mate_in === 1 ? "allowed-mate-next|allowed-mate" : simpleIds[item.code];
+      return item.code === "allowed_mate" && event.facts.mate_in === 1 ? ["allowed-mate-next", "allowed-mate"].join(ALTERNATIVE_SEPARATOR) : simpleIds[item.code];
     }
     if (item.code.startsWith("forced_mate_")) return event.kind === "forced_mate" && event.confidence === "searched"
       && searchEvidence(item) && forcedMateStages.has(String(event.facts.stage)) && item.code === `forced_mate_${event.facts.stage}`
@@ -262,13 +266,15 @@ export function selectGameSpeech(context: GameSpeechContext) {
   let lead = -1, primaryId: string | null = null;
   for (let index = 0; index < claims.length && !primaryId; index++) {
     if (humanInsightLabels[claims[index].code]) continue;
-    primaryId = selectGameRecording({...context, claimIndex: index});
+    const id = selectGameRecording({...context, claimIndex: index});
+    primaryId = id && (context.playable?.(id) ?? true) ? id : null;
     if (primaryId || lead < 0) lead = index;
   }
   let recordingId = primaryId, secondId: string | null = null;
   const second = claims[lead + 1];
   if (primaryId && second && !humanInsightLabels[second.code] && ["game", "variation"].includes(context.intent.mode)) {
     secondId = selectGameRecording({...context, claimIndex: lead + 1});
+    if (secondId && !(context.playable?.(secondId) ?? true)) secondId = null;
     if (secondId && secondId !== primaryId) recordingId = sequenceRecordingId([primaryId, secondId]);
     else secondId = null;
   }

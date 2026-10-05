@@ -92,6 +92,17 @@ for (const coach of coaches) {
     }
   });
 
+  test(`${coach.id}: a meaning the coach cannot say yet passes the lead on instead of silencing the move`, () => {
+    const {context} = presentation("back-rank-allowed-narrow-preferred", coach);
+    const lead = selectGameRecording(context)!;
+    expect(lead).toBeTruthy();
+    const without = selectGameSpeech({...context, playable: id => id !== lead});
+    expect(without.primaryId).not.toBe(lead);
+    const next = context.utterance.renderedClaims!.slice(1).map((_, index) =>
+      selectGameRecording({...context, claimIndex: index + 1})).find(id => id && id !== lead) ?? null;
+    expect(without.primaryId).toBe(next);
+  });
+
   test(`${coach.id}: late unavailable policy removes the chip without changing the objective speech`, () => {
     const {context} = presentation("cause-abandoned_defender-white-preferred", coach);
     const fallback = plain(context);
