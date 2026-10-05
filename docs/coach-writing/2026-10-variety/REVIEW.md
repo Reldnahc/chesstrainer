@@ -76,6 +76,30 @@ Exact reviewed text snapshots were checked against all current manuscripts:
 handoff ZIP was refreshed from these approved manuscripts. The coach-creation
 guide now requires this comparative gate for future multi-coach batches.
 
+## Additional fresh comparison
+
+At the owner's request, fresh reviewers repeated the complete 99-meaning,
+30-coach comparison after `4016116cb`, reading all 2,970 lines without using the
+previous findings to form their judgments. They found no new factual, branch,
+ownership or cast-distinction problems. Two spoken-wording improvements remained:
+
+- Arjun's actual knight development take 5 changed its heading-like opening
+  (“Development, by the knight's first departure from home”) into a spoken sentence:
+  “The knight develops with its first move away from home.” Its exploratory question
+  remains unchanged.
+- Waffles's alternative knight development take 4 replaced the awkward phrase
+  “Development was on the orders!” with “A deployment worth inspecting!” The
+  hypothetical first-move fact remains unchanged.
+
+A different reviewer checked both complete 99-line manuscripts and both affected
+meanings across all 30 coaches (254 unique lines), verified the other 1,408 records
+in the development/repetition section were unchanged, and returned zero findings,
+including optional polish. The pawn/file and defender sections passed the fresh
+review unchanged. Exact current text again matches the independent signoffs for
+all 2,970 coach/meaning pairs. Import, sentence-count and manuscript checks pass;
+the ZIP is refreshed. The two revisions have no net effect on character counts or
+the cost estimate below. No original scripts, clips or production files changed.
+
 ## Focused validation
 
 - All 30 manuscripts contain the exact 99 unique scoped IDs in order, matching
@@ -100,6 +124,7 @@ The local export check was
 `.venv/Scripts/python.exe -B .tools/package-coach-variety.py`.
 The comparative coverage check was
 `.venv/Scripts/python.exe -B .tools/check-crosscast-review.py`.
+The additional fresh comparison used that coverage check with `--fresh`.
 These task-local helpers and detailed review outputs are deliberately ignored;
 the acceptance record and manuscripts are the durable repository deliverables.
 
