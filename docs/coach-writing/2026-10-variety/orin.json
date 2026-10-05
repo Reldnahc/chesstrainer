@@ -5,11 +5,11 @@
   "records": [
     {
       "id": "positional-passed-actual-white",
-      "text": "White has acquired a passed pawn. The defining detail is the absence of enemy pawns ahead on its file and the neighboring files."
+      "text": "A passed pawn has no enemy pawn ahead on its own or neighboring files. White has one now; the next distinction is whether pieces can stop it."
     },
     {
       "id": "positional-passed-actual-black",
-      "text": "Black has acquired a passed pawn. The defining detail is the absence of enemy pawns ahead on its file and the neighboring files."
+      "text": "A passed pawn has no enemy pawn ahead on its own or neighboring files. Black has one now; the next distinction is whether pieces can stop it."
     },
     {
       "id": "positional-passed-alternative-white",
@@ -45,11 +45,11 @@
     },
     {
       "id": "positional-doubled-alternative-white",
-      "text": "The alternative would have produced doubled pawns for White. That structural change would be part of the choice."
+      "text": "The doubled-pawn pattern must be judged within the whole position. It would arise for White after the better move, with pawns sharing a file."
     },
     {
       "id": "positional-doubled-alternative-black",
-      "text": "The alternative would have produced doubled pawns for Black. That structural change would be part of the choice."
+      "text": "The doubled-pawn pattern must be judged within the whole position. It would arise for Black after the better move, with pawns sharing a file."
     },
     {
       "id": "positional-rook-open-actual-white",
@@ -61,11 +61,11 @@
     },
     {
       "id": "positional-rook-open-alternative-white",
-      "text": "Another move would have placed White's rook on an open file. No pawns would remain on that file, of either color."
+      "text": "An open file excludes pawns, not every obstacle. The alternative would have placed White's rook on just such a file."
     },
     {
       "id": "positional-rook-open-alternative-black",
-      "text": "Another move would have placed Black's rook on an open file. No pawns would remain on that file, of either color."
+      "text": "An open file excludes pawns, not every obstacle. The alternative would have placed Black's rook on just such a file."
     },
     {
       "id": "positional-rook-semi-open-actual-white",
@@ -77,19 +77,19 @@
     },
     {
       "id": "positional-rook-semi-open-alternative-white",
-      "text": "The alternative would have given White's rook a half-open file. White's pawns would be absent from it, but Black's would remain."
+      "text": "A half-open file has enemy pawns but no friendly pawns. That is the pattern White's rook would have after the alternative move."
     },
     {
       "id": "positional-rook-semi-open-alternative-black",
-      "text": "The alternative would have given Black's rook a half-open file. Black's pawns would be absent from it, but White's would remain."
+      "text": "A half-open file has enemy pawns but no friendly pawns. That is the pattern Black's rook would have after the alternative move."
     },
     {
       "id": "positional-support-actual-knight-white",
-      "text": "Notice the change in support: White's knight now has a defender where previously it had none."
+      "text": "A piece's strength and its support are different things. This move gives White's knight the defender it lacked."
     },
     {
       "id": "positional-support-actual-knight-black",
-      "text": "Notice the change in support: Black's knight now has a defender where previously it had none."
+      "text": "A piece's strength and its support are different things. This move gives Black's knight the defender it lacked."
     },
     {
       "id": "positional-support-actual-bishop-white",
@@ -101,11 +101,11 @@
     },
     {
       "id": "positional-support-actual-rook-white",
-      "text": "White's rook is defended now, having stood unguarded before this move. Support is the relevant change."
+      "text": "A piece's strength and its support are different things. This move gives White's rook the defender it lacked."
     },
     {
       "id": "positional-support-actual-rook-black",
-      "text": "Black's rook is defended now, having stood unguarded before this move. Support is the relevant change."
+      "text": "A piece's strength and its support are different things. This move gives Black's rook the defender it lacked."
     },
     {
       "id": "positional-support-actual-queen-white",
@@ -117,35 +117,35 @@
     },
     {
       "id": "positional-support-alternative-knight-white",
-      "text": "The alternative would have supplied a defender for White's unguarded knight. Follow that change in support."
+      "text": "Count support apart from a piece's own strength. The better move would give White's knight the defender it lacked."
     },
     {
       "id": "positional-support-alternative-knight-black",
-      "text": "The alternative would have supplied a defender for Black's unguarded knight. Follow that change in support."
+      "text": "Count support apart from a piece's own strength. The better move would give Black's knight the defender it lacked."
     },
     {
       "id": "positional-support-alternative-bishop-white",
-      "text": "Another move would have given White's bishop its missing guard. Defense is part of comparing the alternatives."
+      "text": "Count support apart from a piece's own strength. The better move would give White's bishop the defender it lacked."
     },
     {
       "id": "positional-support-alternative-bishop-black",
-      "text": "Another move would have given Black's bishop its missing guard. Defense is part of comparing the alternatives."
+      "text": "Count support apart from a piece's own strength. The better move would give Black's bishop the defender it lacked."
     },
     {
       "id": "positional-support-alternative-rook-white",
-      "text": "White's rook lacked a defender. With a different move, it would have gained one."
+      "text": "Count support apart from a piece's own strength. The better move would give White's rook the defender it lacked."
     },
     {
       "id": "positional-support-alternative-rook-black",
-      "text": "Black's rook lacked a defender. With a different move, it would have gained one."
+      "text": "Count support apart from a piece's own strength. The better move would give Black's rook the defender it lacked."
     },
     {
       "id": "positional-support-alternative-queen-white",
-      "text": "A different move would have changed White's queen from undefended to defended. That connection belongs in the comparison."
+      "text": "Count support apart from a piece's own strength. The better move would give White's queen the defender it lacked."
     },
     {
       "id": "positional-support-alternative-queen-black",
-      "text": "A different move would have changed Black's queen from undefended to defended. That connection belongs in the comparison."
+      "text": "Count support apart from a piece's own strength. The better move would give Black's queen the defender it lacked."
     },
     {
       "id": "positional-unsupported-actual-knight-white",
@@ -217,7 +217,7 @@
     },
     {
       "id": "positional-development-actual-knight-3",
-      "text": "The knight's first move away from home is now made. That is the development change here."
+      "text": "A piece begins development by leaving home. This is the knight's first such move."
     },
     {
       "id": "positional-development-actual-knight-4",
@@ -233,7 +233,7 @@
     },
     {
       "id": "positional-development-actual-bishop-3",
-      "text": "The bishop's first move away from home is now made. That is the development change here."
+      "text": "The bishop had not yet left home. Its first departure gives a concrete example of development."
     },
     {
       "id": "positional-development-actual-bishop-4",
@@ -285,7 +285,7 @@
     },
     {
       "id": "evaluation-loss-4",
-      "text": "Not every loss of value has a named tactic. Here the move leaves a poorer position than the best alternative."
+      "text": "Judge the choice against what else was available. This move leaves a poorer position than the stronger alternative."
     },
     {
       "id": "evaluation-loss-5",
@@ -337,7 +337,7 @@
     },
     {
       "id": "positional-passer-advance-actual-3",
-      "text": "This is the advance of an existing passer. A step toward promotion, not a promise of reaching it."
+      "text": "Reassess a passer after each advance. This one is closer to promotion now; examine the replies from here."
     },
     {
       "id": "reply-check-2",
@@ -397,7 +397,7 @@
     },
     {
       "id": "grade-good-6",
-      "text": "A good choice, without being the best choice. The distinction is worth keeping."
+      "text": "Sound play is worth keeping, even while studying an improvement. This is Good, though a better move was available."
     }
   ]
 }

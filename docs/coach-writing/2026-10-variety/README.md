@@ -4,7 +4,8 @@ Owner-requested writing batch, October 5, 2026. These are proposed additions,
 not active scripts, recordings or a runtime catalogue. Recording requires the
 owner's explicit instruction. Existing lines and clips must remain byte-identical.
 
-All 2,970 lines have completed independent editorial review. See the
+All 2,970 lines have completed independent editorial review and a dedicated
+meaning-by-meaning, side-by-side comparison across the full cast. See the
 [acceptance and recording estimate](REVIEW.md). This is writing approval only;
 recording is not authorized.
 
@@ -85,7 +86,9 @@ does not change this repository's manuscript format or authorize recording.
 Each coach receives an independent complete review, including optional polish.
 Writers address every finding; reviewers reread until the complete result has
 zero open fixes. A separate final reviewer reads every new line and checks that
-the old scripts/recordings are unchanged. Review results belong in `REVIEW.md`.
+the old scripts/recordings are unchanged. Also compare every meaning across the
+cast, then independently review revisions for distinct voice and factual scope.
+Review results belong in `REVIEW.md`.
 
 Any later integration must preserve all existing piece-named defender clips,
 add colour-and-piece variants without replacing that pool, extend the shared

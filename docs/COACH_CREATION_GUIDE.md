@@ -209,6 +209,12 @@ source for writers and reviewers.
   for that specific set. Never change a recorded line.
 - **Staying in character** is extremely important, with Rivet the most distinct.
   Every set goes through independent reviews.
+- **Compare the cast, not just individual coaches.** For a multi-coach writing
+  batch, also read every meaning side by side across all included coaches. Check
+  thought order, teaching approach, rhythm and repeated framing; a different
+  adjective or catchphrase does not make shared prose a distinct voice. Preserve
+  necessary chess terminology and naturally brief factual overlap. Correct weak
+  distinctions, then have an independent reviewer compare the revised set again.
 - **Review loop until clean.** A coach is ready only when nothing is open: every
   review ends with a complete fix list, optional polish included, or "ready for
   recording". Never record without the owner's word.
