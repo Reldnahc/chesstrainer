@@ -272,7 +272,10 @@ def prompt_text(voice, only_set=None):
     current = existing_lines(voice)
     bases = list(dict.fromkeys(key for row in rows for key in row.get("examples", [base_of(row)])))
     examples = "\n".join(f"- {key}: {current[key]}" for key in bases if key in current)
-    slots_text = "\n".join(f"- {row['id']}: {row['when']}" for row in rows)
+    slots_text = "\n".join(
+        f"- {row['id']}: {row['when']}{' (learner line)' if row.get('learner') else ''}"
+        for row in rows
+    )
     return f"""You are writing spoken lines for a chess coach in a chess training app.
 Each line is recorded as audio and played when a move in a reviewed game matches its slot.
 
