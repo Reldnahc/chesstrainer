@@ -56,6 +56,61 @@ DEFENDER_MEANINGS = {
 DEFENDER_PIECES = ("knight", "bishop", "rook", "queen")
 DEVELOPMENT = "{line} a {piece} leaves its starting square for the first time"
 DEVELOPMENT_TAKES = 4
+# Extra takes for the most repeated lines: (meaning, new takes, when it plays, learner-only).
+# Learner-only lines always speak to the learner, so they may say "you".
+EXTRA_TAKES = [
+    (
+        "evaluation-loss",
+        4,
+        "the move played is worse than the engine's best move, with no specific tactic to name",
+        False,
+    ),
+    (
+        "immediate-capture",
+        4,
+        "after the move played, the other side has a capture straight away",
+        False,
+    ),
+    (
+        "chance-taken",
+        3,
+        "the learner's move makes use of the opponent's mistake on the move before",
+        True,
+    ),
+    (
+        "stronger-alternative",
+        3,
+        "the engine prefers a different move to the one played (follows another sentence)",
+        False,
+    ),
+    (
+        "positional-passer-advance-actual",
+        2,
+        "the move played pushes a pawn that is already passed one step nearer promotion",
+        False,
+    ),
+    ("reply-check", 2, "the strongest reply to the move played gives check", False),
+    ("lesson-correct-move", 3, "in a lesson, the learner played the move the lesson teaches", True),
+    (
+        "puzzle-next-move",
+        3,
+        "in a puzzle, the learner found the right move and the puzzle continues",
+        True,
+    ),
+    (
+        "opening-recall-accepted",
+        3,
+        "in opening practice, the learner played the move from the opening they are studying",
+        True,
+    ),
+]
+# Grade takes are numbered per grade (grade-best-1 to -4 today) and play when a move
+# has nothing more specific to say.
+EXTRA_GRADE_TAKES = {
+    "best": "the move is graded Best (the engine's top choice) and there is nothing more specific to say",
+    "good": "the move is graded Good (a sound move, not the engine's top choice) and there is nothing more specific to say",
+}
+GRADE_TAKES, EXTRA_GRADE_COUNT = 4, 2
 
 
 def read(path):
@@ -113,7 +168,29 @@ def slots():
                         "when": DEVELOPMENT.format(line=wording, piece=piece),
                     }
                 )
+    for meaning, count, when, learner in EXTRA_TAKES:
+        for take in range(2, count + 2):
+            rows.append(
+                {"id": f"{meaning}-{take}", "takeOf": meaning, "set": "takes", "when": when}
+                | ({"learner": True} if learner else {})
+            )
+    for grade, when in EXTRA_GRADE_TAKES.items():
+        for take in range(GRADE_TAKES + 1, GRADE_TAKES + EXTRA_GRADE_COUNT + 1):
+            rows.append(
+                {
+                    "id": f"grade-{grade}-{take}",
+                    "after": f"grade-{grade}-{take - 1}",
+                    "set": "takes",
+                    "when": when,
+                    "examples": [f"grade-{grade}-{n}" for n in range(1, GRADE_TAKES + 1)],
+                }
+            )
     return rows
+
+
+def base_of(row):
+    """The meaning a slot belongs to, or (for numbered grade takes) the one it follows."""
+    return row.get("colourOf") or row.get("takeOf") or row["after"]
 
 
 def plan(_args):
@@ -121,8 +198,11 @@ def plan(_args):
     old = read(PLAN) if PLAN.exists() else {"slots": [], "awaitingRecording": []}
     texts = {row["id"]: row.get("texts", {}) for row in old["slots"]}
     rows = []
+    planned = {}
     for row in slots():
-        base = catalogue.get(row.get("colourOf") or row["takeOf"])
+        # A slot may follow another planned slot (grade-best-6 after grade-best-5).
+        base = catalogue.get(base_of(row)) or planned.get(base_of(row))
+        planned[row["id"]] = row | {"group": base["group"]} if base else row
         if base is None:
             sys.exit(f"{row['id']}: base meaning is not in the catalogue")
         if row["id"] in catalogue:
@@ -190,7 +270,7 @@ def prompt_text(voice, only_set=None):
     if not rows:
         return None
     current = existing_lines(voice)
-    bases = list(dict.fromkeys(row.get("colourOf") or row["takeOf"] for row in rows))
+    bases = list(dict.fromkeys(key for row in rows for key in row.get("examples", [base_of(row)])))
     examples = "\n".join(f"- {key}: {current[key]}" for key in bases if key in current)
     slots_text = "\n".join(f"- {row['id']}: {row['when']}" for row in rows)
     return f"""You are writing spoken lines for a chess coach in a chess training app.
@@ -206,6 +286,7 @@ EXTRA RULES
 - One to three short sentences, as this coach would say them out loud.
 - Never name a square (like e4), a number, or a move number.
 - Never say "you", "your" or "our": the line can play on either player's move.
+  Only slots marked (learner line) always speak to the learner and may say "you".
 - Name the colour (White or Black) when the slot names it, and the piece when it names one.
 - Every line must be different from every other line, and from the coach's current lines below.
 - Only claim what is true every time the slot can play.
@@ -265,7 +346,7 @@ def promote(plan_data):
     catalogue = read(CATALOGUE)
     meanings = catalogue["meanings"]
     for row in ready:
-        base = row.get("colourOf") or row["takeOf"]
+        base = base_of(row)
         family = {base}
         index = next(i for i, item in enumerate(meanings) if item["id"] == base)
         # After the base and everything already hanging off it.
@@ -354,13 +435,13 @@ def main():
     commands = parser.add_subparsers(required=True)
     commands.add_parser("plan").set_defaults(run=plan)
     listing = commands.add_parser("list")
-    listing.add_argument("--set", choices=["colour", "development"])
+    listing.add_argument("--set", choices=["colour", "development", "takes"])
     listing.add_argument("--voice", help="only slots this coach has not written yet")
     listing.set_defaults(run=list_slots)
     writing = commands.add_parser("prompt")
     writing.add_argument("--voice", required=True, help="coach voice id such as alfie, or all")
     writing.add_argument("--out", help="folder for --voice all (default coach-line-prompts)")
-    writing.add_argument("--set", choices=["colour", "development"])
+    writing.add_argument("--set", choices=["colour", "development", "takes"])
     writing.set_defaults(run=prompt)
     importing = commands.add_parser("import")
     importing.add_argument("files", nargs="+")

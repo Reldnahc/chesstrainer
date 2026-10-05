@@ -117,14 +117,18 @@ test("colour lines lead and takes share turns only once their lines are imported
     if (item.side) expect(withColourAndTakes(item.takeOf!, other, ["game", 1]).split("|")).not.toContain(item.id);
   }
   // Planned slots without lines are never offered.
-  for (const slot of planned.slots) {
+  for (const slot of planned.slots as Pooled[]) {
     expect(ids.has(slot.id)).toBe(false);
-    const base = slot.colourOf ?? slot.takeOf!;
-    expect(withColourAndTakes(base, slot.side as "white" | "black" | undefined, ["game", 1]).split("|")).not.toContain(slot.id);
+    const base = slot.colourOf ?? slot.takeOf;
+    if (!base) continue; // Numbered grade takes join their grade's pool by number.
+    expect(withColourAndTakes(base, slot.side, ["game", 1]).split("|")).not.toContain(slot.id);
   }
-  // A replayed ply keeps its take.
-  expect(withColourAndTakes("positional-development-actual-knight", null, ["game", 7]))
-    .toBe(withColourAndTakes("positional-development-actual-knight", null, ["game", 7]));
+  // Consecutive turns walk a shuffle, so every take leads once before any repeats,
+  // and a replayed turn keeps its take.
+  const first = (turn: number) => withColourAndTakes("evaluation-loss", null, ["game"], turn).split("|")[0];
+  const size = 1 + pooled.filter(item => item.takeOf === "evaluation-loss").length;
+  expect(new Set(Array.from({length: size}, (_, turn) => first(turn))).size).toBe(size);
+  expect(first(7)).toBe(first(7));
 });
 
 const relationship = semanticFixtures<Record<string, Game>>("review_speech_relationship_fixtures.py");

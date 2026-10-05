@@ -7,12 +7,14 @@ import type { CoachExpression } from "../coach/model";
 import type { ReviewSession } from "./useReviewSession";
 import { useCoachSpeech } from "../audio/speech/useCoachSpeech";
 import { openingRecallRecording } from "../audio/speech/practiceSelection";
+import { withSessionTake } from "../audio/speech/meaningPools";
 import { useSelectedCoachSpokenText } from "../audio/speech/spokenText";
 
 /** Curated recall has repertoire authority, never an objective move grade. */
 export default function OpeningRecallPanel({ session }: { session: ReviewSession }) {
-  const { position, feedback, busy, gradingError, hadFailure, next, show } = session;
-  const recordingId = openingRecallRecording({position, feedback, failed: !!position?.failed || hadFailure, error: !!gradingError});
+  const { position, feedback, busy, gradingError, hadFailure, next, show, done } = session;
+  // Extra takes of a clip take turns as the session's completed positions add up.
+  const recordingId = withSessionTake(openingRecallRecording({position, feedback, failed: !!position?.failed || hadFailure, error: !!gradingError}), "opening-recall", done);
   const voice = useCoachSpeech({
     scopeKey: `opening-recall:${position?.session_id}:${feedback?.attempt_id ?? session.feedbackEventId ?? "cold"}:${recordingId}`,
     recordingId, ready: !!position?.opening && !busy && !session.loading,

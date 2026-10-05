@@ -355,6 +355,22 @@ hops, a pinned knight has no legal move while a pinned pawn, bishop, rook or
 queen may still move along the pin line, and a back-rank allowed or missed line
 names an idea, not a mate.
 
+**Colour lines and extra takes** are planned in
+[planned-meanings.json](planned-meanings.json) and have no lines yet. A colour line
+(`colourOf` and `side`, for example `positional-passed-actual-white`) plays ahead of
+its colourless line. A take (`takeOf`, with an optional `side`) is another wording
+of the same moment. It takes turns with its line in a seeded shuffle, so every take
+plays once before any repeats. A game walks the shuffle by ply, a lesson by how
+often the clip has played, a puzzle by session revision and opening recall by
+completed positions ([meaningPools.ts](meaningPools.ts)). Best and Good grade takes
+grow past four through numbered `grade-<grade>-<n>` meanings. The colour-and-piece
+defender lines are takes of the recorded piece-named lines and never replace them.
+`python scripts/coach_line_slots.py prompt --voice all --out DIR` writes one
+writing request per coach. `... import FILES` checks the written lines against the
+bank rules. Once all 30 coaches have a slot, the import moves it into the
+catalogue, every script and the Walter/Rivet additions, and lists it under
+`awaitingRecording`. Until it is recorded, the voice bank skips it.
+
 `game-review-opened` and the nine lesson prompts are recorded for Walter, Rivet,
 Winston and Button, so each registered bank holds all 195 catalogue meanings.
 These 40 takes used **2,262 input characters / 273 provider credits**, with every

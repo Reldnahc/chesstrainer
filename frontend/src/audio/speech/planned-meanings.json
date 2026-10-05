@@ -596,6 +596,290 @@
       "when": "Better move that was NOT played: a bishop leaves its starting square for the first time",
       "group": "game_review",
       "texts": {}
+    },
+    {
+      "id": "evaluation-loss-2",
+      "takeOf": "evaluation-loss",
+      "set": "takes",
+      "when": "the move played is worse than the engine's best move, with no specific tactic to name",
+      "group": "game_review",
+      "texts": {}
+    },
+    {
+      "id": "evaluation-loss-3",
+      "takeOf": "evaluation-loss",
+      "set": "takes",
+      "when": "the move played is worse than the engine's best move, with no specific tactic to name",
+      "group": "game_review",
+      "texts": {}
+    },
+    {
+      "id": "evaluation-loss-4",
+      "takeOf": "evaluation-loss",
+      "set": "takes",
+      "when": "the move played is worse than the engine's best move, with no specific tactic to name",
+      "group": "game_review",
+      "texts": {}
+    },
+    {
+      "id": "evaluation-loss-5",
+      "takeOf": "evaluation-loss",
+      "set": "takes",
+      "when": "the move played is worse than the engine's best move, with no specific tactic to name",
+      "group": "game_review",
+      "texts": {}
+    },
+    {
+      "id": "immediate-capture-2",
+      "takeOf": "immediate-capture",
+      "set": "takes",
+      "when": "after the move played, the other side has a capture straight away",
+      "group": "game_review",
+      "texts": {}
+    },
+    {
+      "id": "immediate-capture-3",
+      "takeOf": "immediate-capture",
+      "set": "takes",
+      "when": "after the move played, the other side has a capture straight away",
+      "group": "game_review",
+      "texts": {}
+    },
+    {
+      "id": "immediate-capture-4",
+      "takeOf": "immediate-capture",
+      "set": "takes",
+      "when": "after the move played, the other side has a capture straight away",
+      "group": "game_review",
+      "texts": {}
+    },
+    {
+      "id": "immediate-capture-5",
+      "takeOf": "immediate-capture",
+      "set": "takes",
+      "when": "after the move played, the other side has a capture straight away",
+      "group": "game_review",
+      "texts": {}
+    },
+    {
+      "id": "chance-taken-2",
+      "takeOf": "chance-taken",
+      "set": "takes",
+      "when": "the learner's move makes use of the opponent's mistake on the move before",
+      "learner": true,
+      "group": "game_review",
+      "texts": {}
+    },
+    {
+      "id": "chance-taken-3",
+      "takeOf": "chance-taken",
+      "set": "takes",
+      "when": "the learner's move makes use of the opponent's mistake on the move before",
+      "learner": true,
+      "group": "game_review",
+      "texts": {}
+    },
+    {
+      "id": "chance-taken-4",
+      "takeOf": "chance-taken",
+      "set": "takes",
+      "when": "the learner's move makes use of the opponent's mistake on the move before",
+      "learner": true,
+      "group": "game_review",
+      "texts": {}
+    },
+    {
+      "id": "stronger-alternative-2",
+      "takeOf": "stronger-alternative",
+      "set": "takes",
+      "when": "the engine prefers a different move to the one played (follows another sentence)",
+      "group": "game_review",
+      "texts": {}
+    },
+    {
+      "id": "stronger-alternative-3",
+      "takeOf": "stronger-alternative",
+      "set": "takes",
+      "when": "the engine prefers a different move to the one played (follows another sentence)",
+      "group": "game_review",
+      "texts": {}
+    },
+    {
+      "id": "stronger-alternative-4",
+      "takeOf": "stronger-alternative",
+      "set": "takes",
+      "when": "the engine prefers a different move to the one played (follows another sentence)",
+      "group": "game_review",
+      "texts": {}
+    },
+    {
+      "id": "positional-passer-advance-actual-2",
+      "takeOf": "positional-passer-advance-actual",
+      "set": "takes",
+      "when": "the move played pushes a pawn that is already passed one step nearer promotion",
+      "group": "game_review",
+      "texts": {}
+    },
+    {
+      "id": "positional-passer-advance-actual-3",
+      "takeOf": "positional-passer-advance-actual",
+      "set": "takes",
+      "when": "the move played pushes a pawn that is already passed one step nearer promotion",
+      "group": "game_review",
+      "texts": {}
+    },
+    {
+      "id": "reply-check-2",
+      "takeOf": "reply-check",
+      "set": "takes",
+      "when": "the strongest reply to the move played gives check",
+      "group": "game_review",
+      "texts": {}
+    },
+    {
+      "id": "reply-check-3",
+      "takeOf": "reply-check",
+      "set": "takes",
+      "when": "the strongest reply to the move played gives check",
+      "group": "game_review",
+      "texts": {}
+    },
+    {
+      "id": "lesson-correct-move-2",
+      "takeOf": "lesson-correct-move",
+      "set": "takes",
+      "when": "in a lesson, the learner played the move the lesson teaches",
+      "learner": true,
+      "group": "lessons",
+      "texts": {}
+    },
+    {
+      "id": "lesson-correct-move-3",
+      "takeOf": "lesson-correct-move",
+      "set": "takes",
+      "when": "in a lesson, the learner played the move the lesson teaches",
+      "learner": true,
+      "group": "lessons",
+      "texts": {}
+    },
+    {
+      "id": "lesson-correct-move-4",
+      "takeOf": "lesson-correct-move",
+      "set": "takes",
+      "when": "in a lesson, the learner played the move the lesson teaches",
+      "learner": true,
+      "group": "lessons",
+      "texts": {}
+    },
+    {
+      "id": "puzzle-next-move-2",
+      "takeOf": "puzzle-next-move",
+      "set": "takes",
+      "when": "in a puzzle, the learner found the right move and the puzzle continues",
+      "learner": true,
+      "group": "puzzles",
+      "texts": {}
+    },
+    {
+      "id": "puzzle-next-move-3",
+      "takeOf": "puzzle-next-move",
+      "set": "takes",
+      "when": "in a puzzle, the learner found the right move and the puzzle continues",
+      "learner": true,
+      "group": "puzzles",
+      "texts": {}
+    },
+    {
+      "id": "puzzle-next-move-4",
+      "takeOf": "puzzle-next-move",
+      "set": "takes",
+      "when": "in a puzzle, the learner found the right move and the puzzle continues",
+      "learner": true,
+      "group": "puzzles",
+      "texts": {}
+    },
+    {
+      "id": "opening-recall-accepted-2",
+      "takeOf": "opening-recall-accepted",
+      "set": "takes",
+      "when": "in opening practice, the learner played the move from the opening they are studying",
+      "learner": true,
+      "group": "openings",
+      "texts": {}
+    },
+    {
+      "id": "opening-recall-accepted-3",
+      "takeOf": "opening-recall-accepted",
+      "set": "takes",
+      "when": "in opening practice, the learner played the move from the opening they are studying",
+      "learner": true,
+      "group": "openings",
+      "texts": {}
+    },
+    {
+      "id": "opening-recall-accepted-4",
+      "takeOf": "opening-recall-accepted",
+      "set": "takes",
+      "when": "in opening practice, the learner played the move from the opening they are studying",
+      "learner": true,
+      "group": "openings",
+      "texts": {}
+    },
+    {
+      "id": "grade-best-5",
+      "after": "grade-best-4",
+      "set": "takes",
+      "when": "the move is graded Best (the engine's top choice) and there is nothing more specific to say",
+      "examples": [
+        "grade-best-1",
+        "grade-best-2",
+        "grade-best-3",
+        "grade-best-4"
+      ],
+      "group": "game_review",
+      "texts": {}
+    },
+    {
+      "id": "grade-best-6",
+      "after": "grade-best-5",
+      "set": "takes",
+      "when": "the move is graded Best (the engine's top choice) and there is nothing more specific to say",
+      "examples": [
+        "grade-best-1",
+        "grade-best-2",
+        "grade-best-3",
+        "grade-best-4"
+      ],
+      "group": "game_review",
+      "texts": {}
+    },
+    {
+      "id": "grade-good-5",
+      "after": "grade-good-4",
+      "set": "takes",
+      "when": "the move is graded Good (a sound move, not the engine's top choice) and there is nothing more specific to say",
+      "examples": [
+        "grade-good-1",
+        "grade-good-2",
+        "grade-good-3",
+        "grade-good-4"
+      ],
+      "group": "game_review",
+      "texts": {}
+    },
+    {
+      "id": "grade-good-6",
+      "after": "grade-good-5",
+      "set": "takes",
+      "when": "the move is graded Good (a sound move, not the engine's top choice) and there is nothing more specific to say",
+      "examples": [
+        "grade-good-1",
+        "grade-good-2",
+        "grade-good-3",
+        "grade-good-4"
+      ],
+      "group": "game_review",
+      "texts": {}
     }
   ],
   "awaitingRecording": []

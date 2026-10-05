@@ -19,12 +19,14 @@ import { createPuzzleStarter, gameReviewPath, loadPuzzleSelection, puzzleThemeLa
 import { usePuzzleSession } from "./usePuzzleSession";
 import { useCoachSpeech } from "../audio/speech/useCoachSpeech";
 import { puzzleRecording } from "../audio/speech/practiceSelection";
+import { withSessionTake } from "../audio/speech/meaningPools";
 import { useSelectedCoachSpokenText } from "../audio/speech/spokenText";
 
 export default function PuzzlePlayer({ sessionId }: { sessionId: string }) {
   const state = usePuzzleSession(sessionId);
   const { session, frame, loading, busy, playing, retrying, error } = state;
-  const recordingId = puzzleRecording({session, error: !!error, playing, retrying});
+  // Extra takes of a clip take turns as the session's revisions advance.
+  const recordingId = withSessionTake(puzzleRecording({session, error: !!error, playing, retrying}), sessionId, session?.revision ?? 0);
   const voice = useCoachSpeech({
     scopeKey: `puzzle:${sessionId}:${session?.revision}:${state.fen ?? "position"}:${frame?.before_fen ?? ""}:${frame?.uci ?? ""}:${recordingId}`,
     recordingId, ready: !!session && !loading && !busy,

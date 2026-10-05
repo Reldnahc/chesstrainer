@@ -7,7 +7,8 @@ import {stableKey, type Claim, type CoachUtterance, type DialogueIntent} from ".
 import {bookRecordingId} from "../../dialogue/openingPresentation";
 import {ALTERNATIVE_SEPARATOR, sequenceRecordingId} from "./sequence";
 import {hasPieceVariants, sacrificedPieces, tacticPieces, withPieceVariant, withPieceVariants} from "./pieceVariants";
-import {withColoursAndTakes, type Side} from "./meaningPools";
+import {shuffledTakes, withColoursAndTakes, type Side} from "./meaningPools";
+import catalogue from "./meanings.json" with {type: "json"};
 import registry from "./banks/registry.json" with {type: "json"};
 
 export type GameSpeechContext = {
@@ -289,8 +290,8 @@ export function selectGameSpeech(context: GameSpeechContext) {
     if (id && side) sides.set(id, side);
   }
   // Colour lines and extra takes join once imported; the seed keeps a replayed ply on its take.
-  const seed = context.variation ? [context.frame?.fen] : [context.game.id, context.ply];
-  const pooled = (id: string) => withColoursAndTakes(withPieceVariants(id, pieces), sides, seed);
+  const seed = context.variation ? [context.frame?.fen] : [context.game.id], turn = context.variation ? 0 : context.ply;
+  const pooled = (id: string) => withColoursAndTakes(withPieceVariants(id, pieces), sides, seed, turn);
   const mover = context.frame ? opposite(context.frame.turn) : null;
   const sacrifice = gradeId?.startsWith("grade-brilliant-") && mover
     ? context.report?.intelligence?.events.find(event => event.kind === "sacrifice" && event.actor === mover) : undefined;
@@ -321,8 +322,9 @@ function gamePieces(context: GameSpeechContext, id: string): string[] | null {
   return id.startsWith("tactic-") || id.startsWith("cause-") ? tacticPieces(event) : null;
 }
 
-/** Takes per move grade for a ply with nothing more specific to say. */
+/** Takes every grade has; imported extra takes (grade-best-5, ...) join their grade. */
 export const GRADE_TAKES = 4;
+const catalogueIds = (catalogue.meanings as {id: string}[]).map(item => item.id);
 const gradePools: Readonly<Record<string, string>> = {
   Brilliant: "brilliant", Great: "great", Best: "best", Good: "good",
   Inaccuracy: "inaccuracy", Mistake: "mistake", Miss: "miss", Blunder: "blunder",
@@ -336,20 +338,10 @@ const plainPraise = new Set(["best-supported-choice", "good-choice"]);
 
 export function gradeTakeIds(label: string): string[] {
   const pool = gradePools[label];
-  return pool ? Array.from({length: GRADE_TAKES}, (_, index) => `grade-${pool}-${index + 1}`) : [];
-}
-
-/** The takes in a seeded order: each round of the same game and grade is its own
- * shuffle, and a round never opens with the take that closed the round before. */
-function shuffledTakes(ids: readonly string[], seed: readonly unknown[], round: number): string[] {
-  const order = [...ids];
-  for (let index = order.length - 1; index > 0; index--) {
-    const pick = Number.parseInt(stableKey([...seed, round, index]), 16) % (index + 1);
-    [order[index], order[pick]] = [order[pick], order[index]];
-  }
-  if (round > 0 && order.length > 1 && order[0] === shuffledTakes(ids, seed, round - 1).at(-1))
-    [order[0], order[1]] = [order[1], order[0]];
-  return order;
+  if (!pool) return [];
+  const pattern = new RegExp(`^grade-${pool}-(\\d+)$`);
+  const extra = catalogueIds.map(id => Number(pattern.exec(id)?.[1])).filter(take => take > GRADE_TAKES);
+  return Array.from({length: GRADE_TAKES + extra.length}, (_, index) => `grade-${pool}-${index + 1}`);
 }
 
 /** A ply whose whole line is the generic reading for its grade plays one of that
@@ -362,7 +354,9 @@ function gradeTake(context: GameSpeechContext, recordingId: string | null): stri
   const {game, report, frame, ply, variation = false} = context, label = report?.label;
   if (!recordingId || !label || !gradePools[label]
     || !(correctionGrades.has(label) ? plainCorrection : plainPraise).has(recordingId)) return;
-  const ids = gradeTakeIds(label);
+  // Takes a coach has not recorded yet sit out, so every turn plays a take.
+  const all = gradeTakeIds(label), recorded = all.filter(id => context.playable?.(id) ?? true);
+  const ids = recorded.length ? recorded : all;
   const earlier = variation ? 0 : game.frames.slice(1, ply).filter(item => item.report?.label === label).length;
   const order = shuffledTakes(ids, variation ? [frame?.fen, label] : [game.id, label], Math.floor(earlier / ids.length));
   return order[earlier % ids.length];
