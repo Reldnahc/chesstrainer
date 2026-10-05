@@ -120,9 +120,9 @@ test('book moves appear on the board, coach and branches with original-game accu
   await page.goto(`/games/${id}?ply=3`);
   await expect(page.locator('.game-summary caption')).toContainText('Complete game', {timeout: 60_000});
   await expect(page.getByRole('button', {name: '2. Ke2, Book', exact: true})).toHaveAttribute('aria-current', 'step');
-  // The book badge remains, but the poor move's consequence takes priority
-  // over opening trivia and quality disclaimers in the compact bubble.
-  await expect(page.locator('.coach-message')).toContainText(/pawns|would|allows|captur/);
+  // A move shown as Book gets the opening's name, not a correction, even
+  // when the engine grades it poorly; quality disclaimers stay out.
+  await expect(page.locator('.coach-message')).toContainText('Bongcloud Attack');
   await expect(page.locator('.coach-message')).not.toContainText(/Book recognition|does not.*sound|quality grade/);
   const bookFeedback = await page.locator('.coach-message').innerText();
   await expect(page.locator('.coach-speech .label-book svg')).toBeVisible();

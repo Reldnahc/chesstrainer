@@ -318,7 +318,9 @@ def test_brilliant_sacrifice_can_create_a_forced_mate(settings, sessions, stockf
 
 
 @pytest.mark.stockfish
-def test_a_mating_sacrifice_is_brilliant_even_when_already_winning(settings, sessions, stockfish_path):
+def test_a_mating_sacrifice_is_brilliant_even_when_already_winning(
+    settings, sessions, stockfish_path
+):
     from trainer.engine import Stockfish
 
     settings.stockfish_path = stockfish_path
@@ -542,8 +544,14 @@ def test_a_missed_tactic_is_a_miss_only_at_mistake_size():
 
 
 def test_a_played_move_searched_above_the_reported_best_is_promoted():
-    report = quality(790, 896, loss_cp=0, opportunity_missed=True,
-                     best_line={"line": "best"}, actual_line={"line": "actual"})
+    report = quality(
+        790,
+        896,
+        loss_cp=0,
+        opportunity_missed=True,
+        best_line={"line": "best"},
+        actual_line={"line": "actual"},
+    )
     promoted = promote_stronger_played(report)
     assert promoted["best"] == report["actual"]
     assert promoted["best_line"] == report["actual_line"]

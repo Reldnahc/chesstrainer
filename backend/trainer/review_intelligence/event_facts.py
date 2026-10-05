@@ -36,7 +36,11 @@ def forced_mate_stage(best, actual, previous):
         if actual.value == 2:
             return "next"
         earlier = Score.model_validate(previous) if previous else None
-        return "continued" if earlier and earlier.kind == "mate" and earlier.outcome() == 1 else "started"
+        return (
+            "continued"
+            if earlier and earlier.kind == "mate" and earlier.outcome() == 1
+            else "started"
+        )
     # Already lost: the best defence was mated too.
     return "hastened" if abs(actual.value) < abs(best.value) else "held"
 

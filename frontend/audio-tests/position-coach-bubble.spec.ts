@@ -59,7 +59,7 @@ test("a recorded coach's bubble shows its recorded line, and Maia's popup keeps 
 test("with voice off, a coach's bubble still shows its spoken line and offers no Listen control", async ({page}) => {
   await mount(page, "dog-gentle", games["allowed-mate-natural"], {voice: "off"});
   // The book claim's recognition joins the mate line as the coach's second sentence.
-  await expect(bubble(page)).toHaveAttribute("data-spoken", /^allowed-mate(?:\+[a-z0-9-]+)?$/);
+  await expect(bubble(page)).toHaveAttribute("data-spoken", /^allowed-mate(?:-next)?(?:\+[a-z0-9-]+)?$/);
   const spoken = (await bubble(page).getAttribute("data-spoken"))!;
   await expect.poll(() => shown(page)).toBe(line(alfie.recordings, spoken));
   await expect(region(page).getByRole("button", {name: /^Listen/})).toHaveCount(0);

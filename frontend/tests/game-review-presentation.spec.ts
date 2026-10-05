@@ -33,7 +33,7 @@ test('completed reviews stay move-by-move without a game story or critical-momen
   await expect(page.locator('.coach-speech')).toContainText('Qh4#');
   // The bubble shows Walter's spoken line; the moves line keeps the real reply visible.
   const spoken = page.locator('.coach-message [data-utterance]');
-  await expect(spoken).toHaveAttribute('data-spoken', /^allowed-mate(?:\+[a-z0-9-]+)?$/);
+  await expect(spoken).toHaveAttribute('data-spoken', /^allowed-mate(?:-next)?(?:\+[a-z0-9-]+)?$/);
   // The visible line; the moves are announced after it in a screen-reader-only span.
   const line = walter((await spoken.getAttribute('data-spoken'))!);
   await expect.poll(() => spoken.evaluate(element => element.firstChild?.textContent)).toBe(line);
