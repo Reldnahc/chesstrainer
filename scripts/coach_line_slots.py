@@ -80,7 +80,7 @@ EXTRA_TAKES = [
     (
         "stronger-alternative",
         3,
-        "the engine prefers a different move to the one played (follows another sentence)",
+        "the engine prefers a different move to the one played (it can play on its own, so it must make sense without an earlier sentence)",
         False,
     ),
     (
