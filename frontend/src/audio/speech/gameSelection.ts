@@ -7,6 +7,7 @@ import {stableKey, type Claim, type CoachUtterance, type DialogueIntent} from ".
 import {bookRecordingId} from "../../dialogue/openingPresentation";
 import {ALTERNATIVE_SEPARATOR, sequenceRecordingId} from "./sequence";
 import {hasPieceVariants, sacrificedPieces, tacticPieces, withPieceVariant, withPieceVariants} from "./pieceVariants";
+import {withColoursAndTakes, type Side} from "./meaningPools";
 import registry from "./banks/registry.json" with {type: "json"};
 
 export type GameSpeechContext = {
@@ -280,21 +281,33 @@ export function selectGameSpeech(context: GameSpeechContext) {
   }
   const gradeId = gradeTake(context, recordingId);
   // Each sentence and grade take may also name its piece; the generic line stays the fallback.
-  const pieces = new Map<string, readonly string[]>();
+  const pieces = new Map<string, readonly string[]>(), sides = new Map<string, Side>();
   for (const [index, id] of [[lead, primaryId], [lead + 1, secondId]] as const) {
     const named = id && hasPieceVariants(id) ? gamePieces({...context, claimIndex: index}, id) : null;
     if (id && named) pieces.set(id, named);
+    const side = id?.startsWith("positional-") ? positionalSide({...context, claimIndex: index}) : null;
+    if (id && side) sides.set(id, side);
   }
+  // Colour lines and extra takes join once imported; the seed keeps a replayed ply on its take.
+  const seed = context.variation ? [context.frame?.fen] : [context.game.id, context.ply];
+  const pooled = (id: string) => withColoursAndTakes(withPieceVariants(id, pieces), sides, seed);
   const mover = context.frame ? opposite(context.frame.turn) : null;
   const sacrifice = gradeId?.startsWith("grade-brilliant-") && mover
     ? context.report?.intelligence?.events.find(event => event.kind === "sacrifice" && event.actor === mover) : undefined;
   const sacrificed = sacrifice && mover ? sacrificedPieces(sacrifice.facts.acceptance_move, context.frame?.fen, mover) : null;
   const variants = {
-    recordingId: recordingId && withPieceVariants(recordingId, pieces),
-    primaryId: primaryId && withPieceVariants(primaryId, pieces),
+    recordingId: recordingId && pooled(recordingId),
+    primaryId: primaryId && pooled(primaryId),
     ...(gradeId ? {gradeId: withPieceVariant(gradeId, sacrificed)} : {}),
   };
   return {recordingId, primaryId, ...(gradeId ? {gradeId} : {}), variants};
+}
+
+/** The side whose pawns, rook or piece a selected positional clip is about. */
+function positionalSide(context: GameSpeechContext): Side | null {
+  const item = context.utterance.renderedClaims?.[context.claimIndex ?? 0];
+  const side = item && context.report ? eventFor(item, context.report)?.facts.side : null;
+  return side === "white" || side === "black" ? side : null;
 }
 
 /** The piece a selected game-review clip is about, from the evidence that selected it. */

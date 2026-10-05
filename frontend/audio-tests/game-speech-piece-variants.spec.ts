@@ -9,6 +9,8 @@ import {selectGameSpeech} from "../src/audio/speech/gameSelection";
 import {explanationFindingRecording, explanationFrameRecording} from "../src/audio/speech/practiceSelection";
 import {pieceOn, withPieceVariant, withPieceVariants} from "../src/audio/speech/pieceVariants";
 import catalogue from "../src/audio/speech/meanings.json" with {type: "json"};
+import planned from "../src/audio/speech/planned-meanings.json" with {type: "json"};
+import {withColourAndTakes} from "../src/audio/speech/meaningPools";
 import {semanticFixtures} from "../tests/semantic-fixtures";
 import {openAudioFixturePage} from "./fixtures/openAudioFixture";
 import {viteFsPath} from "../studio-tests/helpers/viteFsPath";
@@ -94,8 +96,35 @@ test("positional support and development name the knight their boards move or gu
   for (const fixture of positional) {
     const result = speech(structuredClone(fixture.game));
     if (result.primaryId !== fixture.primary) continue;
-    expect(result.variants.primaryId).toBe(`${fixture.primary}-knight|${fixture.primary}`);
+    // Imported colour lines and takes may join the piece-named line; the generic line stays last.
+    const chain = result.variants.primaryId!.split("|");
+    expect(chain).toContain(`${fixture.primary}-knight`);
+    expect(chain.at(-1)).toBe(fixture.primary);
   }
+});
+
+type Pooled = {id: string; colourOf?: string; takeOf?: string; side?: "white" | "black"};
+test("colour lines lead and takes share turns only once their lines are imported", () => {
+  const pooled = catalogue.meanings as Pooled[], ids = new Set(pooled.map(item => item.id));
+  for (const item of pooled.filter(item => item.colourOf)) {
+    const chain = withColourAndTakes(item.colourOf!, item.side, ["game", 1]).split("|");
+    expect(chain[0]).toBe(item.id);
+    expect(chain.at(-1)).toBe(item.colourOf);
+  }
+  for (const item of pooled.filter(item => item.takeOf)) {
+    const other = item.side === "white" ? "black" : "white";
+    expect(withColourAndTakes(item.takeOf!, item.side ?? "white", ["game", 1]).split("|")).toContain(item.id);
+    if (item.side) expect(withColourAndTakes(item.takeOf!, other, ["game", 1]).split("|")).not.toContain(item.id);
+  }
+  // Planned slots without lines are never offered.
+  for (const slot of planned.slots) {
+    expect(ids.has(slot.id)).toBe(false);
+    const base = slot.colourOf ?? slot.takeOf!;
+    expect(withColourAndTakes(base, slot.side as "white" | "black" | undefined, ["game", 1]).split("|")).not.toContain(slot.id);
+  }
+  // A replayed ply keeps its take.
+  expect(withColourAndTakes("positional-development-actual-knight", null, ["game", 7]))
+    .toBe(withColourAndTakes("positional-development-actual-knight", null, ["game", 7]));
 });
 
 const relationship = semanticFixtures<Record<string, Game>>("review_speech_relationship_fixtures.py");
