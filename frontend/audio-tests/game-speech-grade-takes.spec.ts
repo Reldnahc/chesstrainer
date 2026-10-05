@@ -69,15 +69,32 @@ for (const coach of coaches) {
   });
 }
 
-test("neighbouring same-grade moves cycle through every take before repeating", () => {
+/** The same plain inaccuracy repeated at plies 1..length of one game. */
+function repeatedError(length: number, id?: string) {
   const base = plainError("Inaccuracy");
-  // The same plain inaccuracy repeated at plies 1..8 of one game.
-  const game = {...base, frames: [base.frames[0], ...Array.from({length: 8}, () => structuredClone(base.frames[1]))]};
-  const takes = Array.from({length: 8}, (_, index) => selectGameSpeech(context(game, index + 1)).gradeId);
+  return {...base, ...(id ? {id} : {}), frames: [base.frames[0], ...Array.from({length}, () => structuredClone(base.frames[1]))]};
+}
+
+test("neighbouring same-grade moves play every take before any repeats", () => {
+  const rounds = 6, game = repeatedError(rounds * GRADE_TAKES);
+  const takes = Array.from({length: rounds * GRADE_TAKES}, (_, index) => selectGameSpeech(context(game, index + 1)).gradeId);
   expect(takes.every(Boolean)).toBe(true);
+  // No take plays twice in a row, including across the end of a round.
   for (let index = 1; index < takes.length; index++) expect(takes[index]).not.toBe(takes[index - 1]);
-  expect(new Set(takes.slice(0, GRADE_TAKES)).size).toBe(GRADE_TAKES);
-  expect(takes.slice(GRADE_TAKES)).toEqual(takes.slice(0, GRADE_TAKES));
+  for (let round = 0; round < rounds; round++)
+    expect(new Set(takes.slice(round * GRADE_TAKES, (round + 1) * GRADE_TAKES)).size).toBe(GRADE_TAKES);
+  // Later rounds are reshuffled rather than replaying the first round's order.
+  expect(new Set(Array.from({length: rounds}, (_, round) => takes.slice(round * GRADE_TAKES, (round + 1) * GRADE_TAKES).join())).size).toBeGreaterThan(1);
   // Replaying a ply repeats its take.
   expect(selectGameSpeech(context(game, 3)).gradeId).toBe(takes[2]);
+  expect(selectGameSpeech(context(game, 11)).gradeId).toBe(takes[10]);
+});
+
+test("each game shuffles the takes rather than rotating one fixed order", () => {
+  // A rotation of one fixed order allows at most GRADE_TAKES distinct orders.
+  const orders = new Set(Array.from({length: 24}, (_, index) => {
+    const game = repeatedError(GRADE_TAKES, `shuffle-${index}`);
+    return Array.from({length: GRADE_TAKES}, (_, ply) => selectGameSpeech(context(game, ply + 1)).gradeId).join();
+  }));
+  expect(orders.size).toBeGreaterThan(GRADE_TAKES);
 });
