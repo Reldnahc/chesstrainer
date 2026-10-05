@@ -1,886 +1,105 @@
 {
   "schemaVersion": 1,
-  "slots": [
-    {
-      "id": "positional-passed-actual-white",
-      "colourOf": "positional-passed-actual",
-      "side": "white",
-      "set": "colour",
-      "when": "Move played: White gets a new passed pawn",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-passed-actual-black",
-      "colourOf": "positional-passed-actual",
-      "side": "black",
-      "set": "colour",
-      "when": "Move played: Black gets a new passed pawn",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-passed-alternative-white",
-      "colourOf": "positional-passed-alternative",
-      "side": "white",
-      "set": "colour",
-      "when": "Better move that was NOT played: White gets a new passed pawn",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-passed-alternative-black",
-      "colourOf": "positional-passed-alternative",
-      "side": "black",
-      "set": "colour",
-      "when": "Better move that was NOT played: Black gets a new passed pawn",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-isolated-actual-white",
-      "colourOf": "positional-isolated-actual",
-      "side": "white",
-      "set": "colour",
-      "when": "Move played: White is left with an isolated pawn",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-isolated-actual-black",
-      "colourOf": "positional-isolated-actual",
-      "side": "black",
-      "set": "colour",
-      "when": "Move played: Black is left with an isolated pawn",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-isolated-alternative-white",
-      "colourOf": "positional-isolated-alternative",
-      "side": "white",
-      "set": "colour",
-      "when": "Better move that was NOT played: White is left with an isolated pawn",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-isolated-alternative-black",
-      "colourOf": "positional-isolated-alternative",
-      "side": "black",
-      "set": "colour",
-      "when": "Better move that was NOT played: Black is left with an isolated pawn",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-doubled-actual-white",
-      "colourOf": "positional-doubled-actual",
-      "side": "white",
-      "set": "colour",
-      "when": "Move played: White is left with doubled pawns",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-doubled-actual-black",
-      "colourOf": "positional-doubled-actual",
-      "side": "black",
-      "set": "colour",
-      "when": "Move played: Black is left with doubled pawns",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-doubled-alternative-white",
-      "colourOf": "positional-doubled-alternative",
-      "side": "white",
-      "set": "colour",
-      "when": "Better move that was NOT played: White is left with doubled pawns",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-doubled-alternative-black",
-      "colourOf": "positional-doubled-alternative",
-      "side": "black",
-      "set": "colour",
-      "when": "Better move that was NOT played: Black is left with doubled pawns",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-rook-open-actual-white",
-      "colourOf": "positional-rook-open-actual",
-      "side": "white",
-      "set": "colour",
-      "when": "Move played: White's rook gets an open file (no pawns on it)",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-rook-open-actual-black",
-      "colourOf": "positional-rook-open-actual",
-      "side": "black",
-      "set": "colour",
-      "when": "Move played: Black's rook gets an open file (no pawns on it)",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-rook-open-alternative-white",
-      "colourOf": "positional-rook-open-alternative",
-      "side": "white",
-      "set": "colour",
-      "when": "Better move that was NOT played: White's rook gets an open file (no pawns on it)",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-rook-open-alternative-black",
-      "colourOf": "positional-rook-open-alternative",
-      "side": "black",
-      "set": "colour",
-      "when": "Better move that was NOT played: Black's rook gets an open file (no pawns on it)",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-rook-semi-open-actual-white",
-      "colourOf": "positional-rook-semi-open-actual",
-      "side": "white",
-      "set": "colour",
-      "when": "Move played: White's rook gets a semi-open file (none of its own pawns, at least one enemy pawn)",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-rook-semi-open-actual-black",
-      "colourOf": "positional-rook-semi-open-actual",
-      "side": "black",
-      "set": "colour",
-      "when": "Move played: Black's rook gets a semi-open file (none of its own pawns, at least one enemy pawn)",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-rook-semi-open-alternative-white",
-      "colourOf": "positional-rook-semi-open-alternative",
-      "side": "white",
-      "set": "colour",
-      "when": "Better move that was NOT played: White's rook gets a semi-open file (none of its own pawns, at least one enemy pawn)",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-rook-semi-open-alternative-black",
-      "colourOf": "positional-rook-semi-open-alternative",
-      "side": "black",
-      "set": "colour",
-      "when": "Better move that was NOT played: Black's rook gets a semi-open file (none of its own pawns, at least one enemy pawn)",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-support-actual-knight-white",
-      "takeOf": "positional-support-actual-knight",
-      "side": "white",
-      "set": "colour",
-      "when": "Move played: White's knight gains a defender it did not have",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-support-actual-knight-black",
-      "takeOf": "positional-support-actual-knight",
-      "side": "black",
-      "set": "colour",
-      "when": "Move played: Black's knight gains a defender it did not have",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-support-actual-bishop-white",
-      "takeOf": "positional-support-actual-bishop",
-      "side": "white",
-      "set": "colour",
-      "when": "Move played: White's bishop gains a defender it did not have",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-support-actual-bishop-black",
-      "takeOf": "positional-support-actual-bishop",
-      "side": "black",
-      "set": "colour",
-      "when": "Move played: Black's bishop gains a defender it did not have",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-support-actual-rook-white",
-      "takeOf": "positional-support-actual-rook",
-      "side": "white",
-      "set": "colour",
-      "when": "Move played: White's rook gains a defender it did not have",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-support-actual-rook-black",
-      "takeOf": "positional-support-actual-rook",
-      "side": "black",
-      "set": "colour",
-      "when": "Move played: Black's rook gains a defender it did not have",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-support-actual-queen-white",
-      "takeOf": "positional-support-actual-queen",
-      "side": "white",
-      "set": "colour",
-      "when": "Move played: White's queen gains a defender it did not have",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-support-actual-queen-black",
-      "takeOf": "positional-support-actual-queen",
-      "side": "black",
-      "set": "colour",
-      "when": "Move played: Black's queen gains a defender it did not have",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-support-alternative-knight-white",
-      "takeOf": "positional-support-alternative-knight",
-      "side": "white",
-      "set": "colour",
-      "when": "Better move that was NOT played: White's knight gains a defender it did not have",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-support-alternative-knight-black",
-      "takeOf": "positional-support-alternative-knight",
-      "side": "black",
-      "set": "colour",
-      "when": "Better move that was NOT played: Black's knight gains a defender it did not have",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-support-alternative-bishop-white",
-      "takeOf": "positional-support-alternative-bishop",
-      "side": "white",
-      "set": "colour",
-      "when": "Better move that was NOT played: White's bishop gains a defender it did not have",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-support-alternative-bishop-black",
-      "takeOf": "positional-support-alternative-bishop",
-      "side": "black",
-      "set": "colour",
-      "when": "Better move that was NOT played: Black's bishop gains a defender it did not have",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-support-alternative-rook-white",
-      "takeOf": "positional-support-alternative-rook",
-      "side": "white",
-      "set": "colour",
-      "when": "Better move that was NOT played: White's rook gains a defender it did not have",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-support-alternative-rook-black",
-      "takeOf": "positional-support-alternative-rook",
-      "side": "black",
-      "set": "colour",
-      "when": "Better move that was NOT played: Black's rook gains a defender it did not have",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-support-alternative-queen-white",
-      "takeOf": "positional-support-alternative-queen",
-      "side": "white",
-      "set": "colour",
-      "when": "Better move that was NOT played: White's queen gains a defender it did not have",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-support-alternative-queen-black",
-      "takeOf": "positional-support-alternative-queen",
-      "side": "black",
-      "set": "colour",
-      "when": "Better move that was NOT played: Black's queen gains a defender it did not have",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-unsupported-actual-knight-white",
-      "takeOf": "positional-unsupported-actual-knight",
-      "side": "white",
-      "set": "colour",
-      "when": "Move played: White's knight loses its last defender",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-unsupported-actual-knight-black",
-      "takeOf": "positional-unsupported-actual-knight",
-      "side": "black",
-      "set": "colour",
-      "when": "Move played: Black's knight loses its last defender",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-unsupported-actual-bishop-white",
-      "takeOf": "positional-unsupported-actual-bishop",
-      "side": "white",
-      "set": "colour",
-      "when": "Move played: White's bishop loses its last defender",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-unsupported-actual-bishop-black",
-      "takeOf": "positional-unsupported-actual-bishop",
-      "side": "black",
-      "set": "colour",
-      "when": "Move played: Black's bishop loses its last defender",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-unsupported-actual-rook-white",
-      "takeOf": "positional-unsupported-actual-rook",
-      "side": "white",
-      "set": "colour",
-      "when": "Move played: White's rook loses its last defender",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-unsupported-actual-rook-black",
-      "takeOf": "positional-unsupported-actual-rook",
-      "side": "black",
-      "set": "colour",
-      "when": "Move played: Black's rook loses its last defender",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-unsupported-actual-queen-white",
-      "takeOf": "positional-unsupported-actual-queen",
-      "side": "white",
-      "set": "colour",
-      "when": "Move played: White's queen loses its last defender",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-unsupported-actual-queen-black",
-      "takeOf": "positional-unsupported-actual-queen",
-      "side": "black",
-      "set": "colour",
-      "when": "Move played: Black's queen loses its last defender",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-unsupported-alternative-knight-white",
-      "takeOf": "positional-unsupported-alternative-knight",
-      "side": "white",
-      "set": "colour",
-      "when": "Better move that was NOT played: White's knight loses its last defender",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-unsupported-alternative-knight-black",
-      "takeOf": "positional-unsupported-alternative-knight",
-      "side": "black",
-      "set": "colour",
-      "when": "Better move that was NOT played: Black's knight loses its last defender",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-unsupported-alternative-bishop-white",
-      "takeOf": "positional-unsupported-alternative-bishop",
-      "side": "white",
-      "set": "colour",
-      "when": "Better move that was NOT played: White's bishop loses its last defender",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-unsupported-alternative-bishop-black",
-      "takeOf": "positional-unsupported-alternative-bishop",
-      "side": "black",
-      "set": "colour",
-      "when": "Better move that was NOT played: Black's bishop loses its last defender",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-unsupported-alternative-rook-white",
-      "takeOf": "positional-unsupported-alternative-rook",
-      "side": "white",
-      "set": "colour",
-      "when": "Better move that was NOT played: White's rook loses its last defender",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-unsupported-alternative-rook-black",
-      "takeOf": "positional-unsupported-alternative-rook",
-      "side": "black",
-      "set": "colour",
-      "when": "Better move that was NOT played: Black's rook loses its last defender",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-unsupported-alternative-queen-white",
-      "takeOf": "positional-unsupported-alternative-queen",
-      "side": "white",
-      "set": "colour",
-      "when": "Better move that was NOT played: White's queen loses its last defender",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-unsupported-alternative-queen-black",
-      "takeOf": "positional-unsupported-alternative-queen",
-      "side": "black",
-      "set": "colour",
-      "when": "Better move that was NOT played: Black's queen loses its last defender",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-development-actual-knight-2",
-      "takeOf": "positional-development-actual-knight",
-      "set": "development",
-      "when": "Move played: a knight leaves its starting square for the first time",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-development-actual-knight-3",
-      "takeOf": "positional-development-actual-knight",
-      "set": "development",
-      "when": "Move played: a knight leaves its starting square for the first time",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-development-actual-knight-4",
-      "takeOf": "positional-development-actual-knight",
-      "set": "development",
-      "when": "Move played: a knight leaves its starting square for the first time",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-development-actual-knight-5",
-      "takeOf": "positional-development-actual-knight",
-      "set": "development",
-      "when": "Move played: a knight leaves its starting square for the first time",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-development-actual-bishop-2",
-      "takeOf": "positional-development-actual-bishop",
-      "set": "development",
-      "when": "Move played: a bishop leaves its starting square for the first time",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-development-actual-bishop-3",
-      "takeOf": "positional-development-actual-bishop",
-      "set": "development",
-      "when": "Move played: a bishop leaves its starting square for the first time",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-development-actual-bishop-4",
-      "takeOf": "positional-development-actual-bishop",
-      "set": "development",
-      "when": "Move played: a bishop leaves its starting square for the first time",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-development-actual-bishop-5",
-      "takeOf": "positional-development-actual-bishop",
-      "set": "development",
-      "when": "Move played: a bishop leaves its starting square for the first time",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-development-alternative-knight-2",
-      "takeOf": "positional-development-alternative-knight",
-      "set": "development",
-      "when": "Better move that was NOT played: a knight leaves its starting square for the first time",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-development-alternative-knight-3",
-      "takeOf": "positional-development-alternative-knight",
-      "set": "development",
-      "when": "Better move that was NOT played: a knight leaves its starting square for the first time",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-development-alternative-knight-4",
-      "takeOf": "positional-development-alternative-knight",
-      "set": "development",
-      "when": "Better move that was NOT played: a knight leaves its starting square for the first time",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-development-alternative-knight-5",
-      "takeOf": "positional-development-alternative-knight",
-      "set": "development",
-      "when": "Better move that was NOT played: a knight leaves its starting square for the first time",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-development-alternative-bishop-2",
-      "takeOf": "positional-development-alternative-bishop",
-      "set": "development",
-      "when": "Better move that was NOT played: a bishop leaves its starting square for the first time",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-development-alternative-bishop-3",
-      "takeOf": "positional-development-alternative-bishop",
-      "set": "development",
-      "when": "Better move that was NOT played: a bishop leaves its starting square for the first time",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-development-alternative-bishop-4",
-      "takeOf": "positional-development-alternative-bishop",
-      "set": "development",
-      "when": "Better move that was NOT played: a bishop leaves its starting square for the first time",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-development-alternative-bishop-5",
-      "takeOf": "positional-development-alternative-bishop",
-      "set": "development",
-      "when": "Better move that was NOT played: a bishop leaves its starting square for the first time",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "evaluation-loss-2",
-      "takeOf": "evaluation-loss",
-      "set": "takes",
-      "when": "the move played is worse than the engine's best move, with no specific tactic to name",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "evaluation-loss-3",
-      "takeOf": "evaluation-loss",
-      "set": "takes",
-      "when": "the move played is worse than the engine's best move, with no specific tactic to name",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "evaluation-loss-4",
-      "takeOf": "evaluation-loss",
-      "set": "takes",
-      "when": "the move played is worse than the engine's best move, with no specific tactic to name",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "evaluation-loss-5",
-      "takeOf": "evaluation-loss",
-      "set": "takes",
-      "when": "the move played is worse than the engine's best move, with no specific tactic to name",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "immediate-capture-2",
-      "takeOf": "immediate-capture",
-      "set": "takes",
-      "when": "after the move played, the other side has a capture straight away",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "immediate-capture-3",
-      "takeOf": "immediate-capture",
-      "set": "takes",
-      "when": "after the move played, the other side has a capture straight away",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "immediate-capture-4",
-      "takeOf": "immediate-capture",
-      "set": "takes",
-      "when": "after the move played, the other side has a capture straight away",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "immediate-capture-5",
-      "takeOf": "immediate-capture",
-      "set": "takes",
-      "when": "after the move played, the other side has a capture straight away",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "chance-taken-2",
-      "takeOf": "chance-taken",
-      "set": "takes",
-      "when": "the learner's move makes use of the opponent's mistake on the move before",
-      "learner": true,
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "chance-taken-3",
-      "takeOf": "chance-taken",
-      "set": "takes",
-      "when": "the learner's move makes use of the opponent's mistake on the move before",
-      "learner": true,
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "chance-taken-4",
-      "takeOf": "chance-taken",
-      "set": "takes",
-      "when": "the learner's move makes use of the opponent's mistake on the move before",
-      "learner": true,
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "stronger-alternative-2",
-      "takeOf": "stronger-alternative",
-      "set": "takes",
-      "when": "the engine prefers a different move to the one played (follows another sentence)",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "stronger-alternative-3",
-      "takeOf": "stronger-alternative",
-      "set": "takes",
-      "when": "the engine prefers a different move to the one played (follows another sentence)",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "stronger-alternative-4",
-      "takeOf": "stronger-alternative",
-      "set": "takes",
-      "when": "the engine prefers a different move to the one played (follows another sentence)",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-passer-advance-actual-2",
-      "takeOf": "positional-passer-advance-actual",
-      "set": "takes",
-      "when": "the move played pushes a pawn that is already passed one step nearer promotion",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "positional-passer-advance-actual-3",
-      "takeOf": "positional-passer-advance-actual",
-      "set": "takes",
-      "when": "the move played pushes a pawn that is already passed one step nearer promotion",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "reply-check-2",
-      "takeOf": "reply-check",
-      "set": "takes",
-      "when": "the strongest reply to the move played gives check",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "reply-check-3",
-      "takeOf": "reply-check",
-      "set": "takes",
-      "when": "the strongest reply to the move played gives check",
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "lesson-correct-move-2",
-      "takeOf": "lesson-correct-move",
-      "set": "takes",
-      "when": "in a lesson, the learner played the move the lesson teaches",
-      "learner": true,
-      "group": "lessons",
-      "texts": {}
-    },
-    {
-      "id": "lesson-correct-move-3",
-      "takeOf": "lesson-correct-move",
-      "set": "takes",
-      "when": "in a lesson, the learner played the move the lesson teaches",
-      "learner": true,
-      "group": "lessons",
-      "texts": {}
-    },
-    {
-      "id": "lesson-correct-move-4",
-      "takeOf": "lesson-correct-move",
-      "set": "takes",
-      "when": "in a lesson, the learner played the move the lesson teaches",
-      "learner": true,
-      "group": "lessons",
-      "texts": {}
-    },
-    {
-      "id": "puzzle-next-move-2",
-      "takeOf": "puzzle-next-move",
-      "set": "takes",
-      "when": "in a puzzle, the learner found the right move and the puzzle continues",
-      "learner": true,
-      "group": "puzzles",
-      "texts": {}
-    },
-    {
-      "id": "puzzle-next-move-3",
-      "takeOf": "puzzle-next-move",
-      "set": "takes",
-      "when": "in a puzzle, the learner found the right move and the puzzle continues",
-      "learner": true,
-      "group": "puzzles",
-      "texts": {}
-    },
-    {
-      "id": "puzzle-next-move-4",
-      "takeOf": "puzzle-next-move",
-      "set": "takes",
-      "when": "in a puzzle, the learner found the right move and the puzzle continues",
-      "learner": true,
-      "group": "puzzles",
-      "texts": {}
-    },
-    {
-      "id": "opening-recall-accepted-2",
-      "takeOf": "opening-recall-accepted",
-      "set": "takes",
-      "when": "in opening practice, the learner played the move from the opening they are studying",
-      "learner": true,
-      "group": "openings",
-      "texts": {}
-    },
-    {
-      "id": "opening-recall-accepted-3",
-      "takeOf": "opening-recall-accepted",
-      "set": "takes",
-      "when": "in opening practice, the learner played the move from the opening they are studying",
-      "learner": true,
-      "group": "openings",
-      "texts": {}
-    },
-    {
-      "id": "opening-recall-accepted-4",
-      "takeOf": "opening-recall-accepted",
-      "set": "takes",
-      "when": "in opening practice, the learner played the move from the opening they are studying",
-      "learner": true,
-      "group": "openings",
-      "texts": {}
-    },
-    {
-      "id": "grade-best-5",
-      "after": "grade-best-4",
-      "set": "takes",
-      "when": "the move is graded Best (the engine's top choice) and there is nothing more specific to say",
-      "examples": [
-        "grade-best-1",
-        "grade-best-2",
-        "grade-best-3",
-        "grade-best-4"
-      ],
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "grade-best-6",
-      "after": "grade-best-5",
-      "set": "takes",
-      "when": "the move is graded Best (the engine's top choice) and there is nothing more specific to say",
-      "examples": [
-        "grade-best-1",
-        "grade-best-2",
-        "grade-best-3",
-        "grade-best-4"
-      ],
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "grade-good-5",
-      "after": "grade-good-4",
-      "set": "takes",
-      "when": "the move is graded Good (a sound move, not the engine's top choice) and there is nothing more specific to say",
-      "examples": [
-        "grade-good-1",
-        "grade-good-2",
-        "grade-good-3",
-        "grade-good-4"
-      ],
-      "group": "game_review",
-      "texts": {}
-    },
-    {
-      "id": "grade-good-6",
-      "after": "grade-good-5",
-      "set": "takes",
-      "when": "the move is graded Good (a sound move, not the engine's top choice) and there is nothing more specific to say",
-      "examples": [
-        "grade-good-1",
-        "grade-good-2",
-        "grade-good-3",
-        "grade-good-4"
-      ],
-      "group": "game_review",
-      "texts": {}
-    }
-  ],
-  "awaitingRecording": []
+  "slots": [],
+  "awaitingRecording": [
+    "positional-passed-actual-white",
+    "positional-passed-actual-black",
+    "positional-passed-alternative-white",
+    "positional-passed-alternative-black",
+    "positional-isolated-actual-white",
+    "positional-isolated-actual-black",
+    "positional-isolated-alternative-white",
+    "positional-isolated-alternative-black",
+    "positional-doubled-actual-white",
+    "positional-doubled-actual-black",
+    "positional-doubled-alternative-white",
+    "positional-doubled-alternative-black",
+    "positional-rook-open-actual-white",
+    "positional-rook-open-actual-black",
+    "positional-rook-open-alternative-white",
+    "positional-rook-open-alternative-black",
+    "positional-rook-semi-open-actual-white",
+    "positional-rook-semi-open-actual-black",
+    "positional-rook-semi-open-alternative-white",
+    "positional-rook-semi-open-alternative-black",
+    "positional-support-actual-knight-white",
+    "positional-support-actual-knight-black",
+    "positional-support-actual-bishop-white",
+    "positional-support-actual-bishop-black",
+    "positional-support-actual-rook-white",
+    "positional-support-actual-rook-black",
+    "positional-support-actual-queen-white",
+    "positional-support-actual-queen-black",
+    "positional-support-alternative-knight-white",
+    "positional-support-alternative-knight-black",
+    "positional-support-alternative-bishop-white",
+    "positional-support-alternative-bishop-black",
+    "positional-support-alternative-rook-white",
+    "positional-support-alternative-rook-black",
+    "positional-support-alternative-queen-white",
+    "positional-support-alternative-queen-black",
+    "positional-unsupported-actual-knight-white",
+    "positional-unsupported-actual-knight-black",
+    "positional-unsupported-actual-bishop-white",
+    "positional-unsupported-actual-bishop-black",
+    "positional-unsupported-actual-rook-white",
+    "positional-unsupported-actual-rook-black",
+    "positional-unsupported-actual-queen-white",
+    "positional-unsupported-actual-queen-black",
+    "positional-unsupported-alternative-knight-white",
+    "positional-unsupported-alternative-knight-black",
+    "positional-unsupported-alternative-bishop-white",
+    "positional-unsupported-alternative-bishop-black",
+    "positional-unsupported-alternative-rook-white",
+    "positional-unsupported-alternative-rook-black",
+    "positional-unsupported-alternative-queen-white",
+    "positional-unsupported-alternative-queen-black",
+    "positional-development-actual-knight-2",
+    "positional-development-actual-knight-3",
+    "positional-development-actual-knight-4",
+    "positional-development-actual-knight-5",
+    "positional-development-actual-bishop-2",
+    "positional-development-actual-bishop-3",
+    "positional-development-actual-bishop-4",
+    "positional-development-actual-bishop-5",
+    "positional-development-alternative-knight-2",
+    "positional-development-alternative-knight-3",
+    "positional-development-alternative-knight-4",
+    "positional-development-alternative-knight-5",
+    "positional-development-alternative-bishop-2",
+    "positional-development-alternative-bishop-3",
+    "positional-development-alternative-bishop-4",
+    "positional-development-alternative-bishop-5",
+    "evaluation-loss-2",
+    "evaluation-loss-3",
+    "evaluation-loss-4",
+    "evaluation-loss-5",
+    "immediate-capture-2",
+    "immediate-capture-3",
+    "immediate-capture-4",
+    "immediate-capture-5",
+    "chance-taken-2",
+    "chance-taken-3",
+    "chance-taken-4",
+    "stronger-alternative-2",
+    "stronger-alternative-3",
+    "stronger-alternative-4",
+    "positional-passer-advance-actual-2",
+    "positional-passer-advance-actual-3",
+    "reply-check-2",
+    "reply-check-3",
+    "lesson-correct-move-2",
+    "lesson-correct-move-3",
+    "lesson-correct-move-4",
+    "puzzle-next-move-2",
+    "puzzle-next-move-3",
+    "puzzle-next-move-4",
+    "opening-recall-accepted-2",
+    "opening-recall-accepted-3",
+    "opening-recall-accepted-4",
+    "grade-best-5",
+    "grade-best-6",
+    "grade-good-5",
+    "grade-good-6"
+  ]
 }

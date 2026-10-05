@@ -185,9 +185,29 @@
       "text": "The rook steps onto a file where neither side has a pawn. Where could it go from here?"
     },
     {
+      "id": "positional-rook-open-actual-white",
+      "group": "game_review",
+      "text": "White's rook now occupies an open file, without pawns of either color. What do the remaining pieces let it do?"
+    },
+    {
+      "id": "positional-rook-open-actual-black",
+      "group": "game_review",
+      "text": "Black's rook now occupies an open file, without pawns of either color. What do the remaining pieces let it do?"
+    },
+    {
       "id": "positional-rook-open-alternative",
       "group": "game_review",
       "text": "One candidate puts a rook on a fully open file. Set it beside this move and compare the activity."
+    },
+    {
+      "id": "positional-rook-open-alternative-white",
+      "group": "game_review",
+      "text": "The better move would give White's rook a pawnless file. Try that setup and examine what the rook can actually reach."
+    },
+    {
+      "id": "positional-rook-open-alternative-black",
+      "group": "game_review",
+      "text": "The better move would give Black's rook a pawnless file. Try that setup and examine what the rook can actually reach."
     },
     {
       "id": "positional-rook-semi-open-actual",
@@ -195,9 +215,29 @@
       "text": "This move parks the rook on a semi-open file, clear of its own pawns, with at least one enemy pawn further along."
     },
     {
+      "id": "positional-rook-semi-open-actual-white",
+      "group": "game_review",
+      "text": "What can White's rook reach along this semi-open file? There are enemy pawns on it, but no white pawns."
+    },
+    {
+      "id": "positional-rook-semi-open-actual-black",
+      "group": "game_review",
+      "text": "What can Black's rook reach along this semi-open file? There are enemy pawns on it, but no black pawns."
+    },
+    {
       "id": "positional-rook-semi-open-alternative",
       "group": "game_review",
       "text": "A different move places a rook on a semi-open file, where its own pawns are gone but enemy pawns still stand."
+    },
+    {
+      "id": "positional-rook-semi-open-alternative-white",
+      "group": "game_review",
+      "text": "Try the better candidate with White's rook on a semi-open file: enemy pawns there, none of its own. What could the rook actually reach?"
+    },
+    {
+      "id": "positional-rook-semi-open-alternative-black",
+      "group": "game_review",
+      "text": "Try the better candidate with Black's rook on a semi-open file: enemy pawns there, none of its own. What could the rook actually reach?"
     },
     {
       "id": "positional-passed-actual",
@@ -205,14 +245,44 @@
       "text": "Now there's a passed pawn worth following. No enemy pawn, on its own file or either neighbor, can block or capture it on the way."
     },
     {
+      "id": "positional-passed-actual-white",
+      "group": "game_review",
+      "text": "White now has a passed pawn. Which pieces might stop it, with no enemy pawn ahead on its file or the neighboring files?"
+    },
+    {
+      "id": "positional-passed-actual-black",
+      "group": "game_review",
+      "text": "Black now has a passed pawn. Which pieces might stop it, with no enemy pawn ahead on its file or the neighboring files?"
+    },
+    {
       "id": "positional-passed-alternative",
       "group": "game_review",
       "text": "Another candidate creates a passed pawn, one that no enemy pawn can stop on its own file or either adjacent one."
     },
     {
+      "id": "positional-passed-alternative-white",
+      "group": "game_review",
+      "text": "Try the better move and the pawn picture changes: White would gain a passed pawn, with no enemy pawn ahead on its file or either neighboring file."
+    },
+    {
+      "id": "positional-passed-alternative-black",
+      "group": "game_review",
+      "text": "Try the better move and the pawn picture changes: Black would gain a passed pawn, with no enemy pawn ahead on its file or either neighboring file."
+    },
+    {
       "id": "positional-passer-advance-actual",
       "group": "game_review",
       "text": "The passed pawn is a square closer to the end of its run. How many are left, and who can stop it?"
+    },
+    {
+      "id": "positional-passer-advance-actual-2",
+      "group": "game_review",
+      "text": "The passed pawn has advanced toward promotion. What could hold it up from this new square?"
+    },
+    {
+      "id": "positional-passer-advance-actual-3",
+      "group": "game_review",
+      "text": "This pushes the already passed pawn farther forward. Compare the possible replies before assuming it keeps going."
     },
     {
       "id": "positional-passer-advance-alternative",
@@ -225,9 +295,29 @@
       "text": "This creates an isolated pawn, with no pawn of its color on the files next door."
     },
     {
+      "id": "positional-isolated-actual-white",
+      "group": "game_review",
+      "text": "White now has an isolated pawn. How might the pieces support it without friendly pawns on the adjacent files?"
+    },
+    {
+      "id": "positional-isolated-actual-black",
+      "group": "game_review",
+      "text": "Black now has an isolated pawn. How might the pieces support it without friendly pawns on the adjacent files?"
+    },
+    {
       "id": "positional-isolated-alternative",
       "group": "game_review",
       "text": "Another candidate would have isolated a pawn, leaving its adjacent files without friendly pawns."
+    },
+    {
+      "id": "positional-isolated-alternative-white",
+      "group": "game_review",
+      "text": "The better candidate would leave White with an isolated pawn. Compare that pawn's support in the resulting positions."
+    },
+    {
+      "id": "positional-isolated-alternative-black",
+      "group": "game_review",
+      "text": "The better candidate would leave Black with an isolated pawn. Compare that pawn's support in the resulting positions."
     },
     {
       "id": "positional-support-actual",
@@ -285,9 +375,29 @@
       "text": "Doubled pawns: after this move, two pawns of one color stack up on a single file."
     },
     {
+      "id": "positional-doubled-actual-white",
+      "group": "game_review",
+      "text": "White has doubled pawns after this move. Same file, but that alone doesn't settle whether the move is good."
+    },
+    {
+      "id": "positional-doubled-actual-black",
+      "group": "game_review",
+      "text": "Black has doubled pawns after this move. Same file, but that alone doesn't settle whether the move is good."
+    },
+    {
       "id": "positional-doubled-alternative",
       "group": "game_review",
       "text": "Another candidate leads to doubled pawns, two of one color stacked on a file."
+    },
+    {
+      "id": "positional-doubled-alternative-white",
+      "group": "game_review",
+      "text": "Try the better candidate: White's pawns would share a file. Compare the whole resulting position, not just those doubled pawns."
+    },
+    {
+      "id": "positional-doubled-alternative-black",
+      "group": "game_review",
+      "text": "Try the better candidate: Black's pawns would share a file. Compare the whole resulting position, not just those doubled pawns."
     },
     {
       "id": "allowed-mate",
@@ -355,9 +465,39 @@
       "text": "What's the first thing the other side can do here? Capture something, straight away. That's the reply to look at before any other."
     },
     {
+      "id": "immediate-capture-2",
+      "group": "game_review",
+      "text": "The other side can capture immediately. What changes if that reply is played?"
+    },
+    {
+      "id": "immediate-capture-3",
+      "group": "game_review",
+      "text": "A capture is available straight away. Try it before assuming the next move will be quiet."
+    },
+    {
+      "id": "immediate-capture-4",
+      "group": "game_review",
+      "text": "The reply doesn't have to wait to capture. Whether it is worthwhile is the next question."
+    },
+    {
+      "id": "immediate-capture-5",
+      "group": "game_review",
+      "text": "There is an immediate capture for the other side here. Follow that candidate and compare it with the other replies."
+    },
+    {
       "id": "reply-check",
       "group": "game_review",
       "text": "What does the strongest reply look like? It's a check, so king safety comes before anything else in the comparison."
+    },
+    {
+      "id": "reply-check-2",
+      "group": "game_review",
+      "text": "The best reply is a check. How could that check be answered? That's where to start."
+    },
+    {
+      "id": "reply-check-3",
+      "group": "game_review",
+      "text": "Check comes with the strongest response. Try the legal answers before following another plan."
     },
     {
       "id": "stronger-alternative",
@@ -365,9 +505,44 @@
       "text": "The engine has another candidate it prefers. Play both against the strongest reply and see where they part ways."
     },
     {
+      "id": "stronger-alternative-2",
+      "group": "game_review",
+      "text": "A different candidate would have served this position better."
+    },
+    {
+      "id": "stronger-alternative-3",
+      "group": "game_review",
+      "text": "The stronger choice is another move; try that position beside this one."
+    },
+    {
+      "id": "stronger-alternative-4",
+      "group": "game_review",
+      "text": "There is a better alternative to compare with the move played."
+    },
+    {
       "id": "evaluation-loss",
       "group": "game_review",
       "text": "Compared with the engine's top candidate, this one gives up some value. Follow the reply, and the gap between them becomes visible."
+    },
+    {
+      "id": "evaluation-loss-2",
+      "group": "game_review",
+      "text": "This candidate comes out worse than the stronger choice. Where does the comparison turn? That's worth exploring."
+    },
+    {
+      "id": "evaluation-loss-3",
+      "group": "game_review",
+      "text": "A better option was available, so this choice comes at a cost. Compare the resulting positions before looking for a label."
+    },
+    {
+      "id": "evaluation-loss-4",
+      "group": "game_review",
+      "text": "What does the best choice keep that this move gives away? Setting the two side by side is a good way to find out."
+    },
+    {
+      "id": "evaluation-loss-5",
+      "group": "game_review",
+      "text": "Try the stronger candidate, then return to this move. This choice costs value; what changes between the two positions?"
     },
     {
       "id": "best-supported-choice",
@@ -403,6 +578,21 @@
       "id": "chance-taken",
       "group": "game_review",
       "text": "The opponent's last move gave something away, and this candidate uses it. Compare it with the quieter options to see what it gains."
+    },
+    {
+      "id": "chance-taken-2",
+      "group": "game_review",
+      "text": "You used the opportunity in the opponent's last mistake. That's a candidate worth keeping in the comparison."
+    },
+    {
+      "id": "chance-taken-3",
+      "group": "game_review",
+      "text": "Their previous move went wrong, and your reply makes use of it. Nice connection between the moves."
+    },
+    {
+      "id": "chance-taken-4",
+      "group": "game_review",
+      "text": "You found a way to punish their last error. Replay that pair of moves to see the opportunity being used."
     },
     {
       "id": "chance-missed",
@@ -800,6 +990,21 @@
       "text": "Right, that move comes from your study material."
     },
     {
+      "id": "opening-recall-accepted-2",
+      "group": "openings",
+      "text": "That matches your opening line. Nice to have the studied candidate back on the board."
+    },
+    {
+      "id": "opening-recall-accepted-3",
+      "group": "openings",
+      "text": "Yes, this is the move in your repertoire for this position."
+    },
+    {
+      "id": "opening-recall-accepted-4",
+      "group": "openings",
+      "text": "Your chosen opening calls for that move. Nicely recalled."
+    },
+    {
       "id": "opening-recall-retry-fallback",
       "group": "openings",
       "text": "Pick a move from the opening lines you're studying."
@@ -873,6 +1078,21 @@
       "id": "puzzle-next-move",
       "group": "puzzles",
       "text": "Exactly that. Which move does the puzzle want next?"
+    },
+    {
+      "id": "puzzle-next-move-2",
+      "group": "puzzles",
+      "text": "Correct so far. What might work in the next part of the puzzle?"
+    },
+    {
+      "id": "puzzle-next-move-3",
+      "group": "puzzles",
+      "text": "That move fits the solution. There's more to investigate before the puzzle is finished."
+    },
+    {
+      "id": "puzzle-next-move-4",
+      "group": "puzzles",
+      "text": "You have this move right. Let's test the next idea in the puzzle."
     },
     {
       "id": "puzzle-cold",
@@ -1025,6 +1245,16 @@
       "text": "What makes this the best move here? Comparing it with the alternatives is the way to find out."
     },
     {
+      "id": "grade-best-5",
+      "group": "game_review",
+      "text": "Best. This candidate wins the comparison; I'd like to follow its idea further."
+    },
+    {
+      "id": "grade-best-6",
+      "group": "game_review",
+      "text": "This is the best move available. A good place to begin exploring the alternatives."
+    },
+    {
       "id": "grade-good-1",
       "group": "game_review",
       "text": "The top choice is a little ahead, and this one is sound too. Seeing how each plays out would be fun."
@@ -1043,6 +1273,16 @@
       "id": "grade-good-4",
       "group": "game_review",
       "text": "Solid. What did the sharper option do differently? Small things, probably, but worth a look."
+    },
+    {
+      "id": "grade-good-5",
+      "group": "game_review",
+      "text": "A sound candidate, graded Good. The better option makes an interesting comparison."
+    },
+    {
+      "id": "grade-good-6",
+      "group": "game_review",
+      "text": "Good rather than best. This idea works, and another deserves exploring beside it."
     },
     {
       "id": "grade-inaccuracy-1",
@@ -1133,6 +1373,21 @@
       "id": "lesson-correct-move",
       "group": "lessons",
       "text": "Confirmed: that candidate is the lesson's choice. Next test."
+    },
+    {
+      "id": "lesson-correct-move-2",
+      "group": "lessons",
+      "text": "Yes, that candidate matches the lesson. Let's see what comes next."
+    },
+    {
+      "id": "lesson-correct-move-3",
+      "group": "lessons",
+      "text": "You found the intended lesson move. On to the next idea."
+    },
+    {
+      "id": "lesson-correct-move-4",
+      "group": "lessons",
+      "text": "That's the choice the lesson is teaching here. Good, let's continue."
     },
     {
       "id": "lesson-move-revealed",
@@ -1805,9 +2060,49 @@
       "text": "Out comes a knight from its starting square, ready to take part in the plans."
     },
     {
+      "id": "positional-development-actual-knight-2",
+      "group": "game_review",
+      "text": "The knight's first move away from its starting square is on the board. What could its next job be?"
+    },
+    {
+      "id": "positional-development-actual-knight-3",
+      "group": "game_review",
+      "text": "This develops the knight: until now, it hadn't left its original square. An interesting starting point for a plan."
+    },
+    {
+      "id": "positional-development-actual-knight-4",
+      "group": "game_review",
+      "text": "A knight comes out for the first time. Compare its new square with where it began."
+    },
+    {
+      "id": "positional-development-actual-knight-5",
+      "group": "game_review",
+      "text": "The knight develops with its first move away from home. Where might the plan go from here?"
+    },
+    {
       "id": "positional-development-actual-bishop",
       "group": "game_review",
       "text": "Out comes a bishop from its starting square, ready to take part in the plans."
+    },
+    {
+      "id": "positional-development-actual-bishop-2",
+      "group": "game_review",
+      "text": "The bishop has left its original square for the first time. Worth looking at the position from its new spot."
+    },
+    {
+      "id": "positional-development-actual-bishop-3",
+      "group": "game_review",
+      "text": "This is the bishop's first move out. What possibilities deserve checking now?"
+    },
+    {
+      "id": "positional-development-actual-bishop-4",
+      "group": "game_review",
+      "text": "A bishop develops here, leaving the square where it started the game. Its next role is worth exploring."
+    },
+    {
+      "id": "positional-development-actual-bishop-5",
+      "group": "game_review",
+      "text": "The bishop steps off its starting square for the first time. What might it aim at from here?"
     },
     {
       "id": "positional-development-alternative-knight",
@@ -1815,9 +2110,49 @@
       "text": "Another candidate develops a knight off its starting square. Worth comparing the two setups."
     },
     {
+      "id": "positional-development-alternative-knight-2",
+      "group": "game_review",
+      "text": "Try the better candidate: it would bring a knight off its starting square for the first time."
+    },
+    {
+      "id": "positional-development-alternative-knight-3",
+      "group": "game_review",
+      "text": "The better move would give the knight its first move away from home. How would that setup compare?"
+    },
+    {
+      "id": "positional-development-alternative-knight-4",
+      "group": "game_review",
+      "text": "Another possibility was the knight's first departure from its original square. Put that development beside the played move."
+    },
+    {
+      "id": "positional-development-alternative-knight-5",
+      "group": "game_review",
+      "text": "A knight would have developed with the stronger alternative. It hadn't moved from its starting square yet."
+    },
+    {
       "id": "positional-development-alternative-bishop",
       "group": "game_review",
       "text": "Another candidate develops a bishop off its starting square. Worth comparing the two setups."
+    },
+    {
+      "id": "positional-development-alternative-bishop-2",
+      "group": "game_review",
+      "text": "The better candidate would have developed a bishop from its original square. Try that first move out and compare."
+    },
+    {
+      "id": "positional-development-alternative-bishop-3",
+      "group": "game_review",
+      "text": "A bishop's first move away from home was available in the alternative. What would that position look like?"
+    },
+    {
+      "id": "positional-development-alternative-bishop-4",
+      "group": "game_review",
+      "text": "Another move would have begun the bishop's development by taking it off its starting square."
+    },
+    {
+      "id": "positional-development-alternative-bishop-5",
+      "group": "game_review",
+      "text": "The stronger choice would bring a bishop out for the first time. Worth trying that position beside this one."
     },
     {
       "id": "positional-support-actual-knight",
@@ -1825,9 +2160,29 @@
       "text": "A knight that had no protection picks up a defender here."
     },
     {
+      "id": "positional-support-actual-knight-white",
+      "group": "game_review",
+      "text": "Compare White's knight before and after this move: no defender before, a defender now."
+    },
+    {
+      "id": "positional-support-actual-knight-black",
+      "group": "game_review",
+      "text": "Compare Black's knight before and after this move: no defender before, a defender now."
+    },
+    {
       "id": "positional-support-actual-bishop",
       "group": "game_review",
       "text": "A bishop that had no protection picks up a defender here."
+    },
+    {
+      "id": "positional-support-actual-bishop-white",
+      "group": "game_review",
+      "text": "White's bishop was undefended before this move; now it has support. A useful detail in the comparison."
+    },
+    {
+      "id": "positional-support-actual-bishop-black",
+      "group": "game_review",
+      "text": "Black's bishop was undefended before this move; now it has support. A useful detail in the comparison."
     },
     {
       "id": "positional-support-actual-rook",
@@ -1835,9 +2190,29 @@
       "text": "A rook that had no protection picks up a defender here."
     },
     {
+      "id": "positional-support-actual-rook-white",
+      "group": "game_review",
+      "text": "What if White's rook gets attacked now? Unlike before this move, it has a defender to answer with."
+    },
+    {
+      "id": "positional-support-actual-rook-black",
+      "group": "game_review",
+      "text": "What if Black's rook gets attacked now? Unlike before this move, it has a defender to answer with."
+    },
+    {
       "id": "positional-support-actual-queen",
       "group": "game_review",
       "text": "A queen that had no protection picks up a defender here."
+    },
+    {
+      "id": "positional-support-actual-queen-white",
+      "group": "game_review",
+      "text": "White's queen now has a defender it lacked before. How does that connection fit the rest of the position?"
+    },
+    {
+      "id": "positional-support-actual-queen-black",
+      "group": "game_review",
+      "text": "Black's queen now has a defender it lacked before. How does that connection fit the rest of the position?"
     },
     {
       "id": "positional-support-alternative-knight",
@@ -1845,9 +2220,29 @@
       "text": "One alternative gives a defender to a knight that's currently unprotected."
     },
     {
+      "id": "positional-support-alternative-knight-white",
+      "group": "game_review",
+      "text": "Try the better candidate: White's knight would gain a defender, instead of having none."
+    },
+    {
+      "id": "positional-support-alternative-knight-black",
+      "group": "game_review",
+      "text": "Try the better candidate: Black's knight would gain a defender, instead of having none."
+    },
+    {
       "id": "positional-support-alternative-bishop",
       "group": "game_review",
       "text": "One alternative gives a defender to a bishop that's currently unprotected."
+    },
+    {
+      "id": "positional-support-alternative-bishop-white",
+      "group": "game_review",
+      "text": "The better alternative would supply a defender for White's undefended bishop. Compare the resulting support."
+    },
+    {
+      "id": "positional-support-alternative-bishop-black",
+      "group": "game_review",
+      "text": "The better alternative would supply a defender for Black's undefended bishop. Compare the resulting support."
     },
     {
       "id": "positional-support-alternative-rook",
@@ -1855,9 +2250,29 @@
       "text": "One alternative gives a defender to a rook that's currently unprotected."
     },
     {
+      "id": "positional-support-alternative-rook-white",
+      "group": "game_review",
+      "text": "Try the better candidate and compare White's rook before and after: no defender before, a defender afterward."
+    },
+    {
+      "id": "positional-support-alternative-rook-black",
+      "group": "game_review",
+      "text": "Try the better candidate and compare Black's rook before and after: no defender before, a defender afterward."
+    },
+    {
       "id": "positional-support-alternative-queen",
       "group": "game_review",
       "text": "One alternative gives a defender to a queen that's currently unprotected."
+    },
+    {
+      "id": "positional-support-alternative-queen-white",
+      "group": "game_review",
+      "text": "With the better move, White's queen would no longer be undefended. It would gain support."
+    },
+    {
+      "id": "positional-support-alternative-queen-black",
+      "group": "game_review",
+      "text": "With the better move, Black's queen would no longer be undefended. It would gain support."
     },
     {
       "id": "positional-unsupported-actual-knight",
@@ -1865,9 +2280,29 @@
       "text": "After this move, a knight has nobody defending it. Keep watching that weakness; on its own, it doesn't mean the knight can be won."
     },
     {
+      "id": "positional-unsupported-actual-knight-white",
+      "group": "game_review",
+      "text": "White's knight has lost its last defender. Can the other side use that, or is it simply a detail to track?"
+    },
+    {
+      "id": "positional-unsupported-actual-knight-black",
+      "group": "game_review",
+      "text": "Black's knight has lost its last defender. Can the other side use that, or is it simply a detail to track?"
+    },
+    {
       "id": "positional-unsupported-actual-bishop",
       "group": "game_review",
       "text": "After this move, a bishop has nobody defending it. Keep watching that weakness; on its own, it doesn't mean the bishop can be won."
+    },
+    {
+      "id": "positional-unsupported-actual-bishop-white",
+      "group": "game_review",
+      "text": "White's bishop had support before this move and has none now. Check whether that matters tactically before calling it lost."
+    },
+    {
+      "id": "positional-unsupported-actual-bishop-black",
+      "group": "game_review",
+      "text": "Black's bishop had support before this move and has none now. Check whether that matters tactically before calling it lost."
     },
     {
       "id": "positional-unsupported-actual-rook",
@@ -1875,9 +2310,29 @@
       "text": "After this move, a rook has nobody defending it. Keep watching that weakness; on its own, it doesn't mean the rook can be won."
     },
     {
+      "id": "positional-unsupported-actual-rook-white",
+      "group": "game_review",
+      "text": "There's no defender left for White's rook. Whether it can be won needs a look at the replies."
+    },
+    {
+      "id": "positional-unsupported-actual-rook-black",
+      "group": "game_review",
+      "text": "There's no defender left for Black's rook. Whether it can be won needs a look at the replies."
+    },
+    {
       "id": "positional-unsupported-actual-queen",
       "group": "game_review",
       "text": "After this move, a queen has nobody defending it. Keep watching that weakness; on its own, it doesn't mean the queen can be won."
+    },
+    {
+      "id": "positional-unsupported-actual-queen-white",
+      "group": "game_review",
+      "text": "White's queen is now undefended. Worth distinguishing that from an actual threat to capture it."
+    },
+    {
+      "id": "positional-unsupported-actual-queen-black",
+      "group": "game_review",
+      "text": "Black's queen is now undefended. Worth distinguishing that from an actual threat to capture it."
     },
     {
       "id": "positional-unsupported-alternative-knight",
@@ -1885,9 +2340,29 @@
       "text": "Another candidate would have taken away a knight's last defender, which by itself wouldn't settle whether it could be won."
     },
     {
+      "id": "positional-unsupported-alternative-knight-white",
+      "group": "game_review",
+      "text": "The better candidate would leave White's knight without a defender. That deserves a look in the alternative too."
+    },
+    {
+      "id": "positional-unsupported-alternative-knight-black",
+      "group": "game_review",
+      "text": "The better candidate would leave Black's knight without a defender. That deserves a look in the alternative too."
+    },
+    {
       "id": "positional-unsupported-alternative-bishop",
       "group": "game_review",
       "text": "Another candidate would have taken away a bishop's last defender, which by itself wouldn't settle whether it could be won."
+    },
+    {
+      "id": "positional-unsupported-alternative-bishop-white",
+      "group": "game_review",
+      "text": "With another move, White's bishop would lose its last defender. Examine the resulting position before deciding what that costs."
+    },
+    {
+      "id": "positional-unsupported-alternative-bishop-black",
+      "group": "game_review",
+      "text": "With another move, Black's bishop would lose its last defender. Examine the resulting position before deciding what that costs."
     },
     {
       "id": "positional-unsupported-alternative-rook",
@@ -1895,9 +2370,29 @@
       "text": "Another candidate would have taken away a rook's last defender, which by itself wouldn't settle whether it could be won."
     },
     {
+      "id": "positional-unsupported-alternative-rook-white",
+      "group": "game_review",
+      "text": "White's rook would become undefended after the better move. A stronger choice can still include that detail."
+    },
+    {
+      "id": "positional-unsupported-alternative-rook-black",
+      "group": "game_review",
+      "text": "Black's rook would become undefended after the better move. A stronger choice can still include that detail."
+    },
+    {
       "id": "positional-unsupported-alternative-queen",
       "group": "game_review",
       "text": "Another candidate would have taken away a queen's last defender, which by itself wouldn't settle whether it could be won."
+    },
+    {
+      "id": "positional-unsupported-alternative-queen-white",
+      "group": "game_review",
+      "text": "The better alternative would remove the last defender of White's queen. Would that be exploitable? The replies matter."
+    },
+    {
+      "id": "positional-unsupported-alternative-queen-black",
+      "group": "game_review",
+      "text": "The better alternative would remove the last defender of Black's queen. Would that be exploitable? The replies matter."
     },
     {
       "id": "support-restored-knight",

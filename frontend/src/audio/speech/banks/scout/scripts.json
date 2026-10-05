@@ -185,9 +185,29 @@
       "text": "Open file claimed by the rook. No pawns of either color block the file. Note the squares the rook now controls."
     },
     {
+      "id": "positional-rook-open-actual-white",
+      "group": "game_review",
+      "text": "White's rook now occupies a pawnless file. Open file. Trace its actual reach before planning an entry."
+    },
+    {
+      "id": "positional-rook-open-actual-black",
+      "group": "game_review",
+      "text": "Black's rook now occupies a pawnless file. Open file. Trace its actual reach before planning an entry."
+    },
+    {
       "id": "positional-rook-open-alternative",
       "group": "game_review",
       "text": "Open file available. A different move would have given a rook a file clear of pawns from both sides. Rooks belong on files like that."
+    },
+    {
+      "id": "positional-rook-open-alternative-white",
+      "group": "game_review",
+      "text": "The better move would have placed White's rook on an open file. No pawns there; check the pieces next."
+    },
+    {
+      "id": "positional-rook-open-alternative-black",
+      "group": "game_review",
+      "text": "The better move would have placed Black's rook on an open file. No pawns there; check the pieces next."
     },
     {
       "id": "positional-rook-semi-open-actual",
@@ -195,9 +215,29 @@
       "text": "Rook lands where the file's semi-open. The rook has no pawns of its own in front, only an enemy pawn somewhere along the file. That enemy pawn is the thing to watch."
     },
     {
+      "id": "positional-rook-semi-open-actual-white",
+      "group": "game_review",
+      "text": "White's rook has a half-open file: no friendly pawns, enemy pawns present. Check the lines between the rook and those pawns."
+    },
+    {
+      "id": "positional-rook-semi-open-actual-black",
+      "group": "game_review",
+      "text": "Black's rook has a half-open file: no friendly pawns, enemy pawns present. Check the lines between the rook and those pawns."
+    },
+    {
       "id": "positional-rook-semi-open-alternative",
       "group": "game_review",
       "text": "Rook upgrade available. A different move would have put a rook where it has no pawns of its own ahead, only an enemy pawn. Compare the two placements."
+    },
+    {
+      "id": "positional-rook-semi-open-alternative-white",
+      "group": "game_review",
+      "text": "The better move would have given White's rook a half-open file. Locate the enemy pawns and test the placement."
+    },
+    {
+      "id": "positional-rook-semi-open-alternative-black",
+      "group": "game_review",
+      "text": "The better move would have given Black's rook a half-open file. Locate the enemy pawns and test the placement."
     },
     {
       "id": "positional-passed-actual",
@@ -205,14 +245,44 @@
       "text": "Passed pawn. No enemy pawn stands ahead of it on its file or the two beside it, so only pieces can stop it. Mark it and track its route."
     },
     {
+      "id": "positional-passed-actual-white",
+      "group": "game_review",
+      "text": "White has a new passed pawn. Track the pieces that could block it; passed does not mean unstoppable."
+    },
+    {
+      "id": "positional-passed-actual-black",
+      "group": "game_review",
+      "text": "Black has a new passed pawn. Track the pieces that could block it; passed does not mean unstoppable."
+    },
+    {
       "id": "positional-passed-alternative",
       "group": "game_review",
       "text": "Passer available. Another move would have created a pawn with no enemy pawns ahead on its file or the neighboring ones. Note the difference."
     },
     {
+      "id": "positional-passed-alternative-white",
+      "group": "game_review",
+      "text": "The better move would have produced a passed pawn for White. Compare the blockading options before choosing a route."
+    },
+    {
+      "id": "positional-passed-alternative-black",
+      "group": "game_review",
+      "text": "The better move would have produced a passed pawn for Black. Compare the blockading options before choosing a route."
+    },
+    {
       "id": "positional-passer-advance-actual",
       "group": "game_review",
       "text": "Passer advancing. The pawn was already passed, and now it's one step closer to the last rank. Count what's left."
+    },
+    {
+      "id": "positional-passer-advance-actual-2",
+      "group": "game_review",
+      "text": "The passed pawn gains ground toward promotion. Track the blockers before the next push."
+    },
+    {
+      "id": "positional-passer-advance-actual-3",
+      "group": "game_review",
+      "text": "An existing passer moves closer to the last rank. Recheck its support and the route ahead."
     },
     {
       "id": "positional-passer-advance-alternative",
@@ -225,9 +295,29 @@
       "text": "Isolated pawn. No friendly pawn sits on either neighboring file, so pawns can't defend it. Mark it as a structural target."
     },
     {
+      "id": "positional-isolated-actual-white",
+      "group": "game_review",
+      "text": "White now has an isolated pawn. Scan the adjacent files: no friendly pawn. Then check its piece support."
+    },
+    {
+      "id": "positional-isolated-actual-black",
+      "group": "game_review",
+      "text": "Black now has an isolated pawn. Scan the adjacent files: no friendly pawn. Then check its piece support."
+    },
+    {
       "id": "positional-isolated-alternative",
       "group": "game_review",
       "text": "Isolation in the alternative. A different move would have left a pawn with no friendly pawn on the files next to it. Weigh that against what was played."
+    },
+    {
+      "id": "positional-isolated-alternative-white",
+      "group": "game_review",
+      "text": "The better move would have left White with an isolated pawn. Include the missing neighboring pawns in the comparison."
+    },
+    {
+      "id": "positional-isolated-alternative-black",
+      "group": "game_review",
+      "text": "The better move would have left Black with an isolated pawn. Include the missing neighboring pawns in the comparison."
     },
     {
       "id": "positional-support-actual",
@@ -285,9 +375,29 @@
       "text": "Doubled pawns. Two pawns of one color now share a file, and they can't protect each other. Log the structure change."
     },
     {
+      "id": "positional-doubled-actual-white",
+      "group": "game_review",
+      "text": "White's pawns now share a file. Doubled structure. Check what changed around them."
+    },
+    {
+      "id": "positional-doubled-actual-black",
+      "group": "game_review",
+      "text": "Black's pawns now share a file. Doubled structure. Check what changed around them."
+    },
+    {
       "id": "positional-doubled-alternative",
       "group": "game_review",
       "text": "Doubled pawns in the alternative. A different move would have stacked two same-color pawns on one file. Weigh that cost."
+    },
+    {
+      "id": "positional-doubled-alternative-white",
+      "group": "game_review",
+      "text": "The better move would have doubled White's pawns. Evaluate that structure alongside the rest of the position."
+    },
+    {
+      "id": "positional-doubled-alternative-black",
+      "group": "game_review",
+      "text": "The better move would have doubled Black's pawns. Evaluate that structure alongside the rest of the position."
     },
     {
       "id": "allowed-mate",
@@ -355,9 +465,39 @@
       "text": "Incoming capture. Right after this move, the other side has something to take. Clear that threat first."
     },
     {
+      "id": "immediate-capture-2",
+      "group": "game_review",
+      "text": "Capture available on the reply. Identify what can be taken, then check the exchange."
+    },
+    {
+      "id": "immediate-capture-3",
+      "group": "game_review",
+      "text": "The other side can capture immediately. Trace that reply before moving deeper."
+    },
+    {
+      "id": "immediate-capture-4",
+      "group": "game_review",
+      "text": "A capture is ready for the opponent. Check its consequences rather than assuming free material."
+    },
+    {
+      "id": "immediate-capture-5",
+      "group": "game_review",
+      "text": "The next move can be a capture by the other side. Put it into the reply scan."
+    },
+    {
       "id": "reply-check",
       "group": "game_review",
       "text": "Check incoming. The strongest reply comes with check, so the king is the first thing to deal with."
+    },
+    {
+      "id": "reply-check-2",
+      "group": "game_review",
+      "text": "The best reply checks the king. Start with the legal answers to that check."
+    },
+    {
+      "id": "reply-check-3",
+      "group": "game_review",
+      "text": "King checked by the strongest reply. Calculate the responses before extending the line."
     },
     {
       "id": "stronger-alternative",
@@ -365,9 +505,44 @@
       "text": "Better move available. The engine has its own pick here. Set both moves up and race the replies."
     },
     {
+      "id": "stronger-alternative-2",
+      "group": "game_review",
+      "text": "Stronger option flagged. Locate the engine's move and test it against this one."
+    },
+    {
+      "id": "stronger-alternative-3",
+      "group": "game_review",
+      "text": "The engine favors an alternative. Test that move's replies alongside these."
+    },
+    {
+      "id": "stronger-alternative-4",
+      "group": "game_review",
+      "text": "Put the stronger engine choice on the board next and compare the results."
+    },
+    {
       "id": "evaluation-loss",
       "group": "game_review",
       "text": "Value dropped. The engine rates its best move above this one. Compare the replies to find where the difference shows up."
+    },
+    {
+      "id": "evaluation-loss-2",
+      "group": "game_review",
+      "text": "Evaluation drops against the better choice. Compare the moves, then test the replies."
+    },
+    {
+      "id": "evaluation-loss-3",
+      "group": "game_review",
+      "text": "The engine prefers a stronger move. Focus the review on the difference between the resulting positions."
+    },
+    {
+      "id": "evaluation-loss-4",
+      "group": "game_review",
+      "text": "This choice gives up value relative to the best move. Run the comparison from here."
+    },
+    {
+      "id": "evaluation-loss-5",
+      "group": "game_review",
+      "text": "Position value lost against the stronger choice. Trace both reply sequences and locate the difference."
     },
     {
       "id": "best-supported-choice",
@@ -403,6 +578,21 @@
       "id": "chance-taken",
       "group": "game_review",
       "text": "Opportunity taken. The opponent's last move left a chance, and this move cashes it in. That's the response to train."
+    },
+    {
+      "id": "chance-taken-2",
+      "group": "game_review",
+      "text": "Error punished. You turned the opponent's previous mistake into something useful. Keep that response pattern."
+    },
+    {
+      "id": "chance-taken-3",
+      "group": "game_review",
+      "text": "The opponent slipped, and you made use of it. Identify the chance so it is easier to catch next time."
+    },
+    {
+      "id": "chance-taken-4",
+      "group": "game_review",
+      "text": "Good follow-through. You acted on the chance left by the opponent's last move."
     },
     {
       "id": "chance-missed",
@@ -800,6 +990,21 @@
       "text": "Correct. Matches your study material exactly."
     },
     {
+      "id": "opening-recall-accepted-2",
+      "group": "openings",
+      "text": "Study move matched. Keep that position-to-move link."
+    },
+    {
+      "id": "opening-recall-accepted-3",
+      "group": "openings",
+      "text": "Correct recall from the repertoire. Retain the starting position as well as the move."
+    },
+    {
+      "id": "opening-recall-accepted-4",
+      "group": "openings",
+      "text": "That is the stored opening move. Keep the sequence in focus."
+    },
+    {
       "id": "opening-recall-retry-fallback",
       "group": "openings",
       "text": "Go with one of your study-line moves."
@@ -873,6 +1078,21 @@
       "id": "puzzle-next-move",
       "group": "puzzles",
       "text": "Correct. Keep the run going."
+    },
+    {
+      "id": "puzzle-next-move-2",
+      "group": "puzzles",
+      "text": "Correct move. The puzzle continues; find the next step."
+    },
+    {
+      "id": "puzzle-next-move-3",
+      "group": "puzzles",
+      "text": "On target. Keep calculating the rest of the puzzle."
+    },
+    {
+      "id": "puzzle-next-move-4",
+      "group": "puzzles",
+      "text": "That step checks out. Stay with the puzzle for the next move."
     },
     {
       "id": "puzzle-cold",
@@ -1025,6 +1245,16 @@
       "text": "Precise. Run the replies and confirm what makes it the top choice."
     },
     {
+      "id": "grade-best-5",
+      "group": "game_review",
+      "text": "Best. Use this move as the reference when comparing the alternatives."
+    },
+    {
+      "id": "grade-best-6",
+      "group": "game_review",
+      "text": "Exact choice. Now identify what makes it Best."
+    },
+    {
       "id": "grade-good-1",
       "group": "game_review",
       "text": "Good move. Close to the top, not on it. Find the sharper option."
@@ -1043,6 +1273,16 @@
       "id": "grade-good-4",
       "group": "game_review",
       "text": "Solid enough. Top choice did slightly more. Low priority for drills."
+    },
+    {
+      "id": "grade-good-5",
+      "group": "game_review",
+      "text": "Good, with a stronger choice available. Compare once, then move on."
+    },
+    {
+      "id": "grade-good-6",
+      "group": "game_review",
+      "text": "Sound move. The improvement is worth checking; this is Good rather than Best."
     },
     {
       "id": "grade-inaccuracy-1",
@@ -1133,6 +1373,21 @@
       "id": "lesson-correct-move",
       "group": "lessons",
       "text": "On route. Right on the lesson's trail."
+    },
+    {
+      "id": "lesson-correct-move-2",
+      "group": "lessons",
+      "text": "Lesson move matched. Keep the pattern in focus."
+    },
+    {
+      "id": "lesson-correct-move-3",
+      "group": "lessons",
+      "text": "Target move hit. The lesson continues from this position."
+    },
+    {
+      "id": "lesson-correct-move-4",
+      "group": "lessons",
+      "text": "That fits the lesson. Keep working through the idea."
     },
     {
       "id": "lesson-move-revealed",
@@ -1805,9 +2060,49 @@
       "text": "Knight in play. It's off its starting post and in the fight. Mark its new post and what it now reaches."
     },
     {
+      "id": "positional-development-actual-knight-2",
+      "group": "game_review",
+      "text": "Knight developed. First departure from its starting square. Check its next job."
+    },
+    {
+      "id": "positional-development-actual-knight-3",
+      "group": "game_review",
+      "text": "The knight leaves its original square for the first time. Track its new connections."
+    },
+    {
+      "id": "positional-development-actual-knight-4",
+      "group": "game_review",
+      "text": "A knight comes off its starting square. Development logged; now inspect the placement."
+    },
+    {
+      "id": "positional-development-actual-knight-5",
+      "group": "game_review",
+      "text": "First outing for the knight. Identify what changes when it leaves its starting post."
+    },
+    {
       "id": "positional-development-actual-bishop",
       "group": "game_review",
       "text": "Bishop in play. It's off its starting post and in the fight. Mark its new post and what it now reaches."
+    },
+    {
+      "id": "positional-development-actual-bishop-2",
+      "group": "game_review",
+      "text": "Bishop developed. Its starting square is vacated for the first time. Trace its diagonals."
+    },
+    {
+      "id": "positional-development-actual-bishop-3",
+      "group": "game_review",
+      "text": "The bishop makes its first move from home. Check where it fits into the position."
+    },
+    {
+      "id": "positional-development-actual-bishop-4",
+      "group": "game_review",
+      "text": "A bishop leaves its original post. Development recorded; test the new placement."
+    },
+    {
+      "id": "positional-development-actual-bishop-5",
+      "group": "game_review",
+      "text": "First departure for the bishop. Mark the change from its starting square, then examine its job."
     },
     {
       "id": "positional-development-alternative-knight",
@@ -1815,9 +2110,49 @@
       "text": "Development available. A knight could have entered play with a different move. Weigh it against the move played."
     },
     {
+      "id": "positional-development-alternative-knight-2",
+      "group": "game_review",
+      "text": "The better move would have developed a knight from its starting square. Compare its new post."
+    },
+    {
+      "id": "positional-development-alternative-knight-3",
+      "group": "game_review",
+      "text": "Knight development was the alternative. Its first move from home would have changed the piece layout; inspect that layout."
+    },
+    {
+      "id": "positional-development-alternative-knight-4",
+      "group": "game_review",
+      "text": "A knight could have left its original square with the better move. Test that placement against the game."
+    },
+    {
+      "id": "positional-development-alternative-knight-5",
+      "group": "game_review",
+      "text": "The better choice included the knight's first departure from its starting post. Put that development into the comparison."
+    },
+    {
       "id": "positional-development-alternative-bishop",
       "group": "game_review",
       "text": "Development available. A bishop could have entered play with a different move. Weigh it against the move played."
+    },
+    {
+      "id": "positional-development-alternative-bishop-2",
+      "group": "game_review",
+      "text": "The better move would have developed a bishop from its starting square. Trace the resulting diagonals."
+    },
+    {
+      "id": "positional-development-alternative-bishop-3",
+      "group": "game_review",
+      "text": "The stronger choice included a bishop's first move from home. Compare its resulting placement with the game."
+    },
+    {
+      "id": "positional-development-alternative-bishop-4",
+      "group": "game_review",
+      "text": "A bishop could have left its original square with the better choice. Check its role in that position."
+    },
+    {
+      "id": "positional-development-alternative-bishop-5",
+      "group": "game_review",
+      "text": "The better option would have brought a bishop off its starting post for the first time. Examine the placement it would have reached."
     },
     {
       "id": "positional-support-actual-knight",
@@ -1825,9 +2160,29 @@
       "text": "Cover added. Guard assigned to a knight that had none. Check the connection and keep it."
     },
     {
+      "id": "positional-support-actual-knight-white",
+      "group": "game_review",
+      "text": "White's knight has gained a defender. Find the new link; that is the pattern to retain."
+    },
+    {
+      "id": "positional-support-actual-knight-black",
+      "group": "game_review",
+      "text": "Black's knight has gained a defender. Find the new link; that is the pattern to retain."
+    },
+    {
       "id": "positional-support-actual-bishop",
       "group": "game_review",
       "text": "Cover added. Guard assigned to a bishop that had none. Check the connection and keep it."
+    },
+    {
+      "id": "positional-support-actual-bishop-white",
+      "group": "game_review",
+      "text": "White's bishop was unguarded and now has support. Trace the new defensive connection."
+    },
+    {
+      "id": "positional-support-actual-bishop-black",
+      "group": "game_review",
+      "text": "Black's bishop was unguarded and now has support. Trace the new defensive connection."
     },
     {
       "id": "positional-support-actual-rook",
@@ -1835,9 +2190,29 @@
       "text": "Cover added. Guard assigned to a rook that had none. Check the connection and keep it."
     },
     {
+      "id": "positional-support-actual-rook-white",
+      "group": "game_review",
+      "text": "White's rook is newly defended. Identify what now covers it before continuing the calculation."
+    },
+    {
+      "id": "positional-support-actual-rook-black",
+      "group": "game_review",
+      "text": "Black's rook is newly defended. Identify what now covers it before continuing the calculation."
+    },
+    {
       "id": "positional-support-actual-queen",
       "group": "game_review",
       "text": "Cover added. Guard assigned to a queen that had none. Check the connection and keep it."
+    },
+    {
+      "id": "positional-support-actual-queen-white",
+      "group": "game_review",
+      "text": "White's queen has picked up protection. Track that connection when considering the next move."
+    },
+    {
+      "id": "positional-support-actual-queen-black",
+      "group": "game_review",
+      "text": "Black's queen has picked up protection. Track that connection when considering the next move."
     },
     {
       "id": "positional-support-alternative-knight",
@@ -1845,9 +2220,29 @@
       "text": "Cover available. A different move would have put a guard on a lone knight. Compare which pieces stay guarded each way."
     },
     {
+      "id": "positional-support-alternative-knight-white",
+      "group": "game_review",
+      "text": "The better move would have supplied a defender for White's knight. Compare the support links."
+    },
+    {
+      "id": "positional-support-alternative-knight-black",
+      "group": "game_review",
+      "text": "The better move would have supplied a defender for Black's knight. Compare the support links."
+    },
+    {
       "id": "positional-support-alternative-bishop",
       "group": "game_review",
       "text": "Cover available. A different move would have put a guard on a lone bishop. Compare which pieces stay guarded each way."
+    },
+    {
+      "id": "positional-support-alternative-bishop-white",
+      "group": "game_review",
+      "text": "The better move would have guarded White's previously unsupported bishop. Identify the connection it would create."
+    },
+    {
+      "id": "positional-support-alternative-bishop-black",
+      "group": "game_review",
+      "text": "The better move would have guarded Black's previously unsupported bishop. Identify the connection it would create."
     },
     {
       "id": "positional-support-alternative-rook",
@@ -1855,9 +2250,29 @@
       "text": "Cover available. A different move would have put a guard on a lone rook. Compare which pieces stay guarded each way."
     },
     {
+      "id": "positional-support-alternative-rook-white",
+      "group": "game_review",
+      "text": "The better move would have added protection to White's unguarded rook. Check that defensive link on the board."
+    },
+    {
+      "id": "positional-support-alternative-rook-black",
+      "group": "game_review",
+      "text": "The better move would have added protection to Black's unguarded rook. Check that defensive link on the board."
+    },
+    {
       "id": "positional-support-alternative-queen",
       "group": "game_review",
       "text": "Cover available. A different move would have put a guard on a lone queen. Compare which pieces stay guarded each way."
+    },
+    {
+      "id": "positional-support-alternative-queen-white",
+      "group": "game_review",
+      "text": "The better move would have covered White's undefended queen. Include that support in the comparison."
+    },
+    {
+      "id": "positional-support-alternative-queen-black",
+      "group": "game_review",
+      "text": "The better move would have covered Black's undefended queen. Include that support in the comparison."
     },
     {
       "id": "positional-unsupported-actual-knight",
@@ -1865,9 +2280,29 @@
       "text": "Unguarded knight. It is now standing guardless. That isn't a loss yet; test whether anything can actually reach it."
     },
     {
+      "id": "positional-unsupported-actual-knight-white",
+      "group": "game_review",
+      "text": "White's knight has lost its last defender. Check possible attacks; an unguarded piece is not automatically lost."
+    },
+    {
+      "id": "positional-unsupported-actual-knight-black",
+      "group": "game_review",
+      "text": "Black's knight has lost its last defender. Check possible attacks; an unguarded piece is not automatically lost."
+    },
+    {
       "id": "positional-unsupported-actual-bishop",
       "group": "game_review",
       "text": "Unguarded bishop. It is now standing guardless. That isn't a loss yet; test whether anything can actually reach it."
+    },
+    {
+      "id": "positional-unsupported-actual-bishop-white",
+      "group": "game_review",
+      "text": "White's bishop is no longer defended. Mark the broken connection and test whether it matters tactically."
+    },
+    {
+      "id": "positional-unsupported-actual-bishop-black",
+      "group": "game_review",
+      "text": "Black's bishop is no longer defended. Mark the broken connection and test whether it matters tactically."
     },
     {
       "id": "positional-unsupported-actual-rook",
@@ -1875,9 +2310,29 @@
       "text": "Unguarded rook. It is now standing guardless. That isn't a loss yet; test whether anything can actually reach it."
     },
     {
+      "id": "positional-unsupported-actual-rook-white",
+      "group": "game_review",
+      "text": "White's rook has no defender after this move. Start the capture scan there; confirm before calling it a loss."
+    },
+    {
+      "id": "positional-unsupported-actual-rook-black",
+      "group": "game_review",
+      "text": "Black's rook has no defender after this move. Start the capture scan there; confirm before calling it a loss."
+    },
+    {
       "id": "positional-unsupported-actual-queen",
       "group": "game_review",
       "text": "Unguarded queen. It is now standing guardless. That isn't a loss yet; test whether anything can actually reach it."
+    },
+    {
+      "id": "positional-unsupported-actual-queen-white",
+      "group": "game_review",
+      "text": "White's queen has lost its protection. Track the threats against it, without assuming a capture exists."
+    },
+    {
+      "id": "positional-unsupported-actual-queen-black",
+      "group": "game_review",
+      "text": "Black's queen has lost its protection. Track the threats against it, without assuming a capture exists."
     },
     {
       "id": "positional-unsupported-alternative-knight",
@@ -1885,9 +2340,29 @@
       "text": "Unguarded in the alternative. A different move would have stripped a knight of its guard. Undefended doesn't mean lost, so check what could reach it."
     },
     {
+      "id": "positional-unsupported-alternative-knight-white",
+      "group": "game_review",
+      "text": "The better move would have left White's knight without a defender. Test the attacks before rejecting the move."
+    },
+    {
+      "id": "positional-unsupported-alternative-knight-black",
+      "group": "game_review",
+      "text": "The better move would have left Black's knight without a defender. Test the attacks before rejecting the move."
+    },
+    {
       "id": "positional-unsupported-alternative-bishop",
       "group": "game_review",
       "text": "Unguarded in the alternative. A different move would have stripped a bishop of its guard. Undefended doesn't mean lost, so check what could reach it."
+    },
+    {
+      "id": "positional-unsupported-alternative-bishop-white",
+      "group": "game_review",
+      "text": "The better move would have removed the last defender of White's bishop. Check whether that bishop could actually be taken."
+    },
+    {
+      "id": "positional-unsupported-alternative-bishop-black",
+      "group": "game_review",
+      "text": "The better move would have removed the last defender of Black's bishop. Check whether that bishop could actually be taken."
     },
     {
       "id": "positional-unsupported-alternative-rook",
@@ -1895,9 +2370,29 @@
       "text": "Unguarded in the alternative. A different move would have stripped a rook of its guard. Undefended doesn't mean lost, so check what could reach it."
     },
     {
+      "id": "positional-unsupported-alternative-rook-white",
+      "group": "game_review",
+      "text": "The better move would have left White's rook unguarded. Compare the resulting threats, not just the missing cover."
+    },
+    {
+      "id": "positional-unsupported-alternative-rook-black",
+      "group": "game_review",
+      "text": "The better move would have left Black's rook unguarded. Compare the resulting threats, not just the missing cover."
+    },
+    {
       "id": "positional-unsupported-alternative-queen",
       "group": "game_review",
       "text": "Unguarded in the alternative. A different move would have stripped a queen of its guard. Undefended doesn't mean lost, so check what could reach it."
+    },
+    {
+      "id": "positional-unsupported-alternative-queen-white",
+      "group": "game_review",
+      "text": "The better move would have stripped White's queen of its remaining protection. Test the position before assigning a cost."
+    },
+    {
+      "id": "positional-unsupported-alternative-queen-black",
+      "group": "game_review",
+      "text": "The better move would have stripped Black's queen of its remaining protection. Test the position before assigning a cost."
     },
     {
       "id": "support-restored-knight",
