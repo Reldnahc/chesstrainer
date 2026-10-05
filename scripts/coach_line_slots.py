@@ -9,6 +9,8 @@ skips them and the existing line plays.
 
     python scripts/coach_line_slots.py plan              # (re)write the slot list
     python scripts/coach_line_slots.py list [--set colour] [--voice alfie]
+    python scripts/coach_line_slots.py prompt --voice alfie [--set colour]
+    python scripts/coach_line_slots.py prompt --voice all --out prompts/
     python scripts/coach_line_slots.py import lines/*.json
 
 An import file is one coach's lines, as written by the line writer:
@@ -20,6 +22,7 @@ import argparse
 import json
 import re
 import sys
+import unicodedata
 from pathlib import Path
 
 SPEECH = Path(__file__).resolve().parents[1] / "frontend/src/audio/speech"
@@ -136,6 +139,101 @@ def list_slots(args):
         if args.voice and args.voice in row["texts"]:
             continue
         print(f"{row['id']}\t{row['when']}")
+
+
+def existing_lines(voice):
+    """A coach's current line for each meaning it has written."""
+    if voice in PILOT_FIELDS:
+        manifest = "bank/manifest.json" if voice == "walter" else "banks/rivet/manifest.json"
+        lines = {row["id"]: row["text"] for row in read(SPEECH / manifest)["recordings"]}
+        field = PILOT_FIELDS[voice]
+        return lines | {row["id"]: row[field] for row in read(PILOT)["recordings"]}
+    return {
+        row["id"]: row["text"] for row in read(SPEECH / f"banks/{voice}/scripts.json")["records"]
+    }
+
+
+def section(path, heading, level):
+    """The text under a heading, up to the next heading of the same or higher level."""
+    found, out = False, []
+    for line in path.read_text(encoding="utf-8").splitlines():
+        if line.startswith("#") and len(line) - len(line.lstrip("#")) <= level and found:
+            break
+        found = found or heading(line)
+        if found:
+            out.append(line)
+    return "\n".join(out).strip()
+
+
+def prompt_text(voice, only_set=None):
+    """A ready-to-paste writing request for one coach, or None when it has nothing left."""
+    docs = SPEECH.parents[3] / "docs"
+    plain = unicodedata.normalize("NFKD", voice).encode("ascii", "ignore").decode()
+
+    def is_coach(line):
+        name = unicodedata.normalize("NFKD", line).encode("ascii", "ignore").decode().lower()
+        return re.match(rf"### \d+\. {re.escape(plain.lower())}\b", name) is not None
+
+    bible = section(docs / "COACH_CAST_BIBLE.md", is_coach, 3)
+    rules = section(
+        docs / "COACH_CREATION_GUIDE.md",
+        lambda line: "Dialogue writing and review rules" in line,
+        3,
+    )
+    rows = [
+        row
+        for row in read(PLAN)["slots"]
+        if voice not in row["texts"] and (not only_set or row["set"] == only_set)
+    ]
+    if not bible:
+        sys.exit(f"{voice}: no such coach in docs/COACH_CAST_BIBLE.md")
+    if not rows:
+        return None
+    current = existing_lines(voice)
+    bases = list(dict.fromkeys(row.get("colourOf") or row["takeOf"] for row in rows))
+    examples = "\n".join(f"- {key}: {current[key]}" for key in bases if key in current)
+    slots_text = "\n".join(f"- {row['id']}: {row['when']}" for row in rows)
+    return f"""You are writing spoken lines for a chess coach in a chess training app.
+Each line is recorded as audio and played when a move in a reviewed game matches its slot.
+
+THE COACH
+{bible}
+
+THE RULES (follow all of them)
+{rules}
+
+EXTRA RULES
+- One to three short sentences, as this coach would say them out loud.
+- Never name a square (like e4), a number, or a move number.
+- Never say "you", "your" or "our": the line can play on either player's move.
+- Name the colour (White or Black) when the slot names it, and the piece when it names one.
+- Every line must be different from every other line, and from the coach's current lines below.
+- Only claim what is true every time the slot can play.
+
+THE COACH'S CURRENT LINE FOR EACH MOMENT (match this voice; do not copy the wording)
+{examples}
+
+SLOTS TO WRITE (one line each)
+{slots_text}
+
+Reply with only this JSON and nothing else:
+{{"voice": "{voice}", "lines": {{"<slot id>": "<line>", ...}}}}
+"""
+
+
+def prompt(args):
+    """Prints one coach's request, or writes every coach's into a folder."""
+    if args.voice != "all":
+        sys.stdout.reconfigure(encoding="utf-8")
+        print(prompt_text(args.voice, args.set) or "Nothing left for this coach to write.")
+        return
+    out = Path(args.out or "coach-line-prompts")
+    out.mkdir(parents=True, exist_ok=True)
+    for voice in voices():
+        text = prompt_text(voice, args.set)
+        if text:
+            (out / f"{voice}.txt").write_text(text, encoding="utf-8")
+    print(f"Wrote the prompts to {out.resolve()}")
 
 
 def check_text(voice, key, text):
@@ -259,6 +357,11 @@ def main():
     listing.add_argument("--set", choices=["colour", "development"])
     listing.add_argument("--voice", help="only slots this coach has not written yet")
     listing.set_defaults(run=list_slots)
+    writing = commands.add_parser("prompt")
+    writing.add_argument("--voice", required=True, help="coach voice id such as alfie, or all")
+    writing.add_argument("--out", help="folder for --voice all (default coach-line-prompts)")
+    writing.add_argument("--set", choices=["colour", "development"])
+    writing.set_defaults(run=prompt)
     importing = commands.add_parser("import")
     importing.add_argument("files", nargs="+")
     importing.set_defaults(run=import_lines)
