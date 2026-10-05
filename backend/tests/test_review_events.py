@@ -307,3 +307,27 @@ def test_cold_srs_cannot_serialize_intelligence_or_clock_hints(settings):
         assert (
             client.get(f"/api/review/sessions/{cold['session_id']}/explanation").status_code == 422
         )
+
+
+def test_a_weaker_discovered_attack_is_not_a_missed_discovered_attack():
+    # Reldnahc's game, move 25: Nb4+ and Nd4+ both uncover the e4 queen's attack
+    # on b7. Nb4+ only lets Qxb4 escape, so its line has no capture witness.
+    board = chess.Board("r3k2r/pQp2p1p/2nbb1p1/8/4q3/2PP4/PPK4P/RNB3NR b kq - 0 25")
+    best_pv = ["c6d4", "c3d4", "e4b7", "b1c3", "b7h1"]
+
+    def missed(played, pv):
+        report = move_report(board, played, "c6d4", before=800, after=650, pv=pv)
+        report["best"]["pv"] = best_pv
+        report["best_line"] = line_evidence(
+            board, Candidate.model_validate(report["best"]), "root-evidence", 1
+        )
+        assert any(f["skill_id"] == "discovered_attack" for f in report["best_line"]["findings"])
+        return [
+            event
+            for event in events(report, kind="tactic")
+            if event.facts["role"] == "missed" and event.facts["motif"] == "discovered_attack"
+        ]
+
+    assert not missed("c6b4", ["c6b4", "b7b4", "e4g2", "b1d2", "d6b4"])
+    # A move that leaves the line closed did miss it.
+    assert missed("h7h5", ["h7h5", "b7c6"])

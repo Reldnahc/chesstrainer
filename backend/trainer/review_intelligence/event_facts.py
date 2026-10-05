@@ -176,6 +176,15 @@ def tactical_events(report, emit, ref, fen, actor):
             expected = opponent if role == "allowed" else actor
             if finding["actor"] != expected:
                 continue
+            # The played move's own line may not witness the capture (the target
+            # escapes with tempo), yet the move still uncovers an attack. It did
+            # not miss the idea, it chose a weaker version of it.
+            if (
+                role == "missed"
+                and finding["skill_id"] == "discovered_attack"
+                and uncovers_attack(fen, report["actual"]["uci"])
+            ):
+                continue
             emit(
                 "tactic",
                 "line_witness",
@@ -219,6 +228,31 @@ def tactical_events(report, emit, ref, fen, actor):
                 ],
                 mover=finding["actor"],
             )
+
+
+def uncovers_attack(fen, uci):
+    """Moving off a line lets the mover's own long-range piece attack an enemy
+    piece (a pawn is too small to count) or give check."""
+    board = chess.Board(fen)
+    move = chess.Move.from_uci(uci)
+    if not board.is_legal(move):
+        return False
+    actor = board.turn
+    board.push(move)
+    for kind in (chess.BISHOP, chess.ROOK, chess.QUEEN):
+        for square in board.pieces(kind, actor):
+            if square == move.to_square:
+                continue
+            for target in board.attacks(square):
+                piece = board.piece_at(target)
+                if (
+                    piece
+                    and piece.color != actor
+                    and piece.piece_type != chess.PAWN
+                    and move.from_square in chess.SquareSet.between(square, target)
+                ):
+                    return True
+    return False
 
 
 def witness_pieces(frames, finding):
