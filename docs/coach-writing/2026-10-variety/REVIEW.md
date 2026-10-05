@@ -166,3 +166,16 @@ Later integration must preserve existing piece-named defender recordings, verify
 new take rotation and session scope through the shared selector, and keep missing
 recordings silent/falling back appropriately. None of those future recording or
 release actions is authorized by editorial acceptance alone.
+
+## Owner-requested second review (Oct 5)
+
+A fresh review of all 2,970 lines found these items, and 262 lines (181 slots plus their Black mirrors) were rewritten:
+
+- Two lines that Fergus and Pip shared word for word.
+- Stronger-alternative takes that leaned on an earlier sentence. The clip can play on its own.
+- "Correct execution of the lesson('s) move", shared by three coaches.
+- One defender sentence reused across all four pieces by six coaches, and bishop development takes that copied the knight ones.
+- "Let's/we/us" on lines that can play on either side's move.
+- Cast-wide claims of lateness ("at last", "finally") on development, which can happen on move two.
+
+Fresh independent reviewers reread every changed line over eight rounds. The final round returned zero open findings.
