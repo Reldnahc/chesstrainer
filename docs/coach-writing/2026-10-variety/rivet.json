@@ -1,0 +1,403 @@
+{
+  "schemaVersion": 1,
+  "coachId": "robot",
+  "voiceId": "rivet",
+  "records": [
+    {
+      "id": "positional-passed-actual-white",
+      "text": "White gains a passed pawn. Defining condition: no enemy pawn ahead on its file or adjacent files."
+    },
+    {
+      "id": "positional-passed-actual-black",
+      "text": "Black gains a passed pawn. Defining condition: no enemy pawn ahead on its file or adjacent files."
+    },
+    {
+      "id": "positional-passed-alternative-white",
+      "text": "The better move would create a passed pawn for White. No enemy pawn would stand ahead on its file or adjacent files."
+    },
+    {
+      "id": "positional-passed-alternative-black",
+      "text": "The better move would create a passed pawn for Black. No enemy pawn would stand ahead on its file or adjacent files."
+    },
+    {
+      "id": "positional-isolated-actual-white",
+      "text": "White has an isolated pawn now. Friendly pawns on adjacent files: absent."
+    },
+    {
+      "id": "positional-isolated-actual-black",
+      "text": "Black has an isolated pawn now. Friendly pawns on adjacent files: absent."
+    },
+    {
+      "id": "positional-isolated-alternative-white",
+      "text": "The better move would leave White with an isolated pawn. Adjacent files would contain no white pawns."
+    },
+    {
+      "id": "positional-isolated-alternative-black",
+      "text": "The better move would leave Black with an isolated pawn. Adjacent files would contain no black pawns."
+    },
+    {
+      "id": "positional-doubled-actual-white",
+      "text": "White's pawn structure is doubled on a file. Shared file, same color."
+    },
+    {
+      "id": "positional-doubled-actual-black",
+      "text": "Black's pawn structure is doubled on a file. Shared file, same color."
+    },
+    {
+      "id": "positional-doubled-alternative-white",
+      "text": "The better move would double White's pawns on a file. Same-color pawns would share that file."
+    },
+    {
+      "id": "positional-doubled-alternative-black",
+      "text": "The better move would double Black's pawns on a file. Same-color pawns would share that file."
+    },
+    {
+      "id": "positional-rook-open-actual-white",
+      "text": "White's rook occupies a pawnless file now. File classification: open."
+    },
+    {
+      "id": "positional-rook-open-actual-black",
+      "text": "Black's rook occupies a pawnless file now. File classification: open."
+    },
+    {
+      "id": "positional-rook-open-alternative-white",
+      "text": "The better move would leave White's rook on a pawnless file. Classification there: open."
+    },
+    {
+      "id": "positional-rook-open-alternative-black",
+      "text": "The better move would leave Black's rook on a pawnless file. Classification there: open."
+    },
+    {
+      "id": "positional-rook-semi-open-actual-white",
+      "text": "White's rook has a semi-open file. White pawns absent; black pawns present."
+    },
+    {
+      "id": "positional-rook-semi-open-actual-black",
+      "text": "Black's rook has a semi-open file. Black pawns absent; white pawns present."
+    },
+    {
+      "id": "positional-rook-semi-open-alternative-white",
+      "text": "With the better move, White's rook would have a semi-open file. White pawns would be absent; black pawns would remain."
+    },
+    {
+      "id": "positional-rook-semi-open-alternative-black",
+      "text": "With the better move, Black's rook would have a semi-open file. Black pawns would be absent; white pawns would remain."
+    },
+    {
+      "id": "positional-support-actual-knight-white",
+      "text": "White's knight changes from undefended to defended. Support acquired."
+    },
+    {
+      "id": "positional-support-actual-knight-black",
+      "text": "Black's knight changes from undefended to defended. Support acquired."
+    },
+    {
+      "id": "positional-support-actual-bishop-white",
+      "text": "White's bishop has acquired a defender. Previous support: absent."
+    },
+    {
+      "id": "positional-support-actual-bishop-black",
+      "text": "Black's bishop has acquired a defender. Previous support: absent."
+    },
+    {
+      "id": "positional-support-actual-rook-white",
+      "text": "Support connection established for White's rook. It was undefended before this move."
+    },
+    {
+      "id": "positional-support-actual-rook-black",
+      "text": "Support connection established for Black's rook. It was undefended before this move."
+    },
+    {
+      "id": "positional-support-actual-queen-white",
+      "text": "White's queen is now defended. The move adds support that was missing."
+    },
+    {
+      "id": "positional-support-actual-queen-black",
+      "text": "Black's queen is now defended. The move adds support that was missing."
+    },
+    {
+      "id": "positional-support-alternative-knight-white",
+      "text": "The better move would supply White's knight with a defender. Its earlier lack of support would be resolved."
+    },
+    {
+      "id": "positional-support-alternative-knight-black",
+      "text": "The better move would supply Black's knight with a defender. Its earlier lack of support would be resolved."
+    },
+    {
+      "id": "positional-support-alternative-bishop-white",
+      "text": "White's bishop would gain previously absent support with the better move. A defender would be present."
+    },
+    {
+      "id": "positional-support-alternative-bishop-black",
+      "text": "Black's bishop would gain previously absent support with the better move. A defender would be present."
+    },
+    {
+      "id": "positional-support-alternative-rook-white",
+      "text": "The better move would change White's rook from undefended to defended. Support would be established."
+    },
+    {
+      "id": "positional-support-alternative-rook-black",
+      "text": "The better move would change Black's rook from undefended to defended. Support would be established."
+    },
+    {
+      "id": "positional-support-alternative-queen-white",
+      "text": "With the better move, White's queen would acquire a defender. That support was absent before the move."
+    },
+    {
+      "id": "positional-support-alternative-queen-black",
+      "text": "With the better move, Black's queen would acquire a defender. That support was absent before the move."
+    },
+    {
+      "id": "positional-unsupported-actual-knight-white",
+      "text": "White's knight has lost all its defenders. Undefended does not automatically mean lost."
+    },
+    {
+      "id": "positional-unsupported-actual-knight-black",
+      "text": "Black's knight has lost all its defenders. Undefended does not automatically mean lost."
+    },
+    {
+      "id": "positional-unsupported-actual-bishop-white",
+      "text": "Support removed from White's bishop. No defender remains after this move."
+    },
+    {
+      "id": "positional-unsupported-actual-bishop-black",
+      "text": "Support removed from Black's bishop. No defender remains after this move."
+    },
+    {
+      "id": "positional-unsupported-actual-rook-white",
+      "text": "White's rook changes from defended to undefended. A winning capture is not established by that fact alone."
+    },
+    {
+      "id": "positional-unsupported-actual-rook-black",
+      "text": "Black's rook changes from defended to undefended. A winning capture is not established by that fact alone."
+    },
+    {
+      "id": "positional-unsupported-actual-queen-white",
+      "text": "White's queen has lost its last defender. Support absent; capture outcome still needs checking."
+    },
+    {
+      "id": "positional-unsupported-actual-queen-black",
+      "text": "Black's queen has lost its last defender. Support absent; capture outcome still needs checking."
+    },
+    {
+      "id": "positional-unsupported-alternative-knight-white",
+      "text": "The better move would remove the last defender of White's knight. Resulting support: absent."
+    },
+    {
+      "id": "positional-unsupported-alternative-knight-black",
+      "text": "The better move would remove the last defender of Black's knight. Resulting support: absent."
+    },
+    {
+      "id": "positional-unsupported-alternative-bishop-white",
+      "text": "White's bishop would become undefended after the better move. Loss of the bishop is not implied."
+    },
+    {
+      "id": "positional-unsupported-alternative-bishop-black",
+      "text": "Black's bishop would become undefended after the better move. Loss of the bishop is not implied."
+    },
+    {
+      "id": "positional-unsupported-alternative-rook-white",
+      "text": "The better move would leave White's rook without any defender. Its prior support would be removed."
+    },
+    {
+      "id": "positional-unsupported-alternative-rook-black",
+      "text": "The better move would leave Black's rook without any defender. Its prior support would be removed."
+    },
+    {
+      "id": "positional-unsupported-alternative-queen-white",
+      "text": "With the better move, White's queen would lose its last defender. An undefended queen is not automatically a lost queen."
+    },
+    {
+      "id": "positional-unsupported-alternative-queen-black",
+      "text": "With the better move, Black's queen would lose its last defender. An undefended queen is not automatically a lost queen."
+    },
+    {
+      "id": "positional-development-actual-knight-2",
+      "text": "Knight development begins. Departure from its original square confirmed."
+    },
+    {
+      "id": "positional-development-actual-knight-3",
+      "text": "The knight has moved off its original square for the first time. Development, specifically."
+    },
+    {
+      "id": "positional-development-actual-knight-4",
+      "text": "A previously unmoved knight leaves home. Development status: started."
+    },
+    {
+      "id": "positional-development-actual-knight-5",
+      "text": "The knight is no longer on its untouched starting square. Its development has begun."
+    },
+    {
+      "id": "positional-development-actual-bishop-2",
+      "text": "Bishop development begins with this move. Its original square is vacated for the first time."
+    },
+    {
+      "id": "positional-development-actual-bishop-3",
+      "text": "A previously unmoved bishop leaves its home square. Development is the change to track."
+    },
+    {
+      "id": "positional-development-actual-bishop-4",
+      "text": "The bishop makes its initial departure from its starting square. Development now under way."
+    },
+    {
+      "id": "positional-development-actual-bishop-5",
+      "text": "This bishop had not moved before. It now leaves its original square and begins development."
+    },
+    {
+      "id": "positional-development-alternative-knight-2",
+      "text": "The better move would begin knight development. The knight would leave its original square for the first time."
+    },
+    {
+      "id": "positional-development-alternative-knight-3",
+      "text": "A previously unmoved knight would come off its home square with the better move. That would be development."
+    },
+    {
+      "id": "positional-development-alternative-knight-4",
+      "text": "The better move would start knight development with a departure from its original square."
+    },
+    {
+      "id": "positional-development-alternative-knight-5",
+      "text": "With the better move, the knight would no longer remain unmoved at home. Its initial development would be recorded."
+    },
+    {
+      "id": "positional-development-alternative-bishop-2",
+      "text": "The better move would begin development of a bishop still on its original square."
+    },
+    {
+      "id": "positional-development-alternative-bishop-3",
+      "text": "A previously unmoved bishop would depart its starting square with the better move. That is the development option."
+    },
+    {
+      "id": "positional-development-alternative-bishop-4",
+      "text": "With the better move, the bishop would make its initial move away from home. Its development would begin."
+    },
+    {
+      "id": "positional-development-alternative-bishop-5",
+      "text": "The better move would bring out the bishop that has not yet moved. Its original square would be vacated; development would begin."
+    },
+    {
+      "id": "evaluation-loss-2",
+      "text": "A stronger move was available. This choice gives up value in the engine comparison."
+    },
+    {
+      "id": "evaluation-loss-3",
+      "text": "Issue: the chosen move leaves a worse result than the best available move. Compare the resulting positions."
+    },
+    {
+      "id": "evaluation-loss-4",
+      "text": "This is a cost against the stronger option. It does not, by itself, establish a losing position."
+    },
+    {
+      "id": "evaluation-loss-5",
+      "text": "The engine's comparison favors another move. The played move falls short of that result."
+    },
+    {
+      "id": "immediate-capture-2",
+      "text": "An immediate capture is available to the opponent. Availability confirmed; profit not implied."
+    },
+    {
+      "id": "immediate-capture-3",
+      "text": "The other side can take something on the next move. Inspect that capture before extending the line."
+    },
+    {
+      "id": "immediate-capture-4",
+      "text": "Reply option: capture. The opponent can make it immediately."
+    },
+    {
+      "id": "immediate-capture-5",
+      "text": "The move permits a capture in reply immediately. Capturable does not mean free."
+    },
+    {
+      "id": "chance-taken-2",
+      "text": "Previous event: opponent error. Current response: opportunity used."
+    },
+    {
+      "id": "chance-taken-3",
+      "text": "The opponent's mistake has been exploited. Full-game victory is a different requirement."
+    },
+    {
+      "id": "chance-taken-4",
+      "text": "You used the opportunity from the opponent's last move. Error followed by punishment."
+    },
+    {
+      "id": "stronger-alternative-2",
+      "text": "A different move produces a better result in the engine's analysis."
+    },
+    {
+      "id": "stronger-alternative-3",
+      "text": "The engine identifies a stronger alternative for comparison."
+    },
+    {
+      "id": "stronger-alternative-4",
+      "text": "Compare the engine's preferred move; it is not the move played."
+    },
+    {
+      "id": "positional-passer-advance-actual-2",
+      "text": "The existing passed pawn advances. Distance to the promotion rank decreases; arrival is not guaranteed."
+    },
+    {
+      "id": "positional-passer-advance-actual-3",
+      "text": "Passed status predates this move. The pawn now advances closer to promotion."
+    },
+    {
+      "id": "reply-check-2",
+      "text": "The strongest response checks the king. Resolving check is mandatory."
+    },
+    {
+      "id": "reply-check-3",
+      "text": "Best reply: an attack on the king with check. That threat requires an answer."
+    },
+    {
+      "id": "lesson-correct-move-2",
+      "text": "Correct lesson move identified. Match accepted."
+    },
+    {
+      "id": "lesson-correct-move-3",
+      "text": "The move agrees with the lesson's intended answer."
+    },
+    {
+      "id": "lesson-correct-move-4",
+      "text": "Lesson requirement met by that move. Proceed."
+    },
+    {
+      "id": "puzzle-next-move-2",
+      "text": "Correct so far. Puzzle completion still pending."
+    },
+    {
+      "id": "puzzle-next-move-3",
+      "text": "That move fits the solution. Continue with the next decision."
+    },
+    {
+      "id": "puzzle-next-move-4",
+      "text": "Puzzle move confirmed. Further moves remain to be found."
+    },
+    {
+      "id": "opening-recall-accepted-2",
+      "text": "The move matches the opening under study. Recall accepted."
+    },
+    {
+      "id": "opening-recall-accepted-3",
+      "text": "Repertoire answer verified against the selected opening."
+    },
+    {
+      "id": "opening-recall-accepted-4",
+      "text": "Opening recall check passed. The stored move and played move agree."
+    },
+    {
+      "id": "grade-best-5",
+      "text": "Best available move. Selection requires no amendment."
+    },
+    {
+      "id": "grade-best-6",
+      "text": "The move meets the best standard. No stronger replacement to recommend."
+    },
+    {
+      "id": "grade-good-5",
+      "text": "Sound move, with a better option available. Good is the applicable grade."
+    },
+    {
+      "id": "grade-good-6",
+      "text": "Good, not best. The distinction is worth keeping accurate."
+    }
+  ]
+}

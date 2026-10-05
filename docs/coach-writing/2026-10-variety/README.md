@@ -4,6 +4,10 @@ Owner-requested writing batch, October 5, 2026. These are proposed additions,
 not active scripts, recordings or a runtime catalogue. Recording requires the
 owner's explicit instruction. Existing lines and clips must remain byte-identical.
 
+All 2,970 lines have completed independent editorial review. See the
+[acceptance and recording estimate](REVIEW.md). This is writing approval only;
+recording is not authorized.
+
 `scope.json` defines 99 new slots for each of the 30 registered coaches:
 
 | Set | Per coach | All coaches |
@@ -83,7 +87,7 @@ Writers address every finding; reviewers reread until the complete result has
 zero open fixes. A separate final reviewer reads every new line and checks that
 the old scripts/recordings are unchanged. Review results belong in `REVIEW.md`.
 
-The later implementation must preserve all existing piece-named defender clips,
+Any later integration must preserve all existing piece-named defender clips,
 add colour-and-piece variants without replacing that pool, extend the shared
 take picker for non-grade meanings/development, and give lessons, puzzles and
 opening recall their own session order. These manuscripts do not enable that

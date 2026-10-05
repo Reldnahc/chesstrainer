@@ -1,0 +1,403 @@
+{
+  "schemaVersion": 1,
+  "coachId": "dog-collie",
+  "voiceId": "scout",
+  "records": [
+    {
+      "id": "positional-passed-actual-white",
+      "text": "White has a new passed pawn. Track the pieces that could block it; passed does not mean unstoppable."
+    },
+    {
+      "id": "positional-passed-actual-black",
+      "text": "Black has a new passed pawn. Track the pieces that could block it; passed does not mean unstoppable."
+    },
+    {
+      "id": "positional-passed-alternative-white",
+      "text": "The better move would have produced a passed pawn for White. Compare the blockading options before choosing a route."
+    },
+    {
+      "id": "positional-passed-alternative-black",
+      "text": "The better move would have produced a passed pawn for Black. Compare the blockading options before choosing a route."
+    },
+    {
+      "id": "positional-isolated-actual-white",
+      "text": "White now has an isolated pawn. Scan the adjacent files: no friendly pawn. Then check its piece support."
+    },
+    {
+      "id": "positional-isolated-actual-black",
+      "text": "Black now has an isolated pawn. Scan the adjacent files: no friendly pawn. Then check its piece support."
+    },
+    {
+      "id": "positional-isolated-alternative-white",
+      "text": "The better move would have left White with an isolated pawn. Include the missing neighboring pawns in the comparison."
+    },
+    {
+      "id": "positional-isolated-alternative-black",
+      "text": "The better move would have left Black with an isolated pawn. Include the missing neighboring pawns in the comparison."
+    },
+    {
+      "id": "positional-doubled-actual-white",
+      "text": "White's pawns now share a file. Doubled structure. Check what changed around them."
+    },
+    {
+      "id": "positional-doubled-actual-black",
+      "text": "Black's pawns now share a file. Doubled structure. Check what changed around them."
+    },
+    {
+      "id": "positional-doubled-alternative-white",
+      "text": "The better move would have doubled White's pawns. Evaluate that structure alongside the rest of the position."
+    },
+    {
+      "id": "positional-doubled-alternative-black",
+      "text": "The better move would have doubled Black's pawns. Evaluate that structure alongside the rest of the position."
+    },
+    {
+      "id": "positional-rook-open-actual-white",
+      "text": "White's rook now occupies a pawnless file. Open file. Trace its actual reach before planning an entry."
+    },
+    {
+      "id": "positional-rook-open-actual-black",
+      "text": "Black's rook now occupies a pawnless file. Open file. Trace its actual reach before planning an entry."
+    },
+    {
+      "id": "positional-rook-open-alternative-white",
+      "text": "The better move would have placed White's rook on an open file. No pawns there; check the pieces next."
+    },
+    {
+      "id": "positional-rook-open-alternative-black",
+      "text": "The better move would have placed Black's rook on an open file. No pawns there; check the pieces next."
+    },
+    {
+      "id": "positional-rook-semi-open-actual-white",
+      "text": "White's rook has a half-open file: no friendly pawns, enemy pawns present. Check the lines between the rook and those pawns."
+    },
+    {
+      "id": "positional-rook-semi-open-actual-black",
+      "text": "Black's rook has a half-open file: no friendly pawns, enemy pawns present. Check the lines between the rook and those pawns."
+    },
+    {
+      "id": "positional-rook-semi-open-alternative-white",
+      "text": "The better move would have given White's rook a half-open file. Locate the enemy pawns and test the placement."
+    },
+    {
+      "id": "positional-rook-semi-open-alternative-black",
+      "text": "The better move would have given Black's rook a half-open file. Locate the enemy pawns and test the placement."
+    },
+    {
+      "id": "positional-support-actual-knight-white",
+      "text": "White's knight has gained a defender. Find the new link; that is the pattern to retain."
+    },
+    {
+      "id": "positional-support-actual-knight-black",
+      "text": "Black's knight has gained a defender. Find the new link; that is the pattern to retain."
+    },
+    {
+      "id": "positional-support-actual-bishop-white",
+      "text": "White's bishop was unguarded and now has support. Trace the new defensive connection."
+    },
+    {
+      "id": "positional-support-actual-bishop-black",
+      "text": "Black's bishop was unguarded and now has support. Trace the new defensive connection."
+    },
+    {
+      "id": "positional-support-actual-rook-white",
+      "text": "White's rook is newly defended. Identify what now covers it before continuing the calculation."
+    },
+    {
+      "id": "positional-support-actual-rook-black",
+      "text": "Black's rook is newly defended. Identify what now covers it before continuing the calculation."
+    },
+    {
+      "id": "positional-support-actual-queen-white",
+      "text": "White's queen has picked up protection. Track that connection when considering the next move."
+    },
+    {
+      "id": "positional-support-actual-queen-black",
+      "text": "Black's queen has picked up protection. Track that connection when considering the next move."
+    },
+    {
+      "id": "positional-support-alternative-knight-white",
+      "text": "The better move would have supplied a defender for White's knight. Compare the support links."
+    },
+    {
+      "id": "positional-support-alternative-knight-black",
+      "text": "The better move would have supplied a defender for Black's knight. Compare the support links."
+    },
+    {
+      "id": "positional-support-alternative-bishop-white",
+      "text": "The better move would have guarded White's previously unsupported bishop. Identify the connection it would create."
+    },
+    {
+      "id": "positional-support-alternative-bishop-black",
+      "text": "The better move would have guarded Black's previously unsupported bishop. Identify the connection it would create."
+    },
+    {
+      "id": "positional-support-alternative-rook-white",
+      "text": "The better move would have added protection to White's unguarded rook. Check that defensive link on the board."
+    },
+    {
+      "id": "positional-support-alternative-rook-black",
+      "text": "The better move would have added protection to Black's unguarded rook. Check that defensive link on the board."
+    },
+    {
+      "id": "positional-support-alternative-queen-white",
+      "text": "The better move would have covered White's undefended queen. Include that support in the comparison."
+    },
+    {
+      "id": "positional-support-alternative-queen-black",
+      "text": "The better move would have covered Black's undefended queen. Include that support in the comparison."
+    },
+    {
+      "id": "positional-unsupported-actual-knight-white",
+      "text": "White's knight has lost its last defender. Check possible attacks; an unguarded piece is not automatically lost."
+    },
+    {
+      "id": "positional-unsupported-actual-knight-black",
+      "text": "Black's knight has lost its last defender. Check possible attacks; an unguarded piece is not automatically lost."
+    },
+    {
+      "id": "positional-unsupported-actual-bishop-white",
+      "text": "White's bishop is no longer defended. Mark the broken connection and test whether it matters tactically."
+    },
+    {
+      "id": "positional-unsupported-actual-bishop-black",
+      "text": "Black's bishop is no longer defended. Mark the broken connection and test whether it matters tactically."
+    },
+    {
+      "id": "positional-unsupported-actual-rook-white",
+      "text": "White's rook has no defender after this move. Start the capture scan there; confirm before calling it a loss."
+    },
+    {
+      "id": "positional-unsupported-actual-rook-black",
+      "text": "Black's rook has no defender after this move. Start the capture scan there; confirm before calling it a loss."
+    },
+    {
+      "id": "positional-unsupported-actual-queen-white",
+      "text": "White's queen has lost its protection. Track the threats against it, without assuming a capture exists."
+    },
+    {
+      "id": "positional-unsupported-actual-queen-black",
+      "text": "Black's queen has lost its protection. Track the threats against it, without assuming a capture exists."
+    },
+    {
+      "id": "positional-unsupported-alternative-knight-white",
+      "text": "The better move would have left White's knight without a defender. Test the attacks before rejecting the move."
+    },
+    {
+      "id": "positional-unsupported-alternative-knight-black",
+      "text": "The better move would have left Black's knight without a defender. Test the attacks before rejecting the move."
+    },
+    {
+      "id": "positional-unsupported-alternative-bishop-white",
+      "text": "The better move would have removed the last defender of White's bishop. Check whether that bishop could actually be taken."
+    },
+    {
+      "id": "positional-unsupported-alternative-bishop-black",
+      "text": "The better move would have removed the last defender of Black's bishop. Check whether that bishop could actually be taken."
+    },
+    {
+      "id": "positional-unsupported-alternative-rook-white",
+      "text": "The better move would have left White's rook unguarded. Compare the resulting threats, not just the missing cover."
+    },
+    {
+      "id": "positional-unsupported-alternative-rook-black",
+      "text": "The better move would have left Black's rook unguarded. Compare the resulting threats, not just the missing cover."
+    },
+    {
+      "id": "positional-unsupported-alternative-queen-white",
+      "text": "The better move would have stripped White's queen of its remaining protection. Test the position before assigning a cost."
+    },
+    {
+      "id": "positional-unsupported-alternative-queen-black",
+      "text": "The better move would have stripped Black's queen of its remaining protection. Test the position before assigning a cost."
+    },
+    {
+      "id": "positional-development-actual-knight-2",
+      "text": "Knight developed. First departure from its starting square. Check its next job."
+    },
+    {
+      "id": "positional-development-actual-knight-3",
+      "text": "The knight leaves its original square for the first time. Track its new connections."
+    },
+    {
+      "id": "positional-development-actual-knight-4",
+      "text": "A knight comes off its starting square. Development logged; now inspect the placement."
+    },
+    {
+      "id": "positional-development-actual-knight-5",
+      "text": "First outing for the knight. Identify what changes when it leaves its starting post."
+    },
+    {
+      "id": "positional-development-actual-bishop-2",
+      "text": "Bishop developed. Its starting square is vacated for the first time. Trace its diagonals."
+    },
+    {
+      "id": "positional-development-actual-bishop-3",
+      "text": "The bishop makes its first move from home. Check where it fits into the position."
+    },
+    {
+      "id": "positional-development-actual-bishop-4",
+      "text": "A bishop leaves its original post. Development recorded; test the new placement."
+    },
+    {
+      "id": "positional-development-actual-bishop-5",
+      "text": "First departure for the bishop. Mark the change from its starting square, then examine its job."
+    },
+    {
+      "id": "positional-development-alternative-knight-2",
+      "text": "The better move would have developed a knight from its starting square. Compare its new post."
+    },
+    {
+      "id": "positional-development-alternative-knight-3",
+      "text": "Knight development was the alternative. Its first move from home would have changed the piece layout; inspect that layout."
+    },
+    {
+      "id": "positional-development-alternative-knight-4",
+      "text": "A knight could have left its original square with the better move. Test that placement against the game."
+    },
+    {
+      "id": "positional-development-alternative-knight-5",
+      "text": "The better choice included the knight's first departure from its starting post. Put that development into the comparison."
+    },
+    {
+      "id": "positional-development-alternative-bishop-2",
+      "text": "The better move would have developed a bishop from its starting square. Trace the resulting diagonals."
+    },
+    {
+      "id": "positional-development-alternative-bishop-3",
+      "text": "The stronger choice included a bishop's first move from home. Compare its resulting placement with the game."
+    },
+    {
+      "id": "positional-development-alternative-bishop-4",
+      "text": "A bishop could have left its original square with the better choice. Check its role in that position."
+    },
+    {
+      "id": "positional-development-alternative-bishop-5",
+      "text": "The better option brought a bishop off its starting post for the first time. Examine the placement it would have reached."
+    },
+    {
+      "id": "evaluation-loss-2",
+      "text": "Evaluation drops against the better choice. Compare the moves, then test the replies."
+    },
+    {
+      "id": "evaluation-loss-3",
+      "text": "The engine prefers a stronger move. Focus the review on the difference between the resulting positions."
+    },
+    {
+      "id": "evaluation-loss-4",
+      "text": "This choice gives up value relative to the best move. Run the comparison from here."
+    },
+    {
+      "id": "evaluation-loss-5",
+      "text": "The position rates worse than it would after the stronger move. Find the difference; do not guess at a tactic."
+    },
+    {
+      "id": "immediate-capture-2",
+      "text": "Capture available on the reply. Identify what can be taken, then check the exchange."
+    },
+    {
+      "id": "immediate-capture-3",
+      "text": "The other side can capture immediately. Trace that reply before moving deeper."
+    },
+    {
+      "id": "immediate-capture-4",
+      "text": "A capture is ready for the opponent. Check its consequences rather than assuming free material."
+    },
+    {
+      "id": "immediate-capture-5",
+      "text": "The next move can be a capture by the other side. Put it into the reply scan."
+    },
+    {
+      "id": "chance-taken-2",
+      "text": "Error punished. You turned the opponent's previous mistake into something useful. Keep that response pattern."
+    },
+    {
+      "id": "chance-taken-3",
+      "text": "The opponent slipped, and you made use of it. Identify the chance so it is easier to catch next time."
+    },
+    {
+      "id": "chance-taken-4",
+      "text": "Good follow-through. You acted on the chance left by the opponent's last move."
+    },
+    {
+      "id": "stronger-alternative-2",
+      "text": "Compare it with the engine's preferred move; that is the stronger choice here."
+    },
+    {
+      "id": "stronger-alternative-3",
+      "text": "The engine favors an alternative. Test that move's replies alongside these."
+    },
+    {
+      "id": "stronger-alternative-4",
+      "text": "Put the stronger engine choice on the board next and compare the results."
+    },
+    {
+      "id": "positional-passer-advance-actual-2",
+      "text": "The passed pawn gains ground toward promotion. Track the blockers before the next push."
+    },
+    {
+      "id": "positional-passer-advance-actual-3",
+      "text": "An existing passer moves closer to the last rank. Recheck its support and the route ahead."
+    },
+    {
+      "id": "reply-check-2",
+      "text": "The best reply checks the king. Start with the legal answers to that check."
+    },
+    {
+      "id": "reply-check-3",
+      "text": "King checked by the strongest reply. Calculate the responses before extending the line."
+    },
+    {
+      "id": "lesson-correct-move-2",
+      "text": "Lesson move matched. Keep the pattern in focus."
+    },
+    {
+      "id": "lesson-correct-move-3",
+      "text": "Correct execution of the lesson's move. Note the position it starts from."
+    },
+    {
+      "id": "lesson-correct-move-4",
+      "text": "That fits the lesson. Keep working through the idea."
+    },
+    {
+      "id": "puzzle-next-move-2",
+      "text": "Correct move. The puzzle continues; find the next step."
+    },
+    {
+      "id": "puzzle-next-move-3",
+      "text": "On target. Keep calculating the rest of the puzzle."
+    },
+    {
+      "id": "puzzle-next-move-4",
+      "text": "That step checks out. Stay with the puzzle for the next move."
+    },
+    {
+      "id": "opening-recall-accepted-2",
+      "text": "Study move matched. Keep that position-to-move link."
+    },
+    {
+      "id": "opening-recall-accepted-3",
+      "text": "Correct recall from the repertoire. Retain the starting position as well as the move."
+    },
+    {
+      "id": "opening-recall-accepted-4",
+      "text": "That is the stored opening move. Keep the sequence in focus."
+    },
+    {
+      "id": "grade-best-5",
+      "text": "Best. Use this move as the reference when comparing the alternatives."
+    },
+    {
+      "id": "grade-best-6",
+      "text": "Exact choice. Now identify what makes it Best."
+    },
+    {
+      "id": "grade-good-5",
+      "text": "Good, with a stronger choice available. Compare once, then move on."
+    },
+    {
+      "id": "grade-good-6",
+      "text": "Sound move. The improvement is worth checking; this is Good rather than Best."
+    }
+  ]
+}
