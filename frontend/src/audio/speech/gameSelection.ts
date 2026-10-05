@@ -56,6 +56,7 @@ const simpleIds: Readonly<Record<string, string>> = {
 };
 const tacticalMotifs = new Set(["fork", "pin", "skewer", "removing_defender", "back_rank", "promotion_awareness",
   "discovered_attack", "double_attack", "deflection"]);
+const forcedMateStages = new Set(["started", "continued", "slower", "next", "hastened", "held"]);
 const causes = new Set(["abandoned_defender", "opponent_threat_recognition", "avoiding_bad_trades"]);
 
 function eventFor(item: Claim, report: Report): Event | undefined {
@@ -220,8 +221,16 @@ export function selectGameRecording(context: GameSpeechContext): string | null {
     && nonempty(report.opening.version) ? item.opening ? bookRecordingId(item.opening) : "recognized-opening" : null;
   if (event) {
     if (event.actor !== mover) return null;
-    if (item.code === "allowed_mate" || item.code === "missed_mate") return event.kind === "mate" && event.confidence === "searched"
-      && searchEvidence(item) && event.facts.transition === (item.code === "allowed_mate" ? "allowed" : "missed") ? simpleIds[item.code] : null;
+    if (item.code === "allowed_mate" || item.code === "missed_mate") {
+      if (event.kind !== "mate" || event.confidence !== "searched" || !searchEvidence(item)
+        || event.facts.transition !== (item.code === "allowed_mate" ? "allowed" : "missed")) return null;
+      // Letting the reply itself mate is its own, more urgent line; the general
+      // allowed-mate clip stands in until a coach has recorded it.
+      return item.code === "allowed_mate" && event.facts.mate_in === 1 ? "allowed-mate-next|allowed-mate" : simpleIds[item.code];
+    }
+    if (item.code.startsWith("forced_mate_")) return event.kind === "forced_mate" && event.confidence === "searched"
+      && searchEvidence(item) && forcedMateStages.has(String(event.facts.stage)) && item.code === `forced_mate_${event.facts.stage}`
+      ? `forced-mate-${event.facts.stage}` : null;
     if (item.code === "sacrifice") return event.kind === "sacrifice" && event.confidence === "searched"
       && item.evidence.some(ref => ref.source === "stockfish" && ref.field === "acceptance_search") ? simpleIds[item.code] : null;
     if (["only_move", "decisive_resource"].includes(item.code)) return event.kind === "critical_resource" && event.confidence === "searched"

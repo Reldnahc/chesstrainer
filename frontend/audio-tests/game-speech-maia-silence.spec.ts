@@ -20,7 +20,7 @@ const coaches = [{id: "classic", personality: storyteller}, {id: "robot", person
 const objectiveAndMaia: [string, string][] = [
   // Poorly graded first moves are Book moves, and the Book badge decides the line.
   ["evaluation-natural", "recognized-opening"],
-  ["allowed-mate-natural", "allowed-mate"],
+  ["allowed-mate-natural", "allowed-mate-next|allowed-mate"],
   ["missed-mate-natural", "missed-mate"],
   ["capture-natural", "immediate-capture"],
   ["allowed-fork-natural", "tactic-fork-allowed"],

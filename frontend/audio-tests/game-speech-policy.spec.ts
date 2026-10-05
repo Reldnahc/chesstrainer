@@ -19,7 +19,7 @@ const coaches = [{id: "classic", personality: storyteller}, {id: "robot", person
 // (Their poorly graded first moves are Book moves, which the badge lets name the
 // opening instead of an evaluation loss.)
 const observedFamilies = [
-  "allowed-mate", "missed-mate", "immediate-capture", "recognized-opening",
+  "allowed-mate-next|allowed-mate", "missed-mate", "immediate-capture", "recognized-opening",
   "cause-abandoned-defender", "cause-opponent-threat-recognition", "cause-avoiding-bad-trades",
   "tactic-fork-played", "tactic-pin-played", "tactic-fork-allowed", "tactic-skewer-allowed", "tactic-fork-missed",
   "sound-sacrifice", "only-playable-move", "only-advantage-resource",
@@ -86,7 +86,8 @@ for (const coach of coaches) {
       expect(context.report!.intelligence!.events).toEqual(expect.arrayContaining([
         expect.objectContaining({kind: "tactic", facts: expect.objectContaining({motif: "back_rank", role})}),
       ]));
-      expect(selectGameRecording(context)).toBe(`${role}-mate`);
+      // These witnesses let the reply itself mate, which has its own line.
+      expect(selectGameRecording(context)).toBe(role === "allowed" ? "allowed-mate-next|allowed-mate" : "missed-mate");
       expect(selectGameSpeech(context).recordingId).toBe(plain(context));
     }
   });

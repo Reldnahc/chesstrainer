@@ -1938,6 +1938,48 @@
       "group": "game_review",
       "walterText": "Brilliant. A sound queen sacrifice, and a position worth coming back to after the game.",
       "rivetText": "Anomaly detected: queen surrendered, soundness retained. Grade: brilliant."
+    },
+    {
+      "id": "allowed-mate-next",
+      "group": "game_review",
+      "walterText": "This is where the game turns sharply. After this move, the other side can deliver checkmate on its very next move.",
+      "rivetText": "Warning: checkmate is now available to the other side on its very next move. Buffer moves remaining: none."
+    },
+    {
+      "id": "forced-mate-started",
+      "group": "game_review",
+      "walterText": "Here the game reaches its turning point. From this move on, the side that played it can force checkmate against any defense, though the finish is still a little way off.",
+      "rivetText": "Status change: forced checkmate initiated by this move. Defensive replies that stop it: none. Arrival: not on the next move."
+    },
+    {
+      "id": "forced-mate-continued",
+      "group": "game_review",
+      "walterText": "The forced checkmate was already on the board, and this move keeps it going. The finish isn't here yet, but the defense still has no way out.",
+      "rivetText": "Forced-mate status: maintained by this move. Escape routes for the defender: none. Finish: still more than a move out."
+    },
+    {
+      "id": "forced-mate-slower",
+      "group": "game_review",
+      "walterText": "This still forces checkmate, so the result doesn't change. Another move would have got there sooner, and that quicker route is worth knowing when going over the game.",
+      "rivetText": "Forced mate: still certain. Route taken: not the shortest. A faster finish was available. Result: unchanged."
+    },
+    {
+      "id": "forced-mate-next",
+      "group": "game_review",
+      "walterText": "After this move, checkmate follows on the very next turn for the side that played it, and no reply can stop it. This is where the defense finally runs out.",
+      "rivetText": "Final stage: checkmate follows on this side's next move. Replies that prevent it: none."
+    },
+    {
+      "id": "forced-mate-hastened",
+      "group": "game_review",
+      "walterText": "The forced checkmate was already coming here; no move could have stopped it. This move does let it arrive sooner than the stoutest defense would have.",
+      "rivetText": "Position status: already lost to forced mate. Effect of this move: the mate arrives sooner than under the best defense."
+    },
+    {
+      "id": "forced-mate-held",
+      "group": "game_review",
+      "walterText": "The mate was already unavoidable here, and it still comes. Even so, this move makes the defense last as long as any move we checked. That's sensible defense, even in a lost position.",
+      "rivetText": "Position status: forced mate, unavoidable. This move delays it as long as any examined move could. Classification: sensible resistance. Outcome: unchanged."
     }
   ]
 }

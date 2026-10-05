@@ -8,6 +8,16 @@ import pytest
 
 SPEECH = Path(__file__).resolve().parents[2] / "frontend/src/audio/speech"
 # Each new voice owns one complete script source; Walter/Rivet text fields stay theirs.
+# Written and reviewed, recorded later on the owner's word.
+AWAITING_RECORDING = {
+    "allowed-mate-next",
+    "forced-mate-started",
+    "forced-mate-continued",
+    "forced-mate-slower",
+    "forced-mate-next",
+    "forced-mate-hastened",
+    "forced-mate-held",
+}
 AUTHORED = [
     ("capybara", "winston"),
     ("mushroom", "button"),
@@ -111,9 +121,13 @@ def test_registered_bank_records_exactly_the_authored_scripts(coach, voice):
     assert (manifest["coachId"], manifest["voiceId"]) == (coach, voice)
     scripts = read(f"banks/{voice}/scripts.json")["records"]
     recorded = {row["id"] for row in manifest["recordings"]}
-    # Generic lesson prompts may be authored before they are recorded; they stay
-    # silent until their clip is added.
-    assert all(row["group"] == "lessons" for row in scripts if row["id"] not in recorded)
+    # Generic lesson prompts and the forced-mate lines may be authored before they
+    # are recorded; they stay silent until their clip is added.
+    assert all(
+        row["group"] == "lessons" or row["id"] in AWAITING_RECORDING
+        for row in scripts
+        if row["id"] not in recorded
+    )
     assert [(row["id"], row["group"], row["text"]) for row in manifest["recordings"]] == [
         (row["id"], row["group"], row["text"]) for row in scripts if row["id"] in recorded
     ]
