@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "forced-mate-started",
+      "label": "Forced mate started",
+      "text": "I see it now. This move sets a checkmate in place, one no defense can untangle. Not at once, but surely."
+    },
+    "takeId": null
+  },
+  "requestHash": "98d56695ab8364bf13c977ca4a366b71160831d6402377bb4cd61db752d0b127",
+  "recordedAt": "2026-10-05T07:55:28.925Z",
+  "sha256": "9ece7161b50cac9f06df8723b1bc6922df74abe8910ed6311f0596b642c770ed",
+  "bytes": 26712,
+  "requestId": "km7cZU6rM7Yxn6VpphNq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cd8d8df1625ced7b5c30829d99f73207d7443526dcc080afbff0077ade5b456e",
+    "bytes": 142986
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

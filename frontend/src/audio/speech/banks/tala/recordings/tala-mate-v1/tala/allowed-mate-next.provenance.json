@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "allowed-mate-next",
+      "label": "Allowed mate next",
+      "text": "Count how many moves the other side needs for checkmate now. Just one! This move leaves mate right there for the very next turn."
+    },
+    "takeId": null
+  },
+  "requestHash": "310935787e93a7f4cc737e90b7bc5b4b04ac06a2d9376e401c322b07e636740a",
+  "recordedAt": "2026-10-05T07:55:56.659Z",
+  "sha256": "91d9581b3e46935ebcd426192e3635c17d7b80306e77231f53629d4b5d6e5462",
+  "bytes": 27567,
+  "requestId": "f2wpJuvDosjsyzNovnJS",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c9d141678d2ab8431a85034d6b677a4116eafe6b52fc039ddaba5baadfa51581",
+    "bytes": 141732
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

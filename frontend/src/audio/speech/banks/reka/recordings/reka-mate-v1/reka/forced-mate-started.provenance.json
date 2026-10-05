@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "forced-mate-started",
+      "label": "Forced mate started",
+      "text": "Punchline loaded: this move launches a forced checkmate, and whatever the defense throws in, the king isn't getting out."
+    },
+    "takeId": null
+  },
+  "requestHash": "257a7451b788fbe6dcfe4cddde5c7f5b8a381cebf11e397f1c4be2361ad9df2b",
+  "recordedAt": "2026-10-05T07:55:51.072Z",
+  "sha256": "4fa84a45a67dffac7c7a1a539ef61e9895ac7d574237584aa5c6d9e3afd6b36c",
+  "bytes": 23613,
+  "requestId": "mEbPBsUyKs1Rftw0bmlk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5e0d615328ab21849cb31bae32a71a424e5795f798a70db95c267f586984ae80",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -4,8 +4,6 @@ import json
 import re
 from pathlib import Path
 
-from test_coach_bank_scripts import AWAITING_RECORDING
-
 SPEECH = Path(__file__).resolve().parents[2] / "frontend/src/audio/speech"
 
 
@@ -53,10 +51,7 @@ def test_pilot_scripts_match_the_registered_recordings_without_losing_base_meani
         assert manifest["coachId"] == coach
         # Generic lesson prompts may be authored before they are recorded.
         unrecorded = (catalogue.keys() | extras.keys()) - records.keys()
-        assert all(
-            catalogue[key]["group"] == "lessons" or key in AWAITING_RECORDING
-            for key in unrecorded
-        )
+        assert all(catalogue[key]["group"] == "lessons" for key in unrecorded)
         assert records.keys() == original.keys() | (extras.keys() & records.keys())
         assert records.keys() <= catalogue.keys()
         for key, row in records.items():

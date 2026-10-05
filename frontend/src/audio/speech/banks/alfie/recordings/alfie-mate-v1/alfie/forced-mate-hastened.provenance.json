@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "forced-mate-hastened",
+      "label": "Forced mate hastened",
+      "text": "For the mover, mate was unavoidable, though careful defense could have postponed it. This move brings it forward. Even in a lost position, it's worth looking for the reply that holds out longest."
+    },
+    "takeId": null
+  },
+  "requestHash": "315f7d12fcd89199baa5b9b423bb5128326ebcfbd0298909e6dfc66d3339279d",
+  "recordedAt": "2026-10-05T07:55:11.550Z",
+  "sha256": "18b68c580770038abeacda33adc3ab222a2e197ef21d3be4cc20d085240657e9",
+  "bytes": 38575,
+  "requestId": "IdFaNodRSsLqIvx7VajX",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "23e968dfc21f9787c9b87539c10d74167c1ff06f16592ed05d088ae96ce1df75",
+    "bytes": 196902
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

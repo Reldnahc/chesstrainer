@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "forced-mate-held",
+      "label": "Forced mate held",
+      "text": "Checkmate could not be prevented here. This move gives the ending every delay the search could find. Even in a lost cause, careful defense still has its part to play."
+    },
+    "takeId": null
+  },
+  "requestHash": "4a31888d0a98f39452f596346542d1c04a0c243c8dca9c21ae1b87329938a4ad",
+  "recordedAt": "2026-10-05T07:55:14.969Z",
+  "sha256": "95e2b8973dea1912400801c26d999d36016dcb3513373abc2f3a84b47602b693",
+  "bytes": 34229,
+  "requestId": "1DcLZCaFbQCPoH58J1Ae",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e27a115e48a844ffc51ac6cd41fe0ffc241ef53b3067858269729d9c6d79051a",
+    "bytes": 173915
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "forced-mate-started",
+      "label": "Forced mate started",
+      "text": "After this move, a checkmate is forced; no defense can avoid it. It isn't immediate, and more moves have to be played first. The useful exercise is to trace each defense through to the mate."
+    },
+    "takeId": null
+  },
+  "requestHash": "32e1ffc92be3a1ea72c3ac1f6eaf7ba1da337c325f8e6816fd6dfea37dacff86",
+  "recordedAt": "2026-10-05T07:55:00.122Z",
+  "sha256": "3249c80416defbd338e789cf43627eaa9d8fd296fe1d9e65f45e386aab349af9",
+  "bytes": 38429,
+  "requestId": "vcHVhp1ArZKKsC4NakvP",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "30e320f4ea23360030e4e659e0d89802176ab86be3a0aa49680fc5eb1182fb08",
+    "bytes": 195648
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "allowed-mate-next",
+      "label": "Allowed mate next",
+      "text": "Whoa, heads up! One move is all the other side would need for checkmate now, and this move is what handed it over. Easy habit: before each move, peek at every check the other side could give."
+    },
+    "takeId": null
+  },
+  "requestHash": "3a094fce30851c8817a6da795826b230f4b2a7fa0aa84c9516e986d86bce20fe",
+  "recordedAt": "2026-10-05T07:55:00.399Z",
+  "sha256": "336b05ad6172b7f86d42404c5d790266b93cc2a0f3038a9975fa63e76c48533f",
+  "bytes": 41348,
+  "requestId": "mJdY4EY6LUco1DFCQbkm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1d56fd6343b8ef769cfd732cb52459e42ce2b32af9a9a92c85c9298532ddce16",
+    "bytes": 213621
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

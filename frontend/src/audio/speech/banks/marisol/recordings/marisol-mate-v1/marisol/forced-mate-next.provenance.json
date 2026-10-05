@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "forced-mate-next",
+      "label": "Forced mate next",
+      "text": "After this move, no reply prevents checkmate. It falls on this side's turn after the reply."
+    },
+    "takeId": null
+  },
+  "requestHash": "ccf096629829422af0d7c6a58687efde866b352e015ee92743aaedb75ebdd64a",
+  "recordedAt": "2026-10-05T07:55:37.541Z",
+  "sha256": "d2546044da3a1b95a66853da3db616e5b65b08b33b287b610fd702b9a6393649",
+  "bytes": 20337,
+  "requestId": "d7EopflCfS3MahHbAJzm",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9a6957a74c30a5cfbe73dbd65c32f915871b0a4e14eb253ce882d2b10c4d5caa",
+    "bytes": 104951
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

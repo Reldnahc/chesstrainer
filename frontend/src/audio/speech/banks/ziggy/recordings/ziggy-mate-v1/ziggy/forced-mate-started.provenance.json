@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "forced-mate-started",
+      "label": "Forced mate started",
+      "text": "Fascinating. This move sets a forced checkmate in motion. The end is not at hand, yet every defense arrives at it."
+    },
+    "takeId": null
+  },
+  "requestHash": "66f1ab964fde082249d076dfca188ddd391decf8f46c5825fe4e79bcb135bb1d",
+  "recordedAt": "2026-10-05T07:56:06.385Z",
+  "sha256": "c195b8173ce07601a36db1747bf670933d11c86c1986d1a92d6177bc862eba10",
+  "bytes": 25992,
+  "requestId": "DOQE4zlUSMTyWW3J3Y4P",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d00ec7b86ea17907416970c4d53649b44002144e239d44bd5aeb680af3273ae8",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

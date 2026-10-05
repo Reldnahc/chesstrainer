@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "forced-mate-continued",
+      "label": "Forced mate continued",
+      "text": "On course. The forced mate stands after this move, and every defense still fails. Accuracy to the final move is the standard."
+    },
+    "takeId": null
+  },
+  "requestHash": "f58ab6ef7aa1c5e75f3abcf47104ee86dc969311830fc49a8c3f8f727bdd30ab",
+  "recordedAt": "2026-10-05T07:56:05.321Z",
+  "sha256": "5bd22e6b34d8f9f9e524ecabad536f5c0a3523ed6b6660962cca5e3751cc8bae",
+  "bytes": 28160,
+  "requestId": "PHim51MCNwiCFimBmtbq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "72cc3b09f221e78f7f0c2967e0b8eb1858e58ef976d49b41ce3e5bcbab8a2204",
+    "bytes": 144239
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

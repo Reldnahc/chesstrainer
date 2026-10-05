@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "forced-mate-next",
+      "label": "Forced mate next",
+      "text": "Any reply, same payout: the mover's next turn brings checkmate. The prize is in the bag."
+    },
+    "takeId": null
+  },
+  "requestHash": "a84ffe52d863367ee372182a4b49460085631897a70acf2fc4514120d6cbf504",
+  "recordedAt": "2026-10-05T07:55:05.920Z",
+  "sha256": "a2cf6be70eaec31a28795abe53a23d5a64809f85db4b359c2ae0c029b854e242",
+  "bytes": 21659,
+  "requestId": "rZFhIFc1KS4nh8Ux7g2T",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9e9740d38badb1271bdfeecaff151e7fab23bdcfc07c00c90e3b368ba2132cdd",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "alfie",
+      "providerVoiceId": "doZT67t4QhxJbVGWYMs6",
+      "name": "Fieldwork Alfie - Bright workshop mentor"
+    },
+    "script": {
+      "id": "forced-mate-next",
+      "label": "Forced mate next",
+      "text": "After this move, the defender may choose any reply, and checkmate comes straight after it. Every defense falls short here, and it's worth seeing why."
+    },
+    "takeId": null
+  },
+  "requestHash": "ad578f76a3fa1dd82f88ce1ce50884803a3c9218cda39784aa48ac07878d4f02",
+  "recordedAt": "2026-10-05T07:55:08.430Z",
+  "sha256": "0ef032065e13c954a70250d1b5cb6b15299a5b49a01a51e14b5e44be6cb7d852",
+  "bytes": 29271,
+  "requestId": "UHAEIv58VHtbVNpgW8Hz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c6bc7a0bb4b9b87c1209482b2eb4c1a7ab973a7b85f34c8b298889775a16d8ba",
+    "bytes": 148419
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

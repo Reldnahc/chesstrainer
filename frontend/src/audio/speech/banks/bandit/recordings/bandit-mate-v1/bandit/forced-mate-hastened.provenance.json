@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "forced-mate-hastened",
+      "label": "Forced mate hastened",
+      "text": "This mate was coming for the mover no matter what, and this move hands it over early. Holding out properly would've made the attacker sweat longer for it."
+    },
+    "takeId": null
+  },
+  "requestHash": "39e3d2d7d13365b43f5276e828e821adab32192cf48fdc5ab388a81bf4cbb324",
+  "recordedAt": "2026-10-05T07:55:08.280Z",
+  "sha256": "1fad53798d37103a36f499abe559be95f15545c9cbf31978a69addaa10aed129",
+  "bytes": 30016,
+  "requestId": "GwxGt6WuyRp8zJ2JDoxQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c68c02baf52b216290f8e3e74332150dd8d2ac00dc31f6447aa8ef073b2d34d1",
+    "bytes": 150927
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "forced-mate-hastened",
+      "label": "Forced mate hastened",
+      "text": "Moving side status: already facing forced mate. Effect of this move: the mate arrives sooner than under the best defense."
+    },
+    "takeId": null
+  },
+  "requestHash": "dc2ecf5040cfe189f9a5962c8325f01ac97028d7d5c13fd5fbfb68610f01312c",
+  "recordedAt": "2026-10-05T07:54:51.194Z",
+  "sha256": "92d708c87912c785def694c9fbeca763aed12925dab1da2dc62a288d5f5e0d71",
+  "bytes": 26139,
+  "requestId": "skQiyW1b4xutc6CF2OET",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5c7e545b3ea8defd6ac678e106841a1bdcbede8791c9c0a5706776ecbf03b982",
+    "bytes": 137970
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

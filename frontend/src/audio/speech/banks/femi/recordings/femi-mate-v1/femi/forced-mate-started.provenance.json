@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "forced-mate-started",
+      "label": "Forced mate started",
+      "text": "Oh, nice, hold that thought. Mate's forced from here on, whatever the defense comes up with. Working out how is the fun part."
+    },
+    "takeId": null
+  },
+  "requestHash": "7bdc3f6bd28ec59dfbc8c854905366cacf051a3cc2b566aaff27792b9a82478f",
+  "recordedAt": "2026-10-05T07:55:20.124Z",
+  "sha256": "a4978874ce5f940b40206a451933182e6910e7a0f0e854704c4f223abd147c88",
+  "bytes": 26399,
+  "requestId": "npHmfwWRYUN3vQEKifeC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "eb9aac45a4dc68dd663670f389f0be401b602fe6d125c5d40a992dc0d9a07c62",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

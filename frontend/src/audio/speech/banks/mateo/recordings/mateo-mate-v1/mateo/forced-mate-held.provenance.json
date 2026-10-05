@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "forced-mate-held",
+      "label": "Forced mate held",
+      "text": "Huh, no way out! The mate was already unstoppable, and it's still coming. But the search found no move that makes it wait longer than this one, so the attacker has to find every last move."
+    },
+    "takeId": null
+  },
+  "requestHash": "e76aa77f538188fa629f7ad4c8ccb24071124ebd3f897c5ebb2e32a2847d39da",
+  "recordedAt": "2026-10-05T07:55:45.173Z",
+  "sha256": "42edf431cb89add5d9d749bc6f9286a510c20f77a514fcebe87468bcd052328a",
+  "bytes": 39217,
+  "requestId": "64QQVg34OryaeJ2rGwko",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e6aebb5aafc2d025a02c87d79f493fe2f3dc9a9579f7a1bc78a25fca01ab38b4",
+    "bytes": 198156
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

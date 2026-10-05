@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "forced-mate-started",
+      "label": "Forced mate started",
+      "text": "Ah, there it is. Checkmate is now assured, however the defense chooses to answer. It isn't immediate, yet every path now leads to the same ending."
+    },
+    "takeId": null
+  },
+  "requestHash": "13675e743c47b4ea78837bc8b99c1bfd468445f9d20c4a578b44df703224168b",
+  "recordedAt": "2026-10-05T07:55:02.984Z",
+  "sha256": "41e7c81bf0c7e87f85f3e039de8ceee0bc27c02c8938407f94233a5ab05b21f5",
+  "bytes": 33597,
+  "requestId": "z3s9NxrLgc4azLVr8aJD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9c3c7a9da444d6cf31f68a59d2c02b1170c827662556e7f58a64975edc67453f",
+    "bytes": 171407
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

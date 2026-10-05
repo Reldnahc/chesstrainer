@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "allowed-mate-next",
+      "label": "Allowed mate next",
+      "text": "Some dangers arrive all at once. This move places checkmate in the other side's hands for their very next move."
+    },
+    "takeId": null
+  },
+  "requestHash": "ab34191b4955f2b80ef5907dd49d13f3180360c5f490fe6d35c65a98f344b488",
+  "recordedAt": "2026-10-05T07:55:34.480Z",
+  "sha256": "e696fde0792fcb5bcfa182a05c1364fb77d84dd3e93b19bcb7d1451e28ddcf63",
+  "bytes": 26367,
+  "requestId": "j5L4GA7W1TriVNeOxxRQ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a255bef23b1520b4a98c4a62582bace3c1fd88a417a8eb506c169bdfa4730f82",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

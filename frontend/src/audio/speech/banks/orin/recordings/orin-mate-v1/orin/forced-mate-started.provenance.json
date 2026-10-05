@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "forced-mate-started",
+      "label": "Forced mate started",
+      "text": "A forced mate is a path with no turnings. This move sets out on it, and every defense ends at checkmate, though further down the way."
+    },
+    "takeId": null
+  },
+  "requestHash": "ec44923aa97a682ddd5ab224f9fc6562385e5cef3ef46ef0fd7fac26e390a605",
+  "recordedAt": "2026-10-05T07:55:36.895Z",
+  "sha256": "5e7cb9970516c794c38ebd0dc4141f39693022ca7904943b1c74533d656f7e81",
+  "bytes": 30596,
+  "requestId": "8FjzHvF00QXJJJx0w9Ny",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d512cc5c511ce1f66491a241b5801e83cb3ec4cf9b4aadb68c246fac9e07ce1a",
+    "bytes": 158450
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "forced-mate-hastened",
+      "label": "Forced mate hastened",
+      "text": "Noteworthy: the side that just moved had no escape from checkmate even before this move. This move merely accelerates its arrival; a more resilient defense would have slowed it."
+    },
+    "takeId": null
+  },
+  "requestHash": "41ac7082b0d953a6477cfb67578a635cb0bc43abbdf02c00bace269122551beb",
+  "recordedAt": "2026-10-05T07:56:15.380Z",
+  "sha256": "5bc2c86abe5cdfa3f84ded57db922f55a591796fad91d27a42593a2846dd4830",
+  "bytes": 35122,
+  "requestId": "n5KXebxTAXhd2KGJITL2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b0ec9d88dfbb6f1520785a91d46ce0b95c6998bb7ed3e340434e40e57105773c",
+    "bytes": 182692
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

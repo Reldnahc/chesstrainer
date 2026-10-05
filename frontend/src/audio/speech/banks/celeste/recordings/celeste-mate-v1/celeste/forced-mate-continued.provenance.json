@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "forced-mate-continued",
+      "label": "Forced mate continued",
+      "text": "The forced mate flows on. This move keeps every thread of it intact, and checkmate, still some way off, remains certain."
+    },
+    "takeId": null
+  },
+  "requestHash": "f9305a7b7c1c610c7de188c19598ffd55a55d11f713e16947c93404b42609dea",
+  "recordedAt": "2026-10-05T07:55:05.187Z",
+  "sha256": "f84dd229e0d90e1a71adaa431106daf13d1388b627af08aeeb349b0a6ab4b9f2",
+  "bytes": 29697,
+  "requestId": "Ty4y6j0g69fmmW9UNmww",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0a730307edf2d1b92a0b56c0ee78c7610703e9ab75a1e0c5aa9ffe811ee3b170",
+    "bytes": 149673
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

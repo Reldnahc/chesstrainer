@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "forced-mate-next",
+      "label": "Forced mate next",
+      "text": "Every reply fails; checkmate lands on the move after it, and nothing can prevent it. Forcing play, carried to its end."
+    },
+    "takeId": null
+  },
+  "requestHash": "b3aa93ef55b7776f8a2f31d33c772e3695eb223c522d94f4ae68e8b07411af02",
+  "recordedAt": "2026-10-05T07:55:09.623Z",
+  "sha256": "452f5b10086ce6d3367092a51bf2af880ba6f77420e3f203ec76301e0ec202b4",
+  "bytes": 27078,
+  "requestId": "NWRREEPmCp8jS5jUR9es",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "68cf02d0b19e78e7b8d9471d300c7d53cfe6bfdec9ba03a7b6e9e14b08c95800",
+    "bytes": 137970
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

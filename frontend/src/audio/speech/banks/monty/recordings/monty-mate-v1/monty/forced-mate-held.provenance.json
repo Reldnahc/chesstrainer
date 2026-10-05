@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "forced-mate-held",
+      "label": "Forced mate held",
+      "text": "Big picture: the mate was coming, and no move could stop it. Every other searched move lets mate come as soon or sooner. That is sensible defense."
+    },
+    "takeId": null
+  },
+  "requestHash": "98723d98969b965c9efd35c5cc7ec0903ab56b0a6aa4bb6b7ff88a260af3420c",
+  "recordedAt": "2026-10-05T07:55:46.966Z",
+  "sha256": "ea68e5d602e955bb1c5e74c6254c1761356e2f8eade5b5cf1073192260203889",
+  "bytes": 32521,
+  "requestId": "ZDkFRIBgLeCynj4xZu7b",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "eb728ea9d40b12a624e4f57b6ca44bf165ac0d68245191d40df3d5559ec9f5bf",
+    "bytes": 168899
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

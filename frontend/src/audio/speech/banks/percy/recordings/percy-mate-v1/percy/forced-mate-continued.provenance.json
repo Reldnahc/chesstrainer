@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "forced-mate-continued",
+      "label": "Forced mate continued",
+      "text": "Steady work! The forced checkmate is still on, and this move keeps it that way. The job isn't finished yet."
+    },
+    "takeId": null
+  },
+  "requestHash": "efb3ea9bd44f248a18500695c630cbe3256fb8062f525a8046e20a18816a920c",
+  "recordedAt": "2026-10-05T07:55:44.986Z",
+  "sha256": "356dc818dc0ed1e466725b181f97328de54a2d44d243a620c4ad772ffc199af9",
+  "bytes": 22782,
+  "requestId": "GE1ScMTZqtqPLXX2ohCM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "23e9c02f20333c47aaf666d4a17d709b0dc10a414235d93f8d1410e6d557d59a",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

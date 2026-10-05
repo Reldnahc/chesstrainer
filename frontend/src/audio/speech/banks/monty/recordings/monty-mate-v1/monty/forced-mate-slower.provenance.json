@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "forced-mate-slower",
+      "label": "Forced mate slower",
+      "text": "Plain fact: this still forces mate. Another move had a shorter one. Faster is cleaner, but mate is mate."
+    },
+    "takeId": null
+  },
+  "requestHash": "a47fef20870b1a5194e6986bc57fba86d42c01602bd6c36a3b7077976c774161",
+  "recordedAt": "2026-10-05T07:55:40.598Z",
+  "sha256": "fc1a9a2ea7d96610d3729d155db67dc4ffc80c7d2c67697ada100f0101835337",
+  "bytes": 25073,
+  "requestId": "2pDuRQXSJA61RAOp4wrg",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "de18233bb28c1519ab85c49c750d64a16f51fb6208c0b758be854476377df94a",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

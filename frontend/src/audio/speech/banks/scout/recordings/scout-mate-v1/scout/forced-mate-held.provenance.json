@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "forced-mate-held",
+      "label": "Forced mate held",
+      "text": "Unstoppable mate, max delay. Search found nothing that outlasts this move. Longest defense, logged."
+    },
+    "takeId": null
+  },
+  "requestHash": "b713ad9d3f3fb2261f8612cc01cbe9241090b5a45fca07ac9a4577503f29441e",
+  "recordedAt": "2026-10-05T07:56:01.846Z",
+  "sha256": "6d730491a50ba975a8a7fc5aaf0fcaeaed1b3d8c1969cc04c5120bdfc7a5d96b",
+  "bytes": 22566,
+  "requestId": "qS2GAJNW70BWDve4FDNf",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ce9bafb9b8e7929fd4ccc538862243651e14089cc27e7fd2406ffff9eca10dc6",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "forced-mate-slower",
+      "label": "Forced mate slower",
+      "text": "Checkmate is still forced, so the work gets done! Another move would have finished the job faster. Same result, longer shift."
+    },
+    "takeId": null
+  },
+  "requestHash": "8b8e0729e44e96fdf004bbf29e4cb5f47e7d76277482416d171a3c4000378be5",
+  "recordedAt": "2026-10-05T07:55:47.173Z",
+  "sha256": "c6c83ba449d3bd8502e90db64faafa5e94623a6c46a42f9a3de06c9376cae343",
+  "bytes": 25475,
+  "requestId": "9ryflu1sCRQAoEjmEnej",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "45f19bc31505e24af32e2eb2f708f117ab07fa492f020d6725996f2f1f2db844",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

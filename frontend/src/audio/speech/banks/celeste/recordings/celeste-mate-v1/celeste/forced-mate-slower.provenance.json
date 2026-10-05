@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "forced-mate-slower",
+      "label": "Forced mate slower",
+      "text": "Checkmate is still certain after this move, so the result is untouched. Another move would have brought it sooner, though, and that's worth a second look."
+    },
+    "takeId": null
+  },
+  "requestHash": "da07a29f744030952df515f24dd2e53f641ea56a57f47b7c024fdece2ab8d616",
+  "recordedAt": "2026-10-05T07:55:07.392Z",
+  "sha256": "b086a4e5ed4b288004f9547d803e1ae2279396567101b913c4c36d792c994f78",
+  "bytes": 28991,
+  "requestId": "dbtcMj0h8o0tzNiaGS8j",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ecbc36f1e5bd750424b11b1e426f6841ce04c483c06257ae1cceee2dafc1f3fc",
+    "bytes": 147165
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

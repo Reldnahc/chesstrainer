@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "mateo",
+      "providerVoiceId": "sisE7AvFF6RKOoYwIHZi",
+      "name": "Fieldwork Mateo - Bright Buenos Aires"
+    },
+    "script": {
+      "id": "forced-mate-started",
+      "label": "Forced mate started",
+      "text": "Whoa, this move starts a forced checkmate! It doesn't matter what the defender plays, the mate is coming."
+    },
+    "takeId": null
+  },
+  "requestHash": "eab551fbb9cbe3bb4d8dbcc0907f37c510622ac960e599a74f79273af2bfd3ac",
+  "recordedAt": "2026-10-05T07:55:34.382Z",
+  "sha256": "3910cf041ba43830eb99cc6411fe019f8910452394640bf602c772a1b8a60dcf",
+  "bytes": 23369,
+  "requestId": "63X3gYsiTvmfVzScElRM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6188b85537988c1aaa0a656958b20fa53a35960ffffbd9059f60b385e7f3e093",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

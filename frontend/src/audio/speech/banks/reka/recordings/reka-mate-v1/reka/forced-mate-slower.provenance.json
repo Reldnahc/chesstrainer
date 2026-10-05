@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "forced-mate-slower",
+      "label": "Forced mate slower",
+      "text": "Mate is still in the bag, no question. Another move would have cashed it in sooner, though, so that one deserves a replay."
+    },
+    "takeId": null
+  },
+  "requestHash": "29cfc95e250d4ea1fe229571110a434d19ddab968276b70edbf488872fa0b98c",
+  "recordedAt": "2026-10-05T07:55:54.756Z",
+  "sha256": "9abf3b0c126196d27f81ec97932f09d423a45b016ff651815b05993d83e99630",
+  "bytes": 23160,
+  "requestId": "KSbbgDK4KYoT4M2wnlh4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "67bb34c135839d90c5d95ee06661a577f036871555fda03da2351fd68156419f",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

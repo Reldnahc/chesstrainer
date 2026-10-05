@@ -492,6 +492,62 @@
       "alignmentPath": "alignment/missed-mate.json"
     },
     {
+      "id": "allowed-mate-next",
+      "group": "game_review",
+      "text": "Warning: checkmate is now available to the other side on its very next move. Buffer moves remaining: none.",
+      "audioPath": "recordings/rivet-mate-v1/rivet/allowed-mate-next.opus",
+      "sidecarPath": "recordings/rivet-mate-v1/rivet/allowed-mate-next.provenance.json",
+      "alignmentPath": "alignment/allowed-mate-next.json"
+    },
+    {
+      "id": "forced-mate-started",
+      "group": "game_review",
+      "text": "Forced-mate sequence: started by this move. Defensive replies that stop it: none. Distance to checkmate: more than a move.",
+      "audioPath": "recordings/rivet-mate-v1/rivet/forced-mate-started.opus",
+      "sidecarPath": "recordings/rivet-mate-v1/rivet/forced-mate-started.provenance.json",
+      "alignmentPath": "alignment/forced-mate-started.json"
+    },
+    {
+      "id": "forced-mate-continued",
+      "group": "game_review",
+      "text": "Forced-mate status: maintained by this move. Escape routes for the defender: none. Finish: still more than a move out.",
+      "audioPath": "recordings/rivet-mate-v1/rivet/forced-mate-continued.opus",
+      "sidecarPath": "recordings/rivet-mate-v1/rivet/forced-mate-continued.provenance.json",
+      "alignmentPath": "alignment/forced-mate-continued.json"
+    },
+    {
+      "id": "forced-mate-slower",
+      "group": "game_review",
+      "text": "Forced mate: still certain. Route taken: longer than necessary; another move would have forced mate sooner. Result: unchanged.",
+      "audioPath": "recordings/rivet-mate-v1/rivet/forced-mate-slower.opus",
+      "sidecarPath": "recordings/rivet-mate-v1/rivet/forced-mate-slower.provenance.json",
+      "alignmentPath": "alignment/forced-mate-slower.json"
+    },
+    {
+      "id": "forced-mate-next",
+      "group": "game_review",
+      "text": "Final stage: checkmate follows on this side's next move. Replies that prevent it: none.",
+      "audioPath": "recordings/rivet-mate-v1/rivet/forced-mate-next.opus",
+      "sidecarPath": "recordings/rivet-mate-v1/rivet/forced-mate-next.provenance.json",
+      "alignmentPath": "alignment/forced-mate-next.json"
+    },
+    {
+      "id": "forced-mate-hastened",
+      "group": "game_review",
+      "text": "Moving side status: already facing forced mate. Effect of this move: the mate arrives sooner than under the best defense.",
+      "audioPath": "recordings/rivet-mate-v1/rivet/forced-mate-hastened.opus",
+      "sidecarPath": "recordings/rivet-mate-v1/rivet/forced-mate-hastened.provenance.json",
+      "alignmentPath": "alignment/forced-mate-hastened.json"
+    },
+    {
+      "id": "forced-mate-held",
+      "group": "game_review",
+      "text": "Status before this move: forced mate against the moving side, unavoidable. Delay achieved: maximum among searched moves. Classification: sensible resistance. Outcome: unchanged.",
+      "audioPath": "recordings/rivet-mate-v1/rivet/forced-mate-held.opus",
+      "sidecarPath": "recordings/rivet-mate-v1/rivet/forced-mate-held.provenance.json",
+      "alignmentPath": "alignment/forced-mate-held.json"
+    },
+    {
       "id": "sound-sacrifice",
       "group": "game_review",
       "text": "Sacrifice checked. Acceptance test in the examined line: passed.",

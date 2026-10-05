@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "forced-mate-continued",
+      "label": "Forced mate continued",
+      "text": "The forced checkmate was already on the board, and this move keeps it going. The finish isn't here yet, but the defense still has no way out."
+    },
+    "takeId": null
+  },
+  "requestHash": "94f387c61dea0c884ec89bf96b974f8da7f25069ce8bb84b45ffcc9c15756193",
+  "recordedAt": "2026-10-05T07:54:46.011Z",
+  "sha256": "089c4ee85a7547adb1b83dad9b2a6dcd84abb33fb3932cc2bf5e51772b1a8216",
+  "bytes": 28048,
+  "requestId": "CGbVPNnrKaJBQMIezNox",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "043187446cfe767febe8a6184417609a7422b886ae3f064c974075c7d32dce67",
+    "bytes": 142986
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "forced-mate-started",
+      "label": "Forced mate started",
+      "text": "What does this move set up? A forced checkmate: whatever the defense tries, mate is coming, though it's more than one move away. A fun line to trace through."
+    },
+    "takeId": null
+  },
+  "requestHash": "a59452dd0f4662db801fae88a784758ffc5f51bf8825c4d9826b4fc2d5bb346f",
+  "recordedAt": "2026-10-05T07:54:44.616Z",
+  "sha256": "0dc1d448eddb7be1755f635c4a1aaaf9995b75948dd7815367b7b78345065ac2",
+  "bytes": 32739,
+  "requestId": "9ykYcfnuqAZEXmW64f1y",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1ba73cb0452214010a7473bdbfb59f533fc4f4150154fd9d647d01a95a23b6eb",
+    "bytes": 173915
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

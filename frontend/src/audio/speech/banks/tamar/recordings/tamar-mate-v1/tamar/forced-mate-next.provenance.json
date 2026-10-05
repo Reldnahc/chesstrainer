@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "forced-mate-next",
+      "label": "Forced mate next",
+      "text": "The end is set. Regardless of the reply, mate arrives on this side's following move. Learn to recognize finishes like this on sight."
+    },
+    "takeId": null
+  },
+  "requestHash": "1ca3e7e2fd0d08c3e9460ec32a97278de1ba52de626b185280ec4bef664526ef",
+  "recordedAt": "2026-10-05T07:56:09.541Z",
+  "sha256": "dc11f7b8cefd54d1bff6fc76e072548335eb58c2636647f5153142e1d8eda559",
+  "bytes": 28695,
+  "requestId": "Q6odRWFXL4equNGDRd1K",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ca3b35fd73ed46ca81c1b4c4598a435be513d8ce5add2d7a9aa64d38d1068ed8",
+    "bytes": 148419
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

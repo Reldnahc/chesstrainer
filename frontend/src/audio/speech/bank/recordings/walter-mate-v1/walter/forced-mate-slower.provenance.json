@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "forced-mate-slower",
+      "label": "Forced mate slower",
+      "text": "This still forces checkmate, so the result doesn't change. There was a move that would have forced it sooner, though, and the quicker route is worth knowing for the next time a position like this comes up."
+    },
+    "takeId": null
+  },
+  "requestHash": "9870839cbe065811dfa23240b338f2459875105824b03eb1d9d3000afc8b203a",
+  "recordedAt": "2026-10-05T07:54:48.574Z",
+  "sha256": "d6b37a394c31df7e51fad6955338ef76d22692392f1b47980030c1c574841559",
+  "bytes": 35494,
+  "requestId": "WCxjBKo3Q76pPtDDuzst",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0f48ff418df8b15d351a4d256492353a035084f5209e02d2547240914a07def6",
+    "bytes": 178930
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

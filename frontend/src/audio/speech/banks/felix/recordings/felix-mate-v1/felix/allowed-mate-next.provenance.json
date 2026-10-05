@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "allowed-mate-next",
+      "label": "Allowed mate next",
+      "text": "Courtesy of this move, the other side may checkmate on their very next turn. Prompt service."
+    },
+    "takeId": null
+  },
+  "requestHash": "f7a3aa1b9e51174f4795336dfb7a178827176b2f4e58907a37dbf7fcfe3af8dd",
+  "recordedAt": "2026-10-05T07:55:13.146Z",
+  "sha256": "cc5d3c8794f08ddddf7786ddb23064f29c7824dd153b216daaa409bda6b890e1",
+  "bytes": 21238,
+  "requestId": "AJr2eN71dT33z4X53ic3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "45a098ac6b2098555bb9fe554729de0a4ff11d9970d59763c2ff241620a4af82",
+    "bytes": 108713
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

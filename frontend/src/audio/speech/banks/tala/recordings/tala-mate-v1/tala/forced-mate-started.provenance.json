@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "forced-mate-started",
+      "label": "Forced mate started",
+      "text": "Puzzle unlocked: once this move lands, mate can be forced. Every defense the other side tries ends the same way."
+    },
+    "takeId": null
+  },
+  "requestHash": "3b4fd0194805f76e42400842c5c52c2db582e596f957e1055671ae3bd31ba984",
+  "recordedAt": "2026-10-05T07:55:58.769Z",
+  "sha256": "62061e725086375af9426e0b0ebbd6cdae65fd06425f8663f426dc0c9340b531",
+  "bytes": 25601,
+  "requestId": "TKXjNOr59pOOaJwFypdJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "00d8a06278a880f72208e517647577d629443fef33e04a661135c5ecc28d5692",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "forced-mate-slower",
+      "label": "Forced mate slower",
+      "text": "The checkmate remains forced, and the result stands. But another move would have ended it more swiftly, and I expect the shortest path to be found."
+    },
+    "takeId": null
+  },
+  "requestHash": "119c7f3846e7e5ba001560f388fa5d159411d828eeb21593eb23d18392e83fd2",
+  "recordedAt": "2026-10-05T07:55:07.548Z",
+  "sha256": "992dd3eff03e69a27fe11c6a34cd666eb992389e091c174a4affd31b1828caad",
+  "bytes": 28321,
+  "requestId": "PvsMZnlcpztYKSmp4bOx",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "d329d3c8b21f96481db35c8d57da645186dbdd7eae915eded0d8e5cf13aeeaa4",
+    "bytes": 145911
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

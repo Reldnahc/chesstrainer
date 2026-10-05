@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "forced-mate-hastened",
+      "label": "Forced mate hastened",
+      "text": "The mate against the side that moved was always going to find its way in. This move simply opens the gate sooner than the most stubborn defense would have."
+    },
+    "takeId": null
+  },
+  "requestHash": "96de68c07f6ae0d9d84769489e5cab0096fd6bfbd847b07cd940820ff43182ea",
+  "recordedAt": "2026-10-05T07:54:51.614Z",
+  "sha256": "184fe86f88ab5b21ce7440f7e54f8bc2b6108e9d10f299e03ca574e80b9b1e66",
+  "bytes": 28229,
+  "requestId": "xNecdGIlVs0Ql2H5gHLo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0379a49354de5e788ec4f1948ef3e2c67931212c8dfbd4a310a9b6b752ac6b1f",
+    "bytes": 142986
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

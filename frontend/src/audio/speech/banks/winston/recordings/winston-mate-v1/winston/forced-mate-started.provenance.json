@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "forced-mate-started",
+      "label": "Forced mate started",
+      "text": "Well now. The side that played this can force checkmate from here, and nothing the defense tries changes that. It won't be over at once, so take the line one step at a time."
+    },
+    "takeId": null
+  },
+  "requestHash": "57508f7cfe908a2f9cb6dfc3ab1b84e843474cab9c4c2215d237e0518eba2c04",
+  "recordedAt": "2026-10-05T07:54:44.279Z",
+  "sha256": "ef02ce53bc7f774464bc6c9b7f840fb0ee60e272dbf97f44d9ea0af392539c2f",
+  "bytes": 34014,
+  "requestId": "ih1MQj3oq47POW3MXb93",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f8c21d1c8632681b0e39679684aec2b9a99d312f5286253f9887a513545e1ce0",
+    "bytes": 175168
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

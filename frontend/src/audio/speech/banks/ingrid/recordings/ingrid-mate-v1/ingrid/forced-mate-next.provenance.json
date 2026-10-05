@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "forced-mate-next",
+      "label": "Forced mate next",
+      "text": "That's the finish lined up. No reply changes it: checkmate comes when this side moves again."
+    },
+    "takeId": null
+  },
+  "requestHash": "4e5cea19aecedc36d02259ef8d3aea6272fbabd9ede5e31996b22ca4291aea62",
+  "recordedAt": "2026-10-05T07:55:26.674Z",
+  "sha256": "b951cef9a862565edb5e225fc69ad2ad929da6d2fca333eb81fae320b95cbfb4",
+  "bytes": 20598,
+  "requestId": "lO2QJyzqbYQHonufzNns",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e7d3cda687f23bf213e60b1fe7b05461a9b42f9ae9db4d2924a0ee24ebbfadc9",
+    "bytes": 103279
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

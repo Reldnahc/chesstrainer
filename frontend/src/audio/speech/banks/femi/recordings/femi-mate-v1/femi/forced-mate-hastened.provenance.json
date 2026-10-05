@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "forced-mate-hastened",
+      "label": "Forced mate hastened",
+      "text": "No stopping it by now: this side was getting mated whatever happened. This one speeds things up, though; a tougher defense would've held out longer."
+    },
+    "takeId": null
+  },
+  "requestHash": "5f0a9dc1dcea11e78f4c03f942bc7edf707ac9e7a14d0203a2e24f850597bbf3",
+  "recordedAt": "2026-10-05T07:55:28.509Z",
+  "sha256": "714a8a886ca050e4fd2cb2be0bff80cc5c7f882f599222bb52fcab2ea8124202",
+  "bytes": 30164,
+  "requestId": "3w6E78oROUwG3ZclBFjy",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a5b3563dea8aaf7ec5c492587bb8cb9fec8f18e270b44cc180b53229f979f0a1",
+    "bytes": 157196
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

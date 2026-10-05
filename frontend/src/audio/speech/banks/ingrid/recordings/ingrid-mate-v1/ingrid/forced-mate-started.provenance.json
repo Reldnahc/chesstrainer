@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "forced-mate-started",
+      "label": "Forced mate started",
+      "text": "Nice and tidy: this move begins a mate the defense can't avoid. There's more than one move to play out yet."
+    },
+    "takeId": null
+  },
+  "requestHash": "b1b137ae7b477697930df4b8982cdcb0d6f3aab01a9fa6f0602b20129e7842f6",
+  "recordedAt": "2026-10-05T07:55:20.204Z",
+  "sha256": "505e012e8c456718b2906addd852a3cd10a278188e3e45198771b1279caaa8f6",
+  "bytes": 23783,
+  "requestId": "ebupa14xdgCKXeiEQ0ND",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "59915142fa8c33602f8258b3af095ead21419fa7da11cd40285bc2edc637c892",
+    "bytes": 119998
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

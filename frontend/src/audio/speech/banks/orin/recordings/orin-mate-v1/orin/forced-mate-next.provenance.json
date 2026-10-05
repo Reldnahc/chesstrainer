@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "forced-mate-next",
+      "label": "Forced mate next",
+      "text": "The final step is set. Whatever answer comes, the side that moved will checkmate with its next move."
+    },
+    "takeId": null
+  },
+  "requestHash": "00fe6654146f0b3a13969ab961d15fdeaaedd981bde9aef8ca53cde3374ac087",
+  "recordedAt": "2026-10-05T07:55:43.245Z",
+  "sha256": "f343d517b5e13de0ab255b471e39a632c491bbf368e74db09be497bd8dcb7279",
+  "bytes": 23742,
+  "requestId": "q897kmg98CYKxUhGJ2wE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "31317df10de189fa8a36de445e1d10a6ed91718085efd7e5777d0ea23bf5cc47",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

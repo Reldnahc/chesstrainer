@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "forced-mate-next",
+      "label": "Forced mate next",
+      "text": "Right, it's all over bar the shouting. Whichever reply goes on the board, mate lands straight after it."
+    },
+    "takeId": null
+  },
+  "requestHash": "d721b7ec73ef8a5b83bf22e96cfe828475251d423c655006b493d3bb653de362",
+  "recordedAt": "2026-10-05T07:55:26.132Z",
+  "sha256": "df36453e9b429049d7e2e632a0e0acce04826792416aaf4e4f6191e6b1c674be",
+  "bytes": 22354,
+  "requestId": "LzykGOxmOmg8A1RZhAg9",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7ea99488d2862c748251791b579f966f6fddc3c64398b70484c0c0f7fef659bd",
+    "bytes": 113728
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

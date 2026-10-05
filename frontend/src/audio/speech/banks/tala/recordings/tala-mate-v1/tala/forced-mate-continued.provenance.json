@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "forced-mate-continued",
+      "label": "Forced mate continued",
+      "text": "Next piece of the puzzle: this move keeps mate guaranteed. Any escape for the defender? Not one."
+    },
+    "takeId": null
+  },
+  "requestHash": "055be2f3740e08869f8579ec69c31ca3b4d87f3c20598967dd9a1885884f2b78",
+  "recordedAt": "2026-10-05T07:56:00.599Z",
+  "sha256": "0052db6afc79c49ba262cd0e8e49a0630bd234ec449d1d5cf9db1f96f05463c0",
+  "bytes": 23070,
+  "requestId": "Pnr41e5rKGkFlQbEPTAb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0ba6aee5c53672850d353dee36e455e28a750d64622c76da093b93d2817ff29f",
+    "bytes": 121252
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

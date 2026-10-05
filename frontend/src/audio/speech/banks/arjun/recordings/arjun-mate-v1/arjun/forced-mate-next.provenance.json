@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "forced-mate-next",
+      "label": "Forced mate next",
+      "text": "Line up every possible reply, and none of them helps: this side checkmates on its next turn."
+    },
+    "takeId": null
+  },
+  "requestHash": "c1e823afcdd0928979102ef50c8934397995f1ff6e3bb555f25b058059f9fb0e",
+  "recordedAt": "2026-10-05T07:54:51.485Z",
+  "sha256": "a679e893074a6c96f45781e6d7579eb9d5f8e7f1ee3b8ecf02cb8098a8fa3580",
+  "bytes": 20115,
+  "requestId": "goYjbgVyBgixu8FJ5940",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f11d0da8c3f841c19f29bd680d2642ab8cfb6c25b5edc1400dde63282ad9c8c9",
+    "bytes": 102026
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "wisp",
+      "providerVoiceId": "YjJdfZ6GnxKhcj9Re9vi",
+      "name": "Fieldwork Wisp - Papery presence"
+    },
+    "script": {
+      "id": "forced-mate-hastened",
+      "label": "Forced mate hastened",
+      "text": "The mate against the side that moved was already certain. Nothing could have turned it away. This move only calls it in early; the best defense would have kept it waiting."
+    },
+    "takeId": null
+  },
+  "requestHash": "1b043f8175473d2b1c4044396326d5799300640f2fd2cbd120a6d74c1023d2cb",
+  "recordedAt": "2026-10-05T07:56:14.033Z",
+  "sha256": "50ab1515d109e84db09c9f4c9e230815b13dc9d3f4ddbbb6630625ff2c7588c0",
+  "bytes": 32295,
+  "requestId": "Smub78f3r6YfCZH5mqa5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e83c6f40b4bdf57102c7d04a2aeb8612e79512b1d122fe48fb82dc94fa9f7868",
+    "bytes": 168899
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

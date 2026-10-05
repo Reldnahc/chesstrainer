@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "forced-mate-hastened",
+      "label": "Forced mate hastened",
+      "text": "The position was already lost for this side; no move could stop the mate. This move lets checkmate arrive sooner than the toughest defense would. Make every move count to the end!"
+    },
+    "takeId": null
+  },
+  "requestHash": "f08dd923afe5108321e78c871fb8ec527ce795b3cb1cd7c526279ea0c3e02af1",
+  "recordedAt": "2026-10-05T07:56:14.383Z",
+  "sha256": "81af42160831e23da7d08d5430316daf98ca186e829d2ac9380b406d0d121064",
+  "bytes": 37281,
+  "requestId": "4rbS28lTCwS83jQLRGiL",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "893031b7c827edf9a127d5505e86b199342ae646cd0922196147fd6aab691bb7",
+    "bytes": 189379
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

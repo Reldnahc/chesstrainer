@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "forced-mate-started",
+      "label": "Forced mate started",
+      "text": "After this move, the side that played it holds a checkmate it can force against any defense. There's more play before the end, and each step on the way is worth following."
+    },
+    "takeId": null
+  },
+  "requestHash": "be46b698a30d759f12e388d11768ce9b30cc22900f9bcda9fcaa5e3eb50df405",
+  "recordedAt": "2026-10-05T07:54:43.645Z",
+  "sha256": "06708ff15511144f57a14e17d82f89e09195b1d55166107a2c98e706b5ede47e",
+  "bytes": 32634,
+  "requestId": "J3qW9FQpxMhO3nnoATp8",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ab3c08bf4ba888cf0e370f8d4260e8dc732b32dea808598ac8abf1d02446dcbe",
+    "bytes": 166391
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

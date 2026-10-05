@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "forced-mate-started",
+      "label": "Forced mate started",
+      "text": "This move starts the job! Checkmate is forced now, and every defense comes up short. There's more work to do, but it's coming."
+    },
+    "takeId": null
+  },
+  "requestHash": "3221ab3776adead58525f300b73c9a40a2185915ac3ae4987fec14bbf69e78ef",
+  "recordedAt": "2026-10-05T07:55:42.963Z",
+  "sha256": "a18b1d57e99c2e61d08979a7f22344e608d64d6beefe684803a1c9e4506537a0",
+  "bytes": 26998,
+  "requestId": "piws7EjYUAkMccBTwEDA",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "8221abc47134dfe91a4d1f99173a622ff80831f538894a09af12c4d5db6bf953",
+    "bytes": 136716
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

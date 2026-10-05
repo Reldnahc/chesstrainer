@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "forced-mate-hastened",
+      "label": "Forced mate hastened",
+      "text": "Mate was unavoidable for the side that just moved. This move hurries it along. Stiffer resistance would have stalled it."
+    },
+    "takeId": null
+  },
+  "requestHash": "e7ad686b81a7b7cc4a07aa47ded004c91d24297a93acdce23cf5aedab1359d48",
+  "recordedAt": "2026-10-05T07:55:22.058Z",
+  "sha256": "539aa182c8989be7ea8007e71de69fd3279c3a60a674117b53a1d72998e58471",
+  "bytes": 25241,
+  "requestId": "WywhSQbz85DzQMFaYalz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "62a629971f00d594ab2206cb10ed278a2d31c74011e7c9095f8e24e50937f82c",
+    "bytes": 129193
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

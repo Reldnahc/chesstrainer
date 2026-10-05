@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "forced-mate-slower",
+      "label": "Forced mate slower",
+      "text": "Forced mate retained. Another move would have shortened the sequence. The result is identical; the path is not."
+    },
+    "takeId": null
+  },
+  "requestHash": "ff959f71dbb88797c249b936f3e13383b005c2d7dda8811695f1a29d23fa4517",
+  "recordedAt": "2026-10-05T07:55:24.061Z",
+  "sha256": "d227656d0a66533e3d52a2ceb4df9067b65eadf55388f6c20edf82465daa7095",
+  "bytes": 24951,
+  "requestId": "cABtsi8OLMhqeXsmYL6b",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "457eab16a59f7e9d5efd01b3f81fdd0a9702e0e23cd7a35e153ecabfb3b6e6be",
+    "bytes": 131701
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

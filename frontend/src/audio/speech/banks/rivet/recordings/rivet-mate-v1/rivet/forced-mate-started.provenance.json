@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "forced-mate-started",
+      "label": "Forced mate started",
+      "text": "Forced-mate sequence: started by this move. Defensive replies that stop it: none. Distance to checkmate: more than a move."
+    },
+    "takeId": null
+  },
+  "requestHash": "1c1f3beccb6c62c322bb125ba963639c0d787e36a759a50985f2cbc2c2a99baf",
+  "recordedAt": "2026-10-05T07:54:42.973Z",
+  "sha256": "26d3a301438486ee0c0600443350346076b121a1d4a709d6245f1ef6623f99d5",
+  "bytes": 28248,
+  "requestId": "Di1L06sHwB8I8XNYa7Sh",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "79f1c75715b41793e25ae7357e6425d4f0ef38407ece7ac8fbee36d6c64f5e31",
+    "bytes": 153435
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "forced-mate-started",
+      "label": "Forced mate started",
+      "text": "Target locked! This move begins the run to a checkmate that can't be escaped, whatever the defense does. It won't be immediate, but the outcome is sealed!"
+    },
+    "takeId": null
+  },
+  "requestHash": "75f5966a58e5e82c405bb7f26573780680062d81e9193abbafe5810d15bbd8ee",
+  "recordedAt": "2026-10-05T07:56:05.449Z",
+  "sha256": "06136d107056d13fef47cc1a758b65b6c0523d23592185f25a3fe5830af647fe",
+  "bytes": 33786,
+  "requestId": "5rmbZxhW4biydFubFAU6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2af1f48ba22322e3fff96d58c3438d2800939f9fbc3e2d664ebdb2cdc93bd0d9",
+    "bytes": 170153
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

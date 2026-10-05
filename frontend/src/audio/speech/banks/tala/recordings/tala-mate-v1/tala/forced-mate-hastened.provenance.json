@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tala",
+      "providerVoiceId": "KQh9VfbwgeNddMZGXBny",
+      "name": "Fieldwork Tala - Bright Manila solver"
+    },
+    "script": {
+      "id": "forced-mate-hastened",
+      "label": "Forced mate hastened",
+      "text": "Here's the hidden detail: the mover's own king was already doomed to a forced mate, and stronger defending could have stretched it out. This move rushes it along."
+    },
+    "takeId": null
+  },
+  "requestHash": "ed59d26cfee140056e46447d09cec0cada5bde9f0f00d391fc960def14082d16",
+  "recordedAt": "2026-10-05T07:56:07.153Z",
+  "sha256": "95e6b3dfc1cb5187503e500b6c7f4b00935e871cc55159d72119d0f04e559a98",
+  "bytes": 32409,
+  "requestId": "0XEU7A9iz2NOEmEO1MpE",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6a4567b56a95ce5090f248e513e2a636644a2f019da570b51660764839ae702a",
+    "bytes": 168899
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

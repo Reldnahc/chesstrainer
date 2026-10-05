@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "allowed-mate-next",
+      "label": "Allowed mate next",
+      "text": "Big job, no time! Once this move is played, a checkmate waits for the other side to take on their very next turn."
+    },
+    "takeId": null
+  },
+  "requestHash": "410b55998051e1967963e48b5b688fa5c8068c677d38c6398e68871df2332742",
+  "recordedAt": "2026-10-05T07:55:40.999Z",
+  "sha256": "a093ac1abf82b65c2dd42732ea130a06d907c7f7118086c566fc3dd4cbcfd5fc",
+  "bytes": 24651,
+  "requestId": "E6ApSZfm6EiY1U3lOVek",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e07caf1690b1c86a170c5b88e5cdc64ea0c63c721fd461abbd035f76275b59e9",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

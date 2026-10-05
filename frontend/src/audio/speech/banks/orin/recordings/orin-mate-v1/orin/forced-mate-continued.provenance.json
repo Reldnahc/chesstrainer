@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "forced-mate-continued",
+      "label": "Forced mate continued",
+      "text": "A forced mate, once begun, must be carried through. This move keeps it on course, though the finish is not yet here."
+    },
+    "takeId": null
+  },
+  "requestHash": "cdfa3449d8a71a0f73588938f5d007634871adc4231a30f3ec7581e664541773",
+  "recordedAt": "2026-10-05T07:55:39.051Z",
+  "sha256": "06a5f84e94cc80743d69b597d36a29704eb1e091936ac371e7aaf848ea8a3495",
+  "bytes": 26544,
+  "requestId": "T8vvfoLqIwdJ4ttI1ulz",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a9b6357aa875f5c0d51a0ae2c91cb4ed94903142bd2e18fdf3706a275eb2a09c",
+    "bytes": 136716
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

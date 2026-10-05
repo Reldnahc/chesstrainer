@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "forced-mate-slower",
+      "label": "Forced mate slower",
+      "text": "Mate is forced all the same after this move. A shorter forced mate existed through another move. The outcome is unaffected; what differs is the length."
+    },
+    "takeId": null
+  },
+  "requestHash": "bdf183445ecb21575e44014d7beea00d83e493484bbd9d08b5e007d1b57eb337",
+  "recordedAt": "2026-10-05T07:55:36.064Z",
+  "sha256": "9f7d4fa6f70fbee7bfd76bac9cb9b74bedd0077c65bd767ffbf501d251a32683",
+  "bytes": 31282,
+  "requestId": "1FzJPEeKPhPX49DQQjfs",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "35f1632d89c0d22bed3e56bc2414fc9ce735c2d1db97d5b10418b6293efc7234",
+    "bytes": 163466
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

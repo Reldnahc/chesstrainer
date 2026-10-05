@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "allowed-mate-next",
+      "label": "Allowed mate next",
+      "text": "Sirens on! With this move, the other side gets a shot at checkmate on the very next turn. Mark this spot for inspection!"
+    },
+    "takeId": null
+  },
+  "requestHash": "05f9a61cb444ae13532d0352880616bcdeca0708bc0e4e570b895372c2dd9fc1",
+  "recordedAt": "2026-10-05T07:56:02.847Z",
+  "sha256": "94a6a98a461fe131dac2137f63daf55b5354185ea225e7e24bd697cf7679bac1",
+  "bytes": 25935,
+  "requestId": "dLyGCXu3tccrIkLGOcm4",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3deb0ad3ca085a4a30a5c62600a71074e2f37b28a36a411b81256158ea09a759",
+    "bytes": 132955
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

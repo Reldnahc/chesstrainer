@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "forced-mate-hastened",
+      "label": "Forced mate hastened",
+      "text": "Against this side, the mate was fixed before this move. It comes sooner now than careful defense would have let it."
+    },
+    "takeId": null
+  },
+  "requestHash": "ef00b664e885dca4f0a60a496c897839f8be80746083bc6df4dfa542f4210432",
+  "recordedAt": "2026-10-05T07:55:36.163Z",
+  "sha256": "976dab817f93b2d513f889c3b39085e6f3b67f2b75238982d8dbe74be6d709f2",
+  "bytes": 23062,
+  "requestId": "F0nTv1yvgFVNW2r95Qqw",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "cd16a77b012dfb284baaaa5720dd37da2065cdda88e2418c0f55575cd18fdb28",
+    "bytes": 117490
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "forced-mate-held",
+      "label": "Forced mate held",
+      "text": "No way out of the mate from here, and that's just the position. Measured against every searched move, this one holds on at least as long, and holding on is the steady way to defend."
+    },
+    "takeId": null
+  },
+  "requestHash": "4592d2093fc2f391203242ebe6d4da387ea5cefc47e21591652b79bdd0f38a2c",
+  "recordedAt": "2026-10-05T07:55:31.681Z",
+  "sha256": "ff417701723b2c72545b6d515edadb33b9536ef6f88f0a417b4c47b496e9ec47",
+  "bytes": 37058,
+  "requestId": "1dTGyKe6loixbb6h4g5p",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5de5575fac9c85e3b32152470d58233ce750350b488694f041969d6e57505f30",
+    "bytes": 188125
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

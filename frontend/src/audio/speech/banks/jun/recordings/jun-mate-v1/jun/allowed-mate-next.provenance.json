@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "allowed-mate-next",
+      "label": "Allowed mate next",
+      "text": "After this move, checkmate is available on the reply. Immediate. Nothing further is required of the attacker."
+    },
+    "takeId": null
+  },
+  "requestHash": "8d97ad8a1f52f112178bfb2faa78633c06ae4bf3cc27523caa3892c742ffd465",
+  "recordedAt": "2026-10-05T07:55:18.874Z",
+  "sha256": "7da61e620f859f5febb83f28adcb1bca61aa273d0309f416528946469b870319",
+  "bytes": 22841,
+  "requestId": "DrON1j7J8JIuNQVq5d6E",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "06421f6b7be7db8ce6c48255db7cc99000d9376b658c3aa234aa596f2087a98e",
+    "bytes": 118744
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

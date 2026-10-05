@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "celeste",
+      "providerVoiceId": "W0l3JKR4QZyKES0UD4XQ",
+      "name": "Fieldwork Celeste - Meadow storyteller"
+    },
+    "script": {
+      "id": "allowed-mate-next",
+      "label": "Allowed mate next",
+      "text": "Oh, a sudden and serious gap. This move lets the other side give checkmate straight away, on the very next move. Before any plan, make sure the king survives one more turn."
+    },
+    "takeId": null
+  },
+  "requestHash": "0500e46e2d49ff91697264cb891519701c4093208d8860f8a6be02b335f1a4ee",
+  "recordedAt": "2026-10-05T07:55:00.357Z",
+  "sha256": "ca51dd40212575d56daf2b4a3d1e5f81dda0d9951d02db47486545e0b638b146",
+  "bytes": 40538,
+  "requestId": "ygW296qX1PkBHiyskhPH",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "293763a7d6267c6798c115d1b2240174c050fed477c406616419a2a03f6c4682",
+    "bytes": 204426
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

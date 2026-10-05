@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "forced-mate-held",
+      "label": "Forced mate held",
+      "text": "There's no dodging this mate. Still, the search couldn't find a stall that beats this move. The finish just has to wait its turn."
+    },
+    "takeId": null
+  },
+  "requestHash": "3a2fe082b2ae51997687ee1a1c204e7966ef78b70f07397b8f4c4bfeaf828bd0",
+  "recordedAt": "2026-10-05T07:55:58.417Z",
+  "sha256": "de0cee2e75b2fec13d6d9eaf2857cc244ecf37eb405cc9b2fd3abed8fc897ea3",
+  "bytes": 25923,
+  "requestId": "HKfrNtDnSUbieAqNS0gD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a6ea49cabc29dacd5bbced0b99f43b64deec48c6ed3b52f7af0b56f43935e85e",
+    "bytes": 135462
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

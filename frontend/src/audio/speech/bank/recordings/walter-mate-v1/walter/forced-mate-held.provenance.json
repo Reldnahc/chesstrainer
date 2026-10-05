@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "forced-mate-held",
+      "label": "Forced mate held",
+      "text": "The mate was already unavoidable for the side that played this, and it still comes, but no move in the search would have made the defense last longer. Holding out is the sensible course in a lost position."
+    },
+    "takeId": null
+  },
+  "requestHash": "01683d6cb8ce00aa248ff5a59b55f946831e1762eb2ad68482701252a42e08fc",
+  "recordedAt": "2026-10-05T07:54:56.575Z",
+  "sha256": "a20cfb28e855efce28444c3c0d59798c3d56be72d4698858314327abae1f4a00",
+  "bytes": 37914,
+  "requestId": "howp5MYwGtITRJsCOFIC",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6951f7231491abd163d6ab253fe08b47dd41be761318d4dae92643d3173b6c99",
+    "bytes": 194395
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

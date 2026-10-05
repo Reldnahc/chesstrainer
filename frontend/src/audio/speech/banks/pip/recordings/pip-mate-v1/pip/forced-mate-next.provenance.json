@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "forced-mate-next",
+      "label": "Forced mate next",
+      "text": "Oh, it's all set. No matter the reply, checkmate comes with this side's next go. Nothing can stop it."
+    },
+    "takeId": null
+  },
+  "requestHash": "7286b7b16f83ce42768528cdc4373260e6447b1d2a6db3fb31d4aea4ba4908e3",
+  "recordedAt": "2026-10-05T07:55:55.446Z",
+  "sha256": "3a46b4b0b32648bc5be0c131dde5b147b6a0dd2db84ca1829ecb71e21c1d1769",
+  "bytes": 24776,
+  "requestId": "br0JvZCdrMbpSMxPrPDo",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1c72d00d2127c6f9611c09b06cf823e203d8ba455b06a093238b7ea782b08586",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

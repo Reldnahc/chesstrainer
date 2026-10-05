@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "forced-mate-slower",
+      "label": "Forced mate slower",
+      "text": "The result holds; checkmate is forced either way. Even so, another candidate offered a quicker forced mate. Setting the two finishes side by side would be a nice exercise."
+    },
+    "takeId": null
+  },
+  "requestHash": "1af7a861ca754235298b891fb6f140c23f5994543f9b14696998794f651abfd6",
+  "recordedAt": "2026-10-05T07:54:49.732Z",
+  "sha256": "94580480a846ae648c9e5bfad1d177e0a96d154b94beae0fd2d4861d7cc19e04",
+  "bytes": 35091,
+  "requestId": "MpFogUyDsAGKKR353BGj",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9600f4ea9454e1b0c4aedd6a824c99fefbed95d4a485718a79ab3e29c58269e7",
+    "bytes": 182692
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "forced-mate-slower",
+      "label": "Forced mate slower",
+      "text": "Nothing slips away; checkmate stays forced. The end could have come sooner, by another path."
+    },
+    "takeId": null
+  },
+  "requestHash": "e46efbb50ad9dae78e0b239a41d5fc0e0e7e2c00c36a91013cb395def06d70fb",
+  "recordedAt": "2026-10-05T07:55:32.701Z",
+  "sha256": "e5d262dfa2038d03311ec2f9fbb64f26a9cc754957f2fdc8809c5ebb061fd5db",
+  "bytes": 21510,
+  "requestId": "qBgTsfb87GHekW9Fuhn5",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9d5d8b3e4bbbe60a530c1ca259b9f2da6635d9ee1999946b67ff064c9474828f",
+    "bytes": 114982
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

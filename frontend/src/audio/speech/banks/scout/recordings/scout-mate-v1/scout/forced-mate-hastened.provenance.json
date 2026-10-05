@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "forced-mate-hastened",
+      "label": "Forced mate hastened",
+      "text": "Hastened mate. The mover couldn't escape it, and this move speeds it up. Find the defense that delayed it longest."
+    },
+    "takeId": null
+  },
+  "requestHash": "bbf62e213f04339a28e6b0e94e3b1ec3cb56e3c6da0f288bce76833ac91d5ce8",
+  "recordedAt": "2026-10-05T07:55:59.999Z",
+  "sha256": "f5e54b31d02da751dfcb13736d0c88ca01f8c02152fc228417c32d7c04f96333",
+  "bytes": 22725,
+  "requestId": "T9DhiYvaGOYCpXxlP2fB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "76211a0dc008ac917be1e404fe4f76d3fb377655b951bab448452d460f1156d6",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "walter",
+      "providerVoiceId": "Q5CWGTzNfIve6iWvrlM7",
+      "name": "Walter · Older teacher"
+    },
+    "script": {
+      "id": "forced-mate-next",
+      "label": "Forced mate next",
+      "text": "This is where the defense runs out of answers. Whatever the reply, the side that played this move has checkmate ready on its following turn."
+    },
+    "takeId": null
+  },
+  "requestHash": "fba9026ac3d7eaaccc5c8e53ebea963b55848354119010f56df7f7ebb171cd15",
+  "recordedAt": "2026-10-05T07:54:50.604Z",
+  "sha256": "ec99c69c816c05bc758138c33c958b7bb7081379eccd3819daed4cd0f47ec80b",
+  "bytes": 26479,
+  "requestId": "y9nPtcN6tixKfzgQoQgi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1a5feaa341ce209bf9606015d39fae0d7cb4588edc01d95d37a97f9e2021c5ac",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

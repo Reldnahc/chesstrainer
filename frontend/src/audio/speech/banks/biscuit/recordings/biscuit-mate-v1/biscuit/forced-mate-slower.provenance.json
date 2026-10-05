@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "forced-mate-slower",
+      "label": "Forced mate slower",
+      "text": "Ooh, still a sure checkmate! Picking another move would have wrapped it up sooner, though. Little lesson: once the win is certain, look for the shortest way to finish."
+    },
+    "takeId": null
+  },
+  "requestHash": "a5f98c6e1cde63ddbd95c24a2dabb8c14177d7a435c5e15b95859d4980305cd5",
+  "recordedAt": "2026-10-05T07:55:09.100Z",
+  "sha256": "aee06aa14b96d8291f5299921924d2608155dfa0aeb3ceefd2b1295ea849f15a",
+  "bytes": 33554,
+  "requestId": "v1JqlOsjNgWihzwxcfdd",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3fa42bce9710eb2dbec8d889355bb4692bc6f8a81d5a32a64ff706d7a940d4f3",
+    "bytes": 177676
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

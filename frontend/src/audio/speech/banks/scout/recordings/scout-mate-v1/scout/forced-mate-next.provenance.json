@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "forced-mate-next",
+      "label": "Forced mate next",
+      "text": "Mate on the follow-up. Any reply, then checkmate. Execute the finish."
+    },
+    "takeId": null
+  },
+  "requestHash": "86ca3539caefd6baaf6b9eb37f58941217a03718211f2e13e681606947bc491b",
+  "recordedAt": "2026-10-05T07:55:57.981Z",
+  "sha256": "6c56a617ee4196439b723fe2676c84a496c123977e2b178057686cc570a24299",
+  "bytes": 16635,
+  "requestId": "YTeXxHi2d1Xo5bOFYkkv",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "1199c1eac350b787ff12e957c43d1404db1b43ee307a65f749d5f1bc217c82c5",
+    "bytes": 85725
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

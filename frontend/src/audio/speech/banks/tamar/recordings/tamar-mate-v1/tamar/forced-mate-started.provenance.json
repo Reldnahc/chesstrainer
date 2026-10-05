@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "forced-mate-started",
+      "label": "Forced mate started",
+      "text": "Forced from here. Checkmate is now certain against any defense. Learn how the win is forced from this position, move by move."
+    },
+    "takeId": null
+  },
+  "requestHash": "10c1644b7a17add41573d6067e06252e1cd057ecc5d98e18f50868a1be563301",
+  "recordedAt": "2026-10-05T07:56:03.235Z",
+  "sha256": "37b23e5156d4a3258c9b7922f1bfe779cd956aa359c5e89d1d0f73b699df1c25",
+  "bytes": 27141,
+  "requestId": "5OR2NIJltUQu7DzUiGBJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6af7d0cdbb54ec974d39fcef2b82a6143e1982304af5dca1b567e35fb6efdb4a",
+    "bytes": 140478
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

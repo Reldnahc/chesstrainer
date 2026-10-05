@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "forced-mate-continued",
+      "label": "Forced mate continued",
+      "text": "Mm, steady. This move keeps the forced checkmate going, and the defense has no answer to it. The end hasn't come yet; there's more to play through."
+    },
+    "takeId": null
+  },
+  "requestHash": "4a705dae86a34dcd6de96cec0b21f5b2742679d5025e1e979b842df1d85b2fed",
+  "recordedAt": "2026-10-05T07:54:46.739Z",
+  "sha256": "03654dc11def958da01ec7fef5d8866b7bf1fa7b5d95240f0473fd11d62afc0b",
+  "bytes": 28782,
+  "requestId": "Y8vLmdJ2XYf1iiQl0gKZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "710d46d9570ed4091e48ee21c9b5978e8776d35367c40e8c7d34e97c5f27b465",
+    "bytes": 153435
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

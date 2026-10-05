@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "allowed-mate-next",
+      "label": "Allowed mate next",
+      "text": "Simple problem: a move ago, this side was safe from any forced mate. Now the other side can mate with its very next move."
+    },
+    "takeId": null
+  },
+  "requestHash": "b6e1de8ee9244e96a68b0538cd97b501d20444a11dfa2b06a13be7de8e2b02d4",
+  "recordedAt": "2026-10-05T07:55:34.411Z",
+  "sha256": "6d704ce06d1011cacce4f57c49f34ce4089b58d7ee00b42cd153a8d4b5234431",
+  "bytes": 26755,
+  "requestId": "jxKXoOsBmeqMFaWULJ5d",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "da60903c4acbd1055e4df58d5d238cdb93002d46817ea53cc62de8299b5d6dd5",
+    "bytes": 137970
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

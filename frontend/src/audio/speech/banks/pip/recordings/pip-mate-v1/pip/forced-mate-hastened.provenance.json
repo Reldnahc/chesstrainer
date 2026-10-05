@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pip",
+      "providerVoiceId": "YIgSbziyIzdHrzzcIvb8",
+      "name": "Fieldwork Pip - Warm Dublin companion"
+    },
+    "script": {
+      "id": "forced-mate-hastened",
+      "label": "Forced mate hastened",
+      "text": "Ah, now. Checkmate was coming for the side that just moved, whatever happened. This move only brings it in sooner than careful defending would have."
+    },
+    "takeId": null
+  },
+  "requestHash": "16c0fdcdafd41f020702a46e9ab492102c18f1ef03af509d09eadb1a9e8e4051",
+  "recordedAt": "2026-10-05T07:55:57.825Z",
+  "sha256": "d8891f0d7ad7e358d153aba5a3875c069ab278412bf330309c9793ae1eacb310",
+  "bytes": 31155,
+  "requestId": "5NoZugU1oHbfDizB1InV",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "5d33c179d6e4bc5ba8cfda49caee06b63fa49008ce48854cc7703fdb00e2d1ea",
+    "bytes": 158450
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

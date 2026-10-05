@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "femi",
+      "providerVoiceId": "iNVitgWchUnX4RycC3wb",
+      "name": "Fieldwork Femi - Seasoned club analyst"
+    },
+    "script": {
+      "id": "forced-mate-slower",
+      "label": "Forced mate slower",
+      "text": "Still mate by force, so nothing's lost on the result. Thing is, another move would've finished it quicker; worth a look on the replay."
+    },
+    "takeId": null
+  },
+  "requestHash": "d569113d1e9a624aff9200925f8867dca8fa1a3a6c9304dfd2c38a9ce171a8fe",
+  "recordedAt": "2026-10-05T07:55:24.335Z",
+  "sha256": "f2c465e4c40cd77d871c0ccf9460002e60cbae285bdf58fe00afa913cb21118f",
+  "bytes": 27297,
+  "requestId": "XFxgThiqNp8EXJKgbBvi",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9056f7c7db34328317cf7432b558f85877125d9c8580e5478b55521b15179430",
+    "bytes": 142986
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

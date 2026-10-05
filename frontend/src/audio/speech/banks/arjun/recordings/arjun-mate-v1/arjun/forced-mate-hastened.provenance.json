@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "forced-mate-hastened",
+      "label": "Forced mate hastened",
+      "text": "No candidate here could stop the forced mate against this side. The interesting comparison is timing: with this move, checkmate comes sooner than it had to, and the toughest candidate would have made it take longer."
+    },
+    "takeId": null
+  },
+  "requestHash": "6cb8c3688afc3ecd2ae4a1e58fd94ba3dac128365905f4131bc306438342ccad",
+  "recordedAt": "2026-10-05T07:54:54.610Z",
+  "sha256": "23a483bad027d8d9dccdb195e0a64ab4f400d81396c318bfbe238876c4fc63c6",
+  "bytes": 40542,
+  "requestId": "qZ35kgio7c0773IOu78g",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "fb3a324dc30c87618cda8a55021b3893c20ede9c0dc37d76f2e4ba8890e1d900",
+    "bytes": 211113
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

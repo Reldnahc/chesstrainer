@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "forced-mate-held",
+      "label": "Forced mate held",
+      "text": "This position was beyond saving; checkmate was on its way. This move digs in as deep as any option on the search map. Every defender fights to the last turn!"
+    },
+    "takeId": null
+  },
+  "requestHash": "eec4bbdbdeaa36b41a531e7530e097f719182895668152aa68fc8228259f4379",
+  "recordedAt": "2026-10-05T07:56:17.015Z",
+  "sha256": "6ce91654e9b85d47d9ca5224f06310436d818672b492e90e22d14f773c27a907",
+  "bytes": 36340,
+  "requestId": "62i6KU08d5dwRz1bjjS1",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a34c811c10e3494789ab278dc292d489adab86dfa9c417d58154e4caf2eef9ec",
+    "bytes": 183946
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

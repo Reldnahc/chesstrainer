@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "pickle",
+      "providerVoiceId": "wuFBlRfKjcdkHVDjy0I3",
+      "name": "Fieldwork Pickle - Irish mischief"
+    },
+    "script": {
+      "id": "forced-mate-slower",
+      "label": "Forced mate slower",
+      "text": "Is the mate still forced? Yep, so the ending's the same. But psst: a quicker route to mate was hiding nearby!"
+    },
+    "takeId": null
+  },
+  "requestHash": "15e25d0017cb75d58909ff23a331c0bb56907495c653d3f41e58c13ddcf69ffb",
+  "recordedAt": "2026-10-05T07:55:51.845Z",
+  "sha256": "0aade0beda57896090d575e713a061637dae0f09b1ac355ab4a816583d129853",
+  "bytes": 24177,
+  "requestId": "e6ZAzSastsSjPNynX3DY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7a2f6cc778f0ec634bcd0d650c701ed47d15bce3179e388f95fe83d8f2d7562d",
+    "bytes": 122506
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

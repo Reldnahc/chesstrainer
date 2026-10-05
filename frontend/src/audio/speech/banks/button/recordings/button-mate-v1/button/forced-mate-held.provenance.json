@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "forced-mate-held",
+      "label": "Forced mate held",
+      "text": "Some things bend as far as they can before they give. The mate against the side that moved was unstoppable before this move and still comes, and nothing in the search bends further. Sensible defense."
+    },
+    "takeId": null
+  },
+  "requestHash": "ee82ad54d1ede55cc76debb609a24a8fa3eb5099e909ae63b97ca9617757e65b",
+  "recordedAt": "2026-10-05T07:54:54.700Z",
+  "sha256": "3607087c5ccac075ca1ab8a0a14c9176bc62cd8c15f564e75fc1229c7a61017b",
+  "bytes": 41610,
+  "requestId": "1toT5LlKimW51WCkwpCs",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9e1f667cf25a002afe46c089071f8976738d70bf3836bca094c751bf8cb0e461",
+    "bytes": 217382
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

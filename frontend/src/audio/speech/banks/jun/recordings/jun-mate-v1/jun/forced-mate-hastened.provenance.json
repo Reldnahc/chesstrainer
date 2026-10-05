@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "forced-mate-hastened",
+      "label": "Forced mate hastened",
+      "text": "Mate against this side was already forced. This move shortens it. The best defense delays it longer."
+    },
+    "takeId": null
+  },
+  "requestHash": "87161db44097213553e6460f05db19b77abc84878035b68fe8d464d031134cee",
+  "recordedAt": "2026-10-05T07:55:27.512Z",
+  "sha256": "14bc0c73b8cd3ab26e2fe2570b050f0998b6c6d7e6e6b9153565aa577888ec39",
+  "bytes": 22551,
+  "requestId": "ZELfRLzWISyIOQJdHjDq",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "52ca14e6e22d59662af518725ade44a5e348fc54b727de7e6fe27a9b6f240dd6",
+    "bytes": 116236
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

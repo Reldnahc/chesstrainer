@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "marisol",
+      "providerVoiceId": "soWrILvnnw2zVjEQTfeC",
+      "name": "Fieldwork Marisol - Havana observer"
+    },
+    "script": {
+      "id": "forced-mate-held",
+      "label": "Forced mate held",
+      "text": "Mate was unavoidable before this move. The search records no move that delays it further. That is the sensible defense. Checkmate still follows."
+    },
+    "takeId": null
+  },
+  "requestHash": "b22e16a0e6d50939545ff54ce9fd46cbd63e78892745a1186a71a55eda2e4e93",
+  "recordedAt": "2026-10-05T07:55:42.497Z",
+  "sha256": "49bfcef856eb4723fd81567ce6c573a6c65ee7ba244f71584fb3e7c3c158929f",
+  "bytes": 30803,
+  "requestId": "ARhFouchvZqxQHLpA0OM",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "aa5ef7c9df4c5763b9c6efb74fc5d344f33f6ea509e3acedb6fa1102a5c7736b",
+    "bytes": 160958
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

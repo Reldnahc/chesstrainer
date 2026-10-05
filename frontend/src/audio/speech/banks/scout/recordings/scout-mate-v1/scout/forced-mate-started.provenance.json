@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "scout",
+      "providerVoiceId": "cBbce1KF6AVhcgjtl53o",
+      "name": "Fieldwork Scout - Kiwi investigator"
+    },
+    "script": {
+      "id": "forced-mate-started",
+      "label": "Forced mate started",
+      "text": "Forced mate, started. No defense gets out from here. Moves to go. Follow the forcing line to the end."
+    },
+    "takeId": null
+  },
+  "requestHash": "f3f9d39f9ffb4512f4aabc0ee3e07a96ec0fc620c9c093f74d19f9cae116ee53",
+  "recordedAt": "2026-10-05T07:55:53.089Z",
+  "sha256": "9b5ad54bdc03cf1fd1863043ef3d1d7d17ca6a83d26b4ffaaf8799353de7a843",
+  "bytes": 21592,
+  "requestId": "yI23N0NTilaVZgjZDjxZ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "aa196252c276b97a7ea37618403d09f96565133df23331bcbd436005384c786a",
+    "bytes": 112475
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

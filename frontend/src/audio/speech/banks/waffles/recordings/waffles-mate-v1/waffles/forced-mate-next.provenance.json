@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "waffles",
+      "providerVoiceId": "ksr9qUHm23rb2kr8wGRe",
+      "name": "Fieldwork Waffles - Yorkshire coach"
+    },
+    "script": {
+      "id": "forced-mate-next",
+      "label": "Forced mate next",
+      "text": "Final approach! Every reply has been covered; checkmate comes on this side's next turn. The defense has run out of options!"
+    },
+    "takeId": null
+  },
+  "requestHash": "97eac1ad625063604a9cf99632de0315aa56f6e9ab6cb7a4d1064cc56fc52dff",
+  "recordedAt": "2026-10-05T07:56:11.842Z",
+  "sha256": "b65004d7a511a89c81335facfc02bf7914778cd1186a428a239e662a493f1959",
+  "bytes": 27625,
+  "requestId": "dSusSFCnxeBLBzR94hZk",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "3508b0df3c5181585e98d848031949e7e0910d447778fb3b65346394d8ea5a85",
+    "bytes": 137970
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

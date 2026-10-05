@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "allowed-mate-next",
+      "label": "Allowed mate next",
+      "text": "Compare both sides of this move: no forced mate was coming against this side before it, and now the other side can checkmate on its very next move. Which candidate would have kept that door shut?"
+    },
+    "takeId": null
+  },
+  "requestHash": "7fa2465d1a61da4bac0e9b86b30cdb8d06f2e59f2577b03f0a8d6cb69797ec41",
+  "recordedAt": "2026-10-05T07:54:42.043Z",
+  "sha256": "aff74ebb8efab7c91839d8796b0a5a2448d6499fa7c2927d461717605b055ef7",
+  "bytes": 36718,
+  "requestId": "7Alng5hrPFt97v5ABq5v",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "9f6791c236a4d36c963f603f60afcbb388f0c0b031d7686266889bc051ab5a53",
+    "bytes": 193141
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

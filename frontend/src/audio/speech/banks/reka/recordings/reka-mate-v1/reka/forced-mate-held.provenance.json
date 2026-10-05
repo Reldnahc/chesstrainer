@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "forced-mate-held",
+      "label": "Forced mate held",
+      "text": "Stall mode: that mate was never going to be dodged, yet the search turned up nothing that keeps it at bay longer than this move does. The longer the defense, the more the attacker is made to prove."
+    },
+    "takeId": null
+  },
+  "requestHash": "49fc6c1edc132bc366fcddc93e40f79617e6cd2633074c2eb1ecd03211f23552",
+  "recordedAt": "2026-10-05T07:56:01.445Z",
+  "sha256": "d360628cce6d89117d483aca626dd0a9c0339153262ac76d1d41ddce945e359d",
+  "bytes": 36026,
+  "requestId": "foHbd8avqwRO9J9wmJs6",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7b0e457f428b6041d5cd6e45bd0d2f6d342b437cada70ac8d8fff246f6392a36",
+    "bytes": 183946
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

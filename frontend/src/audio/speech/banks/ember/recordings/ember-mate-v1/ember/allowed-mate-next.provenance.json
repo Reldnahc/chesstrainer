@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ember",
+      "providerVoiceId": "wGDxIGSGQy0S32qIol6I",
+      "name": "Fieldwork Ember - Young proud challenger"
+    },
+    "script": {
+      "id": "allowed-mate-next",
+      "label": "Allowed mate next",
+      "text": "A grave error. This move lets checkmate in: the other side may deliver it on the very next move. The game could end with a single reply."
+    },
+    "takeId": null
+  },
+  "requestHash": "0ce573d7d174f60c121cd129f46ea5a0e5a7eac002f4fe28cd5956c7a9e932d5",
+  "recordedAt": "2026-10-05T07:55:01.253Z",
+  "sha256": "1ac5fd5b86307bbd3a50d33aed6b3a8b33d33c3186e0d2cc22703282f50502c2",
+  "bytes": 30319,
+  "requestId": "SerhrBuI3MjTROcriAzH",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0c9c5c0f563f7aae6af481aec2bb837043c6d89b39c14b5923495018696e6a0d",
+    "bytes": 157196
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

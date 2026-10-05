@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "forced-mate-next",
+      "label": "Forced mate next",
+      "text": "Final stage: checkmate follows on this side's next move. Replies that prevent it: none."
+    },
+    "takeId": null
+  },
+  "requestHash": "d5c396cddee2c5a29bd5f185d107ad8bfb87fa9f3461b65d6b104a57d760e163",
+  "recordedAt": "2026-10-05T07:54:49.067Z",
+  "sha256": "d907b652ce93a9cfcc414842e130f065f5fcfb1ec70cf07fdc05b0834e8978cf",
+  "bytes": 21186,
+  "requestId": "Gqc4hqMcUspJ4bktIZ1m",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e859c1462ccad33c8b6f03a66bca27edad2f9bb405ad125e4e54d502447fb924",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

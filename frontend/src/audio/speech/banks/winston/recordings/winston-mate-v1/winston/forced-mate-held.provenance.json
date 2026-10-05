@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "winston",
+      "providerVoiceId": "eYBavflCaaFL7ixhFs8b",
+      "name": "Fieldwork Winston - Welsh companion"
+    },
+    "script": {
+      "id": "forced-mate-held",
+      "label": "Forced mate held",
+      "text": "All right. The side that moved was facing a mate that nothing could stop, and it still comes. The search found no way to hold out longer than this. When the mate can't be stopped, that's the sensible way to go about it."
+    },
+    "takeId": null
+  },
+  "requestHash": "078557556a46e12c2ed5685c693c0f2e0f005698e31898b5285cfe645a335ec4",
+  "recordedAt": "2026-10-05T07:54:58.195Z",
+  "sha256": "6345340788026d239acdeec530cc08703fb9a9c277a520d705b7da8006c7ae8d",
+  "bytes": 40398,
+  "requestId": "ciYecDTTkfawKzPg87QJ",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "28335494d665932ccffaa2d92100786dbb99af0149dff4bbca5f354b5eb0b156",
+    "bytes": 212367
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

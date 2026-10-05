@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "arjun",
+      "providerVoiceId": "HCtawA1QzZZNKBfsCj8E",
+      "name": "Fieldwork Arjun - Chennai club mentor"
+    },
+    "script": {
+      "id": "forced-mate-continued",
+      "label": "Forced mate continued",
+      "text": "The forced mate is alive and well after this move. It's more than one move from the end, and no defense escapes it. Worth following each reply to see why."
+    },
+    "takeId": null
+  },
+  "requestHash": "3cdae16b5d01212760193d092fa2fd3becd1ffeb105e5b844fe4c343c58331b3",
+  "recordedAt": "2026-10-05T07:54:47.023Z",
+  "sha256": "1d4ffa3ed1d725b40d7d90f961ce32bf055ad7f1c5fe30ee335da52aded18441",
+  "bytes": 30359,
+  "requestId": "O5Mns6SCzNPk82D8lc6F",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "28b1a5233798461ce3fba037937c0fa2f5108d2209e31e3983a3f4147a2d2439",
+    "bytes": 155942
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

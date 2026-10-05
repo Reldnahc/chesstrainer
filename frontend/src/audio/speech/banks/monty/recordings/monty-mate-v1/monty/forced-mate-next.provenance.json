@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "monty",
+      "providerVoiceId": "xpNpWfh2C9AYRuSCYiYM",
+      "name": "Fieldwork Monty - Gentle giant"
+    },
+    "script": {
+      "id": "forced-mate-next",
+      "label": "Forced mate next",
+      "text": "Simple point: every reply loses. Checkmate is the next thing this side plays."
+    },
+    "takeId": null
+  },
+  "requestHash": "91e11962583c2f625aaae2d7d1f6902c7ee6b1aa62abf0d3f41f77468963ab6f",
+  "recordedAt": "2026-10-05T07:55:42.300Z",
+  "sha256": "60895a0db65fb00ac983d6f947b2d08955296e0bbe9ea18dbcb151a75432ff62",
+  "bytes": 19172,
+  "requestId": "lZNDoZpPKr9Oh8VfuhvY",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "c1cf4ffb04c4728ae6356bfa734b04f95660ee0e5e9797422a3f06cd908fe397",
+    "bytes": 99518
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

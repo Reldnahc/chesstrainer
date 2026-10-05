@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "bandit",
+      "providerVoiceId": "zF70gg2SQGMBHFwBVVRz",
+      "name": "Fieldwork Bandit - Streetwise opportunist"
+    },
+    "script": {
+      "id": "forced-mate-started",
+      "label": "Forced mate started",
+      "text": "After this move, checkmate can't be dodged, whatever the defender tries. It's not over yet, but the deal is done; it just needs collecting."
+    },
+    "takeId": null
+  },
+  "requestHash": "4ea23a7c940263987615b63aebaf1588ae78ac6b27e3f0fa36fd306abaf39f81",
+  "recordedAt": "2026-10-05T07:54:59.789Z",
+  "sha256": "a14f07ce6dd93cc630bcb200d16244c50348723b36fae21dd9130374967febb5",
+  "bytes": 30196,
+  "requestId": "zm91S451t1uNVh2QTGFn",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "7887772173d3564c5355b38f004be69cbc5a116436646230c7b168da311b69d5",
+    "bytes": 154688
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

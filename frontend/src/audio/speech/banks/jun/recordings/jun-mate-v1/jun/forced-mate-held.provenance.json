@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "forced-mate-held",
+      "label": "Forced mate held",
+      "text": "Mate was unavoidable. Among searched moves, this one concedes it latest. Maximum resistance; the mate remains."
+    },
+    "takeId": null
+  },
+  "requestHash": "e59d3a23aa8e951dfeabea1acfc904ed5aca659fc8d714b504becf08124937f9",
+  "recordedAt": "2026-10-05T07:55:29.636Z",
+  "sha256": "55b120ebbba1e52fe3efee8125d5ec43bb94b8b1adbb81127da3f55325ab996a",
+  "bytes": 27913,
+  "requestId": "cRA0UEX1C01I7GVM6cJ3",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "dd705af019b4cf074d5e03b1970ce4cd0087d0dfefe9d1e5aaefeeb11f88d2dd",
+    "bytes": 148419
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

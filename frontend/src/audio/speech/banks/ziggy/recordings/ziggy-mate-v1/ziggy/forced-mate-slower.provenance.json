@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ziggy",
+      "providerVoiceId": "6Igt6kcG288Ah4HGL0JI",
+      "name": "Fieldwork Ziggy - Mercurial researcher"
+    },
+    "script": {
+      "id": "forced-mate-slower",
+      "label": "Forced mate slower",
+      "text": "Curious. This move keeps checkmate forced, though a faster forced mate would have come from another move. The result holds; the quicker option went unused."
+    },
+    "takeId": null
+  },
+  "requestHash": "541b70f655be11896cea03f688ced8f9c154dcea7e53c4ccc71c23827261baba",
+  "recordedAt": "2026-10-05T07:56:10.776Z",
+  "sha256": "0102668d361d43eea5d8b39546425c7cefc80c3df559e921b981b529bb1fa727",
+  "bytes": 30989,
+  "requestId": "4lstA7wg9fl7AEeNaXpK",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "07560a6a75a16d371bbb36c050f078ea7e7201c61db0aaf15c584d605ea30bb7",
+    "bytes": 163466
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "fergus",
+      "providerVoiceId": "NhrLHrekLCt2Eqt5PbrG",
+      "name": "Fieldwork Fergus - Granite deadpan"
+    },
+    "script": {
+      "id": "forced-mate-slower",
+      "label": "Forced mate slower",
+      "text": "Mate stays forced. A quicker mate was on offer elsewhere. Same ending, extra steps."
+    },
+    "takeId": null
+  },
+  "requestHash": "074eac96e0d817ef446c38fcbff856bd1ef01fe3f3af2c0bc46c536a61b0f7f7",
+  "recordedAt": "2026-10-05T07:55:21.711Z",
+  "sha256": "26d03e899e2afcbd600c5677ec7f6ba169c2d9fedaeeda973f763163a8266061",
+  "bytes": 20970,
+  "requestId": "TJ5hisncmyFyZKSA2tYt",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f5cc4982759e1f7a88e209ea069fecce7d55f5624b97f02894990fccc3f18dac",
+    "bytes": 111221
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

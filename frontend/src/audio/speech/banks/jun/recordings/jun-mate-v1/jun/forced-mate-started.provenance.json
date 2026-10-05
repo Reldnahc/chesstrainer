@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "jun",
+      "providerVoiceId": "nhUCHdwF4bq8pqSYEZqt",
+      "name": "Fieldwork Jun - Senior master"
+    },
+    "script": {
+      "id": "forced-mate-started",
+      "label": "Forced mate started",
+      "text": "Forced mate begins here. Every defense loses. The mate is not immediate."
+    },
+    "takeId": null
+  },
+  "requestHash": "9ac3c9d928d95c86e1b2e85a43eafefa105170450ca24b374c9c668e580d1800",
+  "recordedAt": "2026-10-05T07:55:20.458Z",
+  "sha256": "fe446df05edfa2867ceffc120148e4fd653d84b2ecf9cf1c5c894c1063eced6c",
+  "bytes": 18837,
+  "requestId": "P5KKCGFa8tzLxV0gip7z",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "832e8b6d1f15349ec6073c3f621fd2ebf1e03802fb5157657418f780dcb6b7ee",
+    "bytes": 98264
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

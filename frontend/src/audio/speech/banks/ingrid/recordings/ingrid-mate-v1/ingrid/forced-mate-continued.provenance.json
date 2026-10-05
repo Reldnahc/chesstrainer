@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "forced-mate-continued",
+      "label": "Forced mate continued",
+      "text": "Calm, steady chess. After this move, mate's still forced; the defense has nothing that works against it, and more than one move is left to play."
+    },
+    "takeId": null
+  },
+  "requestHash": "1954304e19b21dcf69ccd1783920ad5359a9a49609dbb947232fffe4d18b1f73",
+  "recordedAt": "2026-10-05T07:55:22.604Z",
+  "sha256": "84e60dc7805cb026b6281eaa759f031424234a2c4313bd01910da983b5cf3800",
+  "bytes": 32419,
+  "requestId": "DxU2FllsJe7iEgMrnSCb",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "bdb3fea0be8777c035e3d0625cfe3343cea9df61c03ebad1aebf8562b5b6cd2d",
+    "bytes": 167645
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

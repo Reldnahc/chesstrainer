@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "reka",
+      "providerVoiceId": "jSwhaFsq26bSWLNx6vMv",
+      "name": "Fieldwork Réka - Budapest attacker"
+    },
+    "script": {
+      "id": "allowed-mate-next",
+      "label": "Allowed mate next",
+      "text": "Eyes up: this move leaves the other side a checkmate sitting ready for its next turn. Blink, and it could all be over."
+    },
+    "takeId": null
+  },
+  "requestHash": "72b8c657b9c59312fbefe65c885c7f1997cd48cb277bff0ed1b5ab8255ec0329",
+  "recordedAt": "2026-10-05T07:55:49.277Z",
+  "sha256": "c76ea98bee8f0aeae5ebc1b6f0f346cd486738a7923a6e3c2a60ee0178943cb4",
+  "bytes": 24846,
+  "requestId": "VtyCgcUBNOHhtuPilVaN",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "b78f63f8b1c582df69de73dbd2656cba0aa8340985bc4ac0e7c97f201cf66678",
+    "bytes": 127939
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

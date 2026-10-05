@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "felix",
+      "providerVoiceId": "ZqG3siXNPHmbfHT21qJF",
+      "name": "Fieldwork Felix - Velvet critic"
+    },
+    "script": {
+      "id": "forced-mate-next",
+      "label": "Forced mate next",
+      "text": "The reply doesn't matter; this side's next turn is mate. Nothing left to negotiate."
+    },
+    "takeId": null
+  },
+  "requestHash": "518ece6966d440b0e2399cfb9d832a8e63d3f6e9fa1b85b23518f731d6d64e54",
+  "recordedAt": "2026-10-05T07:55:19.962Z",
+  "sha256": "65fbaf9fddb469f737aa28439e30023eff3340ec5f37f741a14c87538e895e69",
+  "bytes": 17976,
+  "requestId": "aL9IUEYHkbjPYQgSAAR2",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "4cd52c8317e382f39da0dc8efd5c16fe8d823d426cbe302221d403b6e1aa2c43",
+    "bytes": 90741
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

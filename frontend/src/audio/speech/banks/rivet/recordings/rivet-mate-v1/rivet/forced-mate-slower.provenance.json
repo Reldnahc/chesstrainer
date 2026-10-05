@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "rivet",
+      "providerVoiceId": "XuTu5TkueOmolbmk7MZd",
+      "name": "Fieldwork Rivet - Retro speech terminal"
+    },
+    "script": {
+      "id": "forced-mate-slower",
+      "label": "Forced mate slower",
+      "text": "Forced mate: still certain. Route taken: longer than necessary; another move would have forced mate sooner. Result: unchanged."
+    },
+    "takeId": null
+  },
+  "requestHash": "0aede6def891115addb99a80bd94cf9f4909be8a00f501ce25938251441da4f9",
+  "recordedAt": "2026-10-05T07:54:47.345Z",
+  "sha256": "994b6ca5739206e3b1c89c80c5e2ccb3e4d7d20450b68a93b52cf9bcac754cce",
+  "bytes": 29532,
+  "requestId": "TnuZads3yBWjWQf3Ov82",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "27d622817537763c530cc1f8ebe7a46b43df19efe9513229062fb8259275f77b",
+    "bytes": 163466
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

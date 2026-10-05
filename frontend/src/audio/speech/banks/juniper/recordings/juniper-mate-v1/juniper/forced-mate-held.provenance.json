@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "juniper",
+      "providerVoiceId": "ByzSBJIf4lPPRs7rT2pg",
+      "name": "Fieldwork Juniper - Welsh dusk"
+    },
+    "script": {
+      "id": "forced-mate-held",
+      "label": "Forced mate held",
+      "text": "Nothing could have stopped the mate here. The search shows no move putting it further off than this one. Even here, careful defense is the habit to keep."
+    },
+    "takeId": null
+  },
+  "requestHash": "1545590c03328961b6b6f90bcc255de16742797def4c3f456c7b76759998f6ce",
+  "recordedAt": "2026-10-05T07:55:38.611Z",
+  "sha256": "562fbc02fbf62f8e307e89e1f8634a9190dc8a3656e8b45c2930d7942b8716c3",
+  "bytes": 29884,
+  "requestId": "XzQcJ48XHxAZk9Di8bZs",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "a84d4c6e99ba39f402892da1007f6841cc145f57d1f14e403a28db5f831adf3d",
+    "bytes": 157196
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

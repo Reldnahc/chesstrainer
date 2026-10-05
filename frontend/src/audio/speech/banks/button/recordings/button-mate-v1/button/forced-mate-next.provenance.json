@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "forced-mate-next",
+      "label": "Forced mate next",
+      "text": "Hm, all the little gaps are sealed now. No reply can patch them, and this side mates on its following move."
+    },
+    "takeId": null
+  },
+  "requestHash": "06ff4e7afe0fbe22f8ce0089dbc10c8d192a604d32e6e06fbd6e42c5474c1ae1",
+  "recordedAt": "2026-10-05T07:54:49.121Z",
+  "sha256": "677a95335c51e727ebbcb6ea0e4d02cc1646e52cb7ee363d032b91a959339d6a",
+  "bytes": 24407,
+  "requestId": "KkTIkFQZ3oaxpBUDCiEG",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "ca918cdfcc16279bb62f1e4c4678c03daa5e69c2054c1d00f44299171a75710a",
+    "bytes": 125431
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

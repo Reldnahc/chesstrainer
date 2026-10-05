@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "button",
+      "providerVoiceId": "phqApSO9soxcDhSrWnGs",
+      "name": "Fieldwork Button - Woody contralto"
+    },
+    "script": {
+      "id": "forced-mate-continued",
+      "label": "Forced mate continued",
+      "text": "Hm, the forced checkmate is still threading its way along. This move keeps it going, and there's more to it before the very end."
+    },
+    "takeId": null
+  },
+  "requestHash": "5f77f2adf660e1cd7bd9b651319b9e3dd7f048022e546a6260ca93f96265a5ca",
+  "recordedAt": "2026-10-05T07:54:45.161Z",
+  "sha256": "2787cb068d8a902b34ff19ef4be44e4dee973848f14f12cb8204a9b5cf259c42",
+  "bytes": 26063,
+  "requestId": "TqLafqo85uOkQd0yPS7t",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "2a0b7146c9e247faa96a8d707d49b8efd84347f0ef50b7e4e06241ff39e3a0f9",
+    "bytes": 134208
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

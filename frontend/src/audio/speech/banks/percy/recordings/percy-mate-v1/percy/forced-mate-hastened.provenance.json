@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "percy",
+      "providerVoiceId": "k1XBvQSp9bvhpmJ11iHj",
+      "name": "Fieldwork Percy - Stone-hearted enthusiast"
+    },
+    "script": {
+      "id": "forced-mate-hastened",
+      "label": "Forced mate hastened",
+      "text": "The side that just moved couldn't stop this checkmate. Still, this move clocks off early, so the mate shows up ahead of schedule; a harder-working defense would have stretched the shift out."
+    },
+    "takeId": null
+  },
+  "requestHash": "d57ad8a0f55c5a7d7aafaf6449156ea01ce00960cf53e54239c8fb6de588a731",
+  "recordedAt": "2026-10-05T07:55:51.526Z",
+  "sha256": "4418e1c2449df62cc7f9c49c27c69a8180e87af3f3a6dab53cbd48140dcdbdb4",
+  "bytes": 34447,
+  "requestId": "MoAUHDW9d6m7XnXKZ38m",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "423a2a7b74c8b9106d8b697cfa5124ef57e4ce019c78fd63d7144357f70d1af4",
+    "bytes": 176422
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

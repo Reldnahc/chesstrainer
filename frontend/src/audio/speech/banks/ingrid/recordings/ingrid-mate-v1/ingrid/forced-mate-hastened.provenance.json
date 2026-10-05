@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "ingrid",
+      "providerVoiceId": "3SNjufSHWTt60UO5oUTT",
+      "name": "Fieldwork Ingrid - Oslo woman, soft"
+    },
+    "script": {
+      "id": "forced-mate-hastened",
+      "label": "Forced mate hastened",
+      "text": "Nothing could stop the mate against this side by this point. This move does let it come sooner, though; a more stubborn defense would have pushed it further away."
+    },
+    "takeId": null
+  },
+  "requestHash": "70a3f1b07cdf4ada3d12e7c460e8effb77c651f20b3c8e0e6eba5346200864c6",
+  "recordedAt": "2026-10-05T07:55:28.882Z",
+  "sha256": "b0509f669dde52296ad445eb94011b0f935ce82d0ac76efd7bf4708e79a6a83e",
+  "bytes": 29658,
+  "requestId": "9JRkTfr6c4BH4srzg9CD",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "6d18671f2800edef544882fd37955a9ac41fd6265915879e1635fbdf5efa04c9",
+    "bytes": 149673
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

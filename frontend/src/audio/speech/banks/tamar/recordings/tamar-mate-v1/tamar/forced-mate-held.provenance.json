@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "tamar",
+      "providerVoiceId": "whSBm2dXzV7rGJ57xQjo",
+      "name": "Fieldwork Tamar - Tbilisi mentor"
+    },
+    "script": {
+      "id": "forced-mate-held",
+      "label": "Forced mate held",
+      "text": "Mate was already unavoidable, and it still arrives. This move equals the longest resistance the search found. In a lost position, that is the standard."
+    },
+    "takeId": null
+  },
+  "requestHash": "22bc7d7ea0d3d1f8673cb367ec7d1b6474d2896b93f202cb85e6299aafd4e356",
+  "recordedAt": "2026-10-05T07:56:14.708Z",
+  "sha256": "5502d1e56d0fc4e1f24dd40067cbd01527e7a16f29f00ed2e51f168195cade3a",
+  "bytes": 32338,
+  "requestId": "qBepM1rUClNJOCakyePB",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "e8cd5ef52886f95ccd17413dc4b4bbe0f1dc02b1e515afe132301bda1c695c48",
+    "bytes": 167645
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

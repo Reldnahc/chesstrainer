@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "biscuit",
+      "providerVoiceId": "USjUS9C409xYJs8EVPAv",
+      "name": "Fieldwork Biscuit - Talking puppy, soft"
+    },
+    "script": {
+      "id": "forced-mate-started",
+      "label": "Forced mate started",
+      "text": "Ooh, big news! This move locks in a forced checkmate, and no defense changes that. Little lesson: positions like this are worth replaying until the finish feels easy."
+    },
+    "takeId": null
+  },
+  "requestHash": "846a34ba3e45bd88a554d94be349076dce09c19f6018d15509f9d6f5aeac832c",
+  "recordedAt": "2026-10-05T07:55:03.387Z",
+  "sha256": "8faeaf6fd9cc02fc2c102d708c538a685c882493ad1c1e92d43e9a8d6d9a0d0c",
+  "bytes": 37611,
+  "requestId": "ySKzjzUXZbe8QupIEpwU",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "0b0be77b4dbaebed7370875c8dd26ae51c5e63bac852c8cce0adb7d9d638eed6",
+    "bytes": 195648
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "request": {
+    "schemaVersion": 1,
+    "provider": "elevenlabs",
+    "modelId": "eleven_v4",
+    "outputFormat": "mp3_44100_128",
+    "settings": {
+      "stability": 0.5,
+      "similarity_boost": 0.75,
+      "speed": 0.95
+    },
+    "voice": {
+      "id": "orin",
+      "providerVoiceId": "fIPn5qSgLnxAGw7MRmyF",
+      "name": "Fieldwork Orin - Mountain scholar"
+    },
+    "script": {
+      "id": "forced-mate-slower",
+      "label": "Forced mate slower",
+      "text": "The mate remains forced, and the ending will not change. Still, a shorter road to it existed in another move; that road is worth knowing."
+    },
+    "takeId": null
+  },
+  "requestHash": "f139c416500b263ec00585d24f241efdd5ff14fef73ab55509f72f9f76ee33a1",
+  "recordedAt": "2026-10-05T07:55:41.243Z",
+  "sha256": "86c31d1611593f27dd9d01c4209ec0d1bb91be07cab1cbbf1b3357b4652f1095",
+  "bytes": 31822,
+  "requestId": "8hGSlVpk1Dp8ocvQPfpa",
+  "providerAudio": {
+    "format": "mp3_44100_128",
+    "sha256": "f79a38b5efc1bbc22ef8068b91ac4eb50bc1051050b967f632e21ab33144c9be",
+    "bytes": 166391
+  },
+  "encoding": {
+    "format": "ogg-opus",
+    "channels": 1,
+    "sampleRate": 48000,
+    "compressionLevel": 0.93,
+    "method": "SoundFile float64 decode; arithmetic channel mean; band-limited FFT resample to 48000 Hz; libsndfile Ogg Opus at compression level 0.93",
+    "encoder": "SoundFile",
+    "encoderVersion": "0.13.1",
+    "libsndfileVersion": "1.2.2",
+    "numpyVersion": "2.2.6"
+  }
+}
