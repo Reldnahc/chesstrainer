@@ -15,7 +15,7 @@ import DialogueText from "../dialogue/DialogueText";
 import HumanInsight from "./HumanInsight";
 import {selectGameOpener, selectGameSpeech} from "../audio/speech/gameSelection";
 import {useCoachSpeech} from "../audio/speech/useCoachSpeech";
-import {coachRecording, hasCoachVoice} from "../audio/speech/voiceBank";
+import {coachRecording, hasCoachVoice, recordedId} from "../audio/speech/voiceBank";
 import {spokenId as spokenMeaning, useSpokenText} from "../audio/speech/spokenText";
 import CoachMovesLine, {movesLineFacts, movesLineText} from "./CoachMovesLine";
 import {useOptionalAudioPreferences} from "../audio/AudioProvider";
@@ -96,7 +96,10 @@ export default function PositionCoach({
   const speechContext = {game, report, frame, ply, variation, pending: speechPending,
     error: !!errorAtPosition || (!report && game.job?.status === "failed")};
   // anyCoach: a coach without a recorded bank still shows its script's line.
-  const selection = {...speechContext, intent: displayedIntent, utterance, anyCoach: true};
+  const voicedCoach = hasCoachVoice(utterance.coachId);
+  const selection = {...speechContext, intent: displayedIntent, utterance, anyCoach: true,
+    // A recorded voice speaks only what it has recorded; a script-only coach shows its line.
+    playable: (id: string) => !voicedCoach || !!recordedId(utterance.coachId, id)};
   // The Maia insight is shown beside the bubble but never voiced.
   // Each clip prefers its piece-named variant ("the pinned knight") when this
   // coach has one, falling back to the generic line.

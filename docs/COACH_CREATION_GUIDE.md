@@ -170,9 +170,11 @@ and intentional silence before counting clips. Maia readings are never spoken or
 shown as coach dialogue, so the catalogue has no `human-*` or objective/Maia
 combination meanings (253 were retired on 2026-10-02 and the last five on
 2026-10-04), and the three per-move clock observations were retired on
-2026-10-03. The catalogue has 194 meanings: 171 original meanings, 11 varied
-opening meanings, the game-review opener, the picker introduction, the Play
-greeting (`game-start`) and nine lesson prompts. It also lists 268 piece
+2026-10-03. The catalogue has 233 meanings: 171 original meanings, 11 varied
+opening meanings, 32 grade takes, seven forced-mate meanings (mate in one
+allowed, and a move that starts, keeps, slows, finishes next move, hastens or
+holds out against a forced mate; added 2026-10-05), the game-review opener, the
+picker introduction, the Play greeting (`game-start`) and nine lesson prompts. It also lists 268 piece
 variants of 60 of those meanings, which name the piece a generic line calls "a
 piece" (see the [speech README](../frontend/src/audio/speech/README.md)); the
 generic line stays as their fallback. That is today's measured

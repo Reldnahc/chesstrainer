@@ -300,6 +300,41 @@
       "text": "Mate missed. The board had a forced checkmate, and the game move skipped it. Rule one: check every check first."
     },
     {
+      "id": "allowed-mate-next",
+      "group": "game_review",
+      "text": "Immediate mate allowed. Other side now has a mate in hand for the very next move. Rule: before moving, list the opponent's checks in reply."
+    },
+    {
+      "id": "forced-mate-started",
+      "group": "game_review",
+      "text": "Forced mate, started. No defense gets out from here. Moves to go. Follow the forcing line to the end."
+    },
+    {
+      "id": "forced-mate-continued",
+      "group": "game_review",
+      "text": "Forced mate, still running. Defense has no escape, and the finish is still ahead. Stay precise."
+    },
+    {
+      "id": "forced-mate-slower",
+      "group": "game_review",
+      "text": "Mate still forced, result unchanged. A faster mate was available. Find the shorter route and file it."
+    },
+    {
+      "id": "forced-mate-next",
+      "group": "game_review",
+      "text": "Mate on the follow-up. Any reply, then checkmate. Execute the finish."
+    },
+    {
+      "id": "forced-mate-hastened",
+      "group": "game_review",
+      "text": "Hastened mate. The mover couldn't escape it, and this move speeds it up. Find the defense that delayed it longest."
+    },
+    {
+      "id": "forced-mate-held",
+      "group": "game_review",
+      "text": "Unstoppable mate, max delay. Search found nothing that outlasts this move. Longest defense, logged."
+    },
+    {
       "id": "sound-sacrifice",
       "group": "game_review",
       "text": "Sacrifice holds. Even when the material is taken, the idea survives in the searched line. Play the capture and follow what comes next."

@@ -19,7 +19,7 @@ const coaches = [{id: "classic", personality: storyteller}, {id: "robot", person
 // (Their poorly graded first moves are Book moves, which the badge lets name the
 // opening instead of an evaluation loss.)
 const observedFamilies = [
-  "allowed-mate", "missed-mate", "immediate-capture", "recognized-opening",
+  "allowed-mate-next|allowed-mate", "missed-mate", "immediate-capture", "recognized-opening",
   "cause-abandoned-defender", "cause-opponent-threat-recognition", "cause-avoiding-bad-trades",
   "tactic-fork-played", "tactic-pin-played", "tactic-fork-allowed", "tactic-skewer-allowed", "tactic-fork-missed",
   "sound-sacrifice", "only-playable-move", "only-advantage-resource",
@@ -86,9 +86,21 @@ for (const coach of coaches) {
       expect(context.report!.intelligence!.events).toEqual(expect.arrayContaining([
         expect.objectContaining({kind: "tactic", facts: expect.objectContaining({motif: "back_rank", role})}),
       ]));
-      expect(selectGameRecording(context)).toBe(`${role}-mate`);
+      // These witnesses let the reply itself mate, which has its own line.
+      expect(selectGameRecording(context)).toBe(role === "allowed" ? "allowed-mate-next|allowed-mate" : "missed-mate");
       expect(selectGameSpeech(context).recordingId).toBe(plain(context));
     }
+  });
+
+  test(`${coach.id}: a meaning the coach cannot say yet passes the lead on instead of silencing the move`, () => {
+    const {context} = presentation("back-rank-allowed-narrow-preferred", coach);
+    const lead = selectGameRecording(context)!;
+    expect(lead).toBeTruthy();
+    const without = selectGameSpeech({...context, playable: id => id !== lead});
+    expect(without.primaryId).not.toBe(lead);
+    const next = context.utterance.renderedClaims!.slice(1).map((_, index) =>
+      selectGameRecording({...context, claimIndex: index + 1})).find(id => id && id !== lead) ?? null;
+    expect(without.primaryId).toBe(next);
   });
 
   test(`${coach.id}: late unavailable policy removes the chip without changing the objective speech`, () => {
