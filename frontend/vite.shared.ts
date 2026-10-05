@@ -1,3 +1,4 @@
+import { readFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { normalizePath, type Plugin } from "vite";
 
@@ -16,6 +17,28 @@ export function devRecordingAssets(): Plugin {
       if (resolved && normalizePath(resolved.id) === `${speech}/recordingAssets.ts`) {
         return `${speech}/recordingAssets.dev.ts`;
       }
+    },
+  };
+}
+
+// Bank manifests imported with `?runtime` keep only what playback reads (see
+// voiceBank.ts). The main bundle then carries no provenance or alignment paths.
+export function speechManifests(): Plugin {
+  return {
+    name: "speech-manifests",
+    enforce: "pre",
+    async load(id) {
+      const [file, query] = id.split("?");
+      if (query !== "runtime" || !file.endsWith("/manifest.json")) return;
+      this.addWatchFile(file);
+      const manifest = JSON.parse(await readFile(file, "utf8"));
+      const runtime = {
+        coachId: manifest.coachId,
+        voiceId: manifest.voiceId,
+        recordings: manifest.recordings.map(({ id, text, audioPath }: Record<string, string>) => ({ id, text, audioPath })),
+      };
+      // Still JSON: Vite's JSON plugin turns it into the module.
+      return JSON.stringify(runtime);
     },
   };
 }

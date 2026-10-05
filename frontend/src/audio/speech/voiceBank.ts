@@ -9,10 +9,19 @@ type BankManifest = {
 };
 export type VoiceRecording = { id: string; text: string; url: string; parts?: readonly VoiceRecording[] };
 
-const manifests = import.meta.glob<BankManifest>(['./bank/manifest.json', './banks/*/manifest.json'],
-  {import: 'default', eager: true});
-const trackModules = import.meta.glob<Record<string, SpeechMouthTrack>>(
-  ['./bank/tracks.json', './banks/*/tracks.json'], {import: 'default'});
+// `?runtime` keeps only the fields below (speechManifests in vite.shared.ts);
+// provenance and alignment paths stay in the source files for the bank checks.
+const manifests = withoutQuery(import.meta.glob<BankManifest>(['./bank/manifest.json', './banks/*/manifest.json'],
+  {import: 'default', eager: true, query: '?runtime'}));
+// Mouth timing is fetched per coach as plain JSON. Imported as modules, the 35 MB
+// of tracks made the build parse every one as JavaScript, which nearly filled
+// Node's default memory limit.
+const trackUrls = withoutQuery(import.meta.glob<string>(['./bank/tracks.json', './banks/*/tracks.json'],
+  {import: 'default', eager: true, query: '?url'}));
+
+function withoutQuery<T>(modules: Record<string, T>): Record<string, T> {
+  return Object.fromEntries(Object.entries(modules).map(([path, value]) => [path.replace(/\?.*$/, ''), value]));
+}
 
 function assetKey(manifest: string, relative: string): string | null {
   if (/^[a-z]+:|^[/\\]/i.test(relative) || relative.includes('\\')) return null;
@@ -32,10 +41,27 @@ const banks = new Map(registry.banks.flatMap(entry => {
     return url ? [[record.id, {id: record.id, text: record.text, url}] as const] : [];
   }));
   const trackKey = `./${entry.manifestPath.replace(/manifest\.json$/, 'tracks.json')}`;
-  const loadTracks = Object.hasOwn(trackModules, trackKey) ? trackModules[trackKey] : undefined;
-  return loadTracks && recordings.size ? [[entry.coachId, {recordings, loadTracks}] as const] : [];
+  const tracksUrl = Object.hasOwn(trackUrls, trackKey) ? trackUrls[trackKey] : undefined;
+  return tracksUrl && recordings.size ? [[entry.coachId, {recordings, tracksUrl}] as const] : [];
 }));
 const loadedTracks = new Map<string, Record<string, SpeechMouthTrack>>();
+const loadingTracks = new Map<string, Promise<Record<string, SpeechMouthTrack>>>();
+
+// A plain fetch (rather than a module import, whose failure the browser caches)
+// lets a failed load be retried on the next line.
+function loadTracks(coachId: string, url: string): Promise<Record<string, SpeechMouthTrack>> {
+  let pending = loadingTracks.get(coachId);
+  if (!pending) {
+    pending = fetch(url).then(async response => {
+      if (!response.ok) throw new Error(`Coach mouth timing unavailable (${response.status})`);
+      const tracks = await response.json() as Record<string, SpeechMouthTrack>;
+      loadedTracks.set(coachId, tracks);
+      return tracks;
+    }).finally(() => loadingTracks.delete(coachId));
+    loadingTracks.set(coachId, pending);
+  }
+  return pending;
+}
 
 /** Played when a coach is chosen in Settings. No bank records it yet; until a
  * coach's clip exists the picker stays silent for that coach. */
@@ -89,8 +115,7 @@ export function coachRecordings(coachId: string): readonly VoiceRecording[] {
 export async function coachMouthTrack(coachId: string, id: string): Promise<SpeechMouthTrack | undefined> {
   const bank = banks.get(coachId), recording = coachRecording(coachId, id);
   if (!bank || !recording) return;
-  const tracks = loadedTracks.get(coachId) ?? await bank.loadTracks();
-  loadedTracks.set(coachId, tracks);
+  const tracks = loadedTracks.get(coachId) ?? await loadTracks(coachId, bank.tracksUrl);
   return sequenceTrack(tracks, recording.id);
 }
 
