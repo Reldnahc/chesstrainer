@@ -231,7 +231,9 @@ It defaults to 1000 and is stored with the review; changing it reuses engine evi
   involving the played move, or a winning mate; a non-pawn sacrifice at an
   immediate net material cost; and an explicit native
   acceptance test leaving at least -50 cp. The unrestricted played line must also
-  retain at least -50 cp, and the strongest alternative must be below +300 cp. At most
+  retain at least -50 cp, and the strongest alternative must be below +300 cp,
+  unless the sacrifice forces mate and no searched alternative does (forcing
+  mate is its own achievement, even from a winning position). At most
   two eligible legal non-pawn capture candidates are probed. Promoting and losing
   that pawn's new piece is not a non-pawn sacrifice. Ordinary equal trades do not
   qualify: if a legal immediate recapture restores the pre-move material balance,
