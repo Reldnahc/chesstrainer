@@ -79,7 +79,12 @@ def test_new_mate_transition_has_both_analysis_references(before, after, transit
     "best,after,previous,stage",
     [
         ({"kind": "mate", "value": 5}, {"kind": "mate", "value": 5}, 300, "started"),
-        ({"kind": "mate", "value": 5}, {"kind": "mate", "value": 5}, {"kind": "mate", "value": 6}, "continued"),
+        (
+            {"kind": "mate", "value": 5},
+            {"kind": "mate", "value": 5},
+            {"kind": "mate", "value": 6},
+            "continued",
+        ),
         ({"kind": "mate", "value": 2}, {"kind": "mate", "value": 4}, None, "slower"),
         ({"kind": "mate", "value": 2}, {"kind": "mate", "value": 2}, None, "next"),
         ({"kind": "mate", "value": -6}, {"kind": "mate", "value": -2}, None, "hastened"),
