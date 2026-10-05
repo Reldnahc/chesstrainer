@@ -80,7 +80,11 @@ test("opening Due shows combined study context and accepts the repertoire union 
   await expect(page.getByRole("heading", { name: "Opening recalled." })).toBeVisible();
   const continuations = page.getByRole("region", { name: "Studied continuations" });
   for (const name of data.names) await expect(continuations).toContainText(name);
-  await expect(page.locator(".review-coach .move-status")).toHaveText(walter("opening-recall-accepted"));
+  // Recorded takes rotate, so any take of the accepted line may speak.
+  const acceptedTakes = walterBank.recordings.filter(row => /^opening-recall-accepted(?:-\d+)?$/.test(row.id)).map(row => row.text);
+  expect(acceptedTakes.length).toBeGreaterThan(1);
+  await expect.poll(async () => acceptedTakes.includes((await page.locator(".review-coach .move-status").textContent())?.trim() ?? ""))
+    .toBe(true);
   await expect(page.locator(".review-coach")).not.toContainText(/relearning|Next review|recall saved/i);
   await expect(page.locator(".review-schedule")).toContainText("first attempt stays marked for relearning");
   expect(engineRequests).toEqual([]);
