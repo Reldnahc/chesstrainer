@@ -21,6 +21,26 @@ def advantage(score):
     )
 
 
+def forced_mate_stage(best, actual, previous):
+    """A move inside a forced mate that neither allows nor misses it.
+
+    Scores count the mover's moves until mate, so mate 2 means the mover's next
+    move mates whatever the reply. A delivered mate (mate 1) is the finish event.
+    The previous score is the mover's view before the opponent's last move.
+    """
+    if actual.kind != "mate" or actual.value in (0, 1) or best.kind != "mate":
+        return None
+    if actual.outcome() == 1:
+        if best.outcome() == 1 and best.value < actual.value:
+            return "slower"
+        if actual.value == 2:
+            return "next"
+        earlier = Score.model_validate(previous) if previous else None
+        return "continued" if earlier and earlier.kind == "mate" and earlier.outcome() == 1 else "started"
+    # Already lost: the best defence was mated too.
+    return "hastened" if abs(actual.value) < abs(best.value) else "held"
+
+
 def objective_events(report, practical, emit, evidence, ref):
     best = Score.model_validate(report["best"]["score"])
     actual = Score.model_validate(report["actual"]["score"])
@@ -33,6 +53,22 @@ def objective_events(report, practical, emit, evidence, ref):
             95,
             {
                 "transition": "allowed" if loss.allows_mate else "missed",
+                "best": best.model_dump(),
+                "actual": actual.model_dump(),
+                # Moves until the mate lands; 1 means the reply itself mates.
+                "mate_in": abs(actual.value) if actual.kind == "mate" else None,
+            },
+            evidence,
+        )
+    elif stage := forced_mate_stage(best, actual, report.get("previous_score")):
+        emit(
+            "forced_mate",
+            "searched",
+            95,
+            {
+                "stage": stage,
+                "winner": "mover" if actual.outcome() == 1 else "opponent",
+                "mate_in": abs(actual.value),
                 "best": best.model_dump(),
                 "actual": actual.model_dump(),
             },

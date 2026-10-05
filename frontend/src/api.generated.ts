@@ -2304,6 +2304,7 @@ export interface components {
             /** Engine Version */
             engine_version: string;
             human?: components["schemas"]["HumanEvidence"] | null;
+            immediate_recapture?: components["schemas"]["Frame"] | null;
             immediate_reply?: components["schemas"]["Frame"] | null;
             intelligence?: components["schemas"]["MoveIntelligence"] | null;
             /**
@@ -2391,6 +2392,7 @@ export interface components {
             /** Engine Version */
             engine_version: string;
             human?: components["schemas"]["HumanEvidence"] | null;
+            immediate_recapture?: components["schemas"]["Frame"] | null;
             immediate_reply?: components["schemas"]["Frame"] | null;
             intelligence?: components["schemas"]["MoveIntelligence"] | null;
             /**
@@ -3847,7 +3849,7 @@ export interface components {
              * Kind
              * @enum {string}
              */
-            kind: "mate" | "evaluation_change" | "critical_resource" | "sacrifice" | "tactic" | "human_contrast" | "clock_observation" | "opening_departure" | "check" | "finish" | "positional";
+            kind: "mate" | "forced_mate" | "evaluation_change" | "critical_resource" | "sacrifice" | "tactic" | "human_contrast" | "clock_observation" | "opening_departure" | "check" | "finish" | "positional";
         };
         /** ReviewFeedback */
         ReviewFeedback: {

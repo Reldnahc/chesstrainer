@@ -239,11 +239,20 @@ sequence assertion. Search refinements, visits, coach changes and
 later review progress do not enter that seed. Completing a previously unknown
 prefix may make its sequence known; it is not a speech playback event.
 
-Book remains independent of engine quality: a recognized blunder keeps its
-higher-priority correction, with recognition only if it fits as a secondary
-fact. Opening metadata is excluded from the legacy wording seed for the other
+The coach follows the displayed badge: a move shown as Book is recognized
+theory, so the coach names the opening instead of correcting it, even when the
+engine grades it poorly (owner decision, 2026-10-04). The engine grade stays in
+`engine_label` for accuracy, board arrows and the Maia popup. Opening metadata is excluded from the legacy wording seed for the other
 voices and never enters cold practice dialogue. No new opening recognition,
 engine work, automatic speech event or learning inference is performed here.
+
+A poor move's immediate-capture claim needs a real loss: when the reply only
+recaptures what the move took, or the mover's next move in the line
+(`immediate_recapture`) takes the material straight back, it is an even trade
+and the claim is omitted. A tactic whose witness starts on this move outranks
+one of the same role that only appears later in the line. The spoken lead is the
+first non-Maia rendered claim with a recording, so a leading claim without a
+clip passes the lead on instead of silencing the move.
 
 ## Written facts and recorded summaries
 

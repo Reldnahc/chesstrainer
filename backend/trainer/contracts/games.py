@@ -75,6 +75,8 @@ class BookOpening(Contract):
 
 class GameMoveReport(Contract):
     immediate_reply: Frame | None = None
+    # The mover's next move in the line when it captures straight back.
+    immediate_recapture: Frame | None = None
     intelligence: MoveIntelligence | None = None
     human: HumanEvidence | None = None
     practical: PracticalAssessment | None = None

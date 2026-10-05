@@ -47,7 +47,7 @@ export function gameIntent({game, report, frame, ply, key, expression, explainin
   // Recognized theory is shared by both players; it is not personal praise.
   // Keep the incoming reaction so check and explicit explanations still win.
   if (!learnerMove && !(mover && report.label === "Book")) expression = "explaining";
-  const poor = ["Inaccuracy", "Mistake", "Miss", "Blunder"].includes(report.engine_label ?? report.label);
+  const poor = ["Inaccuracy", "Mistake", "Miss", "Blunder"].includes(report.label);
   const side = mover === "white" ? "White" : mover === "black" ? "Black" : "The mover";
   const opponent = mover === "white" ? "Black" : mover === "black" ? "White" : "The opponent";
   const move = report.actual.san, best = report.best.san;
@@ -60,6 +60,11 @@ export function gameIntent({game, report, frame, ply, key, expression, explainin
     const add = (code: string, slots: Claim["slots"], priority: number) => claims.push(claim(code, slots, priority, event.evidence, [event.id]));
     if (event.kind === "mate") add(f.transition === "allowed" ? "allowed_mate" : "missed_mate",
       {best, opponent, reply: report.immediate_reply ? `${opponent}'s strongest reply is ${report.immediate_reply.san}.` : ""}, 100);
+    // A move inside a forced mate is about the mate, ahead of any tactic or
+    // structure. A played back-rank tactic already explains that same mate.
+    if (event.kind === "forced_mate" && typeof f.stage === "string" && !events.some(other => other.kind === "tactic"
+      && other.facts.motif === "back_rank" && other.facts.role === "played"))
+      add(`forced_mate_${f.stage}`, {move, best, opponent, mate: Number(f.mate_in)}, 97);
     if (event.kind === "tactic") {
       const item = tacticalClaim(event, move, best, opponent);
       if (item) claims.push(item);
@@ -108,8 +113,12 @@ export function gameIntent({game, report, frame, ply, key, expression, explainin
       claims.push(claim("history", {motif: words(item.skill_id), games: item.independent_games}, 67, item.evidence, item.decision_ids));
   }
   if (poor) {
-    const reply = report.immediate_reply;
-    if (reply?.capture) claims.push(claim("reply_capture", {opponent, reply: reply.san, piece: reply.capture, side}, 78, refs));
+    const reply = report.immediate_reply, recapture = report.immediate_recapture;
+    // A capture the mover takes straight back is an even trade, not a loss.
+    const evenTrade = !!reply?.capture && (reply.material_change >= 0 || (recapture?.material_change ?? -1) >= 0);
+    if (reply?.capture) {
+      if (!evenTrade) claims.push(claim("reply_capture", {opponent, reply: reply.san, piece: reply.capture, side}, 78, refs));
+    }
     // The allowed-mate claim above already names this exact immediate reply.
     // Repeating it as a lower-priority check adds no new explanation.
     else if (reply?.gives_check && !claims.some(c => c.code === "allowed_mate" && c.slots.reply))

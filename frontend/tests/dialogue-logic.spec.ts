@@ -94,6 +94,31 @@ test("semantic dialogue names supported tactics, replies and exact severity with
   expect(renderNeutral(gameIntent({...args, report: withReply})).text).toContain("White's pawn");
 });
 
+test("a capture taken straight back is an even trade, not a reply that wins material", () => {
+  const traded = report();
+  traded.immediate_reply = {san: "Bxe6", capture: "bishop", gives_check: false, material_change: -3} as ExplanationFrame;
+  traded.immediate_recapture = {san: "fxe6", capture: "bishop", gives_check: false, material_change: 0} as ExplanationFrame;
+  expect(gameIntent({...args, report: traded}).claims.some(c => c.code === "reply_capture")).toBe(false);
+  // A reply that only recaptures what the move just took is even already.
+  const recapture = report();
+  recapture.immediate_reply = {san: "Bxd2", capture: "bishop", gives_check: false, material_change: 0} as ExplanationFrame;
+  expect(gameIntent({...args, report: recapture}).claims.some(c => c.code === "reply_capture")).toBe(false);
+  const lost = report();
+  lost.immediate_reply = {san: "Nxb5", capture: "queen", gives_check: false, material_change: -9} as ExplanationFrame;
+  lost.immediate_recapture = {san: "Nxb5", capture: "knight", gives_check: false, material_change: -6} as ExplanationFrame;
+  expect(gameIntent({...args, report: lost}).claims.some(c => c.code === "reply_capture")).toBe(true);
+});
+
+test("a missed tactic that starts on this move outranks one that appears later in the line", () => {
+  const tactic = (id: string, motif: string, plies: number[]): Schema["ReviewEvent"] => ({id, actor: "white",
+    confidence: "line_witness", importance: 75, kind: "tactic", evidence: [ref],
+    facts: {motif, role: "missed", plies, witness: plies.map(ply => ({ply, san: ply === 1 ? "d4" : "Nxc4"}))}});
+  const value = {...report([tactic("later", "removing_defender", [3, 5]), tactic("now", "fork", [1, 3])]),
+    label: "Inaccuracy", engine_label: "Inaccuracy"} as Report;
+  const claims = [...gameIntent({...args, report: value}).claims].sort((a, b) => b.priority - a.priority);
+  expect(claims[0].sourceIds).toEqual(["now"]);
+});
+
 test("human naturalness does not become a population claim or override the grade", () => {
   const game = humanGames.natural_error, value = game.frames[1].report!;
   const intent = humanIntent(game);
@@ -102,7 +127,8 @@ test("human naturalness does not become a population claim or override the grade
   expect(intent.decisions).toContain("domain_shift");
   const text = renderNeutral(intent).text;
   expect(text).toContain("natural mistake");
-  expect(text).toContain("3.40 pawns");
+  // The Book badge decides: the coach recognises the line instead of grading its loss.
+  expect(text).not.toContain("3.40 pawns");
   expect(text).not.toMatch(/%|players at your|you thought/);
 });
 
@@ -145,7 +171,8 @@ test("book is recognition, positive findings teach and arbitrary structure is no
   const intent = gameIntent({...args, report: value});
   const text = renderNeutral(intent).text;
   expect(text).toContain("Bongcloud");
-  expect(text).toContain("3.00 pawns");
+  // The Book badge decides: no correction for a recognised move.
+  expect(text).not.toContain("3.00 pawns");
   expect(text).not.toMatch(/recognition|does not mean|quality grade|sound/);
   const fact = event("positional", {feature: "rook_file", line: "actual", side: "black", after: "open", file: "d"});
   expect(renderNeutral(makeIntent("key", "best", "game", "best", [positionalClaim(fact, "exd5", "Nf3")!])).text).toContain("black's rook");

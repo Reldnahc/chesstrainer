@@ -204,7 +204,10 @@ It changes presentation, never evaluations or tactical facts.
 It defaults to 1000 and is stored with the review; changing it reuses engine evidence.
 
 - Best: engine top choice, or an equally immediate checkmate. A different move
-  with an equal or nearly equal centipawn score is not Best.
+  with an equal or nearly equal centipawn score is not Best. When a played move's
+  restricted-root search scores it above the reported best, presentation treats it
+  as the best move found (best move, best line and grade), without rewriting the
+  saved report.
 - Good: less than 50 cp loss without qualifying for a higher label. Keeping a
   forced win but taking longer to mate is Good, never Best, Great, or Brilliant.
 - Inaccuracy: 50–99 cp loss.
@@ -213,8 +216,9 @@ It defaults to 1000 and is stored with the review; changing it reuses engine evi
   or worse, or at least 300 cp loss below rating 1200 / 200 cp otherwise. Decisive
   pawn losses therefore remain Blunders at low ratings. Already-lost mate positions
   are not treated as newly allowed mate.
-- Miss: lost forced mate or a concrete missed gain supported by a settled comparison
-  and a tactical witness. Retaining mate in two instead of mate in one is not a
+- Miss: lost forced mate, or a concrete missed gain supported by a settled
+  comparison and a tactical witness that costs at least 100 cp; a smaller gap keeps
+  its ordinary label. Retaining mate in two instead of mate in one is not a
   Miss. Severe losses still take precedence as Blunder.
 - Great: at most 20 cp loss and more than one legal move, plus either the strongest
   alternative loses at least 150 cp / drops a mate outcome while the played move

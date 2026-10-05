@@ -283,7 +283,9 @@ for (const coach of openingCoaches) {
     }
   });
 
-  for (const correction of ["loss", "tactic"] as const) test(`${coach.id} keeps poor Book recognition below ${correction} for either mover`, () => {
+  // Owner decision (2026-10-04): the Book badge decides, so a poor engine grade
+  // on a recognised move is not a coach correction.
+  for (const correction of ["loss", "tactic"] as const) test(`${coach.id} names a poorly graded Book move as recognition, not a ${correction}`, () => {
     for (const ply of [1, 2]) {
       const game = gameWithReports(), report = game.frames[ply].report!;
       report.engine_label = "Blunder";
@@ -293,19 +295,12 @@ for (const coach of openingCoaches) {
         facts: {role: "allowed", motif: "pin", plies: [2], frame_ply: 2, witness: [{ply: 2, san: "Bb4"}]},
         evidence: [{source: "stockfish", id: "reply-search", field: "actual_line/findings/0", ply}],
       });
-      const intent = reviewedIntent(game, ply), book = intent.claims.find(item => item.code === "book")!;
-      const primaryCode = correction === "loss" ? "loss" : "tactic_allowed";
-      expect(book).toMatchObject({priority: 49, slots: {opening: "Named line"}, opening: presentation(game, ply)});
-      expect(intent.claims.find(item => item.code === primaryCode)!.priority).toBeGreaterThan(book.priority);
-      expect(intent.claims.some(item => ["book_sound", "best", "good"].includes(item.code))).toBe(false);
-      const output = renderDialogue(intent, coach);
-      // A one-claim voice drops the lower-priority recognition instead of promoting it.
-      const single = coach.personality.maxClaims === 1;
-      expect(output.renderedClaims?.map(item => item.code)).toEqual(single ? [primaryCode] : [primaryCode, "book"]);
-      const authored = coach.authored[bookRecordingId(book.opening!) as keyof typeof coach.authored][0];
-      expect(output.text.endsWith(authored.replace("{opening}", "Named line"))).toBe(!single);
-      expect(output.text).not.toMatch(/\b(well judged|nicely|sound choice|strong choice|good move)\b/i);
-      expect(output.text).not.toMatch(/\b(this|that|your move) (is|was) (the )?best\b/i);
+      const intent = reviewedIntent(game, ply);
+      const book = intent.claims.find(item => item.code === "book_sound")!;
+      expect(book).toMatchObject({priority: 96, slots: {opening: "Named line"}, opening: presentation(game, ply)});
+      expect(intent.claims.some(item => ["book", "loss", "alternative", "reply_capture"].includes(item.code))).toBe(false);
+      expect(Math.max(...intent.claims.map(item => item.priority))).toBe(book.priority);
+      expect(renderDialogue(intent, coach).renderedClaims?.[0].code).toBe("book_sound");
       expect(report.label).toBe("Book");
       expect(report.engine_label).toBe("Blunder");
     }

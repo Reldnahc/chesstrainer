@@ -18,7 +18,8 @@ const games = semanticFixtures<Record<string, Game>>("review_speech_combination_
 const coaches = [{id: "classic", personality: storyteller}, {id: "robot", personality: robot}];
 // Positions with an objective fact and a Maia reading.
 const objectiveAndMaia: [string, string][] = [
-  ["evaluation-natural", "evaluation-loss"],
+  // Poorly graded first moves are Book moves, and the Book badge decides the line.
+  ["evaluation-natural", "recognized-opening"],
   ["allowed-mate-natural", "allowed-mate"],
   ["missed-mate-natural", "missed-mate"],
   ["capture-natural", "immediate-capture"],
@@ -32,7 +33,7 @@ const objectiveAndMaia: [string, string][] = [
   ["resource-advantage-hard_find", "only-advantage-resource"],
   ["resource-defense-unusual_strong", "only-playable-move"],
   ["resource-advantage-unusual_strong", "only-advantage-resource"],
-  ["unsupported-defensive-pair", "evaluation-loss"],
+  ["unsupported-defensive-pair", "recognized-opening"],
 ];
 
 function context(name: string, coach = coaches[0], game = structuredClone(games[name])): GameSpeechContext {
@@ -99,7 +100,7 @@ for (const coach of coaches) {
     const current = context("evaluation-natural", coach, game);
     expect(current.intent.subject).toBe("opponent");
     expect(maia(insight(current).claims)).toEqual([]);
-    expect(selectGameSpeech(current).recordingId).toBe("evaluation-loss+recognized-opening");
+    expect(selectGameSpeech(current).recordingId).toBe("recognized-opening");
   });
 
   test(`${coach.id}: unresolved or stale positions select nothing`, () => {

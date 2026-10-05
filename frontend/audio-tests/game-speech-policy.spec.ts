@@ -16,8 +16,10 @@ const games = {
 const coaches = [{id: "classic", personality: storyteller}, {id: "robot", personality: robot}];
 // Objective explanations that the policy profiles reach while a Maia reading
 // is also available. Each speaks its own objective line; Maia is never voiced.
+// (Their poorly graded first moves are Book moves, which the badge lets name the
+// opening instead of an evaluation loss.)
 const observedFamilies = [
-  "evaluation-loss", "allowed-mate", "missed-mate", "immediate-capture", "recognized-opening",
+  "allowed-mate", "missed-mate", "immediate-capture", "recognized-opening",
   "cause-abandoned-defender", "cause-opponent-threat-recognition", "cause-avoiding-bad-trades",
   "tactic-fork-played", "tactic-pin-played", "tactic-fork-allowed", "tactic-skewer-allowed", "tactic-fork-missed",
   "sound-sacrifice", "only-playable-move", "only-advantage-resource",
