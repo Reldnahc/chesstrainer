@@ -33,8 +33,9 @@ function plainError(label: string) {
 
 test("each grade has its own pool of takes", () => {
   const pools = ["Brilliant", "Great", "Best", "Good", "Inaccuracy", "Mistake", "Miss", "Blunder"].map(gradeTakeIds);
-  expect(pools.every(ids => ids.length === GRADE_TAKES)).toBe(true);
-  expect(new Set(pools.flat()).size).toBe(8 * GRADE_TAKES);
+  // Imported extra takes (Best and Good grow to six) join after the first four.
+  expect(pools.every(ids => ids.length >= GRADE_TAKES)).toBe(true);
+  expect(new Set(pools.flat()).size).toBe(pools.flat().length);
   expect(gradeTakeIds("Book")).toEqual([]);
 });
 

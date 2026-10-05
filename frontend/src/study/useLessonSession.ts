@@ -4,6 +4,7 @@ import { useAudioScope } from "../audio/AudioProvider";
 import { studyRequestId } from "./requestId";
 import { useStudyPlayback } from "./useStudyPlayback";
 import { lessonRecording } from "../audio/speech/practiceSelection";
+import { withSessionTake } from "../audio/speech/meaningPools";
 
 export type LessonSession = Schema["LessonSessionView"];
 export type LessonAction = Schema["LessonCommand"]["action"];
@@ -19,6 +20,8 @@ export function useLessonSession(id: string) {
   const [error, setError] = useState("");
   const [speech, setSpeech] = useState<LessonSpeech | null>(null);
   const speechEvents = useRef(0);
+  // How often each clip has played this session, so its takes take turns.
+  const plays = useRef(new Map<string, number>());
   const generation = useRef(0);
   const request = useRef<AbortController | null>(null);
   const locked = useRef(false);
@@ -63,7 +66,10 @@ export function useLessonSession(id: string) {
       }));
       if (generation.current !== version) return;
       setSession(result);
-      setSpeech({ eventId: `lesson:${++speechEvents.current}:${action}`, recordingId: lessonRecording({ action, before: session, after: result }) });
+      const clip = lessonRecording({ action, before: session, after: result });
+      const played = clip ? plays.current.get(clip) ?? 0 : 0;
+      if (clip) plays.current.set(clip, played + 1);
+      setSpeech({ eventId: `lesson:${++speechEvents.current}:${action}`, recordingId: withSessionTake(clip, id, played) });
       playback.play(result.playback);
       const eventId = `revision:${result.revision}`;
       if (!result.playback.length && (action === "move" || result.fen !== session.fen)) {

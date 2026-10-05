@@ -7,6 +7,8 @@ import {stableKey, type Claim, type CoachUtterance, type DialogueIntent} from ".
 import {bookRecordingId} from "../../dialogue/openingPresentation";
 import {ALTERNATIVE_SEPARATOR, sequenceRecordingId} from "./sequence";
 import {hasPieceVariants, sacrificedPieces, tacticPieces, withPieceVariant, withPieceVariants} from "./pieceVariants";
+import {shuffledTakes, withColoursAndTakes, type Side} from "./meaningPools";
+import catalogue from "./meanings.json" with {type: "json"};
 import registry from "./banks/registry.json" with {type: "json"};
 
 export type GameSpeechContext = {
@@ -280,21 +282,33 @@ export function selectGameSpeech(context: GameSpeechContext) {
   }
   const gradeId = gradeTake(context, recordingId);
   // Each sentence and grade take may also name its piece; the generic line stays the fallback.
-  const pieces = new Map<string, readonly string[]>();
+  const pieces = new Map<string, readonly string[]>(), sides = new Map<string, Side>();
   for (const [index, id] of [[lead, primaryId], [lead + 1, secondId]] as const) {
     const named = id && hasPieceVariants(id) ? gamePieces({...context, claimIndex: index}, id) : null;
     if (id && named) pieces.set(id, named);
+    const side = id?.startsWith("positional-") ? positionalSide({...context, claimIndex: index}) : null;
+    if (id && side) sides.set(id, side);
   }
+  // Colour lines and extra takes join once imported; the seed keeps a replayed ply on its take.
+  const seed = context.variation ? [context.frame?.fen] : [context.game.id], turn = context.variation ? 0 : context.ply;
+  const pooled = (id: string) => withColoursAndTakes(withPieceVariants(id, pieces), sides, seed, turn);
   const mover = context.frame ? opposite(context.frame.turn) : null;
   const sacrifice = gradeId?.startsWith("grade-brilliant-") && mover
     ? context.report?.intelligence?.events.find(event => event.kind === "sacrifice" && event.actor === mover) : undefined;
   const sacrificed = sacrifice && mover ? sacrificedPieces(sacrifice.facts.acceptance_move, context.frame?.fen, mover) : null;
   const variants = {
-    recordingId: recordingId && withPieceVariants(recordingId, pieces),
-    primaryId: primaryId && withPieceVariants(primaryId, pieces),
+    recordingId: recordingId && pooled(recordingId),
+    primaryId: primaryId && pooled(primaryId),
     ...(gradeId ? {gradeId: withPieceVariant(gradeId, sacrificed)} : {}),
   };
   return {recordingId, primaryId, ...(gradeId ? {gradeId} : {}), variants};
+}
+
+/** The side whose pawns, rook or piece a selected positional clip is about. */
+function positionalSide(context: GameSpeechContext): Side | null {
+  const item = context.utterance.renderedClaims?.[context.claimIndex ?? 0];
+  const side = item && context.report ? eventFor(item, context.report)?.facts.side : null;
+  return side === "white" || side === "black" ? side : null;
 }
 
 /** The piece a selected game-review clip is about, from the evidence that selected it. */
@@ -308,8 +322,9 @@ function gamePieces(context: GameSpeechContext, id: string): string[] | null {
   return id.startsWith("tactic-") || id.startsWith("cause-") ? tacticPieces(event) : null;
 }
 
-/** Takes per move grade for a ply with nothing more specific to say. */
+/** Takes every grade has; imported extra takes (grade-best-5, ...) join their grade. */
 export const GRADE_TAKES = 4;
+const catalogueIds = (catalogue.meanings as {id: string}[]).map(item => item.id);
 const gradePools: Readonly<Record<string, string>> = {
   Brilliant: "brilliant", Great: "great", Best: "best", Good: "good",
   Inaccuracy: "inaccuracy", Mistake: "mistake", Miss: "miss", Blunder: "blunder",
@@ -323,20 +338,10 @@ const plainPraise = new Set(["best-supported-choice", "good-choice"]);
 
 export function gradeTakeIds(label: string): string[] {
   const pool = gradePools[label];
-  return pool ? Array.from({length: GRADE_TAKES}, (_, index) => `grade-${pool}-${index + 1}`) : [];
-}
-
-/** The takes in a seeded order: each round of the same game and grade is its own
- * shuffle, and a round never opens with the take that closed the round before. */
-function shuffledTakes(ids: readonly string[], seed: readonly unknown[], round: number): string[] {
-  const order = [...ids];
-  for (let index = order.length - 1; index > 0; index--) {
-    const pick = Number.parseInt(stableKey([...seed, round, index]), 16) % (index + 1);
-    [order[index], order[pick]] = [order[pick], order[index]];
-  }
-  if (round > 0 && order.length > 1 && order[0] === shuffledTakes(ids, seed, round - 1).at(-1))
-    [order[0], order[1]] = [order[1], order[0]];
-  return order;
+  if (!pool) return [];
+  const pattern = new RegExp(`^grade-${pool}-(\\d+)$`);
+  const extra = catalogueIds.map(id => Number(pattern.exec(id)?.[1])).filter(take => take > GRADE_TAKES);
+  return Array.from({length: GRADE_TAKES + extra.length}, (_, index) => `grade-${pool}-${index + 1}`);
 }
 
 /** A ply whose whole line is the generic reading for its grade plays one of that
@@ -349,7 +354,9 @@ function gradeTake(context: GameSpeechContext, recordingId: string | null): stri
   const {game, report, frame, ply, variation = false} = context, label = report?.label;
   if (!recordingId || !label || !gradePools[label]
     || !(correctionGrades.has(label) ? plainCorrection : plainPraise).has(recordingId)) return;
-  const ids = gradeTakeIds(label);
+  // Takes a coach has not recorded yet sit out, so every turn plays a take.
+  const all = gradeTakeIds(label), recorded = all.filter(id => context.playable?.(id) ?? true);
+  const ids = recorded.length ? recorded : all;
   const earlier = variation ? 0 : game.frames.slice(1, ply).filter(item => item.report?.label === label).length;
   const order = shuffledTakes(ids, variation ? [frame?.fen, label] : [game.id, label], Math.floor(earlier / ids.length));
   return order[earlier % ids.length];
