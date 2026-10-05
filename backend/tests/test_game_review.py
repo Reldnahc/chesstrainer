@@ -317,6 +317,24 @@ def test_brilliant_sacrifice_can_create_a_forced_mate(settings, sessions, stockf
         engine.close()
 
 
+@pytest.mark.stockfish
+def test_a_mating_sacrifice_is_brilliant_even_when_already_winning(settings, sessions, stockfish_path):
+    from trainer.engine import Stockfish
+
+    settings.stockfish_path = stockfish_path
+    engine = Stockfish(settings, sessions)
+    try:
+        # mannusingh6978 vs Reldnahcs: Qe1+ Rxe1 Rxe1#, while Bxf2+ was already
+        # about +7.8. Only the queen sacrifice forces mate.
+        board = chess.Board("r3r1k1/p3qppp/1p6/2b5/6R1/N7/PBP2PPP/R5K1 b - - 0 20")
+        report = analyze_move(engine, board, chess.Move.from_uci("e7e1"))
+        assert report["actual"]["score"] == {"kind": "mate", "value": 2, "mate_given": False}
+        assert report["sacrifice"] is not None, report["root_candidates"]
+        assert classify(report, 1000)[0] == "Brilliant"
+    finally:
+        engine.close()
+
+
 @pytest.mark.parametrize(
     "fen,moves,piece,square",
     [

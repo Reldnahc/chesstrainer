@@ -190,7 +190,15 @@ def analyze_move(engine, board, move, previous_score=None):
     # Test acceptance explicitly, as well as the unrestricted opponent search.
     sacrifice = None
     alternatives = [c for c in candidates if c.uci != move.uci()]
-    already_winning_without_sacrifice = any(numeric(c.score) >= 300 for c in alternatives)
+    # Forcing mate is its own achievement: a sacrifice that is the only searched
+    # way to a forced mate stays eligible even when the alternatives keep a big lead.
+    forces_mate = actual.score.kind == "mate" and actual.score.outcome() == 1
+    only_mate = forces_mate and not any(
+        c.score.kind == "mate" and c.score.outcome() == 1 for c in alternatives
+    )
+    already_winning_without_sacrifice = not only_mate and any(
+        numeric(c.score) >= 300 for c in alternatives
+    )
     if (
         board.legal_moves.count() > 1
         and not poor
